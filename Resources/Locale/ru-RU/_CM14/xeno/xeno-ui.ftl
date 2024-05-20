@@ -1,0 +1,9 @@
+cm-ui-cm-actions = Действия СМ
+cm-ui-transform-tab = Трансформация
+cm-ui-xeno-tab = Ксено
+cm-ui-xeno-hive = Улей:
+cm-ui-open-cm-actions = Открыть действия CM
+cm-ui-create-new-hive = Создать новый улей
+cm-ui-create-hive-title = Новое название улья
+cm-ui-humanoid = Гуманоид
+cm-ui-tier = Уровень { $tier }

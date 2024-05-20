@@ -1,0 +1,9 @@
+move-order-callout-1 = Шевелись!!!
+move-order-callout-2 = Двигайся!!!
+move-order-callout-3 = Ускорятесь!!!
+hold-order-callout-1 = Обороняйтесь!!!
+hold-order-callout-2 = Держать линию!!!
+hold-order-callout-3 = Защищайтесь!!!
+focus-order-callout-1 = Сосредоточьтесь!!!
+focus-order-callout-2 = Прицелиться!!!
+focus-order-callout-3 = Сосредоточьте огонь!!!
