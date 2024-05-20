@@ -39,7 +39,7 @@
     - ActionXenoWordQueen
 #    - ActionXenoPsychicWhisper
 #    - ActionXenoPsychicRadiance
-#    - ActionXenoGut
+    - ActionXenoGut
     - ActionXenoPlantWeeds
     - ActionXenoChooseStructure
     - ActionXenoSecreteStructure
@@ -49,7 +49,7 @@
 #    - ActionXenoRoyalJelly
 #    - ActionXenoMarkResin
     # Mature
-#    - ActionXenoScreech
+    - ActionXenoScreech
 #    - ActionXenoSpit
 #    - ActionXenoToggleSpitType
     # TODO CM14 fire immunity
@@ -75,6 +75,8 @@
     armor: 25
     explosionArmor: 100
   - type: XenoWordQueen
+  - type: XenoGut
+  - type: XenoScreech
   - type: MeleeWeapon
     damage:
       groups:
