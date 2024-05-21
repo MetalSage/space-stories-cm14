@@ -1,0 +1,15 @@
+ent-CMClosetBioFilled = { ent-CMClosetBio }
+    .suffix = Заполненный, Общий
+    .desc = { ent-CMClosetBio.desc }
+ent-CMClosetBioVirologyFilled = { ent-CMClosetBioVirology }
+    .suffix = Заполненный, Вирусология
+    .desc = { ent-CMClosetBioVirology.desc }
+ent-CMClosetBioSecurityFilled = { ent-CMClosetBioSecurity }
+    .suffix = Заполненный, Безопасность
+    .desc = { ent-CMClosetBioSecurity.desc }
+ent-CMClosetBioJanitorFilled = { ent-CMClosetBioJanitor }
+    .suffix = Заполненный, Уборщик
+    .desc = { ent-CMClosetBioJanitor.desc }
+ent-CMClosetBioScientistFilled = { ent-CMClosetBioScientist }
+    .suffix = Заполненный, Наука
+    .desc = { ent-CMClosetBioScientist.desc }

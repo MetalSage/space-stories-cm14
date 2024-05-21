@@ -1,0 +1,10 @@
+ent-CMIDCardSeniorEnlistedAdvisor = ID старшего советника
+    .desc = { ent-CMIDCardSilver.desc }
+ent-CMIDCardCorrespondent = ID корреспондента
+    .desc = { ent-CMIDCardBase.desc }
+ent-CMIDCardColonist = ID личности колониста
+    .desc = { ent-CMIDCardLanyard.desc }
+ent-CMIDCardLiaison = ID связного
+    .desc = { ent-CMIDCardGold.desc }
+ent-CMIDCardMessTech = ID сервисного работника
+    .desc = { ent-CMIDCardBase.desc }

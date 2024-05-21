@@ -1,0 +1,13 @@
+ent-CMFilingCabinetBase = { "" }
+    .desc = Большой шкаф с выдвижными ящиками.
+    .suffix = Пустой
+ent-CMFilingCabinet = картотечный шкаф
+  .desc = { ent-CMFilingCabinetBase.desc }
+ent-CMFilingCabinetTall = высокий картотечный шкаф
+  .desc = { ent-CMFilingCabinetBase.desc }
+ent-CMFilingCabinetTallWood = высокий деревянный шкаф для бумаг
+    .desc = { ent-CMFilingCabinetTall.desc }
+ent-CMFilingCabinetChest = ящик комода
+  .desc = { ent-CMFilingCabinetBase.desc }
+ent-CMFilingCabinetChestWood = деревянный комод
+    .desc = { ent-CMFilingCabinetChest.desc }

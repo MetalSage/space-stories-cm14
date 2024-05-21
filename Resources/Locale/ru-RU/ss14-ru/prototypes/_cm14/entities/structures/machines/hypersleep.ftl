@@ -1,0 +1,14 @@
+ent-CMHyperSleepChamber = камера гиперсна
+    .desc = Большая автоматизированная капсула со светодиодными дисплеями, предназначенная для погружения в "гиперсон" - форму некриогенного статики, используемую на большинстве кораблей, - соединенная с отсеком длительного гиперсна на нижнем уровне.
+ent-CMHyperSleepChamberAlpha = { ent-CMHyperSleepChamber }
+    .suffix = Альфа
+    .desc = { ent-CMHyperSleepChamber.desc }
+ent-CMHyperSleepChamberBravo = { ent-CMHyperSleepChamber }
+    .suffix = Браво
+    .desc = { ent-CMHyperSleepChamber.desc }
+ent-CMHyperSleepChamberCharlie = { ent-CMHyperSleepChamber }
+    .suffix = Чарли
+    .desc = { ent-CMHyperSleepChamber.desc }
+ent-CMHyperSleepChamberDelta = { ent-CMHyperSleepChamber }
+    .suffix = Дельта
+    .desc = { ent-CMHyperSleepChamber.desc }

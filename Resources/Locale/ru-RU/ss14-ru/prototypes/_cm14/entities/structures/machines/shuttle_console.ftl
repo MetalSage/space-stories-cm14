@@ -1,0 +1,12 @@
+ent-CMComputerDropship = { ent-CMBaseStructure }
+    .desc = { ent-CMBaseStructure.desc }
+ent-CMComputerDropshipNavigation = навигационный компьютер корабля
+    .desc = Полетный компьютер, который может использоваться для автопилота или дальних полетов.
+ent-CMComputerDropshipCamerasAlamo = управление камерами
+    .desc = Компьютер для управления камерами, подключенными к кораблю.
+ent-CMComputerDropshipWeapons = управление оружием
+    .desc = Компьютер для управления оборудованием, оружием и симуляторами, установленными на дропшипе.
+ent-CMDropshipDestination = пункт назначения корабля
+    .desc = Определяет место, куда дропшип может переместиться со сверхсветовой скоростью при пилотировании.
+ent-CMDropshipHijackDestination = пункт назначения
+    .desc = Определяет место, куда дропшипы будут добираться со сверхсветовой скоростью, если их захватят.

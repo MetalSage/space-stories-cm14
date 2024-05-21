@@ -1,0 +1,10 @@
+ent-CMSMESMachineCircuitboard = машинная плата СМЭС
+    .desc = Машинная печатная плата для СМЭС.
+ent-CMCircuitboardDispenserChem = машинная плата хим-раздчатчика
+    .desc = Печатная плата для химического диспенсера.
+ent-CMCircuitboardDispenserBooze = машинная плата автомата выдачи спиртного
+    .desc = Печатная плата для автомата по продаже спиртных напитков.
+ent-CMCircuitboardDispenserSoda = машинная плата автомата по продаже газировки
+    .desc = Печатная плата для автомата газировки.
+ent-CMCircuitboardChemMaster = машинная плата хим-мастера
+    .desc = Машинная печатная плата для химического мастера.

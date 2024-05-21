@@ -1,0 +1,12 @@
+ent-CMCrateMedicalSurgery = ящик хирургический (анестезия, снаряжение хирурга)
+    .desc = { ent-CMCrateSecureSurgery.desc }
+ent-CMCrateMedicalBodyBag = ящик мешков для тела (x28)
+    .desc = { ent-CMCrateMedical.desc }
+ent-CMCrateMedicalStasisBag = ящик стазисных мешков для тела (x3)
+    .desc = { ent-CMCrateMedical.desc }
+ent-CMCrateMedicalFirstAid = ящик аптечкек первой помощи (x2 каждый)
+    .desc = { ent-CMCrateMedical.desc }
+ent-CMCrateMedicalFilled = ящик медицинский 
+    .desc = { ent-CMCrateMedical.desc }
+ent-CMCrateMedicalPill = ящик таблетниц (x2 каждый)
+    .desc = { ent-CMCrateMedical.desc }

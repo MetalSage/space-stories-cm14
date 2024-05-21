@@ -1,0 +1,14 @@
+ent-CMDogtagRifleman = жетон стрелка
+    .desc = { ent-CMIDCardStandardDogtag.desc }
+ent-CMDogtagCombatTech = жетон боевого техника
+    .desc = { ent-CMIDCardStandardDogtag.desc }
+ent-CMDogtagFireteamLeader = жетон командира огневой группы
+    .desc = { ent-CMIDCardStandardDogtag.desc }
+ent-CMDogtagHospitalCorpsman = жетон санитара госпиталя
+    .desc = { ent-CMIDCardStandardDogtag.desc }
+ent-CMDogtagSmartgunner = жетон Smartgunner
+    .desc = { ent-CMIDCardStandardDogtag.desc }
+ent-CMDogtagSquadLeader = жетон командира отряда
+    .desc = { ent-CMIDCardStandardDogtag.desc }
+ent-CMDogtagWeaponsSpecialist = жетон специалиста по оружию
+    .desc = { ent-CMIDCardStandardDogtag.desc }

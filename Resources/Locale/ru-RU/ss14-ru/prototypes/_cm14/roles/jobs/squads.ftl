@@ -1,0 +1,10 @@
+ent-SquadBase = { "" }
+    .desc = { "" }
+ent-SquadAlpha = Альфа
+    .desc = { ent-SquadBase.desc }
+ent-SquadBravo = Браво
+    .desc = { ent-SquadBase.desc }
+ent-SquadCharlie = Чарли
+    .desc = { ent-SquadBase.desc }
+ent-SquadDelta = Дельта
+    .desc = { ent-SquadBase.desc }

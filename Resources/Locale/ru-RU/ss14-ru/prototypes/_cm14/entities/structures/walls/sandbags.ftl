@@ -1,0 +1,15 @@
+ent-CMBarricadeSandbag = баррикада из мешков с песком
+    .desc = Импровизированная баррикада, сделанная из песка с земли. Ее трудно пробить, но легко пробить.
+ent-CMSandbagEmpty = пустые мешки с песком
+    .desc = Несколько пустых мешков с песком, лучше наполнить их, если вы хотите их использовать.
+ent-CMSandbagEmpty50 = { ent-CMSandbagEmpty }
+    .suffix = 50
+    .desc = { ent-CMSandbagEmpty.desc }
+ent-CMSandbagEmpty25 = { ent-CMSandbagEmpty }
+    .suffix = 25
+    .desc = { ent-CMSandbagEmpty.desc }
+ent-CMSandbagFull = мешки с песком
+    .desc = Несколько мешков Заполненный песком. Пока просто громоздкие, но скоро будут использоваться для укреплений.
+ent-CMSandbagFull50 = { ent-CMSandbagFull }
+    .suffix = 50
+    .desc = { ent-CMSandbagFull.desc }

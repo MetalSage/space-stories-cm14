@@ -1,0 +1,14 @@
+ent-CMBottleEmpty = { ent-BaseChemistryEmptyBottle }
+    .desc = { ent-BaseChemistryEmptyBottle.desc }
+ent-CMBottleFilled = { ent-CMBottleEmpty }
+    .desc = { ent-CMBottleEmpty.desc }
+ent-CMBottleKelotane = бутылка келотана
+    .desc = Небольшой флакон. Содержит келотан - используется для лечения ожогов.
+ent-CMBottleInaprovaline = бутылка инапровалина
+    .desc = Небольшой флакон. Содержит инапровалин - используется для стабилизации состояния пациентов.
+ent-CMBottleDylovene = бутылка диловена
+    .desc = Небольшой флакон с диловеном. Противодействует ядам и восстанавливает повреждения от токсинов. Чудо-препарат.
+ent-CMBottleBicaridine = бутылка бикаридина
+    .desc = Небольшая бутылочка. Содержит бикаридин - используется для лечения грубых повреждений.
+ent-CMBottleDexalin = бутылка дексалина
+    .desc = Небольшая бутылочка. Содержит келотан - используется для лечения ожогов.

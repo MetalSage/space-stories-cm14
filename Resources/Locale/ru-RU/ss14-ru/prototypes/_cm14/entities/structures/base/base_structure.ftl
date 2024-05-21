@@ -1,0 +1,12 @@
+ent-CMBaseStructure = { ent-BaseStructure }
+    .desc = { ent-BaseStructure.desc }
+ent-CMBaseStructureCorrodible = { ent-BaseStructure }
+    .desc = { ent-BaseStructure.desc }
+ent-CMBaseXenoStructure = { ent-BaseStructure }
+    .desc = { ent-BaseStructure.desc }
+ent-CMCorrodible = { "" }
+    .desc = { "" }
+ent-CMBaseWall = { ent-CMBaseStructureCorrodible }
+    .desc = Огромный кусок металла, используемый для разделения комнат.
+ent-CMBaseWallXeno = смоляная стена
+    .desc = { ent-BaseWall.desc }

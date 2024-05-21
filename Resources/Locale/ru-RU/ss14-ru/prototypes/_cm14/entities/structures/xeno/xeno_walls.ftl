@@ -1,0 +1,10 @@
+ent-WallXenoResin = смоляная стена
+    .desc = Странная слизь, затвердевшая в стену.
+ent-WallXenoResinThick = толстая смоляная стена
+    .desc = Странная слизь затвердела в толстую стену.
+ent-BaseMembraneXeno = смоляная мембрана
+    .desc = { ent-CMBaseWallXeno.desc }
+ent-WallXenoMembrane = смоляная мембрана
+    .desc = Странная слизь, достаточно прозрачная, чтобы пропускать свет.
+ent-WallXenoMembraneThick = толстая смоляная мембрана
+    .desc = Странная густая слизь, достаточно прозрачная, чтобы пропускать свет.

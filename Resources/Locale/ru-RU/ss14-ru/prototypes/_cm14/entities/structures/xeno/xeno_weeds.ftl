@@ -1,0 +1,10 @@
+ent-XenoWeeds = смола
+    .desc = Странная черная смола...
+ent-XenoWeedsSource = смоляной узел
+    .desc = Странный, пульсирующий нарост
+ent-XenoHiveWeeds = ульевая смола
+    .desc = { ent-XenoWeeds.desc }
+ent-XenoHiveWeedsSource = ульевый смоляной узел
+    .desc = { ent-XenoHiveWeeds.desc }
+ent-XenoWeedsWall = смола
+    .desc = { "" }

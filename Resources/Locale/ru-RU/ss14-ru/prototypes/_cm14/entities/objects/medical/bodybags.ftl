@@ -1,0 +1,10 @@
+ent-CMBodyBag = мешок для трупов
+    .desc = Сложенный мешок, предназначенный для хранения и транспортировки трупов.
+ent-CMBodyBagFolded = { ent-CMBodyBag }
+    .suffix = Сложенный
+    .desc = { ent-CMBodyBag.desc }
+ent-CMStasisBag = стазис-мешок
+    .desc = Сложенная сумка многоразового использования, предназначенная для предотвращения дополнительных повреждений пассажира.
+ent-CMStasisBagFolded = { ent-CMStasisBag }
+    .suffix = Сложенный
+    .desc = { ent-CMStasisBag.desc }

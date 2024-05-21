@@ -1,0 +1,12 @@
+ent-CMFolderBase = папка
+    .desc = Папка.
+ent-CMFolderBlue = { ent-CMFolderBase }
+    .desc = Синяя папка.
+ent-CMFolderRed = { ent-CMFolderBase }
+    .desc = Красная папка.
+ent-CMFolderYellow = { ent-CMFolderBase }
+    .desc = Желтая папка.
+ent-CMFolderWhite = { ent-CMFolderBase }
+    .desc = Белая папка.
+ent-CMFolderBlack = { ent-CMFolderBase }
+    .desc = { ent-CMFolderBase.desc }
