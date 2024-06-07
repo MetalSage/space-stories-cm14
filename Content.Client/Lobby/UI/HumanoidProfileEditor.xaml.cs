@@ -11,6 +11,7 @@ using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._CM14.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
+using Content.Shared.Stories.SCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -192,6 +193,18 @@ namespace Content.Client.Lobby.UI
             };
 
             #endregion Gender
+
+            // Stories-TTS-Start
+            #region Voice
+
+            if (configurationManager.GetCVar(SCCVars.TTSEnabled))
+            {
+                TTSContainer.Visible = true;
+                InitializeVoice();
+            }
+
+            #endregion
+            // Stories-TTS-End
 
             RefreshSpecies();
 
@@ -665,6 +678,7 @@ namespace Content.Client.Lobby.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
+            UpdateTTSVoicesControls(); // Stories-TTS
             UpdateHairPickers();
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
@@ -1063,6 +1077,7 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateGenderControls();
+            UpdateTTSVoicesControls(); // Stories-TTS
             Markings.SetSex(newSex);
             ReloadPreview();
             SetDirty();
@@ -1074,6 +1089,14 @@ namespace Content.Client.Lobby.UI
             ReloadPreview();
             SetDirty();
         }
+
+        // Stories-TTS-Start
+        private void SetVoice(string newVoice)
+        {
+            Profile = Profile?.WithVoice(newVoice);
+            IsDirty = true;
+        }
+        // Stories-TTS-End
 
         private void SetSpecies(string newSpecies)
         {

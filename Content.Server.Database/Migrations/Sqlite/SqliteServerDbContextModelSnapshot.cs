@@ -763,6 +763,13 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
 
+                    // Stories-TTS-Start
+                    b.Property<string>("Voice")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("voice");
+                    // Stories-TTS-End
+
                     b.HasKey("Id")
                         .HasName("PK_profile");
 

@@ -18,6 +18,10 @@ public sealed partial class VoiceMaskSystem
         var comp = EnsureComp<VoiceMaskComponent>(user);
         comp.VoiceName = component.LastSetName;
         comp.SpeechVerb = component.LastSpeechVerb;
+        // Stories-TTS-Start
+        if (component.LastSetVoice != null)
+            comp.VoiceId = component.LastSetVoice;
+        // Stories-TTS-End
 
         _actions.AddAction(user, ref component.ActionEntity, component.Action, uid);
     }
