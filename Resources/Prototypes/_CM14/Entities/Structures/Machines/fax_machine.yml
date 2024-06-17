@@ -27,7 +27,7 @@
   suffix: CMB
   components:
   - type: FaxMachine
-    name: "Colonial Marshal Bureau"
+    name: "Колониальное Бюро Маршалов"
     notifyAdmins: true
 
 - type: entity
@@ -37,7 +37,7 @@
   suffix: WY
   components:
   - type: FaxMachine
-    name: "Weyland-Yutani"
+    name: "Вейланд-Ютани"
     notifyAdmins: true
 
 - type: entity
@@ -47,7 +47,7 @@
   suffix: USCM HC
   components:
   - type: FaxMachine
-    name: "USCM High Command"
+    name: "Верховное командование КМП США"
     notifyAdmins: true
 
 - type: entity
@@ -56,7 +56,7 @@
   suffix: Provost
   components:
   - type: FaxMachine
-    name: "USCM Provost Office"
+    name: "Офис проректора КМП США"
     notifyAdmins: true
 
 - type: entity
@@ -65,7 +65,7 @@
   suffix: Press
   components:
   - type: FaxMachine
-    name: "Various Press Organizations"
+    name: "Различные печатные организации"
     notifyAdmins: true
 
 - type: entity
@@ -74,7 +74,7 @@
   suffix: CLF
   components:
   - type: FaxMachine
-    name: "Colonial Liberation Front"
+    name: "Фронт колониального освобождения"
     notifyAdmins: true
 
 - type: entity
@@ -83,7 +83,7 @@
   suffix: UPP
   components:
   - type: FaxMachine
-    name: "Union of Progressive People"
+    name: "Союз прогрессивных людей"
     notifyAdmins: true
 
 - type: entity
@@ -92,5 +92,5 @@
   suffix: TWE
   components:
   - type: FaxMachine
-    name: "Three World Empire"
+    name: "Империя трех миров"
     notifyAdmins: true
