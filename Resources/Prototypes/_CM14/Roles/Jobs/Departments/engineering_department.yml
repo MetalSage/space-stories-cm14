@@ -5,5 +5,5 @@
   color: "#A66300"
   roles:
   - CMChiefEngineer
-  - CMOrdnanceTech
+  # - CMOrdnanceTech
   - CMMaintTech

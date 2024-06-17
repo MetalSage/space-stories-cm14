@@ -25,10 +25,10 @@
             # CMIntelOfficer: [4, 4]
             CMPilotDropship: [1, 1]
             CMPilotGunship: [1, 1]
-            # CMDropshipCrewChief: [2, 2]
+            CMDropshipCrewChief: [2, 2]
             #Engineering
             CMChiefEngineer: [1, 1]
-            CMOrdnanceTech: [3, 3]
+            # CMOrdnanceTech: [3, 3]
             CMMaintTech: [1, 1]
             #Medical
             CMCMO: [1, 1]
