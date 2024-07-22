@@ -1,8 +1,11 @@
 using System.Linq;
+using Content.Client.Stories.Sponsors;
 using Content.Shared.Preferences;
 using Robust.Client;
 using Robust.Client.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby
@@ -17,6 +20,9 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IClientNetManager _netManager = default!;
         [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!; // Stories-Sponsors
+        [Dependency] private readonly IPrototypeManager _prototypes = default!; // Stories-Sponsors
+        [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Stories-Sponsors
 
         public event Action? OnServerDataLoaded;
 
@@ -59,8 +65,6 @@ namespace Content.Client.Lobby
 
         public void UpdateCharacter(ICharacterProfile profile, int slot)
         {
-            var collection = IoCManager.Instance!;
-            profile.EnsureValid(_playerManager.LocalSession!, collection);
             var characters = new Dictionary<int, ICharacterProfile>(Preferences.Characters) {[slot] = profile};
             Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor);
             var msg = new MsgUpdateCharacter

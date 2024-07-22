@@ -88,9 +88,14 @@ namespace Content.Client.Lobby.UI
                     ("maxCharacters", _preferencesManager.Settings!.MaxCharacterSlots));
 
             var selectedSlot = _preferencesManager.Preferences?.SelectedCharacterIndex;
-
+            var isDisplayedMaxSlots = false; // Stories-Sponsors: Additional slots possible
             foreach (var (slot, character) in _preferencesManager.Preferences!.Characters)
             {
+                // Stories-Sponsors-Start
+                isDisplayedMaxSlots = numberOfFullSlots >= _preferencesManager.Settings.MaxCharacterSlots;
+                if (isDisplayedMaxSlots) break;
+                // Stories-Sponsors-End
+
                 numberOfFullSlots++;
                 var characterPickerButton = new CharacterPickerButton(_entManager,
                     _protomanager,
@@ -111,7 +116,7 @@ namespace Content.Client.Lobby.UI
                 };
             }
 
-            _createNewCharacterButton.Disabled = numberOfFullSlots >= _preferencesManager.Settings.MaxCharacterSlots;
+            _createNewCharacterButton.Disabled = isDisplayedMaxSlots; // Stories-Sponsors
             Characters.AddChild(_createNewCharacterButton);
         }
     }

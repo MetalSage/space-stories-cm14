@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Content.Server._RMC14.Discord;
 using Content.Server._RMC14.LinkAccount;
+using Content.Server.Stories.Sponsors;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
@@ -47,6 +48,7 @@ namespace Content.Server.Chat.Managers
         [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
         [Dependency] private readonly LinkAccountManager _linkAccount = default!;
         [Dependency] private readonly RMCDiscordManager _discord = default!;
+        [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Stories-Sponsors
 
         /// <summary>
         /// The maximum length a player-sent message can be sent
@@ -259,6 +261,13 @@ namespace Content.Server.Chat.Managers
             {
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", "#aa00ff"),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
             }
+
+            // Stories-Sponsors-Start
+            if (_sponsorsManager.TryGetInfo(player.UserId, out var sponsorData) && sponsorData.OOCColor != null)
+            {
+                wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", sponsorData.OOCColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            }
+            // Stories-Sponsors-End
 
             //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
             ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);

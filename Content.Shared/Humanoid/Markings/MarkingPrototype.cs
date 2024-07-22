@@ -20,6 +20,11 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("speciesRestriction")]
         public List<string>? SpeciesRestrictions { get; private set; }
 
+        // Stories-Sponsors-Start
+        [DataField("sponsorOnly")]
+        public bool SponsorOnly = false;
+        // Stories-Sponsors-End
+
         [DataField("sexRestriction")]
         public Sex? SexRestriction { get; private set; }
 

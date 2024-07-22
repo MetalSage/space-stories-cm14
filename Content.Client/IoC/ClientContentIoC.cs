@@ -1,6 +1,9 @@
 using Content.Client._RMC14.LinkAccount;
 using Content.Client._RMC14.Mapping;
 using Content.Client._RMC14.PlayTimeTracking;
+using Content.Client.Stories.DiscordAuth;
+using Content.Client.Stories.JoinQueue;
+using Content.Client.Stories.Sponsors;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -49,6 +52,9 @@ namespace Content.Client.IoC
             collection.Register<GhostKickManager>();
             collection.Register<ExtendedDisconnectInformationManager>();
             collection.Register<JobRequirementsManager>();
+            collection.Register<SponsorsManager>(); // Stories-Sponsors
+            collection.Register<JoinQueueManager>(); // Stories-Queue
+            collection.Register<DiscordAuthManager>(); // Stories-DiscordAuth
             collection.Register<DocumentParsingManager>();
             collection.Register<ContentReplayPlaybackManager, ContentReplayPlaybackManager>();
             collection.Register<ISharedPlaytimeManager, JobRequirementsManager>();

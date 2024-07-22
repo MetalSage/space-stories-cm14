@@ -1,3 +1,7 @@
+using Content.Server.Stories.DiscordAuth;
+using Content.Server.Stories.JoinQueue;
+using Content.Server.Stories.Sponsors;
+using Content.Server.Stories.TTS;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -5,7 +9,6 @@ using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
-using Content.Server.Stories.TTS;
 using Content.Server.Database;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
@@ -104,6 +107,9 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<INodeGroupFactory>().Initialize();
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
                 IoCManager.Resolve<GhostKickManager>().Initialize();
+                IoCManager.Resolve<DiscordAuthManager>().Initialize(); // Stories-DiscordAuth
+                IoCManager.Resolve<SponsorsManager>().Initialize(); // Stories-Sponsors
+                IoCManager.Resolve<JoinQueueManager>().Initialize(); // Stories-Queue
                 IoCManager.Resolve<TTSManager>().Initialize(); // Stories-TTS
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
