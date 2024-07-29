@@ -2,7 +2,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared._RMC14.NamedItems;
 using Content.Shared.CCVar;
-using Content.Shared.Stories.TTS;
+using Content.Shared._Stories.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;

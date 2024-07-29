@@ -1,4 +1,4 @@
-using Content.Shared.Stories.TTS;
+using Content.Shared._Stories.TTS;
 using System.IO;
 using System.Linq;
 using Content.Shared.CCVar;

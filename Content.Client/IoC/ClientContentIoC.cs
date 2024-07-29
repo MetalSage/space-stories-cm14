@@ -1,9 +1,9 @@
 using Content.Client._RMC14.LinkAccount;
 using Content.Client._RMC14.Mapping;
 using Content.Client._RMC14.PlayTimeTracking;
-using Content.Client.Stories.DiscordAuth;
-using Content.Client.Stories.JoinQueue;
-using Content.Client.Stories.Sponsors;
+using Content.Client._Stories.DiscordAuth;
+using Content.Client._Stories.JoinQueue;
+using Content.Client._Stories.Sponsors;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;

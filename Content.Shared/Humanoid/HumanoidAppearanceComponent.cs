@@ -1,4 +1,4 @@
-using Content.Shared.Stories.TTS;
+using Content.Shared._Stories.TTS;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Enums;

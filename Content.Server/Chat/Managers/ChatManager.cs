@@ -3,7 +3,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Content.Server._RMC14.Discord;
 using Content.Server._RMC14.LinkAccount;
-using Content.Server.Stories.Sponsors;
+using Content.Server._Stories.Sponsors;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;

@@ -14,7 +14,7 @@ using Content.Shared._RMC14.NamedItems;
 using Content.Shared._RMC14.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
-using Content.Shared.Stories.SCCVars;
+using Content.Shared._Stories.SCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Guidebook;
 using Content.Shared.Humanoid;

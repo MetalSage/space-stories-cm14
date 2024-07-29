@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Client.Stories.Sponsors;
+using Content.Client._Stories.Sponsors;
 using Content.Shared.Preferences;
 using Robust.Client;
 using Robust.Client.Player;

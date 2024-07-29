@@ -1,7 +1,7 @@
-using Content.Server.Stories.DiscordAuth;
-using Content.Server.Stories.JoinQueue;
-using Content.Server.Stories.Sponsors;
-using Content.Server.Stories.TTS;
+using Content.Server._Stories.DiscordAuth;
+using Content.Server._Stories.JoinQueue;
+using Content.Server._Stories.Sponsors;
+using Content.Server._Stories.TTS;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
