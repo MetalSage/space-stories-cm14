@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "Copied from rat king and modified",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "attack"
+    },
+    {
+      "name": "attackOff"
+    },
+    {
+      "name": "follow"
+    },
+    {
+      "name": "followOff"
+    },
+    {
+      "name": "loose"
+    },
+    {
+      "name": "looseOff"
+    },
+    {
+      "name": "stay"
+    },
+    {
+      "name": "stayOff"
+    },
+    {
+      "name": "summonerArmy"
+    }
+  ]
+}

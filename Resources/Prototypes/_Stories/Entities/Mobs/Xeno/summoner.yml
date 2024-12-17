@@ -1,0 +1,507 @@
+- type: entity
+  id: CMXenoWithoutMindBase
+  abstract: true
+  save: false
+  components: # TODO RMC14 camera recoil from large explosions? check 13
+  - type: Damageable
+    damageContainer: Xeno
+  - type: Destructible
+    thresholds: []
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+    stateAlertDict:
+      Alive: XenoHealth
+      Critical: XenoCrit
+      Dead: XenoDead
+    displayDamageInAlert: true
+  - type: MobStateActions
+    actions:
+      Critical:
+      - CMActionGhost
+      Dead:
+      - CMActionGhost
+  - type: Deathgasp
+    prototype: CMXenoDeathGasp
+  - type: SoundOnDeath
+    sound:
+      collection: XenoDeath
+      params:
+        volume: -4
+  - type: HealthExaminable
+    examinableTypes:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Shock
+  - type: CMDefibrillatorBlocked
+    popup: defibrillator-xeno
+    showOnExamine: false
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 4
+  - type: Climbing
+  - type: Insulated
+  - type: Input
+    context: "human"
+  - type: Clickable
+  - type: InteractionOutline
+  - type: InputMover
+  - type: LagCompensation
+  - type: MobMover
+  - type: Emoting
+  - type: Actions
+  - type: Alerts
+  - type: Appearance
+  - type: DoAfter
+  - type: Examiner
+  - type: Eye
+  - type: ContentEye
+  - type: StatusIcon
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Generic_mob_burning
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        mask:
+        - MobMask
+        - BarbedBarricade
+        layer:
+        - MobLayer
+      fix2:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 185
+        layer:
+        - BulletImpassable
+  - type: Xeno
+  - type: UserInterface
+    interfaces:
+      enum.XenoEvolutionUIKey.Key:
+        type: XenoEvolutionBui
+      enum.XenoDevolveUIKey.Key:
+        type: XenoDevolveBui
+      enum.XenoWatchUIKey.Key:
+        type: XenoWatchBui
+      enum.XenoChooseStructureUI.Key:
+        type: XenoChooseStructureBui
+      enum.XenoPheromonesUI.Key:
+        type: XenoPheromonesBui
+      enum.XenoOrderConstructionUI.Key:
+        type: XenoOrderConstructionBui
+      enum.XenoFruitChooseUI.Key:
+        type: XenoFruitChooseBui
+      enum.XenoWordQueenUI.Key:
+        type: XenoWordQueenBui
+      enum.TacticalMapUserUi.Key:
+        type: TacticalMapUserBui
+      enum.XenoReserveParasiteChangeUI.Key:
+        type: ReserveParasitesBoundUserInterface
+      enum.XenoParasiteGhostUI.Key:
+        type: XenoParasiteGhostBui
+        requireInputValidation: false
+      enum.DialogUiKey.Key:
+        type: DialogBui
+  - type: TypingIndicator
+    proto: alien
+  - type: MovedByPressure
+  - type: NoSlip
+  - type: RMCSize
+    size: Xeno
+  - type: Pullable
+  - type: Speech
+    speechVerb: Xeno
+    allowedEmotes: [ "Growl", "Hiss", "XenoRoar", "XenoHelp", "XenoTailSwipe" ]
+  - type: GhostOnMove
+    mustBeDead: true
+  - type: WhitelistPickup
+  - type: DropHeldOnIncapacitate
+  - type: NightVision
+    alert: XenoNightVision
+    overlay: true
+  - type: ParalyzeOnPullAttemptImmune
+  - type: InfectOnPullAttemptImmune
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+  - type: ImmuneToClothingRequiredStepTrigger
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Hivemind
+  - type: ActiveRadio
+    channels:
+    - Hivemind
+  - type: SlowOnPull
+    slowdowns:
+      - multiplier: 0.6
+        whitelist:
+          components:
+          - Marine
+      - multiplier: 0.665
+        whitelist:
+          components:
+          - XenoLight
+      - multiplier: 0.445
+        whitelist:
+          components:
+          - XenoHeavy
+  - type: PullWhitelist
+    whitelist:
+      components:
+      - Xeno
+      - Infectable
+  - type: BlockPullingDead
+  - type: XenoFriendly
+  - type: Undisposable
+  - type: ShortExamine
+  - type: DamageMobState
+    critDamage:
+      groups:
+        Brute: 1.25
+  - type: AffectableByWeeds
+  - type: ComplexInteraction
+  - type: UserLimitHits
+  - type: MovementIgnoreGravity
+  - type: DisableConstruction
+  - type: XenoAnnounceDeath # TODO RMC14 announce location of death (area)
+    message: cm-xeno-death
+    color: "#459A62"
+  - type: ExplosionResistance
+    damageCoefficient: 2
+  - type: NpcFactionMember
+    factions:
+    - RMCXeno
+  - type: RMCNightVisionVisible
+  - type: CrashLandable
+  - type: UserBlacklistActivatableUI
+    keys:
+    - enum.VendingMachineUiKey.Key
+    - enum.PaperUiKey.Key
+    - enum.RMCCameraUiKey.Key
+  - type: HiveTracker
+  - type: RequireProjectileTarget
+    active: false
+  - type: TacticalMapTracked
+  - type: TacMapXenoAlert
+  - type: TacticalMapUser
+    actionId: RMCActionOpenTacticalMapXeno
+    xenos: true
+  - type: TacticalMapLiveUpdateOnOvi
+    enabled: true
+  - type: MotionDetectorTracked
+  - type: TacticalMapIcon
+    icon:
+      sprite: _RMC14/Interface/map_blips.rsi
+      state: xeno
+    background:
+      sprite: _RMC14/Interface/map_blips.rsi
+      state: background_xeno
+  - type: XenoMapTracked
+  - type: Evasion
+  - type: RMCWeaponAccuracy # This is so projectiles fired by xenos get a correctly-generated seed for RNG.
+  - type: StunOnExplosionReceived
+    weak: true
+  - type: AssignXenoName
+  - type: MobGibbedByExplosionType
+  - type: TileFirePatter
+  - type: CanBeFirePatted
+  - type: FirePatter
+    blacklist:
+      components:
+      - Marine
+  - type: BlockIdExamine
+
+- type: entity
+  name: Xenoling
+  id: MobXenoLing
+  parent:
+  - CMXenoWithoutMindBase
+  - CMXenoFlammable
+  - SimpleSpaceMobBase
+  description: A small xenomorph created for the sole purpose of killing and tearing.  Due to its physiological structure, it dies in a few minutes.
+  categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
+  components:
+  - type: CombatMode
+  - type: InputMover
+  - type: MobMover  
+  - type: Sprite
+    sprite: _Stories/Mobs/Xenonids/xenoling.rsi
+    scale: 0.8, 0.8
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      15: Critical
+      30: Dead
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+    addHostileFactions:
+    - UNMC 
+  - type: Xeno
+    role: CMXenoLing
+    actionIds:
+    - ActionXenoRest
+    - ActionXenoWatch
+    - ActionXenoHide
+    hudOffset: -0.1,0.125
+    tier: 0
+    unlockAt: 0
+    healOffWeeds: true
+    emoteSounds: Larva
+  - type: XenoLight
+  - type: XenoPlasma
+    maxPlasma: 10
+    plasmaRegenOnWeeds: 0.1
+  - type: XenoHide
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        mask:
+        - SmallMobMask
+        - BarbedBarricade
+        layer:
+        - SmallMobLayer
+  - type: Flammable
+    canResistFire: false
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 6
+  - type: Speech
+    speechSounds: XenonidLarva
+    allowedEmotes: [ "XenoRoar" ]
+  - type: RMCSize
+    size: Small
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 14
+  - type: TacticalMapIcon
+    icon:
+      sprite: _RMC14/Interface/map_blips.rsi
+      state: larva
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno #hehe
+      amount: 1
+  - type: HTN
+    rootTask:
+      task: SummonerServantCompound
+    blackboard:
+      IdleRange: !type:Single
+        3.5
+      FollowCloseRange: !type:Single
+        2.0
+      FollowRange: !type:Single
+        3.0
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Tag
+    tags:
+    - RMCXenoLing
+
+- type: entity
+  abstract: true
+  parent:
+  - CMXenoDeveloped
+  - CMXenoTail
+  - CMXenoFlammable
+  - RMCXenoSpeechSounds
+  id: CMXenoSummonerBase
+  name: Summoner
+  description: A small xenomorph capable of generating servants for itself 
+  components:
+  - type: GhostRole
+    name: cm-job-name-xeno-summoner 
+  - type: Sprite
+    sprite: _Stories/Mobs/Xenonids/summoner.rsi 
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Critical
+      600: Dead
+  - type: Xeno
+    role: CMXenoSummoner
+    tier: 1
+    hudOffset: 0,0.16
+    unlockAt: 300 # 5 minutes
+  - type: XenoLight
+  - type: XenoDevolve
+    devolvesTo:
+    - CMXenoLarva
+    canBeDevolvedByOther: false
+  - type: XenoDevour
+  - type: XenoPlasma
+    plasma: 400
+    maxPlasma: 400
+    plasmaRegenOnWeeds: 1.5
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 22.5
+  - type: XenoTailStab
+    tailDamage:
+      groups:
+        Brute: 30
+  - type: Tackle
+    max: 4
+    stunMin: 3
+    stunMax: 4
+  - type: RMCXenoDamageVisuals
+    prefix: drone # TODO summoner
+  - type: TacticalMapIcon
+    icon:
+      sprite: _RMC14/Interface/map_blips.rsi
+      state: drone #todo summoner
+  - type: Summoner
+    plasmaCost: 200
+  - type: XenoZoom
+
+- type: entity
+  parent: CMXenoSummonerBase
+  id: CMXenoSummoner
+  components:
+  - type: Xeno
+    actionIds:
+    - ActionXenoRest
+    - ActionXenoRegurgitate
+    - ActionXenoWatch
+    - ActionXenoTailStab
+    - ActionXenoDevolve
+    - ActionXenoZoom
+
+
+- type: entity
+  id: ActionSummonerRaiseArmy
+  name: Raise Army
+  description: Spend some plasma to summon allied xenolings to help you.
+  components:
+  - type: InstantAction
+    useDelay: 60
+    icon:
+      sprite: _Stories/Interface/Actions/actions_summoner.rsi
+      state: summonerArmy
+    event: !type:SummonerRaiseArmyActionEvent
+
+- type: entity
+  id: ActionSummonerOrderStay
+  name: Stay
+  description: Command your army to stand in place.
+  components:
+  - type: InstantAction
+    useDelay: 1
+    icon:
+      sprite: _Stories/Interface/Actions/actions_summoner.rsi
+      state: stayOff
+    iconOn:
+      sprite: _Stories/Interface/Actions/actions_summoner.rsi
+      state: stay
+    event:
+      !type:SummonerOrderActionEvent
+        type: Stay
+    priority: 5
+
+- type: entity
+  id: ActionSummonerOrderFollow
+  name: Follow
+  description: Command your army to follow you around.
+  components:
+  - type: InstantAction
+    useDelay: 1
+    icon:
+      sprite: _Stories/Interface/Actions/actions_summoner.rsi
+      state: followOff
+    iconOn:
+      sprite: _Stories/Interface/Actions/actions_summoner.rsi
+      state: follow
+    event:
+      !type:SummonerOrderActionEvent
+      type: Follow
+    priority: 6
+
+- type: entity
+  id: ActionSummonerOrderAttack
+  name: Cheese 'Em
+  description: Command your army to attack whoever you point at.
+  components:
+  - type: InstantAction
+    useDelay: 1
+    icon:
+      sprite: _Stories/Interface/Actions/actions_summoner.rsi
+      state: attackOff
+    iconOn:
+      sprite: _Stories/Interface/Actions/actions_summoner.rsi
+      state: attack
+    event:
+      !type:SummonerOrderActionEvent
+      type: Attack
+    priority: 7
+
+- type: entity
+  id: ActionSummonerOrderLoose
+  name: Loose
+  description: Command your army to act at their own will.
+  components:
+  - type: InstantAction
+    useDelay: 1
+    icon:
+      sprite: _Stories/Interface/Actions/actions_summoner.rsi
+      state: looseOff
+    iconOn:
+      sprite: _Stories/Interface/Actions/actions_summoner.rsi
+      state: loose
+    event:
+      !type:SummonerOrderActionEvent
+      type: Loose
+    priority: 8
+
+- type: Tag
+  id: RMCXenoLing

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: CMJobsXeno
   categories:
   - HideSpawnMenu
@@ -17,6 +17,7 @@
     - CMXenoParasite
     - CMXenoLarva
     - CMXenoLesserDrone
+    - CMXenoLing
     - CMXenoLurker
     - CMXenoPraetorian
     - CMXenoQueen
@@ -24,6 +25,7 @@
     - CMXenoRunner
     - CMXenoSentinel
     - CMXenoSpitter
+    - CMXenoSummoner
     - CMXenoWarrior
 
 - type: entity

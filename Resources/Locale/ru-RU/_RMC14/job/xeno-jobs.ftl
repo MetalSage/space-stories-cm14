@@ -45,3 +45,7 @@ cm-job-supervisors-queen = Королеве
 role-timer-xeno-roles = Ксеноморф
 role-timer-xeno-drones = эволюция дронов и дроны
 role-timer-xeno-tier-three = касты третьего уровня
+cm-job-name-xeno-summoner = Роевик
+CMJobXenoSummoner = Роевик
+cm-job-name-xeno-ling = Жук улья
+CMJobXenoLing = Жук улья

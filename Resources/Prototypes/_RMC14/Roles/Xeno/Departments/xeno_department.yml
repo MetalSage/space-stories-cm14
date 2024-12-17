@@ -1,4 +1,4 @@
-﻿- type: department
+- type: department
   parent: CMDepartmentBase
   id: CMXeno
   name: department-CMXeno
@@ -17,6 +17,7 @@
   - CMXenoParasite
   - CMXenoLarva
   - CMXenoLesserDrone
+  - CMXenoLing
   - CMXenoLurker
   - CMXenoPraetorian
   - CMXenoQueen
@@ -24,5 +25,6 @@
   - CMXenoRunner
   - CMXenoSentinel
   - CMXenoSpitter
+  - CMXenoSummoner
   - CMXenoWarrior
   - CMXenoSelectableXeno

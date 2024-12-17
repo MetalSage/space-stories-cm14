@@ -1,0 +1,31 @@
+- type: job
+  parent: CMJobXenoBase
+  id: CMXenoSummoner
+  name: cm-job-name-xeno-summoner
+  playTimeTracker: CMJobXenoSummoner
+  minimapIcon:
+    sprite: _RMC14/Interface/map_blips.rsi
+    state: drone #change
+  minimapBackground:
+   sprite: _RMC14/Interface/map_blips.rsi
+   state: background_xeno
+
+- type: playTimeTracker
+  id: CMJobXenoSummoner
+  isXeno: true
+
+- type: job
+  parent: CMJobXenoBase
+  id: CMXenoLing
+  name: cm-job-name-xeno-ling
+  playTimeTracker: CMJobXenoLing
+  minimapIcon:
+    sprite: _RMC14/Interface/map_blips.rsi
+    state: larva #change
+  minimapBackground:
+   sprite: _RMC14/Interface/map_blips.rsi
+   state: background_xeno
+
+- type: playTimeTracker
+  id: CMJobXenoLing
+  isXeno: true
