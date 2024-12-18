@@ -39,7 +39,7 @@
     state: power_display_0
   - sprite: /Textures/_Stories/Interface/Alerts/xeno_energy.rsi
     state: power_display_empty
-  name: Energy
-  description: Your stored energy. Used by different abilities.
+  name: alerts-xeno-energy-name
+  description: alerts-xeno-energy-desc
   minSeverity: 0
   maxSeverity: 18
