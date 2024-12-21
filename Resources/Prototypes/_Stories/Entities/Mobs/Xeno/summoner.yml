@@ -315,10 +315,13 @@
   - type: RMCSize
     size: Small
   - type: MeleeWeapon
-    animation: WeaponArcBite
+    animation: RMCWeaponArcXenoClaw
     damage:
       groups:
         Brute: 14
+    angle: 60
+    soundHit:
+      collection: RCMXenoClaw
   - type: TacticalMapIcon
     icon:
       sprite: _RMC14/Interface/map_blips.rsi
