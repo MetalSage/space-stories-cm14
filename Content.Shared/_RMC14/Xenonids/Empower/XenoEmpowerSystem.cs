@@ -56,7 +56,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
             if(_mobState.IsDead(receiver))
                 continue;
             empowerTargets++;
-            SpawnAttachedTo(xeno.Comp.Effect, receiver.Owner.ToCoordinates());
+            SpawnAttachedTo(xeno.Comp.EffectOnMarine, receiver.Owner.ToCoordinates());
             shieldAmount += xeno.Comp.AmountPerHuman;
         }
         if(empowerTargets >= 3)

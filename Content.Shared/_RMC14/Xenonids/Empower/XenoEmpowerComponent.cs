@@ -37,6 +37,9 @@ public sealed partial class XenoEmpowerComponent : Component
     [DataField, AutoNetworkedField]
     public EntProtoId Effect = "RMCEffectEmpower";
 
+    [DataField, AutoNetworkedField]
+    public EntProtoId EffectOnMarine = "RMCEffectEmpowerAlert";
+
     // TODO RMC14 extra sound on impact
     [DataField, AutoNetworkedField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_RMC14/Xeno/alien_roar1.ogg");

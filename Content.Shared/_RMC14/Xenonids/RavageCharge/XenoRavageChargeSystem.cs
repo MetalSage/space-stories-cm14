@@ -93,11 +93,6 @@ public sealed class XenoRavageChargeSystem : EntitySystem
             {
                 _rmcPulling.TryStopAllPullsFromAndOn(targetId);
 
-                var origin = _transform.GetMapCoordinates(xeno);
-                var target = _transform.GetMapCoordinates(targetId);
-                var diff = target.Position - origin.Position;
-                diff = diff.Normalized() * xeno.Comp.Range;
-
                 var damage = _damageable.TryChangeDamage(targetId, xeno.Comp.Damage);
                 if (damage?.GetTotal() > FixedPoint2.Zero)
                 {

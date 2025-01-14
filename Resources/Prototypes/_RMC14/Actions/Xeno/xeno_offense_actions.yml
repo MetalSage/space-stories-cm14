@@ -501,6 +501,23 @@
     checkCanAccess: false
 
 - type: entity
+  id: ActionXenoScissorCut
+  parent: ActionXenoBase
+  name: Scissor Cut
+  description: Launches an attack towards a given direction. The cooldown is faster if you miss.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _RMC14/Actions/xeno_actions.rsi
+      state: rav_scissor_cut
+    event: !type:XenoScissorsCutEvent
+    range: 15
+    useDelay: 10
+    checkCanAccess: false
+  - type: XenoScissorsCutAction
+
+- type: entity
   parent: ActionXenoBase
   id: ActionXenoBombard
   name: Bombard (200)

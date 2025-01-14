@@ -32,7 +32,7 @@
     - ActionXenoTailStab
     - ActionXenoRavageCharge
     - ActionXenoEmpower
-    #    - ActionXenoScissorCut
+    - ActionXenoScissorCut
     - ActionXenoDevolve
     tier: 3
     hudOffset: 0,0.1
@@ -72,6 +72,7 @@
     chance: 0.35
     stunMin: 4
     stunMax: 5
+  - type: XenoScissorsCut
   - type: Flammable
     damage:
       types:
