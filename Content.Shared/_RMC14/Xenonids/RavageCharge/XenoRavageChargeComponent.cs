@@ -14,6 +14,9 @@ public sealed partial class XenoRavageChargeComponent : Component
     [DataField, AutoNetworkedField]
     public FixedPoint2 PlasmaCost = 25;
 
+    [DataField]
+    public  DamageSpecifier Damage = new();
+
     [DataField, AutoNetworkedField]
     public float Range = 5;
 

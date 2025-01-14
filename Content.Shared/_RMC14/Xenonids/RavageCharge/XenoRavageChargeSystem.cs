@@ -4,6 +4,7 @@ using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared._RMC14.Xenonids.Empower;
 using Content.Shared.Stunnable;
 using Content.Shared.Coordinates;
+using Content.Shared.Damage;
 using Content.Shared.Effects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Throwing;
@@ -18,13 +19,15 @@ namespace Content.Shared._RMC14.Xenonids.RavageCharge;
 public sealed class XenoRavageChargeSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedColorFlashEffectSystem _colorFlash = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly ThrownItemSystem _thrownItem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly XenoPlasmaSystem _xenoPlasma = default!;
     [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly XenoPlasmaSystem _xenoPlasma = default!;
     private EntityQuery<XenoEmpowerComponent> _empower;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<ThrownItemComponent> _thrownItemQuery;
@@ -95,8 +98,14 @@ public sealed class XenoRavageChargeSystem : EntitySystem
                 var diff = target.Position - origin.Position;
                 diff = diff.Normalized() * xeno.Comp.Range;
 
+                var damage = _damageable.TryChangeDamage(targetId, xeno.Comp.Damage);
+                if (damage?.GetTotal() > FixedPoint2.Zero)
+                {
+                    var filter = Filter.Pvs(targetId, entityManager: EntityManager).RemoveWhereAttachedEntity(o => o == xeno.Owner);
+                    _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> { targetId }, filter);
+                }
+
                 _stun.TryParalyze(targetId, xeno.Comp.StunTime, true);
-                _throwing.TryThrow(targetId, diff, 5);
             }
         }
     }

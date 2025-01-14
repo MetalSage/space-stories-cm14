@@ -62,6 +62,10 @@
       groups:
         Brute: 54
   - type: XenoRavageCharge
+    damage:
+      types:
+        Blunt: 45
+        Structural: 45
   - type: XenoEmpower
   - type: Tackle
     max: 5

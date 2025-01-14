@@ -18,6 +18,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly XenoShieldSystem _shield = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly XenoPlasmaSystem _xenoPlasma = default!;
@@ -28,11 +29,11 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<XenoEmpowerComponent, RemovedShieldEvent>(OnShieldRemove);
-        SubscribeLocalEvent<XenoEmpowerComponent, XenoDefensiveShieldActionEvent>(OnXenoDefensiveShieldAction);
+        SubscribeLocalEvent<XenoEmpowerComponent, RemovedShieldEvent>(OnEmpowerRemove);
+        SubscribeLocalEvent<XenoEmpowerComponent, XenoDefensiveShieldActionEvent>(OnXenoEmpowerAction);
     }
 
-    private void OnXenoDefensiveShieldAction(Entity<XenoEmpowerComponent> xeno, ref XenoDefensiveShieldActionEvent args)
+    private void OnXenoEmpowerAction(Entity<XenoEmpowerComponent> xeno, ref XenoDefensiveShieldActionEvent args)
     {
         if (args.Handled)
             return;
@@ -47,18 +48,19 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         _marines.Clear();
         _entityLookup.GetEntitiesInRange(xform.Coordinates, xeno.Comp.Range, _marines);
         var shieldAmount = xeno.Comp.AmountBase;
-        var count = 0;
+        var empowerTargets = 0;
         foreach (var receiver in _marines)
         {
-            count++;
+            if(empowerTargets == xeno.Comp.MaxTargets)
+                break;
+            if(_mobState.IsDead(receiver))
+                continue;
+            empowerTargets++;
             SpawnAttachedTo(xeno.Comp.Effect, receiver.Owner.ToCoordinates());
             shieldAmount += xeno.Comp.AmountPerHuman;
-            if(count>=3)
-                xeno.Comp.EmpowerActive = true;
-            if(count == 6)
-                break;
         }
-
+        if(empowerTargets >= 3)
+            xeno.Comp.EmpowerActive = true;
         _shield.ApplyShield(xeno, XenoShieldSystem.ShieldType.Ravager, shieldAmount);
         ApplyEffects(xeno);
 
@@ -79,7 +81,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         ent.Comp.EmpowerOffAt = _timing.CurTime + ent.Comp.Duration;
     }
 
-    public void OnShieldRemove(Entity<XenoEmpowerComponent> ent, ref RemovedShieldEvent args)
+    public void OnEmpowerRemove(Entity<XenoEmpowerComponent> ent, ref RemovedShieldEvent args)
     {
         if (args.Type == XenoShieldSystem.ShieldType.Ravager)
             _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-end"), ent, ent, PopupType.MediumCaution);
