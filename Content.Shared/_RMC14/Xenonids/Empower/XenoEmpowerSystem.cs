@@ -48,7 +48,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         _marines.Clear();
         _entityLookup.GetEntitiesInRange(xform.Coordinates, xeno.Comp.Range, _marines);
         var shieldAmount = xeno.Comp.AmountBase;
-        var empowerTargets = 0;
+        var empowerTargets = 1;
         foreach (var receiver in _marines)
         {
             if(empowerTargets == xeno.Comp.MaxTargets)
