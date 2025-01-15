@@ -16,7 +16,8 @@ public sealed partial class XenoScissorsCutComponent : Component
 
     [DataField, AutoNetworkedField]
     public FixedPoint2 TailRange = 6;
-
+    [DataField, AutoNetworkedField]
+    public int TailStabMaxTargets = 6;
     [DataField]
     public DamageSpecifier TailDamage = new();
 

@@ -2,10 +2,7 @@
 using System.Numerics;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Xenonids.Hive;
-using Content.Shared._RMC14.Xenonids.Neurotoxin;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Actions;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Effects;
 using Content.Shared.FixedPoint;
@@ -30,7 +27,6 @@ namespace Content.Shared._RMC14.Xenonids.ScissorsCut;
 public abstract class SharedXenoScissorsCutSystem : EntitySystem
 {
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _colorFlash = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
@@ -39,8 +35,6 @@ public abstract class SharedXenoScissorsCutSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly INetManager _net = default!;
-
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -48,7 +42,7 @@ public abstract class SharedXenoScissorsCutSystem : EntitySystem
     private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
 
     protected Box2Rotated LastTailAttack;
-    private int _tailStabMaxTargets;
+    private int _tailStabMaxTargets = 6;
 
     public override void Initialize()
     {
@@ -128,7 +122,7 @@ public abstract class SharedXenoScissorsCutSystem : EntitySystem
                 continue;
 
             actualResults.Add(result);
-            if (actualResults.Count >= _tailStabMaxTargets)
+            if (actualResults.Count >= stab.Comp.TailStabMaxTargets)
                 break;
         }
 

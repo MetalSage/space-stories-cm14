@@ -515,7 +515,6 @@
     range: 15
     useDelay: 10
     checkCanAccess: false
-  - type: XenoScissorsCutAction
 
 - type: entity
   parent: ActionXenoBase
