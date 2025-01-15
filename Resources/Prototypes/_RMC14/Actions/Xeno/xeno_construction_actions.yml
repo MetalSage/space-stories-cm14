@@ -29,7 +29,7 @@
     itemIconStyle: NoItem
     icon:
       sprite: _RMC14/Actions/xeno_actions.rsi
-      state: place_resin
+      state: retrieve_egg
     event: !type:XenoChooseStructureActionEvent
   - type: XenoChooseConstructionAction
 
@@ -118,7 +118,7 @@
     itemIconStyle: NoItem
     icon:
       sprite: _RMC14/Actions/xeno_actions.rsi
-      state: gardener_plant_pick
+      state: blank
     event: !type:XenoFruitChooseActionEvent
   - type: XenoFruitChooseAction
 
