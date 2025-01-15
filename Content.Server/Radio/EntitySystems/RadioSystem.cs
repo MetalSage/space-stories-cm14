@@ -10,7 +10,6 @@ using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -156,12 +155,12 @@ public sealed class RadioSystem : EntitySystem
             if (attemptEv.Cancelled)
                 continue;
 
-            if (HasComp<MarineComponent>(messageSource))
-                _audio.PlayPvs("/Audio/_Stories/Effects/radiostatic.ogg", messageSource, AudioParams.Default.WithVariation(0.1f).WithMaxDistance(1.0f).WithVolume(0.5f));
-
             // send the message
             RaiseLocalEvent(receiver, ref ev);
         }
+
+        if (HasComp<MarineComponent>(messageSource))
+            _audio.PlayPvs("/Audio/_Stories/Effects/radiostatic.ogg", messageSource, AudioParams.Default.WithVariation(0.1f).WithMaxDistance(1.0f).WithVolume(0.5f));
 
         if (name != Name(messageSource))
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
