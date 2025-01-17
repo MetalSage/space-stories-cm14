@@ -48,6 +48,14 @@
 
 - type: entity
   parent: CMEffectStomp
+  id: RMCEffectRavagerSlow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  parent: CMEffectStomp
   id: RMCEffectCrusherSlow
   categories: [ HideSpawnMenu ]
   components:

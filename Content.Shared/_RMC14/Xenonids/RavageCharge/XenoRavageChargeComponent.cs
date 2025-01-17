@@ -21,7 +21,7 @@ public sealed partial class XenoRavageChargeComponent : Component
     public float Range = 5;
 
     [DataField, AutoNetworkedField]
-    public TimeSpan StunTime = TimeSpan.FromSeconds(1);
+    public TimeSpan StunTime = TimeSpan.FromSeconds(2);
 
     // TODO RMC14 extra sound on impact
     [DataField, AutoNetworkedField]

@@ -29,7 +29,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<XenoEmpowerComponent, RemovedShieldEvent>(OnEmpowerRemove);
+        SubscribeLocalEvent<XenoEmpowerComponent, RemovedShieldEvent>(OnShieldRemove);
         SubscribeLocalEvent<XenoEmpowerComponent, XenoDefensiveShieldActionEvent>(OnXenoEmpowerAction);
     }
 
@@ -48,7 +48,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         _marines.Clear();
         _entityLookup.GetEntitiesInRange(xform.Coordinates, xeno.Comp.Range, _marines);
         var shieldAmount = xeno.Comp.AmountBase;
-        var empowerTargets = 1;
+        var empowerTargets = 0;
         foreach (var receiver in _marines)
         {
             if(empowerTargets == xeno.Comp.MaxTargets)
@@ -78,14 +78,14 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         if (!TryComp<CMArmorComponent>(ent, out var armor))
             return;
 
-        ent.Comp.EmpowerOffAt = _timing.CurTime + ent.Comp.Duration;
+        ent.Comp.ShieldOffAt = _timing.CurTime + ent.Comp.ShieldDuration;
+        ent.Comp.EmpowerOffAt = _timing.CurTime + ent.Comp.EmpowerDuration;
     }
 
-    public void OnEmpowerRemove(Entity<XenoEmpowerComponent> ent, ref RemovedShieldEvent args)
+    public void OnShieldRemove(Entity<XenoEmpowerComponent> ent, ref RemovedShieldEvent args)
     {
         if (args.Type == XenoShieldSystem.ShieldType.Ravager)
             _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-end"), ent, ent, PopupType.MediumCaution);
-        ent.Comp.EmpowerActive = false;
     }
 
     public override void Update(float frameTime)
@@ -98,7 +98,10 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         var ravagerQuery = EntityQueryEnumerator<XenoEmpowerComponent, XenoShieldComponent>();
         while (ravagerQuery.MoveNext(out var uid, out var crushShield, out var shield))
         {
-            if (shield.Active && shield.Shield == XenoShieldSystem.ShieldType.Ravager && crushShield.EmpowerOffAt <= time)
+            if (crushShield.EmpowerOffAt <= time)
+                crushShield.EmpowerActive = false;
+
+            if (shield.Active && shield.Shield == XenoShieldSystem.ShieldType.Ravager && crushShield.ShieldOffAt <= time)
                 _shield.RemoveShield(uid, XenoShieldSystem.ShieldType.Ravager);
         }
     }

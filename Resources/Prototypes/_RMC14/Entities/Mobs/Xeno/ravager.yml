@@ -73,9 +73,9 @@
     stunMin: 4
     stunMax: 5
   - type: XenoScissorsCut
-    tailDamage:
+    damage:
       groups:
-        Brute: 54
+        Brute: 45
   - type: Flammable
     damage:
       types:

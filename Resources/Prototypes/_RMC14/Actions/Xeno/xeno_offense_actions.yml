@@ -485,10 +485,26 @@
     checkCanAccess: false
 
 - type: entity
+  id: ActionXenoScissorCut
+  parent: ActionXenoBase
+  name: Scissor Cut (25)
+  description: Slash a 1x4 line on the tile you click on damaging anyone from you to the end of the line for 45 damage. If you are super empowered whoever hit will be super slowed for 3 seconds as well.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _RMC14/Actions/xeno_actions.rsi
+      state: rav_scissor_cut
+    event: !type:XenoScissorsCutActionEvent
+    range: 10
+    useDelay: 10
+    checkCanAccess: false
+
+- type: entity
   id: ActionXenoRavageCharge
   parent: ActionXenoBase
-  name: Ravage Charge (25)
-  description: Click on a tile you want to charge at, after a brief non cancel-able windup time. [color=green]Cooldown is partially refunded upon attacking an enemy, scaling with the amount of enemies you cleave with your passive.[/color]
+  name: Ravage Pounce (25)
+  description: Lunge 5 tiles in the direction you selected. [color=green] If you are super empowered and charged into an enemy they will be knocked down for 2 seconds and slashed. Slashing a target will reduce this ability's cooldown by 4 seconds.[/color]
   components:
   - type: WorldTargetAction
     itemIconStyle: NoItem
@@ -498,22 +514,6 @@
     event: !type:XenoRavageChargeActionEvent
     range: 5
     useDelay: 14
-    checkCanAccess: false
-
-- type: entity
-  id: ActionXenoScissorCut
-  parent: ActionXenoBase
-  name: Scissor Cut
-  description: Launches an attack towards a given direction. The cooldown is faster if you miss.
-  components:
-  - type: WorldTargetAction
-    itemIconStyle: NoItem
-    icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: rav_scissor_cut
-    event: !type:XenoScissorsCutEvent
-    range: 15
-    useDelay: 10
     checkCanAccess: false
 
 - type: entity

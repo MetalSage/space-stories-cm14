@@ -40,3 +40,5 @@ ent-ActionXenoBurrow = Закопаться
     .desc = { ent-ActionXenoBase.desc }
 ent-ActionXenoSoak = Soak (20)
     .desc = Soak in damage for 6 seconds. If you take 140 damage or higher, you regen 75 health and your tail slam gets refreshed.
+ent-ActionXenoEmpower = Ярость (50)
+    .desc = При активации вы получаете 75 очков щита, а за каждого врага в поле зрения (до 6) и в радиусе 3 метров вы получаете дополнительно 80 очков щита. [color=red]Если вы усилились от 3 или более врагов, вы впадаете в ярость на 5 секунд, получая значительно усиленные эффекты для двух других ваших способностей.[/color] Полученный щит длится 15 секунд.

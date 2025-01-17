@@ -1,39 +1,49 @@
-﻿using Content.Shared.Chemistry.Reagent;
+﻿using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
-using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Audio;
 
 namespace Content.Shared._RMC14.Xenonids.ScissorsCut;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedXenoScissorsCutSystem))]
+
 public sealed partial class XenoScissorsCutComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public EntProtoId TailAnimationId = "WeaponArcThrust";
+    public int PlasmaCost = 25;
 
     [DataField, AutoNetworkedField]
-    public FixedPoint2 TailRange = 6;
-    [DataField, AutoNetworkedField]
-    public int TailStabMaxTargets = 6;
-    [DataField]
-    public DamageSpecifier TailDamage = new();
+    public DamageSpecifier Damage;
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier SoundHit = new SoundCollectionSpecifier("XenoBite", AudioParams.Default.WithVolume(-3));
+    public int AP = 20;
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier SoundMiss = new SoundCollectionSpecifier("XenoTailSwipe");
+    public int? MaxTargets;
 
     [DataField, AutoNetworkedField]
-    public float ChargeTime = 1; // TODO RMC14 implement this
+    public EntProtoId AttackEffect = "RMCEffectExtraSlash";
 
     [DataField, AutoNetworkedField]
-    public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2>? Inject;
+    public EntProtoId EffectSlowdown = "RMCEffectRavagerSlow";
 
     [DataField, AutoNetworkedField]
-    public bool Toggle = false;
+    public TimeSpan Slowdown = TimeSpan.FromSeconds(3);
 
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_RMC14/Xeno/alien_claw_flesh3.ogg");
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<EmotePrototype> Emote = "XenoRoar";
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan? EmoteCooldown = TimeSpan.FromSeconds(5);
+
+    [DataField, AutoNetworkedField]
+    public FixedPoint2 Range = FixedPoint2.New(4);
+
+    [DataField, AutoNetworkedField]
+    public int RechargeTargetsRequired = 2;
 }

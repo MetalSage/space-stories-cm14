@@ -47,12 +47,6 @@ public sealed class XenoRavageChargeSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var attempt = new XenoRavageChargeAttemptEvent();
-        RaiseLocalEvent(xeno, ref attempt);
-
-        if (attempt.Cancelled)
-            return;
-
         _rmcPulling.TryStopAllPullsFromAndOn(xeno);
 
         if (!_xenoPlasma.TryRemovePlasmaPopup(xeno.Owner, xeno.Comp.PlasmaCost))
