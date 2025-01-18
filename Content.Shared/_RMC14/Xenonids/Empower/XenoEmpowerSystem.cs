@@ -45,22 +45,26 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
 
         if (!TryComp(xeno, out TransformComponent? xform))
             return;
+
         _marines.Clear();
         _entityLookup.GetEntitiesInRange(xform.Coordinates, xeno.Comp.Range, _marines);
         var shieldAmount = xeno.Comp.AmountBase;
         var empowerTargets = 0;
         foreach (var receiver in _marines)
         {
-            if(empowerTargets == xeno.Comp.MaxTargets)
+            if (empowerTargets == xeno.Comp.MaxTargets)
                 break;
-            if(_mobState.IsDead(receiver))
+
+            if (_mobState.IsDead(receiver))
                 continue;
+
             empowerTargets++;
             SpawnAttachedTo(xeno.Comp.EffectOnMarine, receiver.Owner.ToCoordinates());
             shieldAmount += xeno.Comp.AmountPerHuman;
         }
-        if(empowerTargets >= 3)
+        if (empowerTargets >= 3)
             xeno.Comp.EmpowerActive = true;
+
         _shield.ApplyShield(xeno, XenoShieldSystem.ShieldType.Ravager, shieldAmount);
         ApplyEffects(xeno);
 
