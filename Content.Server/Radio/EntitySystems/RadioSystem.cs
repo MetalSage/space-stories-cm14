@@ -161,7 +161,7 @@ public sealed class RadioSystem : EntitySystem
 
         // Stories-RadioSound-Start
         if (HasComp<MarineComponent>(messageSource))
-            _audio.PlayPvs("/Audio/_Stories/Effects/radiostatic.ogg", messageSource, AudioParams.Default.WithVariation(0.1f).WithMaxDistance(1.0f).WithVolume(-10f));
+            _audio.PlayPvs("/Audio/_Stories/Effects/radiostatic.ogg", messageSource, AudioParams.Default.WithVariation(0.1f).WithMaxDistance(1.0f).WithVolume(-10.0f));
         // Stories-RadioSound-End
 
         if (name != Name(messageSource))
