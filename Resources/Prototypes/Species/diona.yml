@@ -1,7 +1,7 @@
 - type: species
   id: Diona
   name: species-name-diona
-  roundStart: false
+  roundStart: false # Stories-XenoRemoval
   prototype: CMMobDiona
   sprites: MobDionaSprites
   defaultSkinTone: "#cdb369"

@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: RMCBaseDoorInvincible
+  parent: CMBaseDoor
   id: CMAlamoDoor
   name: alamo crew hatch
   placement:
@@ -38,11 +38,19 @@
     needsPower: false
   - type: Docking
   - type: DockingSignalControl
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Corrodible
     isCorrodible: false
 
 - type: entity
-  parent: RMCBaseDoorInvincible
+  parent: CMBaseDoor
   id: CMAlamoCockpit
   name: cockpit
   suffix: Alamo
@@ -77,101 +85,3 @@
     needsPower: false
   - type: AccessReader
     access: [["CMAccessPilot"]]
-
-- type: entity
-  parent: CMDoubleDoorInvincible
-  id: CMDoubleDoorAlamoSolidRight
-  suffix: Alamo, Solid, Right
-  components:
-  - type: Sprite
-    sprite: _RMC14/Structures/Doors/Airlocks/Double/alamo_dropship_solid_right.rsi
-  - type: Occluder
-  - type: ApcPowerReceiver
-    powerLoad: 0
-  - type: Corrodible
-    isCorrodible: false
-  - type: Docking
-  - type: DockingSignalControl
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 9000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: AirlockReceiverXenoClaws
-    maxHealth: 9000
-    minimumClawStrength: VerySharp
-
-- type: entity
-  parent: CMDoubleDoorInvincible
-  id: CMDoubleDoorAlamoSolidLeft
-  suffix: Alamo, Solid, Left
-  components:
-  - type: Sprite
-    sprite: _RMC14/Structures/Doors/Airlocks/Double/alamo_dropship_solid_left.rsi
-  - type: Occluder
-  - type: ApcPowerReceiver
-    powerLoad: 0
-  - type: Corrodible
-    isCorrodible: false
-  - type: Docking
-  - type: DockingSignalControl
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 9000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: AirlockReceiverXenoClaws
-    maxHealth: 9000
-    minimumClawStrength: VerySharp
-
-- type: entity
-  parent: RMCBaseDoorInvincible
-  id: RMCCargoAirlockAlamo
-  name: alamo cargo door
-  description: It opens and closes.
-  components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.49,-1.49,0.49,1.49"
-        density: 100
-        mask:
-        - FullTileMask
-        layer:
-        - AirlockLayer
-  - type: Sprite
-    sprite: _Stories/Structures/Doors/alamo_doors.rsi
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 9000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: Corrodible
-    isCorrodible: true
-  - type: ApcPowerReceiver
-    powerLoad: 0
-    needsPower: false
-  - type: Airlock
-    powered: true
-  - type: Docking
-  - type: DockingSignalControl
-  - type: AirlockReceiverXenoClaws
-    maxHealth: 9000
-    minimumClawStrength: VerySharp

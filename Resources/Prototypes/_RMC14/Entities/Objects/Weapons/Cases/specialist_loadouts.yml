@@ -10,10 +10,9 @@
     - id: CMArmorHelmetM45
     - id: CMGlassesM42ScoutSight
     - id: CMMagazineSniperM96S
-      amount: 2
     - id: CMMagazineSniperM96SIncendiary
       amount: 2
-    - id: CMMagazineSniperM96SFlak
+    - id: CMMagazineSniperM96SFlak # Stories-Flak
       amount: 2
     - id: CMBackpackSniper
     - id: CMWeaponPistolMK80

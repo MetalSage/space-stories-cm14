@@ -265,7 +265,7 @@
   name: M54C solid stock
   description: A rare stock distributed in small numbers to UNMC forces. Compatible with the M54C, this stock reduces recoil and scatter, but at a reduction to handling and agility. Also enhances the thwacking of things with the stock-end of the rifle.
   components:
-  - type: Sprite
+  - type: Sprite # Stories-Parity
     sprite: _RMC14/Objects/Weapons/Guns/Attachments/stock.rsi
     state: riflestock
   - type: Tag
@@ -301,7 +301,7 @@
       scatterFlat: 6
   - type: Appearance
   - type: ItemCamouflage
-    camouflageVariations: {}
+    camouflageVariations: {} # Stories-Parity
 
 - type: entity
   parent: RMCAttachmentM54CStockSolid
@@ -371,6 +371,8 @@
       accuracyAddMult: -0.15
       recoilFlat: 2
       scatterFlat: 6
+  - type: ItemCamouflage
+    camouflageVariations: {} # Stories-Parity
 
 - type: entity
   parent: RMCStockAttachmentBase

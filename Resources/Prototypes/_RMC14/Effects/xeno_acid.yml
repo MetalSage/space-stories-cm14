@@ -46,7 +46,7 @@
         mask:
         - FullTileLayer
         layer:
-        - MidImpassable
+        - FullTileLayer
   - type: Sprite
     sprite: _RMC14/Effects/xeno_acid.rsi
     drawdepth: Effects

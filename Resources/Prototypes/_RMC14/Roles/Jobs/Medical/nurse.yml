@@ -32,7 +32,7 @@
     - type: RMCUserBulkyArmorIncapable
     - type: JobPrefix
       prefix: "Nurse"
-    - type: CMVendorUser
+    - type: CMVendorUser # Stories-Partners
 
 - type: startingGear
   id: CMGearNurse

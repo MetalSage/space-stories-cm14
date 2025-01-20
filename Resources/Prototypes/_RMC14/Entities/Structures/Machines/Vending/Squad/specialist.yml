@@ -19,7 +19,7 @@
     sections:
     - name: Weapons Specialist Sets
       choices: { SquadSpecKit: 1 }
-      sharedSpecLimit: 1 # 2 as requested until Pyro is added
+      sharedSpecLimit: 1 # Stories-Balance
       entries:
       - id: RMCDemoSpecEquipmentCase
       - id: RMCGrenadeSpecEquipmentCase

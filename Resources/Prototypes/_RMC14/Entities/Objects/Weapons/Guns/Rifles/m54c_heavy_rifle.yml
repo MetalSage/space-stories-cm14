@@ -133,7 +133,12 @@
     zeroVisible: false
   - type: Appearance
   - type: ItemCamouflage
-    camouflageVariations: {}
+    camouflageVariations:
+      Jungle: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m54ce2/jungle.rsi
+      Desert: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m54ce2/desert.rsi
+      Snow: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m54ce2/snow.rsi
+      Classic: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m54ce2/classic.rsi
+      Urban: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m54ce2/urban.rsi
 
 - type: Tag
   id: WeaponRifleM54CE2

@@ -8,10 +8,6 @@
   },
   "states": [
     {
-      "name": "equipped-SUITSTORAGE",
-      "directions": 4
-    },
-    {
       "name": "equipped-BACKPACK",
       "directions": 4
     },
@@ -20,17 +16,17 @@
       "directions": 4
     },
     {
-      "name": "wielded-inhand-left",
+      "name": "inhand-right",
       "directions": 4
-    },
-    {
-      "name": "icon"
     },
     {
       "name": "base"
     },
     {
-      "name": "inhand-right",
+      "name": "mag-0"
+    },
+    {
+      "name": "wielded-inhand-left",
       "directions": 4
     },
     {
@@ -41,7 +37,11 @@
       "name": "bolt-open"
     },
     {
-      "name": "mag-0"
+      "name": "icon"
+    },
+    {
+      "name": "equipped-SUITSTORAGE",
+      "directions": 4
     }
   ]
 }

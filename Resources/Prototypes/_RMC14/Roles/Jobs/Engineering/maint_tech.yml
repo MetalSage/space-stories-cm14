@@ -30,7 +30,7 @@
         RMCSkillPowerLoader: 2
     - type: JobPrefix
       prefix: "MT"
-    - type: CMVendorUser
+    - type: CMVendorUser # Stories-Partners
 
 - type: startingGear
   id: CMGearMaintTech

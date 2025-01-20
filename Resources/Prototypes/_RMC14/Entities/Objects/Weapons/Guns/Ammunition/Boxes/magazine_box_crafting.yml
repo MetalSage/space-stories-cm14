@@ -1,6 +1,6 @@
 ﻿# construction ui entries
 
-# M54C
+# M41A Stories-Parity
 - type: construction
   parent: RMC
   name: Magazine Box (M41A Reg)
@@ -43,7 +43,7 @@
     state: base_m54
   objectType: Item
 
-# M63
+# M39 Stories-Parity
 - type: construction
   parent: RMC
   name: Magazine Box (M39 Reg)
@@ -86,7 +86,7 @@
     state: base_m63
   objectType: Item
 
-# M4SPR
+# M4RA Stories-Parity
 - type: construction
   parent: RMC
   name: Magazine Box (M4RA Reg)
@@ -129,7 +129,7 @@
     state: base_m4spr
   objectType: Item
 
-# M1984
+# M4A3 Stories-Parity
 - type: construction
   parent: RMC
   name: Magazine Box (M4A3 Reg)
@@ -158,7 +158,7 @@
 #    state: base_m1984
 #  objectType: Item
 
-# 88 mod 4 / 88m4
+# 88m4 Stories-Parity
 - type: construction
   parent: RMC
   name: Magazine Box (88 M4 AP)
@@ -173,7 +173,7 @@
     state: base_m77
   objectType: Item
 
-# MK80
+# VP78 Stories-Parity
 - type: construction
   parent: RMC
   name: Magazine Box (VP78 Reg)

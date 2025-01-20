@@ -27,7 +27,6 @@
       types:
         Blunt: 6
   - type: Gun
-    resetOnHandSelected: false
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

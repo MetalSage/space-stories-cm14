@@ -12,7 +12,7 @@
   icon: "CMJobIconLiaison"
   joinNotifyCrew: false
   supervisors: cm-job-supervisors-we-ya
-  whitelisted: true
+  whitelisted: true # Stories-RolePlay
   accessGroups:
   - MarineMain
   - RMCWeYa

@@ -16,7 +16,7 @@
   - type: Sprite
     drawdepth: Walls
   - type: PlacementReplacement
-    key: window
+    key: walls
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Glass
@@ -50,66 +50,6 @@
     flags: Breaching
 
 - type: entity
-  parent: RMCBaseWindowFrame
-  id: RMCWindowFrameReinforcedAlmayer
-  components:
-  - type: Sprite
-    sprite: _RMC14/Structures/Windows/Frames/almayer_frame.rsi
-    state: alm_frame0
-  - type: Icon
-    sprite: _RMC14/Structures/Windows/Frames/almayer_frame.rsi
-    state: alm_frame0
-  - type: IconSmooth
-    key: window
-    base: alm_frame
-    mode: CardinalFlags
-
-- type: entity
-  parent: RMCBaseWindowFrame
-  id: RMCWindowFrameReinforcedWhite
-  components:
-  - type: Sprite
-    sprite: _RMC14/Structures/Windows/Frames/white_frame.rsi
-    state: white_frame0
-  - type: Icon
-    sprite: _RMC14/Structures/Windows/Frames/white_frame.rsi
-    state: white_frame0
-  - type: IconSmooth
-    key: window
-    base: white_frame
-    mode: CardinalFlags
-
-- type: entity
-  parent: RMCBaseWindowFrame
-  id: RMCWindowFrameWhiteColony
-  components:
-  - type: Sprite
-    sprite: _RMC14/Structures/Windows/Frames/colony_frame.rsi
-    state: col_frame0
-  - type: Icon
-    sprite: _RMC14/Structures/Windows/Frames/colony_frame.rsi
-    state: col_frame0
-  - type: IconSmooth
-    key: window
-    base: col_frame
-    mode: CardinalFlags
-
-- type: entity
-  parent: RMCBaseWindowFrame
-  id: RMCWindowFrameWhiteColonyReinforced
-  components:
-  - type: Sprite
-    sprite: _RMC14/Structures/Windows/Frames/colony_rframe.rsi
-    state: col_rframe0
-  - type: Icon
-    sprite: _RMC14/Structures/Windows/Frames/colony_rframe.rsi
-    state: col_rframe0
-  - type: IconSmooth
-    key: window
-    base: col_rframe
-    mode: CardinalFlags
-
-- type: entity
   parent: CMBaseWindow
   id: CMWindowReinforcedAlmayerHull
   name: hull window
@@ -124,7 +64,7 @@
     sprite: _RMC14/Structures/Windows/almayer_window.rsi
     state: alm_rwindow0
   - type: IconSmooth
-    key: window
+    key: walls
     base: alm_rwindow
     mode: CardinalFlags
 
@@ -141,7 +81,7 @@
     sprite: _RMC14/Structures/Windows/almayer_window.rsi
     state: alm_rwindow0
   - type: IconSmooth
-    key: window
+    key: walls
     base: alm_rwindow
     mode: CardinalFlags
   - type: Repairable
@@ -194,28 +134,9 @@
     sprite: _RMC14/Structures/Windows/white_reinforced_window.rsi
     state: white_rwindow0
   - type: IconSmooth
-    key: window
+    key: walls
     base: white_rwindow
     mode: CardinalFlags
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 40
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          RMCWindowFrameReinforcedWhite:
-            min: 1
-            max: 1
-          CMShardGlass:
-            min: 1
-            max: 2
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
 
 - type: entity
   parent: CMBaseWindow
@@ -230,7 +151,7 @@
     sprite: _RMC14/Structures/Windows/white_reinforced_window.rsi
     state: white_rwindow0
   - type: IconSmooth
-    key: window
+    key: walls
     base: white_rwindow
     mode: CardinalFlags
   - type: Repairable
@@ -281,7 +202,7 @@
     sprite: _RMC14/Structures/Windows/colony_window.rsi
     state: col_window0
   - type: IconSmooth
-    key: window
+    key: walls
     base: col_window
     mode: CardinalFlags
   - type: Repairable
@@ -329,7 +250,7 @@
     sprite: _RMC14/Structures/Windows/colony_rwindow.rsi
     state: col_rwindow0
   - type: IconSmooth
-    key: window
+    key: walls
     base: col_rwindow
     mode: CardinalFlags
   - type: Repairable

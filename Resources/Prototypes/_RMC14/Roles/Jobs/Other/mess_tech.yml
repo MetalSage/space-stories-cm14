@@ -29,6 +29,7 @@
         RMCSkillFireman: 1
     - type: JobPrefix
       prefix: "MST"
+  hidden: true # TODO RMC14
 
 - type: startingGear
   id: CMGearMessTech

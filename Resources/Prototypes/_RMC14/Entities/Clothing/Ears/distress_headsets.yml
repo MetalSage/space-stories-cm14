@@ -41,11 +41,13 @@
   name: PMC headset
   description: A special headset used by corporate personnel.
   components:
+  # Stoires-Fixes-Start
   - type: GrantSquadLeaderTracker
   - type: GrantMarineIcons # Stoires-Fixes
   - type: Sprite
     sprite: _RMC14/Objects/Clothing/headsets.rsi
     state: pmc_headset
+  # Stoires-Fixes-End
   - type: ContainerFill
     containers:
       key_slots:

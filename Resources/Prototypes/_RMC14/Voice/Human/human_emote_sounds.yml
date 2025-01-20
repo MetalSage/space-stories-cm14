@@ -4,10 +4,12 @@
   sounds:
     Scream:
       collection: CMMaleScreams
-    Warcry:
-      collection: CMMaleWarcry
     Laugh:
       collection: MaleLaugh
+    # Stories-Emote-Start
+    Warcry:
+      collection: CMMaleWarcry
+    # Stories-Emote-End
 
 - type: emoteSounds
   parent: RMCBaseFemaleSounds
@@ -15,7 +17,9 @@
   sounds:
     Scream:
       collection: CMFemaleScreams
-    Warcry:
-      collection: CMFemaleWarcry
     Laugh:
       collection: FemaleLaugh
+    # Stories-Emote-Start
+    Warcry:
+      collection: CMFemaleWarcry
+    # Stories-Emote-End

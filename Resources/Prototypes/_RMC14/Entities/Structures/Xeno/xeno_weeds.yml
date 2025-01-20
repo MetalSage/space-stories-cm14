@@ -34,7 +34,6 @@
     - state: weed0
   - type: IconSmooth
     key: cm_xeno_weeds
-    keyTwo: cm_xeno_weeds_walls
     base: weed_dir
     mode: CardinalFlags
   - type: IconSmoothRandom
@@ -144,7 +143,6 @@
     - state: hive_weed0
   - type: IconSmooth
     key: cm_xeno_weeds
-    keyTwo: cm_xeno_weeds_walls
     base: hive_weed
     mode: CardinalFlags
   - type: IconSmoothRandom

@@ -1,0 +1,26 @@
+- type: entity
+  abstract: true
+  parent:
+  - RMCBaseDoorInvincible
+  - CMBaseDoorConstructible
+  id: CMDoubleDoorInvincible
+  components:
+  - type: CMDoubleDoor
+  - type: Door
+    openSpriteState: door_open
+    closedSpriteState: door_closed
+    openingSpriteState: door_opening
+    closingSpriteState: door_closing
+    emaggingSpriteState: unlit
+  - type: Sprite
+    layers:
+    - state: door_closed
+      map: [ "enum.DoorVisualLayers.Base" ]
+    - state: unlit
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+    - state: door_locked
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: door_spark
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]

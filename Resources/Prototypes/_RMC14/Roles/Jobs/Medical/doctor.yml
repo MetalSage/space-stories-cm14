@@ -33,7 +33,7 @@
     - type: RMCUserBulkyArmorIncapable
     - type: JobPrefix
       prefix: "Doc"
-    - type: CMVendorUser
+    - type: CMVendorUser # Stories-Partners
 
 - type: startingGear
   id: CMGearDoctor

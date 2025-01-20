@@ -61,6 +61,7 @@
     price: 500
   - type: RMCNameItemOnVend
     item: PrimaryGun
-  - type: RMCFireGroup
-    group: Rifles
-    delay: 2
+  # - type: WieldedCrosshair Stories-Fixes
+  #   rsi:
+  #     sprite: _RMC14/Interface/MousePointer/explosive_mouse.rsi
+  #     state: all

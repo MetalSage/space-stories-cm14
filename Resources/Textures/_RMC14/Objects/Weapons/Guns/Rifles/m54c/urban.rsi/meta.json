@@ -12,35 +12,35 @@
       "directions": 4
     },
     {
-      "name": "equipped-SUITSTORAGE",
-      "directions": 4
-    },
-    {
       "name": "inhand-left",
       "directions": 4
-    },
-    {
-      "name": "wielded-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "mag-0"
-    },
-    {
-      "name": "base"
-    },
-    {
-      "name": "icon"
-    },
-    {
-      "name": "bolt-open"
     },
     {
       "name": "inhand-right",
       "directions": 4
     },
     {
+      "name": "base"
+    },
+    {
+      "name": "mag-0"
+    },
+    {
+      "name": "wielded-inhand-left",
+      "directions": 4
+    },
+    {
       "name": "wielded-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "bolt-open"
+    },
+    {
+      "name": "icon"
+    },
+    {
+      "name": "equipped-SUITSTORAGE",
       "directions": 4
     }
   ]

@@ -13,7 +13,7 @@
   - type: InteractionOutline
   - type: Clickable
   - type: IconSmooth
-    key: fence
+    key: walls
     base: fence
     mode: CardinalFlags
   - type: Damageable

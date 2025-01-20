@@ -43,21 +43,21 @@
   parent: RMC
   id: RMCGuideRoleCombatTechnician
   priority: 2
-  name: "Combat Technician"
+  name: "Боевой техник"
   text: "/ServerInfo/Guidebook/_RMC14/NewPlayerGuide/RMCGuideRoleCombatTechnician.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideCommunicationsTowers
   priority: 3
-  name: "Communications Towers Guide"
+  name: "Руководство по башням связи"
   text: "/ServerInfo/Guidebook/_RMC14/NewPlayerGuide/RMCGuideCommunicationsTowers.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleMaintenanceTechnician
   priority: 4
-  name: "Maintenance Technician"
+  name: "Техник по обслуживанию"
   text: "/ServerInfo/Guidebook/_RMC14/NewPlayerGuide/RMCGuideRoleMaintenanceTechnician.xml"
 
 - type: guideEntry

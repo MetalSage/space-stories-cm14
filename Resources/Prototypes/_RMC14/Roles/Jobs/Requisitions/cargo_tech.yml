@@ -28,7 +28,7 @@
         RMCSkillPowerLoader: 2
     - type: JobPrefix
       prefix: "CT"
-    - type: CMVendorUser
+    - type: CMVendorUser # Stories-Partners
 
 - type: startingGear
   id: CMGearCargoTech
