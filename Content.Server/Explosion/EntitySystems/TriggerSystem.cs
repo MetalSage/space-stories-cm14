@@ -6,6 +6,7 @@ using Content.Server.Flash;
 using Content.Server.Pinpointer;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared._RMC14.Stun;
+using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -195,8 +196,11 @@ namespace Content.Server.Explosion.EntitySystems
                 if (!_random.Prob(component.Probability) || !_interaction.InRangeUnobstructed(uid, transform.Coordinates, component.Range))
                     continue;
 
-                _stun.TryStun(entity, stunTime, true);
-                _stun.TryKnockdown(entity, stunTime, true);
+                if (!HasComp<XenoComponent>(entity))
+                {
+                    _stun.TryStun(entity, stunTime, true);
+                    _stun.TryKnockdown(entity, stunTime, true);
+                }
             }
 
             args.Handled = true;

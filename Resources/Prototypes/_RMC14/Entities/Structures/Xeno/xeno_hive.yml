@@ -47,7 +47,7 @@
   - type: HiveConstructionUnique
     id: HiveCoreXeno
   - type: RoofingEntity
-    range: 25
+    range: 15
   - type: EvolutionBonus
   - type: WarpPoint
     location: hive core

@@ -585,7 +585,7 @@
   - type: Icon
     state: "53"
   - type: RoofingEntity
-    range: 25
+    range: 15
 
 - type: entity
   parent: CMBaseAlamoWall

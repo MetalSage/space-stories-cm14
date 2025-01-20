@@ -38,11 +38,13 @@ public sealed class MarineCommunicationsComputerBui(EntityUid owner, Enum uiKey)
         else
             _window.TacticalMapButton.Visible = false;
 
-        if (EntMan.TryGetComponent<MarineCommunicationsComputerComponent>(Owner, out var computer) &&
-            computer.CanCreateEcho)
-        {
-            _window.EchoButton.OnPressed += _ => SendPredictedMessage(new MarineCommunicationsEchoSquadMsg());
-        }
+        // Stories-Echo-Remove-Start
+        // if (EntMan.TryGetComponent<MarineCommunicationsComputerComponent>(Owner, out var computer) &&
+        //     computer.CanCreateEcho)
+        // {
+        //     _window.EchoButton.OnPressed += _ => SendPredictedMessage(new MarineCommunicationsEchoSquadMsg());
+        // }
+        // Stories-Echo-Remove-End
 
         if (EntMan.HasComponent<OverwatchConsoleComponent>(Owner))
             _window.OverwatchButton.OnPressed += _ => SendPredictedMessage(new MarineCommunicationsOverwatchMsg());
@@ -79,9 +81,11 @@ public sealed class MarineCommunicationsComputerBui(EntityUid owner, Enum uiKey)
             _window.LandingZonesSection.Visible = s.LandingZones.Count > 0;
         }
 
-        _window.EchoButton.Visible =
-            EntMan.TryGetComponent<MarineCommunicationsComputerComponent>(Owner, out var computer) &&
-            computer.CanCreateEcho;
-        _window.EchoSeparator.Visible = _window.EchoButton.Visible;
+        // Stories-Echo-Remove-Start
+        // _window.EchoButton.Visible =
+        //     EntMan.TryGetComponent<MarineCommunicationsComputerComponent>(Owner, out var computer) &&
+        //     computer.CanCreateEcho;
+        // _window.EchoSeparator.Visible = _window.EchoButton.Visible;
+        // Stories-Echo-Remove-End
     }
 }

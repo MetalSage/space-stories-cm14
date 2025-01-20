@@ -418,6 +418,19 @@ public sealed class OrbitalCannonSystem : EntitySystem
             if (roofed)
             {
                 _popup.PopupCursor("The target zone has strong biological protection. The orbital strike cannot reach here.", user, PopupType.LargeCaution);
+
+                cannon.Comp.Status = OrbitalCannonStatus.Unloaded;
+                cannon.Comp.LastFireAt = time;
+                Dirty(cannon, cannon.Comp);
+
+                var cannonEnt = new Entity<OrbitalCannonComponent>(cannon, cannon.Comp);
+                CannonStatusChanged(cannonEnt);
+
+                if (_container.TryGetContainer(cannon, cannon.Comp.FuelContainer, out var fuelCont))
+                    _container.CleanContainer(fuelCont);
+
+                if (_container.TryGetContainer(cannon, cannon.Comp.WarheadContainer, out var warheadCont))
+                    _container.CleanContainer(warheadCont);
                 return false;
             }
 

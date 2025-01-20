@@ -5,35 +5,35 @@
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/lv624.yml
     camouflage: Jungle
-    announcement: "An automated distress signal has been received from the archaeological site of Lazarus Landing, on the border world of LV-624. A response team from the UNS Almayer will be dispatched shortly to investigate."
+    announcement: "Получен автоматический сигнал бедствия с археологической площадки 'Пристань Лазаря', на пограничном мире LV-624. Группа реагирования с борта КСШ Алмайер будет отправлена в ближайшее время для расследования."
 
 - type: entity
   id: RMCPlanetSolaris
-  name: Солярис Ридж
+  name: Хребет Солярис
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/solaris.yml
     camouflage: Desert
-    announcement: "Weston-Yamada has lost contact with one of its Biological Storage Facilities, Solaris Ridge, on the planet of LV-1413. The UNS Almayer has been requested to look into the blackout by Weston-Yamada."
+    announcement: "Компания Weston-Yamada потеряла связь с одним из своих хранилищ биологических образцов, 'Хребет Солярис', на планете LV-1413. Командование Weston-Yamada запросило КСШ Алмайер для расследования причин потери связи."
 
 - type: entity
   id: RMCPlanetShiva
-  name: Shivas Snowball
+  name: Снежный Шар Шивы
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/shiva.yml
     camouflage: Snow
-    announcement: "An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the UNS Almayer will be dispatched shortly to investigate."
+    announcement: "Получен автоматический сигнал бедствия с археологической площадки 'Снежный шар Шивы', на пограничном ледяном мире 'Ифрит'. Группа реагирования с борта КСШ Алмайер будет отправлена в ближайшее время для расследования."
 
 - type: entity
   id: RMCPlanetFiorina
-  name: Fiorina Science Annex
+  name: Научный Комплекс Фиорины
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/prison.yml
     camouflage: Classic
     minPlayers: 130
-    announcement: "An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the UNS Almayer will be dispatched shortly to investigate."
+    announcement: "Получен автоматический сигнал бедствия из тюрьмы максимальной безопасности 'Орбитальная тюрьма Фиорина'. Группа реагирования с борта КСШ Алмайер будет отправлена в ближайшее время для расследования."
 
 - type: entity
   id: RMCPlanetTrijent
@@ -43,7 +43,7 @@
     map: /Maps/_RMC14/trijent.yml
     camouflage: Desert
     minPlayers: 130
-    announcement: "We've lost contact with Weston-Yamada's extra-solar colony, \"Trijent Dam\", on the planet \"Raijin.\" The UNS Almayer has been dispatched to assist."
+    announcement: "Мы потеряли связь с внесолнечной колонией компании Weston-Yamada, 'Дамба Триджент', на планете 'Райдзин'. КСШ Алмайер отправлен для оказания помощи."
 
 - type: entity
   id: RMCPlanetVaradero
@@ -52,15 +52,15 @@
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/varadero.yml
     camouflage: Jungle
-    announcement: "An automated distress signal has been received from UN Outpost New Varadero. A response team from the UNS Almayer will be dispatched shortly to investigate.
-      Designation: Island research station and mining facility
+    announcement: "Получен автоматический сигнал бедствия с аванпоста США 'Новый-Варадеро'. Группа реагирования с борта КСШ Алмайер будет отправлена в ближайшее время для расследования.
+      Обозначение: Островная исследовательская станция и горнодобывающий комплекс
 
       Население: 47
-      Текущая температура: 68F внутри, 97F снаружи
-      Командир форпоста: Представитель США Стив Хейфиш
-      Телекоммуникационный массив: Требуется ремонт
+      Текущая температура: 20°C Внутри, 36°C Снаружи
+      Командир аванпоста: Представитель США Стив Хайфиш
+      Телекоммуникационная аппаратура: Требуется ремонт
 
-      Больше никакой информации на данный момент нет."
+      На данный момент нет дополнительной информации."
 
 - type: entity
   id: RMCPlanetKutjevo
@@ -69,13 +69,13 @@
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/kutjevo.yml
     camouflage: Desert
-    announcement: "An automated distress signal has been received from Weston-Yamada colony Kutjevo Refinery, known for botanical research, export, and raw materials processing and refinement. The UNS Almayer has been dispatched to investigate."
+    announcement: "Получен автоматический сигнал бедствия с завода компании Weston-Yamada 'НПЗ Кутьево', известного ботаническими исследованиями, экспортом и переработкой и очисткой сырья. КСШ Алмайер отправлен для расследования."
 
 - type: entity
   id: RMCPlanetChances
-  name: LV-522 Претензия Шанса
+  name: LV-522 Притензия Шанса
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/chances.yml
     camouflage: Classic
-    announcement: "Pan-Pan. This is the commanding officer of the UNS Hanyut, UNMC FORECON. We are currently grounded on planet LV-522 in the immediate area of Chance's Claim. We are unable to contact the Hanyut and our dropships are unable to take off at this time. We are requesting assistance from any nearby vessels; this broadcast is set to repeat every 24 hours."
+    announcement: "Пан-пан. Говорит командующий офицер КСШ Ханьют, КМП США FORECON. В настоящее время мы находимся на планете LV-522 в непосредственной близости от 'Притнезии Шанса'. Мы не можем связаться с 'Ханьют', и наши десантные корабли не могут взлететь в данный момент. Мы запрашиваем помощь у любых находящихся поблизости судов; эта трансляция будет повторяться каждые 24 часа."
