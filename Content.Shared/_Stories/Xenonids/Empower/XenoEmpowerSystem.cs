@@ -88,14 +88,14 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
 
     public void OnShieldRemove(Entity<XenoEmpowerComponent> ent, ref RemovedShieldEvent args)
     {
+        if (_net.IsClient)
+            return;
         if (args.Type == XenoShieldSystem.ShieldType.Ravager)
             _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-end"), ent, ent, PopupType.MediumCaution);
     }
 
     public override void Update(float frameTime)
     {
-        if (_net.IsClient)
-            return;
 
         var time = _timing.CurTime;
 
