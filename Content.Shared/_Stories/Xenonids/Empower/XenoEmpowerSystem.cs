@@ -59,7 +59,8 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
                 continue;
 
             empowerTargets++;
-            SpawnAttachedTo(xeno.Comp.EffectOnMarine, receiver.Owner.ToCoordinates());
+            if (_net.IsServer)
+                SpawnAttachedTo(xeno.Comp.EffectOnMarine, receiver.Owner.ToCoordinates());
             shieldAmount += xeno.Comp.AmountPerHuman;
         }
         if (empowerTargets >= 3)
@@ -68,12 +69,12 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         _shield.ApplyShield(xeno, XenoShieldSystem.ShieldType.Ravager, shieldAmount);
         ApplyEffects(xeno);
 
-        if (_net.IsClient)
-            return;
-
-        _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-activate", ("user", xeno)), xeno, Filter.PvsExcept(xeno), true, PopupType.MediumCaution);
-        _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-activate-self", ("user", xeno)), xeno, xeno, PopupType.Medium);
-        SpawnAttachedTo(xeno.Comp.Effect, xeno.Owner.ToCoordinates());
+        if (_net.IsServer)
+        {
+            _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-activate", ("user", xeno)), xeno, Filter.PvsExcept(xeno), true, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-activate-self", ("user", xeno)), xeno, xeno, PopupType.Medium);
+            SpawnAttachedTo(xeno.Comp.Effect, xeno.Owner.ToCoordinates());
+        }
     }
 
 
@@ -88,9 +89,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
 
     public void OnShieldRemove(Entity<XenoEmpowerComponent> ent, ref RemovedShieldEvent args)
     {
-        if (_net.IsClient)
-            return;
-        if (args.Type == XenoShieldSystem.ShieldType.Ravager)
+        if (!_net.IsClient || args.Type == XenoShieldSystem.ShieldType.Ravager)
             _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-end"), ent, ent, PopupType.MediumCaution);
     }
 

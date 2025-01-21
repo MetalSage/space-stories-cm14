@@ -22,7 +22,7 @@ public sealed class XenoSuperEmpowerVisualsSystem : EntitySystem
     {
         _activeSuperEmpowerQuery = GetEntityQuery<XenoEmpowerComponent>();
         _shader = _prototypeManager.Index<ShaderPrototype>(ShaderId).InstanceUnique();
-        _shader.SetParameter("superpower_width", 1.7f);
+        _shader.SetParameter("superpower_width", 2.7f);
     }
 
     public override void Update(float frameTime)
@@ -37,12 +37,12 @@ public sealed class XenoSuperEmpowerVisualsSystem : EntitySystem
 
                 if (EmpowerTime > HalfTime)
                 {
-                    _shader?.SetParameter("superpower_width", 1.7f);
+                    _shader?.SetParameter("superpower_width", 2.7f);
                     sprite.PostShader = _shader;
                 }
                 else
                 {
-                    _shader?.SetParameter("superpower_width", 1.0f);
+                    _shader?.SetParameter("superpower_width", 1.7f);
                     sprite.PostShader = _shader;
                 }
 
