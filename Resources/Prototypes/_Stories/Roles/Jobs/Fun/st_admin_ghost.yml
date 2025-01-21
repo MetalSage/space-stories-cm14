@@ -1,0 +1,63 @@
+- type: entity
+  parent: [MobObserver, InventoryBase]
+  id: STAdminObserver
+  name: admin observer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ContentEye
+    maxZoom: 8.916104, 8.916104
+  - type: Tag
+    tags:
+    - InstantDoAfters
+    - CanPilot
+    - BypassInteractionRangeChecks
+    - BypassDropChecks
+  - type: Input
+    context: "aghost"
+  - type: Ghost
+    canInteract: true
+  - type: GhostHearing
+  - type: Hands
+  - type: ComplexInteraction
+  - type: Puller
+  - type: CombatMode
+  - type: Physics
+    ignorePaused: true
+    bodyType: Kinematic
+  - type: Body
+    prototype: Aghost
+  - type: Access
+    groups:
+    - AllAccess
+    - ShipMasterAccess
+    - Corp
+    - Colony
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+    - CentralCommand
+  - type: UserInterface
+    interfaces:
+      enum.XenoFindParasiteUI.Key:
+        type: FindParasiteBoundUserInterface
+        requireInputValidation: false
+      enum.DialogUiKey.Key:
+        type: DialogBui
+        requireInputValidation: false
+      enum.TacticalMapUserUi.Key:
+        type: TacticalMapUserBui
+  - type: Thieving
+    stripTimeReduction: 9999
+    stealthy: true
+  - type: Stripping
+  - type: SolutionScanner
+  - type: IgnoreUIRange
+  - type: ShowAntagIcons
+  - type: Inventory
+    templateId: aghost
+  - type: Loadout
+    prototypes: [ RMCMobAghostGear ]
+  - type: BypassInteractionChecks
+  - type: ParalyzeOnPullAttemptImmune
+  - type: BypassSkillChecks
+  - type: SeeNewPlayers

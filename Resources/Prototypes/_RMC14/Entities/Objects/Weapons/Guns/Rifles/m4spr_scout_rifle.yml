@@ -93,7 +93,7 @@
           - RMCMagazineRifleM4SPRA19
           - RMCMagazineRifleM4SPRA19Impact
           - RMCMagazineRifleM4SPRA19Incendiary
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: RifleM4SPRCustomConstruct
     node: start
   - type: ItemCamouflage

@@ -99,7 +99,7 @@
     tags:
     - RMCWeaponSMG
     - RMCWeaponSMGM63
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: SMGM63Construct
     node: start
   - type: ItemCamouflage

@@ -87,7 +87,7 @@
       rmc-aslot-barrel: 1.12, 0.0
       rmc-aslot-rail: 0.225, 0.125
       rmc-aslot-underbarrel: 0.62, -0.31
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: RifleM4SPRConstruct
     node: start
   - type: ItemCamouflage

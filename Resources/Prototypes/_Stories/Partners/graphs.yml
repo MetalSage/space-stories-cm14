@@ -185,7 +185,7 @@
   start: start
   graph:
   - node: start
-    entity: CMXM43E1SniperRifle
+    entity: STXM43E1SniperRifle
     edges:
     - to: goldenAutumn
       steps:

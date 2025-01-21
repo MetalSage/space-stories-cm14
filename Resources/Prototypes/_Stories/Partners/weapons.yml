@@ -236,7 +236,7 @@
 
 - type: entity
   id: StoriesXM43E1SniperRifleGoldenAutumn
-  parent: CMXM43E1SniperRifle
+  parent: STXM43E1SniperRifle
   suffix: GoldenAutumn
   components:
   - type: Sprite

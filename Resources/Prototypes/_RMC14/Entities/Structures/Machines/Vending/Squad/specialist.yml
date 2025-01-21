@@ -45,7 +45,7 @@
         points: 40
       - id: CMMagazineSniperM96S
         points: 40
-      - id: CMMagazineSniperXM43E1AntiMateriel
+      - id: STMagazineSniperXM43E1AntiMateriel
         points: 40
     - name: Extra Demolitionist Ammunition
       entries:
