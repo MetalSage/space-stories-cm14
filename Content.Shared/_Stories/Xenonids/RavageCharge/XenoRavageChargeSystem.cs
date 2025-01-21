@@ -2,11 +2,14 @@
 using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared._RMC14.Xenonids.Empower;
+using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Effects;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -26,6 +29,8 @@ public sealed class XenoRavageChargeSystem : EntitySystem
     [Dependency] private readonly ThrownItemSystem _thrownItem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly XenoPlasmaSystem _xenoPlasma = default!;
     private EntityQuery<XenoEmpowerComponent> _empower;
@@ -68,11 +73,28 @@ public sealed class XenoRavageChargeSystem : EntitySystem
             _audio.PlayPvs(xeno.Comp.Sound, xeno);
 
     }
+    private bool IsValidHit(Entity<XenoRavageChargeComponent> xeno, EntityUid target)
+    {
 
+        if (!HasComp<MobStateComponent>(target) || _mobState.IsIncapacitated(target))
+            return false;
+
+        if (_standing.IsDown(target))
+            return false;
+
+        if (HasComp<XenoRavageChargeComponent>(target))
+            return false;
+
+        return true;
+    }
     private void OnXenoRavageChargeHit(Entity<XenoRavageChargeComponent> xeno, ref ThrowDoHitEvent args)
     {
         // TODO RMC14 lag compensation
         var targetId = args.Target;
+
+        if (!IsValidHit(xeno, targetId))
+            return;
+
         if (_physicsQuery.TryGetComponent(xeno, out var physics) &&
             _thrownItemQuery.TryGetComponent(xeno, out var thrown))
         {

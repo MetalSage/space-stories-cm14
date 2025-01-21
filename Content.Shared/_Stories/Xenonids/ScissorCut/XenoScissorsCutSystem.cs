@@ -1,5 +1,6 @@
 ﻿using Content.Shared._RMC14.Emote;
 using Content.Shared._RMC14.Shields;
+using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared._RMC14.Xenonids.Empower;
 using Content.Shared.Stunnable;
@@ -35,6 +36,7 @@ public sealed class XenoScissorsCutSystem : EntitySystem
     [Dependency] private readonly SharedColorFlashEffectSystem _colorFlash = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
 
     private EntityQuery<XenoEmpowerComponent> _empower;
 
@@ -124,13 +126,17 @@ public sealed class XenoScissorsCutSystem : EntitySystem
 
                     if (_net.IsServer)
                         SpawnAttachedTo(xeno.Comp.EffectSlowdown, hit.ToCoordinates());
+
                     _stun.TrySlowdown(hit, xeno.Comp.Slowdown, false, 0f, 0f);
                 }
             }
         }
 
-        if (_net.IsServer)
-            _audio.PlayPvs(xeno.Comp.Sound, xeno);
-
+        if (actualResults.Count > 0)
+        {
+            _rmcMelee.DoLunge(xeno, actualResults[0]);
+            if (_net.IsServer)
+                _audio.PlayPvs(xeno.Comp.Sound, xeno);
+        }
 	}
 }

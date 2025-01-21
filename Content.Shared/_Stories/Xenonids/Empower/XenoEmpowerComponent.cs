@@ -20,10 +20,10 @@ public sealed partial class XenoEmpowerComponent : Component
     public float MaxTargets = 5; // it's 6 but for cycle...
 
     [DataField, AutoNetworkedField]
-    public FixedPoint2 AmountBase = 75;
+    public FixedPoint2 AmountBase = 50;
 
     [DataField, AutoNetworkedField]
-    public FixedPoint2 AmountPerHuman = 80;
+    public FixedPoint2 AmountPerHuman = 50;
 
     [DataField, AutoNetworkedField]
     public TimeSpan EmpowerOffAt;

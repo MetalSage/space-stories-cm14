@@ -37,7 +37,11 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
     {
         if (args.Handled)
             return;
+ /*       if (xeno.Comp.FirstActive)
+        {
 
+            xeno.Comp.FirstAcitveTimeOff = _timing.CurTime + ent.Comp.FirstActiveTime;
+*/        }
         if (!_xenoPlasma.TryRemovePlasma(xeno.Owner, xeno.Comp.PlasmaCost))
             return;
 
@@ -89,7 +93,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
 
     public void OnShieldRemove(Entity<XenoEmpowerComponent> ent, ref RemovedShieldEvent args)
     {
-        if (!_net.IsClient || args.Type == XenoShieldSystem.ShieldType.Ravager)
+        if (!_net.IsClient && args.Type == XenoShieldSystem.ShieldType.Ravager)
             _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-end"), ent, ent, PopupType.MediumCaution);
     }
 
@@ -99,12 +103,19 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         var time = _timing.CurTime;
 
         var ravagerQuery = EntityQueryEnumerator<XenoEmpowerComponent, XenoShieldComponent>();
-        while (ravagerQuery.MoveNext(out var uid, out var crushShield, out var shield))
+        while (ravagerQuery.MoveNext(out var uid, out var xeno, out var shield))
         {
-            if (crushShield.EmpowerOffAt <= time)
-                crushShield.EmpowerActive = false;
+            /*if (xeno.FirstAcitveTimeOff <= time)
+            {
+                xeno.FirstAcitveTimeOff = null;
+                OnXenoEmpowerAction(Entity<XenoEmpowerComponent> xeno, ref XenoDefensiveShieldActionEvent args);
+                xeno.FirstActive = false;
+            }*/
 
-            if (shield.Active && shield.Shield == XenoShieldSystem.ShieldType.Ravager && crushShield.ShieldOffAt <= time)
+            if (xeno.EmpowerOffAt <= time)
+                xeno.EmpowerActive = false;
+
+            if (shield.Active && shield.Shield == XenoShieldSystem.ShieldType.Ravager && xeno.ShieldOffAt <= time)
                 _shield.RemoveShield(uid, XenoShieldSystem.ShieldType.Ravager);
         }
     }

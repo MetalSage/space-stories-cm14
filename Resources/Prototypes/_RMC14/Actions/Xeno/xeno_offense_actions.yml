@@ -491,7 +491,7 @@
       sprite: _RMC14/Actions/xeno_actions.rsi
       state: rav_scissor_cut
     event: !type:XenoScissorsCutActionEvent
-    range: 10
+    range: 15
     useDelay: 10
     checkCanAccess: false
 
@@ -507,7 +507,7 @@
       sprite: _RMC14/Actions/xeno_actions.rsi
       state: pounce
     event: !type:XenoRavageChargeActionEvent
-    range: 5
+    range: 15
     useDelay: 14
     checkCanAccess: false
 
