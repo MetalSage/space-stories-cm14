@@ -222,6 +222,8 @@
     state: "20"
   - type: Icon
     state: "20"
+  - type: Occluder # Stories-Fixes
+    enabled: false
 
 - type: entity
   parent: CMBaseAlamoWall
@@ -232,6 +234,8 @@
     state: "21"
   - type: Icon
     state: "21"
+  - type: Occluder # Stories-Fixes
+    enabled: false
 
 - type: entity
   parent: CMBaseAlamoWall

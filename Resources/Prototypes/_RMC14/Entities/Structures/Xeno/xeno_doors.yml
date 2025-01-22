@@ -61,8 +61,9 @@
         acts: ["Destruction"]
   - type: PlacementReplacement
     key: walls
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    keyTwo: walls
     mode: NoSprite
   - type: AccessReader
     access: [["CMAccessXeno"]]
@@ -123,8 +124,9 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    keyTwo: walls
     mode: NoSprite
   - type: MeleeReceivedMultiplier
     xenoDamage:

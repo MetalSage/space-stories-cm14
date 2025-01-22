@@ -12,6 +12,7 @@
     state: strata_bare_outpost_
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: strata_bare_outpost_
 
 - type: entity
@@ -28,6 +29,7 @@
     state: strata_ribbed_outpost_
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: strata_ribbed_outpost_
 
 - type: entity
@@ -44,6 +46,7 @@
     state: strata_hull
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: strata_ribbed_outpost_
 
 - type: entity
@@ -60,6 +63,7 @@
     state: strata_ice
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: strata_ice
 
 - type: entity
@@ -74,4 +78,5 @@
     state: strata_ice_dirty
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: strata_ice_dirty

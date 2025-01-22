@@ -13,6 +13,7 @@
     state: metal
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: metal
 
 - type: entity
@@ -29,6 +30,7 @@
     state: rwall
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: rwall
 
 - type: entity
@@ -45,6 +47,7 @@
     state: hwall
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: rwall
 
 - type: entity
@@ -61,4 +64,5 @@
     state: bone_resin
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: bone_resin

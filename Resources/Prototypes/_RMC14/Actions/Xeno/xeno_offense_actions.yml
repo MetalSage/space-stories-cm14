@@ -120,7 +120,7 @@
   - type: WorldTargetAction
     icon:
       sprite: _RMC14/Actions/xeno_actions.rsi
-      state: tail_attack_acid
+      state: tail_attack
 
 - type: entity
   parent: ActionXenoTailStab

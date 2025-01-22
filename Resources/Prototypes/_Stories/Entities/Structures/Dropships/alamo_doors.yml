@@ -4,7 +4,7 @@
   suffix: Alamo, Solid, Right
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Doors/Airlocks/Double/alamo_dropship_solid_right.rsi
+    sprite: _Stories/Structures/Doors/Airlocks/Double/alamo_dropship_solid_right.rsi
   - type: Occluder
   - type: ApcPowerReceiver
     powerLoad: 0
@@ -32,7 +32,7 @@
   suffix: Alamo, Solid, Left
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Doors/Airlocks/Double/alamo_dropship_solid_left.rsi
+    sprite: _Stories/Structures/Doors/Airlocks/Double/alamo_dropship_solid_left.rsi
   - type: Occluder
   - type: ApcPowerReceiver
     powerLoad: 0
@@ -95,3 +95,5 @@
   - type: AirlockReceiverXenoClaws
     maxHealth: 9000
     minimumClawStrength: VerySharp
+  - type: Occluder
+    boundingBox: "-0.5,-1.5,0.5,1.5"

@@ -4,7 +4,7 @@
   suffix: Normandy, Solid, Right
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Doors/Airlocks/Double/normandy_dropship_solid_right.rsi
+    sprite: _Stories/Structures/Doors/Airlocks/Double/normandy_dropship_solid_right.rsi
 
 - type: entity
   parent: CMDoubleDoorAlamoSolidLeft
@@ -12,7 +12,7 @@
   suffix: Normandy, Solid, Left
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Doors/Airlocks/Double/normandy_dropship_solid_left.rsi
+    sprite: _Stories/Structures/Doors/Airlocks/Double/normandy_dropship_solid_left.rsi
 
 - type: entity
   parent: RMCCargoAirlockAlamo
