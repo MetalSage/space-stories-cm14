@@ -33,69 +33,11 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         SubscribeLocalEvent<XenoEmpowerComponent, XenoDefensiveShieldActionEvent>(OnXenoEmpowerAction);
     }
 
-  /*  private void OnXenoEmpowerFirstAction(Entity<XenoEmpowerComponent> xeno, ref XenoDefensiveShieldActionEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (HasComp<XenoLeapingComponent>(xeno))
-            return;
-
-        if (xeno.Comp.FirstActive && xeno.Comp.SlashReady)
-        {
-            var ev = new XenoBlitzEvent();
-            RaiseLocalEvent(xeno, ref ev);
-            args.Handled = true;
-        }
-        else if (xeno.Comp.Dashed)
-        {
-            //Cancells leaping when slash isn't ready yet
-            args.Handled = true;
-        }
-        else
-        {
-            //Only run on the dash itself
-            if (!TryComp<XenoPlasmaComponent>(xeno, out var plasma) || !_plasma.HasPlasma((xeno.Owner, plasma), xeno.Comp.PlasmaCost))
-                return;
-            xeno.Comp.Dashed = true;
-            _actions.SetUseDelay(args.Action, xeno.Comp.BaseUseDelay);
-            xeno.Comp.FirstPartActivatedAt = _timing.CurTime;
-            //Don't handle - let the leap go through
-        }
-
-        Dirty(xeno);
-    }
-    private void OnXenoEmpowerFirstAction(Entity<XenoEmpowerComponent> xeno, ref XenoDefensiveShieldActionEvent args)
-    {
-        if (args.Handled)
-            return;
-        if (!xeno.Comp.FirstActive)
-        {
-            xeno.Comp.FirstActive = true;
-            xeno.Comp.FirstActiveOffAt = xeno.Comp.FirstActiveTime + _timing.CurTime;
-            return;
-        }
-        else if (xeno.Comp.FirstActive)
-        {
-            Dirty(xeno);
-            OnXenoEmpowerAction(xeno, ref args);
-        }
-    } */
-
     private void OnXenoEmpowerAction(Entity<XenoEmpowerComponent> xeno, ref XenoDefensiveShieldActionEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!xeno.Comp.FirstActive)
-        {
-            xeno.Comp.FirstActive = true;
-            xeno.Comp.FirstActiveOffAt = xeno.Comp.FirstActiveTime + _timing.CurTime;
-            return;
-        }
-
-        xeno.Comp.FirstActive = false;
-        xeno.Comp.FirstActiveOffAt = TimeSpan.FromSeconds(0);
         if (!_xenoPlasma.TryRemovePlasma(xeno.Owner, xeno.Comp.PlasmaCost))
             return;
 
@@ -159,13 +101,6 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         var ravagerQuery = EntityQueryEnumerator<XenoEmpowerComponent, XenoShieldComponent>();
         while (ravagerQuery.MoveNext(out var uid, out var xeno, out var shield))
         {
-            if ((xeno.FirstActiveOffAt <= time) && xeno.FirstActive)
-            {
-                xeno.FirstActive = false;
-                Dirty(uid, xeno);
-                var ev = new XenoDefensiveShieldActionEvent();
-                RaiseLocalEvent(uid, ev);
-            }
             if (xeno.EmpowerOffAt <= time)
                 xeno.EmpowerActive = false;
 
