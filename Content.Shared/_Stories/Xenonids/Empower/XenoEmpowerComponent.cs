@@ -32,6 +32,15 @@ public sealed partial class XenoEmpowerComponent : Component
     public TimeSpan ShieldOffAt;
 
     [DataField, AutoNetworkedField]
+    public TimeSpan FirstActiveOffAt;
+
+    [DataField, AutoNetworkedField]
+    public bool FirstActive = false;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan FirstActiveTime = TimeSpan.FromSeconds(3);
+
+    [DataField, AutoNetworkedField]
     public TimeSpan EmpowerDuration = TimeSpan.FromSeconds(6);
 
     [DataField, AutoNetworkedField]
