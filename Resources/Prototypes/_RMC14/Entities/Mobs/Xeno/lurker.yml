@@ -51,7 +51,7 @@
   - type: XenoEvolution
     max: 500
     evolvesTo:
-    - CMXenoRavager
+    - CMXenoRavager # Stories Change
   - type: XenoLeap
     plasmaCost: 20
     delay: 0

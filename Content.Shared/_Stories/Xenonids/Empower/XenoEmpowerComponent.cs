@@ -17,7 +17,7 @@ public sealed partial class XenoEmpowerComponent : Component
     public float Range = 4;
 
     [DataField, AutoNetworkedField]
-    public float MaxTargets = 5; // it's 6 but for cycle...
+    public float MaxTargets = 6; // it's 6 but for cycle...
 
     [DataField, AutoNetworkedField]
     public FixedPoint2 AmountBase = 50;

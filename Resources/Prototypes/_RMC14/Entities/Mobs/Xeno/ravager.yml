@@ -30,9 +30,9 @@
     - ActionXenoRegurgitate
     - ActionXenoWatch
     - ActionXenoTailStab
-    - ActionXenoRavageCharge
-    - ActionXenoEmpower
-    - ActionXenoScissorCut
+    - ActionXenoRavageCharge # Stories Change
+    - ActionXenoEmpower # Stories Change
+    - ActionXenoScissorCut # Stories Change
     - ActionXenoDevolve
     tier: 3
     hudOffset: 0,0.1
@@ -61,18 +61,18 @@
     tailDamage:
       groups:
         Brute: 54
-  - type: XenoRavageCharge
+  - type: XenoRavageCharge # Stories Change
     damage:
       types:
         Blunt: 45
         Structural: 45
-  - type: XenoEmpower
+  - type: XenoEmpower # Stories Change
   - type: Tackle
     max: 5
     chance: 0.35
     stunMin: 4
     stunMax: 5
-  - type: XenoScissorsCut
+  - type: XenoScissorsCut # Stories Change
     damage:
       groups:
         Brute: 45
@@ -118,8 +118,8 @@
         - XenoHeavy
   - type: RMCSize
     size: Big
-#  - type: RMCXenoDamageVisuals # TODO RMC14
-#    prefix: ravager
+  - type: RMCXenoDamageVisuals # Stories Change
+    prefix: ravager            # Stories Change
   - type: TacticalMapIcon
     icon:
       sprite: _RMC14/Interface/map_blips.rsi

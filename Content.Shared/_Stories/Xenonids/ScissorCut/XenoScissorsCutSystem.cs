@@ -17,13 +17,14 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Numerics;
 
 namespace Content.Shared._RMC14.Xenonids.ScissorsCut;
 
-public sealed class XenoScissorsCutSystem : EntitySystem
+public abstract class SharedXenoScissorsCutSystem : EntitySystem
 {
     [Dependency] private readonly XenoSystem _xeno = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
@@ -37,6 +38,8 @@ public sealed class XenoScissorsCutSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
+
+    protected Box2Rotated LastAttack;
 
     private EntityQuery<XenoEmpowerComponent> _empower;
 
@@ -71,6 +74,7 @@ public sealed class XenoScissorsCutSystem : EntitySystem
         var matrix = Vector2.Transform(targetCoords.Position, _transform.GetInvWorldMatrix(transform));
         var rotation = _transform.GetWorldRotation(xeno).RotateVec(-matrix).ToWorldAngle();
         var boxRotated = new Box2Rotated(box, rotation, userCoords.Position);
+        LastAttack = boxRotated;
 
         // ray on the left side of the box
         var leftRay = new CollisionRay(boxRotated.BottomLeft, (boxRotated.TopLeft - boxRotated.BottomLeft).Normalized(), AttackMask);
@@ -131,6 +135,11 @@ public sealed class XenoScissorsCutSystem : EntitySystem
                 }
             }
         }
+        var localPos = transform.LocalRotation.RotateVec(matrix);
+        var length = localPos.Length();
+        localPos *= range / length;
+
+        DoLunge((xeno, xeno, transform), localPos, "WeaponArcThrust");
 
         if (actualResults.Count > 0)
         {
@@ -139,4 +148,7 @@ public sealed class XenoScissorsCutSystem : EntitySystem
                 _audio.PlayPvs(xeno.Comp.Sound, xeno);
         }
 	}
+    protected virtual void DoLunge(Entity<XenoScissorsCutComponent, TransformComponent> user, Vector2 localPos, EntProtoId animationId)
+    {
+    }
 }

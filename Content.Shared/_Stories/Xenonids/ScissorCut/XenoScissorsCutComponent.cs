@@ -8,7 +8,7 @@ using Robust.Shared.Audio;
 namespace Content.Shared._RMC14.Xenonids.ScissorsCut;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-
+[Access(typeof(SharedXenoScissorsCutSystem))]
 public sealed partial class XenoScissorsCutComponent : Component
 {
     [DataField, AutoNetworkedField]

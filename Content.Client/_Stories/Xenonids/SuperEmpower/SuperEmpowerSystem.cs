@@ -5,7 +5,7 @@ using Robust.Client.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._RMC14.Xenonids.SuperEmpower;
+namespace Content.Client._Stories.Xenonids.SuperEmpower;
 
 public sealed class XenoSuperEmpowerVisualsSystem : EntitySystem
 {
