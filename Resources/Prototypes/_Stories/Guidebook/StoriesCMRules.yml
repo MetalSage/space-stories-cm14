@@ -1,6 +1,6 @@
 - type: guideEntry
   parent: RMC
-  id: StoriesOverview
+  id: STOverview
   name: Правила
   priority: -1
   ruleEntry: true
@@ -8,7 +8,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGOverview
+  id: STENGOverview
   name: Rules
   priority: 0
   ruleEntry: true
@@ -16,7 +16,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesCommunityExpectations
+  id: STCommunityExpectations
   name: "Правило 0: Ожидания сообщества"
   priority: 1
   ruleEntry: true
@@ -24,7 +24,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesGrief
+  id: STGrief
   name: "Правило 1: Гриф"
   priority: 1
   ruleEntry: true
@@ -32,7 +32,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesRolePlay
+  id: STRolePlay
   name: "Правило 2: Ролевая игра"
   priority: 1
   ruleEntry: true
@@ -40,7 +40,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesMetagamingMetacommunication
+  id: STMetagamingMetacommunication
   name: "Правило 3: Метагейминг и метакоммуникации"
   priority: 1
   ruleEntry: true
@@ -48,7 +48,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesERP
+  id: STERP
   name: "Правило 4: ERP"
   priority: 1
   ruleEntry: true
@@ -56,7 +56,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesBuggingFoulPlay
+  id: STBuggingFoulPlay
   name: "Правило 5: Багоюз и нечестная игра"
   priority: 1
   ruleEntry: true
@@ -64,7 +64,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesBypassBlockingMultiAccounts
+  id: STBypassBlockingMultiAccounts
   name: "Правило 6: Обход блокировок, мультиаккаунты"
   priority: 1
   ruleEntry: true
@@ -72,7 +72,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesPlayYourRole
+  id: STPlayYourRole
   name: "Правило 7: Отыгрывайте свою роль"
   priority: 1
   ruleEntry: true
@@ -80,7 +80,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesCharacterNames
+  id: STCharacterNames
   name: "Правило 8: Имена персонажей"
   priority: 1
   ruleEntry: true
@@ -88,7 +88,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesUseOfLethalForce
+  id: STUseOfLethalForce
   name: "Правило 9: Применение летальной силы"
   priority: 1
   ruleEntry: true
@@ -96,7 +96,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesMilitaryLawMutinies
+  id: STMilitaryLawMutinies
   name: "Правило 10: Военный закон, мятежи"
   priority: 1
   ruleEntry: true
@@ -104,7 +104,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGCommunityExpectations
+  id: STENGCommunityExpectations
   name: "Rule 0: Community Expectations"
   priority: 1
   ruleEntry: true
@@ -112,7 +112,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGGrief
+  id: STENGGrief
   name: "Rule 1: Griefing"
   priority: 1
   ruleEntry: true
@@ -120,7 +120,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGRolePlay
+  id: STENGRolePlay
   name: "Rule 2: Roleplaying"
   priority: 1
   ruleEntry: true
@@ -128,7 +128,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGMetagamingMetacommunication
+  id: STENGMetagamingMetacommunication
   name: "Rule 3: Metagaming and Metacommunication"
   priority: 1
   ruleEntry: true
@@ -136,7 +136,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGERP
+  id: STENGERP
   name: "Rule 4: ERP"
   priority: 1
   ruleEntry: true
@@ -144,7 +144,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGBuggingFoulPlay
+  id: STENGBuggingFoulPlay
   name: "Rule 5: Bug Exploitation and Foul Play"
   priority: 1
   ruleEntry: true
@@ -152,7 +152,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGBypassBlockingMultiAccounts
+  id: STENGBypassBlockingMultiAccounts
   name: "Rule 6: Ban Evasion and Multi-accounting"
   priority: 1
   ruleEntry: true
@@ -160,7 +160,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGPlayYourRole
+  id: STENGPlayYourRole
   name: "Rule 7: Play Your Role"
   priority: 1
   ruleEntry: true
@@ -168,7 +168,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGCharacterNames
+  id: STENGCharacterNames
   name: "Rule 8: Character Names"
   priority: 1
   ruleEntry: true
@@ -176,7 +176,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGUseOfLethalForce
+  id: STENGUseOfLethalForce
   name: "Rule 9: Use of Lethal Force"
   priority: 1
   ruleEntry: true
@@ -184,7 +184,7 @@
 
 - type: guideEntry
   parent: RMC
-  id: StoriesENGMilitaryLawMutinies
+  id: STENGMilitaryLawMutinies
   name: "Rule 10: Military Law and Mutinies"
   priority: 1
   ruleEntry: true

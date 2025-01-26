@@ -14,7 +14,7 @@
   requireAdminNotify: true
   joinNotifyCrew: true
   supervisors: cm-job-supervisors-co
-  whitelisted: true
+  whitelisted: true # Stories-RolePlay
   accessGroups:
   - MarineMain
   minimapIcon:

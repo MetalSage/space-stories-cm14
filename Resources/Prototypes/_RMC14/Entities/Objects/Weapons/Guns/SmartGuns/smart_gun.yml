@@ -33,7 +33,7 @@
     medium: 0.75
     heavy: 0.806
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -43,7 +43,7 @@
       state: m56_barrel
       offset: 0.625, 0
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     slots:
     - suitStorage
     - Back
@@ -85,6 +85,7 @@
     slots:
       gun_magazine:
         name: Magazine
+        # startingItem: RMCMagazineSmartGun Stories-Partners
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/gun_sg_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/gun_sg_unload.ogg
         priority: 2
@@ -143,12 +144,18 @@
         whitelist:
           tags:
           - RMCAttachmentRailFlashlight
-  - type: AttachableHolderVisuals
-    offsets:
-      rmc-aslot-rail: 0.3125, 0.00
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: SmartGunConstruct
     node: start
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-rail: -0.1875, 0.125
+  - type: ItemCamouflage
+    camouflageVariations: {} # Stories-Parity
+  # - type: WieldedCrosshair Stories-Fixes
+  #   rsi:
+  #     sprite: _RMC14/Interface/MousePointer/smartgun_mouse.rsi
+  #     state: all
 
 - type: entity
   parent: CMMagazineRifleBase
@@ -165,7 +172,7 @@
     proto: CMCartridgeSmartGun10x30mm
     capacity: 500
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/SmartGuns/magazine_smart_gun.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/m56b.rsi # Stories-Parity
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -175,7 +182,7 @@
     slots:
     - suitStorage
   - type: ItemCamouflage
-    camouflageVariations: {}
+    camouflageVariations: {} # Stories-Parity
 
 - type: entity
   parent: CMBaseCartridgeRifle

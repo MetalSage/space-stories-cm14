@@ -13,7 +13,7 @@
   - type: InteractionOutline
   - type: Clickable
   - type: IconSmooth
-    key: fence
+    key: fence # Stories-Fixes
     base: fence
     mode: CardinalFlags
   - type: Damageable
@@ -59,7 +59,7 @@
   - type: PlacementReplacement
     key: walls
   - type: IconSmooth
-    key: walls
+    key: fence # Stories-Fixes
     base: brokenfence
     mode: CardinalFlags
   - type: Physics

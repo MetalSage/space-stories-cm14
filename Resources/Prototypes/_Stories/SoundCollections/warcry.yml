@@ -1,5 +1,5 @@
 - type: soundCollection
-  id: CMMaleWarcry
+  id: STMaleWarcry
   files:
     - /Audio/_Stories/Voice/Human/Warcry/warcry_male_1.ogg
     - /Audio/_Stories/Voice/Human/Warcry/warcry_male_2.ogg
@@ -43,7 +43,7 @@
     - /Audio/_Stories/Voice/Human/Warcry/warcry_male_rare_5.ogg
 
 - type: soundCollection
-  id: CMFemaleWarcry
+  id: STFemaleWarcry
   files:
     - /Audio/_Stories/Voice/Human/Warcry/warcry_female_1.ogg
     - /Audio/_Stories/Voice/Human/Warcry/warcry_female_2.ogg

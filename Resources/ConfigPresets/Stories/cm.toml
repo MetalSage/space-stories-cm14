@@ -49,7 +49,7 @@ desc = """
 lobbyduration = 180
 maxplayers = 400
 soft_max_players = 200
-map_pool = "CMDefaultMapPool"
+map_pool = "STDefaultMapPool"
 round_end_pvs_overrides = false
 
 [ghost]
@@ -90,7 +90,7 @@ preload = false
 enabled = true
 
 [server]
-rules_file = "StoriesOverview"
+rules_file = "STOverview"
 
 [shuttle]
 auto_call_time = 0

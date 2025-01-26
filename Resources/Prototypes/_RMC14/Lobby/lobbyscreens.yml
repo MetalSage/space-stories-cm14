@@ -2,6 +2,7 @@
   id: Pyro
   background: /Textures/_RMC14/Lobby/PyrotechnicianXeno.png
 
+# Stories-XenoRemoval-Start
 # - type: lobbyBackground
 #   id: fob
 #   background: /Textures/_RMC14/Lobby/from_fobbiton_with_love.png
@@ -9,6 +10,7 @@
 # - type: lobbyBackground
 #   id: shnee
 #   background: /Textures/_RMC14/Lobby/only_you_shnee.png
+# Stories-XenoRemoval-End
 
 - type: lobbyBackground
   id: sisters
@@ -25,7 +27,8 @@
 - type: lobbyBackground
   id: Battered
   background: /Textures/_RMC14/Lobby/Battered.png
- 
+
+# Stories-XenoRemoval-Start
 # - type: lobbyBackground
 #   id: FriendlySkies
 #   background: /Textures/_RMC14/Lobby/Fly_the_Friendly_Skies.png
@@ -37,3 +40,4 @@
 # - type: lobbyBackground
 #   id: MoveOut
 #   background: /Textures/_RMC14/Lobby/Move_Out.png
+# Stories-XenoRemoval-End

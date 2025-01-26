@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakAceOfHeart
+  id: STClothingNeckCloakAceOfHeart
   name: ace of heart cloak
   components:
   - type: Sprite
@@ -8,7 +8,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakAceOfSpades
+  id: STClothingNeckCloakAceOfSpades
   name: ace of spades cloak
   components:
   - type: Sprite
@@ -16,7 +16,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakAmerica
+  id: STClothingNeckCloakAmerica
   name: america cloak
   components:
   - type: Sprite
@@ -24,7 +24,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakBloodySkull
+  id: STClothingNeckCloakBloodySkull
   name: bloody skull cloak
   components:
   - type: Sprite
@@ -32,7 +32,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakBreakThrough
+  id: STClothingNeckCloakBreakThrough
   name: break through cloak
   components:
   - type: Sprite
@@ -40,7 +40,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakConductor
+  id: STClothingNeckCloakConductor
   name: conductor cloak
   components:
   - type: Sprite
@@ -48,7 +48,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakDareDevil
+  id: STClothingNeckCloakDareDevil
   name: dare devil cloak
   components:
   - type: Sprite
@@ -56,7 +56,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakDuty
+  id: STClothingNeckCloakDuty
   name: duty cloak
   components:
   - type: Sprite
@@ -64,7 +64,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakFirstShield
+  id: STClothingNeckCloakFirstShield
   name: first shield cloak
   components:
   - type: Sprite
@@ -72,7 +72,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakGlory
+  id: STClothingNeckCloakGlory
   name: glory cloak
   components:
   - type: Sprite
@@ -80,7 +80,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakHeraldOfBetrayal
+  id: STClothingNeckCloakHeraldOfBetrayal
   name: herald of betrayal cloak
   components:
   - type: Sprite
@@ -88,7 +88,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakHolyBlades
+  id: STClothingNeckCloakHolyBlades
   name: holy blades cloak
   components:
   - type: Sprite
@@ -96,7 +96,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakHolyHammer
+  id: STClothingNeckCloakHolyHammer
   name: holy hammer cloak
   components:
   - type: Sprite
@@ -104,7 +104,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakHolyScripture
+  id: STClothingNeckCloakHolyScripture
   name: holy scripture cloak
   components:
   - type: Sprite
@@ -112,7 +112,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakHolySpear
+  id: STClothingNeckCloakHolySpear
   name: holy spear cloak
   components:
   - type: Sprite
@@ -120,7 +120,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakImperator
+  id: STClothingNeckCloakImperator
   name: imperator cloak
   components:
   - type: Sprite
@@ -128,7 +128,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakInquisition
+  id: STClothingNeckCloakInquisition
   name: inquisition cloak
   components:
   - type: Sprite
@@ -136,7 +136,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakMorgenstern
+  id: STClothingNeckCloakMorgenstern
   name: morgenstern cloak
   components:
   - type: Sprite
@@ -144,7 +144,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakPiercingPoison
+  id: STClothingNeckCloakPiercingPoison
   name: piercing poison cloak
   components:
   - type: Sprite
@@ -152,7 +152,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakRapier
+  id: STClothingNeckCloakRapier
   name: rapier cloak
   components:
   - type: Sprite
@@ -160,7 +160,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakRedDemon
+  id: STClothingNeckCloakRedDemon
   name: red demon cloak
   components:
   - type: Sprite
@@ -168,7 +168,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakSparta
+  id: STClothingNeckCloakSparta
   name: sparta cloak
   components:
   - type: Sprite
@@ -176,7 +176,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakSpoilage
+  id: STClothingNeckCloakSpoilage
   name: spoilage cloak
   components:
   - type: Sprite
@@ -184,7 +184,7 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingNeckCloakStrongholdOfWorld
+  id: STClothingNeckCloakStrongholdOfWorld
   name: stronghold of world cloak
   components:
   - type: Sprite

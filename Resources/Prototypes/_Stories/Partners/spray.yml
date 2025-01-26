@@ -1,5 +1,5 @@
 - type: entity
-  id: StoriesSprayBloodyParty
+  id: STSprayBloodyParty
   parent: BaseItem
   name: spray (Bloody Party - M42A2)
   suffix: BloodyParty
@@ -9,10 +9,10 @@
     state: bloodyParty
   - type: Tag
     tags:
-    - SprayBloodyParty
+    - STSprayBloodyParty
 
 - type: entity
-  id: StoriesSprayPhoenix
+  id: STSprayPhoenix
   parent: BaseItem
   name: spray (Phoenix - M54C)
   suffix: Phoenix
@@ -22,10 +22,10 @@
     state: phoenix
   - type: Tag
     tags:
-    - SprayPhoenix
+    - STSprayPhoenix
 
 - type: entity
-  id: StoriesSprayAngelOfDeath
+  id: STSprayAngelOfDeath
   parent: BaseItem
   name: spray (Angel Of Death - M4SPR)
   suffix: AngelOfDeath
@@ -35,10 +35,10 @@
     state: angelOfDeath
   - type: Tag
     tags:
-    - SprayAngelOfDeath
+    - STSprayAngelOfDeath
 
 - type: entity
-  id: StoriesSprayToxic
+  id: STSprayToxic
   parent: BaseItem
   name: spray (Toxic - M63)
   suffix: Toxic
@@ -48,10 +48,10 @@
     state: toxic
   - type: Tag
     tags:
-    - SprayToxic
+    - STSprayToxic
 
 - type: entity
-  id: StoriesSprayGoldRush
+  id: STSprayGoldRush
   parent: BaseItem
   name: spray (Gold Rush - M44)
   suffix: GoldRush
@@ -61,10 +61,10 @@
     state: goldRush
   - type: Tag
     tags:
-    - SprayGoldRush
+    - STSprayGoldRush
 
 - type: entity
-  id: StoriesSprayFate
+  id: STSprayFate
   parent: BaseItem
   name: spray (Fate - M77)
   suffix: Fate
@@ -74,10 +74,10 @@
     state: fate
   - type: Tag
     tags:
-    - SprayFate
+    - STSprayFate
 
 - type: entity
-  id: StoriesSprayRust
+  id: STSprayRust
   parent: BaseItem
   name: spray (Rust - M1984)
   suffix: Rust
@@ -87,10 +87,10 @@
     state: rust
   - type: Tag
     tags:
-    - SprayRust
+    - STSprayRust
 
 - type: entity
-  id: StoriesSprayAmethyst
+  id: STSprayAmethyst
   parent: BaseItem
   name: spray (Amethyst - MK80)
   suffix: Amethyst
@@ -100,10 +100,10 @@
     state: amethyst
   - type: Tag
     tags:
-    - SprayAmethyst
+    - STSprayAmethyst
 
 - type: entity
-  id: StoriesSprayPhantom
+  id: STSprayPhantom
   parent: BaseItem
   name: spray (Phantom - SU6)
   suffix: Phantom
@@ -113,10 +113,10 @@
     state: phantom
   - type: Tag
     tags:
-    - SprayPhantom
+    - STSprayPhantom
 
 - type: entity
-  id: StoriesSprayImpulse
+  id: STSprayImpulse
   parent: BaseItem
   name: spray (SmartGun - Impulse)
   suffix: Impulse
@@ -126,10 +126,10 @@
     state: impulse
   - type: Tag
     tags:
-    - SprayImpulse
+    - STSprayImpulse
 
 - type: entity
-  id: StoriesSprayBombardier
+  id: STSprayBombardier
   parent: BaseItem
   name: spray (Bombardier - M5-ATL)
   suffix: Bombardier
@@ -139,10 +139,10 @@
     state: bombardier
   - type: Tag
     tags:
-    - SprayBombardier
+    - STSprayBombardier
 
 - type: entity
-  id: StoriesSprayTiger
+  id: STSprayTiger
   parent: BaseItem
   name: spray (Tiger - M96S)
   suffix: Tiger
@@ -152,10 +152,10 @@
     state: tiger
   - type: Tag
     tags:
-    - SprayTiger
+    - STSprayTiger
 
 - type: entity
-  id: StoriesSprayGoldenAutumn
+  id: STSprayGoldenAutumn
   parent: BaseItem
   name: spray (GoldenAutumn - XM43E1)
   suffix: GoldenAutumn
@@ -165,10 +165,10 @@
     state: goldenAutumn
   - type: Tag
     tags:
-    - SprayGoldenAutumn
+    - STSprayGoldenAutumn
 
 - type: entity
-  id: StoriesSprayPacifist
+  id: STSprayPacifist
   parent: BaseItem
   name: spray (Pacifist - M83)
   suffix: Pacifist
@@ -178,4 +178,4 @@
     state: pacifist
   - type: Tag
     tags:
-    - SprayPacifist
+    - STSprayPacifist

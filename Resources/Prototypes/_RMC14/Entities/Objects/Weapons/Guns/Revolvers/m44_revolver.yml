@@ -13,7 +13,7 @@
       tags:
       - RMCSpeedLoaderM44
       - RMCCartridgeRevolver44
-    proto: null
+    proto: null # Stories-Partners
     capacity: 7
     chambers: [ True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null ]
@@ -47,11 +47,11 @@
           - RMCAttachmentLaserSight
   - type: AttachableHolderVisuals
     offsets:
-      rmc-aslot-barrel: 0.715, 0.125
+      rmc-aslot-barrel: 0.6875, 0.125
       rmc-aslot-rail: 0, 0.185
       rmc-aslot-stock: -0.59375, 0.09375
       rmc-aslot-underbarrel: 0.375, -0.155
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: RevolverM44Construct
     node: start
 

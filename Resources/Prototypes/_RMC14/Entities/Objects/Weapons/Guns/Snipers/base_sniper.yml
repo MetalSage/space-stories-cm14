@@ -20,9 +20,10 @@
   - type: GunDualWielding
     weaponGroup: Rifle
   - type: GunPointBlank
-  - type: RMCFireGroup
-    group: Shotgun
-    delay: 4
+  # - type: WieldedCrosshair Stories-Fixes
+  #   rsi:
+  #     sprite: _RMC14/Interface/MousePointer/sniper_mouse.rsi
+  #     state: all
 
 - type: entity
   parent: CMBaseCartridgeRifle

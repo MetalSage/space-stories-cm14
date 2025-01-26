@@ -1,6 +1,6 @@
 - type: entity
   parent: RMCBaseWeaponSniperRifle
-  id: CMXM43E1SniperRifle
+  id: STXM43E1SniperRifle
   name: XM43E1 experimental anti-materiel rifle
   description: "An experimental anti-materiel rifle produced by Armat Systems, recently reacquired from the deep storage of an abandoned prototyping facility. This one in particular is currently undergoing field testing. Chambered in 10x99mm Caseless."
   components:
@@ -46,7 +46,7 @@
         priority: 2
         whitelist:
           tags:
-          - CMMagazineSniperXM43E1
+          - STMagazineSniperXM43E1
   - type: GunUserWhitelist
     whitelist:
       components:
@@ -72,20 +72,20 @@
 
 - type: entity
   parent: CMMagazineSniperM96S
-  id: CMMagazineSniperXM43E1AntiMateriel
+  id: STMagazineSniperXM43E1AntiMateriel
   name: "XM43E1 marksman magazine (10x99mm)"
   description: A magazine of 10x99mm anti-materiel rounds.
   components:
   - type: Tag
     tags:
     - CMMagazineSniper
-    - CMMagazineSniperXM43E1
+    - STMagazineSniperXM43E1
   - type: BallisticAmmoProvider
     mayTransfer: True
     whitelist:
       tags:
-      - CMCartridgeSniper10x99mm
-    proto: CMCartridgeSniper10x99mmAntiMateriel
+      - STCartridgeSniper10x99mm
+    proto: STCartridgeSniper10x99mmAntiMateriel
     capacity: 8
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m42c.rsi
@@ -99,19 +99,19 @@
 
 - type: entity
   parent: CMCartridgeSniper10x28mm
-  id: CMCartridgeSniper10x99mmAntiMateriel
+  id: STCartridgeSniper10x99mmAntiMateriel
   name: cartridge (10x99mm) (AntiMateriel)
   components:
   - type: Tag
     tags:
     - Cartridge
-    - CMCartridgeSniper10x99mm
+    - STCartridgeSniper10x99mm
   - type: CartridgeAmmo
-    proto: CMBulletSniper10x99mmAntiMateriel
+    proto: STBulletSniper10x99mmAntiMateriel
 
 - type: entity
   parent: CMBulletSniper10x28mm
-  id: CMBulletSniper10x99mmAntiMateriel
+  id: STBulletSniper10x99mmAntiMateriel
   name: bullet (10x99mm)
   categories: [ HideSpawnMenu ]
   components:
@@ -124,7 +124,7 @@
     amount: 50
 
 - type: Tag
-  id: CMMagazineSniperXM43E1
+  id: STMagazineSniperXM43E1
 
 - type: Tag
-  id: CMCartridgeSniper10x99mm
+  id: STCartridgeSniper10x99mm

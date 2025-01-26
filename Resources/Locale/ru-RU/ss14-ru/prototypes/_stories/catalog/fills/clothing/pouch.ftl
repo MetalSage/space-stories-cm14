@@ -1,9 +1,0 @@
-ent-RMCPouchMagazineLargePMC = { ent-RMCPouchMagazineLarge }
-    .suffix = Заполненый, ЧВК, Стандарт
-    .desc = { ent-RMCPouchMagazineLarge.desc }
-ent-RMCPouchMagazineLargePMCLeader = { ent-RMCPouchMagazineLarge }
-    .suffix = Заполненый, ЧВК, Лидер
-    .desc = { ent-RMCPouchMagazineLarge.desc }
-ent-RMCPouchMagazineLargePMCSniper = { ent-RMCPouchMagazineLarge }
-    .suffix = Заполненый, ЧВК, Снайпер
-    .desc = { ent-RMCPouchMagazineLarge.desc }

@@ -61,7 +61,7 @@
     openingSpriteState: unlit
     closingSpriteState: unlit
     denySpriteState: door_deny
-    animatePanel: false
+    animatePanel: false # Stories-Fixes
   - type: DoorBolt
   - type: Appearance
   - type: ApcPowerReceiver
@@ -81,7 +81,7 @@
   - type: PlacementReplacement
     key: walls
   - type: IconSmooth
-    key: window
+    key: window # Stories-Fixes
     mode: NoSprite
   - type: PaintableAirlock
     group: Standard

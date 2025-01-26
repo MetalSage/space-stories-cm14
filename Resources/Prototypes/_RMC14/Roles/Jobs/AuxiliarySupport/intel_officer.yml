@@ -37,7 +37,7 @@
     - type: RMCPointing
     - type: JobPrefix
       prefix: "IO"
-    - type: CMVendorUser
+    - type: CMVendorUser # Stories-Partners
   hidden: true # TODO RMC14
 
 - type: startingGear

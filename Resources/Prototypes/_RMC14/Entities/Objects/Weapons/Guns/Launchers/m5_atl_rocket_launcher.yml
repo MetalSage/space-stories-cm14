@@ -28,6 +28,7 @@
     mayTransfer: false
     insertDelay: 6.0
     cycleDelay: 6.0
+    # proto: RMCRocket84mm Stories-Partners
     soundInsert:
       path: /Audio/_RMC14/Weapons/Guns/Cock/m5_ammo.ogg
   - type: GunUserWhitelist
@@ -68,7 +69,7 @@
   - type: IgnorePredictionHide
   - type: GunIgnorePrediction
   - type: AssistedReloadWeapon
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: WeaponLauncherM5ATLConstruct
     node: start
 

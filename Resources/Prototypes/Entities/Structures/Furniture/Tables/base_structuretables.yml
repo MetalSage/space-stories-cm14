@@ -14,7 +14,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.40,-0.40,0.40,0.40"
+          bounds: "-0.40,-0.40,0.40,0.40" # Stories-Fixes
         density: 55
         mask: # tables should collide with other tables
         - TableMask

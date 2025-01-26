@@ -23,13 +23,12 @@
   - type: Repairable
   - type: Damageable
     damageContainer: Inorganic
-  - type: PointLight
+  - type: PointLight # Stories-Parity
     enabled: true
-    radius: 6
+    radius: 5
     netsync: false
-    energy: 5
-    offset: "0, 0"
-    color: "#ECFFFF"
+    energy: 2
+    color: "#FFFFFF"
     mask: /Textures/_RMC14/Effects/LightMasks/quad_cone.png
   - type: Destructible
     thresholds:
@@ -94,13 +93,12 @@
   - type: InteractionOutline
   - type: Damageable
     damageContainer: Inorganic
-  - type: PointLight
+  - type: PointLight # Stories-Parity
     enabled: true
-    radius: 10
+    radius: 5.5
     netsync: false
-    energy: 7
-    offset: "0,0.5"
-    color: "#ECFFFF"
+    energy: 1
+    color: "#FFFFFF"
     mask: /Textures/_RMC14/Effects/LightMasks/quad_cone.png
   - type: Destructible
     thresholds:
@@ -181,12 +179,12 @@
     sprite: _RMC14/Objects/Misc/Lights/floodlight.rsi
     state: magical
   - type: InteractionOutline
-  - type: PointLight
+  - type: PointLight # Stories-Parity
     enabled: true
     radius: 5
-    energy: 3
+    energy: 2
     netsync: false
-    color: "#ECFFFF"
+    color: "#FFFFFF"
   - type: Fixtures
     fixtures:
       fix1:

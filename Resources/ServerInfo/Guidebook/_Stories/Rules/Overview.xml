@@ -1,7 +1,7 @@
 <Document>
   # Игровые Правила Space Stories - Colonial Marines
 
-  [textlink="ENG Rules" link="StoriesENGOverview"]
+  [textlink="ENG Rules" link="STENGOverview"]
 
   ## Недавние изменения
   Прочитайте соответствующие разделы, чтобы получить полный текст.
@@ -20,15 +20,15 @@
 
   ## Основные правила
   Это основые правила Space Stories - Colonial Marines. Нажмите на них, чтобы получить более подробную информацию.
-  - [textlink="Правило 0: Ожидания сообщества" link="StoriesCommunityExpectations"]
-  - [textlink="Правило 1: Гриф" link="StoriesGrief"]
-  - [textlink="Правило 2: Ролевая игра" link="StoriesRolePlay"]
-  - [textlink="Правило 3: Метагейминг и метакоммуникации" link="StoriesMetagamingMetacommunication"]
-  - [textlink="Правило 4: ERP" link="StoriesERP"]
-  - [textlink="Правило 5: Багоюз и нечестная игра" link="StoriesBuggingFoulPlay"]
-  - [textlink="Правило 6: Обход блокировок, мультиаккаунты" link="StoriesBypassBlockingMultiAccounts"]
-  - [textlink="Правило 7: Отыгрывайте свою роль" link="StoriesPlayYourRole"]
-  - [textlink="Правило 8: Имена персонаже" link="StoriesCharacterNames"]
-  - [textlink="Правило 9: Применение летальной силы" link="StoriesUseOfLethalForce"]
-  - [textlink="Правило 10: Военный закон, мятежи" link="StoriesMilitaryLawMutinies"]
+  - [textlink="Правило 0: Ожидания сообщества" link="STCommunityExpectations"]
+  - [textlink="Правило 1: Гриф" link="STGrief"]
+  - [textlink="Правило 2: Ролевая игра" link="STRolePlay"]
+  - [textlink="Правило 3: Метагейминг и метакоммуникации" link="STMetagamingMetacommunication"]
+  - [textlink="Правило 4: ERP" link="STERP"]
+  - [textlink="Правило 5: Багоюз и нечестная игра" link="STBuggingFoulPlay"]
+  - [textlink="Правило 6: Обход блокировок, мультиаккаунты" link="STBypassBlockingMultiAccounts"]
+  - [textlink="Правило 7: Отыгрывайте свою роль" link="STPlayYourRole"]
+  - [textlink="Правило 8: Имена персонаже" link="STCharacterNames"]
+  - [textlink="Правило 9: Применение летальной силы" link="STUseOfLethalForce"]
+  - [textlink="Правило 10: Военный закон, мятежи" link="STMilitaryLawMutinies"]
 </Document>

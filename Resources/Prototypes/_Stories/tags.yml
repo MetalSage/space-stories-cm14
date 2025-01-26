@@ -1,41 +1,41 @@
 - type: Tag
-  id: SprayBloodyParty
+  id: STSprayBloodyParty
 
 - type: Tag
-  id: SprayPhoenix
+  id: STSprayPhoenix
 
 - type: Tag
-  id: SprayAngelOfDeath
+  id: STSprayAngelOfDeath
 
 - type: Tag
-  id: SprayToxic
+  id: STSprayToxic
 
 - type: Tag
-  id: SprayGoldRush
+  id: STSprayGoldRush
 
 - type: Tag
-  id: SprayFate
+  id: STSprayFate
 
 - type: Tag
-  id: SprayRust
+  id: STSprayRust
 
 - type: Tag
-  id: SprayAmethyst
+  id: STSprayAmethyst
 
 - type: Tag
-  id: SprayPhantom
+  id: STSprayPhantom
 
 - type: Tag
-  id: SprayImpulse
+  id: STSprayImpulse
 
 - type: Tag
-  id: SprayBombardier
+  id: STSprayBombardier
 
 - type: Tag
-  id: SprayTiger
+  id: STSprayTiger
 
 - type: Tag
-  id: SprayGoldenAutumn
+  id: STSprayGoldenAutumn
 
 - type: Tag
-  id: SprayPacifist
+  id: STSprayPacifist

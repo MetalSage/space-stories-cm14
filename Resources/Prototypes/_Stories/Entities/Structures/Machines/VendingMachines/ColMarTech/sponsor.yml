@@ -1,6 +1,6 @@
 - type: entity
   parent: ColMarTechBase
-  id: ColMarTechSponsor
+  id: STColMarTechSponsor
   name: ColMarTech automated spray rack
   description: An automated spray rack hooked up to a big storage of standard-issue spray.
   components:
@@ -11,88 +11,88 @@
     sections:
     - name: Балончики с краской
       entries:
-      - id: StoriesSprayFate
+      - id: STSprayFate
         points: 1
-      - id: StoriesSprayRust
+      - id: STSprayRust
         points: 1
-      - id: StoriesSprayAmethyst
+      - id: STSprayAmethyst
         points: 1
-      - id: StoriesSprayPhantom
+      - id: STSprayPhantom
         points: 1
-      - id: StoriesSprayGoldRush
+      - id: STSprayGoldRush
         points: 2
-      - id: StoriesSprayAngelOfDeath
+      - id: STSprayAngelOfDeath
         points: 5
-      - id: StoriesSprayPhoenix
+      - id: STSprayPhoenix
         points: 6
-      - id: StoriesSprayBloodyParty
+      - id: STSprayBloodyParty
         points: 4
-      - id: StoriesSprayToxic
+      - id: STSprayToxic
         points: 3
-      - id: StoriesSprayImpulse
+      - id: STSprayImpulse
         points: 9
-      - id: StoriesSprayBombardier
+      - id: STSprayBombardier
         points: 4
-      - id: StoriesSprayGoldenAutumn
+      - id: STSprayGoldenAutumn
         points: 8
-      - id: StoriesSprayPacifist
+      - id: STSprayPacifist
         points: 10
-      - id: StoriesSprayTiger
+      - id: STSprayTiger
         points: 7
     - name: Плащи
       entries:
-      - id: ClothingNeckCloakAceOfHeart
+      - id: STClothingNeckCloakAceOfHeart
         points: 1
-      - id: ClothingNeckCloakAceOfSpades
+      - id: STClothingNeckCloakAceOfSpades
         points: 1
-      - id: ClothingNeckCloakAmerica
+      - id: STClothingNeckCloakAmerica
         points: 4
-      - id: ClothingNeckCloakBloodySkull
+      - id: STClothingNeckCloakBloodySkull
         points: 2
-      - id: ClothingNeckCloakBreakThrough
+      - id: STClothingNeckCloakBreakThrough
         points: 2
-      - id: ClothingNeckCloakConductor
+      - id: STClothingNeckCloakConductor
         points: 1
-      - id: ClothingNeckCloakDareDevil
+      - id: STClothingNeckCloakDareDevil
         points: 3
-      - id: ClothingNeckCloakDuty
+      - id: STClothingNeckCloakDuty
         points: 2
-      - id: ClothingNeckCloakFirstShield
+      - id: STClothingNeckCloakFirstShield
         points: 2
-      - id: ClothingNeckCloakGlory
+      - id: STClothingNeckCloakGlory
         points: 2
-      - id: ClothingNeckCloakHeraldOfBetrayal
+      - id: STClothingNeckCloakHeraldOfBetrayal
         points: 3
-      - id: ClothingNeckCloakHolyBlades
+      - id: STClothingNeckCloakHolyBlades
         points: 2
-      - id: ClothingNeckCloakHolyHammer
+      - id: STClothingNeckCloakHolyHammer
         points: 2
-      - id: ClothingNeckCloakHolyScripture
+      - id: STClothingNeckCloakHolyScripture
         points: 2
-      - id: ClothingNeckCloakHolySpear
+      - id: STClothingNeckCloakHolySpear
         points: 2
-      - id: ClothingNeckCloakImperator
+      - id: STClothingNeckCloakImperator
         points: 2
-      - id: ClothingNeckCloakInquisition
+      - id: STClothingNeckCloakInquisition
         points: 1
-      - id: ClothingNeckCloakMorgenstern
+      - id: STClothingNeckCloakMorgenstern
         points: 2
-      - id: ClothingNeckCloakPiercingPoison
+      - id: STClothingNeckCloakPiercingPoison
         points: 3
-      - id: ClothingNeckCloakRapier
+      - id: STClothingNeckCloakRapier
         points: 3
-      - id: ClothingNeckCloakRedDemon
+      - id: STClothingNeckCloakRedDemon
         points: 2
-      - id: ClothingNeckCloakSparta
+      - id: STClothingNeckCloakSparta
         points: 3
-      - id: ClothingNeckCloakSpoilage
+      - id: STClothingNeckCloakSpoilage
         points: 1
-      - id: ClothingNeckCloakStrongholdOfWorld
+      - id: STClothingNeckCloakStrongholdOfWorld
         points: 3
 
 - type: entity
   parent: ColMarTechBase
-  id: ColMarTechSponsorAlt
+  id: STColMarTechSponsorAlt
   name: ColMarTech automated uniform rack
   description: An automated uniform rack hooked up to a big storage of standard-issue uniform.
   components:
@@ -103,19 +103,19 @@
     sections:
     - name: Униформа
       entries:
-      - id: StoriesJumpsuitMarineFormalKilla0
+      - id: STJumpsuitMarineFormalKilla0
         points: 2
-      - id: StoriesJumpsuitMarineFormalKilla1
+      - id: STJumpsuitMarineFormalKilla1
         points: 2
     - name: Шлем
       entries:
-      - id: StoriesArmorHelmetM10MPKilla0
+      - id: STArmorHelmetM10MPKilla0
         points: 3
-      - id: StoriesArmorHelmetM10MPKilla1
+      - id: STArmorHelmetM10MPKilla1
         points: 3
-      - id: StoriesArmorHelmetM10MPKilla2
+      - id: STArmorHelmetM10MPKilla2
         points: 3
     - name: Броня
       entries:
-      - id: StoriesArmorM3MediumKilla
+      - id: STArmorM3MediumKilla
         points: 3

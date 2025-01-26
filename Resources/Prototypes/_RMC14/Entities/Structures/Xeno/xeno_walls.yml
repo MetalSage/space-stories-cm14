@@ -9,8 +9,9 @@
   - type: Icon
     sprite: _RMC14/Structures/Xenos/xeno_resin_wall.rsi
     state: resin
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    keyTwo: walls
     base: resin
   - type: Destructible
     thresholds:
@@ -42,8 +43,9 @@
   - type: Icon
     sprite: _RMC14/Structures/Xenos/xeno_resin_wall.rsi
     state: thickresin
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    keyTwo: walls
     base: thickresin
   - type: Destructible
     thresholds:
@@ -76,8 +78,9 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    keyTwo: walls
   - type: Occluder
     enabled: false
   - type: Fixtures
@@ -118,8 +121,9 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    keyTwo: walls
     base: membrane
   - type: XenoStructureUpgradeable
     to: WallXenoMembraneThick
@@ -144,8 +148,9 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    keyTwo: walls
     base: thickmembrane
   - type: MeleeReceivedMultiplier
     xenoDamage:

@@ -5,14 +5,14 @@
   description: A large squad support weapon capable of laying down sustained suppressing fire from a mounted position. While unstable and less accurate, it can be lugged and shot with two hands.
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2/desert.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Rifles/m41ae/desert.rsi # Stoires-Parity
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2/desert.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Rifles/m41ae/desert.rsi # Stoires-Parity
   - type: Tag
     tags:
     - WeaponRifleM54CE2
@@ -90,19 +90,19 @@
           - RMCAttachmentBurstFireAssembly
           - RMCAttachmentFlashlightGrip
           - RMCAttachmentVerticalGrip
-  - type: AttachableHolderVisuals # CHANGE THESE WHEN THIS THING GETS ITS OWN SPRITE
+  - type: AttachableHolderVisuals
     offsets:
-      rmc-aslot-barrel: 0.81, 0.029
+      rmc-aslot-barrel: 0.75, 0.03125
       rmc-aslot-rail: 0.125, 0.185
       rmc-aslot-stock: -0.875, 0.0325
       rmc-aslot-underbarrel: 0.35, -0.4
-  - type: ItemCamouflage
+  - type: ItemCamouflage # Stoires-Parity
     camouflageVariations:
-      Jungle: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2/jungle.rsi
-      Desert: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2/desert.rsi
-      Snow: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2/snow.rsi
-      Classic: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2/classic.rsi
-      Urban: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2/urban.rsi
+      Jungle: _Stories/Objects/Weapons/Guns/Rifles/m41ae/jungle.rsi
+      Desert: _Stories/Objects/Weapons/Guns/Rifles/m41ae/desert.rsi
+      Snow: _Stories/Objects/Weapons/Guns/Rifles/m41ae/snow.rsi
+      Classic: _Stories/Objects/Weapons/Guns/Rifles/m41ae/classic.rsi
+      Urban: _Stories/Objects/Weapons/Guns/Rifles/m41ae/urban.rsi
 
 - type: entity
   parent: CMMagazineRifleM54C
@@ -121,7 +121,7 @@
     proto: CMCartridgeRifle10x24mm
     capacity: 300
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m54ce2/desert.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/m41ae2.rsi # Stories-Parity
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -133,7 +133,9 @@
     zeroVisible: false
   - type: Appearance
   - type: ItemCamouflage
-    camouflageVariations: {}
+    camouflageVariations: {} # Stories-Parity
+  - type: RefillableByBulletBox
+    bulletType: RMCBoxBulletsRifle
 
 - type: Tag
   id: WeaponRifleM54CE2

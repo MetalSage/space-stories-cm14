@@ -18,7 +18,6 @@
     - belt
   - type: Wieldable
   - type: Gun
-    resetOnHandSelected: false
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

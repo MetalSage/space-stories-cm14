@@ -116,6 +116,11 @@
   id: ActionXenoTailStabCorrosive
   name: Corrosive Tail Stab
   description: Launches an attack towards a given direction. The cooldown is faster if you miss. [color=red]It also injects diluted molecular acid into the target, dealing damage over time.[/color]
+  components:
+  - type: WorldTargetAction
+    icon:
+      sprite: _RMC14/Actions/xeno_actions.rsi
+      state: tail_attack
 
 - type: entity
   parent: ActionXenoTailStab
@@ -684,7 +689,7 @@
     ids:
     - ActionXenoCleaveFling
     cooldown: 12
-
+  
 - type: entity
   parent: ActionXenoBase
   id: ActionXenoCleaveFling

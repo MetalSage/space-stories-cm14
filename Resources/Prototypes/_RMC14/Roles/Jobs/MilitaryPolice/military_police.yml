@@ -34,7 +34,7 @@
         RMCSkillPolice: 2
     - type: JobPrefix
       prefix: "MP"
-    - type: CMVendorUser
+    - type: CMVendorUser # Stories-Partners
 
 - type: startingGear
   id: CMGearMilitaryPolice

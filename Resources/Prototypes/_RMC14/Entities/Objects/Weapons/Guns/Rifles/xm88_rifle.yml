@@ -26,9 +26,9 @@
     recoilUnwielded: 5
     scatterWielded: 6
     scatterUnwielded: 20
-    baseFireRate: 0.8
+    baseFireRate: 1
   - type: RMCWeaponAccuracy
-    accuracyMultiplier: 1.1
+    accuracyMultiplier: 1.25
     accuracyMultiplierUnwielded: 0.5
   - type: WieldDelay
     baseDelay: 0.4
@@ -90,6 +90,10 @@
       Desert: _RMC14/Objects/Weapons/Guns/Rifles/xm88/desert.rsi
       Urban: _RMC14/Objects/Weapons/Guns/Rifles/xm88/urban.rsi
       Classic: _RMC14/Objects/Weapons/Guns/Rifles/xm88/classic.rsi
+  # - type: WieldedCrosshair Stories-Fixes
+  #   rsi:
+  #     sprite: _RMC14/Interface/MousePointer/XM88/xm88-0.rsi
+  #     state: all
 
 - type: entity
   parent: BulletRifle10x24mm
@@ -99,7 +103,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 104
+        Piercing: 80
   - type: CMArmorPiercing
     amount: 10
   - type: GunStacksProjectile

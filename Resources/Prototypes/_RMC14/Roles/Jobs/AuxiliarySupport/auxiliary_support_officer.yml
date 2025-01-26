@@ -56,7 +56,7 @@
     - type: RMCPointing
     - type: JobPrefix
       prefix: "ASO"
-    - type: CMVendorUser
+    - type: CMVendorUser # Stories-Partners
 
 - type: startingGear
   id: CMGearASO

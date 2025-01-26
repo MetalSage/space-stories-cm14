@@ -87,7 +87,7 @@
       rmc-aslot-barrel: 1.12, 0.0
       rmc-aslot-rail: 0.225, 0.125
       rmc-aslot-underbarrel: 0.62, -0.31
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: RifleM4SPRConstruct
     node: start
   - type: ItemCamouflage
@@ -150,6 +150,8 @@
     capacity: 25
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m4spr.rsi
+  - type: RefillableByBulletBox
+    bulletType: RMCBoxBulletsRifle
 
 - type: entity
   parent: CMMagazineRifleM4SPR
@@ -176,6 +178,8 @@
       tags:
       - CMCartridgeRifle10x24mmAP
     proto: CMCartridgeRifle10x24mmAP
+  - type: RefillableByBulletBox
+    bulletType: RMCBoxBulletsRifleAP
 
 - type: entity
   parent: CMMagazineRifleM4SPR

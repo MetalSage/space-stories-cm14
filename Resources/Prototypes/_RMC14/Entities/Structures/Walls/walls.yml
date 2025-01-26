@@ -24,7 +24,7 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: metal
   - type: Construction
     graph: CMGirder
@@ -43,7 +43,7 @@
     state: wall
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -59,7 +59,7 @@
     state: wall
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: wall
 
 # Reinforced
@@ -89,7 +89,7 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: rwall
   - type: Construction
     graph: CMGirder
@@ -124,7 +124,7 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: rwall
 
 - type: entity
@@ -140,7 +140,7 @@
     state: reinforced
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -156,7 +156,7 @@
     state: reinforced
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -172,6 +172,7 @@
     state: reinforced
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: aiwall
 
 # Indestructible
@@ -190,7 +191,7 @@
       - Wall
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: rwall
 
 - type: entity
@@ -206,7 +207,7 @@
     state: hull
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -222,7 +223,7 @@
     state: hull
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -238,6 +239,7 @@
     state: hull
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: aiwall
 
 # TODO RMC14 temp hull, breakable only after hijack
@@ -287,7 +289,7 @@
     state: cavewall
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: cavewall
 
 # Cult
@@ -318,7 +320,7 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: cult
 
 # Wood
@@ -348,7 +350,7 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: wood
 
 # Jungle
@@ -368,7 +370,7 @@
     - Wall
   - type: IconSmooth
     key: walls
-    keyTwo: window
+    keyTwo: window # Stories-Fixes
     base: jungle_veg
 
 # Elevator
@@ -387,6 +389,7 @@
     - Wall
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -421,6 +424,7 @@
     - Wall
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: metal
 
 - type: entity
@@ -436,6 +440,7 @@
     state: metal
   - type: IconSmooth
     key: walls
+    keyTwo: window # Stories-Fixes
     base: metal
   - type: Tag
     tags:

@@ -41,7 +41,7 @@
     - type: RMCPointing
     - type: JobPrefix
       prefix: "MW"
-    - type: CMVendorUser
+    - type: CMVendorUser # Stories-Partners
 
 - type: startingGear
   id: CMGearMilitaryWarden

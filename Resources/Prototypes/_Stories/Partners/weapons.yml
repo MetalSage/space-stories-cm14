@@ -1,5 +1,5 @@
 - type: entity
-  id: StoriesWeaponShotgunM42A2BloodyParty
+  id: STWeaponShotgunM42A2BloodyParty
   parent: WeaponShotgunM42A2
   suffix: BloodyParty
   components:
@@ -16,7 +16,7 @@
 
 
 - type: entity
-  id: StoriesWeaponRifleM54CPhoenix
+  id: STWeaponRifleM54CPhoenix
   parent: WeaponRifleM54C
   suffix: Phoenix
   components:
@@ -32,7 +32,7 @@
       Urban: _Stories/Partners/Weapons/Rifles/m54c.rsi
 
 - type: entity
-  id: StoriesWeaponRifleM4SPRAngelOfDeath
+  id: STWeaponRifleM4SPRAngelOfDeath
   parent: WeaponRifleM4SPR
   suffix: AngelOfDeath
   components:
@@ -57,7 +57,7 @@
       Urban: _Stories/Partners/Weapons/Rifles/m4spr.rsi
 
 - type: entity
-  id: StoriesWeaponRifleM4SPRCustomAngelOfDeath
+  id: STWeaponRifleM4SPRCustomAngelOfDeath
   parent: WeaponRifleM4SPRCustom
   suffix: AngelOfDeath
   components:
@@ -82,7 +82,7 @@
       Urban: _Stories/Partners/Weapons/Rifles/m4spr_custom.rsi
 
 - type: entity
-  id: StoriesWeaponSMGM63Toxic
+  id: STWeaponSMGM63Toxic
   parent: WeaponSMGM63
   suffix: Toxic
   components:
@@ -98,7 +98,7 @@
       Urban: _Stories/Partners/Weapons/SMGs/m63.rsi
 
 - type: entity
-  id: StoriesWeaponRevolverM44GoldRush
+  id: STWeaponRevolverM44GoldRush
   parent: RMCWeaponRevolverM44
   suffix: GoldRush
   components:
@@ -114,7 +114,7 @@
       Urban: _Stories/Partners/Weapons/Pistols/m44.rsi
 
 - type: entity
-  id: StoriesWeaponPistolM77Fate
+  id: STWeaponPistolM77Fate
   parent: CMWeaponPistolM77
   suffix: Fate
   components:
@@ -130,7 +130,7 @@
       Urban: _Stories/Partners/Weapons/Pistols/m77.rsi
 
 - type: entity
-  id: StoriesWeaponPistolM1984Rust
+  id: STWeaponPistolM1984Rust
   parent: CMWeaponPistolM1984
   suffix: Rust
   components:
@@ -146,7 +146,7 @@
       Urban: _Stories/Partners/Weapons/Pistols/m1984.rsi
 
 - type: entity
-  id: StoriesWeaponPistolMK80Amethyst
+  id: STWeaponPistolMK80Amethyst
   parent: CMWeaponPistolMK80
   suffix: Amethyst
   components:
@@ -162,7 +162,7 @@
       Urban: _Stories/Partners/Weapons/Pistols/mk80.rsi
 
 - type: entity
-  id: StoriesWeaponPistolSU6Phantom
+  id: STWeaponPistolSU6Phantom
   parent: RMCWeaponPistolSU6
   suffix: Phantom
   components:
@@ -178,7 +178,7 @@
       Urban: _Stories/Partners/Weapons/Pistols/su6.rsi
 
 - type: entity
-  id: StoriesSmartGunImpulse
+  id: STSmartGunImpulse
   parent: RMCSmartGun
   suffix: Impulse
   components:
@@ -194,7 +194,7 @@
       Urban: _Stories/Partners/Weapons/SmartGuns/smart_gun.rsi
 
 - type: entity
-  id: StoriesWeaponLauncherM5ATLBombardier
+  id: STWeaponLauncherM5ATLBombardier
   parent: RMCWeaponLauncherM5ATL
   suffix: Bombardier
   components:
@@ -210,7 +210,7 @@
       Urban: _Stories/Partners/Weapons/RocketLaunchers/m5spec.rsi
 
 - type: entity
-  id: StoriesM96SSniperRifleTiger
+  id: STM96SSniperRifleTiger
   parent: CMM96SSniperRifle
   suffix: Tiger
   components:
@@ -235,8 +235,8 @@
       Urban: _Stories/Partners/Weapons/Snipers/m96s.rsi
 
 - type: entity
-  id: StoriesXM43E1SniperRifleGoldenAutumn
-  parent: CMXM43E1SniperRifle
+  id: STXM43E1SniperRifleGoldenAutumn
+  parent: STXM43E1SniperRifle
   suffix: GoldenAutumn
   components:
   - type: Sprite
@@ -261,7 +261,7 @@
       Urban: _Stories/Partners/Weapons/Snipers/xm43e1.rsi
 
 - type: entity
-  id: StoriesWeaponLauncherM83Pacifist
+  id: STWeaponLauncherM83Pacifist
   parent: WeaponLauncherM83
   suffix: Pacifist
   components:

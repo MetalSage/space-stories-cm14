@@ -19,6 +19,7 @@
       - GrenadeSpecWhitelist
   - type: BallisticAmmoProvider
     capacity: 6
+    # proto: CMGrenadeHighExplosive Stories-Partners
   - type: Corrodible
     isCorrodible: false
   - type: ExplosionResistance
@@ -32,7 +33,7 @@
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-rail: 0.0, 0.185
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: WeaponLauncherM83Construct
     node: start
   - type: ItemCamouflage

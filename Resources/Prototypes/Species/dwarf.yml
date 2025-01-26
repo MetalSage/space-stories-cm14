@@ -1,7 +1,7 @@
 - type: species
   id: Dwarf
   name: species-name-dwarf
-  roundStart: false
+  roundStart: false # Stories-XenoRemoval
   prototype: CMMobDwarf
   sprites: MobHumanSprites
   markingLimits: MobHumanMarkingLimits

@@ -10,7 +10,7 @@
       - tag: SprayBloodyParty
         doAfter: 2
   - node: bloodyParty
-    entity: StoriesWeaponShotgunM42A2BloodyParty
+    entity: STWeaponShotgunM42A2BloodyParty
 
 - type: constructionGraph
   id: RifleM54CConstruct
@@ -24,7 +24,7 @@
       - tag: SprayPhoenix
         doAfter: 2
   - node: phoenix
-    entity: StoriesWeaponRifleM54CPhoenix
+    entity: STWeaponRifleM54CPhoenix
 
 - type: constructionGraph
   id: RifleM4SPRConstruct
@@ -38,7 +38,7 @@
       - tag: SprayAngelOfDeath
         doAfter: 2
   - node: angelOfDeath
-    entity: StoriesWeaponRifleM4SPRAngelOfDeath
+    entity: STWeaponRifleM4SPRAngelOfDeath
 
 - type: constructionGraph
   id: RifleM4SPRCustomConstruct
@@ -52,7 +52,7 @@
       - tag: SprayAngelOfDeath
         doAfter: 2
   - node: angelOfDeath
-    entity: StoriesWeaponRifleM4SPRCustomAngelOfDeath
+    entity: STWeaponRifleM4SPRCustomAngelOfDeath
 
 - type: constructionGraph
   id: SMGM63Construct
@@ -66,7 +66,7 @@
       - tag: SprayToxic
         doAfter: 2
   - node: toxic
-    entity: StoriesWeaponSMGM63Toxic
+    entity: STWeaponSMGM63Toxic
 
 - type: constructionGraph
   id: RevolverM44Construct
@@ -80,7 +80,7 @@
       - tag: SprayGoldRush
         doAfter: 2
   - node: goldRush
-    entity: StoriesWeaponRevolverM44GoldRush
+    entity: STWeaponRevolverM44GoldRush
 
 - type: constructionGraph
   id: PistolM77Construct
@@ -94,7 +94,7 @@
       - tag: SprayFate
         doAfter: 2
   - node: fate
-    entity: StoriesWeaponPistolM77Fate
+    entity: STWeaponPistolM77Fate
 
 - type: constructionGraph
   id: PistolM1984Construct
@@ -108,7 +108,7 @@
       - tag: SprayRust
         doAfter: 2
   - node: rust
-    entity: StoriesWeaponPistolM1984Rust
+    entity: STWeaponPistolM1984Rust
 
 - type: constructionGraph
   id: PistolMK80Construct
@@ -122,7 +122,7 @@
       - tag: SprayAmethyst
         doAfter: 2
   - node: amethyst
-    entity: StoriesWeaponPistolMK80Amethyst
+    entity: STWeaponPistolMK80Amethyst
 
 - type: constructionGraph
   id: PistolSU6Construct
@@ -136,7 +136,7 @@
       - tag: SprayPhantom
         doAfter: 2
   - node: phantom
-    entity: StoriesWeaponPistolSU6Phantom
+    entity: STWeaponPistolSU6Phantom
 
 - type: constructionGraph
   id: SmartGunConstruct
@@ -150,7 +150,7 @@
       - tag: SprayImpulse
         doAfter: 2
   - node: impulse
-    entity: StoriesSmartGunImpulse
+    entity: STSmartGunImpulse
 
 - type: constructionGraph
   id: WeaponLauncherM5ATLConstruct
@@ -164,7 +164,7 @@
       - tag: SprayBombardier
         doAfter: 2
   - node: bombardier
-    entity: StoriesWeaponLauncherM5ATLBombardier
+    entity: STWeaponLauncherM5ATLBombardier
 
 - type: constructionGraph
   id: SniperRifleM96SConstruct
@@ -178,21 +178,21 @@
       - tag: SprayTiger
         doAfter: 2
   - node: tiger
-    entity: StoriesM96SSniperRifleTiger
+    entity: STM96SSniperRifleTiger
 
 - type: constructionGraph
   id: XM43E1SniperRifleConstruct
   start: start
   graph:
   - node: start
-    entity: CMXM43E1SniperRifle
+    entity: STXM43E1SniperRifle
     edges:
     - to: goldenAutumn
       steps:
       - tag: SprayGoldenAutumn
         doAfter: 2
   - node: goldenAutumn
-    entity: StoriesXM43E1SniperRifleGoldenAutumn
+    entity: STXM43E1SniperRifleGoldenAutumn
 
 - type: constructionGraph
   id: WeaponLauncherM83Construct
@@ -206,4 +206,4 @@
       - tag: SprayPacifist
         doAfter: 2
   - node: pacifist
-    entity: StoriesWeaponLauncherM83Pacifist
+    entity: STWeaponLauncherM83Pacifist

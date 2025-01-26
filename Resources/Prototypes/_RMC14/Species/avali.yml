@@ -3,7 +3,7 @@
 - type: species
   id: Avali
   name: species-name-avali
-  roundStart: false
+  roundStart: false # Stories-XenoRemoval
   prototype: CMMobAvali
   sprites: MobAvaliSprites
   markingLimits: MobAvaliMarkingLimits

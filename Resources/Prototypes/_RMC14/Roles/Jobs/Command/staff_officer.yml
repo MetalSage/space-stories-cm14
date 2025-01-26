@@ -7,10 +7,10 @@
   requirements:
   - !type:RoleTimeRequirement
     role: CMJobSquadLeader
-    time: 18000 # 5 hours
+    time: 3600 # 1 hours
   - !type:TotalDepartmentsTimeRequirement
     group: CMDepartmentsHuman
-    time: 108000 # 30 hours
+    time: 54000 # 15 hours
   weight: 5
   startingGear: CMGearStaffOfficer
   icon: "CMJobIconStaffOfficer"

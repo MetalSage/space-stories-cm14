@@ -32,9 +32,9 @@
     drawdepth: FloorTiles
     layers:
     - state: weed0
-  - type: IconSmooth
-    key: cm_xeno_weeds
-    keyTwo: cm_xeno_weeds_walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_weeds
+    keyTwo: xeno_structure
     base: weed_dir
     mode: CardinalFlags
   - type: IconSmoothRandom
@@ -142,9 +142,9 @@
     drawdepth: FloorTiles
     layers:
     - state: hive_weed0
-  - type: IconSmooth
-    key: cm_xeno_weeds
-    keyTwo: cm_xeno_weeds_walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_weeds
+    keyTwo: xeno_structure
     base: hive_weed
     mode: CardinalFlags
   - type: IconSmoothRandom
@@ -208,6 +208,7 @@
         acts: [ "Destruction" ]
   - type: XenoConstructionPlasmaCost
     plasma: 75
+
 - type: entity
   id: XenoWeedsWall
   name: weeds
@@ -236,8 +237,8 @@
     drawdepth: Objects
     layers:
     - state: weedwall
-  - type: IconSmooth
-    key: cm_xeno_weeds_walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
     base: weedwall
     mode: Corners
   - type: XenoNestSurface

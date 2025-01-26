@@ -19,7 +19,7 @@
     sections:
     - name: Weapons Specialist Sets
       choices: { SquadSpecKit: 1 }
-      sharedSpecLimit: 1 # 2 as requested until Pyro is added
+      sharedSpecLimit: 1 # Stories-Balance
       entries:
       - id: RMCDemoSpecEquipmentCase
       - id: RMCGrenadeSpecEquipmentCase
@@ -28,7 +28,7 @@
       #  points: 0
       - id: RMCScoutSpecEquipmentCase
       - id: CMSniperEquipmentCase
-      - id: RMCSniperAntiMaterielEquipmentCase # Stories-AntiMateriel
+      - id: STSniperAntiMaterielEquipmentCase # Stories-AntiMateriel
     - name: Extra Scout Ammunition
       entries:
       - id: RMCMagazineRifleM4SPRA19Impact
@@ -45,7 +45,7 @@
         points: 40
       - id: CMMagazineSniperM96S
         points: 40
-      - id: CMMagazineSniperXM43E1AntiMateriel
+      - id: STMagazineSniperXM43E1AntiMateriel # Stories-AntiMateriel
         points: 40
     - name: Extra Demolitionist Ammunition
       entries:

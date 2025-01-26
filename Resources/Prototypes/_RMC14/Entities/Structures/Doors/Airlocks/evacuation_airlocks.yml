@@ -46,3 +46,5 @@
     needsPower: false
   - type: Airlock
     powered: true
+  - type: Occluder # Stories-Fixes
+    boundingBox: "-1.5,-0.5,1.5,0.5"

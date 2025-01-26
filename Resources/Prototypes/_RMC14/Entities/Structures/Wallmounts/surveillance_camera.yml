@@ -24,7 +24,7 @@
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: _RMC14/Structures/Wallmounts/camera.rsi
-    offset: 0.0, 0.5
+    offset: 0.0, 0.5 # Stories-Fixes
     layers:
     - map: [ "enum.SurveillanceCameraVisualsKey.Layer" ]
       state: camera

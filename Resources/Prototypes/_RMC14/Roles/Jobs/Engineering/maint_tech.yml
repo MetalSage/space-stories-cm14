@@ -30,17 +30,14 @@
         RMCSkillPowerLoader: 2
     - type: JobPrefix
       prefix: "MT"
-    - type: CMVendorUser
+    - type: CMVendorUser # Stories-Partners
 
 - type: startingGear
   id: CMGearMaintTech
   equipment:
     jumpsuit: CMJumpsuitMaintTech
     shoes: CMBootsBlack
-    gloves: CMHandsInsulated
     id: CMIDCardMaintTech
-    #    belt: TODO RMC14 M276 Pattern General Pistol Holster Rig Filled
-    pocket2: RMCPouchGeneralMedium
 
 - type: entity
   parent: CMSpawnPointJobBase

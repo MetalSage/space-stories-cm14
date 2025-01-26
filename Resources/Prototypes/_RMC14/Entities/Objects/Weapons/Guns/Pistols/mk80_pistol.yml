@@ -46,6 +46,7 @@
         whitelist:
           tags:
           - CMMagazinePistolMK80
+        # startingItem: CMMagazinePistolMK80 Stories-Partners
   - type: AttachableHolder
     slots:
       rmc-aslot-barrel:
@@ -76,7 +77,7 @@
     tags:
     - Sidearm
     - RMCMK80
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: PistolMK80Construct
     node: start
 

@@ -1,17 +1,2 @@
 ent-WeaponRifleM59A = прототип винтовки M59A
     .desc = Прототип M59A, экспериментальной винтовочной платформы, созданной для того, чтобы превзойти стандартный M41A. Только задний выпуск. Использует стандартные магазины от винтовок MK1 и MK2.
-ent-WeaponRifleM59ACamo = { ent-WeaponRifleM59A }
-    .suffix = Замена камуфляжа
-    .desc = { ent-WeaponRifleM59A.desc }
-ent-WeaponRifleM59AJungle = { ent-WeaponRifleM59A }
-    .suffix = Джунгли
-    .desc = { ent-WeaponRifleM59A.desc }
-ent-WeaponRifleM59ASnow = { ent-WeaponRifleM59A }
-    .suffix = Снег
-    .desc = { ent-WeaponRifleM59A.desc }
-ent-WeaponRifleM59AClassic = { ent-WeaponRifleM59A }
-    .suffix = Классика
-    .desc = { ent-WeaponRifleM59A.desc }
-ent-WeaponRifleM59AUrban = { ent-WeaponRifleM59A }
-    .suffix = Город
-    .desc = { ent-WeaponRifleM59A.desc }

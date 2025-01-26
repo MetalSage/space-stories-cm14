@@ -84,6 +84,7 @@
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/l42_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/l42_unload.ogg
         priority: 2
+        # startingItem: RMCMagazineRifleM4SPRA19 # Stories-Partners
         whitelist:
           tags:
           - CMMagazineRifleM4SPR
@@ -92,7 +93,7 @@
           - RMCMagazineRifleM4SPRA19
           - RMCMagazineRifleM4SPRA19Impact
           - RMCMagazineRifleM4SPRA19Incendiary
-  - type: Construction
+  - type: Construction # Stories-Partners
     graph: RifleM4SPRCustomConstruct
     node: start
   - type: ItemCamouflage
@@ -258,7 +259,7 @@
   - type: RMCStunOnHit
     maxRange: 32
     losesEffectWithRange: true
-    stunTime: 0.75
+    stunTime: 1
     superSlowTime: 4
     slowTime: 10
   - type: RMCProjectileAccuracy

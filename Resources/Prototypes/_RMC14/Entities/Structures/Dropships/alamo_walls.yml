@@ -222,6 +222,8 @@
     state: "20"
   - type: Icon
     state: "20"
+  - type: Occluder # Stories-Fixes
+    enabled: false
 
 - type: entity
   parent: CMBaseAlamoWall
@@ -232,6 +234,8 @@
     state: "21"
   - type: Icon
     state: "21"
+  - type: Occluder # Stories-Fixes
+    enabled: false
 
 - type: entity
   parent: CMBaseAlamoWall
@@ -490,8 +494,6 @@
     state: "44"
   - type: Icon
     state: "44"
-  - type: Occluder
-    boundingBox: "-0.5,-0.5,0.5,-0.25"
 
 - type: entity
   parent: CMBaseAlamoWall
@@ -502,8 +504,6 @@
     state: "45"
   - type: Icon
     state: "45"
-  - type: Occluder
-    boundingBox: "-0.5,-0.5,0.5,-0.25"
 
 - type: entity
   parent: CMBaseAlamoWall
@@ -584,7 +584,7 @@
     state: "53"
   - type: Icon
     state: "53"
-  - type: RoofingEntity
+  - type: RoofingEntity # Stories-Balance
     range: 15
 
 - type: entity
