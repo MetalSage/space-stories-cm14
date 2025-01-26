@@ -75,7 +75,7 @@
   - type: XenoScissorsCut # Stories Change
     damage:
       groups:
-        Brute: 45
+        Brute: 40
   - type: Flammable
     damage:
       types:

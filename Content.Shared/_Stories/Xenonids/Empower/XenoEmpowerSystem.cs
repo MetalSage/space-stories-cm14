@@ -119,7 +119,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
         if (empower == null)
             return;
 
-        var empowerCooldownTime = TimeSpan.FromSeconds(22);
+        var empowerCooldownTime = TimeSpan.FromSeconds(18);
 
         _actions.SetUseDelay(empower, empowerCooldownTime);
         _actions.SetCooldown(empower, empowerCooldownTime);
@@ -158,7 +158,7 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
                 continue;
             }
 
-            if (xeno.EmpowerOffAt <= time)
+            if ((xeno.EmpowerOffAt <= time) && xeno.EmpowerActive)
                 xeno.EmpowerActive = false;
 
             if (shield.Active && shield.Shield == XenoShieldSystem.ShieldType.Ravager && xeno.ShieldOffAt <= time)

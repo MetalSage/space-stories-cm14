@@ -14,10 +14,10 @@ public sealed partial class XenoEmpowerComponent : Component
     public FixedPoint2 PlasmaCost = 50;
 
     [DataField, AutoNetworkedField]
-    public float Range = 4;
+    public float Range = 4.5f;
 
     [DataField, AutoNetworkedField]
-    public float MaxTargets = 5; // it's 6 but for cycle...
+    public float MaxTargets = 6; // it's 6 but for cycle...
 
     [DataField, AutoNetworkedField]
     public FixedPoint2 AmountBase = 50;
@@ -41,7 +41,7 @@ public sealed partial class XenoEmpowerComponent : Component
     public TimeSpan ShieldDuration = TimeSpan.FromSeconds(15);
 
     [DataField, AutoNetworkedField]
-    public TimeSpan FirstActiveDuration = TimeSpan.FromSeconds(3);
+    public TimeSpan FirstActiveDuration = TimeSpan.FromSeconds(6);
 
     [DataField, AutoNetworkedField]
     public bool EmpowerActive = false;

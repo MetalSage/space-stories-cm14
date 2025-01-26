@@ -105,7 +105,8 @@ public abstract class SharedXenoScissorsCutSystem : EntitySystem
                 break;
         }
 
-        _emote.TryEmoteWithChat(xeno, xeno.Comp.Emote, cooldown: xeno.Comp.EmoteCooldown);
+        if (_net.IsServer)
+            _audio.PlayPvs(xeno.Comp.Roar, xeno);
 
         args.Handled = true;
 

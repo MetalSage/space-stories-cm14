@@ -33,10 +33,10 @@ public sealed partial class XenoScissorsCutComponent : Component
     public TimeSpan Slowdown = TimeSpan.FromSeconds(3);
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_RMC14/Xeno/alien_claw_flesh3.ogg");
+    public SoundSpecifier Roar = new SoundPathSpecifier("/Audio/_RMC14/Xeno/alien_roar3.ogg");
 
     [DataField, AutoNetworkedField]
-    public ProtoId<EmotePrototype> Emote = "XenoRoar";
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_RMC14/Xeno/alien_claw_flesh3.ogg");
 
     [DataField, AutoNetworkedField]
     public TimeSpan? EmoteCooldown = TimeSpan.FromSeconds(5);

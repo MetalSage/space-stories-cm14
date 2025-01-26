@@ -191,7 +191,7 @@
       sprite: _RMC14/Actions/xeno_actions.rsi
       state: empower
     event: !type:XenoDefensiveShieldActionEvent
-    useDelay: 22
+    useDelay: 18
 
 - type: entity
   id: ActionXenoRetrieveEgg

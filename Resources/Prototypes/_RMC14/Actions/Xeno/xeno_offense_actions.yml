@@ -497,7 +497,7 @@
       state: rav_scissor_cut
     event: !type:XenoScissorsCutActionEvent
     range: 15
-    useDelay: 10
+    useDelay: 6
     checkCanAccess: false
 
 - type: entity
@@ -689,7 +689,7 @@
     ids:
     - ActionXenoCleaveFling
     cooldown: 12
-  
+
 - type: entity
   parent: ActionXenoBase
   id: ActionXenoCleaveFling
