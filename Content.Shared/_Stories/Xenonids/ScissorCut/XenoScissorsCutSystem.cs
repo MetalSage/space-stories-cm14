@@ -115,7 +115,7 @@ public abstract class SharedXenoScissorsCutSystem : EntitySystem
             var attackedEv = new AttackedEvent(xeno, xeno, args.Target);
             RaiseLocalEvent(hit, attackedEv);
 
-            var change = _damage.TryChangeDamage(hit, xeno.Comp.Damage, origin: xeno, armorPiercing: xeno.Comp.AP);
+            var change = _damage.TryChangeDamage(hit, xeno.Comp.Damage, true, false);
 
             if (change?.GetTotal() > FixedPoint2.Zero)
                 _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> { hit }, filter);
@@ -147,6 +147,7 @@ public abstract class SharedXenoScissorsCutSystem : EntitySystem
             if (_net.IsServer)
                 _audio.PlayPvs(xeno.Comp.Sound, xeno);
         }
+        Dirty(xeno);
 	}
     protected virtual void DoLunge(Entity<XenoScissorsCutComponent, TransformComponent> user, Vector2 localPos, EntProtoId animationId)
     {

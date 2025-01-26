@@ -17,7 +17,7 @@ public sealed partial class XenoEmpowerComponent : Component
     public float Range = 4;
 
     [DataField, AutoNetworkedField]
-    public float MaxTargets = 6; // it's 6 but for cycle...
+    public float MaxTargets = 5; // it's 6 but for cycle...
 
     [DataField, AutoNetworkedField]
     public FixedPoint2 AmountBase = 50;
@@ -32,13 +32,22 @@ public sealed partial class XenoEmpowerComponent : Component
     public TimeSpan ShieldOffAt;
 
     [DataField, AutoNetworkedField]
+    public TimeSpan FirstActiveOffAt;
+
+    [DataField, AutoNetworkedField]
     public TimeSpan EmpowerDuration = TimeSpan.FromSeconds(6);
 
     [DataField, AutoNetworkedField]
     public TimeSpan ShieldDuration = TimeSpan.FromSeconds(15);
 
     [DataField, AutoNetworkedField]
+    public TimeSpan FirstActiveDuration = TimeSpan.FromSeconds(3);
+
+    [DataField, AutoNetworkedField]
     public bool EmpowerActive = false;
+
+    [DataField, AutoNetworkedField]
+    public bool FirstActive = false;
 
     [DataField, AutoNetworkedField]
     public EntProtoId Effect = "RMCEffectEmpower";

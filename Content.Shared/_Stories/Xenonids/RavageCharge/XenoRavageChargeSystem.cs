@@ -102,7 +102,6 @@ public sealed class XenoRavageChargeSystem : EntitySystem
             _thrownItem.StopThrow(xeno, thrown);
         }
 
-
         if(_empower.TryGetComponent(xeno, out var empower))
         {
             if(empower.EmpowerActive)
@@ -110,14 +109,22 @@ public sealed class XenoRavageChargeSystem : EntitySystem
                 _rmcPulling.TryStopAllPullsFromAndOn(targetId);
 
                 var damage = _damageable.TryChangeDamage(targetId, xeno.Comp.Damage);
+
                 if (damage?.GetTotal() > FixedPoint2.Zero)
                 {
                     var filter = Filter.Pvs(targetId, entityManager: EntityManager).RemoveWhereAttachedEntity(o => o == xeno.Owner);
                     _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> { targetId }, filter);
                 }
 
+                var origin = _transform.GetMapCoordinates(xeno);
+                var target = _transform.GetMapCoordinates(targetId);
+                var diff = target.Position - origin.Position;
+                diff = diff.Normalized() * 2;
+
+                _throwing.TryThrow(targetId, diff, 5, animated: false);
                 _stun.TryParalyze(targetId, xeno.Comp.StunTime, true);
             }
         }
+        Dirty(xeno);
     }
 }
