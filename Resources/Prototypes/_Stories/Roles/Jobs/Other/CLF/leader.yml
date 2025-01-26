@@ -1,0 +1,131 @@
+- type: entity
+  parent: MarkerBase
+  id: StoriesSpawnerCLFLeader
+  name: CLF Leader
+  suffix: Spawner, random
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+      state: icon
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidCLFLeaderMar40
+
+- type: entity
+  id: RandomHumanoidCLFLeaderMar40
+  name: CLF leader ghost role
+  suffix: Role, mar40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFLeaderMar40
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFLeaderMar40
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-leader-name
+    description: rmc-ghost-role-information-clf-leader-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFLeaderMar40 ]
+  - type: Skills
+    skills:
+      RMCSkillCqc: 3
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 3
+      RMCSkillConstruction: 2
+      RMCSkillEngineer: 2
+      RMCSkillJtac: 3
+      RMCSkillLeadership: 2
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1
+  - type: MarineOrders
+
+- type: startingGear
+  id: CMGearCLFLeaderMar40
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightpackFilledCLFLead
+    belt: CMBeltMarineFilledMar40
+    mask: CMKnifeCLF
+    id: CMIDCardCLFLeader
+    ears: CMHeadsetCLF
+    eyes: CMGlassesHealthHUDGlasses
+    pocket1: RMCFlashlight
+    pocket2: RMCPouchFirstAidInjectors
+    shoes: RMCShoesBrown 
+    gloves: ClothingHandsGlovesCombat 
+    head: CMHeadBeretCOCol
+    outerClothing: CMArmorMilitiaHauberkFilledMar40 
+    suitstorage: WeaponRifleMAR40 
+  
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHauberkFilledMar40
+  suffix: Filled, mar40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineRifleMAR40
+      amount: 2
+
+- type: entity
+  parent: CMBeltMarine
+  id: CMBeltMarineFilledMar40
+  suffix: Filled, mar40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineRifleMAR40
+      amount: 5
+
+- type: entity
+  parent: CMSatchelLightpack
+  id: CMSatchelLightpackFilledCLFLead
+  suffix: Filled, mar40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMGrenadeHighExplosive
+      amount: 2
+    - id: RMCExplosiveBreachingCharge
+    - id: CMCrowbar
+    - id: CMScrewdriver
+    - id: CMMultitool
+    - id: CMMagazineRifleMAR40Ext
+      
+- type: job
+  parent: CMJobBase
+  id: CLFLeader
+  name: cm-job-name-clf-leader
+  description: cm-job-description-clf-leader
+  playTimeTracker: CMJobCLFLeader
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: CMSquad
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsEngineering
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsMedical
+    time: 18000 # 5 hours
+  icon: "CMJobIconCLFSL"
+  joinNotifyCrew: false
+  supervisors: cm-job-supervisors-clf-leader
+  accessGroups:
+  - Colonist

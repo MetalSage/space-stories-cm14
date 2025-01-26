@@ -1,0 +1,130 @@
+- type: entity
+  parent: CMBaseWeaponSMG
+  name: UZI
+  id: WeaponSMGUZI
+  description: Exported to over 90 countries, somehow this relic has managed to end up here. Couldn't be simpler to use.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/SMG/uzi.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _Stories/Objects/Weapons/Guns/SMG/uzi.rsi
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    - Burst
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m63.ogg #?
+  - type: RMCSelectiveFire
+    baseFireModes:
+    - SemiAuto
+    - FullAuto
+    - Burst 
+    recoilWielded: 0.1
+    recoilUnwielded: 1
+    scatterWielded: 10
+    scatterUnwielded: 13
+    baseFireRate: 4
+    burstScatterMultiplier: 4
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_reload.ogg
+        ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CMMagazinePistolUZI
+          - CMMagazinePistolUZIExt  
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-barrel:
+        whitelist:
+          tags:
+          - RMCAttachmentSuppressor
+          - RMCAttachmentBarrelCharger
+          - RMCAttachmentExtendedBarrel
+          - RMCAttachmentRecoilCompensator
+      rmc-aslot-rail:
+        whitelist:
+          tags:
+          - RMCAttachmentS6ReflexSight
+          - RMCAttachmentS5RedDotSight
+          - RMCAttachmentRailFlashlight
+      rmc-aslot-underbarrel:
+        whitelist:
+          tags:
+          - RMCAttachmentLaserSight
+          - RMCAttachmentBurstFireAssembly
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-barrel: 0.685, 0.061 
+      rmc-aslot-rail: 0.03, 0.158 
+      rmc-aslot-underbarrel: 0.28, -0.19
+
+- type: entity
+  parent: BaseMagazineRifle
+  id: CMMagazinePistolUZI
+  name: "UZI magazine(9x21mm)"
+  components:
+  - type: Tag
+    tags:
+    - CMMagazinePistol
+    - CMMagazinePistolUZI
+  - type: BallisticAmmoProvider
+    mayTransfer: True
+    whitelist:
+      tags:
+      - CMCartridgePistol9mm
+    proto: CMCartridgePistol9mm
+    capacity: 25
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/uzi.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineRifle
+  id: CMMagazinePistolUZIExt
+  name: "UZI extended magazine(9x21mm)"
+  components:
+  - type: Tag
+    tags:
+    - CMMagazinePistol
+    - CMMagazinePistolUZIExt
+  - type: BallisticAmmoProvider
+    mayTransfer: True
+    whitelist:
+      tags:
+      - CMCartridgePistol9mm
+    proto: CMCartridgePistol9mm
+    capacity: 40
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/uziext.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+
+- type: Tag
+  id: CMMagazinePistolUZIExt
+
+- type: Tag
+  id: CMMagazinePistolUZI

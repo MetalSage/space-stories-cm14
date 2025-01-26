@@ -1,0 +1,46 @@
+#TODO: for leader with smartgun
+- type: entity
+  parent: RMCBaseMarineArmor
+  id: CMArmorMilitiaHauberk
+  name: Colonial Militia Hauberk
+  description: The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This one has straps interweaved with the plates, that allow the user to fire a captured smartgun, if a bit uncomfortably.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/colonial_militia_hauberk.rsi
+  - type: Clothing
+    equipDelay: 2
+    unequipDelay: 2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: CMArmor
+    armor: 15
+    bio: 15
+    explosionArmor: 20 
+#Armor for other CLF soldiers
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHarness
+  name: Colonial Militia Partial Hauberk
+  description: The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This even lighter variant has some of the arm pieces removed.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/colonial_militia_harness.rsi
+
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaBrace
+  name: Colonial Militia Brace
+  description: The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant has some of the chest pieces removed.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/colonial_militia_brace.rsi
+
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaVest
+  name: Colonial Militia Vest
+  description: The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While not the most powerful form of armor, and primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. It is also quick to don, easy to hide, and cheap to produce in large workshops. This extremely light variant protects only the chest and abdomen.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/colonial_militia_vest.rsi

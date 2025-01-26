@@ -1,0 +1,10 @@
+- type: entity
+  parent: CMHeadsetFoxtrot
+  id: CMHeadsetCLF
+  name: CLF headset
+  description: A special headset used by small groups of trained operatives. Or terrorists
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - CMEncryptionKeyColony

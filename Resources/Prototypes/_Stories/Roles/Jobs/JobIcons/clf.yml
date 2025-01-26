@@ -1,0 +1,34 @@
+- type: jobIcon
+  parent: CMJobIconBase
+  id: CMJobIconCLFCellCom
+  icon:
+    sprite: _RMC14/Interface/cm_job_icons.rsi
+    state: clf_cellcom
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: CMJobIconCLFEngi
+  icon:
+    sprite: _RMC14/Interface/cm_job_icons.rsi
+    state: clf_engi
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: CMJobIconCLFMed
+  icon:
+    sprite: _RMC14/Interface/cm_job_icons.rsi
+    state: clf_med
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: CMJobIconCLFSL
+  icon:
+    sprite: _RMC14/Interface/cm_job_icons.rsi
+    state: clf_sl
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: CMJobIconCLFSpec
+  icon:
+    sprite: _RMC14/Interface/cm_job_icons.rsi
+    state: clf_spec

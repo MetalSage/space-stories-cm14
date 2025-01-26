@@ -1,0 +1,15 @@
+ent-StoriesSpawnerCLFLeader = лидер КОФ
+    .suffix = спавнер
+    .desc = { ent-MarkerBase.desc }
+ent-RandomHumanoidCLFLeaderMar40 = призрачная роль лидер КОФ
+    .suffix = роль, mar40
+    .desc = { "" }
+ent-CMArmorMilitiaHauberkFilledMar40 = { ent-CMArmorMilitiaHauberk }
+    .suffix = заполненный, mar40
+    .desc = { ent-CMArmorMilitiaHauberk.desc }
+ent-CMBeltMarineFilledMar40 = { ent-CMBeltMarine }
+    .suffix = заполненный, mar40
+    .desc = { ent-CMBeltMarine.desc }
+ent-CMSatchelLightpackFilledCLFLead = { ent-CMSatchelLightpack }
+    .suffix = заполненный, mar40
+    .desc = { ent-CMSatchelLightpack.desc }

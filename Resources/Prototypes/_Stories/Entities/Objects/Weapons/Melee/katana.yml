@@ -1,0 +1,30 @@
+- type: entity
+  parent: BaseKnife
+  id: CMKatana
+  name: Katana
+  suffix: CM
+  description: A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza.
+  components:
+  - type: Tag
+    tags:
+    - Katana
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/katana.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 45
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 10
+  - type: UsableWhileDevoured
+    damage:
+      types:
+        Slash: 25
+  - type: Item
+    size: Large
+    sprite: _Stories/Objects/Weapons/Melee/katana.rsi
+  - type: DisarmMalus
+    malus: 0.225

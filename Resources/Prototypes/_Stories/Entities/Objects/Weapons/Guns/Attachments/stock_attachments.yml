@@ -1,0 +1,28 @@
+- type: entity
+  parent: RMCStockAttachmentBase
+  id: CMAttachmentABR40WoodenStock
+  name: ABR-40 wooden stock
+  description: The default "wooden" stock for the ABR-40 hunting rifle, the civilian version of the military L42A battle rifle. Theoretically compatible with an L42. Wait, did you just take the stock out of a weapon with no grip...? Great job, genius.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/Attachments/stock.rsi
+    state: abr40stock
+  - type: Tag
+    tags:
+    - CMAttachmentABR40WoodenStock
+  - type: AttachableVisuals
+  - type: AttachableWeaponMeleeMods
+    modifiers:
+    - bonusDamage:
+        types:
+          Blunt: 10
+  - type: AttachableWeaponRangedMods
+    modifiers:
+    - conditions:
+        wieldedOnly: true
+      accuracyAddMult: 0.25
+      recoilFlat: -1
+      scatterFlat: -3
+
+- type: Tag
+  id: CMAttachmentABR40WoodenStock

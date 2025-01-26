@@ -1,0 +1,43 @@
+- type: entity
+  parent: CMSatchel
+  id: CMSatchelLightWelder
+  name: lightweight technician welderpack
+  description: A small, lightweight pack for expeditions and short-range operations. Features a small fueltank for quick blowtorch refueling.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Back/Satchels/CLF/light_tecnical.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,12,1 
+  - type: ExaminableSolution
+    solution: tank
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 180
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 180
+  - type: ReagentTank
+    tankType: Fuel
+  - type: DrainableSolution
+    solution: tank
+  - type: SolutionTransfer
+    transferAmount: 50
+    maxTransferAmount: 100
+    minTransferAmount: 10
+    canChangeTransferAmount: true
+  - type: RefillableSolution
+    solution: tank
+  - type: DrawableSolution
+    solution: tank
+
+- type: entity
+  parent: CMSatchelMarine
+  id: CMSatchelLightpack
+  name: lightweight combat pack
+  description: A small, lightweight pack for expeditions and short-range operations.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Back/Satchels/CLF/combat_pack.rsi

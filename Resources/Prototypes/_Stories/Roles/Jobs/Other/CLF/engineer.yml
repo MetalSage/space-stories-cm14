@@ -1,0 +1,580 @@
+- type: entity
+  parent: MarkerBase
+  id: StoriesSpawnerCLFEngineer
+  name: CLF Engineer
+  suffix: Spawner, random
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+      state: icon
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidCLFEngineerUZI
+    - RandomHumanoidCLFEngineerHG
+    - RandomHumanoidCLFEngineerABR
+    - RandomHumanoidCLFEngineerMP
+    - RandomHumanoidCLFEngineerMAR
+    - RandomHumanoidCLFEngineerMP27
+
+
+# UZI
+
+- type: entity
+  id: RandomHumanoidCLFEngineerUZI
+  name: CLF engineer ghost role
+  suffix: Role, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFEngineerUZI
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFEngineerUZI
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-engineer-name
+    description: rmc-ghost-role-information-clf-engineer-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFEngineer ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 2
+      RMCSkillEngineer: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFEngineer
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightWelderCLFUZI
+    belt: CMBeltUtilityFilled 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFEngineer
+    ears: CMHeadsetCLF
+    eyes: CMGlassesMesonHUDGlasses
+    pocket1: RMCPouchConstructionFillLowGrade
+    pocket2: RMCPouchFirstAidInjectors
+    shoes: ClothingShoesColorBlack 
+    gloves: CMHandsInsulated 
+    head: ClothingHeadHatWelding 
+    outerClothing: CMArmorMilitiaHauberkFilledUZI 
+    suitstorage: WeaponSMGUZI 
+  inhand:
+    - CMWebbingFiledUZI
+
+- type: entity
+  parent: CMSatchelLightWelder
+  id: CMSatchelLightWelderCLFUZI
+  suffix: Filled, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCExplosiveBreachingCharge
+      amount: 1
+    - id: CMGrenadeFrag
+    - id: RMCFlashlight
+    - id: CMMagazinePistolUZI
+      amount: 3
+
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHauberkFilledUZI
+  suffix: Filled, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazinePistolUZI
+      amount: 2
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingFiledUZI
+  suffix: Filled, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazinePistolUZI
+      amount: 3
+
+#abr40
+- type: entity
+  id: RandomHumanoidCLFEngineerABR
+  name: CLF engineer ghost role
+  suffix: Role, abr
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFEngineerABR
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFEngineerABR
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-engineer-name
+    description: rmc-ghost-role-information-clf-engineer-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFEngineerABR ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 2
+      RMCSkillEngineer: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFEngineerABR
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightWelderCLFABR
+    belt: CMBeltUtilityFilled 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFEngineer
+    ears: CMHeadsetCLF
+    eyes: CMGlassesMesonHUDGlasses
+    pocket1: RMCPouchConstructionFillLowGrade
+    pocket2: RMCPouchFirstAidInjectors
+    shoes: ClothingShoesColorBlack 
+    gloves: CMHandsInsulated 
+    head: ClothingHeadHatWelding 
+    outerClothing: CMArmorMilitiaHauberkFilledABR
+    suitstorage: WeaponRifleABR40
+  inhand:
+    - CMWebbingFiledABR
+
+- type: entity
+  parent: CMSatchelLightWelder
+  id: CMSatchelLightWelderCLFABR
+  suffix: Filled, abr
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCExplosiveBreachingCharge
+      amount: 1
+    - id: CMGrenadeFrag
+    - id: RMCFlashlight
+    - id: CMMagazineRifleABR40
+      amount: 2
+
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHauberkFilledABR
+  suffix: Filled, abr
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineRifleABR40
+      amount: 2
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingFiledABR
+  suffix: Filled, abr
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineRifleABR40
+      amount: 3
+
+# MP27
+
+- type: entity
+  id: RandomHumanoidCLFEngineerMP
+  name: CLF engineer ghost role
+  suffix: Role, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFEngineerMP
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFEngineerMP
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-engineer-name
+    description: rmc-ghost-role-information-clf-engineer-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFEngineerMP ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 2
+      RMCSkillEngineer: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFEngineerMP
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightWelderCLFMP
+    belt: CMBeltUtilityFilled 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFEngineer
+    ears: CMHeadsetCLF
+    eyes: CMGlassesMesonHUDGlasses
+    pocket1: RMCPouchConstructionFillLowGrade
+    pocket2: RMCPouchFirstAidInjectors
+    shoes: ClothingShoesColorBlack 
+    gloves: CMHandsInsulated 
+    head: ClothingHeadHatWelding 
+    outerClothing: CMArmorMilitiaHauberkFilledMP
+    suitstorage: WeaponSMGMP5
+  inhand:
+    - CMWebbingFiledMP
+
+- type: entity
+  parent: CMSatchelLightWelder
+  id: CMSatchelLightWelderCLFMP
+  suffix: Filled, mp5
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCExplosiveBreachingCharge
+      amount: 1
+    - id: CMGrenadeFrag
+    - id: RMCFlashlight
+    - id: CMMagazineSMGMP5
+      amount: 3
+
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHauberkFilledMP
+  suffix: Filled, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGMP5
+      amount: 2
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingFiledMP
+  suffix: Filled, mp5
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGMP5
+      amount: 3
+
+# Mar 50
+
+- type: entity
+  id: RandomHumanoidCLFEngineerMAR
+  name: CLF engineer ghost role
+  suffix: Role, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFEngineerMAR
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFEngineerMAR
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-engineer-name
+    description: rmc-ghost-role-information-clf-engineer-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFEngineerMAR ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 2
+      RMCSkillEngineer: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFEngineerMAR
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightWelderCLFMAR
+    belt: CMBeltUtilityFilled 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFEngineer
+    ears: CMHeadsetCLF
+    eyes: CMGlassesMesonHUDGlasses
+    pocket1: RMCPouchConstructionFillLowGrade
+    pocket2: RMCPouchFirstAidInjectors
+    shoes: ClothingShoesColorBlack 
+    gloves: CMHandsInsulated 
+    head: ClothingHeadHatWelding 
+    outerClothing: RMCArmorVest
+    suitstorage: WeaponRifleMAR50
+  inhand:
+    - CMWebbingFiledMAREng
+
+- type: entity
+  parent: CMSatchelLightWelder
+  id: CMSatchelLightWelderCLFMAR
+  suffix: Filled, mar50
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCExplosiveBreachingCharge
+      amount: 1
+    - id: CMGrenadeFrag
+    - id: RMCFlashlight
+    - id: CMMagazineRifleMAR50Drum
+      amount: 2
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingFiledMAREng
+  suffix: Filled, mar50
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineRifleMAR50Drum
+      amount: 3
+
+# MP27
+
+- type: entity
+  id: RandomHumanoidCLFEngineerMP27
+  name: CLF engineer ghost role
+  suffix: Role, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFEngineerMP27
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFEngineerMP27
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-engineer-name
+    description: rmc-ghost-role-information-clf-engineer-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFEngineerMP27 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 2
+      RMCSkillEngineer: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFEngineerMP27
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightWelderCLFMP27
+    belt: CMBeltUtilityFilled 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFEngineer
+    ears: CMHeadsetCLF
+    eyes: CMGlassesMesonHUDGlasses
+    pocket1: RMCPouchConstructionFillLowGrade
+    pocket2: RMCPouchFirstAidInjectors
+    shoes: ClothingShoesColorBlack 
+    gloves: CMHandsInsulated 
+    head: ClothingHeadHatWelding 
+    outerClothing: CMArmorMilitiaBraceFilledMP27
+    suitstorage: WeaponRifleMAR50
+  inhand:
+    - CMWebbingmp27
+
+- type: entity
+  parent: CMSatchelLightWelder
+  id: CMSatchelLightWelderCLFMP27
+  suffix: Filled, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCExplosiveBreachingCharge
+      amount: 1
+    - id: CMGrenadeFrag
+    - id: RMCFlashlight
+    - id: CMMagazineSMGMP2720
+      amount: 2
+    - id: CMMagazineSMGMP2730
+
+- type: entity
+  parent: CMArmorMilitiaBrace
+  id: CMArmorMilitiaBraceFilledMP27
+  suffix: Filled, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGMP2740
+    - id: CMMagazineSMGMP2730
+  
+# HG
+
+- type: entity
+  id: RandomHumanoidCLFEngineerHG
+  name: CLF engineer ghost role
+  suffix: Role, hg3712
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFEngineerHG
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFEngineerHG
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-engineer-name
+    description: rmc-ghost-role-information-clf-engineer-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFEngineerHG ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 2
+      RMCSkillEngineer: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFEngineerHG
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightWelderCLFHG
+    belt: CMBeltUtilityFilled 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFEngineer
+    ears: CMHeadsetCLF
+    eyes: CMGlassesMesonHUDGlasses
+    pocket1: RMCPouchConstructionFillLowGrade
+    pocket2: RMCPouchFirstAidInjectors
+    shoes: ClothingShoesColorBlack 
+    gloves: CMHandsInsulated 
+    head: ClothingHeadHatWelding 
+    outerClothing: CMArmorMilitiaVestFilledHG
+    suitstorage: WeaponRifleMAR50
+  inhand:
+    - CMWebbingFilledHG
+
+- type: entity
+  parent: CMSatchelLightWelder
+  id: CMSatchelLightWelderCLFHG
+  suffix: Filled, hg3712
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCExplosiveBreachingCharge
+      amount: 1
+    - id: CMGrenadeFrag
+    - id: RMCFlashlight
+    - id: CMShellShotgunIncendiaryBuckshot
+      amount: 3
+
+- type: entity
+  parent: CMArmorMilitiaVest
+  id: CMArmorMilitiaVestFilledHG
+  suffix: Filled, hg3712
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMShellShotgunIncendiaryBuckshot
+      amount: 2
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingFilledHG
+  suffix: Filled, hg3712
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMShellShotgunIncendiaryBuckshot
+      amount: 3
+      
+- type: job
+  parent: CMJobBase
+  id: CLFEngineer
+  name: cm-job-name-clf-engineer
+  description: cm-job-description-clf-engineer
+  playTimeTracker: CMJobCLFEngineer
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: CMSquad
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsEngineering
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsMedical
+    time: 18000 # 5 hours
+  icon: "CMJobIconCLFEngi"
+  joinNotifyCrew: false
+  supervisors: cm-job-supervisors-clf-engineer
+  accessGroups:
+  - Colonist

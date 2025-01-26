@@ -1,0 +1,114 @@
+- type: entity
+  parent: MarkerBase
+  id: StoriesSpawnerCLFCommander
+  name: CLF Cell Commander
+  suffix: Spawner, random
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+      state: icon
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidCLFCommanderMar40
+
+- type: entity
+  id: RandomHumanoidCLFCommanderMar40
+  name: CLF cell commander ghost role
+  suffix: Role
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFCommander
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFCommander
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-commander-name
+    description: rmc-ghost-role-information-clf-commander-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFCommander ]
+  - type: Skills
+    skills:
+      RMCSkillCqc: 3
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 3
+      RMCSkillConstruction: 2
+      RMCSkillEngineer: 2
+      RMCSkillJtac: 3
+      RMCSkillLeadership: 2
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1
+      RMCSkillSmartGun: 1
+  - type: MarineOrders
+
+- type: startingGear
+  id: CMGearCLFCommander
+  equipment:
+    jumpsuit: CMUniformCLF
+    belt: MatebaBeltSmartAmmo
+    id: CMIDCardCLFCommander
+    ears: CMHeadsetCLF
+    pocket1: RMCPouchSurvivalFill
+    pocket2: RMCPouchFirstAidInjectors
+    shoes: CMBootsBrownFilled 
+    gloves: RMCHandsVeteran 
+    head: CMHeadCapMiner
+    outerClothing: CMArmorMilitiaHauberkMateba
+    suitstorage: SmartGunFreedom
+
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHauberkMateba
+  suffix: Filled, Mateba
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SmartGunArmor
+  - type: StorageFill
+    contents:
+    - id: RMCSpeedLoaderMateba
+      amount: 3
+
+- type: entity
+  parent: RMCMatebaBelt
+  id: MatebaBeltSmartAmmo
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCMagazineSmartGun
+      amount: 5
+    - id: RMCWeaponRevolverMateba
+      
+- type: job
+  parent: CMJobBase
+  id: CLFCommander
+  name: cm-job-name-clf-commander
+  description: cm-job-description-clf-commander
+  playTimeTracker: CMJobCLFCommander
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: CMSquad
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsEngineering
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsMedical
+    time: 18000 # 5 hours
+  joinNotifyCrew: false
+  icon: "CMJobIconCellCom"
+  supervisors: cm-job-supervisors-nobody
+  accessGroups:
+  - Colonist

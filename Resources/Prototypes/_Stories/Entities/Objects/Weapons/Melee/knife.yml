@@ -1,0 +1,12 @@
+- type: entity
+  parent: RMCM5Bayonet
+  id: CMKnifeCLF
+  name: type 80 bayonet
+  description: The standard-issue bayonet of the UPP, the Type 80 is balanced to also function as an effective throwing knife.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/type80_bayonet.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: _Stories/Objects/Weapons/Melee/type80_bayonet.rsi

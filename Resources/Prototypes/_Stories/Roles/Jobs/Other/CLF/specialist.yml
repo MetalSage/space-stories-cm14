@@ -1,0 +1,141 @@
+- type: entity
+  parent: MarkerBase
+  id: StoriesSpawnerCLFSpecialist
+  name: CLF Specialist
+  suffix: Spawner, random
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+      state: icon
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidCLFSpecialistMAR50
+
+- type: entity
+  id: RandomHumanoidCLFSpecialistMAR50
+  name: CLF specialist ghost role
+  suffix: Role, mar50
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFSpecialistMAR50
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFSpecialistMAR50
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-specialist-name
+    description: rmc-ghost-role-information-clf-specialist-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFSpecialist ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  id: CMGearCLFSpecialist
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightpackFilledCLF
+ #   belt: add pistol belt with 88mod4 and ammo
+    mask: CMKnifeCLF
+    id: CMIDCardCLFSpecialist
+    ears: CMHeadsetCLF
+    eyes: CMGlassesNightVision
+    pocket1: RMCPouchExplosiveFilledCharges
+    pocket2: RMCPouchFirstAidInjectors
+    shoes: ClothingShoesBootsSyndieFilled 
+    gloves: ClothingHandsGlovesCombat 
+    head: ClothingHeadHelmetSwat 
+    outerClothing: CMArmorMilitiaVestmar50drum 
+    suitstorage: WeaponRifleMAR50 
+  inhand:
+    - CMWebbingmar50drum
+
+- type: entity
+  parent: RMCPouchExplosive
+  id: RMCPouchExplosiveFilledCharges
+  suffix: Filled
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCExplosiveBreachingCharge
+      amount: 6
+
+- type: entity
+  parent: CMSatchelLightpack
+  id: CMSatchelLightpackFilledCLF
+  suffix: Filled
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCFlashlight
+    - id: CMCrowbar
+    # add folded RPG
+    - id: RMCRangefinder
+    - id: CMMagazineRifleMAR50Drum
+      amount: 2
+
+- type: entity
+  parent: CMArmorMilitiaVest
+  id: CMArmorMilitiaVestmar50drum
+  suffix: Filled, mar50
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineRifleMAR50Drum
+      amount: 3
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingmar50drum
+  suffix: Filled, mar50
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineRifleMAR50Drum
+      amount: 3
+      
+- type: job
+  parent: CMJobBase
+  id: CLFSpecialist
+  name: cm-job-name-clf-specialist
+  description: cm-job-description-clf-specialist
+  playTimeTracker: CMJobCLFSpecialist
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: CMSquad
+    time: 18000 # 5 hours 
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsEngineering
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsMedical
+    time: 18000 # 5 hours
+  icon: "CMJobIconCLFSpec"
+  joinNotifyCrew: false
+  supervisors: cm-job-supervisors-clf-specialist
+  accessGroups:
+  - Colonist

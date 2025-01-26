@@ -1,0 +1,80 @@
+- type: entity
+  parent: CMBaseWeaponRifle
+  name: ABR-40 hunting rifle
+  id: WeaponRifleABR40
+  description: The civilian version of the L42A battle rifle. Almost identical and even cross-compatible with L42 magazines, just don't take the stock off..
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Rifles/abr40.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _Stories/Objects/Weapons/Guns/Rifles/abr40.rsi
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: CMM54CShoot #?
+  - type: RMCSelectiveFire
+    baseFireModes:
+    - SemiAuto
+    recoilWielded: 2
+    scatterWielded: 10
+    baseFireRate: 2.86
+  - type: GunRequiresWield
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_reload.ogg
+        ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CMMagazineRifleABR40
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-stock:
+        startingAttachable: CMAttachmentABR40WoodenStock
+        whitelist:
+          tags:
+          - CMAttachmentABR40WoodenStock
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-stock: -0.45, 0.062
+
+- type: entity
+  parent: CMMagazineRifleBase
+  id: CMMagazineRifleABR40
+  name: "ABR-40 magazine (10x24mm)"
+  components:
+  - type: Tag
+    tags:
+    - CMMagazineRifle
+    - CMMagazineRifleABR40
+  - type: BallisticAmmoProvider
+    mayTransfer: True
+    whitelist:
+      tags:
+      - CMCartridgeRifle10x24mm
+    proto: CMCartridgeRifle10x24mm
+    capacity: 40
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/abr40.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+
+- type: Tag
+  id: CMMagazineRifleABR40
