@@ -11,6 +11,7 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Player;
+using Content.Shared.Weapons.Melee;
 
 namespace Content.Shared._RMC14.Xenonids.Empower;
 
@@ -26,11 +27,14 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly XenoPlasmaSystem _xenoPlasma = default!;
 
+    private EntityQuery<MeleeWeaponComponent> _melee;
     private readonly HashSet<Entity<MarineComponent>> _marines = new();
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _melee = GetEntityQuery<MeleeWeaponComponent>();
 
         SubscribeLocalEvent<XenoEmpowerComponent, RemovedShieldEvent>(OnShieldRemove);
         SubscribeLocalEvent<XenoEmpowerComponent, XenoDefensiveShieldActionEvent>(OnXenoFirstEmpowerAction);
@@ -90,12 +94,23 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
                 SpawnAttachedTo(xeno.Comp.EffectOnMarine, receiver.Owner.ToCoordinates());
             shieldAmount += xeno.Comp.AmountPerHuman;
         }
+
         if (empowerTargets >= 3)
+        {
             xeno.Comp.EmpowerActive = true;
+            if (_melee.TryGetComponent(xeno, out var melee))
+            {
+                FixedPoint2 DamageMod = (45 + empowerTargets * 2) / 3;
+                melee.Damage.DamageDict["Blunt"] = DamageMod;
+                melee.Damage.DamageDict["Slash"] = DamageMod;
+                melee.Damage.DamageDict["Piercing"] = DamageMod;
+            }
+        }
 
         _shield.ApplyShield(xeno, XenoShieldSystem.ShieldType.Ravager, shieldAmount);
         ApplyEffects(xeno);
         Dirty(xeno);
+
         if (_net.IsServer)
         {
             _popup.PopupEntity(Loc.GetString("rmc-xeno-defensive-shield-activate", ("user", xeno)), xeno, Filter.PvsExcept(xeno), true, PopupType.MediumCaution);
@@ -159,7 +174,15 @@ public sealed partial class XenoEmpowerSystem : EntitySystem
             }
 
             if ((xeno.EmpowerOffAt <= time) && xeno.EmpowerActive)
+            {
                 xeno.EmpowerActive = false;
+                if (_melee.TryGetComponent(uid, out var melee))
+                {
+                    melee.Damage.DamageDict["Blunt"] = 15;
+                    melee.Damage.DamageDict["Slash"] = 15;
+                    melee.Damage.DamageDict["Piercing"] = 15;
+                }
+            }
 
             if (shield.Active && shield.Shield == XenoShieldSystem.ShieldType.Ravager && xeno.ShieldOffAt <= time)
                 _shield.RemoveShield(uid, XenoShieldSystem.ShieldType.Ravager);
