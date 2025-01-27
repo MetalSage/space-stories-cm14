@@ -5,7 +5,7 @@
   - type: TimedDespawn
     lifetime: 0.4
   - type: Sprite
-    drawdepth: BelowMobs
+    drawdepth: Effects
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]

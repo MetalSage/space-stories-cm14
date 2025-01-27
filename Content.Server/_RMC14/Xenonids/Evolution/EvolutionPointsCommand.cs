@@ -3,6 +3,7 @@ using Content.Server.Administration;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared.Administration;
 using Robust.Shared.Toolshed;
+using Robust.Shared.Toolshed.Syntax;
 
 namespace Content.Server._RMC14.Xenonids.Evolution;
 
@@ -22,13 +23,13 @@ public sealed class EvolutionPointsCommand : ToolshedCommand
     public EntityUid Set(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid xeno,
-        [CommandArgument] int points)
+        [CommandArgument] ValueRef<int> points)
     {
         _xenoEvolution ??= GetSys<XenoEvolutionSystem>();
         if (!TryComp(xeno, out XenoEvolutionComponent? evolution))
             return xeno;
 
-        _xenoEvolution.SetPoints((xeno, evolution), points);
+        _xenoEvolution.SetPoints((xeno, evolution), points.Evaluate(ctx));
         return xeno;
     }
 
@@ -36,7 +37,7 @@ public sealed class EvolutionPointsCommand : ToolshedCommand
     public IEnumerable<EntityUid> Set(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> xenos,
-        [CommandArgument] int points)
+        [CommandArgument] ValueRef<int> points)
     {
         return xenos.Select(xeno => Set(ctx, xeno, points));
     }
@@ -53,7 +54,7 @@ public sealed class EvolutionPointsCommand : ToolshedCommand
         }
 
         var max = evolution.Max;
-        return Set(ctx, xeno, max.Int());
+        return Set(ctx, xeno, new ValueRef<int>(max.Int()));
     }
 
     [CommandImplementation("max")]

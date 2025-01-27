@@ -72,7 +72,6 @@
     idleLoad: 1
     activeLoad: 20
     channel: Environment
-  - type: RMCOpenOnAlertLevel
 
 - type: entity
   parent: RMCShutterBaseIndestructible

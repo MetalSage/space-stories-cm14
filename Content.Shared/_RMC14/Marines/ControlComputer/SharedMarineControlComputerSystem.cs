@@ -1,5 +1,4 @@
-﻿using Content.Shared._RMC14.AlertLevel;
-using Content.Shared._RMC14.Commendations;
+﻿using Content.Shared._RMC14.Commendations;
 using Content.Shared._RMC14.Dialog;
 using Content.Shared._RMC14.Evacuation;
 using Content.Shared._RMC14.Survivor;
@@ -14,7 +13,6 @@ namespace Content.Shared._RMC14.Marines.ControlComputer;
 
 public abstract class SharedMarineControlComputerSystem : EntitySystem
 {
-    [Dependency] private readonly RMCAlertLevelSystem _alertLevel = default!;
     [Dependency] private readonly SharedCommendationSystem _commendation = default!;
     [Dependency] private readonly DialogSystem _dialog = default!;
     [Dependency] private readonly SharedEvacuationSystem _evacuation = default!;
@@ -41,12 +39,10 @@ public abstract class SharedMarineControlComputerSystem : EntitySystem
         SubscribeLocalEvent<MarineControlComputerComponent, MarineControlComputerMedalMarineEvent>(OnComputerMedalMarine);
         SubscribeLocalEvent<MarineControlComputerComponent, MarineControlComputerMedalNameEvent>(OnComputerMedalName);
         SubscribeLocalEvent<MarineControlComputerComponent, MarineControlComputerMedalMessageEvent>(OnComputerMedalMessage);
-        SubscribeLocalEvent<MarineControlComputerComponent, MarineControlComputerAlertEvent>(OnComputerAlert);
 
         Subs.BuiEvents<MarineControlComputerComponent>(MarineControlComputerUi.Key,
             subs =>
             {
-                subs.Event<MarineControlComputerAlertLevelMsg>(OnAlertLevel);
                 subs.Event<MarineControlComputerMedalMsg>(OnMedal);
                 subs.Event<MarineControlComputerToggleEvacuationMsg>(OnToggleEvacuationMsg);
             });
@@ -118,35 +114,6 @@ public abstract class SharedMarineControlComputerSystem : EntitySystem
             return;
 
         _popup.PopupCursor("Medal awarded", actor.Value, PopupType.Large);
-    }
-
-    private void OnComputerAlert(Entity<MarineControlComputerComponent> ent, ref MarineControlComputerAlertEvent args)
-    {
-        _alertLevel.Set(args.Level, GetEntity(args.User));
-    }
-
-    private void OnAlertLevel(Entity<MarineControlComputerComponent> ent, ref MarineControlComputerAlertLevelMsg args)
-    {
-        var current = _alertLevel.Get();
-        var options = new List<DialogOption>();
-        foreach (var level in Enum.GetValues<RMCAlertLevels>())
-        {
-            if (level == current)
-                continue;
-
-            if (level >= RMCAlertLevels.Red)
-                continue;
-
-            var text = Loc.GetString($"rmc-alert-{level.ToString().ToLowerInvariant()}");
-            options.Add(new DialogOption(text, new MarineControlComputerAlertEvent(GetNetEntity(args.Actor), level)));
-        }
-
-        _dialog.OpenOptions(ent,
-            args.Actor,
-            Loc.GetString("rmc-alert-level"),
-            options,
-            Loc.GetString("rmc-alert-level-which")
-        );
     }
 
     private void OnMedal(Entity<MarineControlComputerComponent> ent, ref MarineControlComputerMedalMsg args)

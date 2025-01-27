@@ -104,7 +104,7 @@ public sealed class TippyUIController : UIController
                 ? -WaddleRotation
                 : WaddleRotation;
 
-            if (EntityManager.TryGetComponent(_entity, out FootstepModifierComponent? step) && step.FootstepSoundCollection != null)
+            if (EntityManager.TryGetComponent(_entity, out FootstepModifierComponent? step))
             {
                 var audioParams = step.FootstepSoundCollection.Params
                     .AddVolume(-7f)

@@ -1,5 +1,4 @@
 using Content.Server.Ghost;
-using Content.Shared._RMC14.CCVar;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
@@ -15,6 +14,10 @@ using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
+using Content.Shared.Administration.Logs;
+using Content.Shared.CCVar;
+using Content.Shared.Chat;
+using Content.Shared.Mind.Components;
 
 namespace Content.Server.Chat;
 
@@ -38,7 +41,7 @@ public sealed class SuicideSystem : EntitySystem
         SubscribeLocalEvent<DamageableComponent, SuicideEvent>(OnDamageableSuicide);
         SubscribeLocalEvent<MobStateComponent, SuicideEvent>(OnEnvironmentalSuicide);
         SubscribeLocalEvent<MindContainerComponent, SuicideGhostEvent>(OnSuicideGhost);
-        Subs.CVar(_config, RMCCVars.RMCEnableSuicide, v => _canSuicide = v, true);
+        Subs.CVar(_config, CCVars.ICEnableSuicide, v => _canSuicide = v, true);
     }
 
     /// <summary>

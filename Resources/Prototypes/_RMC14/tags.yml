@@ -77,7 +77,10 @@
   id: WeaponSMGM63
 
 - type: Tag
-  id: RMCWeaponPistolM77
+  id: CMWeaponPistolM1984
+
+- type: Tag
+  id: CMWeaponPistolM77
 
 - type: Tag
   id: RMCWeaponRevolverM44

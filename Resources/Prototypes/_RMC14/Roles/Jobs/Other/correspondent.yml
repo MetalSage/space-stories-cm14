@@ -8,8 +8,6 @@
   - !type:TotalDepartmentsTimeRequirement
     group: CMDepartmentsHuman
     time: 36000 # 10 hours
-  ranks:
-    RMCRankCivilian: []
   startingGear: CMGearCorrespondent
   icon: "CMJobIconEmpty"
   joinNotifyCrew: false
@@ -31,7 +29,7 @@
         RMCSkillFirearms: 0
         RMCSkillVehicles: 1
     - type: JobPrefix
-      prefix: cm-job-prefix-correspondent # TODO RMC14 combat correspondent is CC
+      prefix: "PRESS" # TODO RMC14 combat correspondent is CC
   hasIcon: false
 
 - type: startingGear

@@ -6,7 +6,7 @@
     randomGear:
     - [ RMCGrenadeMolotov ]
     - [ CMPackFlare ]
-    - [ WeaponNailgun ]
+    # TODO RMC14 nailgun
     - [ RMCFireAxe ]
     - [ CMWelder ] # TODO RMC14 industrial welder
     - [ CMAdvFirstAidKitFilled ]

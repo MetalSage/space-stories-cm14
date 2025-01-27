@@ -28,13 +28,11 @@
         layer:
         - GhostImpassable
 
-# shared parent between aghosts, replay spectators and normal observers
 - type: entity
   parent:
   - Incorporeal
   - BaseMob
-  id: MobObserverBase
-  abstract: true
+  id: MobObserver
   name: observer
   description: Boo!
   categories: [ HideSpawnMenu ]
@@ -55,7 +53,6 @@
     skipChecks: true
   - type: Ghost
   - type: GhostHearing
-  - type: ShowElectrocutionHUD
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     receiveAllChannels: true
@@ -86,13 +83,6 @@
     marines: true
     xenos: true
 
-# proto for player ghosts specifically
-- type: entity
-  parent: MobObserverBase
-  id: MobObserver
-  components:
-  - type: Spectral
-
 - type: entity
   id: ActionGhostBoo
   name: Boo!
@@ -102,7 +92,6 @@
     icon: Interface/Actions/scream.png
     checkCanInteract: false
     event: !type:BooActionEvent
-    startDelay: true
     useDelay: 120
 
 - type: entity

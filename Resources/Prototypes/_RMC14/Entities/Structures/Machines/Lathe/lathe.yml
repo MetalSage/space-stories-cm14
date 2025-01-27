@@ -38,7 +38,7 @@
     - RMCBucket
     - CMBucketMop
 #    - Janitorial bucket (10000 metal)
-    - RMCFlashlight
+#    - Flashlight (62 metal, 25 glass)
     - CMFireExtinguisher
     - CMCrowbar
     - CMMultitool
@@ -47,8 +47,9 @@
     - CMScrewdriver
     - CMWirecutter
     - CMWrench
-    - CMHeadset
-    - CMRadioHandheld
+#    - Mop (137 metal)
+#    - Radio headset (93 metal)
+#    - Shortwave radio (93 metal, 31 glass)
 #    - Welding mask (3750 metal, 1250 glass)
     - CMSheetGlassReinforced
     - CMRodMetal
@@ -70,17 +71,17 @@
     - CMHemostat
     - CMBeaker
     - CMBeakerLarge
-#    - CMDrinkingGlass (look in lathe recipes, just needs new ID)
+#    - Drinking glass (625 glass)
 #    - Console screen (250 glass)
 #    - Igniter (625 metal, 62 glass)
 #    - Signaller (1250 metal, 250 glass)
 #    - Infrared sensor (1250 metal, 625 glass)
 #    - Timer (625 metal, 62 glass)
 #    - Proximity sensor (1000 metal, 250 glass)
-    - CMLightTube
-    - CMLightBulb
+#    - Light tube (125 glass)
+#    - Light bulb (125 glass)
 #    - Glass ashtray (75 glass)
-    - CMHandLabeler
+#    - Hand labeler (156 metal)
 #    - Camera assembly (875 metal, 375 glass)
 #    - Matrix assembly (9375 metal)
   - type: MaterialStorage

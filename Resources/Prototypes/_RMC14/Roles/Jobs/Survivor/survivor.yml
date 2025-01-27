@@ -14,8 +14,6 @@
   - !type:TotalJobsTimeRequirement
     group: CMJobsMedical
     time: 18000 # 5 hours
-  ranks:
-    RMCRankCivilian: []
   startingGear: RMCGearSurvivor
   icon: "CMJobIconEmpty"
   joinNotifyCrew: false

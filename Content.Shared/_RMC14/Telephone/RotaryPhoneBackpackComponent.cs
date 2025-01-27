@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._RMC14.Telephone;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedRMCTelephoneSystem))]
+[Access(typeof(SharedTelephoneSystem))]
 public sealed partial class RotaryPhoneBackpackComponent : Component
 {
     [DataField, AutoNetworkedField]

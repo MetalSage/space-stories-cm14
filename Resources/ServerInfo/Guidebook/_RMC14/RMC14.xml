@@ -1,25 +1,23 @@
 ﻿<Document>
-  #RMC-14 Guidebook
+  #Space Stories Colonial Marines: Руководство
 
-  Welcome to RMC-14.
+  Добро пожаловать в Space Stories Colonial Marines.
 
-  This is a MRP server inspired by CM13, in the new SS14 engine!
+  Это MRP-сервер, вдохновленный CM13, на новом движке SS14!
 
-  The guidebook, roadmap and rules for the game can be found on the lobby screen, and at any point in the escape menu.
+  Руководство, план развития и правила игры можно найти на экране лобби и в любой момент в меню выхода.
 
-  Click any of the tabs on the left to learn about RMC14 and it's unique content.
+  Нажмите на любую из вкладок слева, чтобы узнать больше об Space Stories Colonial Marines и его уникальном контенте.
 
-  Be sure to read the rules if you haven't already.
-  - [textlink="The rules" link="RMCOverview"]
+  Обязательно ознакомьтесь с правилами, если вы еще этого не сделали.
+  - [textlink="Правила" link="CMOverview"]
 
-  New to RMC-14, SS14, or have no CM13 experience? Be careful! A lot of mechanics and values are not the same as SS14.
-  - [textlink="New player guide!" link="RMCGuideNewPlayer"]
+  Новичок в Space Stories Colonial Marines или нет опыта игры на CM13? Будьте осторожны! Многие механики и значения отличаются от SS14.
+  (Рекомендуется прочитать руководство и изучить базовые элементы управления на другом сервере, если это ваш первый раз в SS14.)
+  - [textlink="Руководство для новых игроков!" link="RMCGuideNewPlayer"]
 
-  Have some experience? Check out these guidebook pages!
-  - [textlink="Medical" link="RMCMedical"]
-  - [textlink="Medicines" link="RMCMedicine"]
-  - [textlink="Requisitions" link="RMCRequisitions"]
-  - [textlink="Communications towers and senor towers" link="RMCGuideCommunicationsTowers"]
-  - [textlink="Combat Technician" link="RMCGuideRoleCombatTechnician"]
-  - [textlink="Maintenance Technician" link="RMCGuideRoleMaintenanceTechnician"]
+  Уже есть некоторый опыт? Ознакомьтесь с этими страницами руководства!
+  - [textlink="Медицина" link="RMCMedical"]
+  - [textlink="Лекарства" link="CMMedicine"]
+  - [textlink="Запросы" link="RMCRequisitions"]
 </Document>

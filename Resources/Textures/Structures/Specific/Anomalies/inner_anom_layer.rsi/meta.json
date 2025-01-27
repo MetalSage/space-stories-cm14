@@ -444,19 +444,6 @@
       ]
     },
     {
-      "name": "santa",
-      "delays": [
-        [
-          0.2,
-          0.2,
-          0.2,
-          0.2,
-          0.2,
-          0.2
-        ]
-      ]
-    },
-    {
       "name": "shadow",
       "directions": 4,
       "delays": [

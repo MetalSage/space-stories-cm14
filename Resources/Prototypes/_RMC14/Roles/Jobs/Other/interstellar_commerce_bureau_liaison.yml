@@ -40,7 +40,7 @@
     skills:
       RMCSkillVehicles: 1
   - type: JobPrefix
-    prefix: rmc-ghost-role-information-interstellar-commerce-bureau-liaison-job-prefix
+    prefix: "ICC Rep."
 
 - type: startingGear
   id: RMCGearICBLiaison

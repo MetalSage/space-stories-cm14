@@ -49,7 +49,10 @@ public abstract class SharedXenoPheromonesSystem : EntitySystem
     {
         base.Initialize();
 
-        _pheromonesJob = new PheromonesJob(_entityLookup);
+        _pheromonesJob = new PheromonesJob()
+        {
+            Lookup = _entityLookup,
+        };
 
         _damageableQuery = GetEntityQuery<DamageableComponent>();
 
@@ -180,7 +183,7 @@ public abstract class SharedXenoPheromonesSystem : EntitySystem
         var speed = 1 + (frenzy.Comp.MovementSpeedModifier * frenzy.Comp.Multiplier).Float();
         if (HasComp<PullingSlowedComponent>(frenzy.Owner))
             speed = 1 + (frenzy.Comp.PullMovementSpeedModifier * frenzy.Comp.Multiplier).Float();
-
+        
         args.ModifySpeed(speed, speed);
     }
 
@@ -392,10 +395,12 @@ public abstract class SharedXenoPheromonesSystem : EntitySystem
         }
     }
 
-    private record struct PheromonesJob(EntityLookupSystem Lookup) : IParallelRobustJob
+    private record struct PheromonesJob() : IParallelRobustJob
     {
         // Bumped this because most receivers aren't going to be updating on any individual tick.
         public int BatchSize => 8;
+
+        public EntityLookupSystem Lookup;
 
         public ValueList<(
             EntityUid Uid,

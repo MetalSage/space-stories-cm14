@@ -5,28 +5,9 @@
   description: cm-job-description-squad-leader
   playTimeTracker: CMJobSquadLeader
   requirements:
-  - !type:RoleTimeRequirement
-    role: CMJobHospitalCorpsman
-    time: 3600 # 1 hour
-  - !type:RoleTimeRequirement
-    role: CMJobCombatTech
-    time: 3600 # 1 hour
-  - !type:RoleTimeRequirement
-    role: CMJobFireteamLeader
-    time: 18000 # 5 hours
   - !type:DepartmentTimeRequirement
     department: CMSquad
     time: 36000 # 10 hours
-  ranks:
-    RMCRankGunnerySergeant:
-    - !type:RoleTimeRequirement
-      role: CMJobSquadLeader
-      time: 252000 # 70 hours
-    RMCRankStaffSergeant:
-    - !type:RoleTimeRequirement
-      role: CMJobSquadLeader
-      time: 36000 # 10 hours
-    RMCRankSergeant: []
   startingGear: CMGearSquadLeader
   dummyStartingGear: CMGearSquadLeaderEquipped
   icon: "CMJobIconSquadLeader"
@@ -57,7 +38,6 @@
         RMCSkillLeadership: 1
         RMCSkillMedical: 1
         RMCSkillVehicles: 1
-        RMCSkillPolice: 1
     - type: CMVendorUser
       points: 45
     - type: MarineOrders
@@ -66,7 +46,7 @@
     - type: SquadLeader
     - type: RMCPointing
     - type: JobPrefix
-      prefix: cm-job-prefix-squad-leader
+      prefix: "SL"
 
 - type: startingGear
   id: CMGearSquadLeader

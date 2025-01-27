@@ -8,8 +8,6 @@
   - !type:TotalJobsTimeRequirement
     group: CMJobsDropship
     time: 7200 # 2 hours
-  ranks:
-    RMCRankSecondLT: []
   startingGear: CMGearPilotDropship
   icon: "CMJobIconPilotDropship"
   joinNotifyCrew: false
@@ -43,7 +41,7 @@
       points: 45
     - type: RMCPointing
     - type: JobPrefix
-      prefix: cm-job-prefix-dropship-pilot
+      prefix: "DP"
 
 - type: startingGear
   id: CMGearPilotDropship

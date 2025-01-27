@@ -167,8 +167,6 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown
-      params:
-        variation: 0.17
   - type: Mech
     baseState: honker
     openState: honker-open

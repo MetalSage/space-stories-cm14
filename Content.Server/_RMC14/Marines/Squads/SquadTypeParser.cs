@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Content.Shared._RMC14.Marines.Squads;
 using Robust.Shared.Console;
 using Robust.Shared.Toolshed.Errors;
@@ -12,28 +14,28 @@ public sealed class SquadTypeParser : TypeParser<SquadType>
 {
     [Dependency] private readonly IEntityManager _entities = default!;
 
-    public override bool TryParse(ParserContext ctx, out SquadType result)
+    public override bool TryParse(ParserContext parserContext, [NotNullWhen(true)] out object? result, out IConError? error)
     {
-        if (ctx.GetWord(ParserContext.IsToken) is not { } squad)
+        if (parserContext.GetWord(ParserContext.IsToken) is not { } squad)
         {
-            ctx.Error = new NotAValidSquad(null);
-            result = default;
+            error = new NotAValidSquad(null);
+            result = null;
             return false;
         }
 
         if (!int.TryParse(squad, out var number))
         {
-            ctx.Error = new NotAValidSquad(squad);
-            result = default;
+            error = new NotAValidSquad(squad);
+            result = null;
             return false;
         }
 
-        ctx.Error = null;
+        error = null;
         result = new SquadType(new EntityUid(number));
         return true;
     }
 
-    public override CompletionResult TryAutocomplete(ParserContext parserContext, string? argName)
+    public override ValueTask<(CompletionResult? result, IConError? error)> TryAutocomplete(ParserContext parserContext, string? argName)
     {
         var squadsQuery = _entities.EntityQueryEnumerator<SquadTeamComponent, MetaDataComponent>();
         var squads = new List<CompletionOption>();
@@ -42,7 +44,8 @@ public sealed class SquadTypeParser : TypeParser<SquadType>
             squads.Add(new CompletionOption(uid.ToString(), meta.EntityName));
         }
 
-        return CompletionResult.FromHintOptions(squads, "squad");
+        var completions = CompletionResult.FromHintOptions(squads, "squad");
+        return ValueTask.FromResult<(CompletionResult? result, IConError? error)>((completions, null));
     }
 }
 

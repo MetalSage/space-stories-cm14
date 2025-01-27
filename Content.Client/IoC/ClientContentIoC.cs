@@ -11,7 +11,6 @@ using Content.Client.Clickable;
 using Content.Client.DebugMon;
 using Content.Client.Eui;
 using Content.Client.Fullscreen;
-using Content.Client.GameTicking.Managers;
 using Content.Client.GhostKick;
 using Content.Client.Guidebook;
 using Content.Client.Launcher;
@@ -67,7 +66,6 @@ namespace Content.Client.IoC
             collection.Register<DebugMonitorManager>();
             collection.Register<PlayerRateLimitManager>();
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
-            collection.Register<TitleWindowManager>();
 
             // RMC14
             collection.Register<LinkAccountManager>();

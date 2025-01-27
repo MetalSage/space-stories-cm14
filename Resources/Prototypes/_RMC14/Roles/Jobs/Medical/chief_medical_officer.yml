@@ -8,15 +8,6 @@
   - !type:TotalJobsTimeRequirement
     group: CMJobsMedical
     time: 36000 # 10 hours
-  - !type:RoleTimeRequirement
-    role: CMJobDoctor
-    time: 18000 # 5 hours
-  ranks:
-    RMCRankFirstLT:
-    - !type:RoleTimeRequirement
-      role: CMJobCMO
-      time: 36000 # 10 hours
-    RMCRankSecondLT: []
   weight: 5
   startingGear: CMGearCMO
   icon: "CMJobIconCMO"
@@ -50,7 +41,7 @@
     - type: MarineOrders
     - type: RMCPointing
     - type: JobPrefix
-      prefix: cm-job-prefix-cmo
+      prefix: "CMO"
     - type: CMVendorUser # Stories-Partners
 
 - type: startingGear

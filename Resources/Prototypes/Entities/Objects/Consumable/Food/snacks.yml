@@ -683,7 +683,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 45
+        maxVol: 30
         reagents:
         - ReagentId: Fiber
           Quantity: 40

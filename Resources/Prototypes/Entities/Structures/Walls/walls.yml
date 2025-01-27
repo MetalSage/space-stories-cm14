@@ -640,6 +640,7 @@
 - type: entity
   parent: WallReinforced
   id: WallReinforcedRust
+  name: reinforced wall
   suffix: rusted
   components:
   - type: Sprite
@@ -653,29 +654,6 @@
   - type: IconSmooth
     key: walls
     base: reinf_over
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 500
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 350
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -1069,6 +1047,7 @@
 - type: entity
   parent: WallSolid
   id: WallSolidRust
+  name: solid wall
   suffix: rusted
   components:
   - type: Sprite
@@ -1082,28 +1061,6 @@
   - type: IconSmooth
     key: walls
     base: solid
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 150
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
 
 - type: entity
   parent: BaseWall
@@ -1149,14 +1106,13 @@
   parent: BaseWall
   id: WallWood
   name: wood wall
-  description: The traditional greytide defense.
   components:
   - type: Sprite
     sprite: Structures/Walls/wood.rsi
   - type: Icon
     sprite: Structures/Walls/wood.rsi
   - type: Construction
-    graph: Barricade
+    graph: Girder
     node: woodWall
   - type: Destructible
     thresholds:
@@ -1177,7 +1133,7 @@
         sound:
           collection: WoodDestroyHeavy
       - !type:ChangeConstructionNodeBehavior
-        node: Barricade
+        node: girder
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth

@@ -4,10 +4,6 @@
   name: M1984 service pistol
   description: An M1984 Service Pistol, once the standard issue sidearm of the Marines but has recently been replaced with the M77 combat pistol. Fires 9mm pistol rounds.
   components:
-  - type: Tag
-    tags:
-    - Sidearm
-    - CMWeaponPistolM1984
   - type: RMCSelectiveFire
     scatterWielded: 10
     scatterUnwielded: 10
@@ -61,9 +57,6 @@
     graph: PistolM1984Construct
     node: start
 
-- type: Tag
-  id: CMWeaponPistolM1984
-
 - type: entity
   parent: CMWeaponPistolM1984
   id: CMWeaponPistolM1984Empty
@@ -79,7 +72,7 @@
         whitelist:
           tags:
           - CMMagazinePistolM1984
-          - RMCMagazinePistolM1984AP
+          - RMCMagazinePistolM1984AP 
 
 #9mm
 - type: entity
@@ -105,9 +98,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-
-- type: Tag
-  id: CMMagazinePistolM1984
 
 - type: entity
   parent: CMBulletBase
@@ -166,7 +156,6 @@
   components:
   - type: Tag
     tags:
-    - CMMagazinePistol
     - RMCMagazinePistolM1984AP
   - type: BallisticAmmoProvider
     whitelist:
@@ -174,6 +163,9 @@
       - CMCartridgePistol9mmAP
     proto: CMCartridgePistolM77AP
   # Todo AP magazine sprite
+
+- type: Tag
+  id: CMMagazinePistolM1984
 
 - type: Tag
   id: RMCMagazinePistolM1984AP

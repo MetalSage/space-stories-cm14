@@ -9,9 +9,6 @@ public enum MarineControlComputerUi
 }
 
 [Serializable, NetSerializable]
-public sealed class MarineControlComputerAlertLevelMsg : BoundUserInterfaceMessage;
-
-[Serializable, NetSerializable]
 public sealed class MarineControlComputerMedalMsg : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]

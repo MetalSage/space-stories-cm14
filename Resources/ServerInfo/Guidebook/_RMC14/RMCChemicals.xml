@@ -1,57 +1,10 @@
 ﻿<Document>
-  # Chemicals
+  # Химикаты
 
-  Chemicals are a powerful tool that can cause a variety of effects when consumed. Some can be obtained from vendors, purchased in requisitions, or be synthesized through combination with other chemicals.
+  Химикаты — это мощный инструмент, который может вызывать различные эффекты при употреблении. Некоторые можно получить у продавцов, приобрести через запросы или синтезировать путем комбинирования с другими химикатами.
 
-  Knowing different types of chemicals and their effects is important for being able to manage injury and danger.
+  Знание различных типов химикатов и их эффектов важно для умения справляться с травмами и опасностями.
 
-  ## Elements
-  <GuideReagentGroupEmbed Group="Elements"/>
-
-  \n
-
-  ## Medicine
+  ## Лекарства
   <GuideReagentGroupEmbed Group="Medicine"/>
-
-  \n
-
-  ## Narcotics
-  <GuideReagentGroupEmbed Group="Narcotics"/>
-
-  \n
-
-
-  ## Pyrotechnics
-  <GuideReagentGroupEmbed Group="Pyrotechnic"/>
-
-  \n
-
-
-  ## Toxins
-  <GuideReagentGroupEmbed Group="Toxins"/>
-
-  \n
-
-
-  ## Foods
-  <GuideReagentGroupEmbed Group="Foods"/>
-
-  \n
-
-
-  ## Botanical
-  <GuideReagentGroupEmbed Group="Botanical"/>
-
-  \n
-
-
-  ## Biological
-  <GuideReagentGroupEmbed Group="Biological"/>
-
-  \n
-
-
-  ## Other
-  <GuideReagentGroupEmbed Group="Unknown"/>
-
 </Document>

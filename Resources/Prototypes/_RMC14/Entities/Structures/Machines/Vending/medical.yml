@@ -17,11 +17,13 @@
 
 
 - type: entity
-  parent: ColMarTechBaseAnchorable
+  parent: ColMarTechBase
   id: CMVendorMedical
   name: We-Ya-Med Plus
   description: Medical pharmaceutical dispenser. Provided by We-Ya Pharmaceuticals Division(TM).
   components:
+  - type: Transform
+    anchored: true
   - type: Sprite
     sprite: _RMC14/Structures/Machines/VendingMachines/med.rsi
     layers:
@@ -146,6 +148,8 @@
   name: We-Ya-Chem Plus
   description: Medical chemistry dispenser. Provided by We-Ya Pharmaceuticals Division(TM).
   components:
+  - type: Transform
+    anchored: true
   - type: Sprite
     sprite: _RMC14/Structures/Machines/VendingMachines/chem.rsi
     layers:
@@ -196,11 +200,13 @@
 
 
 - type: entity
-  parent: ColMarTechBaseAnchorable
+  parent: ColMarTechBase
   id: ColMarTechMarineMedical
   name: ColMarTech MarineMed
   description: Medical Pharmaceutical dispenser with basic medical supplies for marines.
   components:
+  - type: Transform
+    anchored: true
   - type: Fixtures
     fixtures:
       fix1:
@@ -253,7 +259,7 @@
 #        amount: 7
 
 - type: entity
-  parent: ColMarTechBaseAnchorable
+  parent: ColMarTechBase
   id: RMCNanoMed
   name: NanoMed
   description: A wall-mounted medical equipment dispenser.
@@ -307,7 +313,7 @@
         amount: 3
 
 - type: entity
-  parent: ColMarTechBaseAnchorable
+  parent: ColMarTechBase
   id: CMVendorBlood
   name: MM Blood Dispenser
   description: The Marine Med Brand Blood Pack Dispensary is the premier, top-of-the-line blood dispenser of 2105! Get yours today! #dont update year, that`s a joke from cm13

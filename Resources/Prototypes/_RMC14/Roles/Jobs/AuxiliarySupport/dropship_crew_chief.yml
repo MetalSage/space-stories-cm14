@@ -11,16 +11,6 @@
   - !type:TotalJobsTimeRequirement
     group: CMJobsMedical
     time: 3600 # 1 hours
-  ranks:
-    RMCRankStaffSergeant:
-    - !type:RoleTimeRequirement
-      role: CMJobDropshipCrewChief
-      time: 252000 # 70 hours
-    RMCRankSergeant:
-    - !type:RoleTimeRequirement
-      role: CMJobDropshipCrewChief
-      time: 270000 # 10 hours
-    RMCRankCorporal: []
   startingGear: CMGearDCC
   icon: "CMJobIconDCC"
   joinNotifyCrew: false
@@ -53,7 +43,7 @@
       points: 45
     - type: RMCPointing
     - type: JobPrefix
-      prefix: cm-job-prefix-dcc
+      prefix: "DCC"
   hidden: false
 
 - type: startingGear

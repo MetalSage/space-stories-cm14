@@ -12,16 +12,6 @@
   icon: "CMJobIconOrdnanceTech"
   joinNotifyCrew: false
   supervisors: cm-job-supervisors-ce
-  ranks:
-    RMCRankLanceCorporal:
-    - !type:RoleTimeRequirement
-      role: CMJobOrdnanceTech
-      time: 252000 # 70 hours
-    RMCRankPrivateFirstClass:
-    - !type:RoleTimeRequirement
-      role: CMJobOrdnanceTech
-      time: 36000 # 10 hours
-    RMCRankPrivate: []
   accessGroups:
   - OT
   minimapIcon:
@@ -42,7 +32,7 @@
         RMCSkillFireman: 1
         RMCSkillPowerLoader: 2
     - type: JobPrefix
-      prefix: cm-job-prefix-ordnance-tech
+      prefix: "OT"
     - type: CMVendorUser # Stories-Partners
   hidden: true # TODO RMC14
 

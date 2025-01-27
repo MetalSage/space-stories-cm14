@@ -11,7 +11,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
@@ -108,7 +107,7 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         if (userHands.ActiveHandEntity != null && !hasEnt)
             StartStripInsertInventory((user, userHands), strippable.Owner, userHands.ActiveHandEntity.Value, args.Slot);
-        else if (hasEnt)
+        else if (userHands.ActiveHandEntity == null && hasEnt)
             StartStripRemoveInventory(user, strippable.Owner, held!.Value, args.Slot);
     }
 
@@ -140,7 +139,7 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         if (user.Comp.ActiveHandEntity != null && handSlot.HeldEntity == null)
             StartStripInsertHand(user, target, user.Comp.ActiveHandEntity.Value, handId, targetStrippable);
-        else if (handSlot.HeldEntity != null)
+        else if (user.Comp.ActiveHandEntity == null && handSlot.HeldEntity != null)
             StartStripRemoveHand(user, target, handSlot.HeldEntity.Value, handId, targetStrippable);
     }
 
@@ -299,7 +298,7 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         if (!stealth)
         {
-            if (IsStripHidden(slotDef, user))
+            if (slotDef.StripHidden)
                 _popupSystem.PopupEntity(Loc.GetString("strippable-component-alert-owner-hidden", ("slot", slot)), target, target, PopupType.Large);
             else
                 _popupSystem.PopupEntity(Loc.GetString("strippable-component-alert-owner", ("user", Identity.Entity(user, EntityManager)), ("item", item)), target, target, PopupType.Large);

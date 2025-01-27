@@ -76,25 +76,94 @@
   id: BorgArm
 
 - type: Tag
+  id: BorgEngineerHead
+
+- type: Tag
+  id: BorgEngineerLArm
+
+- type: Tag
+  id: BorgEngineerLLeg
+
+- type: Tag
+  id: BorgEngineerRArm
+
+- type: Tag
+  id: BorgEngineerRLeg
+
+- type: Tag
+  id: BorgEngineerTorso
+
+- type: Tag
+  id: BorgGenericHead
+
+- type: Tag
+  id: BorgGenericLArm
+
+- type: Tag
+  id: BorgGenericLLeg
+
+- type: Tag
+  id: BorgGenericRArm
+
+- type: Tag
+  id: BorgGenericRLeg
+
+- type: Tag
+  id: BorgGenericTorso
+
+- type: Tag
   id: BorgHead
 
 - type: Tag
-  id: BorgLArm
+  id: BorgJanitorHead
 
 - type: Tag
-  id: BorgLLeg
+  id: BorgJanitorLLeg
 
 - type: Tag
-  id: BorgRArm
+  id: BorgJanitorRLeg
 
 - type: Tag
-  id: BorgRLeg
-
-- type: Tag
-  id: BorgTorso
+  id: BorgJanitorTorso
 
 - type: Tag
   id: BorgLeg
+
+- type: Tag
+  id: BorgMedicalHead
+
+- type: Tag
+  id: BorgMedicalLArm
+
+- type: Tag
+  id: BorgMedicalLLeg
+
+- type: Tag
+  id: BorgMedicalRArm
+
+- type: Tag
+  id: BorgMedicalRLeg
+
+- type: Tag
+  id: BorgMedicalTorso
+
+- type: Tag
+  id: BorgMiningHead
+
+- type: Tag
+  id: BorgMiningLArm
+
+- type: Tag
+  id: BorgMiningLLeg
+
+- type: Tag
+  id: BorgMiningRArm
+
+- type: Tag
+  id: BorgMiningRLeg
+
+- type: Tag
+  id: BorgMiningTorso
 
 - type: Tag
   id: BorgModuleCargo
@@ -119,6 +188,24 @@
 
 - type: Tag
   id: BorgModuleSyndicateAssault
+
+- type: Tag
+  id: BorgServiceHead
+
+- type: Tag
+  id: BorgServiceLArm
+
+- type: Tag
+  id: BorgServiceLLeg
+
+- type: Tag
+  id: BorgServiceRArm
+
+- type: Tag
+  id: BorgServiceRLeg
+
+- type: Tag
+  id: BorgServiceTorso
 
 - type: Tag
   id: Bot
@@ -612,9 +699,6 @@
   id: Grenade
 
 - type: Tag
-  id: GrenadeFlashBang
-
-- type: Tag
   id: HudMedical
 
 - type: Tag
@@ -904,9 +988,6 @@
   id: NoBlockAnchoring
 
 - type: Tag
-  id: NoConsoleSound
-
-- type: Tag
   id: NozzleBackTank
 
 - type: Tag
@@ -986,9 +1067,6 @@
 
 - type: Tag
   id: Plunger
-
-- type: Tag
-  id: PlushieCarp
 
 - type: Tag
   id: PlushieGhost
@@ -1115,9 +1193,6 @@
   id: ShellShotgun
 
 - type: Tag
-  id: ShellShotgunLight # shotgun shells that are compatible with the flare gun.
-
-- type: Tag
   id: Shiv
 
 - type: Tag
@@ -1223,9 +1298,6 @@
   id: Syringe
 
 - type: Tag
-  id: SyringeGunAmmo
-
-- type: Tag
   id: Spellbook
 
 - type: Tag
@@ -1329,12 +1401,6 @@
 
 - type: Tag
   id: WhitelistChameleon
-
-- type: Tag
-  id: WhitelistChameleonIdCard
-
-- type: Tag
-  id: WhitelistChameleonPDA
 
 - type: Tag
   id: Window

@@ -29,7 +29,6 @@
         layer:
         - MidImpassable
         - LowImpassable
-        - BulletImpassable
   - type: PointLight
     radius: 10
     energy: 2.5
@@ -65,7 +64,6 @@
           collection: MetalGlassBreak
   - type: StaticPrice
     price: 75
-  - type: RequireProjectileTarget
 
 - type: entity
   id: PoweredLightPostSmallEmpty

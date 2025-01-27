@@ -8,7 +8,6 @@
   components:
   - type: Input
     context: "ghost"
-  - type: Spectral
   - type: MovementSpeedModifier
     baseWalkSpeed: 6
     baseSprintSpeed: 6
@@ -21,8 +20,7 @@
     - Stun
     - Corporeal
   - type: Damageable
-    damageContainer: ManifestedSpirit
-    damageModifierSet: ManifestedSpirit
+    damageContainer: Biological
   - type: NoSlip
   - type: Eye
     drawFov: false
@@ -38,8 +36,6 @@
     name: ghost-role-information-revenant-name
     description: ghost-role-information-revenant-description
     rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -79,6 +75,3 @@
     - RevenantTheme
   - type: Speech
     speechVerb: Ghost
-  - type: Reactive
-    groups:
-      Acidic: [Touch]

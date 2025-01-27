@@ -28,7 +28,7 @@
         RMCSkillFirearms: 2
         RMCSkillFireman: 1
     - type: JobPrefix
-      prefix: cm-job-prefix-messtech
+      prefix: "MST"
 
 - type: startingGear
   id: CMGearMessTech

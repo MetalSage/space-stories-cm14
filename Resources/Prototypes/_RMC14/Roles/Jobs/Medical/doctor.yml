@@ -8,8 +8,6 @@
   - !type:TotalJobsTimeRequirement
     group: CMJobsMedical
     time: 3600 # 1 hour
-  ranks:
-    RMCRankSecondLT: []
   startingGear: CMGearDoctor
   icon: "CMJobIconDoctor"
   joinNotifyCrew: false
@@ -34,7 +32,7 @@
         RMCSkillSurgery: 2
     - type: RMCUserBulkyArmorIncapable
     - type: JobPrefix
-      prefix: cm-job-prefix-doctor
+      prefix: "Doc"
     - type: CMVendorUser # Stories-Partners
 
 - type: startingGear

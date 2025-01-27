@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 using Content.Shared._RMC14.Marines.Skills;
 using Robust.Shared.Console;
 using Robust.Shared.Toolshed.Errors;
@@ -13,32 +15,32 @@ public sealed class SkillTypeParser : TypeParser<SkillType>
 {
     [Dependency] private readonly IEntityManager _entities = default!;
 
-    public override bool TryParse(ParserContext ctx, out SkillType result)
+    public override bool TryParse(ParserContext parserContext, [NotNullWhen(true)] out object? result, out IConError? error)
     {
-        if (ctx.GetWord(ParserContext.IsToken) is not { } skillName)
+        if (parserContext.GetWord(ParserContext.IsToken) is not { } skillName)
         {
-            ctx.Error = new NotAValidSkill(null);
-            result = default;
+            error = new NotAValidSkill(null);
+            result = null;
             return false;
         }
 
         var skills = _entities.System<SkillsSystem>().SkillNames;
         if (!skills.TryGetValue(skillName, out var skill))
         {
-            ctx.Error = new NotAValidSkill(skillName);
-            result = default;
+            error = new NotAValidSkill(skillName);
+            result = null;
             return false;
         }
 
-        ctx.Error = null;
+        error = null;
         result = new SkillType(skill);
         return true;
     }
 
-    public override CompletionResult TryAutocomplete(ParserContext parserContext, string? argName)
+    public override ValueTask<(CompletionResult? result, IConError? error)> TryAutocomplete(ParserContext parserContext, string? argName)
     {
         var skills = _entities.System<SkillsSystem>().SkillNames.Keys.Order(StringComparer.OrdinalIgnoreCase);
-        return CompletionResult.FromHintOptions(skills, "skill");
+        return ValueTask.FromResult<(CompletionResult? result, IConError? error)>((CompletionResult.FromHintOptions(skills, "skill"), null));
     }
 }
 

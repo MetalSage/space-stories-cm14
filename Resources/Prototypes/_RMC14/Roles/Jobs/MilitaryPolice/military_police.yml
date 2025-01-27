@@ -7,17 +7,7 @@
   requirements:
   - !type:DepartmentTimeRequirement
     department: CMSquad
-    time: 72000 # 20 hours
-  ranks:
-    RMCRankStaffSergeant:
-    - !type:RoleTimeRequirement
-      role: CMJobMilitaryPolice
-      time: 252000 # 70 hours
-    RMCRankSergeant:
-    - !type:RoleTimeRequirement
-      role: CMJobMilitaryPolice
-      time: 36000 # 10 hours
-    RMCRankCorporal: []
+    time: 36000 # 10 hours
   weight: 5
   startingGear: CMGearMilitaryPolice
   icon: "CMJobIconMilitaryPolice"
@@ -43,7 +33,7 @@
         RMCSkillFireman: 2
         RMCSkillPolice: 2
     - type: JobPrefix
-      prefix: cm-job-prefix-militarypolice
+      prefix: "MP"
     - type: CMVendorUser # Stories-Partners
 
 - type: startingGear

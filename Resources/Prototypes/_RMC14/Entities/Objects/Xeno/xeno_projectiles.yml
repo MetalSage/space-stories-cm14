@@ -380,9 +380,11 @@
     damage: {}
   - type: TriggerOnFixedDistanceStop
     delay: 1
-  - type: ProjectileGrenade
+  - type: ClusterGrenade
     fillPrototype: XenoAcidBallSpitProjectile
-    capacity: 14
+    maxGrenadesCount: 14
+    grenadeType: enum.GrenadeType.Shoot
+    triggerGrenades: false
   - type: ProjectileMaxRange
     max: 5
     delete: false

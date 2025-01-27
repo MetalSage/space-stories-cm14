@@ -68,8 +68,6 @@
     - WallXenoResin
     - WallXenoMembrane
     - DoorXenoResin
-    - XenoStickyResin
-    - XenoFastResin
     canOrderConstruction:
     - HiveCoreXenoConstructionNode
     - HiveClusterXenoConstructionNode

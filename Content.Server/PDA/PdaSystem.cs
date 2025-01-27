@@ -1,4 +1,3 @@
-using Content.Server.Access.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Managers;
@@ -37,7 +36,6 @@ namespace Content.Server.PDA
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
         [Dependency] private readonly UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
-        [Dependency] private readonly IdCardSystem _idCard = default!;
 
         public override void Initialize()
         {
@@ -57,25 +55,19 @@ namespace Content.Server.PDA
             SubscribeLocalEvent<PdaComponent, CartridgeLoaderNotificationSentEvent>(OnNotification);
 
             SubscribeLocalEvent<StationRenamedEvent>(OnStationRenamed);
-            SubscribeLocalEvent<EntityRenamedEvent>(OnEntityRenamed, after: new[] { typeof(IdCardSystem) });
+            SubscribeLocalEvent<EntityRenamedEvent>(OnEntityRenamed);
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
         }
 
         private void OnEntityRenamed(ref EntityRenamedEvent ev)
         {
-            if (HasComp<IdCardComponent>(ev.Uid))
-                return;
+            var query = EntityQueryEnumerator<PdaComponent>();
 
-            if (_idCard.TryFindIdCard(ev.Uid, out var idCard))
+            while (query.MoveNext(out var uid, out var comp))
             {
-                var query = EntityQueryEnumerator<PdaComponent>();
-
-                while (query.MoveNext(out var uid, out var comp))
+                if (comp.PdaOwner == ev.Uid)
                 {
-                    if (comp.ContainedId == idCard)
-                    {
-                        SetOwner(uid, comp, ev.Uid, ev.NewName);
-                    }
+                    SetOwner(uid, comp, ev.Uid, ev.NewName);
                 }
             }
         }
@@ -94,9 +86,6 @@ namespace Content.Server.PDA
         protected override void OnItemInserted(EntityUid uid, PdaComponent pda, EntInsertedIntoContainerMessage args)
         {
             base.OnItemInserted(uid, pda, args);
-            var id = CompOrNull<IdCardComponent>(pda.ContainedId);
-            if (id != null)
-                pda.OwnerName = id.FullName;
             UpdatePdaUi(uid, pda);
         }
 

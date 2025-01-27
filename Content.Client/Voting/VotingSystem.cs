@@ -19,6 +19,11 @@ public sealed class VotingSystem : EntitySystem
 
     private void OnVotePlayerListResponseEvent(VotePlayerListResponseEvent msg)
     {
+        if (!_ghostSystem.IsGhost)
+        {
+            return;
+        }
+
         VotePlayerListResponse?.Invoke(msg);
     }
 

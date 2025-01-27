@@ -1,11 +1,13 @@
 - type: entity
-  parent: RMCMarineUniformBase
+  parent: JumpsuitMarine
   id: RMCJumpsuitVeteranPMC
   name: PMC fatigues
   description: A white set of fatigues, designed for private security operators. The symbol of the Weston-Yamada corporation is emblazed on the suit.
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Clothing/Uniforms/PMC/standard.rsi
+  - type: ItemCamouflage
+    camouflageVariations: { }
 
 - type: entity
   parent: RMCMarineUniformBase
@@ -17,7 +19,7 @@
     sprite: _RMC14/Objects/Clothing/Uniforms/PMC/officer.rsi
 
 - type: entity
-  parent: [RMCMarineUniformBase, RMCFoldableUniformBase]
+  parent: JumpsuitMarine
   id: RMCJumpsuitVeteranPMCCommando
   name: PMC commando uniform
   description: An armored uniform worn by We-Ya elite commandos. It is well protected while remaining light and comfortable.
@@ -27,9 +29,11 @@
   - type: Foldable
     unfoldVerbText: rmc-sleeves-verb-unfold
     foldVerbText: rmc-sleeves-verb-fold
+  - type: ItemCamouflage
+    camouflageVariations: { }
 
 - type: entity
-  parent: [RMCMarineUniformBase, RMCFoldableUniformBase]
+  parent: JumpsuitMarine
   id: RMCJumpsuitVeteranPMCCorporate
   name: We-Ya corporate security uniform
   description: An armored uniform worn by We-Ya corporate security members. This variant is commonly worn by what are known as 'goons'.
@@ -39,9 +43,11 @@
   - type: Foldable
     unfoldVerbText: rmc-sleeves-verb-unfold
     foldVerbText: rmc-sleeves-verb-fold
+  - type: ItemCamouflage
+    camouflageVariations: { }
 
 - type: entity
-  parent: [RMCMarineUniformBase, RMCFoldableUniformBase]
+  parent: JumpsuitMarine
   id: RMCJumpsuitVeteranPMCCorporateLead
   name: We-Ya corporate security uniform
   description: An armored uniform worn by We-Ya corporate security members. This variant is commonly worn by the lead of the 'goonsquad', as they are colloquially known.
@@ -51,3 +57,5 @@
   - type: Foldable
     unfoldVerbText: rmc-sleeves-verb-unfold
     foldVerbText: rmc-sleeves-verb-fold
+  - type: ItemCamouflage
+    camouflageVariations: { }

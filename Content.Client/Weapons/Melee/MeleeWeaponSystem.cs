@@ -31,7 +31,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly MapSystem _map = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -104,11 +103,11 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         if (MapManager.TryFindGridAt(mousePos, out var gridUid, out _))
         {
-            coordinates = TransformSystem.ToCoordinates(gridUid, mousePos);
+            coordinates = EntityCoordinates.FromMap(gridUid, mousePos, TransformSystem, EntityManager);
         }
         else
         {
-            coordinates = TransformSystem.ToCoordinates(_map.GetMap(mousePos.MapId), mousePos);
+            coordinates = EntityCoordinates.FromMap(MapManager.GetMapEntityId(mousePos.MapId), mousePos, TransformSystem, EntityManager);
         }
 
         // If the gun has AltFireMeleeComponent, it can be used to attack.

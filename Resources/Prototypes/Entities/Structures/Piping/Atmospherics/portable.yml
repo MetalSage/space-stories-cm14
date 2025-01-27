@@ -30,7 +30,6 @@
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
-      visible: false
     - state: draining
       shader: unshaded
       visible: false

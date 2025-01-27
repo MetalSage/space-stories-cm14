@@ -18,11 +18,11 @@
     containers:
       rmc_rotary_phone_telephone: !type:ContainerSlot
   - type: ActivatableUI
-    key: enum.RMCTelephoneUiKey.Key
+    key: enum.TelephoneUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.RMCTelephoneUiKey.Key:
-        type: RMCTelephoneBui
+      enum.TelephoneUiKey.Key:
+        type: TelephoneBui
   - type: ActivatableUIBlacklist
     blacklist:
       components:
@@ -67,7 +67,7 @@
     state: rpb_phone
   - type: Item
     size: Invalid
-  - type: RMCTelephone
+  - type: Telephone
   - type: Corrodible
     isCorrodible: false
   - type: BlockEntityStorage

@@ -167,9 +167,9 @@
       - id: RMCMaskRebreather
     - name: Restricted Firearms
       entries:
-      - id: RMCGunCasePistolMK80
+      - id: RMCMK80Case
         points: 15
-      - id: RMCGunCasePistolSmart
+      - id: RMCSmartPistolCase
         points: 15
     - name: Sidearm Ammunition
       entries:
@@ -182,10 +182,8 @@
     - name: Clothing Items
       entries:
       - id: RMCScabbardMacheteFilled
-        name: machete scabbard (Full)
         points: 6
       - id: RMCPouchMacheteFilled
-        name: machete pouch (Full)
         points: 15
       - id: RMCBackpackRTO
         points: 15
@@ -196,7 +194,6 @@
       - id: CMBeltUtilityCombat
         points: 15
       - id: RMCPouchAutoinjectorFill
-        name: autoinjector pouch (Full)
         points: 15
     - name: Utilities
       entries:

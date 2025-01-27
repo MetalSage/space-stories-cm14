@@ -8,7 +8,4 @@ public sealed partial class XenoResinSurgeActionComponent : Component
 {
     [DataField, AutoNetworkedField]
     public TimeSpan FailCooldown = TimeSpan.FromSeconds(5);
-
-    [DataField, AutoNetworkedField]
-    public TimeSpan SuccessCooldown = TimeSpan.FromSeconds(10);
 }
