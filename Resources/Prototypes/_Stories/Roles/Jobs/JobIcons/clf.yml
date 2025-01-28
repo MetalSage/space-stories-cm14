@@ -1,4 +1,4 @@
-- type: jobIcon
+- type: jobIcon # i cant use this icons with spawners :(
   parent: CMJobIconBase
   id: CMJobIconCLFCellCom
   icon:

@@ -1,4 +1,3 @@
-#TODO: for leader with smartgun
 - type: entity
   parent: RMCBaseMarineArmor
   id: CMArmorMilitiaHauberk
@@ -16,8 +15,8 @@
   - type: CMArmor
     armor: 15
     bio: 15
-    explosionArmor: 20 
-#Armor for other CLF soldiers
+    explosionArmor: 20
+
 - type: entity
   parent: CMArmorMilitiaHauberk
   id: CMArmorMilitiaHarness
