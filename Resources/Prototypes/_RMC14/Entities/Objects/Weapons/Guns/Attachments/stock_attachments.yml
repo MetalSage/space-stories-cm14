@@ -618,6 +618,8 @@
   - type: AttachableSizeMods
     modifiers:
     - size: 1
+      conditions:
+        activeOnly: true
   - type: AttachableWieldDelayMods
     modifiers:
     - delay: 0.4

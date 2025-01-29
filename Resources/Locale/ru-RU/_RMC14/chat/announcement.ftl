@@ -8,7 +8,7 @@ rmc-announcement-message-signed = [font size=14][bold][color=white]Объявл�
     { $message }
     
     Подписано,
-    { $job } { $name }[/color][/font]
+    { $name }[/color][/font]
 rmc-announcement-message-raw = [font size=14][bold][color=white]{ $author }[/color][/bold][/font][font size=12][color=red]
     
     { $message }
@@ -30,3 +30,6 @@ rmc-announcement-dropship-message = [color=white][font size=16][bold]Опове�
     { $message }[/bold][/font][/color]
 rmc-announcement-emergency-dropship-crash = [font size=14][bold][color=white]ВНИМАНИЕ[/color][/bold][/font][font size=12][color=red]
     ШАТТЛ НА КУРСЕ СТОЛКНОВЕНИЯ. СТОЛКНОВЕНИЕ НЕИЗБЕЖНО.[/color][/font]
+rmc-announcement-delta = [color=white][font-size=16][bold]АКТИВИРОВАНЫ СИСТЕМЫ САМОУНИЧТОЖЕНИЯ[/bold][/font][/color][color=red][font-size=14][bold]
+    
+    ОПАСНОСТЬ, СИСТЕМА АВАРИЙНОГО САМОУНИЧТОЖЕНИЯ АКТИВИРОВАНА. ПРОЙДИТЕ В КАМЕРУ САМОУНИЧТОЖЕНИЯ ДЛЯ ВВЕДЕНИЯ УПРАВЛЯЮЩЕГО СТЕРЖНЯ.[/bold][/font][/color]

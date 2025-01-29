@@ -20,7 +20,7 @@ tickrate = 25
 # Makes mapping annoying
 grid_splitting = false
 maxlinvelocity = 72
-target_minimum_tickrate = 120
+target_minimum_tickrate = 90
 
 [procgen]
 preload = false

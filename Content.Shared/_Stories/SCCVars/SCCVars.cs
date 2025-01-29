@@ -10,16 +10,6 @@ namespace Content.Shared._Stories.SCCVars;
 public sealed class SCCVars
 {
     /**
-     * Auto Vote
-     */
-
-    /// <summary>
-    /// Auto Vote.
-    /// </summary>
-    public static readonly CVarDef<bool> AutoVoteEnabled =
-        CVarDef.Create("autovote.enabled", false, CVar.SERVERONLY);
-
-    /**
      * TTS (Text-To-Speech)
      */
 

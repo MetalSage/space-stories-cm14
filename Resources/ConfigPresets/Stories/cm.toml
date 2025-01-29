@@ -4,6 +4,9 @@
 # [config]
 # presets = "Stories/cm"
 
+[accessibility]
+screen_shake_intensity = 1
+
 [admin]
 deadmin_on_join = true
 new_player_threshold = 600
@@ -11,9 +14,7 @@ role_ban_default_severity = "minor"
 department_ban_default_severity = "minor"
 server_ban_default_severity = "medium"
 server_ban_hwid_ban_default = false
-
-[adminlogs]
-server_name = "Space Stories - Colonial Marines 🌍"
+explosion_min_intensity = -1
 
 [ahelp]
 admin_prefix = true
@@ -25,11 +26,14 @@ monstermos_rip_tiles = false
 grid_impulse = false
 max_process_time = 1
 
-[autovote]
-enabled = false
-
 [auth]
 mode = 1
+
+[events]
+enabled = false
+
+[explosion]
+can_create_vacuum = false
 
 [chat]
 rate_limit_period = 1
@@ -38,64 +42,87 @@ rate_limit_announce_admins_delay = 10
 max_message_length = 500
 
 [game]
-hostname = "📚 Space Stories - Colonial Marines 🌍 [TTS]"
-desc = """
-                                                            📕 𝗦𝗽𝗮𝗰𝗲 𝗦𝘁𝗼𝗿𝗶𝗲𝘀 - Colonial Marines! 🌍
-•────────────────────────────────── ✧ ──────────────────────────────────•
-  🌠 ⋮ Сервер со средним уровнем требований к ролевому отыгрышу.
-  ⚙ ⋮ Сборка сервера основана на https://github.com/RMC-14/RMC-14.
-•────────────────────────────────── ✧ ──────────────────────────────────•
-                                            📚 Присоединяйтесь к нашему дружному сообществу 📚"""
-lobbyduration = 180
-maxplayers = 400
-soft_max_players = 200
+defaultpreset = "CMDistressSignal"
+fallbackenabled = false
+fallbackpreset = "CMDistressSignal"
+round_end_sound_collection = "CMRoundEnd"
+contraband_examine = false
 map_pool = "STDefaultMapPool"
+panic_bunker.enabled = false
 round_end_pvs_overrides = false
+round_restart_time = 180
+lobbyduration = 180
+
+[gateway]
+generator_enabled = false
 
 [ghost]
 kill_crit = false
 role_time = 0
 
-[gateway]
-generator_enabled = false
+[guidebook]
+show_editor_species_button = false
 
 [hub]
 tags = "lang:ru,rp:med,region:eu_e"
 
 [ic]
 flavor_text = true
-enable_suicide = false
 
 [infolinks]
 bug_report = "https://discord.gg/space-stories-cm"
-discord    = "https://discord.gg/space-stories-cm"
-forum      = "https://forum.spacestories.club"
-patreon    = "https://boosty.to/spacestories_cm"
-wiki       = "https://spacestories.club/index.php?title=Colonial_Marines"
-appeal     = "https://discord.gg/space-stories-cm"
+discord = "https://discord.gg/space-stories-cm"
+forum = "https://forum.spacestories.club"
+patreon = "https://boosty.to/spacestories_cm"
+wiki = "https://spacestories.club/Colonial_Marines"
+appeal = "https://discord.gg/space-stories-cm"
 
 [net]
 tickrate = 25
-max_connections = 1024
 
 [physics]
 grid_splitting = false
 maxlinvelocity = 72
 target_minimum_tickrate = 120
 
+[pointing]
+cooldown_seconds = 1
+
 [procgen]
 preload = false
+
+[replay]
+auto_record = true
+max_compressed_size = 4194304
+max_uncompressed_size = 8388608
+auto_record_temp_dir = "recording"
 
 [queue]
 enabled = true
 
 [server]
 rules_file = "STOverview"
+default_guide = "RMC14"
 
 [shuttle]
-auto_call_time = 0
-emergency = false
+arrivals_planet = false
+arrivals = false
+grid_fill = false
 preload_grids = false
+startup_time = 10
+travel_time = 100
+arrival_time = 10
+cooldown = 120
+mass_limit = -1
+emergency = false
+auto_call_time = 0
+
+[tips]
+dataset = "CM_Tips"
+login_dataset = "CM_Tips"
+
+[vote]
+preset_enabled = false
 
 [viewport]
 maximum_width = 26

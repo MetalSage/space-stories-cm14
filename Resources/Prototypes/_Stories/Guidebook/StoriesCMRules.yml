@@ -3,189 +3,200 @@
   id: STOverview
   name: Правила
   priority: -1
-  ruleEntry: true
   text: "/ServerInfo/Guidebook/_Stories/Rules/Overview.xml"
+  children:
+  - STCommunityExpectations
+  - STGrief
+  - STRolePlay
+  - STMetagamingMetacommunication
+  - STERP
+  - STBuggingFoulPlay
+  - STBypassBlockingMultiAccounts
+  - STPlayYourRole
+  - STCharacterNames
+  - STUseOfLethalForce
+  - STMilitaryLawMutinies
 
 - type: guideEntry
   parent: RMC
   id: STENGOverview
   name: Rules
   priority: 0
-  ruleEntry: true
   text: "/ServerInfo/Guidebook/_Stories/Rules/Overview_ENG.xml"
+  children:
+  - STENGCommunityExpectations
+  - STENGGrief
+  - STENGRolePlay
+  - STENGMetagamingMetacommunication
+  - STENGERP
+  - STENGBuggingFoulPlay
+  - STENGBypassBlockingMultiAccounts
+  - STENGPlayYourRole
+  - STENGCharacterNames
+  - STENGUseOfLethalForce
+  - STENGMilitaryLawMutinies
 
 - type: guideEntry
   parent: RMC
   id: STCommunityExpectations
   name: "Правило 0: Ожидания сообщества"
   priority: 1
-  ruleEntry: true
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/CommunityExpectations.xml"
 
 - type: guideEntry
   parent: RMC
   id: STGrief
   name: "Правило 1: Гриф"
-  priority: 1
-  ruleEntry: true
+  priority: 2
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/Grief.xml"
 
 - type: guideEntry
   parent: RMC
   id: STRolePlay
   name: "Правило 2: Ролевая игра"
-  priority: 1
-  ruleEntry: true
+  priority: 3
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/RolePlay.xml"
+  children:
+  - RMCGeneralRoleplayStandards
+  - RMCCharacterNames
+  - RMCMarineRoleplayStandards
+  - RMCCommandRoleplay
+  - RMCXenoRoleplay
+  - RMCSurvivorRoleplay
+  - RMCHostileFactionRoleplay
 
 - type: guideEntry
   parent: RMC
   id: STMetagamingMetacommunication
   name: "Правило 3: Метагейминг и метакоммуникации"
-  priority: 1
-  ruleEntry: true
+  priority: 4
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/MetagamingMetacommunication.xml"
 
 - type: guideEntry
   parent: RMC
   id: STERP
   name: "Правило 4: ERP"
-  priority: 1
-  ruleEntry: true
+  priority: 5
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/ERP.xml"
 
 - type: guideEntry
   parent: RMC
   id: STBuggingFoulPlay
   name: "Правило 5: Багоюз и нечестная игра"
-  priority: 1
-  ruleEntry: true
+  priority: 6
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/BuggingFoulPlay.xml"
 
 - type: guideEntry
   parent: RMC
   id: STBypassBlockingMultiAccounts
   name: "Правило 6: Обход блокировок, мультиаккаунты"
-  priority: 1
-  ruleEntry: true
+  priority: 7
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/BypassBlockingMultiAccounts.xml"
 
 - type: guideEntry
   parent: RMC
   id: STPlayYourRole
   name: "Правило 7: Отыгрывайте свою роль"
-  priority: 1
-  ruleEntry: true
+  priority: 8
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/PlayYourRole.xml"
 
 - type: guideEntry
   parent: RMC
   id: STCharacterNames
   name: "Правило 8: Имена персонажей"
-  priority: 1
-  ruleEntry: true
+  priority: 9
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/CharacterNames.xml"
 
 - type: guideEntry
   parent: RMC
   id: STUseOfLethalForce
   name: "Правило 9: Применение летальной силы"
-  priority: 1
-  ruleEntry: true
+  priority: 10
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/UseOfLethalForce.xml"
 
 - type: guideEntry
   parent: RMC
   id: STMilitaryLawMutinies
   name: "Правило 10: Военный закон, мятежи"
-  priority: 1
-  ruleEntry: true
+  priority: 11
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/MilitaryLawMutinies.xml"
+  children:
+  - RMCCommandRoles
+  - RMCHigherStandards
 
 - type: guideEntry
   parent: RMC
   id: STENGCommunityExpectations
   name: "Rule 0: Community Expectations"
-  priority: 1
-  ruleEntry: true
+  priority: 12
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/CommunityExpectations.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGGrief
   name: "Rule 1: Griefing"
-  priority: 1
-  ruleEntry: true
+  priority: 13
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/Grief.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGRolePlay
   name: "Rule 2: Roleplaying"
-  priority: 1
-  ruleEntry: true
+  priority: 14
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/RolePlay.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGMetagamingMetacommunication
   name: "Rule 3: Metagaming and Metacommunication"
-  priority: 1
-  ruleEntry: true
+  priority: 15
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/MetagamingMetacommunication.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGERP
   name: "Rule 4: ERP"
-  priority: 1
-  ruleEntry: true
+  priority: 16
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/ERP.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGBuggingFoulPlay
   name: "Rule 5: Bug Exploitation and Foul Play"
-  priority: 1
-  ruleEntry: true
+  priority: 17
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/BuggingFoulPlay.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGBypassBlockingMultiAccounts
   name: "Rule 6: Ban Evasion and Multi-accounting"
-  priority: 1
-  ruleEntry: true
+  priority: 18
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/BypassBlockingMultiAccounts.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGPlayYourRole
   name: "Rule 7: Play Your Role"
-  priority: 1
-  ruleEntry: true
+  priority: 19
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/PlayYourRole.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGCharacterNames
   name: "Rule 8: Character Names"
-  priority: 1
-  ruleEntry: true
+  priority: 20
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/CharacterNames.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGUseOfLethalForce
   name: "Rule 9: Use of Lethal Force"
-  priority: 1
-  ruleEntry: true
+  priority: 21
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/UseOfLethalForce.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGMilitaryLawMutinies
   name: "Rule 10: Military Law and Mutinies"
-  priority: 1
-  ruleEntry: true
+  priority: 22
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/MilitaryLawMutinies.xml"

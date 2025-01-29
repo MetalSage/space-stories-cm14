@@ -494,6 +494,8 @@
     state: "44"
   - type: Icon
     state: "44"
+  - type: Occluder
+    enabled: false
 
 - type: entity
   parent: CMBaseAlamoWall
@@ -504,6 +506,8 @@
     state: "45"
   - type: Icon
     state: "45"
+  - type: Occluder
+    enabled: false
 
 - type: entity
   parent: CMBaseAlamoWall

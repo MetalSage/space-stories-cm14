@@ -7,7 +7,7 @@
     edges:
     - to: bloodyParty
       steps:
-      - tag: SprayBloodyParty
+      - tag: STSprayBloodyParty
         doAfter: 2
   - node: bloodyParty
     entity: STWeaponShotgunM42A2BloodyParty
@@ -21,7 +21,7 @@
     edges:
     - to: phoenix
       steps:
-      - tag: SprayPhoenix
+      - tag: STSprayPhoenix
         doAfter: 2
   - node: phoenix
     entity: STWeaponRifleM54CPhoenix
@@ -35,7 +35,7 @@
     edges:
     - to: angelOfDeath
       steps:
-      - tag: SprayAngelOfDeath
+      - tag: STSprayAngelOfDeath
         doAfter: 2
   - node: angelOfDeath
     entity: STWeaponRifleM4SPRAngelOfDeath
@@ -49,7 +49,7 @@
     edges:
     - to: angelOfDeath
       steps:
-      - tag: SprayAngelOfDeath
+      - tag: STSprayAngelOfDeath
         doAfter: 2
   - node: angelOfDeath
     entity: STWeaponRifleM4SPRCustomAngelOfDeath
@@ -63,7 +63,7 @@
     edges:
     - to: toxic
       steps:
-      - tag: SprayToxic
+      - tag: STSprayToxic
         doAfter: 2
   - node: toxic
     entity: STWeaponSMGM63Toxic
@@ -77,7 +77,7 @@
     edges:
     - to: goldRush
       steps:
-      - tag: SprayGoldRush
+      - tag: STSprayGoldRush
         doAfter: 2
   - node: goldRush
     entity: STWeaponRevolverM44GoldRush
@@ -87,11 +87,11 @@
   start: start
   graph:
   - node: start
-    entity: CMWeaponPistolM77
+    entity: RMCWeaponPistolM77
     edges:
     - to: fate
       steps:
-      - tag: SprayFate
+      - tag: STSprayFate
         doAfter: 2
   - node: fate
     entity: STWeaponPistolM77Fate
@@ -105,7 +105,7 @@
     edges:
     - to: rust
       steps:
-      - tag: SprayRust
+      - tag: STSprayRust
         doAfter: 2
   - node: rust
     entity: STWeaponPistolM1984Rust
@@ -115,14 +115,14 @@
   start: start
   graph:
   - node: start
-    entity: CMWeaponPistolMK80
+    entity: RMCMK80
     edges:
     - to: amethyst
       steps:
-      - tag: SprayAmethyst
+      - tag: STSprayAmethyst
         doAfter: 2
   - node: amethyst
-    entity: STWeaponPistolMK80Amethyst
+    entity: STMK80Amethyst
 
 - type: constructionGraph
   id: PistolSU6Construct
@@ -133,7 +133,7 @@
     edges:
     - to: phantom
       steps:
-      - tag: SprayPhantom
+      - tag: STSprayPhantom
         doAfter: 2
   - node: phantom
     entity: STWeaponPistolSU6Phantom
@@ -147,7 +147,7 @@
     edges:
     - to: impulse
       steps:
-      - tag: SprayImpulse
+      - tag: STSprayImpulse
         doAfter: 2
   - node: impulse
     entity: STSmartGunImpulse
@@ -161,7 +161,7 @@
     edges:
     - to: bombardier
       steps:
-      - tag: SprayBombardier
+      - tag: STSprayBombardier
         doAfter: 2
   - node: bombardier
     entity: STWeaponLauncherM5ATLBombardier
@@ -175,7 +175,7 @@
     edges:
     - to: tiger
       steps:
-      - tag: SprayTiger
+      - tag: STSprayTiger
         doAfter: 2
   - node: tiger
     entity: STM96SSniperRifleTiger
@@ -189,7 +189,7 @@
     edges:
     - to: goldenAutumn
       steps:
-      - tag: SprayGoldenAutumn
+      - tag: STSprayGoldenAutumn
         doAfter: 2
   - node: goldenAutumn
     entity: STXM43E1SniperRifleGoldenAutumn
@@ -203,7 +203,7 @@
     edges:
     - to: pacifist
       steps:
-      - tag: SprayPacifist
+      - tag: STSprayPacifist
         doAfter: 2
   - node: pacifist
     entity: STWeaponLauncherM83Pacifist

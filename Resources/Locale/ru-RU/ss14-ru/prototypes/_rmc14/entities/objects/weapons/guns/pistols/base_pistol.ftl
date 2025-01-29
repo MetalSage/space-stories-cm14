@@ -6,5 +6,3 @@ ent-CMCartridgePistolBase = { ent-BaseCartridgePistol }
     .desc = { ent-BaseCartridgePistol.desc }
 ent-CMBulletBase = { ent-BaseBullet }
     .desc = { ent-BaseBullet.desc }
-ent-CMBulletPistol9mm = пуля (9 мм)
-    .desc = { ent-CMBulletBase.desc }

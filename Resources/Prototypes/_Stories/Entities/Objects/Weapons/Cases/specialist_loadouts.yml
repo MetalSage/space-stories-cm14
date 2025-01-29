@@ -13,7 +13,7 @@
     - id: STMagazineSniperXM43E1AntiMateriel
       amount: 6
     - id: CMBackpackSniper
-    - id: CMWeaponPistolMK80
+    - id: RMCMK80
     - id: CMMagazinePistolMK80
       amount: 2
     - id: STXM43E1SniperRifle

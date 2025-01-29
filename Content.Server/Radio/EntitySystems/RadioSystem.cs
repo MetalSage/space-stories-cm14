@@ -90,7 +90,7 @@ public sealed class RadioSystem : EntitySystem
         var prefix = "";
         TryComp<JobPrefixComponent>(messageSource, out var jobPrefix);
         if (jobPrefix?.Prefix != null)
-            prefix += $" ({jobPrefix?.Prefix})";
+            prefix += $" ({Loc.GetString(jobPrefix.Prefix)})";
 
         SpeechVerbPrototype speech;
         if (evt.SpeechVerb != null && _prototype.TryIndex(evt.SpeechVerb, out var evntProto))

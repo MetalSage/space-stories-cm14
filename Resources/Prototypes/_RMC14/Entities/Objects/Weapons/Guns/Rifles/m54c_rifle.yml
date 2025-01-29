@@ -91,7 +91,7 @@
   - type: AttachableHolderVisuals # Stories-Parity
     offsets:
       rmc-aslot-barrel: 0.8125, 0.03125
-      rmc-aslot-rail: 0.00, 0.21875
+      rmc-aslot-rail: 0.00, 0.1875
       rmc-aslot-stock: -0.78125, 0.00
       rmc-aslot-underbarrel: 0.375, -0.3125
   - type: Construction # Stories-Partners

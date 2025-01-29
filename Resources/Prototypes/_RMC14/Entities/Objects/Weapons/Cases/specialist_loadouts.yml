@@ -15,7 +15,7 @@
     - id: CMMagazineSniperM96SFlak # Stories-Flak
       amount: 2
     - id: CMBackpackSniper
-    - id: CMWeaponPistolMK80
+    - id: RMCMK80
     - id: CMMagazinePistolMK80
       amount: 2
     - id: CMM96SSniperRifle
@@ -50,7 +50,7 @@
     - id: RMCHandsM3G4
     - id: RMCArmorM3G4
     - id: RMCArmorHelmetM3G4 # hugger protection
-    - id: CMWeaponPistolMK80
+    - id: RMCMK80
     - id: CMMagazinePistolMK80
       amount: 2
     - id: RMCBinoculars
@@ -88,7 +88,7 @@
       amount: 2
 #    - id: RMCRocket84mmWhitePhosphorous
 #      amount: 1
-    - id: CMWeaponPistolMK80
+    - id: RMCMK80
     - id: CMMagazinePistolMK80
       amount: 2
 #    - id: RMCPlasticExplosives
@@ -126,7 +126,7 @@
     - id: RMCMagazineRifleM4SPRA19Impact
       amount: 2
     - id: RMCBackpackScout
-    - id: CMWeaponPistolMK80
+    - id: RMCMK80
     - id: CMMagazinePistolMK80
       amount: 2
     - id: WeaponRifleM4SPRCustom

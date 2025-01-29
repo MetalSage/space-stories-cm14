@@ -71,7 +71,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
         if (string.IsNullOrEmpty(name) && PrototypeManager.TryIndex(roleProto.NameDataset, out var nameData))
         {
-            name = _random.Pick(nameData.Values);
+            name = Loc.GetString(_random.Pick(nameData.Values));
         }
 
         if (!string.IsNullOrEmpty(name))
@@ -151,28 +151,25 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
             foreach (var (slotName, entProtos) in startingGear.Storage)
             {
-                if (entProtos == null || entProtos.Count == 0) 
+                if (entProtos == null || entProtos.Count == 0)
                     continue;
 
                 if (inventoryComp != null &&
                     InventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt, inventoryComponent: inventoryComp) &&
                     _storageQuery.TryComp(slotEnt, out var storage))
                 {
-                    var ents = new ValueList<EntityUid>();
 
                     foreach (var entProto in entProtos)
                     {
                         var spawnedEntity = Spawn(entProto, coords);
-                        ents.Add(spawnedEntity);
-
-                        if (TryComp<ItemComponent>(spawnedEntity, out var item))
+                        if (TryComp(spawnedEntity, out ItemComponent? item))
                         {
                             var ev = new CMStorageItemFillEvent((spawnedEntity, item), storage);
                             RaiseLocalEvent(slotEnt.Value, ref ev);
                         }
 
                         _storage.Insert(slotEnt.Value, spawnedEntity, out _, storageComp: storage, playSound: false);
-                    }         
+                    }
                 }
             }
         }

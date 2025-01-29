@@ -48414,6 +48414,8 @@ entities:
     - type: Transform
       pos: 97.5,-42.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMVendorBooze
   entities:
   - uid: 1284
@@ -48421,11 +48423,15 @@ entities:
     - type: Transform
       pos: 120.5,-46.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 1285
     components:
     - type: Transform
       pos: 3.5,-159.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMVendorCigs
   entities:
   - uid: 1286
@@ -48501,26 +48507,36 @@ entities:
     - type: Transform
       pos: 102.5,-42.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 1299
     components:
     - type: Transform
       pos: 94.5,-40.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 1300
     components:
     - type: Transform
       pos: 85.5,-55.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 1301
     components:
     - type: Transform
       pos: 112.5,-43.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 1302
     components:
     - type: Transform
       pos: 106.5,-50.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMVendorSnack
   entities:
   - uid: 1303
@@ -52757,6 +52773,8 @@ entities:
     - type: Transform
       pos: 95.5,-45.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CrayonRainbow
   entities:
   - uid: 2136
@@ -170085,7 +170103,6 @@ entities:
     - type: Transform
       pos: 93.5,-80.65625
       parent: 1
-    - type: Appearance
     - type: SpriteSetRenderOrder
       renderOrder: 3000
   - uid: 25235

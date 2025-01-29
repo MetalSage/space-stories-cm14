@@ -115,7 +115,7 @@
 
 - type: entity
   id: STWeaponPistolM77Fate
-  parent: CMWeaponPistolM77
+  parent: RMCWeaponPistolM77
   suffix: Fate
   components:
   - type: Construction
@@ -146,8 +146,8 @@
       Urban: _Stories/Partners/Weapons/Pistols/m1984.rsi
 
 - type: entity
-  id: STWeaponPistolMK80Amethyst
-  parent: CMWeaponPistolMK80
+  id: STMK80Amethyst
+  parent: RMCMK80
   suffix: Amethyst
   components:
   - type: Construction

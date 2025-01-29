@@ -58,5 +58,6 @@ rmc-ui-discord = Дискорд
 rmc-ui-patreon = Boosty
 rmc-other-credits-tab = Другое
 rmc-ui-auto-punctuate = Автоматически расставляйте знаки препинания в символьных сообщениях
+rmc-ui-auto-eject-magazines = Автоматическое извлечение магазинов из оружия
 cm-ui-audio-humanoid-voicelines = Воспроизводить голоса
 cm-ui-roadmap = Дорожная карта

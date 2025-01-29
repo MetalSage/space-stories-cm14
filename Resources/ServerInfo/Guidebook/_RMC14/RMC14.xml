@@ -1,23 +1,25 @@
 ﻿<Document>
-  #Space Stories Colonial Marines: Руководство
+  # Руководство Space Stories Colonial Marines
 
   Добро пожаловать в Space Stories Colonial Marines.
 
-  Это MRP-сервер, вдохновленный CM13, на новом движке SS14!
+  Это MRP сервер, вдохновленный CM13, на новом движке SS14!
 
-  Руководство, план развития и правила игры можно найти на экране лобби и в любой момент в меню выхода.
+  Руководство, дорожная карта и правила игры можно найти на экране лобби и в любой момент в меню побега.
 
-  Нажмите на любую из вкладок слева, чтобы узнать больше об Space Stories Colonial Marines и его уникальном контенте.
+  Нажмите на любую из вкладок слева, чтобы узнать об Space Stories Colonial Marines и его уникальном контенте.
 
-  Обязательно ознакомьтесь с правилами, если вы еще этого не сделали.
-  - [textlink="Правила" link="CMOverview"]
+  Обязательно прочитайте правила, если вы еще этого не сделали.
+  - [textlink="Правила" link="RMCOverview"]
 
-  Новичок в Space Stories Colonial Marines или нет опыта игры на CM13? Будьте осторожны! Многие механики и значения отличаются от SS14.
-  (Рекомендуется прочитать руководство и изучить базовые элементы управления на другом сервере, если это ваш первый раз в SS14.)
-  - [textlink="Руководство для новых игроков!" link="RMCGuideNewPlayer"]
+  Новичок в RMC-14, SS14 или нет опыта игры в CM13? Будьте осторожны! Многие механики и значения отличаются от SS14.
+  - [textlink="Руководство для нового игрока!" link="RMCGuideNewPlayer"]
 
-  Уже есть некоторый опыт? Ознакомьтесь с этими страницами руководства!
+  Есть опыт? Ознакомьтесь с этими страницами руководства!
   - [textlink="Медицина" link="RMCMedical"]
-  - [textlink="Лекарства" link="CMMedicine"]
-  - [textlink="Запросы" link="RMCRequisitions"]
+  - [textlink="Лекарства" link="RMCMedicine"]
+  - [textlink="Запросы снабжения" link="RMCRequisitions"]
+  - [textlink="Вышки связи и сенсорные вышки" link="RMCGuideCommunicationsTowers"]
+  - [textlink="Боевой техник" link="RMCGuideRoleCombatTechnician"]
+  - [textlink="Техник по обслуживанию" link="RMCGuideRoleMaintenanceTechnician"]
 </Document>

@@ -1,4 +1,4 @@
-ent-RMCBaseTornadoWall = tornado wall
+ent-RMCBaseTornadoWall = стена торнадо
     .desc = { ent-CMBaseWallInvincible.desc }
 ent-RMCTornadoTailLeft1 = двигатель
     .suffix = Левый

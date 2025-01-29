@@ -72,6 +72,10 @@
   - type: Construction # Stories-Partners
     graph: WeaponLauncherM5ATLConstruct
     node: start
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/explosive_mouse.rsi
+      state: all
 
 # 84mm HE
 - type: entity

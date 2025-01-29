@@ -78612,346 +78612,594 @@ entities:
       rot: 3.141592653589793 rad
       pos: 74.5,31.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13027
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 73.5,31.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13099
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 52.5,28.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13100
     components:
     - type: Transform
       pos: 52.5,28.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13101
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 52.5,27.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13102
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 52.5,25.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13106
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 52.5,25.46875
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13109
     components:
     - type: Transform
       pos: 51.5,28.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13110
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 51.5,26.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13111
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 51.5,25.46875
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13115
     components:
     - type: Transform
       pos: 50.5,28.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13116
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 50.5,27.46875
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13117
     components:
     - type: Transform
       pos: 50.5,25.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13120
     components:
     - type: Transform
       pos: 49.5,28.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13121
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 49.5,27.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13122
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 49.5,26.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13542
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 48.5,28.46875
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13581
     components:
     - type: Transform
       pos: 48.5,28.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13583
     components:
     - type: Transform
       pos: 48.5,26.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13601
     components:
     - type: Transform
       pos: 47.5,28.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13602
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 47.5,27.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13603
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 47.5,25.46875
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13626
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 46.5,28.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13645
     components:
     - type: Transform
       pos: 46.5,28.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13646
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 46.5,25.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 13647
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 46.5,25.46875
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14029
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 37.5,-32.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14030
     components:
     - type: Transform
       pos: 37.5,-32.09375
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14031
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 37.5,-36.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14032
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 37.5,-36.53125
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14137
     components:
     - type: Transform
       pos: 36.5,-32.09375
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14138
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 36.5,-34.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14158
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 36.5,-36.53125
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14258
     components:
     - type: Transform
       pos: 35.5,-32.09375
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14267
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 35.5,-33.53125
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14268
     components:
     - type: Transform
       pos: 35.5,-35.09375
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14269
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 35.5,-36.53125
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14270
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 34.5,-34.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14315
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 33.5,-34.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14759
     components:
     - type: Transform
       pos: 32.5,-32.09375
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 14977
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 32.5,-33.53125
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 15286
     components:
     - type: Transform
       pos: 32.5,-35.09375
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 15287
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 32.5,-36.53125
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 15310
     components:
     - type: Transform
       pos: 31.5,-32.09375
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 15311
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 31.5,-34.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 15312
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 31.5,-36.53125
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 15315
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 30.5,-32.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 15316
     components:
     - type: Transform
       pos: 30.5,-32.09375
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 15317
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 30.5,-36.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 15352
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 30.5,-36.53125
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19591
     components:
     - type: Transform
       pos: 23.5,33.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19592
     components:
     - type: Transform
       pos: 22.5,33.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19593
     components:
     - type: Transform
       pos: 21.5,33.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19594
     components:
     - type: Transform
       pos: 20.5,48.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19595
     components:
     - type: Transform
       pos: 20.5,33.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19596
     components:
     - type: Transform
       pos: 18.5,48.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19622
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -9.5,57.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19623
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -10.5,57.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19721
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 75.5,31.5
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19773
     components:
     - type: Transform
       pos: -100.5,1.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19774
     components:
     - type: Transform
       pos: -102.5,1.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
   - uid: 19775
     components:
     - type: Transform
       pos: -110.5,1.90625
       parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
 - proto: CMSink
   entities:
   - uid: 14617
@@ -80880,11 +81128,15 @@ entities:
     - type: Transform
       pos: -3.5,73.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 15734
     components:
     - type: Transform
       pos: -2.5,25.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMVendorCigs
   entities:
   - uid: 13775
@@ -81138,21 +81390,29 @@ entities:
     - type: Transform
       pos: -79.5,-51.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 14018
     components:
     - type: Transform
       pos: -62.5,-30.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 14139
     components:
     - type: Transform
       pos: 77.5,-48.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 15290
     components:
     - type: Transform
       pos: -9.5,-87.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMVendorElectronics
   entities:
   - uid: 13746
@@ -81160,31 +81420,43 @@ entities:
     - type: Transform
       pos: -63.5,-50.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 13762
     components:
     - type: Transform
       pos: -102.5,-68.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 13763
     components:
     - type: Transform
       pos: -104.5,-66.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 13764
     components:
     - type: Transform
       pos: -104.5,-64.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 15288
     components:
     - type: Transform
       pos: -14.5,-87.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 15289
     components:
     - type: Transform
       pos: -8.5,-87.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMVendorMedical
   entities:
   - uid: 14441
@@ -81192,16 +81464,22 @@ entities:
     - type: Transform
       pos: -2.5,24.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 14469
     components:
     - type: Transform
       pos: 21.5,27.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 14714
     components:
     - type: Transform
       pos: -4.5,73.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMVendorNutri
   entities:
   - uid: 14068
@@ -81231,6 +81509,8 @@ entities:
     - type: Transform
       pos: 90.5,-23.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMVendorSec
   entities:
   - uid: 13961
@@ -81401,11 +81681,15 @@ entities:
     - type: Transform
       pos: 78.5,-48.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 15291
     components:
     - type: Transform
       pos: -13.5,-87.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMVendorWalkman
   entities:
   - uid: 14059
@@ -81413,6 +81697,8 @@ entities:
     - type: Transform
       pos: -79.5,-55.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMWallJungle
   entities:
   - uid: 3333
@@ -83612,66 +83898,92 @@ entities:
     - type: Transform
       pos: 58.5,-11.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 14316
     components:
     - type: Transform
       pos: 29.5,30.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 14317
     components:
     - type: Transform
       pos: 30.5,30.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 16027
     components:
     - type: Transform
       pos: 59.5,-11.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 16028
     components:
     - type: Transform
       pos: 60.5,-11.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 17309
     components:
     - type: Transform
       pos: 85.5,-65.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 17310
     components:
     - type: Transform
       pos: 84.5,-65.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 17311
     components:
     - type: Transform
       pos: 82.5,-65.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 17312
     components:
     - type: Transform
       pos: 81.5,-65.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 17313
     components:
     - type: Transform
       pos: 80.5,-65.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 17314
     components:
     - type: Transform
       pos: 79.5,-65.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 17315
     components:
     - type: Transform
       pos: 77.5,-65.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 17316
     components:
     - type: Transform
       pos: 76.5,-65.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CrateTrashCart
   entities:
   - uid: 14916
@@ -103652,8 +103964,8 @@ entities:
       pos: 29.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13318
     components:
     - type: MetaData
@@ -103664,8 +103976,8 @@ entities:
       pos: 30.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13319
     components:
     - type: MetaData
@@ -103676,8 +103988,8 @@ entities:
       pos: 31.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13320
     components:
     - type: MetaData
@@ -103688,8 +104000,8 @@ entities:
       pos: 32.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13321
     components:
     - type: MetaData
@@ -103700,8 +104012,8 @@ entities:
       pos: 33.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13322
     components:
     - type: MetaData
@@ -103712,8 +104024,8 @@ entities:
       pos: 34.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13323
     components:
     - type: MetaData
@@ -103724,8 +104036,8 @@ entities:
       pos: 35.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13324
     components:
     - type: MetaData
@@ -103736,8 +104048,8 @@ entities:
       pos: 36.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13325
     components:
     - type: MetaData
@@ -103748,8 +104060,8 @@ entities:
       pos: 37.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13326
     components:
     - type: MetaData
@@ -103760,8 +104072,8 @@ entities:
       pos: 38.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13327
     components:
     - type: MetaData
@@ -103772,8 +104084,8 @@ entities:
       pos: 39.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13328
     components:
     - type: Transform
@@ -103792,8 +104104,8 @@ entities:
       pos: 41.5,-89.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13330
     components:
     - type: MetaData
@@ -103804,8 +104116,8 @@ entities:
       pos: 29.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13331
     components:
     - type: MetaData
@@ -103816,8 +104128,8 @@ entities:
       pos: 30.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13332
     components:
     - type: MetaData
@@ -103828,8 +104140,8 @@ entities:
       pos: 31.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13333
     components:
     - type: MetaData
@@ -103840,8 +104152,8 @@ entities:
       pos: 32.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13334
     components:
     - type: MetaData
@@ -103852,8 +104164,8 @@ entities:
       pos: 33.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13335
     components:
     - type: MetaData
@@ -103864,8 +104176,8 @@ entities:
       pos: 34.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13336
     components:
     - type: MetaData
@@ -103876,8 +104188,8 @@ entities:
       pos: 35.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13337
     components:
     - type: MetaData
@@ -103888,8 +104200,8 @@ entities:
       pos: 36.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13338
     components:
     - type: MetaData
@@ -103900,8 +104212,8 @@ entities:
       pos: 37.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13339
     components:
     - type: MetaData
@@ -103912,8 +104224,8 @@ entities:
       pos: 38.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13340
     components:
     - type: MetaData
@@ -103924,8 +104236,8 @@ entities:
       pos: 39.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13341
     components:
     - type: MetaData
@@ -103936,8 +104248,8 @@ entities:
       pos: 40.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13342
     components:
     - type: MetaData
@@ -103948,8 +104260,8 @@ entities:
       pos: 41.5,-91.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13343
     components:
     - type: MetaData
@@ -103960,8 +104272,8 @@ entities:
       pos: -46.5,-59.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13344
     components:
     - type: MetaData
@@ -103972,8 +104284,8 @@ entities:
       pos: -45.5,-59.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13345
     components:
     - type: MetaData
@@ -103984,8 +104296,8 @@ entities:
       pos: -44.5,-59.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13346
     components:
     - type: MetaData
@@ -103996,8 +104308,8 @@ entities:
       pos: -46.5,-57.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13347
     components:
     - type: MetaData
@@ -104008,8 +104320,8 @@ entities:
       pos: -45.5,-57.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13348
     components:
     - type: MetaData
@@ -104020,8 +104332,8 @@ entities:
       pos: -44.5,-57.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13349
     components:
     - type: Transform
@@ -104127,8 +104439,8 @@ entities:
       pos: -44.5,-35.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13366
     components:
     - type: MetaData
@@ -104138,8 +104450,8 @@ entities:
       pos: -45.5,-35.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13367
     components:
     - type: MetaData
@@ -104149,8 +104461,8 @@ entities:
       pos: -46.5,-35.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13368
     components:
     - type: MetaData
@@ -104160,8 +104472,8 @@ entities:
       pos: -46.5,-37.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13369
     components:
     - type: MetaData
@@ -104181,8 +104493,8 @@ entities:
       pos: -44.5,-37.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13371
     components:
     - type: MetaData
@@ -104193,8 +104505,8 @@ entities:
       pos: -46.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13372
     components:
     - type: MetaData
@@ -104205,8 +104517,8 @@ entities:
       pos: -45.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13373
     components:
     - type: MetaData
@@ -104217,8 +104529,8 @@ entities:
       pos: -44.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13375
     components:
     - type: MetaData
@@ -104229,8 +104541,8 @@ entities:
       pos: -45.5,-76.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13376
     components:
     - type: MetaData
@@ -104241,8 +104553,8 @@ entities:
       pos: -44.5,-76.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13377
     components:
     - type: MetaData
@@ -104253,8 +104565,8 @@ entities:
       pos: -12.5,40.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13378
     components:
     - type: MetaData
@@ -104265,8 +104577,8 @@ entities:
       pos: -11.5,40.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13379
     components:
     - type: MetaData
@@ -104277,8 +104589,8 @@ entities:
       pos: -10.5,40.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13380
     components:
     - type: MetaData
@@ -104289,8 +104601,8 @@ entities:
       pos: -9.5,40.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13381
     components:
     - type: MetaData
@@ -104301,8 +104613,8 @@ entities:
       pos: -12.5,46.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13382
     components:
     - type: MetaData
@@ -104313,8 +104625,8 @@ entities:
       pos: -11.5,46.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13383
     components:
     - type: MetaData
@@ -104325,8 +104637,8 @@ entities:
       pos: -10.5,46.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13384
     components:
     - type: MetaData
@@ -104337,8 +104649,8 @@ entities:
       pos: -9.5,46.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13385
     components:
     - type: MetaData
@@ -104349,8 +104661,8 @@ entities:
       pos: -12.5,48.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13386
     components:
     - type: MetaData
@@ -104361,8 +104673,8 @@ entities:
       pos: -11.5,48.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13387
     components:
     - type: MetaData
@@ -104373,8 +104685,8 @@ entities:
       pos: -10.5,48.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13388
     components:
     - type: MetaData
@@ -104385,8 +104697,8 @@ entities:
       pos: -9.5,48.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13389
     components:
     - type: Transform
@@ -104456,8 +104768,8 @@ entities:
       pos: 55.5,-72.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13400
     components:
     - type: MetaData
@@ -104467,8 +104779,8 @@ entities:
       pos: 56.5,-72.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13401
     components:
     - type: MetaData
@@ -104478,8 +104790,8 @@ entities:
       pos: 57.5,-72.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13402
     components:
     - type: MetaData
@@ -104489,8 +104801,8 @@ entities:
       pos: 55.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13403
     components:
     - type: MetaData
@@ -104500,8 +104812,8 @@ entities:
       pos: 56.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13404
     components:
     - type: MetaData
@@ -104511,8 +104823,8 @@ entities:
       pos: 57.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13405
     components:
     - type: MetaData
@@ -104522,8 +104834,8 @@ entities:
       pos: 61.5,-72.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13406
     components:
     - type: MetaData
@@ -104533,8 +104845,8 @@ entities:
       pos: 62.5,-72.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13407
     components:
     - type: MetaData
@@ -104544,8 +104856,8 @@ entities:
       pos: 63.5,-72.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13408
     components:
     - type: MetaData
@@ -104555,8 +104867,8 @@ entities:
       pos: 61.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13409
     components:
     - type: MetaData
@@ -104566,8 +104878,8 @@ entities:
       pos: 62.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13410
     components:
     - type: MetaData
@@ -104577,8 +104889,8 @@ entities:
       pos: 63.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13411
     components:
     - type: MetaData
@@ -104588,8 +104900,8 @@ entities:
       pos: 67.5,-72.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13412
     components:
     - type: MetaData
@@ -104599,8 +104911,8 @@ entities:
       pos: 68.5,-72.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13413
     components:
     - type: MetaData
@@ -104610,8 +104922,8 @@ entities:
       pos: 69.5,-72.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13414
     components:
     - type: MetaData
@@ -104621,8 +104933,8 @@ entities:
       pos: 67.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13415
     components:
     - type: MetaData
@@ -104632,8 +104944,8 @@ entities:
       pos: 68.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13416
     components:
     - type: MetaData
@@ -104643,8 +104955,8 @@ entities:
       pos: 69.5,-74.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13417
     components:
     - type: MetaData
@@ -104654,8 +104966,8 @@ entities:
       pos: 107.5,-32.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13418
     components:
     - type: MetaData
@@ -104665,8 +104977,8 @@ entities:
       pos: 108.5,-32.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13419
     components:
     - type: MetaData
@@ -104676,8 +104988,8 @@ entities:
       pos: 109.5,-32.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13420
     components:
     - type: MetaData
@@ -104687,8 +104999,8 @@ entities:
       pos: 111.5,-32.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13421
     components:
     - type: MetaData
@@ -104698,8 +105010,8 @@ entities:
       pos: 112.5,-32.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13422
     components:
     - type: MetaData
@@ -104709,8 +105021,8 @@ entities:
       pos: 113.5,-32.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13423
     components:
     - type: MetaData
@@ -104720,8 +105032,8 @@ entities:
       pos: 107.5,-25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13424
     components:
     - type: MetaData
@@ -104731,8 +105043,8 @@ entities:
       pos: 108.5,-25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13425
     components:
     - type: MetaData
@@ -104742,8 +105054,8 @@ entities:
       pos: 109.5,-25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13426
     components:
     - type: MetaData
@@ -104753,8 +105065,8 @@ entities:
       pos: 111.5,-25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13427
     components:
     - type: MetaData
@@ -104764,8 +105076,8 @@ entities:
       pos: 112.5,-25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13428
     components:
     - type: MetaData
@@ -104775,8 +105087,8 @@ entities:
       pos: 113.5,-25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13429
     components:
     - type: MetaData
@@ -104786,8 +105098,8 @@ entities:
       pos: 107.5,-14.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13430
     components:
     - type: MetaData
@@ -104797,8 +105109,8 @@ entities:
       pos: 108.5,-14.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13431
     components:
     - type: MetaData
@@ -104808,8 +105120,8 @@ entities:
       pos: 109.5,-14.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13432
     components:
     - type: MetaData
@@ -104819,8 +105131,8 @@ entities:
       pos: 107.5,-16.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13433
     components:
     - type: MetaData
@@ -104830,8 +105142,8 @@ entities:
       pos: 108.5,-16.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13434
     components:
     - type: MetaData
@@ -104841,8 +105153,8 @@ entities:
       pos: 109.5,-16.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13435
     components:
     - type: MetaData
@@ -104852,8 +105164,8 @@ entities:
       pos: 111.5,-14.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13436
     components:
     - type: MetaData
@@ -104863,8 +105175,8 @@ entities:
       pos: 112.5,-14.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13437
     components:
     - type: MetaData
@@ -104874,8 +105186,8 @@ entities:
       pos: 113.5,-14.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13438
     components:
     - type: MetaData
@@ -104885,8 +105197,8 @@ entities:
       pos: 111.5,-16.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13439
     components:
     - type: MetaData
@@ -104896,8 +105208,8 @@ entities:
       pos: 112.5,-16.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13440
     components:
     - type: MetaData
@@ -104907,8 +105219,8 @@ entities:
       pos: 113.5,-16.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13441
     components:
     - type: MetaData
@@ -104918,8 +105230,8 @@ entities:
       pos: 116.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13442
     components:
     - type: MetaData
@@ -104929,8 +105241,8 @@ entities:
       pos: 115.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13443
     components:
     - type: MetaData
@@ -104940,8 +105252,8 @@ entities:
       pos: 114.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13444
     components:
     - type: MetaData
@@ -104951,8 +105263,8 @@ entities:
       pos: 113.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13445
     components:
     - type: MetaData
@@ -104962,8 +105274,8 @@ entities:
       pos: 112.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13446
     components:
     - type: MetaData
@@ -104973,8 +105285,8 @@ entities:
       pos: 111.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13447
     components:
     - type: MetaData
@@ -104984,8 +105296,8 @@ entities:
       pos: 110.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13448
     components:
     - type: MetaData
@@ -104995,8 +105307,8 @@ entities:
       pos: 109.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13449
     components:
     - type: MetaData
@@ -105006,8 +105318,8 @@ entities:
       pos: 108.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13450
     components:
     - type: MetaData
@@ -105017,8 +105329,8 @@ entities:
       pos: 107.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13451
     components:
     - type: MetaData
@@ -105028,8 +105340,8 @@ entities:
       pos: 106.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13452
     components:
     - type: MetaData
@@ -105039,8 +105351,8 @@ entities:
       pos: 105.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13453
     components:
     - type: MetaData
@@ -105050,8 +105362,8 @@ entities:
       pos: 104.5,23.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13454
     components:
     - type: MetaData
@@ -105061,8 +105373,8 @@ entities:
       pos: 104.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13455
     components:
     - type: MetaData
@@ -105072,8 +105384,8 @@ entities:
       pos: 105.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13456
     components:
     - type: MetaData
@@ -105083,8 +105395,8 @@ entities:
       pos: 106.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13457
     components:
     - type: MetaData
@@ -105094,8 +105406,8 @@ entities:
       pos: 107.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13458
     components:
     - type: MetaData
@@ -105105,8 +105417,8 @@ entities:
       pos: 108.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13459
     components:
     - type: MetaData
@@ -105116,8 +105428,8 @@ entities:
       pos: 109.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13460
     components:
     - type: MetaData
@@ -105127,8 +105439,8 @@ entities:
       pos: 110.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13461
     components:
     - type: MetaData
@@ -105138,8 +105450,8 @@ entities:
       pos: 111.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13462
     components:
     - type: MetaData
@@ -105149,8 +105461,8 @@ entities:
       pos: 112.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13463
     components:
     - type: MetaData
@@ -105160,8 +105472,8 @@ entities:
       pos: 113.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13464
     components:
     - type: MetaData
@@ -105171,8 +105483,8 @@ entities:
       pos: 114.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13465
     components:
     - type: MetaData
@@ -105182,8 +105494,8 @@ entities:
       pos: 115.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 13466
     components:
     - type: MetaData
@@ -105193,8 +105505,8 @@ entities:
       pos: 116.5,25.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
   - uid: 17264
     components:
     - type: MetaData
@@ -105204,8 +105516,8 @@ entities:
       pos: -46.5,-76.5
       parent: 1
     missingComponents:
-    - RMCWallExplosionDeletable
     - Corrodible
+    - RMCWallExplosionDeletable
 - proto: RMCPouchGeneralLarge
   entities:
   - uid: 15003
@@ -110723,6 +111035,207 @@ entities:
     components:
     - type: Transform
       pos: 92.5,-0.5
+      parent: 1
+- proto: RMCTankReagentFuel
+  entities:
+  - uid: 13093
+    components:
+    - type: Transform
+      pos: 57.5,-43.5
+      parent: 1
+  - uid: 15314
+    components:
+    - type: Transform
+      pos: 30.5,-9.5
+      parent: 1
+  - uid: 15858
+    components:
+    - type: Transform
+      pos: 24.5,-84.5
+      parent: 1
+  - uid: 19589
+    components:
+    - type: Transform
+      pos: 24.5,-85.5
+      parent: 1
+  - uid: 19590
+    components:
+    - type: Transform
+      pos: 24.5,-86.5
+      parent: 1
+  - uid: 19615
+    components:
+    - type: Transform
+      pos: -3.5,37.5
+      parent: 1
+  - uid: 19710
+    components:
+    - type: Transform
+      pos: -26.5,-26.5
+      parent: 1
+  - uid: 19733
+    components:
+    - type: Transform
+      pos: 92.5,-28.5
+      parent: 1
+  - uid: 19737
+    components:
+    - type: Transform
+      pos: 119.5,-0.5
+      parent: 1
+    - type: SpriteSetRenderOrder
+      renderOrder: 2000
+  - uid: 19762
+    components:
+    - type: Transform
+      pos: -67.5,-21.5
+      parent: 1
+  - uid: 19764
+    components:
+    - type: Transform
+      pos: -71.5,-56.5
+      parent: 1
+  - uid: 19766
+    components:
+    - type: Transform
+      pos: -74.5,-31.5
+      parent: 1
+  - uid: 19767
+    components:
+    - type: Transform
+      pos: -75.5,-31.5
+      parent: 1
+  - uid: 19772
+    components:
+    - type: Transform
+      pos: -98.5,-68.5
+      parent: 1
+- proto: RMCTankReagentWater
+  entities:
+  - uid: 1180
+    components:
+    - type: Transform
+      pos: -49.5,73.5
+      parent: 1
+  - uid: 13743
+    components:
+    - type: Transform
+      pos: -71.5,-52.5
+      parent: 1
+  - uid: 13748
+    components:
+    - type: Transform
+      pos: -71.5,-65.5
+      parent: 1
+  - uid: 13826
+    components:
+    - type: Transform
+      pos: -68.5,-44.5
+      parent: 1
+  - uid: 13948
+    components:
+    - type: Transform
+      pos: 24.5,-77.5
+      parent: 1
+  - uid: 13949
+    components:
+    - type: Transform
+      pos: 23.5,-77.5
+      parent: 1
+  - uid: 13950
+    components:
+    - type: Transform
+      pos: 22.5,-75.5
+      parent: 1
+  - uid: 13951
+    components:
+    - type: Transform
+      pos: 20.5,-77.5
+      parent: 1
+  - uid: 13994
+    components:
+    - type: Transform
+      pos: -23.5,-57.5
+      parent: 1
+  - uid: 14000
+    components:
+    - type: Transform
+      pos: -79.5,-47.5
+      parent: 1
+  - uid: 14016
+    components:
+    - type: Transform
+      pos: -58.5,-32.5
+      parent: 1
+  - uid: 14040
+    components:
+    - type: Transform
+      pos: -16.5,-50.5
+      parent: 1
+  - uid: 14041
+    components:
+    - type: Transform
+      pos: -12.5,-39.5
+      parent: 1
+  - uid: 14042
+    components:
+    - type: Transform
+      pos: -12.5,-38.5
+      parent: 1
+  - uid: 14043
+    components:
+    - type: Transform
+      pos: -10.5,-53.5
+      parent: 1
+  - uid: 14044
+    components:
+    - type: Transform
+      pos: -31.5,-40.5
+      parent: 1
+  - uid: 14045
+    components:
+    - type: Transform
+      pos: -29.5,-41.5
+      parent: 1
+  - uid: 14046
+    components:
+    - type: Transform
+      pos: -25.5,-26.5
+      parent: 1
+  - uid: 14141
+    components:
+    - type: Transform
+      pos: 82.5,-45.5
+      parent: 1
+  - uid: 14164
+    components:
+    - type: Transform
+      pos: 120.5,-0.5
+      parent: 1
+  - uid: 14449
+    components:
+    - type: Transform
+      pos: -3.5,38.5
+      parent: 1
+  - uid: 14676
+    components:
+    - type: Transform
+      pos: 4.5,-14.5
+      parent: 1
+  - uid: 14898
+    components:
+    - type: Transform
+      pos: -72.5,65.5
+      parent: 1
+  - uid: 14937
+    components:
+    - type: Transform
+      pos: 25.5,61.5
+      parent: 1
+  - uid: 14978
+    components:
+    - type: Transform
+      pos: 57.5,-44.5
       parent: 1
 - proto: RMCTurretGaussSpaceborne
   entities:
@@ -160993,133 +161506,6 @@ entities:
     - type: Transform
       pos: 50.5,-13.5
       parent: 1
-- proto: RMCTankReagentWater
-  entities:
-  - uid: 1180
-    components:
-    - type: Transform
-      pos: -49.5,73.5
-      parent: 1
-  - uid: 13743
-    components:
-    - type: Transform
-      pos: -71.5,-52.5
-      parent: 1
-  - uid: 13748
-    components:
-    - type: Transform
-      pos: -71.5,-65.5
-      parent: 1
-  - uid: 13826
-    components:
-    - type: Transform
-      pos: -68.5,-44.5
-      parent: 1
-  - uid: 13948
-    components:
-    - type: Transform
-      pos: 24.5,-77.5
-      parent: 1
-  - uid: 13949
-    components:
-    - type: Transform
-      pos: 23.5,-77.5
-      parent: 1
-  - uid: 13950
-    components:
-    - type: Transform
-      pos: 22.5,-75.5
-      parent: 1
-  - uid: 13951
-    components:
-    - type: Transform
-      pos: 20.5,-77.5
-      parent: 1
-  - uid: 13994
-    components:
-    - type: Transform
-      pos: -23.5,-57.5
-      parent: 1
-  - uid: 14000
-    components:
-    - type: Transform
-      pos: -79.5,-47.5
-      parent: 1
-  - uid: 14016
-    components:
-    - type: Transform
-      pos: -58.5,-32.5
-      parent: 1
-  - uid: 14040
-    components:
-    - type: Transform
-      pos: -16.5,-50.5
-      parent: 1
-  - uid: 14041
-    components:
-    - type: Transform
-      pos: -12.5,-39.5
-      parent: 1
-  - uid: 14042
-    components:
-    - type: Transform
-      pos: -12.5,-38.5
-      parent: 1
-  - uid: 14043
-    components:
-    - type: Transform
-      pos: -10.5,-53.5
-      parent: 1
-  - uid: 14044
-    components:
-    - type: Transform
-      pos: -31.5,-40.5
-      parent: 1
-  - uid: 14045
-    components:
-    - type: Transform
-      pos: -29.5,-41.5
-      parent: 1
-  - uid: 14046
-    components:
-    - type: Transform
-      pos: -25.5,-26.5
-      parent: 1
-  - uid: 14141
-    components:
-    - type: Transform
-      pos: 82.5,-45.5
-      parent: 1
-  - uid: 14164
-    components:
-    - type: Transform
-      pos: 120.5,-0.5
-      parent: 1
-  - uid: 14449
-    components:
-    - type: Transform
-      pos: -3.5,38.5
-      parent: 1
-  - uid: 14676
-    components:
-    - type: Transform
-      pos: 4.5,-14.5
-      parent: 1
-  - uid: 14898
-    components:
-    - type: Transform
-      pos: -72.5,65.5
-      parent: 1
-  - uid: 14937
-    components:
-    - type: Transform
-      pos: 25.5,61.5
-      parent: 1
-  - uid: 14978
-    components:
-    - type: Transform
-      pos: 57.5,-44.5
-      parent: 1
 - proto: WeaponRifleAR10
   entities:
   - uid: 18297
@@ -161252,80 +161638,6 @@ entities:
     components:
     - type: Transform
       pos: 79.5,9.5
-      parent: 1
-- proto: RMCTankReagentFuel
-  entities:
-  - uid: 13093
-    components:
-    - type: Transform
-      pos: 57.5,-43.5
-      parent: 1
-  - uid: 15314
-    components:
-    - type: Transform
-      pos: 30.5,-9.5
-      parent: 1
-  - uid: 15858
-    components:
-    - type: Transform
-      pos: 24.5,-84.5
-      parent: 1
-  - uid: 19589
-    components:
-    - type: Transform
-      pos: 24.5,-85.5
-      parent: 1
-  - uid: 19590
-    components:
-    - type: Transform
-      pos: 24.5,-86.5
-      parent: 1
-  - uid: 19615
-    components:
-    - type: Transform
-      pos: -3.5,37.5
-      parent: 1
-  - uid: 19710
-    components:
-    - type: Transform
-      pos: -26.5,-26.5
-      parent: 1
-  - uid: 19733
-    components:
-    - type: Transform
-      pos: 92.5,-28.5
-      parent: 1
-  - uid: 19737
-    components:
-    - type: Transform
-      pos: 119.5,-0.5
-      parent: 1
-    - type: SpriteSetRenderOrder
-      renderOrder: 2000
-  - uid: 19762
-    components:
-    - type: Transform
-      pos: -67.5,-21.5
-      parent: 1
-  - uid: 19764
-    components:
-    - type: Transform
-      pos: -71.5,-56.5
-      parent: 1
-  - uid: 19766
-    components:
-    - type: Transform
-      pos: -74.5,-31.5
-      parent: 1
-  - uid: 19767
-    components:
-    - type: Transform
-      pos: -75.5,-31.5
-      parent: 1
-  - uid: 19772
-    components:
-    - type: Transform
-      pos: -98.5,-68.5
       parent: 1
 - proto: XenoTunnel
   entities:

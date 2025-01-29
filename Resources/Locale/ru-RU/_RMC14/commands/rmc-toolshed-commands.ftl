@@ -1,3 +1,5 @@
+command-description-alertlevel-get = Выводит в консоль текущий уровень тревоги на военном корабле.
+command-description-alertlevel-set = Изменяет уровень тревоги на военном корабле.
 command-description-areas-load = Загрузите все сохраненные области на карту в виде сущностей.
 command-description-areas-loadmortar = Загрузите на карту в виде сущностей только сохраненные области с мортирами.
 command-description-areas-save = Сохраните все отображенные области на карте.
