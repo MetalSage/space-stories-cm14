@@ -11,11 +11,3 @@
   - type: Tag
     tags:
     - HideContextMenu
-
-- type: entity
-  parent: RMCEffectAlert
-  id: RMCEffectEmpowerAlert
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: TimedDespawn
-    lifetime: 2
