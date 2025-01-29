@@ -1,0 +1,73 @@
+- type: entity
+  name: M83A2 SADAR
+  parent: [BaseWeaponLauncher, CMBaseWeaponGun, RMCBaseAttachableHolder]
+  id: CMSADARUnfolded
+  description: The M83A2 SADAR is a lightweight one-shot anti-armor weapon capable of engaging enemy vehicles at ranges up to 1,000m. Fully disposable, the rocket's launcher is discarded after firing. When stowed (unique-action), the SADAR system consists of a watertight carbon-fiber composite blast tube, inside of which is an aluminum launch tube containing the missile. The weapon is fired by pushing a charge button on the trigger grip. It is sighted and fired from the shoulder.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/sadar.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: empty
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Gun
+    fireRate: 0.83
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/m5_shoot.ogg
+    resetOnHandSelected: false
+  - type: BallisticAmmoProvider
+    whitelist: null
+    proto: RMCRocket84mmAntiArmor
+    capacity: 1
+    cycleable: false
+    mayTransfer: false
+    insertDelay: 6.0
+    cycleDelay: 6.0
+    soundInsert:
+      path: /Audio/_RMC14/Weapons/Guns/Cock/m5_ammo.ogg
+#  - type: GunUserWhitelist
+#    whitelist:
+#      components:
+#      - DemoSpecWhitelist 
+  - type: Corrodible
+    isCorrodible: true
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: OnShootTriggerAmmoTimer
+    delay: 0.2 # TODO RMC14 Make some way for rockets to explode when they stop, for shooting at the ground closer than max range.
+    # This is a temporary hack to guarantee it will always go off after stopping even if it doesn't collide with anything.
+    # Works for almost all gameplay purposes at least right now because even max range rockets are less than 0.2s and it's fast enough not matter.
+  - type: ShootAtFixedPoint
+    shootArcProj: false
+  - type: WieldableSpeedModifiers
+    base: 0.5
+    light: 0.69
+    medium: 0.75
+    heavy: 0.806
+  - type: WieldDelay
+    baseDelay: 1.2
+    preventFiring: true
+  - type: IgnorePredictionHide
+  - type: GunIgnorePrediction
+  - type: AssistedReloadWeapon
+
+- type: entity
+  name: M83A2 SADAR
+  parent: BaseItem
+  id: CMSADARFolded
+  description: The M83A2 SADAR is a lightweight one-shot anti-armor weapon capable of engaging enemy vehicles at ranges up to 1,000m. Fully disposable, the rocket's launcher is discarded after firing. When stowed (unique-action), the SADAR system consists of a watertight carbon-fiber composite blast tube, inside of which is an aluminum launch tube containing the missile. The weapon is fired by pushing a charge button on the trigger grip. It is sighted and fired from the shoulder.
+  suffix: folded
+  components:
+    - type: Item
+      size: Normal
+    - type: Sprite
+      sprite: _Stories/Objects/Weapons/Guns/sadar.rsi
+      state: folded
+    - type: SpawnItemsOnUse
+      items: 
+      - id: CMSADARUnfolded
+      sound:
+        path: /Audio/_RMC14/Handling/wrench_pickup.ogg
