@@ -668,7 +668,7 @@
     ids:
     - ActionXenoCleaveFling
     cooldown: 12
-
+  
 - type: entity
   parent: ActionXenoBase
   id: ActionXenoCleaveFling
