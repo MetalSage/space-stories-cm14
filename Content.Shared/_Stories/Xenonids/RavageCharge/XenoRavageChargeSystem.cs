@@ -53,8 +53,10 @@ public sealed class XenoRavageChargeSystem : EntitySystem
     {
         if (args.Handled)
             return;
-        if (!HasComp<MobStateComponent>(xeno.Owner) || _mobState.IsIncapacitated(xeno.Owner))
+
+        if (_standing.IsDown(xeno.Owner))
             return;
+
         _rmcPulling.TryStopAllPullsFromAndOn(xeno);
 
         if (!_xenoPlasma.TryRemovePlasmaPopup(xeno.Owner, xeno.Comp.PlasmaCost))
@@ -80,10 +82,13 @@ public sealed class XenoRavageChargeSystem : EntitySystem
     {
         if (_hive.FromSameHive(xeno.Owner, target))
             return false;
+
         if (!HasComp<MobStateComponent>(target) || _mobState.IsIncapacitated(target))
             return false;
+
         if (_standing.IsDown(target))
             return false;
+
         if (HasComp<XenoRavageChargeComponent>(target))
             return false;
 
