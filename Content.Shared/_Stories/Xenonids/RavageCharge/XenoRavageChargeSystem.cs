@@ -80,9 +80,6 @@ public sealed class XenoRavageChargeSystem : EntitySystem
     }
     private bool IsValidHit(Entity<XenoRavageChargeComponent> xeno, EntityUid target)
     {
-        if (_hive.FromSameHive(xeno.Owner, target))
-            return false;
-
         if (!HasComp<MobStateComponent>(target) || _mobState.IsIncapacitated(target))
             return false;
 
@@ -111,7 +108,7 @@ public sealed class XenoRavageChargeSystem : EntitySystem
 
         if(_empower.TryGetComponent(xeno, out var empower))
         {
-            if(empower.EmpowerActive)
+            if(empower.EmpowerActive && !_hive.FromSameHive(xeno.Owner, targetId))
             {
                 _rmcPulling.TryStopAllPullsFromAndOn(targetId);
 
