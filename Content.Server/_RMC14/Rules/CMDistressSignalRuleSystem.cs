@@ -908,7 +908,8 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                      _almayerMaps.Contains(xform.MapID)))
                 {
                     marinesAlive = true;
-                    _marineList.Add(marineId);
+                    if(distress.Hijack) // Stories Fixes
+                        _marineList.Add(marineId); // Stories Fixes
                 }
 
                 if (marinesAlive)
