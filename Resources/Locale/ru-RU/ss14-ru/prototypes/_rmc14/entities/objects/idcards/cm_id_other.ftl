@@ -26,3 +26,5 @@ ent-RMCIDCardPMCColony = { ent-RMCIDCardPMC }
     .desc = { ent-RMCIDCardPMC.desc }
 ent-RMCIDCardBureauObserver = ID карта
     .desc = { ent-CMIDCardLanyard.desc }
+ent-RMCIDCardFreelancer = ID карта
+    .desc = { ent-CMIDCardBase.desc }

@@ -1,3 +1,5 @@
+ent-XenoBaseFloorResin = { "" }
+    .desc = { "" }
 ent-XenoStickyResin = липкая смола
     .desc = Слой отвратительной липкой слизи.
 ent-XenoStickyResinWeak = слабая липкая смола

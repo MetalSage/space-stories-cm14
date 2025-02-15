@@ -429,7 +429,7 @@
 - type: entity
   parent: CMEncryptionKey
   id: CMEncryptionKeyIntelOfficer
-  name: intel officer's encryption Key
+  name: intel officer's encryption key
   components:
   - type: EncryptionKey
     channels:
@@ -438,6 +438,12 @@
     - MarineEngineer
     - MarineJTAC
     - MarineMedical
+    - MarineAlpha
+    - MarineBravo
+    - MarineCharlie
+    - MarineDelta
+    - MarineEcho
+    - MarineFoxtrot
     defaultChannel: MarineCommon
   - type: Sprite
     state: cap_key

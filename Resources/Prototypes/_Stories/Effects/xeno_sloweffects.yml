@@ -1,7 +1,15 @@
 - type: entity
-  parent: RMCEffectEmpowerAlert
   id: RMCEffectRavagerSlow
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 3
+  - type: Sprite
+    sprite: _RMC14/Effects/xeno_stomp.rsi
+    noRot: true
+    state: stomp
+    drawdepth: Effects
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu

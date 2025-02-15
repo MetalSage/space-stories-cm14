@@ -14,7 +14,6 @@ role_ban_default_severity = "minor"
 department_ban_default_severity = "minor"
 server_ban_default_severity = "medium"
 server_ban_hwid_ban_default = false
-explosion_min_intensity = -1
 
 [ahelp]
 admin_prefix = true
@@ -90,12 +89,6 @@ cooldown_seconds = 1
 
 [procgen]
 preload = false
-
-[replay]
-auto_record = true
-max_compressed_size = 4194304
-max_uncompressed_size = 8388608
-auto_record_temp_dir = "recording"
 
 [queue]
 enabled = true

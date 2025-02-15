@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
+using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Marines;
 using Content.Shared.Chat;
 using Content.Shared.Database;
@@ -31,12 +32,22 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!; // Stories-RadioSound
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // RMC14
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
 
     private EntityQuery<TelecomExemptComponent> _exemptQuery;
+
+    private readonly SoundSpecifier _radioSound = new SoundPathSpecifier("/Audio/_RMC14/Effects/radiostatic.ogg")
+    {
+        Params = new AudioParams
+        {
+            Volume = -8f,
+            Variation = 0.1f,
+            MaxDistance = 3.75f,
+        },
+    }; // RMC14
 
     public override void Initialize()
     {
@@ -159,10 +170,11 @@ public sealed class RadioSystem : EntitySystem
             RaiseLocalEvent(receiver, ref ev);
         }
 
-        // Stories-RadioSound-Start
-        if (HasComp<MarineComponent>(messageSource))
-            _audio.PlayPvs("/Audio/_Stories/Effects/radiostatic.ogg", messageSource, AudioParams.Default.WithVariation(0.1f).WithMaxDistance(1.0f).WithVolume(-10.0f));
-        // Stories-RadioSound-End
+        if (canSend && !HasComp<XenoComponent>(messageSource))
+        {
+            var filter = Filter.Pvs(messageSource).RemoveWhereAttachedEntity(HasComp<XenoComponent>);
+            _audio.PlayEntity(_radioSound, filter, messageSource, false); // RMC14
+        }
 
         if (name != Name(messageSource))
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");

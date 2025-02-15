@@ -1,5 +1,3 @@
-ent-CMEffectSelfStomp = { "" }
-    .desc = { "" }
 ent-CMEffectStomp = { "" }
     .desc = { "" }
 ent-RMCEffectCripple = { ent-CMEffectStomp }

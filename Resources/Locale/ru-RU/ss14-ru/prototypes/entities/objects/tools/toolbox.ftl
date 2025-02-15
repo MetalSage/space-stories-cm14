@@ -1,5 +1,5 @@
-ent-ToolboxBase = ящик для инструментов
-    .desc = Ящик для инструментов.
+ent-ToolboxBase = { ent-BaseStorageItem }
+    .desc = { ent-BaseStorageItem.desc }
 ent-ToolboxEmergency = аварийный ящик для инструментов
     .desc = Ярко-красный ящик для инструментов, укомплектованный аварийными инструментами.
 ent-ToolboxMechanical = технический ящик для инструментов

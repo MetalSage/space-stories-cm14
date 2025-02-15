@@ -1,5 +1,6 @@
 ﻿using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Pulling;
+using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared._RMC14.Xenonids.Empower;
 using Content.Shared.Standing;
@@ -24,6 +25,7 @@ public sealed class XenoRavageChargeSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _colorFlash = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly ThrownItemSystem _thrownItem = default!;
@@ -52,6 +54,9 @@ public sealed class XenoRavageChargeSystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (_standing.IsDown(xeno.Owner))
+            return;
+
         _rmcPulling.TryStopAllPullsFromAndOn(xeno);
 
         if (!_xenoPlasma.TryRemovePlasmaPopup(xeno.Owner, xeno.Comp.PlasmaCost))
@@ -75,7 +80,6 @@ public sealed class XenoRavageChargeSystem : EntitySystem
     }
     private bool IsValidHit(Entity<XenoRavageChargeComponent> xeno, EntityUid target)
     {
-
         if (!HasComp<MobStateComponent>(target) || _mobState.IsIncapacitated(target))
             return false;
 
@@ -104,7 +108,7 @@ public sealed class XenoRavageChargeSystem : EntitySystem
 
         if(_empower.TryGetComponent(xeno, out var empower))
         {
-            if(empower.EmpowerActive)
+            if(empower.EmpowerActive && !_hive.FromSameHive(xeno.Owner, targetId))
             {
                 _rmcPulling.TryStopAllPullsFromAndOn(targetId);
 

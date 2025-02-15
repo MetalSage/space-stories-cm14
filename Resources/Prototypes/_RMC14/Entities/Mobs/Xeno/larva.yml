@@ -59,6 +59,7 @@
   - type: XenoAnimateMovement
   - type: Flammable
     canResistFire: false
+  - type: IgnoreBlockPullingDead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.7
     baseSprintSpeed: 6.7
@@ -86,6 +87,3 @@
       sprite: _Stories/Mobs/Xenos/Larva/larva.rsi
       noRot: true
       state: embryo
-
-- type: Tag
-  id: RMCXenoLarva

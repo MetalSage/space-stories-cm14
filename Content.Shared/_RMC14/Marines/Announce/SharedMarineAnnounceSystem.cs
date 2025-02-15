@@ -32,7 +32,7 @@ public abstract class SharedMarineAnnounceSystem : EntitySystem
             subs =>
             {
                 subs.Event<MarineCommunicationsOpenMapMsg>(OnMarineCommunicationsOpenMapMsg);
-                // subs.Event<MarineCommunicationsEchoSquadMsg>(OnMarineCommunicationsEchoMsg); Stories-Echo-Remove
+                subs.Event<MarineCommunicationsEchoSquadMsg>(OnMarineCommunicationsEchoMsg);
                 subs.Event<MarineCommunicationsOverwatchMsg>(OnMarineCommunicationsOverwatchMsg);
                 subs.Event<MarineControlComputerMedalMsg>(OnMarineCommunicationsMedalMsg);
             });
@@ -79,19 +79,17 @@ public abstract class SharedMarineAnnounceSystem : EntitySystem
         _ui.TryOpenUi(ent.Owner, TacticalMapComputerUi.Key, args.Actor);
     }
 
-    // Stories-Echo-Remove-Start
-    // private void OnMarineCommunicationsEchoMsg(Entity<MarineCommunicationsComputerComponent> ent, ref MarineCommunicationsEchoSquadMsg args)
-    // {
-    //     if (!ent.Comp.CanCreateEcho)
-    //         return;
+    private void OnMarineCommunicationsEchoMsg(Entity<MarineCommunicationsComputerComponent> ent, ref MarineCommunicationsEchoSquadMsg args)
+    {
+        if (!ent.Comp.CanCreateEcho)
+            return;
 
-    //     if (_squad.HasSquad(SquadSystem.EchoSquadId))
-    //         return;
+        if (_squad.HasSquad(SquadSystem.EchoSquadId))
+            return;
 
-    //     var ev = new EchoSquadReasonEvent(GetNetEntity(args.Actor));
-    //     _dialog.OpenInput(ent, args.Actor, "What is the purpose of Echo Squad?", ev);
-    // }
-    // Stories-Echo-Remove-End
+        var ev = new EchoSquadReasonEvent(GetNetEntity(args.Actor));
+        _dialog.OpenInput(ent, args.Actor, "What is the purpose of Echo Squad?", ev);
+    }
 
     private void OnMarineCommunicationsOverwatchMsg(Entity<MarineCommunicationsComputerComponent> ent, ref MarineCommunicationsOverwatchMsg args)
     {

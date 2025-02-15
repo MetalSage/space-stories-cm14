@@ -12,6 +12,7 @@ using Content.Shared.Chat;
 using Content.Shared.Construction.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.Database;
+using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -70,6 +71,7 @@ public abstract class SharedMortarSystem : EntitySystem
         SubscribeLocalEvent<MortarComponent, ExaminedEvent>(OnMortarExamined);
         SubscribeLocalEvent<MortarComponent, ActivatableUIOpenAttemptEvent>(OnMortarActivatableUIOpenAttempt);
         SubscribeLocalEvent<MortarComponent, CombatModeShouldHandInteractEvent>(OnMortarShouldInteract);
+        SubscribeLocalEvent<MortarComponent, DestructionEventArgs>(OnMortarDestruction);
 
         SubscribeLocalEvent<MortarCameraShellComponent, MortarShellLandEvent>(OnMortarCameraShellLand);
 
@@ -80,6 +82,14 @@ public abstract class SharedMortarSystem : EntitySystem
                 subs.Event<MortarDialBuiMsg>(OnMortarDialBui);
                 subs.Event<MortarViewCamerasMsg>(OnMortarViewCameras);
             });
+    }
+
+    private void OnMortarDestruction(Entity<MortarComponent> mortar, ref DestructionEventArgs args)
+    {
+        if (!mortar.Comp.Deployed || _net.IsClient)
+            return;
+
+        SpawnAtPosition(mortar.Comp.Drop, mortar.Owner.ToCoordinates());
     }
 
     private void OnMortarUseInHand(Entity<MortarComponent> mortar, ref UseInHandEvent args)

@@ -104,6 +104,9 @@
       Snow: _Stories/Objects/Weapons/Guns/Rifles/m41a/snow.rsi
       Classic: _Stories/Objects/Weapons/Guns/Rifles/m41a/classic.rsi
       Urban: _Stories/Objects/Weapons/Guns/Rifles/m41a/urban.rsi
+  - type: Tag
+    tags:
+    - RMCWeaponRifleM54CMK2
 
 - type: entity
   parent: CMMagazineRifleBase
@@ -249,6 +252,9 @@
         Piercing: 30
   - type: CMArmorPiercing
     amount: 40
+
+- type: Tag
+  id: RMCWeaponRifleM54CMK2
 
 - type: Tag
   id: CMMagazineRifleM54C

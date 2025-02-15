@@ -1,0 +1,32 @@
+# Предустановка конфигурации, используемая на сервере Stories Colonial Marines Mappers.
+# Загружается перед настройками конфигурации, специфичными для сервера.
+
+# [config]
+# presets = "Stories/stage"
+
+[admin]
+admins_count_in_playercount = true
+deadmin_on_join = false
+
+[adminlogs]
+enabled = false
+
+[game]
+hostname = "📚 Space Stories - Colonial Marines Stage ⚙"
+desc = """
+                                                            📕 𝗦𝗽𝗮𝗰𝗲 𝗦𝘁𝗼𝗿𝗶𝗲𝘀 - Colonial Marines! ⚙
+•────────────────────────────────── ✧ ──────────────────────────────────•
+  👥 ⋮ Сервер для персонала проекта Space Stories - Colonial Marines 📚
+  ⚙ ⋮ Сборка сервера основана на https://github.com/RMC-14/RMC-14.
+•────────────────────────────────── ✧ ──────────────────────────────────•
+                                            📚 Присоединяйтесь к нашему дружному сообществу 📚"""
+maxplayers = 10
+soft_max_players = 10
+role_timers = false
+role_whitelist = false
+
+[whitelist]
+enabled = true
+
+[rules]
+time = 0.0

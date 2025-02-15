@@ -79,11 +79,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             return;
 
         if (_adminManager.IsAdmin(player))
-        {
             trackers.Add(PlayTimeTrackingShared.TrackerAdmin);
-            trackers.Add(PlayTimeTrackingShared.TrackerOverall);
-            return;
-        }
 
         if (!IsPlayerAlive(player))
             return;

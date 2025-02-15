@@ -1,4 +1,4 @@
-ent-CMLockerCMDCabinet = ккаф командного планшета
+ent-CMLockerCMDCabinet = шкаф командного планшета
     .desc = Пуленепробиваемый шкаф, содержащий командный планшет для использования командиром.
     .suffix = Пустой
 ent-CMLockerCMDCabinetFilled = { ent-CMLockerCMDCabinet }

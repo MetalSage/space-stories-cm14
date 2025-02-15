@@ -2,6 +2,7 @@ stamp-component-stamped-name-cm-default = С печатью
 stamp-component-stamped-name-cm-we-ya = Ве-Я
 stamp-component-stamped-name-cm-marine = ВК КМП США
 stamp-component-stamped-name-cm-weyyu = Вестон Яманда
+stamp-component-stamped-name-cm-provost = Офис Провоста Маршала
 stamp-component-stamped-name-cm-uscm = ВК КМП США
 stamp-component-stamped-name-cm-cmb = Бюро Колониальных Маршалов
 stamp-component-stamped-name-cm-co = Командир

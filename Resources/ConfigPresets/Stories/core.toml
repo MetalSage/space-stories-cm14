@@ -18,6 +18,3 @@ desc = """
                                             📚 Присоединяйтесь к нашему дружному сообществу 📚"""
 maxplayers = 300
 soft_max_players = 200
-
-[hub]
-server_url = "ss14s://spacestories.club/core"

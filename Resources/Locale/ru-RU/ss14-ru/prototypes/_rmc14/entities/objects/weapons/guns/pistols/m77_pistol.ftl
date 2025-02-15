@@ -5,3 +5,7 @@ ent-RMCWeaponPistolM77Empty = { ent-RMCWeaponPistolM77 }
     .desc = { ent-RMCWeaponPistolM77.desc }
 ent-CMMagazinePistolM77AP = магазин 88 М4 ББ (9 мм)
     .desc = { ent-CMBaseMagazinePistol.desc }
+ent-CMBulletPistolM77AP = пуля (9 мм ББ)
+    .desc = { ent-CMBulletBase.desc }
+ent-CMCartridgePistolM77AP = патрон (9 мм ББ)
+    .desc = { ent-CMCartridgePistolBase.desc }

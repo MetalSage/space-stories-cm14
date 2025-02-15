@@ -16,4 +16,5 @@ chat-radio-marine-foxtrot = Фокстрот
 chat-radio-colony = Колония
 chat-radio-WY = Вестон-Яманда
 chat-radio-CMB = Бюро маршалов колонии
+chat-radio-provost = Провост
 chat-radio-hivemind = Улей

@@ -11,4 +11,5 @@ rmc-loadout-group-foods-sweets = Еда (сладости)
 rmc-loadout-group-foods-packaged = Еда (упакованная)
 rmc-loadout-group-foods-healthy = Еда (здоровая)
 rmc-loadout-group-role-specific = Ролевые особенности
+rmc-loadout-group-pins = Пин
 loadout-group-points-insufficient = У вас недостаточно баллов!
