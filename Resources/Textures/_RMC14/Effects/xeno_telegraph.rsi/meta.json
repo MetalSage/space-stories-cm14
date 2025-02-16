@@ -10,5 +10,35 @@
     {
       "name": "xeno_telegraph_base"
     }
+    {
+      "name": "xeno_telegraph_abduct_hook_anim",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "xeno_telegraph_lash"
+    },
+    {
+      "name": "xeno_telegraph_lash_anim",
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    }
   ]
 }
