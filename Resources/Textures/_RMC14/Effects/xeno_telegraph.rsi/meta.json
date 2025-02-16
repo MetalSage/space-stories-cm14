@@ -39,6 +39,9 @@
           0.05
         ]
       ]
+    },
+    {
+      "name": "xeno_telegraph_base_small"
     }
   ]
 }
