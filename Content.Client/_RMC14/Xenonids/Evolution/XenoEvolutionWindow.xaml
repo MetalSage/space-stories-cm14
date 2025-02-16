@@ -6,11 +6,11 @@
     MinSize="300 300">
     <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
         <BoxContainer Orientation="Vertical">
-            <Label Name="PointsLabel" Access="Public" Text="Evolution points:" />
+            <Label Name="PointsLabel" Access="Public" Text="{Loc cm-xeno-evolution-points}" />
             <RichTextLabel Name="OvipositorNeededLabel" Access="Public" />
             <BoxContainer Orientation="Vertical" Name="EvolutionsContainer" Access="Public" />
             <userInterface:BlueHorizontalSeparator Name="Separator" Access="Public" />
-            <Label Name="StrainsLabel" Access="Public" Text="Strains:" />
+            <Label Name="StrainsLabel" Access="Public" Text="{Loc cm-xeno-evolution-strains}" />
             <BoxContainer Orientation="Vertical" Name="StrainsContainer" Access="Public" />
         </BoxContainer>
     </ScrollContainer>

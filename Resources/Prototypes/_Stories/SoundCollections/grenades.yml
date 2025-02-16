@@ -1,0 +1,6 @@
+- type: soundCollection
+  id: STincendiaryGrenade
+  files:
+    - /Audio/_RMC14/Weapons/Guns/Flamethrower/gun_flamethrower1.ogg
+    - /Audio/_RMC14/Weapons/Guns/Flamethrower/gun_flamethrower2.ogg
+    - /Audio/_RMC14/Weapons/Guns/Flamethrower/gun_flamethrower3.ogg

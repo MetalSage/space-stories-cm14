@@ -15,7 +15,7 @@ public sealed partial class TileFireOnTriggerComponent : Component
     public EntProtoId Spawn = "RMCTileFire";
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier? Sound = new SoundPathSpecifier("/Audio/_RMC14/Effects/hit_on_shattered_glass.ogg");
+    public SoundSpecifier? Sound = new SoundCollectionSpecifier("STincendiaryGrenade"); // stories incendiary sound tweak
 
     [DataField, AutoNetworkedField]
     public int? Intensity;

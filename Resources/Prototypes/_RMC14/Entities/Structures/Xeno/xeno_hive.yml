@@ -69,6 +69,8 @@
     icon:
       sprite: _RMC14/Interface/map_blips.rsi
       state: core
+  - type: XenoConstructionAnnounce
+    message: cm-xeno-construction-destroyed
 
 - type: entity
   id: HiveCoreXenoConstructionNode

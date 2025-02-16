@@ -6,6 +6,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Content.Shared.Destructible;
 
 namespace Content.Shared._RMC14.Xenonids.Announce;
 
@@ -18,6 +19,7 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<XenoAnnounceDeathComponent, MobStateChangedEvent>(OnAnnounceDeathMobStateChanged);
+        SubscribeLocalEvent<XenoConstructionAnnounceComponent, DestructionEventArgs>(OnAnnounceConstructionDestroyed);
     }
 
     private void OnAnnounceDeathMobStateChanged(Entity<XenoAnnounceDeathComponent> ent, ref MobStateChangedEvent args)
@@ -38,6 +40,22 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
         }
     }
 
+    // stories tweak start
+    private void OnAnnounceConstructionDestroyed(Entity<XenoConstructionAnnounceComponent> ent, ref DestructionEventArgs args)
+    {
+        var comp = ent.Comp;
+        var locationName = "Unknown";
+
+        if (_areas.TryGetArea(ent, out _, out var areaProto))
+            locationName = areaProto.Name;
+
+        var message = Loc.GetString(comp.Message, ("construction", ent.Owner), ("location", locationName));
+
+        if (_xenoEvolution.HasLiving<XenoEvolutionGranterComponent>(1))
+            AnnounceSameHive(ent.Owner, message, color: comp.Color);
+    }
+
+    // stories tweak end
     public string WrapHive(string message, Color? color = null)
     {
         color ??= Color.FromHex("#921992");
