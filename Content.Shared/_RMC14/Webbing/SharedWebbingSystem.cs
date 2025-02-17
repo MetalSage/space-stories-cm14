@@ -10,9 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Verbs;
-using Microsoft.Win32;
 using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
 using static Content.Shared._RMC14.Webbing.WebbingTransferComponent;
 
 namespace Content.Shared._RMC14.Webbing;
@@ -183,14 +181,25 @@ public abstract class SharedWebbingSystem : EntitySystem
         {
             return false;
         }
-
-        if (_container.TryGetContainingContainer((clothing, null), out var wearer))
+        if (_container.TryGetContainingContainer((clothing, null), out var wearer)){
             if (TryComp(wearer.Owner, out StorageComponent? storage))
             {
                 _popup.PopupClient(Loc.GetString("rmc-webbing-cannot-wear-inside-webbing"), webbing, user);
                 return false;
             }
-
+            if (TryComp(wearer.Owner, out InventoryComponent? inventory)){
+                var slots = _inventory.GetSlotEnumerator((wearer.Owner, inventory));
+                while (slots.MoveNext(out var slot))
+                {
+                    if (HasComp<ClothingBlockWebbingComponent>(slot.ContainedEntity))
+                    {
+                        handled = true;
+                        _popup.PopupClient(Loc.GetString("rmc-webbing-cannot-wear-with-webbing"), webbing, user);
+                        return false;
+                    }
+                }
+            }
+        }
         var container = _container.EnsureContainer<ContainerSlot>(clothing, clothing.Comp.Container);
         if (container.Count > 0 || !_container.Insert(webbing, container))
             return false;
