@@ -21,7 +21,7 @@ cm-xeno-unique-exists = Здесь уже построено { $choice }!
 rmc-xeno-cant-build-new-yet = Мы пока не можем создать новый { $choice }!
 # Evolve
 cm-xeno-evolution-points = Очки эволюции:
-cm-xeno-evolution-strains = Специализации:
+cm-xeno-evolution-strains = Мутации:
 cm-xeno-evolution-needed-ovi = [bold][color=red]Королева должна находиться на яйцекладе,
     чтобы вы получали очки![/color][/bold]
 cm-xeno-available-evolutions = Доступные эволюции

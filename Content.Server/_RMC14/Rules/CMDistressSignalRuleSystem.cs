@@ -23,6 +23,7 @@ using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
+using Content.Shared._Stories.HijackSong;
 using Content.Server.Voting;
 using Content.Server.Voting.Managers;
 using Content.Shared._RMC14.Areas;
@@ -740,7 +741,15 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                 break;
 
             rule.HijackSongPlayed = true;
-            _audio.PlayGlobal(rule.HijackSong, Filter.Broadcast(), true);
+            // Stories Hijack Song Volume Tweak Start
+
+            //  _audio.PlayGlobal(rule.HijackSong, Filter.Broadcast(), true);
+            var hijackSong = _audio.GetSound(rule.HijackSong);
+            if (string.IsNullOrEmpty(hijackSong))
+                break;
+
+            RaiseNetworkEvent(new PlayHijackSongEvent(hijackSong), Filter.Broadcast());
+            // Stories Hijack Song Volume Tweak End
             break;
         }
 
