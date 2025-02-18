@@ -61093,6 +61093,13 @@ entities:
     - type: Transform
       pos: 129.5,-42.5
       parent: 1
+- proto: RMCMapInsertKutjevoCommunications
+  entities:
+  - uid: 25351
+    components:
+    - type: Transform
+      pos: 132.5,-78.5
+      parent: 1
 - proto: RMCLadder
   entities:
   - uid: 3636

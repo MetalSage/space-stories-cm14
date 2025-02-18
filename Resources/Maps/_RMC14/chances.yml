@@ -57491,14 +57491,14 @@ entities:
   - uid: 2890
     components:
     - type: MetaData
-      name: 'ЗП1: Зона Посадки "Нексус"'
+      name: 'ЗП1: Юго-Западная Зона Посадки'
     - type: Transform
       pos: -77.5,-65.5
       parent: 1
   - uid: 17315
     components:
     - type: MetaData
-      name: 'ЗП2: Зона Посадки "Робототехника"'
+      name: 'ЗП2: Юго-Восточная Зона Посадки'
     - type: Transform
       pos: 64.5,-81.5
       parent: 1

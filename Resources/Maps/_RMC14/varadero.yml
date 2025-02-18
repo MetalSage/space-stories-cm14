@@ -153939,7 +153939,7 @@ entities:
       pos: 94.5,21.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -13119.522
+      secondsUntilStateChange: -13383.591
       state: Opening
   - uid: 18890
     components:
@@ -166520,7 +166520,7 @@ entities:
       pos: 73.5,59.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -62813.934
+      secondsUntilStateChange: -63078
       state: Opening
   - uid: 20411
     components:
@@ -169925,6 +169925,13 @@ entities:
     components:
     - type: Transform
       pos: 114.5,56.5
+      parent: 1
+- proto: RMCNewVaraderoSign
+  entities:
+  - uid: 22234
+    components:
+    - type: Transform
+      pos: 54,152
       parent: 1
 - proto: RMCPhotocopier
   entities:
@@ -179439,6 +179446,27 @@ entities:
       parent: 1
 - proto: RMCStool
   entities:
+  - uid: 22191
+    components:
+    - type: Transform
+      pos: 54.5,97.5
+      parent: 1
+  - uid: 22204
+    components:
+    - type: Transform
+      pos: 51.5,95.5
+      parent: 1
+  - uid: 22205
+    components:
+    - type: Transform
+      pos: 51.5,92.5
+      parent: 1
+  - uid: 24593
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 92.4329,61.57604
+      parent: 1
   - uid: 48197
     components:
     - type: Transform
@@ -185825,57 +185853,6 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: Stool
-  entities:
-  - uid: 24194
-    components:
-    - type: Transform
-      pos: 51.43559,92.706024
-      parent: 1
-  - uid: 24195
-    components:
-    - type: Transform
-      pos: 51.49809,95.768524
-      parent: 1
-  - uid: 24196
-    components:
-    - type: Transform
-      pos: 54.522507,97.65008
-      parent: 1
-  - uid: 24593
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 92.4329,61.57604
-      parent: 1
-  - uid: 24594
-    components:
-    - type: Transform
-      pos: 92.5,63.5
-      parent: 1
-  - uid: 24595
-    components:
-    - type: Transform
-      pos: 93.5,63.5
-      parent: 1
-  - uid: 24596
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 94.5,62.5
-      parent: 1
-  - uid: 24597
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 94.5,61.5
-      parent: 1
-  - uid: 24598
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 94.5,60.5
-      parent: 1
 - proto: ToyFigurineQueen
   entities:
   - uid: 13151

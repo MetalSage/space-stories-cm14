@@ -56749,6 +56749,13 @@ entities:
         -1,-211: RMCAreaSpace
         -1,-212: RMCAreaSpace
         -1,-213: RMCAreaSpace
+- proto: BeachBall
+  entities:
+  - uid: 39855
+    components:
+    - type: Transform
+      pos: 111.5,-65.5
+      parent: 1
 - proto: Bedroll
   entities:
   - uid: 16001
@@ -62635,6 +62642,20 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+  - uid: 39853
+    components:
+    - type: Transform
+      pos: 111.5,-66.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
+  - uid: 39854
+    components:
+    - type: Transform
+      pos: 111.5,-67.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CMClosetBioFilled
   entities:
   - uid: 20841
@@ -64016,7 +64037,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 109.5665571
     - type: Door
-      secondsUntilStateChange: -4202.434
+      secondsUntilStateChange: -4499.217
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -64031,7 +64052,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 109.5665571
     - type: Door
-      secondsUntilStateChange: -4202.434
+      secondsUntilStateChange: -4499.217
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -64172,7 +64193,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 410.566256
     - type: Door
-      secondsUntilStateChange: -3901.4348
+      secondsUntilStateChange: -4198.2173
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -64187,7 +64208,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 410.566256
     - type: Door
-      secondsUntilStateChange: -3901.4348
+      secondsUntilStateChange: -4198.2173
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -77493,12 +77514,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 111.5,-68.5
       parent: 1
-  - uid: 18391
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 111.5,-64.5
-      parent: 1
   - uid: 18392
     components:
     - type: Transform
@@ -77612,6 +77627,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 114.5,-78.5
+      parent: 1
+  - uid: 39842
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 112.5,-64.5
       parent: 1
 - proto: CMTableWoodenFancy
   entities:
@@ -190040,7 +190061,7 @@ entities:
       pos: 126.5,-167.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1945.8699
+      secondsUntilStateChange: -2242.6523
       state: Opening
   - uid: 27915
     components:
@@ -203142,6 +203163,13 @@ entities:
       parent: 1
     - type: Stack
       count: 2
+- proto: RMCPlankWood10
+  entities:
+  - uid: 39851
+    components:
+    - type: Transform
+      pos: 114.5,-64.5
+      parent: 1
 - proto: RMCPlatformCornerSmall
   entities:
   - uid: 14147
@@ -204768,6 +204796,11 @@ entities:
     components:
     - type: Transform
       pos: 22.5,-201.5
+      parent: 1
+  - uid: 39856
+    components:
+    - type: Transform
+      pos: 111.5,-69.5
       parent: 1
 - proto: RMCRailroadBend
   entities:
@@ -207330,6 +207363,13 @@ entities:
     - type: Transform
       pos: 29,-103
       parent: 1
+- proto: RMCMapInsertSolarisSeCheckpoint
+  entities:
+  - uid: 40000
+    components:
+    - type: Transform
+      pos: 134.5,-129.5
+      parent: 1
 - proto: RMCSpawnerCommunicationsTowerOne
   entities:
   - uid: 39240
@@ -208937,6 +208977,11 @@ entities:
       parent: 1
 - proto: RMCStool
   entities:
+  - uid: 18391
+    components:
+    - type: Transform
+      pos: 114.5,-69.5
+      parent: 1
   - uid: 27846
     components:
     - type: Transform
@@ -209016,6 +209061,26 @@ entities:
     components:
     - type: Transform
       pos: 91.5,-30.5
+      parent: 1
+  - uid: 39843
+    components:
+    - type: Transform
+      pos: 114.5,-68.5
+      parent: 1
+  - uid: 39844
+    components:
+    - type: Transform
+      pos: 114.5,-67.5
+      parent: 1
+  - uid: 39845
+    components:
+    - type: Transform
+      pos: 114.5,-66.5
+      parent: 1
+  - uid: 39846
+    components:
+    - type: Transform
+      pos: 114.5,-65.5
       parent: 1
 - proto: RMCTablePartTan
   entities:
@@ -209148,7 +209213,7 @@ entities:
     - type: Transform
       pos: 61.5,-124.5
       parent: 1
-  - uid: 39515
+  - uid: 39857
     components:
     - type: Transform
       pos: 175.5,-65.5
@@ -209589,6 +209654,33 @@ entities:
     components:
     - type: Transform
       pos: 54.5,-80.5
+      parent: 1
+- proto: SpaceVillainArcade
+  entities:
+  - uid: 39847
+    components:
+    - type: Transform
+      pos: 115.5,-69.5
+      parent: 1
+  - uid: 39848
+    components:
+    - type: Transform
+      pos: 115.5,-68.5
+      parent: 1
+  - uid: 39849
+    components:
+    - type: Transform
+      pos: 113.5,-67.5
+      parent: 1
+  - uid: 39850
+    components:
+    - type: Transform
+      pos: 112.5,-65.5
+      parent: 1
+  - uid: 39852
+    components:
+    - type: Transform
+      pos: 113.5,-64.5
       parent: 1
 - proto: StairDark
   entities:

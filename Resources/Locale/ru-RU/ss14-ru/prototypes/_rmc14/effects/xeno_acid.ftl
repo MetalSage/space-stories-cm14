@@ -16,3 +16,5 @@ ent-XenoAcidSprayTrapWeak = слабые брызги
     .desc = Он горит! Горит, но не так сильно!
 ent-XenoAcidSprayTrapStrong = сильные брызги
     .desc = Он сильно горит!
+ent-XenoAcidExtinguishEffect = { "" }
+    .desc = Холодно...

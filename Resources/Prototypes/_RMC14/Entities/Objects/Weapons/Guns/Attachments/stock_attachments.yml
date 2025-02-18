@@ -318,6 +318,8 @@
     tags:
     - RMCAttachmentStock
     - RMCAttachmentM54CStockSolidMarksman
+  - type: ItemCamouflage # TODO RMC14
+    camouflageVariations: null
 
 - type: entity
   parent: RMCStockAttachmentCollapsibleBase

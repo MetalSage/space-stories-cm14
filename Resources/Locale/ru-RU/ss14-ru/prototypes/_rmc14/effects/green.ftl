@@ -1,2 +1,12 @@
 ent-RMCEffectXenoTelegraphGreen = { "" }
     .desc = { "" }
+ent-RMCEffectXenoTelegraphAbduct = { "" }
+    .desc = { "" }
+ent-RMCEffectXenoTelegraphLash = { "" }
+    .desc = { "" }
+ent-RMCEffectXenoTelegraphLashAnim = { ent-RMCEffectXenoTelegraphLash }
+    .desc = { ent-RMCEffectXenoTelegraphLash.desc }
+ent-RMCEffectXenoTelegraphRed = { ent-RMCEffectXenoTelegraphGreen }
+    .desc = { ent-RMCEffectXenoTelegraphGreen.desc }
+ent-RMCEffectXenoTelegraphRedSmall = { ent-RMCEffectXenoTelegraphRed }
+    .desc = { ent-RMCEffectXenoTelegraphRed.desc }

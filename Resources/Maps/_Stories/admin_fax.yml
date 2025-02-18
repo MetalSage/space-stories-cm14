@@ -4272,6 +4272,78 @@ entities:
     - type: Transform
       pos: 16.21754,-3.6664224
       parent: 1
+- proto: CMStampApproved
+  entities:
+  - uid: 1850
+    components:
+    - type: Transform
+      pos: 34.12087,-24.41354
+      parent: 1
+  - uid: 1853
+    components:
+    - type: Transform
+      pos: 31.704803,-6.4320316
+      parent: 1
+  - uid: 1856
+    components:
+    - type: Transform
+      pos: 13.333053,-10.406341
+      parent: 1
+  - uid: 1859
+    components:
+    - type: Transform
+      pos: 15.70866,-10.441099
+      parent: 1
+- proto: CMStampCMB
+  entities:
+  - uid: 1852
+    components:
+    - type: Transform
+      pos: 31.704803,-6.2256026
+      parent: 1
+- proto: CMStampDenied
+  entities:
+  - uid: 1851
+    components:
+    - type: Transform
+      pos: 34.35698,-24.58038
+      parent: 1
+  - uid: 1854
+    components:
+    - type: Transform
+      pos: 31.711748,-6.647534
+      parent: 1
+  - uid: 1857
+    components:
+    - type: Transform
+      pos: 13.339996,-10.621843
+      parent: 1
+  - uid: 1860
+    components:
+    - type: Transform
+      pos: 15.70866,-10.64965
+      parent: 1
+- proto: CMStampMarine
+  entities:
+  - uid: 1855
+    components:
+    - type: Transform
+      pos: 13.339996,-10.204742
+      parent: 1
+- proto: CMStampProvost
+  entities:
+  - uid: 1858
+    components:
+    - type: Transform
+      pos: 15.70866,-10.225597
+      parent: 1
+- proto: CMStampWeYa
+  entities:
+  - uid: 1849
+    components:
+    - type: Transform
+      pos: 34.313,-24.21299
+      parent: 1
 - proto: CMTableAlmayer
   entities:
   - uid: 382

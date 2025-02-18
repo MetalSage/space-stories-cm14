@@ -100128,7 +100128,7 @@ entities:
   - uid: 12139
     components:
     - type: Transform
-      pos: 89.5,-39.5
+      pos: 89.5,-38.5
       parent: 1
   - uid: 12140
     components:
@@ -105735,6 +105735,23 @@ entities:
     components:
     - type: Transform
       pos: 64.5,-5.5
+      parent: 1
+- proto: RMCPrisonSign
+  entities:
+  - uid: 20057
+    components:
+    - type: Transform
+      pos: 34,-54
+      parent: 1
+  - uid: 20058
+    components:
+    - type: Transform
+      pos: 101,18
+      parent: 1
+  - uid: 20059
+    components:
+    - type: Transform
+      pos: 119,23
       parent: 1
 - proto: RMCSensorTower
   entities:

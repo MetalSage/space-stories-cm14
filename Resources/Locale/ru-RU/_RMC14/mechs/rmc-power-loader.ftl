@@ -8,7 +8,7 @@ rmc-power-loader-occupied-ammo = Сначала нужно разгрузить 
 rmc-power-loader-transfer-ammo =
     Вы переводите { $rounds } { $rounds ->
         [one] патрон
-        *[other] патронов
+       *[other] патронов
     } в { THE($ammo) }.
 rmc-power-loader-wrong-ammo = Это разные типы патронов!
 rmc-power-loader-full-ammo = { CAPITALIZE(THE($ammo)) } заполнена!
