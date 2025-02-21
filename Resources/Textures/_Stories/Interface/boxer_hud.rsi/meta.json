@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "author inconnu1337(discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "KOTracker_1"
+    },
+    {
+      "name": "KOTracker_2"
+    },
+    {
+      "name": "KOTracker_3"
+    },
+    {
+      "name": "KOTracker_4"
+    },
+    {
+      "name": "KOTracker_5"
+    },
+    {
+      "name": "KOTracker_6"
+    },
+    {
+      "name": "KOTracker_7"
+    },
+    {
+      "name": "KOTracker_8"
+    },
+    {
+      "name": "KOTracker_9"
+    },
+    {
+      "name": "KOTracker_10"
+    },
+    {
+      "name": "KOTracker_11"
+    },
+    {
+      "name": "KOTracker_12"
+    },
+    {
+      "name": "KOTracker_13"
+    },
+    {
+      "name": "KOTracker_14"
+    },
+    {
+      "name": "KOTracker_15"
+    },
+    {
+      "name": "ko_marker"
+    }
+  ]
+}

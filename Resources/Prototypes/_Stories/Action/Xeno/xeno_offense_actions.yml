@@ -29,3 +29,52 @@
     range: 15
     useDelay: 14
     checkCanAccess: false
+
+- type: entity
+  id: ActionXenoBoxerPunch
+  parent: ActionXenoBase
+  name: Punch
+  description: empty
+  components:
+  - type: EntityTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _RMC14/Actions/xeno_actions.rsi
+      state: punch
+    event: !type:BoxerPunchActionEvent
+    range: 2
+    useDelay: 4
+    deselectOnMiss: false
+  - type: XenoOffensiveAction
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoBoxerJab
+  name: Jab
+  description: empty
+  components:
+  - type: EntityTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: jab
+    event: !type:BoxerJabActionEvent
+    range: 3
+    useDelay: 4
+    deselectOnMiss: false
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoBoxerUppercut
+  name: Uppercut
+  description: empty
+  components:
+  - type: EntityTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: uppercut
+    event: !type:BoxerUppercutActionEvent
+    range: 2
+    useDelay: 14
+    deselectOnMiss: false

@@ -1,0 +1,66 @@
+using Content.Shared._RMC14.Pulling;
+using Content.Shared._RMC14.Shields;
+using Content.Shared._RMC14.Slow;
+using Content.Shared._RMC14.Weapons.Melee;
+using Content.Shared._RMC14.Xenonids;
+using Content.Shared.Coordinates;
+using Content.Shared.Throwing;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
+using Robust.Shared.Timing;
+using Content.Shared.Actions;
+using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerPunch;
+using Content.Shared.Popups;
+
+namespace Content.Shared._Stories.Xenonids.XenoBoxer.BoxerJab;
+
+public sealed class BoxerJabSystem : EntitySystem
+{
+    [Dependency] private readonly XenoSystem _xeno = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
+    [Dependency] private readonly RMCSlowSystem _slow = default!;
+    [Dependency] private readonly SharedBoxerKOSystem _koSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedActionsSystem _action = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<BoxerJabComponent, BoxerJabActionEvent>(OnJabAction);
+    }
+
+    private void OnJabAction(Entity<BoxerJabComponent> xeno, ref BoxerJabActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+
+        if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
+            return;
+
+        if (!TryComp<XenoBoxerKOComponent>(xeno, out var koComp))
+            return;
+
+        var comp = xeno.Comp;
+
+        _rmcMelee.DoLunge(xeno, args.Target);
+        _slow.TryRoot(args.Target, comp.RootTime);
+        _popup.PopupPredicted($"Вы нанесли прямой левой удар по {ToPrettyString(args.Target)}", $"{ToPrettyString(xeno)} наносит прямой левой удар по {ToPrettyString(args.Target)}", xeno, xeno);
+
+        if (_net.IsServer)
+        {
+            SpawnAttachedTo(comp.RootEffect, args.Target.ToCoordinates());
+            _audio.PlayPvs(comp.Sound, xeno);
+        }
+
+        _koSystem.UpdateKOTracker(xeno, koComp, args.Target, comp.KOIncrease);
+        foreach (var (actionId, action) in _action.GetActions(xeno))
+        {
+            if (action.BaseEvent is BoxerPunchActionEvent)
+                _action.ClearCooldown(actionId);
+        }
+    }
+}
