@@ -30,20 +30,18 @@ public sealed class SharedBoxerKOSystem : EntitySystem
 
         var recently = EnsureComp<XenoBoxerKORecentlyComponent>(ent);
         var tracker = recently.Trackers.GetValueOrDefault(target);
-        if (tracker.Count >= comp.MaxKO)
-        {
-            _popup.PopupPredicted(Loc.GetString("xeno-boxer-can-use-titanic-uppercut"), ent, null, PopupType.LargeCaution);
-            return;
-        }
-
         var time = _timing.CurTime;
+
         tracker.Count = Math.Min(tracker.Count + koPoint, comp.MaxKO);
         tracker.Last = time;
         recently.Trackers[target] = tracker;
-
         comp.AuraColor = GetAuraColor(tracker.Count, comp.MaxKO);
+
         if (comp.AuraColor.HasValue)
             _aura.GiveAura(ent, comp.AuraColor.Value, comp.AuraDuration);
+
+        if (tracker.Count >= comp.MaxKO)
+            _popup.PopupPredicted(Loc.GetString("xeno-boxer-can-use-titanic-uppercut"), ent, null, PopupType.LargeCaution);
 
         Dirty(ent, recently);
     }

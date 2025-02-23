@@ -12,6 +12,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Numerics;
+using static Robust.Shared.Utility.SpriteSpecifier;
 
 namespace Content.Client._Stories.Xenonids.XenoBoxerHud;
 
