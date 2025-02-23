@@ -24,6 +24,9 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 
 namespace Content.Shared._Stories.Xenonids.XenoBoxer.BoxerUppercut;
 
@@ -38,7 +41,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedBoxerKOSystem _koSystem = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly XenoSystem _xeno = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -46,6 +49,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedRMCDamageableSystem _rmcDamage = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<BoxerUppercutComponent, BoxerUppercutActionEvent>(OnBoxerUppercutAction);
@@ -53,7 +57,6 @@ public sealed class BoxerUppercutSystem : EntitySystem
 
     private void OnBoxerUppercutAction(Entity<BoxerUppercutComponent> xeno, ref BoxerUppercutActionEvent args)
     {
-
         if (!_timing.IsFirstTimePredicted || args.Handled)
             return;
 
@@ -68,9 +71,17 @@ public sealed class BoxerUppercutSystem : EntitySystem
         if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
             return;
 
+        if (!TryComp<DamageableComponent>(xeno, out var damageable))
+            return;
+
+        if (!TryComp<MobThresholdsComponent>(xeno, out var mobThreshold))
+            return;
+
+        if (!_mobThresholdSystem.TryGetThresholdForState(xeno, MobState.Dead, out var threshold, mobThreshold))
+            return;
+
         var comp = xeno.Comp;
         var tracker = recently.Trackers.GetValueOrDefault(args.Target);
-
         var popupPower = "weak";
 
         if (_net.IsServer)
@@ -94,17 +105,14 @@ public sealed class BoxerUppercutSystem : EntitySystem
             popupPower = "good";
         }
 
-        if (TryComp<DamageableComponent>(xeno, out var damageable) &&
-        TryComp<MobThresholdsComponent>(xeno, out var mobThreshold))
+        if (damageable.TotalDamage != null)
         {
-
-            var heal = (mobThreshold.Thresholds.Keys.Max().Value - damageable.TotalDamage) *
+            var heal = (threshold.Value - damageable.TotalDamage) *
             (Math.Clamp(tracker.Count, 0, koComp.MaxKO) * comp.HealPerStack);
 
             var amount = -_rmcDamage.DistributeTypesTotal(xeno.Owner, heal);
             _damageable.TryChangeDamage(xeno, amount);
 
-            Logger.Debug($"mobThreshold = {mobThreshold.Thresholds.Keys.Max().Value}, totalDamage = {damageable.TotalDamage}, mathClamp = {Math.Clamp(tracker.Count, 0, koComp.MaxKO) * comp.HealPerStack}, totalHeal = {heal}, and after rmc: {amount}");
             if (_net.IsServer)
                 SpawnAttachedTo(comp.HealEffect, xeno.Owner.ToCoordinates());
         }
@@ -132,7 +140,6 @@ public sealed class BoxerUppercutSystem : EntitySystem
             if (_net.IsServer)
                 _audio.PlayPvs(comp.GongSound, xeno);
 
-            //_popup.PopupEntity("K.O!", xeno, PopupType.LargeCaution);
             EnsureComp<KOLabelComponent>(targetId);
             Timer.Spawn(TimeSpan.FromSeconds(4), () =>
             {
@@ -141,8 +148,9 @@ public sealed class BoxerUppercutSystem : EntitySystem
             popupPower = "titanic";
         }
 
-        var message = Loc.GetString("xeno-boxer-strain-other-uppercut-" + popupPower, ("target", targetId), ("xeno", xeno.Owner));
-        _popup.PopupPredicted(null, message, xeno, xeno, PopupType.LargeCaution);
+        var messageOther = Loc.GetString("xeno-boxer-strain-other-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+        var messageSelf = Loc.GetString("xeno-boxer-strain-self-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+        _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
 
         _rmcMelee.DoLunge(xeno, targetId);
 

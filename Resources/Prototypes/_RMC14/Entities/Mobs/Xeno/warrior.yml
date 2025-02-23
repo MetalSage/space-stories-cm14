@@ -98,6 +98,7 @@
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 0.2
 
+# Stories Boxer Strain
 - type: entity
   parent:
   - CMXenoDeveloped
@@ -106,7 +107,7 @@
   - RMCXenoSpeechSounds
   - RMCXenoCommendationReceiver
   id: CMXenoWarriorBoxer
-  name: Boxer Warrior
+  name: Warrior
   description: A beefy alien with an armored carapace.
   suffix: Boxer
   components:
@@ -143,14 +144,10 @@
     devolvesTo:
     - CMXenoDefender
   - type: XenoDevour
-  - type: XenoPunch
-    damage:
-      types:
-        Blunt: 25
   - type: BoxerPunch
     damage:
       types:
-        Blunt: 15
+        Blunt: 30
   - type: BoxerJab
   - type: BoxerUppercut
   - type: XenoPlasma
@@ -163,27 +160,24 @@
     - CMXenoCrusher
     - CMXenoPraetorian
   - type: CMArmor
-    armor: 20
-    explosionArmor: 40
+    armor: 25
+    explosionArmor: 45
   - type: XenoClaws
     clawType: Sharp
   - type: MeleeWeapon
     damage:
       groups:
-        Brute: 35 # change damage
+        Brute: 30
   - type: XenoTailStab
     tailDamage:
       groups:
-        Brute: 48 # change damage
+        Brute: 45
   - type: Tackle
-    max: 4
-    chance: 0.5
-    stunMin: 5
-    stunMax: 6
+    min: 4
   - type: XenoStrain
-    name: boxer
-    description: aaaaa
-    popup: boxer
+    name: st-xeno-boxer-name
+    description: st-xeno-boxer-description
+    popup: st-xeno-boxer-popup
   - type: SlowOnPull
     slowdowns:
     - multiplier: 0.4525

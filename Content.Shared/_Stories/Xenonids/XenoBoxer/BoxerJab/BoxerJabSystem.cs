@@ -1,16 +1,14 @@
-using Content.Shared._RMC14.Pulling;
-using Content.Shared._RMC14.Shields;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Coordinates;
-using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Content.Shared.Actions;
 using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerPunch;
 using Content.Shared.Popups;
+using Content.Shared.IdentityManagement;
 
 namespace Content.Shared._Stories.Xenonids.XenoBoxer.BoxerJab;
 
@@ -48,7 +46,10 @@ public sealed class BoxerJabSystem : EntitySystem
 
         _rmcMelee.DoLunge(xeno, args.Target);
         _slow.TryRoot(args.Target, comp.RootTime);
-        _popup.PopupPredicted($"Вы нанесли прямой левой удар по {ToPrettyString(args.Target)}", $"{ToPrettyString(xeno)} наносит прямой левой удар по {ToPrettyString(args.Target)}", xeno, xeno);
+
+        var messageSelf = Loc.GetString("xeno-boxer-jab-self-message", ("target", Identity.Entity(args.Target, EntityManager)));
+        var messageOther = Loc.GetString("xeno-boxer-jab-other-message", ("target", Identity.Entity(args.Target, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+        _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno);
 
         if (_net.IsServer)
         {

@@ -1,9 +1,9 @@
-using System.Numerics;
 using Content.Client._RMC14.NightVision;
 using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared._Stories.Xenonids.XenoBoxer;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -11,8 +11,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using static Robust.Shared.Utility.SpriteSpecifier;
-using Content.Shared._Stories.Xenonids.XenoBoxer;
+using System.Numerics;
 
 namespace Content.Client._Stories.Xenonids.XenoBoxerHud;
 
@@ -23,14 +22,17 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+
     private readonly ContainerSystem _container;
     private readonly MobStateSystem _mobState;
     private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
+
     private readonly EntityQuery<MobStateComponent> _mobStateQuery;
     private readonly EntityQuery<TransformComponent> _xformQuery;
     private readonly EntityQuery<XenoComponent> _xenoQuery;
     private readonly EntityQuery<EntityActiveInvisibleComponent> _invisQuery;
+
     private readonly ResPath _rsiPath = new("/Textures/_Stories/Interface/boxer_hud.rsi");
     private readonly ShaderInstance _shader;
 
@@ -68,6 +70,7 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
         var rotationMatrix = Matrix3Helpers.CreateRotation(-eyeRot);
 
         handle.UseShader(_shader);
+
         if (_entity.HasComponent<XenoBoxerKORecentlyComponent>(_players.LocalEntity))
             DrawTracker(in args, scaleMatrix, rotationMatrix);
 
@@ -111,12 +114,11 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
                 var matrix = Matrix3x2.Multiply(rotationMatrix, scaledWorld);
                 handle.SetTransform(matrix);
 
-                var icon = new Rsi(_rsiPath, $"KOTracker_{tracker.Count}");
+                var icon = new Rsi(_rsiPath, $"KOTracker_{(int)tracker.Count}");
                 var texture = _sprite.GetFrame(icon, _timing.CurTime);
 
-                var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)texture.Height / EyeManager.PixelsPerMeter * bounds.Height;
-                //var xOffset = bounds.Width / 2f + sprite.Offset.X + (float)texture.Width / EyeManager.PixelsPerMeter * bounds.Width;
-                var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float) texture.Width / EyeManager.PixelsPerMeter * bounds.Width;
+                var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)texture.Height / EyeManager.PixelsPerMeter * bounds.Height + 0.1f;
+                var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)texture.Width / EyeManager.PixelsPerMeter * bounds.Width + 0.1f;
 
                 var position = new Vector2(xOffset, yOffset);
                 handle.DrawTexture(texture, position);
@@ -154,8 +156,8 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
 
             var texture = _sprite.GetFrame(icon, _timing.CurTime);
 
-            var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float) texture.Height / EyeManager.PixelsPerMeter * bounds.Height;
-            var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float) texture.Width / EyeManager.PixelsPerMeter * bounds.Width;
+            var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)texture.Height / EyeManager.PixelsPerMeter * bounds.Height;
+            var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)texture.Width / EyeManager.PixelsPerMeter * bounds.Width;
 
             var position = new Vector2(xOffset, yOffset);
             handle.DrawTexture(texture, position);

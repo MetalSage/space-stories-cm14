@@ -50,6 +50,7 @@ public sealed class BoxerPunchSystem : EntitySystem
 
         var comp = xeno.Comp;
         var targetId = args.Target;
+
         _rmcPulling.TryStopAllPullsFromAndOn(targetId);
 
         var damage = _damageable.TryChangeDamage(targetId, comp.Damage);

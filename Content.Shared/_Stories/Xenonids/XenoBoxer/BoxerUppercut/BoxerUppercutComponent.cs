@@ -12,7 +12,7 @@ namespace Content.Shared._Stories.Xenonids.XenoBoxer.BoxerUppercut;
 public sealed partial class BoxerUppercutComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public float Range = 1.5f;
+    public float Range = 3f;
 
     [DataField, AutoNetworkedField]
     public EntProtoId Effect = "CMEffectPunch";

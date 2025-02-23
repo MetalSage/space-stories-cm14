@@ -4,6 +4,8 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
+using Content.Shared.IdentityManagement;
+using Content.Shared._RMC14.Xenonids;
 
 namespace Content.Shared._Stories.Xenonids.XenoBoxer;
 
@@ -13,34 +15,37 @@ public sealed class SharedBoxerKOSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAuraSystem _aura = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly XenoSystem _xeno = default!;
 
     private readonly List<EntityUid> _trackersToRemove = new();
 
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<XenoBoxerKOComponent, MeleeHitEvent>(OnMeleeHit);
+    }
     public void UpdateKOTracker(EntityUid ent, XenoBoxerKOComponent comp, EntityUid target, float koPoint)
     {
-        var time = _timing.CurTime;
+        if (_net.IsClient)
+            return;
+
         var recently = EnsureComp<XenoBoxerKORecentlyComponent>(ent);
         var tracker = recently.Trackers.GetValueOrDefault(target);
-
         if (tracker.Count >= comp.MaxKO)
         {
-            _popup.PopupPredicted($"Вы готовы нанести сокрушительный удар!", ent, null, PopupType.LargeCaution);
+            _popup.PopupPredicted(Loc.GetString("xeno-boxer-can-use-titanic-uppercut"), ent, null, PopupType.LargeCaution);
             return;
         }
 
+        var time = _timing.CurTime;
         tracker.Count = Math.Min(tracker.Count + koPoint, comp.MaxKO);
         tracker.Last = time;
         recently.Trackers[target] = tracker;
-        Dirty(ent, recently);
-
-        if (_net.IsClient)
-            return;
 
         comp.AuraColor = GetAuraColor(tracker.Count, comp.MaxKO);
         if (comp.AuraColor.HasValue)
             _aura.GiveAura(ent, comp.AuraColor.Value, comp.AuraDuration);
 
-        //_popup.PopupPredicted($"{tracker.Count}", ent, null, PopupType.MediumCaution);
+        Dirty(ent, recently);
     }
 
     public override void Update(float frameTime)
@@ -55,9 +60,7 @@ public sealed class SharedBoxerKOSystem : EntitySystem
             foreach (var tracker in recently.Trackers)
             {
                 if (time >= tracker.Value.Last + recently.ExpireAfter)
-                {
                     _trackersToRemove.Add(tracker.Key);
-                }
             }
 
             foreach (var id in _trackersToRemove)
@@ -69,18 +72,33 @@ public sealed class SharedBoxerKOSystem : EntitySystem
             {
                 RemCompDeferred<XenoBoxerKORecentlyComponent>(uid);
                 RemCompDeferred<AuraComponent>(uid);
-                _popup.PopupPredicted($"Ваше тело слабеет и сбрасывает комбо!", uid, null, PopupType.MediumCaution);
+                _popup.PopupPredicted(Loc.GetString("xeno-boxer-reset-ko"), uid, null, PopupType.MediumCaution);
             }
         }
     }
 
     private Color? GetAuraColor(float count, float maxKO)
     {
-        if (count >= maxKO)
+        if (count >= 10)
             return Color.Red;
-        if (count >= maxKO / 2f)
+        if (count >= 5)
             return Color.Yellow;
 
         return null;
+    }
+
+    private void OnMeleeHit(Entity<XenoBoxerKOComponent> xeno, ref MeleeHitEvent args)
+    {
+        if (!args.IsHit)
+            return;
+
+        foreach (var hit in args.HitEntities)
+        {
+            if (!_xeno.CanAbilityAttackTarget(xeno.Owner, hit))
+                continue;
+
+            UpdateKOTracker(xeno.Owner, xeno.Comp, hit, xeno.Comp.KOIncreasePerMeleeHit);
+            break;
+        }
     }
 }
