@@ -202,3 +202,5 @@
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 0.2
   - type: XenoBoxerKO
+  - type: RMCSize
+    size: Big
