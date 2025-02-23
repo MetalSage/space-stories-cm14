@@ -105,7 +105,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
             popupPower = "good";
         }
 
-        if (damageable.TotalDamage != null)
+        if (damageable.TotalDamage != FixedPoint2.Zero)
         {
             var heal = (threshold.Value - damageable.TotalDamage) *
             (Math.Clamp(tracker.Count, 0, koComp.MaxKO) * comp.HealPerStack);
@@ -138,7 +138,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
             _stun.TryParalyze(targetId, xeno.Comp.StatusEffectTime, true);
 
             if (_net.IsClient)
-                _audio.PlayLocal(comp.GongSound, xeno);
+                _audio.PlayLocal(comp.GongSound, xeno, xeno);
 
             EnsureComp<KOLabelComponent>(targetId);
             Timer.Spawn(TimeSpan.FromSeconds(4), () =>
