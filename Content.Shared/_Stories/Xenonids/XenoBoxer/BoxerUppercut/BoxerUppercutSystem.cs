@@ -137,8 +137,8 @@ public sealed class BoxerUppercutSystem : EntitySystem
                 comp.StatusEffectTime, false);
             _stun.TryParalyze(targetId, xeno.Comp.StatusEffectTime, true);
 
-            if (_net.IsServer)
-                _audio.PlayPvs(comp.GongSound, xeno);
+            if (_net.IsClient)
+                _audio.PlayLocal(comp.GongSound, xeno);
 
             EnsureComp<KOLabelComponent>(targetId);
             Timer.Spawn(TimeSpan.FromSeconds(4), () =>
