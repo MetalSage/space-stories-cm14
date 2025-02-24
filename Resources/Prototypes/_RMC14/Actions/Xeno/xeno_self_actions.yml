@@ -7,7 +7,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: resting
     event: !type:XenoRestActionEvent
     useDelay: 1
@@ -30,7 +30,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: watch_xeno
     event: !type:XenoWatchActionEvent
 
@@ -43,7 +43,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: emit_pheromones
     event: !type:XenoPheromonesActionEvent
     useDelay: 0.33
@@ -57,7 +57,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xenohide
     event: !type:XenoHideActionEvent
     useDelay: 0.5
@@ -71,7 +71,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: crest_defense
     event: !type:XenoToggleCrestActionEvent
     useDelay: 2
@@ -85,7 +85,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: fortify
     event: !type:XenoFortifyActionEvent
     useDelay: 5
@@ -94,7 +94,7 @@
   id: ActionXenoFortifySteelcrest
   parent: ActionXenoFortify
   name: Fortify
-  description: Become much slower, increasing your resistance to direct damage and explosions. Damage is greatly reduced from the direction you are facing. You count as two sizes bigger while fortified and still can attack strcutures or use tail slam, but your slashes do less damage.
+  description: Become much slower, increasing your resistance to direct damage and explosions. Damage is greatly reduced from the direction you are facing. You count as two sizes bigger while fortified and still can attack structures or use tail slam, but your slashes do less damage.
 
 - type: entity
   id: ActionXenoResinWalker
@@ -105,7 +105,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: toggle_speed
     event: !type:XenoResinWalkerActionEvent
     useDelay: 0.25
@@ -118,7 +118,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: toggle_long_range
     event: !type:XenoZoomActionEvent
     useDelay: 0.2
@@ -132,7 +132,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: queen_word
     event: !type:XenoWordQueenActionEvent
     useDelay: 10
@@ -147,7 +147,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: grow_ovipositor
     event: !type:XenoGrowOvipositorActionEvent
   - type: XenoGrowOvipositorAction
@@ -161,7 +161,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: lurker_invisibility
     event: !type:XenoTurnInvisibleActionEvent
 
@@ -174,7 +174,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: empower
     event: !type:XenoDefensiveShieldActionEvent
     useDelay: 26
@@ -188,7 +188,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: retrieve_egg
     event: !type:XenoRetrieveEggActionEvent
     checkCanAccess: false
@@ -205,7 +205,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: throw_parasite
     event: !type:XenoThrowParasiteActionEvent
     checkCanAccess: false
@@ -223,7 +223,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: reserve_parasite
     event: !type:XenoReserveParasiteActionEvent
     useDelay: 1
@@ -236,7 +236,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xeno_readmit
     event: !type:ManageHiveActionEvent
     useDelay: 0.5
@@ -250,7 +250,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_dodge
     event: !type:XenoDodgeActionEvent
     useDelay: 19
@@ -264,7 +264,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: burrow
     event: !type:XenoBurrowActionEvent
     range: 8
@@ -283,8 +283,22 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: soak
     event: !type:XenoSoakActionEvent
     useDelay: 17
+  - type: ActionBlockIfResting
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoEmpower
+  name: Empower (50)
+  description: On first activation it, gain a small amount of shield. After 6 seconds or using it again, get empowered based on surrounding enemies (max 6), gaining shield from each. If you empowered from at least 3 targets, you become Super-Empowered, gaing additional damage on melee attacks, and changing how some of your other abilities work.
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: empower
+    event: !type:XenoEmpowerActionEvent
   - type: ActionBlockIfResting

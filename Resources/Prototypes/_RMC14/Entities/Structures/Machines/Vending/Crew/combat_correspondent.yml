@@ -13,38 +13,38 @@
     jobs:
     - CMCorrespondent
     sections:
-    - name: Standard Equipment
+    - name: Стандартное Оборудование
       takeAll: CMStandard
       entries:
       - id: RMCVendorBundleCrewCombatCorrespondent
       # Portable Press Fax Machine - /obj/item/device/fax_backpack
       - id: RMCCameraBroadcasting
       - id: CMSatchel
-    - name: Uniform
+    - name: Униформа
       choices: { CMUniform: 1 }
       entries:
       - id: RMCJumpsuitCorrespondentBlack
-        name: black uniform
+        name: черная униформа
       - id: RMCJumpsuitCorrespondentOrange
-        name: orange uniform
+        name: оранжевая униформа
       - id: RMCJumpsuitCorrespondentRed
-        name: red uniform
-    - name: Armor
+        name: красная униформа
+    - name: Броня
       choices: { CMArmor: 1 }
       entries:
       - id: CMArmorPress
       - id: RMCCoatCorrespondentBlue
-        name: blue vest
+        name: синий жилет
       # black vest
       - id: RMCCoatCorrespondentBlack
-        name: black coat
+        name: черный жилет
       - id: RMCCoatCorrespondentGreen
-        name: green coat
-    - name: Helmet
+        name: зеленый жилет
+    - name: Шлем
       choices: { CMHelmet: 1 }
       entries:
       - id: CMArmorHelmetPress
-    - name: Refills
+    - name: Пополнение
       entries:
       # /obj/item/device/camera 10
       # /obj/item/device/camera_film 5

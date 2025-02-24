@@ -13,11 +13,11 @@
     jobs:
     - CMMaintTech
     sections:
-    - name: Maintenance Set (Mandatory)
+    - name: Набор Технического Обслуживания (обязательно)
       takeAll: CMMaintenanceSet
       entries:
       - id: CMVendorBundleCrewMaintenanceEssentials
-    - name: Standard Equipment
+    - name: Стандартное Оборудование
       takeAll: CMStandard
       entries:
       - id: CMHandsInsulated
@@ -25,7 +25,7 @@
       - id: CMMRE
         name: MRE
       # map
-    - name: Helmet
+    - name: Шлем
       choices: { CMHelmet: 1 }
       entries:
       - id: CMHeadBeretEngineer
@@ -33,14 +33,14 @@
       - id: RMCHardhatOrange
       - id: RMCHardhatBlue
       # Welding helmet
-    - name: Suit
+    - name: Костюм
       choices: { CMSuit: 1 }
       entries:
       - id: RMCHazardVestBlack
       - id: RMCHazardVestBlue
       - id: RMCHazardVest
       - id: RMCHazardVestYellow
-    - name: Backpack
+    - name: Рюкзак
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpackMarineTech
@@ -50,36 +50,36 @@
       - id: RMCSatchelWelder
       - id: RMCSatchelWelderChestrig
         recommended: true
-    - name: Belt
+    - name: Пояс
       choices: { CMBelt: 1 }
       entries:
       - id: RMCBeltUtilityGeneral
       - id: CMBeltUtilityFilled
-        name: M276 Toolbelt Rig (Full)
-    - name: Pouches
+        name: пояс M276 для инструментов (полный)
+    - name: Подсумки
       choices: { RMCPouch: 2 }
       entries:
       - id: RMCPouchGeneralMedium
       - id: RMCPouchFirstAidInjectors
-        name: first-aid pouch (refillable injectors)
+        name: подсумок первой помощи (многоразовые инъекторы)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
+        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: first-aid pouch (pill packets)
+        name: подсумок первой помощи (таблетки)
       - id: RMCPouchConstruction
       #- id: CMElectronicsPouchFull
-      #name: Electronics Pouch (Full)
+      #name: электрический подсумок (полный)
       - id: RMCPouchToolsFill
-        name: Tools pouch (Filled)
+        name: подсумок для инструментов (заполненный)
       - id: RMCPouchFlareFilled
-        name: Flare pouch (Full)
-    - name: Mask
+        name: подсумок фаеров (полный)
+    - name: Маска
       choices: { CMMask: 1 }
       entries:
       - id: CMMaskGas
       - id: CMMaskCoif
       - id: RMCMaskRebreather
-    - name: Accessories
+    - name: Аксессуары
       choices: { CMAccessory: 1 }
       entries:
       - id: CMWebbingBrown

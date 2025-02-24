@@ -9,6 +9,7 @@ rmc-storage-limit-max-ammo = Больше патронов в пояс не по
 rmc-storage-limit-max-ammo-webbing = Вы не сможете вместить больше патронов в разгрузку!
 rmc-storage-limit-one-binoculars = Здесь уже помещается пара биноклей!
 rmc-storage-limit-one-command-tablet = В него уже помещается планшет!
+rmc-storage-limit-accessories = В шлем больше не помещается никаких аксессуаров!
 rmc-storage-nothing-left = { CAPITALIZE(THE($storage)) } пустой. Запечатлеть нечего.
 rmc-holster-verb = Развернуть
 rmc-storage-webbing-remove-verb = Снимите разгрузку

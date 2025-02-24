@@ -7,7 +7,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: transfer_plasma
     event: !type:XenoTransferPlasmaActionEvent
     range: 2
@@ -21,7 +21,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: transfer_plasma
     event: !type:XenoTransferPlasmaActionEvent
       amount: 100
@@ -36,7 +36,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: transfer_plasma
     event: !type:XenoTransferPlasmaActionEvent
       amount: 200
@@ -51,7 +51,7 @@
   - type: EntityWorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: gardener_resin_surge
     event: !type:XenoResinSurgeActionEvent
     range: 7
@@ -73,7 +73,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: retrieve
     event: !type:XenoRetrieveActionEvent
     range: 7
@@ -94,7 +94,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: warden_heal
     event: !type:XenoAidActionEvent
     range: 1.5
@@ -117,7 +117,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: warden_rejuvenate
     event: !type:XenoAidActionEvent
       aidType: Ailments
@@ -142,10 +142,10 @@
 #    itemIconStyle: NoItem
 #    backgroundOn: null
 #    icon:
-#      sprite: _RMC14/Actions/xeno_actions.rsi
+#      sprite: _Stories/Actions/xeno_actions.rsi
 #      state: warden_heal
 #    iconOn:
-#      sprite: _RMC14/Actions/xeno_actions.rsi
+#      sprite: _Stories/Actions/xeno_actions.rsi
 #      state: warden_rejuvenate
 #    event: !type:XenoAidToggleActionEvent
 #    useDelay: 0.5
@@ -160,7 +160,7 @@
     itemIconStyle: NoItem
     backgroundOn: null
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xeno_lead
     event: !type:HiveLeaderActionEvent
     useDelay: 3
@@ -175,7 +175,7 @@
     itemIconStyle: NoItem
     backgroundOn: null
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: heal_xeno
     event: !type:XenoHealActionEvent
     useDelay: 8
@@ -194,7 +194,7 @@
     itemIconStyle: NoItem
     backgroundOn: null
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: apply_salve
     event: !type:XenoApplySalveActionEvent
     useDelay: 0.5
@@ -210,10 +210,10 @@
     itemIconStyle: NoItem
     backgroundOn: null
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: screech
     event: !type:XenoSacrificeHealActionEvent
-    range: 2
+    range: 1.5
 
 - type: entity
   parent: ActionXenoBase
@@ -224,11 +224,10 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_seize
     event: !type:XenoTailFountainActionEvent
     range: 2
-    useDelay: 10
 
 - type: entity
   parent: ActionXenoBase
@@ -239,7 +238,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: warden_heal
     event: !type:XenoTantrumActionEvent
     checkCanAccess: false
@@ -255,7 +254,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: screech
     event: !type:XenoFightOrFlightActionEvent
     useDelay: 45

@@ -8,4 +8,10 @@
   ## Examples of violations:
   - Using autoclickers, non-gameplay macros.
   - Using scripts/modifications to automatically aim at other players, disable shadows, or see through walls.
+  - Construction of barricades on water or other surfaces clearly not intended for construction.
+  - Building unfinished structures for defense purposes, such as unfinished locks.
+  - Manufacturing chemicals that are not available in [textlink=“Chemicals” link=“RMCChemicals”].
+  - Nesting one vault into another in order to hold more than would otherwise fit, except for specialized boxes (for grenades, flyers, etc.).
+  - Using the helmets of medics or technicians in order to get free medivisor or protection from welding, if you do not have the corresponding in-game skills, medicine 2 or engineering 2.
+  - Quickly, repeatedly pressing the shuttle lock button.
 </Document>

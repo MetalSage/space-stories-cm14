@@ -39,6 +39,7 @@ rmc-xeno-evolution-cant-devolve-damaged = Мы слишком слабы для 
 rmc-xeno-evolution-cant-evolve-recent-queen-death-minutes = Мы должны подождать около { $minutes } минут и { $seconds } секунд, чтобы улей оправился от смерти предыдущей королевы.
 rmc-xeno-evolution-cant-evolve-recent-queen-death-seconds = Мы должны подождать около { $seconds } секунд, чтобы улей оправился от смерти предыдущей королевы.
 rmc-xeno-evolution-cant-evolve-caste-cooldown = Мы не можем снова превратиться в эту касту! (Осталось { $minutes } минут и { $seconds } секунд)
+rmc-xeno-evolution-failed-early-weeds = Улей еще не настолько развился, чтобы вы могли эволюционировать от сорняков!
 rmc-xeno-evolution-failed-bad-location = Мы не можем развиваться здесь.
 rmc-xeno-evolution-start-self = Мы начинаем скручиваться и деформироваться.
 rmc-xeno-evolution-start-others = { $xeno } начинает крутиться и извиваться.
@@ -272,6 +273,13 @@ rmc-xeno-tantrum-other = Мы чувствуем всепоглощающую я
 rmc-xeno-tantrum-end = Мы чувствуем, что успокаиваемся.
 # Fight or Flight
 rmc-xeno-fof-effect = Каждый сантиметр нашего тела движется сам по себе, чтобы бороться!
+# Ravager Empower
+rmc-xeno-ravager-shield-end = Мы чувствуем, что наш щит разрушается!
+rmc-xeno-empower-start-self = Мы начинаем расширять свои возможности!
+rmc-xeno-empower-start-others = { CAPITALIZE(THE($user)) } начинает расширять свои возможности!
+rmc-xeno-ravager-empower = Мы чувствуем прилив сил от окружающих врагов!
+rmc-xeno-ravager-empower-fizzle = Вокруг нас не было врагов!
+rmc-xeno-ravager-super-empower-fade = Наше свечение исчезает, сила покидает нашу форму!
 rmc-xeno-defensive-shield-activate-self = Мы прижимаемся к земле и укрепляем свою защиту!
 cm-xeno-plasma-transferred-to-self = { $target } передал вам { $plasma } плазмы. Теперь у вас есть { $total }
 cm-xeno-plasma-cannot-self = Вы не можете передать плазму себе!

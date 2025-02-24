@@ -1,0 +1,14 @@
+ent-RMCPhoneboxBase = телефоный ящик
+    .desc = Это телефонный ящик, устаревшая, но пригодная для использования технология. Они используются для связи по всей колонии и соединенным колониям без помех. Как бы надежны они ни были, похоже, что линия не работает.
+ent-RMCPhoneboxBrokenBase = сломанный телефонный ящик
+    .desc = Это телефонный ящик, устаревшая, но пригодная для использования технология. Они используются для связи по всей колонии и соединенным колониям без помех. Похоже, он полностью разрушен, залит кровью, а стекло разбито. Прятаться внутри бессмысленно.
+ent-RMCPhoneboxOff = { ent-RMCPhoneboxBase }
+    .suffix = Выкл
+    .desc = { ent-RMCPhoneboxBase.desc }
+ent-RMCPhoneboxOn = { ent-RMCPhoneboxBase }
+    .suffix = Вкл
+    .desc = { ent-RMCPhoneboxBase.desc }
+ent-RMCPhoneboxBroken = { ent-RMCPhoneboxBrokenBase }
+    .desc = { ent-RMCPhoneboxBrokenBase.desc }
+ent-RMCPhoneboxBrokenBloody = { ent-RMCPhoneboxBrokenBase }
+    .desc = { ent-RMCPhoneboxBrokenBase.desc }

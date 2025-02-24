@@ -54,7 +54,7 @@
       - Bottle
   - type: CMAutomatedVendor # TODO RMC14 different ui style
     sections:
-    - name: Field supplies
+    - name: Полевые Запасы
       entries:
       - id: CMBurnKit10
         amount: 6
@@ -66,7 +66,7 @@
         amount: 6
 #      - id: CMSplints10 # TODO RMC14
 #        amount: 6
-    - name: Autoinjectors
+    - name: Автоинъекторы
       entries:
       - id: CMBicaridineAutoInjector
         amount: 3
@@ -84,7 +84,7 @@
 #        amount: 3
       - id: CMTricordrazineAutoInjector
         amount: 3
-    - name: Liquid bottles
+    - name: Бутылки С Жидкостью
       entries:
       - id: CMBottleBicaridine
         amount: 3
@@ -102,7 +102,7 @@
 #        amount: 3
 #      - id: CMBottleTramadol # TODO RMC14
 #        amount: 3
-    - name: Pill bottles
+    - name: Таблетницы
       entries:
       - id: CMPillCanisterBicaridine
         amount: 2
@@ -118,7 +118,7 @@
 #        amount: 2
 #      - id: CMPillCanisterTramadol # TODO RMC14
 #        amount: 2
-    - name: Medical utilities
+    - name: Медицинские Утилиты
       entries:
       - id: CMDefibrillator
         amount: 3
@@ -161,7 +161,7 @@
       - Bottle
   - type: CMAutomatedVendor # TODO RMC14 different ui style
     sections:
-    - name: Liquid bottles
+    - name: Бутылки С Жидкостью
       entries:
       - id: CMBottleBicaridine
         amount: 6
@@ -179,13 +179,13 @@
     #        amount: 6
     #      - id: CMBottleTramadol # TODO RMC14
     #        amount: 6
-    - name: Miscellaneous
+    - name: Разное
       entries:
       - id: CMBeaker
-        name: Beaker (60 units)
+        name: мензурка (60 единиц)
         amount: 3
       - id: CMBeakerLarge
-        name: Beaker, Large (120 units)
+        name: мензурка, большая (120 единиц)
         amount: 3
       - id: RMCBoxPillCanister
         amount: 2
@@ -232,16 +232,16 @@
       - Hypospray
   - type: CMAutomatedVendor
     sections:
-    - name: Autoinjectors
+    - name: Автоинъекторы
       entries:
       - id: CMTricordrazineAutoInjectorNoSkill
         amount: 5
     #- id: CMPainStopAutoinjector
-    - name: Devices
+    - name: Устройства
       entries:
       - id: CMHealthAnalyzer
         amount: 3
-    - name: Field Supplies
+    - name: Полевые Запасы
       entries:
       - id: CMFireExtinguisherPortable
         amount: 5
@@ -289,7 +289,7 @@
       - Hypospray
   - type: CMAutomatedVendor
     sections:
-    - name: Supplies
+    - name: Припасы
       entries:
       # - id: CMPainStopAutoinjector
       #   amount: 2
@@ -301,7 +301,7 @@
         amount: 4
       # - id: CMMedicalSplints5
       #   amount: 4
-    - name: Utility
+    - name: Утилиты
       entries:
       - id: CMHealthAnalyzer
         amount: 3
@@ -336,7 +336,7 @@
       entries:
       - id: CMBloodPackFull
         amount: 30
-    - name: Miscellaneous
+    - name: Разное
       entries:
       - id: CMBloodPack
         amount: 5

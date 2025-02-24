@@ -1,0 +1,17 @@
+ent-RMCPouchFirstAid = подсумок первой помощи
+    .desc = По умолчанию в ней хранятся автоинъекторы. Но в ней также могут храниться мази, бинты и пакеты с таблетками.
+ent-RMCPouchFirstAidInjectors = { ent-RMCPouchFirstAid }
+    .suffix = Инъекторы
+    .desc = { ent-RMCPouchFirstAid.desc }
+ent-RMCPouchFirstAidSplintsGauzeOintment = { ent-RMCPouchFirstAid }
+    .suffix = Шины, марля, мазь
+    .desc = { ent-RMCPouchFirstAid.desc }
+ent-RMCPouchFirstAidPills = { ent-RMCPouchFirstAid }
+    .suffix = Таблетки
+    .desc = { ent-RMCPouchFirstAid.desc }
+ent-RMCPouchFirstAidERT = { ent-RMCPouchFirstAid }
+    .desc = Может содержать автоинъекторы, мази и бинты. В этом контейнере есть несколько дополнительных вещей.
+    .suffix = ОБР
+ent-RMCPouchFirstAidERTFill = { ent-RMCPouchFirstAidERT }
+    .suffix = ОБР, Заполненный
+    .desc = { ent-RMCPouchFirstAidERT.desc }

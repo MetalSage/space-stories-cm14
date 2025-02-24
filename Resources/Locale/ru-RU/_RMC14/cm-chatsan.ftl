@@ -212,6 +212,10 @@ cm-chatsan-word-laser = лазер
 cm-chatsan-replacement-laser = точка
 cm-chatsan-word-lazer = lazer
 cm-chatsan-replacement-lazer = dot
+cm-chatsan-word-flamer = огнеметчик
+cm-chatsan-replacement-flamer = огнеплеватель
+cm-chatsan-word-flamethrower = огнемет
+cm-chatsan-replacement-flamethrower = огнеплеватель
 cm-chatsan-word-cat = feline host
 cm-chatsan-word-cats = feline hosts
 cm-chatsan-word-sadar = садар
@@ -288,18 +292,14 @@ cm-chatsan-replacement-survs = planet talls
 # cm-chatsan-word-#tank = #tank
 # cm-chatsan-replacement-#tank = turtle
 
-
 # cm-chatsan-word-# laser = # laser
 # cm-chatsan-replacement-# laser = dot
-
 
 # cm-chatsan-word-# lazer = # lazer
 # cm-chatsan-replacement-# lazer = dot
 
-
 # cm-chatsan-word-# flamer = # flamer
 # cm-chatsan-replacement-# flamer = fire spitter
-
 
 # cm-chatsan-word-# flamethrower = # flamethrower
 # cm-chatsan-replacement-# flamethrower =  fire spitter

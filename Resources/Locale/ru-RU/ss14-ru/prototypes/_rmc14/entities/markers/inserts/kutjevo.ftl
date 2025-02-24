@@ -1,0 +1,12 @@
+ent-RMCMapInsertKutjevoCommunications = ЮВ КПП
+    .suffix = Вставка Кутьево
+    .desc = { ent-RMCMapInsertBase.desc }
+ent-RMCMapInsertKutjevoCleaningProgBotany = Уборка Ботаники
+    .suffix = Вставка Кутьево
+    .desc = { ent-RMCMapInsertBase.desc }
+ent-RMCMapInsertKutjevoTrappedMonke = Пойманный Клоун
+    .suffix = Вставка Кутьево
+    .desc = { ent-RMCMapInsertBase.desc }
+ent-RMCMapInsertSolarisPlinkingSpotNorthLZ = Место для пострелушек - Северная ПЗ
+    .suffix = Вставка Кутьево
+    .desc = { ent-RMCMapInsertBase.desc }

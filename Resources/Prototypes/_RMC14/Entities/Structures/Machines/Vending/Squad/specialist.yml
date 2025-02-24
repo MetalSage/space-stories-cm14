@@ -17,7 +17,7 @@
     - CMWeaponsSpecialist
     pointsType: Specialist
     sections:
-    - name: Weapons Specialist Sets
+    - name: Наборы Специалиста По Оружию
       takeOne: SquadSpecKit
       sharedSpecLimit: 1 # Stories-Balance
       entries:
@@ -29,7 +29,7 @@
       - id: RMCScoutSpecEquipmentCase
       - id: CMSniperEquipmentCase
       - id: STSniperAntiMaterielEquipmentCase # Stories-AntiMateriel
-    - name: Extra Scout Ammunition
+    - name: Дополнительные Боеприпасы Для Скаутов
       entries:
       - id: RMCMagazineRifleM4SPRA19Impact
         points: 40
@@ -37,7 +37,7 @@
         points: 40
       - id: RMCMagazineRifleM4SPRA19
         points: 40
-    - name: Extra Sniper Ammunition
+    - name: Дополнительные Снайперские Патроны
       entries:
       - id: CMMagazineSniperM96SFlak
         points: 40
@@ -47,7 +47,7 @@
         points: 40
       - id: STMagazineSniperXM43E1AntiMateriel # Stories-AntiMateriel
         points: 40
-    - name: Extra Demolitionist Ammunition
+    - name: Дополнительные Боеприпасы Для Разрушителей
       entries:
       - id: RMCRocket84mmAntiArmor
         points: 40
@@ -55,22 +55,22 @@
         points: 40
     #- id: 84mmWhitePhosphorusRocket
     #  points: 40
-    - name: Extra Grenades
+    - name: Дополнительные Гранаты
       entries:
       - id: CMGrenadeHighExplosive
-        name: M40 HEDP Blast Grenades (x6)
+        name: Взрывные Гранаты M40 HEDP (x6)
         points: 40
         spawn: 6
       - id: CMGrenadeFrag # TODO RMC14 hefa and smoke temporarily until normal options are coded
-        name: M40 HEFA Frag Grenades (x6)
+        name: Осколочные Гранаты M40 HEFA (x6)
         points: 40
         spawn: 6
       - id: CMGrenadeSmoke
-        name: M40 HSDP Smoke Grenades (x6)
+        name: Дымовые Гранаты M40 HSDP (x6)
         points: 20
         spawn: 6
       - id: RMCGrenadeIncendiary
-        name: M40 HIDP Incendiary Grenades (x6)
+        name: Зажигательные Гранаты M40 HIDP (x6)
         points: 40
         spawn: 6
     #- id: M40HPDPWhitePhosphorusGrenadesx6
@@ -81,7 +81,7 @@
     #  points: 40
     #- id: M74AGMSSmokeGrenadesx6
     #  points: 20
-    - name: Extra Flamethrower Tanks
+    - name: Дополнительные Огнеметные Балоны
       entries: [ ]
     #- id: LargeIncineratorTank
     #  points: 40
@@ -105,19 +105,19 @@
     jobs:
     - CMWeaponsSpecialist
     sections:
-    - name: Standard Equipment
+    - name: Стандартное Оборудование
       takeAll: CMStandard
       entries:
       - id: CMVendorBundleWeaponsSpecialistApparel
       - id: CMMRE
       #- id: CMMap # TODO: Make a map
-    - name: Backpack
+    - name: Рюкзак
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpackMarine
       - id: CMSatchelMarine
         recommended: true
-    - name: Belt
+    - name: Пояс
       choices: { CMBelt: 1 }
       entries:
       - id: RMCBeltUtilityGeneral
@@ -128,20 +128,20 @@
       - id: RMCBeltHolsterSMGPouch
     #- id: RMCBeltHolsterFlareGun
       - id: RMCM276ShotgunShellLoadingRig
-    - name: Pouches
+    - name: Подсумки
       choices: { RMCPouch: 2 }
       entries:
       - id: RMCPouchFirstAidInjectors
-        name: first-aid pouch (refillable injectors)
+        name: подсумок первой помощи (многоразовые инъекторы)
         recommended: true
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
+        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
         recommended: true
       - id: RMCPouchFirstAidPills
-        name: first-aid pouch (pills)
+        name: подсумок первой помощи (таблетки)
         recommended: true
       - id: RMCPouchFlareFilled
-        name: Flare pouch (Full)
+        name: подсумок фаеров (полный)
       - id: RMCPouchMagazine
         recommended: true
       - id: RMCPouchShotgun
@@ -150,7 +150,7 @@
       - id: RMCPouchGeneralMedium
       - id: RMCPouchPistol
       #- id: CMSlingPouch
-    - name: Accessories
+    - name: Аксессуары
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown
@@ -159,19 +159,19 @@
       - id: CMWebbing
       - id: CMWebbingPouch
       - id: CMWebbingHolster
-    - name: Mask
+    - name: Маска
       choices: { CMMask: 1 }
       entries:
       - id: CMMaskGas
       - id: CMMaskCoif
       - id: RMCMaskRebreather
-    - name: Restricted Firearms
+    - name: Вторичное Огнестрельное Оружие
       entries:
       - id: RMCGunCasePistolMK80
         points: 15
       - id: RMCGunCasePistolSmart
         points: 15
-    - name: Sidearm Ammunition
+    - name: Боеприпасы К Вторичному Оружию
       entries:
       - id: RMCSpeedLoader44Marksman
         points: 10
@@ -179,26 +179,26 @@
         points: 5
       - id: RMCMagazinePistolSU6
         points: 10
-    - name: Clothing Items
+    - name: Предметы Одежды
       entries:
       - id: RMCScabbardMacheteFilled
-        name: machete scabbard (Full)
+        name: ножны для мачете (заполненные)
         points: 6
       - id: RMCPouchMacheteFilled
-        name: machete pouch (Full)
+        name: подсумок для мачете (полный)
         points: 15
       - id: RMCBackpackRTO
         points: 15
-    #- id: CMFuelTankStrapPouch
+      - id: RMCPouchFuelTank
     #- id: CMWeldingGoggles
       - id: RMCPouchGeneralLarge
         points: 10
       - id: CMBeltUtilityCombat
         points: 15
       - id: RMCPouchAutoinjectorFill
-        name: autoinjector pouch (Full)
+        name: подсумок автоинъекторов (полный)
         points: 15
-    - name: Utilities
+    - name: Утилиты
       entries:
       - id: CMRollerBedSpawnFolded
         points: 5
@@ -210,23 +210,23 @@
         points: 10
       - id: RMCWhistle
         points: 5
-    - name: Binoculars
+    - name: Бинокли
       entries:
       - id: RMCBinoculars
         points: 5
       - id: RMCLaserDesignator
         points: 15
-    - name: Helmet Optics
+    - name: Оптика Для Шлема
       entries: [ ]
     #- id: CMMedicalHelmetOptic
     #- id: CMWeldingVisor
-    - name: Pamphlets
+    - name: Памфлеты
       entries:
       - id: CMPamphletJTAC
         points: 15
       - id: CMPamphletEngineer
         points: 15
-    - name: Radio Keys
+    - name: Ключи Шифрования
       entries:
       - id: CMEncryptionKeyEngineer
         points: 5

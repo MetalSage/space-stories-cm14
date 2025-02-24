@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent:
   - CMXenoDeveloped
   - CMXenoTail
@@ -51,7 +51,7 @@
   - type: XenoEvolution
     max: 500
     evolvesTo:
-    - CMXenoRavager # Stories Change
+    - CMXenoRavager
   - type: XenoLeap
     plasmaCost: 20
     delay: 0

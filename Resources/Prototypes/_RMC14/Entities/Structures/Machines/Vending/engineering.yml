@@ -19,7 +19,7 @@
     access: [["CMAccessCombatTechPrep"], ["CMAccessEngineering"], ["CMAccessColonyEngineering"], ["CMAccessColonyPublic"]] # TODO RMC14 remove public when surv jobs and hacking are in
   - type: CMAutomatedVendor
     sections:
-    - name: Equipment
+    - name: Оборудование
       entries:
       - id: RMCFlashlight
         amount: 4
@@ -35,7 +35,7 @@
         amount: 4
       - id: RMCEngineerKit
         amount: 2
-    - name: Scanners
+    - name: Сканеры
       entries:
       #Atmos scanner
       #Demo scanner
@@ -43,7 +43,7 @@
       #Reagent scanner
       - id: CMTRayScanner
         amount: 4
-    - name: Tools
+    - name: Инструменты
       entries:
       - id: CMCrowbar
         amount: 8
@@ -69,7 +69,7 @@
     sprite: _RMC14/Structures/Machines/VendingMachines/robotics.rsi
   - type: CMAutomatedVendor
     sections:
-    - name: Circuitboards
+    - name: Печатные Платы
       entries:
       - id: FireAlarmElectronics
         amount: 5
@@ -110,19 +110,19 @@
     sprite: _RMC14/Structures/Machines/VendingMachines/engivend.rsi
   - type: CMAutomatedVendor
     sections:
-    - name: Tools
+    - name: Инструменты
       entries:
       - id: RMCCableCoil
         amount: 6
       - id: CMMultitool
         amount: 6
-    - name: Circuitboards
+    - name: Печатные Платы
       entries:
       - id: DoorElectronics
         amount: 8
       - id: CMAPCElectronics
         amount: 8
-    - name: Batteries
+    - name: Батареи
       entries:
       - id: RMCPowerCellHigh
         amount: 6
@@ -141,7 +141,7 @@
     sprite: _RMC14/Structures/Machines/VendingMachines/engi.rsi
   - type: CMAutomatedVendor
     sections:
-    - name: Assembly Components
+    - name: Компоненты Для Сборки
       entries:
       - id: Igniter
         amount: 8
@@ -151,13 +151,13 @@
         amount: 4
       - id: RemoteSignaller
         amount: 4
-    - name: Container
+    - name: Контейнер
       entries:
       - id: RMCBucket
         amount: 6
       - id: CMBucketMop
         amount: 2
-    - name: Stock Parts
+    - name: Запасные Части
       entries:
       - id: CMStockPartMatterBin
         amount: 8
@@ -187,7 +187,7 @@
     access: [["CMAccessResearch"]]
   - type: CMAutomatedVendor
     sections:
-    - name: Equipment
+    - name: Оборудование
       entries:
       - id: ClothingHeadHatHoodBioScientist
         amount: 2
@@ -195,7 +195,7 @@
         amount: 2
       - id: CMJumpsuitResearch
         amount: 2
-    - name: Assembly Components
+    - name: Компоненты Для Сборки
       entries:
       - id: Igniter
         amount: 8
@@ -216,13 +216,13 @@
   components:
   - type: CMAutomatedVendor
     sections:
-    - name: Equipment
+    - name: Оборудование
       entries:
       # Labcoat
       - id: CMMaskGasMedical
         amount: 2
       # Roboticist Jumpsuit
-    - name: Tools
+    - name: Инструменты
       entries:
       - id: RMCCableCoil
         amount: 4
@@ -234,7 +234,7 @@
         amount: 2
       - id: CMScrewdriver
         amount: 2
-    - name: Assembly Components
+    - name: Компоненты Для Сборки
       entries:
       - id: CMFlash
         amount: 4
@@ -244,7 +244,7 @@
         amount: 4
       - id: RemoteSignaller
         amount: 4
-    - name: Miscellaneous
+    - name: Разное
       entries:
       - id: NitrousOxideTankFilled
         amount: 2
