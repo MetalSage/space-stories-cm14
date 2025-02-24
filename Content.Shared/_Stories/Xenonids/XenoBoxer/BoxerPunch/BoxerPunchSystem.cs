@@ -7,11 +7,9 @@ using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Effects;
 using Content.Shared.FixedPoint;
-using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Robust.Shared.Timing;
 using Content.Shared.Actions;
 
 namespace Content.Shared._Stories.Xenonids.XenoBoxer.BoxerPunch;
@@ -29,7 +27,6 @@ public sealed class BoxerPunchSystem : EntitySystem
     [Dependency] private readonly XenoSystem _xeno = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
 
-
     public override void Initialize()
     {
         SubscribeLocalEvent<BoxerPunchComponent, BoxerPunchActionEvent>(OnBoxerPunchAction);
@@ -40,10 +37,10 @@ public sealed class BoxerPunchSystem : EntitySystem
         if (args.Handled)
             return;
 
-        args.Handled = true;
-
         if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
             return;
+
+        args.Handled = true;
 
         if (!TryComp<XenoBoxerKOComponent>(xeno, out var koComp))
             return;

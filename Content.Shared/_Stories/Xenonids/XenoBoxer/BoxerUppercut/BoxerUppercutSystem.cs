@@ -1,13 +1,10 @@
-using System.Linq;
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Pulling;
-using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerJab;
 using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerPunch;
 using Content.Shared.Actions;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -60,6 +57,9 @@ public sealed class BoxerUppercutSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted || args.Handled)
             return;
 
+        if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
+            return;
+
         args.Handled = true;
 
         if (!TryComp<XenoBoxerKOComponent>(xeno, out var koComp))
@@ -68,8 +68,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
         if (!TryComp<XenoBoxerKORecentlyComponent>(xeno, out var recently))
             return;
 
-        if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
-            return;
+
 
         if (!TryComp<DamageableComponent>(xeno, out var damageable))
             return;
@@ -80,6 +79,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
         if (!_mobThresholdSystem.TryGetThresholdForState(xeno, MobState.Dead, out var threshold, mobThreshold))
             return;
 
+        var targetId = args.Target;
         var comp = xeno.Comp;
         var tracker = recently.Trackers.GetValueOrDefault(args.Target);
         var popupPower = "weak";
@@ -87,7 +87,6 @@ public sealed class BoxerUppercutSystem : EntitySystem
         if (_net.IsServer)
             _audio.PlayPvs(comp.Sound, xeno);
 
-        var targetId = args.Target;
         var damageModificator = Math.Min(tracker.Count * comp.DamageModificator, 150);
 
         var origin = _transform.GetMapCoordinates(xeno);

@@ -1,11 +1,12 @@
 using Content.Shared._RMC14.Aura;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
-using Content.Shared.IdentityManagement;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared.Actions;
+using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerUppercut;
+using System.Numerics;
 
 namespace Content.Shared._Stories.Xenonids.XenoBoxer;
 
@@ -16,6 +17,7 @@ public sealed class SharedBoxerKOSystem : EntitySystem
     [Dependency] private readonly SharedAuraSystem _aura = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly XenoSystem _xeno = default!;
+    [Dependency] private readonly SharedActionsSystem _action = default!;
 
     private readonly List<EntityUid> _trackersToRemove = new();
 
@@ -23,6 +25,7 @@ public sealed class SharedBoxerKOSystem : EntitySystem
     {
         SubscribeLocalEvent<XenoBoxerKOComponent, MeleeHitEvent>(OnMeleeHit);
     }
+
     public void UpdateKOTracker(EntityUid ent, XenoBoxerKOComponent comp, EntityUid target, float koPoint)
     {
         if (_net.IsClient)
@@ -89,6 +92,12 @@ public sealed class SharedBoxerKOSystem : EntitySystem
     {
         if (!args.IsHit)
             return;
+
+        foreach (var (actionId, action) in _action.GetActions(xeno))
+        {
+            if (action.BaseEvent is BoxerUppercutActionEvent && action.Cooldown == TimeSpan.Zero)
+                return;
+        }
 
         foreach (var hit in args.HitEntities)
         {

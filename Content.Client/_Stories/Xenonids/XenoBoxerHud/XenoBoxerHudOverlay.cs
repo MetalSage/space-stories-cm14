@@ -115,11 +115,12 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
                 var matrix = Matrix3x2.Multiply(rotationMatrix, scaledWorld);
                 handle.SetTransform(matrix);
 
-                var icon = new Rsi(_rsiPath, $"KOTracker_{(int)tracker.Count}");
+                var spriteFrame = (int)Math.Clamp(tracker.Count, 1f, 15f);
+                var icon = new Rsi(_rsiPath, $"KOTracker_{spriteFrame}");
                 var texture = _sprite.GetFrame(icon, _timing.CurTime);
 
-                var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)texture.Height / EyeManager.PixelsPerMeter * bounds.Height + 0.1f;
-                var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)texture.Width / EyeManager.PixelsPerMeter * bounds.Width + 0.1f;
+                var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)texture.Height / EyeManager.PixelsPerMeter * bounds.Height + 0.2f;
+                var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)texture.Width / EyeManager.PixelsPerMeter * bounds.Width + 0.2f;
 
                 var position = new Vector2(xOffset, yOffset);
                 handle.DrawTexture(texture, position);
