@@ -1,11 +1,10 @@
 using Content.Shared._Stories.HijackSong;
+using Content.Shared._Stories.SCCVars;
 using Robust.Client.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
-using Content.Shared._Stories.SCCVars;
-using Robust.Shared.Audio.Components;
 
 namespace Content.Client._Stories.HijackSong;
 

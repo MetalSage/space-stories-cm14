@@ -58,4 +58,3 @@ rmc-xeno-construction-tunnel-fill-xeno-drop = Туннель внезапно о
 rmc-xeno-construction-resin-hole-parasite-name = лицехват
 rmc-xeno-construction-resin-hole-gas-name = газ
 rmc-xeno-construction-resin-hole-acid-name = кислота
-cm-xeno-construction-destroyed = Улей: Наше { $construction } было разрушено в { $location }!

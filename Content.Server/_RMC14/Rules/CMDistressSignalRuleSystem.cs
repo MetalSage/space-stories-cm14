@@ -23,7 +23,6 @@ using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
-using Content.Shared._Stories.HijackSong;
 using Content.Server.Voting;
 using Content.Server.Voting.Managers;
 using Content.Shared._RMC14.Areas;
@@ -51,6 +50,7 @@ using Content.Shared._RMC14.Xenonids.Construction.Nest;
 using Content.Shared._RMC14.Xenonids.Construction.Tunnel;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Parasite;
+using Content.Shared._Stories.HijackSong;
 using Content.Shared.Actions;
 using Content.Shared.CCVar;
 using Content.Shared.Coordinates;
@@ -741,7 +741,7 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                 break;
 
             rule.HijackSongPlayed = true;
-            // Stories Hijack Song Volume Tweak Start
+            // Stories-HijackVolume-Start
 
             //  _audio.PlayGlobal(rule.HijackSong, Filter.Broadcast(), true);
             var hijackSong = _audio.GetSound(rule.HijackSong);
@@ -749,7 +749,7 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                 break;
 
             RaiseNetworkEvent(new PlayHijackSongEvent(hijackSong), Filter.Broadcast());
-            // Stories Hijack Song Volume Tweak End
+            // Stories-HijackVolume-End
             break;
         }
 

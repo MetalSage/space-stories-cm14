@@ -100,5 +100,5 @@ public sealed class SCCVars
     /// Default volume setting of Hijack Song
     /// </summary>
     public static readonly CVarDef<float> HijackVolume =
-        CVarDef.Create("rmc.hijack_volume", 0f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("rmc.hijack_volume", 1.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

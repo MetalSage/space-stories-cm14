@@ -60,12 +60,12 @@ public sealed partial class AudioTab : Control
             scale: ContentAudioSystem.TtsMultiplier);
         // Stories-TTS-End
 
-        // Stories Hijack Volume Start
+        // Stories-HijackVolume-Start
         Control.AddOptionPercentSlider(
             SCCVars.HijackVolume,
             SliderVolumeHijackVolume,
             scale: ContentAudioSystem.HijackMultiplier);
-        // Stories Hijack Volume End
+        // Stories-HijackVolume-End
 
         Control.AddOptionSlider(
             CCVars.MaxAmbientSources,
