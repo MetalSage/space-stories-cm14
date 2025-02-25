@@ -1,5 +1,7 @@
 ent-RMCSmartGun = умная пушка M56B
     .desc = Настоящее огнестрельное оружие в системе Smart Gun System. По сути, это тяжелый мобильный пулемет.
+ent-RMCSmartGunCO = умная пушка M56B "Кавалер"
+    .desc = Настоящее огнестрельное оружие в системе Smart Gun System. Только под заказ. Помимо более прочного корпуса, системы идентификации и причудливой раскраски, характеристики пистолета идентичны стандартному M56B.
 ent-RMCMagazineSmartGun = боевой магазин M56B (10x30 мм)
     .desc = { ent-CMMagazineRifleBase.desc }
 ent-CMCartridgeSmartGun10x30mm = патрон (10x30 мм)

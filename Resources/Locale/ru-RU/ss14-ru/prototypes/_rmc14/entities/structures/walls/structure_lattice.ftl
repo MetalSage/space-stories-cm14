@@ -1,0 +1,12 @@
+ent-RMCStructureLattice = структурная решетка
+    .desc = Как арматура, но в пространстве.
+ent-RMCStructureLatticeB = { ent-RMCStructureLattice }
+    .desc = { ent-RMCStructureLattice.desc }
+ent-RMCStructureLatticeC = { ent-RMCStructureLattice }
+    .desc = { ent-RMCStructureLattice.desc }
+ent-RMCStructureLatticeDouble = структурная решетка
+    .desc = Как арматура, но в пространстве.
+ent-RMCStructureLatticeDoubleB = { ent-RMCStructureLatticeDouble }
+    .desc = { ent-RMCStructureLatticeDouble.desc }
+ent-RMCStructureLatticeDoubleC = { ent-RMCStructureLatticeDouble }
+    .desc = { ent-RMCStructureLatticeDouble.desc }

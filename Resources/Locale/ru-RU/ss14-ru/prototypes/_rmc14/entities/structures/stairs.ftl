@@ -73,3 +73,7 @@ ent-RMCHunterStairsRight = { ent-RMCStairs }
 ent-RMCHunterStairsSolo = { ent-RMCStairs }
     .suffix = Одиночная
     .desc = { ent-RMCStairs.desc }
+ent-RMCHybrisaStairs = { ent-RMCStairs }
+    .desc = { ent-RMCStairs.desc }
+ent-RMCHybrisaStairsPerspective = { ent-RMCStairs }
+    .desc = { ent-RMCStairs.desc }

@@ -59,6 +59,7 @@
       prefix: cm-job-prefix-mp
     - type: CMVendorUser # Stories-Partners
     - type: ViewIntelObjectives
+    - type: CommandAccent
 
 - type: startingGear
   id: CMGearChiefMP

@@ -176,7 +176,7 @@
 - type: radioChannel
   id: Provost
   name: chat-radio-provost
-  keycode: "r"
+  keycode: "р"
   frequency: 1473
   color: "#9b0612"
   longRange: true

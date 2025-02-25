@@ -7,7 +7,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: corrosive_acid
     event: !type:XenoCorrosiveAcidEvent
       acidId: XenoAcidNormal
@@ -26,7 +26,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: corrosive_acid
     event: !type:XenoCorrosiveAcidEvent
       acidId: XenoAcidWeak
@@ -45,7 +45,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: corrosive_acid
     event: !type:XenoCorrosiveAcidEvent
       acidId: XenoAcidStrong
@@ -64,7 +64,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: corrosive_acid
     event: !type:XenoCorrosiveAcidEvent
       acidId: XenoAcidStrong
@@ -85,7 +85,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: regurgitate
     event: !type:XenoRegurgitateActionEvent
 
@@ -98,7 +98,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_attack
     event: !type:XenoTailStabEvent
     range: 15
@@ -119,7 +119,7 @@
   components:
   - type: WorldTargetAction
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_attack
 
 - type: entity
@@ -137,7 +137,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: pounce
     event: !type:XenoLeapActionEvent
     range: 15
@@ -153,10 +153,25 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: pounce
     event: !type:XenoLeapActionEvent
     useDelay: 6
+    checkCanAccess: false
+
+- type: entity
+  parent: ActionXenoLeap
+  id: ActionXenoAssault
+  name: Assault (25)
+  description: Charge towards a location. Destroys some objects in your path. Melee slashes reduce assault's cooldown. If Super-Empowered, stuns and flings back the first enemy hit.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: charge
+    event: !type:XenoLeapActionEvent
+    useDelay: 14
     checkCanAccess: false
 
 - type: entity
@@ -168,7 +183,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_dash
     event: !type:XenoLeapActionEvent
     useDelay: 10
@@ -183,12 +198,13 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: headbutt
     event: !type:XenoHeadbuttActionEvent
     range: 3
     useDelay: 6
     deselectOnMiss: false
+  - type: XenoOffensiveAction
   - type: XenoActionPlasma
     cost: 10
 
@@ -201,7 +217,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_sweep
     event: !type:XenoTailSweepActionEvent
     useDelay: 15
@@ -215,7 +231,7 @@
   - type: EntityWorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xeno_spit
     event: !type:XenoSlowingSpitActionEvent
     useDelay: 2
@@ -232,7 +248,7 @@
   - type: EntityWorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: acid_shotgun
     event: !type:XenoScatteredSpitActionEvent
     useDelay: 6
@@ -249,7 +265,7 @@
   - type: EntityWorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xeno_spit
     event: !type:XenoSpitActionEvent
     useDelay: 2
@@ -266,10 +282,12 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: charge_spit
     event: !type:XenoChargeSpitActionEvent
     useDelay: 12
+  - type: XenoActionPlasma
+    cost: 50
 
 - type: entity
   parent: ActionXenoBase
@@ -280,7 +298,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: spray_acid
     event: !type:XenoSprayAcidActionEvent
     useDelay: 8
@@ -326,7 +344,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_acid_ball
     event: !type:XenoAcidBallActionEvent
     useDelay: 18
@@ -343,7 +361,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: lurker_inject_neuro
     event: !type:XenoParalyzingSlashActionEvent
     useDelay: 12
@@ -359,7 +377,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: lurker_inject_neuro
     event: !type:XenoCripplingStrikeActionEvent
     useDelay: 10
@@ -375,7 +393,7 @@
   - type: EntityWorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: runner_bonespur
     event: !type:XenoBoneChipsActionEvent
     useDelay: 12
@@ -390,10 +408,10 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: punch
     event: !type:XenoPunchActionEvent
-    range: 1
+    range: 1.5
     useDelay: 4.5
     deselectOnMiss: false
   - type: XenoOffensiveAction
@@ -407,10 +425,10 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: fling
     event: !type:XenoFlingActionEvent
-    range: 1
+    range: 1.5
     useDelay: 7
     deselectOnMiss: false
   - type: XenoOffensiveAction
@@ -424,7 +442,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: lunge
     event: !type:XenoLungeActionEvent
     range: 5
@@ -441,7 +459,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: screech
     event: !type:XenoScreechActionEvent
     useDelay: 50
@@ -455,7 +473,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: gut
     event: !type:XenoGutActionEvent
     range: 2
@@ -469,7 +487,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: stomp
     event: !type:XenoStompActionEvent
     useDelay: 18
@@ -483,7 +501,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: ready_charge
     event: !type:XenoChargeActionEvent
     range: 9
@@ -499,7 +517,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: bombard
     event: !type:XenoBombardActionEvent
     range: 10
@@ -522,10 +540,10 @@
     itemIconStyle: NoItem
     backgroundOn: null
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: shift_spit_acid_glob
     iconOn:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: shift_spit_neuro_glob
     event: !type:XenoGasToggleActionEvent
     useDelay: 1
@@ -539,7 +557,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: acid_shroud
     event: !type:XenoAcidShroudActionEvent
   - type: ActionSharedCooldown
@@ -560,7 +578,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: stomp
     event: !type:XenoStompActionEvent
     useDelay: 45
@@ -574,7 +592,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: screech
     event: !type:XenoForTheHiveActionEvent
 
@@ -587,7 +605,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_impale
     event: !type:XenoImpaleActionEvent
     range: 1.5
@@ -607,7 +625,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_tail_trip
     event: !type:XenoTailTripActionEvent
     range: 2
@@ -627,7 +645,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_pierce
     event: !type:XenoPierceActionEvent
     range: 15
@@ -656,7 +674,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_cleave_root
     event: !type:XenoCleaveActionEvent
     range: 1.5
@@ -678,7 +696,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_cleave_fling
     event: !type:XenoCleaveActionEvent
       flings: true
@@ -702,10 +720,10 @@
 #    itemIconStyle: NoItem
 #    backgroundOn: null
 #    icon:
-#      sprite: _RMC14/Actions/xeno_actions.rsi
+#      sprite: _Stories/Actions/xeno_actions.rsi
 #      state: prae_cleave_root
 #    iconOn:
-#      sprite: _RMC14/Actions/xeno_actions.rsi
+#      sprite: _Stories/Actions/xeno_actions.rsi
 #      state: prae_cleave_fling
 #    event: !type:XenoToggleCleaveActionEvent
 
@@ -725,10 +743,118 @@
     itemIconStyle: NoItem
     backgroundOn: null
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: shift_spit_neurotoxin
     iconOn:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: shift_spit_xeno_acid
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: shift_spit_xeno_acid_strong
     event: !type:XenoSpitToggleActionEvent
 
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoTailSeize
+  name: Tail Seize
+  description: Throw out your tail in front of you. Uses up your melee attack. Pulls in the first enemy hit to you and roots and slows them on arrival.
+  components:
+  - type: EntityWorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: tail_seize
+    event: !type:XenoTailSeizeActionEvent
+    range: 15
+    useDelay: 15
+    deselectOnMiss: false
+    checkCanAccess: false
+  - type: ActionBlockIfResting
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoAbduct
+  name: Abduct (180)
+  description: Cast out a line that after a small doafter pulls in enemies towards you, disarming them. Catching 1 target slows them, 2 roots them, and 3 or more stuns them.
+  components:
+  - type: EntityWorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: abduct
+    event: !type:XenoAbductActionEvent
+    range: 7
+    useDelay: 15
+    deselectOnMiss: false
+    checkCanAccess: false
+  - type: ActionBlockIfResting
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoTailLash
+  name: Tail Lash (80)
+  description: Fling back foes in a 2x3 area in targeted direction after a very short doafter. Also slows.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: prae_tail_lash
+    event: !type:XenoTailLashActionEvent
+    range: 15 
+    useDelay: 13
+    deselectOnMiss: false
+    checkCanAccess: false
+  - type: ActionBlockIfResting
+
+- type: entity
+  id: ActionXenoDislocate
+  parent: ActionXenoBase
+  name: Dislocate (55)
+  description: Punch a targeted enemy, doing some damage and pushing them back. If the target is slowed, stunned, downed, or rooted, instead roots and completely pierces armor. Reduces the cooldown of Abduct and Tail Lash.
+  components:
+  - type: EntityTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: punch
+    event: !type:XenoDislocateActionEvent
+    range: 1.5
+    useDelay: 10
+    deselectOnMiss: false
+  - type: XenoOffensiveAction
+  - type: ActionBlockIfResting
+  - type: XenoActionPlasma
+    cost: 55
+
+- type: entity
+  id: ActionXenoHighGallop
+  name: High Gallop
+  description: Stuns foes in a 2x3 area in targeted direction, and slows them. Also flings back grenades.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: stomp
+    event: !type:XenoHighGallopActionEvent
+    range: 15
+    useDelay: 12
+    checkCanAccess: false
+  - type: ActionBlockIfResting
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoScissorCut
+  name: Scissor Cut (25)
+  description: Cuts enemies and fences in a straight line. If Super-Empowered, slows enemies hit too.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: rav_scissor_cut
+    event: !type:XenoScissorCutActionEvent
+    useDelay: 6
+    checkCanAccess: false
+    range: 15
+  - type: ActionBlockIfResting
+  - type: XenoActionPlasma
+    cost: 25

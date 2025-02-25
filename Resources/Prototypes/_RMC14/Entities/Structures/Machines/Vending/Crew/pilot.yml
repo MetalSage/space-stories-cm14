@@ -18,54 +18,54 @@
     - CMPilotDropship
     - CMPilotGunship
     sections:
-    - name: Standard Equipment
+    - name: Стандартное Оборудование
       takeAll: CMEquipment
       entries:
       - id: CMHandsInsulated
       - id: CMArmorHelmetM30
       - id: CMSatchel
       - id: CMMRE
-    - name: Armour
+    - name: Броня
       choices: { CMArmour: 1 }
       entries:
       - id: CMArmorM3VLFlakVest
       - id: CMArmorM3VLBallistics
-    - name: Personal Sidearm
+    - name: Личное Оружие
       choices: { CMSidearm: 1 }
       entries:
       - id: CMWeaponPistolM1984
       - id: RMCMK80
-    - name: Belts
+    - name: Пояс
       choices: { CMBelt: 1 }
       entries:
       - id: RMCBeltUtilityGeneral
       - id: CMBeltMarine
       - id: CMBeltMedicBagFilled
-        name: M276 pattern lifesaver bag (Full)
+        name: пояс M276 медицинский (полный)
         recommended: true
       - id: CMBeltMedicalFilled
-        name: M276 pattern medical storage rig (Full)
+        name: пояс M276 медицинский (полный)
         recommended: true
       - id: RMCBeltHolsterSMGPouch
       - id: RMCBeltHolsterPistol
       - id: RMCBeltHolsterRevolver
       #- id: CMBeltM82F # TODO RMC14 M82F Flare Gun Belt
       - id: RMCM276ShotgunShellLoadingRig
-    - name: Pouches
+    - name: Подсумки
       choices: { CMPouches: 2 }
       entries:
       - id: RMCPouchFirstAidInjectors
-        name: first-aid pouch (refillable injectors)
+        name: подсумок первой помощи (многоразовые инъекторы)
         recommended: true
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: first-aid pouch (gauze, ointment)
+        name: подсумок первой помощи (марля, мазь)
         recommended: true
       - id: RMCPouchFirstAidPills
-        name: first-aid pouch (pills)
+        name: подсумок первой помощи (таблетки)
         recommended: true
       - id: RMCPouchFirstResponder
       - id: RMCPouchFlareFilled
-        name: flare pouch (Full)
+        name: подсумок фаеров (полный)
       - id: RMCPouchGeneralLarge
       - id: RMCPouchMagazineLarge
       - id: RMCPouchMagazinePistolLarge
@@ -75,7 +75,7 @@
       - id: RMCPouchPistol
           #- id: RMCPouchSling # TODO RMC14 Sling Pouch
         # This has a comment saying "implement this", going to leave it commented out.
-    - name: Accessories
+    - name: Аксессуары
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown
@@ -85,7 +85,7 @@
       - id: CMWebbingPouch
       - id: CMWebbing
       - id: CMWebbingHolster
-    - name: Glasses
+    - name: Очки
       choices: { CMGlasses: 1 }
       entries:
       - id: RMCSunglasses
@@ -93,13 +93,13 @@
       - id: RMCGlassesMedicalHUDGlasses
         recommended: true
       - id: RMCGlassesAviators
-    - name: Masks
+    - name: Маска
       choices: { CMMasks: 1 }
       entries:
       - id: CMMaskGas
       - id: CMMaskCoif
       - id: RMCMaskRebreather
-    - name: Attachments
+    - name: Обвесы
       entries:
       - id: RMCAttachmentAngledGrip
         points: 10
@@ -125,7 +125,7 @@
         points: 10
       - id: RMCAttachmentVerticalGrip
         points: 10
-    - name: Ammunition
+    - name: Боеприпасы
       entries:
       - id: CMMagazineRifleM4SPRAP
         points: 10
@@ -139,22 +139,22 @@
         points: 10
       - id: RMCSpeedLoaderM44
         points: 10
-    - name: Utilities
+    - name: Утилиты
       entries:
       # - id: CMPOFlightsuit # TODO: Port Flightsuit (not the uniform they normally wear)
       #   points: 10
       - id: CMFireExtinguisherPortable
-        name: Fire Extinguisher (Portable)
+        name: огнетушитель (переносной)
         points: 5
       - id: RMCPouchGeneralLarge
         points: 15
       - id: RMCPouchMagazineLarge
         points: 15
       - id: RMCScabbardMacheteFilled
-        name: machete scabbard (Full)
+        name: ножны для мачете (заполненные)
         points: 10
       - id: RMCPouchMacheteFilled
-        name: machete pouch (Full)
+        name: подсумок для мачете (полный)
         points: 15
       - id: RMCMotionDetector
         points: 15
@@ -178,7 +178,7 @@
     - CMPilotDropship
     - CMPilotGunship
     sections:
-    - name: Primary Firearms
+    - name: Основное Огнестрельное Оружие
       entries:
       - id: WeaponRifleM4SPR
         amount: 4
@@ -188,7 +188,7 @@
         amount: 4
       - id: WeaponRifleM54C
         amount: 4
-    - name: Primary Ammunition
+    - name: Основные Боеприпасы
       entries:
       - id: RMCBoxShotgunBuckshot
         amount: 12
@@ -202,7 +202,7 @@
         amount: 24
       - id: CMMagazineRifleM54C
         amount: 24
-    - name: Sidearms
+    - name: Вторичное Оружие
       entries:
       - id: RMCWeaponPistolM77
         amount: 4
@@ -212,7 +212,7 @@
         amount: 4
     #- id: CMWeaponM82F # TODO RMC14 Flare Gun
     #  amount: 4
-    - name: Sidearm Ammunition
+    - name: Боеприпасы К Вторичному Оружию
       entries:
       - id: CMMagazinePistolM77AP
         amount: 20
@@ -226,13 +226,13 @@
       # amount: 14
       - id: CMMagazinePistolMK80
         amount: 16
-    - name: Attachments
+    - name: Обвесы
       entries:
       - id: RMCAttachmentRailFlashlight
         amount: 8
       - id: RMCAttachmentFlashlightGrip
         amount: 4
-    - name: Utilities
+    - name: Утилиты
       entries:
       - id: RMCFlashlight
         amount: 4

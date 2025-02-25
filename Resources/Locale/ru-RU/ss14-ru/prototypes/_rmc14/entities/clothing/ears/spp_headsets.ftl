@@ -1,0 +1,16 @@
+ent-RMCEncryptionKeySPP = ключ шифрования СПН
+    .desc = { ent-CMEncryptionKey.desc }
+ent-RMCEncryptionKeySPPCommand = ключ шифрования командования СПН
+    .desc = { ent-RMCEncryptionKeySPP.desc }
+ent-RMCEncryptionKeySPPEngineer = ключ шифрования инженеров СПН
+    .desc = { ent-RMCEncryptionKeySPP.desc }
+ent-RMCEncryptionKeySPPMedic = ключ шифрования медиков СПН
+    .desc = { ent-RMCEncryptionKeySPP.desc }
+ent-RMCHeadsetSPP = гарнитура СПН
+    .desc = { ent-RMCHeadsetIcons.desc }
+ent-RMCHeadsetSPPCommand = гарнитура СПН-КОМ
+    .desc = { ent-RMCHeadsetIcons.desc }
+ent-RMCHeadsetSPPEngineer = гарнитура СПН-ИНЖ
+    .desc = { ent-RMCHeadsetIcons.desc }
+ent-RMCHeadsetSPPMedic = гарнитура СПН-МЕД
+    .desc = { ent-RMCHeadsetIcons.desc }

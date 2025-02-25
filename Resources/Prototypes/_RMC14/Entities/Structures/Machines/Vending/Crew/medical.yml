@@ -18,21 +18,21 @@
     - CMResearcher
     - CMCMO
     sections:
-    - name: Medical Set (Mandatory)
+    - name: Медицинский Набор (обязательно)
       takeAll: CMMedicalSet
       entries:
       - id: CMVendorBundleCrewMedicalEssentialsNurse
-    - name: Standard Equipment
+    - name: Стандартное Оборудование
       takeAll: CMStandard
       entries:
       - id: CMHandsLatex
       - id: CMHeadsetMedical
-    - name: Eyewear
+    - name: Очки
       choices: { CMEyewear: 1 }
       entries:
       - id: RMCGlassesMedicalHUDGlasses
 #      - id: Prescription Medical HUD Glasses
-    - name: Uniform
+    - name: Униформа
       choices: { CMUniform: 1 }
       entries:
       - id: CMScrubsGreen
@@ -41,13 +41,13 @@
       - id: CMScrubsPurple
       - id: RMCScrubsOlive
       - id: RMCScrubsGrey
-    - name: Suit
+    - name: Костюм
       jobs:
       - CMNurse
       choices: { CMSuit: 1 }
       entries:
       - id: RMCMedicalApron
-    - name: Suit
+    - name: Костюм
       jobs:
       - CMDoctor
       choices: { CMSuit: 1 }
@@ -60,63 +60,63 @@
 #      - id: Snowcoat
 #      - id: Balaclava
 #      - id: Snow Scarf
-    - name: Headwear
+    - name: Головные Уборы
       choices: { CMHeadwear: 1 }
       entries:
       - id: CMHeadCapSurgOrange
       - id: CMHeadCapSurgBlue
       - id: CMHeadCapSurgPurple
       - id: CMHeadCapSurgGreen
-    - name: Belt
+    - name: Пояс
       choices: { CMBelt: 1 }
       entries:
       - id: CMBeltMedicBagFilled
-        name: M276 pattern lifesaver bag (Full)
+        name: пояс M276 медицинский (полный)
       - id: CMBeltMedicalFilled
-        name: M276 pattern medical storage rig (Full)
-    - name: Backpack
+        name: пояс M276 медицинский (полный)
+    - name: Рюкзак
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpackMarine
-        name: backpack
+        name: Рюкзак
       - id: CMSatchelMarine
-        name: satchel
+        name: сумка
       - id: CMBackpackMedical
       - id: CMSatchelMedical
-    - name: Pouches
+    - name: Подсумки
       choices: { RMCPouch: 2 }
       entries:
       - id: RMCPouchAutoinjector
       - id: RMCPouchFirstAidInjectors
-        name: first-aid pouch (refillable injectors)
+        name: подсумок первой помощи (многоразовые инъекторы)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
+        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: first-aid pouch (pills)
+        name: подсумок первой помощи (таблетки)
       - id: RMCPouchFirstResponder
       - id: RMCPouchMedical
       - id: RMCPouchMedkit
         recommended: true
       - id: RMCPouchReagentCanisterBicaridine
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(Bicaridine)
+        name: канистра реагентов (бикаридин)
       - id: RMCPouchReagentCanisterKelotane
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(Kelotane)
+        name: канистра реагентов (келотан)
       - id: RMCPouchReagentCanisterTricordrazineRevival
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(Revival Mix - Tricordrazine)
+        name: канистра реагентов (возрождающая смесь - трикордразин)
       #      - id: CMPressurizedReagentCanisterPouchPeridaxonRevivalMix
       #        recommended: true
-      #        name: Pressurized Reagent Canister Pouch\n(Revival Mix - Peridaxon)
+      #        name: канистра реагентов (возрождающая смесь - перидаксон)
       - id: RMCPouchReagentCanisterTricordrazine
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(Tricordrazine)
+        name: канистра реагентов (трикордразин)
       - id: RMCPouchReagentCanister
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(EMPTY)
+        name: канистра реагентов (пустая)
       #- id: CMSlingPouch
-    - name: Accessories
+    - name: Аксессуары
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown

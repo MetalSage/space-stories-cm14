@@ -89,6 +89,7 @@
     destroyWeeds: false
   - type: ResinDoor
   - type: AllowWeedSpread
+  - type: XenoConstructReinforce
 
 - type: entity
   parent: DoorXenoResin

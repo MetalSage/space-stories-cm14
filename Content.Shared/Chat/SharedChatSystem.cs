@@ -26,7 +26,7 @@ public abstract class SharedChatSystem : EntitySystem
     public const char AdminPrefix = ']';
     public const char WhisperPrefix = ',';
     public const char MentorPrefix = '}';
-    public const char DefaultChannelKey = 'у';
+    public const char DefaultChannelKey = 'р';
 
     [ValidatePrototypeId<RadioChannelPrototype>]
     public const string CommonChannel = "MarineCommon";

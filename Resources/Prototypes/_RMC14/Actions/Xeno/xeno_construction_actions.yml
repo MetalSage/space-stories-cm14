@@ -3,7 +3,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _RMC14/Actions/xeno_actions.rsi
+    sprite: _Stories/Actions/xeno_actions.rsi
 
 - type: entity
   id: ActionXenoPlantWeeds
@@ -14,7 +14,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: plant_weeds
     event: !type:XenoPlantWeedsActionEvent
     useDelay: 1
@@ -28,7 +28,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: retrieve_egg
     event: !type:XenoChooseStructureActionEvent
   - type: XenoChooseConstructionAction
@@ -42,7 +42,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: secrete_resin
     event: !type:XenoSecreteStructureActionEvent
     deselectOnMiss: false
@@ -63,7 +63,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: secrete_resin
     event: !type:XenoSecreteStructureActionEvent
     deselectOnMiss: false
@@ -84,7 +84,7 @@
   - type: WorldTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: morph_resin
     event: !type:XenoOrderConstructionActionEvent
     deselectOnMiss: false
@@ -102,7 +102,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: place_trap
     event: !type:XenoPlaceResinHoleActionEvent
     useDelay: 1
@@ -117,7 +117,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: blank
     event: !type:XenoFruitChooseActionEvent
   - type: XenoFruitChooseAction
@@ -131,7 +131,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: gardener_plant
     event: !type:XenoFruitPlantActionEvent
     useDelay: 5
@@ -145,7 +145,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: plant_gardener_weeds
     event: !type:XenoPlantWeedsActionEvent
       plasmaCost: 125
@@ -174,7 +174,7 @@
     event: !type:XenoDigTunnelActionEvent
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: build_tunnel
     useDelay: 300
 

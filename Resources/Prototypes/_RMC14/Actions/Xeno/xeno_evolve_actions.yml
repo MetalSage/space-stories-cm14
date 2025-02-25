@@ -7,7 +7,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: evolve
     event: !type:XenoOpenEvolutionsActionEvent
 
@@ -20,7 +20,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xeno_deevolve
     event: !type:XenoOpenDevolveActionEvent
 

@@ -1,0 +1,11 @@
+ent-WeaponRifleMAR40 = боевая винтовка MAR-40
+    .desc = Дешевая, надежная штурмовая винтовка под патрон 7,62x39 мм. Обычно встречается в руках преступников или наемников, а также в руках SPP или CLF.
+    .suffix = Заполненная
+ent-RMCMagazineRifleMAR40 = магазин MAR (7,62x39 мм)
+    .desc = Магазин 7,62x39 мм для огнестрельного оружия серии MAR.
+ent-RMCMagazineRifleMAR40Ext = удлиненный магазин MAR (7,62x39 мм)
+    .desc = Магазин для оружия MAR калибра 7,62x39 мм, в нем больше патронов, чем в обычном магазине.
+ent-RMCCartridgeRifleMAR40 = патрон (7,62x39 мм)
+    .desc = Винтовочный патрон калибра 7,62x39 мм.
+ent-BulletRifleMAR40 = { ent-BulletRifle10x24mm }
+    .desc = { ent-BulletRifle10x24mm.desc }
