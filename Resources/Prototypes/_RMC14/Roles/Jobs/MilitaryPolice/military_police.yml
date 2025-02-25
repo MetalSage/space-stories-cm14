@@ -45,6 +45,7 @@
     - type: JobPrefix
       prefix: cm-job-prefix-militarypolice
     - type: CMVendorUser # Stories-Partners
+    - type: CommandAccent
 
 - type: startingGear
   id: CMGearMilitaryPolice

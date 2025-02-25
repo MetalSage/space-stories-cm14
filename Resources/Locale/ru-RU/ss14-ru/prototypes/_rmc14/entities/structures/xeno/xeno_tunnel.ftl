@@ -1,2 +1,10 @@
-ent-XenoTunnel = Туннель
+ent-XenoTunnel = туннель
     .desc = Вход в туннель. Похоже, его прорыл какой-то когтистый зверь.
+ent-XenoTunnelMaint = люк для технического обслуживания
+    .desc = Вход в ремонтный туннель. Внутри видны кусочки слизи и смолы. Куски мусора мешают рассмотреть его поближе.
+ent-XenoTunnelMaintNoXenoDesc = { ent-XenoTunnelMaint }
+    .desc = Вход в ремонтный туннель. Куски мусора мешают рассмотреть его поближе.
+ent-XenoTunnelMaintHybrisa = канализационный люк
+    .desc = { ent-XenoTunnelMaint.desc }
+ent-XenoTunnelMaintHybrisaNoXenoDesc = канализационный люк
+    .desc = { ent-XenoTunnelMaintNoXenoDesc.desc }

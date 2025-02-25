@@ -6,6 +6,9 @@ rmc-xeno-energy-increase-user = Вы чувствуете, как увеличи
 # Internal Health
 rmc-xeno-not-enough-internal-health = Ваши запасы здоровья недостаточны!
 rmc-xeno-internal-health-increase-user = Вы чувствуете, как увеличиваются внутренние резервы здоровья!
+# Fury
+rmc-xeno-not-enough-fury = Мы недостаточно злы для этого!
+rmc-xeno-fury-increase-user = Нас одолевает ярость!
 # Acid reserves
 rmc-xeno-not-enough-acid = У вас недостаточно кислоты!
 rmc-xeno-acid-increase-user = Вы чувствуете, как увеличивается запас кислоты!
@@ -40,6 +43,7 @@ rmc-xeno-evolution-cant-devolve-damaged = Мы слишком слабы для 
 rmc-xeno-evolution-cant-evolve-recent-queen-death-minutes = Мы должны подождать около { $minutes } минут и { $seconds } секунд, чтобы улей оправился от смерти предыдущей королевы.
 rmc-xeno-evolution-cant-evolve-recent-queen-death-seconds = Мы должны подождать около { $seconds } секунд, чтобы улей оправился от смерти предыдущей королевы.
 rmc-xeno-evolution-cant-evolve-caste-cooldown = Мы не можем снова превратиться в эту касту! (Осталось { $minutes } минут и { $seconds } секунд)
+rmc-xeno-evolution-failed-early-weeds = Улей еще не настолько развился, чтобы вы могли эволюционировать от сорняков!
 rmc-xeno-evolution-failed-bad-location = Мы не можем развиваться здесь.
 rmc-xeno-evolution-start-self = Мы начинаем скручиваться и деформироваться.
 rmc-xeno-evolution-start-others = { $xeno } начинает крутиться и извиваться.
@@ -176,15 +180,21 @@ rmc-xeno-resin-surge-wall-self = Мы вспрыскиваем смолу, со�
 rmc-xeno-resin-surge-wall-others = { CAPITALIZE(THE($xeno)) } выплескивает смолу, создавая неустойчивую стену!
 rmc-xeno-resin-surge-sticky-self = Мы всплываем на глубину, создавая нестабильную липкую смоляную заплату!
 rmc-xeno-resin-surge-sticky-others = { CAPITALIZE(THE($xeno)) } всплывает глубокая смола, создавая нестабильный липкий смоляной пластырь!
+rmc-xeno-resin-surge-see-fail = Мы не можем видеть это место!
 # Burrow
 rmc-xeno-burrow-down-start = Мы начинаем зарываться в землю.
 rmc-xeno-burrow-down-failure-break = Мы перестаем зарываться.
 rmc-xeno-burrow-down-failure-bad-area = Здесь нет возможности зарыться.
 rmc-xeno-burrow-down-failure-rest = Мы не можем зарываться во время отдыха!
 rmc-xeno-burrow-down-finish = Мы зарываемся в землю.
+rmc-xeno-burrow-cooldown-finish = Мы снова можем зарываться.
+rmc-xeno-burrow-down-failure-cooldown = Мы пока не можем зарываться.
+rmc-xeno-burrow-down-doafter-stop = Мы не можем сделать это прямо сейчас!
 rmc-xeno-burrow-resurface-cooldown-finish = Теперь мы можем выкопаться на поверхность.
 rmc-xeno-burrow-move-cooldown-finish = Теперь мы можем прокладывать туннели, находясь в норе.
+rmc-xeno-burrow-move-forced-unburrow = Мы выскакиваем из земли!
 rmc-xeno-burrow-move-start = Мы начинаем прокладывать туннель!
+rmc-xeno-burrow-move-break = Мы прекращаем прокладывать туннель!
 rmc-xeno-burrow-move-failure = Там нет возможности проложить туннель.
 rmc-xeno-burrow-move-failure-solid = Мы не можем пробить туннель в сплошной стене!
 rmc-xeno-burrow-move-failure-bad-area = Там нет возможности проложить туннель.
@@ -240,6 +250,40 @@ rmc-xeno-soak-others = { CAPITALIZE(THE($xeno)) } начинает танков�
 rmc-xeno-soak-end-fail = Мы перестаем получать входящий урон.
 rmc-xeno-soak-end-self = Мы чувствуем ярость после получения входящего урона! Время действия хвостового шлема сбрасывается, и мы исцеляемся!
 rmc-xeno-soak-end-others = { CAPITALIZE(THE($xeno)) } приходит в ярость после получения достаточного урона!
+# Abduct
+rmc-xeno-abduct-cancel = Мы расслабляем хвост.
+rmc-xeno-abduct-no-room = У нас нет места для похищения!
+rmc-xeno-abduct-none = Наш хвост ничего не поймал!
+rmc-xeno-abduct-one = Наш хвост поймал и замедлил одну цель!
+rmc-xeno-abduct-two = Наш хвост ловит и корёжит две цели!
+rmc-xeno-abduct-more = Наш хвост ловит и оглушает { $targets } цели!
+# Tail Lash
+rmc-xeno-tail-lash-no-room = У нас нет места, чтобы сделать хвост плетью!
+# Tail Fountain
+rmc-xeno-tail-fountain-self = Мы используем наш хвост, чтобы облить кислотой { $target }.
+rmc-xeno-tail-fountain-others = { CAPITALIZE(THE($user)) } обливает кислотой { $target } с помощью своего хвоста.
+rmc-xeno-tail-fountain-fail = Мы не можем погасить это!
+rmc-xeno-tail-fountain-fail-self = Мы не можем погасить себя!
+# Tantrum
+rmc-xeno-tantrum-fail-self = Мы должны разгневать сестру!
+rmc-xeno-tantrum-fail-raging-self = Мы уже полны ярости!
+rmc-xeno-tantrum-fail-not-xeno = Это не сестра!
+rmc-xeno-tantrum-fail-wrong-hive = Зачем нам помогать нашим врагам?!
+rmc-xeno-tantrum-fail-dead = Никакой гнев не вернет нашу сестру.
+rmc-xeno-tantrum-fail-valkyrie = Своим гневом мы не можем приказать другой валькирии.
+rmc-xeno-tantrum-fail-raging = { CAPITALIZE(THE($target)) } уже разгневан!
+rmc-xeno-tantrum-self = Наша ярость гонит нас вперед, наше исцеление и броня увеличиваются!
+rmc-xeno-tantrum-other = Мы чувствуем всепоглощающую ярость!
+rmc-xeno-tantrum-end = Мы чувствуем, что успокаиваемся.
+# Fight or Flight
+rmc-xeno-fof-effect = Каждый сантиметр нашего тела движется сам по себе, чтобы бороться!
+# Ravager Empower
+rmc-xeno-ravager-shield-end = Мы чувствуем, что наш щит разрушается!
+rmc-xeno-empower-start-self = Мы начинаем расширять свои возможности!
+rmc-xeno-empower-start-others = { CAPITALIZE(THE($user)) } начинает расширять свои возможности!
+rmc-xeno-ravager-empower = Мы чувствуем прилив сил от окружающих врагов!
+rmc-xeno-ravager-empower-fizzle = Вокруг нас не было врагов!
+rmc-xeno-ravager-super-empower-fade = Наше свечение исчезает, сила покидает нашу форму!
 rmc-xeno-defensive-shield-activate-self = Мы прижимаемся к земле и укрепляем свою защиту!
 cm-xeno-plasma-transferred-to-self = { $target } передал вам { $plasma } плазмы. Теперь у вас есть { $total }
 cm-xeno-plasma-cannot-self = Вы не можете передать плазму себе!

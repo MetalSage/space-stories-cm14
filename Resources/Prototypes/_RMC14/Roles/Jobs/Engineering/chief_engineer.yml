@@ -51,6 +51,7 @@
       prefix: cm-job-prefix-chief-engineer
     - type: CMVendorUser # Stories-Partners
     - type: ViewIntelObjectives
+    - type: CommandAccent
 
 - type: startingGear
   id: CMGearChiefEngineer

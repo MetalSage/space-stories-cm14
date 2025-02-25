@@ -10,7 +10,7 @@
     sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/food.rsi
   - type: CMAutomatedVendor
     sections:
-    - name: Festive Meals
+    - name: Праздничные Блюда
       holidays:
       - FestiveSeason
       entries:
@@ -20,10 +20,10 @@
         amount: 25
       - id: RMCMarinePreparedMealFruitcake
         amount: 25
-    - name: Prepared Meals
+    - name: Готовые Блюда
       entries:
       - id: CMMRE
-        name: UNMC Meal Ready to Eat
+        name: готовая к употреблению еда КМП США
         amount: 15
       - id: CMMarinePreparedMealChicken
         amount: 15
@@ -39,12 +39,12 @@
         amount: 15
       - id: CMMarineProteinBar
         amount: 50
-    - name: Flasks
+    - name: Фляги
       entries:
       - id: CMCanteen
         amount: 10
       - id: CMMetalFlask
-        name: metal flask (empty)
+        name: металлическая фляга (пустая)
         amount: 10
       - id: CMMarineFlask
         amount: 5
@@ -68,7 +68,7 @@
     - [ "CMAccessColonyPublic" ]
   - type: CMAutomatedVendor
     sections:
-    - name: Alcohol
+    - name: Алкоголь
       entries:
 #      - id: DrinkAleBottleFull
 #        amount: 6
@@ -102,7 +102,7 @@
 #        amount: 5
     - name: Craft Beers
       entries: []
-    - name: Non-Alcohol
+    - name: Не Алкоголь
       entries:
       - id: CMDrinkCanFruitBeer
         amount: 8
@@ -118,10 +118,10 @@
         amount: 4
       - id: CMDrinkCanTonic
         amount: 8
-    - name: Containers
+    - name: Контейнер
       entries:
       - id: CMMetalFlask
-        name: metal flask (empty)
+        name: металлическая фляга (пустая)
         amount: 5
       - id: DrinkGlass
         amount: 30
@@ -141,12 +141,12 @@
     - state: "normal-unshaded"
   - type: CMAutomatedVendor
     sections:
-    - name: Chess
+    - name: шахматы
       entries:
       - id: ChessBoard
         amount: 5
-    - name: White Pieces
+    - name: белые части
       entries: []
-    - name: Black Pieces
+    - name: черные части
       entries: []
     # TODO RMC14 vodka chess pieces

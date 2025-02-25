@@ -53,6 +53,7 @@
       prefix: cm-job-prefix-quartermaster
     - type: CMVendorUser # Stories-Partners
     - type: ViewIntelObjectives
+    - type: CommandAccent
 
 - type: startingGear
   id: CMGearQuartermaster

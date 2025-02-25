@@ -1,3 +1,5 @@
+ent-RMCGeneratorFusionFake = окончательно разрушенный термоядерный реактор S-52
+    .desc = { "" }
 ent-RMCGeneratorFusion = термоядерный реактор S-52
     .desc = { "" }
 ent-RMCGeneratorFusionColony = геотермальный генератор G-11

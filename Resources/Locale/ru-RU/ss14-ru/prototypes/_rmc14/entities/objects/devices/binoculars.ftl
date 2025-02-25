@@ -1,6 +1,8 @@
 ent-RMCBinoculars = бинокль
     .desc = Бинокль, выданный военным.
     .suffix = Джунгли
+ent-RMCBinocularsCiv = бинокль
+    .desc = Пара биноклей.
 ent-RMCRangefinder = дальномер
     .desc = Бинокль с функцией дальномера. Нажмите на плитку, чтобы узнать ее координаты.
     .suffix = Джунгли

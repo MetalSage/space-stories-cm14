@@ -22,7 +22,7 @@
   components:
   - type: InstantAction
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: toggle_queen_zoom
 
 - type: entity

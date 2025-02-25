@@ -16,7 +16,7 @@
       map: [ "enum.VendingMachineVisualLayers.BaseUnshaded", "enum.VendingMachineVisualLayers.Base" ]
   - type: CMAutomatedVendor
     sections:
-    - name: Suits
+    - name: Костюм
       entries:
       - id: CMJumpsuitLiaisonBlack
         amount: 1
@@ -49,7 +49,7 @@
         amount: 1
 #      - id: PinkWorkwear
 #      - id: GreenWorkwear
-    - name: Coat
+    - name: Пальто
       entries:
       - id: RMCJacketCorporateBlack
         amount: 1
@@ -90,7 +90,7 @@
 #      - id: GreenTie
 #      - id: GoldTie
 #      - id: SpecialTie
-    - name: Glasses
+    - name: Очки
       entries:
       - id: RMCGlassesMarineRpg #Placeholder
         amount: 1
@@ -103,13 +103,13 @@
 #      - id: Prescription Sunglasses
       - id: RMCHipsterGlasses
         amount: 1
-    - name: Gloves
+    - name: Перчатки
       entries:
       - id: CMHandsBrown #Placeholder
         amount: 1
 #      - id: BlackGloves
 #      - id: DressGloves
-    - name: Shoes
+    - name: Обувь
       entries:
       - id: RMCShoesLaceup
         amount: 1
@@ -118,7 +118,7 @@
       - id: RMCShoesBlack
         amount: 1
 #      - id: CorporateBoots
-#    - name: Hats
+#    - name: Шляпа
 #      entries:
 #      - id: BlackBeret
 #      - id: WhiteBeret

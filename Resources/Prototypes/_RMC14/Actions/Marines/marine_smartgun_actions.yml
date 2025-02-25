@@ -5,7 +5,7 @@
   components:
   - type: InstantAction
     backgroundOn:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: template_on_big
     itemIconStyle: NoItem
 
