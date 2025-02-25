@@ -1,11 +1,3 @@
-ent-RMCPouchMedical = медицинский подсумок
-    .desc = На нем можно перевозить небольшие медицинские принадлежности.
-ent-RMCPouchMedicalFill = { ent-RMCPouchMedical }
-    .suffix = Заполненный
-    .desc = { ent-RMCPouchMedical.desc }
-ent-RMCPouchMedicalPills = { ent-RMCPouchMedical }
-    .suffix = Таблетки
-    .desc = { ent-RMCPouchMedical.desc }
 ent-RMCPouchMedicalSoc = тактический медицинский подсумок
     .desc = Тяжелый подсумок, содержащий все необходимое для того, чтобы встать на ноги. Неплохой выбор.
 ent-RMCPouchMedicalSocFill = { ent-RMCPouchMedicalSoc }

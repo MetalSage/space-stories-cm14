@@ -14,3 +14,5 @@ ent-RMCPlanetKutjevo = НПЗ Кутьево
     .desc = { "" }
 ent-RMCPlanetChances = LV-522 Претензия Шанса
     .desc = { "" }
+ent-RMCPlanetHybrisa = LV-759 Гибриса Проспера
+    .desc = { "" }

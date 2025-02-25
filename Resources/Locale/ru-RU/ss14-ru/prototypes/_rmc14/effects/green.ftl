@@ -10,3 +10,5 @@ ent-RMCEffectXenoTelegraphRed = { ent-RMCEffectXenoTelegraphGreen }
     .desc = { ent-RMCEffectXenoTelegraphGreen.desc }
 ent-RMCEffectXenoTelegraphRedSmall = { ent-RMCEffectXenoTelegraphRed }
     .desc = { ent-RMCEffectXenoTelegraphRed.desc }
+ent-RMCEffectXenoTelegraphRedEmpower = { ent-RMCEffectXenoTelegraphRed }
+    .desc = { ent-RMCEffectXenoTelegraphRed.desc }

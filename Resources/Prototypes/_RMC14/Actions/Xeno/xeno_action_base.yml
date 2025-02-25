@@ -6,5 +6,5 @@
   - type: InstantAction
     backgroundOn:
       sprite: _Stories/Actions/xeno_actions.rsi
-      state: template_active
+      state: template_active_big
   - type: ActionReducedUseDelay   # to keep track of cooldown reductions

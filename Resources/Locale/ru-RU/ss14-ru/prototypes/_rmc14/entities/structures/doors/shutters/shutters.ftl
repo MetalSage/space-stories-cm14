@@ -7,3 +7,7 @@ ent-RMCShutterAlmayer = { ent-RMCShutterBase }
 ent-RMCShutterAlmayerOpen = { ent-RMCShutterAlmayer }
     .suffix = Открыть
     .desc = { ent-RMCShutterAlmayer.desc }
+ent-RMCShutterHybrisa = { ent-RMCShutterAlmayer }
+    .desc = { ent-RMCShutterAlmayer.desc }
+ent-RMCShutterHybrisaWindow = { ent-RMCShutterAlmayer }
+    .desc = { ent-RMCShutterAlmayer.desc }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/cfa259bbd2d627ed94a359fa8c0dec63006f49fa/icons/mob/hud/actions_xeno.dmi",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/cfa259bbd2d627ed94a359fa8c0dec63006f49fa/icons/mob/hud/actions_xeno.dmi, https://github.com/cmss13-devs/cmss13/blob/cfa259bbd2d627ed94a359fa8c0dec63006f49fa/icons/mob/hud/actions_xeno.dmi, new sprites by Aleksh",
   "size": {
     "x": 32,
     "y": 32
@@ -14,7 +14,13 @@
       "name": "template_active"
     },
     {
+      "name": "template_active_big"
+    },
+    {
       "name": "template_on"
+    },
+    {
+      "name": "template_on_big"
     },
     {
       "name": "blank"

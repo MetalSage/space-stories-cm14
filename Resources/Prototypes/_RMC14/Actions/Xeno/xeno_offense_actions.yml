@@ -747,7 +747,7 @@
       state: shift_spit_neurotoxin
     iconOn:
       sprite: _Stories/Actions/xeno_actions.rsi
-      state: shift_spit_xeno_acid
+      state: shift_spit_xeno_acid_strong
     event: !type:XenoSpitToggleActionEvent
 
 - type: entity
