@@ -1,18 +1,19 @@
-﻿- type: entity
+- type: entity
   parent:
   - CMXenoDeveloped
   - CMXenoTail
   - CMXenoFlammable
   - RMCXenoSpeechSounds
   - RMCXenoCommendationReceiver
-  id: CMXenoWarrior
+  id: CMXenoWarriorBoxer
   name: Warrior
   description: A beefy alien with an armored carapace.
+  suffix: Boxer
   components:
   - type: GhostRole
     name: cm-job-name-xeno-warrior
   - type: Sprite
-    sprite: _Stories/Mobs/Xenos/Warrior/warrior.rsi
+    sprite: _Stories/Mobs/Xenos/Warrior/warrior_boxer.rsi
   - type: MobState
     allowedStates:
     - Alive
@@ -30,10 +31,10 @@
     - ActionXenoRegurgitate
     - ActionXenoWatch
     - ActionXenoTailStab
-    - ActionXenoPunch
-    - ActionXenoLunge
-    - ActionXenoFling
     - ActionXenoDevolve
+    - STActionXenoBoxerUppercut
+    - STActionXenoBoxerPunch
+    - STActionXenoBoxerJab
     tier: 2
     hudOffset: 0,0.25
     unlockAt: 540 # 9 minutes
@@ -42,12 +43,12 @@
     devolvesTo:
     - CMXenoDefender
   - type: XenoDevour
-  - type: XenoPunch
+  - type: BoxerPunch
     damage:
       types:
-        Blunt: 25
-  - type: XenoFling
-  - type: XenoLunge
+        Blunt: 30
+  - type: BoxerJab
+  - type: BoxerUppercut
   - type: XenoPlasma
     plasma: 0
     maxPlasma: 0
@@ -57,23 +58,25 @@
     evolvesTo:
     - CMXenoCrusher
     - CMXenoPraetorian
-    strains:
-    - CMXenoWarriorBoxer
   - type: CMArmor
-    armor: 20
-    explosionArmor: 40
+    armor: 25
+    explosionArmor: 45
   - type: XenoClaws
     clawType: Sharp
   - type: MeleeWeapon
     damage:
       groups:
-        Brute: 35
+        Brute: 30
   - type: XenoTailStab
     tailDamage:
       groups:
-        Brute: 48
+        Brute: 45
   - type: Tackle
-    max: 4
+    min: 4
+  - type: XenoStrain
+    name: stories-xeno-boxer-name
+    description: stories-xeno-boxer-description
+    popup: stories-xeno-boxer-popup
   - type: SlowOnPull
     slowdowns:
     - multiplier: 0.4525
@@ -97,3 +100,6 @@
       state: warrior
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 0.2
+  - type: XenoBoxerKO
+  - type: RMCSize
+    size: Big

@@ -1,0 +1,16 @@
+stories-xeno-boxer-jab-self-message = Вы нанесли прямой левой удар по { $target }
+stories-xeno-boxer-jab-other-message = { $boxer } наносит прямой левой удар по { $target }
+stories-xeno-boxer-strain-other-uppercut-weak = { $boxer } наносит слабый апперкот { $target }!
+stories-xeno-boxer-strain-self-uppercut-weak = Вы наносите слабый апперкот { $target }!
+stories--boxer-strain-other-uppercut-good = { $boxer } наносит хороший апперкот { $target }!
+stories-xeno-boxer-strain-self-uppercut-good = Вы наносите хороший апперкот { $target }!
+stories-xeno-boxer-strain-other-uppercut-powerful = { $boxer } наносит мощный апперкот { $target }!
+stories-xeno-boxer-strain-self-uppercut-powerful = Вы наносите мощный апперкот { $target }!
+stories--boxer-strain-other-uppercut-gigantic = { $boxer } наносит поразительный апперкот { $boxer }!
+stories-xeno-boxer-strain-self-uppercut-gigantic = Вы наносите поразительный апперкот { $boxer }!
+stories-xeno-boxer-strain-other-uppercut-titanic = { $boxer } наносит сокрушительный апперкот { $target }!
+stories-xeno-boxer-strain-self-uppercut-titanic = Вы наносите сокрушительный апперкот { $target }!
+stories-xeno-boxer-can-use-titanic-uppercut = Вы готовы нанести сокрушительный удар!
+stories-xeno-boxer-reset-ko = Ваше тело слабеет!
+ent-CMXenoWarriorBoxer = Воин
+    .desc = Мускулистый инопланетянин с бронированным панцирем.

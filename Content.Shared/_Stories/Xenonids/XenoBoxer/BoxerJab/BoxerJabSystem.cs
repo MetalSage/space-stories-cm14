@@ -47,8 +47,8 @@ public sealed class BoxerJabSystem : EntitySystem
         _rmcMelee.DoLunge(xeno, args.Target);
         _slow.TryRoot(args.Target, comp.RootTime);
 
-        var messageSelf = Loc.GetString("xeno-boxer-jab-self-message", ("target", Identity.Entity(args.Target, EntityManager)));
-        var messageOther = Loc.GetString("xeno-boxer-jab-other-message", ("target", Identity.Entity(args.Target, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+        var messageSelf = Loc.GetString("stories-xeno-boxer-jab-self-message", ("target", Identity.Entity(args.Target, EntityManager)));
+        var messageOther = Loc.GetString("stories-xeno-boxer-jab-other-message", ("target", Identity.Entity(args.Target, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
         _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno);
 
         if (_net.IsServer)

@@ -44,7 +44,7 @@ public sealed class SharedBoxerKOSystem : EntitySystem
             _aura.GiveAura(ent, comp.AuraColor.Value, comp.AuraDuration);
 
         if (tracker.Count >= comp.MaxKO)
-            _popup.PopupPredicted(Loc.GetString("xeno-boxer-can-use-titanic-uppercut"), ent, null, PopupType.LargeCaution);
+            _popup.PopupPredicted(Loc.GetString("stories-xeno-boxer-can-use-titanic-uppercut"), ent, null, PopupType.LargeCaution);
 
         Dirty(ent, recently);
     }
@@ -73,7 +73,7 @@ public sealed class SharedBoxerKOSystem : EntitySystem
             {
                 RemCompDeferred<XenoBoxerKORecentlyComponent>(uid);
                 RemCompDeferred<AuraComponent>(uid);
-                _popup.PopupPredicted(Loc.GetString("xeno-boxer-reset-ko"), uid, null, PopupType.MediumCaution);
+                _popup.PopupPredicted(Loc.GetString("stories-xeno-boxer-reset-ko"), uid, null, PopupType.MediumCaution);
             }
         }
     }
@@ -95,7 +95,7 @@ public sealed class SharedBoxerKOSystem : EntitySystem
 
         foreach (var (actionId, action) in _action.GetActions(xeno))
         {
-            if (action.BaseEvent is BoxerUppercutActionEvent && action.Cooldown == TimeSpan.Zero)
+            if (action.BaseEvent is BoxerUppercutActionEvent && action.Cooldown == null)
                 return;
         }
 

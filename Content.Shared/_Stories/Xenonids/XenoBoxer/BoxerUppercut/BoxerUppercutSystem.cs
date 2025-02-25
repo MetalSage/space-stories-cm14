@@ -147,8 +147,8 @@ public sealed class BoxerUppercutSystem : EntitySystem
             popupPower = "titanic";
         }
 
-        var messageOther = Loc.GetString("xeno-boxer-strain-other-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
-        var messageSelf = Loc.GetString("xeno-boxer-strain-self-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+        var messageOther = Loc.GetString("stories-xeno-boxer-strain-other-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+        var messageSelf = Loc.GetString("stories-xeno-boxer-strain-self-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
         _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
 
         _rmcMelee.DoLunge(xeno, targetId);
