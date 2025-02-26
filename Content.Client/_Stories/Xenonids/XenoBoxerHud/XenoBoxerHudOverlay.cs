@@ -14,7 +14,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using static Robust.Shared.Utility.SpriteSpecifier;
 
-
 namespace Content.Client._Stories.Xenonids.XenoBoxerHud;
 
 public sealed class XenoBoxerTrackerOverlay : Overlay
