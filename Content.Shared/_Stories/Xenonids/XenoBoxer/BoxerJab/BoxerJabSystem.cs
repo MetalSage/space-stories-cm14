@@ -6,7 +6,6 @@ using Content.Shared.Actions;
 using Content.Shared.Coordinates;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
-
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
