@@ -69,7 +69,7 @@
     icon:
       sprite: _RMC14/Interface/map_blips.rsi
       state: core
-  - type: XenoConstructionAnnounce
+  - type: XenoConstructionAnnounce # Stories-XenoStructureAnnounce
     message: stories-xeno-construction-destroyed
 
 - type: entity
