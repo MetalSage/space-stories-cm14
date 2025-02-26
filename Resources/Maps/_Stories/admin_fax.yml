@@ -11282,7 +11282,7 @@ entities:
   - uid: 1587
     components:
     - type: MetaData
-      name: Офис Проректора Морпехов
+      name: Офис провост-маршала
     - type: Transform
       pos: 18.755299,-11.204901
       parent: 1

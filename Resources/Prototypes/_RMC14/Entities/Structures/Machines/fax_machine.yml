@@ -66,7 +66,7 @@
   suffix: Provost
   components:
   - type: FaxMachine
-    name: "Офис Проректора Морпехов" # Stories-Localise
+    name: "Офис провост-маршала" # Stories-Localise
     notifyAdmins: true
 
 - type: entity
