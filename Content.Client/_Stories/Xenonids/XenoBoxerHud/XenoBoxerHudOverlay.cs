@@ -1,9 +1,10 @@
+using System.Numerics;
 using Content.Client._RMC14.NightVision;
 using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._Stories.Xenonids.XenoBoxer;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared._Stories.Xenonids.XenoBoxer;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -11,8 +12,8 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using System.Numerics;
 using static Robust.Shared.Utility.SpriteSpecifier;
+
 
 namespace Content.Client._Stories.Xenonids.XenoBoxerHud;
 

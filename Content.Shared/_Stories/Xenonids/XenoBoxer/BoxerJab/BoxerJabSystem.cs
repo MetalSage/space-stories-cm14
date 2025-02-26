@@ -1,14 +1,14 @@
+using Content.Shared.Actions;
+using Content.Shared.Coordinates;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Popups;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Xenonids;
-using Content.Shared.Coordinates;
+using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerPunch;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
-using Content.Shared.Actions;
-using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerPunch;
-using Content.Shared.Popups;
-using Content.Shared.IdentityManagement;
 
 namespace Content.Shared._Stories.Xenonids.XenoBoxer.BoxerJab;
 

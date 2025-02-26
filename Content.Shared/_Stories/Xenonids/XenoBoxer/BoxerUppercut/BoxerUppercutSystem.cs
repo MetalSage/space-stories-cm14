@@ -11,7 +11,10 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Effects;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
@@ -21,9 +24,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Systems;
 
 namespace Content.Shared._Stories.Xenonids.XenoBoxer.BoxerUppercut;
 
@@ -62,18 +62,10 @@ public sealed class BoxerUppercutSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!TryComp<XenoBoxerKOComponent>(xeno, out var koComp))
-            return;
-
-        if (!TryComp<XenoBoxerKORecentlyComponent>(xeno, out var recently))
-            return;
-
-
-
-        if (!TryComp<DamageableComponent>(xeno, out var damageable))
-            return;
-
-        if (!TryComp<MobThresholdsComponent>(xeno, out var mobThreshold))
+        if (!TryComp(xeno, out XenoBoxerKOComponent? koComp) ||
+            !TryComp(xeno, out XenoBoxerKORecentlyComponent? recently) ||
+            !TryComp(xeno, out DamageableComponent? damageable) ||
+            !TryComp(xeno, out MobThresholdsComponent? mobThreshold))
             return;
 
         if (!_mobThresholdSystem.TryGetThresholdForState(xeno, MobState.Dead, out var threshold, mobThreshold))
