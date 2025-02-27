@@ -66,6 +66,9 @@
     chance: 0.45
     stunMin: 2
     stunMax: 5
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 5.0 # TornadoTech scm speed parity fix
   - type: Fixtures
     fixtures:
       fix1:
@@ -180,8 +183,8 @@
     gainAttackDowned: 15
   - type: XenoRetrieve
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 2.875 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 4.375 # TornadoTech scm speed parity fix
   - type: SlowOnPull
     slowdowns:
     - multiplier: 0.64
@@ -228,6 +231,9 @@
     - ActionXenoTailTrip
     - ActionXenoDevolve
     hidden: true
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 5.625 # TornadoTech scm speed parity fix
   - type: XenoStrain
     name: rmc-xeno-dancer-name
     description: rmc-xeno-dancer-description
@@ -273,6 +279,9 @@
     name: rmc-xeno-vanguard-name
     description: rmc-xeno-vanguard-description
     popup: rmc-xeno-vanguard-popup
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.875 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 5.375 # TornadoTech scm speed parity fix
   - type: XenoClaws
     clawType: Sharp
   - type: XenoShield
@@ -320,8 +329,8 @@
     description: rmc-xeno-oppressor-description
     popup: rmc-xeno-oppressor-popup
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 2.875 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 4.375 # TornadoTech scm speed parity fix
   - type: SlowOnPull
     slowdowns:
     - multiplier: 0.64

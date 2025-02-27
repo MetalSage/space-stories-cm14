@@ -101,8 +101,8 @@
       sprite: _RMC14/Interface/map_blips.rsi
       state: runner
   - type: MovementSpeedModifier
-    baseWalkSpeed: 5.55
-    baseSprintSpeed: 10
+    baseWalkSpeed: 7.0 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 8.5 # TornadoTech scm speed parity fix
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 0.1
 

@@ -79,8 +79,8 @@
     stunMin: 2
     stunMax: 6
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.7
-    baseSprintSpeed: 5
+    baseWalkSpeed: 5.5 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 7.0 # TornadoTech scm speed parity fix
   - type: SlowOnPull
     slowdowns:
     - multiplier: 0.53

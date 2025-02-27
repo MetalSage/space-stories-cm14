@@ -66,6 +66,9 @@
   - type: Tackle
     min: 4
     max: 5
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 5.0 # TornadoTech scm speed parity fix
   - type: WhitelistPickup
     whitelist:
       components:

@@ -62,8 +62,8 @@
     canResistFire: false
   - type: IgnoreBlockPullingDead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.7
-    baseSprintSpeed: 6.7
+    baseWalkSpeed: 6.5 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 8.0 # TornadoTech scm speed parity fix
   - type: RestrictEvolveOffWeeds
   - type: Speech
     speechSounds: XenonidLarva

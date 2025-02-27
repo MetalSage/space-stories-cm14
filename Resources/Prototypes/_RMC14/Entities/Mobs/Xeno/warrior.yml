@@ -72,6 +72,9 @@
         Brute: 48
   - type: Tackle
     max: 4
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.0 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 5.5 # TornadoTech scm speed parity fix
   - type: SlowOnPull
     slowdowns:
     - multiplier: 0.4525

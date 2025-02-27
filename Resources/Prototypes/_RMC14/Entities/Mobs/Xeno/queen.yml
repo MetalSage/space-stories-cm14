@@ -122,8 +122,8 @@
         - BulletImpassable
   - type: DropshipHijacker
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.4
-    baseSprintSpeed: 2.5
+    baseWalkSpeed: 0.5 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 2 # TornadoTech scm speed parity fix
   - type: SlowOnPull
     slowdowns:
     - multiplier: 0.505

@@ -58,8 +58,8 @@
       components:
       - Xeno
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.7
-    baseSprintSpeed: 5
+    baseWalkSpeed: 5.5 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 7.0 # TornadoTech scm speed parity fix
   - type: DamageOffWeeds
     damage:
       types:
@@ -119,7 +119,7 @@
   - type: XenoEvolution
     strains:
     - RMCXenoParasiteObserver
-    
+
 # Observer Strain
 - type: entity
   parent: CMXenoParasiteBase

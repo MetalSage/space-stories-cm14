@@ -52,6 +52,9 @@
     max: 4
     stunMin: 3
     stunMax: 4
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.0 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 5.5 # TornadoTech scm speed parity fix
   - type: WhitelistPickup
     whitelist:
       components:

@@ -78,8 +78,8 @@
   - type: Tackle
     chance: 0.25
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.66
-    baseSprintSpeed: 3
+    baseWalkSpeed: 1.5 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 3.0 # TornadoTech scm speed parity fix
   - type: SlowOnPull
     slowdowns:
     - multiplier: 0.68
