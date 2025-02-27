@@ -103,6 +103,3 @@
   - type: XenoBoxerKO
   - type: RMCSize
     size: Big
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 4.0 # TornadoTech scm speed parity fix
-    baseSprintSpeed: 5.5 # TornadoTech scm speed parity fix
