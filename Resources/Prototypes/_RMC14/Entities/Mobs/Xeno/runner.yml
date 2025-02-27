@@ -132,8 +132,8 @@
     knockdownTime: 2
     leapSound: /Audio/_RMC14/Xeno/alien_pounce.ogg
   - type: MovementSpeedModifier
-    baseWalkSpeed: 5.55
-    baseSprintSpeed: 10
+    baseWalkSpeed: 7.0 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 8.5 # TornadoTech scm speed parity fix
   - type: XenoEvolution
     strains:
     - RMCXenoRunnerAcider
@@ -176,8 +176,8 @@
   - type: CMArmor
     armor: 15
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.5
-    baseSprintSpeed: 6.5
+    baseWalkSpeed: 6.375 # TornadoTech scm speed parity fix
+    baseSprintSpeed: 7.875 # TornadoTech scm speed parity fix
   - type: XenoAcid
     canMeltStructures: false
   - type: XenoEnergy
