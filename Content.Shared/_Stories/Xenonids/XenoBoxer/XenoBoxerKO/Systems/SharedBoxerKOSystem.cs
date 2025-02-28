@@ -21,11 +21,6 @@ public sealed class SharedBoxerKOSystem : EntitySystem
 
     private readonly List<EntityUid> _trackersToRemove = new();
 
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<XenoBoxerKOComponent, MeleeHitEvent>(OnMeleeHit);
-    }
-
     public void UpdateKOTracker(EntityUid ent, XenoBoxerKOComponent comp, EntityUid target, float koPoint)
     {
         if (_net.IsClient)
@@ -86,26 +81,5 @@ public sealed class SharedBoxerKOSystem : EntitySystem
             return Color.Yellow;
 
         return null;
-    }
-
-    private void OnMeleeHit(Entity<XenoBoxerKOComponent> xeno, ref MeleeHitEvent args)
-    {
-        if (!args.IsHit)
-            return;
-
-        foreach (var (actionId, action) in _action.GetActions(xeno))
-        {
-            if (action.BaseEvent is BoxerUppercutActionEvent && action.Cooldown == null)
-                return;
-        }
-
-        foreach (var hit in args.HitEntities)
-        {
-            if (!_xeno.CanAbilityAttackTarget(xeno.Owner, hit))
-                continue;
-
-            UpdateKOTracker(xeno.Owner, xeno.Comp, hit, xeno.Comp.KOIncreasePerMeleeHit);
-            break;
-        }
     }
 }

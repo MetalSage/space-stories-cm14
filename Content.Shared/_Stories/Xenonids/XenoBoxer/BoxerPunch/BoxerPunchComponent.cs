@@ -25,4 +25,7 @@ public sealed partial class BoxerPunchComponent : Component
 
     [DataField, AutoNetworkedField]
     public float KOIncrease = 1;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(0.2);
 }

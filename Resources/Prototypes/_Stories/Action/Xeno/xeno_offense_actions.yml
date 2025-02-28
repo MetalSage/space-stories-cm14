@@ -7,7 +7,7 @@
   - type: EntityTargetAction
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: punch
     event: !type:BoxerPunchActionEvent
     range: 2
@@ -44,5 +44,5 @@
       state: rav_clothesline
     event: !type:BoxerUppercutActionEvent
     range: 2
-    useDelay: 14
+    useDelay: 15
     deselectOnMiss: false

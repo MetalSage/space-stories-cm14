@@ -54,7 +54,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
 
     private void OnBoxerUppercutAction(Entity<BoxerUppercutComponent> xeno, ref BoxerUppercutActionEvent args)
     {
-        if (!_timing.IsFirstTimePredicted || args.Handled)
+        if (args.Handled || !_timing.IsFirstTimePredicted || _net.IsClient)
             return;
 
         if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
@@ -76,8 +76,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
         var tracker = recently.Trackers.GetValueOrDefault(args.Target);
         var popupPower = "weak";
 
-        if (_net.IsServer)
-            _audio.PlayPvs(comp.Sound, xeno);
+        _audio.PlayPvs(comp.Sound, xeno);
 
         var damageModificator = Math.Min(tracker.Count * comp.DamageModificator, 150);
 
@@ -104,8 +103,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
             var amount = -_rmcDamage.DistributeTypesTotal(xeno.Owner, heal);
             _damageable.TryChangeDamage(xeno, amount);
 
-            if (_net.IsServer)
-                SpawnAttachedTo(comp.HealEffect, xeno.Owner.ToCoordinates());
+            SpawnAttachedTo(comp.HealEffect, xeno.Owner.ToCoordinates());
         }
 
         _rmcPulling.TryStopAllPullsFromAndOn(targetId);
@@ -127,9 +125,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
             _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(targetId, comp.StatusEffectKey,
                 comp.StatusEffectTime, false);
             _stun.TryParalyze(targetId, xeno.Comp.StatusEffectTime, true);
-
-            if (_net.IsClient)
-                _audio.PlayLocal(comp.GongSound, xeno, xeno);
+            _audio.PlayPvs(comp.GongSound, xeno);
 
             EnsureComp<KOLabelComponent>(targetId);
             Timer.Spawn(TimeSpan.FromSeconds(4), () =>
@@ -141,12 +137,11 @@ public sealed class BoxerUppercutSystem : EntitySystem
 
         var messageOther = Loc.GetString("stories-xeno-boxer-strain-other-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
         var messageSelf = Loc.GetString("stories-xeno-boxer-strain-self-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
-        _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
+        _popup.PopupEntity(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
 
         _rmcMelee.DoLunge(xeno, targetId);
 
-        if (_net.IsServer)
-            SpawnAttachedTo(comp.Effect, targetId.ToCoordinates());
+        SpawnAttachedTo(comp.Effect, targetId.ToCoordinates());
 
         foreach (var (actionId, action) in _action.GetActions(xeno))
         {

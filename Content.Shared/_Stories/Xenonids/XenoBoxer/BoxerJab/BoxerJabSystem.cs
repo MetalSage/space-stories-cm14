@@ -61,7 +61,7 @@ public sealed class BoxerJabSystem : EntitySystem
         foreach (var (actionId, action) in _action.GetActions(xeno))
         {
             if (action.BaseEvent is BoxerPunchActionEvent)
-                _action.ClearCooldown(actionId);
+                _action.SetCooldown(actionId, comp.Cooldown);
         }
     }
 }

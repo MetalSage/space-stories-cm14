@@ -28,4 +28,7 @@ public sealed partial class BoxerJabComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntProtoId RootEffect = "CMEffectPunch";
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(0.2);
 }

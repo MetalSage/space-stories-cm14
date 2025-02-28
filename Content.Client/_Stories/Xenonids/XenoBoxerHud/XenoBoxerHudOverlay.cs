@@ -61,7 +61,7 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (!_entity.HasComponent<XenoBoxerKOComponent>(_players.LocalEntity))
+        if (!_entity.HasComponent<XenoComponent>(_players.LocalEntity))
             return;
 
         var handle = args.WorldHandle;
@@ -116,7 +116,7 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
                 handle.SetTransform(matrix);
 
                 var spriteFrame = (int)Math.Clamp(tracker.Count, 1f, 15f);
-                var icon = new Rsi(_rsiPath, $"KOTracker_{spriteFrame}");
+                var icon = new Rsi(_rsiPath, $"tracker_{spriteFrame}");
                 var texture = _sprite.GetFrame(icon, _timing.CurTime);
 
                 var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)texture.Height / EyeManager.PixelsPerMeter * bounds.Height + 0.2f;
@@ -131,7 +131,7 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
     private void DrawKOLabel(in OverlayDrawArgs args, Matrix3x2 scaleMatrix, Matrix3x2 rotationMatrix)
     {
         var handle = args.WorldHandle;
-        var icon = new Rsi(_rsiPath, $"ko_marker");
+        var icon = new Rsi(_rsiPath, $"ko_label");
 
         var query = _entity.EntityQueryEnumerator<KOLabelComponent, SpriteComponent, TransformComponent>();
         while (query.MoveNext(out var target, out var _, out var sprite, out var xform))
