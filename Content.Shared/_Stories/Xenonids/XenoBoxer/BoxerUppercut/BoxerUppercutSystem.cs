@@ -76,7 +76,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
         var tracker = recently.Trackers.GetValueOrDefault(args.Target);
         var popupPower = "weak";
 
-        _audio.PlayPvs(comp.Sound, xeno);
+        _audio.PlayPredicted(comp.Sound, xeno, xeno);
 
         var damageModificator = Math.Min(tracker.Count * comp.DamageModificator, 150);
 
@@ -125,7 +125,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
             _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(targetId, comp.StatusEffectKey,
                 comp.StatusEffectTime, false);
             _stun.TryParalyze(targetId, xeno.Comp.StatusEffectTime, true);
-            _audio.PlayPvs(comp.GongSound, xeno);
+            _audio.PlayPredicted(comp.GongSound, xeno, null); // TOOD FIX SOUND ONLY FOR CLIENT
 
             EnsureComp<KOLabelComponent>(targetId);
             Timer.Spawn(TimeSpan.FromSeconds(4), () =>
@@ -137,7 +137,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
 
         var messageOther = Loc.GetString("stories-xeno-boxer-strain-other-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
         var messageSelf = Loc.GetString("stories-xeno-boxer-strain-self-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
-        _popup.PopupEntity(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
+        _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
 
         _rmcMelee.DoLunge(xeno, targetId);
 
