@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": null,
+  "copyright": null,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "xsplatter1",
+      "directions": 8
+    },
+    {
+      "name": "xsplatter2",
+      "directions": 8
+    },
+    {
+      "name": "xsplatter3",
+      "directions": 4
+    },
+    {
+      "name": "xsplatter4",
+      "directions": 4
+    },
+    {
+      "name": "xsplatter5",
+      "directions": 4
+    },
+    {
+      "name": "xsplatter6",
+      "directions": 8
+    }
+  ]
+}

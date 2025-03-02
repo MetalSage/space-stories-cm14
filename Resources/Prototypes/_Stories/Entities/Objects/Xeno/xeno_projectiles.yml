@@ -1,0 +1,20 @@
+- type: entity
+  parent: XenoBaseProjectile
+  id: XenoAcidBloodProjectile
+  name: spit
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Projectile
+    impactEffect: null
+    damage:
+      types:
+        Heat: 20
+    soundHit:
+      path: /Audio/_RMC14/Xeno/acid_impact1.ogg
+  - type: CMArmorPiercing
+    amount: 10
+  - type: XenoProjectile
+    deleteOnFriendlyXeno: true
+  - type: ProjectileMaxRange
+    max: 1.2
