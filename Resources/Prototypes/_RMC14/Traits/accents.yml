@@ -34,7 +34,9 @@
   category: SpeechTraits
   cost: 1
   components:
-    - type: SpanishAccent
+  - type: ReplacementAccent
+    accent: spanish
+  - type: SpanishAccent
 
 - type: trait
   id: ScottishAccent
