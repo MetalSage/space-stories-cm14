@@ -193,19 +193,24 @@ public abstract class SharedWebbingSystem : EntitySystem
             return false;
         }
 
-        if (_container.TryGetContainingContainer((clothing, null), out var wearer) &&
-            TryComp(wearer.Owner, out InventoryComponent? inventory))
+        if (_container.TryGetContainingContainer((clothing, null), out var wearer))
         {
-            var slots = _inventory.GetSlotEnumerator((wearer.Owner, inventory));
-            while (slots.MoveNext(out var slot))
-            {
-                if (HasComp<ClothingBlockWebbingComponent>(slot.ContainedEntity))
-                {
-                    handled = true;
+            if (wearer.ID == "storagebase") // Stories-Fix
+                return false;
 
-                    if (user != null)
-                        _popup.PopupClient(Loc.GetString("rmc-webbing-cannot-wear-with-webbing"), webbing, user);
-                    return false;
+            if (TryComp(wearer.Owner, out InventoryComponent? inventory))
+            {
+                var slots = _inventory.GetSlotEnumerator((wearer.Owner, inventory));
+                while (slots.MoveNext(out var slot))
+                {
+                    if (HasComp<ClothingBlockWebbingComponent>(slot.ContainedEntity))
+                    {
+                        handled = true;
+
+                        if (user != null)
+                            _popup.PopupClient(Loc.GetString("rmc-webbing-cannot-wear-with-webbing"), webbing, user);
+                        return false;
+                    }
                 }
             }
         }

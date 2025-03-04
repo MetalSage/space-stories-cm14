@@ -55,6 +55,7 @@
           tags:
           - GlassBeaker
           - ChemDispensable
+          - Bucket
   - type: ContainerContainer
     containers:
       chemical_dispenser_slot: !type:ContainerSlot
