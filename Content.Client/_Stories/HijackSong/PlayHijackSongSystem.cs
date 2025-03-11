@@ -13,6 +13,7 @@ public sealed class PlayHijackSongSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     private float _volume = 0.0f;
+    private EntityUid? _songEntity = null;
 
     public override void Initialize()
     {
@@ -29,6 +30,12 @@ public sealed class PlayHijackSongSystem : EntitySystem
     private void OnVolumeChanged(float volume)
     {
         _volume = volume;
+
+        if (_songEntity.HasValue)
+        {
+            var volumeAdjusted = SharedAudioSystem.GainToVolume(_volume);
+            _audio.SetVolume(_songEntity.Value, volumeAdjusted);
+        }
     }
 
     private void PlayHijackSong(PlayHijackSongEvent ev)
@@ -36,6 +43,6 @@ public sealed class PlayHijackSongSystem : EntitySystem
         var volume = SharedAudioSystem.GainToVolume(_volume);
         var audioParams = AudioParams.Default.WithVolume(volume);
 
-        _audio.PlayGlobal(ev.Song, Filter.Local(), false, audioParams);
+        _songEntity = _audio.PlayGlobal(ev.Song, Filter.Local(), false, audioParams)?.Entity;
     }
 }

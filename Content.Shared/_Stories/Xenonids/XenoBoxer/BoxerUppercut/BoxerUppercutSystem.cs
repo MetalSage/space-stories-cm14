@@ -12,7 +12,6 @@ using Content.Shared.Effects;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -46,6 +45,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedRMCDamageableSystem _rmcDamage = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
+    [Dependency] private readonly SharedBoxerKOSystem _koSystem = default!;
 
     public override void Initialize()
     {
@@ -68,7 +68,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
             !TryComp(xeno, out MobThresholdsComponent? mobThreshold))
             return;
 
-        if (!_mobThresholdSystem.TryGetThresholdForState(xeno, MobState.Dead, out var threshold, mobThreshold))
+        if (!_mobThresholdSystem.TryGetDeadThreshold(xeno, out var threshold, mobThreshold))
             return;
 
         var targetId = args.Target;
@@ -76,7 +76,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
         var tracker = recently.Trackers.GetValueOrDefault(args.Target);
         var popupPower = "weak";
 
-        _audio.PlayPredicted(comp.Sound, xeno, xeno);
+        _audio.PlayPvs(comp.Sound, xeno);
 
         var damageModificator = Math.Min(tracker.Count * comp.DamageModificator, 150);
 
@@ -124,9 +124,8 @@ public sealed class BoxerUppercutSystem : EntitySystem
             _throwing.TryThrow(targetId, diff, 10);
             _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(targetId, comp.StatusEffectKey,
                 comp.StatusEffectTime, false);
-            _stun.TryParalyze(targetId, xeno.Comp.StatusEffectTime, true);
-            _audio.PlayPredicted(comp.GongSound, xeno, null); // TOOD FIX SOUND ONLY FOR CLIENT
-
+            _stun.TryParalyze(targetId, xeno.Comp.TitanicParalyzeTime, true);
+            _audio.PlayEntity(comp.GongSound, Filter.Entities(xeno), xeno, true);
             EnsureComp<KOLabelComponent>(targetId);
             Timer.Spawn(TimeSpan.FromSeconds(4), () =>
             {
@@ -140,16 +139,13 @@ public sealed class BoxerUppercutSystem : EntitySystem
         _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
 
         _rmcMelee.DoLunge(xeno, targetId);
-
         SpawnAttachedTo(comp.Effect, targetId.ToCoordinates());
-
         foreach (var (actionId, action) in _action.GetActions(xeno))
         {
             if (action.BaseEvent is BoxerPunchActionEvent or BoxerJabActionEvent)
                 _action.SetCooldown(actionId, comp.Cooldown);
         }
 
-        recently.Trackers.Clear();
-        Dirty(xeno, recently);
+        _koSystem.ResetTracker(xeno, recently);
     }
 }

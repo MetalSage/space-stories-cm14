@@ -30,7 +30,10 @@ public sealed partial class BoxerUppercutComponent : Component
     public TimeSpan ParalyzeTime = TimeSpan.FromSeconds(1.5);
 
     [DataField, AutoNetworkedField]
-    public TimeSpan StatusEffectTime = TimeSpan.FromSeconds(10);
+    public TimeSpan TitanicParalyzeTime = TimeSpan.FromSeconds(10);
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan StatusEffectTime = TimeSpan.FromSeconds(15);
 
     [DataField, AutoNetworkedField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(15);

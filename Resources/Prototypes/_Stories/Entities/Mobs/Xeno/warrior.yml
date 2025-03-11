@@ -46,7 +46,7 @@
   - type: BoxerPunch
     damage:
       types:
-        Blunt: 30
+        Blunt: 20
   - type: BoxerJab
   - type: BoxerUppercut
   - type: XenoPlasma
