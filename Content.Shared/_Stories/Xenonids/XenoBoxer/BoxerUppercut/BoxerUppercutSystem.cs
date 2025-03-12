@@ -64,7 +64,6 @@ public sealed class BoxerUppercutSystem : EntitySystem
 
         if (!TryComp(xeno, out XenoBoxerKOComponent? koComp) ||
             !TryComp(xeno, out XenoBoxerKORecentlyComponent? recently) ||
-            !TryComp(xeno, out DamageableComponent? damageable) ||
             !TryComp(xeno, out MobThresholdsComponent? mobThreshold))
             return;
 
@@ -95,16 +94,12 @@ public sealed class BoxerUppercutSystem : EntitySystem
             popupPower = "good";
         }
 
-        if (damageable.TotalDamage != FixedPoint2.Zero)
-        {
-            var heal = (threshold.Value - damageable.TotalDamage) *
-            (Math.Clamp(tracker.Count, 0, koComp.MaxKO) * comp.HealPerStack);
+        var heal = threshold.Value *
+        (Math.Clamp(tracker.Count, 0, koComp.MaxKO) * comp.HealPerStack);
 
-            var amount = -_rmcDamage.DistributeTypesTotal(xeno.Owner, heal);
-            _damageable.TryChangeDamage(xeno, amount);
-
-            SpawnAttachedTo(comp.HealEffect, xeno.Owner.ToCoordinates());
-        }
+        var amount = -_rmcDamage.DistributeTypesTotal(xeno.Owner, heal);
+        _damageable.TryChangeDamage(xeno, amount);
+        SpawnAttachedTo(comp.HealEffect, xeno.Owner.ToCoordinates());
 
         _rmcPulling.TryStopAllPullsFromAndOn(targetId);
 
