@@ -85,7 +85,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
         diff = diff.Normalized() * (tracker.Count / comp.Range);
 
         var damage = _damageable.TryChangeDamage(targetId, new DamageSpecifier(
-            _proto.Index<DamageTypePrototype>("Blunt"), damageModificator));
+            _proto.Index<DamageTypePrototype>("Blunt"), damageModificator), true);
 
         if (damage?.GetTotal() > FixedPoint2.Zero)
         {
@@ -98,7 +98,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
         (Math.Clamp(tracker.Count, 0, koComp.MaxKO) * comp.HealPerStack);
 
         var amount = -_rmcDamage.DistributeTypesTotal(xeno.Owner, heal);
-        _damageable.TryChangeDamage(xeno, amount);
+        _damageable.TryChangeDamage(xeno, amount, true);
         SpawnAttachedTo(comp.HealEffect, xeno.Owner.ToCoordinates());
 
         _rmcPulling.TryStopAllPullsFromAndOn(targetId);
