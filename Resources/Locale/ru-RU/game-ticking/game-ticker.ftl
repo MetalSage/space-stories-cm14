@@ -36,13 +36,18 @@ player-first-join-message = Игрок { $name } зашёл на сервер в
 player-leave-message = Игрок { $name } вышел!
 latejoin-arrival-announcement =
     { $character } ({ $job }) { GENDER($entity) ->
-        [male] прибыл
-        [female] прибыла
-        [epicene] прибыли
-       *[neuter] прибыло
-    } на станцию!
+        [male] был
+        [female] была
+        [epicene] были
+       *[neuter] было
+    }  { GENDER($entity) ->
+        [male] пробужден
+        [female] пробуждена
+        [epicene] пробуждены
+       *[neuter] пробуждено
+    } из гиперсна корабля!
 latejoin-arrival-announcement-special = { $job } { $character } на палубе!
-latejoin-arrival-sender = Станции
+latejoin-arrival-sender = ARES v3.2
 latejoin-arrivals-direction = Вскоре прибудет шаттл, который доставит вас на станцию.
 latejoin-arrivals-direction-time = Шаттл, который доставит вас на станцию, прибудет через { $time }.
 latejoin-arrivals-dumped-from-shuttle = Таинственная сила не позволяет вам улететь на шаттле прибытия.

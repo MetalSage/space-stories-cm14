@@ -63,11 +63,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
         args.Handled = true;
 
         if (!TryComp(xeno, out XenoBoxerKOComponent? koComp) ||
-            !TryComp(xeno, out XenoBoxerKORecentlyComponent? recently) ||
-            !TryComp(xeno, out MobThresholdsComponent? mobThreshold))
-            return;
-
-        if (!_mobThresholdSystem.TryGetDeadThreshold(xeno, out var threshold, mobThreshold))
+            !TryComp(xeno, out XenoBoxerKORecentlyComponent? recently))
             return;
 
         var targetId = args.Target;
@@ -78,12 +74,6 @@ public sealed class BoxerUppercutSystem : EntitySystem
         _audio.PlayPvs(comp.Sound, xeno);
 
         var damageModificator = Math.Min(tracker.Count * comp.DamageModificator, 150);
-
-        var origin = _transform.GetMapCoordinates(xeno);
-        var target = _transform.GetMapCoordinates(targetId);
-        var diff = target.Position - origin.Position;
-        diff = diff.Normalized() * (tracker.Count / comp.Range);
-
         var damage = _damageable.TryChangeDamage(targetId, new DamageSpecifier(
             _proto.Index<DamageTypePrototype>("Blunt"), damageModificator), true);
 
@@ -94,53 +84,82 @@ public sealed class BoxerUppercutSystem : EntitySystem
             popupPower = "good";
         }
 
-        var heal = threshold.Value *
-        (Math.Clamp(tracker.Count, 0, koComp.MaxKO) * comp.HealPerStack);
+        DoHeal(xeno, koComp, tracker);
+        popupPower = DoUppercut(xeno, targetId, tracker);
 
-        var amount = -_rmcDamage.DistributeTypesTotal(xeno.Owner, heal);
-        _damageable.TryChangeDamage(xeno, amount, true);
-        SpawnAttachedTo(comp.HealEffect, xeno.Owner.ToCoordinates());
+        var messageOther = Loc.GetString("stories-xeno-boxer-strain-other-uppercut-" + popupPower,
+        ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
 
-        _rmcPulling.TryStopAllPullsFromAndOn(targetId);
+        var messageSelf = Loc.GetString("stories-xeno-boxer-strain-self-uppercut-" + popupPower,
+        ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+
+        _koSystem.ResetTracker(xeno, recently);
+        _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
+        _rmcMelee.DoLunge(xeno, targetId);
+        SpawnAttachedTo(comp.Effect, targetId.ToCoordinates());
+        DoCooldown(xeno);
+    }
+
+    private void DoHeal(Entity<BoxerUppercutComponent> xeno, XenoBoxerKOComponent koComp, XenoBoxerKOTracker tracker)
+    {
+        if (!TryComp(xeno, out MobThresholdsComponent? mobThreshold))
+            return;
+
+        if (!_mobThresholdSystem.TryGetDeadThreshold(xeno, out var threshold, mobThreshold))
+            return;
+
+        var amount = threshold.Value *
+        (Math.Clamp(tracker.Count, 0, koComp.MaxKO) * xeno.Comp.HealPerStack);
+
+        var heal = -_rmcDamage.DistributeTypesTotal(xeno.Owner, amount);
+
+        _damageable.TryChangeDamage(xeno, heal, true);
+        SpawnAttachedTo(xeno.Comp.HealEffect, xeno.Owner.ToCoordinates());
+    }
+
+    private string DoUppercut(Entity<BoxerUppercutComponent> xeno, EntityUid target, XenoBoxerKOTracker tracker)
+    {
+        var origin = _transform.GetMapCoordinates(xeno);
+        var targetCoordinates = _transform.GetMapCoordinates(target);
+        var diff = targetCoordinates.Position - origin.Position;
+        diff = diff.Normalized() * (tracker.Count / xeno.Comp.Range);
+        _rmcPulling.TryStopAllPullsFromAndOn(target);
 
         if (tracker.Count <= 5)
         {
-            _throwing.TryThrow(targetId, diff, 10);
-            popupPower = "powerful";
+            _throwing.TryThrow(target, diff, 10);
+            return "powerful";
         }
         else if (tracker.Count <= 10)
         {
-            _throwing.TryThrow(targetId, diff, 10);
-            _stun.TryParalyze(targetId, xeno.Comp.ParalyzeTime, true);
-            popupPower = "gigantic";
+            _throwing.TryThrow(target, diff, 10);
+            _stun.TryParalyze(target, xeno.Comp.ParalyzeTime, true);
+            return "gigantic";
         }
         else
         {
-            _throwing.TryThrow(targetId, diff, 10);
-            _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(targetId, comp.StatusEffectKey,
-                comp.StatusEffectTime, false);
-            _stun.TryParalyze(targetId, xeno.Comp.TitanicParalyzeTime, true);
-            _audio.PlayEntity(comp.GongSound, Filter.Entities(xeno), xeno, true);
-            EnsureComp<KOLabelComponent>(targetId);
+            _throwing.TryThrow(target, diff, 10);
+            _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(target, xeno.Comp.StatusEffectKey,
+                xeno.Comp.StatusEffectTime, false);
+            _stun.TryParalyze(target, xeno.Comp.TitanicParalyzeTime, true);
+            _audio.PlayEntity(xeno.Comp.GongSound, Filter.Entities(xeno), xeno, true);
+            EnsureComp<KOLabelComponent>(target);
             Timer.Spawn(TimeSpan.FromSeconds(4), () =>
             {
-                RemCompDeferred<KOLabelComponent>(targetId);
+                RemCompDeferred<KOLabelComponent>(target);
             });
-            popupPower = "titanic";
+            return "titanic";
         }
 
-        var messageOther = Loc.GetString("stories-xeno-boxer-strain-other-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
-        var messageSelf = Loc.GetString("stories-xeno-boxer-strain-self-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
-        _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
+        return "weak";
+    }
 
-        _rmcMelee.DoLunge(xeno, targetId);
-        SpawnAttachedTo(comp.Effect, targetId.ToCoordinates());
+    private void DoCooldown(Entity<BoxerUppercutComponent> xeno)
+    {
         foreach (var (actionId, action) in _action.GetActions(xeno))
         {
             if (action.BaseEvent is BoxerPunchActionEvent or BoxerJabActionEvent)
-                _action.SetCooldown(actionId, comp.Cooldown);
+                _action.SetCooldown(actionId, xeno.Comp.Cooldown);
         }
-
-        _koSystem.ResetTracker(xeno, recently);
     }
 }
