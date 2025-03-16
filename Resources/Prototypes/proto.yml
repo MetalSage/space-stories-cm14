@@ -1,0 +1,13 @@
+- type: Tag
+  id: APCEnterPoint
+
+- type: entity
+  id: APCControlReturnAction
+  name: Stop controlling turret
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Objects/Tools/crowbar.rsi
+      state: icon
+    event: !type:APCControlReturnActionEvent {}
+    useDelay: 1
