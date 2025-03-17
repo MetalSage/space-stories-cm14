@@ -1,10 +1,13 @@
 using System.Text;
 using Content.Server.Speech.Components;
+using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems
 {
     public sealed class SpanishAccentSystem : EntitySystem
     {
+        [Dependency] private readonly IRobustRandom _random = default!;
+
         public override void Initialize()
         {
             SubscribeLocalEvent<SpanishAccentComponent, AccentGetEvent>(OnAccent);
@@ -12,29 +15,48 @@ namespace Content.Server.Speech.EntitySystems
 
         public string Accentuate(string message)
         {
-            // Insert E before every S
-            message = InsertS(message);
+            // Удваеваем "р" в сообщении с шансом в 40%
+            message = DoubleLetterR(message);
             // If a sentence ends with ?, insert a reverse ? at the beginning of the sentence
             message = ReplacePunctuation(message);
             return message;
         }
 
-        private string InsertS(string message)
+        private string DoubleLetterR(string message)
         {
-            // Replace every new Word that starts with s/S
-            var msg = message.Replace(" s", " es").Replace(" S", " Es");
+            // Создаем новый StringBuilder для формирования результата
+            var msg = new System.Text.StringBuilder();
 
-            // Still need to check if the beginning of the message starts
-            if (msg.StartsWith("s", StringComparison.Ordinal))
+            for (int i = 0; i < message.Length; i++)
             {
-                return msg.Remove(0, 1).Insert(0, "es");
-            }
-            else if (msg.StartsWith("S", StringComparison.Ordinal))
-            {
-                return msg.Remove(0, 1).Insert(0, "Es");
+                // Проверяем, является ли текущий символ 'р'
+                if (message[i] == 'р')
+                {
+                    // Убедимся, что 'р' не первая, не последняя и не окружена пробелами
+                    if (i > 0 && i < message.Length - 1 && message[i - 1] != ' ' && message[i + 1] != ' ')
+                    {
+                        if (_random.Next(100) < 40)
+                        {
+                            msg.Append('р'); // Удваиваем букву 'р'
+                        }
+                    }
+                }
+                else if (message[i] == 'Р')
+                {
+
+                    if (i > 0 && i < message.Length - 1 && message[i - 1] != ' ' && message[i + 1] != ' ')
+                    {
+                        if (_random.Next(100) < 40)
+                        {
+                            msg.Append('Р');
+                        }
+                    }
+                }
+                // Добавляем текущий символ в результат
+                msg.Append(message[i]);
             }
 
-            return msg;
+            return msg.ToString();
         }
 
         private string ReplacePunctuation(string message)
