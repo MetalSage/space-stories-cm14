@@ -76,7 +76,7 @@
   - type: Clothing
     quickEquip: false
     slots: [mask]
-    sprite: _Stories/Mobs/Xenos/Parasite/parasite.rsi
+    sprite: _Stories/Mobs/Xenos/Parasite/parasite_mask.rsi
   - type: HideLayerClothing
     slots:
     - Snout
