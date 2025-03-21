@@ -1,5 +1,5 @@
 ﻿<Document>
-  # Факультативные Преступления
+  # Факультативные преступления
   - Эти преступления могут быть добавлены к существующим обвинениям, где это уместно.
   <Table Columns="4">
     <ColorBox>
@@ -25,12 +25,12 @@
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Сопротивление Аресту
+        Сопротивление задержанию
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Сопротивление законному аресту или обыску, проводимому сотрудником Военной Полиции.
+        Сопротивление законному аресту/задержанию или обыску, проводимому сотрудником Военной Полиции.
       </Box>
     </ColorBox>
     <ColorBox>
@@ -46,7 +46,7 @@
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Пособничество и Подстрекательство
+        Пособничество и подстрекательство
       </Box>
     </ColorBox>
     <ColorBox>
@@ -67,12 +67,12 @@
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Нарушение Общественного Порядка в Заключении
+        Хулиганство во время заключения
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Вызывать значительные нарушения порядка, находясь в Карцере и под арестом. Это может быть добавлено к любому обвинению.
+        Выполнять значительные нарушения порядка, находясь в Камере/Карцере и под арестом. Это может быть добавлено к любому обвинению.
       </Box>
     </ColorBox>
     <ColorBox>

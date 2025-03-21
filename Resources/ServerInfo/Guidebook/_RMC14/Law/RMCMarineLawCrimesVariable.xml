@@ -1,5 +1,5 @@
 ﻿<Document>
-  # Переменные Преступления
+  # Переменные преступления
   - Эти преступления могут варьироваться по степени тяжести и иметь масштабируемые наказания.
   <Table Columns="4">
     <ColorBox>
@@ -25,7 +25,7 @@
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Повреждение Имущества КМП США
+        Порча имущества КМП США
       </Box>
     </ColorBox>
     <ColorBox>
@@ -67,7 +67,7 @@
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Вмешательство
+        Помеха задержанию
       </Box>
     </ColorBox>
     <ColorBox>
@@ -77,7 +77,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Вмешательство без злого умысла, например, блокирование пути или помощь кому-либо подняться.\n[bold]7,5 минут.[/bold]
+        Вмешательство без злого умысла, например, блокирование пути или помощь кому-либо подняться.\n[bold]10 минут.[/bold]
       </Box>
     </ColorBox>
     <ColorBox>
@@ -88,7 +88,7 @@
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Несанкционированное Использование Подслушивающих Устройств
+        Несанкционированное использование подслушивающих устройств
       </Box>
     </ColorBox>
     <ColorBox>

@@ -1,5 +1,5 @@
 ﻿<Document>
-  # Мелкие Преступления
+  # Мелкие преступления
   - Эти преступления имеют низкую степень тяжести и могут быть наказаны Дисциплинарным Взысканием без Суда (ДВС).
   <Table Columns="3">
     <ColorBox>
@@ -20,7 +20,7 @@
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Несоблюдение Процедуры
+        Нарушение/несоблюдение процедур
       </Box>
     </ColorBox>
     <ColorBox>
@@ -30,13 +30,13 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут, конфискация снаряжения, где уместно.[/bold]
+        [bold]ДВС, в случае отказа/повторного нарушения - 10 минут [/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Курение в Медицинских Зонах
+        Курение в медицинских зонах
       </Box>
     </ColorBox>
     <ColorBox>
@@ -46,7 +46,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут.[/bold]
+        [bold]ДВС, в случае отказа/повторного нарушения - 10 минут[/bold]
       </Box>
     </ColorBox>
 
@@ -62,13 +62,13 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]Дисциплинарное Взыскание без Суда (ДВС).[/bold]
+        [bold]Дисциплинарное Взыскание без Суда (ДВС), в случае повторного нарушения - 10 минут[/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Незаконное Вторжение
+        Незаконное проникновение
       </Box>
     </ColorBox>
     <ColorBox>
@@ -78,7 +78,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]Вывод из зоны и, опционально, 7,5 минут.[/bold]
+        [bold]Вывод из зоны и, опционально, 7,5 минут[/bold]
       </Box>
     </ColorBox>
 
@@ -94,7 +94,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут, продлевается до тех пор, пока человек больше не находится в состоянии опьянения.[/bold]
+        [bold]10 минут, продлевается до тех пор, пока человек больше не находится в состоянии опьянения[/bold]
       </Box>
     </ColorBox>
 
@@ -110,13 +110,13 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут и возврат предмета(ов) владельцу.[/bold]
+        [bold]10 минут и возврат предмета(ов) владельцу[/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Неуважение к Старшему Офицеру
+        Неуважение к старшему по званию/должности
       </Box>
     </ColorBox>
     <ColorBox>
@@ -126,7 +126,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут.[/bold]
+        [bold]ДВС, при отказе/повторном нарушении - 10 минут[/bold]
       </Box>
     </ColorBox>
 
@@ -142,7 +142,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]5 минут.[/bold]
+        [bold]5 минут[/bold]
       </Box>
     </ColorBox>
 
