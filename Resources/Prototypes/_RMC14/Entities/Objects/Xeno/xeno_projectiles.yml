@@ -159,6 +159,31 @@
     max: 4
 
 - type: entity
+  id: XenoAcidShotgunProjectile
+  parent: [XenoSpitImpactSounds, XenoBaseProjectile]
+  name: neurotoxic droplet
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Xeno/xeno_projectiles.rsi
+    layers:
+    - state: neurotoxin
+      shader: unshaded
+  - type: XenoSlowingSpitProjectile
+    slow: 2
+  - type: Projectile
+    impactEffect: null
+    damage:
+      types:
+        Heat: 10
+    ignoreResistances: true # Full AP
+  - type: XenoProjectile
+    deleteOnFriendlyXeno: false
+  - type: ProjectileMaxRange
+    max: 4
+
+- type: entity
   id: XenoBoneChipsProjectile
   parent: XenoBaseProjectile
   name: bone chips
@@ -416,4 +441,4 @@
   - type: RMCProjectileAccuracy
     accuracy: 185
   - type: XenoHookOnHit
- 
+

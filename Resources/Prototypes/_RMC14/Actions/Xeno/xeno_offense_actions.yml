@@ -257,6 +257,23 @@
   - type: ActionBlockIfResting
 
 - type: entity
+  id: ActionXenoAcidShotgun
+  parent: ActionXenoBase
+  name: Scattered Spit (60) # TODO RMC14 proper plasma costs
+  description: Launches multiple damageless projectiles that will briefly paralyze any enemies they hit.
+  components:
+  - type: EntityWorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: acid_shotgun
+    event: !type:XenoScatteredSpitActionEvent
+    useDelay: 13
+    range: 15
+    checkCanAccess: false
+  - type: ActionBlockIfResting
+
+- type: entity
   id: ActionXenoSpit
   parent: ActionXenoBase
   name: Xeno Spit (25) # TODO RMC14 proper plasma costs
@@ -798,7 +815,7 @@
       sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_tail_lash
     event: !type:XenoTailLashActionEvent
-    range: 15 
+    range: 15
     useDelay: 13
     deselectOnMiss: false
     checkCanAccess: false
@@ -858,3 +875,21 @@
   - type: ActionBlockIfResting
   - type: XenoActionPlasma
     cost: 25
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoDeployTraps
+  name: Deploy Traps (60)
+  description: Deploys a line of temporary resin traps that, when an enemy walks over, stuns them momentarily.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: resin_pit
+    event: !type:RMCXenoDeployTrapsActionEvent
+    useDelay: 20
+    range: 6
+  - type: ActionBlockIfResting
+  - type: XenoActionPlasma
+    cost: 60

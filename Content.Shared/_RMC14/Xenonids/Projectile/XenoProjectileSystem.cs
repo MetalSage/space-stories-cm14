@@ -69,7 +69,7 @@ public sealed class XenoProjectileSystem : EntitySystem
         if (_projectileQuery.TryComp(ent, out var projectile) &&
             projectile.Shooter is { } shooter)
         {
-            var ev = new XenoProjectileHitUserEvent(args.Target);
+            var ev = new XenoProjectileHitUserEvent(args.Target, ent);
             RaiseLocalEvent(shooter, ref ev);
         }
     }
