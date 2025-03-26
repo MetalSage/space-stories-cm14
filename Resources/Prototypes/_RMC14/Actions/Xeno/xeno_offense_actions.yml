@@ -889,7 +889,25 @@
       state: resin_pit
     event: !type:RMCXenoDeployTrapsActionEvent
     useDelay: 20
-    range: 6
+    range: 30
   - type: ActionBlockIfResting
   - type: XenoActionPlasma
     cost: 60
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoDeployAcidMine
+  name: Acid Mine (40)
+  description: Designate a tile in which a 3x3 acid mine will erupt. If anyone is in the 3x3 ranged acid mine, they'll be hit with acid.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: acid_mine
+    event: !type:RMCXenoDeployAcidMineEvent
+    useDelay: 6
+    range: 30
+  - type: ActionBlockIfResting
+  - type: XenoActionPlasma
+    cost: 40

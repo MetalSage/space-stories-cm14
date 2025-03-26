@@ -170,6 +170,7 @@
     sprite: _Stories/Mobs/Xenos/Boiler/trapper_boiler.rsi
   - type: Xeno
     actionIds:
+    - ActionXenoDeployAcidMine
     - ActionXenoDeployTraps
     - ActionXenoAcidShotgun
     - ActionXenoRest
@@ -194,6 +195,7 @@
     maxProjectiles: 10
     projectileId: XenoAcidShotgunProjectile
   - type: RMCXenoDeployTraps
+  - type: RMCXenoDeployAcidMine
   - type: XenoZoom
     zoom: 2, 2
     offsetLength: 0

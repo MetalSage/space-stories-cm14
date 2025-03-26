@@ -11,5 +11,8 @@ public sealed partial class RMCXenoDeployTrapsComponent : Component
     public int Additional = 2;
 
     [DataField, AutoNetworkedField]
-    public EntProtoId PrototypeId = "XenoDeployedTrap";
+    public EntProtoId PrototypeId = "XenoBoilerTrap";
+
+    [DataField, AutoNetworkedField]
+    public EntProtoId EmpoweredPrototypeId = "EmpoweredXenoBoilerTrap";
 }
