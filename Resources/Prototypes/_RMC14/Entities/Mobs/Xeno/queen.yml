@@ -56,11 +56,18 @@
     - ActionXenoSecreteStructure
     - ActionXenoGrowOvipositor
     - ActionXenoManageHive
+    - STActionXenoSkinsMenu
 #    - ActionXenoRoyalJelly
 #    - ActionXenoMarkResin
     tier: 0
     bypassTierCount: true
     unlockAt: 0
+  - type: XenoSkins
+    skins:
+    - STQueenRedSkin
+    - STQueenRedSkin2
+    - STQueenRedSkin3
+    - STQueenRedSkin4
   - type: XenoHeavy
   - type: XenoAcid
   - type: XenoConstruction
@@ -229,6 +236,12 @@
     debuffModifier: 1.4
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 1.4
+  - type: UserInterface
+    interfaces:
+      enum.XenoEvolutionUIKey.Key:
+        type: XenoEvolutionBui
+      enum.XenoSkinsUIKey.Key:
+        type: XenoSkinsBui
 
 - type: entity
   id: XenoLeaderPheromoneRelay

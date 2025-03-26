@@ -33,3 +33,31 @@
   components:
     - type: Sprite
       state: evolve
+
+- type: xenoSkin
+  id: STQueenRedSkin
+  name: ebal1
+  rsi: _Stories/Mobs/Xenos/Queen/redqueen.rsi
+  state: alive
+  xeno: CMXenoQueen
+
+- type: xenoSkin
+  id: STQueenRedSkin2
+  name: ebal2
+  rsi: _Stories/Mobs/Xenos/Queen/redqueen.rsi
+  state: alive
+  xeno: CMXenoQueen
+
+- type: xenoSkin
+  id: STQueenRedSkin3
+  name: ebal3
+  rsi: _Stories/Mobs/Xenos/Queen/redqueen.rsi
+  state: alive
+  xeno: CMXenoQueen
+
+- type: xenoSkin
+  id: STQueenRedSkin4
+  name: ebal4
+  rsi: _Stories/Mobs/Xenos/Queen/redqueen.rsi
+  state: alive
+  xeno: CMXenoQueen
