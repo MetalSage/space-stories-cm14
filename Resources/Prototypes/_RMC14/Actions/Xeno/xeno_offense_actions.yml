@@ -264,8 +264,8 @@
 - type: entity
   id: ActionXenoAcidShotgun
   parent: ActionXenoBase
-  name: Scattered Spit (60) # TODO RMC14 proper plasma costs
-  description: Launches multiple damageless projectiles that will briefly paralyze any enemies they hit.
+  name: Acid shotgun (60) # TODO RMC14 proper plasma costs
+  description: Launch a scatter shot of small acid blobs that fire damage enemies akin to spitter/praetorian spit. Targets restrained by traps take 75% increased damage.
   components:
   - type: EntityWorldTargetAction
     itemIconStyle: NoItem
