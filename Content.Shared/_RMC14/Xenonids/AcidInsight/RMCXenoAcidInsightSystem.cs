@@ -1,4 +1,5 @@
-﻿using Content.Shared._RMC14.Xenonids.DeployTrap;
+﻿using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.Xenonids.DeployTrap;
 using Content.Shared._RMC14.Xenonids.Projectile;
 using Content.Shared.Popups;
 
@@ -31,7 +32,7 @@ public sealed class RMCXenoAcidInsightSystem : EntitySystem
 
     private void OnProjectileHit(Entity<RMCXenoAcidInsightComponent> ent, ref XenoProjectileHitUserEvent args)
     {
-        if (ent.Comp.Empowered)
+        if (ent.Comp.Empowered || !HasComp<MarineComponent>(args.Hit))
             return;
 
         var stacks = 1;
