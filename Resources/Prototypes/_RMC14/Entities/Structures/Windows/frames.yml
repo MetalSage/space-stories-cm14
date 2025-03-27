@@ -57,6 +57,7 @@
     spawnPrototype: CMSheetMetal1
     amount: 2
   - type: RequireProjectileTarget
+  - type: AutoClimbable # Stories-AutoClimb
 
 - type: entity
   parent: RMCBaseWindowFrame
