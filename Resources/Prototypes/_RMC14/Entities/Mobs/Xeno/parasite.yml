@@ -106,7 +106,8 @@
     downSound: null
   - type: XenoInhandSprite
     stateName: parasite
-
+  - type: AutoClimbBlocked # Stories-AutoClimb
+  
 - type: entity
   parent: CMXenoParasiteBase
   id: CMXenoParasite

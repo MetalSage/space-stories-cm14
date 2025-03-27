@@ -109,7 +109,8 @@
     baseSprintSpeed: 10
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 0.1
-
+  - type: AutoClimbBlocked # Stories-AutoClimb
+  
 - type: entity
   parent: CMXenoRunnerBase
   id: CMXenoRunner
