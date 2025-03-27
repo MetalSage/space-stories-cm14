@@ -197,7 +197,7 @@
   # Yvi :jokerage:
   - type: XenoScatteredSpit
     plasmaCost: 60
-    maxProjectiles: 10
+    maxProjectiles: 9
     projectileId: XenoAcidShotgunProjectile
   - type: RMCXenoDeployTraps
   - type: RMCXenoDeployAcidMine
@@ -213,5 +213,6 @@
     armor: 0
     explosionArmor: 20
   - type: RMCXenoAcidInsight
+    maxStacks: 9
   - type: RMCXenoBoostOnHit
   - type: XenoDevour
