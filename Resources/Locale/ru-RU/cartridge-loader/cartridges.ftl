@@ -15,6 +15,10 @@ log-probe-scan = Загружены логи устройства { $device }!
 log-probe-label-time = Время
 log-probe-label-accessor = Использовано:
 log-probe-label-number = #
+log-probe-print-button = Print Logs
+log-probe-printout-device = Scanned Device: { $name }
+log-probe-printout-header = Latest logs:
+log-probe-printout-entry = #{ $number } / { $time } / { $accessor }
 astro-nav-program-name = АстроНав
 med-tek-program-name = МедТек
 # Wanted list cartridge

@@ -1353,6 +1353,7 @@ entities:
     - type: RadiationGridResistance
     - type: StationInfiniteBatteryTarget
     - type: AreaGrid
+      labels: {}
       areaEntities: {}
       colors: {}
       areas:
@@ -88930,6 +88931,53 @@ entities:
     - type: Transform
       pos: 130.5,107.5
       parent: 1
+- proto: CMMagazinePistolM77AP
+  entities:
+  - uid: 22886
+    components:
+    - type: Transform
+      pos: 118.57099,55.336376
+      parent: 1
+  - uid: 22891
+    components:
+    - type: Transform
+      pos: 118.45684,55.523914
+      parent: 1
+  - uid: 22892
+    components:
+    - type: Transform
+      pos: 118.587296,55.55653
+      parent: 1
+  - uid: 23014
+    components:
+    - type: Transform
+      pos: 118.310074,55.572838
+      parent: 1
+  - uid: 23023
+    components:
+    - type: Transform
+      pos: 118.46499,55.654373
+      parent: 1
+  - uid: 23333
+    components:
+    - type: Transform
+      pos: 118.57915,55.629913
+      parent: 1
+  - uid: 23334
+    components:
+    - type: Transform
+      pos: 118.448685,55.654373
+      parent: 1
+  - uid: 23335
+    components:
+    - type: Transform
+      pos: 118.473145,55.703297
+      parent: 1
+  - uid: 23336
+    components:
+    - type: Transform
+      pos: 118.39161,55.68699
+      parent: 1
 - proto: CMMagazinePistolMK80
   entities:
   - uid: 99
@@ -88981,6 +89029,48 @@ entities:
     components:
     - type: Transform
       pos: 114.28125,55.6875
+      parent: 1
+- proto: CMMagazineRifleM4SPR
+  entities:
+  - uid: 22787
+    components:
+    - type: Transform
+      pos: 78.50513,111.59456
+      parent: 1
+  - uid: 22877
+    components:
+    - type: Transform
+      pos: 78.63558,111.65979
+      parent: 1
+  - uid: 22880
+    components:
+    - type: Transform
+      pos: 78.325745,111.5864
+      parent: 1
+  - uid: 22885
+    components:
+    - type: Transform
+      pos: 78.53774,111.70056
+      parent: 1
+  - uid: 23339
+    components:
+    - type: Transform
+      pos: 94.48884,71.5428
+      parent: 1
+  - uid: 23340
+    components:
+    - type: Transform
+      pos: 91.51681,70.552124
+      parent: 1
+  - uid: 23341
+    components:
+    - type: Transform
+      pos: 89.48653,71.5428
+      parent: 1
+  - uid: 23342
+    components:
+    - type: Transform
+      pos: 94.46438,76.47173
       parent: 1
 - proto: CMMagazineRifleM54C
   entities:
@@ -153701,7 +153791,7 @@ entities:
       pos: 94.5,21.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -13497.053
+      secondsUntilStateChange: -14347.522
       state: Opening
   - uid: 18890
     components:
@@ -164861,6 +164951,13 @@ entities:
     - type: Transform
       pos: 164.5,24.5
       parent: 1
+- proto: RMCBeltHolsterSMG
+  entities:
+  - uid: 23337
+    components:
+    - type: Transform
+      pos: 118.477646,84.4252
+      parent: 1
 - proto: RMCBinoculars
   entities:
   - uid: 22398
@@ -166285,7 +166382,7 @@ entities:
       pos: 73.5,59.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -63191.46
+      secondsUntilStateChange: -64041.93
       state: Opening
   - uid: 20411
     components:
@@ -169456,11 +169553,6 @@ entities:
     - type: Transform
       pos: 36.5,47.5
       parent: 1
-  - uid: 25004
-    components:
-    - type: Transform
-      pos: 50.5,54.5
-      parent: 1
   - uid: 25005
     components:
     - type: Transform
@@ -169594,6 +169686,13 @@ entities:
     - type: Transform
       pos: 138.5,137.5
       parent: 1
+- proto: RMCM276ShotgunShellLoadingRig
+  entities:
+  - uid: 23338
+    components:
+    - type: Transform
+      pos: 66.49673,79.44999
+      parent: 1
 - proto: RMCMagazinePistolHoldout
   entities:
   - uid: 22459
@@ -169669,6 +169768,258 @@ entities:
     components:
     - type: Transform
       pos: 28.5,80.5
+      parent: 1
+- proto: RMCMarkerAreaLabel
+  entities:
+  - uid: 22492
+    components:
+    - type: MetaData
+      name: Технический склад
+    - type: Transform
+      pos: 52.5,74.5
+      parent: 1
+  - uid: 22500
+    components:
+    - type: MetaData
+      name: Юго-западные пещеры
+    - type: Transform
+      pos: 20.5,15.5
+      parent: 1
+  - uid: 22501
+    components:
+    - type: MetaData
+      name: Южные исследовательские пещеры
+    - type: Transform
+      pos: 43.5,50.5
+      parent: 1
+  - uid: 22502
+    components:
+    - type: MetaData
+      name: Исследования
+    - type: Transform
+      pos: 19.5,74.5
+      parent: 1
+  - uid: 22514
+    components:
+    - type: MetaData
+      name: Северные исследовательские пещеры
+    - type: Transform
+      pos: 27.5,102.5
+      parent: 1
+  - uid: 22526
+    components:
+    - type: MetaData
+      name: Груз
+    - type: Transform
+      pos: 40.5,131.5
+      parent: 1
+  - uid: 22527
+    components:
+    - type: MetaData
+      name: ЗП1
+    - type: Transform
+      pos: 70.5,142.5
+      parent: 1
+  - uid: 22736
+    components:
+    - type: MetaData
+      name: Грузовой генератор
+    - type: Transform
+      pos: 35.5,139.5
+      parent: 1
+  - uid: 22777
+    components:
+    - type: MetaData
+      name: Расширение пешеходной дорожки
+    - type: Transform
+      pos: 20.5,127.5
+      parent: 1
+  - uid: 22797
+    components:
+    - type: MetaData
+      name: Администрация
+    - type: Transform
+      pos: 74.5,76.5
+      parent: 1
+  - uid: 22798
+    components:
+    - type: MetaData
+      name: Медицинский пункт
+    - type: Transform
+      pos: 61.5,95.5
+      parent: 1
+  - uid: 22799
+    components:
+    - type: MetaData
+      name: Часовня
+    - type: Transform
+      pos: 46.5,110.5
+      parent: 1
+  - uid: 22831
+    components:
+    - type: MetaData
+      name: Морг
+    - type: Transform
+      pos: 65.5,110.5
+      parent: 1
+  - uid: 22839
+    components:
+    - type: MetaData
+      name: Северное техобслуживание
+    - type: Transform
+      pos: 52.5,120.5
+      parent: 1
+  - uid: 22840
+    components:
+    - type: MetaData
+      name: Библиотека
+    - type: Transform
+      pos: 90.5,111.5
+      parent: 1
+  - uid: 22841
+    components:
+    - type: MetaData
+      name: Внутренний бассейн
+    - type: Transform
+      pos: 83.5,83.5
+      parent: 1
+  - uid: 22842
+    components:
+    - type: MetaData
+      name: Столовая
+    - type: Transform
+      pos: 95.5,82.5
+      parent: 1
+  - uid: 22843
+    components:
+    - type: MetaData
+      name: Общежития
+    - type: Transform
+      pos: 93.5,73.5
+      parent: 1
+  - uid: 22844
+    components:
+    - type: MetaData
+      name: Офисы безопасности
+    - type: Transform
+      pos: 115.5,67.5
+      parent: 1
+  - uid: 22845
+    components:
+    - type: MetaData
+      name: Южное техобслуживание
+    - type: Transform
+      pos: 72.5,39.5
+      parent: 1
+  - uid: 22846
+    components:
+    - type: MetaData
+      name: Травяные пещеры
+    - type: Transform
+      pos: 99.5,15.5
+      parent: 1
+  - uid: 22847
+    components:
+    - type: MetaData
+      name: Ванные комнаты
+    - type: Transform
+      pos: 126.5,39.5
+      parent: 1
+  - uid: 22848
+    components:
+    - type: MetaData
+      name: Отчетность
+    - type: Transform
+      pos: 107.5,48.5
+      parent: 1
+  - uid: 22849
+    components:
+    - type: MetaData
+      name: Пляжные пещеры
+    - type: Transform
+      pos: 145.5,51.5
+      parent: 1
+  - uid: 22850
+    components:
+    - type: MetaData
+      name: Место раскопок
+    - type: Transform
+      pos: 159.5,35.5
+      parent: 1
+  - uid: 22851
+    components:
+    - type: MetaData
+      name: Неизвестное судно
+    - type: Transform
+      pos: 177.5,21.5
+      parent: 1
+  - uid: 22852
+    components:
+    - type: MetaData
+      name: Муссон
+    - type: Transform
+      pos: 156.5,73.5
+      parent: 1
+  - uid: 22853
+    components:
+    - type: MetaData
+      name: Инженерия
+    - type: Transform
+      pos: 121.5,104.5
+      parent: 1
+  - uid: 22859
+    components:
+    - type: MetaData
+      name: Восточный пляж
+    - type: Transform
+      pos: 134.5,126.5
+      parent: 1
+  - uid: 22860
+    components:
+    - type: MetaData
+      name: ЗП2
+    - type: Transform
+      pos: 144.5,148.5
+      parent: 1
+  - uid: 22864
+    components:
+    - type: MetaData
+      name: Пляж Рокабилли
+    - type: Transform
+      pos: 99.5,132.5
+      parent: 1
+  - uid: 22871
+    components:
+    - type: MetaData
+      name: Бар
+    - type: Transform
+      pos: 104.5,151.5
+      parent: 1
+  - uid: 22875
+    components:
+    - type: MetaData
+      name: Баскетбол
+    - type: Transform
+      pos: 91.5,96.5
+      parent: 1
+  - uid: 22876
+    components:
+    - type: MetaData
+      name: Техническое обслуживание безопасности
+    - type: Transform
+      pos: 133.5,78.5
+      parent: 1
+- proto: RMCMaskScarfGray
+  entities:
+  - uid: 23343
+    components:
+    - type: Transform
+      pos: 98.51271,69.45137
+      parent: 1
+  - uid: 23344
+    components:
+    - type: Transform
+      pos: 98.51271,69.51253
       parent: 1
 - proto: RMCMechPowerLoader
   entities:
@@ -174716,10 +175067,12 @@ entities:
     - type: Transform
       pos: 71.5,91.5
       parent: 1
-  - uid: 24457
+- proto: RMCPouchShotgunLarge
+  entities:
+  - uid: 22778
     components:
     - type: Transform
-      pos: 117.5,84.5
+      pos: 117.4992,84.44967
       parent: 1
 - proto: RMCPouchToolsFill
   entities:

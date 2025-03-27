@@ -70,6 +70,7 @@ rmc-xeno-fruit-verb-feed = Кормить
 rmc-xeno-fruit-examine-base = Этот фрукт { $growthStatus }.
 rmc-xeno-fruit-examine-growing = все еще [color=darkred]растет[/color]
 rmc-xeno-fruit-examine-grown = [color=darkgreen]вырос[/color]
+rmc-xeno-fruit-examine-spent = [color=orange]использован[/color]
 # UI text
 rmc-xeno-fruit-ui-title = Выберите фрукт из смолы
 rmc-xeno-fruit-ui-count = Посаженные фрукты: { $count }/{ $max }

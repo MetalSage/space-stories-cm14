@@ -123,7 +123,7 @@ public sealed partial class XenoAbductSystem : EntitySystem
         foreach (var tile in xeno.Comp.Tiles)
         {
             abductEnts.Clear();
-            _lookup.GetEntitiesInRange(tile.ToCoordinates(), 0.5f, abductEnts);
+            _lookup.GetEntitiesInRange(tile.ToCoordinates(), xeno.Comp.TileRadius, abductEnts);
 
             foreach (var ent in abductEnts)
             {
@@ -169,8 +169,12 @@ public sealed partial class XenoAbductSystem : EntitySystem
         DoCooldown(xeno);
         _popup.PopupEntity(popupMsg, xeno, xeno, PopupType.Medium);
 
-        foreach (var ent in targets)
+        for (var i = 0; i < targets.Count; i++)
         {
+            if (i >= xeno.Comp.MaxTargets)
+                break;
+
+            var ent = targets[i];
             if (_hook.TryHookTarget(hookEnt, ent))
             {
                 _pulling.TryStopAllPullsFromAndOn(ent);
@@ -192,8 +196,6 @@ public sealed partial class XenoAbductSystem : EntitySystem
                 _throwing.TryThrow(ent, diff, 10, user: xeno);
             }
         }
-
-
     }
 
     private void CleanUpTiles(Entity<XenoAbductComponent> xeno)

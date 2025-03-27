@@ -59,6 +59,7 @@ rmc-ui-patreon = Boosty
 rmc-other-credits-tab = Другое
 rmc-ui-auto-punctuate = Автоматически расставляйте знаки препинания в символьных сообщениях
 rmc-ui-auto-eject-magazines = Автоматическое извлечение магазинов из оружия
+rmc-ui-damage-yourself = Возможность наносить себе повреждения с помощью оружия ближнего боя и огнестрельного оружия
 rmc-tacmap-alert-area = Текущая область: { $area }
 rmc-tacmap-alert-no-area = Неизвесно
 cm-ui-audio-humanoid-voicelines = Воспроизводить голоса

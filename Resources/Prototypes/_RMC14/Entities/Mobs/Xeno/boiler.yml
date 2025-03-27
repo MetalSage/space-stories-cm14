@@ -106,7 +106,7 @@
   - type: RMCSize
     size: Big
   - type: NeurotoxinInjector
-    neuroPerSecond: 16
+    neuroPerSecond: 20
     injectInContact: false
     affectsDead: false
     affectsInfectedNested: false

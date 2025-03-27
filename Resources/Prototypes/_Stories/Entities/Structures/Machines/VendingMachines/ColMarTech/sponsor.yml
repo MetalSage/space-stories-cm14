@@ -89,6 +89,12 @@
         points: 1
       - id: STClothingNeckCloakStrongholdOfWorld
         points: 3
+    - name: Аксессуары
+      entries:
+      - id: STClothingNeckDrone
+        points: 3
+      - id: STClothingNeckFlag
+        points: 4
 
 - type: entity
   parent: ColMarTechBase

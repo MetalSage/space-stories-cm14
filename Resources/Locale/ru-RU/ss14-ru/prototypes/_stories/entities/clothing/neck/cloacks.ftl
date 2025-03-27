@@ -46,3 +46,7 @@ ent-STClothingNeckCloakSpoilage = плащ порчи
     .desc = { ent-ClothingNeckBase.desc }
 ent-STClothingNeckCloakStrongholdOfWorld = плащ оплота мира
     .desc = { ent-ClothingNeckBase.desc }
+ent-STClothingNeckDrone = дрон
+    .desc = { ent-ClothingNeckBase.desc }
+ent-STClothingNeckFlag = флаг
+    .desc = { ent-ClothingNeckBase.desc }

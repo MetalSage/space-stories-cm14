@@ -25,7 +25,11 @@ cm-xeno-requires-more-plasma = {THE($construction)} requires {$plasma} more plas
 cm-xeno-construction-plasma-left = A {$construction} construction is designated here. It requires [color=cyan]{$plasma}[/color] more plasma.
 cm-xeno-cant-reach-there = You can't reach there!
 cm-xeno-cant-build-in-self = You can't build structures that close!
-cm-xeno-unique-exists = There's already a {$choice} built!
+rmc-xeno-construction-unique-exists = There's already a {$choice} built!
+rmc-xeno-construction-hive-limit-met = We have reached the limit of {$choice} the hive can support!
+rmc-xeno-construction-requires-hive-weeds = {$choice} must be built on hive weeds!
+rmc-xeno-construction-requires-hive-core = The hive must have a hive core to build {$choice}!
+rmc-xeno-construction-requires-space = We need more open space to build here
 rmc-xeno-cant-build-new-yet = We can't build a new {$choice} yet!
 
 # Evolve
@@ -290,17 +294,6 @@ rmc-xeno-soak-end-fail = We stop tanking incoming damage.
 rmc-xeno-soak-end-self = We feel enraged after taking in oncoming damage! Our tail slam's cooldown is reset and we heal!
 rmc-xeno-soak-end-others =  {CAPITALIZE(THE($xeno))} gets enraged after being damaged enough!
 
-# Abduct
-rmc-xeno-abduct-cancel = We relax our tail.
-rmc-xeno-abduct-no-room = We don't have any room to do our abduction!
-rmc-xeno-abduct-none = Our tail fails to catch anything!
-rmc-xeno-abduct-one = Our tail catches and slows one target!
-rmc-xeno-abduct-two = Our tail catches and roots two targets!
-rmc-xeno-abduct-more = Our tail catches and stuns {$targets} targets!
-
-# Tail Lash
-rmc-xeno-tail-lash-no-room = We don't have any room to do our tail lash!
-
 # Tail Fountain
 rmc-xeno-tail-fountain-self = We use our tail to pour acid over {$target}.
 rmc-xeno-tail-fountain-others = {CAPITALIZE(THE($user))} pours acid all over {$target} using its tail.
@@ -329,3 +322,13 @@ rmc-xeno-empower-start-others = {CAPITALIZE(THE($user))} starts empowering!
 rmc-xeno-ravager-empower = We feel a rush of power from the surrounding enemies!
 rmc-xeno-ravager-empower-fizzle = There were no enemies around us!
 rmc-xeno-ravager-super-empower-fade = Our glow fades away, the power leaving our form!
+# Abduct
+rmc-xeno-abduct-cancel = We relax our tail.
+rmc-xeno-abduct-no-room = We don't have any room to do our abduction!
+rmc-xeno-abduct-none = Our tail fails to catch anything!
+rmc-xeno-abduct-one = Our tail catches and slows one target!
+rmc-xeno-abduct-two = Our tail catches and roots two targets!
+rmc-xeno-abduct-more = Our tail catches and stuns {$targets} targets!
+
+# Tail Lash
+rmc-xeno-tail-lash-no-room = We don't have any room to do our tail lash!

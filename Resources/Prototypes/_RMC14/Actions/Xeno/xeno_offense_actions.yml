@@ -88,6 +88,7 @@
       sprite: _Stories/Actions/xeno_actions.rsi
       state: regurgitate
     event: !type:XenoRegurgitateActionEvent
+  - type: RMCDazeableAction
 
 - type: entity
   id: ActionXenoTailStab
@@ -105,6 +106,7 @@
     useDelay: 10
     checkCanAccess: false
   - type: XenoTailStabAction
+  - type: RMCDazeableAction
 
 - type: entity
   id: ActionXenoTailSlam
@@ -123,7 +125,7 @@
       state: tail_attack
 
 - type: entity
-  parent: ActionXenoTailStab
+  parent: ActionXenoTailStabCorrosive
   id: ActionXenoTailStabBoiler
   name: Corrosive Tail Stab
   description: Launches an attack towards a given direction. The cooldown is faster if you miss. [color=red]It also injects diluted molecular acid or neurotoxin into the target, dealing damage or stunning over time. Which type depends on current gas type.[/color]
@@ -143,6 +145,7 @@
     range: 15
     useDelay: 3
     checkCanAccess: false
+  - type: RMCDazeableAction
 
 - type: entity
   parent: ActionXenoLeap
@@ -158,6 +161,7 @@
     event: !type:XenoLeapActionEvent
     useDelay: 6
     checkCanAccess: false
+  - type: RMCDazeableAction
 
 - type: entity
   parent: ActionXenoLeap
@@ -221,6 +225,7 @@
       state: tail_sweep
     event: !type:XenoTailSweepActionEvent
     useDelay: 15
+  - type: RMCDazeableAction
 
 - type: entity
   id: ActionXenoSlowingSpit
@@ -251,7 +256,7 @@
       sprite: _Stories/Actions/xeno_actions.rsi
       state: acid_shotgun
     event: !type:XenoScatteredSpitActionEvent
-    useDelay: 6
+    useDelay: 7
     range: 15
     checkCanAccess: false
   - type: ActionBlockIfResting
@@ -449,6 +454,7 @@
     useDelay: 7
     deselectOnMiss: false
   - type: XenoOffensiveAction
+  - type: RMCDazeableAction
 
 - type: entity
   id: ActionXenoLunge
@@ -466,6 +472,7 @@
     useDelay: 10
     deselectOnMiss: false
   - type: XenoOffensiveAction
+  - type: RMCDazeableAction
 
 - type: entity
   id: ActionXenoScreech
@@ -480,6 +487,7 @@
       state: screech
     event: !type:XenoScreechActionEvent
     useDelay: 50
+  - type: RMCDazeableAction
 
 - type: entity
   id: ActionXenoGut
@@ -657,7 +665,7 @@
   parent: ActionXenoBase
   id: ActionXenoPierce
   name: Pierce (50)
-  description: Pierce through enemies in a line doing high damage and piercing some armor. Hitting 2 or more recharges your shield.
+  description: Pierce through enemies in a 3 tile range, doing high damage and piercing some armor. Hitting 2 or more recharges your shield.
   components:
   - type: WorldTargetAction
     itemIconStyle: NoItem
@@ -767,6 +775,41 @@
       state: shift_spit_xeno_acid_strong
     event: !type:XenoSpitToggleActionEvent
 
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoHighGallop
+  name: High Gallop
+  description: Stuns foes in a 2x3 area in targeted direction, and slows them. Also flings back grenades.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: stomp
+    event: !type:XenoHighGallopActionEvent
+    range: 15
+    useDelay: 12
+    checkCanAccess: false
+  - type: ActionBlockIfResting
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoScissorCut
+  name: Scissor Cut (25)
+  description: Cuts enemies and fences in a straight line. If Super-Empowered, slows enemies hit too.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: rav_scissor_cut
+    event: !type:XenoScissorCutActionEvent
+    useDelay: 6
+    checkCanAccess: false
+    range: 15
+  - type: ActionBlockIfResting
+  - type: XenoActionPlasma
+    cost: 25
 - type: entity
   parent: ActionXenoBase
   id: ActionXenoTailSeize

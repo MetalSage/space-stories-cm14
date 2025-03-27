@@ -1,7 +1,8 @@
-﻿using Content.Shared._RMC14.Areas;
+using Content.Shared._RMC14.Areas;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Parasite;
+using Content.Shared.Destructible;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
@@ -12,12 +13,13 @@ namespace Content.Shared._RMC14.Xenonids.Announce;
 public abstract class SharedXenoAnnounceSystem : EntitySystem
 {
     [Dependency] private readonly AreaSystem _areas = default!;
-    [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
     [Dependency] private readonly XenoEvolutionSystem _xenoEvolution = default!;
 
+    [Dependency] protected readonly SharedXenoHiveSystem Hive = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<XenoAnnounceDeathComponent, MobStateChangedEvent>(OnAnnounceDeathMobStateChanged);
+        SubscribeLocalEvent<XenoConstructionAnnounceComponent, DestructionEventArgs>(OnAnnounceConstructionDestroyed); // Stories-XenoStructureAnnounce
     }
 
     private void OnAnnounceDeathMobStateChanged(Entity<XenoAnnounceDeathComponent> ent, ref MobStateChangedEvent args)
@@ -38,18 +40,45 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
         }
     }
 
+    // Stories-XenoStructureAnnounce-Start
+    private void OnAnnounceConstructionDestroyed(Entity<XenoConstructionAnnounceComponent> ent, ref DestructionEventArgs args)
+    {
+        var comp = ent.Comp;
+        var locationName = Loc.GetString("generic-unknown-title");
+
+        if (_areas.TryGetArea(ent, out _, out var areaProto))
+            locationName = areaProto.Name;
+
+        var message = Loc.GetString(comp.Message, ("construction", ent.Owner), ("location", locationName));
+
+        if (_xenoEvolution.HasLiving<XenoEvolutionGranterComponent>(1))
+            AnnounceSameHive(ent.Owner, message, color: comp.Color);
+    }
+
+    // Stories-XenoStructureAnnounce-End
     public string WrapHive(string message, Color? color = null)
     {
         color ??= Color.FromHex("#921992");
         return $"[color={color.Value.ToHex()}][font size=16][bold]{message}[/bold][/font][/color]";
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="filter"></param>
+    /// <param name="message">Message to send into chat</param>
+    /// <param name="wrapped"></param>
+    /// <param name="sound"></param>
+    /// <param name="popup"></param>
+    /// <param name="needsQueen">Whether the message can only be sent if the hive has an active queen</param>
     public virtual void Announce(EntityUid source,
         Filter filter,
         string message,
         string wrapped,
         SoundSpecifier? sound = null,
-        PopupType? popup = null)
+        PopupType? popup = null,
+        bool needsQueen = false)
     {
     }
 
@@ -58,28 +87,31 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
         string message,
         SoundSpecifier? sound = null,
         PopupType? popup = null,
-        Color? color = null)
+        Color? color = null,
+        bool needsQueen = false)
     {
-        var filter = Filter.Empty().AddWhereAttachedEntity(e => _hive.IsMember(e, hive));
-        Announce(source, filter, message, WrapHive(message, color), sound, popup);
+        var filter = Filter.Empty().AddWhereAttachedEntity(e => Hive.IsMember(e, hive));
+        Announce(source, filter, message, WrapHive(message, color), sound, popup, needsQueen);
     }
 
     public void AnnounceSameHive(Entity<HiveMemberComponent?> xeno,
         string message,
         SoundSpecifier? sound = null,
         PopupType? popup = null,
-        Color? color = null)
+        Color? color = null,
+        bool needsQueen = false)
     {
-        if (_hive.GetHive(xeno) is not {} hive)
+        if (Hive.GetHive(xeno) is not {} hive)
             return;
 
-        AnnounceToHive(xeno, hive, message, sound, popup, color);
+        AnnounceToHive(xeno, hive, message, sound, popup, color, needsQueen);
     }
 
     public void AnnounceAll(EntityUid source,
         string message,
         SoundSpecifier? sound = null,
-        PopupType? popup = null)
+        PopupType? popup = null,
+        bool needsQueen = false)
     {
         Announce(
             source,
@@ -87,7 +119,8 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
             message,
             message,
             sound,
-            popup
+            popup,
+            needsQueen
         );
     }
 }

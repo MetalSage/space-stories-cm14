@@ -4,3 +4,6 @@ ent-CMClosetEmergencyFilled = { ent-CMClosetEmergency }
 ent-CMClosetFireFilled = { ent-CMClosetFire }
     .suffix = Заполненный
     .desc = { ent-CMClosetFire.desc }
+ent-CMLockerCommanderSecureFilled = { ent-CMLockerCommanderSecure }
+    .suffix = Заполненный
+    .desc = { ent-CMLockerCommanderSecure.desc }

@@ -17,6 +17,9 @@
   - !type:DepartmentTimeRequirement
     department: CMAuxiliarySupport
     time: 32000 # 10 hours # Stories-RolePlay
+  - !type:DepartmentTimeRequirement
+    department: CMCommand
+    time: 16000 # 5 hours # Stories-RolePlay
   ranks:
     RMCRankCaptain:
     - !type:RoleTimeRequirement

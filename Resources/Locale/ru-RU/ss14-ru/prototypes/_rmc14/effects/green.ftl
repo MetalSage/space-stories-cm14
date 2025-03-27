@@ -1,5 +1,7 @@
 ent-RMCEffectXenoTelegraphGreen = { "" }
     .desc = { "" }
+ent-RMCEffectXenoTelegraphInvisible = { ent-RMCEffectXenoTelegraphGreen }
+    .desc = { ent-RMCEffectXenoTelegraphGreen.desc }
 ent-RMCEffectXenoTelegraphAbduct = { "" }
     .desc = { "" }
 ent-RMCEffectXenoTelegraphLash = { "" }

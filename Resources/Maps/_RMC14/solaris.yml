@@ -5289,9 +5289,11 @@ entities:
           23,-10:
             0: 36863
           23,-9:
-            0: 47931
+            0: 39193
+            2: 8738
           23,-8:
-            0: 3003
+            0: 2457
+            2: 546
           24,-12:
             0: 65535
           24,-11:
@@ -8371,6 +8373,7 @@ entities:
     - type: NavMap
     - type: StationInfiniteBatteryTarget
     - type: AreaGrid
+      labels: {}
       areaEntities: {}
       colors: {}
       areas:
@@ -63908,14 +63911,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 199.5,-73.5
       parent: 1
-    - type: CMDoubleDoor
-      lastOpeningAt: 109.5665571
-    - type: Door
-      secondsUntilStateChange: -11046.211
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 18201
     components:
     - type: MetaData
@@ -63923,14 +63918,6 @@ entities:
     - type: Transform
       pos: 199.5,-72.5
       parent: 1
-    - type: CMDoubleDoor
-      lastOpeningAt: 109.5665571
-    - type: Door
-      secondsUntilStateChange: -11046.211
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 18202
     components:
     - type: MetaData
@@ -64064,14 +64051,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 180.5,-55.5
       parent: 1
-    - type: CMDoubleDoor
-      lastOpeningAt: 410.566256
-    - type: Door
-      secondsUntilStateChange: -10745.212
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 18824
     components:
     - type: MetaData
@@ -64079,14 +64058,6 @@ entities:
     - type: Transform
       pos: 180.5,-54.5
       parent: 1
-    - type: CMDoubleDoor
-      lastOpeningAt: 410.566256
-    - type: Door
-      secondsUntilStateChange: -10745.212
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 18825
     components:
     - type: MetaData
@@ -70735,36 +70706,239 @@ entities:
     - type: Transform
       pos: 93.5,-29.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 16863
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 20077
     components:
     - type: Transform
       pos: 93.5,-30.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 30717
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 20078
     components:
     - type: Transform
       pos: 93.5,-31.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 31865
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 20079
     components:
     - type: Transform
       pos: 93.5,-32.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 31866
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 20080
     components:
     - type: Transform
       pos: 93.5,-33.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 32689
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 20081
     components:
     - type: Transform
       pos: 93.5,-34.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 32690
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 20082
     components:
     - type: Transform
       pos: 93.5,-35.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 32691
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 20083
     components:
     - type: Transform
@@ -72754,6 +72928,13 @@ entities:
     - type: Transform
       pos: 132.34375,-97.4375
       parent: 1
+- proto: CMSheetMetal10
+  entities:
+  - uid: 37262
+    components:
+    - type: Transform
+      pos: 27.492182,-187.52594
+      parent: 1
 - proto: CMSheetPlasteel1
   entities:
   - uid: 39192
@@ -72773,12 +72954,19 @@ entities:
     - type: Transform
       pos: 142.5,-50.5
       parent: 1
-- proto: CMShellShotgunBuckshot
+- proto: CMSheetPlasteel30
+  entities:
+  - uid: 37261
+    components:
+    - type: Transform
+      pos: 26.476088,-185.5954
+      parent: 1
+- proto: CMShellShotgunIncendiaryBuckshot
   entities:
   - uid: 30202
     components:
     - type: Transform
-      pos: 21.5,-183.125
+      pos: 21.410006,-183.14896
       parent: 1
 - proto: CMShower
   entities:
@@ -108782,36 +108970,26 @@ entities:
     - type: Transform
       pos: 8.5,-124.5
       parent: 1
-    - type: XenoWeedable
-      entity: 38737
   - uid: 1312
     components:
     - type: Transform
       pos: 8.5,-125.5
       parent: 1
-    - type: XenoWeedable
-      entity: 38526
   - uid: 1313
     components:
     - type: Transform
       pos: 8.5,-126.5
       parent: 1
-    - type: XenoWeedable
-      entity: 38098
   - uid: 1314
     components:
     - type: Transform
       pos: 8.5,-127.5
       parent: 1
-    - type: XenoWeedable
-      entity: 37501
   - uid: 1315
     components:
     - type: Transform
       pos: 8.5,-128.5
       parent: 1
-    - type: XenoWeedable
-      entity: 35226
   - uid: 1316
     components:
     - type: Transform
@@ -108937,29 +109115,21 @@ entities:
     - type: Transform
       pos: 9.5,-129.5
       parent: 1
-    - type: XenoWeedable
-      entity: 35224
   - uid: 1341
     components:
     - type: Transform
       pos: 9.5,-130.5
       parent: 1
-    - type: XenoWeedable
-      entity: 35886
   - uid: 1342
     components:
     - type: Transform
       pos: 9.5,-131.5
       parent: 1
-    - type: XenoWeedable
-      entity: 34629
   - uid: 1343
     components:
     - type: Transform
       pos: 9.5,-132.5
       parent: 1
-    - type: XenoWeedable
-      entity: 30016
   - uid: 1344
     components:
     - type: Transform
@@ -109230,29 +109400,21 @@ entities:
     - type: Transform
       pos: 10.5,-133.5
       parent: 1
-    - type: XenoWeedable
-      entity: 30015
   - uid: 1398
     components:
     - type: Transform
       pos: 10.5,-134.5
       parent: 1
-    - type: XenoWeedable
-      entity: 28648
   - uid: 1399
     components:
     - type: Transform
       pos: 10.5,-135.5
       parent: 1
-    - type: XenoWeedable
-      entity: 30581
   - uid: 1400
     components:
     - type: Transform
       pos: 10.5,-136.5
       parent: 1
-    - type: XenoWeedable
-      entity: 35016
   - uid: 1401
     components:
     - type: Transform
@@ -149625,36 +149787,26 @@ entities:
     - type: Transform
       pos: 15.5,-125.5
       parent: 1
-    - type: XenoWeedable
-      entity: 38201
   - uid: 9294
     components:
     - type: Transform
       pos: 15.5,-126.5
       parent: 1
-    - type: XenoWeedable
-      entity: 36024
   - uid: 9295
     components:
     - type: Transform
       pos: 15.5,-127.5
       parent: 1
-    - type: XenoWeedable
-      entity: 33810
   - uid: 9296
     components:
     - type: Transform
       pos: 15.5,-128.5
       parent: 1
-    - type: XenoWeedable
-      entity: 31866
   - uid: 9297
     components:
     - type: Transform
       pos: 15.5,-129.5
       parent: 1
-    - type: XenoWeedable
-      entity: 34919
   - uid: 9298
     components:
     - type: Transform
@@ -149810,22 +149962,16 @@ entities:
     - type: Transform
       pos: 16.5,-130.5
       parent: 1
-    - type: XenoWeedable
-      entity: 38405
   - uid: 9329
     components:
     - type: Transform
       pos: 16.5,-131.5
       parent: 1
-    - type: XenoWeedable
-      entity: 37262
   - uid: 9330
     components:
     - type: Transform
       pos: 16.5,-132.5
       parent: 1
-    - type: XenoWeedable
-      entity: 28782
   - uid: 9331
     components:
     - type: Transform
@@ -149911,8 +150057,6 @@ entities:
     - type: Transform
       pos: 18.5,-134.5
       parent: 1
-    - type: XenoWeedable
-      entity: 28780
   - uid: 9348
     components:
     - type: Transform
@@ -185898,6 +186042,16 @@ entities:
     - type: Transform
       pos: 83.5,-34.5
       parent: 1
+  - uid: 33374
+    components:
+    - type: Transform
+      pos: 83.5,-34.5
+      parent: 1
+  - uid: 33375
+    components:
+    - type: Transform
+      pos: 83.5,-34.5
+      parent: 1
 - proto: CMWelderSmall
   entities:
   - uid: 16850
@@ -189906,7 +190060,7 @@ entities:
       pos: 126.5,-167.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8789.646
+      secondsUntilStateChange: -10703.448
       state: Opening
   - uid: 27915
     components:
@@ -201258,6 +201412,62 @@ entities:
       rot: 3.141592653589793 rad
       pos: 61.827465,-32.512
       parent: 1
+- proto: RMCCoatBureauDeputy
+  entities:
+  - uid: 16863
+    components:
+    - type: Transform
+      parent: 20076
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 30717
+    components:
+    - type: Transform
+      parent: 20077
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 31865
+    components:
+    - type: Transform
+      parent: 20078
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 31866
+    components:
+    - type: Transform
+      parent: 20079
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 32689
+    components:
+    - type: Transform
+      parent: 20080
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 32690
+    components:
+    - type: Transform
+      parent: 20081
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 32691
+    components:
+    - type: Transform
+      parent: 20082
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 37258
+    components:
+    - type: Transform
+      pos: 92.487946,-37.32963
+      parent: 1
 - proto: RMCContainerBlueLeft
   entities:
   - uid: 38598
@@ -202812,6 +203022,20 @@ entities:
     - type: Transform
       pos: 41.5,-194.5
       parent: 1
+- proto: RMCMapInsertSolarisAdminPMC
+  entities:
+  - uid: 36024
+    components:
+    - type: Transform
+      pos: 74.5,-99.5
+      parent: 1
+- proto: RMCMapInsertSolarisDormsParty
+  entities:
+  - uid: 36023
+    components:
+    - type: Transform
+      pos: 97.5,-62.5
+      parent: 1
 - proto: RMCMapInsertSolarisETATunnelOpen
   entities:
   - uid: 39866
@@ -202819,12 +203043,26 @@ entities:
     - type: Transform
       pos: 45.5,-170.5
       parent: 1
+- proto: RMCMapInsertSolarisFiltrationRestored
+  entities:
+  - uid: 36416
+    components:
+    - type: Transform
+      pos: 109.5,-142.5
+      parent: 1
 - proto: RMCMapInsertSolarisLambdaCaveExtratunnel
   entities:
   - uid: 31513
     components:
     - type: Transform
       pos: 182.5,-88.5
+      parent: 1
+- proto: RMCMapInsertSolarisLambdaGraveyard
+  entities:
+  - uid: 36963
+    components:
+    - type: Transform
+      pos: 148.5,-109.5
       parent: 1
 - proto: RMCMapInsertSolarisLZ1CaveFlank
   entities:
@@ -202875,6 +203113,13 @@ entities:
     - type: Transform
       pos: 8.5,-48.5
       parent: 1
+- proto: RMCMapInsertSolarisVault
+  entities:
+  - uid: 37084
+    components:
+    - type: Transform
+      pos: 190.5,-61.5
+      parent: 1
 - proto: RMCMapInsertSolarisViroOpen
   entities:
   - uid: 39864
@@ -202888,6 +203133,176 @@ entities:
     components:
     - type: Transform
       pos: 32.5,-85.5
+      parent: 1
+- proto: RMCMarkerAreaLabel
+  entities:
+  - uid: 33384
+    components:
+    - type: MetaData
+      name: ЗП1
+    - type: Transform
+      pos: 26.5,-19.5
+      parent: 1
+  - uid: 33385
+    components:
+    - type: MetaData
+      name: Телекомы
+    - type: Transform
+      pos: 10.5,-30.5
+      parent: 1
+  - uid: 33808
+    components:
+    - type: MetaData
+      name: Гараж
+    - type: Transform
+      pos: 24.5,-43.5
+      parent: 1
+  - uid: 33809
+    components:
+    - type: MetaData
+      name: Офис маршала
+    - type: Transform
+      pos: 84.5,-37.5
+      parent: 1
+  - uid: 33810
+    components:
+    - type: MetaData
+      name: Больница
+    - type: Transform
+      pos: 70.5,-61.5
+      parent: 1
+  - uid: 34062
+    components:
+    - type: MetaData
+      name: Вирусология
+    - type: Transform
+      pos: 25.5,-87.5
+      parent: 1
+  - uid: 34253
+    components:
+    - type: MetaData
+      name: Магазин
+    - type: Transform
+      pos: 53.5,-83.5
+      parent: 1
+  - uid: 34628
+    components:
+    - type: MetaData
+      name: Груз
+    - type: Transform
+      pos: 58.5,-105.5
+      parent: 1
+  - uid: 34629
+    components:
+    - type: MetaData
+      name: ЗП2
+    - type: Transform
+      pos: 32.5,-119.5
+      parent: 1
+  - uid: 34918
+    components:
+    - type: MetaData
+      name: Инженерия
+    - type: Transform
+      pos: 74.5,-140.5
+      parent: 1
+  - uid: 34919
+    components:
+    - type: MetaData
+      name: Горнодобывающий комплекс
+    - type: Transform
+      pos: 34.5,-178.5
+      parent: 1
+  - uid: 35015
+    components:
+    - type: MetaData
+      name: Исследовательская лаборатория ETA
+    - type: Transform
+      pos: 105.5,-176.5
+      parent: 1
+  - uid: 35016
+    components:
+    - type: MetaData
+      name: Фильтрация
+    - type: Transform
+      pos: 103.5,-119.5
+      parent: 1
+  - uid: 35125
+    components:
+    - type: MetaData
+      name: Администрация
+    - type: Transform
+      pos: 87.5,-87.5
+      parent: 1
+  - uid: 35223
+    components:
+    - type: MetaData
+      name: Общежития
+    - type: Transform
+      pos: 105.5,-59.5
+      parent: 1
+  - uid: 35224
+    components:
+    - type: MetaData
+      name: Хранилище
+    - type: Transform
+      pos: 82.5,-112.5
+      parent: 1
+  - uid: 35225
+    components:
+    - type: MetaData
+      name: EVA
+    - type: Transform
+      pos: 137.5,-50.5
+      parent: 1
+  - uid: 35226
+    components:
+    - type: MetaData
+      name: Столовая
+    - type: Transform
+      pos: 138.5,-79.5
+      parent: 1
+  - uid: 35868
+    components:
+    - type: MetaData
+      name: Гидрокомплекс
+    - type: Transform
+      pos: 138.5,-68.5
+      parent: 1
+  - uid: 35869
+    components:
+    - type: MetaData
+      name: Бар
+    - type: Transform
+      pos: 117.5,-74.5
+      parent: 1
+  - uid: 35885
+    components:
+    - type: MetaData
+      name: Офисный комплекс
+    - type: Transform
+      pos: 124.5,-101.5
+      parent: 1
+  - uid: 35886
+    components:
+    - type: MetaData
+      name: Часовня
+    - type: Transform
+      pos: 156.5,-95.5
+      parent: 1
+  - uid: 35937
+    components:
+    - type: MetaData
+      name: Лаборатория Лямбда
+    - type: Transform
+      pos: 176.5,-52.5
+      parent: 1
+  - uid: 35938
+    components:
+    - type: MetaData
+      name: Юго-восточные пещеры
+    - type: Transform
+      pos: 186.5,-178.5
       parent: 1
 - proto: RMCNanoMed
   entities:
@@ -209360,6 +209775,98 @@ entities:
     - type: Transform
       pos: 111.5,-166.5
       parent: 1
+- proto: RMCWallSolarisRockTimed
+  entities:
+  - uid: 27759
+    components:
+    - type: Transform
+      pos: 15.5,-134.5
+      parent: 1
+  - uid: 27761
+    components:
+    - type: Transform
+      pos: 13.5,-134.5
+      parent: 1
+  - uid: 27762
+    components:
+    - type: Transform
+      pos: 15.5,-133.5
+      parent: 1
+  - uid: 27958
+    components:
+    - type: Transform
+      pos: 14.5,-134.5
+      parent: 1
+  - uid: 27959
+    components:
+    - type: Transform
+      pos: 12.5,-133.5
+      parent: 1
+  - uid: 27960
+    components:
+    - type: Transform
+      pos: 15.5,-132.5
+      parent: 1
+  - uid: 27962
+    components:
+    - type: Transform
+      pos: 14.5,-133.5
+      parent: 1
+  - uid: 27964
+    components:
+    - type: Transform
+      pos: 11.5,-134.5
+      parent: 1
+  - uid: 27965
+    components:
+    - type: Transform
+      pos: 15.5,-131.5
+      parent: 1
+  - uid: 28008
+    components:
+    - type: Transform
+      pos: 13.5,-132.5
+      parent: 1
+  - uid: 28014
+    components:
+    - type: Transform
+      pos: 14.5,-132.5
+      parent: 1
+  - uid: 28646
+    components:
+    - type: Transform
+      pos: 11.5,-136.5
+      parent: 1
+  - uid: 28648
+    components:
+    - type: Transform
+      pos: 13.5,-133.5
+      parent: 1
+  - uid: 28649
+    components:
+    - type: Transform
+      pos: 12.5,-135.5
+      parent: 1
+  - uid: 28780
+    components:
+    - type: Transform
+      pos: 11.5,-133.5
+      parent: 1
+  - uid: 28782
+    components:
+    - type: Transform
+      pos: 16.5,-133.5
+      parent: 1
+  - uid: 29652
+    components:
+    - type: Transform
+      pos: 11.5,-135.5
+      parent: 1
+  - uid: 30016
+    components:
+    - type: Transform
+      pos: 12.5,-134.5
+      parent: 1
 - proto: RMCWeaponPistolB92FS
   entities:
   - uid: 37148
@@ -210026,46 +210533,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,-141.5
-      parent: 1
-  - uid: 27958
-    components:
-    - type: Transform
-      pos: 12.5,-137.5
-      parent: 1
-  - uid: 27959
-    components:
-    - type: Transform
-      pos: 12.5,-136.5
-      parent: 1
-  - uid: 27960
-    components:
-    - type: Transform
-      pos: 13.5,-137.5
-      parent: 1
-  - uid: 27961
-    components:
-    - type: Transform
-      pos: 13.5,-136.5
-      parent: 1
-  - uid: 27962
-    components:
-    - type: Transform
-      pos: 16.5,-134.5
-      parent: 1
-  - uid: 27963
-    components:
-    - type: Transform
-      pos: 16.5,-135.5
-      parent: 1
-  - uid: 27964
-    components:
-    - type: Transform
-      pos: 15.5,-134.5
-      parent: 1
-  - uid: 27965
-    components:
-    - type: Transform
-      pos: 15.5,-135.5
       parent: 1
   - uid: 28023
     components:
@@ -210851,11 +211318,6 @@ entities:
           ent: null
 - proto: WeaponShotgunM42A2
   entities:
-  - uid: 16863
-    components:
-    - type: Transform
-      pos: 165.5,-50.5
-      parent: 1
   - uid: 18182
     components:
     - type: Transform
@@ -210926,6 +211388,13 @@ entities:
     - type: Transform
       pos: 21.5,-183.5
       parent: 1
+- proto: WeaponShotgunM890
+  entities:
+  - uid: 33373
+    components:
+    - type: Transform
+      pos: 165.5,-50.5
+      parent: 1
 - proto: WeaponSMGMP5
   entities:
   - uid: 18248
@@ -210992,6 +211461,11 @@ entities:
       parent: 1
 - proto: XenoWeeds
   entities:
+  - uid: 16851
+    components:
+    - type: Transform
+      pos: 12.5,-136.5
+      parent: 1
   - uid: 24566
     components:
     - type: Transform
@@ -216424,38 +216898,11 @@ entities:
     - type: XenoWeeds
       source: 16940
       isSource: False
-  - uid: 27759
-    components:
-    - type: Transform
-      pos: 12.5,-127.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 27760
     components:
     - type: Transform
-      pos: 12.5,-129.5
+      pos: 12.5,-137.5
       parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 27761
-    components:
-    - type: Transform
-      pos: 13.5,-128.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 27762
-    components:
-    - type: Transform
-      pos: 11.5,-128.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 27763
     components:
     - type: Transform
@@ -217128,6 +217575,16 @@ entities:
     - type: XenoWeeds
       source: 17031
       isSource: False
+  - uid: 27961
+    components:
+    - type: Transform
+      pos: 13.5,-137.5
+      parent: 1
+  - uid: 27963
+    components:
+    - type: Transform
+      pos: 11.5,-137.5
+      parent: 1
   - uid: 27983
     components:
     - type: Transform
@@ -219912,30 +220369,11 @@ entities:
     - type: XenoWeeds
       source: 17229
       isSource: False
-  - uid: 28646
-    components:
-    - type: Transform
-      pos: 11.5,-132.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
   - uid: 28647
     components:
     - type: Transform
-      pos: 11.5,-134.5
+      pos: 13.5,-136.5
       parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
-  - uid: 28649
-    components:
-    - type: Transform
-      pos: 12.5,-133.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
   - uid: 28650
     components:
     - type: Transform
@@ -220707,19 +221145,13 @@ entities:
   - uid: 28779
     components:
     - type: Transform
-      pos: 17.5,-134.5
+      pos: 13.5,-135.5
       parent: 1
-    - type: XenoWeeds
-      source: 16851
-      isSource: False
   - uid: 28781
     components:
     - type: Transform
-      pos: 16.5,-133.5
+      pos: 15.5,-135.5
       parent: 1
-    - type: XenoWeeds
-      source: 16851
-      isSource: False
   - uid: 28783
     components:
     - type: Transform
@@ -223039,30 +223471,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 17003
-      isSource: False
-  - uid: 29127
-    components:
-    - type: Transform
-      pos: 12.5,-132.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
-  - uid: 29128
-    components:
-    - type: Transform
-      pos: 12.5,-134.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
-  - uid: 29129
-    components:
-    - type: Transform
-      pos: 13.5,-133.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
       isSource: False
   - uid: 29130
     components:
@@ -226392,14 +226800,6 @@ entities:
     - type: XenoWeeds
       source: 17208
       isSource: False
-  - uid: 29652
-    components:
-    - type: Transform
-      pos: 15.5,-133.5
-      parent: 1
-    - type: XenoWeeds
-      source: 16851
-      isSource: False
   - uid: 29653
     components:
     - type: Transform
@@ -228267,27 +228667,18 @@ entities:
   - uid: 29952
     components:
     - type: Transform
-      pos: 11.5,-127.5
+      pos: 17.5,-133.5
       parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 29953
     components:
     - type: Transform
-      pos: 11.5,-129.5
+      pos: 14.5,-135.5
       parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 29954
     components:
     - type: Transform
-      pos: 10.5,-128.5
+      pos: 17.5,-134.5
       parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 29955
     components:
     - type: Transform
@@ -228643,19 +229034,13 @@ entities:
   - uid: 30013
     components:
     - type: Transform
-      pos: 11.5,-131.5
+      pos: 16.5,-135.5
       parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
-  - uid: 30014
+  - uid: 30015
     components:
     - type: Transform
-      pos: 10.5,-132.5
+      pos: 16.5,-134.5
       parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
   - uid: 30017
     components:
     - type: Transform
@@ -230334,8 +230719,9 @@ entities:
       pos: 17.5,-135.5
       parent: 1
     - type: XenoWeeds
-      source: 16851
       isSource: False
+    - type: TimedDespawn
+      lifetime: 9.078695
   - uid: 30297
     components:
     - type: Transform
@@ -231600,22 +231986,6 @@ entities:
     - type: XenoWeeds
       source: 16914
       isSource: False
-  - uid: 30510
-    components:
-    - type: Transform
-      pos: 12.5,-130.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 30511
-    components:
-    - type: Transform
-      pos: 13.5,-129.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 30512
     components:
     - type: Transform
@@ -232055,14 +232425,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 16951
-      isSource: False
-  - uid: 30580
-    components:
-    - type: Transform
-      pos: 11.5,-135.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
       isSource: False
   - uid: 30582
     components:
@@ -232871,22 +233233,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 16936
-      isSource: False
-  - uid: 30716
-    components:
-    - type: Transform
-      pos: 12.5,-126.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 30717
-    components:
-    - type: Transform
-      pos: 13.5,-127.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 30718
     components:
@@ -240048,14 +240394,6 @@ entities:
     - type: XenoWeeds
       source: 16940
       isSource: False
-  - uid: 31865
-    components:
-    - type: Transform
-      pos: 14.5,-128.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 31867
     components:
     - type: Transform
@@ -245160,30 +245498,6 @@ entities:
     - type: XenoWeeds
       source: 27104
       isSource: False
-  - uid: 32689
-    components:
-    - type: Transform
-      pos: 12.5,-131.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 32690
-    components:
-    - type: Transform
-      pos: 13.5,-130.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 32691
-    components:
-    - type: Transform
-      pos: 11.5,-130.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 32692
     components:
     - type: Transform
@@ -249392,30 +249706,6 @@ entities:
     - type: XenoWeeds
       source: 28163
       isSource: False
-  - uid: 33373
-    components:
-    - type: Transform
-      pos: 13.5,-132.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
-  - uid: 33374
-    components:
-    - type: Transform
-      pos: 13.5,-134.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
-  - uid: 33375
-    components:
-    - type: Transform
-      pos: 14.5,-133.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
   - uid: 33376
     components:
     - type: Transform
@@ -249447,22 +249737,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 17206
-      isSource: False
-  - uid: 33384
-    components:
-    - type: Transform
-      pos: 11.5,-126.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 33385
-    components:
-    - type: Transform
-      pos: 10.5,-127.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 33386
     components:
@@ -252136,22 +252410,6 @@ entities:
     - type: XenoWeeds
       source: 27180
       isSource: False
-  - uid: 33808
-    components:
-    - type: Transform
-      pos: 13.5,-126.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 33809
-    components:
-    - type: Transform
-      pos: 14.5,-127.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 33811
     components:
     - type: Transform
@@ -253680,14 +253938,6 @@ entities:
     - type: XenoWeeds
       source: 28190
       isSource: False
-  - uid: 34062
-    components:
-    - type: Transform
-      pos: 12.5,-135.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
   - uid: 34063
     components:
     - type: Transform
@@ -254855,14 +255105,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 21017
-      isSource: False
-  - uid: 34253
-    components:
-    - type: Transform
-      pos: 12.5,-125.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 34254
     components:
@@ -257176,14 +257418,6 @@ entities:
     - type: XenoWeeds
       source: 17011
       isSource: False
-  - uid: 34628
-    components:
-    - type: Transform
-      pos: 10.5,-131.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
   - uid: 34630
     components:
     - type: Transform
@@ -258968,14 +259202,6 @@ entities:
     - type: XenoWeeds
       source: 27193
       isSource: False
-  - uid: 34918
-    components:
-    - type: Transform
-      pos: 14.5,-129.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 34920
     components:
     - type: Transform
@@ -259575,14 +259801,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 16926
-      isSource: False
-  - uid: 35015
-    components:
-    - type: Transform
-      pos: 11.5,-136.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
       isSource: False
   - uid: 35017
     components:
@@ -260280,14 +260498,6 @@ entities:
     - type: XenoWeeds
       source: 28164
       isSource: False
-  - uid: 35125
-    components:
-    - type: Transform
-      pos: 15.5,-132.5
-      parent: 1
-    - type: XenoWeeds
-      source: 16851
-      isSource: False
   - uid: 35126
     components:
     - type: Transform
@@ -260855,22 +261065,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 27159
-      isSource: False
-  - uid: 35223
-    components:
-    - type: Transform
-      pos: 10.5,-129.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 35225
-    components:
-    - type: Transform
-      pos: 9.5,-128.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 35227
     components:
@@ -262486,8 +262680,9 @@ entities:
       pos: 17.5,-136.5
       parent: 1
     - type: XenoWeeds
-      source: 16851
       isSource: False
+    - type: TimedDespawn
+      lifetime: 9.946875
   - uid: 35499
     components:
     - type: Transform
@@ -264656,22 +264851,6 @@ entities:
     - type: XenoWeeds
       source: 17200
       isSource: False
-  - uid: 35868
-    components:
-    - type: Transform
-      pos: 11.5,-125.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 35869
-    components:
-    - type: Transform
-      pos: 10.5,-126.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 35870
     components:
     - type: Transform
@@ -264759,14 +264938,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 16940
-      isSource: False
-  - uid: 35885
-    components:
-    - type: Transform
-      pos: 10.5,-130.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 35887
     components:
@@ -265095,22 +265266,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 17212
-      isSource: False
-  - uid: 35937
-    components:
-    - type: Transform
-      pos: 13.5,-135.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
-      isSource: False
-  - uid: 35938
-    components:
-    - type: Transform
-      pos: 14.5,-134.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
       isSource: False
   - uid: 35939
     components:
@@ -265591,14 +265746,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 17552
-      isSource: False
-  - uid: 36023
-    components:
-    - type: Transform
-      pos: 14.5,-126.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 36025
     components:
@@ -267983,14 +268130,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 17552
-      isSource: False
-  - uid: 36416
-    components:
-    - type: Transform
-      pos: 13.5,-125.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 36417
     components:
@@ -271232,14 +271371,6 @@ entities:
     - type: XenoWeeds
       source: 27175
       isSource: False
-  - uid: 36963
-    components:
-    - type: Transform
-      pos: 14.5,-135.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28007
-      isSource: False
   - uid: 36964
     components:
     - type: Transform
@@ -271943,14 +272074,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 27175
-      isSource: False
-  - uid: 37084
-    components:
-    - type: Transform
-      pos: 11.5,-137.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28008
       isSource: False
   - uid: 37085
     components:
@@ -272920,14 +273043,6 @@ entities:
     - type: XenoWeeds
       source: 28191
       isSource: False
-  - uid: 37258
-    components:
-    - type: Transform
-      pos: 13.5,-131.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 37259
     components:
     - type: Transform
@@ -272935,22 +273050,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 27170
-      isSource: False
-  - uid: 37261
-    components:
-    - type: Transform
-      pos: 15.5,-131.5
-      parent: 1
-    - type: XenoWeeds
-      source: 16851
-      isSource: False
-  - uid: 37263
-    components:
-    - type: Transform
-      pos: 14.5,-132.5
-      parent: 1
-    - type: XenoWeeds
-      source: 16851
       isSource: False
   - uid: 37264
     components:
@@ -274368,14 +274467,6 @@ entities:
     - type: XenoWeeds
       source: 28216
       isSource: False
-  - uid: 37500
-    components:
-    - type: Transform
-      pos: 9.5,-127.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 37502
     components:
     - type: Transform
@@ -274494,8 +274585,9 @@ entities:
       pos: 18.5,-136.5
       parent: 1
     - type: XenoWeeds
-      source: 16851
       isSource: False
+    - type: TimedDespawn
+      lifetime: 9.815461
   - uid: 37528
     components:
     - type: Transform
@@ -274503,14 +274595,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 27220
-      isSource: False
-  - uid: 37529
-    components:
-    - type: Transform
-      pos: 14.5,-130.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 37530
     components:
@@ -274775,14 +274859,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 17537
-      isSource: False
-  - uid: 37577
-    components:
-    - type: Transform
-      pos: 12.5,-124.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 37578
     components:
@@ -277568,14 +277644,6 @@ entities:
     - type: XenoWeeds
       source: 27156
       isSource: False
-  - uid: 38097
-    components:
-    - type: Transform
-      pos: 9.5,-126.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 38099
     components:
     - type: Transform
@@ -277591,14 +277659,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 27219
-      isSource: False
-  - uid: 38102
-    components:
-    - type: Transform
-      pos: 14.5,-131.5
-      parent: 1
-    - type: XenoWeeds
-      source: 16851
       isSource: False
   - uid: 38103
     components:
@@ -277952,22 +278012,6 @@ entities:
     - type: XenoWeeds
       source: 27181
       isSource: False
-  - uid: 38160
-    components:
-    - type: Transform
-      pos: 11.5,-124.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 38161
-    components:
-    - type: Transform
-      pos: 10.5,-125.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 38162
     components:
     - type: Transform
@@ -278175,14 +278219,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 17236
-      isSource: False
-  - uid: 38200
-    components:
-    - type: Transform
-      pos: 14.5,-125.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 38202
     components:
@@ -278727,14 +278763,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 28000
-      isSource: False
-  - uid: 38305
-    components:
-    - type: Transform
-      pos: 13.5,-124.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 38306
     components:
@@ -279295,14 +279323,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 28153
-      isSource: False
-  - uid: 38404
-    components:
-    - type: Transform
-      pos: 15.5,-130.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 38406
     components:
@@ -279944,22 +279964,6 @@ entities:
     - type: XenoWeeds
       source: 28002
       isSource: False
-  - uid: 38524
-    components:
-    - type: Transform
-      pos: 10.5,-124.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
-  - uid: 38525
-    components:
-    - type: Transform
-      pos: 9.5,-125.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 38527
     components:
     - type: Transform
@@ -280295,14 +280299,6 @@ entities:
       parent: 1
     - type: XenoWeeds
       source: 27253
-      isSource: False
-  - uid: 38588
-    components:
-    - type: Transform
-      pos: 14.5,-124.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
       isSource: False
   - uid: 38589
     components:
@@ -281008,14 +281004,6 @@ entities:
     - type: XenoWeeds
       source: 27162
       isSource: False
-  - uid: 38736
-    components:
-    - type: Transform
-      pos: 9.5,-124.5
-      parent: 1
-    - type: XenoWeeds
-      source: 28014
-      isSource: False
   - uid: 38738
     components:
     - type: Transform
@@ -281474,28 +281462,6 @@ entities:
       isSource: False
 - proto: XenoWeedsSource
   entities:
-  - uid: 16851
-    components:
-    - type: Transform
-      pos: 17.5,-133.5
-      parent: 1
-    - type: XenoWeeds
-      spread:
-      - 28779
-      - 28780
-      - 28781
-      - 28782
-      - 29652
-      - 30295
-      - 30296
-      - 35125
-      - 35498
-      - 37261
-      - 37262
-      - 37263
-      - 37525
-      - 37526
-      - 38102
   - uid: 16913
     components:
     - type: Transform
@@ -294449,7 +294415,6 @@ entities:
       - 36441
       - 36442
       - 36443
-      - 36963
       - 37295
       - 37774
       - 37775
@@ -294457,38 +294422,6 @@ entities:
       - 38065
       - 38353
       - 38354
-  - uid: 28008
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 11.5,-133.5
-      parent: 1
-    - type: XenoWeeds
-      spread:
-      - 28646
-      - 28647
-      - 28648
-      - 28649
-      - 29127
-      - 29128
-      - 29129
-      - 30013
-      - 30014
-      - 30015
-      - 30016
-      - 30580
-      - 30581
-      - 33373
-      - 33374
-      - 33375
-      - 34062
-      - 34628
-      - 34629
-      - 35015
-      - 35016
-      - 35937
-      - 35938
-      - 37084
   - uid: 28009
     components:
     - type: Transform
@@ -294733,68 +294666,6 @@ entities:
       - 38686
       - 38749
       - 38750
-  - uid: 28014
-    components:
-    - type: Transform
-      pos: 12.5,-128.5
-      parent: 1
-    - type: XenoWeeds
-      spread:
-      - 27759
-      - 27760
-      - 27761
-      - 27762
-      - 29952
-      - 29953
-      - 29954
-      - 30510
-      - 30511
-      - 30716
-      - 30717
-      - 31865
-      - 31866
-      - 32689
-      - 32690
-      - 32691
-      - 33384
-      - 33385
-      - 33808
-      - 33809
-      - 33810
-      - 34253
-      - 34918
-      - 34919
-      - 35223
-      - 35224
-      - 35225
-      - 35226
-      - 35868
-      - 35869
-      - 35885
-      - 35886
-      - 36023
-      - 36024
-      - 36416
-      - 37258
-      - 37500
-      - 37501
-      - 37529
-      - 37577
-      - 38097
-      - 38098
-      - 38160
-      - 38161
-      - 38200
-      - 38201
-      - 38305
-      - 38404
-      - 38405
-      - 38524
-      - 38525
-      - 38526
-      - 38588
-      - 38736
-      - 38737
   - uid: 28034
     components:
     - type: Transform
@@ -297941,13 +297812,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 16006
-  - uid: 28648
-    components:
-    - type: Transform
-      pos: 10.5,-134.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1398
   - uid: 28651
     components:
     - type: Transform
@@ -298179,20 +298043,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 6461
-  - uid: 28780
-    components:
-    - type: Transform
-      pos: 18.5,-134.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 9347
-  - uid: 28782
-    components:
-    - type: Transform
-      pos: 16.5,-132.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 9330
   - uid: 28796
     components:
     - type: Transform
@@ -298564,6 +298414,21 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 19167
+  - uid: 29127
+    components:
+    - type: Transform
+      pos: 18.5,-134.5
+      parent: 1
+  - uid: 29128
+    components:
+    - type: Transform
+      pos: 17.5,-132.5
+      parent: 1
+  - uid: 29129
+    components:
+    - type: Transform
+      pos: 16.5,-133.5
+      parent: 1
   - uid: 29136
     components:
     - type: Transform
@@ -299838,20 +299703,11 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 15096
-  - uid: 30015
+  - uid: 30014
     components:
     - type: Transform
-      pos: 10.5,-133.5
+      pos: 18.5,-133.5
       parent: 1
-    - type: XenoNestSurface
-      weedable: 1397
-  - uid: 30016
-    components:
-    - type: Transform
-      pos: 9.5,-132.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1343
   - uid: 30018
     components:
     - type: Transform
@@ -300314,6 +300170,8 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 9348
+    - type: TimedDespawn
+      lifetime: 9.248121
   - uid: 30298
     components:
     - type: Transform
@@ -300671,6 +300529,16 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 9464
+  - uid: 30510
+    components:
+    - type: Transform
+      pos: 12.5,-135.5
+      parent: 1
+  - uid: 30511
+    components:
+    - type: Transform
+      pos: 13.5,-134.5
+      parent: 1
   - uid: 30516
     components:
     - type: Transform
@@ -300762,13 +300630,16 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 15964
+  - uid: 30580
+    components:
+    - type: Transform
+      pos: 11.5,-136.5
+      parent: 1
   - uid: 30581
     components:
     - type: Transform
-      pos: 10.5,-135.5
+      pos: 14.5,-134.5
       parent: 1
-    - type: XenoNestSurface
-      weedable: 1399
   - uid: 30591
     components:
     - type: Transform
@@ -301000,6 +300871,11 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 2723
+  - uid: 30716
+    components:
+    - type: Transform
+      pos: 15.5,-134.5
+      parent: 1
   - uid: 30719
     components:
     - type: Transform
@@ -302722,13 +302598,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 15423
-  - uid: 31866
-    components:
-    - type: Transform
-      pos: 15.5,-128.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 9296
   - uid: 31876
     components:
     - type: Transform
@@ -305676,13 +305545,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 9694
-  - uid: 33810
-    components:
-    - type: Transform
-      pos: 15.5,-127.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 9295
   - uid: 33814
     components:
     - type: Transform
@@ -306992,13 +306854,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 15122
-  - uid: 34629
-    components:
-    - type: Transform
-      pos: 9.5,-131.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1342
   - uid: 34631
     components:
     - type: Transform
@@ -307454,13 +307309,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 16269
-  - uid: 34919
-    components:
-    - type: Transform
-      pos: 15.5,-129.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 9297
   - uid: 34922
     components:
     - type: Transform
@@ -307601,13 +307449,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 2478
-  - uid: 35016
-    components:
-    - type: Transform
-      pos: 10.5,-136.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1400
   - uid: 35027
     components:
     - type: Transform
@@ -307909,20 +307750,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 15687
-  - uid: 35224
-    components:
-    - type: Transform
-      pos: 9.5,-129.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1340
-  - uid: 35226
-    components:
-    - type: Transform
-      pos: 8.5,-128.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1315
   - uid: 35229
     components:
     - type: Transform
@@ -309113,13 +308940,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 15424
-  - uid: 35886
-    components:
-    - type: Transform
-      pos: 9.5,-130.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1341
   - uid: 35891
     components:
     - type: Transform
@@ -309351,13 +309171,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 13449
-  - uid: 36024
-    components:
-    - type: Transform
-      pos: 15.5,-126.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 9294
   - uid: 36031
     components:
     - type: Transform
@@ -311535,13 +311348,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 15340
-  - uid: 37262
-    components:
-    - type: Transform
-      pos: 16.5,-131.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 9329
   - uid: 37265
     components:
     - type: Transform
@@ -311934,13 +311740,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 26145
-  - uid: 37501
-    components:
-    - type: Transform
-      pos: 8.5,-127.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1314
   - uid: 37504
     components:
     - type: Transform
@@ -312011,6 +311810,8 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 9361
+    - type: TimedDespawn
+      lifetime: 9.572408
   - uid: 37531
     components:
     - type: Transform
@@ -313215,13 +313016,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 12056
-  - uid: 38098
-    components:
-    - type: Transform
-      pos: 8.5,-126.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1313
   - uid: 38101
     components:
     - type: Transform
@@ -313404,13 +313198,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 12231
-  - uid: 38201
-    components:
-    - type: Transform
-      pos: 15.5,-125.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 9293
   - uid: 38203
     components:
     - type: Transform
@@ -313831,13 +313618,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 12889
-  - uid: 38405
-    components:
-    - type: Transform
-      pos: 16.5,-130.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 9328
   - uid: 38410
     components:
     - type: Transform
@@ -314090,13 +313870,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 9978
-  - uid: 38526
-    components:
-    - type: Transform
-      pos: 8.5,-125.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1312
   - uid: 38528
     components:
     - type: Transform
@@ -314559,13 +314332,6 @@ entities:
       parent: 1
     - type: XenoNestSurface
       weedable: 9855
-  - uid: 38737
-    components:
-    - type: Transform
-      pos: 8.5,-124.5
-      parent: 1
-    - type: XenoNestSurface
-      weedable: 1311
   - uid: 38739
     components:
     - type: Transform

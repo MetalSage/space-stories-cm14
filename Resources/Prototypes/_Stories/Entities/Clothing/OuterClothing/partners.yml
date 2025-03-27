@@ -1,0 +1,8 @@
+- type: entity
+  parent: CMArmorM3Medium
+  id: STArmorM3MediumKilla
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/killa.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/killa.rsi

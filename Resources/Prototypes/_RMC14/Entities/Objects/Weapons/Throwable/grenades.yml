@@ -91,12 +91,25 @@
 
 - type: entity
   parent:
-  - CMGrenadeBase
+  - GrenadeBase # Stories-Balance
   - RMCM40DPTags
   id: CMGrenadeSmoke
   name: M40 HSDP smoke grenade
   description: The M40 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds.
   components:
+  # Stories-Balance-Start
+  - type: Explosive
+    explosionType: RMC
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: IgnorePredictionHide
+  - type: Clothing
+    slots:
+    - suitStorage
+  - type: Destructible
+    thresholds: []
+  - type: ChangeItemSizeOnTimerTrigger
+  # Stories-Balance-End
   - type: OnUseTimerTrigger
     delay: 2
   - type: Sprite
@@ -115,6 +128,7 @@
     - Grenade
     - LauncherCompatibleGrenade
     - RMCGrenadeM40
+    - RMCGrenadeRiot
   - type: Ammo
 
 - type: entity
@@ -189,11 +203,40 @@
   - type: Tag
     tags:
     - Grenade
+    - LauncherCompatibleGrenade
   - type: Ammo
   - type: ClusterLimitHits
   - type: CMExplosionEffect
     maxShrapnel: 0
   - type: CMVocalizeTrigger
+  - type: RMCScorchEffect
+
+- type: entity
+  parent: CMGrenadeFragOld
+  id: RMCGrenadeBlastM12
+  name: M12 blast grenade
+  description: A high-explosive grenade produced for private security firms. It explodes around 3 seconds after the pin has been pulled.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Grenades/m12blast.rsi
+  - type: Explosive
+    maxIntensity: 20
+    intensitySlope: 8
+    totalIntensity: 280
+    deleteAfterExplosion: false
+  - type: ProjectileGrenade
+    fillPrototype: CMProjectileShrapnel
+    capacity: 1 #same as HEFA
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: Tag
+    tags:
+    - Grenade
+  - type: Ammo
+  - type: ClusterLimitHits
+  - type: CMExplosionEffect
+    maxShrapnel: 0
   - type: RMCScorchEffect
 
 - type: entity
@@ -229,6 +272,8 @@
   - type: CMVocalizeTrigger
   - type: TileFireOnTrigger
     spawn: RMCTileFireGreen
+    sound:
+      path: /Audio/_RMC14/Weapons/Guns/Flamer/gun_flamethrower2.ogg
 
 - type: entity
   parent: RMCGrenadeIncendiary

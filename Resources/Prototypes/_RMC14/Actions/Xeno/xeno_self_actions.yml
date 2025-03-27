@@ -150,6 +150,7 @@
     event: !type:XenoWordQueenActionEvent
     useDelay: 10
   - type: XenoWordQueenAction
+  - type: RMCDazeableAction
 
 - type: entity
   id: ActionXenoGrowOvipositor

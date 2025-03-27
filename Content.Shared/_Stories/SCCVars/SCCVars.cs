@@ -90,4 +90,15 @@ public sealed class SCCVars
     /// </summary>
     public static readonly CVarDef<string> DiscordAuthApiKey =
         CVarDef.Create("discord_auth.api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+
+    /*
+    * Hijack Volume
+    */
+
+    /// <summary>
+    /// Default volume setting of Hijack Song
+    /// </summary>
+    public static readonly CVarDef<float> HijackVolume =
+        CVarDef.Create("rmc.hijack_volume", 1.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

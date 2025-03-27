@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent:
   - CMXenoDeveloped
   - CMXenoTail
@@ -37,6 +37,7 @@
     tier: 2
     hudOffset: 0,0.25
     unlockAt: 540 # 9 minutes
+    restHealMultiplier:  1.4
   - type: XenoLight
   - type: XenoDevolve
     devolvesTo:
@@ -57,6 +58,8 @@
     evolvesTo:
     - CMXenoCrusher
     - CMXenoPraetorian
+    strains:
+    - CMXenoWarriorBoxer
   - type: CMArmor
     armor: 20
     explosionArmor: 40

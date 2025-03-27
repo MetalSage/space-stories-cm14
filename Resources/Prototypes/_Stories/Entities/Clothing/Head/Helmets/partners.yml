@@ -1,0 +1,26 @@
+- type: entity
+  parent: ArmorHelmetM10
+  id: STArmorHelmetM10MPKilla0
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Head/killa.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Head/killa.rsi
+
+- type: entity
+  parent: ArmorHelmetM10
+  id: STArmorHelmetM10MPKilla1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Head/killa1.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Head/killa1.rsi
+
+- type: entity
+  parent: ArmorHelmetM10
+  id: STArmorHelmetM10MPKilla2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Head/killa2.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Head/killa2.rsi

@@ -4,7 +4,7 @@
   name: ace of heart cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_aceofhearts.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_aceofhearts.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -12,7 +12,7 @@
   name: ace of spades cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_aceofspades.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_aceofspades.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -20,7 +20,7 @@
   name: america cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_america.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_america.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -28,7 +28,7 @@
   name: bloody skull cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_bloodyskull.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_bloodyskull.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -36,7 +36,7 @@
   name: break through cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_breakthrough.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_breakthrough.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -44,7 +44,7 @@
   name: conductor cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_conductor.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_conductor.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -52,7 +52,7 @@
   name: dare devil cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_daredevil.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_daredevil.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -60,7 +60,7 @@
   name: duty cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_duty.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_duty.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -68,7 +68,7 @@
   name: first shield cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_firstshield.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_firstshield.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -76,7 +76,7 @@
   name: glory cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_glory.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_glory.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -84,7 +84,7 @@
   name: herald of betrayal cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_heraldofbetrayal.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_heraldofbetrayal.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -92,7 +92,7 @@
   name: holy blades cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_holyblades.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_holyblades.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -100,7 +100,7 @@
   name: holy hammer cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_holyhammer.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_holyhammer.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -108,7 +108,7 @@
   name: holy scripture cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_holyscripture.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_holyscripture.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -116,7 +116,7 @@
   name: holy spear cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_holyspear.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_holyspear.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -124,7 +124,7 @@
   name: imperator cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_imperator.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_imperator.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -132,7 +132,7 @@
   name: inquisition cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_inquisition.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_inquisition.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -140,7 +140,7 @@
   name: morgenstern cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_morgenstern.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_morgenstern.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -148,7 +148,7 @@
   name: piercing poison cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_piercingpoison.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_piercingpoison.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -156,7 +156,7 @@
   name: rapier cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_rapier.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_rapier.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -164,7 +164,7 @@
   name: red demon cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_reddemon.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_reddemon.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -172,7 +172,7 @@
   name: sparta cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_sparta.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_sparta.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -180,7 +180,7 @@
   name: spoilage cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_spoilage.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_spoilage.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -188,4 +188,20 @@
   name: stronghold of world cloak
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Clothing/Cloak/cloak_strongholdofworld.rsi
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_strongholdofworld.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckDrone
+  name: drone
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Misc/drone.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckFlag
+  name: flag
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Misc/flag.rsi

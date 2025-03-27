@@ -6129,6 +6129,7 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: AreaGrid
+      labels: {}
       areaEntities: {}
       colors: {}
       areas:
@@ -156676,6 +156677,155 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-101.5
+      parent: 1
+- proto: RMCMarkerAreaLabel
+  entities:
+  - uid: 21527
+    components:
+    - type: MetaData
+      name: Подземное озеро
+    - type: Transform
+      pos: -1.5,91.5
+      parent: 1
+  - uid: 21528
+    components:
+    - type: MetaData
+      name: Центральные пещеры
+    - type: Transform
+      pos: -2.5,47.5
+      parent: 1
+  - uid: 21529
+    components:
+    - type: MetaData
+      name: Западные пещеры
+    - type: Transform
+      pos: -57.5,50.5
+      parent: 1
+  - uid: 21530
+    components:
+    - type: MetaData
+      name: Западные пустоши
+    - type: Transform
+      pos: -58.5,-12.5
+      parent: 1
+  - uid: 21531
+    components:
+    - type: MetaData
+      name: Грузовые контейнеры
+    - type: Transform
+      pos: 24.5,9.5
+      parent: 1
+  - uid: 21532
+    components:
+    - type: MetaData
+      name: Песчаный храм
+    - type: Transform
+      pos: 60.5,12.5
+      parent: 1
+  - uid: 21533
+    components:
+    - type: MetaData
+      name: Восточные пещеры
+    - type: Transform
+      pos: 62.5,52.5
+      parent: 1
+  - uid: 21534
+    components:
+    - type: MetaData
+      name: Гидрокомплекс
+    - type: Transform
+      pos: 11.5,-35.5
+      parent: 1
+  - uid: 21535
+    components:
+    - type: MetaData
+      name: Медпункт
+    - type: Transform
+      pos: -7.5,-36.5
+      parent: 1
+  - uid: 21536
+    components:
+    - type: MetaData
+      name: Исследования
+    - type: Transform
+      pos: -10.5,-52.5
+      parent: 1
+  - uid: 21537
+    components:
+    - type: MetaData
+      name: Фитнес
+    - type: Transform
+      pos: 6.5,-53.5
+      parent: 1
+  - uid: 21538
+    components:
+    - type: MetaData
+      name: Нексус
+    - type: Transform
+      pos: 31.5,-77.5
+      parent: 1
+  - uid: 21539
+    components:
+    - type: MetaData
+      name: ЗП1
+    - type: Transform
+      pos: 65.5,-77.5
+      parent: 1
+  - uid: 21540
+    components:
+    - type: MetaData
+      name: Грузовое хранилище
+    - type: Transform
+      pos: 50.5,-55.5
+      parent: 1
+  - uid: 21541
+    components:
+    - type: MetaData
+      name: Атмосфера
+    - type: Transform
+      pos: 0.5,-83.5
+      parent: 1
+  - uid: 21542
+    components:
+    - type: MetaData
+      name: Электростанция
+    - type: Transform
+      pos: 2.5,-96.5
+      parent: 1
+  - uid: 21543
+    components:
+    - type: MetaData
+      name: Коммуникационная вышка
+    - type: Transform
+      pos: -13.5,-90.5
+      parent: 1
+  - uid: 21544
+    components:
+    - type: MetaData
+      name: Безопасное хранилище
+    - type: Transform
+      pos: -51.5,-97.5
+      parent: 1
+  - uid: 21545
+    components:
+    - type: MetaData
+      name: Корпоративный купол
+    - type: Transform
+      pos: -31.5,-82.5
+      parent: 1
+  - uid: 21546
+    components:
+    - type: MetaData
+      name: ЗП2
+    - type: Transform
+      pos: -51.5,-70.5
+      parent: 1
+  - uid: 21547
+    components:
+    - type: MetaData
+      name: Робототехника
+    - type: Transform
+      pos: -32.5,-59.5
       parent: 1
 - proto: RMCPickaxe
   entities:

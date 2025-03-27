@@ -5,7 +5,7 @@
   suffix: BloodyParty
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: bloodyParty
   - type: Tag
     tags:
@@ -18,7 +18,7 @@
   suffix: Phoenix
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: phoenix
   - type: Tag
     tags:
@@ -31,7 +31,7 @@
   suffix: AngelOfDeath
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: angelOfDeath
   - type: Tag
     tags:
@@ -44,7 +44,7 @@
   suffix: Toxic
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: toxic
   - type: Tag
     tags:
@@ -57,7 +57,7 @@
   suffix: GoldRush
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: goldRush
   - type: Tag
     tags:
@@ -70,7 +70,7 @@
   suffix: Fate
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: fate
   - type: Tag
     tags:
@@ -83,7 +83,7 @@
   suffix: Rust
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: rust
   - type: Tag
     tags:
@@ -96,7 +96,7 @@
   suffix: Amethyst
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: amethyst
   - type: Tag
     tags:
@@ -109,7 +109,7 @@
   suffix: Phantom
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: phantom
   - type: Tag
     tags:
@@ -122,7 +122,7 @@
   suffix: Impulse
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: impulse
   - type: Tag
     tags:
@@ -135,7 +135,7 @@
   suffix: Bombardier
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: bombardier
   - type: Tag
     tags:
@@ -148,7 +148,7 @@
   suffix: Tiger
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: tiger
   - type: Tag
     tags:
@@ -161,7 +161,7 @@
   suffix: GoldenAutumn
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: goldenAutumn
   - type: Tag
     tags:
@@ -174,7 +174,7 @@
   suffix: Pacifist
   components:
   - type: Sprite
-    sprite: _Stories/Partners/sprays.rsi
+    sprite: _Stories/Objects/Misc/sprays.rsi
     state: pacifist
   - type: Tag
     tags:

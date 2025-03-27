@@ -68,3 +68,6 @@ ent-CMSpawnMobOrion = спавнер Ориона
 ent-RMCSpawnMobGarry = спавнер Герри
     .suffix = RMC
     .desc = { ent-MarkerBase.desc }
+ent-RMCSpawnMobDoc = спавнер Дока
+    .suffix = RMC
+    .desc = { ent-SpawnMobMouse.desc }

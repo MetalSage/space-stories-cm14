@@ -21,3 +21,6 @@ ent-RMCComputerIntel = компьютер разведки
     .desc = Компьютер разведки для КМП США для каталогизации и распространения данных.
 ent-RMCIntelTechTree = техническое дерево разведки
     .desc = { "" }
+ent-RMCIntelDebug = { ent-RMCIntelPaperScrap }
+    .suffix = ОТЛАДКА, НЕ МАППИТЬ
+    .desc = { ent-RMCIntelPaperScrap.desc }

@@ -1,9 +1,11 @@
 using Content.Server.Administration.Logs;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
-using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.Marines.Squads;
+using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Radio;
@@ -33,6 +35,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!; // RMC14
+    [Dependency] private readonly IChatManager _chatManager = default!; // RMC14
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -98,10 +101,20 @@ public sealed class RadioSystem : EntitySystem
         var name = evt.VoiceName;
         name = FormattedMessage.EscapeText(name);
 
-        var prefix = "";
-        TryComp<JobPrefixComponent>(messageSource, out var jobPrefix);
-        if (jobPrefix?.Prefix != null)
-            prefix += $" ({Loc.GetString(jobPrefix.Prefix)})";
+        if (TryComp(messageSource, out JobPrefixComponent? prefix))
+        {
+            if (TryComp(messageSource, out SquadMemberComponent? member) &&
+                TryComp(member.Squad, out SquadTeamComponent? team) &&
+                team.Radio != null &&
+                team.Radio != channel.ID)
+            {
+                name = $"({Name(member.Squad.Value)} {Loc.GetString(prefix.Prefix)}) {name}";
+            }
+            else
+            {
+                name = $"({Loc.GetString(prefix.Prefix)}) {name}";
+            }
+        }
 
         SpeechVerbPrototype speech;
         if (evt.SpeechVerb != null && _prototype.TryIndex(evt.SpeechVerb, out var evntProto))
@@ -118,7 +131,7 @@ public sealed class RadioSystem : EntitySystem
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("channel", $"\\[{channel.LocalizedName}{prefix}\\]"),
+            ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", name),
             ("message", content));
 
@@ -127,8 +140,8 @@ public sealed class RadioSystem : EntitySystem
             ChatChannel.Radio,
             message,
             wrappedMessage,
-            NetEntity.Invalid,
-            null);
+            GetNetEntity(messageSource),
+            _chatManager.EnsurePlayer(CompOrNull<ActorComponent>(messageSource)?.PlayerSession.UserId)?.Key);
         var chatMsg = new MsgChatMessage { Message = chat };
         var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg);
 

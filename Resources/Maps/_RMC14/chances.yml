@@ -1263,6 +1263,7 @@ entities:
     - type: RadiationGridResistance
     - type: LoadedMap
     - type: AreaGrid
+      labels: {}
       areaEntities: {}
       colors: {}
       areas:
@@ -45746,7 +45747,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -31675.367
+      secondsUntilStateChange: -32055.045
       state: Opening
 - proto: CMAirlockMedicalLocked
   entities:
@@ -56128,7 +56129,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10666.0893339
     - type: Door
-      secondsUntilStateChange: -19254.016
+      secondsUntilStateChange: -19633.693
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -56144,7 +56145,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10666.0893339
     - type: Door
-      secondsUntilStateChange: -19254.016
+      secondsUntilStateChange: -19633.693
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -87547,7 +87548,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -73.5,-20.5
       parent: 1
-- proto: RMCBarricadeSmallWire
+- proto: RMCPropGroundWire
   entities:
   - uid: 25434
     components:
@@ -97867,6 +97868,169 @@ entities:
     components:
     - type: Transform
       pos: -67.5,-36.5
+      parent: 1
+- proto: RMCMarkerAreaLabel
+  entities:
+  - uid: 23482
+    components:
+    - type: MetaData
+      name: ЗП1
+    - type: Transform
+      pos: -77.5,-65.5
+      parent: 1
+  - uid: 23558
+    components:
+    - type: MetaData
+      name: Туннели ЗП1
+    - type: Transform
+      pos: -66.5,-89.5
+      parent: 1
+  - uid: 23563
+    components:
+    - type: MetaData
+      name: Юг Гидрокомплекса
+    - type: Transform
+      pos: -23.5,-88.5
+      parent: 1
+  - uid: 23564
+    components:
+    - type: MetaData
+      name: Добыча
+    - type: Transform
+      pos: 12.5,-84.5
+      parent: 1
+  - uid: 23692
+    components:
+    - type: MetaData
+      name: ЗП2
+    - type: Transform
+      pos: 64.5,-81.5
+      parent: 1
+  - uid: 23823
+    components:
+    - type: MetaData
+      name: Гараж
+    - type: Transform
+      pos: 62.5,-28.5
+      parent: 1
+  - uid: 23824
+    components:
+    - type: MetaData
+      name: Груз
+    - type: Transform
+      pos: 8.5,-41.5
+      parent: 1
+  - uid: 23825
+    components:
+    - type: MetaData
+      name: Hydro North
+    - type: Transform
+      pos: -25.5,-38.5
+      parent: 1
+  - uid: 23826
+    components:
+    - type: MetaData
+      name: Бар
+    - type: Transform
+      pos: -44.5,-34.5
+      parent: 1
+  - uid: 23827
+    components:
+    - type: MetaData
+      name: Гриль
+    - type: Transform
+      pos: -53.5,-39.5
+      parent: 1
+  - uid: 23828
+    components:
+    - type: MetaData
+      name: Инженерия
+    - type: Transform
+      pos: -69.5,-33.5
+      parent: 1
+  - uid: 23829
+    components:
+    - type: MetaData
+      name: Общежития и офисы блока А
+    - type: Transform
+      pos: -46.5,-1.5
+      parent: 1
+  - uid: 23830
+    components:
+    - type: MetaData
+      name: Десантный корабль "Тайфун"
+    - type: Transform
+      pos: -75.5,36.5
+      parent: 1
+  - uid: 25286
+    components:
+    - type: MetaData
+      name: Западный реактор
+    - type: Transform
+      pos: -62.5,82.5
+      parent: 1
+  - uid: 25287
+    components:
+    - type: MetaData
+      name: Восточный реактор
+    - type: Transform
+      pos: 28.5,82.5
+      parent: 1
+  - uid: 25288
+    components:
+    - type: MetaData
+      name: Кабинет исполнительного директора
+    - type: Transform
+      pos: 2.5,27.5
+      parent: 1
+  - uid: 25289
+    components:
+    - type: MetaData
+      name: Безопасность
+    - type: Transform
+      pos: 4.5,5.5
+      parent: 1
+  - uid: 25291
+    components:
+    - type: MetaData
+      name: Кухня
+    - type: Transform
+      pos: 14.5,-9.5
+      parent: 1
+  - uid: 25317
+    components:
+    - type: MetaData
+      name: Медицинский пункт
+    - type: Transform
+      pos: 45.5,-11.5
+      parent: 1
+  - uid: 25318
+    components:
+    - type: MetaData
+      name: Администрация
+    - type: Transform
+      pos: 45.5,-1.5
+      parent: 1
+  - uid: 25319
+    components:
+    - type: MetaData
+      name: Десантный корабль "Торнадо"
+    - type: Transform
+      pos: 79.5,21.5
+      parent: 1
+  - uid: 25320
+    components:
+    - type: MetaData
+      name: Казино
+    - type: Transform
+      pos: 29.5,-33.5
+      parent: 1
+  - uid: 25321
+    components:
+    - type: MetaData
+      name: Фитнес
+    - type: Transform
+      pos: -30.5,35.5
       parent: 1
 - proto: RMCMatchboxFull
   entities:

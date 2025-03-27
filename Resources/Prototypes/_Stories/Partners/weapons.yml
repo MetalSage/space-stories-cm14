@@ -8,12 +8,11 @@
     node: bloodyParty
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Shotguns/m42a2.rsi
-      Desert: _Stories/Partners/Weapons/Shotguns/m42a2.rsi
-      Classic: _Stories/Partners/Weapons/Shotguns/m42a2.rsi
-      Snow: _Stories/Partners/Weapons/Shotguns/m42a2.rsi
-      Urban: _Stories/Partners/Weapons/Shotguns/m42a2.rsi
-
+      Jungle: _Stories/Objects/Weapons/Shotguns/m42a2.rsi
+      Desert: _Stories/Objects/Weapons/Shotguns/m42a2.rsi
+      Classic: _Stories/Objects/Weapons/Shotguns/m42a2.rsi
+      Snow: _Stories/Objects/Weapons/Shotguns/m42a2.rsi
+      Urban: _Stories/Objects/Weapons/Shotguns/m42a2.rsi
 
 - type: entity
   id: STWeaponRifleM54CPhoenix
@@ -25,11 +24,11 @@
     node: phoenix
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Rifles/m54c.rsi
-      Desert: _Stories/Partners/Weapons/Rifles/m54c.rsi
-      Classic: _Stories/Partners/Weapons/Rifles/m54c.rsi
-      Snow: _Stories/Partners/Weapons/Rifles/m54c.rsi
-      Urban: _Stories/Partners/Weapons/Rifles/m54c.rsi
+      Jungle: _Stories/Objects/Weapons/Rifles/m54c.rsi
+      Desert: _Stories/Objects/Weapons/Rifles/m54c.rsi
+      Classic: _Stories/Objects/Weapons/Rifles/m54c.rsi
+      Snow: _Stories/Objects/Weapons/Rifles/m54c.rsi
+      Urban: _Stories/Objects/Weapons/Rifles/m54c.rsi
 
 - type: entity
   id: STWeaponRifleM4SPRAngelOfDeath
@@ -37,7 +36,7 @@
   suffix: AngelOfDeath
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Weapons/Rifles/m4spr.rsi
+    sprite: _Stories/Objects/Weapons/Rifles/m4spr.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -50,11 +49,11 @@
     node: angelOfDeath
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Rifles/m4spr.rsi
-      Desert: _Stories/Partners/Weapons/Rifles/m4spr.rsi
-      Classic: _Stories/Partners/Weapons/Rifles/m4spr.rsi
-      Snow: _Stories/Partners/Weapons/Rifles/m4spr.rsi
-      Urban: _Stories/Partners/Weapons/Rifles/m4spr.rsi
+      Jungle: _Stories/Objects/Weapons/Rifles/m4spr.rsi
+      Desert: _Stories/Objects/Weapons/Rifles/m4spr.rsi
+      Classic: _Stories/Objects/Weapons/Rifles/m4spr.rsi
+      Snow: _Stories/Objects/Weapons/Rifles/m4spr.rsi
+      Urban: _Stories/Objects/Weapons/Rifles/m4spr.rsi
 
 - type: entity
   id: STWeaponRifleM4SPRCustomAngelOfDeath
@@ -62,7 +61,7 @@
   suffix: AngelOfDeath
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Weapons/Rifles/m4spr_custom.rsi
+    sprite: _Stories/Objects/Weapons/Rifles/m4spr_custom.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -75,11 +74,11 @@
     node: angelOfDeath
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Rifles/m4spr_custom.rsi
-      Desert: _Stories/Partners/Weapons/Rifles/m4spr_custom.rsi
-      Classic: _Stories/Partners/Weapons/Rifles/m4spr_custom.rsi
-      Snow: _Stories/Partners/Weapons/Rifles/m4spr_custom.rsi
-      Urban: _Stories/Partners/Weapons/Rifles/m4spr_custom.rsi
+      Jungle: _Stories/Objects/Weapons/Rifles/m4spr_custom.rsi
+      Desert: _Stories/Objects/Weapons/Rifles/m4spr_custom.rsi
+      Classic: _Stories/Objects/Weapons/Rifles/m4spr_custom.rsi
+      Snow: _Stories/Objects/Weapons/Rifles/m4spr_custom.rsi
+      Urban: _Stories/Objects/Weapons/Rifles/m4spr_custom.rsi
 
 - type: entity
   id: STWeaponSMGM63Toxic
@@ -91,11 +90,11 @@
     node: toxic
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/SMGs/m63.rsi
-      Desert: _Stories/Partners/Weapons/SMGs/m63.rsi
-      Classic: _Stories/Partners/Weapons/SMGs/m63.rsi
-      Snow: _Stories/Partners/Weapons/SMGs/m63.rsi
-      Urban: _Stories/Partners/Weapons/SMGs/m63.rsi
+      Jungle: _Stories/Objects/Weapons/SMGs/m63.rsi
+      Desert: _Stories/Objects/Weapons/SMGs/m63.rsi
+      Classic: _Stories/Objects/Weapons/SMGs/m63.rsi
+      Snow: _Stories/Objects/Weapons/SMGs/m63.rsi
+      Urban: _Stories/Objects/Weapons/SMGs/m63.rsi
 
 - type: entity
   id: STWeaponRevolverM44GoldRush
@@ -107,11 +106,11 @@
     node: goldRush
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Pistols/m44.rsi
-      Desert: _Stories/Partners/Weapons/Pistols/m44.rsi
-      Classic: _Stories/Partners/Weapons/Pistols/m44.rsi
-      Snow: _Stories/Partners/Weapons/Pistols/m44.rsi
-      Urban: _Stories/Partners/Weapons/Pistols/m44.rsi
+      Jungle: _Stories/Objects/Weapons/Pistols/m44.rsi
+      Desert: _Stories/Objects/Weapons/Pistols/m44.rsi
+      Classic: _Stories/Objects/Weapons/Pistols/m44.rsi
+      Snow: _Stories/Objects/Weapons/Pistols/m44.rsi
+      Urban: _Stories/Objects/Weapons/Pistols/m44.rsi
 
 - type: entity
   id: STWeaponPistolM77Fate
@@ -123,11 +122,11 @@
     node: fate
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Pistols/m77.rsi
-      Desert: _Stories/Partners/Weapons/Pistols/m77.rsi
-      Classic: _Stories/Partners/Weapons/Pistols/m77.rsi
-      Snow: _Stories/Partners/Weapons/Pistols/m77.rsi
-      Urban: _Stories/Partners/Weapons/Pistols/m77.rsi
+      Jungle: _Stories/Objects/Weapons/Pistols/m77.rsi
+      Desert: _Stories/Objects/Weapons/Pistols/m77.rsi
+      Classic: _Stories/Objects/Weapons/Pistols/m77.rsi
+      Snow: _Stories/Objects/Weapons/Pistols/m77.rsi
+      Urban: _Stories/Objects/Weapons/Pistols/m77.rsi
 
 - type: entity
   id: STWeaponPistolM1984Rust
@@ -139,11 +138,11 @@
     node: rust
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Pistols/m1984.rsi
-      Desert: _Stories/Partners/Weapons/Pistols/m1984.rsi
-      Classic: _Stories/Partners/Weapons/Pistols/m1984.rsi
-      Snow: _Stories/Partners/Weapons/Pistols/m1984.rsi
-      Urban: _Stories/Partners/Weapons/Pistols/m1984.rsi
+      Jungle: _Stories/Objects/Weapons/Pistols/m1984.rsi
+      Desert: _Stories/Objects/Weapons/Pistols/m1984.rsi
+      Classic: _Stories/Objects/Weapons/Pistols/m1984.rsi
+      Snow: _Stories/Objects/Weapons/Pistols/m1984.rsi
+      Urban: _Stories/Objects/Weapons/Pistols/m1984.rsi
 
 - type: entity
   id: STMK80Amethyst
@@ -155,11 +154,11 @@
     node: amethyst
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Pistols/mk80.rsi
-      Desert: _Stories/Partners/Weapons/Pistols/mk80.rsi
-      Classic: _Stories/Partners/Weapons/Pistols/mk80.rsi
-      Snow: _Stories/Partners/Weapons/Pistols/mk80.rsi
-      Urban: _Stories/Partners/Weapons/Pistols/mk80.rsi
+      Jungle: _Stories/Objects/Weapons/Pistols/mk80.rsi
+      Desert: _Stories/Objects/Weapons/Pistols/mk80.rsi
+      Classic: _Stories/Objects/Weapons/Pistols/mk80.rsi
+      Snow: _Stories/Objects/Weapons/Pistols/mk80.rsi
+      Urban: _Stories/Objects/Weapons/Pistols/mk80.rsi
 
 - type: entity
   id: STWeaponPistolSU6Phantom
@@ -171,11 +170,11 @@
     node: phantom
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Pistols/su6.rsi
-      Desert: _Stories/Partners/Weapons/Pistols/su6.rsi
-      Classic: _Stories/Partners/Weapons/Pistols/su6.rsi
-      Snow: _Stories/Partners/Weapons/Pistols/su6.rsi
-      Urban: _Stories/Partners/Weapons/Pistols/su6.rsi
+      Jungle: _Stories/Objects/Weapons/Pistols/su6.rsi
+      Desert: _Stories/Objects/Weapons/Pistols/su6.rsi
+      Classic: _Stories/Objects/Weapons/Pistols/su6.rsi
+      Snow: _Stories/Objects/Weapons/Pistols/su6.rsi
+      Urban: _Stories/Objects/Weapons/Pistols/su6.rsi
 
 - type: entity
   id: STSmartGunImpulse
@@ -187,11 +186,11 @@
     node: impulse
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/SmartGuns/smart_gun.rsi
-      Desert: _Stories/Partners/Weapons/SmartGuns/smart_gun.rsi
-      Classic: _Stories/Partners/Weapons/SmartGuns/smart_gun.rsi
-      Snow: _Stories/Partners/Weapons/SmartGuns/smart_gun.rsi
-      Urban: _Stories/Partners/Weapons/SmartGuns/smart_gun.rsi
+      Jungle: _Stories/Objects/Weapons/SmartGuns/smart_gun.rsi
+      Desert: _Stories/Objects/Weapons/SmartGuns/smart_gun.rsi
+      Classic: _Stories/Objects/Weapons/SmartGuns/smart_gun.rsi
+      Snow: _Stories/Objects/Weapons/SmartGuns/smart_gun.rsi
+      Urban: _Stories/Objects/Weapons/SmartGuns/smart_gun.rsi
 
 - type: entity
   id: STWeaponLauncherM5ATLBombardier
@@ -203,11 +202,11 @@
     node: bombardier
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/RocketLaunchers/m5spec.rsi
-      Desert: _Stories/Partners/Weapons/RocketLaunchers/m5spec.rsi
-      Classic: _Stories/Partners/Weapons/RocketLaunchers/m5spec.rsi
-      Snow: _Stories/Partners/Weapons/RocketLaunchers/m5spec.rsi
-      Urban: _Stories/Partners/Weapons/RocketLaunchers/m5spec.rsi
+      Jungle: _Stories/Objects/Weapons/RocketLaunchers/m5spec.rsi
+      Desert: _Stories/Objects/Weapons/RocketLaunchers/m5spec.rsi
+      Classic: _Stories/Objects/Weapons/RocketLaunchers/m5spec.rsi
+      Snow: _Stories/Objects/Weapons/RocketLaunchers/m5spec.rsi
+      Urban: _Stories/Objects/Weapons/RocketLaunchers/m5spec.rsi
 
 - type: entity
   id: STM96SSniperRifleTiger
@@ -215,7 +214,7 @@
   suffix: Tiger
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Weapons/Snipers/m96s.rsi
+    sprite: _Stories/Objects/Weapons/Snipers/m96s.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -228,11 +227,11 @@
     node: tiger
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Snipers/m96s.rsi
-      Desert: _Stories/Partners/Weapons/Snipers/m96s.rsi
-      Classic: _Stories/Partners/Weapons/Snipers/m96s.rsi
-      Snow: _Stories/Partners/Weapons/Snipers/m96s.rsi
-      Urban: _Stories/Partners/Weapons/Snipers/m96s.rsi
+      Jungle: _Stories/Objects/Weapons/Snipers/m96s.rsi
+      Desert: _Stories/Objects/Weapons/Snipers/m96s.rsi
+      Classic: _Stories/Objects/Weapons/Snipers/m96s.rsi
+      Snow: _Stories/Objects/Weapons/Snipers/m96s.rsi
+      Urban: _Stories/Objects/Weapons/Snipers/m96s.rsi
 
 - type: entity
   id: STXM43E1SniperRifleGoldenAutumn
@@ -240,7 +239,7 @@
   suffix: GoldenAutumn
   components:
   - type: Sprite
-    sprite: _Stories/Partners/Weapons/Snipers/xm43e1.rsi
+    sprite: _Stories/Objects/Weapons/Snipers/xm43e1.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -254,11 +253,11 @@
     node: goldenAutumn
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/Snipers/xm43e1.rsi
-      Desert: _Stories/Partners/Weapons/Snipers/xm43e1.rsi
-      Classic: _Stories/Partners/Weapons/Snipers/xm43e1.rsi
-      Snow: _Stories/Partners/Weapons/Snipers/xm43e1.rsi
-      Urban: _Stories/Partners/Weapons/Snipers/xm43e1.rsi
+      Jungle: _Stories/Objects/Weapons/Snipers/xm43e1.rsi
+      Desert: _Stories/Objects/Weapons/Snipers/xm43e1.rsi
+      Classic: _Stories/Objects/Weapons/Snipers/xm43e1.rsi
+      Snow: _Stories/Objects/Weapons/Snipers/xm43e1.rsi
+      Urban: _Stories/Objects/Weapons/Snipers/xm43e1.rsi
 
 - type: entity
   id: STWeaponLauncherM83Pacifist
@@ -270,8 +269,8 @@
     node: pacifist
   - type: ItemCamouflage
     camouflageVariations:
-      Jungle: _Stories/Partners/Weapons/GrenadeLaunchers/m83.rsi
-      Desert: _Stories/Partners/Weapons/GrenadeLaunchers/m83.rsi
-      Classic: _Stories/Partners/Weapons/GrenadeLaunchers/m83.rsi
-      Snow: _Stories/Partners/Weapons/GrenadeLaunchers/m83.rsi
-      Urban: _Stories/Partners/Weapons/GrenadeLaunchers/m83.rsi
+      Jungle: _Stories/Objects/Weapons/GrenadeLaunchers/m83.rsi
+      Desert: _Stories/Objects/Weapons/GrenadeLaunchers/m83.rsi
+      Classic: _Stories/Objects/Weapons/GrenadeLaunchers/m83.rsi
+      Snow: _Stories/Objects/Weapons/GrenadeLaunchers/m83.rsi
+      Urban: _Stories/Objects/Weapons/GrenadeLaunchers/m83.rsi

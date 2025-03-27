@@ -63,7 +63,8 @@
     key: walls
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
-    keyTwo: walls
+    additionalKeys:
+    - walls
     mode: NoSprite
   - type: AccessReader
     access: [["CMAccessXeno"]]
@@ -86,7 +87,7 @@
   - type: ExplosionResistance
     damageCoefficient: 7.5 # Doors take 15x explosive damage, resin doors reduce that by 50%
   - type: XenoConstruct
-    destroyWeeds: false
+    destroyWeedNodes: false
   - type: ResinDoor
   - type: AllowWeedSpread
   - type: XenoConstructReinforce
@@ -128,7 +129,8 @@
         acts: ["Destruction"]
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
-    keyTwo: walls
+    additionalKeys:
+    - walls
     mode: NoSprite
   - type: MeleeReceivedMultiplier
     xenoDamage:

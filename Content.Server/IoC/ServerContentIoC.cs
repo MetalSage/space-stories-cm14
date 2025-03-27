@@ -88,6 +88,8 @@ namespace Content.Server.IoC
             IoCManager.Register<MappingManager>();
             IoCManager.Register<IWatchlistWebhookManager, WatchlistWebhookManager>();
             IoCManager.Register<ConnectionManager>();
+            IoCManager.Register<MultiServerKickManager>();
+            IoCManager.Register<CVarControlManager>();
 
             // RMC14
             IoCManager.Register<LinkAccountManager>();

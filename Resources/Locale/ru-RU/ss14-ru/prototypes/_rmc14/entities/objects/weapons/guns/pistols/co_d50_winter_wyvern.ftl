@@ -1,0 +1,14 @@
+ent-RMCWeaponPistolCOD50WinterWyvern = винтажный пистолет "Зимняя Виверна" D50
+    .desc = Громоздкий пистолет 50-го калибра с серьезной отдачей. Сделан вручную из лучшей черной стали, рукоять из слоновой кости скреплена золотыми шпильками. Очень элегантно.
+ent-RMCMagazinePistolD50WinterWyvernHI = D50 магазин "Зимняя Виверна" HI (.50AE)
+    .desc = { ent-CMBaseMagazinePistol.desc }
+ent-RMCCartridgePistolHI50AE = патрон (ударный .50AE)
+    .desc = { ent-CMCartridgePistolBase.desc }
+ent-RMCBulletPistolHI50AE = пуля (HI50AE)
+    .desc = { ent-CMBulletBase.desc }
+ent-RMCMagazinePistolD50WinterWyvernHIAP = D50 магазин "Зимняя Виверна" HIAP (.50AE)
+    .desc = { ent-CMBaseMagazinePistol.desc }
+ent-RMCCartridgePistolHIAP50AE = патрон (ударный бронебойный .50AE)
+    .desc = { ent-CMCartridgePistolBase.desc }
+ent-RMCBulletPistolHIAP50AE = пуля (HIAP50AE)
+    .desc = { ent-CMBulletBase.desc }
