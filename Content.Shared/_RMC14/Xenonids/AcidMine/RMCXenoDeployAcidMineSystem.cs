@@ -118,7 +118,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
             var mob = _mobStateQuery.HasComp(targetUid);
 
             if (!barricade && !mob)
-                return;
+                continue;
 
             if (barricade)
             {
