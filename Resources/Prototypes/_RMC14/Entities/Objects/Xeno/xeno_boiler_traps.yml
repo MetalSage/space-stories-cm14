@@ -34,6 +34,9 @@
     state: trap_boiler
   - type: RMCXenoBoilerTrap
   - type: HiveMember
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 - type: entity
   parent: BaseXenoBoilerTrap
@@ -86,6 +89,9 @@
     drawdepth: Effects
   - type: RMCXenoAcidMine
   - type: HiveMember
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 - type: entity
   parent: BaseXenoAcidMine

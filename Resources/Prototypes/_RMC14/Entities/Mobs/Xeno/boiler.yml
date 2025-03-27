@@ -129,6 +129,7 @@
     damage: # per second, scales with number of fire 'stacks'
       types:
         Heat: 3
+  - type: XenoDeathcloud
 
 - type: entity
   parent: RMCXenoBoilerBase
@@ -155,7 +156,6 @@
     barricadeDamage:
       types:
         Heat: 5
-  - type: XenoDeathcloud
   - type: XenoEvolution
     strains:
     - RMCXenoBoilerTrapper
