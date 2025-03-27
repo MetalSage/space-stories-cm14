@@ -135,7 +135,7 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
         if (ent.Comp.Activated)
             return;
 
-        if (_xeno.CanAbilityAttackTarget(ent.Owner, args.OtherEntity))
+        if (_hive.FromSameHive(ent.Owner, args.OtherEntity))
             return;
 
         var targetUid = args.OtherEntity;

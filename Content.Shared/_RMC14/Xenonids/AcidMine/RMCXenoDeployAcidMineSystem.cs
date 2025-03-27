@@ -5,6 +5,7 @@ using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
@@ -17,7 +18,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly DamageableSystem _demageable = default!;
-    [Dependency] private readonly XenoSystem _xeno = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
@@ -127,7 +128,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
                 _demageable.TryChangeDamage(targetUid, ent.Comp.BarricadeDamage);
             }
 
-            if (mob && !_xeno.CanAbilityAttackTarget(ent.Owner, targetUid))
+            if (mob && !_hive.FromSameHive(ent.Owner, targetUid) && !_mobState.IsDead(targetUid))
             {
                 _demageable.TryChangeDamage(targetUid, ent.Comp.Damage);
                 if (ent.Comp.Add is { } add)
