@@ -117,6 +117,9 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
             var barricade = _barricadeQuery.HasComp(targetUid);
             var mob = _mobStateQuery.HasComp(targetUid);
 
+            if (!barricade && !mob)
+                return;
+
             if (barricade)
             {
                 _demageable.TryChangeDamage(targetUid, ent.Comp.BarricadeDamage);
