@@ -58,7 +58,24 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
         var position = args.Target.Position;
         var start = position.Floored() + Vector2.One / 2;
         var delta = (position - Transform(ent).Coordinates.Position).Normalized();
-        var axis = MathF.Abs(delta.X) < MathF.Abs(delta.Y) ? Vector2.UnitX : Vector2.UnitY;
+
+        Vector2 axis;
+        if (delta.Equals(Vector2.Zero))
+            axis = Vector2.UnitX;
+        else
+        {
+            var absX = Math.Abs(delta.X);
+            var absY = Math.Abs(delta.Y);
+            var signX = Math.Sign(delta.X);
+            var signY = Math.Sign(delta.Y);
+
+            if (absY > absX * 2.414f)
+                axis = new Vector2(signX != 0 ? signX : 1, 0);
+            else if (absX > absY * 2.414f)
+                axis = new Vector2(0, signY != 0 ? signY : 1);
+            else
+                axis = new Angle(Math.PI /2 ).RotateVec(new Vector2(signX, signY));
+        }
 
         var prototypeId = ent.Comp.PrototypeId;
         if (_acidInsight.TryUseEmpower(ent.Owner))
