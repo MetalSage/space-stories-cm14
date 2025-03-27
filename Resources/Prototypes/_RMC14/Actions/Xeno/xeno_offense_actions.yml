@@ -885,41 +885,6 @@
     cost: 55
 
 - type: entity
-  id: ActionXenoHighGallop
-  name: High Gallop
-  description: Stuns foes in a 2x3 area in targeted direction, and slows them. Also flings back grenades.
-  components:
-  - type: WorldTargetAction
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Stories/Actions/xeno_actions.rsi
-      state: stomp
-    event: !type:XenoHighGallopActionEvent
-    range: 15
-    useDelay: 12
-    checkCanAccess: false
-  - type: ActionBlockIfResting
-
-- type: entity
-  parent: ActionXenoBase
-  id: ActionXenoScissorCut
-  name: Scissor Cut (25)
-  description: Cuts enemies and fences in a straight line. If Super-Empowered, slows enemies hit too.
-  components:
-  - type: WorldTargetAction
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Stories/Actions/xeno_actions.rsi
-      state: rav_scissor_cut
-    event: !type:XenoScissorCutActionEvent
-    useDelay: 6
-    checkCanAccess: false
-    range: 15
-  - type: ActionBlockIfResting
-  - type: XenoActionPlasma
-    cost: 25
-
-- type: entity
   parent: ActionXenoBase
   id: ActionXenoDeployTraps
   name: Deploy Traps (60)

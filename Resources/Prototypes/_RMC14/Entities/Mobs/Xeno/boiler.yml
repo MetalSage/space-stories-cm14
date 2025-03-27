@@ -170,14 +170,14 @@
     sprite: _Stories/Mobs/Xenos/Boiler/trapper_boiler.rsi
   - type: Xeno
     actionIds:
-    - ActionXenoDeployAcidMine
-    - ActionXenoDeployTraps
-    - ActionXenoAcidShotgun
     - ActionXenoRest
     - ActionXenoRegurgitate
     - ActionXenoWatch
     - ActionXenoTailStabBoiler
     - ActionXenoAcidStrong
+    - ActionXenoDeployTraps
+    - ActionXenoDeployAcidMine
+    - ActionXenoAcidShotgun
     - ActionXenoTrapperZoom
     - ActionXenoDevolve
     hidden: true
@@ -213,6 +213,5 @@
     armor: 0
     explosionArmor: 20
   - type: RMCXenoAcidInsight
-    maxStacks: 9
   - type: RMCXenoBoostOnHit
   - type: XenoDevour
