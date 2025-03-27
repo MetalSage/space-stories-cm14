@@ -10,5 +10,8 @@ public sealed partial class RMCXenoBoilerTrapComponent : Component
     public bool Activated;
 
     [DataField, AutoNetworkedField]
+    public HashSet<EntityUid> Ignore = [];
+
+    [DataField, AutoNetworkedField]
     public TimeSpan RootDuration = TimeSpan.FromSeconds(1.75f);
 }

@@ -42,7 +42,7 @@
   - type: RMCXenoBoilerTrap
     rootDuration: 1.75
   - type: TimedDespawn
-    lifetime: 1.75
+    lifetime: 10
 
 - type: entity
   parent: BaseXenoBoilerTrap
@@ -51,7 +51,7 @@
   - type: RMCXenoBoilerTrap
     rootDuration: 3
   - type: TimedDespawn
-    lifetime: 3
+    lifetime: 10
 
 - type: entity
   abstract: true

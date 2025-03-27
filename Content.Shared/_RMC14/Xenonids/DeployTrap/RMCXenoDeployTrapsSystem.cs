@@ -6,19 +6,20 @@ using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Projectile;
 using Content.Shared.Damage;
 using Content.Shared.Maps;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;
-using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._RMC14.Xenonids.DeployTrap;
 
 public sealed class RMCXenoDeployTrapsSystem : EntitySystem
 {
+    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
@@ -35,7 +36,10 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
 
         SubscribeLocalEvent<RMCXenoDeployTrapsComponent, RMCXenoDeployTrapsActionEvent>(OnDeployTrap);
         SubscribeLocalEvent<RMCXenoDeployTrapsComponent, XenoProjectileHitUserEvent>(OnProjectileHit);
+
+        SubscribeLocalEvent<RMCXenoBoilerTrapComponent, ComponentStartup>(OnTrapStartup);
         SubscribeLocalEvent<RMCXenoBoilerTrapComponent, StartCollideEvent>(OnTrapStartCollide);
+        SubscribeLocalEvent<RMCXenoBoilerTrapComponent, EndCollideEvent>(OnTrapEndCollide);
     }
 
     public bool IsTrapped(EntityUid entityUid)
@@ -50,9 +54,6 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
 
         args.Handled = true;
 
-        if (_net.IsClient)
-            return;
-
         var position = args.Target.Position;
         var start = position.Floored() + Vector2.One / 2;
         var delta = (position - Transform(ent).Coordinates.Position).Normalized();
@@ -64,6 +65,9 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
             prototypeId = ent.Comp.EmpoweredPrototypeId;
             _acidMine.Empower(ent.Owner);
         }
+
+        if (_net.IsClient)
+            return;
 
         for (var i = -ent.Comp.Additional; i <= ent.Comp.Additional; i++)
         {
@@ -77,6 +81,7 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
                 continue;
 
             var trapUid = Spawn(prototypeId, target);
+
             _hive.SetSameHive(ent.Owner, trapUid);
         }
     }
@@ -93,8 +98,22 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
         _damageable.TryChangeDamage(args.Hit, damage, projectileComponent.IgnoreResistances);
     }
 
+    private void OnTrapStartup(Entity<RMCXenoBoilerTrapComponent> ent, ref ComponentStartup args)
+    {
+        foreach (var targetUid in _entityLookup.GetEntitiesIntersecting(ent))
+        {
+            if (!HasComp<MobStateComponent>(targetUid))
+                continue;
+
+            ent.Comp.Ignore.Add(targetUid);
+        }
+    }
+
     private void OnTrapStartCollide(Entity<RMCXenoBoilerTrapComponent> ent, ref StartCollideEvent args)
     {
+        if (ent.Comp.Ignore.Contains(args.OtherEntity))
+            return;
+
         if (_hive.FromSameHive(args.OtherEntity, ent.Owner) || ent.Comp.Activated)
             return;
 
@@ -118,5 +137,13 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
         });
 
         QueueDel(ent);
+    }
+
+    private void OnTrapEndCollide(Entity<RMCXenoBoilerTrapComponent> ent, ref EndCollideEvent args)
+    {
+        if (!ent.Comp.Ignore.Contains(args.OtherEntity))
+            return;
+
+        ent.Comp.Ignore.Remove(args.OtherEntity);
     }
 }
