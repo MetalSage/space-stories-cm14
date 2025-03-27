@@ -15,6 +15,4 @@ public sealed partial class RMCXenoDeployAcidMineComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntProtoId EmpoweredPrototypeId = "EmpoweredXenoAcidMine";
-
-я
 }
