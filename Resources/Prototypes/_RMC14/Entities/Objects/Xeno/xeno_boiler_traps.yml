@@ -86,6 +86,8 @@
     drawdepth: Effects
   - type: RMCXenoAcidMine
   - type: HiveMember
+  - type: TimedDespawn
+    lifetime: 1.35
 
 - type: entity
   parent: BaseXenoAcidMine
