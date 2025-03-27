@@ -128,11 +128,11 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
             if (mob && !_hive.FromSameHive(ent.Owner, targetUid) && !_mobState.IsDead(targetUid))
             {
                 _demageable.TryChangeDamage(targetUid, ent.Comp.Damage);
+                if (ent.Comp.Add is { } add)
+                    EntityManager.AddComponents(targetUid, add);
+
                 hits++;
             }
-
-            if (ent.Comp.Add is { } add)
-                EntityManager.AddComponents(targetUid, add);
         }
 
         if (hits != 0 && ent.Comp.Attached is not null)
