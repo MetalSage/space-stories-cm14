@@ -143,7 +143,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
             Timer.Spawn(TimeSpan.FromSeconds(0.2f),
                 () =>
                 {
-                    RemCompDeferred<RMCXenoAcidMineComponent>(targetUid);
+                    RemCompDeferred<RMCXenoAcidMineImmuneComponent>(targetUid);
                 }
             );
         }
