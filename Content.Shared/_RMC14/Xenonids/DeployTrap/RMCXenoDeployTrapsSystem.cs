@@ -24,6 +24,7 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
+    [Dependency] private readonly XenoSystem _xeno = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly RMCSlowSystem _slow = default!;
@@ -57,7 +58,7 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
         var position = args.Target.Position;
         var start = position.Floored() + Vector2.One / 2;
         var delta = (position - Transform(ent).Coordinates.Position).Normalized();
-        var axis = delta.X < delta.Y ? Vector2.UnitX : Vector2.UnitY;
+        var axis = MathF.Abs(delta.X) < MathF.Abs(delta.Y) ? Vector2.UnitX : Vector2.UnitY;
 
         var prototypeId = ent.Comp.PrototypeId;
         if (_acidInsight.TryUseEmpower(ent.Owner))
@@ -114,7 +115,10 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
         if (ent.Comp.Ignore.Contains(args.OtherEntity))
             return;
 
-        if (_hive.FromSameHive(args.OtherEntity, ent.Owner) || ent.Comp.Activated)
+        if (ent.Comp.Activated)
+            return;
+
+        if (_xeno.CanAbilityAttackTarget(ent.Owner, args.OtherEntity))
             return;
 
         var targetUid = args.OtherEntity;
