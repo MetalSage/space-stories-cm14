@@ -932,7 +932,7 @@
       state: resin_pit
     event: !type:RMCXenoDeployTrapsActionEvent
     useDelay: 20
-    range: 30
+    range: 13
   - type: ActionBlockIfResting
   - type: XenoActionPlasma
     cost: 60
@@ -950,7 +950,7 @@
       state: acid_mine
     event: !type:RMCXenoDeployAcidMineEvent
     useDelay: 6
-    range: 30
+    range: 13
   - type: ActionBlockIfResting
   - type: XenoActionPlasma
     cost: 40
