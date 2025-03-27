@@ -9,6 +9,9 @@ namespace Content.Shared._RMC14.Xenonids.AcidMine;
 public sealed partial class RMCXenoAcidMineComponent : Component
 {
     [DataField, AutoNetworkedField]
+    public EntityUid? Attached;
+
+    [DataField, AutoNetworkedField]
     public TimeSpan Activation;
 
     [DataField, AutoNetworkedField]

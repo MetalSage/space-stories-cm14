@@ -24,16 +24,17 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly XenoSpitSystem _spit = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private EntityQuery<BarricadeComponent> _barricadeQuery;
+    private EntityQuery<MobStateComponent> _mobStateQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
         _barricadeQuery = GetEntityQuery<BarricadeComponent>();
+        _mobStateQuery = GetEntityQuery<MobStateComponent>();
 
         SubscribeLocalEvent<RMCXenoDeployAcidMineComponent, RMCXenoDeployAcidMineEvent>(OnDeploy);
         SubscribeLocalEvent<RMCXenoAcidMineComponent, ComponentInit>(OnMineInit);
@@ -113,33 +114,42 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
         var hits = 0;
         foreach (var targetUid in _lookup.GetEntitiesIntersecting(ent))
         {
-            if (!TryComp<DamageableComponent>(targetUid, out var damageableComponent))
-                continue;
+            var barricade = _barricadeQuery.HasComp(targetUid);
+            var mob = _mobStateQuery.HasComp(targetUid);
 
-            if (_hive.FromSameHive(ent.Owner, targetUid))
-                continue;
+            if (barricade)
+            {
+                _demageable.TryChangeDamage(targetUid, ent.Comp.BarricadeDamage);
+            }
 
-            var barricade = _barricadeQuery.HasComp(ent);
-            var damage = barricade ? ent.Comp.BarricadeDamage : ent.Comp.Damage;
-
-            if (!barricade && !_mobState.IsDead(targetUid))
+            if (mob && !_hive.FromSameHive(ent.Owner, targetUid) && !_mobState.IsDead(targetUid))
+            {
+                _demageable.TryChangeDamage(targetUid, ent.Comp.Damage);
                 hits++;
-
-            if (barricade || !_mobState.IsDead(targetUid))
-                _demageable.TryChangeDamage(targetUid, damage, damageable: damageableComponent);
+            }
 
             if (ent.Comp.Add is { } add)
                 EntityManager.AddComponents(targetUid, add);
         }
 
-        if (hits != 0)
+        if (hits != 0 && ent.Comp.Attached is not null)
         {
-            foreach (var (actionId, action) in _actions.GetActions(ent))
+            foreach (var (actionId, action) in _actions.GetActions(ent.Comp.Attached.Value))
             {
                 if (action.BaseEvent is not RMCXenoDeployTrapsActionEvent)
                     continue;
 
-                _actions.SetCooldown(actionId, ent.Comp.ReduceDelayPerHit * hits);
+                if (action.Cooldown is null)
+                    continue;
+
+                if (action.Cooldown.Value.Start >= action.Cooldown.Value.End - ent.Comp.ReduceDelayPerHit * hits)
+                {
+                    _actions.ClearCooldown(actionId);
+                    break;
+                }
+
+                _actions.SetCooldown(actionId, action.Cooldown.Value.Start, action.Cooldown.Value.End - ent.Comp.ReduceDelayPerHit * hits);
+                break;
             }
         }
 
@@ -170,6 +180,11 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
             for (var y = -1; y <= 1; y++)
             {
                 var mineUid = Spawn(prototypeId, new EntityCoordinates(args.Target.EntityId, center + new Vector2(x, y)));
+                var mineComponent = EnsureComp<RMCXenoAcidMineComponent>(mineUid);
+
+                mineComponent.Attached = ent;
+                DirtyField(mineUid, mineComponent, nameof(RMCXenoAcidMineComponent.Attached));
+
                 _hive.SetSameHive(ent.Owner, mineUid);
             }
         }

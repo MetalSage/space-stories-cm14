@@ -18,7 +18,7 @@ public sealed partial class RMCXenoBoostOnHitComponent : Component
     public TimeSpan CooldownTime;
 
     [DataField, AutoNetworkedField]
-    public float Amount = 1.25f;
+    public float Amount = 1.5f;
 
     [DataField, AutoNetworkedField]
     public TimeSpan Duration = TimeSpan.FromSeconds(5);

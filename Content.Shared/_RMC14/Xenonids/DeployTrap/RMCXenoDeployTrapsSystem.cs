@@ -5,10 +5,14 @@ using Content.Shared._RMC14.Xenonids.AcidMine;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Projectile;
 using Content.Shared.Damage;
+using Content.Shared.Maps;
+using Content.Shared.Physics;
 using Content.Shared.Projectiles;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._RMC14.Xenonids.DeployTrap;
@@ -17,7 +21,10 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly RMCSlowSystem _slow = default!;
     [Dependency] private readonly RMCXenoAcidInsightSystem _acidInsight = default!;
     [Dependency] private readonly RMCXenoDeployAcidMineSystem _acidMine = default!;
@@ -60,7 +67,16 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
 
         for (var i = -ent.Comp.Additional; i <= ent.Comp.Additional; i++)
         {
-            var trapUid = Spawn(prototypeId, new EntityCoordinates(args.Target.EntityId, start + axis * i));
+            var gridId = _transform.GetGrid(ent.Owner);
+            if (!TryComp(gridId, out MapGridComponent? grid))
+                continue;
+
+            var target = new EntityCoordinates(args.Target.EntityId, start + axis * i);
+            var tile = _map.GetTileRef(gridId.Value, grid, target);
+            if (_turf.IsTileBlocked(tile, CollisionGroup.Impassable))
+                continue;
+
+            var trapUid = Spawn(prototypeId, target);
             _hive.SetSameHive(ent.Owner, trapUid);
         }
     }
@@ -83,6 +99,9 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
             return;
 
         var targetUid = args.OtherEntity;
+        if (HasComp<RMCRootedComponent>(targetUid))
+            return;
+
         _slow.TryRoot(targetUid, ent.Comp.RootDuration);
 
         EnsureComp<RMCXenoTrappedComponent>(targetUid);

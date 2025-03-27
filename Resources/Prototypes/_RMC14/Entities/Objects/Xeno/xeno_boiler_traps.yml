@@ -41,6 +41,8 @@
   components:
   - type: RMCXenoBoilerTrap
     rootDuration: 1.75
+  - type: TimedDespawn
+    lifetime: 1.75
 
 - type: entity
   parent: BaseXenoBoilerTrap
@@ -48,6 +50,8 @@
   components:
   - type: RMCXenoBoilerTrap
     rootDuration: 3
+  - type: TimedDespawn
+    lifetime: 3
 
 - type: entity
   abstract: true
@@ -79,7 +83,7 @@
     enabled: false
   - type: Sprite
     sprite: _Stories/Effects/xeno_boiler_bombard.rsi
-    drawdepth: WallTops
+    drawdepth: Effects
   - type: RMCXenoAcidMine
   - type: HiveMember
 

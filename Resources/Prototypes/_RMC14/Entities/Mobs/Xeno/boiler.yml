@@ -185,6 +185,11 @@
     name: rmc-xeno-trapper-name
     description: rmc-xeno-trapper-description
     popup: rmc-xeno-trapper-popup
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      590: Critical
+      690: Dead
   # In theory, one of the projectiles should fly for 5 tiles, the other 9 for 4.
   # This would be useless if the trapper didn't get a full charge on a Marine caught in his trap.
   # But the current projectile system doesn't work like in CM13,
@@ -202,8 +207,8 @@
     speed: 1
     doAfter: 0
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 1.66
+    baseSprintSpeed: 3
   - type: CMArmor
     armor: 0
     explosionArmor: 20
