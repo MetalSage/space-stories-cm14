@@ -198,6 +198,7 @@
   - type: XenoScatteredSpit
     plasmaCost: 60
     maxProjectiles: 9
+    maxDeviation: 40
     projectileId: XenoAcidShotgunProjectile
   - type: RMCXenoDeployTraps
   - type: RMCXenoDeployAcidMine
