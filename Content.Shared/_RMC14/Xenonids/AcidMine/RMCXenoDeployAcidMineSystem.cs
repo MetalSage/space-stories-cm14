@@ -26,6 +26,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
+    private EntityQuery<RMCXenoAcidMineImmuneComponent> _immuneQuery;
     private EntityQuery<BarricadeComponent> _barricadeQuery;
     private EntityQuery<MobStateComponent> _mobStateQuery;
 
@@ -33,6 +34,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
     {
         base.Initialize();
 
+        _immuneQuery = GetEntityQuery<RMCXenoAcidMineImmuneComponent>();
         _barricadeQuery = GetEntityQuery<BarricadeComponent>();
         _mobStateQuery = GetEntityQuery<MobStateComponent>();
 
@@ -114,6 +116,9 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
         var hits = 0;
         foreach (var targetUid in _lookup.GetEntitiesIntersecting(ent))
         {
+            if (_immuneQuery.HasComp(targetUid))
+                continue;
+
             var barricade = _barricadeQuery.HasComp(targetUid);
             var mob = _mobStateQuery.HasComp(targetUid);
 
@@ -133,6 +138,14 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
 
                 hits++;
             }
+
+            EnsureComp<RMCXenoAcidMineImmuneComponent>(targetUid);
+            Timer.Spawn(TimeSpan.FromSeconds(0.2f),
+                () =>
+                {
+                    RemCompDeferred<RMCXenoAcidMineComponent>(targetUid);
+                }
+            );
         }
 
         if (hits != 0 && ent.Comp.Attached is not null)
