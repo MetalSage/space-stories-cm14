@@ -208,4 +208,5 @@
     armor: 0
     explosionArmor: 20
   - type: RMCXenoAcidInsight
+  - type: RMCXenoBoostOnHit
   - type: XenoDevour

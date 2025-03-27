@@ -54,6 +54,6 @@ public sealed class RMCXenoAcidInsightSystem : EntitySystem
         ent.Comp.Empowered = true;
         DirtyField(ent.Owner, ent.Comp, nameof(RMCXenoAcidInsightComponent.Empowered));
 
-        _popup.PopupClient("You have gained sufficient insight in your prey to empower your next [trap_ability.name].", ent, ent);
+        _popup.PopupPredicted(Loc.GetString(ent.Comp.EmpoweredMessage), ent, null, PopupType.SmallCaution);
     }
 }

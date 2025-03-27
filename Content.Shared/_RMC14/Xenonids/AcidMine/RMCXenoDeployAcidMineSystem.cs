@@ -109,6 +109,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
         if (ent.Comp.Activated)
             return;
 
+        // TODO: if(isxeno(H)) H.apply_armoured_damage(damage * XVX_ACID_DAMAGEMULT * xeno_empower_modifier, ARMOR_BIO, BURN)
         var hits = 0;
         foreach (var targetUid in _lookup.GetEntitiesIntersecting(ent))
         {
@@ -183,6 +184,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
             return;
 
         ent.Comp.Empowered = true;
+        _popup.PopupPredicted(Loc.GetString(ent.Comp.EmpoweredMessage), ent, null, PopupType.SmallCaution);
     }
 
     private bool TryUseEmpower(Entity<RMCXenoDeployAcidMineComponent?> ent)

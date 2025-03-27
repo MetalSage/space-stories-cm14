@@ -14,4 +14,7 @@ public sealed partial class RMCXenoAcidInsightComponent : Component
 
     [DataField, AutoNetworkedField]
     public int MaxStacks = 10;
+
+    [DataField, AutoNetworkedField]
+    public LocId EmpoweredMessage = "rmc-xeno-insight-empowered";
 }
