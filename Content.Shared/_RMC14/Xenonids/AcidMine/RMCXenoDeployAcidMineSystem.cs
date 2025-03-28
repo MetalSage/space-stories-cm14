@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.Shared._RMC14.Actions;
 using Content.Shared._RMC14.Entrenching;
 using Content.Shared._RMC14.Xenonids.DeployTrap;
 using Content.Shared._RMC14.Xenonids.Hive;
@@ -18,6 +19,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly DamageableSystem _demageable = default!;
+    [Dependency] private readonly RMCActionsSystem _rmcActions = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
@@ -179,6 +181,9 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
     private void OnDeploy(Entity<RMCXenoDeployAcidMineComponent> ent, ref RMCXenoDeployAcidMineEvent args)
     {
         if (args.Handled)
+            return;
+
+        if (!_rmcActions.TryUseAction(ent, args.Action))
             return;
 
         args.Handled = true;

@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.Shared._RMC14.Actions;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Xenonids.AcidInsight;
 using Content.Shared._RMC14.Xenonids.AcidMine;
@@ -22,9 +23,9 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly RMCActionsSystem _rmcActions = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
-    [Dependency] private readonly XenoSystem _xeno = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly RMCSlowSystem _slow = default!;
@@ -51,6 +52,9 @@ public sealed class RMCXenoDeployTrapsSystem : EntitySystem
     private void OnDeployTrap(Entity<RMCXenoDeployTrapsComponent> ent, ref RMCXenoDeployTrapsActionEvent args)
     {
         if (args.Handled)
+            return;
+
+        if (!_rmcActions.TryUseAction(ent, args.Action))
             return;
 
         args.Handled = true;
