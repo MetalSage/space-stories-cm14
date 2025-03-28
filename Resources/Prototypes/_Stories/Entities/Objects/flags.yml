@@ -1,0 +1,228 @@
+- type: entity
+  abstract: true
+  parent: BaseKnife
+  id: CMBaseFlag
+  components:
+  - type: Clothing
+    slots:
+    - Back
+  - type: Sprite
+    sprite: _Stories/Objects/Flags/alpha.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: _Stories/Objects/Flags/alpha.rsi
+
+- type: entity
+  parent: CMBaseFlag
+  id: CMAlphaFlag
+  name: Alpha flag
+  description: just a red flag
+  components:
+  - type: Clothing
+    sprite: _Stories/Objects/Flags/alpha.rsi
+  - type: Sprite
+    sprite: _Stories/Objects/Flags/alpha.rsi
+  - type: Item
+    sprite: _Stories/Objects/Flags/alpha.rsi
+  - type: CMPlaceFlag
+    builds: AlphaFlag
+
+- type: entity
+  parent: CMBaseFlag
+  id: CMBravoFlag
+  name: Bravo flag
+  description: just a flag
+  components:
+  - type: Clothing
+    sprite: _Stories/Objects/Flags/bravo.rsi
+  - type: Sprite
+    sprite: _Stories/Objects/Flags/bravo.rsi
+  - type: Item
+    sprite: _Stories/Objects/Flags/bravo.rsi
+  - type: CMPlaceFlag
+    builds: BravoFlag
+
+- type: entity
+  parent: CMBaseFlag
+  id: CMCharlieFlag
+  name: Charlie flag
+  description: just a violet flag
+  components:
+  - type: Clothing
+    sprite: _Stories/Objects/Flags/charlie.rsi
+  - type: Sprite
+    sprite: _Stories/Objects/Flags/charlie.rsi
+  - type: Item
+    sprite: _Stories/Objects/Flags/charlie.rsi
+  - type: CMPlaceFlag
+    builds: CharlieFlag
+
+- type: entity
+  parent: CMBaseFlag
+  id: CMDeltaFlag
+  name: Delta flag
+  description: just a blue flag
+  components:
+  - type: Clothing
+    sprite: _Stories/Objects/Flags/delta.rsi
+  - type: Sprite
+    sprite: _Stories/Objects/Flags/delta.rsi
+  - type: Item
+    sprite: _Stories/Objects/Flags/delta.rsi
+  - type: CMPlaceFlag
+    builds: DeltaFlag
+
+- type: entity
+  abstract: true
+  parent: CMBaseStructureCorrodible
+  id: CMPlasedFlagBase
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Appearance
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.44,-0.99,-0.23,-0.89"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - TableLayer
+        - LowImpassable
+        - BarricadeImpassable
+  - type: RotationDrawDepth
+    southDrawDepth: OverMobs
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: CMBarricade
+  - type: RMCDropshipBlocked
+  - type: GenericVisualizer
+    visuals:
+      enum.SprayAcidedVisuals.Acided:
+        acided:
+          True:
+            sprite: _RMC14/Effects/xeno_spray_acid.rsi
+            state: acid
+            visible: true
+          False:
+            visible: false
+  - type: DamageMultiplierFlags
+    flags: Breaching
+
+- type: entity
+  parent: CMPlasedFlagBase
+  id: AlphaFlag
+  name: flag
+  description: flag
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Flags/alpha.rsi
+    layers:
+      - state: base
+      - map: [ "acided" ]
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: CMSandbag
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CMPickupFlag
+    item: "CMAlphaFlag"
+
+
+- type: entity
+  parent: CMPlasedFlagBase
+  id: BravoFlag
+  name: flag
+  description: flag
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Flags/bravo.rsi
+    layers:
+      - state: base
+      - map: [ "acided" ]
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: CMSandbag
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CMPickupFlag
+    item: "CMBravoFlag"
+
+- type: entity
+  parent: CMPlasedFlagBase
+  id: CharlieFlag
+  name: flag
+  description: flag
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Flags/charlie.rsi
+    layers:
+      - state: base
+      - map: [ "acided" ]
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: CMSandbag
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CMPickupFlag
+    item: "CMCharlieFlag"
+
+- type: entity
+  parent: CMPlasedFlagBase
+  id: DeltaFlag
+  name: flag
+  description: flag
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Flags/delta.rsi
+    layers:
+      - state: base
+      - map: [ "acided" ]
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: CMSandbag
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CMPickupFlag
+    item: "CMDeltaFlag"
