@@ -1,0 +1,47 @@
+- type: entity
+  parent: CMIDCardBase
+  id: CMIDCardCLFGuerilla
+  name: CLF guerilla ID cart
+  components:
+  - type: PresetIdCard
+    job: CLFGuerilla
+
+- type: entity
+  parent: CMIDCardBase
+  id: CMIDCardCLFSpecialist
+  name: CLF specialist ID cart
+  components:
+  - type: PresetIdCard
+    job: CLFSpecialist
+
+- type: entity
+  parent: CMIDCardBase
+  id: CMIDCardCLFEngineer
+  name: CLF engineer ID cart
+  components:
+  - type: PresetIdCard
+    job: CLFEngineer
+
+- type: entity
+  parent: CMIDCardBase
+  id: CMIDCardCLFMedic
+  name: CLF medic ID cart
+  components:
+  - type: PresetIdCard
+    job: CLFMedic
+
+- type: entity
+  parent: CMIDCardBase
+  id: CMIDCardCLFLeader
+  name: CLF leader ID cart
+  components:
+  - type: PresetIdCard
+    job: CLFLeader
+
+- type: entity
+  parent: CMIDCardBase
+  id: CMIDCardCLFCommander
+  name: CLF cell commander ID cart
+  components:
+  - type: PresetIdCard
+    job: CLFCommander

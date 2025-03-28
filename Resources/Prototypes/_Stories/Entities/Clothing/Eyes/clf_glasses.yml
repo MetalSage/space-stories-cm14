@@ -1,0 +1,45 @@
+- type: entity
+  parent: ClothingEyesHudMedical
+  id: CMGlassesHealthHUDGlasses
+  name: HealthMate HUD
+  description: A heads-up display that scans the humans in view and provides accurate data about their health status.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Eyes/Glasses/health_hud.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Eyes/Glasses/health_hud.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: CMGlassesMesonHUDGlasses
+  name: optical meson scanner
+  description: Used to shield the user's eyes from harmful electromagnetic emissions, also used as general safety goggles. Not adequate as welding protection.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Eyes/Glasses/meson_scaner.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Eyes/Glasses/meson_scaner.rsi
+    #TODO: engineering functional
+
+- type: entity
+  parent: [ ClothingEyesBase ]
+  id: CMGlassesNightVision
+  name: TV1 night vision goggles
+  description: A neat looking pair of civilian grade night vision goggles.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Eyes/Glasses/night_vision.rsi
+    layers:
+    - state: icon
+      map: [ "icon" ]
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Eyes/Glasses/night_vision.rsi
+  - type: NightVisionItem
+    actionId: "CMActionToggleNightVisionCLF"
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.NightVisionItemVisuals.Active:
+        icon:
+          True: { state: icon_on }
+          False: { state: icon }

@@ -1,0 +1,8 @@
+- type: entity
+  parent: JumpsuitMarine
+  id: CMUniformCLF
+  name: Colonial Liberation Front uniform
+  description: A stylish grey-green jumpsuit - standard issue for colonists. This version appears to have the symbol of the Colonial Liberation Front emblazoned in select areas.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi

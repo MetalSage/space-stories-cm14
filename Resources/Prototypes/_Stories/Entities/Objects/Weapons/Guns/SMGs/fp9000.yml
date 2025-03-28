@@ -1,0 +1,134 @@
+- type: entity
+  parent: CMBaseWeaponSMG
+  name: FN FP9000 Submachinegun
+  id: WeaponSMGFNFP9000
+  description: It is a standart issue for CLF
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/SMG/fp9000.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _Stories/Objects/Weapons/Guns/SMG/fp9000.rsi
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m63.ogg
+  - type: RMCSelectiveFire
+    baseFireModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    recoilWielded: 0.1
+    recoilUnwielded: 1
+    scatterWielded: 9
+    scatterUnwielded: 10
+    baseFireRate: 7.68
+    burstScatterMult: 7
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_reload.ogg
+        ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CMMagazineSMG9000
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-barrel:
+        whitelist:
+          tags:
+          - RMCAttachmentBarrelCharger
+          - RMCAttachmentExtendedBarrel
+          - RMCAttachmentRecoilCompensator
+      rmc-aslot-rail:
+        startingAttachable: RMCAttachmentS42xTelescopicMiniscope
+        whitelist:
+          tags:
+          - RMCAttachmentS42xTelescopicMiniscope
+      rmc-aslot-underbarrel:
+        startingAttachable: RMCAttachmentLaserSight
+        whitelist:
+          tags:
+          - RMCAttachmentLaserSight
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-barrel: 0.81, 0.033
+      rmc-aslot-rail: 0.032, 0.125 
+      rmc-aslot-underbarrel: 0.25, -0.25 
+
+- type: entity
+  parent: BaseMagazineRifle
+  id: CMMagazineSMGFN9000
+  name: "FN magazine (5.7x28mm)"
+  components:
+  - type: Tag
+    tags:
+    - CMMagazineSmg
+    - CMMagazineSMG9000
+  - type: BallisticAmmoProvider
+    mayTransfer: True
+    whitelist:
+      tags:
+      - CMCartridgeSMG5.7x28mm
+    proto: CMCartridgeSMG5.7x28mm
+    capacity: 50
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/fp9000.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+
+- type: entity
+  parent: CMBaseCartridgeRifle
+  id: CMCartridgeSMG5.7x28mm
+  name: cartridge (5.7x28mm)
+  description: A 5.7x28mm cartridge. Fits in 5.7x28mm magazines.
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CMCartridgeSMG5.7x28mm
+  - type: CartridgeAmmo
+    proto: BulletSMG5.7x28mm
+
+- type: entity
+  parent: BaseBullet
+  id: BulletSMG5.7x28mm
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 27.3
+  - type: RMCProjectileDamageFalloff
+    thresholds:
+    - range: 22
+      falloff: 9999
+      ignoreModifiers: true
+    - range: 6
+      falloff: 4
+  - type: CMArmorPiercing
+    amount: 30
+
+- type: Tag
+  id: CMMagazineSMG9000
+
+- type: Tag
+  id: CMCartridgeSMG5.7x28mm

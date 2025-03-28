@@ -1,0 +1,43 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: CMHeadBand
+  name: headband
+  description: A headband made from a simple strip of cloth. The words "DOWN WITH TYRANTS" are emblazoned on the front.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Head/Hats/headband.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Head/Hats/headband.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: CMHeadCapBucket
+  name: Bucket
+  description: This metal bucket appears to have been modified with padding and chin-straps, plus an eye-slit carved into the "front". Presumably, it is intended to be worn on the head, possibly for protection. 
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Head/Helmets/bucket.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Head/Helmets/bucket.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: CMHeadCapMilitiaCowl
+  name: armored militia cowl
+  description: A large hood in service with some militias, meant for obscurity on the frontier. Offers some head protection due to the study fibers utilized in production
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Head/Hats/cowl.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Head/Hats/cowl.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: CMHeadCapMiner
+  name: Y8 miner helmet
+  description: A sturdy helmet, specialised for mining, worn by an unknown mercenary group.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Head/Helmets/miner_hat.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Head/Helmets/miner_hat.rsi

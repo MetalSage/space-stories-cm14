@@ -1,0 +1,12 @@
+ent-CMIDCardCLFGuerilla = ID карта партизана КОФ
+    .desc = { ent-CMIDCardBase.desc }
+ent-CMIDCardCLFSpecialist = ID карта специалиста КОФ
+    .desc = { ent-CMIDCardBase.desc }
+ent-CMIDCardCLFEngineer = ID карта инженера КОФ
+    .desc = { ent-CMIDCardBase.desc }
+ent-CMIDCardCLFMedic = ID карта медика КОФ
+    .desc = { ent-CMIDCardBase.desc }
+ent-CMIDCardCLFLeader = ID карта лидера КОФ
+    .desc = { ent-CMIDCardBase.desc }
+ent-CMIDCardCLFCommander = ID карта командира подразделения КОФ
+    .desc = { ent-CMIDCardBase.desc }

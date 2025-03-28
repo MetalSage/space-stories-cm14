@@ -1,0 +1,33 @@
+- type: entity
+  parent: CMBeltBase
+  id: CMBeltKatanaScabbard
+  name: katana scabbard
+  description: A large, vibrantly colored katana scabbard used to carry a Japanese sword. It can be strapped to the back or worn at the belt. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Belt/katana.rsi
+    layers:
+    - sprite: _Stories/Objects/Weapons/Melee/melee_underlays.rsi
+      state: katana
+      map: [ "enum.CMItemSlotsLayers.Fill" ]
+      visible: false
+    - state: icon
+  - type: Clothing
+    slots:
+      - suitStorage
+      - belt
+      - back
+    sprite: _Stories/Objects/Clothing/Belt/katana.rsi
+  - type: Item
+    size: Large
+  - type: FixedItemSizeStorage
+  - type: CMHolster  
+  - type: CMItemSlots
+    cooldown: 1
+    cooldownPopup: You need to wait!
+    count: 1
+    slot:
+      name: Katana
+      whitelist:
+        tags:
+        - Katana

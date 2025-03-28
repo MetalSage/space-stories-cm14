@@ -1,0 +1,15 @@
+- type: entity
+  parent: ActionMarineBase
+  id: CMActionToggleNightVisionCLF
+  name: Toggle the TV1 night vision
+  description: Allows you to see even in complete darkness.
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _Stories/Objects/Clothing/Eyes/Glasses/night_vision.rsi
+      state: icon
+    iconOn:
+      sprite: _Stories/Objects/Clothing/Eyes/Glasses/night_vision.rsi
+      state: icon_on
+    event: !type:ToggleActionEvent
+    useDelay: 0.25

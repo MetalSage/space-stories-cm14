@@ -1,0 +1,1003 @@
+- type: entity
+  parent: MarkerBase
+  id: StoriesSpawnerCLFStandart
+  name: CLF soldier
+  suffix: Spawner, random
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+      state: icon
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidCLFGuerillaM16
+    - RandomHumanoidCLFGuerillaAR10
+    - RandomHumanoidCLFGuerillaMAR50
+    - RandomHumanoidCLFGuerillaMAR40
+    - RandomHumanoidCLFGuerillaMAR30
+    - RandomHumanoidCLFGuerillaABR40
+    - RandomHumanoidCLFGuerillaUZI
+    - RandomHumanoidCLFGuerillaFN9000
+    - RandomHumanoidCLFGuerillaMP27
+    - RandomHumanoidCLFGuerillaMAC15
+    - RandomHumanoidCLFGuerillaMP5
+    - RandomHumanoidCLFGuerillaMK45
+    - RandomHumanoidCLFGuerillaKatana
+
+
+# Guerillas (gunners)
+# M16
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaM16
+  name: CLF guerilla ghost role
+  suffix: Role, m16
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaM16
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaM16
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaM16 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  id: CMGearCLFGuerilla
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: WeaponShotgunHG3712
+    belt: CMBeltShotgunShellFilled
+    mask: CMKnifeCLF
+    id: CMIDCardCLFGuerilla
+    ears: CMHeadsetCLF
+    pocket1: RMCFlashlight
+    pocket2: RMCPouchFirstAidInjectors
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaM16
+  equipment:
+    shoes: CMBootsBlack 
+    gloves: ClothingHandsGlovesLeather
+    head: CMHeadCapBucket 
+    outerClothing: CMArmorMilitiaVestCrowbarm16 
+    suitstorage: WeaponRifleM16 
+  inhand:
+    - CMWebbingm16 
+
+- type: entity
+  parent: RMCM276ShotgunShellLoadingRig
+  id: CMBeltShotgunShellFilled
+  suffix: Filled
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMShellShotgunBuckshot
+      amount: 4
+    - id: CMShellShotgunSlugs
+      amount: 4
+    - id: CMShellShotgunFlechette
+      amount: 4
+
+- type: entity
+  parent: CMArmorMilitiaVest
+  id: CMArmorMilitiaVestCrowbarm16
+  suffix: Filled, m16
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: RMCMagazineRifleM16
+      amount: 1
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingm16  
+  suffix: Filled, m16
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCMagazineRifleM16
+      amount: 3
+
+# AR10
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaAR10
+  name: CLF guerilla ghost role
+  suffix: Role, ar10
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaAR10
+
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaAR10
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaAR10 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaAR10
+  equipment:
+    shoes: ClothingShoesColorBlack 
+    gloves: ClothingHandsGlovesCombat 
+    head: CMHeadBand 
+    outerClothing: CMArmorMilitiaHarnessCrowbarAR10 
+    suitstorage: WeaponRifleAR10 
+  inhand:
+    - CMWebbingar10
+
+- type: entity
+  parent: CMArmorMilitiaVest
+  id: CMArmorMilitiaHarnessCrowbarAR10
+  suffix: Filled, ar10
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: RMCMagazineRifleAR10
+      amount: 1
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingar10  
+  suffix: Filled, ar10
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCMagazineRifleAR10
+      amount: 3
+
+# MAR50
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaMAR50
+  name: CLF guerilla ghost role
+  suffix: Role, mar50
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaMAR50
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaMAR50
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaMAR50 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaMAR50
+  equipment:
+    shoes: ClothingShoesBootsSyndieFilled 
+    gloves: ClothingHandsGlovesCombat 
+    head: CMHeadCapMilitiaCowl 
+    outerClothing: CMArmorMilitiaHauberkCrowbarMar50 
+    suitstorage: WeaponRifleMAR50 
+  inhand:
+    - CMWebbingmar
+
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHauberkCrowbarMar50
+  suffix: Filled, mar50
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: CMMagazineRifleMAR50Drum
+      amount: 1
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingmar
+  suffix: Filled, mar40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineRifleMAR40
+      amount: 2
+    - id: CMMagazineRifleMAR40Ext
+      amount: 1
+
+# MAR40
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaMAR40
+  name: CLF guerilla ghost role
+  suffix: Role, mar40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaMAR40
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaMAR40
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaMAR40 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaMAR40
+  equipment:
+    shoes: RMCShoesLeather 
+    gloves: ClothingHandsGlovesLeather 
+    head: CMHeadCapBucket 
+    outerClothing: CMArmorMilitiaBraceCrowbarMar40 
+    suitstorage: WeaponRifleMAR40 
+  inhand:
+    - CMWebbingmar 
+
+- type: entity
+  parent: CMArmorMilitiaBrace
+  id: CMArmorMilitiaBraceCrowbarMar40
+  suffix: Filled, mar40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: CMMagazineRifleMAR40Ext
+      amount: 1
+
+# MAR30
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaMAR30
+  name: CLF guerilla ghost role
+  suffix: Role, mar30
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaMAR30
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaMAR30
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaMAR30 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaMAR30
+  equipment:
+    shoes: CMBootsBlack 
+    gloves: ClothingHandsGlovesCombat 
+    head: CMHeadBand
+    outerClothing: CMArmorMilitiaBraceCrowbarMar40 
+    suitstorage: WeaponRifleMAR30 
+  inhand:
+    - CMWebbingmar 
+
+# ABR40
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaABR40
+  name: CLF guerilla ghost role
+  suffix: Role, abr40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaABR40
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaABR40
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaABR40 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaABR40
+  equipment:
+    shoes: ClothingShoesColorBlack 
+    gloves: ClothingHandsGlovesLeather 
+    head: CMHeadCapMilitiaCowl 
+    outerClothing: RMCArmorVest 
+    suitstorage: WeaponRifleABR40 
+  inhand:
+    - CMWebbingabr40 
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingabr40
+  suffix: Filled, abr40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineRifleABR40
+      amount: 3
+
+# UZI
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaUZI
+  name: CLF guerilla ghost role
+  suffix: Role, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaUZI
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaUZI
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaUZI ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaUZI
+  equipment:
+    shoes: RMCShoesLeather 
+    gloves: ClothingHandsGlovesLeather 
+    head: CMHeadBand 
+    outerClothing: CMArmorMilitiaHarnessCrowbarUZI 
+    suitstorage: WeaponSMGUZI 
+  inhand:
+    - CMWebbingUZI
+
+- type: entity
+  parent: CMArmorMilitiaHarness
+  id: CMArmorMilitiaHarnessCrowbarUZI
+  suffix: Filled, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: CMMagazinePistolUZI
+      amount: 1
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingUZI
+  suffix: Filled, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazinePistolUZI
+      amount: 2
+    - id: CMMagazinePistolUZIExt
+      amount: 1
+
+# FNFP9000
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaFN9000
+  name: CLF guerilla ghost role
+  suffix: Role, fn9000
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaFN9000
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaFN9000
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaFN9000 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaFN9000
+  equipment:
+    shoes: ClothingShoesColorBlack 
+    gloves: ClothingHandsGlovesLeather 
+    head: CMHeadCapBucket 
+    outerClothing: CMArmorMilitiaHauberkCrowbarfn9000 
+    suitstorage: WeaponSMGFNFP9000 
+  inhand:
+    - CMWebbingfn9000
+
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHauberkCrowbarfn9000
+  suffix: Filled, fn9000
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: CMMagazineSMGFN9000
+      amount: 1
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingfn9000
+  suffix: Filled, fn9000
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGFN9000
+      amount: 3
+
+# MP27
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaMP27
+  name: CLF guerilla ghost role
+  suffix: Role, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaMP27
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaMP27
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaMP27 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaMP27
+  equipment:
+    shoes: ClothingShoesBootsSyndieFilled 
+    gloves: ClothingHandsGlovesCombat 
+    head: CMHeadCapMilitiaCowl 
+    outerClothing: CMArmorMilitiaBraceCrowbarmp27
+    suitstorage: WeaponSMGMP27 
+  inhand:
+    - CMWebbingmp27
+
+- type: entity
+  parent: CMArmorMilitiaBrace
+  id: CMArmorMilitiaBraceCrowbarmp27
+  suffix: Filled, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: CMMagazineSMGMP2730
+      amount: 1
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingmp27
+  suffix: Filled, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGMP2730
+      amount: 1
+    - id: CMMagazineSMGMP2720
+      amount: 2
+
+# MAC-15
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaMAC15
+  name: CLF guerilla ghost role
+  suffix: Role, mac15
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaMAC15
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaMAC15
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaMAC15 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaMAC15
+  equipment:
+    shoes: ClothingShoesBootsSyndieFilled 
+    gloves: ClothingHandsGlovesCombat 
+    head: CMHeadCapMilitiaCowl 
+    outerClothing: CMArmorMilitiaVestCrowbarmac15 
+    suitstorage: WeaponSMGMAC15 
+  inhand:
+    - CMWebbingmac15
+
+- type: entity
+  parent: CMArmorMilitiaVest
+  id: CMArmorMilitiaVestCrowbarmac15
+  suffix: Filled, mac15
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: CMMagazinePistolMAC15
+      amount: 1
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingmac15
+  suffix: Filled, mac15
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazinePistolMAC15Ext
+      amount: 1
+    - id: CMMagazinePistolMAC15
+      amount: 2
+
+# MP5
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaMP5
+  name: CLF guerilla ghost role
+  suffix: Role, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaMP5
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaMP5
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaMP5 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaMP5
+  equipment:
+    shoes: ClothingShoesColorBlack 
+    gloves: ClothingHandsGlovesLeather 
+    head: CMHeadBand 
+    outerClothing: CMArmorMilitiaHarnessCrowbarmp5 
+    suitstorage: WeaponSMGMP5
+  inhand:
+    - CMWebbingmp5
+
+- type: entity
+  parent: CMArmorMilitiaHarness
+  id: CMArmorMilitiaHarnessCrowbarmp5
+  suffix: Filled, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: CMMagazineSMGMP5
+      amount: 1
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingmp5
+  suffix: Filled, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGMP5
+      amount: 3
+
+# MK45
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaMK45
+  name: CLF guerilla ghost role
+  suffix: Role, mk45
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaMK45
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaMK45
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaMK45 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaMK45
+  equipment:
+    shoes: RMCShoesLeather
+    gloves: ClothingHandsGlovesCombat 
+    head: CMHeadCapBucket 
+    outerClothing: CMArmorMilitiaHauberkCrowbarmk45 
+    suitstorage: RMCWeaponPistolMK45 
+  inhand:
+    - CMWebbingmmk45 
+
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHauberkCrowbarmk45
+  suffix: Filled, mk45
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMCrowbar
+      amount: 1
+    - id: RMCMagazinePistolMK45
+      amount: 1
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingmmk45
+  suffix: Filled, mk45
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCMagazinePistolMK45
+      amount: 3
+
+#Katana
+
+- type: entity
+  id: RandomHumanoidCLFGuerillaKatana
+  name: CLF guerilla ghost role
+  suffix: Role, katana
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLfGuerillaKatana
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLfGuerillaKatana
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-standard-name
+    description: rmc-ghost-role-information-clf-standard-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFGuerillaKatana ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillFireman: 2
+      RMCSkillMedical: 1
+      RMCSkillConstruction: 1
+      RMCSkillEngineer: 1
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPolice: 2
+      RMCSkillPowerLoader: 1
+      RMCSkillMeleeWeapons: 1  
+
+- type: startingGear
+  parent: CMGearCLFGuerilla
+  id: CMGearCLFGuerillaKatana
+  equipment:
+    outerClothing: RMCArmorVest 
+    back: CMBeltKatanaScabbard
+    shoes: ClothingShoesBootsSyndieFilled 
+    gloves: ClothingHandsGlovesLeather 
+    head: CMHeadCapMilitiaCowl 
+    suitstorage: WeaponShotgunHG3712
+  inhand:
+    - CMKatana  
+
+- type: job
+  parent: CMJobBase
+  id: CLFGuerilla
+  name: cm-job-name-clf-guerilla
+  description: cm-job-description-clf-guerilla
+  playTimeTracker: CMJobCLFGuerilla
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: CMSquad
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsEngineering
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsMedical
+    time: 18000 # 5 hours
+  icon: "CMJobIconEmpty"
+  joinNotifyCrew: false
+  supervisors: cm-job-supervisors-clf-guerilla
+  accessGroups:
+  - Colonist
+  hasIcon: false

@@ -1,0 +1,153 @@
+- type: entity
+  parent: CMBaseWeaponSMG
+  name: MP27 Submachinegun
+  id: WeaponSMGMP27
+  description: An archaic design going back almost a century, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms. An extremely ergonomic and lightweight design allows easy mass production and surpisingly good 
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/SMG/mp27.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _Stories/Objects/Weapons/Guns/SMG/mp27.rsi
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m63.ogg
+  - type: RMCSelectiveFire
+    baseFireModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    recoilWielded: 0.1
+    recoilUnwielded: 1
+    scatterWielded: 12.5
+    scatterUnwielded: 13
+    baseFireRate: 6.67
+    burstScatterMult: 3.5
+    shotsPerBurst: 2
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_reload.ogg
+        ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CMMagazineSMGMP27
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-barrel:
+        whitelist:
+          tags:
+          - RMCAttachmentSuppressor
+      rmc-aslot-rail:
+        whitelist:
+          tags:
+          - RMCAttachmentS42xTelescopicMiniscope
+          - RMCAttachmentRailFlashlight
+          - RMCAttachmentMagneticHarness
+      rmc-aslot-underbarrel:
+        whitelist:
+          tags:
+          - RMCAttachmentLaserSight
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-barrel: 0.815, 0.04
+      rmc-aslot-rail: 0.032, 0.125
+      rmc-aslot-underbarrel: 0.55, -0.25
+
+- type: entity
+  parent: BaseMagazineRifle
+  id: CMMagazineSMGMP2720
+  name: "MP27 20-round magazine (4.6x30mm)"
+  components:
+  - type: Tag
+    tags:
+    - CMMagazineSmg
+    - CMMagazineSMGMP27
+  - type: BallisticAmmoProvider
+    mayTransfer: True
+    whitelist:
+      tags:
+      - CMCartridgeSMGMP27
+    proto: CMCartridgeSMG4.6x30mm
+    capacity: 20
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/mp27_20.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+
+- type: entity
+  parent: CMMagazineSMGMP2720
+  id: CMMagazineSMGMP2730
+  name: "MP27 30-round magazine (4.6x30mm)"
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/mp27_30.rsi
+
+- type: entity
+  parent: CMMagazineSMGMP2720
+  id: CMMagazineSMGMP2740
+  name: "MP27 40-round magazine (4.6x30mm)"
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 40
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/mp27_40.rsi
+
+- type: entity
+  parent: CMBaseCartridgeRifle
+  id: CMCartridgeSMG4.6x30mm
+  name: cartridge (4.6x30mm)
+  description: A 4.6x30mm cartridge. Fits in 4.6x30mm magazines.
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CMCartridgeSMGMP27
+  - type: CartridgeAmmo
+    proto: BulletSMG4.6x30mm
+
+- type: entity
+  parent: BaseBullet
+  id: BulletSMG4.6x30mm
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40
+  - type: RMCProjectileDamageFalloff
+    thresholds:
+    - range: 22
+      falloff: 9999
+      ignoreModifiers: true
+    - range: 10
+      falloff: 5
+  - type: CMArmorPiercing
+    amount: 0
+
+- type: Tag
+  id: CMMagazineSMGMP27
+
+- type: Tag
+  id: CMCartridgeSMGMP27

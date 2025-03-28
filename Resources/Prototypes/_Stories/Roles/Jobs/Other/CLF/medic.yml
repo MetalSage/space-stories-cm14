@@ -1,0 +1,543 @@
+- type: entity
+  parent: MarkerBase
+  id: StoriesSpawnerCLFMedic
+  name: CLF Medic
+  suffix: Spawner, random
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+      state: icon
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidCLFMedicMP5
+    - RandomHumanoidCLFMedicMP27
+    - RandomHumanoidCLFMedicFN
+    - RandomHumanoidCLFMedicMAC
+    - RandomHumanoidCLFMedicUZI
+
+# mp5
+
+- type: entity
+  id: RandomHumanoidCLFMedicMP5
+  name: CLF medic ghost role
+  suffix: Role, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFMedicMP5
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFMedicMP5
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-medic-name
+    description: rmc-ghost-role-information-clf-medic-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFMedicMP5 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 3
+      RMCSkillSurgery: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFMedicMP5
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightpackFilledCLFMed
+    belt: CMBeltMedicalFilledCLF 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFMedic
+    ears: CMHeadsetCLF
+    eyes: CMGlassesHealthHUDGlasses
+    pocket1: RMCFlashlight
+    pocket2: RMCPouchMagazineLargeFilledMP5
+    shoes: RMCShoesBrown 
+    gloves: ClothingHandsGlovesCombat 
+    head: ClothingHeadHelmetSwat 
+    outerClothing: CMArmorMilitiaBraceFilledMP5 
+    suitstorage: WeaponSMGMP5 
+  inhand:
+    - CMWebbingFiledMed
+
+- type: entity
+  parent: CMWebbing
+  id: CMWebbingFiledMed
+  suffix: Filled
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMTraumaKit10
+    - id: CMSynthGraft
+    - id: CMSurgicalLine
+  
+- type: entity
+  parent: CMArmorMilitiaBrace
+  id: CMArmorMilitiaBraceFilledMP5
+  suffix: Filled, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGMP5
+      amount: 3
+
+- type: entity
+  parent: CMBeltMedical
+  id: CMBeltMedicalFilledCLF
+  suffix: Filled
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMPillCanisterBicaridine
+    - id: CMPillCanisterKelotane
+    - id: CMPillCanisterDexalin
+    - id: CMPillCanisterDylovene
+    - id: CMPillCanisterInaprovaline
+    - id: CMOintment10
+    - id: CMTraumaKit10 
+    - id: CMDefibrillator
+    - id: CMPortableSurgicalBedSpawnFolded
+    - id: CMHealthAnalyzer
+    - id: CMBurnKit10 
+    - id: CMGauze10
+      amount: 2
+    - id: CMRollerBedSpawnFolded
+
+- type: entity
+  parent: RMCPouchMagazineLarge
+  id: RMCPouchMagazineLargeFilledMP5
+  suffix: Filled, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGMP5
+      amount: 4
+
+- type: entity
+  parent: CMSatchelLightpack
+  id: CMSatchelLightpackFilledCLFMed
+  suffix: Filled, mp5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMGrenadeHighExplosive
+    - id: CMTraumaKit10
+    - id: CMBurnKit10
+    - id: CMTricordrazineAutoInjector
+    - id: RMCPacketGrenadeSmokeFilled
+    - id: CMCrowbar
+    - id: CMMagazineSMGMP5
+
+#fn9000
+
+- type: entity
+  id: RandomHumanoidCLFMedicFN
+  name: CLF medic ghost role
+  suffix: Role, fn9000
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFMedicFN
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFMedicFN
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-medic-name
+    description: rmc-ghost-role-information-clf-medic-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFMedicFN ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 3
+      RMCSkillSurgery: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFMedicFN
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightpackFilledCLFMedFN
+    belt: CMBeltMedicalFilledCLF 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFMedic
+    ears: CMHeadsetCLF
+    eyes: CMGlassesHealthHUDGlasses
+    pocket1: RMCFlashlight
+    pocket2: RMCPouchMagazineLargeFilledFN
+    shoes: RMCShoesBrown 
+    gloves: ClothingHandsGlovesCombat 
+    head: ClothingHeadHelmetSwat 
+    outerClothing: CMArmorMilitiaHarnessFilledFN
+    suitstorage: WeaponSMGFNFP9000 
+  inhand:
+    - CMWebbingFiledMed
+  
+- type: entity
+  parent: CMArmorMilitiaHarness
+  id: CMArmorMilitiaHarnessFilledFN
+  suffix: Filled, fn9000
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGFN9000
+      amount: 3
+
+- type: entity
+  parent: RMCPouchMagazineLarge
+  id: RMCPouchMagazineLargeFilledFN
+  suffix: Filled, fn9000
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGFN9000
+      amount: 4
+
+- type: entity
+  parent: CMSatchelLightpack
+  id: CMSatchelLightpackFilledCLFMedFN
+  suffix: Filled, fn9000
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMGrenadeHighExplosive
+    - id: CMTraumaKit10
+    - id: CMBurnKit10
+    - id: CMTricordrazineAutoInjector
+    - id: RMCPacketGrenadeSmokeFilled
+    - id: CMCrowbar
+    - id: CMMagazineSMGFN9000
+
+# MAC15
+
+- type: entity
+  id: RandomHumanoidCLFMedicMAC
+  name: CLF medic ghost role
+  suffix: Role, mac15
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFMedicMAC
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFMedicMAC
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-medic-name
+    description: rmc-ghost-role-information-clf-medic-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFMedicMAC ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 3
+      RMCSkillSurgery: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFMedicMAC
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightpackFilledCLFMedMAC
+    belt: CMBeltMedicalFilledCLF 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFMedic
+    ears: CMHeadsetCLF
+    eyes: CMGlassesHealthHUDGlasses
+    pocket1: RMCFlashlight
+    pocket2: RMCPouchMagazineLargeFilledMAC
+    shoes: RMCShoesBrown 
+    gloves: ClothingHandsGlovesCombat 
+    head: ClothingHeadHelmetSwat 
+    outerClothing: CMArmorMilitiaHarnessFilledMAC
+    suitstorage: WeaponSMGMAC15 
+  inhand:
+    - CMWebbingFiledMed
+  
+- type: entity
+  parent: CMArmorMilitiaHarness
+  id: CMArmorMilitiaHarnessFilledMAC
+  suffix: Filled, mac15
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazinePistolMAC15
+      amount: 3
+
+- type: entity
+  parent: RMCPouchMagazineLarge
+  id: RMCPouchMagazineLargeFilledMAC
+  suffix: Filled, mac15
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazinePistolMAC15
+      amount: 4
+
+- type: entity
+  parent: CMSatchelLightpack
+  id: CMSatchelLightpackFilledCLFMedMAC
+  suffix: Filled, mac15
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMGrenadeHighExplosive
+    - id: CMTraumaKit10
+    - id: CMBurnKit10
+    - id: CMTricordrazineAutoInjector
+    - id: RMCPacketGrenadeSmokeFilled
+    - id: CMCrowbar
+    - id: CMMagazinePistolMAC15
+
+# UZI
+
+- type: entity
+  id: RandomHumanoidCLFMedicUZI
+  name: CLF medic ghost role
+  suffix: Role, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFMedicUZI
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFMedicUZI
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-medic-name
+    description: rmc-ghost-role-information-clf-medic-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFMedicUZI ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 3
+      RMCSkillSurgery: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFMedicUZI
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightpackFilledCLFMedUZI
+    belt: CMBeltMedicalFilledCLF 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFMedic
+    ears: CMHeadsetCLF
+    eyes: CMGlassesHealthHUDGlasses
+    pocket1: RMCFlashlight
+    pocket2: RMCPouchMagazineLargeFilledUZI
+    shoes: RMCShoesBrown 
+    gloves: ClothingHandsGlovesCombat 
+    head: ClothingHeadHelmetSwat 
+    outerClothing: CMArmorMilitiaHarnessFilledUZI
+    suitstorage: WeaponSMGUZI 
+  inhand:
+    - CMWebbingFiledMed
+  
+- type: entity
+  parent: CMArmorMilitiaHarness
+  id: CMArmorMilitiaHarnessFilledUZI
+  suffix: Filled, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazinePistolUZI
+      amount: 3
+
+- type: entity
+  parent: RMCPouchMagazineLarge
+  id: RMCPouchMagazineLargeFilledUZI
+  suffix: Filled, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazinePistolUZI
+      amount: 4
+
+- type: entity
+  parent: CMSatchelLightpack
+  id: CMSatchelLightpackFilledCLFMedUZI
+  suffix: Filled, uzi
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMGrenadeHighExplosive
+    - id: CMTraumaKit10
+    - id: CMBurnKit10
+    - id: CMTricordrazineAutoInjector
+    - id: RMCPacketGrenadeSmokeFilled
+    - id: CMCrowbar
+    - id: CMMagazinePistolUZI
+
+# MP27
+
+- type: entity
+  id: RandomHumanoidCLFMedicMP27
+  name: CLF medic ghost role
+  suffix: Role, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/clf_uniform.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: CLFMedicMP27
+
+- type: randomHumanoidSettings
+  parent: EventHumanoid
+  id: CLFMedicMP27
+  components:
+  - type: GhostRole
+    name: rmc-ghost-role-information-clf-medic-name
+    description: rmc-ghost-role-information-clf-medic-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Loadout
+    prototypes: [ CMGearCLFMedicMP27 ]
+  - type: Skills
+    skills:
+      RMCSkillEndurance: 5
+      RMCSkillMedical: 3
+      RMCSkillSurgery: 2
+      RMCSkillJtac: 1
+      RMCSkillVehicles: 1
+      RMCSkillFirearms: 1
+      RMCSkillPowerLoader: 1  
+
+- type: startingGear
+  id: CMGearCLFMedicMP27
+  equipment:
+    jumpsuit: CMUniformCLF
+    back: CMSatchelLightpackFilledCLFMedMP27
+    belt: CMBeltMedicalFilledCLF 
+    mask: CMKnifeCLF
+    id: CMIDCardCLFMedic
+    ears: CMHeadsetCLF
+    eyes: CMGlassesHealthHUDGlasses
+    pocket1: RMCFlashlight
+    pocket2: RMCPouchMagazineLargeFilledMP27
+    shoes: RMCShoesBrown 
+    gloves: ClothingHandsGlovesCombat 
+    head: ClothingHeadHelmetSwat 
+    outerClothing: CMArmorMilitiaHauberkFilledMP27
+    suitstorage: WeaponSMGMP27
+  inhand:
+    - CMWebbingFiledMed
+  
+- type: entity
+  parent: CMArmorMilitiaHauberk
+  id: CMArmorMilitiaHauberkFilledMP27
+  suffix: Filled, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGMP2720
+      amount: 3
+
+- type: entity
+  parent: RMCPouchMagazineLarge
+  id: RMCPouchMagazineLargeFilledMP27
+  suffix: Filled, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMMagazineSMGMP2720
+      amount: 4
+
+- type: entity
+  parent: CMSatchelLightpack
+  id: CMSatchelLightpackFilledCLFMedMP27
+  suffix: Filled, mp27
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: CMGrenadeHighExplosive
+    - id: CMTraumaKit10
+    - id: CMBurnKit10
+    - id: CMTricordrazineAutoInjector
+    - id: RMCPacketGrenadeSmokeFilled
+    - id: CMCrowbar
+    - id: CMMagazineSMGMP2720
+      
+- type: job #idk how it will work
+  parent: CMJobBase
+  id: CLFMedic
+  name: cm-job-name-clf-medic
+  description: cm-job-description-clf-medic
+  playTimeTracker: CMJobCLFMedic
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: CMSquad
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsEngineering
+    time: 18000 # 5 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsMedical
+    time: 18000 # 5 hours
+  icon: "CMJobIconCLFMed"
+  joinNotifyCrew: false
+  supervisors: cm-job-supervisors-clf-medic
+  accessGroups:
+  - Colonist
