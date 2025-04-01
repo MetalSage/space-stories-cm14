@@ -59,7 +59,7 @@
     - CMXenoCrusher
     - CMXenoPraetorian
   - type: CMArmor
-    armor: 25
+    xenoArmor: 25
     explosionArmor: 45
   - type: XenoClaws
     clawType: Sharp
