@@ -6,3 +6,5 @@
     sprite: _Stories/Objects/Clothing/OuterClothing/killa.rsi
   - type: Clothing
     sprite: _Stories/Objects/Clothing/OuterClothing/killa.rsi
+  - type: ItemCamouflage
+    camouflageVariations: {}

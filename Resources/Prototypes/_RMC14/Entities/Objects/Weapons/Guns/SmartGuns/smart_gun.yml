@@ -148,8 +148,8 @@
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-rail: -0.1875, 0.125
-  - type: ItemCamouflage
-    camouflageVariations: {} # Stories-Parity
+  - type: ItemCamouflage # Stories-Parity
+    camouflageVariations: {}
   - type: WieldedCrosshair
     rsi:
       sprite: _RMC14/Interface/MousePointer/smartgun_mouse.rsi

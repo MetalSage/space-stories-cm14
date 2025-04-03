@@ -50,3 +50,5 @@ ent-STClothingNeckDrone = дрон
     .desc = { ent-ClothingNeckBase.desc }
 ent-STClothingNeckFlag = флаг
     .desc = { ent-ClothingNeckBase.desc }
+ent-STClothingNeckTurret = туррель
+    .desc = { ent-ClothingNeckBase.desc }

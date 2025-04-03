@@ -32,6 +32,7 @@
         RMCSkillVehicles: 1
     - type: JobPrefix
       prefix: cm-job-prefix-correspondent # TODO RMC14 combat correspondent is CC
+    - type: CMVendorUser # Stories-Partners
   hasIcon: false
 
 - type: startingGear

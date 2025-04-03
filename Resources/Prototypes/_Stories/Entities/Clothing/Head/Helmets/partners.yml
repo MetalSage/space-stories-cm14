@@ -6,6 +6,8 @@
     sprite: _Stories/Objects/Clothing/Head/killa.rsi
   - type: Clothing
     sprite: _Stories/Objects/Clothing/Head/killa.rsi
+  - type: ItemCamouflage
+    camouflageVariations: {}
 
 - type: entity
   parent: ArmorHelmetM10
@@ -15,6 +17,8 @@
     sprite: _Stories/Objects/Clothing/Head/killa1.rsi
   - type: Clothing
     sprite: _Stories/Objects/Clothing/Head/killa1.rsi
+  - type: ItemCamouflage
+    camouflageVariations: {}
 
 - type: entity
   parent: ArmorHelmetM10
@@ -24,3 +28,5 @@
     sprite: _Stories/Objects/Clothing/Head/killa2.rsi
   - type: Clothing
     sprite: _Stories/Objects/Clothing/Head/killa2.rsi
+  - type: ItemCamouflage
+    camouflageVariations: {}
