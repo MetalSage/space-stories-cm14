@@ -27,46 +27,19 @@ public sealed class WeaponSkinSystem : EntitySystem
         SubscribeLocalEvent<WeaponSkinComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SprayPaintComponent, AfterInteractEvent>(OnSprayAfterInteract);
         SubscribeLocalEvent<WeaponSkinComponent, WeaponSkinAppliedEvent>(OnSkinAppliedDoAfter);
-        SubscribeLocalEvent<SprayPaintComponent, GetVerbsEvent<InteractionVerb>>(AddSprayVerb);
     }
 
     private void OnMapInit(Entity<WeaponSkinComponent> ent, ref MapInitEvent args)
     {
-        if (_net.IsServer)
-        {
-            var skinToApply = ent.Comp.DefaultSkin;
-            if (!ent.Comp.Skins.ContainsKey(skinToApply))
-                skinToApply = ent.Comp.Skins.Keys.FirstOrDefault();
-
-            if (skinToApply != null)
-                _appearance.SetData(ent.Owner, WeaponSkinVisuals.Skin, skinToApply);
-        }
-    }
-
-    private void AddSprayVerb(Entity<SprayPaintComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
-    {
-        if (!args.CanInteract || !args.CanAccess || args.Using == null || args.Target == EntityUid.Invalid)
+        if (_net.IsClient)
             return;
 
-        if (args.Using != ent.Owner)
-            return;
+        var skinToApply = ent.Comp.DefaultSkin;
+        if (!ent.Comp.Skins.ContainsKey(skinToApply))
+            skinToApply = ent.Comp.Skins.Keys.FirstOrDefault();
 
-        if (!HasComp<WeaponSkinComponent>(args.Target))
-            return;
-
-        var sprayComp = ent.Comp;
-        var target = args.Target;
-        var user = args.User;
-
-        InteractionVerb verb = new()
-        {
-            Text = Loc.GetString("stories-verb-spray-paint-apply", ("target", target)),
-            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/paint.svg.192dpi.png")),
-            Act = () => TryStartApplySkin(user, ent.Owner, target, sprayComp),
-            Priority = 1
-        };
-
-        args.Verbs.Add(verb);
+        if (skinToApply != null)
+            _appearance.SetData(ent.Owner, WeaponSkinVisuals.Skin, skinToApply);
     }
 
     private void OnSprayAfterInteract(Entity<SprayPaintComponent> ent, ref AfterInteractEvent args)
@@ -84,13 +57,13 @@ public sealed class WeaponSkinSystem : EntitySystem
 
         if (!HasComp<GunComponent>(targetUid) && !HasComp<MeleeWeaponComponent>(targetUid))
         {
-            _popup.PopupClient(Loc.GetString("stories-spray-paint-target-not-weapon", ("target", (targetUid, EntityManager))), user, user);
+            _popup.PopupClient(Loc.GetString("stories-spray-paint-target-not-weapon"), user, user);
             return;
         }
 
         if (!weaponSkinComp.Skins.ContainsKey(sprayComp.SkinId))
         {
-            _popup.PopupClient(Loc.GetString("stories-spray-paint-skin-not-supported", ("target", (targetUid, EntityManager)), ("skin", sprayComp.SkinId)), user, user);
+            _popup.PopupClient(Loc.GetString("stories-spray-paint-skin-not-supported", ("skin", sprayComp.SkinId)), user, user);
             return;
         }
 
@@ -98,12 +71,12 @@ public sealed class WeaponSkinSystem : EntitySystem
         {
             if (currentSkinId != weaponSkinComp.DefaultSkin || !HasComp<ItemCamouflageComponent>(targetUid))
             {
-                _popup.PopupClient(Loc.GetString("stories-spray-paint-skin-already-applied", ("target", (targetUid, EntityManager)), ("skin", sprayComp.SkinId)), user, user);
+                _popup.PopupClient(Loc.GetString("stories-spray-paint-skin-already-applied", ("skin", sprayComp.SkinId)), user, user);
                 return;
             }
         }
 
-        _popup.PopupClient(Loc.GetString("stories-spray-paint-start", ("target", (targetUid, EntityManager))), user, user);
+        _popup.PopupClient(Loc.GetString("stories-spray-paint-start"), user, user);
 
         var netUser = GetNetEntity(user);
         var netTarget = GetNetEntity(targetUid);
@@ -140,9 +113,9 @@ public sealed class WeaponSkinSystem : EntitySystem
             return;
 
         _appearance.SetData(targetUid.Value, WeaponSkinVisuals.Skin, args.SkinId);
-        _popup.PopupClient(Loc.GetString("stories-spray-paint-finish", ("target", (targetUid.Value, EntityManager))), userUid.Value);
+        _popup.PopupClient(Loc.GetString("stories-spray-paint-finish"), userUid.Value);
 
-        if (!_net.IsServer)
+        if (_net.IsClient)
             return;
 
         RemComp<ItemCamouflageComponent>(targetUid.Value);
