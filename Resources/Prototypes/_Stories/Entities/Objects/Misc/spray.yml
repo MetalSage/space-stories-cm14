@@ -2,14 +2,13 @@
   id: STSprayBloodyParty
   parent: BaseItem
   name: spray (Bloody Party - M42A2)
-  suffix: BloodyParty
+  suffix: Bloody Party
   components:
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: bloodyParty
-  - type: Tag
-    tags:
-    - STSprayBloodyParty
+  - type: SprayPaint
+    skinId: BloodyParty
 
 - type: entity
   id: STSprayPhoenix
@@ -20,22 +19,20 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: phoenix
-  - type: Tag
-    tags:
-    - STSprayPhoenix
+  - type: SprayPaint
+    skinId: Phoenix
 
 - type: entity
   id: STSprayAngelOfDeath
   parent: BaseItem
   name: spray (Angel Of Death - M4SPR)
-  suffix: AngelOfDeath
+  suffix: Angel Of Death
   components:
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: angelOfDeath
-  - type: Tag
-    tags:
-    - STSprayAngelOfDeath
+  - type: SprayPaint
+    skinId: AngelOfDeath
 
 - type: entity
   id: STSprayToxic
@@ -46,22 +43,20 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: toxic
-  - type: Tag
-    tags:
-    - STSprayToxic
+  - type: SprayPaint
+    skinId: Toxic
 
 - type: entity
   id: STSprayGoldRush
   parent: BaseItem
   name: spray (Gold Rush - M44)
-  suffix: GoldRush
+  suffix: Gold Rush
   components:
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: goldRush
-  - type: Tag
-    tags:
-    - STSprayGoldRush
+  - type: SprayPaint
+    skinId: GoldRush
 
 - type: entity
   id: STSprayFate
@@ -72,9 +67,8 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: fate
-  - type: Tag
-    tags:
-    - STSprayFate
+  - type: SprayPaint
+    skinId: Fate
 
 - type: entity
   id: STSprayRust
@@ -85,9 +79,8 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: rust
-  - type: Tag
-    tags:
-    - STSprayRust
+  - type: SprayPaint
+    skinId: Rust
 
 - type: entity
   id: STSprayAmethyst
@@ -98,9 +91,8 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: amethyst
-  - type: Tag
-    tags:
-    - STSprayAmethyst
+  - type: SprayPaint
+    skinId: Amethyst
 
 - type: entity
   id: STSprayPhantom
@@ -111,9 +103,8 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: phantom
-  - type: Tag
-    tags:
-    - STSprayPhantom
+  - type: SprayPaint
+    skinId: Phantom
 
 - type: entity
   id: STSprayImpulse
@@ -124,9 +115,8 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: impulse
-  - type: Tag
-    tags:
-    - STSprayImpulse
+  - type: SprayPaint
+    skinId: Impulse
 
 - type: entity
   id: STSprayBombardier
@@ -137,9 +127,8 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: bombardier
-  - type: Tag
-    tags:
-    - STSprayBombardier
+  - type: SprayPaint
+    skinId: Bombardier
 
 - type: entity
   id: STSprayTiger
@@ -150,22 +139,20 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: tiger
-  - type: Tag
-    tags:
-    - STSprayTiger
+  - type: SprayPaint
+    skinId: Tiger
 
 - type: entity
   id: STSprayGoldenAutumn
   parent: BaseItem
   name: spray (GoldenAutumn - XM43E1)
-  suffix: GoldenAutumn
+  suffix: Golden Autumn
   components:
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: goldenAutumn
-  - type: Tag
-    tags:
-    - STSprayGoldenAutumn
+  - type: SprayPaint
+    skinId: GoldenAutumn
 
 - type: entity
   id: STSprayPacifist
@@ -176,6 +163,41 @@
   - type: Sprite
     sprite: _Stories/Objects/Misc/sprays.rsi
     state: pacifist
-  - type: Tag
-    tags:
-    - STSprayPacifist
+  - type: SprayPaint
+    skinId: Pacifist
+
+- type: entity
+  id: STSprayBlazing
+  parent: BaseItem
+  name: spray (Blazing - M240)
+  suffix: Blazing
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Misc/sprays.rsi
+    state: blazing
+  - type: SprayPaint
+    skinId: Blazing
+
+- type: entity
+  id: STSprayGoldenHardened
+  parent: BaseItem
+  name: spray (Hardened - M240)
+  suffix: Hardened
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Misc/sprays.rsi
+    state: hardened
+  - type: SprayPaint
+    skinId: Hardened
+
+- type: entity
+  id: STSprayMagma
+  parent: BaseItem
+  name: spray (Magma - M240)
+  suffix: Magma
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Misc/sprays.rsi
+    state: magma
+  - type: SprayPaint
+    skinId: Magma

@@ -28,7 +28,7 @@
     mayTransfer: false
     insertDelay: 6.0
     cycleDelay: 6.0
-    # proto: RMCRocket84mm Stories-Partners
+    proto: RMCRocket84mm
     soundInsert:
       path: /Audio/_RMC14/Weapons/Guns/Cock/m5_ammo.ogg
   - type: GunUserWhitelist
@@ -69,13 +69,15 @@
   - type: IgnorePredictionHide
   - type: GunIgnorePrediction
   - type: AssistedReloadWeapon
-  - type: Construction # Stories-Partners
-    graph: WeaponLauncherM5ATLConstruct
-    node: start
   - type: WieldedCrosshair
     rsi:
       sprite: _RMC14/Interface/MousePointer/explosive_mouse.rsi
       state: all
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/RocketLaunchers/m5spec.rsi
+      Bombardier: /Textures/_Stories/Objects/Weapons/RocketLaunchers/m5spec.rsi
 
 # 84mm HE
 - type: entity

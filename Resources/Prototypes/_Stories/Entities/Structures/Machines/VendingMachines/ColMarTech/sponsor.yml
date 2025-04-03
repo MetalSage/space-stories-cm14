@@ -39,6 +39,12 @@
         points: 10
       - id: STSprayTiger
         points: 7
+      - id: STSprayBlazing
+        points: 2
+      - id: STSprayGoldenHardened
+        points: 4
+      - id: STSprayMagma
+        points: 3
     - name: Плащи
       entries:
       - id: STClothingNeckCloakAceOfHeart
@@ -95,6 +101,8 @@
         points: 3
       - id: STClothingNeckFlag
         points: 4
+      - id: STClothingNeckTurret
+        points: 5
 
 - type: entity
   parent: ColMarTechBase

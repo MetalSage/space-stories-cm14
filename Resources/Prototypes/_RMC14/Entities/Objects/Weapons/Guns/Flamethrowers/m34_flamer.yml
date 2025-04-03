@@ -82,6 +82,13 @@
         enum.RMCIgniterVisuals.Ignited:
           True: { visible: true }
           False: { visible: false }
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Flamethrower/m34.rsi
+      Blazing: /Textures/_Stories/Objects/Weapons/Guns/Flamethrower/m240_blazing.rsi
+      Hardened: /Textures/_Stories/Objects/Weapons/Guns/Flamethrower/m240_hardened.rsi
+      Magma: /Textures/_Stories/Objects/Weapons/Guns/Flamethrower/m240_magma.rsi
 
 - type: entity
   parent: BaseItem

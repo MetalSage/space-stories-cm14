@@ -31,7 +31,7 @@
           - CMMagazinePistolM1984
           - RMCMagazinePistolM1984AP
           - RMCMagazinePistolM1984Rubber
-        # startingItem: CMMagazinePistolM1984 Stories-Partners
+        startingItem: CMMagazinePistolM1984
   - type: AttachableHolder
     slots:
       rmc-aslot-barrel:
@@ -57,9 +57,11 @@
       rmc-aslot-barrel: 0.71, 0.095
       rmc-aslot-rail: -0.065, 0.125
       rmc-aslot-underbarrel: 0.312, -0.25
-  - type: Construction # Stories-Partners
-    graph: PistolM1984Construct
-    node: start
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Pistols/m1984.rsi
+      Rust: /Textures/_Stories/Objects/Weapons/Pistols/m1984.rsi
 
 - type: Tag
   id: CMWeaponPistolM1984

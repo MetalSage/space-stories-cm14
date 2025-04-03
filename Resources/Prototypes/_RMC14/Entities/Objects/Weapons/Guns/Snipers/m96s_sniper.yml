@@ -15,6 +15,7 @@
     - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
       state: sniperbarrel
       offset: 0.715, 0.025
+      map: [ "barrel" ]
   - type: Item
     size: Large
   - type: Clothing
@@ -75,9 +76,6 @@
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-underbarrel: 0.21875, -0.343
-  - type: Construction # Stories-Partners
-    graph: SniperRifleM96SConstruct
-    node: start
   - type: ItemCamouflage
     camouflageVariations:
       Jungle: _RMC14/Objects/Weapons/Guns/Snipers/m96s/jungle.rsi
@@ -85,6 +83,15 @@
       Snow: _RMC14/Objects/Weapons/Guns/Snipers/m96s/snow.rsi
       Classic: _RMC14/Objects/Weapons/Guns/Snipers/m96s/classic.rsi
       Urban: _RMC14/Objects/Weapons/Guns/Snipers/m96s/urban.rsi
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Snipers/m96s/desert.rsi
+      Tiger: /Textures/_Stories/Objects/Weapons/Snipers/m96s.rsi
+    layers:
+      barrel:
+        Default: sniperbarrel
+        Tiger: sniperbarrel_t
 
 - type: entity
   parent: BaseMagazineRifle
@@ -92,8 +99,6 @@
   name: "M96S marksman magazine (10x28mm)"
   description: A magazine of sniper rifle ammo. An aimed shot with it will deal significant damage.
   components:
-  - type: Item
-    size: Normal
   - type: Tag
     tags:
     - CMMagazineSniper
@@ -235,7 +240,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 82.5 # TODO RMC14 55 when aimed shot is in please someone help im dying
+        Piercing: 55
   - type: CMArmorPiercing
     amount: 0
   - type: AimedShotEffect

@@ -79,9 +79,11 @@
     aimedShotCooldown: 4.5
   - type: TargetingLaser
   - type: RMCFocusedShooting
-  - type: Construction # Stories-Partners
-    graph: XM43E1SniperRifleConstruct
-    node: start
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_Stories/Objects/Weapons/Guns/Snipers/xm43e1.rsi
+      GoldenAutumn: /Textures/_Stories/Objects/Weapons/Snipers/xm43e1.rsi
 
 - type: entity
   parent: CMMagazineSniperM96S

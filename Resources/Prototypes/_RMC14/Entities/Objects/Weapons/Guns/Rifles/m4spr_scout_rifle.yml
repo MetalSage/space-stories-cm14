@@ -84,7 +84,7 @@
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/l42_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/l42_unload.ogg
         priority: 2
-        # startingItem: RMCMagazineRifleM4SPRA19 # Stories-Partners
+        startingItem: RMCMagazineRifleM4SPRA19
         whitelist:
           tags:
           - CMMagazineRifleM4SPR
@@ -93,9 +93,6 @@
           - RMCMagazineRifleM4SPRA19
           - RMCMagazineRifleM4SPRA19Impact
           - RMCMagazineRifleM4SPRA19Incendiary
-  - type: Construction # Stories-Partners
-    graph: RifleM4SPRCustomConstruct
-    node: start
   - type: ItemCamouflage
     camouflageVariations:
       Jungle: _RMC14/Objects/Weapons/Guns/Rifles/m4spr_custom/jungle.rsi
@@ -110,6 +107,15 @@
         Snow: s_m4spr_custom_barrel
         Classic: c_m4spr_custom_barrel
         Urban: u_m4spr_custom_barrel
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Rifles/m4spr_custom/desert.rsi
+      AngelOfDeath: /Textures/_Stories/Objects/Weapons/Rifles/m4spr_custom.rsi
+    layers:
+      barrel:
+        Default: d_m4spr_custom_barrel
+        AngelOfDeath: m4spr_custom_barrel_aod
 
 - type: entity
   parent: CMMagazineRifleBase

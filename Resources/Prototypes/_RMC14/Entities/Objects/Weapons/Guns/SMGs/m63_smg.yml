@@ -100,9 +100,6 @@
     tags:
     - RMCWeaponSMG
     - RMCWeaponSMGM63
-  - type: Construction # Stories-Partners
-    graph: SMGM63Construct
-    node: start
   - type: ItemCamouflage
     camouflageVariations:
       Jungle: _RMC14/Objects/Weapons/Guns/SMGs/m63/jungle.rsi
@@ -110,14 +107,17 @@
       Classic: _RMC14/Objects/Weapons/Guns/SMGs/m63/classic.rsi
       Snow: _RMC14/Objects/Weapons/Guns/SMGs/m63/snow.rsi
       Urban: _RMC14/Objects/Weapons/Guns/SMGs/m63/urban.rsi
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/SMGs/m63/desert.rsi
+      Toxic: /Textures/_Stories/Objects/Weapons/SMGs/m63.rsi
 
 - type: entity
   parent: CMMagazineRifleBase
   id: CMMagazineSMGM63
   name: "M63 HV magazine (10x20mm)"
   components:
-  - type: Item
-    size: Normal
   - type: Tag
     tags:
     - CMMagazineSmg

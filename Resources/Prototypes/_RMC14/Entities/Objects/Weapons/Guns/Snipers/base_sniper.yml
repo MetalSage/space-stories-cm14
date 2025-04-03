@@ -20,10 +20,10 @@
   - type: GunDualWielding
     weaponGroup: Rifle
   - type: GunPointBlank
-  # - type: WieldedCrosshair Stories-Fixes
-  #   rsi:
-  #     sprite: _RMC14/Interface/MousePointer/sniper_mouse.rsi
-  #     state: all
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/sniper_mouse.rsi
+      state: all
   - type: AimedShot
   - type: TargetingLaser
   - type: GunToggleableLaser

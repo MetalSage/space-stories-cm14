@@ -98,9 +98,6 @@
       rmc-aslot-rail: 0.00, 0.1875
       rmc-aslot-stock: -0.78125, 0.00
       rmc-aslot-underbarrel: 0.375, -0.3125
-  - type: Construction # Stories-Partners
-    graph: RifleM54CConstruct
-    node: start
   - type: ItemCamouflage # Stoires-Parity
     camouflageVariations:
       Jungle: _Stories/Objects/Weapons/Guns/Rifles/m41a/jungle.rsi
@@ -111,6 +108,11 @@
   - type: Tag
     tags:
     - RMCWeaponRifleM54CMK2
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_Stories/Objects/Weapons/Guns/Rifles/m41a/desert.rsi
+      Phoenix: /Textures/_Stories/Objects/Weapons/Rifles/m54c.rsi
 
 - type: entity
   parent: CMMagazineRifleBase

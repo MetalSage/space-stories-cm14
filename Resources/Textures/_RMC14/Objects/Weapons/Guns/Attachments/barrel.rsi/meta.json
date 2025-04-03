@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/7e38a6a747b200b3854888a3eacd18b47992d066/icons/obj/items/weapons/guns/attachments/barrel.dmi",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/7e38a6a747b200b3854888a3eacd18b47992d066/icons/obj/items/weapons/guns/attachments/barrel.dmi, Taken/modified from cm-ss13 at https://github.com/cmss13-devs/cmss13/commit/9ff2072285d9668073b5bd2219d2ebac0f5281b5, https://github.com/cmss13-devs/cmss13/tree/07455a5f3986b610e7ccdc3096cad1d914fca2f9/icons/obj/items/weapons/guns/guns_by_map/classic, m4spr_custom_barrel taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/4047c473d4d2f3e58e68efdec5aa95d0676bf4d1/icons/obj/items/weapons/guns/attachments/barrel.dmi, The Angel of Death skin was made by RustedTim(discord:Helloo4771) for SpaceStories Colonial Marines(Server SS14), Taken/modified from cm-ss13 at https://github.com/cmss13-devs/cmss13/commit/9ff2072285d9668073b5bd2219d2ebac0f5281b5, https://github.com/cmss13-devs/cmss13/blob/07455a5f3986b610e7ccdc3096cad1d914fca2f9/icons/obj/items/weapons/guns/guns_by_map/desert/guns_obj.dmi, m4spr_barrel taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/4047c473d4d2f3e58e68efdec5aa95d0676bf4d1/icons/obj/items/weapons/guns/attachments/barrel.dmi, The Angel of Death skin was made by RustedTim(discord:Helloo4771) for SpaceStories Colonial Marines(Server SS14), https://github.com/cmss13-devs/cmss13/blob/4047c473d4d2f3e58e68efdec5aa95d0676bf4d1/icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi, https://github.com/cmss13-devs/cmss13/blob/7cb618c69b75873f3ce893022fe08d1233b3152d/icons/obj/items/weapons/guns/guns_by_map/desert/guns_lefthand.dmi, https://github.com/cmss13-devs/cmss13/blob/7cb618c69b75873f3ce893022fe08d1233b3152d/icons/obj/items/weapons/guns/guns_by_map/desert/guns_righthand.dmi, https://github.com/cmss13-devs/cmss13/blob/fc1e2e5e26259773038df05c5405cb80441b8cc2/icons/obj/items/weapons/guns/guns_by_map/desert/suit_slot.dmi, https://github.com/cmss13-devs/cmss13/blob/7cb618c69b75873f3ce893022fe08d1233b3152d/icons/obj/items/weapons/guns/guns_by_map/desert/back.dmi, modified by DrSmugleaf, Sniperbarrel taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/4047c473d4d2f3e58e68efdec5aa95d0676bf4d1/icons/obj/items/weapons/guns/attachments/barrel.dmi, The Tiger skin was made by RustedTim(discord:Helloo4771) for SpaceStories Colonial Marines(Server SS14)",
   "size": {
     "x": 32,
     "y": 32
@@ -226,6 +226,15 @@
     },
     {
       "name": "pmc_sniperbarrel"
+    },
+    {
+      "name": "m4spr_custom_barrel_aod"
+    },
+    {
+      "name": "m4spr_barrel_aod"
+    },
+    {
+      "name": "sniperbarrel_t"
     }
   ]
 }

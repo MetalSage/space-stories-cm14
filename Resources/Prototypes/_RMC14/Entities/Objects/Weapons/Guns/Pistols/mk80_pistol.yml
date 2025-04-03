@@ -46,7 +46,7 @@
         whitelist:
           tags:
           - CMMagazinePistolMK80
-        # startingItem: CMMagazinePistolMK80 Stories-Partners
+        startingItem: CMMagazinePistolMK80
   - type: AttachableHolder
     slots:
       rmc-aslot-barrel:
@@ -77,9 +77,11 @@
     tags:
     - Sidearm
     - RMCMK80
-  - type: Construction # Stories-Partners
-    graph: PistolMK80Construct
-    node: start
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Pistols/mk80.rsi
+      Amethyst: /Textures/_Stories/Objects/Weapons/Pistols/mk80.rsi
 
 - type: entity
   parent: CMBaseMagazinePistol

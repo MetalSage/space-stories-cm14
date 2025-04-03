@@ -205,3 +205,11 @@
   components:
   - type: Sprite
     sprite: _Stories/Objects/Clothing/Cloak/Misc/flag.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckTurret
+  name: turret
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Misc/turret.rsi
