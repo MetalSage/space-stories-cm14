@@ -12,7 +12,9 @@ public sealed class AutoClimbableSystem : EntitySystem
     [Dependency] private readonly ClimbSystem _climb = default!;
     [Dependency] private readonly INetConfigurationManager _netConfig = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    
     private bool _collide = false;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -45,6 +47,7 @@ public sealed class AutoClimbableSystem : EntitySystem
         _climb.TryClimb(args.OtherEntity, args.OtherEntity, args.OurEntity, out _, climb);
 
     }
+
     private void EndCollide(Entity<ClimbableComponent> ent, ref EndCollideEvent args)
     {
         _collide = false;

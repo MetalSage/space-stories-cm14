@@ -7,6 +7,7 @@ using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._RMC14.Scaling;
 using Content.Shared._RMC14.Tools;
 using Content.Shared._RMC14.Webbing;
+using Content.Shared._Stories.BypassSpecLimit;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -367,7 +368,8 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
                 int vendCount = 0;
 
                 // If the vendor's own value is at or above the capacity, immediately return.
-                if (thisSpecVendor.GlobalSharedVends.TryGetValue(args.Entry, out vendCount) && vendCount >= section.SharedSpecLimit)
+                if (!HasComp<BypassSpecLimitComponent>(actor) && // Stories-FoxtrotSpec-Limit-Bypass
+                    thisSpecVendor.GlobalSharedVends.TryGetValue(args.Entry, out vendCount) && vendCount >= section.SharedSpecLimit)
                 {
                     // FIXME
                     ResetChoices();
@@ -412,7 +414,8 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
 
                 thisSpecVendor.GlobalSharedVends[args.Entry] = maxAmongVendors;
 
-                if (thisSpecVendor.GlobalSharedVends[args.Entry] >= section.SharedSpecLimit)
+                if (!HasComp<BypassSpecLimitComponent>(actor) && // Stories-FoxtrotSpec-Limit-Bypass
+                    thisSpecVendor.GlobalSharedVends[args.Entry] >= section.SharedSpecLimit)
                 {
                     ResetChoices();
                     _popup.PopupEntity(Loc.GetString("cm-vending-machine-specialist-max"), vendor.Owner, actor);
