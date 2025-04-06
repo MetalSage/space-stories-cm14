@@ -422,7 +422,7 @@ cm-chatsan-word-truba = труба
 cm-chatsan-word-truby = трубу
 cm-chatsan-replacement-truba = РПГ
 
-#Ксено
+# xeno
 cm-chatsan-word-bio-scan = биоскан
 cm-chatsan-replacement-bio-scan = глазная башня носителей
 cm-chatsan-word-chel = чел
