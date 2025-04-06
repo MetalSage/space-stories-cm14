@@ -38,6 +38,13 @@
       prefix: cm-job-prefix-researcher
     - type: CMVendorUser # Stories-Partners
     - type: ViewIntelObjectives
+    - type: TacticalMapIcon
+      icon:
+        sprite: _RMC14/Interface/map_blips.rsi
+        state: researcher
+      background:
+        sprite: _RMC14/Interface/map_blips.rsi
+        state: background_shipside
   hidden: true # TODO RMC14
 
 - type: startingGear

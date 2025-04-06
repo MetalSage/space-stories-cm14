@@ -1,7 +1,5 @@
 ent-RMCCrateBase = ящик
     .desc = Прямоугольный металлический ящик.
-ent-RMCCrateLarge = большой ящик
-    .desc = Тяжелый деревянный ящик.
 ent-RMCCrateWeldable = { ent-RMCCrateBase }
     .desc = { ent-RMCCrateBase.desc }
 ent-RMCCrateAlpha = ящик отряда альфа

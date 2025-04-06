@@ -46,7 +46,7 @@
   - type: BoxerPunch
     damage:
       types:
-        Blunt: 30
+        Blunt: 20
   - type: BoxerJab
   - type: BoxerUppercut
   - type: XenoPlasma
@@ -59,7 +59,7 @@
     - CMXenoCrusher
     - CMXenoPraetorian
   - type: CMArmor
-    armor: 25
+    xenoArmor: 25
     explosionArmor: 45
   - type: XenoClaws
     clawType: Sharp

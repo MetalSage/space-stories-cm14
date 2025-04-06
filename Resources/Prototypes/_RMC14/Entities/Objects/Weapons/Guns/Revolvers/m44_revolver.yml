@@ -19,7 +19,7 @@
       - RMCSpeedLoaderM44
       - RMCSpeedLoader44Marksman
       - RMCCartridgeRevolver44
-    proto: null # Stories-Partners
+    proto: RMCCartridgeRevolver44
     capacity: 7
     chambers: [ True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null ]
@@ -57,9 +57,11 @@
       rmc-aslot-rail: 0, 0.185
       rmc-aslot-stock: -0.59375, 0.09375
       rmc-aslot-underbarrel: 0.375, -0.155
-  - type: Construction # Stories-Partners
-    graph: RevolverM44Construct
-    node: start
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Pistols/m44.rsi
+      GoldRush: /Textures/_Stories/Objects/Weapons/Pistols/m44.rsi
 
 - type: entity
   parent: RMCWeaponRevolverM44

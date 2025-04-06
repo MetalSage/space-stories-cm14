@@ -13,7 +13,8 @@
     state: solaris_interior
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: solaris_interior
 
 - type: entity
@@ -30,7 +31,8 @@
     state: solaris_interior_r
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: solaris_interior_r
 
 - type: entity
@@ -47,7 +49,8 @@
     state: solaris_interior_h
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: solaris_interior_r
 
 - type: entity
@@ -64,7 +67,8 @@
     state: solaris_rock
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: solaris_rock
 
 - type: entity

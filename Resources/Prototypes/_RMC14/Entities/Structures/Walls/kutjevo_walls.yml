@@ -12,7 +12,8 @@
     state: rock
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: rock
 
 - type: entity
@@ -27,7 +28,8 @@
     state: rock_border
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: rock_border
 
 
@@ -45,7 +47,8 @@
     state: colony
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: colony
 
 - type: entity
@@ -62,7 +65,8 @@
     state: colonyr
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: colonyr
 
 - type: entity
@@ -79,5 +83,6 @@
     state: colonyh
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: colonyr

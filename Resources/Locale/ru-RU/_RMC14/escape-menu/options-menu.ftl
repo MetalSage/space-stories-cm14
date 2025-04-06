@@ -18,3 +18,4 @@ ui-options-function-cm-holster-primary = Снять с хранения
 ui-options-function-cm-holster-secondary = Снять с хранения вторичный
 ui-options-function-cm-holster-tertiary = Снять с хранения третичный
 ui-options-function-cm-holster-quaternary = Снять с хранения четвертичный
+ui-options-function-rmc-interact-with-other-hand = Интеракция с другой рукой

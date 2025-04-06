@@ -14,6 +14,7 @@
     useDelay: 4
     deselectOnMiss: false
   - type: XenoOffensiveAction
+  - type: ActionBlockIfResting
 
 - type: entity
   parent: ActionXenoBase
@@ -30,6 +31,7 @@
     range: 3
     useDelay: 4
     deselectOnMiss: false
+  - type: ActionBlockIfResting
 
 - type: entity
   parent: ActionXenoBase
@@ -46,3 +48,4 @@
     range: 2
     useDelay: 15
     deselectOnMiss: false
+  - type: ActionBlockIfResting

@@ -16,8 +16,6 @@ public sealed class SharedBoxerKOSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAuraSystem _aura = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly XenoSystem _xeno = default!;
-    [Dependency] private readonly SharedActionsSystem _action = default!;
 
     private readonly List<EntityUid> _trackersToRemove = new();
 
@@ -33,14 +31,22 @@ public sealed class SharedBoxerKOSystem : EntitySystem
         tracker.Count = Math.Min(tracker.Count + koPoint, comp.MaxKO);
         tracker.Last = time;
         recently.Trackers[target] = tracker;
-        comp.AuraColor = GetAuraColor(tracker.Count, comp.MaxKO);
+        comp.AuraColor = GetAuraColor(tracker.Count);
 
         if (comp.AuraColor.HasValue)
-            _aura.GiveAura(ent, comp.AuraColor.Value, comp.AuraDuration);
+            _aura.GiveAura(ent, comp.AuraColor.Value, comp.AuraDuration, 1);
 
         if (tracker.Count >= comp.MaxKO)
-            _popup.PopupPredicted(Loc.GetString("stories-xeno-boxer-can-use-titanic-uppercut"), ent, null, PopupType.LargeCaution);
+            _popup.PopupPredicted(Loc.GetString("stories-xeno-boxer-can-use-titanic-uppercut"), null, ent, ent, PopupType.LargeCaution);
 
+        Dirty(ent, recently);
+    }
+    public void ResetTracker(EntityUid ent, XenoBoxerKORecentlyComponent recently)
+    {
+        RemCompDeferred<AuraComponent>(ent);
+        RemCompDeferred<XenoBoxerKORecentlyComponent>(ent);
+        _popup.PopupPredicted(Loc.GetString("stories-xeno-boxer-reset-ko"), ent, null, PopupType.MediumCaution);
+        recently.Trackers.Clear();
         Dirty(ent, recently);
     }
 
@@ -73,7 +79,7 @@ public sealed class SharedBoxerKOSystem : EntitySystem
         }
     }
 
-    private Color? GetAuraColor(float count, float maxKO)
+    private Color? GetAuraColor(float count)
     {
         if (count >= 10)
             return Color.Red;

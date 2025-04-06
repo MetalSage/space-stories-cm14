@@ -1,5 +1,8 @@
 ent-CMShellShotgunBuckshot = горсть дробовых патронов
     .desc = { ent-CMShellShotgunBase.desc }
+ent-CMShellShotgunBuckshot1 = { ent-CMShellShotgunBuckshot }
+    .suffix = 1
+    .desc = { ent-CMShellShotgunBuckshot.desc }
 ent-RMCShellShotgunBreaching = горсть разрывной дроби
     .desc = { ent-CMShellShotgunBase.desc }
 ent-CMShellShotgunSlugs = горсть пуль

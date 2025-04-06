@@ -17,6 +17,9 @@
   - !type:DepartmentTimeRequirement
     department: CMAuxiliarySupport
     time: 32000 # 10 hours # Stories-RolePlay
+  - !type:DepartmentTimeRequirement
+    department: CMCommand
+    time: 16000 # 5 hours # Stories-RolePlay
   ranks:
     RMCRankCaptain:
     - !type:RoleTimeRequirement
@@ -65,6 +68,13 @@
     - type: CMVendorUser # Stories-Partners
     - type: ViewIntelObjectives
     - type: CommandAccent
+    - type: TacticalMapIcon
+      icon:
+        sprite: _RMC14/Interface/map_blips.rsi
+        state: aso
+      background:
+        sprite: _RMC14/Interface/map_blips.rsi
+        state: background_command
 
 - type: startingGear
   id: CMGearASO

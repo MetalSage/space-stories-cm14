@@ -1,0 +1,12 @@
+ent-CMLockerFridge = холодильник
+    .desc = { ent-CMLockerBase.desc }
+ent-RMCLockerFridgeGroceries = продукты
+    .desc = { ent-CMLockerFridge.desc }
+ent-RMCLockerFridgeOrganic = органические
+    .desc = { ent-CMLockerFridge.desc }
+ent-RMCLockerFridgeDry = сухие
+    .desc = { ent-CMLockerFridge.desc }
+ent-RMCLockerFridgeMeat = мясо
+    .desc = { ent-CMLockerFridge.desc }
+ent-RMCLockerFridgeFish = рыба
+    .desc = { ent-CMLockerFridge.desc }

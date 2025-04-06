@@ -66,7 +66,6 @@
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
-    - map: [ "neck" ]
     - map: [ "back" ]
     - map: [ "id" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -74,6 +73,7 @@
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
     - map: [ "mask" ]
+    - map: [ "neck" ]
     - map: [ "head" ]
     - map: [ "enum.SquadArmorLayers.Helmet" ]
     - map: [ "enum.VisorVisualLayers.Base" ]
@@ -94,4 +94,16 @@
       state: hooked
       visible: false
     - map: [ "enum.NewPlayerLayers.Layer" ]
+      visible: false
+    - map: [ "focused" ]
+      sprite: _RMC14/Interface/xeno_hud.rsi
+      state: hudeye
+      visible: false
+    - map: [ "targetedDirection" ]
+      sprite: _RMC14/Effects/targeted.rsi
+      state: sniper_lockon_direction
+      visible: false
+    - map: [ "targetedDirectionIntense" ]
+      sprite: _RMC14/Effects/targeted.rsi
+      state: sniper_lockon_intense_direction
       visible: false

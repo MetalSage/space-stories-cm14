@@ -1,0 +1,15 @@
+ent-RMCMapInsertLV624Armory = Оружейная
+    .suffix = Вставка LV624
+    .desc = { ent-RMCMapInsertBase.desc }
+ent-RMCMapInsertLV624Gym = Тренажерный Зал
+    .suffix = Вставка LV624
+    .desc = { ent-RMCMapInsertBase.desc }
+ent-RMCMapInsertLV624NexusCenter = Нексус Забаррикадированый
+    .suffix = Вставка LV624
+    .desc = { ent-RMCMapInsertBase.desc }
+ent-RMCMapInsertLV624SandtempleSE = Песчаный Храм LZ1
+    .suffix = Вставка LV624
+    .desc = { ent-RMCMapInsertBase.desc }
+ent-RMCMapInsertLV624SandtempleJungle = Храм Джунглей
+    .suffix = Вставка LV624
+    .desc = { ent-RMCMapInsertBase.desc }

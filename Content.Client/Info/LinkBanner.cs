@@ -59,14 +59,6 @@ namespace Content.Client.Info
             roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
             buttons.AddChild(roadmapButton);
 
-            var sponsorButton = new Button
-            {
-                Text = Loc.GetString("rmc-ui-patreon"),
-                StyleClasses = { StyleBase.ButtonOrange }
-            };
-            sponsorButton.OnPressed += _ => uriOpener.OpenUri(_cfg.GetCVar(CCVars.InfoLinksPatreon));
-            buttons.AddChild(sponsorButton);
-
             void AddInfoButton(string loc, CVarDef<string> cVar)
             {
                 var button = new Button { Text = Loc.GetString(loc) };

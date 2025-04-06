@@ -1,3 +1,5 @@
+ent-CMBaseWindowIndestructible = { ent-CMBaseStructureCorrodible }
+    .desc = { ent-CMBaseStructureCorrodible.desc }
 ent-RMCWindowFrameReinforcedAlmayer = { ent-RMCBaseWindowFrame }
     .desc = { ent-RMCBaseWindowFrame.desc }
 ent-RMCWindowFrameReinforcedWhite = { ent-RMCBaseWindowFrame }

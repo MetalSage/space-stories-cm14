@@ -58,9 +58,14 @@ public sealed class BoxerJabSystem : EntitySystem
         }
 
         _koSystem.UpdateKOTracker(xeno, koComp, args.Target, comp.KOIncrease);
+
+        if (!TryComp<XenoBoxerKORecentlyComponent>(xeno, out var recently))
+            return;
+        var tracker = recently.Trackers.GetValueOrDefault(args.Target);
+
         foreach (var (actionId, action) in _action.GetActions(xeno))
         {
-            if (action.BaseEvent is BoxerPunchActionEvent)
+            if (action.BaseEvent is BoxerPunchActionEvent && tracker.Count != koComp.MaxKO)
                 _action.SetCooldown(actionId, comp.Cooldown);
         }
     }

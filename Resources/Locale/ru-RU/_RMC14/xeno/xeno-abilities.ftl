@@ -23,6 +23,7 @@ cm-xeno-cant-build-in-self = Вы не можете строить сооруж�
 rmc-xeno-construction-unique-exists = Уже есть построенный { $choice }!
 rmc-xeno-construction-hive-limit-met = Мы достигли предела { $choice }, который может поддерживать улей!
 rmc-xeno-construction-requires-hive-weeds = { $choice } должен быть построен на сорняках улья!
+rmc-xeno-construction-requires-hive-core = Улей должен иметь ядро улья для создания { $choice }!
 rmc-xeno-construction-requires-space = Нам нужно больше открытого пространства, чтобы строить здесь
 cm-xeno-unique-exists = Здесь уже построено { $choice }!
 rmc-xeno-cant-build-new-yet = Мы пока не можем создать новый { $choice }!
@@ -292,3 +293,10 @@ cm-xeno-plasma-other-max-zero = У { $target } нет плазмы!
 cm-xeno-watch = Смотреть Ксено
 # Shield
 cm-xeno-shield-expire = Действия щита прекратилось!
+# Boost On Hit
+rmc-xeno-boost-on-hit-boost = Я не умру!
+rmc-xeno-boost-on-hit-recharge = Вы чувствуете, как ваши железы наполняются адреналином!
+# Deploy Acid Mine
+rmc-xeno-deploy-acid-mine-empowered = Мы используем наши резервы, чтобы подготовить более мощные мины.
+# Acid Insight
+rmc-xeno-insight-empowered = Вы достаточно хорошо изучили свою добычу, чтобы схватить ее в следующих ловушках.

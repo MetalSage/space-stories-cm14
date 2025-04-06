@@ -1,0 +1,12 @@
+ent-BaseXenoBoilerTrap = смоляная ловушка
+    .desc = Это похоже на ловушку для ловли высоких носителей.
+ent-XenoBoilerTrap = { ent-BaseXenoBoilerTrap }
+    .desc = { ent-BaseXenoBoilerTrap.desc }
+ent-EmpoweredXenoBoilerTrap = { ent-BaseXenoBoilerTrap }
+    .desc = { ent-BaseXenoBoilerTrap.desc }
+ent-BaseXenoAcidMine = ???
+    .desc = { "" }
+ent-XenoAcidMine = { ent-BaseXenoAcidMine }
+    .desc = { ent-BaseXenoAcidMine.desc }
+ent-EmpoweredXenoAcidMine = { ent-BaseXenoAcidMine }
+    .desc = { ent-BaseXenoAcidMine.desc }

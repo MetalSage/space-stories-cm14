@@ -4,13 +4,13 @@
   id: WeaponLauncherM83
   description: A heavy, 6-shot grenade launcher used by the UNMC for area denial and big explosions.
   components:
-  - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
+  - type: Sprite # Stories-Partiy
+    sprite: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
     layers:
     - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
-  - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
+  - type: Clothing # Stories-Partiy
+    sprite: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
   - type: RMCSelectiveFire
     baseFireRate: 0.3125
   - type: GunUserWhitelist
@@ -19,7 +19,7 @@
       - GrenadeSpecWhitelist
   - type: BallisticAmmoProvider
     capacity: 6
-    # proto: CMGrenadeHighExplosive Stories-Partners
+    proto: CMGrenadeHighExplosive
   - type: Corrodible
     isCorrodible: false
   - type: ExplosionResistance
@@ -33,13 +33,15 @@
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-rail: 0.0, 0.185
-  - type: Construction # Stories-Partners
-    graph: WeaponLauncherM83Construct
-    node: start
-  - type: ItemCamouflage
+  - type: ItemCamouflage # Stories-Partiy
     camouflageVariations:
-      Jungle: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83/jungle.rsi
-      Desert: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
-      Snow: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83/snow.rsi
-      Classic: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83/classic.rsi
-      Urban: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83/urban.rsi
+      Jungle: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/jungle.rsi
+      Desert: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
+      Snow: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/snow.rsi
+      Classic: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/classic.rsi
+      Urban: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/urban.rsi
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
+      Pacifist: /Textures/_Stories/Objects/Weapons/GrenadeLaunchers/m83.rsi

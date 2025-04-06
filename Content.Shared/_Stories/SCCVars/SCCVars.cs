@@ -101,4 +101,14 @@ public sealed class SCCVars
     /// </summary>
     public static readonly CVarDef<float> HijackVolume =
         CVarDef.Create("rmc.hijack_volume", 1.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+    * Auto Climbing
+    */
+
+    /// <summary>
+    /// Controls whether the player will automatically climb entities with the AutoClimbable component
+    /// </summary>
+    public static readonly CVarDef<bool> AutoClimb =
+        CVarDef.Create("rmc.autoclimb", true, CVar.ARCHIVE | CVar.CLIENT | CVar.REPLICATED);
 }

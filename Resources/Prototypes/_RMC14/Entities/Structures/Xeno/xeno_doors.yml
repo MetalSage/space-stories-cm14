@@ -63,7 +63,8 @@
     key: walls
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
-    keyTwo: walls
+    additionalKeys:
+    - walls
     mode: NoSprite
   - type: AccessReader
     access: [["CMAccessXeno"]]
@@ -128,7 +129,8 @@
         acts: ["Destruction"]
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
-    keyTwo: walls
+    additionalKeys:
+    - walls
     mode: NoSprite
   - type: MeleeReceivedMultiplier
     xenoDamage:

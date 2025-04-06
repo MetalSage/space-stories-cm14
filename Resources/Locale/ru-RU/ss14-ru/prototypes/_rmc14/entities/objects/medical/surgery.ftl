@@ -44,3 +44,6 @@ ent-CMAutopsy = автоматическая система вскрытия
     .desc = Возвращает удовольствие от вскрытия.  Этот маленький гаджет выполняет полное вскрытие любой странной формы жизни, которую вы нашли, примерно за 30 секунд.
 ent-CMBoneGel = костный гель
     .desc = { ent-CMBaseToolSurgery.desc }
+ent-RMCBoneGelEmpty = { ent-CMBoneGel }
+    .suffix = Пустой
+    .desc = { ent-CMBoneGel.desc }

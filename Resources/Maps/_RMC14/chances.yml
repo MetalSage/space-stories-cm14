@@ -125,6 +125,9 @@ entities:
     - type: PhysicsMap
     - type: GridTree
     - type: MovedGrids
+    - type: MapLight
+    - type: Roof
+      data: {}
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -87548,7 +87551,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -73.5,-20.5
       parent: 1
-- proto: RMCBarricadeSmallWire
+- proto: RMCPropGroundWire
   entities:
   - uid: 25434
     components:
@@ -97922,6 +97925,8 @@ entities:
       parent: 1
   - uid: 23825
     components:
+    - type: MetaData
+      name: Hydro North
     - type: Transform
       pos: -25.5,-38.5
       parent: 1

@@ -27,10 +27,10 @@ namespace Content.Client.IconSmoothing
         public string? SmoothKey { get; private set; }
 
         /// <summary>
-        ///     We will smooth with other objects with the same key.
+        ///     Additional keys to smooth with.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField("keyTwo")]
-        public string? SmoothKeyTwo { get; private set; }
+        [DataField]
+        public List<string> AdditionalKeys = new();
 
         /// <summary>
         ///     Prepended to the RSI state.

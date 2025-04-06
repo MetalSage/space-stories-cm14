@@ -1,5 +1,6 @@
-﻿using Content.Shared._RMC14.Xenonids.Parasite;
+using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -36,7 +37,7 @@ public sealed class TackleSystem : EntitySystem
 
         SubscribeLocalEvent<TackledRecentlyByComponent, ComponentRemove>(OnByRemove);
         SubscribeLocalEvent<TackledRecentlyByComponent, EntityTerminatingEvent>(OnByRemove);
-        SubscribeLocalEvent<TackledRecentlyByComponent, KnockedDownEvent>(OnByKnockedDown);
+        SubscribeLocalEvent<TackledRecentlyByComponent, DownedEvent>(OnDowned);
 
         SubscribeLocalEvent<TackledRecentlyComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<TackledRecentlyComponent, EntityTerminatingEvent>(OnRemove);
@@ -92,17 +93,7 @@ public sealed class TackleSystem : EntitySystem
         else
         {
             _adminLog.Add(LogType.RMCTackle, $"{ToPrettyString(user)} tackled down {ToPrettyString(target)}.");
-
-            if (_net.IsServer)
-            {
-                _popup.PopupEntity(Loc.GetString("cm-tackle-success-self", ("target", target.Owner)), user, user);
-
-                if (TryComp<StandingStateComponent>(target.Owner, out var standingState))
-                {
-                    if (!standingState.Standing)
-                        _audio.PlayPvs(standingState.DownSound, target);
-                }
-            }
+            _popup.PopupEntity(Loc.GetString("cm-tackle-success-self", ("target", target.Owner)), user, user);
 
             foreach (var session in Filter.PvsExcept(user).Recipients)
             {
@@ -116,11 +107,7 @@ public sealed class TackleSystem : EntitySystem
             }
         }
 
-        if (TryComp(user, out CombatModeComponent? combatMode))
-        {
-            var audioParams = AudioParams.Default.WithVariation(0.025f).WithVolume(5f);
-            _audio.PlayPredicted(combatMode.DisarmSuccessSound, target, user, audioParams);
-        }
+        _audio.PlayPvs(target.Comp.KnockdownSound, target);
 
         if (!HasComp<VictimInfectedComponent>(target))
         {
@@ -148,9 +135,10 @@ public sealed class TackleSystem : EntitySystem
         }
     }
 
-    private void OnByKnockedDown(Entity<TackledRecentlyByComponent> ent, ref KnockedDownEvent args)
+    private void OnDowned(Entity<TackledRecentlyByComponent> ent, ref DownedEvent args)
     {
-        RemCompDeferred<TackledRecentlyByComponent>(ent);
+        if (!HasComp<VictimInfectedComponent>(ent) && (!TryComp<BuckleComponent>(ent, out var buckle) || !buckle.Buckled))
+            RemCompDeferred<TackledRecentlyByComponent>(ent);
     }
 
     private void OnRemove<T>(Entity<TackledRecentlyComponent> ent, ref T args)

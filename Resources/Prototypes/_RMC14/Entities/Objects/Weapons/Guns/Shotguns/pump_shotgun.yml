@@ -71,9 +71,6 @@
       rmc-aslot-rail: -0.025, 0.125
       rmc-aslot-stock: -0.375, -0.029
       rmc-aslot-underbarrel: 0.25, -0.31
-  - type: Construction # Stories-Partners
-    graph: ShotgunM42A2Construct
-    node: start
   - type: ItemCamouflage
     camouflageVariations:
       Jungle: _RMC14/Objects/Weapons/Guns/Shotguns/m42a2/jungle.rsi
@@ -85,6 +82,11 @@
     tags:
     - RMCWeaponShotgunM42A2
     - RMCWeaponShotgun
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Shotguns/m42a2/desert.rsi
+      BloodyParty: /Textures/_Stories/Objects/Weapons/Shotguns/m42a2.rsi
 
 - type: Tag
   id: RMCWeaponShotgunM42A2

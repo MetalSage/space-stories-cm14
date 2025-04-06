@@ -1,15 +1,12 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/e9ea97c1887d8b144e3e66d959a428c79f58c196/icons/mob/xenos/fruits.dmi",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/e9ea97c1887d8b144e3e66d959a428c79f58c196/icons/mob/xenos/fruits.dmi, new sprites by Alekshhh",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
-    {
-      "name": "fruit_spent"
-    },
     {
       "name": "fruit_lesser_immature",
       "delays": [
@@ -182,6 +179,24 @@
           0.5
         ]
       ]
+    },
+    {
+      "name": "fruit_lesser_spent"
+    },
+    {
+      "name": "fruit_greater_spent"
+    },
+    {
+      "name": "fruit_spore_spent"
+    },
+    {
+      "name": "fruit_unstable_spent"
+    },
+    {
+      "name": "fruit_speed_spent"
+    },
+    {
+      "name": "fruit_plasma_spent"
     }
   ]
 }

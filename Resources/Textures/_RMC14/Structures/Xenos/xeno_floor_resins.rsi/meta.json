@@ -8,17 +8,7 @@
   },
   "states": [
     {
-      "name": "fast",
-      "delays": [
-        [
-          3.5,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
+      "name": "fast"
     },
     {
       "name": "sticky"
