@@ -15,6 +15,58 @@
     cm-chatsan-word-deltoids: cm-chatsan-replacement-deltoids
     cm-chatsan-word-xenoid: cm-chatsan-replacement-xenoid
     cm-chatsan-word-xenoids: cm-chatsan-replacement-xenoids
+    cm-chatsan-word-soso: cm-chatsan-replacement-soso
+    cm-chatsan-word-coco: cm-chatsan-replacement-soso
+    cm-chatsan-word-soso1: cm-chatsan-replacement-soso1
+    cm-chatsan-word-pupik: cm-chatsan-replacement-pupik
+    cm-chatsan-word-please: cm-chatsan-replacement-please
+    cm-chatsan-word-gg: cm-chatsan-replacement-gg
+    cm-chatsan-word-goida: cm-chatsan-replacement-goida
+    cm-chatsan-word-gol: cm-chatsan-replacement-gol
+    cm-chatsan-word-lol: cm-chatsan-replacement-lol
+    cm-chatsan-word-sigma: cm-chatsan-replacement-sigma
+    cm-chatsan-word-eshkere: cm-chatsan-replacement-eshkere
+    cm-chatsan-word-ehkere: cm-chatsan-replacement-eshkere
+    cm-chatsan-word-noob: cm-chatsan-replacement-noob
+    cm-chatsan-word-dushnila: cm-chatsan-replacement-dushnila
+    cm-chatsan-word-dushni: cm-chatsan-replacement-dushni
+    cm-chatsan-word-pret: cm-chatsan-replacement-pret
+    cm-chatsan-word-prets: cm-chatsan-replacements-pret
+    cm-chatsan-word-prety: cm-chatsan-replacement-prety
+    cm-chatsan-word-queen: cm-chatsan-replacement-queen
+    cm-chatsan-word-queens: cm-chatsan-replacement-queens
+    cm-chatsan-word-queeny: cm-chatsan-replacement-queeny
+    cm-chatsan-word-nigga: cm-chatsan-replacement-nigga
+    cm-chatsan-word-nigger: cm-chatsan-replacement-nigga
+    cm-chatsan-word-pidor: cm-chatsan-replacement-pidor
+    cm-chatsan-word-pidoras: cm-chatsan-replacement-pidor
+    cm-chatsan-word-pedik: cm-chatsan-replacement-pidor
+    cm-chatsan-word-daun: cm-chatsan-replacement-daun
+    cm-chatsan-word-autist: cm-chatsan-replacement-daun
+    cm-chatsan-word-incel: cm-chatsan-replacement-incel
+    cm-chatsan-word-crus: cm-chatsan-replacement-crush
+    cm-chatsan-word-crush: cm-chatsan-replacement-crush
+    cm-chatsan-word-crusha: cm-chatsan-replacement-crush
+    cm-chatsan-word-crushak: cm-chatsan-replacement-crush
+    cm-chatsan-word-crushi: cm-chatsan-replacement-crushi
+    cm-chatsan-word-crushy: cm-chatsan-replacement-crushy
+    cm-chatsan-word-larva: cm-chatsan-replacement-larva
+    cm-chatsan-word-larvy: cm-chatsan-replacement-larvy
+    cm-chatsan-word-larvas: cm-chatsan-replacement-larvas
+    cm-chatsan-word-hz: cm-chatsan-replacement-hz
+    cm-chatsan-word-uvi: cm-chatsan-replacement-uvi
+    cm-chatsan-word-stun: cm-chatsan-replacement-stun
+    cm-chatsan-word-zastunil: cm-chatsan-replacement-stun
+    cm-chatsan-word-zastunim: cm-chatsan-replacement-zastunim
+    cm-chatsan-word-stunim: cm-chatsan-replacement-zastunim
+    cm-chatsan-word-stunil: cm-chatsan-replacement-stunil
+    cm-chatsan-word-gib: cm-chatsan-replacement-gib
+    cm-chatsan-word-gibbed: cm-chatsan-replacement-gib
+    cm-chatsan-word-geni: cm-chatsan-replacement-geni
+    cm-chatsan-word-solo: cm-chatsan-replacement-solo
+    cm-chatsan-word-sps: cm-chatsan-replacement-sps
+    cm-chatsan-word-heal: cm-chatsan-replacement-heal
+    cm-chatsan-word-healti: cm-chatsan-replacement-healti
 
 - type: accent
   id: CMChatSanitizeMarine
@@ -22,6 +74,14 @@
     cm-chatsan-word-admin-marine: cm-chatsan-replacement-admin-marine
     cm-chatsan-word-admins-marine: cm-chatsan-replacement-admins-marine
     cm-chatsan-word-eorg-marine: cm-chatsan-replacement-eorg-marine
+    cm-chatsan-word-surv1: cm-chatsan-replacement-surv1
+    cm-chatsan-word-surv2: cm-chatsan-replacement-surv1
+    cm-chatsan-word-surv3: cm-chatsan-replacement-surv3
+    cm-chatsan-word-fob: cm-chatsan-replacement-fob
+    cm-chatsan-word-foba: cm-chatsan-replacement-foba
+    cm-chatsan-word-foby: cm-chatsan-replacement-foby
+    cm-chatsan-word-truba: cm-chatsan-replacement-truba
+    cm-chatsan-word-truby: cm-chatsan-replacement-truba
 
 - type: accent
   id: CMChatSanitizeXeno
@@ -154,4 +214,22 @@
     cm-chatsan-word-survivors: cm-chatsan-replacement-survivors
     cm-chatsan-word-surv: cm-chatsan-replacement-surv
     cm-chatsan-word-survs: cm-chatsan-replacement-survs
+    cm-chatsan-word-bio-scan: cm-chatsan-replacement-bio-scan
+    cm-chatsan-word-chel: cm-chatsan-replacement-chel
+    cm-chatsan-word-chelik: cm-chatsan-replacement-chel
+    cm-chatsan-word-surv4: cm-chatsan-replacement-surv4
+    cm-chatsan-word-surv5: cm-chatsan-replacement-surv4
+    cm-chatsan-word-surv6: cm-chatsan-replacement-surv4
+    cm-chatsan-word-surv7: cm-chatsan-replacement-surv7
+    cm-chatsan-word-surv8: cm-chatsan-replacement-surv7
+    cm-chatsan-word-turki: cm-chatsan-replacement-turki
+    cm-chatsan-word-turka: cm-chatsan-replacement-turki
+    cm-chatsan-word-fobs: cm-chatsan-replacement-fobs
+    cm-chatsan-word-pobs: cm-chatsan-replacement-fobs
+    cm-chatsan-word-truba1: cm-chatsan-replacement-truba1
+    cm-chatsan-word-truby2: cm-chatsan-replacement-truba1
+    cm-chatsan-word-comms1: cm-chatsan-replacement-comms
+    cm-chatsan-word-comms2: cm-chatsan-replacement-comms
+    cm-chatsan-word-lz1: cm-chatsan-replacement-lz1
+    cm-chatsan-word-lz2: cm-chatsan-replacement-lz2
 
