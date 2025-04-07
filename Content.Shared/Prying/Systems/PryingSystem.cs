@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._RMC14.Evacuation;
 using Content.Shared._RMC14.Prying;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
@@ -98,6 +99,9 @@ public sealed class PryingSystem : EntitySystem
             // If we have reached this point we want the event that caused this
             // to be marked as handled.
             return true;
+
+        if (TryComp<EvacuationDoorComponent>(target, out var state) && state.Locked) //Stories-Fix
+            return false; //Stories-Fix
 
         if (HasComp<RMCUserPryingRequiresToolComponent>(user))
         {
