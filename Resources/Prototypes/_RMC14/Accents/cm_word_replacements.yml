@@ -19,6 +19,8 @@
     cm-chatsan-word-coco: cm-chatsan-replacement-soso
     cm-chatsan-word-soso1: cm-chatsan-replacement-soso1
     cm-chatsan-word-pupik: cm-chatsan-replacement-pupik
+    cm-chatsan-word-pj: cm-chatsan-replacement-please
+    cm-chatsan-word-pjlst: cm-chatsan-replacement-please
     cm-chatsan-word-please: cm-chatsan-replacement-please
     cm-chatsan-word-gg: cm-chatsan-replacement-gg
     cm-chatsan-word-goida: cm-chatsan-replacement-goida
@@ -67,6 +69,8 @@
     cm-chatsan-word-sps: cm-chatsan-replacement-sps
     cm-chatsan-word-heal: cm-chatsan-replacement-heal
     cm-chatsan-word-healti: cm-chatsan-replacement-healti
+    cm-chatsan-word-pon: cm-chatsan-replacement-pon
+    cm-chatsan-word-kek: cm-chatsan-replacement-kek
 
 - type: accent
   id: CMChatSanitizeMarine

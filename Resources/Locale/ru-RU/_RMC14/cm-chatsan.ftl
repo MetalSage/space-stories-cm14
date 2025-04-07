@@ -319,6 +319,8 @@ cm-chatsan-replacement-soso = сосать
 cm-chatsan-word-pupik = пупик
 cm-chatsan-replacement-pupik = молодой
 cm-chatsan-word-please = плиз
+cm-chatsan-word-pj = пж
+cm-chatsan-word-pjlst = пжлст
 cm-chatsan-replacement-please = пожалуйста
 cm-chatsan-word-gg = гг
 cm-chatsan-replacement-gg = хорошая битва
@@ -403,6 +405,10 @@ cm-chatsan-word-heal = хил
 cm-chatsan-replacement-heal = лечение
 cm-chatsan-word-healti = хильте
 cm-chatsan-replacement-healti = лечите
+cm-chatsan-word-pon = пон
+cm-chatsan-replacement-pon = понятно
+cm-chatsan-word-kek = кек
+cm-chatsan-replacement-kek = смешно
 
 
 
