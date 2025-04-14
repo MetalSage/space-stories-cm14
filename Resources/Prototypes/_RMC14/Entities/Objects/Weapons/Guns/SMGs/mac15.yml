@@ -75,7 +75,7 @@
           - RMCAttachmentFlashlightGrip
           - RMCAttachmentGyroscopicStabilizer
           - RMCAttachmentLaserSight
-          - RMCAttachmentBipod
+#          - RMCAttachmentBipod # Stories-Fix
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-barrel: 0.84, 0
