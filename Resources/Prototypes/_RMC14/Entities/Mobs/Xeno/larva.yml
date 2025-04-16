@@ -80,6 +80,7 @@
   - type: RMCBuckleOffset
     offset: 0, 0
   - type: AutoClimbBlocked # Stories-AutoClimb
+
 # For surgeries/failed incubations
 - type: entity
   id: RMCXenoEmbryo
