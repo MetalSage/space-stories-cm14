@@ -49,4 +49,3 @@
     useDelay: 15
     deselectOnMiss: false
   - type: ActionBlockIfResting
-  
