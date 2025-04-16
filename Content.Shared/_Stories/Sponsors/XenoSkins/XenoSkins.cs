@@ -1,9 +1,10 @@
 ﻿using Content.Shared.Actions;
+using Content.Shared.DoAfter;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Stories;
+namespace Content.Shared._Stories.Sponsors.XenoSkins;
 
 [Serializable, NetSerializable]
 public enum XenoSkinsUIKey : byte
@@ -29,4 +30,22 @@ public sealed class XenoSkinChangeRSIEvent : EntityEventArgs
         SkinPath = skinPath;
     }
 }
+
+[Serializable, NetSerializable]
+public sealed partial class XenoSkinsDoAfterEvent : DoAfterEvent
+{
+    public readonly ResPath Path;
+    public readonly ProtoId<XenoSkinsPrototype> Proto;
+    public XenoSkinsDoAfterEvent(ResPath path, ProtoId<XenoSkinsPrototype> proto)
+    {
+        Path = path;
+        Proto = proto;
+    }
+
+    public override DoAfterEvent Clone()
+    {
+        return this;
+    }
+}
+
 public sealed partial class XenoOpenSkinsMenuActionEvent : InstantActionEvent;

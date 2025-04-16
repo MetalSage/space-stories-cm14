@@ -4,6 +4,8 @@ using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
+using Content.Shared._Stories.Sponsors.XenoSkins;
 
 namespace Content.Shared._Stories.Sponsors;
 
@@ -37,6 +39,9 @@ public sealed class SponsorInfo
 
     [JsonPropertyName("sponsorPointsAlt")]
     public int SponsorPointsAlt { get; set; } = 0;
+
+    [JsonPropertyName("xenoSkins")]
+    public ProtoId<XenoSkinsPrototype>[] XenoSkins { get; set; } = Array.Empty<ProtoId<XenoSkinsPrototype>>();
 }
 
 
@@ -48,7 +53,7 @@ public sealed class MsgSponsorInfo : NetMessage
     public override MsgGroups MsgGroup => MsgGroups.Command;
 
     public SponsorInfo? Info;
-    
+
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
         var isSponsor = buffer.ReadBoolean();
@@ -67,7 +72,7 @@ public sealed class MsgSponsorInfo : NetMessage
         if (Info == null) return;
         var stream = new MemoryStream();
         serializer.SerializeDirect(stream, Info);
-        buffer.WriteVariableInt32((int) stream.Length);
+        buffer.WriteVariableInt32((int)stream.Length);
         buffer.Write(stream.AsSpan());
     }
 }

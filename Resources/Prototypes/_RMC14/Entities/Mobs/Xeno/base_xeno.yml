@@ -146,7 +146,7 @@
     interfaces:
       enum.XenoEvolutionUIKey.Key:
         type: XenoEvolutionBui
-      enum.XenoSkinsUIKey.Key:
+      enum.XenoSkinsUIKey.Key: # Stories-Xeno-Skins
         type: XenoSkinsBui
       enum.XenoDevolveUIKey.Key:
         type: XenoDevolveBui
@@ -300,6 +300,7 @@
   - type: RMCCanBeFultoned
   - type: CMArmor
   - type: CriticalGraceTime
+  - type: XenoSkins # Stories-Xeno-Skins
 
 - type: entity
   abstract: true

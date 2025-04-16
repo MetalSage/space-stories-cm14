@@ -25,7 +25,6 @@
     - ActionXenoRest
     - ActionXenoWatch
     - ActionXenoHide
-    - STActionXenoSkinsMenu
     hudOffset: -0.1,0.125
     tier: 0
     unlockAt: 0
@@ -78,15 +77,6 @@
   - type: Tag
     tags:
     - RMCXenoLarva
-  - type: UserInterface
-    interfaces:
-      enum.XenoEvolutionUIKey.Key:
-        type: XenoEvolutionBui
-      enum.XenoSkinsUIKey.Key:
-        type: XenoSkinsBui
-  - type: XenoSkins
-    skins:
-    - STQueenRedSkin
 # For surgeries/failed incubations
 - type: entity
   id: RMCXenoEmbryo
