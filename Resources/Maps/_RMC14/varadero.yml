@@ -136,6 +136,9 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
+    - type: MapLight
+    - type: Roof
+      data: {}
     - type: LoadedMap
     - type: MapGrid
       chunks:
@@ -88931,6 +88934,53 @@ entities:
     - type: Transform
       pos: 130.5,107.5
       parent: 1
+- proto: CMMagazinePistolM77AP
+  entities:
+  - uid: 22886
+    components:
+    - type: Transform
+      pos: 118.57099,55.336376
+      parent: 1
+  - uid: 22891
+    components:
+    - type: Transform
+      pos: 118.45684,55.523914
+      parent: 1
+  - uid: 22892
+    components:
+    - type: Transform
+      pos: 118.587296,55.55653
+      parent: 1
+  - uid: 23014
+    components:
+    - type: Transform
+      pos: 118.310074,55.572838
+      parent: 1
+  - uid: 23023
+    components:
+    - type: Transform
+      pos: 118.46499,55.654373
+      parent: 1
+  - uid: 23333
+    components:
+    - type: Transform
+      pos: 118.57915,55.629913
+      parent: 1
+  - uid: 23334
+    components:
+    - type: Transform
+      pos: 118.448685,55.654373
+      parent: 1
+  - uid: 23335
+    components:
+    - type: Transform
+      pos: 118.473145,55.703297
+      parent: 1
+  - uid: 23336
+    components:
+    - type: Transform
+      pos: 118.39161,55.68699
+      parent: 1
 - proto: CMMagazinePistolMK80
   entities:
   - uid: 99
@@ -88982,6 +89032,48 @@ entities:
     components:
     - type: Transform
       pos: 114.28125,55.6875
+      parent: 1
+- proto: CMMagazineRifleM4SPR
+  entities:
+  - uid: 22787
+    components:
+    - type: Transform
+      pos: 78.50513,111.59456
+      parent: 1
+  - uid: 22877
+    components:
+    - type: Transform
+      pos: 78.63558,111.65979
+      parent: 1
+  - uid: 22880
+    components:
+    - type: Transform
+      pos: 78.325745,111.5864
+      parent: 1
+  - uid: 22885
+    components:
+    - type: Transform
+      pos: 78.53774,111.70056
+      parent: 1
+  - uid: 23339
+    components:
+    - type: Transform
+      pos: 94.48884,71.5428
+      parent: 1
+  - uid: 23340
+    components:
+    - type: Transform
+      pos: 91.51681,70.552124
+      parent: 1
+  - uid: 23341
+    components:
+    - type: Transform
+      pos: 89.48653,71.5428
+      parent: 1
+  - uid: 23342
+    components:
+    - type: Transform
+      pos: 94.46438,76.47173
       parent: 1
 - proto: CMMagazineRifleM54C
   entities:
@@ -153702,7 +153794,7 @@ entities:
       pos: 94.5,21.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -14138.216
+      secondsUntilStateChange: -14347.522
       state: Opening
   - uid: 18890
     components:
@@ -164862,6 +164954,13 @@ entities:
     - type: Transform
       pos: 164.5,24.5
       parent: 1
+- proto: RMCBeltHolsterSMG
+  entities:
+  - uid: 23337
+    components:
+    - type: Transform
+      pos: 118.477646,84.4252
+      parent: 1
 - proto: RMCBinoculars
   entities:
   - uid: 22398
@@ -166286,7 +166385,7 @@ entities:
       pos: 73.5,59.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -63832.625
+      secondsUntilStateChange: -64041.93
       state: Opening
   - uid: 20411
     components:
@@ -169590,6 +169689,13 @@ entities:
     - type: Transform
       pos: 138.5,137.5
       parent: 1
+- proto: RMCM276ShotgunShellLoadingRig
+  entities:
+  - uid: 23338
+    components:
+    - type: Transform
+      pos: 66.49673,79.44999
+      parent: 1
 - proto: RMCMagazinePistolHoldout
   entities:
   - uid: 22459
@@ -169905,6 +170011,18 @@ entities:
       name: Техническое обслуживание безопасности
     - type: Transform
       pos: 133.5,78.5
+      parent: 1
+- proto: RMCMaskScarfGray
+  entities:
+  - uid: 23343
+    components:
+    - type: Transform
+      pos: 98.51271,69.45137
+      parent: 1
+  - uid: 23344
+    components:
+    - type: Transform
+      pos: 98.51271,69.51253
       parent: 1
 - proto: RMCMechPowerLoader
   entities:
@@ -174952,10 +175070,12 @@ entities:
     - type: Transform
       pos: 71.5,91.5
       parent: 1
-  - uid: 24457
+- proto: RMCPouchShotgunLarge
+  entities:
+  - uid: 22778
     components:
     - type: Transform
-      pos: 117.5,84.5
+      pos: 117.4992,84.44967
       parent: 1
 - proto: RMCPouchToolsFill
   entities:

@@ -62,5 +62,6 @@ rmc-ui-auto-eject-magazines = Автоматическое извлечение 
 rmc-ui-damage-yourself = Возможность наносить себе повреждения с помощью оружия ближнего боя и огнестрельного оружия
 rmc-tacmap-alert-area = Текущая область: { $area }
 rmc-tacmap-alert-no-area = Неизвесно
+rmc-ui-options-alternate-sprites = Используйте спрайты, не вызывающие трипофобии
 cm-ui-audio-humanoid-voicelines = Воспроизводить голоса
 cm-ui-roadmap = Дорожная карта

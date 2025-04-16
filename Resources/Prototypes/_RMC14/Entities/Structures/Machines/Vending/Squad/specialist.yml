@@ -28,7 +28,11 @@
       #  points: 0
       - id: RMCScoutSpecEquipmentCase
       - id: CMSniperEquipmentCase
-      - id: STSniperAntiMaterielEquipmentCase # Stories-AntiMateriel
+        linkedEntries:
+        - RMCAntiMaterielEquipmentCase
+      - id: RMCAntiMaterielEquipmentCase
+        linkedEntries:
+        - CMSniperEquipmentCase
     - name: Дополнительные Боеприпасы Для Скаутов
       entries:
       - id: RMCMagazineRifleM4SPRA19Impact
@@ -45,7 +49,7 @@
         points: 40
       - id: CMMagazineSniperM96S
         points: 40
-      - id: STMagazineSniperXM43E1AntiMateriel # Stories-AntiMateriel
+      - id: RMCMagazineSniperXM43E1AntiMateriel
         points: 40
     - name: Дополнительные Боеприпасы Для Разрушителей
       entries:

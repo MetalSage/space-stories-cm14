@@ -3,8 +3,9 @@ using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
-using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.Marines.Squads;
+using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Radio;
@@ -100,10 +101,20 @@ public sealed class RadioSystem : EntitySystem
         var name = evt.VoiceName;
         name = FormattedMessage.EscapeText(name);
 
-        var prefix = "";
-        TryComp<JobPrefixComponent>(messageSource, out var jobPrefix);
-        if (jobPrefix?.Prefix != null)
-            prefix += $" ({Loc.GetString(jobPrefix.Prefix)})";
+        if (TryComp(messageSource, out JobPrefixComponent? prefix))
+        {
+            if (TryComp(messageSource, out SquadMemberComponent? member) &&
+                TryComp(member.Squad, out SquadTeamComponent? team) &&
+                team.Radio != null &&
+                team.Radio != channel.ID)
+            {
+                name = $"({Name(member.Squad.Value)} {Loc.GetString(prefix.Prefix)}) {name}";
+            }
+            else
+            {
+                name = $"({Loc.GetString(prefix.Prefix)}) {name}";
+            }
+        }
 
         SpeechVerbPrototype speech;
         if (evt.SpeechVerb != null && _prototype.TryIndex(evt.SpeechVerb, out var evntProto))
@@ -115,12 +126,21 @@ public sealed class RadioSystem : EntitySystem
             ? FormattedMessage.EscapeText(message)
             : message;
 
+        // RMC14 increase font size
+        int radioFontSize = speech.FontSize;
+        if (TryComp<WearingHeadsetComponent>(messageSource, out var wearingHeadset) &&
+            TryComp<HeadsetComponent>(wearingHeadset.Headset, out var headsetComp))
+        {
+            radioFontSize += headsetComp.RadioTextIncrease ?? 0;
+        }
+
+
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
             ("fontType", speech.FontId),
-            ("fontSize", speech.FontSize),
+            ("fontSize", radioFontSize), // RMC14
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("channel", $"\\[{channel.LocalizedName}{prefix}\\]"),
+            ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", name),
             ("message", content));
 

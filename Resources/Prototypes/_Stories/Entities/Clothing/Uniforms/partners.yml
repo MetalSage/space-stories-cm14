@@ -6,6 +6,8 @@
     sprite: _Stories/Objects/Clothing/Uniforms/killa.rsi
   - type: Clothing
     sprite: _Stories/Objects/Clothing/Uniforms/killa.rsi
+  - type: ItemCamouflage
+    camouflageVariations: {}
 
 - type: entity
   parent: CMJumpsuitMarineFormal
@@ -15,3 +17,5 @@
     sprite: _Stories/Objects/Clothing/Uniforms/killa1.rsi
   - type: Clothing
     sprite: _Stories/Objects/Clothing/Uniforms/killa1.rsi
+  - type: ItemCamouflage
+    camouflageVariations: {}

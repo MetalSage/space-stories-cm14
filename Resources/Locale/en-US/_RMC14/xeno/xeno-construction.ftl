@@ -14,6 +14,7 @@ rmc-xeno-construction-no-map-resin-hole = The ground isn't solid
 rmc-xeno-construction-must-have-weeds-resin-hole = Resin holes must be built on weeds.
 rmc-xeno-construction-blocked-resin-hole = There's something built here already.
 rmc-xeno-construction-similar-too-close-resin-hole = There are other resin holes nearby!
+rmc-xeno-construction-dead-body = The body is in the way!
 
 rmc-xeno-construction-structure-destroyed = A {$structureName} has been {$destructionVerb} at {$location}!
 rmc-xeno-construction-resin-hole-destroyed = We sense one of our Hive's {$structureName} traps at {$location} has been {$destructionVerb}!
@@ -85,6 +86,8 @@ rmc-xeno-construction-repair-structure-insufficient-plasma-warn = The {$struct} 
 rmc-xeno-construction-egg-morpher-no-parasites = There are no parasites in the egg morpher!
 rmc-xeno-construction-egg-morpher-attempt-insert-non-parasite = You can't put that in the egg morpher!
 rmc-xeno-construction-egg-morpher-already-full = This egg morpher is already full!
+
+rmc-xeno-egg-morpher-return-self = {CAPITALIZE($parasite)} crawls into the egg morpher.
 
 rmc-xeno-construction-egg-morpher-examine = Sheltering: {$cur_paras}/{$max_paras} parasites.
 

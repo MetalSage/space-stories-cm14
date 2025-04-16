@@ -24,7 +24,8 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: metal
   - type: Construction
     graph: CMGirder
@@ -43,7 +44,8 @@
     state: wall
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -59,7 +61,8 @@
     state: wall
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: wall
 
 # Reinforced
@@ -89,7 +92,8 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: rwall
   - type: Construction
     graph: CMGirder
@@ -124,7 +128,8 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: rwall
 
 - type: entity
@@ -140,7 +145,8 @@
     state: reinforced
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -156,7 +162,8 @@
     state: reinforced
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -172,7 +179,8 @@
     state: reinforced
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: aiwall
 
 # Indestructible
@@ -191,7 +199,8 @@
       - Wall
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: rwall
 
 - type: entity
@@ -207,7 +216,8 @@
     state: hull
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -223,7 +233,8 @@
     state: hull
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -239,7 +250,8 @@
     state: hull
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: aiwall
 
 # TODO RMC14 temp hull, breakable only after hijack
@@ -289,7 +301,8 @@
     state: cavewall
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: cavewall
 
 # Cult
@@ -320,7 +333,8 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: cult
 
 # Wood
@@ -350,7 +364,8 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: wood
 
 # Jungle
@@ -370,7 +385,8 @@
     - Wall
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: jungle_veg
 
 # Elevator
@@ -389,7 +405,8 @@
     - Wall
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: wall
 
 - type: entity
@@ -405,6 +422,143 @@
     state: wall_broke
   - type: Occluder
     enabled: false
+
+# Containment
+
+- type: entity
+  parent: CMBaseWallInvincible
+  id: RMCWallContainment
+  name: cell wall
+  description : A metal wall used to separate rooms and make up the ship
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Walls/containment.rsi
+    state: containment_wall_south
+  - type: Icon
+    sprite: _RMC14/Structures/Walls/containment.rsi
+    state: containment_wall_south
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentCorner
+  components:
+  - type: Sprite
+    state: containment_wall_corner
+  - type: Icon
+    state: containment_wall_corner
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentWest
+  components:
+  - type: Sprite
+    state: containment_wall_w
+  - type: Icon
+    state: containment_wall_w
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentEast
+  components:
+  - type: Sprite
+    state: containment_wall_e
+  - type: Icon
+    state: containment_wall_e
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentNorth
+  components:
+  - type: Sprite
+    state: containment_wall_n
+  - type: Icon
+    state: containment_wall_n
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentConnect1
+  components:
+  - type: Sprite
+    state: containment_wall_connect_e
+  - type: Icon
+    state: containment_wall_connect_e
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentConnect2
+  components:
+  - type: Sprite
+    state: containment_wall_connect3
+  - type: Icon
+    state: containment_wall_connect3
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentConnect3
+  components:
+  - type: Sprite
+    state: containment_wall_connect_w
+  - type: Icon
+    state: containment_wall_connect_w
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentConnect4
+  components:
+  - type: Sprite
+    state: containment_wall_connect_w2
+  - type: Icon
+    state: containment_wall_connect_w2
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentConnect5
+  components:
+  - type: Sprite
+    state: containment_wall_connect_e2
+  - type: Icon
+    state: containment_wall_connect_e2
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentConnect6
+  components:
+  - type: Sprite
+    state: containment_wall_connect_s1
+  - type: Icon
+    state: containment_wall_connect_s1
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentConnect7
+  components:
+  - type: Sprite
+    state: containment_wall_connect_s2
+  - type: Icon
+    state: containment_wall_connect_s2
+
+- type: entity
+  parent: RMCWallContainment
+  id: RMCWallContainmentWindow
+  name: cell window
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Windows/containment.rsi
+    state: containment_window_h
+  - type: Icon
+    sprite: _RMC14/Structures/Windows/containment.rsi
+    state: containment_window_h
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: RMCWallContainmentWindow
+  id: RMCWallContainmentWindow2
+  components:
+  - type: Sprite
+    state: containment_window
+  - type: Icon
+    state: containment_window
 
 # Hunter Walls
 
@@ -424,7 +578,8 @@
     - Wall
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: metal
 
 - type: entity
@@ -440,7 +595,8 @@
     state: metal
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: metal
   - type: Tag
     tags:

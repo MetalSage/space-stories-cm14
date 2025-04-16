@@ -1,6 +1,9 @@
 ent-CMAirlockSecureLockedColony = { ent-CMAirlockSecure }
     .suffix = Колония, Закрытый
     .desc = { ent-CMAirlockSecure.desc }
+ent-CMAirlockSecureLockedCommand = { ent-CMAirlockSecure }
+    .suffix = Командный, Закрытый
+    .desc = { ent-CMAirlockSecure.desc }
 ent-CMAirlockCommandLockedColony = { ent-CMAirlockCommand }
     .suffix = Командный, Колония, Закрытый
     .desc = { ent-CMAirlockCommand.desc }

@@ -340,7 +340,7 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,9,1
+    - 0,0,17,1
     whitelist:
       components:
       - MortarShell
@@ -355,7 +355,7 @@
         components:
         - Gun
     - popup: rmc-storage-limit-max-shells
-      count: 4
+      count: 8
       whitelist:
         components:
         - MortarShell
@@ -588,7 +588,7 @@
       state: mk80
       map: [ "mk80_fill" ]
     - sprite: _RMC14/Objects/Weapons/Guns/gun_underlays.rsi
-      state: b92fs 
+      state: b92fs
       map: [ "b92fs_fill" ]
     - sprite: _RMC14/Objects/Weapons/Guns/gun_underlays.rsi
       state: highpower
@@ -757,6 +757,8 @@
     slots:
     - suitStorage
     - belt
+  - type: Item
+    size: Large
   - type: ContainerContainer
     containers:
       pouch: !type:ContainerSlot

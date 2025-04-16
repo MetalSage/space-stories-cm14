@@ -1,9 +1,0 @@
-- type: entity
-  parent: RMCCrateAmmo
-  id: STCrateMagazineXM43E1
-  name: XM43E1 AntiMateriel Magazine Crate (x5)
-  components:
-  - type: StorageFill
-    contents:
-    - id: STMagazineSniperXM43E1AntiMateriel
-      amount: 5

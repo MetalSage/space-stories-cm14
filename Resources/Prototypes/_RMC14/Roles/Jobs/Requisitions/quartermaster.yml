@@ -54,6 +54,10 @@
     - type: CMVendorUser # Stories-Partners
     - type: ViewIntelObjectives
     - type: CommandAccent
+    - type: TacticalMapIcon
+      icon:
+        sprite: _RMC14/Interface/map_blips.rsi
+        state: cargo
 
 - type: startingGear
   id: CMGearQuartermaster

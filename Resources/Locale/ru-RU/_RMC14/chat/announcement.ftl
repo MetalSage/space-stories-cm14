@@ -36,3 +36,6 @@ rmc-announcement-delta = [color=white][font-size=16][bold]АКТИВИРОВАН
 rmc-announcement-general-quarters = ВНИМАНИЕ! ОБЩАЯ ТРЕВОГА. ВСЕМ ЗАНЯТЬ БОЕВЫЕ ПОЗИЦИИ.
 rmc-announcement-dropship-hijack = Обнаружен незапланированный вылет шаттла из оперативной зоны. Вероятен захват. Автопилот отключен.
 rmc-announcement-dropship-hijack-hive = Королева приказала металлической птице отправиться в металлический улей в небе! Ликуйте!
+rmc-announcement-ares-command = [color=#CECECE][font size=16][bold]ARES v3.2[/bold][/font][/color][color=red][font size=16]
+    
+    { $message }[/font][/color]

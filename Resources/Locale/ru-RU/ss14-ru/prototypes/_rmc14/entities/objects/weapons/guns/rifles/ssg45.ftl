@@ -1,0 +1,12 @@
+ent-WeaponRifleSSG45 = штурмовая винтовка SSG-45
+    .desc = Разработанный компанией Weston-Yamada как современный преемник устаревшей платформы M5, SpezialSturmGewehr предназначен для ведения высокоточного боя на средних и дальних дистанциях. Винтовка выпускается под патрон 7х62 мм, обладает более высокой убойной силой и эффективностью боеприпасов по сравнению с M54C MK2, сохраняя при этом сопоставимые характеристики при ведении боя в ближнем бою. Силы ЧВК Уэстона-Ямады пришли к выводу, что M54C КООНМ все больше и больше не соответствует их оперативным требованиям, особенно при выполнении задач на дальних дистанциях, где точность и огневая мощь имели первостепенное значение. Эта неудовлетворенность побудила отдел исследований и разработок компании Weston-Yamada создать SSG, адаптировав его к специфическим потребностям своих оперативников.
+ent-RMCMagazineRifleSSG45 = магазин SSG45 (7x62 мм)
+    .desc = { ent-CMMagazineRifleBase.desc }
+ent-RMCMagazineRifleSSG45Extended = удлиненный магазин SSG45 (7x62 мм)
+    .desc = { ent-RMCMagazineRifleSSG45.desc }
+ent-RMCMagazineRifleSSG45AP = ББ магазин SSG45 (7x62 мм)
+    .desc = { ent-RMCMagazineRifleSSG45.desc }
+ent-RMCMagazineRifleSSG45HEAP = HEAP магазин SSG45 (7x62 мм)
+    .desc = { ent-RMCMagazineRifleSSG45.desc }
+ent-RMCMagazineRifleSSG45Incend = зажигательный магазин SSG45 (7x62 мм)
+    .desc = { ent-RMCMagazineRifleSSG45.desc }

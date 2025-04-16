@@ -49,7 +49,7 @@
           tags:
           - RMCMagazinePistolM77Rubber
           - CMMagazinePistolM77AP
-        # startingItem: CMMagazinePistolM77AP Stories-Partners
+        startingItem: CMMagazinePistolM77AP
   - type: GunDamageModifier
     multiplier: 1.2
   - type: AttachableHolder
@@ -78,10 +78,12 @@
     offsets:
       rmc-aslot-barrel: 0.625, 0.125
       rmc-aslot-rail: -0.03, 0.185
-      rmc-aslot-underbarrel: 0.31, -0.186
-  - type: Construction # Stories-Partners
-    graph: PistolM77Construct
-    node: start
+      rmc-aslot-underbarrel: 0.25, -0.125
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Pistols/m77.rsi
+      Fate: /Textures/_Stories/Objects/Weapons/Pistols/m77.rsi
 
 - type: entity
   parent: RMCWeaponPistolM77

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   abstract: true
   parent: RMCBaseMeleeWeapon
   id: CMBaseWeaponGun
@@ -39,10 +39,11 @@
   - type: RMCWeaponAccuracy
   - type: GunSkilledAccuracy
   - type: Appearance
-  # - type: WieldedCrosshair Stories-Fixes
-  #   rsi:
-  #     sprite: _RMC14/Interface/MousePointer/pistol_mouse.rsi
-  #     state: all
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/pistol_mouse.rsi
+      state: all
+  - type: InteractionActivateOnClick
 
 - type: entity
   parent: BaseBullet
@@ -55,4 +56,8 @@
     - state: bullet
       shader: unshaded
   - type: BulletholeGenerator
+  - type: RMCBullet
   - type: RMCProjectileAccuracy
+  - type: Projectile
+    soundHit:
+     collection: RMCBallisticHit

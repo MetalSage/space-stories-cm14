@@ -1,0 +1,133 @@
+- type: entity
+  abstract: true
+  id: BaseXenoBoilerTrap
+  name: resin hole
+  description: It looks like a trap for catching tallhosts.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Clickable
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        hard: false
+        layer:
+        - SlipLayer
+        mask:
+        - ItemMask
+  - type: CollisionWake
+    enabled: false
+  - type: Sprite
+    sprite: _Stories/Effects/xeno_boiler_trap.rsi
+    drawdepth: FloorObjects
+    state: trap_boiler
+  - type: RMCXenoBoilerTrap
+  - type: HiveMember
+
+- type: entity
+  parent: BaseXenoBoilerTrap
+  id: XenoBoilerTrap
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RMCXenoBoilerTrap
+    rootDuration: 1.75
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  parent: BaseXenoBoilerTrap
+  id: EmpoweredXenoBoilerTrap
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RMCXenoBoilerTrap
+    rootDuration: 3
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  abstract: true
+  id: BaseXenoAcidMine
+  name: ???
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        hard: false
+        layer:
+        - SlipLayer
+        mask:
+        - ItemMask
+  - type: CollisionWake
+    enabled: false
+  - type: Sprite
+    sprite: _Stories/Effects/xeno_boiler_bombard.rsi
+    drawdepth: Effects
+  - type: RMCXenoAcidMine
+  - type: HiveMember
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: BaseXenoAcidMine
+  id: XenoAcidMine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: boiler_bombard
+  - type: RMCXenoAcidMine
+    damage:
+      types:
+        Heat: 45
+    barricadeDamage:
+      types:
+        Heat: 76.5
+
+- type: entity
+  parent: BaseXenoAcidMine
+  id: EmpoweredXenoAcidMine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: boiler_bombard_danger
+  - type: RMCXenoAcidMine
+    damage:
+      types:
+        Heat: 65.25
+    barricadeDamage:
+      types:
+        Heat: 82.6875
+    add:
+    - type: UserAcided
+      armorPiercing: 40
+      damage:
+        types:
+          Heat: 1
+      duration: 20
+    whitelist:
+      components:
+      - Marine

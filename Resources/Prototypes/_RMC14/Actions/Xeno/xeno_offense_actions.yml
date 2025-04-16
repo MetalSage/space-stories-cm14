@@ -12,7 +12,7 @@
     event: !type:XenoCorrosiveAcidEvent
       acidId: XenoAcidNormal
       plasmaCost: 100
-      time: 225 # seconds or 3.75 minutes
+      time: 50 # seconds
       dps: 8
       expendableLightDps: 2.5
     checkCanInteract: false
@@ -31,7 +31,7 @@
     event: !type:XenoCorrosiveAcidEvent
       acidId: XenoAcidWeak
       plasmaCost: 75
-      time: 562.5 # seconds or 9.375 minutes
+      time: 125 # seconds or 2~ minutes
       dps: 4
       expendableLightDps: 0.3
     checkCanInteract: false
@@ -50,7 +50,7 @@
     event: !type:XenoCorrosiveAcidEvent
       acidId: XenoAcidStrong
       plasmaCost: 125
-      time: 90 # seconds or 1.5 minutes
+      time: 20 # seconds
       dps: 20
       expendableLightDps: 23.4375
     checkCanInteract: false
@@ -71,7 +71,7 @@
       plasmaCost: 0
       energyCost: 100
       applyTimeMultiplier: 0.25
-      time: 90 # seconds or 1.5 minutes
+      time: 20 # seconds
       dps: 20
       expendableLightDps: 23.4375
     checkCanInteract: false
@@ -262,6 +262,23 @@
   - type: ActionBlockIfResting
 
 - type: entity
+  id: ActionXenoAcidShotgun
+  parent: ActionXenoBase
+  name: Acid shotgun (60) # TODO RMC14 proper plasma costs
+  description: Launch a scatter shot of small acid blobs that fire damage enemies akin to spitter/praetorian spit. Targets restrained by traps take 75% increased damage.
+  components:
+  - type: EntityWorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: acid_shotgun
+    event: !type:XenoScatteredSpitActionEvent
+    useDelay: 13
+    range: 15
+    checkCanAccess: false
+  - type: ActionBlockIfResting
+
+- type: entity
   id: ActionXenoSpit
   parent: ActionXenoBase
   name: Xeno Spit (25) # TODO RMC14 proper plasma costs
@@ -307,7 +324,7 @@
       state: spray_acid
     event: !type:XenoSprayAcidActionEvent
     useDelay: 8
-    range: 6
+    range: 15
   - type: ActionBlockIfResting
 
 
@@ -329,7 +346,6 @@
   description: Sprays acid along the ground in a line, covering tiles with it. [color=red]Will coat barricades in acid![/color]
   components:
   - type: WorldTargetAction
-    range: 7
     useDelay: 10
 
 - type: entity
@@ -841,7 +857,7 @@
       sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_tail_lash
     event: !type:XenoTailLashActionEvent
-    range: 15 
+    range: 15
     useDelay: 13
     deselectOnMiss: false
     checkCanAccess: false
@@ -866,3 +882,39 @@
   - type: ActionBlockIfResting
   - type: XenoActionPlasma
     cost: 55
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoDeployTraps
+  name: Deploy Traps (60)
+  description: Deploys a line of temporary resin traps that, when an enemy walks over, stuns them momentarily.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: resin_pit
+    event: !type:RMCXenoDeployTrapsActionEvent
+    useDelay: 20
+    range: 13
+  - type: ActionBlockIfResting
+  - type: XenoActionPlasma
+    cost: 60
+
+- type: entity
+  parent: ActionXenoBase
+  id: ActionXenoDeployAcidMine
+  name: Acid Mine (40)
+  description: Designate a tile in which a 3x3 acid mine will erupt. If anyone is in the 3x3 ranged acid mine, they'll be hit with acid.
+  components:
+  - type: WorldTargetAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: acid_mine
+    event: !type:RMCXenoDeployAcidMineEvent
+    useDelay: 6
+    range: 13
+  - type: ActionBlockIfResting
+  - type: XenoActionPlasma
+    cost: 40

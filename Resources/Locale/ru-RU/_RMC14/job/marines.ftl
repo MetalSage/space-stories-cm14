@@ -29,3 +29,4 @@ cm-job-prefix-combat-tech = КомТех
 CMJobCombatTech = Боевой техник
 rmc-job-name-mortar-operator = Оператор миномета
 rmc-job-name-loader = Заряжающий
+rmc-job-name-spotter = Корректировщик

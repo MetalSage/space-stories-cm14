@@ -39,6 +39,13 @@
     - type: JobPrefix
       prefix: cm-job-prefix-nurse
     - type: CMVendorUser # Stories-Partners
+    - type: TacticalMapIcon
+      icon:
+        sprite: _RMC14/Interface/map_blips.rsi
+        state: nurse
+      background:
+        sprite: _RMC14/Interface/map_blips.rsi
+        state: background_shipside
 
 - type: startingGear
   id: CMGearNurse

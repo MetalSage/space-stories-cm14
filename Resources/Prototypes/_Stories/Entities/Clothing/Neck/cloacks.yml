@@ -189,3 +189,27 @@
   components:
   - type: Sprite
     sprite: _Stories/Objects/Clothing/Cloak/cloak_strongholdofworld.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckDrone
+  name: drone
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Misc/drone.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckFlag
+  name: flag
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Misc/flag.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckTurret
+  name: turret
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Misc/turret.rsi

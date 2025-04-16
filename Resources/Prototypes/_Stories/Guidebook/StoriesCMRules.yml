@@ -56,14 +56,6 @@
   name: "Правило 2: Ролевая игра"
   priority: 3
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/RolePlay.xml"
-  children:
-  - RMCGeneralRoleplayStandards
-  - RMCCharacterNames
-  - RMCMarineRoleplayStandards
-  - RMCCommandRoleplay
-  - RMCXenoRoleplay
-  - RMCSurvivorRoleplay
-  - RMCHostileFactionRoleplay
 
 - type: guideEntry
   parent: RMC
@@ -120,9 +112,6 @@
   name: "Правило 10: Военный закон, мятежи"
   priority: 11
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/MilitaryLawMutinies.xml"
-  children:
-  - RMCCommandRoles
-  - RMCHigherStandards
 
 - type: guideEntry
   parent: RMC

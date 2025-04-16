@@ -11,7 +11,8 @@
     state: resin
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
-    keyTwo: walls
+    additionalKeys:
+    - walls
     base: resin
   - type: Destructible
     thresholds:
@@ -46,7 +47,8 @@
     state: thickresin
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
-    keyTwo: walls
+    additionalKeys:
+    - walls
     base: thickresin
   - type: Destructible
     thresholds:
@@ -81,7 +83,8 @@
         acts: ["Destruction"]
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
-    keyTwo: walls
+    additionalKeys:
+    - walls
   - type: Occluder
     enabled: false
   - type: Fixtures
@@ -124,7 +127,8 @@
         acts: ["Destruction"]
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
-    keyTwo: walls
+    additionalKeys:
+    - walls
     base: membrane
   - type: XenoStructureUpgradeable
     to: WallXenoMembraneThick
@@ -151,7 +155,8 @@
         acts: ["Destruction"]
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
-    keyTwo: walls
+    additionalKeys:
+    - walls
     base: thickmembrane
   - type: MeleeReceivedMultiplier
     xenoDamage:

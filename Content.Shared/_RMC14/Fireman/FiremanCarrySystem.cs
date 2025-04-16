@@ -88,6 +88,7 @@ public sealed class FiremanCarrySystem : EntitySystem
         {
             BreakOnMove = true,
             AttemptFrequency = AttemptFrequency.EveryTick,
+            ForceVisible = true,
         };
 
         if (_doAfter.TryStartDoAfter(doAfter))

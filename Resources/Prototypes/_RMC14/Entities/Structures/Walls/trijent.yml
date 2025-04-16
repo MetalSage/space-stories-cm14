@@ -11,7 +11,8 @@
     state: hangar
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: hangar
 
 - type: entity
@@ -27,7 +28,8 @@
     state: bunker
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: bunker
 
 - type: entity
@@ -43,7 +45,8 @@
     state: chigusa
   - type: IconSmooth
     key: walls
-    keyTwo: window # Stories-Fixes
+    additionalKeys:
+    - window # Stories-Fixes
     base: chigusa
 
 - type: entity

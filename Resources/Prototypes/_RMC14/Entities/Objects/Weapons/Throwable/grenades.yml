@@ -88,6 +88,12 @@
   - type: CMExplosionEffect
   - type: CMVocalizeTrigger
   - type: RMCScorchEffect
+  - type: Tag
+    tags:
+    - Grenade
+    - LauncherCompatibleGrenade
+    - RMCGrenadeM40
+    - RMCGrenadeHEDP
 
 - type: entity
   parent:
@@ -180,6 +186,12 @@
     maxShrapnel: 0
   - type: CMVocalizeTrigger
   - type: RMCScorchEffect
+  - type: Tag
+    tags:
+    - Grenade
+    - LauncherCompatibleGrenade
+    - RMCGrenadeM40
+    - RMCGrenadeHEFA
 
 - type: entity
   parent: CMGrenadeHighExplosive
@@ -203,11 +215,40 @@
   - type: Tag
     tags:
     - Grenade
+    - LauncherCompatibleGrenade
   - type: Ammo
   - type: ClusterLimitHits
   - type: CMExplosionEffect
     maxShrapnel: 0
   - type: CMVocalizeTrigger
+  - type: RMCScorchEffect
+
+- type: entity
+  parent: CMGrenadeFragOld
+  id: RMCGrenadeBlastM12
+  name: M12 blast grenade
+  description: A high-explosive grenade produced for private security firms. It explodes around 3 seconds after the pin has been pulled.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Grenades/m12blast.rsi
+  - type: Explosive
+    maxIntensity: 20
+    intensitySlope: 8
+    totalIntensity: 280
+    deleteAfterExplosion: false
+  - type: ProjectileGrenade
+    fillPrototype: CMProjectileShrapnel
+    capacity: 1 #same as HEFA
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: Tag
+    tags:
+    - Grenade
+  - type: Ammo
+  - type: ClusterLimitHits
+  - type: CMExplosionEffect
+    maxShrapnel: 0
   - type: RMCScorchEffect
 
 - type: entity
@@ -319,6 +360,12 @@
   components:
   - type: Sprite
     state: shrapnel_bright2
+
+- type: Tag
+  id: RMCGrenadeHEDP
+
+- type: Tag
+  id: RMCGrenadeHEFA
 
 - type: Tag
   id: RMCGrenadeM40

@@ -7,6 +7,7 @@ using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._RMC14.Scaling;
 using Content.Shared._RMC14.Tools;
 using Content.Shared._RMC14.Webbing;
+using Content.Shared._Stories.BypassSpecLimit;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -45,7 +46,7 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedRMCMapSystem _rmcMap = default!;
+    [Dependency] private readonly RMCMapSystem _rmcMap = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedWebbingSystem _webbing = default!;
@@ -81,6 +82,9 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
         var vendors = EntityQueryEnumerator<CMAutomatedVendorComponent>();
         while (vendors.MoveNext(out var uid, out var vendor))
         {
+            if (!vendor.Scaling)
+                continue;
+
             var changed = false;
             foreach (var section in vendor.Sections)
             {
@@ -367,7 +371,8 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
                 int vendCount = 0;
 
                 // If the vendor's own value is at or above the capacity, immediately return.
-                if (thisSpecVendor.GlobalSharedVends.TryGetValue(args.Entry, out vendCount) && vendCount >= section.SharedSpecLimit)
+                if (!HasComp<BypassSpecLimitComponent>(actor) && // Stories-FoxtrotSpec-Limit-Bypass
+                    thisSpecVendor.GlobalSharedVends.TryGetValue(args.Entry, out vendCount) && vendCount >= section.SharedSpecLimit)
                 {
                     // FIXME
                     ResetChoices();
@@ -388,6 +393,12 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
                 while (specVendors.MoveNext(out var vendorId, out _))
                 {
                     var specVendorComponent = EnsureComp<RMCVendorSpecialistComponent>(vendorId);
+                    foreach (var linkedEntry in args.LinkedEntries)
+                    {
+                        specVendorComponent.GlobalSharedVends.TryGetValue(linkedEntry, out var linkedCount);
+                        maxAmongVendors += linkedCount;
+                    }
+
                     if (specVendorComponent.GlobalSharedVends.TryGetValue(args.Entry, out vendCount))
                     {
                         if (vendCount > maxAmongVendors)
@@ -406,7 +417,8 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
 
                 thisSpecVendor.GlobalSharedVends[args.Entry] = maxAmongVendors;
 
-                if (thisSpecVendor.GlobalSharedVends[args.Entry] >= section.SharedSpecLimit)
+                if (!HasComp<BypassSpecLimitComponent>(actor) && // Stories-FoxtrotSpec-Limit-Bypass
+                    thisSpecVendor.GlobalSharedVends[args.Entry] >= section.SharedSpecLimit)
                 {
                     ResetChoices();
                     _popup.PopupEntity(Loc.GetString("cm-vending-machine-specialist-max"), vendor.Owner, actor);
@@ -459,7 +471,8 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
                             continue;
 
                         vendorEntry.Amount -= GetBoxRemoveAmount(entry);
-                        entry.Amount--;
+                        Dirty(vendor);
+                        AmountUpdated(vendor, vendorEntry);
                         foundEntry = true;
                         break;
                     }
@@ -467,9 +480,6 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
                     if (foundEntry)
                         break;
                 }
-
-                if (foundEntry)
-                    Dirty(vendor);
             }
             else
             {

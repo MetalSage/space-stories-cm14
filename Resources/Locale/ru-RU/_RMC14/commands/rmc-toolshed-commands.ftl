@@ -31,6 +31,7 @@ command-description-requisitions-addbudget = Добавляет бюджет к 
 command-description-requisitions-removebudget = Удаляет бюджет со счета Requisitions по умолчанию.
 command-description-intel-addpoints = Добавляет точки в дерево технологий Intel по умолчанию.
 command-description-intel-removepoints = Удаляет точки из дерева технологий Intel по умолчанию.
+command-description-intel-spawnintel = Порождает разведданные на всех инициализированных картах.
 command-description-prototypecontains = Фильтрует сущности по тому, содержит ли их ID прототипа заданный текст.
 command-description-skills-get = Получает уровень определенного навыка для морпеха.
 command-description-skills-set = Устанавливает уровень определенного навыка для морпеха или группы морпехов.

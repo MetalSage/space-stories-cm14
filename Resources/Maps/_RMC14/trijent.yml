@@ -342,6 +342,9 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
+    - type: MapLight
+    - type: Roof
+      data: {}
     - type: BecomesStation
       id: Trijent
     - type: MapGrid
@@ -70068,7 +70071,7 @@ entities:
       parent: 1
 - proto: CMFax
   entities:
-  - uid: 31981
+  - uid: 41981
     components:
     - type: Transform
       pos: 64.5,-15.5
@@ -139213,7 +139216,7 @@ entities:
       parent: 1
 - proto: RMCLamp
   entities:
-  - uid: 31984
+  - uid: 41984
     components:
     - type: Transform
       pos: 65.373535,-18.484097
@@ -139482,56 +139485,56 @@ entities:
     - type: Transform
       pos: 79.5,-12.5
       parent: 1
-  - uid: 31988
+  - uid: 41988
     components:
     - type: MetaData
       name: Гидроплотина
     - type: Transform
       pos: 122.5,-75.5
       parent: 1
-  - uid: 31989
+  - uid: 41989
     components:
     - type: MetaData
       name: Общежития
     - type: Transform
       pos: 187.5,-211.5
       parent: 1
-  - uid: 31990
+  - uid: 41990
     components:
     - type: MetaData
       name: Мастерская
     - type: Transform
       pos: 218.5,-204.5
       parent: 1
-  - uid: 31991
+  - uid: 41991
     components:
     - type: MetaData
       name: Столовая
     - type: Transform
       pos: 193.5,-183.5
       parent: 1
-  - uid: 31992
+  - uid: 41992
     components:
     - type: MetaData
       name: Больница
     - type: Transform
       pos: 163.5,-130.5
       parent: 1
-  - uid: 31993
+  - uid: 41993
     components:
     - type: MetaData
       name: Восточные фильтры
     - type: Transform
       pos: 206.5,-130.5
       parent: 1
-  - uid: 31994
+  - uid: 41994
     components:
     - type: MetaData
       name: Раскопки
     - type: Transform
       pos: 186.5,-75.5
       parent: 1
-  - uid: 31995
+  - uid: 41995
     components:
     - type: MetaData
       name: Восточная лаборатория
@@ -139552,7 +139555,7 @@ entities:
     - type: Transform
       pos: 139.5,-124.5
       parent: 1
-  - uid: 31982
+  - uid: 41982
     components:
     - type: Transform
       pos: 63.5,-15.5

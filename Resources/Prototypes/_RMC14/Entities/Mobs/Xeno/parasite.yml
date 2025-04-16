@@ -76,7 +76,7 @@
   - type: Clothing
     quickEquip: false
     slots: [mask]
-    sprite: _Stories/Mobs/Xenos/Parasite/parasite.rsi
+    sprite: _Stories/Mobs/Xenos/Parasite/parasite_mask.rsi
   - type: HideLayerClothing
     slots:
     - Snout
@@ -106,7 +106,10 @@
     downSound: null
   - type: XenoInhandSprite
     stateName: parasite
-
+  - type: RMCBuckleOffset
+    offset: 0, 0
+  - type: AutoClimbBlocked # Stories-AutoClimb
+  
 - type: entity
   parent: CMXenoParasiteBase
   id: CMXenoParasite

@@ -1,3 +1,5 @@
+ent-RMCCrateOpenableBase = { ent-BaseStructureDynamic }
+    .desc = { ent-BaseStructureDynamic.desc }
 ent-RMCCrateLarge = ящик снабжения
     .desc = Добротный деревянный ящик.
 ent-RMCSecureCase = кейс для хранения

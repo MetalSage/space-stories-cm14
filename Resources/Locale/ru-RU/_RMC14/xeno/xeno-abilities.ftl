@@ -293,3 +293,10 @@ cm-xeno-plasma-other-max-zero = У { $target } нет плазмы!
 cm-xeno-watch = Смотреть Ксено
 # Shield
 cm-xeno-shield-expire = Действия щита прекратилось!
+# Boost On Hit
+rmc-xeno-boost-on-hit-boost = Я не умру!
+rmc-xeno-boost-on-hit-recharge = Вы чувствуете, как ваши железы наполняются адреналином!
+# Deploy Acid Mine
+rmc-xeno-deploy-acid-mine-empowered = Мы используем наши резервы, чтобы подготовить более мощные мины.
+# Acid Insight
+rmc-xeno-insight-empowered = Вы достаточно хорошо изучили свою добычу, чтобы схватить ее в следующих ловушках.
