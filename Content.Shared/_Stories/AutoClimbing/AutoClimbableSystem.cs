@@ -4,6 +4,9 @@ using Content.Shared.Mobs.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
+using Robust.Shared.Network;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Stories.AutoClimbing;
 
@@ -12,44 +15,49 @@ public sealed class AutoClimbableSystem : EntitySystem
     [Dependency] private readonly ClimbSystem _climb = default!;
     [Dependency] private readonly INetConfigurationManager _netConfig = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    
-    private bool _collide = false;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    private bool _isColliding;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<ClimbableComponent, StartCollideEvent>(StartCollide);
-        SubscribeLocalEvent<ClimbableComponent, EndCollideEvent>(EndCollide);
+        SubscribeLocalEvent<ClimbableComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<ClimbableComponent, EndCollideEvent>(OnEndCollide);
     }
 
-    private void StartCollide(Entity<ClimbableComponent> ent, ref StartCollideEvent args)
+    private void OnStartCollide(Entity<ClimbableComponent> ent, ref StartCollideEvent args)
     {
-        if (_collide)
+        if (_net.IsClient || _timing.ApplyingState || _isColliding)
             return;
 
-        if (TryComp(args.OtherEntity, out ActorComponent? actor) &&
-            !_netConfig.GetClientCVar(actor.PlayerSession.Channel, SCCVars.SCCVars.AutoClimb))
-        {
+        if (!TryComp<AutoClimbableComponent>(ent, out var autoClimb) || 
+            !TryComp<ClimbingComponent>(args.OtherEntity, out var climbing) || 
+            climbing.IsClimbing || !climbing.CanClimb)
             return;
-        }
 
         if (HasComp<AutoClimbBlockedComponent>(args.OtherEntity) || _mobState.IsIncapacitated(args.OtherEntity))
             return;
 
-        if (!HasComp<AutoClimbableComponent>(ent) || !TryComp<ClimbableComponent>(ent, out var climb))
+        if (TryComp<ActorComponent>(args.OtherEntity, out var actor) &&
+            !_netConfig.GetClientCVar(actor.PlayerSession.Channel, SCCVars.SCCVars.AutoClimb))
             return;
 
-        if (!TryComp(args.OtherEntity, out ClimbingComponent? climbingComponent) || climbingComponent.IsClimbing || !climbingComponent.CanClimb)
+        var curTime = _timing.CurTime;
+        if (curTime < autoClimb.LastCollideTime + TimeSpan.FromSeconds(autoClimb.CollideCooldown))
             return;
 
-        _collide = true;
-        _climb.TryClimb(args.OtherEntity, args.OtherEntity, args.OurEntity, out _, climb);
-
+        _isColliding = true;
+        autoClimb.LastCollideTime = curTime;
+        _climb.TryClimb(args.OtherEntity, args.OtherEntity, ent, out _, ent.Comp);
     }
 
-    private void EndCollide(Entity<ClimbableComponent> ent, ref EndCollideEvent args)
+    private void OnEndCollide(Entity<ClimbableComponent> _, ref EndCollideEvent args)
     {
-        _collide = false;
+        if (_net.IsClient || _timing.ApplyingState)
+            return;
+
+        _isColliding = false;
     }
 }
