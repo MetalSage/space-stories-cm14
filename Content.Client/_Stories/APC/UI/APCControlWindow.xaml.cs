@@ -12,6 +12,7 @@ using Content.Shared.Popups;
 using Robust.Client.Player;
 using Content.Shared._Stories.APC.Systems;
 using Content.Shared._Stories.APC;
+using Content.Shared._Stories.APC.UI;
 
 namespace Content.Client._Stories.APC.UI;
 

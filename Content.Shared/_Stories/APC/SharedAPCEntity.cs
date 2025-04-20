@@ -16,8 +16,12 @@ public sealed partial class LeaveAPCDoAfterEvent : SimpleDoAfterEvent
 {
 }
 
-
-
+[Serializable, NetSerializable]
+public enum APCEnterSide
+{
+    Left,
+    Right
+}
 public sealed partial class APCControlReturnActionEvent : InstantActionEvent
 {
 }

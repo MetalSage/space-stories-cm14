@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Stories.APC;
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Follower.Components;
@@ -366,7 +367,7 @@ namespace Content.Shared.Movement.Systems
                 // Outside of simulation we'll be running client predicted movement per-frame.
                 // So return a full-length vector as if it's a full tick.
                 // Physics system will have the correct time step anyways.
-                var immediateDir = DirVecForButtons(mover.HeldMoveButtons);
+                var immediateDir = DirVecForButtons(mover.HeldMoveButtons, mover.Owner);
                 return mover.Sprinting ? (Vector2.Zero, immediateDir) : (immediateDir, Vector2.Zero);
             }
 
@@ -387,7 +388,7 @@ namespace Content.Shared.Movement.Systems
                 remainingFraction = (ushort.MaxValue - mover.LastInputSubTick) / (float) ushort.MaxValue;
             }
 
-            var curDir = DirVecForButtons(mover.HeldMoveButtons) * remainingFraction;
+            var curDir = DirVecForButtons(mover.HeldMoveButtons, mover.Owner) * remainingFraction;
 
             if (mover.Sprinting)
             {
@@ -434,7 +435,7 @@ namespace Content.Shared.Movement.Systems
 
                 ref var lastMoveAmount = ref entity.Comp.Sprinting ? ref entity.Comp.CurTickSprintMovement : ref entity.Comp.CurTickWalkMovement;
 
-                lastMoveAmount += DirVecForButtons(entity.Comp.HeldMoveButtons) * fraction;
+                lastMoveAmount += DirVecForButtons(entity.Comp.HeldMoveButtons, entity) * fraction;
 
                 entity.Comp.LastInputSubTick = subTick;
             }
@@ -473,18 +474,19 @@ namespace Content.Shared.Movement.Systems
         /// <summary>
         ///     Retrieves the normalized direction vector for a specified combination of movement keys.
         /// </summary>
-        private Vector2 DirVecForButtons(MoveButtons buttons)
+        private Vector2 DirVecForButtons(MoveButtons buttons, EntityUid? entity = null)
         {
             // key directions are in screen coordinates
             // _moveDir is in world coordinates
             // if the camera is moved, this needs to be changed
+            bool restrictDiagonal = entity != null && HasComp<RestrictDiagonalMovementComponent>(entity.Value);
 
             var x = 0;
             x -= HasFlag(buttons, MoveButtons.Left) ? 1 : 0;
             x += HasFlag(buttons, MoveButtons.Right) ? 1 : 0;
 
             var y = 0;
-            if (DiagonalMovementEnabled || x == 0)
+            if ((DiagonalMovementEnabled || x == 0) && !restrictDiagonal)
             {
                 y -= HasFlag(buttons, MoveButtons.Down) ? 1 : 0;
                 y += HasFlag(buttons, MoveButtons.Up) ? 1 : 0;

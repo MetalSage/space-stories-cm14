@@ -1,5 +1,5 @@
-using Content.Shared.ADT.btr;
-using Content.Shared.ADT.btr.Systems;
+using Content.Shared._Stories.APC;
+using Content.Shared._Stories.APC.Systems;
 using Robust.Client.GameObjects;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
@@ -31,10 +31,8 @@ public sealed partial class APCEntitySystem : EntitySystem
         if (component.DestroyedState != null && _appearance.TryGetData<bool>(uid, APCVisuals.Destroyed, out var destroyed, args.Component) && destroyed)
         {
             state = component.DestroyedState;
-            drawDepth = DrawDepth.SmallMobs;
         }
 
         layer.SetState(state);
-        args.Sprite.DrawDepth = (int)drawDepth;
     }
 }

@@ -1,60 +1,82 @@
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
-using Robust.Shared.Map;
 using Robust.Shared.GameStates;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Shared.Tag;
 
 namespace Content.Shared._Stories.APC;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class APCEntityComponent : Component
 {
+    #region Entities
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? MapEnt;
+
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? GridEnt;
-    public EntityUid? APC;
 
-    [DataField("entryDelay")]
-    public float EntryDelay = 2f;
-    [DataField("exitDelay")]
-    public float ExitDelay = 2f;
-
-    [DataField("accessDeniedSound")]
-    public SoundSpecifier AccessDeniedSound = new SoundPathSpecifier("/Audio/Machines/Nuke/angry_beep.ogg");
-
-    [DataField("entrysound")]
-    public SoundSpecifier EntrySound = new SoundPathSpecifier("/Audio/ADT/Mecha/nominal.ogg");
-
-    [DataField]
-    public string? BaseState;
-    [DataField]
-    public string? DestroyedState;
-
-    [DataField]
-    public bool Destroyed = false;
-
-    [DataField]
-    public string GridPath = "/Maps/ADTMaps/Shuttles/ERT/default.yml";
-    [DataField]
-    public int MaxOnAPC = 3;
-    [DataField]
-    public int OnAPC;
-
-// apc control:
-
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? User;
 
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? Controller;
+    #endregion
 
-    [DataField("APCControlReturnAction")]
+    #region States
+    [DataField, AutoNetworkedField]
+    public string? BaseState;
+
+    [DataField, AutoNetworkedField]
+    public string? DestroyedState;
+
+    [DataField, AutoNetworkedField]
+    public bool Destroyed = false;
+    #endregion
+
+    #region Audio
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier AccessDeniedSound = new SoundPathSpecifier("/Audio/Machines/Nuke/angry_beep.ogg");
+
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier EntrySound = new SoundPathSpecifier("/Audio/Machines/Nuke/angry_beep.ogg");
+    #endregion
+
+    #region APC Control
+    [DataField, AutoNetworkedField]
     public EntProtoId APCControlReturnAction = "APCControlReturnAction";
 
-    [DataField("APCControlReturnActionEntity")]
+    [DataField, AutoNetworkedField]
     public EntityUid? APCControlReturnActEntity;
+    #endregion
 
-//
+    #region APC Parameters
+    [DataField, AutoNetworkedField]
+    public float EntryDelay = 2f;
 
-    [DataField]
-    public ProtoId<TagPrototype> APCEnterPoint = "APCEnterPoint";
+    [DataField, AutoNetworkedField]
+    public FixedPoint2 MaxOnAPC = 3;
+
+    [DataField, AutoNetworkedField]
+    public FixedPoint2 OnAPC = FixedPoint2.Zero;
+
+    [DataField, AutoNetworkedField]
+    public string GridPath = "/Maps/Test/admin_test_arena.yml";
+    #endregion
+
+    #region Modules
+    [DataField, AutoNetworkedField]
+    public List<string?> SpawnModules = new();
+
+    [DataField, AutoNetworkedField]
+    public List<EntityUid> Modules = new();
+    #endregion
+
+    #region Prototypes
+    [DataField, AutoNetworkedField]
+    public EntProtoId? WheelsProto;
+
+    [DataField, AutoNetworkedField]
+    public EntProtoId? TurretProto;
+    #endregion
 }

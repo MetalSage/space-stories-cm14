@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
+using Content.Shared._Stories.APC.UI;
 
-namespace Content.Shared._Stories.APC.UI;
+namespace Content.Client._Stories.APC.UI;
 
 
 [UsedImplicitly]

@@ -6,6 +6,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Destructible;
 using Content.Shared.Coordinates;
 using Content.Shared.Movement.Components;
+using Robust.Shared.Map;
 
 namespace Content.Shared._Stories.APC.Systems;
 
@@ -23,7 +24,7 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
 
         SubscribeLocalEvent<APCEntityComponent, APCControlReturnActionEvent>(OnReturn);
         SubscribeLocalEvent<APCEntityComponent, GettingAPCControlledEvent>(OnGettingControlled);
-        SubscribeLocalEvent<APCEntityComponent, DestructionEventArgs>(OnDestruction);
+        SubscribeLocalEvent<APCEntityComponent, BreakageEventArgs>(OnDestruction);
 
         InitializeController();
     }
@@ -82,7 +83,7 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
     #endregion
     #region DestroyAPC
 
-    private void OnDestruction(EntityUid uid, APCEntityComponent component, DestructionEventArgs args)
+    private void OnDestruction(EntityUid uid, APCEntityComponent component, BreakageEventArgs args)
     {
         DestroyAPC(uid, component);
     }
@@ -96,15 +97,6 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
 
         component.Destroyed = true;
         UpdateAppearance(uid, component);
-        TryEjectEntities(uid, component);
-
-        if (component.GridEnt != null)
-            QueueDel(component.GridEnt);
-        if (component.MapEnt != null)
-            QueueDel(component.MapEnt);
-
-        RemCompDeferred<APCEntityComponent>(uid);
-        RemCompDeferred<InputMoverComponent>(uid);
     }
 
     public void UpdateAppearance(EntityUid uid, APCEntityComponent? component = null,
@@ -121,13 +113,23 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
+        var apcGrid = _transform.GetGrid(uid);
+        var apcMap = _transform.GetMap(uid);
+
+        var gridEnt = apcGrid ?? apcMap;
+        if (gridEnt == null)
+            return false;
+
         var query = EntityQueryEnumerator<TransformComponent>();
         while (query.MoveNext(out var queryUid, out var transform))
         {
             if (transform.GridUid != component.GridEnt || transform.Anchored)
                 continue;
 
-            var coords = uid.ToCoordinates();
+            if (TerminatingOrDeleted(queryUid))
+                continue;
+
+            var coords = new EntityCoordinates(gridEnt.Value, _transform.GetWorldPosition(uid));
             _transform.SetCoordinates(queryUid, coords);
         }
         return true;

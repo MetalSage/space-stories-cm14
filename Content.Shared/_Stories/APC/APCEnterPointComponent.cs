@@ -7,11 +7,4 @@ using System.Threading.Tasks;
 namespace Content.Shared._Stories.APC;
 
 [RegisterComponent]
-public sealed partial class APCDoorComponent : Component
-{
-    [DataField]
-    public APCEnterSide Side;
-
-    [DataField]
-    public float LeaveDelay = 2f;
-}
+public sealed partial class APCEnterPointComponent : Component;
