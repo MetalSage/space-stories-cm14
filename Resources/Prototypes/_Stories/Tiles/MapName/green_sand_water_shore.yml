@@ -1,0 +1,194 @@
+# BASE
+
+- type: tile
+  abstract: true
+  parent: CMPlanetBase
+  id: STPlanetGreenSandWaterShoreBase
+  name: st-tiles-green-planet-water-shore
+  weedsSpreadable: false
+
+# SHORE
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore0
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_0.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore1
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_1.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore2
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_2.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore3
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_3.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore4
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_4.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore5
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_5.png
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore6
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_6.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore7
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_7.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore8
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_8.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore9
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_9.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore10
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_10.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShore11
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore1_11.png
+
+# SHORE CORNER 
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner0
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_0.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner1
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_1.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner2
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_2.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner3
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_3.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner4
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_4.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner5
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_5.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner6
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_6.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner7
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_7.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner8
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_8.png
+
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner9
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_9.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner10
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_10.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreCorner11
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_corner2_11.png
+
+# SHORE EDGE
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge0
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_0.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge1
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_1.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge2
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_2.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge3
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_3.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge4
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_4.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge5
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_5.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge6
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_6.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge7
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_7.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge8
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_8.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge9
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_9.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge10
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_10.png
+
+- type: tile
+  parent: STPlanetGreenSandWaterShoreBase
+  id: STPlanetGreenSandWaterShoreEdge11
+  sprite: /Textures/_Stories/Tiles/MapName/green_sand_water_shore/shore_edge1_11.png

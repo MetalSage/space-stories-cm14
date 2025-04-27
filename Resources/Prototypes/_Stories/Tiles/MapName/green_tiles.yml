@@ -1,0 +1,201 @@
+# BASE
+
+- type: tile
+  abstract: true
+  parent: CMPlanetBase
+  id: STPlanetGreenBase
+  name: st-tiles-green-rock
+
+# CAVES
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave1
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_1.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave2
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_2.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave3
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_3.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave4
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_4.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave5
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_5.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave6
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_6.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave7
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_7.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave8
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_8.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave9
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_9.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave10
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_10.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave11
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_11.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave12
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_12.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave13
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_13.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave14
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_14.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave15
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_15.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave16
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_16.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave17
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_17.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave18
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_18.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave19
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_19.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave20
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_20.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave21
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_21.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave22
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_22.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenCave23
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_cave_23.png
+
+# SAND
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSandVar
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_var.png
+  variants: 3
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand1
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_1.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand2
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_2.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand3
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_3.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand4
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_4.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand5
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_5.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand6
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_6.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand7
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_7.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand8
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_8.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand9
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_9.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand10
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_10.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand11
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_11.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand12
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_12.png
+
+- type: tile
+  parent: STPlanetGreenBase
+  id: STPlanetGreenSand13
+  sprite: /Textures/_Stories/Tiles/MapName/green_tiles/green_sand_13.png

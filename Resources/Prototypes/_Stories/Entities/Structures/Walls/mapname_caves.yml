@@ -1,0 +1,14 @@
+- type: entity
+  parent: CMBaseWallInvincible
+  id: STWallRockGreen
+  name: green rock wall
+  description: A rough green wall of hardened rock.
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Walls/MapName/cave_green_wall.rsi
+  - type: Icon
+    sprite: _Stories/Structures/Walls/MapName/cave_green_wall.rsi
+    state: cavewall
+  - type: IconSmooth
+    key: walls
+    base: cavewall
