@@ -19,6 +19,9 @@ namespace Content.Shared._Stories.ChasmTeleporter
 
         [DataField]
         public TimeSpan ParalyzeTime = TimeSpan.FromSeconds(1.5);
+
+        [DataField]
+        public string TargetName = string.Empty;
     }
 
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]

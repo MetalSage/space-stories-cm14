@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Stories.ChasmTeleporter;
 
@@ -70,6 +71,9 @@ public sealed class ChasmTeleporterSystem : EntitySystem
 
     private void OnStepTriggered(Entity<ChasmTeleporterComponent> ent, ref StepTriggeredOffEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         if (HasComp<ChasmTeleporterFallingComponent>(args.Tripper))
             return;
 
@@ -93,6 +97,9 @@ public sealed class ChasmTeleporterSystem : EntitySystem
 
     public void StartFalling(Entity<ChasmTeleporterComponent> ent, EntityUid tripper)
     {
+        if (_net.IsClient)
+            return;
+
         var falling = EnsureComp<ChasmTeleporterFallingComponent>(tripper);
         falling.Chasm = ent;
         falling.NextDeletionTime = _timing.CurTime + falling.DeletionTime;
@@ -104,18 +111,12 @@ public sealed class ChasmTeleporterSystem : EntitySystem
 
     private void HandleTeleporting(EntityUid teleporter, EntityUid user)
     {
+        RemCompDeferred<ChasmTeleporterFallingComponent>(user);
 
         if (!TryComp<ChasmTeleporterComponent>(teleporter, out var chasm))
             return;
 
-        RemCompDeferred<ChasmTeleporterFallingComponent>(user);
-        _blocker.UpdateCanMove(user);
-
-        var targetQuery = EntityQueryEnumerator<ChasmTeleporterTargetComponent>();
-        if (!targetQuery.MoveNext(out var target, out _))
-            return;
-
-        if (TerminatingOrDeleted(target))
+        if (!TryFindTarget(chasm.TargetName, out var target) && TerminatingOrDeleted(target))
             return;
 
         var origin = _transform.GetMapCoordinates(target);
@@ -155,6 +156,7 @@ public sealed class ChasmTeleporterSystem : EntitySystem
 
             var valid = true;
             var anchored = _rmcMap.GetAnchoredEntitiesEnumerator(_transform.ToCoordinates(coordinates));
+
             while (anchored.MoveNext(out var ent) && valid)
             {
                 if (_physQuery.TryGetComponent(ent, out var body) &&
@@ -174,5 +176,24 @@ public sealed class ChasmTeleporterSystem : EntitySystem
             _stun.TryParalyze(user, chasm.ParalyzeTime, true);
             return;
         }
+    }
+
+    private bool TryFindTarget(string name, out EntityUid target)
+    {
+        var query = EntityQueryEnumerator<ChasmTeleporterTargetComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out _, out var meta))
+        {
+            if (string.IsNullOrEmpty(meta.EntityName))
+                continue;
+
+            if (meta.EntityName == name)
+            {
+                target = uid;
+                return true;
+            }
+        }
+
+        target = EntityUid.Invalid;
+        return false;
     }
 }
