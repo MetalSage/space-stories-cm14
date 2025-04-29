@@ -1,0 +1,13 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               Title="Контроль Попапов"
+               SetSize="350 450"
+               Resizable="True">
+    <BoxContainer Name="MainPage" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="10" Margin="10">
+        <Label Text="Выберите попап:" HorizontalAlignment="Center"/>
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="5">
+            <Button Name="PopupButton1" Text="Попап 1" HorizontalExpand="True"/>
+            <Button Name="PopupButton2" Text="Попап 2" HorizontalExpand="True"/>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
