@@ -71,3 +71,6 @@ public sealed class RequestControlAPCEvent : EntityEventArgs
         User = user;
     }
 }
+
+[Serializable, NetSerializable]
+public record DeattachModuleEvent(NetEntity Module);

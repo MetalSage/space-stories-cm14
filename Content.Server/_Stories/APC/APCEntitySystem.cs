@@ -17,12 +17,21 @@ using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.ContentPack;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared._RMC14.Dialog;
+using Robust.Shared.Serialization;
+using Robust.Shared.Timing;
+using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.Random;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Maths;
+using Content.Shared.Prying.Components;
 
 namespace Content.Server._Stories.APC;
 
@@ -30,7 +39,6 @@ public sealed partial class APCEntitySystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
@@ -38,24 +46,25 @@ public sealed partial class APCEntitySystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedAPCEntitySystem _sharedAPCEntitySystem = default!;
+    [Dependency] private readonly SharedAPCEntitySystem _apcSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-
+    [Dependency] private readonly DialogSystem _dialog = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<APCEntityComponent, InteractHandEvent>(AfterInteract);
-        SubscribeLocalEvent<APCEntityComponent, EnterAPCDoAfterEvent>(OnDoAfterEnded);
+        SubscribeLocalEvent<APCEntityComponent, EnterAPCDoAfterEvent>(OnEnterAPCEvent);
         SubscribeLocalEvent<APCEntityComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<APCEntityComponent, ComponentShutdown>(OnComponentShutdown);
-        SubscribeLocalEvent<APCEntityComponent, RefreshMovementSpeedModifiersEvent>(RefreshMovementSpeedModifiers);
-        SubscribeLocalEvent<APCModuleComponent, AttemptShootEvent>(OnTurretAttemptShoot);
-
+        SubscribeLocalEvent<APCEntityComponent, AfterInteractUsingEvent>(OnPrying);
+        SubscribeLocalEvent<APCEntityComponent, DeattachModuleEvent>(OnDeattachModule);
         InitializeDoors();
         InitializeModules();
+        InitializeMovement();
     }
 
     public override void Update(float frameTime)
@@ -66,81 +75,77 @@ public sealed partial class APCEntitySystem : EntitySystem
         {}
     }
 
-    private void RefreshMovementSpeedModifiers(Entity<APCEntityComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
-    {
-        // if (!ent.Comp.Modules.Any(e => Comp<MetaDataComponent>(e).EntityF?.ID == ent.Comp.WheelsProto) || ent.Comp.Destroyed)
-        //     args.ModifySpeed(0f, 0f);
-    }
-
     private void OnMapInit(Entity<APCEntityComponent> apc, ref MapInitEvent args)
     {
         _actionsSystem.AddAction(apc, ref apc.Comp.APCControlReturnActEntity, apc.Comp.APCControlReturnAction);
-        _sharedAPCEntitySystem.UpdateAppearance(apc, apc.Comp);
+        _apcSystem.UpdateAppearance(apc, apc.Comp);
 
         if (apc.Comp.SpawnModules.Count != 0)
-            SetupModules(apc, apc.Comp.SpawnModules);
+            SetupModule(apc, apc.Comp.SpawnModules);
+
         LoadMap(apc, apc.Comp);
     }
 
     public void LoadMap(EntityUid uid, APCEntityComponent component)
     {
-        if (!_resourceManager.TryContentFileRead(component.GridPath, out var _))
-            return;
-
-        MapId mapId;
-        bool isNewMap = true;
-        var mapEntity = _mapManager.GetAllMapIds()
-            .Select(id => _mapManager.GetMapEntityId(id))
-            .FirstOrDefault(e => _metaDataSystem.GetEntityData(e).EntityName?.StartsWith("APCMap") ?? false);
-
-        if (mapEntity != null && _mapManager.TryGetMapId(mapEntity, out var existingMapId))
+        EntityUid? mapEntity = null;
+        var query = EntityQueryEnumerator<MapComponent>();
+        while (query.MoveNext(out var map, out var _))
         {
-            mapId = existingMapId;
-            isNewMap = false;
+            if (HasComp<APCMapComponent>(map))
+            {
+                mapEntity = map;
+                break;
+            }
+        }
+
+        var mapId = mapEntity != null 
+            ? _transform.GetMapId(mapEntity.Value) 
+            : _mapManager.CreateMap();
+
+        var mapEnt = _map.GetMap(mapId);
+
+        if (mapEntity == null)
+        {
+            EnsureComp<APCMapComponent>(mapEnt);
+            _metaDataSystem.SetEntityName(mapEnt, "APCMap");
+        }
+
+        var existingGrids = _mapManager.GetAllMapGrids(mapId)
+            .Select(grid => _transform.GetWorldPosition(grid.Owner))
+            .ToList();
+
+        Vector2i offset = default;
+        if (existingGrids.Count == 0)
+        {
+            offset = Vector2i.Zero;
         }
         else
         {
-            mapId = _mapManager.CreateMap();
-            _metaDataSystem.SetEntityName(_mapManager.GetMapEntityId(mapId), $"APCMap");
+            for (int x = 0; ; x++)
+            {
+                offset = new Vector2i(x * 200, 0);
+                var tooClose = existingGrids.Any(pos =>
+                    Vector2.Distance(pos, new Vector2(offset.X, offset.Y)) < 200);
+
+                if (!tooClose)
+                    break;
+            }
         }
 
-        var offset = isNewMap ? Vector2.Zero : FindValidPosition(mapId);
-        var grids = _mapLoader.LoadMap(mapId, component.GridPath, new MapLoadOptions
+        if (_mapLoader.TryLoadGrid(mapId, new ResPath(component.GridPath), out var grid, 
+            null, offset, Angle.FromDegrees(0)))
         {
-            Offset = offset,
-            Rotation = Angle.FromDegrees(0),
-            DoMapInit = true
-        });
-
-        if (grids.Count > 0)
-        {
-            component.GridEnt = grids[0];
-            component.MapEnt = _mapManager.GetMapEntityId(mapId);
-            _metaDataSystem.SetEntityName(grids[0], $"APCEntity Grid: {uid}");
+            component.GridEnt = grid.Value;
+            component.MapEnt = mapEnt;
+            _metaDataSystem.SetEntityName(grid.Value, $"APC Grid: {uid}");
         }
-    }
-
-    private Vector2 FindValidPosition(MapId mapId)
-    {
-        var existingGrids = _mapManager.GetAllMapGrids(mapId).ToList();
-        if (existingGrids.Count == 0) return Vector2.Zero;
-
-        var random = new Random();
-        for (int i = 0; i < 100; i++)
-        {
-            var pos = new Vector2(random.Next(-5000, 5000), random.Next(-5000, 5000));
-            if (existingGrids.All(g => g.WorldPosition.XY().Distance(pos) >= 200))
-                return pos;
-        }
-        
-        Log.Warning("Не удалось найти подходящую позицию для нового грида");
-        return Vector2.Zero;
     }
 
     private void OnComponentShutdown(EntityUid uid, APCEntityComponent component, ComponentShutdown args)
     {
-        _sharedAPCEntitySystem.Return(uid, component);
-        _sharedAPCEntitySystem.TryEjectEntities(uid, component);
+        _apcSystem.Return(uid, component);
+        _apcSystem.TryEjectEntities(uid, component);
         _actionsSystem.RemoveAction(component.APCControlReturnActEntity);
 
         if (component.GridEnt != null)
@@ -152,24 +157,9 @@ public sealed partial class APCEntitySystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!CanInteractOnDoor(args.User, args.Target))
-        {
-            Log.Debug("false");
-            return;
-        }
-
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, entity.Comp.EntryDelay, new EnterAPCDoAfterEvent(), entity, target: args.Target, used: entity)
-        {
-            BreakOnDamage = true,
-            BreakOnMove = true
-        };
-        _doAfterSystem.TryStartDoAfter(doAfterArgs);
         args.Handled = true;
-    }
 
-    private void OnDoAfterEnded(Entity<APCEntityComponent> entity, ref EnterAPCDoAfterEvent args)
-    {
-        if (args.Cancelled || args.Handled || args.Args.Target == null)
+        if (!CanInteractOnDoor(args.User, args.Target))
             return;
 
         if (TryComp<AccessReaderComponent>(entity, out var access) && !_accessReader.IsAllowed(args.User, entity, access))
@@ -179,6 +169,21 @@ public sealed partial class APCEntitySystem : EntitySystem
             args.Handled = true;
             return;
         }
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 
+            entity.Comp.EntryDelay, new EnterAPCDoAfterEvent(), 
+            entity, target: args.Target, used: entity)
+        {
+            BreakOnMove = true
+        };
+
+        _doAfterSystem.TryStartDoAfter(doAfterArgs);
+    }
+
+    private void OnEnterAPCEvent(Entity<APCEntityComponent> entity, ref EnterAPCDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Args.Target == null)
+            return;
 
         if (entity.Comp.OnAPC >= entity.Comp.MaxOnAPC)
         {
@@ -285,15 +290,45 @@ public sealed partial class APCEntitySystem : EntitySystem
         }
     }
 
-    private void OnTurretAttemptShoot(Entity<APCModuleComponent> ent, ref AttemptShootEvent args)
+    private void OnPrying(Entity<APCEntityComponent> apc, ref AfterInteractUsingEvent args)
     {
-        if (!TryComp<APCEntityComponent>(ent.Comp.APC, out var apc))
+        if (!HasComp<PryingComponent>(args.Used))
             return;
 
-        if (!TryComp<TransformComponent>(ent.Comp.APC, out var transform))
+        if (!args.CanReach || args.Handled)
             return;
 
-        if (!_transform.IsParentOf(transform, ent.Owner))
-            args.Cancelled = true;
+        args.Handled = true;
+
+        var options = new List<DialogOption>();
+        foreach (var module in apc.Comp.Modules)
+        {
+            if (!TryComp<MetaDataComponent>(module, out var moduleMeta))
+                continue;
+
+            options.Add(new DialogOption(moduleMeta.EntityName, new DeattachModuleEvent(GetNetEntity(module))));
+        }
+
+        if (!TryComp<MetaDataComponent>(apc, out var apcMeta))
+            return;
+
+        _dialog.OpenOptions(args.User, apcMeta.EntityName, options, "Доступные модули:");
+    }
+
+    private void OnDeattachModule(Entity<APCEntityComponent> ent, ref DeattachModuleEvent args)
+    {
+        if (!TryGetEntity(args.Module, out var module) ||
+            !TryComp(module, out APCModuleComponent? moduleComp))
+        {
+            return;
+        }
+
+        if (module == null)
+            return;
+
+        if (!TryComp<TransformComponent>(module, out var xform))
+            return;
+
+        _transform.DetachEntity(module.Value, xform);
     }
 }

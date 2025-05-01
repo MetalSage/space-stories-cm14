@@ -23,6 +23,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
+using Robust.Shared.Player;
 
 namespace Content.Shared.Movement.Systems;
 
@@ -46,7 +47,7 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
     [Dependency] private   readonly SharedTransformSystem _transform = default!;
     [Dependency] private   readonly TagSystem _tags = default!;
-
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     protected EntityQuery<InputMoverComponent> MoverQuery;
     protected EntityQuery<MobMoverComponent> MobMoverQuery;
     protected EntityQuery<MovementRelayTargetComponent> RelayTargetQuery;

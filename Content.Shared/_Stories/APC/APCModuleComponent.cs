@@ -10,5 +10,5 @@ public sealed partial class APCModuleComponent : Component
     public EntityUid? APC;
 
     [DataField]
-    public Vector2 Offset = new Vector2i.Zero;
+    public Vector2 Offset = Vector2i.Zero;
 }
