@@ -1,5 +1,7 @@
 ent-CMStampBase = печать
     .desc = печать для проставления штампов на важных документах.
+ent-CMStampXO = печать исполнительного офицера
+    .desc = { ent-CMStampBase.desc }
 ent-CMStampCO = печать командира
     .desc = { ent-CMStampBase.desc }
 ent-CMStampASO = печать офицера вспомогательной поддержки
@@ -11,6 +13,8 @@ ent-CMStampCMO = печать главного врача
 ent-CMStampQM = печать квартирмейстера
     .desc = { ent-CMStampBase.desc }
 ent-CMStampCE = печать старшего инженера
+    .desc = { ent-CMStampBase.desc }
+ent-CMStampLiaison = печать корпоративного связного
     .desc = { ent-CMStampBase.desc }
 ent-CMStampApproved = печать ОДОБРЕННО
     .desc = { ent-CMStampBase.desc }

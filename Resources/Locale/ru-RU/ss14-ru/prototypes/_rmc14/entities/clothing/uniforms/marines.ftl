@@ -1,5 +1,8 @@
 ent-JumpsuitMarine = униформа КМП США
     .desc = Стандартная форма морской пехоты. Имеет осколки легкого кевлара для защиты от колющего оружия и пуль.
+ent-JumpsuitMarineRoyal = { ent-JumpsuitMarine }
+    .suffix = Заполненный, Королевские
+    .desc = { ent-JumpsuitMarine.desc }
 ent-CMJumpsuitMarineEngineer = униформа комтеха КМП США
     .desc = Стандартное обмундирование боевого техника морской пехоты. Защищает от колюще-режущего оружия и пуль благодаря осколкам легкого кевлара.
 ent-CMJumpsuitMarineFormal = формальная морская форма

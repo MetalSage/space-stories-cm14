@@ -136,6 +136,16 @@ entities:
     - type: MapLight
     - type: Roof
       data: {}
+    - type: RMCWeatherCycle
+      minTimeBetweenEvents: 1200
+      weatherEvents:
+      - name: Light Rain
+        duration: 480
+        weatherType: RMCStrataStormVeryLight
+      - name: Heavy Rain
+        duration: 720
+        weatherType: RMCStrataStormLight
+    - type: RMCAmbientLightEffects
     - type: MapGrid
       chunks:
         -6,-7:
@@ -65656,7 +65666,7 @@ entities:
     - type: Transform
       pos: 39.5,-68.5
       parent: 1
-- proto: CMVendorMedical
+- proto: CMVendorMedicalAllAccess
   entities:
   - uid: 20812
     components:
@@ -156688,12 +156698,61 @@ entities:
     - type: Transform
       pos: 12.5,-86.5
       parent: 1
+- proto: RMCMapInsertLV624Bridge
+  entities:
+  - uid: 22935
+    components:
+    - type: Transform
+      pos: -9.5,-25.5
+      parent: 1
+- proto: RMCMapInsertLV624CargoSpecial1
+  entities:
+  - uid: 22939
+    components:
+    - type: Transform
+      pos: 66.5,-45.5
+      parent: 1
+- proto: RMCMapInsertLV624CargoSpecial2
+  entities:
+  - uid: 22940
+    components:
+    - type: Transform
+      pos: 59.5,-45.5
+      parent: 1
+- proto: RMCMapInsertLV624CargoSpecial3
+  entities:
+  - uid: 22941
+    components:
+    - type: Transform
+      pos: 61.5,-50.5
+      parent: 1
+- proto: RMCMapInsertLV624CentralCaves
+  entities:
+  - uid: 22938
+    components:
+    - type: Transform
+      pos: -13.5,16.5
+      parent: 1
 - proto: RMCMapInsertLV624Gym
   entities:
   - uid: 22933
     components:
     - type: Transform
       pos: -1.5,-60.5
+      parent: 1
+- proto: RMCMapInsertLV624Hydro
+  entities:
+  - uid: 22937
+    components:
+    - type: Transform
+      pos: 2.5,-42.5
+      parent: 1
+- proto: RMCMapInsertLV624Medbay
+  entities:
+  - uid: 22936
+    components:
+    - type: Transform
+      pos: -15.5,-44.5
       parent: 1
 - proto: RMCMapInsertLV624NexusCenter
   entities:
@@ -159743,9 +159802,6 @@ entities:
     - type: Transform
       pos: -51.5,-97.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        gun_magazine: !type:ContainerSlot {}
 - proto: RMCWeaponPistolHoldout
   entities:
   - uid: 15557

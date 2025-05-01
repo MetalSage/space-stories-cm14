@@ -37,3 +37,6 @@ ent-RMCPlankWood50 = { ent-RMCPlankWood }
 ent-RMCPlankWood1 = { ent-RMCPlankWood }
     .suffix = Один
     .desc = { ent-RMCPlankWood.desc }
+ent-RMCPlankWood2 = { ent-RMCPlankWood }
+    .suffix = Один
+    .desc = { ent-RMCPlankWood.desc }

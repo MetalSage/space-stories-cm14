@@ -26,10 +26,20 @@
       - id: CMHandsBlackMarine
       - id: CMHeadsetMPO
       - id: CMBootsBlackFilled
-    - name: Броня
-      takeAll: CMArmor
+      - id: CMGlassesSecurity
+      - id: CMBeltSecurityMPFilled
+    - name: Helmet
+      choices: { CMHelmet: 1 }
+      entries:
+      - id: CMArmorHelmetM10MP
+    - name: Armor
+      choices: { CMArmor: 1 }
       entries:
       - id: CMArmorM2MP
+      - id: RMCArmorVestMP
+    - name: Hat
+      choices: { CMHat: 1 }
+      entries:
       - id: CMHeadBeretRed
     - name: Кейс Для Пистолета
       choices: { CMGunCase: 1 }

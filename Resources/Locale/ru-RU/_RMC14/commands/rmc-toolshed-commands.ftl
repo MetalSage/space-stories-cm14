@@ -29,6 +29,7 @@ command-description-marine-randomizewithjob = Удаляет, а затем по
 command-description-removeinvalidweeds = Удаляет с карты все сорняки, которые не должны были нормально распространиться.
 command-description-requisitions-addbudget = Добавляет бюджет к счету Requisitions по умолчанию.
 command-description-requisitions-removebudget = Удаляет бюджет со счета Requisitions по умолчанию.
+command-description-rmcrejuvenate-marineplayersinrange = Омолаживает всех морпехов в определенном радиусе действия, восстанавливая им здоровье, снимая статусные эффекты и т.д.
 command-description-intel-addpoints = Добавляет точки в дерево технологий Intel по умолчанию.
 command-description-intel-removepoints = Удаляет точки из дерева технологий Intel по умолчанию.
 command-description-intel-spawnintel = Порождает разведданные на всех инициализированных картах.

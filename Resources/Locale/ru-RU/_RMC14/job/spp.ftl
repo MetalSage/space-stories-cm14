@@ -3,16 +3,22 @@ rmc-ghost-role-information-spp-rules =
     Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, чему научились, будучи призраком.
     Вам разрешено помнить знания об игре в целом, например, как готовить, как использовать предметы и т. д.
     Вам абсолютно [color=red]НЕ[/color] разрешено помнить, скажем, имя, внешность и т. д. вашего предыдущего персонажа.
+RMCSPPLeader = СПН Старший Сержант
 CMSPPLeader = СПН Старший Сержант
 rmc-job-description-spp-leader = ""
+RMCSPPSpecialist = СПН Сержант
 rmc-job-prefix-spp-leader = КО
 CMSPPSpecialist = СПН Сержант
+RMCSPPRifleman = Призывник СПН
 rmc-job-description-spp-specialist = ""
 rmc-job-prefix-spp-specialist = Спец
-CMSPPSoldier = СПН Рядовой
+RMCSPPEngineer = СПН МлСерж Инженер
+CMSPPSSoldier = СПН Рядовой
 rmc-job-description-spp-soldier = ""
+RMCSPPMedic = СПН МлСерж Медик
 rmc-job-prefix-spp-soldier = Сол
 CMSPPEngineer = СПН МлСерж Инженер
+RMCSPPMP = СПН Полиция
 rmc-job-description-spp-engineer = ""
 rmc-job-prefix-spp-engineer = Сап
 CMSPPMedic = СПН МлСерж Медик

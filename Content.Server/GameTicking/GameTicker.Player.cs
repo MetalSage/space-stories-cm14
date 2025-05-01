@@ -33,7 +33,7 @@ namespace Content.Server.GameTicking
                 if (args.OldStatus == SessionStatus.Connecting && args.NewStatus == SessionStatus.Connected)
                 {
                     mind.Session = session;
-                    _pvsOverride.AddSessionOverride(GetNetEntity(mindId.Value), session);
+                    _pvsOverride.AddSessionOverride(mindId.Value, session);
                 }
 
                 DebugTools.Assert(mind.Session == session);

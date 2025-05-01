@@ -96,6 +96,14 @@
         collection: XenoResinBreak
   - type: ExplosionRandomResistance
   - type: DeletedByWeedKiller
+  - type: RMCDeleteAnchoredOnInit
+    enabled: false
+    whitelist:
+      tags:
+      - XenoWeedTile
+  - type: Tag
+    tags:
+    - XenoWeedTile
 #  - type: Physics
 #    bodyType: Static
 #  - type: FootstepModifier
@@ -126,6 +134,9 @@
         acts: [ "Destruction" ]
   - type: XenoConstructionPlasmaCost
     plasma: 215
+  - type: RMCDeleteAnchoredOnInit
+    enabled: true
+  - type: QueenEyeVision
 
 - type: entity # TODO RMC14 sound
   parent: XenoWeeds
@@ -270,8 +281,8 @@
   - type: Sprite
     sprite: _RMC14/Structures/Xenos/xeno_weeds.rsi
     drawdepth: Objects
-    layers:
-    - state: weedwall
+#    layers:
+#    - state: weedwall
   - type: IconSmooth # Stories-Fixes
     key: xeno_structure
     base: weedwall
@@ -331,3 +342,6 @@
     layers:
     - state: weed0
     - state: constructionnode
+
+- type: Tag
+  id: XenoWeedTile

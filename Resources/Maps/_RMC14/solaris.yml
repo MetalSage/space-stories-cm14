@@ -244,6 +244,16 @@ entities:
     - type: MapLight
     - type: Roof
       data: {}
+    - type: RMCWeatherCycle
+      minTimeBetweenEvents: 1200
+      weatherEvents:
+      - name: Duststorm
+        duration: 600
+        weatherType: RMCBigRedDust
+      - name: Sandstorm
+        duration: 360
+        weatherType: RMCBigRedSand
+    - type: RMCAmbientLightEffects
     - type: MapGrid
       chunks:
         0,0:
@@ -78021,7 +78031,7 @@ entities:
     - type: Transform
       pos: 100.5,-155.5
       parent: 1
-- proto: CMVendorMedical
+- proto: CMVendorMedicalAllAccess
   entities:
   - uid: 18587
     components:
@@ -209952,16 +209962,6 @@ entities:
     - type: Transform
       pos: 31.5,-185.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        gun_magazine: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: RMCWeaponMar50LMG
   entities:
   - uid: 30368

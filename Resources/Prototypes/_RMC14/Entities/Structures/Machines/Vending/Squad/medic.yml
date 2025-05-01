@@ -211,6 +211,7 @@
     - name: Броня
       choices: { CMArmor: 1 }
       entries:
+      - id: RMCArmorVestMedic
       - id: RMCArmorM3LightVariants
         name: лёгкая броня
       - id: RMCArmorM3MediumVariants

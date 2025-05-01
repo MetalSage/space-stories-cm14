@@ -119,6 +119,7 @@ cm-xeno-plasma-transferred-to-other = Вы передали { $plasma } плаз
 # Charge Spit
 cm-xeno-charge-spit = Наш следующий плевок будет сильнее.
 cm-xeno-charge-spit-expire = Наши плевки пришли в норму.
+rmc-xeno-invisibility-expire-bump = We bumped into someone and lost our invisibility!
 # Turn Invisible
 cm-xeno-invisibility-already-invisible = Мы уже невидимы!
 cm-xeno-invisibility-expire = Мы чувствуем, что наша невидимость закончилась!
@@ -284,6 +285,20 @@ rmc-xeno-empower-start-self = Мы начинаем расширять свои 
 rmc-xeno-empower-start-others = { CAPITALIZE(THE($user)) } начинает расширять свои возможности!
 rmc-xeno-ravager-empower = Мы чувствуем прилив сил от окружающих врагов!
 rmc-xeno-ravager-empower-fizzle = Вокруг нас не было врагов!
+# Headbite
+rmc-xeno-headbite-others = { $xeno } grabs { $target }'s head aggressively.
+rmc-xeno-headbite-self = We grab { $target }'s head aggressively.
+rmc-xeno-headbite-warning-larva = We should not harm this host! It has a sister inside.
+rmc-xeno-headbite-warning = We can only headbite an unconscious, adjacent target!
+rmc-xeno-headbite-hit-self = We pierce { $target }'s head with our inner jaw!
+rmc-xeno-headbite-hit-others = { $xeno } pierces { $target }'s head with its inner jaw!
+# Produce Eggs
+rmc-xeno-produce-eggs-no-plasma = We don't have enough plasma to support forming eggs.
+rmc-xeno-produce-eggs-new-egg = We generate an egg. Now holding: { $cur_eggs } / { $max_eggs }.
+rmc-xeno-produce-eggs-start = We start forming eggs.
+# Eggsac Passive
+rmc-xeno-sustain-egg-decaying = We can only sustain { $max } eggs off hive weeds! Our oldest egg is decaying rapidly.
+rmc-xeno-sustain-death = { CAPITALIZE(THE($xeno)) } throes as its eggsac bursts into a mess of acid!
 rmc-xeno-ravager-super-empower-fade = Наше свечение исчезает, сила покидает нашу форму!
 rmc-xeno-defensive-shield-activate-self = Мы прижимаемся к земле и укрепляем свою защиту!
 cm-xeno-plasma-transferred-to-self = { $target } передал вам { $plasma } плазмы. Теперь у вас есть { $total }

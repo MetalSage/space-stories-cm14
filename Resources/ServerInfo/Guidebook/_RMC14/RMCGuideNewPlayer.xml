@@ -23,6 +23,10 @@
   - [color=yellow][bold][keybind="RMCCycleFireMode"][/bold][/color]: Сменить режим огня.
   - [color=yellow][bold][keybind="CMHolsterPrimary"][/bold][/color]: Убрать основное оружие.
   - [color=yellow][bold][keybind="CMHolsterSecondary"][/bold][/color]: Убрать второстепенное оружие.
+  - [color=yellow][bold][keybind="RMCPickUpDroppedItems"][/bold][/color]: Подобрать последний выброшенный предмет.
+  - [color=yellow][bold][keybind="RMCInteractWithOtherHand"][/bold][/color]: Взаимодействовать неактивной рукой.
+  - [color=yellow][bold][keybind="RMCActivateAttachableRail"][/bold][/color]: Активировать прицельное оборудование (Прицелы).
+  - [color=yellow][bold][keybind="RMCActivateAttachableStock"][/bold][/color]: Активировать приклад.
 
   ## Передвижение
   Вы можете передвигаться по игровому миру, используя [color=yellow][bold][keybind="MoveUp"][keybind="MoveLeft"][keybind="MoveDown"][keybind="MoveRight"][/bold][/color].

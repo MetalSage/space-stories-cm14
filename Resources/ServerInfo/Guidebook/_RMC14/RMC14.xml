@@ -12,14 +12,33 @@
   Обязательно прочитайте правила, если вы еще этого не сделали.
   - [textlink="Правила" link="RMCOverview"]
 
-  Новичок в Space Stories Colonial Marines, SS14 или нет опыта игры в CM13? Будьте осторожны! Многие механики и значения отличаются от SS14.
+  Новичок в Space Stories Colonial Marines, SS14 или нет опыта игры в CM13? Будьте осторожны! Многие механики и значения отличаются от этих игр.
   - [textlink="Руководство для нового игрока!" link="RMCGuideNewPlayer"]
+  - [textlink="Твой первый день в роли стрелка!" link="RMCGuideRoleRifleman"]
+  - [textlink="Итак, ты только что родился в улье! Что дальше?" link="RMCGuideRoleDrone"]
 
-  Есть опыт? Ознакомьтесь с этими страницами руководства!
+  ## Есть опыт? Ознакомьтесь с этими страницами руководства!
+
+  Любой желающий может добавить руководства на эту страницу через Discord или GitHub.
+
+  ### Морпехи
+
+  [bold]Роли[/bold]
   - [textlink="Медицина" link="RMCMedical"]
-  - [textlink="Лекарства" link="RMCMedicine"]
   - [textlink="Запросы снабжения" link="RMCRequisitions"]
-  - [textlink="Вышки связи и сенсорные вышки" link="RMCGuideCommunicationsTowers"]
   - [textlink="Боевой техник" link="RMCGuideRoleCombatTechnician"]
   - [textlink="Техник по обслуживанию" link="RMCGuideRoleMaintenanceTechnician"]
+  - [textlink="Выживший" link="RMCSurvivor"]
+  - [textlink="Оператор Смартганна" link="RMCGuideRoleSGO"]
+
+  [bold]Структуры[/bold]
+  - [textlink="Вышки связи и сенсорные вышки" link="RMCGuideCommunicationsTowers"]
+
+  ### Ксеноморфы
+
+  [bold]Роли[/bold]
+
+
+  [bold]Структуры[/bold]
+
 </Document>

@@ -14,3 +14,7 @@ ent-SquadFoxtrot = Фокстрот
     .desc = { ent-SquadBase.desc }
 ent-SquadIntel = Разведка
     .desc = { ent-SquadBase.desc }
+ent-SquadSPP = СПН
+    .desc = { ent-SquadBase.desc }
+ent-SquadPMC = ЧВК
+    .desc = { ent-SquadBase.desc }

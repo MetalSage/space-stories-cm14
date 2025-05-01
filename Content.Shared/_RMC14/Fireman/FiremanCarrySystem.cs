@@ -112,6 +112,9 @@ public sealed class FiremanCarrySystem : EntitySystem
         if (!TryComp(user, out CanFiremanCarryComponent? carrier))
             return;
 
+        if (_transform.IsParentOf(Transform(ent.Owner), user))
+            return;
+
         ent.Comp.BeingCarried = true;
         Dirty(ent);
 
@@ -222,7 +225,7 @@ public sealed class FiremanCarrySystem : EntitySystem
 
     private void OnCarrierPullStopped(Entity<CanFiremanCarryComponent> ent, ref PullStoppedMessage args)
     {
-        if (ent.Owner == args.PullerUid && ent.Comp.Carrying == args.PulledUid)
+        if (ent.Owner == args.PullerUid)
             StopPull(ent, args.PulledUid);
     }
 
@@ -332,6 +335,9 @@ public sealed class FiremanCarrySystem : EntitySystem
 
                 var parent = CompOrNull<TransformComponent>(carrier)?.ParentUid ??
                              _transform.GetMoverCoordinates(target).EntityId;
+                if (target == parent)
+                    parent = _transform.GetMoverCoordinates(target).EntityId;
+
                 _transform.SetParent(target, parent);
             }
         }

@@ -22,4 +22,5 @@ chat-radio-spp = СПН
 chat-radio-spp-engi = СПН Инж
 chat-radio-spp-med = СПН Мед
 chat-radio-spp-cct = СПН CCT
+chat-radio-royal-marine = Королевские морпехи
 chat-radio-hivemind = Улей

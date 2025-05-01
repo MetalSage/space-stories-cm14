@@ -38,14 +38,15 @@
         points: 16
     - name: Предметы Одежды
       entries:
+      - id: RMCBackpackRTO
+        recommended: true
+        points: 5
       - id: RMCScabbardMacheteFilled
         name: ножны для мачете (заполненные)
         points: 4
       - id: RMCPouchMacheteFilled
         name: подсумок для мачете (полный)
         points: 4
-      - id: RMCBackpackRTO
-        points: 5
       - id: CMBeltUtilityCombat
         points: 15
     - name: Утилиты

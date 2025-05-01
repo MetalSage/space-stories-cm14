@@ -1,2 +1,8 @@
-ent-CMXenoLurker = Охотник
+ent-RMCXenoLurkerBase = Охотник
     .desc = Мускулистый, быстрый пришелец с острыми когтями.
+ent-CMXenoLurker = { ent-RMCXenoLurkerBase }
+    .desc = { ent-RMCXenoLurkerBase.desc }
+    .suffix = Обычный
+ent-RMCXenoLurkerVampire = { ent-RMCXenoLurkerBase }
+    .suffix = Вампир
+    .desc = { ent-RMCXenoLurkerBase.desc }

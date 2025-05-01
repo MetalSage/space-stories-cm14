@@ -1,8 +1,9 @@
-- type: entity
+﻿- type: entity
   parent:
   - CMXenoDeveloped
   - CMXenoTail
   - RMCXenoSpeechSounds
+  - RMCXenoMobCollision
   id: CMXenoQueen
   name: Queen
   description: A huge, looming alien creature. The biggest and the baddest.
@@ -242,8 +243,37 @@
     debuffModifier: 1.4
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 1.4
+  - type: QueenEyeAction
+  - type: StunFriendlyXenoOnStep
+  - type: XenoRankNames
+    rankNames:
+      0: rmc-xeno-fem-young
+      2: rmc-xeno-fem-mature
+      3: rmc-xeno-fem-elder
+      4: rmc-xeno-fem-ancient
+      5: rmc-xeno-fem-prime
 
 - type: entity
   id: XenoLeaderPheromoneRelay
   components:
   - type: XenoPheromones
+
+- type: entity
+  parent: StationAiHolo
+  id: RMCQueenEye
+  name: queen eye
+  description: It seems to be a visual projection of someone.
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: Sprite
+    color: "#a800a8"
+    sprite: _RMC14/Effects/xeno_eye.rsi
+    layers:
+    - state: hologram
+  - type: Eye
+    drawFov: false
+  - type: QueenEye
+  - type: MotionDetectorTracked
+    isQueenEye: true
+  - type: Visibility
+    layer: 32770

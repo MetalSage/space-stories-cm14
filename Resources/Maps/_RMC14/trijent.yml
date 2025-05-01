@@ -345,6 +345,16 @@ entities:
     - type: MapLight
     - type: Roof
       data: {}
+    - type: RMCWeatherCycle
+      minTimeBetweenEvents: 1200
+      weatherEvents:
+      - name: Duststorm
+        duration: 360
+        weatherType: RMCBigRedDust
+      - name: Rainstorm
+        duration: 360
+        weatherType: RMCTrijentRainLight
+    - type: RMCAmbientLightEffects
     - type: BecomesStation
       id: Trijent
     - type: MapGrid
@@ -67388,7 +67398,7 @@ entities:
     - type: Transform
       pos: 54.5,-16.5
       parent: 1
-- proto: CMDefibrillatorEmpty
+- proto: CMDefibrillator
   entities:
   - uid: 28976
     components:
@@ -67641,11 +67651,6 @@ entities:
     - type: Transform
       pos: 79.5,-24.5
       parent: 1
-    - type: UserInterface
-      actors:
-        enum.DisposalUnitUiKey.Key:
-        - invalid
-    - type: ActiveUserInterface
   - uid: 32045
     components:
     - type: Transform
@@ -89614,7 +89619,7 @@ entities:
     - type: Transform
       pos: 37.5,-209.5
       parent: 1
-- proto: CMVendorMedical
+- proto: CMVendorMedicalAllAccess
   entities:
   - uid: 29002
     components:
@@ -139350,6 +139355,7 @@ entities:
     components:
     - type: Transform
       pos: 50.43463,-145.52802
+      parent: 1
 - proto: RMCMarkerAreaLabel
   entities:
   - uid: 31969

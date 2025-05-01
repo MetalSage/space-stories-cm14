@@ -88,6 +88,10 @@ cm-chatsan-word-spiders = spiders
 cm-chatsan-replacement-spiders = webspitters
 cm-chatsan-word-arachnid = arachnid
 cm-chatsan-replacement-arachnid = webspitting host
+cm-chatsan-word-skrell = skrell
+cm-chatsan-replacement-skrell = frog host
+cm-chatsan-word-skrells = skrells
+cm-chatsan-replacement-skrells = frog hosts
 cm-chatsan-word-arachnids = arachnids
 cm-chatsan-replacement-arachnids = webspitting hosts
 cm-chatsan-word-dropship = шаттл
@@ -192,6 +196,16 @@ cm-chatsan-word-mouse = mouse
 cm-chatsan-replacement-mouse = squeaking host
 cm-chatsan-word-mice = mice
 cm-chatsan-replacement-mice = squeaking hosts
+cm-chatsan-word-feroxi = feroxi
+cm-chatsan-replacement-feroxi = aquatic host
+cm-chatsan-word-feroxis = feroxis
+cm-chatsan-replacement-feroxis = aquatic hosts
+cm-chatsan-word-shark = shark
+cm-chatsan-replacement-shark = aquatic host
+cm-chatsan-word-sharks = sharks
+cm-chatsan-replacement-sharks = aquatic hosts
+cm-chatsan-word-fish = fish
+cm-chatsan-replacement-fish = aquatic host
 cm-chatsan-word-grenade = граната
 cm-chatsan-replacement-grenade = взрывная палка
 cm-chatsan-word-grenades = гранаты
@@ -292,18 +306,14 @@ cm-chatsan-replacement-survs = planet talls
 # cm-chatsan-word-#tank = #tank
 # cm-chatsan-replacement-#tank = turtle
 
-
 # cm-chatsan-word-# laser = # laser
 # cm-chatsan-replacement-# laser = dot
-
 
 # cm-chatsan-word-# lazer = # lazer
 # cm-chatsan-replacement-# lazer = dot
 
-
 # cm-chatsan-word-# flamer = # flamer
 # cm-chatsan-replacement-# flamer = fire spitter
-
 
 # cm-chatsan-word-# flamethrower = # flamethrower
 # cm-chatsan-replacement-# flamethrower =  fire spitter

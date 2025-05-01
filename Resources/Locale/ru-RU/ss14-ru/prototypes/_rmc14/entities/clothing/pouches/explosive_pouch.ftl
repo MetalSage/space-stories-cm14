@@ -4,3 +4,7 @@ ent-RMCPouchExplosiveFilledPlasticExplosives = { ent-RMCPouchExplosive }
     .desc = { ent-RMCPouchExplosive.desc }
 ent-RMCPouchExplosiveFilledHEFA = { ent-RMCPouchExplosive }
     .desc = { ent-RMCPouchExplosive.desc }
+ent-RMCPouchExplosiveFilledSPP = { ent-RMCPouchExplosive }
+    .desc = { ent-RMCPouchExplosive.desc }
+ent-RMCPouchExplosiveFilledC4SPP = { ent-RMCPouchExplosive }
+    .desc = { ent-RMCPouchExplosive.desc }

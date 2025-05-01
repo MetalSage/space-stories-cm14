@@ -11,21 +11,80 @@
   text: "/ServerInfo/Guidebook/_RMC14/RMC14.xml"
   children:
   - RMCGuideNewPlayer
-  - RMCMedical
-  - RMCRequisitions
-  - RMCIntel
+  - RMCChemicals
+  - RMCGuideMarineRoles
+  - RMCGuideMarineStructures
+#  - RMCGuideXenonidRoles
+#  - RMCGuideXenonidStructures
+  - RMCGuideFood
+  - RMCGuideDrinks
+
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideNewPlayer
-  name: "Руководство для новых игроков" # Stories-Localise
+  name: "Руководство Для Новых Игроков" # Stories-Localise
   text: "/ServerInfo/Guidebook/_RMC14/RMCGuideNewPlayer.xml"
   children:
   - RMCGuideRoleRifleman
   - RMCGuideRoleDrone
+
+# marine roles
+- type: guideEntry
+  parent: RMC
+  id: RMCGuideMarineRoles
+  name: "Роли Морпехов" # Stories-Localise
+  text: "/ServerInfo/Guidebook/_RMC14/RMC14.xml"
+  children:
+  - RMCSurvivor
+  - RMCMedical
+  - RMCRequisitions
+  - RMCIntel
   - RMCGuideRoleCombatTechnician
-  - RMCGuideCommunicationsTowers
   - RMCGuideRoleMaintenanceTechnician
+  - RMCGuideRoleSGO
+  - RMCGuideCommandRoles
+
+# marine structures
+- type: guideEntry
+  parent: RMC
+  id: RMCGuideMarineStructures
+  name: "Структуры Морпехов" # Stories-Localise
+  text: "/ServerInfo/Guidebook/_RMC14/RMC14.xml"
+  children:
+  - RMCGuideCommunicationsTowers
+
+# cooking
+- type: guideEntry
+  parent: RMC
+  id: RMCGuideFood
+  name: "Рецепты Готовки"
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideFood.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: RMCGuideDrinks
+  name: "Рецепты Напитков" # Stories-Localise
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideDrinks.xml"
+
+# Xenonid roles
+- type: guideEntry
+  parent: RMC
+  id: RMCGuideXenonidRoles
+  name: "Роли Ксеноморфов" # Stories-Localise
+  text: "/ServerInfo/Guidebook/_RMC14/RMC14.xml"
+#  children:
+#  - Put something here someday
+
+# Xenonid structures
+- type: guideEntry
+  parent: RMC
+  id: RMCGuideXenonidStructures
+  name: "Структуры Ксеноморфов" # Stories-Localise
+  text: "/ServerInfo/Guidebook/_RMC14/RMC14.xml"
+#  children:
+#  - Put something here someday
+
 
 - type: guideEntry
   parent: RMC
@@ -46,41 +105,86 @@
   id: RMCGuideRoleCombatTechnician
   priority: 2
   name: "Боевой техник" # Stories-Localise
-  text: "/ServerInfo/Guidebook/_RMC14/NewPlayerGuide/RMCGuideRoleCombatTechnician.xml"
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleCombatTechnician.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideCommunicationsTowers
   priority: 3
   name: "Руководство по башням связи" # Stories-Localise
-  text: "/ServerInfo/Guidebook/_RMC14/NewPlayerGuide/RMCGuideCommunicationsTowers.xml"
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideCommunicationsTowers.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleMaintenanceTechnician
   priority: 4
   name: "Техник по обслуживанию" # Stories-Localise
-  text: "/ServerInfo/Guidebook/_RMC14/NewPlayerGuide/RMCGuideRoleMaintenanceTechnician.xml"
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleMaintenanceTechnician.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCMedical
   priority: 5
   name: "Медицина" # Stories-Localise
-  text: "/ServerInfo/Guidebook/_RMC14/Medical/RMCMedical.xml"
-  children:
-  - RMCChemicals
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCMedical.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCRequisitions
   priority: 6
   name: "Поставки" # Stories-Localise
-  text: "/ServerInfo/Guidebook/_RMC14/RMCRequisitions.xml"
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCRequisitions.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCIntel
   priority: 7
   name: "Разведка" # Stories-Localise
-  text: "/ServerInfo/Guidebook/_RMC14/RMCIntel.xml"
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCIntel.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: RMCSurvivor
+  priority: 8
+  name: "Выжившие" # Stories-Localise
+  text: "/ServerInfo/Guidebook/_RMC14/NewPlayerGuide/RMCSurvivor.xml"
+
+- type: guideEntry # made by GoodShowOldChap
+  parent: RMC
+  id: RMCGuideRoleSGO
+  priority: 9
+  name: "Оператор Смартганна" # Stories-Localise
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleSGO.xml"
+
+- type: guideEntry # made by teatotaltemplar
+  parent: RMC
+  id: RMCGuideCommandRoles
+  priority: 10
+  name: "Кто в командовании?" # Stories-Localise
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideCommandRoles.xml"
+
+# Chemistry stuff
+- type: guideEntry
+  parent: RMC
+  id: RMCChemicals
+  name: guide-entry-chemicals
+  text: "/ServerInfo/Guidebook/_RMC14/Chemicals/RMCChemicals.xml"
+  priority: 20
+  children:
+  #  - RMCElements
+  - RMCMedicine
+  #  - RMCNarcotics
+  #  - RMCPyrotechnic
+  #  - RMCToxins
+  #  - RMCFoods
+  #  - RMCBotanical
+  #  - RMCBiological
+  #  - RMCOthers
+  filterEnabled: True
+
+- type: guideEntry
+  parent: RMC
+  id: RMCMedicine
+  name: guide-entry-medicine
+  text: "/ServerInfo/Guidebook/_RMC14/Chemicals/Medicine.xml"
+  filterEnabled: True

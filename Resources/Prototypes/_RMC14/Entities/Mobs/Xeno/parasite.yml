@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent:
   - CMXenoUndeveloped
   - CMXenoFlammable
@@ -8,9 +8,9 @@
   components:
   - type: GhostRole
     name: cm-job-name-xeno-parasite
-    prob: 0.25
+    prob: 0
     raffle:
-      settings: timeRequirement
+      settings: parasiteTimeRequirement
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Parasite/parasite.rsi
   - type: MobState
@@ -86,6 +86,7 @@
   - type: RMCSize
     size: Small
   - type: ParasiteAI
+  - type: SleepNPC
   - type: CanEscapeInventory
     baseResistTime: 1
   - type: HTN
@@ -108,6 +109,14 @@
     stateName: parasite
   - type: RMCBuckleOffset
     offset: 0, 0
+  - type: XenoRankNames #TODO change ranks based on total hugs done
+    rankNames:
+      0: rmc-xeno-young
+      1: rmc-xeno-young
+      2: rmc-xeno-mature-parasite
+      3: rmc-xeno-elder-parasite
+      4: rmc-xeno-ancient-parasite
+      5: rmc-xeno-prime-parasite
   - type: AutoClimbBlocked # Stories-AutoClimb
   
 - type: entity
