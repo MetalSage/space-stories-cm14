@@ -42,6 +42,8 @@
     ignoreEmpty: true
   - type: Spillable
     solution: bucket
+  - type: FitsInDispenser # Stories-Parity
+    solution: bucket # Stories-Parity
   - type: DrawableSolution
     solution: bucket
   - type: RefillableSolution
