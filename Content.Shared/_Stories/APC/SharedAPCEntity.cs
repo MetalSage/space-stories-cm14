@@ -17,6 +17,11 @@ public sealed partial class LeaveAPCDoAfterEvent : SimpleDoAfterEvent
 }
 
 [Serializable, NetSerializable]
+public sealed partial class AttachModuleToAPCDoAfterEvent : SimpleDoAfterEvent
+{
+}
+
+[Serializable, NetSerializable]
 public enum APCEnterSide
 {
     Left,
@@ -65,12 +70,15 @@ public sealed class RequestControlAPCEvent : EntityEventArgs
     public NetEntity APCController;
     public NetEntity User;
 
-    public RequestControlAPCEvent(NetEntity apccontroller, NetEntity user)
+    public RequestControlAPCEvent(NetEntity apcController, NetEntity user)
     {
-        APCController = apccontroller;
+        APCController = apcController;
         User = user;
     }
 }
 
 [Serializable, NetSerializable]
-public record DeattachModuleEvent(NetEntity Module);
+public record DeattachModuleEvent(NetEntity Attacher, NetEntity Module);
+
+[ByRefEvent, Serializable, NetSerializable]
+public record struct APCModuleAttachedEvent(NetEntity APC, NetEntity Module);

@@ -3,6 +3,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Shared.Whitelist;
+using Robust.Shared.Containers;
 
 namespace Content.Shared._Stories.APC;
 
@@ -66,17 +68,18 @@ public sealed partial class APCEntityComponent : Component
 
     #region Modules
     [DataField, AutoNetworkedField]
-    public List<string?> SpawnModules = new();
+    public List<EntProtoId?> StartingModules = new();
 
     [DataField, AutoNetworkedField]
-    public List<EntityUid> Modules = new();
+    public List<EntityUid> VisualizedModules = new();
+
+    [ViewVariables]
+    public Container ModulesContainer = default!;
+
+    [ViewVariables]
+    public readonly string ModulesContainerId = "apc-modules-container";
     #endregion
 
     #region Prototypes
-    [DataField, AutoNetworkedField]
-    public EntProtoId? WheelsProto;
-
-    [DataField, AutoNetworkedField]
-    public EntProtoId? TurretProto;
     #endregion
 }

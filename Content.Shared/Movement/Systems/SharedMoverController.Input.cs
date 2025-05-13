@@ -329,9 +329,22 @@ namespace Content.Shared.Movement.Systems
             if (!Timing.InSimulation)
             {
                 var immediateDir = DirVecForButtons(mover.HeldMoveButtons);
+
+                // Если APC и движемся задом — снизить скорость
+                if (TryComp(mover.Owner, out APCEntityComponent _) &&
+                    TryComp(mover.Owner, out TransformComponent xform))
+                {
+                    var facingDir = xform.LocalRotation.ToVec(); // Направление "вперёд"
+                    if (Vector2.Dot(immediateDir, facingDir) < -0.9f) // Почти строго назад
+                    {
+                        immediateDir /= 1.5f;
+                    }
+                }
+
                 return mover.Sprinting ? (Vector2.Zero, immediateDir) : (immediateDir, Vector2.Zero);
             }
 
+            // Иначе – обычная логика
             Vector2 walk;
             Vector2 sprint;
             float remainingFraction;
@@ -346,19 +359,25 @@ namespace Content.Shared.Movement.Systems
             {
                 walk = mover.CurTickWalkMovement;
                 sprint = mover.CurTickSprintMovement;
-                remainingFraction = (ushort.MaxValue - mover.LastInputSubTick) / (float) ushort.MaxValue;
+                remainingFraction = (ushort.MaxValue - mover.LastInputSubTick) / (float)ushort.MaxValue;
             }
 
             var curDir = DirVecForButtons(mover.HeldMoveButtons) * remainingFraction;
 
+            if (TryComp(mover.Owner, out APCEntityComponent _) &&
+                TryComp(mover.Owner, out TransformComponent xform2))
+            {
+                var facingDir = xform2.LocalRotation.ToVec();
+                if (Vector2.Dot(curDir, facingDir) < -0.9f)
+                {
+                    curDir /= 1.5f;
+                }
+            }
+
             if (mover.Sprinting)
-            {
                 sprint += curDir;
-            }
             else
-            {
                 walk += curDir;
-            }
 
             return (walk, sprint);
         }

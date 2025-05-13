@@ -32,6 +32,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Content.Shared.Prying.Components;
+using Content.Shared.Storage.EntitySystems;
+using Robust.Shared.Containers;
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Movement.Components;
 
 namespace Content.Server._Stories.APC;
 
@@ -53,6 +57,8 @@ public sealed partial class APCEntitySystem : EntitySystem
     [Dependency] private readonly DialogSystem _dialog = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    
     public override void Initialize()
     {
         base.Initialize();
@@ -60,8 +66,11 @@ public sealed partial class APCEntitySystem : EntitySystem
         SubscribeLocalEvent<APCEntityComponent, EnterAPCDoAfterEvent>(OnEnterAPCEvent);
         SubscribeLocalEvent<APCEntityComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<APCEntityComponent, ComponentShutdown>(OnComponentShutdown);
-        SubscribeLocalEvent<APCEntityComponent, AfterInteractUsingEvent>(OnPrying);
+        SubscribeLocalEvent<APCEntityComponent, AfterInteractUsingEvent>(OnAfterInteractUsingEvent);
         SubscribeLocalEvent<APCEntityComponent, DeattachModuleEvent>(OnDeattachModule);
+        SubscribeLocalEvent<APCEntityComponent, APCModuleAttachedEvent>(OnModuleAttached);
+        SubscribeLocalEvent<APCEntityComponent, AttachModuleToAPCDoAfterEvent>(AttachModuleDoAfter);
+
         InitializeDoors();
         InitializeModules();
         InitializeMovement();
@@ -70,9 +79,12 @@ public sealed partial class APCEntitySystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
         var apcQuery = EntityQueryEnumerator<APCEntityComponent>();
         while (apcQuery.MoveNext(out var uid, out var comp))
-        {}
+        {
+            // затычка для будущей апдейт логики
+        }
     }
 
     private void OnMapInit(Entity<APCEntityComponent> apc, ref MapInitEvent args)
@@ -80,8 +92,29 @@ public sealed partial class APCEntitySystem : EntitySystem
         _actionsSystem.AddAction(apc, ref apc.Comp.APCControlReturnActEntity, apc.Comp.APCControlReturnAction);
         _apcSystem.UpdateAppearance(apc, apc.Comp);
 
-        if (apc.Comp.SpawnModules.Count != 0)
-            SetupModule(apc, apc.Comp.SpawnModules);
+        apc.Comp.ModulesContainer = _container.EnsureContainer<Container>(apc, apc.Comp.ModulesContainerId);
+
+        if (apc.Comp.StartingModules.Count != 0)
+            SetupStartingModules(apc, apc.Comp.StartingModules);
+
+        if (TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
+        {
+            float totalWalkSpeed = apcMovement.BaseWalkSpeed;
+            float totalSprintSpeed = apcMovement.BaseSprintSpeed;
+            float totalAcceleration = apcMovement.Acceleration;
+
+            foreach (var module in apc.Comp.ModulesContainer.ContainedEntities)
+            {
+                if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement))
+                {
+                    totalWalkSpeed += moduleMovement.BaseWalkSpeed;
+                    totalSprintSpeed += moduleMovement.BaseSprintSpeed;
+                    totalAcceleration += moduleMovement.Acceleration;
+                }
+            }
+
+            _movement.ChangeBaseSpeed(apc, totalWalkSpeed, totalSprintSpeed, totalAcceleration, apcMovement);
+        }
 
         LoadMap(apc, apc.Comp);
     }
@@ -99,8 +132,8 @@ public sealed partial class APCEntitySystem : EntitySystem
             }
         }
 
-        var mapId = mapEntity != null 
-            ? _transform.GetMapId(mapEntity.Value) 
+        var mapId = mapEntity != null
+            ? _transform.GetMapId(mapEntity.Value)
             : _mapManager.CreateMap();
 
         var mapEnt = _map.GetMap(mapId);
@@ -115,12 +148,8 @@ public sealed partial class APCEntitySystem : EntitySystem
             .Select(grid => _transform.GetWorldPosition(grid.Owner))
             .ToList();
 
-        Vector2i offset = default;
-        if (existingGrids.Count == 0)
-        {
-            offset = Vector2i.Zero;
-        }
-        else
+        Vector2i offset = Vector2i.Zero;
+        if (existingGrids.Count != 0)
         {
             for (int x = 0; ; x++)
             {
@@ -133,7 +162,7 @@ public sealed partial class APCEntitySystem : EntitySystem
             }
         }
 
-        if (_mapLoader.TryLoadGrid(mapId, new ResPath(component.GridPath), out var grid, 
+        if (_mapLoader.TryLoadGrid(mapId, new ResPath(component.GridPath), out var grid,
             null, offset, Angle.FromDegrees(0)))
         {
             component.GridEnt = grid.Value;
@@ -141,6 +170,7 @@ public sealed partial class APCEntitySystem : EntitySystem
             _metaDataSystem.SetEntityName(grid.Value, $"APC Grid: {uid}");
         }
     }
+
 
     private void OnComponentShutdown(EntityUid uid, APCEntityComponent component, ComponentShutdown args)
     {
@@ -162,7 +192,8 @@ public sealed partial class APCEntitySystem : EntitySystem
         if (!CanInteractOnDoor(args.User, args.Target))
             return;
 
-        if (TryComp<AccessReaderComponent>(entity, out var access) && !_accessReader.IsAllowed(args.User, entity, access))
+        if (TryComp<AccessReaderComponent>(entity, out var access) &&
+            !_accessReader.IsAllowed(args.User, entity, access))
         {
             _popup.PopupEntity(Loc.GetString("gateway-access-denied"), args.User);
             _audio.PlayPvs(entity.Comp.AccessDeniedSound, entity);
@@ -170,8 +201,8 @@ public sealed partial class APCEntitySystem : EntitySystem
             return;
         }
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 
-            entity.Comp.EntryDelay, new EnterAPCDoAfterEvent(), 
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User,
+            entity.Comp.EntryDelay, new EnterAPCDoAfterEvent(),
             entity, target: args.Target, used: entity)
         {
             BreakOnMove = true
@@ -195,7 +226,6 @@ public sealed partial class APCEntitySystem : EntitySystem
         if (entity.Comp.GridEnt == null)
             return;
 
-
         var pilot = EnsureComp<APCPilotComponent>(args.User);
         pilot.APC = entity.Owner;
 
@@ -213,25 +243,26 @@ public sealed partial class APCEntitySystem : EntitySystem
         HandleEnterPulling(args.User, coordinates, entity.Comp);
     }
 
+
     public bool CanInteractOnDoor(EntityUid user, EntityUid target)
     {
-        var targetFacingDirection = Transform(target).LocalRotation.GetCardinalDir();
-        var rightAngle = (targetFacingDirection.ToAngle().Degrees + 90) % 360;
-        var leftAngle = (targetFacingDirection.ToAngle().Degrees - 90 + 360) % 360;
+        var targetRotation = Transform(target).LocalRotation;
+        var userPos = _transform.GetMapCoordinates(user).Position;
+        var targetPos = _transform.GetMapCoordinates(target).Position;
 
-        var userMapPos = _transform.GetMapCoordinates(user);
-        var targetMapPos = _transform.GetMapCoordinates(target);
-        var currentAngle = (userMapPos.Position - targetMapPos.Position).ToWorldAngle();
+        var directionToUser = (userPos - targetPos).ToWorldAngle().Degrees;
+        var facing = targetRotation.GetCardinalDir().ToAngle().Degrees;
 
-        var differenceFromLeftAngle = (leftAngle - currentAngle.Degrees + 180 + 360) % 360 - 180;
-        var differenceFromRightAngle = (rightAngle - currentAngle.Degrees + 180 + 360) % 360 - 180;
+        var left = (facing - 90 + 360) % 360;
+        var right = (facing + 90) % 360;
 
-        if (differenceFromLeftAngle > -25 && differenceFromLeftAngle < 25 ||
-            differenceFromRightAngle > -25 && differenceFromRightAngle < 25)
+        bool IsWithinRange(double a, double b, double range)
         {
-            return true;
+            var delta = ((a - b + 180 + 360) % 360) - 180;
+            return Math.Abs(delta) <= range;
         }
-        return false;
+
+        return IsWithinRange(directionToUser, left, 25) || IsWithinRange(directionToUser, right, 25);
     }
 
     public Vector2? GetAPCEnterPoint(EntityUid gridId)
@@ -290,45 +321,122 @@ public sealed partial class APCEntitySystem : EntitySystem
         }
     }
 
-    private void OnPrying(Entity<APCEntityComponent> apc, ref AfterInteractUsingEvent args)
+    private void OnAfterInteractUsingEvent(Entity<APCEntityComponent> apc, ref AfterInteractUsingEvent args)
     {
-        if (!HasComp<PryingComponent>(args.Used))
-            return;
-
         if (!args.CanReach || args.Handled)
             return;
 
         args.Handled = true;
 
-        var options = new List<DialogOption>();
-        foreach (var module in apc.Comp.Modules)
+        if (HasComp<PryingComponent>(args.Used))
         {
-            if (!TryComp<MetaDataComponent>(module, out var moduleMeta))
-                continue;
+            var options = new List<DialogOption>();
 
-            options.Add(new DialogOption(moduleMeta.EntityName, new DeattachModuleEvent(GetNetEntity(module))));
+            foreach (var containedModule in apc.Comp.ModulesContainer.ContainedEntities)
+            {
+                if (!TryComp<MetaDataComponent>(containedModule, out var moduleMeta))
+                    continue;
+
+                options.Add(new DialogOption(
+                    moduleMeta.EntityName,
+                    new DeattachModuleEvent(GetNetEntity(args.User), GetNetEntity(containedModule))
+                ));
+            }
+
+            if (!TryComp<MetaDataComponent>(apc, out var apcMeta))
+                return;
+
+            _dialog.OpenOptions(apc.Owner, args.User, apcMeta.EntityName, options, "Доступные модули:");
+            return;
         }
 
-        if (!TryComp<MetaDataComponent>(apc, out var apcMeta))
-            return;
+        if (TryComp<APCModuleComponent>(args.Used, out var module))
+        {
+            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, module.AttachTime,
+                new AttachModuleToAPCDoAfterEvent(), apc,
+                target: apc.Owner, used: args.Used)
+            {
+                BreakOnMove = true
+            };
 
-        _dialog.OpenOptions(args.User, apcMeta.EntityName, options, "Доступные модули:");
+            _doAfterSystem.TryStartDoAfter(doAfterArgs);
+        }
     }
 
-    private void OnDeattachModule(Entity<APCEntityComponent> ent, ref DeattachModuleEvent args)
+    private void AttachModuleDoAfter(Entity<APCEntityComponent> apc, ref AttachModuleToAPCDoAfterEvent args)
     {
-        if (!TryGetEntity(args.Module, out var module) ||
-            !TryComp(module, out APCModuleComponent? moduleComp))
+        if (args.Cancelled || args.Handled || args.Args.Target == null || args.Used == null)
+            return;
+
+        args.Handled = true;
+        SetupModule(apc, args.Used.Value);
+    }
+
+    // private void DeattachModuleDoAfter(Entity<APCEntityComponent> apc, ref DeattachModuleEvent args)
+    // {
+    //     if (args.Cancelled || args.Handled || args.Args.Target == null)
+    //         return;
+
+    //     args.Handled = true;
+
+    // }
+
+    private void OnDeattachModule(Entity<APCEntityComponent> apc, ref DeattachModuleEvent args)
+    {
+        if (!TryGetEntity(args.Module, out var module2) || module2 == null)
+            return;
+
+        if (!TryGetEntity(args.Attacher, out var attacher) || attacher == null)
+            return;
+
+        var module = module2.Value;
+        var user = attacher.Value;
+
+        if (!TryComp(module, out APCModuleComponent? moduleComp) ||
+            !TryComp<TransformComponent>(module, out var xform))
         {
             return;
         }
+        if (moduleComp.VisualizeModuleEnt != null)
+        {
+            apc.Comp.VisualizedModules.Remove(moduleComp.VisualizeModuleEnt.Value);
+            QueueDel(moduleComp.VisualizeModuleEnt.Value);
+        }
+        _container.Remove(module, apc.Comp.ModulesContainer);
+        _transform.SetMapCoordinates(module, _transform.GetMapCoordinates(user));
 
-        if (module == null)
+        if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement) && TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
+        {
+            var totalWalk = apcMovement.BaseWalkSpeed - moduleMovement.BaseWalkSpeed;
+            var totalSprint = apcMovement.BaseSprintSpeed - moduleMovement.BaseSprintSpeed;
+            var totalAcceleration = apcMovement.Acceleration - moduleMovement.Acceleration;
+
+            _movement.ChangeBaseSpeed(apc, totalWalk, totalSprint, totalAcceleration, apcMovement);
+        }
+
+        if (TryComp<GunComponent>(module, out var gun))
+        {
+            //apc.Comp.Guns.Remove(gun);
+        }
+    }
+
+    private void OnModuleAttached(Entity<APCEntityComponent> apc, ref APCModuleAttachedEvent args)
+    {
+        if (!TryGetEntity(args.Module, out var module))
             return;
 
-        if (!TryComp<TransformComponent>(module, out var xform))
-            return;
+        if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement) && TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
+        {
+            var totalWalk = apcMovement.BaseWalkSpeed + moduleMovement.BaseWalkSpeed;
+            var totalSprint = apcMovement.BaseSprintSpeed + moduleMovement.BaseSprintSpeed;
+            var totalAcceleration = apcMovement.Acceleration + moduleMovement.Acceleration;
 
-        _transform.DetachEntity(module.Value, xform);
+            _movement.ChangeBaseSpeed(apc, totalWalk, totalSprint, totalAcceleration, apcMovement);
+        }
+
+        if (TryComp<GunComponent>(module, out var gun))
+        {
+            //apc.Comp.Guns.Add(gun);
+        }
     }
 }
