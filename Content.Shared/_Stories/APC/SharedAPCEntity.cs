@@ -22,6 +22,11 @@ public sealed partial class AttachModuleToAPCDoAfterEvent : SimpleDoAfterEvent
 }
 
 [Serializable, NetSerializable]
+public sealed partial class DeattachModuleToAPCDoAfterEvent : SimpleDoAfterEvent
+{
+}
+
+[Serializable, NetSerializable]
 public enum APCEnterSide
 {
     Left,
@@ -59,7 +64,7 @@ public enum APCVisuals : byte
 }
 
 [Serializable, NetSerializable]
-public enum APCVisualLayers : byte
+public enum APCEntityVisualLayers : byte
 {
     Base
 }
@@ -82,3 +87,17 @@ public record DeattachModuleEvent(NetEntity Attacher, NetEntity Module);
 
 [ByRefEvent, Serializable, NetSerializable]
 public record struct APCModuleAttachedEvent(NetEntity APC, NetEntity Module);
+
+
+[ByRefEvent]
+public readonly record struct APCModuleAlteredEvent(
+    EntityUid Module,
+    APCModulesAlteredType Alteration
+);
+
+public enum APCModulesAlteredType : byte
+{
+    Attached = 1 << 0,
+    Detached = 1 << 1,
+    AppearanceChanged = 1 << 2
+}

@@ -101,7 +101,7 @@
     noRot: true
     sprite: _Stories/apc.rsi
     layers:
-    - map: [ "enum.APCVisualLayers.Base" ]
+    - map: [ "enum.APCEntityVisualLayers.Base" ]
       state: apc_base
   - type: APCEntity
     baseState: apc_base
@@ -122,7 +122,8 @@
         type: DialogBui
   - type: AccessReader
     access: [ [ "CMAccessPilot" ] ]
-  - type: NoRotateOnInteractComponent
+  - type: NoRotateOnInteract
+  - type: APCModulesHolderVisuals
 
 - type: entity
   id: APCWheels
@@ -195,7 +196,7 @@
     - type: InteractionOutline
     - type: Actions
     - type: Physics
-      bodyType: Static
+      bodyType: Dynamic
       canCollide: false
     - type: Fixtures
       fixtures:
@@ -237,9 +238,10 @@
     - type: NoRotateOnInteract
     - type: NoRotateOnMove
     - type: APCModule
-      visualizeModule: APCDualCannon
       attachTime: 6
-      moduleType: Movement
+      moduleType: Weapon
+    - type: APCModulesVisuals
+    - type: Item
 
 - type: entity
   id: APCWheelsWheels
@@ -274,13 +276,14 @@
   - type: StaticPrice
     price: 0
   - type: APCModule
-    visualizeModule: APCWheelsWheels
     attachTime: 6
     moduleType: Movement
   - type: MovementSpeedModifier
     baseWalkSpeed: 6
     baseSprintSpeed: 6
     acceleration: 6
+  - type: APCModulesVisuals
+    rsi: _Stories/apc.rsi
 
 - type: entity
   id: STAPCEnterPoint

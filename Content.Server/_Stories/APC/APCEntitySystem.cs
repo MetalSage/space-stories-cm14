@@ -58,7 +58,7 @@ public sealed partial class APCEntitySystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -67,9 +67,10 @@ public sealed partial class APCEntitySystem : EntitySystem
         SubscribeLocalEvent<APCEntityComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<APCEntityComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<APCEntityComponent, AfterInteractUsingEvent>(OnAfterInteractUsingEvent);
-        SubscribeLocalEvent<APCEntityComponent, DeattachModuleEvent>(OnDeattachModule);
+        SubscribeLocalEvent<APCEntityComponent, DeattachModuleToAPCDoAfterEvent>(OnDeattachModule);
         SubscribeLocalEvent<APCEntityComponent, APCModuleAttachedEvent>(OnModuleAttached);
         SubscribeLocalEvent<APCEntityComponent, AttachModuleToAPCDoAfterEvent>(AttachModuleDoAfter);
+        SubscribeLocalEvent<APCEntityComponent, DeattachModuleEvent>(DeattachModuleDoAfter);
 
         InitializeDoors();
         InitializeModules();
@@ -117,6 +118,7 @@ public sealed partial class APCEntitySystem : EntitySystem
         }
 
         LoadMap(apc, apc.Comp);
+        Dirty(apc);
     }
 
     public void LoadMap(EntityUid uid, APCEntityComponent component)
@@ -356,7 +358,8 @@ public sealed partial class APCEntitySystem : EntitySystem
                 new AttachModuleToAPCDoAfterEvent(), apc,
                 target: apc.Owner, used: args.Used)
             {
-                BreakOnMove = true
+                BreakOnMove = true,
+                BreakOnDamage = true
             };
 
             _doAfterSystem.TryStartDoAfter(doAfterArgs);
@@ -372,35 +375,41 @@ public sealed partial class APCEntitySystem : EntitySystem
         SetupModule(apc, args.Used.Value);
     }
 
-    // private void DeattachModuleDoAfter(Entity<APCEntityComponent> apc, ref DeattachModuleEvent args)
-    // {
-    //     if (args.Cancelled || args.Handled || args.Args.Target == null)
-    //         return;
-
-    //     args.Handled = true;
-
-    // }
-
-    private void OnDeattachModule(Entity<APCEntityComponent> apc, ref DeattachModuleEvent args)
+    private void DeattachModuleDoAfter(Entity<APCEntityComponent> apc, ref DeattachModuleEvent args)
     {
-        if (!TryGetEntity(args.Module, out var module2) || module2 == null)
+        if (!TryComp<APCModuleComponent>(GetEntity(args.Module), out var moduleComp))
             return;
 
-        if (!TryGetEntity(args.Attacher, out var attacher) || attacher == null)
+        var doAfterArgs = new DoAfterArgs(EntityManager, GetEntity(args.Attacher), moduleComp.DeattachTime,
+            new DeattachModuleToAPCDoAfterEvent(), apc,
+            target: apc.Owner, used: GetEntity(args.Module))
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true
+        };
+
+        _doAfterSystem.TryStartDoAfter(doAfterArgs);
+
+    }
+
+    private void OnDeattachModule(Entity<APCEntityComponent> apc, ref DeattachModuleToAPCDoAfterEvent args)
+    {
+
+        if (args.Cancelled || args.Handled || args.Used == null)
             return;
 
-        var module = module2.Value;
-        var user = attacher.Value;
+        var module = args.User;
+        var user = args.Used.Value;
 
-        if (!TryComp(module, out APCModuleComponent? moduleComp) ||
+        if (!TryComp<APCModuleComponent>(module, out var moduleComp) ||
             !TryComp<TransformComponent>(module, out var xform))
         {
             return;
         }
-        if (moduleComp.VisualizeModuleEnt != null)
+        if (moduleComp.VirtualModuleEnt != null)
         {
-            apc.Comp.VisualizedModules.Remove(moduleComp.VisualizeModuleEnt.Value);
-            QueueDel(moduleComp.VisualizeModuleEnt.Value);
+            apc.Comp.VirtualModules.Remove(moduleComp.VirtualModuleEnt.Value);
+            QueueDel(moduleComp.VirtualModuleEnt.Value);
         }
         _container.Remove(module, apc.Comp.ModulesContainer);
         _transform.SetMapCoordinates(module, _transform.GetMapCoordinates(user));
@@ -416,7 +425,7 @@ public sealed partial class APCEntitySystem : EntitySystem
 
         if (TryComp<GunComponent>(module, out var gun))
         {
-            //apc.Comp.Guns.Remove(gun);
+            Logger.Info($"[APC] Found GunComponent on module {module} but gun logic is currently unavailable.(Deattach)");
         }
     }
 
@@ -425,7 +434,8 @@ public sealed partial class APCEntitySystem : EntitySystem
         if (!TryGetEntity(args.Module, out var module))
             return;
 
-        if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement) && TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
+        if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement) &&
+            TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
         {
             var totalWalk = apcMovement.BaseWalkSpeed + moduleMovement.BaseWalkSpeed;
             var totalSprint = apcMovement.BaseSprintSpeed + moduleMovement.BaseSprintSpeed;
@@ -436,7 +446,14 @@ public sealed partial class APCEntitySystem : EntitySystem
 
         if (TryComp<GunComponent>(module, out var gun))
         {
-            //apc.Comp.Guns.Add(gun);
+            Logger.Info($"[APC] Found GunComponent on module {module.Value} but gun logic is currently unavailable.(Attach)");
         }
+
+        if (!TryComp(module, out APCModuleComponent? moduleComponent))
+            return;
+
+        var holderEv = new APCModuleAlteredEvent(module.Value, APCModulesAlteredType.Attached);
+        RaiseLocalEvent(apc, ref holderEv);
     }
+
 }

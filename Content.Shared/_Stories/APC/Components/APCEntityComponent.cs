@@ -71,7 +71,7 @@ public sealed partial class APCEntityComponent : Component
     public List<EntProtoId?> StartingModules = new();
 
     [DataField, AutoNetworkedField]
-    public List<EntityUid> VisualizedModules = new();
+    public List<EntityUid> VirtualModules = new();
 
     [ViewVariables]
     public Container ModulesContainer = default!;

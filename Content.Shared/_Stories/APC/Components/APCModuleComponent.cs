@@ -10,7 +10,7 @@ public sealed partial class APCModuleComponent : Component
     public APCModuleType ModuleType;
 
     [ViewVariables]
-    public EntityUid? VisualizeModuleEnt;
+    public EntityUid? VirtualModuleEnt;
 
     [ViewVariables]
     public EntityUid? APC;
@@ -19,7 +19,7 @@ public sealed partial class APCModuleComponent : Component
     public Vector2 Offset = Vector2i.Zero;
 
     [DataField, AutoNetworkedField]
-    public EntProtoId? VisualizeModule;
+    public EntProtoId? VirtualModule;
     
     [DataField, AutoNetworkedField]
     public float AttachTime = 0f;
@@ -32,6 +32,8 @@ public enum APCModuleType
 {
     Weapon,
     Movement,
-    ExtraWeapon,
-    ExtraMovement
+    ExtraWeaponLeft,
+    ExtraWeaponRight,
+    ExtraWeaponForward,
+    ExtraWeaponTop
 }

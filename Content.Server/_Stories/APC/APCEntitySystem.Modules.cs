@@ -37,6 +37,7 @@ public sealed partial class APCEntitySystem
         }
 
         SetupModulesInternal(apc, modules);
+        Dirty(apc);
     }
 
     public void SetupModule(Entity<APCEntityComponent> apc, EntityUid module)
@@ -87,13 +88,13 @@ public sealed partial class APCEntitySystem
             if (!TryComp<APCModuleComponent>(module, out var moduleComp))
                 continue;
 
-            if (moduleComp.VisualizeModule == null)
+            if (moduleComp.VirtualModule == null)
                 continue;
 
             moduleComp.APC = apc.Owner;
-            moduleComp.VisualizeModuleEnt = SpawnAttachedTo(moduleComp.VisualizeModule, apc.Owner.ToCoordinates().Offset(moduleComp.Offset));
-            if (moduleComp.VisualizeModuleEnt != null)
-                apc.Comp.VisualizedModules.Add(moduleComp.VisualizeModuleEnt.Value);
+            moduleComp.VirtualModuleEnt = SpawnAttachedTo(moduleComp.VirtualModule, apc.Owner.ToCoordinates().Offset(moduleComp.Offset));
+            if (moduleComp.VirtualModuleEnt != null)
+                apc.Comp.VirtualModules.Add(moduleComp.VirtualModuleEnt.Value);
 
             var ev = new APCModuleAttachedEvent(GetNetEntity(apc.Owner), GetNetEntity(module));
             RaiseLocalEvent(apc.Owner, ref ev);
