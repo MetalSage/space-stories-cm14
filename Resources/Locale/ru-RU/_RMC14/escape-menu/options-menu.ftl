@@ -12,6 +12,7 @@ ui-options-function-cm-activate-attachable-stock = Активировать кр
 ui-options-function-cm-activate-attachable-underbarrel = Активировать крепление под стволом
 ui-options-function-rmc-pick-up-dropped-items = Подобрать упавший предмет
 ui-options-header-rmc-xeno = Ксеноморфы
+ui-options-function-rmc-rest = Отдыхать
 ui-options-function-cm-xeno-wide-swing = Широкий размах ксеноморфа
 ui-options-function-cm-unique-action = Уникальное действие
 ui-options-function-cm-holster-primary = Снять с хранения

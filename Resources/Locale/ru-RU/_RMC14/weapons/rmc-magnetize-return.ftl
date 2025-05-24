@@ -1,1 +1,1 @@
-rmc-magnetize-return = { CAPITALIZE(THE($item)) } защелкивается на { $magnetizer }.
+rmc-magnetize-return = { CAPITALIZE($item) } защелкивается на { $magnetizer }.

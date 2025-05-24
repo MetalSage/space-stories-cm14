@@ -139,6 +139,18 @@ entities:
     - type: MapLight
     - type: Roof
       data: {}
+    - type: RMCWeatherCycle
+      minTimeBetweenEvents: 900
+      weatherEvents:
+      - name: Tropical Storm
+        duration: 240
+        weatherType: RMCStrataStormVeryLight
+        lightningChance: 0.01
+      - name: Monsoon
+        duration: 360
+        weatherType: RMCStrataStormLight
+        lightningChance: 0.06
+    - type: RMCAmbientLightEffects
     - type: LoadedMap
     - type: MapGrid
       chunks:
@@ -93424,7 +93436,7 @@ entities:
     - type: Transform
       pos: 54.5,73.5
       parent: 1
-- proto: CMVendorMedical
+- proto: CMVendorMedicalAllAccess
   entities:
   - uid: 24066
     components:
@@ -184331,9 +184343,6 @@ entities:
     - type: Transform
       pos: 122.5,103.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        gun_magazine: !type:ContainerSlot {}
 - proto: RMCWeaponLauncherM5ATL
   entities:
   - uid: 13174

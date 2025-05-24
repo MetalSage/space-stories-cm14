@@ -15,5 +15,15 @@ cm-job-name-executive-officer = Исполнительный офицер
 cm-job-description-executive-officer = Вы являетесь вторым командиром на борту корабля и следующим в цепочке командования после командира.
 cm-job-prefix-executive-officer = ИО
 CMJobExecutiveOfficer = Исполнительный офицер
-# Admin only right now.
+# Спецназ
+rmc-job-prefix-forecon = ФОРЕКОН
+rmc-job-prefix-forecon-co = КО ФОРЕКОН
+# Только для админов сейчас.
 cm-job-name-high-command = Верховное командование
+# Только для админа (бриг. ген.).
+rmc-job-name-unmc-brigadier-general = Верховное Командование
+rmc-job-description-unmc-brigadier-general = "Верховное командование. Поздравляем, вы бригадный генерал!"
+# Только для спавна админа (адъютант Вк)
+rmc-job-name-unmc-adjutant = Адъютант Верховного командования
+rmc-job-description-unmc-adjutant = "Вы адъютант высокопоставленного офицера. Он должен быть важным!"
+rmc-job-prefix-unmc-adjutant = АДЪЮ

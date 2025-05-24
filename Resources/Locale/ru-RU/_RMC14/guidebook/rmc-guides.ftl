@@ -1,4 +1,4 @@
-rmc-guide-entry-rmc = Руководство Colonial Marines
+rmc-guide-entry-rmc = Руководство Marine Corps
 rmc-guide-entry-rules = Правила
 rmc-guide-entry-rules-ban-types = Типы и Продолжительность Банов
 rmc-guide-entry-rules-zero-tolerance = Нулевая Терпимость

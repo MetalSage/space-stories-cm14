@@ -1,0 +1,9 @@
+ent-RMCRandomHumanoidSPPMedicHostile = призрачная роль медика СПН
+    .suffix = Спавнер, Игрок, Враждебный
+    .desc = { "" }
+ent-RMCRandomHumanoidSPPMedicFriendly = призрачная роль медика СПН
+    .suffix = Спавнер, Игрок, Дружелюбный
+    .desc = { "" }
+ent-RMCRandomHumanoidSPPMedic = призрачная роль медика СПН
+    .suffix = Спавнер, Игрок
+    .desc = { ent-MarkerBase.desc }

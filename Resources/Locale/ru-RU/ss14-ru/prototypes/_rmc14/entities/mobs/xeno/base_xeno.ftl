@@ -22,3 +22,5 @@ ent-RMCXenoCommendationReceiver = { "" }
     .desc = { "" }
 ent-RMCXenoSpeechSounds = { "" }
     .desc = { "" }
+ent-RMCXenoMobCollision = { "" }
+    .desc = { "" }

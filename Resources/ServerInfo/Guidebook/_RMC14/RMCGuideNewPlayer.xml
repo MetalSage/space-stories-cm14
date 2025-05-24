@@ -3,7 +3,7 @@
   # Руководства для новых игроков
 
   - Вы можете использовать клавишу осмотра [color=yellow][bold][keybind="ExamineEntity"][/bold][/color] для осмотра любых сущностей в руководстве.
-  - Обязательно настройте клавиши управления по своему вкусу и ознакомьтесь со специальными клавишами Space Stories Colonial Marines! Игроки CM13 найдут это очень полезным.
+  - Обязательно настройте клавиши управления по своему вкусу и ознакомьтесь со специальными клавишами Space Stories Marine Corps! Игроки CM13 найдут это очень полезным.
 
   ## Морпех
   - [textlink="Твой первый день в роли стрелка!" link="RMCGuideRoleRifleman"]
@@ -16,13 +16,17 @@
   <Box>Здесь вы можете изменить свои клавиши управления в любое время:</Box>
   <Box Orientation="Vertical"><CommandButton Text="ui-options-tab-controls" Command="options 2"/></Box>
 
-  ## Специальные клавиши Space Stories Colonial Marines
+  ## Специальные клавиши Space Stories Marine Corps
   - [color=yellow][bold][keybind="CMUniqueAction"][/bold][/color]: Действие оружия (перезарядка дробовика, открытие гранатометов)
   - [color=yellow][bold][keybind="CMXenoWideSwing"][/bold][/color]: Широкая атака ксеноморфа в ближнем бою.
   - [color=yellow][bold][keybind="RMCActivateAttachableUnderbarrel"][/bold][/color]: Активировать подствольное оборудование.
   - [color=yellow][bold][keybind="RMCCycleFireMode"][/bold][/color]: Сменить режим огня.
   - [color=yellow][bold][keybind="CMHolsterPrimary"][/bold][/color]: Убрать основное оружие.
   - [color=yellow][bold][keybind="CMHolsterSecondary"][/bold][/color]: Убрать второстепенное оружие.
+  - [color=yellow][bold][keybind="RMCPickUpDroppedItems"][/bold][/color]: Подобрать последний выброшенный предмет.
+  - [color=yellow][bold][keybind="RMCInteractWithOtherHand"][/bold][/color]: Взаимодействовать неактивной рукой.
+  - [color=yellow][bold][keybind="RMCActivateAttachableRail"][/bold][/color]: Активировать прицельное оборудование (Прицелы).
+  - [color=yellow][bold][keybind="RMCActivateAttachableStock"][/bold][/color]: Активировать приклад.
 
   ## Передвижение
   Вы можете передвигаться по игровому миру, используя [color=yellow][bold][keybind="MoveUp"][keybind="MoveLeft"][keybind="MoveDown"][keybind="MoveRight"][/bold][/color].

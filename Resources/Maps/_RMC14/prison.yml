@@ -177,6 +177,8 @@ entities:
     - type: MapLight
     - type: Roof
       data: {}
+    - type: RMCAmbientLightEffects
+      sunset: RMCColorSequenceSunsetCold
     - type: LoadedMap
     - type: MapGrid
       chunks:
@@ -81842,7 +81844,7 @@ entities:
     - type: Transform
       pos: -8.5,-87.5
       parent: 1
-- proto: CMVendorMedical
+- proto: CMVendorMedicalAllAccess
   entities:
   - uid: 14441
     components:
@@ -160619,9 +160621,6 @@ entities:
     - type: Transform
       pos: -75.5,-27.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        gun_magazine: !type:ContainerSlot {}
 - proto: RMCWeaponPistolMK45
   entities:
   - uid: 468
@@ -166173,7 +166172,7 @@ entities:
     - type: Transform
       pos: 67.534004,-22.510256
       parent: 1
-- proto: Shovel
+- proto: RMCShovel
   entities:
   - uid: 20287
     components:
@@ -166192,7 +166191,7 @@ entities:
     - type: Transform
       pos: 81.5,-7.5
       parent: 1
-- proto: SpaceHeaterAnchored
+- proto: RMCSpaceHeater
   entities:
   - uid: 14684
     components:

@@ -1,4 +1,4 @@
-# Базовая предустановка конфигурации, используемая на всех серверах Stories Colonial Marines.
+# Базовая предустановка конфигурации, используемая на всех серверах Stories Marine Corps.
 # Загружается перед настройками конфигурации, специфичными для сервера.
 
 # [config]
@@ -35,7 +35,7 @@ enabled = false
 can_create_vacuum = false
 
 [chat]
-rate_limit_period = 1
+rate_limit_period = 2
 rate_limit_count = 1
 rate_limit_announce_admins_delay = 10
 max_message_length = 500
@@ -78,6 +78,7 @@ appeal = "https://discord.gg/space-stories-cm"
 
 [net]
 tickrate = 25
+bindto = "::,0.0.0.0"
 
 [physics]
 grid_splitting = false
@@ -100,7 +101,6 @@ default_guide = "RMC14"
 [shuttle]
 arrivals_planet = false
 arrivals = false
-grid_fill = false
 preload_grids = false
 startup_time = 10
 travel_time = 100
@@ -116,9 +116,7 @@ login_dataset = "CM_Tips"
 
 [vote]
 preset_enabled = false
+restart_ghost_percentage = 75
 
 [viewport]
 maximum_width = 26
-
-[rmc]
-admin_fax_area_map = "Maps/_Stories/admin_fax.yml"

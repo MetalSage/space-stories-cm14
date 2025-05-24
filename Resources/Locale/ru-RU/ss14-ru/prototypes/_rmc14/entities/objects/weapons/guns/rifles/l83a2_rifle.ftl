@@ -1,0 +1,14 @@
+ent-WeaponRifleL83A2 = винтовка L83A2
+    .desc = Безгильзовая винтовка гражданского образца, используемая сотрудниками TSEPA.
+    .suffix = Заполненная
+ent-RMCMagazineRifleL83A2 = магазин L83A2 (5.56x45 мм)
+    .desc = Магазин патронов 5.56x45 мм для винтовки L83A2.
+ent-RMCCartridgeRifleL83A2 = патрон (5.56x45)
+    .desc = Винтовочный патрон 5.56x45 мм
+ent-RMCMagazineRifleL83A2AP = бронебойный магазин L83A2 (5.56x45 мм)
+    .desc = Магазин бронебойных патронов 5.56x45 мм для винтовки L83A2.
+    .suffix = Бронебойный
+ent-RMCCartridgeRifleL83A2AP = бронебойный патрон (5.56x45)
+    .desc = винтовочный бронебойный патрон 5.56x45 мм
+ent-BulletRifle556x45mmAP = { ent-BulletRifle10x24mm }
+    .desc = { ent-BulletRifle10x24mm.desc }

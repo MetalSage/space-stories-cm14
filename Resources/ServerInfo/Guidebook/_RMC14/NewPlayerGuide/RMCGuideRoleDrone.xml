@@ -47,7 +47,7 @@
   Когда паразит помещается в живого носителя, рождается новая личинка! Радуйтесь!
   Носители, которые содержат растущую личинку, очень ценны, и их следует как можно скорее прикрепить к смоляной стене.
   <Box>
-    <GuideEntityEmbed Entity="SalvageHumanCorpse"/>
+    <GuideEntityEmbed Entity="RMCGuidebookCorpseColonistBurst"/>
     <GuideEntityEmbed Entity="CMXenoLarva"/>
   </Box>
 

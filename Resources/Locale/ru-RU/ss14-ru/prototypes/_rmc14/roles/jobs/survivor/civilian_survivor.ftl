@@ -4,3 +4,7 @@ ent-CMGuidebookRoleSurvivor = Выживший
     .desc = { ent-CMGuidebookRole.desc }
 ent-RMCSurvivorPresetCivilian = пресет выжившего мирного жителя
     .desc = { "" }
+ent-RMCSurvivorPresetCivilianOutfits = предварительный набор гражданских колонистов со случайными нарядами
+    .desc = { ent-RMCSurvivorPresetCivilian.desc }
+ent-RMCRandomHumanoidSurvivorCivilian = гражданский колонист роль призрака
+    .desc = { ent-MarkerBase.desc }

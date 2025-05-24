@@ -1,0 +1,26 @@
+<Document>
+  #Повелитель Улья, Уровень 2
+  <GuideEntityEmbed Entity="CMXenoHivelord"/>
+  ##Игра за Повелителя Улья
+  Будучи превосходным трутнем, вы способны строить толстые смоляные структуры с большей скоростью. Остерегайтесь работы на передовой, так как вы подвержены гибели от взрывов и небесного плевка (ближней воздушной поддержки), поэтому лучше работать в тылу, так как Повелители Улья также быстры на смоле, используя свою способность "Ходок по смоле".
+
+  Повелители Улья также отлично справляются с захватом, что делает их неплохими на передовой, если какой-либо носитель попадает в их сорняки.
+
+  ##Способности:
+  - [bold]Посадить Сорняки[/bold]: Размещает смоляной узел, который распространяет сорняки на большой площади.
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoPlantWeeds"/>
+  - [bold]Выбрать Смоляную Структуру[/bold]: Выбирает, какую смоляную структуру создать, для последующего использования способностью «Выделение Смолы».
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoChooseResinStructure"/>
+  - [bold]Выделение Смолы[/bold]: Выделяет выбранную смоляную структуру на любой клетке, по которой вы щелкнете.
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoSecreteResin"/>
+  - [bold]Приказ на Строительство[/bold]: Отдаёт приказ на строительство ульевой структуры.
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoOrderConstruction"/>
+  - [bold]Передача Плазмы[/bold]: Передаёт плазму от себя сестре (улучшено).
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoTransferPlasma"/>
+  - [bold]Едкая Кислота[/bold]: Выделяет сгусток кислоты на предметы для их растворения.
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoCorrosiveAcid"/>
+  - [bold]Излучать Феромоны[/bold]: Излучает один из трёх феромонов. Сила этого феромона зависит от касты и не суммируется с феромонами того же типа.
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoPheromones"/>
+  - [bold]Ходок по Смоле[/bold]: Даёт вам повышенную скорость при движении по смоле, однако быстро расходует вашу плазму.
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoResinWalker"/>
+</Document>

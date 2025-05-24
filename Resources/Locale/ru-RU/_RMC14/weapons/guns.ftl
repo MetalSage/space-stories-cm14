@@ -1,4 +1,4 @@
-cm-gun-unskilled = Похоже, вы не знаете, как использовать { THE($gun) }
+cm-gun-unskilled = Похоже, вы не знаете, как использовать { $gun }
 cm-gun-no-ammo-message = У вас не осталось патронов!
 cm-gun-use-delay = Вам нужно подождать { $seconds } секунд, прежде чем стрелять снова!
 cm-gun-pump-examine = [bold]Нажмите вашу [color=cyan]уникальную клавишу действия[/color] (по умолчанию пробел), чтобы прокачаться перед стрельбой[/bold].
@@ -8,8 +8,8 @@ rmc-breech-loaded-open-shoot-attempt = Сначала нужно закрыть 
 rmc-breech-loaded-not-ready-to-shoot = Сначала нужно открыть и закрыть предлежание!
 rmc-breech-loaded-closed-load-attempt = Сначала нужно открыть предлежание!
 rmc-breech-loaded-closed-extract-attempt = Сначала нужно открыть предлежание!
-rmc-wield-use-delay = Вам нужно подождать { $seconds } секунд, прежде чем использовать { THE($wieldable) }!
-rmc-shoot-use-delay = Вам нужно подождать { $seconds } секунд, прежде чем снимать { THE($wieldable) }!
+rmc-wield-use-delay = Вам нужно подождать { $seconds } секунд, прежде чем использовать { $wieldable }!
+rmc-shoot-use-delay = Вам нужно подождать { $seconds } секунд, прежде чем снимать { $wieldable }!
 rmc-shoot-harness-required = Требуется экипировка
 rmc-wear-smart-gun-required = Чтобы надеть его, вы должны быть оснащены умным оружием.
 rmc-shoot-id-lock-unauthorized = Триггер заблокирован. Неавторизованный пользователь.
@@ -22,8 +22,8 @@ rmc-id-lock-color-authorized = шартрез
 rmc-id-lock-toggle-on = закрыт
 rmc-id-lock-toggle-off = открыт
 rmc-iff-toggle = Вы { $action } IFF на { $gun }.
-rmc-iff-toggle-off = отключить
-rmc-iff-toggle-on = включить
+rmc-iff-toggle-off = отключаете
+rmc-iff-toggle-on = включаете
 rmc-revolver-spin = Вы вращаете цилиндр.
 rmc-examine-text-weapon-accuracy = Текущий множитель точности - [color={ $colour }]{ TOSTRING($accuracy, "F2") }[/color].
 rmc-examine-text-scatter-max = Текущий максимальный разброс составляет [color={ $colour }]{ TOSTRING($scatter, "F1") }[/color] градусов.

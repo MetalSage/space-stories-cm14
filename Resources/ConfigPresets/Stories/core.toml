@@ -1,16 +1,16 @@
-# Предустановка конфигурации, используемая на сервере Stories Colonial Marines Core.
+# Предустановка конфигурации, используемая на сервере Stories Marine Corps Core.
 # Загружается перед настройками конфигурации, специфичными для сервера.
 
 # [config]
 # presets = "Stories/core"
 
 [adminlogs]
-server_name = "Space Stories - Colonial Marines Core 🌍"
+server_name = "Space Stories - Marine Corps Core 🌍"
 
 [game]
-hostname = "📚 Space Stories - Colonial Marines Core 🌍 [TTS]"
+hostname = "📚 Space Stories - Marine Corps Core 🌍 [TTS]"
 desc = """
-                                                            📕 𝗦𝗽𝗮𝗰𝗲 𝗦𝘁𝗼𝗿𝗶𝗲𝘀 - Colonial Marines! 🌍
+                                                            📕 𝗦𝗽𝗮𝗰𝗲 𝗦𝘁𝗼𝗿𝗶𝗲𝘀 - Marine Corps! 🌍
 •────────────────────────────────── ✧ ──────────────────────────────────•
   🌠 ⋮ Сервер со средним уровнем требований к ролевому отыгрышу.
   ⚙ ⋮ Сборка сервера основана на https://github.com/RMC-14/RMC-14.

@@ -4,5 +4,3 @@ ent-RMCSpawnerProvostAdvisor = спавнер провост советника
 ent-RMCRandomHumanoidProvostAdvisor = роль призрака провост советника
     .suffix = Роль, Игрок, Низкое понимание законов
     .desc = { "" }
-ent-RMCIDCardProvostAdvisor = ID карта провост советника
-    .desc = { ent-CMIDCardGold.desc }

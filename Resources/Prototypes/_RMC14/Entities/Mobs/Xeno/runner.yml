@@ -6,6 +6,7 @@
   - CMXenoFlammable
   - RMCXenoSpeechSounds
   - RMCXenoCommendationReceiver
+  - RMCXenoMobCollision
   id: CMXenoRunnerBase
   name: Runner
   description: A small red alien that looks like it could run fairly quickly...
@@ -26,6 +27,7 @@
     tier: 1
     hudOffset: 0,0.63
     unlockAt: 300 # 5 minutes
+  - type: XenoRegen
     restHealMultiplier:  1.75
   - type: Fixtures
     fixtures:
@@ -33,7 +35,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 185
+        density: 85
         mask:
         - Impassable
         - HighImpassable
@@ -45,7 +47,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.40
-        density: 185
+        density: 85
         layer:
         - BulletImpassable
   - type: XenoLight
@@ -113,10 +115,16 @@
     value: 0.1
   - type: AutoClimbBlocked # Stories-AutoClimb
   
+  - type: MobCollision
+    minimumSpeedModifier: 0.1
+
 - type: entity
   parent: CMXenoRunnerBase
   id: CMXenoRunner
   components:
+  - type: GuideHelp
+    guides:
+    - RMCGuideRoleRunner
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -186,8 +194,6 @@
     - ActionXenoAcidAcider
     - ActionXenoForTheHive
     - ActionXenoDevolve
-    hudOffset: -0.1,0.63
-    hidden: true
   - type: XenoStrain
     name: rmc-xeno-acider-name
     description: rmc-xeno-acider-description
@@ -250,6 +256,4 @@
       whitelist:
         components:
         - XenoHeavy
-
-
-
+  - type: XenoHidden

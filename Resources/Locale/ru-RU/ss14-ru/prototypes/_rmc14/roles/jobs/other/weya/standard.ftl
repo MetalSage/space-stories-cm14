@@ -1,0 +1,9 @@
+ent-RMCRandomHumanoidPMCStandardM63B2 = роль призрака ЧВК Ве-Я стандарт m63b2
+    .suffix = Спавнер, Игрок
+    .desc = { ent-MarkerBase.desc }
+ent-RMCRandomHumanoidPMCStandardSSG45 = роль призрака ЧВК Ве-Я стандарт ssg45
+    .suffix = Спавнер, Игрок
+    .desc = { ent-MarkerBase.desc }
+ent-RMCRandomHumanoidPMCStandardM54C2 = роль призрака ЧВК Ве-Я стандарт m54c2
+    .suffix = Спавнер, Игрок
+    .desc = { ent-MarkerBase.desc }

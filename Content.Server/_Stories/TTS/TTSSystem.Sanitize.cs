@@ -137,9 +137,45 @@ public sealed partial class TTSSystem
             {"с4", "Си 4"}, // cyrillic
             {"c4", "Си 4"}, // latinic
             {"бсс", "Бэ Эс Эс"},
+            // Stories-Sanitize-Start
             {"вп", "Вэ Пэ"},
+            {"вн", "Вэ Эн"},
+            {"нвп", "Эн Вэ Пэ"},
+            {"сг", "Эс Гьэ"},
+            {"ос", "О Съ"},
+            {"пт", "Пэ Тэ"},
+            {"пш", "Пэ Ша"},
+            {"ко", "Кэ ОООО"},
+            {"ор", "О Рр"},
+            {"ссс", "Эс Эссс Эссс"},
+            {"м39", "Эм 39ъ"}, // cyrillic
+            {"m39", "Эм 39ъ"}, // latinic
+            {"м41", "Эм 41"}, // cyrillic
+            {"m41", "Эм 41"}, // latinic
+            {"м41а", "Эм 41 Аа"}, // cyrillic
+            {"m41a", "Эм 41 Аа"}, // latinic
+            {"м4", "Эм 4"}, // cyrillic
+            {"m4", "Эм 4"}, // latinic
+            {"м37", "Эм 37"}, // cyrillic
+            {"m37", "Эм 37"}, // latinic
+            {"м37а2", "Эм 37 Аа 2"}, // cyrillic
+            {"m37a2", "Эм 37 Аа 2"}, // latinic
+            {"м4ра", "Эм 4ЭрАа"}, // cyrillic
+            {"m4ra", "Эм 4ЭрАа"}, // latinic
+            {"м44", "Эм 4 Аа 3"}, // cyrillic
+            {"m44", "Эм 4 Аа 3"}, // latinic
+            {"м4а3", "Эм 44"}, // cyrillic
+            {"m4a3", "Эм 44"}, // latinic
+            {"м10", "Эм 10"}, // cyrillic
+            {"m10", "Эм 10"}, // latinic
+            {"м94", "Эм 94"}, // cyrillic
+            {"m94", "Эм 94"}, // latinic
+            {"бб", "Б Б"},
+            {"вк", "Вэ Ка"},
             {"вз", "Вэ Зэ"},
             {"ву", "Вэ У"},
+            {"королева", "Карольэва"},
+            // Stories-Sanitize-End
         };
 
     private static readonly IReadOnlyDictionary<string, string> ReverseTranslit =

@@ -11,10 +11,10 @@
   fallback: true
   stations:
     Almayer:
-      stationProto: StandardNanotrasenStation
+      stationProto: StandardUNMCWarship
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'КСША Алмайер'
+        mapNameTemplate: 'ВКСШ Алмайер'
       - type: StationJobs
         availableJobs:
           # Command
@@ -26,7 +26,7 @@
           # Military Police
           CMChiefMP: [1, 1]
           CMMilitaryWarden: [1, 1]
-          CMMilitaryPolice: [5, 8]
+          CMMilitaryPolice: [7, 10]
 
           # Auxiliary
           CMAuxiliarySupportOfficer: [1, 1]
@@ -46,7 +46,7 @@
           CMNurse: [4, 6]
           # CMResearcher: [2, 2]
 
-          #Requisition
+          # Requisition
           CMQuartermaster: [1, 1]
           CMCargoTech: [4, 4]
           CMMessTech: [1, 1]

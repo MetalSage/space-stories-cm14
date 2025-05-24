@@ -10,5 +10,7 @@ cm-job-supervisors-uscm = высшему командованию КМП США
 cm-job-supervisors-cmp = главному полицейскому
 cm-job-supervisors-qm = квартирмейстеру
 cm-job-supervisors-ce = главному инженеру
+cm-job-supervisors-staff = составу серверу
 cm-job-supervisors-sl = командиру отряда
+cm-job-supervisors-colonists = разумные колонисты
 cm-job-supervisors-nobody = никому, вы сами по себе

@@ -81,8 +81,8 @@
     noRot: true
     sprite: _RMC14/Objects/Misc/Lights/floodlightbig.rsi
     layers:
-      - state: bigfloodon # Temporary until power works.
       - state: bigflood
+      - state: bigfloodon
         visible: false
         map: [ "light" ]
     offset: "0.0,0.5"
@@ -126,6 +126,11 @@
         layer:
         - WallLayer
   - type: Appearance
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+  - type: RMCReactorPoweredLight
+  - type: PreventAttackLightOff
+  - type: RequireProjectileTarget
 
 - type: entity
   parent: BaseStructure
@@ -209,6 +214,11 @@
   - type: Sprite
     sprite: _RMC14/Objects/Misc/Lights/engineer_ship.rsi
     state: engineerlight_on
+  - type: PointLight
+    enabled: true
+    radius: 14
+    energy: 3
+    color: "#00FFA0"
 
 # Street
 
@@ -233,19 +243,14 @@
     sprite: _RMC14/Objects/Misc/Lights/streetlight.rsi
     offset: 0.0,0.8
     layers:
-      - state: street_on # TODO RMC14 change sprite when light off
       - state: street_off
+      - state: street_on
         visible: false
         map: [ "light" ]
     drawdepth: Mobs
   - type: Construction
     graph: RMCStreetlightBroken
     node: completed
-  - type: PointLight
-    netsync: true
-  - type: RMCReactorPoweredLight
-  - type: PreventAttackLightOff
-  - type: RequireProjectileTarget
 
 - type: entity
   parent: RMCFloodlightBroken

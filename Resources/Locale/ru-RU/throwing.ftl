@@ -1,1 +1,1 @@
-throwing-user-threw-others = { $user } бросает { THE($thrown) }
+throwing-user-threw-others = { $user } бросает { $thrown }

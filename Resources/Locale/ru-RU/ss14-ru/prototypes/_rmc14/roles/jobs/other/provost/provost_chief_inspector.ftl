@@ -4,5 +4,3 @@ ent-RMCSpawnerProvostChiefInspector = спавнер главного прово
 ent-RMCRandomHumanoidProvostChiefInspector = роль призрака главного провост инспектора
     .suffix = Роль, Игрок, Высокое понимание закона
     .desc = { "" }
-ent-RMCIDCardProvostChiefInspector = ID карта главного провост инспектора
-    .desc = { ent-CMIDCardGold.desc }

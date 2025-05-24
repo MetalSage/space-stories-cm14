@@ -1,12 +1,12 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server._RMC14.Rules;
 using Content.Server.Announcements;
 using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
+using Content.Shared._RMC14.Rules;
 using Content.Shared._RMC14.Prototypes;
 using Content.Server.Voting.Managers;
 using Content.Shared.CCVar;
@@ -201,7 +201,7 @@ namespace Content.Server.GameTicking
 
             if (ev.GameMap.IsGrid)
             {
-                var mapUid = _map.CreateMap(out mapId);
+                var mapUid = _map.CreateMap(out mapId, runMapInit: options?.InitializeMaps ?? false);
                 if (!_loader.TryLoadGrid(mapId,
                         ev.GameMap.MapPath,
                         out var grid,
@@ -562,7 +562,7 @@ namespace Content.Server.GameTicking
 
                 if (TryGetEntity(mind.OriginalOwnedEntity, out var entity) && pvsOverride)
                 {
-                    _pvsOverride.AddGlobalOverride(GetNetEntity(entity.Value), recursive: true);
+                    _pvsOverride.AddGlobalOverride(entity.Value);
                 }
 
                 var roles = _roles.MindGetAllRoleInfo(mindId);

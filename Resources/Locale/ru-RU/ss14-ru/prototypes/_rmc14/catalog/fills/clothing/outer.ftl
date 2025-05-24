@@ -1,0 +1,9 @@
+ent-RMCOuterClothingExternalWebbingForeconSurvivorFill = { ent-RMCOuterClothingExternalWebbing }
+    .suffix = ФОРЕКОН, Заполненный
+    .desc = { ent-RMCOuterClothingExternalWebbing.desc }
+ent-RMCArmorUDEPForeconFilled = { ent-RMCArmorUDEPForecon }
+    .suffix = ФОРЕКОН, Заполненный
+    .desc = { ent-RMCArmorUDEPForecon.desc }
+ent-RMCJacketWindbreakerForeconFilled = { ent-RMCJacketWindbreaker }
+    .suffix = ФОРЕКОН, Заполненный
+    .desc = { ent-RMCJacketWindbreaker.desc }

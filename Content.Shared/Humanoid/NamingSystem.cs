@@ -51,32 +51,21 @@ namespace Content.Shared.Humanoid
             switch (gender)
             {
                 case Gender.Male:
-                    return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.MaleFirstNames));
+                    return _random.Pick(_prototypeManager.Index(speciesProto.MaleFirstNames));
                 case Gender.Female:
-                    return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.FemaleFirstNames));
+                    return _random.Pick(_prototypeManager.Index(speciesProto.FemaleFirstNames));
                 default:
                     if (_random.Prob(0.5f))
-                        return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.MaleFirstNames));
+                        return _random.Pick(_prototypeManager.Index(speciesProto.MaleFirstNames));
                     else
-                        return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.FemaleFirstNames));
+                        return _random.Pick(_prototypeManager.Index(speciesProto.FemaleFirstNames));
             }
         }
 
         // Stories-LastnameGender-Start: Added custom gender split logic
         public string GetLastName(SpeciesPrototype speciesProto, Gender? gender = null)
         {
-            switch (gender)
-            {
-                case Gender.Male:
-                    return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.MaleLastNames).Values);
-                case Gender.Female:
-                    return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.FemaleLastNames).Values);
-                default:
-                    if (_random.Prob(0.5f))
-                        return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.MaleLastNames).Values);
-                    else
-                        return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.FemaleLastNames).Values);
-            }
+            return _random.Pick(_prototypeManager.Index(speciesProto.LastNames));
         }
         // Stories-LastnameGender-End
     }

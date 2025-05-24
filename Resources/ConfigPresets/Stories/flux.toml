@@ -1,16 +1,16 @@
-# Предустановка конфигурации, используемая на сервере Stories Colonial Marines Flux.
+# Предустановка конфигурации, используемая на сервере Stories Marine Corps Flux.
 # Загружается перед настройками конфигурации, специфичными для сервера.
 
 # [config]
 # presets = "Stories/flux"
 
 [adminlogs]
-server_name = "Space Stories - Colonial Marines Flux 🌑"
+server_name = "Space Stories - Marine Corps Flux 🌑"
 
 [game]
-hostname = "📚 Space Stories - Colonial Marines Flux 🌑 [TTS]"
+hostname = "📚 Space Stories - Marine Corps Flux 🌑 [TTS]"
 desc = """
-                                                            📕 𝗦𝗽𝗮𝗰𝗲 𝗦𝘁𝗼𝗿𝗶𝗲𝘀 - Colonial Marines! 🌍
+                                                            📕 𝗦𝗽𝗮𝗰𝗲 𝗦𝘁𝗼𝗿𝗶𝗲𝘀 - Marine Corps! 🌍
 •────────────────────────────────── ✧ ──────────────────────────────────•
   🌠 ⋮ Сервер со средним уровнем требований к ролевому отыгрышу.
   ⚙ ⋮ Сборка сервера основана на https://github.com/RMC-14/RMC-14.

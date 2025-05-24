@@ -1,5 +1,9 @@
 ent-RMCJumpsuitVeteran = { ent-JumpsuitMarine }
     .desc = { ent-JumpsuitMarine.desc }
+ent-RMCJumpsuitVeteranPMCMedic = { ent-RMCJumpsuitVeteranPMC }
+    .desc = { ent-RMCJumpsuitVeteranPMC.desc }
+ent-RMCJumpsuitVeteranPMCGunner = { ent-RMCJumpsuitVeteranPMC }
+    .desc = { ent-RMCJumpsuitVeteranPMC.desc }
 ent-RMCJumpsuitVeteranPMC = униформа ЧВК
     .desc = Белый комплект обмундирования для частных охранников. На нём изображен символ корпорации «Вестон-Ямада».
 ent-RMCJumpsuitVeteranPMCCommando = элитная боевая форма ЧВК
@@ -12,5 +16,7 @@ ent-RMCJumpsuitVeteranPMCKutjevo = форма корпоративной слу�
     .desc = Бронированная форма, которую носят члены корпоративной службы безопасности We-Ya. Этот вариант более воздухопроницаем для использования в жарких и сухих условиях.
 ent-RMCJumpsuitVeteranPMCKutjevoLead = форма корпоративной службы безопасности We-Ya
     .desc = Бронированная форма, которую носят члены корпоративной службы безопасности We-Ya. Этот вариант более воздухопроницаем для использования в жарких и сухих условиях и имеет золотые нарукавные повязки, обозначающие лидера команды.
+ent-RMCJumpsuitVeteranPMCDirector = костюм директора
+    .desc = Это костюм, источающий авторитет. Принадлежит кому-то очень важному.
 ent-RMCJumpsuitVeteranPMCLeader = форма командира ЧВК
     .desc = Белая форма для лидера частной военной компании. На ней изображён логотип «Вестон-Ямада». Видимо, этот костюм принадлежит высокопоставленному сотруднику.

@@ -8,3 +8,4 @@ cm-pill-contents-dylovene = Таблетка против токсинов. Не
 cm-pill-contents-inaprovaline = Таблетка инапровалина. Используется для стабилизации состояния пациентов.
 cm-pill-contents-kelotane = Таблетки "Келотан". Используется для лечения ожогов.
 cm-pill-contents-tricordrazine = Таблетка трикордразина. Слабое лекарство общего назначения для лечения повреждений.
+rmc-pill-contents-meralyne-bicaridine = Мералин-бикаридин. Быстро исцеляет грубый урон.

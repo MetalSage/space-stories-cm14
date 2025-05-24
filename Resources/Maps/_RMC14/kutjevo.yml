@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 248.0.3
+  forkId: ""
+  forkVersion: ""
+  time: 04/09/2025 14:07:37
+  entityCount: 26000
+maps:
+- 1
+grids:
+- 1
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   99: CMFloorSteelRechargeFloor
@@ -144,6 +155,17 @@ entities:
     - type: MapLight
     - type: Roof
       data: {}
+    - type: RMCWeatherCycle
+      minTimeBetweenEvents: 1200
+      weatherEvents:
+      - name: Duststorm
+        duration: 360
+        weatherType: RMCBigRedSand
+      - name: Rainstorm
+        duration: 240
+        weatherType: RMCStrataStormLight
+        lightningChance: 0.02
+    - type: RMCAmbientLightEffects
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -988,7 +1010,6 @@ entities:
         - 0
         - 0
         - 0
-    - type: LoadedMap
     - type: RadiationGridResistance
     - type: StationInfiniteBatteryTarget
     - type: AreaGrid
@@ -48708,7 +48729,7 @@ entities:
     - type: Transform
       pos: 128.5,-84.5
       parent: 1
-- proto: CMVendorMedical
+- proto: CMVendorMedicalAllAccess
   entities:
   - uid: 1349
     components:
@@ -63262,58 +63283,6 @@ entities:
     - type: Transform
       pos: 55.5,-157.5
       parent: 1
-- proto: RMCMagazinePistolMK45
-  entities:
-  - uid: 4055
-    components:
-    - type: Transform
-      pos: 30.5,-107.5
-      parent: 1
-  - uid: 4056
-    components:
-    - type: Transform
-      pos: 28.5,-109.5
-      parent: 1
-  - uid: 4057
-    components:
-    - type: Transform
-      pos: 90.5,-105.5
-      parent: 1
-  - uid: 4058
-    components:
-    - type: Transform
-      pos: 92.71875,-104.3125
-      parent: 1
-  - uid: 4059
-    components:
-    - type: Transform
-      pos: 95.6875,-84.625
-      parent: 1
-  - uid: 4060
-    components:
-    - type: Transform
-      pos: 97.71875,-83.3125
-      parent: 1
-  - uid: 4061
-    components:
-    - type: Transform
-      pos: 98.6875,-83.625
-      parent: 1
-  - uid: 4062
-    components:
-    - type: Transform
-      pos: 129.71875,-49.3125
-      parent: 1
-  - uid: 4063
-    components:
-    - type: Transform
-      pos: 129.28125,-49.6875
-      parent: 1
-  - uid: 4064
-    components:
-    - type: Transform
-      pos: 129.5,-49.5
-      parent: 1
 - proto: RMCMagazineRifleM16
   entities:
   - uid: 4065
@@ -73244,6 +73213,58 @@ entities:
     components:
     - type: Transform
       pos: 102.5,-33.5
+      parent: 1
+- proto: RMCSpeedLoader357Hollowpoint
+  entities:
+  - uid: 2326
+    components:
+    - type: Transform
+      pos: 28.5,-109.5
+      parent: 1
+  - uid: 4055
+    components:
+    - type: Transform
+      pos: 30.5,-107.5
+      parent: 1
+  - uid: 4056
+    components:
+    - type: Transform
+      pos: 92.7186,-104.334755
+      parent: 1
+  - uid: 4057
+    components:
+    - type: Transform
+      pos: 90.5,-105.5
+      parent: 1
+  - uid: 4058
+    components:
+    - type: Transform
+      pos: 129.7286,-49.352753
+      parent: 1
+  - uid: 4059
+    components:
+    - type: Transform
+      pos: 129.51132,-49.557648
+      parent: 1
+  - uid: 4060
+    components:
+    - type: Transform
+      pos: 129.24716,-49.75418
+      parent: 1
+  - uid: 25242
+    components:
+    - type: Transform
+      pos: 95.694565,-84.73704
+      parent: 1
+  - uid: 25766
+    components:
+    - type: Transform
+      pos: 97.73357,-83.4163
+      parent: 1
+  - uid: 25767
+    components:
+    - type: Transform
+      pos: 98.713425,-83.69901
       parent: 1
 - proto: RMCSprayBottleSpaceCleaner
   entities:
@@ -171025,43 +171046,87 @@ entities:
     - type: Transform
       pos: 86.5,-97.5
       parent: 1
-- proto: RMCWeaponPistolMK45
+- proto: RMCWeaponRevolverSpearhead
   entities:
-  - uid: 25239
-    components:
-    - type: Transform
-      pos: 43.5,-56.5
-      parent: 1
-  - uid: 25240
+  - uid: 4061
     components:
     - type: Transform
       pos: 33.5,-57.5
       parent: 1
-  - uid: 25241
+  - uid: 4062
     components:
     - type: Transform
-      pos: 28.5,-108.5
+      pos: 43.5,-56.5
       parent: 1
-  - uid: 25242
+  - uid: 4063
     components:
     - type: Transform
       pos: 6.5,-55.5
       parent: 1
-  - uid: 25243
+  - uid: 4064
+    components:
+    - type: Transform
+      pos: 28.5,-108.5
+      parent: 1
+  - uid: 25239
     components:
     - type: Transform
       pos: 90.5,-104.5
       parent: 1
-  - uid: 25244
+  - uid: 25240
     components:
     - type: Transform
       pos: 96.5,-83.5
       parent: 1
-  - uid: 25245
+  - uid: 25241
     components:
     - type: Transform
       pos: 129.5,-48.5
       parent: 1
+- proto: RMCWeaponShotgunHG3712
+  entities:
+  - uid: 25243
+    components:
+    - type: Transform
+      pos: 11.5,-53.5
+      parent: 1
+  - uid: 25244
+    components:
+    - type: Transform
+      pos: 74.5,-104.5
+      parent: 1
+  - uid: 25764
+    components:
+    - type: Transform
+      pos: 95.5,-87.5
+      parent: 1
+  - uid: 25765
+    components:
+    - type: Transform
+      pos: 42.5,-58.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        rmc-aslot-barrel: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        rmc-aslot-rail: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        rmc-aslot-underbarrel: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        rmc-aslot-stock: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
 - proto: RMCWindowFrameKutjevo
   entities:
   - uid: 25246
@@ -173681,33 +173746,6 @@ entities:
       parent: 1
 - proto: WeaponShotgunM42A2
   entities:
-  - uid: 25764
-    components:
-    - type: Transform
-      pos: 42.5,-58.5
-      parent: 1
-  - uid: 25765
-    components:
-    - type: Transform
-      pos: 11.5,-53.5
-      parent: 1
-  - uid: 25766
-    components:
-    - type: Transform
-      pos: 74.5,-104.5
-      parent: 1
-  - uid: 25767
-    components:
-    - type: Transform
-      pos: 93.5,-80.65625
-      parent: 1
-    - type: SpriteSetRenderOrder
-      renderOrder: 3000
-  - uid: 25768
-    components:
-    - type: Transform
-      pos: 95.5,-87.5
-      parent: 1
   - uid: 25769
     components:
     - type: Transform
@@ -173717,6 +173755,13 @@ entities:
     components:
     - type: Transform
       pos: 203.5,-84.5
+      parent: 1
+- proto: WeaponShotgunM890
+  entities:
+  - uid: 25245
+    components:
+    - type: Transform
+      pos: 93.5,-80.5
       parent: 1
 - proto: WeedSpray
   entities:

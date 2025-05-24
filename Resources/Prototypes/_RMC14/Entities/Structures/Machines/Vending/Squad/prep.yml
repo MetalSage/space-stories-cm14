@@ -49,6 +49,8 @@
         amount: 25
       - id: CMWeaponPistolM1984Empty
         amount: 25
+      - id: RMCWeaponPistolM13Empty
+        amount: 25
       #- id: WeaponFlareM82F
       #  amount: 10
     - name: Боеприпасы К Вторичному Оружию
@@ -58,6 +60,8 @@
       - id: RMCSpeedLoaderM44
         amount: 20
       - id: CMMagazinePistolM1984
+        amount: 25
+      - id: RMCMagazinePistolM13
         amount: 25
     - name: Обвесы
       entries:
@@ -281,11 +285,12 @@
       - id: RMCM5CameraGear
         amount: 10
     - name: Оптика
-      entries: [ ]
-#      - id: Advanced Medical Optic (CORPSMAN ONLY)
-#        amount: 4
-#      - id: Squad Optic
-#        amount: 15
+      entries:
+      - id: RMCVisorMedicalAdvanced
+        name: усовершенствованная медицинская оптика (только для санитаров)
+        amount: 4
+      - id: RMCVisorSquad
+        amount: 15
 
 
 - type: entity
@@ -328,6 +333,10 @@
       #  amount: 2
       - id: RMCSpeedLoader44Marksman
         amount: 2
+      - id: RMCMagazinePistolM13Ext
+        amount: 6
+      - id: RMCMagazinePistolM13Drum
+        amount: 6
     - name: Боеприпасы Вторичного Оружия
       entries:
       - id: CMMagazinePistolMK80
@@ -395,8 +404,8 @@
 #      #  amount: 1
       - id: RMCFlashlight # Combat Flashlight
         amount: 5
-#      #- id: RMCBoxFlashlights
-#      #  amount: 1
+      - id: RMCBoxFlashlights
+        amount: 1
       - id: RMCBoxPackFlare
         amount: 1
       - id: CMPackFlare

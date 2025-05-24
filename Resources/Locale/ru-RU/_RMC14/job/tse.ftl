@@ -1,0 +1,9 @@
+rmc-job-name-tsepa-constable = Участковый ТСП
+rmc-job-description-tsepa-constable = Помогайте в обеспечении соблюдения Законов ТСП.
+rmc-job-prefix-tsepa-constable = УЧТСП
+rmc-job-name-tsepa-senior-constable = Старший участковый ТСП
+rmc-job-description-tsepa-senior-constable = Обеспечивайте соблюдение Законов ТСП.
+rmc-job-prefix-tsepa-senior-constable = СУЧТСП
+rmc-job-name-tsepa-inspector = Инспектор ТСП
+rmc-job-description-tsepa-inspector = Контролируйте обеспечение соблюдения Законов ТСП.
+rmc-job-prefix-tsepa-inspector = ИНСПТСП

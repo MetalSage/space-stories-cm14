@@ -1,0 +1,9 @@
+ent-RMCRandomHumanoidSPPRiflemanHostile = призрачная роль стрелка СПН
+    .suffix = Спавнер, Игрок, Враждебный
+    .desc = { "" }
+ent-RMCRandomHumanoidSPPRiflemanFriendly = призрачная роль стрелка СПН
+    .suffix = Спавнер, Игрок, Дружелюбный
+    .desc = { "" }
+ent-RMCRandomHumanoidSPPRifleman = призрачная роль стрелка СПН
+    .suffix = Спавнер, Игрок
+    .desc = { ent-MarkerBase.desc }
