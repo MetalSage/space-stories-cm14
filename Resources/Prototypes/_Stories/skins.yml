@@ -1,0 +1,41 @@
+- type: xenoSkin
+  id: STBoilerAcidSkin
+  name: Кислотный
+  spriteRsi: _Stories/Mobs/Xenos/Skins/boiler.rsi
+  xeno: CMXenoBoiler
+
+- type: xenoSkin
+  id: STCrusherBattleHardenedSkin
+  name: Ветеран
+  spriteRsi: _Stories/Mobs/Xenos/Skins/crusher.rsi
+  xeno: CMXenoCrusher
+
+- type: xenoSkin
+  id: STPraetorianCursedSkin
+  name: Проклятье
+  spriteRsi: _Stories/Mobs/Xenos/Skins/praetorian.rsi
+  xeno: CMXenoPraetorian
+
+- type: xenoSkin
+  id: STQueenForceOfNatureSkin
+  name: Сила Природы
+  spriteRsi: _Stories/Mobs/Xenos/Skins/Queen/queen.rsi
+  xeno: CMXenoQueen
+
+- type: xenoSkin
+  id: STRunnerBloodAngelSkin
+  name: Кровавый Ангел
+  spriteRsi: _Stories/Mobs/Xenos/Skins/runner.rsi
+  xeno: CMXenoRunner
+
+- type: xenoSkin
+  id: STDefenderEternalFrostSkin
+  name: Вечный Мороз
+  spriteRsi: _Stories/Mobs/Xenos/Skins/steelcrest_defender.rsi
+  xeno: CMXenoDefender
+
+- type: xenoSkin
+  id: STWarriorStoneTumorSkin
+  name: Каменная Опухоль
+  spriteRsi: _Stories/Mobs/Xenos/Skins/warrior.rsi
+  xeno: CMXenoWarrior

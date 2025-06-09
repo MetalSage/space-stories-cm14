@@ -1,13 +1,10 @@
-﻿using System.Linq;
-using Content.Client.Message;
+﻿using Content.Client.Message;
 using Content.Client.Stylesheets;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Sponsors.XenoSkins;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
-using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
-using Robust.Client.Utility;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
@@ -17,13 +14,22 @@ namespace Content.Client._Stories.Sponsors.XenoSkins;
 public sealed class XenoSkinsBui : BoundUserInterface
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
     private readonly SpriteSystem _spriteSystem;
 
     private ProtoId<XenoSkinsPrototype>? _selectedSkin;
-    private Direction _previewRotation = Direction.North;
+    private Direction _previewRotation = Direction.South;
     private XenoSkinsWindow? _window;
     private EntityUid _previewEntity;
+
+    private static readonly Direction[] CardinalCycle =
+    {
+        Direction.North,
+        Direction.East,
+        Direction.South,
+        Direction.West
+    };
+
+    private int _currentCardinalIndex;
 
     public XenoSkinsBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -32,140 +38,209 @@ public sealed class XenoSkinsBui : BoundUserInterface
 
     protected override void Open()
     {
+        base.Open();
+
         _window = new XenoSkinsWindow();
-        _window.Select.OnPressed += OnSelectPressed;
-        _window.PrevDirection.OnPressed += _ =>
+
+        _window.Select.OnPressed += OnSelectButtonPressed;
+        _window.PrevDirection.OnPressed += OnPrevDirectionButtonPressed;
+        _window.NextDirection.OnPressed += OnNextDirectionButtonPressed;
+        _window.OnClose += OnGuiWindowManuallyClosed;
+
+        _currentCardinalIndex = Array.IndexOf(CardinalCycle, _previewRotation);
+        if (_currentCardinalIndex == -1)
         {
-            _previewRotation = _previewRotation.TurnCw();
-            RotatePreview(_previewRotation);
-        };
-        _window.NextDirection.OnPressed += _ =>
-        {
-            _previewRotation = _previewRotation.TurnCcw();
-            RotatePreview(_previewRotation);
-        };
+            _previewRotation = CardinalCycle[2];
+            _currentCardinalIndex = 2;
+        }
 
         InitializePreviewEntity();
         PopulateSkins();
+        RotatePreview(_previewRotation);
 
-        _window.OnClose += CloseAndCleanup;
         _window.OpenCentered();
     }
 
-    protected override void Dispose(bool disposing)
+    private void OnSelectButtonPressed(BaseButton.ButtonEventArgs args)
     {
-        base.Dispose(disposing);
-        if (disposing)
-            _window?.Dispose();
+        if (_selectedSkin == null)
+            return;
+
+        SendPredictedMessage(new XenoSkinsBuiMsg(_selectedSkin.Value));
+    }
+
+    private void OnPrevDirectionButtonPressed(BaseButton.ButtonEventArgs args)
+    {
+        _currentCardinalIndex = (_currentCardinalIndex - 1 + CardinalCycle.Length) % CardinalCycle.Length;
+        _previewRotation = CardinalCycle[_currentCardinalIndex];
+        RotatePreview(_previewRotation);
+    }
+
+    private void OnNextDirectionButtonPressed(BaseButton.ButtonEventArgs args)
+    {
+        _currentCardinalIndex = (_currentCardinalIndex + 1) % CardinalCycle.Length;
+        _previewRotation = CardinalCycle[_currentCardinalIndex];
+        RotatePreview(_previewRotation);
+    }
+
+    private void OnGuiWindowManuallyClosed()
+    {
+        Close();
     }
 
     private void InitializePreviewEntity()
     {
+        if (EntMan.EntityExists(_previewEntity))
+        {
+            EntMan.QueueDeleteEntity(_previewEntity);
+            _previewEntity = EntityUid.Invalid;
+        }
+
         _previewEntity = EntMan.SpawnEntity(null, MapCoordinates.Nullspace);
-        if (EntMan.TryGetComponent(Owner, out SpriteComponent? ownerSprite))
+        if (EntMan.TryGetComponent(Owner, out SpriteComponent? ownerSprite) && _window != null)
         {
             var previewSprite = EntMan.EnsureComponent<SpriteComponent>(_previewEntity);
             previewSprite.CopyFrom(ownerSprite);
+            _window.Mob.SetEntity(_previewEntity);
         }
-        _window!.Mob.SetEntity(_previewEntity);
     }
 
     private void PopulateSkins()
     {
+        if (_window == null)
+            return;
+
         if (!EntMan.TryGetComponent(Owner, out XenoSkinsComponent? xenoSkins) ||
             !EntMan.TryGetComponent(Owner, out XenoComponent? xeno))
         {
-            DisableSelectButton();
+            _window.Select.Disabled = true;
+            _window.NoSkinsLabel.Visible = true;
+            _window.NoSkinsLabel.SetMarkupPermissive(Loc.GetString("ui-xeno-skins-none"));
             return;
         }
 
         bool hasValidSkins = false;
+        _window.SkinsContainer.DisposeAllChildren();
+
         foreach (var skinId in xenoSkins.Skins)
         {
-            var skinProto = _prototype.Index(skinId);
-            if (xeno.Role.Id == skinProto.Xeno.Id)
-            {
-                AddSkinButton(xenoSkins, skinId);
-                hasValidSkins = true;
-            }
+            if (!_prototype.TryIndex(skinId, out var skinProto) || xeno.Role.Id != skinProto.Xeno.Id)
+                continue;
+
+            AddSkinButtonToList(xenoSkins, skinId, skinProto);
+            hasValidSkins = true;
         }
 
-        _window!.NoSkinsLabel.Visible = !hasValidSkins;
-        _window.NoSkinsLabel.SetMarkupPermissive(Loc.GetString("ui-xeno-skins-none"));
+        _window.NoSkinsLabel.Visible = !hasValidSkins;
+        if (!hasValidSkins)
+            _window.NoSkinsLabel.SetMarkupPermissive(Loc.GetString("ui-xeno-skins-none"));
 
-        if (xenoSkins.CurrentSkin != null && _prototype.TryIndex(xenoSkins.CurrentSkin, out var currentSkin))
+
+        if (xenoSkins.CurrentSkin != null && _prototype.TryIndex(xenoSkins.CurrentSkin, out var currentSkinProto))
         {
-            UpdatePreview(currentSkin);
             _selectedSkin = xenoSkins.CurrentSkin;
-            _window.Select.Disabled = false;
+            UpdatePreview(currentSkinProto);
         }
         else
         {
-            DisableSelectButton();
+            _selectedSkin = null;
+            if (EntMan.EntityExists(_previewEntity))
+            {
+                _previewRotation = CardinalCycle[_currentCardinalIndex];
+                RotatePreview(_previewRotation);
+            }
         }
+
+        UpdateSelectButtonState(xenoSkins);
     }
 
-    private void AddSkinButton(XenoSkinsComponent xenoSkins, ProtoId<XenoSkinsPrototype> skinId)
+    private void AddSkinButtonToList(XenoSkinsComponent xenoSkins,
+        ProtoId<XenoSkinsPrototype> skinId,
+        XenoSkinsPrototype skinProto)
     {
-        var skin = _prototype.Index(skinId);
+        if (_window == null)
+            return;
+
         var button = new XenoSkinsButton(skinId)
         {
             HorizontalExpand = true,
             ToggleMode = true,
-            Pressed = xenoSkins.CurrentSkin == skinId,
-            Text = Loc.GetString(skin.Name),
+            Pressed = (_selectedSkin == skinId) || (_selectedSkin == null && xenoSkins.CurrentSkin == skinId),
+            Text = Loc.GetString(skinProto.Name),
             Margin = new Thickness(5f),
             StyleClasses = { StyleBase.ButtonOpenRight }
         };
 
         button.OnToggled += args =>
         {
+            if (_window == null)
+                return;
+
             if (args.Pressed)
             {
-                foreach (var child in _window!.SkinsContainer.Children)
+                foreach (var child in _window.SkinsContainer.Children)
                 {
                     if (child is XenoSkinsButton otherButton && otherButton != button)
                         otherButton.Pressed = false;
                 }
-                SelectSkin(xenoSkins, skinId);
+
+                HandleSkinSelection(xenoSkins, skinId);
             }
             else
             {
-                DeselectSkin();
+                if (_selectedSkin == skinId)
+                {
+                    HandleSkinDeselection(xenoSkins);
+                }
             }
         };
-        _window!.SkinsContainer.AddChild(button);
+        _window.SkinsContainer.AddChild(button);
     }
 
-    private void SelectSkin(XenoSkinsComponent xenoSkins, ProtoId<XenoSkinsPrototype> skinId)
+    private void HandleSkinSelection(XenoSkinsComponent xenoSkins, ProtoId<XenoSkinsPrototype> skinId)
     {
-        if (!_prototype.TryIndex(skinId, out var skin))
+        if (!_prototype.TryIndex(skinId, out var skinProto))
             return;
 
         _selectedSkin = skinId;
-        UpdatePreview(skin);
-        _window!.Select.Disabled = xenoSkins.CurrentSkin == skinId;
+        UpdatePreview(skinProto);
+        UpdateSelectButtonState(xenoSkins);
     }
 
-    private void DeselectSkin()
+    private void HandleSkinDeselection(XenoSkinsComponent xenoSkins)
     {
         _selectedSkin = null;
-        _window!.Select.Disabled = true;
-    }
 
-    private void OnSelectPressed(BaseButton.ButtonEventArgs _)
-    {
-        if (_selectedSkin == null)
+        if (_window == null)
             return;
 
-        SendPredictedMessage(new XenoSkinsBuiMsg(_selectedSkin.Value));
-        Close();
+        if (xenoSkins.CurrentSkin != null && _prototype.TryIndex(xenoSkins.CurrentSkin, out var currentSkinProto))
+        {
+            UpdatePreview(currentSkinProto);
+        }
+        else if (EntMan.TryGetComponent(Owner, out SpriteComponent? ownerSprite) && _window.Mob.Sprite != null)
+        {
+            _window.Mob.Sprite.CopyFrom(ownerSprite);
+            _previewRotation = CardinalCycle[_currentCardinalIndex];
+            RotatePreview(_previewRotation);
+        }
+
+        UpdateSelectButtonState(xenoSkins);
+    }
+
+
+    private void UpdateSelectButtonState(XenoSkinsComponent xenoSkins)
+    {
+        if (_window == null)
+            return;
+        _window.Select.Disabled = _selectedSkin == null || _selectedSkin == xenoSkins.CurrentSkin;
     }
 
     private void RotatePreview(Direction rotation)
     {
-        // 0 = North, 2 = East, 4 = South, 6 = West
-        _window!.Mob.OverrideDirection = (Direction)((int)rotation % 4 * 2);
+        if (_window?.Mob == null)
+            return;
+        _window.Mob.OverrideDirection = rotation;
     }
 
     private void UpdatePreview(XenoSkinsPrototype skin)
@@ -174,23 +249,41 @@ public sealed class XenoSkinsBui : BoundUserInterface
             return;
 
         _window.Mob.Sprite.LayerSetRSI(0, skin.SpriteRsi);
-        _previewRotation = Direction.South;
-        _window.Mob.OverrideDirection = _previewRotation;
+        _previewRotation = CardinalCycle[_currentCardinalIndex];
+        RotatePreview(_previewRotation);
     }
 
-    private void DisableSelectButton()
+    protected override void Dispose(bool disposing)
     {
-        _window!.Select.Disabled = true;
+        base.Dispose(disposing);
+        if (!disposing)
+            return;
+
+        if (EntMan.EntityExists(_previewEntity))
+        {
+            EntMan.QueueDeleteEntity(_previewEntity);
+            _previewEntity = EntityUid.Invalid;
+        }
+
+        if (_window != null)
+        {
+            _window.Select.OnPressed -= OnSelectButtonPressed;
+            _window.PrevDirection.OnPressed -= OnPrevDirectionButtonPressed;
+            _window.NextDirection.OnPressed -= OnNextDirectionButtonPressed;
+            _window.OnClose -= OnGuiWindowManuallyClosed;
+
+            _window.Dispose();
+            _window = null;
+        }
     }
 
-    private void CloseAndCleanup()
+    private sealed class XenoSkinsButton : Button
     {
-        EntMan.QueueDeleteEntity(_previewEntity);
-        Close();
-    }
+        public ProtoId<XenoSkinsPrototype> Skin { get; }
 
-    private sealed class XenoSkinsButton(ProtoId<XenoSkinsPrototype> skin) : Button
-    {
-        public ProtoId<XenoSkinsPrototype> Skin { get; } = skin;
+        public XenoSkinsButton(ProtoId<XenoSkinsPrototype> skin)
+        {
+            Skin = skin;
+        }
     }
 }

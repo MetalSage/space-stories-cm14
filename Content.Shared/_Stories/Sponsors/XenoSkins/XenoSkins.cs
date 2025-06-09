@@ -36,6 +36,7 @@ public sealed partial class XenoSkinsDoAfterEvent : DoAfterEvent
 {
     public readonly ResPath Path;
     public readonly ProtoId<XenoSkinsPrototype> Proto;
+
     public XenoSkinsDoAfterEvent(ResPath path, ProtoId<XenoSkinsPrototype> proto)
     {
         Path = path;

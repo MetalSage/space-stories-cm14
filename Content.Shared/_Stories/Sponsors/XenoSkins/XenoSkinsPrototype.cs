@@ -36,12 +36,3 @@ public sealed partial class XenoSkinsPrototype : IPrototype
     [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
     public ProtoId<JobPrototype> Xeno;
 }
-
-/*
-Example:
-- type: xenoSkin
-  id: STQueenRedSkin
-  name: King
-  spriteRsi: _Stories/Mobs/Xenos/Queen/redqueen.rsi
-  xeno: CMXenoQueen
-*/
