@@ -68,7 +68,6 @@ public sealed partial class APCEntitySystem : EntitySystem
         SubscribeLocalEvent<APCEntityComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<APCEntityComponent, AfterInteractUsingEvent>(OnAfterInteractUsingEvent);
         SubscribeLocalEvent<APCEntityComponent, DeattachModuleToAPCDoAfterEvent>(OnDeattachModule);
-        SubscribeLocalEvent<APCEntityComponent, APCModuleAttachedEvent>(OnModuleAttached);
         SubscribeLocalEvent<APCEntityComponent, AttachModuleToAPCDoAfterEvent>(AttachModuleDoAfter);
         SubscribeLocalEvent<APCEntityComponent, DeattachModuleEvent>(DeattachModuleDoAfter);
 
@@ -84,13 +83,11 @@ public sealed partial class APCEntitySystem : EntitySystem
         var apcQuery = EntityQueryEnumerator<APCEntityComponent>();
         while (apcQuery.MoveNext(out var uid, out var comp))
         {
-            // затычка для будущей апдейт логики
         }
     }
 
     private void OnMapInit(Entity<APCEntityComponent> apc, ref MapInitEvent args)
     {
-        _actionsSystem.AddAction(apc, ref apc.Comp.APCControlReturnActEntity, apc.Comp.APCControlReturnAction);
         _apcSystem.UpdateAppearance(apc, apc.Comp);
 
         apc.Comp.ModulesContainer = _container.EnsureContainer<Container>(apc, apc.Comp.ModulesContainerId);
@@ -170,18 +167,17 @@ public sealed partial class APCEntitySystem : EntitySystem
             component.GridEnt = grid.Value;
             component.MapEnt = mapEnt;
             _metaDataSystem.SetEntityName(grid.Value, $"APC Grid: {uid}");
+            var apcGridComp = EnsureComp<APCEntityGridComponent>(grid.Value);
+            apcGridComp.APC = component.Owner;
         }
+
     }
 
 
-    private void OnComponentShutdown(EntityUid uid, APCEntityComponent component, ComponentShutdown args)
+    private void OnComponentShutdown(Entity<APCEntityComponent> apc, ref ComponentShutdown args)
     {
-        _apcSystem.Return(uid, component);
-        _apcSystem.TryEjectEntities(uid, component);
-        _actionsSystem.RemoveAction(component.APCControlReturnActEntity);
-
-        if (component.GridEnt != null)
-            QueueDel(component.GridEnt);
+        if (apc.Comp.GridEnt != null)
+            QueueDel(apc.Comp.GridEnt);
     }
 
     private void AfterInteract(Entity<APCEntityComponent> entity, ref InteractHandEvent args)
@@ -227,9 +223,6 @@ public sealed partial class APCEntitySystem : EntitySystem
 
         if (entity.Comp.GridEnt == null)
             return;
-
-        var pilot = EnsureComp<APCPilotComponent>(args.User);
-        pilot.APC = entity.Owner;
 
         var position = GetAPCEnterPoint(entity.Comp.GridEnt.Value);
         var gridEnt = entity.Comp.GridEnt ?? entity.Comp.MapEnt;
@@ -304,7 +297,7 @@ public sealed partial class APCEntitySystem : EntitySystem
             {
                 if (component.OnAPC + 1 >= component.MaxOnAPC)
                 {
-                    _popup.PopupEntity("Внутрь БТР-а не помещаетесь вы или тот, кого вы удерживаете. Отпустите, и попробуйте вновь", user);
+                    _popup.PopupEntity("", user);
                     return;
                 }
                 component.OnAPC += FixedPoint2.New(1);
@@ -389,32 +382,44 @@ public sealed partial class APCEntitySystem : EntitySystem
         };
 
         _doAfterSystem.TryStartDoAfter(doAfterArgs);
-
     }
 
     private void OnDeattachModule(Entity<APCEntityComponent> apc, ref DeattachModuleToAPCDoAfterEvent args)
     {
-
+        // SHIT
         if (args.Cancelled || args.Handled || args.Used == null)
             return;
 
-        var module = args.User;
-        var user = args.Used.Value;
+        args.Handled = true;
+
+        var module = args.Used.Value;
+        var user = args.User;
 
         if (!TryComp<APCModuleComponent>(module, out var moduleComp) ||
             !TryComp<TransformComponent>(module, out var xform))
         {
             return;
         }
-        if (moduleComp.VirtualModuleEnt != null)
+
+        if (moduleComp.VirtualModuleEnt != null && 
+            apc.Comp.VirtualModules != null)
         {
             apc.Comp.VirtualModules.Remove(moduleComp.VirtualModuleEnt.Value);
             QueueDel(moduleComp.VirtualModuleEnt.Value);
         }
-        _container.Remove(module, apc.Comp.ModulesContainer);
-        _transform.SetMapCoordinates(module, _transform.GetMapCoordinates(user));
 
-        if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement) && TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
+        if (apc.Comp.ModulesContainer != null)
+        {
+            _container.Remove(module, apc.Comp.ModulesContainer);
+        }
+
+        if (TryComp<TransformComponent>(user, out var userXform))
+        {
+            _transform.SetCoordinates(module, userXform.Coordinates);
+        }
+
+        if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement) && 
+            TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
         {
             var totalWalk = apcMovement.BaseWalkSpeed - moduleMovement.BaseWalkSpeed;
             var totalSprint = apcMovement.BaseSprintSpeed - moduleMovement.BaseSprintSpeed;
@@ -425,35 +430,8 @@ public sealed partial class APCEntitySystem : EntitySystem
 
         if (TryComp<GunComponent>(module, out var gun))
         {
-            Logger.Info($"[APC] Found GunComponent on module {module} but gun logic is currently unavailable.(Deattach)");
+            Logger.Info($"found gun comp but gun logic is unavaible");
         }
-    }
-
-    private void OnModuleAttached(Entity<APCEntityComponent> apc, ref APCModuleAttachedEvent args)
-    {
-        if (!TryGetEntity(args.Module, out var module))
-            return;
-
-        if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement) &&
-            TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
-        {
-            var totalWalk = apcMovement.BaseWalkSpeed + moduleMovement.BaseWalkSpeed;
-            var totalSprint = apcMovement.BaseSprintSpeed + moduleMovement.BaseSprintSpeed;
-            var totalAcceleration = apcMovement.Acceleration + moduleMovement.Acceleration;
-
-            _movement.ChangeBaseSpeed(apc, totalWalk, totalSprint, totalAcceleration, apcMovement);
-        }
-
-        if (TryComp<GunComponent>(module, out var gun))
-        {
-            Logger.Info($"[APC] Found GunComponent on module {module.Value} but gun logic is currently unavailable.(Attach)");
-        }
-
-        if (!TryComp(module, out APCModuleComponent? moduleComponent))
-            return;
-
-        var holderEv = new APCModuleAlteredEvent(module.Value, APCModulesAlteredType.Attached);
-        RaiseLocalEvent(apc, ref holderEv);
     }
 
 }

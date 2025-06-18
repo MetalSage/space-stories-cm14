@@ -23,20 +23,20 @@ public sealed class APCModulesHolderVisuals : EntitySystem
 
     private void OnDetached(Entity<APCModulesHolderVisualsComponent> holder, ref EntRemovedFromContainerMessage args)
     {
+
         if (!HasComp<APCModulesVisualsComponent>(args.Entity))
             return;
-
 
         var holderEv = new APCModuleAlteredEvent(args.Entity, APCModulesAlteredType.Detached);
         RaiseLocalEvent(holder, ref holderEv);
     }
 
-    private void OnAttachablesAltered(Entity<APCModulesHolderVisualsComponent> holder, ref APCModuleAlteredEvent args)
+    private void OnAttachablesAltered(Entity<APCModulesHolderVisualsComponent> holder,
+        ref APCModuleAlteredEvent args)
     {
+
         if (!TryComp(args.Module, out APCModulesVisualsComponent? attachableComponent))
-        {
             return;
-        }
 
         var attachable = new Entity<APCModulesVisualsComponent>(args.Module, attachableComponent);
         switch (args.Alteration)
@@ -58,9 +58,7 @@ public sealed class APCModulesHolderVisuals : EntitySystem
     private void RemoveAttachableOverlay(Entity<APCModulesHolderVisualsComponent> holder, EntityUid attachable)
     {
         if (!TryComp(holder, out SpriteComponent? holderSprite))
-        {
             return;
-        }
 
         if (holder.Comp.ActiveLayers.TryGetValue(attachable, out var index))
         {
@@ -77,7 +75,6 @@ public sealed class APCModulesHolderVisuals : EntitySystem
 
     public void RefreshVisuals(Entity<APCModulesHolderVisualsComponent> holder, Entity<APCModulesVisualsComponent> attachable)
     {
-
         if (!TryComp(holder, out SpriteComponent? holderSprite))
             return;
 
@@ -90,9 +87,9 @@ public sealed class APCModulesHolderVisuals : EntitySystem
         if (rsi == null)
             return;
 
-        var state = attachableSprite.LayerGetState(attachable.Comp.Layer).ToString();
+        var state = attachable.Comp.State;
 
-        Logger.Info($"Creating new layer. RSI={rsi}, State={state}, Offset={attachable.Comp.Offset}");
+        Logger.Info($"Creating new layer RSI={rsi}, State={state}, Offset={attachable.Comp.Offset}");
 
         var layerData = new PrototypeLayerData()
         {

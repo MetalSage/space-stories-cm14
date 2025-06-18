@@ -17,4 +17,7 @@ public sealed partial class APCModulesVisualsComponent : Component
 
     [DataField, AutoNetworkedField]
     public Vector2 Offset;
+
+    [DataField, AutoNetworkedField]
+    public string State = string.Empty;
 }

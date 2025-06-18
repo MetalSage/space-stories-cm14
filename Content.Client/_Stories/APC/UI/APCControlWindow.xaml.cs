@@ -21,32 +21,10 @@ public sealed partial class APCControlWindow : DefaultWindow
 {
     [Dependency] private readonly EntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    private SharedPopupSystem _popup;
-    private readonly SharedAPCEntitySystem _sharedAPCEntitySystem;
 
     public APCControlWindow(EntityUid owner)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _popup = _entManager.System<SharedPopupSystem>();
-        EntityUid? player = _playerManager.LocalSession?.AttachedEntity;
-        _sharedAPCEntitySystem = _entManager.System<SharedAPCEntitySystem>();
-
-        PopupButton1.OnButtonDown += args =>
-        {
-            if (player != null)
-                _popup.PopupClient("попап1", player);
-        };
-
-        PopupButton2.OnButtonDown += args =>
-        {
-            if (player != null)
-            {
-                _popup.PopupClient("Вы контролируете сущность", player);
-
-                _sharedAPCEntitySystem.RequestControlAPC(owner, player.Value);
-            }
-        };
     }
 }
-// учусь делать юи

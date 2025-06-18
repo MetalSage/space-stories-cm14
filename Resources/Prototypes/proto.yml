@@ -107,7 +107,7 @@
     baseState: apc_base
     destroyedState: apc_base
     startingModules:
-    - APCDualCannon
+    - APCWheelsItem
   - type: ContainerContainer
     containers:
       actions: !type:Container

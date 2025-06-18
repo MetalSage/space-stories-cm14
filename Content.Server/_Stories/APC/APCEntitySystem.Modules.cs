@@ -30,6 +30,7 @@ public sealed partial class APCEntitySystem
                 continue;
 
             var module = Spawn(protoId, coordinates);
+
             if (!_container.Insert(module, apc.Comp.ModulesContainer, containerXform: xform))
                 continue;
 
@@ -41,7 +42,9 @@ public sealed partial class APCEntitySystem
     }
 
     public void SetupModule(Entity<APCEntityComponent> apc, EntityUid module)
-        => SetupModules(apc, new List<EntityUid?> { module });
+    {
+        SetupModules(apc, new List<EntityUid?> { module });
+    }
 
     public void SetupModules(Entity<APCEntityComponent> apc, List<EntityUid?> modules)
     {
@@ -62,10 +65,9 @@ public sealed partial class APCEntitySystem
             if (apc.Comp.ModulesContainer.ContainedEntities.Any(existing =>
                 TryComp<MetaDataComponent>(existing, out var existingMeta) &&
                 existingMeta.EntityPrototype != null &&
-                existingMeta.EntityPrototype.ID == protoId && TryComp<APCModuleComponent>(existing, out var existingModule) && 
+                existingMeta.EntityPrototype.ID == protoId && TryComp<APCModuleComponent>(existing, out var existingModule) &&
                 existingModule.Offset == Vector2.Zero))
             {
-                _popup.PopupEntity($"Модуль {ToPrettyString(module.Value)} уже установлен в {ToPrettyString(apc)}", apc);
                 continue;
             }
 
@@ -88,16 +90,16 @@ public sealed partial class APCEntitySystem
             if (!TryComp<APCModuleComponent>(module, out var moduleComp))
                 continue;
 
-            if (moduleComp.VirtualModule == null)
-                continue;
+            if (moduleComp.VirtualModule != null)
+            {
+                var coords = apc.Owner.ToCoordinates().Offset(moduleComp.Offset);
+                moduleComp.VirtualModuleEnt = SpawnAttachedTo(moduleComp.VirtualModule, coords);
+            }
 
             moduleComp.APC = apc.Owner;
-            moduleComp.VirtualModuleEnt = SpawnAttachedTo(moduleComp.VirtualModule, apc.Owner.ToCoordinates().Offset(moduleComp.Offset));
+
             if (moduleComp.VirtualModuleEnt != null)
                 apc.Comp.VirtualModules.Add(moduleComp.VirtualModuleEnt.Value);
-
-            var ev = new APCModuleAttachedEvent(GetNetEntity(apc.Owner), GetNetEntity(module));
-            RaiseLocalEvent(apc.Owner, ref ev);
         }
     }
 }

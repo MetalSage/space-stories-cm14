@@ -8,81 +8,38 @@ using Content.Shared.Coordinates;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Containers;
+using Content.Shared.Movement.Systems;
+using Robust.Shared.GameObjects;
+using Content.Shared.Popups;
+using Content.Shared._RMC14.Marines.Skills;
+using Robust.Shared.Network;
+using Robust.Shared.Containers;
+using Content.Shared.Weapons.Ranged.Components;
 
 namespace Content.Shared._Stories.APC.Systems;
 
 public sealed partial class SharedAPCEntitySystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedMoverController _mover = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<APCEntityComponent, APCControlReturnActionEvent>(OnReturn);
-        SubscribeLocalEvent<APCEntityComponent, GettingAPCControlledEvent>(OnGettingControlled);
         SubscribeLocalEvent<APCEntityComponent, BreakageEventArgs>(OnDestruction);
+        SubscribeLocalEvent<APCEntityComponent, EntInsertedIntoContainerMessage>(OnModuleAttached);
 
         InitializeController();
     }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-        var entities = EntityQueryEnumerator<APCEntityComponent>();
-        while (entities.MoveNext(out var uid, out var comp))
-        {
-            if (comp.User != null && comp.Controller != null && (!_mobStateSystem.IsAlive((EntityUid)comp.User) ||
-            TryComp<SleepingComponent>((EntityUid)comp.User, out var _) ||
-            TryComp<ForcedSleepingComponent>((EntityUid)comp.User, out var _))) Return(uid, comp);
-        }
-    }
-
-    #region ControlAPC
-    public void OnGettingControlled(EntityUid uid, APCEntityComponent component, GettingAPCControlledEvent args)
-    {
-        component.User = args.User;
-        component.Controller = args.Controller;
-    }
-
-    public void OnReturn(EntityUid uid, APCEntityComponent component, APCControlReturnActionEvent args)
-    {
-        Return(uid, component);
-    }
-
-    public void Return(EntityUid uid, APCEntityComponent component)
-    {
-        if (TryComp<MindContainerComponent>(uid, out var mind))
-        {
-            if (mind.HasMind)
-                TryReturnToBody(uid, component);
-        }
-
-        component.User = null;
-
-        if (component.Controller != null)
-        {
-            RaiseLocalEvent((EntityUid)component.Controller, new ReturnToBodyAPCEvent(uid));
-            component.Controller = null;
-        }
-    }
-
-    public bool TryReturnToBody(EntityUid uid, APCEntityComponent component)
-    {
-        if (component.User != null)
-        {
-            _mindSystem.ControlMob(uid, (EntityUid)component.User);
-            return true;
-        }
-        else return false;
-    }
-
-    #endregion
-    #region DestroyAPC
 
     private void OnDestruction(EntityUid uid, APCEntityComponent component, BreakageEventArgs args)
     {
@@ -93,8 +50,6 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return;
-
-        Return(uid, component);
 
         component.Destroyed = true;
         UpdateAppearance(uid, component);
@@ -109,32 +64,29 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
         _appearance.SetData(uid, APCVisuals.Destroyed, component.Destroyed, appearance);
     }
 
-    public bool TryEjectEntities(EntityUid uid, APCEntityComponent? component = null)
+    private void OnModuleAttached(Entity<APCEntityComponent> apc, ref EntInsertedIntoContainerMessage args)
     {
-        if (!Resolve(uid, ref component))
-            return false;
+        var module = args.Entity;
 
-        var apcGrid = _transform.GetGrid(uid);
-        var apcMap = _transform.GetMap(uid);
-
-        var gridEnt = apcGrid ?? apcMap;
-        if (gridEnt == null)
-            return false;
-
-        var query = EntityQueryEnumerator<TransformComponent>();
-        while (query.MoveNext(out var queryUid, out var transform))
+        if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement) &&
+            TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
         {
-            if (transform.GridUid != component.GridEnt || transform.Anchored)
-                continue;
+            var totalWalk = apcMovement.BaseWalkSpeed + moduleMovement.BaseWalkSpeed;
+            var totalSprint = apcMovement.BaseSprintSpeed + moduleMovement.BaseSprintSpeed;
+            var totalAcceleration = apcMovement.Acceleration + moduleMovement.Acceleration;
 
-            if (TerminatingOrDeleted(queryUid))
-                continue;
-
-            var coords = new EntityCoordinates(gridEnt.Value, _transform.GetWorldPosition(uid));
-            _transform.SetCoordinates(queryUid, coords);
+            _movement.ChangeBaseSpeed(apc, totalWalk, totalSprint, totalAcceleration, apcMovement);
         }
-        return true;
 
+        if (TryComp<GunComponent>(module, out var gun))
+        {
+            Logger.Info($"Found guncomp on module {module.Value} but gun logic is unavailable");
+        }
+
+        if (!TryComp(module, out APCModuleComponent? moduleComponent))
+            return;
+
+        var holderEv = new APCModuleAlteredEvent(module, APCModulesAlteredType.Attached);
+        RaiseLocalEvent(apc, ref holderEv);
     }
-    #endregion
 }

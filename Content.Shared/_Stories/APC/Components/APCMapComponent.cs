@@ -8,3 +8,10 @@ namespace Content.Shared._Stories.APC;
 
 [RegisterComponent]
 public sealed partial class APCMapComponent : Component;
+
+[RegisterComponent]
+public sealed partial class APCEntityGridComponent : Component
+{
+    [DataField]
+    public EntityUid? APC;
+}

@@ -2,6 +2,12 @@ using System.Linq;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
+using Content.Shared.Buckle.Components;
+using Content.Shared.Movement.Components;
+using Robust.Shared.GameObjects;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Stunnable;
+using Content.Shared._RMC14.Marines.Skills;
 
 namespace Content.Shared._Stories.APC.Systems;
 
@@ -9,78 +15,74 @@ public sealed partial class SharedAPCEntitySystem
 {
     private void InitializeController()
     {
-        SubscribeLocalEvent<APCControllerComponent, InteractHandEvent>(AfterInteract);
-        SubscribeLocalEvent<APCControllerComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<APCControllerComponent, ReturnToBodyAPCEvent>(OnReturn);
-
-        SubscribeNetworkEvent<RequestControlAPCEvent>(OnRequestControlAPC);
+        SubscribeLocalEvent<APCPilotSeatComponent, MapInitEvent>(OnPilotSeatInit);
+        SubscribeLocalEvent<APCPilotSeatComponent, StrappedEvent>(OnPilotSeatStrapped);
+        SubscribeLocalEvent<APCPilotSeatComponent, UnstrappedEvent>(OnPilotSeatUnstrapped);
     }
 
-    public void OnReturn(EntityUid uid, APCControllerComponent component, ReturnToBodyAPCEvent args)
+    private void OnPilotSeatInit(Entity<APCPilotSeatComponent> seat, ref MapInitEvent args)
     {
-        component.CurrentUser = null;
-        component.CurrentAPC = null;
+        if (!TryComp<TransformComponent>(seat, out var xform))
+            return;
+
+        if (!TryComp<APCEntityGridComponent>(xform.GridUid, out var apcGrid))
+            return;
+
+        seat.Comp.APC = apcGrid.APC;
     }
-
-    private void AfterInteract(EntityUid uid, APCControllerComponent component, InteractHandEvent args)
+/*
+    private void OnShutdown(Entity<APCPilotSeatComponent> seat, ComponentShutdown args)
     {
-        if (args.Handled)
-            return;
-
-        ControlAPC(uid, component, args.User);
-        args.Handled = true;
     }
-
-    public void ControlAPC(EntityUid uid, APCControllerComponent component, EntityUid user)
+*/
+    private void OnPilotSeatStrapped(Entity<APCPilotSeatComponent> seat, ref StrappedEvent args)
     {
-        if (TryComp<GhostComponent>(user, out var _))
+        if (_net.IsClient)
             return;
 
-        if (!TryComp<APCPilotComponent>(user, out var pilot))
+        if (!TryComp(args.Buckle, out EyeComponent? eye))
             return;
 
-        var target = pilot.APC;
-        if (target == null)
+        if (!TryComp<SkillsComponent>(args.Buckle, out var skillsComp))
             return;
 
-        component.CurrentUser = user;
-        component.CurrentAPC = target;
-        RaiseLocalEvent(target.Value, new GettingAPCControlledEvent(user, uid));
-        _mindSystem.ControlMob(user, target.Value);
-    }
-
-    public void OnShutdown(EntityUid uid, APCControllerComponent component, ComponentShutdown args)
-    {
-        if (component.CurrentUser != null && component.CurrentAPC != null)
+        if (!_skills.HasAllSkills(args.Buckle.Owner, seat.Comp.Skills))
         {
-            if (!TryComp<APCEntityComponent>(component.CurrentAPC, out var apcComp))
-                return;
-
-            if (apcComp.User != null)
-                _mindSystem.ControlMob((EntityUid)component.CurrentAPC, (EntityUid)component.CurrentAPC);
+            _popup.PopupEntity("a", args.Buckle);
+            return;
         }
-    }
 
-    #region Client UI Control
-
-    public void RequestControlAPC(EntityUid uid, EntityUid user)
-    {
-        if (!uid.IsValid() || !user.IsValid())
+        var pilot = EnsureComp<APCPilotComponent>(args.Buckle);
+        if (!IsConscious(args.Buckle))
             return;
 
-        RaiseNetworkEvent(new RequestControlAPCEvent(GetNetEntity(uid), GetNetEntity(user)));
-    }
+        pilot.APC = seat.Comp.APC;
 
-    private void OnRequestControlAPC(RequestControlAPCEvent ev, EntitySessionEventArgs args)
-    {
-        EntityUid apcController = GetEntity(ev.APCController);
-        EntityUid user = GetEntity(ev.User);
-
-        if (!TryComp<APCControllerComponent>(apcController, out var controller))
+        if (seat.Comp.APC is null)
             return;
 
-        ControlAPC(apcController, controller, user);
+        _eye.SetTarget(args.Buckle, seat.Comp.APC, eye);
+        _mover.SetRelay(args.Buckle, seat.Comp.APC.Value);   
     }
 
-    #endregion
+    private void OnPilotSeatUnstrapped(Entity<APCPilotSeatComponent> seat, ref UnstrappedEvent args)
+    {
+        _eye.SetTarget(args.Buckle, null);
+        RemComp<RelayInputMoverComponent>(args.Buckle);
+    }
+    
+    private bool IsConscious(EntityUid pilot)
+    {
+        if (HasComp<SleepingComponent>(pilot) 
+            && HasComp<ForcedSleepingComponent>(pilot)
+            && HasComp<StunnedComponent>(pilot))
+        {
+            return false;
+        }
+
+        if (!_mobState.IsAlive(pilot))
+            return false;
+
+        return true;
+    }
 }
