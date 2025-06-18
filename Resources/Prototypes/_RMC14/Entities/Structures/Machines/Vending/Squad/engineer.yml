@@ -22,10 +22,10 @@
     - name: Турели
       takeOne: CMHandheldDefense
       entries:
-    #    CM21STeslaCoil
     #    CMJIMAPlantedFlag
     #    CMUA42FSentryFlamer
       - id: RMCSentry
+      - id: RMCTesla
     - name: Улучшения Турелей
       choices: { CMHandheldDefenseUpgrade: 1 }
       entries:
@@ -161,9 +161,11 @@
       - id: RMCLaserDesignator
         points: 15
     - name: Оптика Для Шлема
-      entries: [ ]
-    #- id: CMMedicalHelmetOptic
-    #  points: 12
+      entries:
+      - id: RMCVisorMedical
+        points: 12
+      - id: RMCVisorWelding
+        points: 5
     - name: Памфлеты
       entries:
       - id: CMPamphletJTAC
@@ -198,6 +200,11 @@
       - id: CMVendorBundleCombatTechnicianApparel
       - id: CMMRE
       #- id: CMMap # TODO: Make a map
+    - name: Шлем
+      choices: { CMHelmet: 1 }
+      entries:
+      - id: CMArmorHelmetM10Tech
+      - id: RMCArmorHelmetM10Welding
     - name: Броня
       choices: { CMArmor: 1 }
       entries:
@@ -308,7 +315,6 @@
     - name: Оборудование
       entries:
       - id: CMBeltUtility
-        name: Утилиты tool belt
         amount: 4
       - id: RMCCableCoil
         amount: 4

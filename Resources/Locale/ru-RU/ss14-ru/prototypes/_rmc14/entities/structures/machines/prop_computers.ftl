@@ -1,0 +1,16 @@
+ent-RMCPropComputerBase = терминал
+    .desc = Может использоваться для различных функций.
+    .suffix = Реквизит
+ent-RMCPropCommunicationsConsole = консоль связи
+    .desc = { ent-RMCPropComputerBase.desc }
+ent-RMCPropCommunicationsConsoleAlt = { ent-RMCPropCommunicationsConsole }
+    .suffix = Реквизит, Альтернативная версия
+    .desc = { ent-RMCPropCommunicationsConsole.desc }
+ent-RMCPersonalDesktop = персональный компьютер
+    .desc = { ent-RMCPropComputerBase.desc }
+ent-RMCSecurityCameraConsole = консоль камер видеонаблюдения
+    .desc = { ent-RMCPropComputerBase.desc }
+ent-RMCSecurityRecordsConsole = записи системы безопасности
+    .desc = { ent-RMCPropComputerBase.desc }
+ent-RMCIdentificationComputer = компьютер идентификации
+    .desc = { ent-RMCPropComputerBase.desc }

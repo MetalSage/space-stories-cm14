@@ -24,3 +24,5 @@ ent-RMCLabcoatCMOOpened = Лабораторный халат главного �
     .desc = { ent-RMCLabcoat.desc }
 ent-RMCMedicalApron = медицинский фартук
     .desc = Основной и стерильный белый фартук, подходящий для хирургической и, конечно, других медицинских практик.
+ent-RMCHydroApron = фартук
+    .desc = Базовый синий фартук.

@@ -31,12 +31,13 @@
       RMCCommunicationsTower: HivePylonXeno
   - type: XenoWeedsSpreading
   - type: HiveConstructionRequiresHiveCore
+  - type: HiveConstructionRequiresWeedableSurface
   - type: HiveConstructionLimited
     id: HiveClusterXeno
   - type: RepairableXenoStructure
     plasmaCost: 300
     repairLength: 15
-  - type: XenoMapTracked
+  - type: XenoStructureMapTracked
   - type: TacticalMapTracked
   - type: TacticalMapIcon
     icon:
@@ -74,6 +75,7 @@
     plasmaCost: 300
     spawn: HiveClusterXeno
   - type: HiveConstructionRequiresHiveCore
+  - type: HiveConstructionRequiresWeedableSurface
   - type: HiveConstructionLimited
     id: HiveClusterXeno
   - type: WarpPoint

@@ -5,7 +5,6 @@ credits-window-licenses-tab = Лицензии на открытый исход�
 credits-window-become-patron-button = Стать спонсором
 credits-window-contributor-encouragement-label = Хотите попасть в этот список?
 credits-window-contribute-button = Внесите свой вклад!
-credits-window-cm-ss13-section-title = CM-SS13 Contributors
 credits-window-contributors-section-title = Контрибьюторы Space Station 14
 credits-window-codebases-section-title = Код Space Station 13
 credits-window-original-remake-team-section-title = Команда ремейка оригинальной Space Station 13

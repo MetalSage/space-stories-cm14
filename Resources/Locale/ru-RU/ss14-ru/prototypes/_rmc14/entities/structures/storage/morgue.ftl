@@ -1,3 +1,5 @@
+ent-RMCMorgueBase = { "" }
+    .desc = { "" }
 ent-CMMorgue = морг
     .desc = Используется для хранения тел до тех пор, пока их не заберут.
 ent-CMCrematorium = крематорий

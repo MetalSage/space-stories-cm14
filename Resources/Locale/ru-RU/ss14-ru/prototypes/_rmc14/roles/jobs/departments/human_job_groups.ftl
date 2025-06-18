@@ -6,3 +6,7 @@ ent-CMJobsEngineering = { "" }
     .desc = { "" }
 ent-CMJobsDropship = { "" }
     .desc = { "" }
+ent-CMJobsDropshipPilot = { "" }
+    .desc = { "" }
+ent-RMCJobsSurvivor = { "" }
+    .desc = { "" }

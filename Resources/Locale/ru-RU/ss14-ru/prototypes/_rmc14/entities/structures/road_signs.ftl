@@ -166,3 +166,7 @@ ent-RMCOverheadBillboardWallmount27 = { ent-RMCOverheadBillboardWallmount1 }
     .desc = { ent-RMCOverheadBillboardWallmount1.desc }
 ent-RMCOverheadBillboardWallmount28 = { ent-RMCOverheadBillboardWallmount1 }
     .desc = { ent-RMCOverheadBillboardWallmount1.desc }
+ent-RMCOverheadBillboardWallmount29 = { ent-RMCOverheadBillboardWallmount1 }
+    .desc = { ent-RMCOverheadBillboardWallmount1.desc }
+ent-RMCOverheadBillboardWallmount30 = { ent-RMCOverheadBillboardWallmount1 }
+    .desc = { ent-RMCOverheadBillboardWallmount1.desc }

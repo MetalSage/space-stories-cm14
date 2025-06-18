@@ -1,3 +1,6 @@
-ent-RMCRandomHumanoidRoyalSmartGunOperator = роль оператора умной пушки королевской морской пехоты
+ent-RMCRandomHumanoidRoyalMarinesSGO = призрачная роль оператора смартгана королевской морской пехоты
+    .suffix = Спавнер, Игрок, Дружелюбный
+    .desc = { "" }
+ent-RMCRandomHumanoidRoyalSmartGunOperator = роль оператора смартгана королевской морской пехоты
     .suffix = Роль
     .desc = { "" }

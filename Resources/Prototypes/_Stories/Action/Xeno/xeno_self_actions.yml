@@ -1,0 +1,12 @@
+- type: entity
+  parent: ActionXenoBase
+  id: STXenoSkinsMenuAction
+  name: Xeno Skins Menu
+  description: For sponsors
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: evolve
+    event: !type:XenoOpenSkinsMenuActionEvent

@@ -2,5 +2,5 @@ ent-RMCDropshipAttachmentWeapon = { ent-RMCDropshipAttachmentBase }
     .desc = { ent-RMCDropshipAttachmentBase.desc }
 ent-RMCDropshipAttachmentGau21Cannon = пушка 30-мм GAU-21
     .desc = Демонтированная 30-мм роторная пушка GAU-21 "Rattler". Похоже, что у нее отсутствуют тяги подачи и есть оголенные соединительные провода. Способна выпускать 5200 снарядов в минуту, многие боялись ее за мощь. Получила прозвище "Гремучая пушка" из-за вибраций, которые она вызывала у дропшипов во время своего первоначального выпуска. Принимает ящики с боеприпасами PGU-100/PGU-105
-ent-RMCDropshipAttachmentGuidedMissileLauncher = управляемая ракетная установка LAU-444
+ent-RMCDropshipAttachmentGuidedMissileLauncher = ракетная установка LAU-444
     .desc = Оружейная система в виде ракетной капсулы, способная запускать одну ракету с лазерным наведением. Для ее перемещения потребуется какой-либо подъемник. Принимает ракеты AGM, AIM, BLU и GBU.

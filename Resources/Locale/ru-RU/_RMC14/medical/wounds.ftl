@@ -41,9 +41,9 @@ cm-wounds-already-treated-target-popup = Раны на { $target } уже обр
 cm-burns-already-treated-self-popup = Ваши ожоги уже обработаны.
 cm-burns-already-treated-target-popup = Ожоги на { $target } уже обработаны.
 cm-wounds-brackets-translators-note = { "{ }" } = Не лечится
-cm-wounds-failed-unskilled = Вы не знаете, как использовать { THE($treater) }!
+cm-wounds-failed-unskilled = Вы не знаете, как использовать { $treater }!
 cm-wounds-failed-not-enough = У вас недостаточно { $treater }!
 cm-wounds-open-cut = Если { $target } вскрыт, вам понадобится больше, чем { $treater }!
-cm-wounds-cannot-treat = { THE($treater) } не может лечить эти раны!
+cm-wounds-cannot-treat = { $treater } не может лечить эти раны!
 cm-wounds-already-treated = Раны на { $target } уже обработаны!
-cm-wounds-start-fumbling = Вы начинаете возиться с { THE($name) }.
+cm-wounds-start-fumbling = Вы начинаете возиться с { $name }.

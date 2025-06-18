@@ -1,0 +1,17 @@
+- type: entity
+  parent: RMCFlagCarriableBase
+  id: STFlagCarriableUS
+  name: United States flag
+  description: "The flag of the US."
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Flags/us_flag.rsi
+
+- type: entity
+  parent: RMCFlagCarriableBase
+  id: STFlagCarriableUPP
+  name: UPP flag
+  description: "The flag of the UPP."
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Flags/upp_flag.rsi

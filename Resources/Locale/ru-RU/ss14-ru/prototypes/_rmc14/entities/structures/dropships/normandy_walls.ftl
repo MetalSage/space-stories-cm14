@@ -1,4 +1,4 @@
-ent-CMBaseNormandyWall = стена Нормандии
+ent-CMBaseNormandyWall = Нормандия
     .desc = { ent-CMBaseWallInvincible.desc }
 ent-CMNormandyWall1 = { ent-CMBaseNormandyWall }
     .suffix = 1
@@ -252,8 +252,8 @@ ent-CMNormandyWall83 = { ent-CMBaseNormandyWall }
 ent-CMNormandyWall84 = { ent-CMBaseNormandyWall }
     .suffix = 84
     .desc = { ent-CMBaseNormandyWall.desc }
-ent-CMNormandyWall84Flipped = носовая точка крепления оружия по правому борту
-    .desc = Место, где можно установить тяжелое оборудование с помощью погрузчика.
+ent-CMNormandyWall84Flipped = { ent-CMBaseNormandyWall }
+    .desc = { ent-CMBaseNormandyWall.desc }
     .suffix = 84, Перевернутый
 ent-CMNormandyWall85 = { ent-CMBaseNormandyWall }
     .suffix = 85

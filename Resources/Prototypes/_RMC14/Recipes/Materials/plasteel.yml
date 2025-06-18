@@ -1,0 +1,51 @@
+- type: rmcConstruction
+  id: RMCPlasteelBarricadeFoldableBuild
+  name: складная пласталевая баррикада
+  prototype: CMBarricadePlasteelDoor
+  doAfterTime: 4
+  doAfterTimeMin: 2
+  materialCost: 8
+  skill: RMCSkillConstruction
+  requiredSkillLevel: 2
+
+- type: rmcConstruction
+  id: RMCPlasteelBarricadeBuild
+  name: пласталевая баррикада
+  prototype: RMCBarricadePlasteel
+  doAfterTime: 8
+  doAfterTimeMin: 2
+  materialCost: 6
+  skill: RMCSkillConstruction
+  requiredSkillLevel: 2
+
+- type: rmcConstruction
+  id: RMCReinforcedWindowFrameBuild
+  name: усиленная оконная рама
+  prototype: RMCWindowFrameColonyReinforced
+  noRotate: true
+  doAfterTime: 4
+  materialCost: 5
+  skill: RMCSkillConstruction
+  requiredSkillLevel: 2
+
+- type: rmcConstruction
+  id: RMCPlasteelRodBuild
+  name: пласталевый стержень
+  prototype: CMRodPlasteel1
+  doAfterTime: 0
+  doAfterTimeMin: 0
+  materialCost: 1
+  ignoreBuildRestrictions: true
+  restrictedCollisionGroup: null
+  stackAmounts:
+  - 15
+  - 30
+
+- type: rmcConstruction
+  id: RMCMetalCrateBuild
+  name: металлический ящик
+  prototype: RMCCrateMetalBuildable
+  restrictedCollisionGroup: MidImpassable
+  noRotate: true
+  doAfterTime: 5
+  materialCost: 5

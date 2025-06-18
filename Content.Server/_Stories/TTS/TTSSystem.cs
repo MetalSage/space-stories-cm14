@@ -1,17 +1,22 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Content.Server.Chat.Systems;
 using Content.Shared._Stories.SCCVars;
 using Content.Shared._Stories.TTS;
 using Content.Shared.GameTicking;
+using Content.Shared._RMC14.Xenonids;
+using Content.Shared._RMC14.Marines;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Chat;
+using Content.Server.Radio.EntitySystems;
+using Robust.Shared.Map;
 
 namespace Content.Server._Stories.TTS;
 
-// ReSharper disable once InconsistentNaming
 public sealed partial class TTSSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -23,21 +28,25 @@ public sealed partial class TTSSystem : EntitySystem
     private readonly List<string> _sampleText =
         new()
         {
-            "Съешь же ещё этих мягких французских булок, да выпей чаю.",
-            "Клоун, прекрати разбрасывать банановые кожурки офицерам под ноги!",
-            "Капитан, вы уверены что хотите назначить клоуна на должность главы персонала?",
-            "Эс Бэ! Тут человек в сером костюме, с тулбоксом и в маске! Помогите!!",
-            "Учёные, тут странная аномалия в баре! Она уже съела мима!",
-            "Я надеюсь что инженеры внимательно следят за сингулярностью...",
-            "Вы слышали эти странные крики в техах? Мне кажется туда ходить небезопасно.",
-            "Вы не видели Гамлета? Мне кажется он забегал к вам на кухню.",
-            "Здесь есть доктор? Человек умирает от отравленного пончика! Нужна помощь!",
-            "Вам нужно согласие и печать квартирмейстера, если вы хотите сделать заказ на партию дробовиков.",
-            "Возле эвакуационного шаттла разгерметизация! Инженеры, нам срочно нужна ваша помощь!",
-            "Бармен, налей мне самого крепкого вина, которое есть в твоих запасах!"
+            "Внимание, морпехи, заряжайте оружие и готовьтесь к бою. Обнаружена активность ксеноморфов.",
+            "Коммандир, у нас тут настоящая бойня! Запрашиваем срочную эвакуацию с Алмаера!",
+            "Инженер, срочно установите турели на этом перекрестке. Они прорываются!",
+            "Медик! У нас тут раненый! Срочно нужна помощь, его всего исцарапали!",
+            "Всем отрядам, королева ксеноморфов замечена в центральном улье. Приготовиться к штурму!",
+            "Черт, патроны почти на исходе! Кто-нибудь, прикройте, я перезаряжаюсь!",
+            "Датчики движения показывают что-то большое и очень быстрое. Всем быть начеку!",
+            "Смотрите в оба, эти твари могут прятаться в вентиляции. Не хочу, чтобы одна из них упала мне на голову.",
+            "Ш-ш-ш... Чужие... близко... Я чувствую их запах.",
+            "Мои когти жаждут плоти этих ходячих мешков с мясом.",
+            "Королева... зовет... Мы должны защитить улей любой ценой.",
+            "Их фонарики... такие яркие... Разбить! Уничтожить!",
+            "Плевок кислотой готов. Кто будет моей следующей целью?",
+            "Прячьтесь в тени, сестры. Пусть они подойдут поближе, а потом мы нанесем удар.",
+            "Я слышу их крики... сладкая музыка для моих ушей.",
+            "Этот металл... он не остановит нас. Мы прорвемся."
         };
 
-    private const int MaxMessageChars = 100 * 2; // same as SingleBubbleCharLimit * 2
+    private const int MaxMessageChars = 100 * 2;
     private bool _isEnabled = false;
 
     public override void Initialize()
@@ -45,7 +54,7 @@ public sealed partial class TTSSystem : EntitySystem
         _cfg.OnValueChanged(SCCVars.TTSEnabled, v => _isEnabled = v, true);
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
-        SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke);
+        SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke, before: new []{ typeof(HeadsetSystem) });
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
@@ -80,12 +89,13 @@ public sealed partial class TTSSystem : EntitySystem
         return true;
     }
 
-    private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
+    private void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
     {
+        if (args.Channel != null)
+            return;
+
         var voiceId = component.VoicePrototypeId;
-        if (!_isEnabled ||
-            args.Message.Length > MaxMessageChars ||
-            voiceId == null)
+        if (args.Message.Length > MaxMessageChars || voiceId == null)
             return;
 
         var voiceEv = new TransformSpeakerVoiceEvent(uid, voiceId);
@@ -97,7 +107,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, args.Message, args.ObfuscatedMessage, protoVoice.Speaker);
+            HandleWhisper(uid, args.Message, protoVoice.Speaker);
             return;
         }
 
@@ -107,40 +117,64 @@ public sealed partial class TTSSystem : EntitySystem
     private async void HandleSay(EntityUid uid, string message, string speaker)
     {
         var soundData = await GenerateTTS(message, speaker);
-        if (soundData is null) return;
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), Filter.Pvs(uid));
+        if (soundData is null)
+            return;
+
+        var ttsEvent = new PlayTTSEvent(soundData, GetNetEntity(uid));
+        FilterAndSend(uid, ttsEvent, ChatSystem.VoiceRange);
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, string obfMessage, string speaker)
+    private async void HandleWhisper(EntityUid uid, string message, string speaker)
     {
         var fullSoundData = await GenerateTTS(message, speaker, true);
-        if (fullSoundData is null) return;
-
-        var obfSoundData = await GenerateTTS(obfMessage, speaker, true);
-        if (obfSoundData is null) return;
+        if (fullSoundData is null)
+            return;
 
         var fullTtsEvent = new PlayTTSEvent(fullSoundData, GetNetEntity(uid), true);
-        var obfTtsEvent = new PlayTTSEvent(obfSoundData, GetNetEntity(uid), true);
-
-        // TODO: Check obstacles
-        var xformQuery = GetEntityQuery<TransformComponent>();
-        var sourcePos = _xforms.GetWorldPosition(xformQuery.GetComponent(uid), xformQuery);
-        var receptions = Filter.Pvs(uid).Recipients;
-        foreach (var session in receptions)
-        {
-            if (!session.AttachedEntity.HasValue) continue;
-            var xform = xformQuery.GetComponent(session.AttachedEntity.Value);
-            var distance = (sourcePos - _xforms.GetWorldPosition(xform, xformQuery)).Length();
-            if (distance > ChatSystem.VoiceRange * ChatSystem.VoiceRange)
-                continue;
-
-            RaiseNetworkEvent(distance > ChatSystem.WhisperClearRange ? obfTtsEvent : fullTtsEvent, session);
-        }
+        FilterAndSend(uid, fullTtsEvent, ChatSystem.WhisperClearRange);
     }
 
-    // ReSharper disable once InconsistentNaming
-    private async Task<byte[]?> GenerateTTS(string text, string speaker, bool isWhisper = false)
+    private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range)
     {
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var sourceXform = xformQuery.GetComponent(source);
+        var sourceCoords = sourceXform.Coordinates;
+
+        var isMarineSpeaker = HasComp<MarineComponent>(source);
+        var isXenoSpeaker = HasComp<XenoComponent>(source);
+        var speakerHasFaction = isMarineSpeaker || isXenoSpeaker;
+
+        var recipients = new List<ICommonSession>();
+        foreach (var player in Filter.Pvs(source).Recipients)
+        {
+            if (player.AttachedEntity is not { } listener)
+                continue;
+
+            var listenerXform = xformQuery.GetComponent(listener);
+            if (!listenerXform.Coordinates.InRange(EntityManager, sourceCoords, range))
+                continue;
+
+            if (speakerHasFaction)
+            {
+                if ((isMarineSpeaker && HasComp<XenoComponent>(listener)) ||
+                    (isXenoSpeaker && HasComp<MarineComponent>(listener)))
+                {
+                    continue;
+                }
+            }
+
+            recipients.Add(player);
+        }
+
+        if (recipients.Count > 0)
+            RaiseNetworkEvent(ev, Filter.Empty().AddPlayers(recipients));
+    }
+
+    public async Task<byte[]?> GenerateTTS(string text, string speaker, bool isWhisper = false)
+    {
+        if (!_isEnabled)
+            return null;
+
         var textSanitized = Sanitize(text);
         if (textSanitized == "") return null;
         if (char.IsLetter(textSanitized[^1]))

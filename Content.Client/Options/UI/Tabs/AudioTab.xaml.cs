@@ -55,19 +55,16 @@ public sealed partial class AudioTab : Control
             SliderVolumeInterface,
             scale: ContentAudioSystem.InterfaceMultiplier);
 
-        // Stories-TTS-Start
+        // RMC14
         Control.AddOptionPercentSlider(
-            SCCVars.TTSVolume,
-            SliderVolumeTtsVolume,
-            scale: ContentAudioSystem.TtsMultiplier);
-        // Stories-TTS-End
+            RMCCVars.VolumeGainCassettes,
+            SliderVolumeCassettes,
+            scale: 0.12f);
 
-        // Stories-HijackVolume-Start
         Control.AddOptionPercentSlider(
-            SCCVars.HijackVolume,
-            SliderVolumeHijackVolume,
-            scale: ContentAudioSystem.HijackMultiplier);
-        // Stories-HijackVolume-End
+            RMCCVars.VolumeGainHijackSong,
+            SliderVolumeHijackSong,
+            scale: 0.32f);
 
         Control.AddOptionSlider(
             CCVars.MaxAmbientSources,
@@ -80,14 +77,6 @@ public sealed partial class AudioTab : Control
         Control.AddOptionCheckBox(CCVars.EventMusicEnabled, EventMusicCheckBox);
         Control.AddOptionCheckBox(CCVars.AdminSoundsEnabled, AdminSoundsCheckBox);
         Control.AddOptionCheckBox(CCVars.BwoinkSoundEnabled, BwoinkSoundCheckBox);
-        Control.AddOptionCheckBox(RMCCVars.CMPlayVoicelinesArachnid, CMVoicelinesArachnid);
-        Control.AddOptionCheckBox(RMCCVars.CMPlayVoicelinesDiona, CMVoicelinesDiona);
-        Control.AddOptionCheckBox(RMCCVars.CMPlayVoicelinesDwarf, CMVoicelinesDwarf);
-        Control.AddOptionCheckBox(RMCCVars.CMPlayVoicelinesFelinid, CMVoicelinesFelinid);
-        Control.AddOptionCheckBox(RMCCVars.CMPlayVoicelinesHuman, CMVoicelinesHuman);
-        Control.AddOptionCheckBox(RMCCVars.CMPlayVoicelinesMoth, CMVoicelinesMoth);
-        Control.AddOptionCheckBox(RMCCVars.CMPlayVoicelinesReptilian, CMVoicelinesReptilian);
-        Control.AddOptionCheckBox(RMCCVars.CMPlayVoicelinesSlime, CMVoicelinesSlime);
 
         Control.Initialize();
     }

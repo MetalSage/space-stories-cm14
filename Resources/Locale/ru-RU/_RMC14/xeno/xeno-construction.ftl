@@ -54,6 +54,8 @@ rmc-xeno-construction-resin-tunnel-uproot = Мы начинаем выкорче
 rmc-xeno-construction-resin-tunnel-create-tunnel = Мы начинаем копать...
 rmc-xeno-construction-default-tunnel-name = { $areaName } ({ $coordX }, { $coordY }) { $greekLetter }
 rmc-xeno-construction-default-area-name = Неизвестный
+rmc-xeno-construction-tunnel-examine-not-xeno-empty = [color=purple][italic]Это темная бездна...[/italic][/color]
+rmc-xeno-construction-tunnel-examine-not-xeno = [color=purple][italic]Это темная бездна с несколькими маленькими...огоньками...почти как будто что-то смотрит.[/italic][/color]
 rmc-xeno-construction-failed-tunnel-rename = Названия туннелей должны быть уникальными!
 rmc-xeno-construction-tunnel-examine = Аромат с феромонами читается: { $tunnelName }
 rmc-xeno-order-construction-structure-designated = Улей: Новая конструкция { $construct } была возведена в { $area }!
@@ -68,7 +70,7 @@ rmc-xeno-construction-egg-morpher-already-full = Этот морфер для я
 rmc-xeno-egg-morpher-return-self = { CAPITALIZE($parasite) } заползает в морфер яйца.
 rmc-xeno-construction-egg-morpher-examine = Укрывается: { $cur_paras }/{ $max_paras } лицехватов.
 rmc-xeno-construction-recovery-node-heal-target = Вы чувствуете, как вас окутывает теплая аура.
-rmc-xeno-construction-recovery-node-heal-other = { CAPITALIZE(THE($target)) } светится, когда его окутывает теплая аура.
+rmc-xeno-construction-recovery-node-heal-other = { CAPITALIZE($target) } светится, когда его окутывает теплая аура.
 rmc-xeno-construction-tunnel-fill = Вы начинаете разрушать туннель!
 rmc-xeno-construction-tunnel-fill-xeno-drop = Туннель внезапно обрушивается, вынуждая вас выбраться наружу!
 rmc-xeno-construction-resin-hole-parasite-name = лицехват

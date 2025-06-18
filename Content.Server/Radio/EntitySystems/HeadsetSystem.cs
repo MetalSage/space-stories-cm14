@@ -7,6 +7,11 @@ using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Enums;
+using Content.Server._Stories.TTS;
+using Content.Shared._Stories.TTS;
+using Content.Shared.GameTicking;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -20,9 +25,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         base.Initialize();
         SubscribeLocalEvent<HeadsetComponent, RadioReceiveEvent>(OnHeadsetReceive);
         SubscribeLocalEvent<HeadsetComponent, EncryptionChannelsChangedEvent>(OnKeysChanged);
-
         SubscribeLocalEvent<WearingHeadsetComponent, EntitySpokeEvent>(OnSpeak);
-
         SubscribeLocalEvent<HeadsetComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
@@ -53,7 +56,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && keys.Channels.Contains(args.Channel.ID))
         {
             _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
-            args.Channel = null; // prevent duplicate messages from other listeners.
+            args.Channel = null;
         }
     }
 
@@ -99,8 +102,14 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
-        if (TryComp(Transform(uid).ParentUid, out ActorComponent? actor))
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+        if (!TryComp(Transform(uid).ParentUid, out ActorComponent? actor))
+            return;
+
+        var playerSession = actor.PlayerSession;
+        if (playerSession.Status != SessionStatus.InGame)
+            return;
+
+        _netMan.ServerSendMessage(args.ChatMsg, playerSession.Channel);
     }
 
     private void OnEmpPulse(EntityUid uid, HeadsetComponent component, ref EmpPulseEvent args)

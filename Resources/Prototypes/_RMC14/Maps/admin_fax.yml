@@ -7,7 +7,7 @@
   randomRotation: false
   stations:
     AdminFax:
-      stationProto: NanotrasenCentralCommand
+      stationProto: StandardUNMCWarship
       components:
         - type: StationNameSetup
           mapNameTemplate: 'We-Ya Office'

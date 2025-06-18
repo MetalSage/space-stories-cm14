@@ -98,6 +98,29 @@
       Blazing: /Textures/_Stories/Objects/Weapons/Guns/Flamethrower/m240_blazing.rsi
       Hardened: /Textures/_Stories/Objects/Weapons/Guns/Flamethrower/m240_hardened.rsi
       Magma: /Textures/_Stories/Objects/Weapons/Guns/Flamethrower/m240_magma.rsi
+  - type: Tag
+    tags:
+    - RMCWeaponIncineratorM34
+
+- type: Tag
+  id: RMCWeaponIncineratorM34
+
+- type: entity
+  parent: RMCWeaponFlamer
+  id: RMCWeaponFlamerUnloaded
+  suffix: Unloaded
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Tank
+        startingItem: null
+        insertSound: /Audio/_RMC14/Weapons/Handling/flamer_reload.ogg
+        ejectSound: /Audio/_RMC14/Weapons/Handling/flamer_unload.ogg
+        priority: 2
+        whitelist:
+          components:
+          - RMCFlamerTank
 
 - type: entity
   parent: BaseItem
@@ -110,7 +133,8 @@
     state: flametank_custom
     layers:
     - state: flametank_custom
-    - state: flametank_custom_strip0
+    - state: flametank_custom_strip2
+    - state: flametank_custom_strip2
       map: [ "enum.SolutionContainerLayers.Fill" ]
   - type: Item
     size: Normal
@@ -134,10 +158,11 @@
     solution: rmc_flamer_tank
   - type: NoMixingReagents
   - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    emptySpriteName: flametank_custom_strip0
+    maxFillLevels: 2
     fillBaseName: flametank_custom_strip
   - type: Appearance
+  - type: SolutionStorageFillable
+    solution: rmc_flamer_tank
 
 - type: entity
   parent: RMCGunCaseBase

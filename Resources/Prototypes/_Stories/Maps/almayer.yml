@@ -1,46 +1,43 @@
-﻿# The Almayer map file is currently considered private content by RMC14.
-# The Almayer map file is to serve as a solution for a test fail that would result from the lack of its existence otherwise.
-# If you wish for this file to be public you may recreate them yourself and PR it to the repo.
-- type: gameMap
+﻿- type: gameMap
   id: STAlmayer
-  mapName: Алмайер
-  mapPath: /Maps/_RMC14/almayer.yml
+  mapName: ВКСШ Алмайер
+  mapPath: /Maps/_Stories/almayer.yml
   minPlayers: 0 # TODO RMC14 74
   maxRandomOffset: 0
   randomRotation: false
   fallback: true
   stations:
     Almayer:
-      stationProto: StandardNanotrasenStation
+      stationProto: StandardUNMCWarship
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'КСША Алмайер'
+        mapNameTemplate: 'ВКСШ Алмайер'
       - type: StationJobs
         availableJobs:
-          # Command
+          #Command
           CMCommandingOfficer: [1, 1]
           CMExecutiveOfficer: [1, 1]
           CMStaffOfficer: [4, 4]
           CMSeniorEnlistedAdvisor: [2, 2]
 
-          # Military Police
+          #Military Police
           CMChiefMP: [1, 1]
           CMMilitaryWarden: [1, 1]
-          CMMilitaryPolice: [5, 8]
+          CMMilitaryPolice: [7, 10]
 
-          # Auxiliary
+          #Auxiliary
           CMAuxiliarySupportOfficer: [1, 1]
           CMIntelOfficer: [4, 4]
           CMPilotDropship: [1, 1]
           CMPilotGunship: [1, 1]
           CMDropshipCrewChief: [2, 2]
 
-          # Engineering
+          #Engineering
           CMChiefEngineer: [1, 1]
           # CMOrdnanceTech: [3, 3]
           CMMaintTech: [3, 3]
 
-          # Medical
+          #Medical
           CMCMO: [1, 1]
           CMDoctor: [4, 6]
           CMNurse: [4, 6]
@@ -51,7 +48,7 @@
           CMCargoTech: [4, 4]
           CMMessTech: [1, 1]
 
-          # Marines
+          #Marines
           CMSquadLeader: [4, 4]
           CMFireteamLeader: [4, 8]
           CMSmartGunOperator: [4, 4]
@@ -60,7 +57,7 @@
           CMHospitalCorpsman: [8, 16]
           CMRifleman: [ -1, -1 ]
 
-          # Civilians
+          #Civilians
           CMCorrespondent: [2, 2]
 
           # Other

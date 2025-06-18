@@ -30,6 +30,8 @@ reagent-name-cmimidazoline = Имидазолин
 reagent-desc-cmimidazoline = Используется для лечения негенетических травм глаза. Обычно назначается в качестве лечения большинства случаев травмы глаза вместо хирургической операции.
 reagent-name-cmclonexadone = Клонексадон
 reagent-desc-cmclonexadone = Передовой криогенный препарат, изготовленный на основе криоксадона. Лечит большинство видов повреждений тканей. Для правильного метаболизма требует температуры ниже 170 К.
+reagent-name-rmcrussianred = Русский Красный
+reagent-desc-rmcrussianred = Экстренное средство для лечения радиационного поражения. Список возможных побочных эффектов включает повреждение сетчатки и потерю сознания.
 reagent-name-cmacid = Кислота
 reagent-desc-cmacid = Кислота
 # Medical Icon Labels
@@ -42,5 +44,17 @@ rmc-inaprovaline-container-label-text = ИН
 rmc-first-aid-container-label-text = ПП
 rmc-emergency-medicine-container-label-text = А
 rmc-dexalin-plus-container-label-text = ДЕ+
+rmc-russianred-container-label-text = Рк
 rmc-epinephrine-container-label-text = ЭПИ
+# Antidepressants
+reagent-name-rmcmethylphenidate = Метилфенидат
+reagent-desc-rmcmethylphenidate = Широко назначаемый психостимулятор, повышающий активность центральной нервной системы. Часто используется для лечения синдрома дефицита внимания и гиперактивности (СДВГ) и нарколепсии. Этот препарат улучшает производительность, в первую очередь, в исполнительной функции в префронтальной коре (рассуждение, подавление поведения, организация, решение проблем, планирование и т. д.).
+reagent-name-rmccitalopram = Циталопрам
+reagent-desc-rmccitalopram = Циталопрам — это препарат, используемый для лечения депрессии, обсессивно-компульсивного расстройства и панического расстройства. Считается безопасным для употребления и широко доступен с 1998 года.
+reagent-name-rmcparoxetine = Пароксетин
+reagent-desc-rmcparoxetine = Очень мощный антидепрессант, используемый для лечения: большого депрессивного расстройства (БДР), обсессивно-компульсивного расстройства (ОКР), социального тревожного расстройства (СТР), панического расстройства, посттравматического стрессового расстройства (ПТСР), генерализованного тревожного расстройства (ГТР) и предменструального дисфорического расстройства (ПМДР). Длительное использование может иметь побочные эффекты.
+antidepressant-effect-rmcmethylphenidate = Вы чувствуете сосредоточенность и собранность.
+antidepressant-effect-rmccitalopram = Вы чувствуете себя стабильно... немного стабильнее.
+antidepressant-effect-rmcparoxetine = Вы чувствуете себя намного стабильнее.
+rmc-merabic-container-label-text = МБ
 rmc-custom-container-label-text = { $customLabel }

@@ -78,35 +78,35 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
 
         https://github.com/cmss13-devs/cmss13/blob/4dfaca73cc5d9d08f79c487d4af079b5afbb1999/code/modules/mob/living/carbon/xenomorph/abilities/boiler/boiler_abilities.dm#L114
         var/damage = 45
-	    var/delay = 13.5
+        var/delay = 13.5
 
         https://github.com/cmss13-devs/cmss13/blob/64e91def8e884dc1ff5df9868977fa15a2fd7313/code/game/objects/effects/aliens.dm#L555
         var/xeno_empower_modifier = 1
         var/immobilized_multiplier = 1.45
         if(empowered)
-		    xeno_empower_modifier = 1.25
+            xeno_empower_modifier = 1.25
 
         https://github.com/cmss13-devs/cmss13/blob/64e91def8e884dc1ff5df9868977fa15a2fd7313/code/game/objects/effects/aliens.dm#L569
         if(isxeno(H))
-			H.apply_armoured_damage(damage * XVX_ACID_DAMAGEMULT * xeno_empower_modifier, ARMOR_BIO, BURN)
-		else
-			if(empowered)
-				new /datum/effects/acid(H, linked_xeno, initial(linked_xeno.caste_type))
-			var/found = null
-			for (var/datum/effects/boiler_trap/F in H.effects_list)
-				if (F.cause_data && F.cause_data.resolve_mob() == linked_xeno)
-					found = F
-					break
-			if(found)
-				H.apply_armoured_damage(damage*immobilized_multiplier, ARMOR_BIO, BURN)
-			else
-				H.apply_armoured_damage(damage, ARMOR_BIO, BURN)
+            H.apply_armoured_damage(damage * XVX_ACID_DAMAGEMULT * xeno_empower_modifier, ARMOR_BIO, BURN)
+        else
+            if(empowered)
+                new /datum/effects/acid(H, linked_xeno, initial(linked_xeno.caste_type))
+            var/found = null
+            for (var/datum/effects/boiler_trap/F in H.effects_list)
+                if (F.cause_data && F.cause_data.resolve_mob() == linked_xeno)
+                    found = F
+                    break
+            if(found)
+                H.apply_armoured_damage(damage*immobilized_multiplier, ARMOR_BIO, BURN)
+            else
+                H.apply_armoured_damage(damage, ARMOR_BIO, BURN)
 
         https://github.com/cmss13-devs/cmss13/blob/64e91def8e884dc1ff5df9868977fa15a2fd7313/code/game/objects/effects/aliens.dm#L569
         /obj/effect/xenomorph/acid_damage_delay/boiler_landmine/deal_damage()
-	    var/total_hits = 0
-	    for (var/obj/structure/barricade/B in loc)
-		    B.take_acid_damage(damage*(1.15 + 0.55 * empowered))
+        var/total_hits = 0
+        for (var/obj/structure/barricade/B in loc)
+            B.take_acid_damage(damage*(1.15 + 0.55 * empowered))
         */
 
         if (ent.Comp.Activated)
@@ -183,7 +183,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_rmcActions.TryUseAction(ent, args.Action))
+        if (!_rmcActions.TryUseAction(args))
             return;
 
         args.Handled = true;

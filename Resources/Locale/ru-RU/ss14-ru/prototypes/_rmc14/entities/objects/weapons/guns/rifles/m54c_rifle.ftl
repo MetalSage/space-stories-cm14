@@ -1,5 +1,8 @@
 ent-WeaponRifleM54C = штурмовая винтовка M41A MK2
     .desc = Стандартная винтовка морской пехоты. Часто используется большинством бойцов. Использует безгильзовые патроны 10x24 мм.
+ent-WeaponRifleM54CStripped = { ent-WeaponRifleM54C }
+    .suffix = Незагруженный
+    .desc = { ent-WeaponRifleM54C.desc }
 ent-CMMagazineRifleM54C = магазин M41A (10x24 мм)
     .desc = { ent-CMMagazineRifleBase.desc }
 ent-CMMagazineRifleM54CAP = бронебойный магазин M41A (10x24 мм)

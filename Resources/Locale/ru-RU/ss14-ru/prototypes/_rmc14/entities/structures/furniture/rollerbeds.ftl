@@ -1,3 +1,5 @@
+ent-RMCRollerBedDestruction = { "" }
+    .desc = { "" }
 ent-CMRollerBed = переносная кровать
     .desc = Сложенная кровать на роликах, которую можно носить с собой.
 ent-CMRollerBedSpawnFolded = { ent-CMRollerBed }

@@ -9,7 +9,7 @@
 - type: radioChannel
   id: SPPCommand
   name: chat-radio-spp-command
-  keycode: "з"
+  keycode: "="
   frequency: 1252
   color: "#9b0612"
   longRange: true
@@ -90,7 +90,7 @@
 
 - type: entity
   abstract: true
-  parent: RMCHeadsetIcons
+  parent: RMCHeadsetIconsSPP
   id: RMCHeadsetSPPAbstract
   components:
   - type: GrantSquadLeaderTracker
@@ -104,7 +104,6 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - CMEncryptionKeyColony
       - RMCEncryptionKeySPP
 
 - type: entity
@@ -115,7 +114,6 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - CMEncryptionKeyColony
       - RMCEncryptionKeySPPCommand
 
 - type: entity
@@ -126,7 +124,6 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - CMEncryptionKeyColony
       - RMCEncryptionKeySPPEngineer
 
 - type: entity
@@ -137,5 +134,4 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - CMEncryptionKeyColony
       - RMCEncryptionKeySPPMedic

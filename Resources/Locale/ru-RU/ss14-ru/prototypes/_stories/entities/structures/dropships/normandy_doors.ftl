@@ -1,8 +1,8 @@
-ent-STDoubleDoorNormandySolidRight = { ent-STDoubleDoorAlamoSolidRight }
+ent-STDoubleDoorNormandySolidRight = Нормандия
     .suffix = Нормандия, Твердый, Правый
-    .desc = { ent-STDoubleDoorAlamoSolidRight.desc }
-ent-STDoubleDoorNormandySolidLeft = { ent-STDoubleDoorAlamoSolidLeft }
+    .desc = { ent-STDoubleDoorInvincible.desc }
+ent-STDoubleDoorNormandySolidLeft = { ent-STDoubleDoorNormandySolidRight }
     .suffix = Нормандия, Твердый, Левый
-    .desc = { ent-STDoubleDoorAlamoSolidLeft.desc }
-ent-STCargoAirlockNormandy = грузовая дверь нормандии
+    .desc = { ent-STDoubleDoorNormandySolidRight.desc }
+ent-STCargoAirlockNormandy = Нормандия
     .desc = Он открывается и закрывается.

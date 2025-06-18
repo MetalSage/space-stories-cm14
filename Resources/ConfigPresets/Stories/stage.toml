@@ -1,4 +1,4 @@
-# Предустановка конфигурации, используемая на сервере Stories Colonial Marines Mappers.
+# Предустановка конфигурации, используемая на сервере Stories Marine Corps Mappers.
 # Загружается перед настройками конфигурации, специфичными для сервера.
 
 # [config]
@@ -12,11 +12,11 @@ deadmin_on_join = false
 enabled = false
 
 [game]
-hostname = "📚 Space Stories - Colonial Marines Stage ⚙"
+hostname = "📚 Space Stories - Marine Corps Stage ⚙"
 desc = """
-                                                            📕 𝗦𝗽𝗮𝗰𝗲 𝗦𝘁𝗼𝗿𝗶𝗲𝘀 - Colonial Marines! ⚙
+                                                            📕 𝗦𝗽𝗮𝗰𝗲 𝗦𝘁𝗼𝗿𝗶𝗲𝘀 - Marine Corps! ⚙
 •────────────────────────────────── ✧ ──────────────────────────────────•
-  👥 ⋮ Сервер для персонала проекта Space Stories - Colonial Marines 📚
+  👥 ⋮ Сервер для персонала проекта Space Stories - Marine Corps 📚
   ⚙ ⋮ Сборка сервера основана на https://github.com/RMC-14/RMC-14.
 •────────────────────────────────── ✧ ──────────────────────────────────•
                                             📚 Присоединяйтесь к нашему дружному сообществу 📚"""

@@ -18,7 +18,17 @@
     - CMResearcher
     - CMCMO
     sections:
-    - name: Медицинский Набор (обязательно)
+    - name: Медицинский Набор (Обязательный)
+      jobs:
+      - CMDoctor
+      - CMResearcher
+      - CMCMO
+      takeAll: CMMedicalSet
+      entries:
+      - id: RMCVendorBundleCrewMedicalEssentialsDoctor
+    - name: Медицинский Набор (Обязательный)
+      jobs:
+      - CMNurse
       takeAll: CMMedicalSet
       entries:
       - id: CMVendorBundleCrewMedicalEssentialsNurse

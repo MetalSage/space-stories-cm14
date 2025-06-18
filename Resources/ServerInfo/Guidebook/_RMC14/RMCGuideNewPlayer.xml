@@ -3,7 +3,7 @@
   # Руководства для новых игроков
 
   - Вы можете использовать клавишу осмотра [color=yellow][bold][keybind="ExamineEntity"][/bold][/color] для осмотра любых сущностей в руководстве.
-  - Обязательно настройте клавиши управления по своему вкусу и ознакомьтесь со специальными клавишами Space Stories Colonial Marines! Игроки CM13 найдут это очень полезным.
+  - Обязательно настройте клавиши управления по своему вкусу и ознакомьтесь со специальными клавишами Space Stories Marine Corps! Игроки CM13 найдут это очень полезным.
 
   ## Морпех
   - [textlink="Твой первый день в роли стрелка!" link="RMCGuideRoleRifleman"]
@@ -16,7 +16,7 @@
   <Box>Здесь вы можете изменить свои клавиши управления в любое время:</Box>
   <Box Orientation="Vertical"><CommandButton Text="ui-options-tab-controls" Command="options 2"/></Box>
 
-  ## Специальные клавиши Space Stories Colonial Marines
+  ## Специальные клавиши Space Stories Marine Corps
   - [color=yellow][bold][keybind="CMUniqueAction"][/bold][/color]: Действие оружия (перезарядка дробовика, открытие гранатометов)
   - [color=yellow][bold][keybind="CMXenoWideSwing"][/bold][/color]: Широкая атака ксеноморфа в ближнем бою.
   - [color=yellow][bold][keybind="RMCActivateAttachableUnderbarrel"][/bold][/color]: Активировать подствольное оборудование.

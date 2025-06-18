@@ -1,5 +1,9 @@
 ent-RMCJumpsuitVeteran = { ent-JumpsuitMarine }
     .desc = { ent-JumpsuitMarine.desc }
+ent-RMCJumpsuitVeteranPMCMedic = { ent-RMCJumpsuitVeteranPMC }
+    .desc = { ent-RMCJumpsuitVeteranPMC.desc }
+ent-RMCJumpsuitVeteranPMCGunner = { ent-RMCJumpsuitVeteranPMC }
+    .desc = { ent-RMCJumpsuitVeteranPMC.desc }
 ent-RMCJumpsuitVeteranPMC = униформа ЧВК
     .desc = Белый комплект обмундирования для частных охранников. На нём изображен символ корпорации «Вестон-Ямада».
 ent-RMCJumpsuitVeteranPMCCommando = элитная боевая форма ЧВК

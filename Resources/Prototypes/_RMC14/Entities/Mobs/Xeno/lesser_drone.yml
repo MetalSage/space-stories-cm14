@@ -101,3 +101,7 @@
     evasion: 10
   - type: XenoInhands
     prefix: lesser
+  - type: FixedIdentity
+    name: cm-job-name-xeno-lesser-drone
+  - type: TTS # Stories-TTS
+    voice: ziggs

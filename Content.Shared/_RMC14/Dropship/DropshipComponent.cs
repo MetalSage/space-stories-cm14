@@ -1,4 +1,5 @@
 using Content.Shared.Shuttles.Systems;
+using Content.Shared._RMC14.Spawning;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -7,7 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Shared._RMC14.Dropship;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(SharedDropshipSystem))]
+[Access(typeof(SharedDropshipSystem), typeof(SharedGridSpawnerSystem))]
 public sealed partial class DropshipComponent : Component
 {
     [DataField, AutoNetworkedField]
@@ -27,6 +28,9 @@ public sealed partial class DropshipComponent : Component
 
     [DataField, AutoNetworkedField]
     public SoundSpecifier GeneralQuartersSound = new SoundPathSpecifier("/Audio/_RMC14/Announcements/ARES/GQfullcall.ogg");
+
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier UnidentifledlifesignsSound = new SoundPathSpecifier("/Audio/_RMC14/Announcements/ARES/unidentified_lifesigns.ogg");
 
     [DataField, AutoNetworkedField]
     public bool Locked;

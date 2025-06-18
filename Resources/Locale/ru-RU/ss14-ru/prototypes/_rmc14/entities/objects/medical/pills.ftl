@@ -12,3 +12,5 @@ ent-CMPillKelotane = таблетка келотана (15u)
     .desc = { ent-CMPill.desc }
 ent-CMPillTricordrazine = таблетка трикордразина (15u)
     .desc = { ent-CMPill.desc }
+ent-RMCPillRussianRed = { ent-CMPill }
+    .desc = { ent-CMPill.desc }

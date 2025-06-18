@@ -1,5 +1,8 @@
 ent-WeaponSMGM63 = пистолет-пулемёт M39
     .desc = Пистолет-пулемёт Aegis Battlefield Armaments M39. Иногда используется лёгкой пехотой, разведчиками, инженерами и медиками.
+ent-RMCWeaponSMGM63ExtendedFilled = { ent-WeaponSMGM63 }
+    .suffix = Заполненный, Удлинённый
+    .desc = { ent-WeaponSMGM63.desc }
 ent-CMMagazineSMGM63 = магазин M39 (10x20мм)
     .desc = { ent-BaseMagazineRifle.desc }
 ent-CMMagazineSMGM63AP = магазин M39 Бронебойный (10x20мм)

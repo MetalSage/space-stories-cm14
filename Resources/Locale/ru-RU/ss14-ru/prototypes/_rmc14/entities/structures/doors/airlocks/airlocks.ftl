@@ -1,5 +1,8 @@
 ent-CMAirlock = шлюз
     .desc = { ent-CMBaseDoor.desc }
+ent-CMAirlockShuttle = { ent-CMAirlock }
+    .suffix = Шаттл
+    .desc = { ent-CMAirlock.desc }
 ent-CMAirlockCommand = { ent-CMAirlock }
     .suffix = Командный
     .desc = { ent-CMAirlock.desc }

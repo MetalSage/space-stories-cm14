@@ -66,6 +66,7 @@
       params:
         volume: -4
   - type: HealthExaminable
+    examineShowEmpty: false
     examinableTypes:
     - Blunt
     - Slash
@@ -81,7 +82,7 @@
   - type: Climbing
   - type: Insulated
   - type: Input
-    context: "human"
+    context: "xenonid"
   - type: Clickable
   - type: InteractionOutline
   - type: InputMover
@@ -186,10 +187,14 @@
         layer:
         - BulletImpassable
   - type: Xeno
+  - type: XenoRegen
+  - type: XenoStateVisuals
   - type: UserInterface
     interfaces:
       enum.XenoEvolutionUIKey.Key:
         type: XenoEvolutionBui
+      enum.XenoSkinsUIKey.Key: # Stories-Xeno-Skins
+        type: XenoSkinsBui
       enum.XenoDevolveUIKey.Key:
         type: XenoDevolveBui
       enum.XenoWatchUIKey.Key:
@@ -250,6 +255,9 @@
     - Muted
     - Dazed
     - Blinded
+    - Unconscious
+    - TemporaryBlindness
+    - Deaf
   - type: ImmuneToClothingRequiredStepTrigger
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -278,6 +286,7 @@
       components:
       - Xeno
       - Infectable
+      - Synth
   - type: BlockPullingDead
   - type: XenoFriendly
   - type: Undisposable
@@ -291,7 +300,7 @@
   - type: UserLimitHits
   - type: MovementIgnoreGravity
   - type: DisableConstruction
-  - type: XenoAnnounceDeath # TODO RMC14 announce location of death (area)
+  - type: XenoAnnounceDeath
     message: cm-xeno-death
     color: "#459A62"
   - type: ExplosionResistance
@@ -337,8 +346,8 @@
   - type: BlockIdExamine
   - type: NoStunOnExit
   - type: RMCSpeciesSlowdownModifier
-    slowMultiplier: 0.87
-    superSlowMultiplier: 0.75
+    slowModifier: 0.75
+    superSlowModifier: 1.5
     durationMultiplier: 0.666
   - type: RMCCanBeFultoned
   - type: CMArmor
@@ -359,6 +368,15 @@
   - type: RMCObstacleSlamCauserImmune
   - type: RMCMobCollisionMass
   - type: XenoRankNames
+  - type: XenoSkins # Stories-Xeno-Skins
+  - type: Blindable
+  - type: FixedIdentity
+    name: cm-xeno-name
+    whitelist:
+      components:
+      - Marine
+  - type: TTS # Stories-TTS
+    voice: clinkz_dota_2
 
 - type: entity
   abstract: true
@@ -399,6 +417,10 @@
       params:
         variation: 0.1
         volume: -5
+  - type: MeleeDamageMultiplier # 1.5x Damage against other xenos
+    whitelist:
+      components:
+      - Xeno
   - type: Tackle
   - type: XenoClaws
 
@@ -437,6 +459,7 @@
     tags:
     - DoorBumpOpener
   - type: Hands
+    examineShowEmpty: false
   - type: GiveHands
     hands:
     - name: Right Hand
@@ -451,6 +474,7 @@
   - type: FirePatter
     stacks: -5
   - type: RMCHandEmotes
+  - type: XenoToggleChargingKnockback
 
 - type: entity
   abstract: true
@@ -485,6 +509,8 @@
   components:
   - type: Speech
     speechSounds: Xenonid
+    audioParams: # Stories-TTS
+      volume: -8
 
 - type: entity
   abstract: true
@@ -498,4 +524,4 @@
   id: Xeno
   name: chat-speech-verb-name-default
   speechVerbStrings:
-  - hisses
+  - шипит

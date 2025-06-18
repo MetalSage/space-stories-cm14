@@ -1,13 +1,17 @@
-﻿- type: entity
+- type: entity
+  abstract: true
   parent:
   - CMXenoDeveloped
   - CMXenoTail
   - RMCXenoSpeechSounds
   - RMCXenoMobCollision
-  id: CMXenoQueen
+  id: RMCXenoQueenBase
   name: Queen
   description: A huge, looming alien creature. The biggest and the baddest.
   components:
+  - type: GuideHelp
+    guides:
+    - RMCGuideRoleQueen
   - type: GhostRole
     name: cm-job-name-xeno-queen
   - type: Sprite
@@ -245,6 +249,9 @@
     value: 1.4
   - type: QueenEyeAction
   - type: StunFriendlyXenoOnStep
+  - type: XenoToggleChargingKnockback
+    enabled: false
+  - type: XenoToggleChargingStop
   - type: XenoRankNames
     rankNames:
       0: rmc-xeno-fem-young
@@ -252,11 +259,47 @@
       3: rmc-xeno-fem-elder
       4: rmc-xeno-fem-ancient
       5: rmc-xeno-fem-prime
+  - type: FixedIdentity
+    name: cm-job-name-xeno-queen
+  - type: TTS # Stories-TTS
+    voice: cirilla
+
+- type: entity
+  parent: RMCXenoQueenBase
+  id: CMXenoQueen
+  #components:
+  # - type: XenoEvolution #can be enabled for events like april fools.
+  #   strains:
+  #   - RMCXenoQueenMaid
 
 - type: entity
   id: XenoLeaderPheromoneRelay
   components:
   - type: XenoPheromones
+
+- type: entity
+  parent: RMCXenoQueenBase
+  id: RMCXenoQueenMaid
+  suffix: Cat Maid Queen
+  components:
+  - type: Sprite
+    sprite: _RMC14/Mobs/Xenonids/Extras/Maid_queen/maid_queen.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.XenoVisualLayers.Ovipositor" ]
+      sprite: _RMC14/Mobs/Xenonids/Extras/Maid_queen/maid_ovipositor.rsi
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+  - type: XenoStrain
+    name: rmc-xeno-maid-name
+    description: rmc-xeno-maid-description
+    popup: rmc-xeno-maid-popup
+  - type: OwOAccent
+  - type: Speech
+    speechSounds: Cat
+    audioParams: # Stories-TTS
+      volume: -8
 
 - type: entity
   parent: StationAiHolo

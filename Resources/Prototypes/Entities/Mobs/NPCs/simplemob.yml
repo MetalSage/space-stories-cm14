@@ -35,6 +35,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+  - type: AutoClimbBlocked # Stories-AutoClimb
 
 - type: entity
   abstract: true

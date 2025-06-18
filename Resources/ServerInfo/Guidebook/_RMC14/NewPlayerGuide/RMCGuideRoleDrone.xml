@@ -11,7 +11,7 @@
   Новичкам рекомендуется стать трутнем. Трутни отвечают за строительство защиты улья.
 
   <Box>
-    <GuideEntityEmbed Entity="CMGuidebookActionXenoEvolve"/>
+    <GuideEntityEmbed Entity="RMCGuidebookActionXenoEvolve"/>
     <GuideEntityEmbed Entity="CMXenoDrone"/>
   </Box>
 
@@ -26,7 +26,7 @@
   Еще одна важная задача трутня — сажать сорняки.
   Сорняки позволяют нам отдыхать, чтобы восстановить здоровье и энергию!
   Мы также можем строить улей только на сорняках.
-  <GuideEntityEmbed Entity="CMGuidebookActionXenoRest"/>
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoRest"/>
   <Box>
     <GuideEntityEmbed Entity="XenoWeeds"/>
     <GuideEntityEmbed Entity="XenoWeedsSource"/>

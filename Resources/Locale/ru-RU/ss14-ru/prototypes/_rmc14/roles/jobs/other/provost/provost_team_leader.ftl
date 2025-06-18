@@ -4,5 +4,3 @@ ent-RMCSpawnerProvostTeamLeader = спавнер командира отряда
 ent-RMCRandomHumanoidProvostTeamLeader = роль призрака командира отряда провоста
     .suffix = Роль, Игрок
     .desc = { "" }
-ent-RMCIDCardProvostTeamLeader = ID карта командира отряда провоста
-    .desc = { ent-CMIDCardGold.desc }

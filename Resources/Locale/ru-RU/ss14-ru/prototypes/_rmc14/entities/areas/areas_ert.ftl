@@ -6,3 +6,7 @@ ent-RMCAreaERTFax = Секторное реле связи
 ent-RMCAreaERTFaxExterior = Секторное реле связи
     .suffix = База факсов, Экстерьер
     .desc = { ent-RMCAreaERT.desc }
+ent-RMCAreaShuttleNS = Шаттл
+    .desc = { ent-RMCAreaBase.desc }
+ent-RMCAreaShuttleERT = Шаттл ОБР
+    .desc = { ent-RMCAreaShuttleNS.desc }

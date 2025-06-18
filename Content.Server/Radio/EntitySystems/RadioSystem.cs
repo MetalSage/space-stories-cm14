@@ -21,6 +21,14 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Server._Stories.TTS;
+using Content.Shared._Stories.TTS;
+using Robust.Shared.Enums;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using Content.Shared._Stories.SCCVars;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -37,6 +45,9 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!; // RMC14
     [Dependency] private readonly IChatManager _chatManager = default!; // RMC14
+    [Dependency] private readonly TTSSystem _tts = default!; // Stories-TTS
+    [Dependency] private readonly TtsAudioProcessingSystem _ttsProcessing = default!; // Stories-TTS
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Stories-TTS
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -73,8 +84,51 @@ public sealed class RadioSystem : EntitySystem
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
-        if (TryComp(uid, out ActorComponent? actor))
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+        if (!TryComp(uid, out ActorComponent? actor))
+            return;
+
+        var playerSession = actor.PlayerSession;
+        if (playerSession.Status != SessionStatus.InGame)
+            return;
+
+        _netMan.ServerSendMessage(args.ChatMsg, playerSession.Channel);
+    }
+
+    private async void ProcessAndSendRadioTts(EntityUid messageSource, string message, RadioChannelPrototype channel, IEnumerable<ICommonSession> recipients)
+    {
+        if (!_cfg.GetCVar(SCCVars.TTSEnabled))
+            return;
+
+        var voiceId = GetVoiceId(messageSource);
+        var soundData = await _tts.GenerateTTS(message, voiceId);
+
+        if (soundData == null)
+            return;
+
+        byte[] processedSoundData;
+        if (channel.ID == "Hivemind")
+        {
+            processedSoundData = await _ttsProcessing.ApplyXenoHivemindEffect(soundData);
+        }
+        else
+        {
+            processedSoundData = await _ttsProcessing.ApplyRadioEffect(soundData);
+        }
+
+        var ttsEvent = new PlayTTSEvent(processedSoundData, sourceUid: null, isWhisper: false, originalSourceUid: GetNetEntity(messageSource));
+
+        var filter = Filter.Empty().AddPlayers(recipients.ToList());
+        RaiseNetworkEvent(ttsEvent, filter);
+    }
+
+    private string GetVoiceId(EntityUid sourceUid)
+    {
+        if (TryComp<TTSComponent>(sourceUid, out var tts) && !string.IsNullOrEmpty(tts.VoicePrototypeId) &&
+            _prototype.TryIndex<TTSVoicePrototype>(tts.VoicePrototypeId, out var protoVoice))
+        {
+            return protoVoice.Speaker;
+        }
+        return "father_grigori";
     }
 
     /// <summary>
@@ -104,16 +158,17 @@ public sealed class RadioSystem : EntitySystem
 
         if (TryComp(messageSource, out JobPrefixComponent? prefix))
         {
+            var prefixText = (prefix.AdditionalPrefix != null ? $"{Loc.GetString(prefix.AdditionalPrefix.Value)} " : "") + Loc.GetString(prefix.Prefix);
             if (TryComp(messageSource, out SquadMemberComponent? member) &&
                 TryComp(member.Squad, out SquadTeamComponent? team) &&
                 team.Radio != null &&
                 team.Radio != channel.ID)
             {
-                name = $"({Name(member.Squad.Value)} {Loc.GetString(prefix.Prefix)}) {name}";
+                name = $"({Name(member.Squad.Value)} {prefixText}) {name}";
             }
             else
             {
-                name = $"({Loc.GetString(prefix.Prefix)}) {name}";
+                name = $"({prefixText}) {name}";
             }
         }
 
@@ -163,6 +218,7 @@ public sealed class RadioSystem : EntitySystem
         var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
+        var recipientUids = new List<EntityUid>();
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -190,9 +246,35 @@ public sealed class RadioSystem : EntitySystem
 
             // send the message
             RaiseLocalEvent(receiver, ref ev);
+
+            recipientUids.Add(receiver);
         }
 
-        if (canSend && !HasComp<XenoComponent>(messageSource))
+        if (canSend && recipientUids.Count > 0)
+        {
+            var sessions = new List<ICommonSession>();
+            var actorQuery = GetEntityQuery<ActorComponent>();
+            foreach (var uid in recipientUids)
+            {
+                var parent = Transform(uid).ParentUid;
+                var target = actorQuery.HasComponent(uid) ? uid : (actorQuery.HasComponent(parent) ? parent : (EntityUid?) null);
+
+                if (target.HasValue && actorQuery.TryGetComponent(target.Value, out var actor))
+                {
+                    if (actor.PlayerSession.Status == SessionStatus.InGame)
+                        sessions.Add(actor.PlayerSession);
+                }
+            }
+
+            if (sessions.Count > 0)
+            {
+                ProcessAndSendRadioTts(messageSource, message, channel, sessions);
+            }
+        }
+
+        if (canSend && _cfg.GetCVar(SCCVars.TTSEnabled) &&
+            !HasComp<XenoComponent>(messageSource) &&
+            HasComp<RMCHeadsetComponent>(radioSource))
         {
             var filter = Filter.Pvs(messageSource).RemoveWhereAttachedEntity(HasComp<XenoComponent>);
             _audio.PlayEntity(_radioSound, filter, messageSource, false); // RMC14

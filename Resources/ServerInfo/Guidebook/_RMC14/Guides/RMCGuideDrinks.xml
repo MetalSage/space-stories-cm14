@@ -1,5 +1,5 @@
 ﻿<Document>
-  # Drinks
+  # Напитки
 
   <GuideReagentGroupEmbed Group="Drinks" IncludeUpstream="True"/>
 </Document>

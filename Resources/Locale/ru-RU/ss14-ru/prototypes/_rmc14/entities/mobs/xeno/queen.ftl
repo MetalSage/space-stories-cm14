@@ -1,6 +1,11 @@
-ent-CMXenoQueen = Королева
+ent-RMCXenoQueenBase = Королева
     .desc = Огромное, грозное инопланетное существо. Самое большое и самое страшное.
+ent-CMXenoQueen = { ent-RMCXenoQueenBase }
+    .desc = { ent-RMCXenoQueenBase.desc }
 ent-XenoLeaderPheromoneRelay = { "" }
     .desc = { "" }
+ent-RMCXenoQueenMaid = { ent-RMCXenoQueenBase }
+    .suffix = Кошачья горничная Королева
+    .desc = { ent-RMCXenoQueenBase.desc }
 ent-RMCQueenEye = глаз королевы
     .desc = Кажется, что это визуальная проекция кого-то.

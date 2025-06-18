@@ -6,6 +6,9 @@
   name: Parasite
   abstract: true
   components:
+  - type: GuideHelp
+    guides:
+    - RMCGuideRoleParasite
   - type: GhostRole
     name: cm-job-name-xeno-parasite
     prob: 0
@@ -83,6 +86,8 @@
   - type: Speech
     speechSounds: XenonidLarva
     allowedEmotes: [ "XenoRoar" ]
+    audioParams: # Stories-TTS
+      volume: -8
   - type: RMCSize
     size: Small
   - type: ParasiteAI
@@ -117,8 +122,12 @@
       3: rmc-xeno-elder-parasite
       4: rmc-xeno-ancient-parasite
       5: rmc-xeno-prime-parasite
+  - type: FixedIdentity
+    name: cm-job-name-xeno-parasite
   - type: AutoClimbBlocked # Stories-AutoClimb
-  
+  - type: TTS # Stories-TTS
+    voice: ziggs
+
 - type: entity
   parent: CMXenoParasiteBase
   id: CMXenoParasite

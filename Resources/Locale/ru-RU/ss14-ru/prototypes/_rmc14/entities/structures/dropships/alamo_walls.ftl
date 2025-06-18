@@ -1,4 +1,4 @@
-ent-CMBaseAlamoWall = стена Аламо
+ent-CMBaseAlamoWall = Аламо
     .desc = { ent-CMBaseWallInvincible.desc }
 ent-CMAlamoWall1 = { ent-CMBaseAlamoWall }
     .suffix = 1
@@ -252,8 +252,8 @@ ent-CMAlamoWall83 = { ent-CMBaseAlamoWall }
 ent-CMAlamoWall84 = { ent-CMBaseAlamoWall }
     .suffix = 84
     .desc = { ent-CMBaseAlamoWall.desc }
-ent-CMAlamoWall84Flipped = носовая точка крепления оружия по правому борту
-    .desc = Место, где можно установить тяжелое оборудование с помощью погрузчика.
+ent-CMAlamoWall84Flipped = { ent-CMBaseAlamoWall }
+    .desc = { ent-CMBaseAlamoWall.desc }
     .suffix = 84, Перевернутый
 ent-CMAlamoWall85 = { ent-CMBaseAlamoWall }
     .suffix = 85

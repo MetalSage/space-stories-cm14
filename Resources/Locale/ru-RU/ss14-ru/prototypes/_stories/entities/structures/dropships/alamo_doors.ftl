@@ -1,8 +1,8 @@
-ent-STDoubleDoorAlamoSolidRight = { ent-STDoubleDoorInvincible }
+ent-STDoubleDoorAlamoSolidRight = Аламо
     .suffix = Аламо, Твердый, Правый
     .desc = { ent-STDoubleDoorInvincible.desc }
-ent-STDoubleDoorAlamoSolidLeft = { ent-STDoubleDoorInvincible }
+ent-STDoubleDoorAlamoSolidLeft = { ent-STDoubleDoorAlamoSolidRight }
     .suffix = Аламо, Твердый, Левый
-    .desc = { ent-STDoubleDoorInvincible.desc }
-ent-STCargoAirlockAlamo = грузовая дверь аламо
+    .desc = { ent-STDoubleDoorAlamoSolidRight.desc }
+ent-STCargoAirlockAlamo = Аламо
     .desc = Он открывается и закрывается.

@@ -1,0 +1,12 @@
+ent-RMCIDCardCLFBase = { ent-CMIDCardBase }
+    .desc = { ent-CMIDCardBase.desc }
+ent-RMCIDCardCLFSoldier = удостоверение солдата КОФ
+    .desc = { ent-RMCIDCardCLFBase.desc }
+ent-RMCIDCardCLFEngineer = удостоверение инженера КОФ
+    .desc = { ent-RMCIDCardCLFBase.desc }
+ent-RMCIDCardCLFMedic = удостоверение медика КОФ
+    .desc = { ent-RMCIDCardCLFBase.desc }
+ent-RMCIDCardCLFSpecialist = удостоверение специалиста КОФ
+    .desc = { ent-RMCIDCardCLFBase.desc }
+ent-RMCIDCardCLFCellCommander = удостоверение командира ячейки КОФ
+    .desc = { ent-RMCIDCardCLFBase.desc }

@@ -22,3 +22,7 @@ ent-RMCVirtualWarheadRight = { ent-RMCVirtualPowerLoaderRight }
     .desc = { ent-RMCVirtualPowerLoaderRight.desc }
 ent-RMCVirtualWarheadLeft = { ent-RMCVirtualPowerLoaderLeft }
     .desc = { ent-RMCVirtualPowerLoaderLeft.desc }
+ent-RMCVirtualWarheadLeftAegis = { ent-RMCVirtualPowerLoaderLeft }
+    .desc = { ent-RMCVirtualPowerLoaderLeft.desc }
+ent-RMCVirtualWarheadRightAegis = { ent-RMCVirtualPowerLoaderRight }
+    .desc = { ent-RMCVirtualPowerLoaderRight.desc }

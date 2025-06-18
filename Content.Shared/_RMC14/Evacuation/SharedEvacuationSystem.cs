@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Numerics;
 using System.Text;
 using Content.Shared._RMC14.Areas;
 using Content.Shared._RMC14.Dropship;
@@ -9,7 +8,6 @@ using Content.Shared._RMC14.Marines.HyperSleep;
 using Content.Shared._RMC14.Power;
 using Content.Shared._RMC14.Xenonids.Announce;
 using Content.Shared.Audio;
-using Content.Shared.CCVar;
 using Content.Shared.Coordinates;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
@@ -18,18 +16,14 @@ using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Prying.Components;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
-using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.Map;
 using Robust.Shared.Network;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Robust.Shared.Map;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._RMC14.Evacuation;
@@ -40,17 +34,13 @@ public abstract class SharedEvacuationSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly AreaSystem _area = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly SharedHyperSleepChamberSystem _hyperSleep = default!;
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedMarineAnnounceSystem _marineAnnounce = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedRMCExplosionSystem _rmcExplosion = default!;
     [Dependency] private readonly SharedRMCPowerSystem _rmcPower = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -59,9 +49,6 @@ public abstract class SharedEvacuationSystem : EntitySystem
     private EntityQuery<AreaComponent> _areaQuery;
     private EntityQuery<DoorComponent> _doorQuery;
     private EntityQuery<MobStateComponent> _mobStateQuery;
-
-    private MapId? _map;
-    private int _index;
 
     public override void Initialize()
     {
@@ -73,12 +60,10 @@ public abstract class SharedEvacuationSystem : EntitySystem
         SubscribeLocalEvent<EvacuationEnabledEvent>(OnEvacuationEnabled);
         SubscribeLocalEvent<EvacuationDisabledEvent>(OnEvacuationDisabled);
         SubscribeLocalEvent<EvacuationProgressEvent>(OnEvacuationProgress);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
-
-        SubscribeLocalEvent<GridSpawnerComponent, MapInitEvent>(OnGridSpawnerMapInit);
 
         SubscribeLocalEvent<EvacuationDoorComponent, BeforeDoorOpenedEvent>(OnEvacuationDoorBeforeOpened);
         SubscribeLocalEvent<EvacuationDoorComponent, BeforeDoorClosedEvent>(OnEvacuationDoorBeforeClosed);
+        SubscribeLocalEvent<EvacuationDoorComponent, BeforePryEvent>(OnEvacuationDoorBeforePry);
 
         SubscribeLocalEvent<EvacuationComputerComponent, ExaminedEvent>(OnEvacuationComputerExamined);
         SubscribeLocalEvent<EvacuationComputerComponent, ActivatableUIOpenAttemptEvent>(OnEvacuationComputerUIOpenAttempt);
@@ -111,8 +96,6 @@ public abstract class SharedEvacuationSystem : EntitySystem
             door.Locked = false;
             Dirty(uid, door);
         }
-
-        _config.SetCVar(CCVars.GameDisallowLateJoins, true);
     }
 
     private void OnEvacuationEnabled(ref EvacuationEnabledEvent ev)
@@ -158,50 +141,6 @@ public abstract class SharedEvacuationSystem : EntitySystem
         }
     }
 
-    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
-    {
-        _map = null;
-        _index = 0;
-    }
-
-    private void OnGridSpawnerMapInit(Entity<GridSpawnerComponent> ent, ref MapInitEvent args)
-    {
-        if (ent.Comp.Spawn is not { } spawn)
-            return;
-
-        if (_net.IsClient)
-            return;
-
-        if (_map == null)
-        {
-            _mapSystem.CreateMap(out var mapId);
-            _map = mapId;
-        }
-
-        var offset = new Vector2(_index * 50, _index * 50);
-        _index++;
-
-        if (!_mapSystem.MapExists(_map) ||
-            !_mapLoader.TryLoadGrid(_map.Value, spawn, out var result, offset: offset))
-        {
-            return;
-        }
-
-        var grid = result.Value;
-        var xform = Transform(ent);
-        var coordinates = _transform.GetMapCoordinates(ent, xform);
-        coordinates = coordinates.Offset(ent.Comp.Offset);
-        _transform.SetMapCoordinates(grid, coordinates);
-
-        if (TryComp(grid, out PhysicsComponent? physics) &&
-            TryComp(grid, out FixturesComponent? fixtures))
-        {
-            _physics.SetBodyType(grid, BodyType.Static, manager: fixtures, body: physics);
-            _physics.SetBodyStatus(grid, physics, BodyStatus.OnGround);
-            _physics.SetFixedRotation(grid, true, manager: fixtures, body: physics);
-        }
-    }
-
     private void OnEvacuationDoorBeforeOpened(Entity<EvacuationDoorComponent> ent, ref BeforeDoorOpenedEvent args)
     {
         if (args.Cancelled)
@@ -215,6 +154,12 @@ public abstract class SharedEvacuationSystem : EntitySystem
     {
         if (ent.Comp.Locked)
             args.PerformCollisionCheck = false;
+    }
+
+    private void OnEvacuationDoorBeforePry(Entity<EvacuationDoorComponent> ent, ref BeforePryEvent args)
+    {
+        if (ent.Comp.Locked)
+            args.Cancelled = true;
     }
 
     private void OnEvacuationComputerExamined(Entity<EvacuationComputerComponent> ent, ref ExaminedEvent args)

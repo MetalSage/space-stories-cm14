@@ -1,3 +1,9 @@
-CMRoyalSmartGunOperator = Королевские морпехи ОС
-rmc-job-description-royal-smart-gun-operator = ""
-rmc-job-prefix-royal-smart-gun-operator = Королевский ОС
+rmc-ghost-role-information-rcm-rules =
+    Вы являетесь [color=yellow][bold]морпехом короны[/bold][/color]. Вы дружественны к КМП США.
+    Вы не помните ничего из своей прошлой жизни и ничего, что узнали, будучи призраком.
+    Вам разрешено помнить общие знания об игре, например, как готовить, как использовать предметы и т.д.
+    Вам абсолютно [color=red]НЕ[/color] разрешено помнить, скажем, имя, внешность и т.д. вашего предыдущего персонажа.
+rmc-ghost-role-information-rcm-description = Обеспечьте выживание корабля США, уничтожайте любых врагов и всячески помогайте экипажу.
+rmc-ghost-name-rcm-sgo = Оператор смартгана морпехом короны (Дружественный)
+rmc-job-name-rcm-sgo = Оператор смартгана морпехом короны
+rmc-job-prefix-rcm-sgo = МПК Ос

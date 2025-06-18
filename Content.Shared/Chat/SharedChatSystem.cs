@@ -26,7 +26,7 @@ public abstract class SharedChatSystem : EntitySystem
     public const char AdminPrefix = ']';
     public const char WhisperPrefix = ',';
     public const char MentorPrefix = '}';
-    public const char DefaultChannelKey = 'р';
+    public const char DefaultChannelKey = 'у';
 
     [ValidatePrototypeId<RadioChannelPrototype>]
     public const string CommonChannel = "MarineCommon";
@@ -141,13 +141,15 @@ public abstract class SharedChatSystem : EntitySystem
         output = input.Trim();
         channel = null;
 
-        if (input.Length == 0)
+        var message = input.Trim();
+        if (message.Length == 0)
             return false;
 
-        // TODO RMC14 replace all of this with something else when chat code isnt a joke
-        if (input.StartsWith(RadioCommonPrefix))
+        var firstChar = message[0];
+
+        if (firstChar == RadioCommonPrefix)
         {
-            output = SanitizeMessageCapital(input[1..].TrimStart());
+            output = SanitizeMessageCapital(message[1..].TrimStart());
             channel = HasComp<XenoComponent>(source)
                 ? _prototypeManager.Index<RadioChannelPrototype>(HivemindChannel)
                 : _prototypeManager.Index<RadioChannelPrototype>(CommonChannel);
@@ -158,19 +160,18 @@ public abstract class SharedChatSystem : EntitySystem
                 if (!quiet)
                     _popup.PopupEntity(Loc.GetString("rmc-no-queen-hivemind-chat"), source, source, PopupType.LargeCaution);
 
-                output = SanitizeMessageCapital(input[1..].TrimStart());
                 return false;
             }
 
             return true;
         }
 
-        if (!(input.StartsWith(RadioChannelPrefix) || input.StartsWith(RadioChannelAltPrefix)))
+        if (firstChar != RadioChannelPrefix && firstChar != RadioChannelAltPrefix)
             return false;
 
-        if (input.Length < 2 || char.IsWhiteSpace(input[1]))
+        if (message.Length < 2 || char.IsWhiteSpace(message[1]))
         {
-            output = SanitizeMessageCapital(input[1..].TrimStart());
+            output = SanitizeMessageCapital(message[1..].TrimStart());
             if (HasComp<XenoComponent>(source))
                 return false;
 
@@ -179,31 +180,26 @@ public abstract class SharedChatSystem : EntitySystem
             return true;
         }
 
-        var channelKey = input[1];
-        channelKey = char.ToLower(channelKey);
-        output = SanitizeMessageCapital(input[2..].TrimStart());
+        var channelKey = char.ToLower(message[1]);
+        output = SanitizeMessageCapital(message[2..].TrimStart());
 
         if (channelKey == DefaultChannelKey)
         {
             var ev = new GetDefaultRadioChannelEvent();
             RaiseLocalEvent(source, ev);
 
-            if (ev.Channel == HivemindChannel &&
+            if (ev.Channel != null)
+                _prototypeManager.TryIndex(ev.Channel, out channel);
+
+            if (channel?.ID == HivemindChannel &&
                 !_xenoEvolution.HasLiving<XenoEvolutionGranterComponent>(1))
             {
                 if (!quiet)
                     _popup.PopupEntity(Loc.GetString("rmc-no-queen-hivemind-chat"), source, source, PopupType.LargeCaution);
-
-                output = SanitizeMessageCapital(input[1..].TrimStart());
                 return false;
             }
-
-            if (ev.Channel != null)
-                _prototypeManager.TryIndex(ev.Channel, out channel);
-            return true;
         }
-
-        if (!_keyCodes.TryGetValue(channelKey, out channel) && !quiet)
+        else if (!_keyCodes.TryGetValue(channelKey, out channel) && !quiet)
         {
             var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
             _popup.PopupEntity(msg, source, source);
@@ -213,10 +209,7 @@ public abstract class SharedChatSystem : EntitySystem
         RaiseLocalEvent(source, ref prefixEv);
         channel = prefixEv.Channel;
 
-        if (HasComp<XenoComponent>(source) && channel == null)
-            return false;
-
-        return true;
+        return !(HasComp<XenoComponent>(source) && channel == null);
     }
 
     public string SanitizeMessageCapital(string message)

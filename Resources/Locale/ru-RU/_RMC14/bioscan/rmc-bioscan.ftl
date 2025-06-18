@@ -10,7 +10,7 @@ rmc-bioscan-ares =
         [0] { "" }
         [1] сигнатура
        *[other] сигнатур
-    } присутствующих на корабле{ $shipLocation ->
+    } на корабле{ $shipLocation ->
         [none] { "" }
        *[other] , в том числе в{ $shipLocation },
     } и { $onPlanet ->
