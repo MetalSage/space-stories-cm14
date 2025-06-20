@@ -1,7 +1,9 @@
+/*
 using Robust.Client.GameObjects;
 using Content.Shared._Stories.APC;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+
 namespace Content.Client._Stories.APC.Modules;
 
 public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityComponent>
@@ -47,8 +49,8 @@ public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityCompon
                 continue;
             }
 
-            if (moduleComp.ModuleType != APCModuleType.Movement)
-                continue;
+//            if (moduleComp.ModuleType != APCModuleType.Movement)
+//                continue;
 
             sprite.LayerSetAutoAnimated(layerIndex, isMoving);
         }
@@ -63,3 +65,4 @@ public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityCompon
         }
     }
 }
+*/

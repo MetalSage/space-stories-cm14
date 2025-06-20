@@ -1,0 +1,24 @@
+using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
+
+namespace Content.Shared._Stories.Attachables;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(APCAttachableHolderSystem))]
+public sealed partial class APCAttachableComponent : Component
+{
+    [DataField, AutoNetworkedField]
+    public float AttachDoAfter = 1.5f;
+
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier? AttachSound = new SoundPathSpecifier("/Audio/_RMC14/Attachable/attachment_add.ogg", AudioParams.Default.WithVolume(-6.5f));
+
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier? DetachSound = new SoundPathSpecifier("/Audio/_RMC14/Attachable/attachment_remove.ogg",  AudioParams.Default.WithVolume(-5.5f));
+
+    [DataField, AutoNetworkedField]
+    public string? Description = "test";
+
+    [DataField, AutoNetworkedField]
+    public string? Stats = "test";
+}

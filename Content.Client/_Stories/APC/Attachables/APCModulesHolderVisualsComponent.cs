@@ -1,3 +1,4 @@
+/*
 using System.Numerics;
 using Content.Client._RMC14.Attachable.Systems;
 using Robust.Shared.Utility;
@@ -12,3 +13,4 @@ public sealed partial class APCModulesHolderVisualsComponent : Component
     [DataField, AutoNetworkedField]
     public Dictionary<EntityUid, int> ActiveLayers = new();
 }
+*/

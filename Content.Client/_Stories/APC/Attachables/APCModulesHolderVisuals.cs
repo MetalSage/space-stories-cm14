@@ -1,7 +1,4 @@
-using Content.Client._RMC14.Attachable.Components;
-using Content.Shared._RMC14.Attachable.Components;
-using Content.Shared._RMC14.Attachable.Events;
-using Content.Shared._RMC14.Attachable.Systems;
+/*
 using Robust.Client.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Log;
@@ -16,7 +13,7 @@ public sealed class APCModulesHolderVisuals : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<APCModulesHolderVisualsComponent, EntRemovedFromContainerMessage>(OnDetached);
-        SubscribeLocalEvent<APCModulesHolderVisualsComponent, APCModuleAlteredEvent>(OnAttachablesAltered);
+        SubscribeLocalEvent<APCModulesHolderVisualsComponent, APCAttachableAlteredEvent>(OnAttachablesAltered);
 
         // SubscribeLocalEvent<APCModulesVisualsComponent, AppearanceChangeEvent>(OnAttachableAppearanceChange);
     }
@@ -27,12 +24,12 @@ public sealed class APCModulesHolderVisuals : EntitySystem
         if (!HasComp<APCModulesVisualsComponent>(args.Entity))
             return;
 
-        var holderEv = new APCModuleAlteredEvent(args.Entity, APCModulesAlteredType.Detached);
+        var holderEv = new APCAttachableAlteredEvent(args.Entity, APCModulesAlteredType.Detached);
         RaiseLocalEvent(holder, ref holderEv);
     }
 
     private void OnAttachablesAltered(Entity<APCModulesHolderVisualsComponent> holder,
-        ref APCModuleAlteredEvent args)
+        ref APCAttachableAlteredEvent args)
     {
 
         if (!TryComp(args.Module, out APCModulesVisualsComponent? attachableComponent))
@@ -105,3 +102,4 @@ public sealed class APCModulesHolderVisuals : EntitySystem
         Logger.Info($"New layer {newIndex} added for attachable {attachable.Owner}");
     }
 }
+*/

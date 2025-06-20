@@ -1,3 +1,4 @@
+/*
 using System.Numerics;
 using Content.Client._Stories.APC.Modules;
 using Content.Shared._Stories.APC;
@@ -21,3 +22,4 @@ public sealed partial class APCModulesVisualsComponent : Component
     [DataField, AutoNetworkedField]
     public string State = string.Empty;
 }
+*/

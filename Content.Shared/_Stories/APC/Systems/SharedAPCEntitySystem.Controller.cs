@@ -8,6 +8,7 @@ using Robust.Shared.GameObjects;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Stunnable;
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._Stories.APC;
 
 namespace Content.Shared._Stories.APC.Systems;
 
@@ -30,11 +31,13 @@ public sealed partial class SharedAPCEntitySystem
 
         seat.Comp.APC = apcGrid.APC;
     }
-/*
+
     private void OnShutdown(Entity<APCPilotSeatComponent> seat, ComponentShutdown args)
     {
+        if (seat.Comp.Pilot is not null)
+            Return(seat.Comp.Pilot.Value);
     }
-*/
+
     private void OnPilotSeatStrapped(Entity<APCPilotSeatComponent> seat, ref StrappedEvent args)
     {
         if (_net.IsClient)
@@ -57,6 +60,7 @@ public sealed partial class SharedAPCEntitySystem
             return;
 
         pilot.APC = seat.Comp.APC;
+        seat.Comp.Pilot = pilot.Owner;
 
         if (seat.Comp.APC is null)
             return;
@@ -67,8 +71,7 @@ public sealed partial class SharedAPCEntitySystem
 
     private void OnPilotSeatUnstrapped(Entity<APCPilotSeatComponent> seat, ref UnstrappedEvent args)
     {
-        _eye.SetTarget(args.Buckle, null);
-        RemComp<RelayInputMoverComponent>(args.Buckle);
+        Return(args.Buckle);
     }
     
     private bool IsConscious(EntityUid pilot)
@@ -84,5 +87,11 @@ public sealed partial class SharedAPCEntitySystem
             return false;
 
         return true;
+    }
+
+    private void Return(EntityUid target)
+    {
+        _eye.SetTarget(target, null);
+        RemCompDeferred<RelayInputMoverComponent>(target);
     }
 }

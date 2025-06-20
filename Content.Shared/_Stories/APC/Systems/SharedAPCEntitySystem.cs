@@ -36,7 +36,6 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<APCEntityComponent, BreakageEventArgs>(OnDestruction);
-        SubscribeLocalEvent<APCEntityComponent, EntInsertedIntoContainerMessage>(OnModuleAttached);
 
         InitializeController();
     }
@@ -62,31 +61,5 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
             return;
 
         _appearance.SetData(uid, APCVisuals.Destroyed, component.Destroyed, appearance);
-    }
-
-    private void OnModuleAttached(Entity<APCEntityComponent> apc, ref EntInsertedIntoContainerMessage args)
-    {
-        var module = args.Entity;
-
-        if (TryComp<MovementSpeedModifierComponent>(module, out var moduleMovement) &&
-            TryComp<MovementSpeedModifierComponent>(apc, out var apcMovement))
-        {
-            var totalWalk = apcMovement.BaseWalkSpeed + moduleMovement.BaseWalkSpeed;
-            var totalSprint = apcMovement.BaseSprintSpeed + moduleMovement.BaseSprintSpeed;
-            var totalAcceleration = apcMovement.Acceleration + moduleMovement.Acceleration;
-
-            _movement.ChangeBaseSpeed(apc, totalWalk, totalSprint, totalAcceleration, apcMovement);
-        }
-
-        if (TryComp<GunComponent>(module, out var gun))
-        {
-            Logger.Info($"Found guncomp on module {module.Value} but gun logic is unavailable");
-        }
-
-        if (!TryComp(module, out APCModuleComponent? moduleComponent))
-            return;
-
-        var holderEv = new APCModuleAlteredEvent(module, APCModulesAlteredType.Attached);
-        RaiseLocalEvent(apc, ref holderEv);
     }
 }

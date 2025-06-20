@@ -10,8 +10,5 @@ namespace Content.Shared._Stories.APC;
 public sealed partial class APCDoorComponent : Component
 {
     [DataField]
-    public APCEnterSide Side;
-
-    [DataField]
     public float LeaveDelay = 2f;
 }

@@ -16,46 +16,6 @@ public sealed partial class LeaveAPCDoAfterEvent : SimpleDoAfterEvent
 {
 }
 
-[Serializable, NetSerializable]
-public sealed partial class AttachModuleToAPCDoAfterEvent : SimpleDoAfterEvent
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DeattachModuleToAPCDoAfterEvent : SimpleDoAfterEvent
-{
-}
-
-[Serializable, NetSerializable]
-public enum APCEnterSide
-{
-    Left,
-    Right
-}
-public sealed partial class APCControlReturnActionEvent : InstantActionEvent
-{
-}
-
-public sealed class ReturnToBodyAPCEvent : EntityEventArgs
-{
-    public EntityUid APCController;
-
-    public ReturnToBodyAPCEvent(EntityUid apccontroller)
-    {
-        APCController = apccontroller;
-    }
-}
-
-public sealed class GettingAPCControlledEvent : EntityEventArgs
-{
-    public EntityUid User;
-    public EntityUid Controller;
-    public GettingAPCControlledEvent(EntityUid user, EntityUid controller)
-    {
-        User = user;
-        Controller = controller;
-    }
-}
 
 [Serializable, NetSerializable]
 public enum APCVisuals : byte
@@ -67,37 +27,4 @@ public enum APCVisuals : byte
 public enum APCEntityVisualLayers : byte
 {
     Base
-}
-
-[Serializable, NetSerializable]
-public sealed class RequestControlAPCEvent : EntityEventArgs
-{
-    public NetEntity APCController;
-    public NetEntity User;
-
-    public RequestControlAPCEvent(NetEntity apcController, NetEntity user)
-    {
-        APCController = apcController;
-        User = user;
-    }
-}
-
-[Serializable, NetSerializable]
-public record DeattachModuleEvent(NetEntity Attacher, NetEntity Module);
-
-[ByRefEvent, Serializable, NetSerializable]
-public record struct APCModuleAttachedEvent(NetEntity APC, NetEntity Module);
-
-
-[ByRefEvent]
-public readonly record struct APCModuleAlteredEvent(
-    EntityUid Module,
-    APCModulesAlteredType Alteration
-);
-
-public enum APCModulesAlteredType : byte
-{
-    Attached = 1 << 0,
-    Detached = 1 << 1,
-    AppearanceChanged = 1 << 2
 }

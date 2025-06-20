@@ -19,5 +19,8 @@ public sealed partial class APCPilotSeatComponent : Component
     public EntityUid? APC;
 
     [DataField, AutoNetworkedField]
+    public EntityUid? Pilot;
+
+    [DataField, AutoNetworkedField]
     public Dictionary<EntProtoId<SkillDefinitionComponent>, int> Skills = new();
 }
