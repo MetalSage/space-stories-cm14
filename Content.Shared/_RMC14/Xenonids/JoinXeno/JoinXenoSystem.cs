@@ -76,7 +76,7 @@ public sealed class JoinXenoSystem : EntitySystem
 
         if (!TryComp<GhostComponent>(user, out var ghostComp))
             return;
-
+        /* Stories-Burrowed-Larva-Cooldown-Remove
         // If the game has been going on longer than the death ignore time, then check how long since the ghost has died
         if (_gameTicker.RoundDuration() > _burrowedLarvaDeathIgnoreTime)
         {
@@ -89,7 +89,7 @@ public sealed class JoinXenoSystem : EntitySystem
                 return;
             }
         }
-
+        */
         var options = new List<DialogOption>();
         var hives = EntityQueryEnumerator<HiveComponent>();
         while (hives.MoveNext(out var hiveId, out var hive))
