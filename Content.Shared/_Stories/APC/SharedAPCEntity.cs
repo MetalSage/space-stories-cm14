@@ -28,3 +28,5 @@ public enum APCEntityVisualLayers : byte
 {
     Base
 }
+
+public sealed partial class APCHardpointsMenuActionEvent : InstantActionEvent;

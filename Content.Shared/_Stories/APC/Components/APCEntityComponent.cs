@@ -37,4 +37,13 @@ public sealed partial class APCEntityComponent : Component
 
     [DataField, AutoNetworkedField]
     public string GridPath = "/Maps/Test/admin_test_arena.yml";
+
+    [DataField, AutoNetworkedField]
+    public string MovementSlot = string.Empty;
+
+    [ViewVariables, AutoNetworkedField]
+    public List<EntityUid> Hardpoints = new();
+    
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid? ActiveHardpoint;
 }

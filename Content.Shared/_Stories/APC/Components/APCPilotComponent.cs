@@ -11,6 +11,15 @@ public sealed partial class APCPilotComponent : Component
     public EntityUid? APC;
 }
 
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class APCGunnerComponent : Component
+{
+    [DataField, AutoNetworkedField]
+    public EntityUid? APC;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? ActionEntity;
+}
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class APCPilotSeatComponent : Component
@@ -23,4 +32,21 @@ public sealed partial class APCPilotSeatComponent : Component
 
     [DataField, AutoNetworkedField]
     public Dictionary<EntProtoId<SkillDefinitionComponent>, int> Skills = new();
+}
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class APCGunnerSeatComponent : Component
+{
+    [DataField, AutoNetworkedField]
+    public EntityUid? APC;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? Gunner;
+
+    [DataField, AutoNetworkedField]
+    public Dictionary<EntProtoId<SkillDefinitionComponent>, int> Skills = new();
+
+    [DataField, AutoNetworkedField]
+    public EntProtoId? Action = "STAPCHardpointMenuAction";
+
 }

@@ -16,6 +16,8 @@ using Robust.Shared.Map;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Prying.Components;
 using Robust.Shared.Network;
+using Robust.Shared.GameObjects;
+using Content.Shared.Coordinates;
 
 namespace Content.Shared._Stories.Attachables;
 
@@ -183,7 +185,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
 
     private void OnAttached(Entity<APCAttachableHolderComponent> holder, ref EntInsertedIntoContainerMessage args)
     {
-        if (!TryComp(args.Entity, out APCAttachableComponent? attachableComponent) || !holder.Comp.Slots.ContainsKey(args.Container.ID))
+        if (!TryComp(args.Entity, out APCAttachableComponent? attachableComp) || !holder.Comp.Slots.ContainsKey(args.Container.ID))
             return;
 
         UpdateStripUi(holder.Owner, holder.Comp);
@@ -194,6 +196,12 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         var holderEv = new APCAttachableHolderAttachablesAlteredEvent(args.Entity, args.Container.ID, 
             APCAttachableAlteredType.Attached);
         RaiseLocalEvent(holder, ref holderEv);
+
+        if (attachableComp.VirtualAttachable is {} virtAttachable)
+        {
+            var coordinates = holder.Owner.ToCoordinates().Offset(attachableComp.Offset);
+            attachableComp.VirtualAttachableEnt = SpawnAttachedTo(virtAttachable, coordinates);
+        }
     }
 
     //Detaching
@@ -266,12 +274,16 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         var holderEv = new APCAttachableHolderAttachablesAlteredEvent(attachableUid, slotId, APCAttachableAlteredType.Detached);
         RaiseLocalEvent(holder.Owner, ref holderEv);
 
+        if (attachable.Comp.VirtualAttachableEnt is {} virtAttachable)
+            QueueDel(virtAttachable);
+
         _audio.PlayPredicted(Comp<APCAttachableComponent>(attachableUid).DetachSound,
             holder,
             userUid);
 
         Dirty(holder);
         _hands.TryPickupAnyHand(userUid, attachable);
+
         return true;
     }
 

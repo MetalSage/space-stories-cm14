@@ -9,7 +9,7 @@ using Robust.Client.UserInterface.XAML;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 using Content.Client.Message;
 
-namespace Content.Client._Stories.APC.UI;
+namespace Content.Client._Stories.APC.Attachables.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class APCAttachableHolderStripMenu : FancyWindow

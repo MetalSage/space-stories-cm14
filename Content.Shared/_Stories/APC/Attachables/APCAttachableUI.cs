@@ -33,3 +33,18 @@ public enum APCAttachmentUI : byte
     StripKey,
     ChooseSlotKey,
 }
+
+[Serializable, NetSerializable]
+public enum APCSelectHardpointUI : byte
+{
+    Key,
+}
+
+[Serializable, NetSerializable]
+public sealed class APCSelectHardpointBuiMsg(NetEntity choice) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Choice = choice;
+}
+
+[Serializable, NetSerializable]
+public sealed class APCHardpointWindowUserInterfaceState() : BoundUserInterfaceState;

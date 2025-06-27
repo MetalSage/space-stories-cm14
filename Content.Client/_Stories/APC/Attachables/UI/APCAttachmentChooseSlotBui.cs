@@ -1,7 +1,7 @@
 using Content.Shared._Stories.Attachables;
 using Robust.Client.UserInterface;
 
-namespace Content.Client._Stories.APC.UI;
+namespace Content.Client._Stories.APC.Attachables.UI;
 
 public sealed class APCAttachmentChooseSlotBui(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {

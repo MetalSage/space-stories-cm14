@@ -1,14 +1,13 @@
-/*
 using System.Numerics;
-using Content.Client._Stories.APC.Modules;
+using Content.Client._Stories.APC;
 using Content.Shared._Stories.APC;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Stories.APC.Modules;
+namespace Content.Client._Stories.APC;
 
 [RegisterComponent, AutoGenerateComponentState]
-[Access(typeof(APCModulesHolderVisuals))]
-public sealed partial class APCModulesVisualsComponent : Component
+[Access(typeof(APCAttachableHolderVisuals))]
+public sealed partial class APCAttachableVisualsComponent : Component
 {
     [DataField, AutoNetworkedField]
     public ResPath? Rsi;
@@ -21,5 +20,7 @@ public sealed partial class APCModulesVisualsComponent : Component
 
     [DataField, AutoNetworkedField]
     public string State = string.Empty;
+
+    [DataField, AutoNetworkedField]
+    public bool RedrawOnAppearanceChange = true;
 }
-*/

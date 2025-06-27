@@ -67,6 +67,7 @@ public sealed partial class APCEntitySystem : EntitySystem
 
     private void OnMapInit(Entity<APCEntityComponent> apc, ref MapInitEvent args)
     {
+        _movement.RefreshMovementSpeedModifiers(apc);
         LoadMap(apc, apc.Comp);
     }
 
@@ -127,13 +128,15 @@ public sealed partial class APCEntitySystem : EntitySystem
             .Select(grid => _xform.GetWorldPosition(grid.Owner))
             .ToList();
 
-        var offset = new Vector2(_random.Next(10000, 1000001), _random.Next(10000, 1000001));
+        var offset = new Vector2(500, 500);
 
         if (_mapLoader.TryLoadGrid(mapId, new ResPath(comp.GridPath), out var grid, null, offset))
         {
             comp.GridEnt = grid.Value;
             _meta.SetEntityName(grid.Value, $"APC Grid: {uid}");
-            EnsureComp<APCEntityGridComponent>(grid.Value).APC = uid;
+            var component = EnsureComp<APCEntityGridComponent>(grid.Value);
+            component.APC = GetNetEntity(uid);
+            Dirty(component.Owner, component);
         }
     }
 

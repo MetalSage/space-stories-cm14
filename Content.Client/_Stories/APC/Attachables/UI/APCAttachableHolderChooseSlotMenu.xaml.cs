@@ -7,7 +7,7 @@ using Robust.Client.UserInterface.XAML;
 using Content.Client.Stylesheets;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
-namespace Content.Client._Stories.APC.UI;
+namespace Content.Client._Stories.APC.Attachables.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class APCAttachableHolderChooseSlotMenu : FancyWindow

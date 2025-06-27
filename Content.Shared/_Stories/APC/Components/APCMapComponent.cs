@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
+using Robust.Shared.GameStates;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Stories.APC;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class APCMapComponent : Component;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class APCEntityGridComponent : Component
 {
-    [DataField]
-    public EntityUid? APC;
+    [DataField, AutoNetworkedField]
+    public NetEntity? APC;
 }

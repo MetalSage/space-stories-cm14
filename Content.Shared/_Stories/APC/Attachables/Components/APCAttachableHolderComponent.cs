@@ -1,9 +1,10 @@
 using Robust.Shared.GameStates;
+using Content.Shared._Stories.APC.Systems;
 
 namespace Content.Shared._Stories.Attachables;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(APCAttachableHolderSystem))]
+[Access(typeof(APCAttachableHolderSystem), typeof(SharedAPCEntitySystem))]
 public sealed partial class APCAttachableHolderComponent : Component
 {
     /// <summary>

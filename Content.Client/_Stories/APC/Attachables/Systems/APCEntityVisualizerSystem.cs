@@ -1,10 +1,10 @@
-/*
 using Robust.Client.GameObjects;
 using Content.Shared._Stories.APC;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared._Stories.Attachables;
 
-namespace Content.Client._Stories.APC.Modules;
+namespace Content.Client._Stories.APC;
 
 public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityComponent>
 {
@@ -19,7 +19,7 @@ public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityCompon
         UpdateSprite((uid, sprite, args.Component, null));
     }
 
-    public void UpdateSprite(Entity<SpriteComponent?, AppearanceComponent?, InputMoverComponent?, APCModulesHolderVisualsComponent?> entity)
+    public void UpdateSprite(Entity<SpriteComponent?, AppearanceComponent?, InputMoverComponent?, APCAttachableHolderVisualsComponent?> entity)
     {
         var (uid, sprite, appearance, input, holder) = entity;
 
@@ -41,16 +41,14 @@ public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityCompon
         if (holder == null)
             return;
             
-        foreach (var (moduleUid, layerIndex) in holder.ActiveLayers)
+        foreach (var (attachable, layerIndex) in holder.ActiveLayers)
         {
-            if (!TryComp(moduleUid, out APCModulesVisualsComponent? visComp) ||
-                !TryComp(moduleUid, out APCModuleComponent? moduleComp))
+            if (!TryComp(attachable, out APCAttachableVisualsComponent? visualsComp) ||
+                !TryComp(attachable, out APCAttachableComponent? attachableComp))
             {
                 continue;
             }
 
-//            if (moduleComp.ModuleType != APCModuleType.Movement)
-//                continue;
 
             sprite.LayerSetAutoAnimated(layerIndex, isMoving);
         }
@@ -65,4 +63,3 @@ public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityCompon
         }
     }
 }
-*/

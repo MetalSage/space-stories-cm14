@@ -1,4 +1,17 @@
-# Base
+- type: entity
+  id: STAPCHardpointMenuAction
+  name: Hardpoints Menu
+  description: Open hardpoints menu
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: corrosive_acid
+    event: !type:APCHardpointsMenuActionEvent
+
 - type: entity
   parent: BaseStructureDynamic
   id: STAPCDoor
@@ -48,9 +61,9 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
-    acceleration: 0
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
+    acceleration: 10
   - type: Physics
     bodyType: KinematicController
   - type: Clickable
@@ -59,13 +72,15 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1,-1.5,1,2.5"
+          bounds: "-2,-2,2,2"
         density: 1000
         mask:
-        - MobMask
+          - MobMask
+          - FullTileMask
+          - Transport
         layer:
-        - MobLayer
-        - BulletImpassable
+          - WallLayer
+          - MobLayer
   - type: Appearance
   - type: Destructible
     thresholds:
@@ -106,10 +121,13 @@
         type: APCAttachmentStripBui
       enum.APCAttachmentUI.ChooseSlotKey:
         type: APCAttachmentChooseSlotBui
-  - type: AccessReader
-    access: [ [ "CMAccessPilot" ] ]
+      enum.APCSelectHardpointUI.Key:
+        type: APCSelectHardpointBui
+        interactionRange: 0
+        requireInputValidation: true
   - type: NoRotateOnInteract
   - type: APCEntity
+    movementSlot: apc-slot-movement
   - type: APCAttachableHolder
     slots:
       apc-slot-movement:
@@ -117,153 +135,58 @@
         whitelist:
           tags:
           - RMCAttachmentExtendedBarrel
-
-- type: entity
-  id: APCWheels
-  components:
-  - type: DoAfter
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-    canCollide: false
-  - type: Clickable
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-1,-1.5,1,2.5"
-        density: 100
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-        hard: false
-  - type: Appearance
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      1000: Critical
-  - type: MobState
-  - type: Sprite
-    drawdepth: Mobs
-    noRot: true
-    sprite: _Stories/apc.rsi
-    state: wheels_1
-  - type: Actions
-
-- type: entity
-  parent: RMCCommunicationsConsoleBase
-  id: STAPCControlConsole
-  name: apc control console
-  description: State of the art machinery for giving orders to a squad.
-  components:
-  - type: Transform
-    anchored: false
-  - type: Physics
-    bodyType: Static
-  - type: Sprite
-    sprite: _RMC14/Structures/Machines/computer.rsi
-    state: overwatch
-    overrideDir: West
-    enableOverrideDir: true
-  - type: InteractionOutline
-  - type: ActivatableUI
-    key: enum.APCControlWindowUI.Key
-  - type: ActivatableUIRequiresAccess
-  - type: AccessReader
-    access: [ [ "CMAccessCommand" ] ]
-  - type: UserInterface
-    interfaces:
-      enum.APCControlWindowUI.Key:
-        type: APCControlBui
-      enum.DialogUiKey.Key:
-        type: DialogBui
-
-- type: entity
-  id: APCDualCannon
-  name: dual cannon
-  components:
-    - type: Clickable
-    - type: InteractionOutline
-    - type: Actions
-    - type: Physics
-      bodyType: Dynamic
-      canCollide: false
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.25,-0.25,0.25,0.25"
-          density: 20
-          mask:
-          - MobMask
-          layer:
-          - BulletImpassable
-          - MobLayer
-          hard: false
-    - type: ContainerContainer
-      containers:
-        ballistic-ammo: !type:Container
-    - type: Sprite
-      sprite: _Stories/apc.rsi
-      drawdepth: Mobs
-      noRot: true
-      layers:
-        - state: dualcannon_0
-    - type: CombatMode
-      toggleMouseRotator: false
-    - type: Gun
-      fireRate: 6
-      selectedMode: FullAuto
-      availableModes:
-        - FullAuto
-      soundGunshot: /Audio/_Stories/dual_autocannon_fire.ogg
-    # TODO: Power ammo provider?
-    - type: BallisticAmmoProvider
-      proto: RMCCartridgeLMGM60
-      capacity: 500
-    - type: Input
-      context: "human"
-    - type: Appearance
-    - type: NoRotateOnInteract
-    - type: NoRotateOnMove
-    - type: Item
-
-- type: entity
-  id: APCWheelsWheels
-  name: wheels
-  components:
-  - type: DoAfter
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-    canCollide: false
-  - type: Appearance
-  - type: Sprite
-    drawdepth: Mobs
-    noRot: true
-    sprite: _Stories/apc.rsi
-    state: wheels_0
-  - type: Tag
-    tags:
-    - HideContextMenu
+      apc-slot-hardpoints:
+        whitelist:
+          tags:
+          - Airlock
+  - type: APCAttachableHolderVisuals
+  - type: APCHardpointsMenu
 
 - type: entity
   parent: BaseItem
-  id: APCWheelsItem
-  description: A sheet of metal, used often on the station in various applications.
+  id: APCDualCannonBase
+  description: big black d....Gun
   components:
   - type: Sprite
     sprite: _Stories/apcitems.rsi
-    state: tires_wy
+    state: dual_cannon
   - type: Item
     size: Normal
   - type: StaticPrice
     price: 0
   - type: APCAttachable
+  - type: APCAttachableVisuals
+    rsi: _Stories/apc.rsi
+    state: dualcannon_0
+  - type: Tag
+    tags:
+    - Airlock
+  - type: APCMovementAttachable
+  - type: APCHardpointAttachable
 
+- type: entity
+  parent: BaseItem
+  id: APCWheelsBase
+  description: A sheet of metal, used often on the station in various applications.
+  components:
+  - type: Sprite
+    sprite: _Stories/apcitems.rsi
+    state: tires
+  - type: Item
+    size: Normal
+  - type: StaticPrice
+    price: 0
+  - type: APCAttachable
+  - type: APCAttachableVisuals
+    rsi: _Stories/apc.rsi
+    state: wheels_0
+  - type: Tag
+    tags:
+    - RMCAttachmentExtendedBarrel
+  - type: APCMovementAttachable
+    walkSpeed: 6
+    sprintSpeed: 6
+  
 - type: entity
   id: STAPCEnterPoint
   name: APC EnterPoint
@@ -304,7 +227,6 @@
   - type: Occluder
     enabled: false
 
-
 - type: entity
   parent: RMCNanoMed
   id: STAPCNanoMed
@@ -316,3 +238,59 @@
     sprite: _Stories/general_wy.rsi
     layers:
     - state: "nanomed"
+
+- type: entity
+  parent: BaseStructure
+  id: APCMoveBlockerMarker
+  name: apc move block marker
+  description:
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: _RMC14/Areas/areas.rsi
+    state: unknown
+  - type: Marker
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - Transport
+        density: 1000
+
+
+- type: entity
+  parent: BaseStructure
+  id: APCWeaponsLoaderBase
+  components:
+  - type: Sprite
+    sprite: _Stories/general_wy.rsi
+    state: weapons_loader
+  - type: Animateable
+  - type: InteractionOutline
+  - type: Anchorable
+    flags:
+    - None
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: APCWeaponLoader
