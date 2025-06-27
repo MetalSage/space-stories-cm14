@@ -83,7 +83,6 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
 
     private void OnSelectHardpoint(Entity<APCEntityComponent> apc, ref APCSelectHardpointBuiMsg args)
     {
-        Logger.Info($"Handled select on shared");
         apc.Comp.ActiveHardpoint = GetEntity(args.Choice);
         Dirty(apc, apc.Comp);
     }

@@ -103,8 +103,6 @@ public sealed class APCAttachableHolderVisuals : EntitySystem
 
         var state = attachable.Comp.State;
 
-        Logger.Info($"Creating new layer RSI={rsi}, State={state}, Offset={attachable.Comp.Offset}");
-
         var layerData = new PrototypeLayerData()
         {
             RsiPath = rsi,
@@ -115,7 +113,5 @@ public sealed class APCAttachableHolderVisuals : EntitySystem
 
         var newIndex = holderSprite.AddLayer(layerData);
         holder.Comp.ActiveLayers[attachable] = newIndex;
-
-        Logger.Info($"New layer {newIndex} added for attachable {attachable.Owner}");
     }
 }

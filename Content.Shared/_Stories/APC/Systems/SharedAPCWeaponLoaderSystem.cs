@@ -35,7 +35,6 @@ public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
             return;
 
         _ui.OpenUi(apc.Value, APCSelectHardpointUI.Key, args.User);
-        Logger.Info("Trying to open UI for loader.");
         args.Handled = true;
     }
 }

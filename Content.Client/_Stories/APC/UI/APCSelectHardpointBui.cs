@@ -23,14 +23,11 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
 
     public APCSelectHardpointBui(EntityUid owner, Enum uiKey) : base(owner, uiKey) 
     {
-        Logger.Debug($"[APCSelectHardpointBui] Created UI for owner: {owner}");
     }
 
     protected override void Open()
     {
         base.Open();
-
-        Logger.Debug("[APCSelectHardpointBui] UI opened");
 
         _window = new APCSelectHardpointWindow();
 
@@ -46,12 +43,7 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
     private void OnSelectButtonPressed(BaseButton.ButtonEventArgs args)
     {
         if (_selectedHardpoint == null)
-        {
-            Logger.Warning("[APCSelectHardpointBui] Select button pressed but no hardpoint selected");
             return;
-        }
-
-        Logger.Info($"[APCSelectHardpointBui] Select button pressed: sending selected hardpoint UID {_selectedHardpoint.Value}");
 
         SendPredictedMessage(new APCSelectHardpointBuiMsg(EntMan.GetNetEntity(_selectedHardpoint.Value)));
     }
@@ -59,40 +51,32 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
     private void PopulateHardpoints()
     {
         if (_window == null)
-        {
-            Logger.Warning("[APCSelectHardpointBui] Tried to populate hardpoints but window is null");
             return;
-        }
 
         if (!EntMan.TryGetComponent<APCEntityComponent>(Owner, out var apc))
             if (!EntMan.TryGetComponent<TransformComponent>(Owner, out var xform) ||
                 !EntMan.TryGetComponent<APCEntityGridComponent>(xform.GridUid, out var apcGrid) ||
                 !EntMan.TryGetComponent<APCEntityComponent>(EntMan.GetEntity(apcGrid.APC), out apc))
             {
-                Logger.Warning("[APCSelectHardpointBui] Could not resolve APC entity component; disabling select button");
                 _window.Select.Disabled = true;
                 return;
             }
 
         _window.HardpointsContainer.DisposeAllChildren();
-        Logger.Debug($"[APCSelectHardpointBui] Populating {apc.Hardpoints.Count} hardpoints");
 
         foreach (var hardpoint in apc.Hardpoints)
         {
-            Logger.Debug($"[APCSelectHardpointBui] Adding hardpoint button for: {hardpoint}");
             AddHardpointButtonToList(apc, hardpoint);
         }
 
         if (apc.ActiveHardpoint != null)
         {
             _selectedHardpoint = apc.ActiveHardpoint;
-            Logger.Debug($"[APCSelectHardpointBui] Active hardpoint set: {_selectedHardpoint.Value}");
             UpdatePreview(apc.ActiveHardpoint.Value);
         }
         else
         {
             _selectedHardpoint = null;
-            Logger.Debug("[APCSelectHardpointBui] No active hardpoint; setting default preview rotation");
             RotatePreview(_previewRotation);
         }
 
@@ -121,8 +105,6 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
 
             if (args.Pressed)
             {
-                Logger.Info($"[APCSelectHardpointBui] Hardpoint selected: {hardpoint}");
-
                 foreach (var child in _window.HardpointsContainer.Children)
                 {
                     if (child is APCHardpointButton otherButton && otherButton != button)
@@ -133,8 +115,6 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
             }
             else
             {
-                Logger.Info($"[APCSelectHardpointBui] Hardpoint deselected: {hardpoint}");
-
                 if (_selectedHardpoint == hardpoint)
                     HandleHardpointDeselection(apc);
             }
@@ -145,7 +125,6 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
 
     private void HandleHardpointSelection(APCEntityComponent apc, EntityUid hardpoint)
     {
-        Logger.Debug($"[APCSelectHardpointBui] Handling selection for: {hardpoint}");
         _selectedHardpoint = hardpoint;
         UpdatePreview(hardpoint);
         UpdateSelectButtonState(apc);
@@ -153,17 +132,13 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
 
     private void HandleHardpointDeselection(APCEntityComponent apc)
     {
-        Logger.Debug("[APCSelectHardpointBui] Handling deselection");
         _selectedHardpoint = null;
 
         if (_window == null)
             return;
 
         if (apc.ActiveHardpoint != null)
-        {
-            Logger.Debug($"[APCSelectHardpointBui] Reverting to active hardpoint preview: {apc.ActiveHardpoint.Value}");
             UpdatePreview(apc.ActiveHardpoint.Value);
-        }
 
         UpdateSelectButtonState(apc);
     }
@@ -174,7 +149,6 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
             return;
 
         var disabled = _selectedHardpoint == null || _selectedHardpoint == apc.ActiveHardpoint;
-        Logger.Debug($"[APCSelectHardpointBui] Select button {(disabled ? "disabled" : "enabled")}");
         _window.Select.Disabled = disabled;
     }
 
@@ -183,13 +157,11 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
         if (_window?.Mob == null)
             return;
 
-        Logger.Debug($"[APCSelectHardpointBui] Rotating preview to: {rotation}");
         _window.Mob.OverrideDirection = rotation;
     }
 
     private void UpdatePreview(EntityUid hardpoint)
     {
-        Logger.Debug($"[APCSelectHardpointBui] Updating preview with entity: {hardpoint}");
         _window?.Mob.SetEntity(hardpoint);
         RotatePreview(_previewRotation);
     }
@@ -199,8 +171,6 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
         base.Dispose(disposing);
         if (!disposing)
             return;
-
-        Logger.Debug("[APCSelectHardpointBui] Disposing");
 
         if (_window != null)
         {
@@ -218,8 +188,6 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
 
         if (state is not APCHardpointWindowUserInterfaceState msg)
             return;
-
-        Logger.Debug("[APCSelectHardpointBui] State updated; repopulating hardpoints");
 
         if (_window != null && _window.IsOpen)
             PopulateHardpoints();
