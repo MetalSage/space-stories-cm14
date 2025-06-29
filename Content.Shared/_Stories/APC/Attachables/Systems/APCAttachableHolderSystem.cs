@@ -3,21 +3,14 @@ using System.Numerics;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Containers;
 using Content.Shared.DoAfter;
-using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Prying.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Prying.Components;
-using Robust.Shared.Network;
-using Robust.Shared.GameObjects;
-using Content.Shared.Coordinates;
 
 namespace Content.Shared._Stories.Attachables;
 
@@ -149,7 +142,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         if (args.Target is not { } target || args.Used is not { } used)
             return;
 
-        if (!TryComp(args.Target, out APCAttachableHolderComponent? holder) ||
+        if (!TryComp<APCAttachableHolderComponent>(args.Target, out var holder) ||
             !HasComp<APCAttachableComponent>(args.Used))
             return;
 
@@ -185,7 +178,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
 
     private void OnAttached(Entity<APCAttachableHolderComponent> holder, ref EntInsertedIntoContainerMessage args)
     {
-        if (!TryComp(args.Entity, out APCAttachableComponent? attachableComp) || !holder.Comp.Slots.ContainsKey(args.Container.ID))
+        if (!HasComp<APCAttachableComponent>(args.Entity) || !holder.Comp.Slots.ContainsKey(args.Container.ID))
             return;
 
         UpdateStripUi(holder.Owner, holder.Comp);
@@ -193,16 +186,19 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         var ev = new APCAttachableAlteredEvent(holder.Owner, APCAttachableAlteredType.Attached);
         RaiseLocalEvent(args.Entity, ref ev);
 
-        var holderEv = new APCAttachableHolderAttachablesAlteredEvent(args.Entity, args.Container.ID, 
-            APCAttachableAlteredType.Attached);
+        var holderEv = new APCAttachableHolderAttachablesAlteredEvent(args.Entity, args.Container.ID,
+        APCAttachableAlteredType.Attached);
         RaiseLocalEvent(holder, ref holderEv);
     }
 
     //Detaching
     public void StartDetach(Entity<APCAttachableHolderComponent> holder, string slotId, EntityUid userUid)
     {
-        if (TryGetAttachable(holder, slotId, out var attachable) && holder.Comp.Slots.ContainsKey(slotId) && !holder.Comp.Slots[slotId].Locked)
+        if (TryGetAttachable(holder, slotId, out var attachable) && holder.Comp.Slots.ContainsKey(slotId) &&
+        !holder.Comp.Slots[slotId].Locked)
+        {
             StartDetach(holder, attachable.Owner, userUid);
+        }
     }
 
     public void StartDetach(Entity<APCAttachableHolderComponent> holder, EntityUid attachableUid, EntityUid userUid)
@@ -232,7 +228,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Target == null || args.Used == null)
             return;
 
-        if (!TryComp(args.Target, out APCAttachableHolderComponent? holderComponent) || !HasComp<APCAttachableComponent>(args.Used))
+        if (!TryComp<APCAttachableHolderComponent>(args.Target, out var holderComponent) || !HasComp<APCAttachableComponent>(args.Used))
             return;
 
         if (!Detach((args.Target.Value, holderComponent), args.Used.Value, args.User))
@@ -314,7 +310,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
             return false;
 
         var ent = container.ContainedEntities[0];
-        if (!TryComp(ent, out APCAttachableComponent? attachableComp))
+        if (!TryComp<APCAttachableComponent>(ent, out var attachableComp))
             return false;
 
         attachable = (ent, attachableComp);
@@ -375,7 +371,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
     {
         if (holder.Comp == null)
         {
-            if (!TryComp(holder.Owner, out APCAttachableHolderComponent? holderComponent))
+            if (!TryComp<APCAttachableHolderComponent>(holder.Owner, out var holderComponent))
                 return false;
 
             holder.Comp = holderComponent;
@@ -386,7 +382,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
 
     public bool TryGetHolder(EntityUid attachable, [NotNullWhen(true)] out EntityUid? holderUid)
     {
-        if (!TryComp(attachable, out TransformComponent? transformComponent) ||
+        if (!TryComp<TransformComponent>(attachable, out var transformComponent) ||
             !transformComponent.ParentUid.Valid ||
             !HasComp<APCAttachableHolderComponent>(transformComponent.ParentUid))
         {
@@ -405,7 +401,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         if (!TryGetHolder(attachable, out var holderUid))
             return false;
 
-        if (!TryComp(holderUid, out TransformComponent? transformComponent) || !transformComponent.ParentUid.Valid)
+        if (!TryComp<TransformComponent>(holderUid, out var transformComponent) || !transformComponent.ParentUid.Valid)
             return false;
 
         userUid = transformComponent.ParentUid;

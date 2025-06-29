@@ -1,10 +1,11 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.APC;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class APCGunMagazineComponent : Component
 {
-    [DataField]
-    public string MagazineType;
+    [DataField(required: true), AutoNetworkedField]
+    public EntProtoId Prototype;
 }

@@ -1,8 +1,7 @@
-using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.Timing;
 using Content.Shared._Stories.APC;
 using Content.Shared._Stories.Attachables;
+using Robust.Shared.Containers;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Stories.APC;
 
@@ -21,9 +20,8 @@ public sealed class APCEntityGunSystem : EntitySystem
 
     private void OnReload(Entity<BallisticAPCAmmoProviderComponent> provider, ref APCGunReloadEvent args)
     {
-        if (!TryComp<APCAttachableComponent>(provider, out var attachable) || 
-            !_attachable.TryGetHolder(provider.Owner, out var holder) ||
-            holder is not {} apc)
+        if (!_attachable.TryGetHolder(provider.Owner, out var holder) ||
+            holder is not { } apc)
             return;
 
         if (!_timing.IsFirstTimePredicted)
@@ -55,7 +53,7 @@ public sealed class APCEntityGunSystem : EntitySystem
             if (!TryComp<APCGunMagazineComponent>(magazine, out var magazineComp))
                 continue;
 
-            if (comp.AmmoType != magazineComp.MagazineType)
+            if (comp.Prototype != magazineComp.Prototype)
                 continue;
 
             QueueDel(magazine);
@@ -64,5 +62,3 @@ public sealed class APCEntityGunSystem : EntitySystem
         return null;
     }
 }
-
-// todo сделать норм магазины, а не "затычки"

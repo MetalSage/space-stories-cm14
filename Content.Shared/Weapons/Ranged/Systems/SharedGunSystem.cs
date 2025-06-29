@@ -364,7 +364,25 @@ public abstract partial class SharedGunSystem : EntitySystem
             return null;
         }
 
-        var fromCoordinates = Transform(user).Coordinates;
+        // Stories-APC-Content-Tweak-Start
+        var userXform = Transform(user);
+        var fromCoordinates = userXform.Coordinates;
+
+        if (TryComp<APCEntityComponent>(user, out var apc) && 
+            apc.ActiveHardpoint is { } hardpoint &&
+            TryComp<APCAttachableComponent>(hardpoint, out var hardpointAttachable))
+        {
+            var rotation = userXform.WorldRotation;
+
+            var rotatedOffset = new Vector2(
+                hardpointAttachable.Offset.X * MathF.Cos(rotation) - hardpointAttachable.Offset.Y * MathF.Sin(rotation),
+                hardpointAttachable.Offset.X * MathF.Sin(rotation) + hardpointAttachable.Offset.Y * MathF.Cos(rotation)
+            );
+
+            fromCoordinates = fromCoordinates.Offset(rotatedOffset);
+        }
+        // Stories-APC-Content-Tweak-End
+
         // Remove ammo
         var ev = new TakeAmmoEvent(shots, new List<(EntityUid? Entity, IShootable Shootable)>(), fromCoordinates, user);
 

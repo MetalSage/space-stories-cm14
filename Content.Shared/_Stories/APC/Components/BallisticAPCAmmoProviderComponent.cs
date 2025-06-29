@@ -1,6 +1,6 @@
+using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared.Weapons.Ranged.Components;
 
 namespace Content.Shared._Stories.APC;
 
@@ -18,7 +18,4 @@ public sealed partial class BallisticAPCAmmoProviderComponent : AmmoProviderComp
 
     [DataField]
     public string AmmoContainerId = "ammo-storage";
-
-    [DataField]
-    public string AmmoType = string.Empty;
 }

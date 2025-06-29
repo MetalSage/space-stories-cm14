@@ -1,9 +1,7 @@
 using System.Numerics;
-using Content.Client._Stories.APC;
-using Content.Shared._Stories.APC;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Stories.APC;
+namespace Content.Client._Stories.APC.Attachables;
 
 [RegisterComponent, AutoGenerateComponentState]
 [Access(typeof(APCAttachableHolderVisuals))]

@@ -4,7 +4,7 @@ using Content.Shared._Stories.APC.Systems;
 using Robust.Client.GameObjects;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
-namespace 
+namespace
 
 /// <inheritdoc/>
 public sealed partial class APCEntitySystem : EntitySystem

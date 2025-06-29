@@ -1,11 +1,7 @@
-using Content.Shared.Interaction;
-using Content.Shared._Stories.Attachables;
-using Content.Shared._Stories.APC;
 using Content.Shared._RMC14.Xenonids;
-using Robust.Shared.GameObjects;
-using Content.Shared.Hands;
-using Content.Shared.Hands.Components;
+using Content.Shared._Stories.Attachables;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 
@@ -14,8 +10,6 @@ namespace Content.Shared._Stories.APC.Systems;
 public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
 {
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly INetManager _net = default!;
 
@@ -31,6 +25,9 @@ public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
 
     private void OnLoaderHandInteractUsing(Entity<APCWeaponLoaderComponent> loader, ref InteractHandEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (HasComp<XenoComponent>(args.User))
             return;
 
@@ -44,6 +41,9 @@ public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
 
     private void OnLoaderInteractUsing(Entity<APCWeaponLoaderComponent> loader, ref InteractUsingEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (HasComp<XenoComponent>(args.User))
             return;
 
@@ -54,7 +54,7 @@ public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
             return;
 
         var xform = Transform(apc.Owner);
-        
+
         if (_net.IsServer)
             _container.Insert(args.Used, apc.Comp.AmmoStorage, containerXform: xform);
 
@@ -63,9 +63,9 @@ public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
 
     private void OnAmmoLoaded(Entity<APCEntityComponent> apc, ref EntInsertedIntoContainerMessage args)
     {
-        if (apc.Comp.ActiveHardpoint is not {} hardpoint)
+        if (apc.Comp.ActiveHardpoint is not { } hardpoint)
             return;
-    
+
         if (apc.Comp.AmmoStorage != args.Container)
             return;
 

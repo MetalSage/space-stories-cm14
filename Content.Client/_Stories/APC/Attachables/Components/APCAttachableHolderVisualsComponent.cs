@@ -1,9 +1,4 @@
-using System.Numerics;
-using Content.Client._RMC14.Attachable.Systems;
-using Robust.Shared.Utility;
-using Content.Shared._Stories.APC;
-
-namespace Content.Client._Stories.APC;
+namespace Content.Client._Stories.APC.Attachables;
 
 [RegisterComponent, AutoGenerateComponentState]
 [Access(typeof(APCAttachableHolderVisuals))]

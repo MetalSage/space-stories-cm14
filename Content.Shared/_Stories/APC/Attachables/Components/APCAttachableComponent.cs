@@ -15,7 +15,7 @@ public sealed partial class APCAttachableComponent : Component
     public SoundSpecifier? AttachSound = new SoundPathSpecifier("/Audio/_RMC14/Attachable/attachment_add.ogg", AudioParams.Default.WithVolume(-6.5f));
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier? DetachSound = new SoundPathSpecifier("/Audio/_RMC14/Attachable/attachment_remove.ogg",  AudioParams.Default.WithVolume(-5.5f));
+    public SoundSpecifier? DetachSound = new SoundPathSpecifier("/Audio/_RMC14/Attachable/attachment_remove.ogg", AudioParams.Default.WithVolume(-5.5f));
 
     [DataField, AutoNetworkedField]
     public string? Description = "test";

@@ -1,7 +1,6 @@
+using Content.Shared._Stories.APC;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
-using Content.Shared._Stories.APC;
-using Content.Shared.Weapons.Ranged;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -10,10 +9,24 @@ public abstract partial class SharedGunSystem
     protected virtual void InitializeAPCGun()
     {
         base.Initialize();
+
         SubscribeLocalEvent<APCGunComponent, ShotAttemptedEvent>(OnShotAttempt);
+
+        SubscribeLocalEvent<APCEntityComponent, GunMuzzleFlashAttemptEvent>(OnAPCMuzzleFlashAttempt);
+        SubscribeLocalEvent<APCGunComponent, GunMuzzleFlashAttemptEvent>(OnAPCGunMuzzleFlashAttempt);
 
         SubscribeLocalEvent<BallisticAPCAmmoProviderComponent, TakeAmmoEvent>(OnTakeAmmo);
         SubscribeLocalEvent<BallisticAPCAmmoProviderComponent, GetAmmoCountEvent>(OnAPCAmmoCount);
+    }
+
+    private void OnAPCMuzzleFlashAttempt(Entity<APCEntityComponent> apc, ref GunMuzzleFlashAttemptEvent args)
+    {
+        args.Cancel();
+    }
+
+    private void OnAPCGunMuzzleFlashAttempt(Entity<APCGunComponent> apc, ref GunMuzzleFlashAttemptEvent args)
+    {
+        args.Cancel();
     }
 
     private void OnShotAttempt(Entity<APCGunComponent> gun, ref ShotAttemptedEvent args)

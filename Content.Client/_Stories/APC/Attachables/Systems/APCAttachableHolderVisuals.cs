@@ -1,10 +1,8 @@
+using Content.Shared._Stories.Attachables;
 using Robust.Client.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Log;
-using Content.Shared._Stories.APC;
-using Content.Shared._Stories.Attachables;
 
-namespace Content.Client._Stories.APC;
+namespace Content.Client._Stories.APC.Attachables;
 
 public sealed class APCAttachableHolderVisuals : EntitySystem
 {
@@ -63,7 +61,7 @@ public sealed class APCAttachableHolderVisuals : EntitySystem
         }
 
         var holderEvent = new APCAttachableHolderAttachablesAlteredEvent(
-            attachable.Owner, slotId, 
+            attachable.Owner, slotId,
             APCAttachableAlteredType.AppearanceChanged);
 
         RaiseLocalEvent(holderUid.Value, ref holderEvent);

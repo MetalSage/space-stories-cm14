@@ -1,21 +1,14 @@
-using System.Linq;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Ghost;
-using Content.Shared.Interaction;
-using Content.Shared.Mind;
-using Content.Shared.Buckle.Components;
-using Content.Shared.Movement.Components;
-using Robust.Shared.GameObjects;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Stunnable;
-using Content.Shared._RMC14.Marines.Skills;
-using Content.Shared._Stories.APC;
-using Content.Shared.Mind.Components;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Skills;
-using Robust.Shared.Prototypes;
 using Content.Shared._Stories.Attachables;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Mind.Components;
+using Content.Shared.Movement.Components;
+using Content.Shared.Stunnable;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.APC.Systems;
 
@@ -88,7 +81,7 @@ public sealed partial class SharedAPCEntitySystem
             return;
 
         _eye.SetTarget(args.Buckle, seat.Comp.APC, eye);
-        _mover.SetRelay(args.Buckle, seat.Comp.APC.Value);   
+        _mover.SetRelay(args.Buckle, seat.Comp.APC.Value);
     }
 
     private void OnGunnerSeatStrapped(Entity<APCGunnerSeatComponent> seat, ref StrappedEvent args)
@@ -109,16 +102,16 @@ public sealed partial class SharedAPCEntitySystem
 
         _eye.SetTarget(args.Buckle, seat.Comp.APC, eye);
 
-        if (seat.Comp.Action is {} gunnerAction)
+        if (seat.Comp.Action is { } gunnerAction)
             gunner.ActionEntity = _actions.AddAction(args.Buckle, gunnerAction);
 
-        if (TryComp<APCEntityComponent>(seat.Comp.APC, out var apc) && 
-            apc.ActiveHardpoint is {} hardpoint &&
-            TryComp<APCAttachableComponent>(hardpoint, out var attachable))
+        if (TryComp<APCEntityComponent>(seat.Comp.APC, out var apc) &&
+            apc.ActiveHardpoint is { } hardpoint &&
+            HasComp<APCAttachableComponent>(hardpoint))
         {
             var irelay = EnsureComp<InteractionRelayComponent>(args.Buckle);
             _interaction.SetRelay(args.Buckle, hardpoint, irelay);
-            _mover.SetRelay(args.Buckle, hardpoint);   
+            _mover.SetRelay(args.Buckle, hardpoint);
         }
         else
         {
@@ -129,13 +122,8 @@ public sealed partial class SharedAPCEntitySystem
     private void OnSeatUnstrapped<T>(Entity<T> seat, ref UnstrappedEvent args) where T : IComponent
     {
         Return(args.Buckle);
-
-        if (TryComp<APCGunnerComponent>(args.Buckle, out var gunner) && gunner.ActionEntity is not null)
-            _actions.RemoveAction(args.Buckle, gunner.ActionEntity.Value);
-
-        RemCompDeferred<T>(args.Buckle);
     }
-    
+
     private bool IsConscious(EntityUid pilot, Dictionary<EntProtoId<SkillDefinitionComponent>, int> skills, [NotNullWhen(true)] out EyeComponent? eye)
     {
         if (!TryComp<EyeComponent>(pilot, out eye))
@@ -144,7 +132,7 @@ public sealed partial class SharedAPCEntitySystem
         if (!HasComp<SkillsComponent>(pilot))
             return false;
 
-        if (HasComp<SleepingComponent>(pilot) 
+        if (HasComp<SleepingComponent>(pilot)
             || HasComp<ForcedSleepingComponent>(pilot)
             || HasComp<StunnedComponent>(pilot))
         {
@@ -159,7 +147,7 @@ public sealed partial class SharedAPCEntitySystem
             _popup.PopupEntity("Dont require skills", pilot);
             return true;
         }
-        
+
         if (!_skills.HasAllSkills(pilot, skills))
         {
             _popup.PopupEntity("No skills", pilot);
@@ -177,6 +165,12 @@ public sealed partial class SharedAPCEntitySystem
     private void Return(EntityUid target)
     {
         _eye.SetTarget(target, null);
+
+        if (TryComp<APCGunnerComponent>(target, out var gunner) && gunner.ActionEntity is not null)
+            _actions.RemoveAction(target, gunner.ActionEntity.Value);
+
+        RemCompDeferred<APCGunnerComponent>(target);
+        RemCompDeferred<APCPilotComponent>(target);
         RemCompDeferred<RelayInputMoverComponent>(target);
         RemCompDeferred<InteractionRelayComponent>(target);
     }

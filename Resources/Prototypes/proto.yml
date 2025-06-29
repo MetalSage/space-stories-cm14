@@ -72,11 +72,10 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-2,-2,2,2"
+          bounds: "-2,-1.5,2,1.5"
         density: 1000
         mask:
-          - MobMask
-          - FullTileMask
+          - WallMask
           - Transport
         layer:
           - WallLayer
@@ -186,10 +185,10 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: BallisticAPCAmmoProvider
-    prototype: RMCCartridgeSentry
+    prototype: CartridgeCaselessRifle
     shots: 20
     capacity: 20
-    ammoType: RMCCartridgeSentry
+    ammoType: CartridgeCaselessRifle
   - type: APCGun
   - type: AmmoCounter
   
@@ -334,7 +333,7 @@
     sprite: _Stories/general_wy.rsi
     state: weapons_loader
   - type: APCGunMagazine
-    magazineType: RMCCartridgeSentry
+    magazineType: CartridgeCaselessRifle
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

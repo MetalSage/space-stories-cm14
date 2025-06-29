@@ -1,10 +1,11 @@
 using Content.Shared.FixedPoint;
+using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Shared.Whitelist;
-using Robust.Shared.Containers;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Stories.APC;
 
@@ -36,14 +37,14 @@ public sealed partial class APCEntityComponent : Component
     public int OnAPC;
 
     [DataField, AutoNetworkedField]
-    public string GridPath = "/Maps/Test/admin_test_arena.yml";
+    public ResPath GridPath = new ResPath("/Maps/Test/admin_test_arena.yml");
 
     [DataField, AutoNetworkedField]
     public string MovementSlot = string.Empty;
 
     [ViewVariables, AutoNetworkedField]
     public List<EntityUid> Hardpoints = new();
-    
+
     [ViewVariables, AutoNetworkedField]
     public EntityUid? ActiveHardpoint;
 

@@ -1,6 +1,3 @@
-using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
-using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;

@@ -1,10 +1,10 @@
-using Robust.Client.GameObjects;
 using Content.Shared._Stories.APC;
+using Content.Shared._Stories.Attachables;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared._Stories.Attachables;
+using Robust.Client.GameObjects;
 
-namespace Content.Client._Stories.APC;
+namespace Content.Client._Stories.APC.Attachables;
 
 public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityComponent>
 {
@@ -40,7 +40,7 @@ public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityCompon
 
         if (holder == null)
             return;
-            
+
         foreach (var (attachable, layerIndex) in holder.ActiveLayers)
         {
             if (!TryComp(attachable, out APCAttachableVisualsComponent? visualsComp) ||

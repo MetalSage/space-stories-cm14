@@ -1,22 +1,13 @@
+using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._Stories.Attachables;
 using Content.Shared.Actions;
+using Content.Shared.Destructible;
+using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Mind.Components;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Destructible;
-using Content.Shared.Coordinates;
-using Content.Shared.Movement.Components;
-using Robust.Shared.Map;
-using Robust.Shared.Containers;
 using Content.Shared.Movement.Systems;
-using Robust.Shared.GameObjects;
 using Content.Shared.Popups;
-using Content.Shared._RMC14.Marines.Skills;
 using Robust.Shared.Network;
-using Robust.Shared.Containers;
-using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared._Stories.Attachables;
-using Content.Shared.Interaction;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Stories.APC.Systems;
@@ -24,20 +15,16 @@ namespace Content.Shared._Stories.APC.Systems;
 public sealed partial class SharedAPCEntitySystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly APCAttachableHolderSystem _attachableHolder = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {

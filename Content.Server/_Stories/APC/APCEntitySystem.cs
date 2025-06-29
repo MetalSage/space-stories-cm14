@@ -1,34 +1,16 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared._Stories.APC;
-using Content.Shared._Stories.APC.Systems;
-using Content.Shared.Access.Systems;
-using Content.Shared.Actions;
-using Content.Shared.Coordinates;
 using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Popups;
-using Content.Shared.Tag;
-using Content.Shared.Storage.EntitySystems;
-using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Movement.Components;
-using Robust.Server.Audio;
-using Robust.Server.GameObjects;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
-using Robust.Shared.Utility;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using Robust.Shared.Containers;
-using Content.Shared._RMC14.Dialog;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
+using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Random;
 
 namespace Content.Server._Stories.APC;
 
@@ -40,21 +22,14 @@ public sealed partial class APCEntitySystem : EntitySystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedAPCEntitySystem _sharedAPC = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly DialogSystem _dialog = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -70,7 +45,7 @@ public sealed partial class APCEntitySystem : EntitySystem
         apc.Comp.AmmoStorage = _container.EnsureContainer<ContainerSlot>(apc, apc.Comp.AmmoStorageID);
         apc.Comp.AmmoStorage.OccludesLight = false;
         _movement.RefreshMovementSpeedModifiers(apc);
-        LoadMap(apc, apc.Comp);
+        LoadMap(apc);
     }
 
     private void OnShutdown(Entity<APCEntityComponent> apc, ref ComponentShutdown args)
@@ -120,39 +95,37 @@ public sealed partial class APCEntitySystem : EntitySystem
         HandleEnterPulling(entity, args.User, coords);
     }
 
-    private void LoadMap(EntityUid uid, APCEntityComponent comp)
+    private void LoadMap(Entity<APCEntityComponent> apc)
     {
         var mapEnt = FindOrCreateAPCMap();
-        comp.MapEnt = mapEnt;
+        apc.Comp.MapEnt = mapEnt;
 
-        var mapId = _xform.GetMapId(mapEnt);
+        var mapId = _transform.GetMapId(mapEnt);
         var existing = _mapManager.GetAllMapGrids(mapId)
-            .Select(grid => _xform.GetWorldPosition(grid.Owner))
+            .Select(grid => _transform.GetWorldPosition(grid.Owner))
             .ToList();
 
         var offset = new Vector2(500, 500);
 
-        if (_mapLoader.TryLoadGrid(mapId, new ResPath(comp.GridPath), out var grid, null, offset))
+        if (_mapLoader.TryLoadGrid(mapId, apc.Comp.GridPath, out var grid, null, offset))
         {
-            comp.GridEnt = grid.Value;
-            _meta.SetEntityName(grid.Value, $"APC Grid: {uid}");
+            apc.Comp.GridEnt = grid.Value;
+            _meta.SetEntityName(grid.Value, $"APC Grid: {apc}");
+            Dirty(apc, apc.Comp);
+
             var component = EnsureComp<APCEntityGridComponent>(grid.Value);
-            component.APC = GetNetEntity(uid);
-            Dirty(component.Owner, component);
+            component.APC = GetNetEntity(apc);
+            Dirty(grid.Value, component);
         }
     }
 
     private EntityUid FindOrCreateAPCMap()
     {
-        var query = EntityQueryEnumerator<MapComponent>();
-        while (query.MoveNext(out var mapUid, out _))
-        {
-            if (HasComp<APCMapComponent>(mapUid))
-                return mapUid;
-        }
+        var query = EntityQueryEnumerator<APCMapComponent>();
+        while (query.MoveNext(out var uid, out _))
+            return uid;
 
-        var newMapId = _mapManager.CreateMap();
-        var newMapEnt = _map.GetMap(newMapId);
+        var newMapEnt = _map.CreateMap();
         EnsureComp<APCMapComponent>(newMapEnt);
         _meta.SetEntityName(newMapEnt, "APCMap");
         return newMapEnt;
@@ -160,8 +133,8 @@ public sealed partial class APCEntitySystem : EntitySystem
 
     private bool CanInteractOnDoor(EntityUid user, EntityUid target)
     {
-        var userPos = _xform.GetMapCoordinates(user).Position;
-        var targetPos = _xform.GetMapCoordinates(target).Position;
+        var userPos = _transform.GetMapCoordinates(user).Position;
+        var targetPos = _transform.GetMapCoordinates(target).Position;
 
         var directionToUser = (userPos - targetPos).ToWorldAngle().Degrees;
         var facing = Transform(target).LocalRotation.GetCardinalDir().ToAngle().Degrees;
@@ -206,7 +179,7 @@ public sealed partial class APCEntitySystem : EntitySystem
             return;
         }
 
-        if (TryComp(pulledUid, out PullerComponent? nestedPuller) && 
+        if (TryComp(pulledUid, out PullerComponent? nestedPuller) &&
             nestedPuller.Pulling is { } nestedPulledUid &&
             TryComp(nestedPulledUid, out PullableComponent? nestedPullable))
         {
