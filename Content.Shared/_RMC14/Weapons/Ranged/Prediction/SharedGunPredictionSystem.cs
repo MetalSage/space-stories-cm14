@@ -4,6 +4,7 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Content.Shared._Stories.APC;
 
 namespace Content.Shared._RMC14.Weapons.Ranged.Prediction;
 
@@ -33,6 +34,13 @@ public abstract class SharedGunPredictionSystem : EntitySystem
 
         if (ent != GetEntity(netGun))
             return null;
+
+        // Stories-APC-Gun-Content-Start
+        if (TryComp<APCGunnerComponent>(user.Value, out var apcGunner) && apcGunner.APC is {} apc)
+        {
+            user = apc;
+        }
+        // Stories-APC-Gun-Content-End
 
 #pragma warning disable RA0002
         gun.ShootCoordinates = GetCoordinates(coordinates);

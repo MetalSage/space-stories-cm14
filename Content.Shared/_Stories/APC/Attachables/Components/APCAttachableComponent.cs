@@ -24,11 +24,5 @@ public sealed partial class APCAttachableComponent : Component
     public string? Stats = "test";
 
     [DataField, AutoNetworkedField]
-    public string? VirtualAttachable;
-
-    [DataField, AutoNetworkedField]
-    public EntityUid? VirtualAttachableEnt;
-
-    [DataField, AutoNetworkedField]
     public Vector2 Offset = Vector2.Zero;
 }

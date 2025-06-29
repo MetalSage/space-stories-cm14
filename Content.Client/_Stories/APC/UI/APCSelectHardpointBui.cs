@@ -42,10 +42,14 @@ public sealed class APCSelectHardpointBui : BoundUserInterface
 
     private void OnSelectButtonPressed(BaseButton.ButtonEventArgs args)
     {
+        if (_window == null)
+            return;
+
         if (_selectedHardpoint == null)
             return;
 
         SendPredictedMessage(new APCSelectHardpointBuiMsg(EntMan.GetNetEntity(_selectedHardpoint.Value)));
+        _window.Close();
     }
 
     private void PopulateHardpoints()

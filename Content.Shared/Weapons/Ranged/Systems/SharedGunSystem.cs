@@ -50,6 +50,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Stories.APC;
+using Content.Shared._Stories.Attachables;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -119,6 +121,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         InitializeContainer();
         InitializeSolution();
 
+        InitializeAPCGun(); // Stories-APC-Gun-Tweak
+
         // Interactions
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);
         SubscribeLocalEvent<GunComponent, ExaminedEvent>(OnExamine);
@@ -185,6 +189,18 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         gunEntity = default;
         gunComp = null;
+
+        // Stories-APC-Gun-Content-Start
+        if (TryComp<APCGunnerComponent>(entity, out var apcGunner) &&
+            TryComp<APCEntityComponent>(apcGunner.APC, out var apc) &&
+            apc.ActiveHardpoint is {} hardpoint &&
+            TryComp<GunComponent>(hardpoint, out var hardpointGunComp))
+        {
+            gunEntity = hardpoint;
+            gunComp = hardpointGunComp;
+            return true;
+        }
+        // Stories-APC-Gun-Content-End
 
         if (EntityManager.TryGetComponent(entity, out HandsComponent? hands) &&
             hands.ActiveHandEntity is { } held &&

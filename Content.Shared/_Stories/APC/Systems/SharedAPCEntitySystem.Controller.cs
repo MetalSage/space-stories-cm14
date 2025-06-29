@@ -15,6 +15,7 @@ using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Skills;
 using Robust.Shared.Prototypes;
 using Content.Shared._Stories.Attachables;
+using Content.Shared.Interaction.Components;
 
 namespace Content.Shared._Stories.APC.Systems;
 
@@ -108,14 +109,16 @@ public sealed partial class SharedAPCEntitySystem
 
         _eye.SetTarget(args.Buckle, seat.Comp.APC, eye);
 
-        if (seat.Comp.Action is not null)
-            gunner.ActionEntity = _actions.AddAction(args.Buckle, seat.Comp.Action.Value);
+        if (seat.Comp.Action is {} gunnerAction)
+            gunner.ActionEntity = _actions.AddAction(args.Buckle, gunnerAction);
 
         if (TryComp<APCEntityComponent>(seat.Comp.APC, out var apc) && 
-            TryComp<APCAttachableComponent>(apc.ActiveHardpoint, out var attachable) &&
-            attachable.VirtualAttachableEnt is {} virtAttachable)
+            apc.ActiveHardpoint is {} hardpoint &&
+            TryComp<APCAttachableComponent>(hardpoint, out var attachable))
         {
-            _mover.SetRelay(args.Buckle, virtAttachable);   
+            var irelay = EnsureComp<InteractionRelayComponent>(args.Buckle);
+            _interaction.SetRelay(args.Buckle, hardpoint, irelay);
+            _mover.SetRelay(args.Buckle, hardpoint);   
         }
         else
         {
@@ -129,6 +132,8 @@ public sealed partial class SharedAPCEntitySystem
 
         if (TryComp<APCGunnerComponent>(args.Buckle, out var gunner) && gunner.ActionEntity is not null)
             _actions.RemoveAction(args.Buckle, gunner.ActionEntity.Value);
+
+        RemCompDeferred<T>(args.Buckle);
     }
     
     private bool IsConscious(EntityUid pilot, Dictionary<EntProtoId<SkillDefinitionComponent>, int> skills, [NotNullWhen(true)] out EyeComponent? eye)
@@ -137,9 +142,6 @@ public sealed partial class SharedAPCEntitySystem
             return false;
 
         if (!HasComp<SkillsComponent>(pilot))
-            return false;
-
-        if (!HasComp<MindComponent>(pilot))
             return false;
 
         if (HasComp<SleepingComponent>(pilot) 
@@ -176,5 +178,6 @@ public sealed partial class SharedAPCEntitySystem
     {
         _eye.SetTarget(target, null);
         RemCompDeferred<RelayInputMoverComponent>(target);
+        RemCompDeferred<InteractionRelayComponent>(target);
     }
 }

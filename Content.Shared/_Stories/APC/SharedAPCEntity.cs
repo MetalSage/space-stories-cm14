@@ -30,3 +30,6 @@ public enum APCEntityVisualLayers : byte
 }
 
 public sealed partial class APCHardpointsMenuActionEvent : InstantActionEvent;
+
+[ByRefEvent]
+public record struct APCGunReloadEvent(EntityUid Equipment);

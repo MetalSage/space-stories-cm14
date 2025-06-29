@@ -196,12 +196,6 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         var holderEv = new APCAttachableHolderAttachablesAlteredEvent(args.Entity, args.Container.ID, 
             APCAttachableAlteredType.Attached);
         RaiseLocalEvent(holder, ref holderEv);
-
-        if (attachableComp.VirtualAttachable is {} virtAttachable)
-        {
-            var coordinates = holder.Owner.ToCoordinates().Offset(attachableComp.Offset);
-            attachableComp.VirtualAttachableEnt = SpawnAttachedTo(virtAttachable, coordinates);
-        }
     }
 
     //Detaching
@@ -273,9 +267,6 @@ public sealed class APCAttachableHolderSystem : EntitySystem
 
         var holderEv = new APCAttachableHolderAttachablesAlteredEvent(attachableUid, slotId, APCAttachableAlteredType.Detached);
         RaiseLocalEvent(holder.Owner, ref holderEv);
-
-        if (attachable.Comp.VirtualAttachableEnt is {} virtAttachable)
-            QueueDel(virtAttachable);
 
         _audio.PlayPredicted(Comp<APCAttachableComponent>(attachableUid).DetachSound,
             holder,

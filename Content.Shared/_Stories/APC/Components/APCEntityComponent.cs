@@ -46,4 +46,10 @@ public sealed partial class APCEntityComponent : Component
     
     [ViewVariables, AutoNetworkedField]
     public EntityUid? ActiveHardpoint;
+
+    [ViewVariables]
+    public ContainerSlot AmmoStorage = default!;
+
+    [ViewVariables, AutoNetworkedField]
+    public string AmmoStorageID = "ammo-storage";
 }

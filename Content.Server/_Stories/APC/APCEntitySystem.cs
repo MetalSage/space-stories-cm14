@@ -67,6 +67,8 @@ public sealed partial class APCEntitySystem : EntitySystem
 
     private void OnMapInit(Entity<APCEntityComponent> apc, ref MapInitEvent args)
     {
+        apc.Comp.AmmoStorage = _container.EnsureContainer<ContainerSlot>(apc, apc.Comp.AmmoStorageID);
+        apc.Comp.AmmoStorage.OccludesLight = false;
         _movement.RefreshMovementSpeedModifiers(apc);
         LoadMap(apc, apc.Comp);
     }
