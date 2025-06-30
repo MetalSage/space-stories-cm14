@@ -7,6 +7,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client._Stories.Sponsors.XenoSkins;
 
@@ -71,14 +72,14 @@ public sealed class XenoSkinsBui : BoundUserInterface
 
     private void OnPrevDirectionButtonPressed(BaseButton.ButtonEventArgs args)
     {
-        _currentCardinalIndex = (_currentCardinalIndex - 1 + CardinalCycle.Length) % CardinalCycle.Length;
+        _currentCardinalIndex = (_currentCardinalIndex + 1) % CardinalCycle.Length;
         _previewRotation = CardinalCycle[_currentCardinalIndex];
         RotatePreview(_previewRotation);
     }
 
     private void OnNextDirectionButtonPressed(BaseButton.ButtonEventArgs args)
     {
-        _currentCardinalIndex = (_currentCardinalIndex + 1) % CardinalCycle.Length;
+        _currentCardinalIndex = (_currentCardinalIndex - 1 + CardinalCycle.Length) % CardinalCycle.Length;
         _previewRotation = CardinalCycle[_currentCardinalIndex];
         RotatePreview(_previewRotation);
     }
@@ -124,7 +125,14 @@ public sealed class XenoSkinsBui : BoundUserInterface
 
         foreach (var skinId in xenoSkins.Skins)
         {
-            if (!_prototype.TryIndex(skinId, out var skinProto) || xeno.Role.Id != skinProto.Xeno.Id)
+            if (!_prototype.TryIndex(skinId, out var skinProto) || 
+                !EntMan.TryGetComponent(Owner, out MetaDataComponent? meta))
+                continue;
+
+            if (skinProto.IsStrain && (skinProto.StrainId is not { } strainId || meta.EntityPrototype?.ID != strainId))
+                continue;
+
+            if (!skinProto.IsStrain && meta.EntityPrototype?.ID != xeno.Role.Id)
                 continue;
 
             AddSkinButtonToList(xenoSkins, skinId, skinProto);

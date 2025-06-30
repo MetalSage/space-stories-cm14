@@ -35,4 +35,17 @@ public sealed partial class XenoSkinsPrototype : IPrototype
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
     public ProtoId<JobPrototype> Xeno;
+
+    /// <summary>
+    /// Whether this skin is strain specific.
+    /// If true, the skin will only be available for a specific strain.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("isStrain")]
+    public bool IsStrain = false;
+
+    /// <summary>
+    /// The ID of the required strain, if IsStrain is true.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("strainId")]
+    public string? StrainId;
 }

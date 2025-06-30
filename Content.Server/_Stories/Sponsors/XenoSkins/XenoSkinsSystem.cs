@@ -116,10 +116,11 @@ public sealed class XenoSkinsSystem : EntitySystem
             return;
         }
 
-        RaiseNetworkEvent(new XenoSkinChangeRSIEvent(GetNetEntity(xeno), args.Path), xeno);
         xeno.Comp.CurrentSkin = new ProtoId<XenoSkinsPrototype>(args.Proto);
         xeno.Comp.ActiveDoAfter = null;
+        Dirty(xeno);
 
+        RaiseNetworkEvent(new XenoSkinChangeRSIEvent(GetNetEntity(xeno), args.Path), xeno);
         _actions.RemoveAction(xeno, xeno.Comp.ActionEntity);
     }
 }
