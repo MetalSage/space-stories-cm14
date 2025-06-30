@@ -75,7 +75,6 @@
           bounds: "-2,-1.5,2,1.5"
         density: 1000
         mask:
-          - WallMask
           - Transport
         layer:
           - WallLayer
@@ -151,7 +150,9 @@
   components:
   - type: Sprite
     sprite: _Stories/apcitems.rsi
-    state: dual_cannon
+    layers:
+    - map: [ "enum.APCAttachableVisualLayers.Base" ]
+      state: dual_cannon
   - type: Item
     size: Normal
   - type: StaticPrice
@@ -333,7 +334,7 @@
     sprite: _Stories/general_wy.rsi
     state: weapons_loader
   - type: APCGunMagazine
-    magazineType: CartridgeCaselessRifle
+    prototype: CartridgeCaselessRifle
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

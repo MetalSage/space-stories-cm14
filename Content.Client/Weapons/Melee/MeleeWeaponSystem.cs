@@ -19,6 +19,7 @@ using Robust.Client.State;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Content.Client._Stories.APC.Attachables;
 
 namespace Content.Client.Weapons.Melee;
 
@@ -167,9 +168,17 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     }
 
     protected override void DoDamageEffect(List<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
-    {
-        // Server never sends the event to us for predictiveeevent.
-        _color.RaiseEffect(Color.Red, targets, Filter.Local());
+    {   
+        // Stories-APC-Attachable-Content-Start
+        foreach (var target in targets)
+        {
+            if (HasComp<APCAttachableDamageVisualsComponent>(target))
+                continue;
+
+            // Server never sends the event to us for predictiveeevent.
+            _color.RaiseEffect(Color.Red, targets, Filter.Local());
+        }
+        // Stories-APC-Attachable-Content-End
     }
 
     protected override bool DoDisarm(EntityUid user, DisarmAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)

@@ -3,8 +3,9 @@ using Content.Shared._Stories.Attachables;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Client.GameObjects;
+using Content.Client._Stories.APC.Attachables;
 
-namespace Content.Client._Stories.APC.Attachables;
+namespace Content.Client._Stories.APC;
 
 public sealed class APCEntityVisualizerSystem : VisualizerSystem<APCEntityComponent>
 {

@@ -21,12 +21,12 @@ public abstract partial class SharedGunSystem
 
     private void OnAPCMuzzleFlashAttempt(Entity<APCEntityComponent> apc, ref GunMuzzleFlashAttemptEvent args)
     {
-        args.Cancel();
+        args.Cancelled = true;
     }
 
     private void OnAPCGunMuzzleFlashAttempt(Entity<APCGunComponent> apc, ref GunMuzzleFlashAttemptEvent args)
     {
-        args.Cancel();
+        args.Cancelled = true;
     }
 
     private void OnShotAttempt(Entity<APCGunComponent> gun, ref ShotAttemptedEvent args)

@@ -374,10 +374,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             var rotation = userXform.WorldRotation;
 
-            var rotatedOffset = new Vector2(
-                hardpointAttachable.Offset.X * MathF.Cos(rotation) - hardpointAttachable.Offset.Y * MathF.Sin(rotation),
-                hardpointAttachable.Offset.X * MathF.Sin(rotation) + hardpointAttachable.Offset.Y * MathF.Cos(rotation)
-            );
+            var rotatedOffset = rotation.RotateVec(hardpointAttachable.Offset);
 
             fromCoordinates = fromCoordinates.Offset(rotatedOffset);
         }

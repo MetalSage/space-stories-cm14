@@ -27,6 +27,13 @@ public enum APCEntityVisualLayers : byte
     Base
 }
 
+[Serializable, NetSerializable]
+public enum APCAttachableVisualLayers : byte
+{
+    Base, 
+    Destroyed
+}
+
 public sealed partial class APCHardpointsMenuActionEvent : InstantActionEvent;
 
 [ByRefEvent]

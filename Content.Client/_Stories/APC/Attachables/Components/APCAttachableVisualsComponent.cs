@@ -4,7 +4,6 @@ using Robust.Shared.Utility;
 namespace Content.Client._Stories.APC.Attachables;
 
 [RegisterComponent, AutoGenerateComponentState]
-[Access(typeof(APCAttachableHolderVisuals))]
 public sealed partial class APCAttachableVisualsComponent : Component
 {
     [DataField, AutoNetworkedField]
