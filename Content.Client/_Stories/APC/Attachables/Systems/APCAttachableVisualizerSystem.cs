@@ -13,8 +13,10 @@ using Content.Shared.FixedPoint;
 
 namespace Content.Client._Stories.APC;
 
-public sealed class APCattachableVisualizerSystem : VisualizerSystem<APCAttachableDamageVisualsComponent>
+public sealed class APCAttachableVisualizerSystem : VisualizerSystem<APCAttachableDamageVisualsComponent>
 {
+    [Dependency] private readonly APCAttachableHolderSystem _attachableHolder = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -33,7 +35,8 @@ public sealed class APCattachableVisualizerSystem : VisualizerSystem<APCAttachab
         if (!Resolve(uid, ref sprite, ref appearance, ref damageable, false))
             return;
 
-        Resolve(uid, ref attachable, false);
+        if (!Resolve(uid, ref attachable, false))
+            return;
 
         if (sprite is not { BaseRSI: { } rsi } ||
             !sprite.LayerMapTryGet(APCAttachableVisualLayers.Base, out var layer))
@@ -45,11 +48,28 @@ public sealed class APCattachableVisualizerSystem : VisualizerSystem<APCAttachab
             return;
 
         var ratio = Math.Clamp((float)(damageable.TotalDamage / maxDamageComp.Max), 0f, 1f);
-        var brightness = (byte)(255 * (1f - ratio * 0.8f)); 
+        var brightness = (byte)(255 * (1f - ratio * attachable.DarknessLevel)); 
         var color = new Color(brightness, brightness, brightness, 255);
 
+        SetAttachedColor(uid, color);
         sprite.Color = color;
+    }
 
+    private void SetAttachedColor(EntityUid attachable, Color color)
+    {
+        if (!_attachableHolder.TryGetHolder(attachable, out var holder))
+            return;
+
+        if (!TryComp<SpriteComponent>(holder, out var holderSprite) || 
+            !TryComp<APCAttachableHolderVisualsComponent>(holder, out var holderVisuals))
+        {
+            return;
+        }
+
+        if (!holderVisuals.ActiveLayers.TryGetValue(attachable, out var layerIndex))
+            return;
+
+        holderSprite.LayerSetColor(layerIndex, color);
     }
 
     public override void Update(float frameTime)

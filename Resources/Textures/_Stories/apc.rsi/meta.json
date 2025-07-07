@@ -42,9 +42,6 @@
       ]
     },
     {
-      "name": "PRIMARY"
-    },
-    {
       "name": "dualcannon_0",
       "directions": 4
     },
@@ -55,9 +52,6 @@
     {
       "name": "damaged_hdpt_primary",
       "directions": 4
-    },
-    {
-      "name": "SECONDARY"
     },
     {
       "name": "frontalcannon_0",
@@ -84,9 +78,6 @@
       "directions": 4
     },
     {
-      "name": "SUPPORT"
-    },
-    {
       "name": "comms_relay_0",
       "directions": 4
     },
@@ -109,9 +100,6 @@
     {
       "name": "damaged_hdpt_support",
       "directions": 4
-    },
-    {
-      "name": "MISC"
     },
     {
       "name": "wheels_0",

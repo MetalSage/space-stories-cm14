@@ -87,6 +87,7 @@ public sealed class APCAttachableHolderVisuals : EntitySystem
 
     public void RefreshVisuals(Entity<APCAttachableHolderVisualsComponent> holder, Entity<APCAttachableVisualsComponent> attachable)
     {
+        RemoveAttachableOverlay(holder, attachable.Owner);
         if (!TryComp(holder, out SpriteComponent? holderSprite))
             return;
 
@@ -94,17 +95,14 @@ public sealed class APCAttachableHolderVisuals : EntitySystem
             return;
 
         var actualRsi = attachable.Comp.Rsi ?? attachableSprite.LayerGetActualRSI(attachable.Comp.Layer)?.Path;
-        var rsi = actualRsi?.ToString();
 
-        if (rsi == null)
+        if (actualRsi?.ToString() is not { } rsi)
             return;
-
-        var state = attachable.Comp.State;
 
         var layerData = new PrototypeLayerData()
         {
             RsiPath = rsi,
-            State = state,
+            State = attachable.Comp.State,
             Offset = attachable.Comp.Offset,
             Visible = true,
         };
