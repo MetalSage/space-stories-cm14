@@ -16,19 +16,15 @@ namespace Content.Server._Stories.APC;
 
 public sealed partial class APCEntitySystem : EntitySystem
 {
-    private const float DoorInteractionAngleRange = 25f;
-
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
 
     public override void Initialize()
     {
@@ -56,7 +52,7 @@ public sealed partial class APCEntitySystem : EntitySystem
 
     private void OnInteractHand(Entity<APCEntityComponent> entity, ref InteractHandEvent args)
     {
-        if (args.Handled || !CanInteractOnDoor(args.User, args.Target))
+        if (args.Handled || !CanEnter(args.User, args.Target))
             return;
 
         args.Handled = true;
@@ -97,58 +93,47 @@ public sealed partial class APCEntitySystem : EntitySystem
 
     private void LoadMap(Entity<APCEntityComponent> apc)
     {
-        var mapEnt = FindOrCreateAPCMap();
-        apc.Comp.MapEnt = mapEnt;
-
-        var mapId = _transform.GetMapId(mapEnt);
-        var existing = _mapManager.GetAllMapGrids(mapId)
-            .Select(grid => _transform.GetWorldPosition(grid.Owner))
-            .ToList();
-
-        var offset = new Vector2(500, 500);
-
-        if (_mapLoader.TryLoadGrid(mapId, apc.Comp.GridPath, out var grid, null, offset))
+        var map = _map.CreateMap(out var mapId);
+        if (!_mapLoader.TryLoadGrid(mapId, apc.Comp.GridPath, out var grid, null))
         {
-            apc.Comp.GridEnt = grid.Value;
-            _meta.SetEntityName(grid.Value, $"APC Grid: {apc}");
-            Dirty(apc, apc.Comp);
-
-            var component = EnsureComp<APCEntityGridComponent>(grid.Value);
-            component.APC = GetNetEntity(apc);
-            Dirty(grid.Value, component);
+            ISawmill.Error($"Failed to load APC Grid from entity {apc}");
+            _map.DeleteMap(mapId);
+            return;
         }
+
+        _meta.SetEntityName(grid.Value, $"APCGrid: {apc}");
+        _meta.SetEntityName(map, $"APCMap: {apc}");
+
+        apc.Comp.MapEnt = map;
+        apc.Comp.GridEnt = grid.Value;
+        Dirty(apc, apc.Comp);
+
+        EnsureComp<APCMapComponent>(map);
+        var gridComp = EnsureComp<APCEntityGridComponent>(grid.Value);
+        gridComp.APC = GetNetEntity(apc);
+
+        Dirty(grid.Value, component);
     }
 
-    private EntityUid FindOrCreateAPCMap()
-    {
-        var query = EntityQueryEnumerator<APCMapComponent>();
-        while (query.MoveNext(out var uid, out _))
-            return uid;
 
-        var newMapEnt = _map.CreateMap();
-        EnsureComp<APCMapComponent>(newMapEnt);
-        _meta.SetEntityName(newMapEnt, "APCMap");
-        return newMapEnt;
-    }
-
-    private bool CanInteractOnDoor(EntityUid user, EntityUid target)
+    private bool CanEnter(EntityUid user, Entity<APCEntityComponent> target)
     {
         var userPos = _transform.GetMapCoordinates(user).Position;
-        var targetPos = _transform.GetMapCoordinates(target).Position;
+        var targetPos = _transform.GetMapCoordinates(target.Owner).Position;
 
         var directionToUser = (userPos - targetPos).ToWorldAngle().Degrees;
-        var facing = Transform(target).LocalRotation.GetCardinalDir().ToAngle().Degrees;
+        var facing = Transform(target.Owner).LocalRotation.GetCardinalDir().ToAngle().Degrees;
 
         var left = (facing - 90 + 360) % 360;
         var right = (facing + 90) % 360;
 
-        return IsWithinRange(directionToUser, left, DoorInteractionAngleRange)
-            || IsWithinRange(directionToUser, right, DoorInteractionAngleRange);
+        return IsWithinRange(directionToUser, left)
+            || IsWithinRange(directionToUser, right);
 
-        static bool IsWithinRange(double a, double b, double range)
+        static bool IsWithinRange(double a, double b)
         {
             var delta = ((a - b + 180 + 360) % 360) - 180;
-            return Math.Abs(delta) <= range;
+            return Math.Abs(delta) <= target.Comp.EntryInteractionRange;
         }
     }
 
@@ -164,44 +149,24 @@ public sealed partial class APCEntitySystem : EntitySystem
         return null;
     }
 
-    private void HandleEnterPulling(Entity<APCEntityComponent> apc, EntityUid user, EntityCoordinates coords, bool checkCapacity = true)
+    private void HandleEnterPulling(Entity<APCEntityComponent> apc, EntityUid user, EntityCoordinates coords)
     {
-        if (TryComp(user, out PullableComponent? userAsPullable) && userAsPullable.Puller is { } userPuller)
+        _rmcPulling.TryStopAllPullsFromAndOn(user);
+
+        if (apc.Comp.Passangers >= apc.Comp.MaxPassangers)
         {
-            _pulling.TryStopPull(user, userAsPullable, userPuller);
+            _popup.PopupEntity("stories-transport-is-full", user);
+            return;
         }
 
         if (!TryComp(user, out PullerComponent? puller) || puller.Pulling is not { } pulledUid)
         {
             _transform.SetCoordinates(user, coords);
             apc.Comp.OnAPC += 1;
-            Dirty(apc);
             return;
-        }
-
-        if (TryComp(pulledUid, out PullerComponent? nestedPuller) &&
-            nestedPuller.Pulling is { } nestedPulledUid &&
-            TryComp(nestedPulledUid, out PullableComponent? nestedPullable))
-        {
-            _pulling.TryStopPull(nestedPulledUid, nestedPullable, pulledUid);
-        }
-
-        if (checkCapacity)
-        {
-            if (apc.Comp.OnAPC >= apc.Comp.MaxOnAPC)
-            {
-                _popup.PopupEntity("stories-transport-is-full", user);
-                return;
-            }
-        }
-
-        if (TryComp(pulledUid, out PullableComponent? pulledComp))
-        {
-            _pulling.TryStopPull(pulledUid, pulledComp, user);
         }
 
         _transform.SetCoordinates(pulledUid, coords);
         apc.Comp.OnAPC += 1;
-        Dirty(apc);
     }
 }

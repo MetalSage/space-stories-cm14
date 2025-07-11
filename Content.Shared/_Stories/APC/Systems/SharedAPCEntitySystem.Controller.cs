@@ -30,7 +30,7 @@ public sealed partial class SharedAPCEntitySystem
         SubscribeLocalEvent<MarineComponent, MindRemovedMessage>(OnMindRemoved);
     }
 
-    private void OnSeatInit<T>(Entity<T> seat, ref MapInitEvent args) where T : IComponent
+    private void OnSeatInit<T>(Entity<T> seat, ref MapInitEvent args) where T : BaseAPCSeatComponent
     {
         if (!TryComp<TransformComponent>(seat, out var xform))
             return;
@@ -38,16 +38,7 @@ public sealed partial class SharedAPCEntitySystem
         if (!TryComp<APCEntityGridComponent>(xform.GridUid, out var apcGrid))
             return;
 
-        switch (seat.Comp)
-        {
-            case APCPilotSeatComponent pilotSeat:
-                pilotSeat.APC = GetEntity(apcGrid.APC);
-                break;
-
-            case APCGunnerSeatComponent gunnerSeat:
-                gunnerSeat.APC = GetEntity(apcGrid.APC);
-                break;
-        }
+        seat.APC = GetEntity(apcGrid.APC);
     }
 
     private void OnSeatShutdown<T>(Entity<T> seat, ref ComponentShutdown args) where T : IComponent
@@ -70,7 +61,10 @@ public sealed partial class SharedAPCEntitySystem
             return;
 
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
+        {
+            _popup.PopupEntity(Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.APC)), args.Buckle);
             return;
+        }
 
         var pilot = EnsureComp<APCPilotComponent>(args.Buckle);
 
@@ -90,7 +84,10 @@ public sealed partial class SharedAPCEntitySystem
             return;
 
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
+        {
+            _popup.PopupEntity(Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.APC)), args.Buckle);
             return;
+        }
 
         var gunner = EnsureComp<APCGunnerComponent>(args.Buckle);
 
@@ -115,7 +112,7 @@ public sealed partial class SharedAPCEntitySystem
         }
         else
         {
-            _popup.PopupEntity("Для начала выберите hardpoint", args.Buckle);
+            _popup.PopupCoordinates("Для начала выберите hardpoint", apc.ToCoordinates(), args.Buckle);
         }
     }
 
@@ -143,16 +140,10 @@ public sealed partial class SharedAPCEntitySystem
             return false;
 
         if (skills.Count == 0)
-        {
-            _popup.PopupEntity("Dont require skills", pilot);
             return true;
-        }
 
         if (!_skills.HasAllSkills(pilot, skills))
-        {
-            _popup.PopupEntity("No skills", pilot);
             return false;
-        }
 
         return true;
     }

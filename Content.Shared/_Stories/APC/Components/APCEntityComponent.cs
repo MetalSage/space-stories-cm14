@@ -18,12 +18,6 @@ public sealed partial class APCEntityComponent : Component
     [ViewVariables, AutoNetworkedField]
     public EntityUid? GridEnt;
 
-    [ViewVariables, AutoNetworkedField]
-    public EntityUid? User;
-
-    [ViewVariables, AutoNetworkedField]
-    public EntityUid? Controller;
-
     [DataField, AutoNetworkedField]
     public bool Destroyed = false;
 
@@ -31,10 +25,13 @@ public sealed partial class APCEntityComponent : Component
     public float EntryDelay = 2f;
 
     [DataField, AutoNetworkedField]
-    public int MaxOnAPC = 15;
+    public Angle EntryInteractionRange = 45f;
 
     [DataField, AutoNetworkedField]
-    public int OnAPC;
+    public int MaxPassangers = 15;
+
+    [DataField, AutoNetworkedField]
+    public int Passangers;
 
     [DataField, AutoNetworkedField]
     public ResPath GridPath = new ResPath("/Maps/Test/admin_test_arena.yml");

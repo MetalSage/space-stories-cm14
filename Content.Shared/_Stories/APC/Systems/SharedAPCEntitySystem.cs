@@ -57,11 +57,11 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
             TryComp<APCMovementAttachableComponent>(attachable, out var attachableMovement))
         {
             args.ModifySpeed(attachableMovement.WalkSpeed, attachableMovement.SprintSpeed);
+            return;
         }
-        else
-        {
-            args.ModifySpeed(0f, 0f);
-        }
+
+        args.ModifySpeed(0f, 0f);
+
     }
 
     private void OnAPCHardpointsMenuAction(Entity<APCGunnerComponent> gunner, ref APCHardpointsMenuActionEvent args)
@@ -99,5 +99,22 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
             return;
 
         _appearance.SetData(uid, APCVisuals.Destroyed, component.Destroyed, appearance);
+    }
+
+    public bool TryGetAPC(Entity<TransformComponent> target, out Entity<APCEntityComponent> apc)
+    {
+        apc = default;
+
+        if (!TryComp<APCEntityGridComponent>(target.Comp.GridUid, out var grid) || 
+            !TryGetEntity(grid.APC, out var apc))
+        {
+            return false;
+        }
+
+        if (apcUid is not { } uid || !TryComp<APCEntityComponent>(uid, out var comp))
+            return false;
+
+        apc = (uid, comp);
+        return true;
     }
 }

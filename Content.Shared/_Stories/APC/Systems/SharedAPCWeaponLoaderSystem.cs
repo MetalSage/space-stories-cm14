@@ -12,6 +12,7 @@ public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedAPCEntitySystem _apc = default!;
 
     public override void Initialize()
     {
@@ -31,7 +32,7 @@ public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
         if (HasComp<XenoComponent>(args.User))
             return;
 
-        if (!TryGetAPC(loader.Owner, out var apc))
+        if (!_apc.TryGetAPC(loader.Owner, out var apc))
             return;
 
         _ui.OpenUi(apc.Owner, APCSelectHardpointUI.Key, args.User);
@@ -47,7 +48,7 @@ public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
         if (HasComp<XenoComponent>(args.User))
             return;
 
-        if (!TryGetAPC(loader.Owner, out var apc))
+        if (!_apc.TryGetAPC(loader.Owner, out var apc))
             return;
 
         if (!HasComp<APCGunMagazineComponent>(args.Used))
@@ -71,22 +72,5 @@ public sealed partial class SharedAPCWeaponLoaderSystem : EntitySystem
 
         var ev = new APCGunReloadEvent(args.Entity);
         RaiseLocalEvent(hardpoint, ref ev);
-    }
-
-    private bool TryGetAPC(EntityUid loader, out Entity<APCEntityComponent> apc)
-    {
-        apc = default;
-
-        if (!TryComp<TransformComponent>(loader, out var xform) ||
-            !TryComp<APCEntityGridComponent>(xform.GridUid, out var apcGrid) ||
-            !TryGetEntity(apcGrid.APC, out var apcUid) ||
-            apcUid is not { } uid ||
-            !TryComp<APCEntityComponent>(uid, out var apcComp))
-        {
-            return false;
-        }
-
-        apc = (uid, apcComp);
-        return true;
     }
 }
