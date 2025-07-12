@@ -5,7 +5,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Stories.Attachables;
 
 [DataDefinition, Serializable, NetSerializable]
-public partial struct APCAttachableSlot()
+public partial struct VehicleAttachableSlot()
 {
     [DataField]
     public bool Locked;

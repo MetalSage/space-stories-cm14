@@ -4,8 +4,8 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Stories.APC;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class APCGunMagazineComponent : Component
+public sealed partial class VehiclePilotComponent : Component
 {
-    [DataField(required: true), AutoNetworkedField]
-    public EntProtoId Prototype;
+    [DataField, AutoNetworkedField]
+    public EntityUid? Vehicle;
 }

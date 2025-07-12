@@ -14,7 +14,7 @@ using Robust.Shared.Map;
 
 namespace Content.Shared._Stories.Attachables;
 
-public sealed class APCAttachableHolderSystem : EntitySystem
+public sealed class VehicleAttachableHolderSystem : EntitySystem
 {
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -25,18 +25,18 @@ public sealed class APCAttachableHolderSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<APCAttachableHolderComponent, APCAttachableAttachDoAfterEvent>(OnAttachDoAfter);
-        SubscribeLocalEvent<APCAttachableHolderComponent, APCAttachableDetachDoAfterEvent>(OnDetachDoAfter);
-        SubscribeLocalEvent<APCAttachableHolderComponent, APCAttachableHolderAttachToSlotMessage>(OnAttachableHolderAttachToSlotMessage);
-        SubscribeLocalEvent<APCAttachableHolderComponent, APCAttachableHolderDetachMessage>(OnAttachableHolderDetachMessage);
-        SubscribeLocalEvent<APCAttachableHolderComponent, EntInsertedIntoContainerMessage>(OnAttached);
-        SubscribeLocalEvent<APCAttachableHolderComponent, MapInitEvent>(OnHolderMapInit,
+        SubscribeLocalEvent<VehicleAttachableHolderComponent, VehicleAttachableAttachDoAfterEvent>(OnAttachDoAfter);
+        SubscribeLocalEvent<VehicleAttachableHolderComponent, VehicleAttachableDetachDoAfterEvent>(OnDetachDoAfter);
+        SubscribeLocalEvent<VehicleAttachableHolderComponent, VehicleAttachableHolderAttachToSlotMessage>(OnAttachableHolderAttachToSlotMessage);
+        SubscribeLocalEvent<VehicleAttachableHolderComponent, VehicleAttachableHolderDetachMessage>(OnAttachableHolderDetachMessage);
+        SubscribeLocalEvent<VehicleAttachableHolderComponent, EntInsertedIntoContainerMessage>(OnAttached);
+        SubscribeLocalEvent<VehicleAttachableHolderComponent, MapInitEvent>(OnHolderMapInit,
             after: new[] { typeof(ContainerFillSystem) });
-        SubscribeLocalEvent<APCAttachableHolderComponent, InteractUsingEvent>(OnAttachableHolderInteractUsing);
-        SubscribeLocalEvent<APCAttachableHolderComponent, BoundUIOpenedEvent>(OnAttachableHolderUiOpened);
+        SubscribeLocalEvent<VehicleAttachableHolderComponent, InteractUsingEvent>(OnAttachableHolderInteractUsing);
+        SubscribeLocalEvent<VehicleAttachableHolderComponent, BoundUIOpenedEvent>(OnAttachableHolderUiOpened);
     }
 
-    private void OnHolderMapInit(Entity<APCAttachableHolderComponent> holder, ref MapInitEvent args)
+    private void OnHolderMapInit(Entity<VehicleAttachableHolderComponent> holder, ref MapInitEvent args)
     {
         var xform = Transform(holder.Owner);
         var coords = new EntityCoordinates(holder.Owner, Vector2.Zero);
@@ -60,7 +60,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         Dirty(holder);
     }
 
-    private void OnAttachableHolderInteractUsing(Entity<APCAttachableHolderComponent> holder, ref InteractUsingEvent args)
+    private void OnAttachableHolderInteractUsing(Entity<VehicleAttachableHolderComponent> holder, ref InteractUsingEvent args)
     {
         if (HasComp<XenoComponent>(args.User))
             return;
@@ -74,22 +74,22 @@ public sealed class APCAttachableHolderSystem : EntitySystem
 
         if (HasComp<PryingComponent>(args.Used))
         {
-            _ui.OpenUi(holder.Owner, APCAttachmentUI.StripKey, args.User);
+            _ui.OpenUi(holder.Owner, VehicleAttachmentUI.StripKey, args.User);
             args.Handled = true;
             return;
         }
     }
 
     private void OnAttachableHolderDetachMessage(EntityUid holderUid,
-        APCAttachableHolderComponent holderComponent,
-        APCAttachableHolderDetachMessage args)
+        VehicleAttachableHolderComponent holderComponent,
+        VehicleAttachableHolderDetachMessage args)
     {
         StartDetach((holderUid, holderComponent), args.Slot, args.Actor);
     }
 
     private void OnAttachableHolderAttachToSlotMessage(EntityUid holderUid,
-        APCAttachableHolderComponent holderComponent,
-        APCAttachableHolderAttachToSlotMessage args)
+        VehicleAttachableHolderComponent holderComponent,
+        VehicleAttachableHolderAttachToSlotMessage args)
     {
         if (!TryComp<HandsComponent>(args.Actor, out var handsComponent))
             return;
@@ -102,7 +102,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         StartAttach((holderUid, holderComponent), attachableUid.Value, args.Actor, args.Slot);
     }
 
-    public void StartAttach(Entity<APCAttachableHolderComponent> holder,
+    public void StartAttach(Entity<VehicleAttachableHolderComponent> holder,
         EntityUid attachableUid,
         EntityUid userUid,
         string slotId = "")
@@ -123,8 +123,8 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         _doAfter.TryStartDoAfter(new DoAfterArgs(
             EntityManager,
             userUid,
-            Comp<APCAttachableComponent>(attachableUid).AttachDoAfter,
-            new APCAttachableAttachDoAfterEvent(slotId),
+            Comp<VehicleAttachableComponent>(attachableUid).AttachDoAfter,
+            new VehicleAttachableAttachDoAfterEvent(slotId),
             holder,
             target: holder.Owner,
             used: attachableUid)
@@ -134,7 +134,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         });
     }
 
-    private void OnAttachDoAfter(EntityUid uid, APCAttachableHolderComponent component, APCAttachableAttachDoAfterEvent args)
+    private void OnAttachDoAfter(EntityUid uid, VehicleAttachableHolderComponent component, VehicleAttachableAttachDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
@@ -142,15 +142,15 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         if (args.Target is not { } target || args.Used is not { } used)
             return;
 
-        if (!TryComp<APCAttachableHolderComponent>(args.Target, out var holder) ||
-            !HasComp<APCAttachableComponent>(args.Used))
+        if (!TryComp<VehicleAttachableHolderComponent>(args.Target, out var holder) ||
+            !HasComp<VehicleAttachableComponent>(args.Used))
             return;
 
         if (Attach((target, holder), used, args.User, args.SlotId))
             args.Handled = true;
     }
 
-    public bool Attach(Entity<APCAttachableHolderComponent> holder,
+    public bool Attach(Entity<VehicleAttachableHolderComponent> holder,
         EntityUid attachableUid,
         EntityUid userUid,
         string slotId = "")
@@ -169,30 +169,30 @@ public sealed class APCAttachableHolderSystem : EntitySystem
 
         Dirty(holder);
 
-        _audio.PlayPredicted(Comp<APCAttachableComponent>(attachableUid).AttachSound,
+        _audio.PlayPredicted(Comp<VehicleAttachableComponent>(attachableUid).AttachSound,
             holder,
             userUid);
 
         return true;
     }
 
-    private void OnAttached(Entity<APCAttachableHolderComponent> holder, ref EntInsertedIntoContainerMessage args)
+    private void OnAttached(Entity<VehicleAttachableHolderComponent> holder, ref EntInsertedIntoContainerMessage args)
     {
-        if (!HasComp<APCAttachableComponent>(args.Entity) || !holder.Comp.Slots.ContainsKey(args.Container.ID))
+        if (!HasComp<VehicleAttachableComponent>(args.Entity) || !holder.Comp.Slots.ContainsKey(args.Container.ID))
             return;
 
         UpdateStripUi(holder.Owner, holder.Comp);
 
-        var ev = new APCAttachableAlteredEvent(holder.Owner, APCAttachableAlteredType.Attached);
+        var ev = new VehicleAttachableAlteredEvent(holder.Owner, VehicleAttachableAlteredType.Attached);
         RaiseLocalEvent(args.Entity, ref ev);
 
-        var holderEv = new APCAttachableHolderAttachablesAlteredEvent(args.Entity, args.Container.ID,
-        APCAttachableAlteredType.Attached);
+        var holderEv = new VehicleAttachableHolderAttachablesAlteredEvent(args.Entity, args.Container.ID,
+        VehicleAttachableAlteredType.Attached);
         RaiseLocalEvent(holder, ref holderEv);
     }
 
     //Detaching
-    public void StartDetach(Entity<APCAttachableHolderComponent> holder, string slotId, EntityUid userUid)
+    public void StartDetach(Entity<VehicleAttachableHolderComponent> holder, string slotId, EntityUid userUid)
     {
         if (TryGetAttachable(holder, slotId, out var attachable) && holder.Comp.Slots.ContainsKey(slotId) &&
         !holder.Comp.Slots[slotId].Locked)
@@ -201,17 +201,17 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         }
     }
 
-    public void StartDetach(Entity<APCAttachableHolderComponent> holder, EntityUid attachableUid, EntityUid userUid)
+    public void StartDetach(Entity<VehicleAttachableHolderComponent> holder, EntityUid attachableUid, EntityUid userUid)
     {
         if (HasComp<XenoComponent>(userUid))
             return;
 
-        var delay = Comp<APCAttachableComponent>(attachableUid).AttachDoAfter;
+        var delay = Comp<VehicleAttachableComponent>(attachableUid).AttachDoAfter;
         var args = new DoAfterArgs(
             EntityManager,
             userUid,
             delay,
-            new APCAttachableDetachDoAfterEvent(),
+            new VehicleAttachableDetachDoAfterEvent(),
             holder,
             holder.Owner,
             attachableUid)
@@ -223,12 +223,12 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         _doAfter.TryStartDoAfter(args);
     }
 
-    private void OnDetachDoAfter(EntityUid uid, APCAttachableHolderComponent component, APCAttachableDetachDoAfterEvent args)
+    private void OnDetachDoAfter(EntityUid uid, VehicleAttachableHolderComponent component, VehicleAttachableDetachDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || args.Target == null || args.Used == null)
             return;
 
-        if (!TryComp<APCAttachableHolderComponent>(args.Target, out var holderComponent) || !HasComp<APCAttachableComponent>(args.Used))
+        if (!TryComp<VehicleAttachableHolderComponent>(args.Target, out var holderComponent) || !HasComp<VehicleAttachableComponent>(args.Used))
             return;
 
         if (!Detach((args.Target.Value, holderComponent), args.Used.Value, args.User))
@@ -237,7 +237,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         args.Handled = true;
     }
 
-    public bool Detach(Entity<APCAttachableHolderComponent> holder,
+    public bool Detach(Entity<VehicleAttachableHolderComponent> holder,
         EntityUid attachableUid,
         EntityUid userUid,
         string? slotId = null)
@@ -258,13 +258,13 @@ public sealed class APCAttachableHolderSystem : EntitySystem
             return false;
 
         UpdateStripUi(holder.Owner, holder.Comp);
-        var ev = new APCAttachableAlteredEvent(holder.Owner, APCAttachableAlteredType.Detached, userUid);
+        var ev = new VehicleAttachableAlteredEvent(holder.Owner, VehicleAttachableAlteredType.Detached, userUid);
         RaiseLocalEvent(attachableUid, ref ev);
 
-        var holderEv = new APCAttachableHolderAttachablesAlteredEvent(attachableUid, slotId, APCAttachableAlteredType.Detached);
+        var holderEv = new VehicleAttachableHolderAttachablesAlteredEvent(attachableUid, slotId, VehicleAttachableAlteredType.Detached);
         RaiseLocalEvent(holder.Owner, ref holderEv);
 
-        _audio.PlayPredicted(Comp<APCAttachableComponent>(attachableUid).DetachSound,
+        _audio.PlayPredicted(Comp<VehicleAttachableComponent>(attachableUid).DetachSound,
             holder,
             userUid);
 
@@ -274,15 +274,15 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         return true;
     }
 
-    private bool CanAttach(Entity<APCAttachableHolderComponent> holder, EntityUid attachableUid)
+    private bool CanAttach(Entity<VehicleAttachableHolderComponent> holder, EntityUid attachableUid)
     {
         var slotId = "";
         return CanAttach(holder, attachableUid, ref slotId);
     }
 
-    private bool CanAttach(Entity<APCAttachableHolderComponent> holder, EntityUid attachableUid, ref string slotId)
+    private bool CanAttach(Entity<VehicleAttachableHolderComponent> holder, EntityUid attachableUid, ref string slotId)
     {
-        if (!HasComp<APCAttachableComponent>(attachableUid))
+        if (!HasComp<VehicleAttachableComponent>(attachableUid))
             return false;
 
         if (!string.IsNullOrWhiteSpace(slotId))
@@ -300,9 +300,9 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         return false;
     }
 
-    public bool TryGetAttachable(Entity<APCAttachableHolderComponent> holder,
+    public bool TryGetAttachable(Entity<VehicleAttachableHolderComponent> holder,
         string slotId,
-        out Entity<APCAttachableComponent> attachable)
+        out Entity<VehicleAttachableComponent> attachable)
     {
         attachable = default;
 
@@ -310,14 +310,14 @@ public sealed class APCAttachableHolderSystem : EntitySystem
             return false;
 
         var ent = container.ContainedEntities[0];
-        if (!TryComp<APCAttachableComponent>(ent, out var attachableComp))
+        if (!TryComp<VehicleAttachableComponent>(ent, out var attachableComp))
             return false;
 
         attachable = (ent, attachableComp);
         return true;
     }
 
-    private void EnsureSlots(Entity<APCAttachableHolderComponent> holder)
+    private void EnsureSlots(Entity<VehicleAttachableHolderComponent> holder)
     {
         foreach (var slotId in holder.Comp.Slots.Keys)
         {
@@ -326,11 +326,11 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         }
     }
 
-    private List<string> GetValidSlots(Entity<APCAttachableHolderComponent> holder, EntityUid attachableUid, bool ignoreLock = false)
+    private List<string> GetValidSlots(Entity<VehicleAttachableHolderComponent> holder, EntityUid attachableUid, bool ignoreLock = false)
     {
         var list = new List<string>();
 
-        if (!HasComp<APCAttachableComponent>(attachableUid))
+        if (!HasComp<VehicleAttachableComponent>(attachableUid))
             return list;
 
         foreach (var slotId in holder.Comp.Slots.Keys)
@@ -346,8 +346,8 @@ public sealed class APCAttachableHolderSystem : EntitySystem
     {
         slotId = null;
 
-        if (!TryComp<APCAttachableHolderComponent>(holderUid, out var holderComponent) ||
-            !TryComp<APCAttachableComponent>(attachableUid, out _))
+        if (!TryComp<VehicleAttachableHolderComponent>(holderUid, out var holderComponent) ||
+            !TryComp<VehicleAttachableComponent>(attachableUid, out _))
         {
             return false;
         }
@@ -367,11 +367,11 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         return false;
     }
 
-    public bool HasSlot(Entity<APCAttachableHolderComponent?> holder, string slotId)
+    public bool HasSlot(Entity<VehicleAttachableHolderComponent?> holder, string slotId)
     {
         if (holder.Comp == null)
         {
-            if (!TryComp<APCAttachableHolderComponent>(holder.Owner, out var holderComponent))
+            if (!TryComp<VehicleAttachableHolderComponent>(holder.Owner, out var holderComponent))
                 return false;
 
             holder.Comp = holderComponent;
@@ -384,7 +384,7 @@ public sealed class APCAttachableHolderSystem : EntitySystem
     {
         if (!TryComp<TransformComponent>(attachable, out var transformComponent) ||
             !transformComponent.ParentUid.Valid ||
-            !HasComp<APCAttachableHolderComponent>(transformComponent.ParentUid))
+            !HasComp<VehicleAttachableHolderComponent>(transformComponent.ParentUid))
         {
             holderUid = null;
             return false;
@@ -408,26 +408,26 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         return true;
     }
 
-    private void AlterAllAttachables(Entity<APCAttachableHolderComponent> holder, APCAttachableAlteredType alteration)
+    private void AlterAllAttachables(Entity<VehicleAttachableHolderComponent> holder, VehicleAttachableAlteredType alteration)
     {
         foreach (var slotId in holder.Comp.Slots.Keys)
         {
             if (!_container.TryGetContainer(holder, slotId, out var container) || container.Count <= 0)
                 continue;
 
-            var ev = new APCAttachableAlteredEvent(holder.Owner, alteration);
+            var ev = new VehicleAttachableAlteredEvent(holder.Owner, alteration);
             RaiseLocalEvent(container.ContainedEntities[0], ref ev);
         }
     }
 
     private void OnAttachableHolderUiOpened(EntityUid holderUid,
-        APCAttachableHolderComponent holderComponent,
+        VehicleAttachableHolderComponent holderComponent,
         BoundUIOpenedEvent args)
     {
         UpdateStripUi(holderUid);
     }
 
-    private Dictionary<string, (string?, bool, string?, string?)> GetSlotsForStripUi(Entity<APCAttachableHolderComponent> holder)
+    private Dictionary<string, (string?, bool, string?, string?)> GetSlotsForStripUi(Entity<VehicleAttachableHolderComponent> holder)
     {
         var result = new Dictionary<string, (string?, bool, string?, string?)>();
         var metaQuery = GetEntityQuery<MetaDataComponent>();
@@ -448,14 +448,14 @@ public sealed class APCAttachableHolderSystem : EntitySystem
         return result;
     }
 
-    private void UpdateStripUi(EntityUid holderUid, APCAttachableHolderComponent? holderComponent = null)
+    private void UpdateStripUi(EntityUid holderUid, VehicleAttachableHolderComponent? holderComponent = null)
     {
         if (!Resolve(holderUid, ref holderComponent))
             return;
 
         var state =
-            new APCAttachableHolderStripUserInterfaceState(GetSlotsForStripUi((holderUid, holderComponent)));
-        _ui.SetUiState(holderUid, APCAttachmentUI.StripKey, state);
+            new VehicleAttachableHolderStripUserInterfaceState(GetSlotsForStripUi((holderUid, holderComponent)));
+        _ui.SetUiState(holderUid, VehicleAttachmentUI.StripKey, state);
     }
 
 }

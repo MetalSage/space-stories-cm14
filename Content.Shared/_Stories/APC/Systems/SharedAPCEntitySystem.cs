@@ -42,29 +42,7 @@ public sealed partial class SharedAPCEntitySystem : EntitySystem
         InitializeController();
     }
 
-    private void OnRefreshMovementSpeedModifiers(Entity<APCEntityComponent> apc, ref RefreshMovementSpeedModifiersEvent args)
-    {
-        if (!TryComp<APCAttachableHolderComponent>(apc, out var holderComp) ||
-            !holderComp.Slots.ContainsKey(apc.Comp.MovementSlot))
-        {
-            args.ModifySpeed(0f, 0f);
-            return;
-        }
-
-        var holder = (apc.Owner, holderComp);
-
-        if (_attachableHolder.TryGetAttachable(holder, apc.Comp.MovementSlot, out var attachable) &&
-            TryComp<APCMovementAttachableComponent>(attachable, out var attachableMovement))
-        {
-            args.ModifySpeed(attachableMovement.WalkSpeed, attachableMovement.SprintSpeed);
-            return;
-        }
-
-        args.ModifySpeed(0f, 0f);
-
-    }
-
-    private void OnAPCHardpointsMenuAction(Entity<APCGunnerComponent> gunner, ref APCHardpointsMenuActionEvent args)
+    private void OnVehicleHardpointsMenuAction(Entity<APCGunnerComponent> gunner, ref APCHardpointsMenuActionEvent args)
     {
         if (gunner.Comp.APC is not { } apc)
             return;

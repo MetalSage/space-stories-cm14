@@ -4,6 +4,13 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Stories.APC;
 
+[Serializable, NetSerializable]
+public enum VehicleAttachableVisualLayers : byte
+{
+    Base, 
+    Destroyed
+}
+
 public sealed partial class VehicleHardpointsMenuActionEvent : InstantActionEvent;
 
 [ByRefEvent]

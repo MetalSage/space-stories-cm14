@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Stories.APC;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class BallisticAPCAmmoProviderComponent : AmmoProviderComponent
+public sealed partial class BallisticVehicleAmmoProviderComponent : AmmoProviderComponent
 {
     [DataField(required: true)]
     public EntProtoId Prototype;

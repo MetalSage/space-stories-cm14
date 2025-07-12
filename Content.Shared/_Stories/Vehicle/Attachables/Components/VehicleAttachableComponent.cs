@@ -5,8 +5,8 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Stories.Attachables;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(APCAttachableHolderSystem))]
-public sealed partial class APCAttachableComponent : Component
+[Access(typeof(VehicleAttachableHolderSystem))]
+public sealed partial class VehicleAttachableComponent : Component
 {
     [DataField, AutoNetworkedField]
     public float AttachDoAfter = 1.5f;
