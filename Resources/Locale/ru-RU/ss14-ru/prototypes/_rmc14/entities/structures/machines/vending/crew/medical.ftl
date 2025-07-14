@@ -1,2 +1,2 @@
-ent-ColMarTechCrewMedicalEquipment = КолМорТех стойка медицинского оборудовния
+ent-ColMarTechCrewMedicalEquipment = КолМорТех стойка медицинского снаряжения
     .desc = Поставщик автоматизированного оборудования для медицинского отдела.
