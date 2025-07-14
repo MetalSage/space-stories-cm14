@@ -11295,7 +11295,7 @@ entities:
   - uid: 1588
     components:
     - type: MetaData
-      name: Высшее Командование КМП США
+      name: Верховное Командование КМП США
     - type: Transform
       pos: 10.252311,-11.228197
       parent: 1

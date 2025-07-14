@@ -1,4 +1,4 @@
-chat-radio-marine-highcommand = Высшее командование КСМ США
+chat-radio-marine-highcommand = ВерхКом
 chat-radio-marine-common = Алмайер
 chat-radio-marine-command = Командование
 chat-radio-marine-medical = Медицина
