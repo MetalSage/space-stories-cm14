@@ -1,4 +1,4 @@
-ent-RMCSpawnerEvacuationPodSouth = спаунер спасательных капсул
+ent-RMCSpawnerEvacuationPodSouth = спавнер спасательных капсул
     .desc = Определяет место, в котором должна появиться эвакуационная капсула.
     .suffix = Юг
 ent-RMCSpawnerEvacuationPodEast = { ent-RMCSpawnerEvacuationPodSouth }

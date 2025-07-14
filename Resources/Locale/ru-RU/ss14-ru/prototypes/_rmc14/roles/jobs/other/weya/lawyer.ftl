@@ -1,3 +1,3 @@
-ent-RMCRandomHumanoidWeYaLawyer = призрачная роль юриста ВеЯ
+ent-RMCRandomHumanoidWeYaLawyer = роль призрака юрист ВеЯ
     .suffix = Спавнер, Игрок
     .desc = { ent-MarkerBase.desc }

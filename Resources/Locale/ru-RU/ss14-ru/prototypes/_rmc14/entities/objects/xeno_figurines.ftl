@@ -1,6 +1,6 @@
 ent-RMCBaseFigurineXeno = { ent-RMCBaseFigurinePatron }
     .desc = { ent-RMCBaseFigurinePatron.desc }
-ent-RMCSpawnerFigurineXeno = спаунер фигурок ксено
+ent-RMCSpawnerFigurineXeno = спавнер фигурок ксено
     .desc = { ent-MarkerBase.desc }
 ent-RMCFigurineXenoXippy = Фигурка Ксиппи
     .desc = Всегда поможет нуждающимся сестрам.

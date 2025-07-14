@@ -1,4 +1,4 @@
-ent-RMCRandomHumanoidMarineRaider = призрачная роль морпеха-рейдера
+ent-RMCRandomHumanoidMarineRaider = роль призрака морпеха-рейдера
     .suffix = Роль
     .desc = { "" }
 ent-RMCDogtagMarineRaider = жетон морпеха-рейдера

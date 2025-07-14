@@ -1,11 +1,11 @@
 ent-RMCHeadCapBureau = шапка бюро
     .desc = Темная шапочка с мощными буквами "MARSHAL", олицетворяющими правосудие, власть и защиту во внешнем кольце. Законы Земли простираются за пределы Сола.
-ent-RMCHeadBeretProvost = Берет проректора КМП США
+ent-RMCHeadBeretProvost = берет провоста КМП США
     .desc = Берет с эмблемой военной полиции КМП США.
-ent-RMCHeadBeretProvostSenior = Берет старшего проректораКМП США
+ent-RMCHeadBeretProvostSenior = берет старшего провоста КМП США
     .desc = { ent-RMCHeadBeretProvost.desc }
-ent-RMCArmorCapProvost = фуражка маршала-провокатора
-    .desc = Дорогой головной убор маршала-провокатора. Содержит осколки кевлара для сохранности ценного содержимого.
+ent-RMCArmorCapProvost = фуражка провост маршала
+    .desc = Дорогой головной убор провост маршала. Содержит осколки кевлара для сохранности ценного содержимого.
 ent-RMCHeadBeretAgent = берет специального агента
     .desc = Берет с эмблемой спецслужб.
 ent-RMCHeadBeretAgentIvan = чёрный берет
