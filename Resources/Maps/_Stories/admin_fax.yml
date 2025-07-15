@@ -11243,7 +11243,7 @@ entities:
   - uid: 1584
     components:
     - type: MetaData
-      name: Офис Империи Трёх Миров
+      name: Офис Империи Трёх Солнц
     - type: Transform
       pos: 25.392475,-23.405437
       parent: 1
