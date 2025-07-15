@@ -12,5 +12,5 @@ ent-ColMarTechUtilities = КолМорТех Поставщик Припасов
 ent-RMCColMarTechUtilitiesPVE = { ent-ColMarTechUtilities }
     .suffix = PVE
     .desc = { ent-ColMarTechUtilities.desc }
-ent-CMVendorAttachments = Aegis Armaments Поставщик Навесного Оборудования
+ent-CMVendorAttachments = Вооружение Эгида Поставщик Навесного Оборудования
     .desc = Автоматизированная стойка с припасами, подключенная к небольшому хранилищу оружейных принадлежностей. Доступ к ней может получить любой морпех.

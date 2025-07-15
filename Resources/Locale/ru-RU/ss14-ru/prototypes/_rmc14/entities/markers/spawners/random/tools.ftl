@@ -1,8 +1,8 @@
-ent-RMCSpawnerRandomTools = случайный Спавнер инструментов
+ent-RMCSpawnerRandomTools = случайный спавнер инструментов
     .desc = { ent-MarkerBase.desc }
-ent-RMCSpawnerRandomToolbox = случайный Спавнер ящика с инструментами
+ent-RMCSpawnerRandomToolbox = случайный спавнер ящика с инструментами
     .desc = Это случайный набор инструментов.
-ent-RMCSpawnerRandomPowercell = случайный Спавнер батареек
+ent-RMCSpawnerRandomPowercell = случайный спавнер батареек
     .desc = Это случайный элемент питания.
-ent-RMCSpawnerRandomTechSupply = случайный Спавнер технических средств
+ent-RMCSpawnerRandomTechSupply = случайный спавнер технических средств
     .desc = Это случайная часть технологических принадлежностей.
