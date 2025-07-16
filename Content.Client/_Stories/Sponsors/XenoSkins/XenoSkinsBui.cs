@@ -1,6 +1,7 @@
-﻿using Content.Client.Message;
+using Content.Client.Message;
 using Content.Client.Stylesheets;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._RMC14.Xenonids.Strain;
 using Content.Shared._Stories.Sponsors.XenoSkins;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -123,17 +124,21 @@ public sealed class XenoSkinsBui : BoundUserInterface
         bool hasValidSkins = false;
         _window.SkinsContainer.DisposeAllChildren();
 
+        bool isStrain = EntMan.HasComponent<XenoStrainComponent>(Owner);
         foreach (var skinId in xenoSkins.Skins)
         {
-            if (!_prototype.TryIndex(skinId, out var skinProto) || 
+            if (!_prototype.TryIndex(skinId, out XenoSkinsPrototype? skinProto) || 
                 !EntMan.TryGetComponent(Owner, out MetaDataComponent? meta))
                 continue;
 
-            if (skinProto.IsStrain && (skinProto.StrainId is not { } strainId || meta.EntityPrototype?.ID != strainId))
+            if (skinProto.Xeno != xeno.Role.Id)
                 continue;
 
-            if (!skinProto.IsStrain && meta.EntityPrototype?.ID != xeno.Role.Id)
+            if ((skinProto.IsStrain && (skinProto.StrainId is null || meta.EntityPrototype?.ID != skinProto.StrainId))
+                || (!skinProto.IsStrain && isStrain))
+            {
                 continue;
+            }
 
             AddSkinButtonToList(xenoSkins, skinId, skinProto);
             hasValidSkins = true;
