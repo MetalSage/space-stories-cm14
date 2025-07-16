@@ -6,8 +6,8 @@
 
 - type: rank
   id: RMCRankMasterGunnerySergeant
-  name: Старший Комендор-Сержант
-  prefix: Ст. Ком-Серж.
+  name: Мастер Комендор-Сержант
+  prefix: Мст. Ком-Серж.
   paygrade: E9
 
 - type: rank
