@@ -29,8 +29,8 @@
 # Факс Респондер
 - type: rank
   id: RMCRankProvostCommunicationsOfficer
-  name: Communications Officer
-  prefix: ComOff.
+  name: Офицер Коммуникаций
+  prefix: КомОфф.
 
 # Любой игрок с высоким пониманием закона
 - type: rank
