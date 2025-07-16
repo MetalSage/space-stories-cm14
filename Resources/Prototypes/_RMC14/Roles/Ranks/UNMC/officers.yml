@@ -36,12 +36,12 @@
 
 - type: rank
   id: RMCRankFirstLT
-  name: Старший Лейтенант
-  prefix: Ст. Лейт.
+  name: Первый Лейтенант
+  prefix: 1ый. Лейт.
   paygrade: O2
 
 - type: rank
   id: RMCRankSecondLT
-  name: Младший Лейтенант
-  prefix: Мл. Лейт.
+  name: Второй Лейтенант
+  prefix: 2ой. Лейт.
   paygrade: O1
