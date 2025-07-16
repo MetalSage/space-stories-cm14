@@ -83,7 +83,7 @@
 - type: rank
   id: RMCRankSPPPoliticalCommissar
   name: Полит. Комиссар
-  prefix: Pol.
+  prefix: Пол.
   # This is a civilian rank, so it doesn't have a paygrade
 
 - type: rank
