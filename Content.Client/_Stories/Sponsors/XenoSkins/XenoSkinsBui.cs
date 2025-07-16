@@ -127,7 +127,7 @@ public sealed class XenoSkinsBui : BoundUserInterface
         bool isStrain = EntMan.HasComponent<XenoStrainComponent>(Owner);
         foreach (var skinId in xenoSkins.Skins)
         {
-            if (!_prototype.TryIndex(skinId, out XenoSkinsPrototype? skinProto) || 
+            if (!_prototype.TryIndex<XenoSkinsPrototype>(skinId, out var skinProto) || 
                 !EntMan.TryGetComponent(Owner, out MetaDataComponent? meta))
                 continue;
 
