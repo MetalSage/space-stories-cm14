@@ -77,7 +77,7 @@ public sealed class SCCVars
     /// Enable a radio effect for TTS messages sent over radio channels.
     /// </summary>
     public static readonly CVarDef<bool> TTSRadioEffect =
-        CVarDef.Create("scc.tts.radio_effect_enabled", true, CVar.SERVERONLY | CVar.REPLICATED);
+        CVarDef.Create("scc.tts.radio_effect_enabled", true, CVar.SERVERONLY);
 
     /// <summary>
     /// The path to the FFmpeg executable for audio processing.
