@@ -1,25 +1,22 @@
 ﻿<Document>
-  # Типы банов
+  # Ban Types
 
-  Баны можно обжаловать на сервере Discord в разделе апелляций на бан.
+  Bans can be appealed on the discord in the ban appeals section.
 
-  ## Бан роли
-  Также называется "бан на работу", этот бан не позволяет вашему персонажу присоединяться к раунду или поздно присоединяться к нему в качестве одной или нескольких профессий или ролей. Они часто используются в ответ на проблемное поведение в определенных отделах или для решения проблемы грубой неопытности на важных ролях, таких как главы отделов. Эти баны механически не препятствуют вам переключиться на эту роль во время раунда или действовать в качестве этой роли, но это считается уклонением от бана.
+  ## Role Ban
+  Also called a "job ban", this ban prevents your character from joining or late-joining a round as one or more jobs or roles. These are often used in response to problematic behavior in particular departments or address gross inexperience in important roles such as heads of staff. These bans do not mechanically prevent you from switching to the role during a round or acting as that role, but doing so is considered ban evasion.
 
-  ## Игровой бан
-  Также называется "бан сервера", этот бан не позволяет вам подключаться ко всем серверам RMC14.
+  ## Game Ban
+  Also called a "server ban", this ban prevents you from connecting to all RMC14 servers.
 
-  # Длительность банов
+  # Ban Durations
 
-  ## Временный
-  Временные баны снимаются автоматически через определенное время. Если это игровой бан, он сообщит вам, сколько времени осталось, когда вы попытаетесь подключиться.
+  ## Temporary
+  Temporary bans will be lifted automatically after a certain amount of time. If they are a game ban, they will tell you how much time is remaining when you try to connect.
 
-  ## Бессрочный
-  Эти баны будут сняты только после успешной апелляции на форумах. Любой бан, который не сообщает вам, когда он истекает, и не указывает иное, можно считать бессрочным.
+  ## Indefinite
+  These bans will only be removed on a successful appeal on the forums. Any ban which doesn't tell you when it expires and doesn't specify otherwise can be presumed to be an indefinite ban.
 
-  ## Ваучерный
-  Это бессрочный бан, который может быть обжалован только при успешной апелляции и требует ваучер хорошего поведения от административной команды известного или, по крайней мере, достаточно активного сервера SS13/SS14, чтобы апелляция была рассмотрена. Ваучерные баны обычно нельзя обжаловать в течение как минимум шести месяцев после их выдачи. Без ваучера игрок может попытаться обжаловать ваучерный бан только один раз и только в том случае, если бан был наложен необоснованно. Ваучерные баны обычно накладываются только в результате неуспешной апелляции бессрочного игрового бана игроками с историей банов и создания проблем.
-
-  ## Постоянный
-  Этот бан можно обжаловать только в том случае, если бан был наложен необоснованно, в том числе если бан не должен был быть постоянным. Если результатом апелляции является то, что бан был наложен обоснованно, бан не может быть обжалован снова и не будет снят. Эти баны крайне редки, но применяются к игрокам, которые постоянно создают проблемы даже после ваучерного бана, или к пользователям, чье поведение совершенно неприемлемо и которые могут быть удалены навсегда.
+  ## Permanent
+  This is a ban that can only be appealed if the ban was inappropriately placed, including if the ban should not have been permanent. If the result of the appeal is that the ban was appropriately placed, the ban may not be appealed again and will not be lifted. These bans are extremely rare, but are applied to players who continually cause problems or users who have completely unacceptable behavior may be permanently removed.
 </Document>

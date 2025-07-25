@@ -70,7 +70,7 @@
   - type: Flammable
     damage:
       types:
-        Heat: 0
+        Heat: 1
   - type: Fixtures
     fixtures:
       fix1:
@@ -81,6 +81,7 @@
         mask:
         - MobMask
         - BarbedBarricade
+        - BarricadeImpassable
         layer:
         - MobLayer
       fix2:
@@ -124,6 +125,8 @@
       state: ravager
   - type: FixedIdentity
     name: cm-job-name-xeno-ravager
+  - type: RMCSurgeryXenoHeart
+    item: RMCOrganXenoHeartT3
 
 - type: entity
   parent: RMCXenoRavagerBase
@@ -178,7 +181,7 @@
     thresholds:
       0: Alive
       590: Critical
-      730: Dead
+      690: Dead
   - type: CMArmor
     xenoArmor: 30
     explosionArmor: 80
@@ -215,8 +218,8 @@
     rangeAtRageLevels: [1.5, 1.5, 1.5, 2.5, 2.5]
     windupReductionAtRageLevels: [0, 0.2, 0.4, 0.6, 1]
   - type: XenoFling # TODO RMC14 target head
-    range: 1.15
-    enragedRange: 0.8
+    range: 2
+    enragedRange: 1
     healAmount: 75
     enragedHealAmount: 100
     paralyzeTime: 0

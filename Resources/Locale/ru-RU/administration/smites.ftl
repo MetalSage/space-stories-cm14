@@ -34,7 +34,7 @@ admin-smite-dust-name = В прах
 admin-smite-buffering-name = Буферизация
 admin-smite-become-instrument-name = Сделать инструментом
 admin-smite-remove-gravity-name = Антиграв
-admin-smite-reptilian-species-swap-name = Сделать унатхом
+admin-smite-reptilian-species-swap-name = Сделать рептилией
 admin-smite-locker-stuff-name = Сунуть в шкаф
 admin-smite-headstand-name = Стойка на голове
 admin-smite-become-mouse-name = Сделать мышью
@@ -56,7 +56,7 @@ admin-smite-vomit-organs-name = Рвота органами
 admin-smite-ghostkick-name = Кик втихаря
 admin-smite-nyanify-name = НЯфикация
 admin-smite-kill-sign-name = Знак смерти
-admin-smite-omni-accent-name = Omni-Accent
+admin-smite-omni-accent-name = Омни-акцент
 
 ## Smite descriptions
 
@@ -81,7 +81,7 @@ admin-smite-dust-description = Превращает цель в небольшу
 admin-smite-buffering-description = Вызывает у цели случайный запуск буферизации, замораживая её на короткое время, пока она подгружается.
 admin-smite-become-instrument-description = Превращает цель в суперсинтезатор. И всё.
 admin-smite-remove-gravity-description = Наделяет цель антигравитацией.
-admin-smite-reptilian-species-swap-description = Меняет расу на Унатха. Пригодится для тех, кто ведёт себя как космический расист.
+admin-smite-reptilian-species-swap-description = Меняет вид на Рептилию. Пригодится для тех, кто ведёт себя как космический расист.
 admin-smite-locker-stuff-description = Помещает цель в (заваренный) шкафчик.
 admin-smite-headstand-description = Переворачивает спрайт по вертикали.
 admin-smite-become-mouse-description = Цель станет мышью. Скуик.
@@ -98,9 +98,9 @@ admin-smite-disarm-prone-description = Шанс обезоружить цель 
 admin-smite-garbage-can-description = Превратите цель в мусорку, чтобы подчеркнуть, о чём она вам напоминает.
 admin-trick-unbolt-description = Разболтирует целевой шлюз.
 admin-smite-super-bonk-description = Заставляет цель удариться о каждый стол на станции и за её пределами.
-admin-smite-terminate-description = Создаёт экстерминатора с ролью призрака, с единственной задачей - убить выбранную цель.
+admin-smite-terminate-description = Создаёт экстерминатора с ролью призрака, с единственной задачей — убить выбранную цель.
 admin-smite-super-slip-description = Очень сильно поскальзывает цель.
-admin-smite-omni-accent-description = Makes the target speak with almost every accent available.
+admin-smite-omni-accent-description = Заставляет цель говорить с почти каждым возможным акцентом.
 admin-smite-super-bonk-lite-description = Заставляет цель удариться о каждый стол на станции и за её пределами. Прекращает действовать после смерти цели.
 
 ## Tricks descriptions

@@ -16,27 +16,27 @@
     jobs:
     - CMStaffOfficer
     sections:
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       takeAll: CMStandard
       entries:
       - id: CMBootsBlackFilled
       - id: RMCHeadsetMarineCommand
       - id: CMMRE
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       takeAll: CMUniform
       entries:
       - id: CMJumpsuitBO
-        name: служебная форма
+        name: service uniform
       - id: CMJumpsuitOperations
-        name: оперативная форма
+        name: operations uniform
         recommended: true
-      - id: CMHandsBlackMarine
-    - name: Куртка
+      - id: CMHandsBlackInsulated
+    - name: Jacket
       choices: { CMCoat: 1}
       entries:
       - id: RMCCoatService
         recommended: true
-    - name: Шляпа
+    - name: Hat
       choices: { CMHat: 1 }
       entries:
       - id: RMCHeadBeret
@@ -47,27 +47,39 @@
         recommended: true
       - id: CMHeadCapPeakedService
         recommended: true
-    - name: Личное Оружие
+    - name: Patches
+      entries:
+      - id: RMCPatchFallingFalcons
+      - id: RMCPatchFallingFalconsAlt
+        name: Falling Falcons UN shoulder patch
+      - id: RMCPatchFallingFalconsLarge
+        name: Falling Falcons large chest patch
+      - id: RMCPatchUNMC
+      - id: RMCPatchUnitedNationsSquare
+        name: United Nations flag shoulder patch
+      - id: RMCPatchUnitedNations
+        name: United Nations shoulder patch
+    - name: Personal Sidearm
       choices: { CMWeapon: 1 }
       entries:
       - id: RMCMK80BeltFilled
-        name: пистолет VP78
+        name: MK80 pistol
         recommended: true
       - id: RMCM1984BeltFilled
-        name: пистолет M4A3
+        name: M1984 service pistol
         recommended: true
       - id: CMM77BeltFilled
-        name: пистолет 88 M4
+        name: M77 pistol
         recommended: true
       - id: RMCM44BeltFilled
-        name: револьвер M44
+        name: M44 revolver
         recommended: true
-    - name: Рюкзак
+    - name: Backpack
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpack
       - id: CMSatchel
-    - name: Прочие Принадлежности
+    - name: Other Supplies
       entries:
       - id: RMCBinoculars
         points: 5
@@ -104,7 +116,7 @@
     jobs:
     - CMStaffOfficer
     sections:
-    - name: Боевое Снаряжение
+    - name: Combat Equipment
       takeAll: CMCombatEquipment
       entries:
       - id: RMCArmorM3SO
@@ -114,12 +126,12 @@
       - id: CMMRE
       - id: RMCGlassesAviators
       - id: RMCM5Bayonet
-    - name: Специализированный Набор
+    - name: Specialisation Kit
       takeOne: CMBundle
       entries:
       - id: CMVendorBundleCombatTechnicianEssentials
       - id: CMVendorBundleSquadMedicalEssentials
-    - name: Пояс
+    - name: Belt
       choices: { CMBelt: 1 }
       entries:
       - id: RMCBeltUtilityGeneral
@@ -127,16 +139,16 @@
       - id: CMBeltMarine
         recommended: true
       - id: CMBeltUtilityFilled
-        name: пояс M276 для инструментов (полный)
+        name: M276 pattern toolbelt rig (Full)
       - id: CMBeltMedicBagFilled
-        name: пояс M276 медицинский (полный)
+        name: M276 pattern lifesaver bag (Full)
       - id: CMBeltMedicalFilled
-        name: пояс M276 медицинский (полный)
+        name: M276 medical storage rig (Full)
       - id: RMCBeltHolsterSMGPouch
-      #- id: CMBeltM82F # TODO RMC14 M82F Flare Gun Belt
+      - id: RMCM82FHolsterFilled
       - id: RMCM276ShotgunShellLoadingRig
       - id: RMCBeltGrenade
-    - name: Подсумки
+    - name: Pouches
       choices: { CMPouches: 2 }
       entries:
       - id: RMCPouchAutoinjector
@@ -144,11 +156,11 @@
       #- id: RMCPouchDocuments # TODO RMC14 Documents Pouch
       - id: RMCPouchElectronicsFill
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: first-aid pouch (refillable injectors)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: подсумок первой помощи (таблетки)
+        name: first-aid pouch (pills)
       - id: RMCPouchFirstResponder
       - id: RMCPouchFlareFilled
       - id: RMCPouchFuelTank
@@ -163,23 +175,25 @@
       #- id: RMCPouchSling # TODO RMC14 Sling Pouch
                            # This has a comment saying "implement this", going to leave it commented out.
       - id: RMCPouchToolsFill
-    - name: Аксессуары
+    - name: Accessories
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown
         recommended: true
       - id: CMWebbingBlack
         recommended: true
-      - id: CMWebbingPouch
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
+      - id: RMCWebbingDropPouch
       - id: CMWebbing
       - id: CMWebbingHolster
-    - name: Маска
+    - name: Mask
       choices: { CMMask: 1 }
       entries:
       - id: CMMaskGas
       - id: CMMaskCoif
       - id: RMCMaskRebreather
-    - name: Прочие Принадлежности
+    - name: Other Supplies
       entries:
       - id: RMCVisorWelding
         points: 5
@@ -229,13 +243,13 @@
     jobs:
     - CMExecutiveOfficer
     sections:
-    - name: Основное Для Капитана
+    - name: Captain's Primary
       takeOne: CMPrimary
       entries:
       - id: RMCM54CMK1CaseAP
-        name: штурмовая винтовка M41C MK1
+        name: M54C MK1 assault rifle
       - id: RMCVendorBundleXOShotgun
-    - name: Основные Боеприпасы
+    - name: Primary Ammunition
       entries:
       - id: CMMagazineRifleM54CMK1
         points: 40
@@ -249,12 +263,12 @@
         points: 20
       - id: RMCBoxShotgunFlechette
         points: 20
-    - name: Специализированный Набор
+    - name: Specilisation Kit
       takeOne: CMBundle
       entries:
       - id: CMVendorBundleSquadMedicalEssentials
       - id: CMVendorBundleCombatTechnicianEssentials
-    - name: Взрывчатка
+    - name: Explosives
       entries:
       - id: CMPacketGrenadeHighExplosiveFilled
         points: 15
@@ -262,7 +276,7 @@
         points: 15
       #- id: CMPacketGrenadeWPFilled # TODO RMC14 White Phosphorus (WP) Grenades
       #  points: 15
-    - name: Навесные Обвесы
+    - name: Rail Attachments
       entries:
       - id: RMCAttachmentMagneticHarness
         points: 12
@@ -272,12 +286,12 @@
         points: 15
       - id: RMCAttachmentS42xTelescopicMiniscope
         points: 15
-    # - name: Визоры Для Шлемов # TODO RMC14 Port Helmet Welding Visor
+    # - name: Helmet Visors # TODO RMC14 Port Helmet Welding Visor
     #   entries:
     #   - id: RMCHelmetWeldingVisor
     #     points: 5
     #     recommended: true
-    - name: Подствольные Обвесы
+    - name: Underbarrel Attachments
       entries:
       - id: RMCAttachmentLaserSight
         points: 15
@@ -293,7 +307,7 @@
         points: 15
       - id: RMCAttachmentU1GrenadeLauncher
         points: 5
-    - name: Насадки На Ствол
+    - name: Barrel Attachments
       entries:
       - id: RMCAttachmentExtendedBarrel
         points: 15
@@ -301,11 +315,13 @@
         points: 15
       - id: RMCAttachmentSuppressor
         points: 15
-    - name: Прочие Принадлежности
+    - name: Other Supplies
       entries:
       - id: RMCVisorWelding
         points: 5
       - id: CMHandsInsulated
+        points: 3
+      - id: CMHandsBlackInsulated
         points: 3
       - id: RMCPouchMacheteFilled
         points: 5
@@ -353,7 +369,7 @@
     jobs:
     - CMCommandingOfficer
     sections:
-    - name: Утилиты
+    - name: Utility
       entries:
       - id: CMJumpsuitBO
       - id: CMJumpsuitCO
@@ -364,14 +380,14 @@
       - id: CMBootsBrown
       - id: CMHandsBlackMarine
       - id: CMHandsBrown
-    - name: Дополнительные Утилиты
+    - name: Utility Extras
       entries:
       - id: RMCSunglasses
       - id: RMCSunglassesBig
       - id: RMCGlassesAviators
       - id: RMCGlassesMarineRpg
       - id: RMCGlassesMarineRpgOld
-    - name: Служебное
+    - name: Service
       entries:
       - id: CMJumpsuitCOService
       - id: CMJumpsuitCOFormalWhite
@@ -380,14 +396,14 @@
       - id: CMCoatMP
       - id: RMCShoesLaceup
       - id: RMCShoesLaceupBrown # RMC Addition
-    - name: Служебные Головные Уборы
+    - name: Service Headwear
       entries:
       - id: CMHeadBeretCO
       - id: CMHeadBeretCOWhite
       - id: CMHeadBeretCOBlack
       - id: RMCHeadCapFlippable # TODO: Check this is the service variant. If so, parent and rename.
       - id: CMHeadCapPeakedService
-    - name: Дополнительное Служебное
+    - name: Service Extras
       entries:
       - id: CMCoatCOBomber
     - name: Dress
@@ -395,6 +411,7 @@
       - id: CMCoatDressBluesGeneral
       - id: CMCoatXOFormal
       - id: RMCMarineUniformDressSenior
+      - id: CMHandsWhite
       - id: RMCShoesLaceup
     - name: Dress Headwear
       entries:
@@ -417,7 +434,7 @@
     jobs:
     - CMCommandingOfficer
     sections:
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       takeAll: CMStandard
       entries:
       - id: CMHeadsetSeniorCommand
@@ -425,7 +442,7 @@
     - name: Commanding Officer Essentials Kit
       takeAll: CMBundle
       entries:
-      - id: RMCCommandingOfficerEssentialsBundle # TODO RMC14 Megaphone , Paper Map
+      - id: RMCCommandingOfficerEssentialsBundle # TODO RMC14 Paper Map
     - name: Bags
       choices: { CMBag: 1 }
       entries:
@@ -433,54 +450,58 @@
       #- id: CMSatchelCommandSecure # TODO RMC14 Secure Satchel (ID LOCK)
       - id: RMCBackpackRTO
       - id: CMSatchelMarineIntel
-    - name: Боевое Снаряжение
+      - id: RMCSatchelMarineIntelChestrig
+      - id: RMCSatchelMarineIntelSatchel
+    - name: Combat Equipment
       takeAll: CMCombatEquipment
       entries:
       - id: RMCArmorM3CO
       - id: CMArmorHelmetM11CCO
       - id: RMCHandsDeluxeMarine
       - id: CMBootsBlackFilled
-    - name: Аксессуары
+    - name: Accessories
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown
         recommended: true
       - id: CMWebbingBlack
         recommended: true
-      - id: CMWebbingPouch
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
+      - id: RMCWebbingDropPouch
       - id: CMWebbing
       - id: CMWebbingHolster
-    - name: Худы
+    - name: Huds
       choices: { CMHud: 1 }
       entries:
       - id: RMCGlassesMedicalHUDGlasses
         recommended: true
       - id: CMGlassesSecurity
-    - name: Пояс
+    - name: Belt
       choices: { CMBelt: 1 }
       entries:
       - id: RMCBeltUtilityGeneral
         recommended: true
       - id: CMBeltSecurityMPFilled
-        name: военно-полицейская установка M276 (полная)
+        name: M276 pattern security rig (Full)
       - id: CMBeltMedicalFilled
-        name: пояс M276 медицинский (полный)
-        recommended: true 
+        name: M276 pattern medical storage rig (Full)
+        recommended: true
       - id: CMBeltMedicBagFilled
-        name: пояс M276 медицинский (полный)
+        name: M276 pattern lifesaver bag (Full)
       - id: CMBeltMarine
       - id: CMBeltUtilityCombat
-      #- id: CMBeltM82F # TODO RMC14 M82F Flare Gun Belt
+      - id: RMCM82FHolsterFilled
       - id: RMCM276ShotgunShellLoadingRig
-    - name: Подсумки
+    - name: Pouches
       choices: { CMPouch: 2 }
       entries:
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: first-aid pouch (refillable injectors)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: подсумок первой помощи (таблетки)
+        name: first-aid pouch (pills)
         recommended: true
       - id: RMCPouchMedkit
       - id: RMCPouchAutoinjectorFill
@@ -491,12 +512,25 @@
       - id: RMCPouchPistol
       - id: RMCPouchShotgunLarge
       - id: RMCPouchToolsFill
-    - name: Маска
+    - name: Mask
       choices: { CMMask: 1 }
       entries:
       - id: CMMaskGas
       - id: CMMaskCoif
       - id: RMCMaskRebreather
+    - name: Miscellaneous
+      entries:
+      - id: RMCPatchFallingFalcons
+      - id: RMCPatchFallingFalconsAlt
+        name: Falling Falcons UN shoulder patch
+      - id: RMCPatchFallingFalconsLarge
+        name: Falling Falcons large chest patch
+      - id: RMCPatchUNMC
+      - id: RMCPatchUnitedNationsSquare
+        name: United Nations flag shoulder patch
+      - id: RMCPatchUnitedNations
+        name: United Nations shoulder patch
+
 
 # Weapon Vend
 - type: entity
@@ -514,15 +548,15 @@
     jobs:
     - CMCommandingOfficer
     sections:
-    - name: Основное Командира
+    - name: Commander's Primary
       takeOne: CMProtagGun
       entries:
       - id: WeaponRifleM59A
-        name: Прототип Винтовки M46C
+        name: M59A Prototype Rifle
       - id: CMCOSmartGunOperatorEquipmentCaseBelt
-        name: Умное Оружие Командира
+        name: Commander's Smartgun
         recommended: true # TODO RMC14 Make choices: colour the options brown
-    - name: Второстепенное Оружие Командир
+    - name: Commander's Secondary
       choices: { CMSecondary: 1 }
       entries:
       - id: RMCD50WinterWyvernBeltFilled
@@ -532,7 +566,7 @@
       entries:
       - id: RMCScabbardCeremonialFilled
         name: Commander's Ceremonial Sabre
-    - name: Основные Боеприпасы
+    - name: Primary Ammunition
       entries:
       - id: CMMagazineRifleM54CMK1
         points: 30
@@ -546,17 +580,17 @@
         points: 20
       - id: RMCMagazineSmartGun
         points: 20
-    - name: Боеприпасы К Вторичному Оружию
+    - name: Sidearm Ammunition
       entries:
       - id: RMCSpeedLoaderMatebaHighImpact
         points: 15
       - id: RMCSpeedLoaderMatebaHIAP
         points: 20
-      - id: RMCMagazinePistolD50WinterWyvernHI
+      - id: RMCMagazinePistolHandcannonHI
         points: 15
-      - id: RMCMagazinePistolD50WinterWyvernHIAP
+      - id: RMCMagazinePistolHandcannonHIAP
         points: 20
-    - name: Боеприпасы Для Дробовика
+    - name: Shotgun Ammunition
       entries:
       - id: RMCBoxShotgunBuckshot
         points: 20
@@ -564,13 +598,13 @@
         points: 20
       - id: RMCBoxShotgunFlechette
         points: 20
-    - name: Специальные Боеприпасы
+    - name: Special Ammunition
       entries:
       - id: RMCMagazineRifleM54CRubber
         points: 10
       - id: RMCBoxShotgunBeanbag
         points: 10
-    - name: Взрывчатка
+    - name: Explosives
       entries:
       - id: CMPacketGrenadeHighExplosiveFilled
         points: 15
@@ -578,7 +612,7 @@
         points: 15
       #- id: CMPacketGrenadesWPFilled # TODO RMC14 Port White Phosphorus (WP) Grenades
       #- id: CMPacketGrenadesG2Filled (x3) # TODO RMC14 Port Electroshock (G2) Grenades
-    - name: Навесные Обвесы
+    - name: Rail Attachments
       entries:
       - id: RMCAttachmentS5RedDotSight
         points: 15
@@ -586,7 +620,7 @@
         points: 15
       - id: RMCAttachmentS42xTelescopicMiniscope
         points: 15
-    - name: Визоры Для Шлемов
+    - name: Helmet Visors
       entries:
       - id: RMCVisorNightVision
         points: 10
@@ -595,7 +629,7 @@
         points: 5
       - id: RMCVisorMedicalAdvanced
         points: 5
-    - name: Подствольные Обвесы
+    - name: Underbarrel Attachments
       entries:
       - id: RMCAttachmentLaserSight
         points: 15
@@ -611,7 +645,7 @@
         points: 15
       - id: RMCAttachmentU1GrenadeLauncher
         points: 5
-    - name: Насадки На Ствол
+    - name: Barrel Attachments
       entries:
       - id: RMCAttachmentExtendedBarrel
         points: 15
@@ -693,7 +727,7 @@
     # ////////////////////////////////////
     # Executive Officer
     # ////////////////////////////////////
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       jobs:
       - CMExecutiveOfficer
       takeAll: CMStandard
@@ -701,7 +735,7 @@
       - id: CMHeadsetSeniorCommand
       - id: CMSatchel
       - id: CMMRE
-    - name: Униформа # TODO: Port this.
+    - name: Uniform # TODO: Port this.
       jobs:
       - CMExecutiveOfficer
       choices: { CMUniform: 1 }
@@ -709,21 +743,21 @@
       - id: CMJumpsuitBO
       - id: CMJumpsuitOperations
       - id: RMCVendorBundleXOFormal
-    - name: Личное Оружие
+    - name: Personal Weapon
       jobs:
       - CMExecutiveOfficer
       choices: { CMWeapon: 1 }
       entries:
       - id: RMCMK80BeltFilled
-        name: пистолет VP78
+        name: MK80 pistol
         recommended: true
       - id: RMCM1984BeltFilled
-        name: пистолет M4A3
+        name: M1984 service pistol
       - id: CMM77BeltFilled
-        name: пистолет 88 M4
+        name: M77 pistol
       - id: RMCM44BeltFilled
-        name: револьвер M44
-    - name: Пояс
+        name: M44 revolver
+    - name: Belt
       jobs:
       - CMExecutiveOfficer
       choices: { CMBelt: 1 }
@@ -731,19 +765,19 @@
       - id: RMCBeltUtilityGeneral
         recommended: true
       - id: CMBeltSecurityMPFilled
-        name: военно-полицейская установка M276 (полная)
+        name: M276 pattern security rig (Full)
         recommended: true
       - id: CMBeltMedicalFilled
         name: M276 pattern medical storage rig (Full)
         recommended: true
       - id: CMBeltMedicBagFilled
-        name: пояс M276 медицинский (полный)
+        name: M276 pattern lifesaver bag (Full)
         recommended: true
       - id: CMBeltMarine
         recommended: true
       - id: CMBeltUtilityCombat
         recommended: true
-    - name: Боевое Снаряжение
+    - name: Combat Equipment
       jobs:
       - CMExecutiveOfficer
       takeAll: CMEquipment
@@ -752,8 +786,8 @@
       - id: RMCArmorHelmetM10SO
       - id: CMBootsBlackFilled
       - id: CMHandsBlackMarine
-      #- id: CMBeltM82F # TODO RMC14 M82F Flare Gun Belt
-    - name: Очки
+      - id: RMCM82FHolsterFilled
+    - name: Eyewear
       jobs:
       - CMExecutiveOfficer
       choices: { CMEyewear: 1 }
@@ -764,21 +798,31 @@
       - id: RMCSunglassesBig
         recommended: true
       - id: RMCGlassesAviators
-    # - name: Patches # TODO RMC14 Make Patches
-    #   entries:
-    #   - id: CMUNMCPatch
-    #   - id: CMFallingFalconsPatch
-    - name: Подсумки
+    - name: Patches
+      jobs:
+      - CMExecutiveOfficer
+      entries:
+      - id: RMCPatchFallingFalcons
+      - id: RMCPatchFallingFalconsAlt
+        name: Falling Falcons UN shoulder patch
+      - id: RMCPatchFallingFalconsLarge
+        name: Falling Falcons large chest patch
+      - id: RMCPatchUNMC
+      - id: RMCPatchUnitedNationsSquare
+        name: United Nations flag shoulder patch
+      - id: RMCPatchUnitedNations
+        name: United Nations shoulder patch
+    - name: Pouches
       jobs:
       - CMExecutiveOfficer
       choices: { CMPouches: 2 }
       entries:
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: first-aid pouch (refillable injectors)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: подсумок первой помощи (таблетки)
+        name: first-aid pouch (pills)
         recommended: true
       - id: RMCPouchGeneralLarge
       - id: RMCPouchMagazineLarge
@@ -793,7 +837,7 @@
       - id: RMCPouchElectronicsFill
       - id: RMCPouchFlareFilled
       - id: RMCPouchFuelTank
-    - name: Аксессуары
+    - name: Accessories
       jobs:
       - CMExecutiveOfficer
       choices: { CMAccessories: 1 }
@@ -802,10 +846,12 @@
         recommended: true
       - id: CMWebbingBlack
         recommended: true
-      - id: CMWebbingPouch
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
+      - id: RMCWebbingDropPouch
       - id: CMWebbing
       - id: CMWebbingHolster
-    - name: Шляпа
+    - name: Hats
       jobs:
       - CMExecutiveOfficer
       choices: { CMHat: 1 }
@@ -817,13 +863,13 @@
     # ////////////////////////////////////
     # Chief MP
     # ////////////////////////////////////
-    - name: Полицейский Набор (обязательно)
+    - name: Police Set (Mandatory)
       jobs:
       - CMChiefMP
       takeAll: CMStandard
       entries:
       - id: RMCVendorBundleMilitaryPoliceApparelCMP
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       jobs:
       - CMChiefMP
       takeAll: CMStandard
@@ -832,7 +878,7 @@
       - id: CMJumpsuitWO
       - id: CMHeadsetCMP
       - id: CMBootsBlackFilled
-    - name: Броня
+    - name: Armor
       jobs:
       - CMChiefMP
       takeAll: CMStandard
@@ -840,7 +886,7 @@
       - id: CMArmorM3WO
       - id: CMArmorHelmetM10ChiefMP
       - id: CMHeadBeretCMP
-    - name: Кейс Для Пистолета
+    - name: Handgun Case
       jobs:
       - CMChiefMP
       choices: { CMWeapon: 1 }
@@ -849,13 +895,13 @@
       - id: RMCGunCasePistolM77
       - id: RMCGunCasePistolM44
       - id: RMCGunCasePistolM1984
-    - name: Рюкзак
+    - name: Backpack
       jobs:
       - CMChiefMP
       choices: { CMBackpack: 1 }
       entries:
       - id: CMSatchelSecurity
-    - name: Пояс
+    - name: Belt
       jobs:
       - CMChiefMP
       choices: { CMBelt: 1 }
@@ -863,23 +909,37 @@
       - id: RMCBeltHolsterPistol
       - id: RMCBeltHolsterRevolver
       - id: RMCBeltUtilityGeneral
-    - name: Подсумки
+    - name: Patches
+      jobs:
+      - CMChiefMP
+      entries:
+      - id: RMCPatchFallingFalcons
+      - id: RMCPatchFallingFalconsAlt
+        name: Falling Falcons UN shoulder patch
+      - id: RMCPatchFallingFalconsLarge
+        name: Falling Falcons large chest patch
+      - id: RMCPatchUNMC
+      - id: RMCPatchUnitedNationsSquare
+        name: United Nations flag shoulder patch
+      - id: RMCPatchUnitedNations
+        name: United Nations shoulder patch
+    - name: Pouches
       jobs:
       - CMChiefMP
       choices: { CMPouches: 2 }
       entries:
       - id: RMCPouchGeneralMedium
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: first-aid pouch (refillable injectors)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: подсумок первой помощи (таблетки)
+        name: first-aid pouch (pills)
         recommended: true
       - id: RMCPouchMagazinePistol
       - id: RMCPouchPistol
       - id: RMCPouchGeneralLarge
-    - name: Маска
+    - name: Mask
       jobs:
       - CMChiefMP
       choices: { CMMask: 1 }
@@ -887,7 +947,7 @@
       - id: CMMaskGas
       - id: CMMaskCoif
       - id: RMCMaskRebreather
-    - name: Аксессуары
+    - name: Accessories
       jobs:
       - CMChiefMP
       choices: { CMAccessories: 1 }
@@ -895,29 +955,29 @@
       - id: CMWebbingBrown
       - id: CMWebbingBlack
         recommended: true
-      - id: CMWebbingPouch
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
+      - id: RMCWebbingDropPouch
       - id: CMWebbingHolster
     # ////////////////////////////////////
     # Chief Engineer
     # ////////////////////////////////////
     # CE Shipside Gear
-    - name: Корабельные Принадлежности
+    - name: Shipside Gear
       entries: [ ]
       jobs:
       - CMChiefEngineer
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       jobs:
       - CMChiefEngineer
       takeAll: CMStandard
       entries:
-      - id: CMHandsInsulated
       - id: CMHeadsetCE
       - id: CMBootsBlack
       - id: ClothingEyesGlassesMeson # TODO change to CM13 engi goggles.
       - id: RMCNailgunTactical
       # TODO KN5500/2 PDA
-
-    - name: Униформа
+    - name: Uniform
       jobs:
       - CMChiefEngineer
       choices: { CMUniform: 1 }
@@ -925,7 +985,14 @@
       - id: CMJumpsuitChiefEngineer
         recommended: true
       - id: CMJumpsuitBO
-    - name: Шлем
+    - name: Gloves
+      jobs:
+      - CMChiefEngineer
+      choices: { CMHands: 1 }
+      entries:
+      - id: CMHandsInsulated
+      - id: CMHandsBlackInsulated
+    - name: Helmet
       jobs:
       - CMChiefEngineer
       choices: { CMHelmet: 1 }
@@ -934,7 +1001,7 @@
       - id: RMCHardhatWhite
       - id: RMCHeadCapFlippable
       # TODO Welding helmet
-    - name: Костюм
+    - name: Suit
       jobs:
       - CMChiefEngineer
       choices: { CMSuit: 1 }
@@ -944,7 +1011,7 @@
       - id: RMCHazardVest
       - id: RMCHazardVestYellow
       - id: RMCCoatService
-    - name: Рюкзак
+    - name: Backpack
       jobs:
       - CMChiefEngineer
       choices: { CMBackpack: 1 }
@@ -954,7 +1021,7 @@
       - id: RMCSatchelWelder
       - id: RMCSatchelWelderChestrig
       - id: CMBackpackWelder
-    - name: Поясы
+    - name: Belt
       jobs:
       - CMChiefEngineer
       choices: { CMBelt: 1 }
@@ -963,47 +1030,60 @@
       - id: RMCBeltUtilityGeneral
       - id: CMBeltUtilityFilled
         name: M276 pattern toolbelt rig (Full)
-
-    - name: Подсумки
+    - name: Patches
+      jobs:
+      - CMChiefEngineer
+      entries:
+      - id: RMCPatchFallingFalcons
+      - id: RMCPatchFallingFalconsAlt
+        name: Falling Falcons UN shoulder patch
+      - id: RMCPatchFallingFalconsLarge
+        name: Falling Falcons large chest patch
+      - id: RMCPatchUNMC
+      - id: RMCPatchUnitedNationsSquare
+        name: United Nations flag shoulder patch
+      - id: RMCPatchUnitedNations
+        name: United Nations shoulder patch
+    - name: Pouches
       jobs:
       - CMChiefEngineer
       choices: { CMPouches: 2 }
       entries:
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: first-aid pouch (refillable injectors)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: подсумок первой помощи (таблетки)
+        name: first-aid pouch (pills)
         recommended: true
       - id: RMCPouchGeneralLarge
       - id: RMCPouchToolsFill
-        name: подсумок для инструментов (полный)
+        name: tools pouch (Full)
       - id: RMCPouchConstruction
       - id: RMCPouchElectronicsFill
-        name: электрический подсумок (полный)
+        name: electronics pouch (Full)
       - id: RMCPouchMagazine
       - id: RMCPouchShotgun
       - id: RMCPouchPistol
       - id: RMCPouchFlareFilled
-        name: подсумок фаеров (полный)
+        name: flare pouch (Full)
       - id: RMCPouchFuelTank
       - id: RMCPouchEngineerKit
-    - name: Личное Оружиеs
+    - name: Personal Sidearms
       jobs:
       - CMChiefEngineer
       choices: { CMWeapon: 1 }
       entries:
       - id: RMCM1984BeltFilled
-        name: пистолет M4A3
+        name: M1984 service pistol
         recommended: true
       - id: CMM77BeltFilled
-        name: пистолет 88 M4
+        name: M77 pistol
         recommended: true
       - id: RMCM44BeltFilled
-        name: револьвер M44
+        name: M44 revolver
         recommended: true
-    - name: Аксессуары
+    - name: Accessories
       jobs:
       - CMChiefEngineer
       choices: { CMAccessories: 1 }
@@ -1011,17 +1091,19 @@
       - id: CMWebbingBlack
         recommended: true
       - id: CMWebbingBrown
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
       - id: CMWebbing
       - id: CMWebbingHolster
-      - id: CMWebbingPouch
+      - id: RMCWebbingDropPouch
       - id: RMCToolWebbingSmallFilled
-        name: небольшая разгрузка инструментов (полная)
+        name: small tool webbing (Full)
     # CE Deployment Gear
-    - name: Оборудование Для Развертывания
+    - name: Deployment Gear
       entries: [ ]
       jobs:
       - CMChiefEngineer
-    - name: Боевое Снаряжение
+    - name: Combat Equipment
       jobs:
       - CMChiefEngineer
       takeAll: CMStandard
@@ -1029,14 +1111,14 @@
       - id: RMCArmorM3SO
       - id: CMBootsBlackFilled
       - id: RMCLaserDesignator
-    - name: Боевой Шлем
+    - name: Combat Helmet
       jobs:
       - CMChiefEngineer
       choices: { CMCombatHelmet: 1 }
       entries:
       - id: RMCArmorHelmetM10SO
       - id: CMArmorHelmetM10Tech
-    - name: Маска
+    - name: Mask
       jobs:
       - CMChiefEngineer
       choices: { CMMask: 1 }
@@ -1044,18 +1126,18 @@
       - id: CMMaskGas
       - id: CMMaskCoif
       - id: RMCMaskRebreather
-    - name: Основное Огнестрельное Оружие
+    - name: Primary Firearms
       jobs:
       - CMChiefEngineer
       choices: { CMWeaponPrimary: 1 }
       entries:
       - id: RMCM42A2ShotgunCase
-        name: помповый дробовик M37A2
+        name: M42A2 pump shotgun
       - id: RMCM54CMK2Case
-        name: штурмовая винтовка M41A MK2
+        name: M54C assault rifle MK2
       - id: RMCCaseFlamer
-        name: огнеметная установка M240A1
-    - name: Запасное Оборудование
+        name: M34 incinerator unit
+    - name: Spare Equipment
       jobs:
       - CMChiefEngineer
       entries:
@@ -1066,17 +1148,23 @@
     # ////////////////////////////////////
     # Quartermaster
     # ////////////////////////////////////
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       jobs:
       - CMQuartermaster
       takeAll: CMStandard
       entries:
-      - id: CMHandsInsulated
       - id: CMJumpsuitQM
       - id: CMHeadsetQM
       - id: CMSatchel
       - id: RMCQuartermasterJacket
-    - name: Головные Уборы
+    - name: Gloves
+      jobs:
+      - CMQuartermaster
+      choices: { CMHands: 1 }
+      entries:
+      - id: CMHandsInsulated
+      - id: CMHandsBlackInsulated
+    - name: Headgear
       jobs:
       - CMQuartermaster
       choices: { CMHelmet: 1 }
@@ -1086,21 +1174,21 @@
       - id: RMCHeadBeretQuartermaster
         recommended: true
       - id: CMHeadCapCargo
-    - name: Личное Оружие
+    - name: Personal Sidearm
       jobs:
       - CMQuartermaster
       choices: { CMWeapon: 1 }
       entries:
       - id: RMCM1984BeltFilled
-        name: пистолет M4A3
+        name: M1984 service pistol
         recommended: true
       - id: CMM77BeltFilled
-        name: пистолет 88 M4
+        name: M77 pistol
         recommended: true
       - id: RMCM44BeltFilled
-        name: револьвер M44
+        name: M44 revolver
         recommended: true
-    - name: Боевое Снаряжение
+    - name: Combat Equipment
       jobs:
       - CMQuartermaster
       takeAll: CMStandard
@@ -1108,23 +1196,37 @@
       - id: RMCArmorM3SO
       - id: RMCArmorHelmetM10SO
       - id: CMBootsBlackFilled
-    - name: Подсумки
+    - name: Patches
+      jobs:
+      - CMQuartermaster
+      entries:
+      - id: RMCPatchFallingFalcons
+      - id: RMCPatchFallingFalconsAlt
+        name: Falling Falcons UN shoulder patch
+      - id: RMCPatchFallingFalconsLarge
+        name: Falling Falcons large chest patch
+      - id: RMCPatchUNMC
+      - id: RMCPatchUnitedNationsSquare
+        name: United Nations flag shoulder patch
+      - id: RMCPatchUnitedNations
+        name: United Nations shoulder patch
+    - name: Pouches
       jobs:
       - CMQuartermaster
       choices: { CMPouches: 2 }
       entries:
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: first-aid pouch (refillable injectors)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: подсумок первой помощи (таблетки)
+        name: first-aid pouch (pills)
         recommended: true
       - id: RMCPouchGeneralLarge
       - id: RMCPouchTools
-        name: подсумок с инструментами (пустой)
+        name: tools pouch (empty)
       - id: RMCPouchConstruction
-    - name: Аксессуары
+    - name: Accessories
       jobs:
       - CMQuartermaster
       choices: { CMAccessories: 1 }
@@ -1132,8 +1234,10 @@
       - id: CMWebbingBlack
       - id: CMWebbingBrown
         recommended: true
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
       - id: CMWebbing
-    - name: Запасное Оборудование
+    - name: Spare Equipment
       jobs:
       - CMQuartermaster
       entries:
@@ -1142,20 +1246,20 @@
     # ////////////////////////////////////
     # Chief Medical Officer
     # ////////////////////////////////////
-    - name: Медицинский Набор (обязательно)
+    - name: Medical Set (Mandatory)
       jobs:
       - CMCMO
       takeAll: CMMedicalSet
       entries:
       - id: RMCVendorBundleCrewMedicalEssentialsDoctor
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       jobs:
       - CMCMO
       takeAll: CMStandard
       entries:
       - id: CMHandsLatex
       - id: CMHeadsetCMO
-    - name: Очки
+    - name: Eyewear
       jobs:
       - CMCMO
       choices: { CMEyewear: 1 }
@@ -1164,7 +1268,7 @@
       # - id: RMCGlassesMedicalHUDGlassesPrescription TODO
       # - id: RMCGlasesReagentScannerHUD TODO
       # - id: RMCGlasesReagentScannerHUDPrescription TODO
-    - name: Униформа
+    - name: Uniform
       jobs:
       - CMCMO
       choices: { CMUniform: 1 }
@@ -1177,7 +1281,7 @@
       - id: CMScrubsPurple
       - id: RMCScrubsOlive
       - id: RMCScrubsGrey
-    - name: Костюм
+    - name: Suit
       jobs:
       - CMCMO
       choices: { CMSuit: 1 }
@@ -1187,7 +1291,7 @@
       - id: RMCLabcoat
         recommended: true
       - id: RMCMedicalApron
-    - name: Головные Уборы
+    - name: Headwear
       jobs:
       - CMCMO
       choices: { CMHelmet: 1 }
@@ -1197,7 +1301,7 @@
       - id: CMHeadCapSurgBlue
       - id: CMHeadCapSurgPurple
       - id: CMHeadCapSurgGreen
-    - name: Сумка
+    - name: Bag
       jobs:
       - CMCMO
       choices: { CMBag: 1 }
@@ -1208,28 +1312,28 @@
         recommended: true
       - id: CMBackpackMedical
         recommended: true
-    - name: Пояс
+    - name: Belt
       jobs:
       - CMCMO
       choices: { CMBelt: 1 }
       entries:
       - id: CMBeltMedicBagFilled
-        name: пояс M276 медицинский (полный)
+        name: M276 pattern lifesaver bag (Full)
       - id: CMBeltMedicalFilled
-        name: пояс M276 медицинский (полный)
-    - name: Личное Оружие
+        name: M276 medical storage rig (Full)
+    - name: Personal Sidearm
       jobs:
       - CMCMO
       choices: { CMWeapon: 1 }
       entries:
       - id: RMCM1984BeltFilled
-        name: пистолет M4A3
+        name: M1984 service pistol
       - id: CMM77BeltFilled
-        name: пистолет 88 M4
+        name: M77 pistol
       - id: RMCM44BeltFilled
-        name: револьвер M44
+        name: M44 revolver
         recommended: true
-    - name: Боевое Снаряжение (Только Для Боевого Применения)
+    - name: Combat Equipment (Combat Use Only)
       jobs:
       - CMCMO
       takeAll: CMStandard
@@ -1237,42 +1341,56 @@
       - id: RMCArmorM3SO
       - id: RMCArmorHelmetM10SO
       - id: CMBootsBlackFilled
-    - name: Подсумки
+    - name: Patches
+      jobs:
+      - CMCMO
+      entries:
+      - id: RMCPatchFallingFalcons
+      - id: RMCPatchFallingFalconsAlt
+        name: Falling Falcons UN shoulder patch
+      - id: RMCPatchFallingFalconsLarge
+        name: Falling Falcons large chest patch
+      - id: RMCPatchUNMC
+      - id: RMCPatchUnitedNationsSquare
+        name: United Nations flag shoulder patch
+      - id: RMCPatchUnitedNations
+        name: United Nations shoulder patch
+    - name: Pouches
       jobs:
       - CMCMO
       choices: { CMPouches: 2 }
       entries:
       - id: RMCPouchAutoinjector
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: first-aid pouch (refillable injectors)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: подсумок первой помощи (таблетки)
+        name: first-aid pouch (pills)
       - id: RMCPouchFirstResponder
       - id: RMCPouchMedical
       - id: RMCPouchMedkit
       - id: RMCPouchReagentCanisterBicaridine
         recommended: true
-        name: канистра реагентов (бикаридин)
+        name: Pressurized Reagent Canister Pouch\n(Bicaridine)
       - id: RMCPouchReagentCanisterKelotane
         recommended: true
-        name: канистра реагентов (келотан)
+        name: Pressurized Reagent Canister Pouch\n(Kelotane)
       - id: RMCPouchReagentCanisterTricordrazineRevival
         recommended: true
-        name: канистра реагентов (возрождающая смесь - трикордразин)
+        name: Pressurized Reagent Canister Pouch\n(Revival Mix - Tricordrazine)
       #      - id: CMPressurizedReagentCanisterPouchPeridaxonRevivalMix
       #        recommended: true
-      #        name: канистра реагентов (возрождающая смесь - перидаксон)
+      #        name: Pressurized Reagent Canister Pouch\n(Revival Mix - Peridaxon)
       - id: RMCPouchReagentCanisterTricordrazine
         recommended: true
-        name: канистра реагентов (трикордразин)
+        name: Pressurized Reagent Canister Pouch\n(Tricordrazine)
       - id: RMCPouchReagentCanister
         recommended: true
-        name: канистра реагентов (пустая)
+        name: Pressurized Reagent Canister Pouch\n(EMPTY)
       - id: RMCPouchGeneralLarge
       - id: RMCPouchSling
-    - name: Аксессуары
+    - name: Accessories
       jobs:
       - CMCMO
       choices: { CMAccessories: 1 }
@@ -1280,7 +1398,10 @@
       - id: CMWebbingBrown
       - id: CMWebbingBlack
         recommended: true
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
       - id: CMWebbing
+      - id: RMCWebbingDropPouch
     - name: Spare Equipment
       jobs:
       - CMCMO
@@ -1289,56 +1410,78 @@
         amount: 15
       - id: CMHeadsetResearcher
         amount: 15
-
-
     # ////////////////////////////////////
     # Auxiliary Support Officer
     # ////////////////////////////////////
-    - name: Стандартное Оборудование
+    - name: Uniform
+      jobs:
+      - CMAuxiliarySupportOfficer
+      choices: { CMUniform: 1 }
+      entries:
+      - id: CMJumpsuitBO
+      - id: RMCJumpsuitASOBlack
+      - id: RMCJumpsuitASOFormal
+      - id: RMCJumpsuitASOFormalAlt
+      - id: RMCJumpsuitASOBlackAlt
+      - id: RMCJumpsuitASOOperations
+    - name: Outer Wear
+      jobs:
+      - CMAuxiliarySupportOfficer
+      choices: { CMSuit: 1 }
+      entries:
+      - id: CMCoatASO
+      - id: RMCCoatASOBlack
+      - id: RMCCoatASOWhite
+      - id: RMCCoatASOBlackAlt
+      - id: RMCCoatASOWhiteAlt
+    - name: Headset
       jobs:
       - CMAuxiliarySupportOfficer
       takeAll: CMStandard
       entries:
-      - id: CMHandsInsulated
-      - id: CMJumpsuitBO
       - id: CMHeadsetSeniorCommand
-      - id: CMCoatASO
-    - name: Сумка
+    - name: Gloves
       jobs:
       - CMAuxiliarySupportOfficer
-      choices: { CMHelmet: 1 }
+      choices: { CMHands: 1 }
+      entries:
+      - id: CMHandsInsulated
+      - id: CMHandsBlackInsulated
+    - name: Bag
+      jobs:
+      - CMAuxiliarySupportOfficer
+      choices: { CMBag: 1 }
       entries:
       - id: CMSatchelMarineTech
       - id: CMSatchel
-    - name: Личное Оружие
+    - name: Personal Sidearm
       jobs:
       - CMAuxiliarySupportOfficer
       choices: { CMWeapon: 1 }
       entries:
       - id: RMCM1984BeltFilled
-        name: пистолет M4A3
+        name: M1984 service pistol
         recommended: true
       - id: CMM77BeltFilled
-        name: пистолет 88 M4
+        name: M77 pistol
         recommended: true
       - id: RMCM44BeltFilled
-        name: револьвер M44
+        name: M44 revolver
         recommended: true
-    - name: Шляпа
+    - name: Hat
       jobs:
       - CMAuxiliarySupportOfficer
       choices: { CMHelmet: 1 }
       entries:
+      - id: RMCHeadCapASO
+      - id: RMCHeadCapPeakedASO
+      - id: RMCHeadBeretASO
       - id: RMCHeadBeret
-        recommended: true
       # TODO patrol and officer cap
       - id: RMCHeadCapFlippable
-        recommended: true
       - id: CMHeadCapPeakedService
-        recommended: true
       - id: CMHeadBeretTan
-        recommended: true
-    - name: Боевое Снаряжение
+    - name: Combat Equipment
       jobs:
       - CMAuxiliarySupportOfficer
       takeAll: CMStandard
@@ -1346,25 +1489,39 @@
       - id: RMCArmorM3SO
       - id: RMCArmorHelmetM10SO
       - id: CMBootsBlackFilled
-    - name: Подсумки
+    - name: Patches
+      jobs:
+      - CMAuxiliarySupportOfficer
+      entries:
+      - id: RMCPatchFallingFalcons
+      - id: RMCPatchFallingFalconsAlt
+        name: Falling Falcons UN shoulder patch
+      - id: RMCPatchFallingFalconsLarge
+        name: Falling Falcons large chest patch
+      - id: RMCPatchUNMC
+      - id: RMCPatchUnitedNationsSquare
+        name: United Nations flag shoulder patch
+      - id: RMCPatchUnitedNations
+        name: United Nations shoulder patch
+    - name: Pouches
       jobs:
       - CMAuxiliarySupportOfficer
       choices: { CMPouches: 2 }
       entries:
       - id: RMCPouchDocument
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: first-aid pouch (refillable injectors)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: подсумок первой помощи (таблетки)
+        name: first-aid pouch (pills)
         recommended: true
       - id: RMCPouchGeneralLarge
       - id: RMCPouchTools
-        name: подсумок с инструментами (пустой)
+        name: tools pouch (empty)
       - id: RMCPouchConstruction
       - id: RMCPouchSling
-    - name: Аксессуары
+    - name: Accessories
       jobs:
       - CMAuxiliarySupportOfficer
       choices: { CMAccessories: 1 }
@@ -1372,5 +1529,7 @@
       - id: CMWebbingBrown
       - id: CMWebbingBlack
         recommended: true
-      - id: CMWebbingPouch
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
+      - id: RMCWebbingDropPouch
       - id: CMWebbingHolster

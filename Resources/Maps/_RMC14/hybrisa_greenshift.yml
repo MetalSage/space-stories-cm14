@@ -437,9 +437,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapLight
@@ -76414,36 +76412,6 @@ entities:
         -224,-247: RMCAreaLv759Oob
         -224,-248: RMCAreaLv759Oob
         -224,-249: RMCAreaLv759Oob
-- proto: ActionToggleLight
-  entities:
-  - uid: 3
-    components:
-    - type: Transform
-      parent: 2
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 2
-  - uid: 7
-    components:
-    - type: Transform
-      parent: 6
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 6
-  - uid: 5877
-    components:
-    - type: Transform
-      parent: 17764
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 17764
-  - uid: 7638
-    components:
-    - type: Transform
-      parent: 18132
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 18132
 - proto: ArmorHelmetPMCCorporate
   entities:
   - uid: 9
@@ -79865,15 +79833,6 @@ entities:
     - type: Transform
       pos: -108.5,-112.5
       parent: 1
-- proto: CMActionToggleScope
-  entities:
-  - uid: 8261
-    components:
-    - type: Transform
-      parent: 15185
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 15185
 - proto: CMAdvFirstAidKitFilled
   entities:
   - uid: 795
@@ -142215,60 +142174,28 @@ entities:
     - type: Transform
       pos: -147.49371,-44.119728
       parent: 1
-- proto: FireAxeCabinetOpen
+- proto: RMCFireAxeCabinetFilled
   entities:
   - uid: 12679
     components:
     - type: Transform
       pos: -32.5,-0.5
       parent: 1
-    - type: Openable
-      opened: False
-    - type: ContainerContainer
-      containers:
-        ItemCabinet: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 12680
   - uid: 12681
     components:
     - type: Transform
       pos: -23.5,-99.5
       parent: 1
-    - type: Openable
-      opened: False
-    - type: ContainerContainer
-      containers:
-        ItemCabinet: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 12682
   - uid: 12683
     components:
     - type: Transform
       pos: -84.5,-78.5
       parent: 1
-    - type: Openable
-      opened: False
-    - type: ContainerContainer
-      containers:
-        ItemCabinet: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 12684
   - uid: 12685
     components:
     - type: Transform
       pos: -182.5,-34.5
       parent: 1
-    - type: Openable
-      opened: False
-    - type: ContainerContainer
-      containers:
-        ItemCabinet: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 12686
 - proto: FoamedAluminiumMetal
   entities:
   - uid: 12687
@@ -157478,14 +157405,6 @@ entities:
     - type: Transform
       pos: -30.273754,-136.2592
       parent: 1
-    - type: Scope
-      scopingToggleActionEntity: 8261
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 8261
   - uid: 15186
     components:
     - type: Transform
@@ -174892,32 +174811,6 @@ entities:
     - type: Transform
       pos: -189.5,-65.5
       parent: 1
-- proto: RMCFireAxe
-  entities:
-  - uid: 12680
-    components:
-    - type: Transform
-      parent: 12679
-    - type: Physics
-      canCollide: False
-  - uid: 12682
-    components:
-    - type: Transform
-      parent: 12681
-    - type: Physics
-      canCollide: False
-  - uid: 12684
-    components:
-    - type: Transform
-      parent: 12683
-    - type: Physics
-      canCollide: False
-  - uid: 12686
-    components:
-    - type: Transform
-      parent: 12685
-    - type: Physics
-      canCollide: False
 - proto: RMCFlashlight
   entities:
   - uid: 17739
@@ -175044,14 +174937,6 @@ entities:
     - type: Transform
       pos: -215.43646,-180.50455
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 5877
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 5877
 - proto: RMCFoodDonut
   entities:
   - uid: 17874
@@ -176530,20 +176415,6 @@ entities:
     - type: Transform
       pos: -14.720559,-173.23114
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 3
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 3
-    - type: ActionsContainer
   - uid: 8428
     components:
     - type: Transform
@@ -176580,22 +176451,8 @@ entities:
     components:
     - type: Transform
       parent: 7637
-    - type: HandheldLight
-      toggleActionEntity: 7638
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 7638
     - type: Physics
       canCollide: False
-    - type: ActionsContainer
     - type: InsideEntityStorage
   - uid: 18133
     components:
@@ -180085,14 +179942,6 @@ entities:
     - type: Transform
       pos: -137.64975,-61.131573
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 7
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 7
   - uid: 18566
     components:
     - type: Transform
@@ -187079,7 +186928,7 @@ entities:
     - type: Transform
       pos: -185.93338,-141.49751
       parent: 1
-- proto: RMCMagazinePistolD50WinterWyvernHI
+- proto: RMCMagazinePistolHandcannon
   entities:
   - uid: 8702
     components:
@@ -324467,7 +324316,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: RMCWeaponPistolCOD50WinterWyvern
+- proto: RMCWeaponPistolHandcannon
   entities:
   - uid: 8272
     components:

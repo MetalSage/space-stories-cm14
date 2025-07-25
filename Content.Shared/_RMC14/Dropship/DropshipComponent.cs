@@ -18,6 +18,9 @@ public sealed partial class DropshipComponent : Component
     public EntityUid? Destination;
 
     [DataField, AutoNetworkedField]
+    public EntityUid? DepartureLocation;
+
+    [DataField, AutoNetworkedField]
     public bool Crashed;
 
     [DataField, AutoNetworkedField]
@@ -82,4 +85,7 @@ public sealed partial class DropshipComponent : Component
 
     [DataField, AutoNetworkedField]
     public TimeSpan ExplodeTime = TimeSpan.FromSeconds(3);
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan CancelFlightTime = TimeSpan.FromSeconds(10);
 }

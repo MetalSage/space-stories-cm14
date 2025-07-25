@@ -13,7 +13,7 @@
     jobs:
     - CMSeniorEnlistedAdvisor
     sections:
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       takeAll: CMStandard
       entries:
       - id: CMJumpsuitBO
@@ -21,22 +21,23 @@
       - id: CMSatchel
       - id: CMBootsBlackFilled
       - id: CMMRE
-    - name: Перчатки
+    - name: Gloves
       choices: { CMGloves: 1 }
       entries:
       - id: CMHandsBlackMarine
       - id: CMHandsInsulated
-    - name: Пояс
+      - id: CMHandsBlackInsulated
+    - name: Belt
       choices: { CMBelt: 1 }
       entries:
       - id: RMCBeltUtilityGeneral
       - id: CMBeltUtilityFilled
-        name: пояс M276 для инструментов (полный)
+        name: M276 pattern toolbelt rig (Full)
       - id: CMBeltMedicBagFilled
-        name: пояс M276 медицинский (полный)
+        name: M276 pattern lifesaver bag (Full)
       - id: CMBeltUtilityCombatFilled
-        name: пояс M276 боевой для инструментов (полный)
-    - name: Подсумки
+        name: M276 pattern combat toolbelt rig (Full)
+    - name: Pouches
       choices: { CMPouches: 2 }
       entries:
       - id: RMCPouchAutoinjectorFill
@@ -47,15 +48,15 @@
       - id: RMCPouchMedkit
       - id: RMCPouchPistol
       - id: RMCPouchSling
-    - name: Шапка
+    - name: Hat
       choices: { CMHat: 1 }
       entries:
       - id: CMHeadCapDrill
-    - name: Шлем
+    - name: Helmet
       choices: { CMHelmet: 1 }
       entries:
       - id: ArmorHelmetM10
-    - name: Броня
+    - name: Armor
       choices: { CMArmor: 1 }
       entries:
       - id: CMArmorM3VLBallistics
@@ -65,7 +66,7 @@
       choices: { CMCoat: 1 }
       entries:
       - id: RMCCoatService
-    - name: Очки
+    - name: Eyewear
       choices: { CMEyewear: 1 }
       entries:
       - id: RMCWeldingGoggles
@@ -74,14 +75,16 @@
       - id: CMGlassesSecurity
       - id: RMCGlassesMarineRpg #Sunglasses Placeholder
       - id: RMCSunglasses
-    - name: Аксессуары
+    - name: Accessories
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown
       - id: CMWebbingBlack
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
       - id: CMWebbingHolster
       - id: CMWebbing
-      - id: CMWebbingPouch
+      - id: RMCWebbingDropPouch
 
 - type: entity
   parent: ColMarTechBase
@@ -98,15 +101,15 @@
     jobs:
     - CMSeniorEnlistedAdvisor
     sections:
-    - name: Персональный Основной
+    - name: Personal Primary
       choices: { CMPrimary: 1 }
       entries:
       - id: WeaponRifleM54CMK1
-    - name: Боеприпасы
+    - name: Ammunition
       entries:
       - id: CMMagazineRifleM54CMK1
         points: 9
-    - name: Обвесы
+    - name: Gun Attachments
       choices: { CMAttachments: 1 }
       entries:
       - id: RMCAttachmentLaserSight

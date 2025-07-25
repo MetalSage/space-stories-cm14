@@ -1,59 +1,65 @@
 ﻿<Document>
-  # Правила RMC-14
+  # RMC-14 Rules
 
-  [color=#ff0000][bold]Если вы не можете нажать ни на одну из ссылок, используйте версию внутриигрового руководства, в меню "Esc".[/bold][/color]
+  [color=#ff0000][bold]If you are unable to click any links, use the in-game guidebook version, in the escape menu.[/bold][/color]
 
-  [italic]RMC - это ролевая игра с элементами командного боя. Это означает, что от игроков в определенной степени ожидается, что они будут притворяться, что их персонаж является частью этого мира в своих действиях и словах. Это предполагаемый опыт, и опыт, который нравится игрокам RMC, и не всегда заключается в победе.[/italic]
+  [italic]RMC is a roleplaying game with team deathmatch elements. This means players are expected, to an extent, to pretend their character is part of this world in their actions and words. This is the intended experience, and the experience the players of RMC enjoy, and is not always about winning.[/italic]
 
-  ## Недавние изменения
-  Прочтите соответствующие разделы, чтобы ознакомиться с полным текстом.
-  - Добавлены Военный Закон и СОП. Командные роли, включая командиров отрядов, обязаны им следовать.
-  - Многие разделы правил были изменены во многих местах. Рекомендуется прочитать все.
+  ## Recent Changes
+  Read the relevant sections for the entire text.
 
-  ## Решения администратора окончательны.
-  - Правила применяются в соответствии с их замыслом. Невозможно описать каждый пример нарушения правил, поэтому применение подлежит интерпретации администратором намерения правила.
-  - Администраторы могут решать проблемы с нарушениями правил посредством внутриигровых последствий по своему усмотрению. Это не относится к правилам с нулевой терпимостью, и нельзя требовать, чтобы нарушения правил решались таким образом.
-  - Не спорьте с персоналом. Вы можете подать апелляцию, если считаете решение неверным, но не игнорируйте его.
+  - [textlink="(Marine Roleplay)" link ="RMCMarineRoleplayStandards"] Synthetic/Cyborg characters are not permitted outside the existing role.
+  - [textlink="(Marine Roleplay)" link ="RMCMarineRoleplayStandards"] Do not disrupt the start of the round.
+  - [textlink="(Xenonid Roleplay)" link ="RMCXenoRoleplay"] Added "Killing" section. Xenonids may only harm nested hosts if given explicit permission by the queen, or at their own risk if the queen is unresponsive.
 
-  ## Общая информация
-  Отключение от игры или игнорирование/уклонение от помощи администратора приведет к принятию мер.
-  Это сделано для предотвращения избегания проблем со стороны недобросовестных пользователей. Если вам нужно срочно уйти, сообщите нам об этом, и это будет учтено в вашей апелляции.
+  ## Admin Decisions Are Final.
+  - Rules are enforced as intended. Every example of a rule break cannot be written, thus enforcement is subject to admin interpretation of the rule's intention.
+  - Admins may handle rule breaks through in-character consequences at their discretion. This does not apply to zero tolerance rules, and rule breaks may not be requested to be handled this way.
+  - Do not argue with the staff. You may file an appeal if you feel the decision to be incorrect, not ignore it.
 
-  - [bold]Эти правила отличаются от правил других серверов, их следует прочитать целиком.[/bold]
-  - [textlink="Типы банов и их продолжительность" link="RMCBanTypes"]
+  ## Important notes
 
-  ## Правила с нулевой терпимостью
-  Вы можете быть забанены без предупреждения за нарушение этих правил.
-  - [textlink="Нажмите здесь, чтобы прочитать правила с нулевой терпимостью." link="RMCZeroTolerance"]
+  Heavily avoid using a VPN or any similar program to connect or while connected to RMC. You are putting your account at risk, which may result in your account being permanently banned.
+  If you have a legitimate reason to use a VPN, you must attempt at least once to connect to the server without a VPN before requesting an exemption for it.
 
-  ## Основные правила
-  Это общие правила RMC14. Нажмите на них для получения дополнительной информации.
-  - [textlink="1. Это англоязычный сервер, пожалуйста, используйте только английский язык." link="RMCLanguage"]
-  - [textlink="2. Не используйте несколько учетных записей или альтернативные учетные записи, а также не передавайте учетные записи." link="RMCMultikey"]
-  - [textlink="3. Соблюдайте правила эскалации против невраждебных лиц." link="RMCRulesEscalation"]
-  - [textlink="4. Не используйте информацию, полученную вне знаний вашего персонажа." link="RMCMetaknowledge"]
-  - [textlink="5. Не настраивайте свою команду, не преследуйте игроков." link="RMCKindness"]
-  - [textlink="6. Не отказывайтесь от командной роли без предварительного уведомления." link="RMCCommandRoles"]
-  - [textlink="7. Мятежи, бунты и подобная деятельность требуют разрешения администратора." link="RMCMutinies"]
-  - 8. Не отключайтесь от игры, если вы не получили роль/набор, которые хотели, будьте внимательны.
-  - 9. Следуйте ролевым правилам и стандартам сервера. (Изложено внизу этой страницы)
+  ## General Information
+  Disconnecting from or ignoring/evading admin-helps will result in action being taken.
+  This is to prevent bad actors from avoiding issues. If you need to leave urgently, let us know and it will be considered in your appeal.
 
-  ## Командование и военная полиция
-  Эти правила также распространяются на любого человека, который повышен в звании или исполняет обязанности военной полиции/командной роли (если он не является членом враждебных сил).
-  [italic]Под командными ролями понимаются: все руководители, сотрудники БИЦ, ВП и командиры отрядов.[/italic]
-  - [textlink="1. Командование и ВП должны соблюдать Военный Закон." link="RMCMarineLaw"]
-  - [textlink="2. К командованию и ВП предъявляются более высокие стандарты игры." link="RMCHigherStandards"]
-  - [textlink="3. ВП должны стараться оставаться нелетальными и проводить аресты, за исключением особых обстоятельств." link="RMCLethalForce"]
-  - [textlink="4. ВП должны будут нести ответственность за применение летальной силы." link="RMCLethalForceConsequences"]
-  - Только внесенный в белый список CO или Provost может помиловать приговор, но можно подать апелляцию. См. Военный Закон.
+  - [bold]These rules are not the same as other servers, should be read in their entirety.[/bold]
+  - [textlink="Ban Types and Durations" link="RMCBanTypes"]
 
-  ## Правила и стандарты ролевой игры
+  ## Zero Tolerance Rules
+  You are liable to be banned without warning for breaking these rules.
+  - [textlink="Click here to read the zero tolerance rules." link="RMCZeroTolerance"]
 
-  - [textlink="1. Общие стандарты ролевой игры." link="RMCGeneralRoleplayStandards"]
-  - [textlink="2. Имена персонажей." link="RMCCharacterNames"]
-  - [textlink="3. Морпехи." link="RMCMarineRoleplayStandards"]
-  - [textlink="4. Командование." link="RMCCommandRoleplay"]
-  - [textlink="5. Ксеноморфы." link="RMCXenoRoleplay"]
-  - [textlink="6. Выжившие." link="RMCSurvivorRoleplay"]
-  - [textlink="7. Враждебные фракции." link="RMCHostileFactionRoleplay"]
+  ## Core Rules
+  These are the general rules of RMC14. Click them for more information.
+  - [textlink="1. This is a English server, please only use English." link="RMCLanguage"]
+  - [textlink="2. Do not use multiple accounts, or alt accounts, and do not share accounts." link="RMCMultikey"]
+  - [textlink="3. Follow the rules of escalation against non-hostiles." link="RMCRulesEscalation"]
+  - [textlink="4. Don't use information gained from outside your character's knowledge." link="RMCMetaknowledge"]
+  - [textlink="5. Don't antagonize your team, don't harass players." link="RMCKindness"]
+  - [textlink="6. Don't quit a command level role without notice." link="RMCCommandRoles"]
+  - [textlink="7. Mutinies, riots and similar activity require admin permission." link="RMCMutinies"]
+  - 8. Don't disconnect if you do not get the role/kit you want, be considerate.
+  - 9. Follow the roleplay rules and standards of the server. (Outlined at the bottom of this page)
+
+  ## Command and Military Police
+  These rules also apply to any individual who is promoted or is acting in the place of a MP/Command role (unless they are a member of a hostile force).\n[italic]Command roles are defined as; all heads, cic staff, mp, and squad leaders.[/italic]
+  - [textlink="1. Command and MP must follow Marine Law." link="RMCMarineLaw"]
+  - [textlink="2. Command and MP are held to a higher standard of play." link="RMCHigherStandards"]
+  - [textlink="3. MP should try to remain non-lethal and effect arrests, except in specific special circumstances." link="RMCLethalForce"]
+  - [textlink="4. MP will be expected to answer for use of lethal force." link="RMCLethalForceConsequences"]
+  - Only a whitelisted CO or Provost may pardon a sentence, but appeals can be done. See marine law.
+
+  ## Roleplay Rules and Standards
+
+  - [textlink="1. General Roleplay Standards." link="RMCGeneralRoleplayStandards"]
+  - [textlink="2. Character Names." link="RMCCharacterNames"]
+  - [textlink="3. Marines." link="RMCMarineRoleplayStandards"]
+  - [textlink="4. Command." link="RMCCommandRoleplay"]
+  - [textlink="5. Xenonids." link="RMCXenoRoleplay"]
+  - [textlink="6. Survivors." link="RMCSurvivorRoleplay"]
+  - [textlink="7. Hostile Factions." link="RMCHostileFactionRoleplay"]
 </Document>
