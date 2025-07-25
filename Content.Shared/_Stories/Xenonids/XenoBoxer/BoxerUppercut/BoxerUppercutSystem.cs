@@ -44,10 +44,6 @@ public sealed class BoxerUppercutSystem : EntitySystem
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly SharedBoxerKnockoutSystem _knockout = default!;
     [Dependency] private readonly XenoSystem _xeno = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedRMCDamageableSystem _rmcDamage = default!;
     
     public override void Initialize()
     {
@@ -144,9 +140,9 @@ public sealed class BoxerUppercutSystem : EntitySystem
 
         foreach (var (actionId, action) in _actions.GetActions(xeno))
         {
-            var actionEvent = _actions.GetEvent(xeno);
+            var actionEvent = _actions.GetEvent(actionId);
             if (actionEvent is BoxerPunchActionEvent or BoxerJabActionEvent)
-                _actions.SetIfBiggerCooldown(actionId, comp.Cooldown);
+                _actions.SetCooldown(actionId, comp.Cooldown);
         }
 
         _knockout.ResetTracker(xeno, recently);

@@ -109,3 +109,5 @@
     size: Big
   - type: FixedIdentity
     name: cm-job-name-xeno-warrior
+  - type: RMCSurgeryXenoHeart
+    item: RMCOrganXenoHeartT2
