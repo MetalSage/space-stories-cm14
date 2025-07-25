@@ -6,5 +6,5 @@ namespace Content.Shared._Stories.Xenonids.XenoBoxer;
 public sealed partial class KnockoutLabelComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public TimeSpan? ExpiresAt = TimeSpan.FromSeconds(4);
+    public TimeSpan? ExpiresAt = TimeSpan.FromSeconds(5);
 }

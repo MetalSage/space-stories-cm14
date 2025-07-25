@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared._RMC14.Aura;
 using Content.Shared._RMC14.Xenonids;
@@ -7,7 +8,6 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared._Stories.Xenonids.XenoBoxer;
 
@@ -22,8 +22,8 @@ public sealed class SharedBoxerKnockoutSystem : EntitySystem
 
     public void UpdateKnockoutTracker(EntityUid ent, XenoBoxerKnockoutComponent comp, EntityUid target, float count)
     {
-        float trackerCount;
-        if (!_net.IsClient)
+        float trackerCount = 0f;
+        if (_net.IsServer)
         {
             var recently = EnsureComp<XenoBoxerKnockoutRecentlyComponent>(ent);
             var tracker = recently.Trackers.GetValueOrDefault(target);

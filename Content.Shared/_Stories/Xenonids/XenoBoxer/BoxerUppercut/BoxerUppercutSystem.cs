@@ -1,5 +1,6 @@
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Pulling;
+using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerJab;
@@ -20,7 +21,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared._RMC14.Stun;
 
 namespace Content.Shared._Stories.Xenonids.XenoBoxer.BoxerUppercut;
 
@@ -41,8 +41,8 @@ public sealed class BoxerUppercutSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly SharedBoxerKnockoutSystem _knockoutSystem = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly SharedBoxerKnockoutSystem _knockout = default!;
     [Dependency] private readonly XenoSystem _xeno = default!;
 
     public override void Initialize()
@@ -68,7 +68,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
             !TryComp(xeno, out XenoBoxerKnockoutRecentlyComponent? recently))
             return;
 
-        if (!_mobThresholdSystem.TryGetDeadThreshold(xeno, out var threshold))
+        if (!_mobThreshold.TryGetDeadThreshold(xeno, out var threshold))
             return;
 
         var tracker = recently.Trackers.GetValueOrDefault(args.Target);
@@ -145,6 +145,6 @@ public sealed class BoxerUppercutSystem : EntitySystem
                 _actions.SetIfBiggerCooldown(actionId, comp.Cooldown);
         }
 
-        _knockoutSystem.ResetTracker(xeno, recently);
+        _knockout.ResetTracker(xeno, recently);
     }
 }

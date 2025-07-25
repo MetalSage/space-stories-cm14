@@ -19,7 +19,7 @@ public sealed class BoxerJabSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
     [Dependency] private readonly RMCSlowSystem _slow = default!;
-    [Dependency] private readonly SharedBoxerKnockoutSystem _knockoutSystem = default!;
+    [Dependency] private readonly SharedBoxerKnockoutSystem _knockout = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
@@ -59,7 +59,7 @@ public sealed class BoxerJabSystem : EntitySystem
 
         _audio.PlayPredicted(comp.Sound, xeno, xeno);
 
-        _knockoutSystem.UpdateKnockoutTracker(xeno, knockoutComp, args.Target, comp.KnockoutIncrease);
+        _knockout.UpdateKnockoutTracker(xeno, knockoutComp, args.Target, comp.KnockoutIncrease);
 
         if (!TryComp<XenoBoxerKnockoutRecentlyComponent>(xeno, out var recently))
             return;
