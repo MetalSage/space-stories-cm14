@@ -1,5 +1,4 @@
 job-greet-station-name = Добро пожаловать на борт { $stationName }.
-job-greet-planet-name = В настоящее время на орбите { $planetName }
 job-greet-introduce-job-name = Ваша должность: { $jobName }.
 job-greet-important-disconnect-admin-notify = Вы играете важную роль для игрового прогресса. Если вы вынуждены отключиться, пожалуйста, сообщите об этом администраторам через "Админ помощь".
 job-greet-supervisors-warning = Как { $jobName } вы непосредственно подчиняетесь { $supervisors }. Особые обстоятельства могут изменить это.

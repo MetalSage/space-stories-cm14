@@ -4,16 +4,17 @@
   name: Punch
   description: Punches the targeted marine dealing a hefty amount of damage while also building a stack on the KO Counter. Has a two-tile range and resets the cooldown of Jab. Click on your target with the middle mouse button to use the ability. Cooldown 4 seconds
   components:
-  - type: EntityTargetAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Stories/Actions/xeno_actions.rsi
       state: punch
-    event: !type:BoxerPunchActionEvent
-    range: 2
     useDelay: 4
+  - type: TargetAction
+    range: 2
     deselectOnMiss: false
-  - type: XenoOffensiveAction
+  - type: EntityTargetAction
+    event: !type:BoxerPunchActionEvent
   - type: ActionBlockIfResting
 
 - type: entity
@@ -22,15 +23,17 @@
   name: Jab
   description: Jab is a ranged ability that applies a daze and slow to the target you hit, as well as building your KO Counter and has a 3-tile range. Cooldown is reset when landing a Punch. Cooldown 4 seconds.
   components:
-  - type: EntityTargetAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Stories/Actions/xeno_actions.rsi
       state: charge
-    event: !type:BoxerJabActionEvent
-    range: 3
     useDelay: 4
+  - type: TargetAction
+    range: 3
     deselectOnMiss: false
+  - type: EntityTargetAction
+    event: !type:BoxerJabActionEvent
   - type: ActionBlockIfResting
 
 - type: entity
@@ -39,13 +42,15 @@
   name: Uppercut
   description: Consumes all of your KO Counter when you use it. For every point of KO Counter, Uppercut deals 10 damage, up to a maximum of 150 damage at 15 stacks. In addition to this, Uppercut also heals you for 5% of your health per stack, up to a maximum of 75% health at 15 stacks. Uppercut has different effects based on how many stacks the target has when used, these are 0 - No effect. 1-2 - damage. 3-5 damage and knockback. 6-8 - damage, knockback, and a 1.5 second stun. 9-15 - damage, knockback, and the target will be slept for 10 seconds. Using Uppercut puts Punch and Jab on cooldown. Cooldown 15 seconds.
   components:
-  - type: EntityTargetAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_clothesline
-    event: !type:BoxerUppercutActionEvent
-    range: 2
     useDelay: 15
+  - type: TargetAction
+    range: 2
     deselectOnMiss: false
+  - type: EntityTargetAction
+    event: !type:BoxerUppercutActionEvent
   - type: ActionBlockIfResting

@@ -44,7 +44,11 @@ public sealed class BoxerUppercutSystem : EntitySystem
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly SharedBoxerKnockoutSystem _knockout = default!;
     [Dependency] private readonly XenoSystem _xeno = default!;
-
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedRMCDamageableSystem _rmcDamage = default!;
+    
     public override void Initialize()
     {
         SubscribeLocalEvent<BoxerUppercutComponent, BoxerUppercutActionEvent>(OnBoxerUppercutAction);

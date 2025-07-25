@@ -91,6 +91,7 @@
   - type: Emoting
   - type: Actions
   - type: Alerts
+  - type: AreaInfo
   - type: Appearance
   - type: DoAfter
   - type: Examiner
@@ -176,6 +177,7 @@
         density: 185
         mask:
         - MobMask
+        - BarricadeImpassable
         - BarbedBarricade
         layer:
         - MobLayer
@@ -186,11 +188,16 @@
         density: 0
         layer:
         - BulletImpassable
+  - type: CMSurgeryTarget
+  - type: Body
+    prototype: Xenonid
   - type: Xeno
   - type: XenoRegen
   - type: XenoStateVisuals
   - type: UserInterface
     interfaces:
+      enum.CMSurgeryUIKey.Key:
+        type: CMSurgeryBui
       enum.XenoEvolutionUIKey.Key:
         type: XenoEvolutionBui
       enum.XenoSkinsUIKey.Key: # Stories-Xeno-Skins
@@ -317,6 +324,11 @@
     - enum.RMCCameraUiKey.Key
   - type: ActiveInputMover
   - type: HiveTracker
+    mode: Queen
+    trackerModes:
+    - Queen
+    - HiveLeader
+    - Tunnel
   - type: RequireProjectileTarget
     active: false
   - type: TacticalMapTracked
@@ -375,6 +387,7 @@
     whitelist:
       components:
       - Marine
+  - type: EmoteCooldown
   - type: TTS # Stories-TTS
     voice: clinkz_dota_2
 
@@ -475,6 +488,7 @@
     stacks: -5
   - type: RMCHandEmotes
   - type: XenoToggleChargingKnockback
+  - type: XenoCanAddPlasmaToConstruct
 
 - type: entity
   abstract: true

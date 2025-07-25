@@ -38,6 +38,7 @@ public sealed class ChasmTeleporterSystem : EntitySystem
     [Dependency] private readonly RMCMapSystem _rmcMap = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     private EntityQuery<PhysicsComponent> _physQuery;
 
@@ -151,7 +152,7 @@ public sealed class ChasmTeleporterSystem : EntitySystem
                 continue;
 
             var tile = _mapSystem.GetTileRef(xform.Value, grid, coordinates);
-            if (tile == null || tile.IsSpace())
+            if (tile == null || _turf.IsSpace(tile))
                 continue;
 
             var valid = true;

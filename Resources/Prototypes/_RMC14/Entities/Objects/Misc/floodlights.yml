@@ -126,7 +126,7 @@
         layer:
         - WallLayer
   - type: Appearance
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
   - type: RMCReactorPoweredLight
   - type: PreventAttackLightOff
@@ -339,7 +339,7 @@
   - type: Corrodible # Repairable, not destructible.
     isCorrodible: false
   - type: Appearance
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
   - type: RMCReactorPoweredLight
   - type: PreventAttackLightOff
