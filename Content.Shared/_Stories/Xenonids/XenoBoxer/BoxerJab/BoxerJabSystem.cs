@@ -19,8 +19,7 @@ public sealed class BoxerJabSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
     [Dependency] private readonly RMCSlowSystem _slow = default!;
-    [Dependency] private readonly SharedBoxerKOSystem _koSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedBoxerKnockoutSystem _knockoutSystem = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
@@ -34,12 +33,12 @@ public sealed class BoxerJabSystem : EntitySystem
         if (args.Handled)
             return;
 
+        args.Handled = true;
+
         if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
             return;
 
-        args.Handled = true;
-
-        if (!TryComp<XenoBoxerKOComponent>(xeno, out var koComp))
+        if (!TryComp<XenoBoxerKnockoutComponent>(xeno, out var knockoutComp))
             return;
 
         var comp = xeno.Comp;
@@ -47,25 +46,28 @@ public sealed class BoxerJabSystem : EntitySystem
         _rmcMelee.DoLunge(xeno, args.Target);
         _slow.TryRoot(args.Target, comp.RootTime);
 
-        var messageSelf = Loc.GetString("stories-xeno-boxer-jab-self-message", ("target", Identity.Entity(args.Target, EntityManager)));
-        var messageOther = Loc.GetString("stories-xeno-boxer-jab-other-message", ("target", Identity.Entity(args.Target, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+        var messageSelf = Loc.GetString("stories-xeno-boxer-jab-self-message",
+            ("target", Identity.Entity(args.Target, EntityManager)));
+
+        var messageOther = Loc.GetString("stories-xeno-boxer-jab-other-message",
+            ("target", Identity.Entity(args.Target, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+
         _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno);
 
         if (_net.IsServer)
-        {
             SpawnAttachedTo(comp.RootEffect, args.Target.ToCoordinates());
-            _audio.PlayPvs(comp.Sound, xeno);
-        }
 
-        _koSystem.UpdateKOTracker(xeno, koComp, args.Target, comp.KOIncrease);
+        _audio.PlayPredicted(comp.Sound, xeno, xeno);
 
-        if (!TryComp<XenoBoxerKORecentlyComponent>(xeno, out var recently))
+        _knockoutSystem.UpdateKnockoutTracker(xeno, knockoutComp, args.Target, comp.KnockoutIncrease);
+
+        if (!TryComp<XenoBoxerKnockoutRecentlyComponent>(xeno, out var recently))
             return;
         var tracker = recently.Trackers.GetValueOrDefault(args.Target);
 
         foreach (var (actionId, action) in _action.GetActions(xeno))
         {
-            if (action.BaseEvent is BoxerPunchActionEvent && tracker.Count != koComp.MaxKO)
+            if (action.BaseEvent is BoxerPunchActionEvent && tracker.Count != knockoutComp.MaxKnockout)
                 _action.SetCooldown(actionId, comp.Cooldown);
         }
     }
