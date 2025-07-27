@@ -17,6 +17,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared._Stories.AntiGrief.Cadet;
+using Content.Shared.Players.PlayTimeTracking;
 
 namespace Content.Server._RMC14.Xenonids;
 
@@ -77,6 +79,16 @@ public sealed class XenoRoleSystem : EntitySystem
 
     private void OnPlayerAttached(Entity<XenoComponent> xeno, ref PlayerAttachedEvent args)
     {
+        // Stories-AntiGrief-Start
+        var playtime = _playTimeManager.GetPlayTimes(args.Player);
+
+        if (!playtime.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out TimeSpan time) ||
+            time < TimeSpan.FromHours(10))
+        {
+            EnsureComp<CadetComponent>(xeno.Owner);
+        }
+        // Stories-AntiGrief-End
+
         RemCompDeferred<XenoDisconnectedComponent>(xeno);
         _toUpdate.Add(xeno);
     }

@@ -278,7 +278,7 @@
       sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_seize
     event: !type:XenoTailFountainActionEvent
-    useDelay: 10
+    useDelay: 0.5 # Stories-Valkyrie-Tweak
   - type: TargetAction
     range: 2
   - type: EntityTargetAction

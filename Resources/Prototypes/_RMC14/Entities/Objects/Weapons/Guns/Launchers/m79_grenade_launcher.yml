@@ -46,6 +46,7 @@
   - type: Tag
     tags:
     - RMCWeaponLauncherM79
+  - type: CadetRestrictedGun # Stories-AntiGrief-Tweak
 
 - type: Tag
   id: RMCWeaponLauncherM79
