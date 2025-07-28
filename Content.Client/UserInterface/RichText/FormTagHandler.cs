@@ -107,8 +107,8 @@ public sealed class FormTagHandler : IMarkupTagHandler
         var btn = new Button
         {
             Text = Loc.GetString("paper-form-fill-button"),
-            MinSize = new Vector2(50, 28),
-            MaxSize = new Vector2(50, 28),
+            MinSize = new Vector2(100, 28),
+            MaxSize = new Vector2(100, 28),
             Margin = new Thickness(4, 2, 4, 2)
         };
 

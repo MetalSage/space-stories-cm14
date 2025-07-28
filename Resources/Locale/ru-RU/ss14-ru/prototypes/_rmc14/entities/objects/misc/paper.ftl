@@ -1,5 +1,5 @@
-ent-CMBasePaper = paper
-    .desc = A piece of white paper.
+ent-CMBasePaper = бумага
+    .desc = Кусок белой бумаги.
 ent-CMBasePaperFaxable = { ent-CMBasePaper }
     .desc = { ent-CMBasePaper.desc }
 ent-CMPaper = бумага
@@ -10,5 +10,9 @@ ent-CMPaperJudgement = судебное решение
     .desc = { ent-CMPaperWritten.desc }
 ent-CMPaperAlmayerStorage = записка об аварийном хранении Алмайера
     .desc = { ent-CMPaperWritten.desc }
+ent-CMPaperAegisInfoFax = Передача Высшего Командования
+    .desc = { ent-CMPaper.desc }
+ent-CMPaperAegisLobbyInfoFax = { ent-CMPaperAegisInfoFax }
+    .desc = { ent-CMPaperAegisInfoFax.desc }
 ent-RMCPaperRequisitionInvoice = счёт-фактура
     .desc = Единая единица бюрократии, ожидающая утверждения.

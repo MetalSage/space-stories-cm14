@@ -1,5 +1,7 @@
-ent-RMCRandomHumanoidMarineRaiderLead = ОТРЯД СМЕРТИ морпех рейдер командира группы роль призрака
-    .suffix = Роль
+ent-RMCRandomHumanoidMarineRaiderLead = роль призрака морпех рейдер командир отряда 
+    .suffix = Роль, ОТРЯД СМЕРТИ
     .desc = { "" }
-ent-RMCDogtagMarineRaiderLeader = жетон командира группы морских пехотинцев-рейдеров.
+ent-RMCDogtagMarineRaiderLeader = жетон командира отряда морпех-рейдеров
     .desc = { ent-CMIDCardStandardDogtag.desc }
+ent-RMCDogtagMarineRaiderLeaderHidden = { ent-RMCIDCardStandardDogtagHidden }
+    .desc = { ent-RMCIDCardStandardDogtagHidden.desc }

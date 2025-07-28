@@ -23,7 +23,7 @@ public sealed class BoxerPunchSystem : EntitySystem
     [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
     [Dependency] private readonly RMCSlowSystem _slow = default!;
     [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
-    [Dependency] private readonly SharedBoxerKOSystem _koSystem = default!;
+    [Dependency] private readonly SharedBoxerKnockoutSystem _knockout = default!;
     [Dependency] private readonly XenoSystem _xeno = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
 
@@ -37,44 +37,44 @@ public sealed class BoxerPunchSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
-            return;
-
         args.Handled = true;
 
-        if (!TryComp<XenoBoxerKOComponent>(xeno, out var koComp))
+        var comp = xeno.Comp;
+        var targetUid = args.Target;
+
+        if (!_xeno.CanAbilityAttackTarget(xeno, targetUid))
             return;
 
-        var comp = xeno.Comp;
-        var targetId = args.Target;
+        if (!TryComp<XenoBoxerKnockoutComponent>(xeno, out var knockoutComp))
+            return;
 
-        _rmcPulling.TryStopAllPullsFromAndOn(targetId);
+        _rmcPulling.TryStopAllPullsFromAndOn(targetUid);
 
-        var damage = _damageable.TryChangeDamage(targetId, comp.Damage);
+        var damage = _damageable.TryChangeDamage(targetUid, comp.Damage);
         if (damage?.GetTotal() > FixedPoint2.Zero)
         {
-            var filter = Filter.Pvs(targetId, entityManager: EntityManager).RemoveWhereAttachedEntity(o => o == xeno.Owner);
-            _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> { targetId }, filter);
+            var filter = Filter.Pvs(targetUid, entityManager: EntityManager).RemoveWhereAttachedEntity(o => o == xeno.Owner);
+            _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> { targetUid }, filter);
         }
 
-        _rmcMelee.DoLunge(xeno, targetId);
-        _slow.TrySlowdown(targetId, comp.SlowDuration);
+        _rmcMelee.DoLunge(xeno, targetUid);
+        _slow.TrySlowdown(targetUid, comp.SlowDuration);
 
         if (_net.IsServer)
-        {
-            SpawnAttachedTo(comp.Effect, targetId.ToCoordinates());
-            _audio.PlayPvs(comp.Sound, xeno);
-        }
+            SpawnAttachedTo(comp.Effect, targetUid.ToCoordinates());
 
-        _koSystem.UpdateKOTracker(xeno, koComp, args.Target, comp.KOIncrease);
-        if (!TryComp<XenoBoxerKORecentlyComponent>(xeno, out var recently))
+        _audio.PlayPredicted(comp.Sound, xeno, xeno);
+
+        _knockout.UpdateKnockoutTracker(xeno, knockoutComp, args.Target, comp.KnockoutIncrease);
+        if (!TryComp<XenoBoxerKnockoutRecentlyComponent>(xeno, out var recently))
             return;
+
         var tracker = recently.Trackers.GetValueOrDefault(args.Target);
 
         foreach (var (actionId, action) in _actions.GetActions(xeno))
         {
             var actionEvent = _actions.GetEvent(actionId);
-            if (actionEvent is BoxerJabActionEvent && tracker.Count != koComp.MaxKO)
+            if (actionEvent is BoxerJabActionEvent && tracker.Count != knockoutComp.MaxKnockout)
                 _actions.SetCooldown(actionId, comp.Cooldown);
         }
     }

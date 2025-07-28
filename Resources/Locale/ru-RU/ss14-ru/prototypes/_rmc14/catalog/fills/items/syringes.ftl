@@ -1,0 +1,9 @@
+ent-RMCSyringeInaprovaline = { ent-RMCPrefilledSyringe }
+    .desc = Содержит инапровалин — используется для стабилизации пациентов.
+    .suffix = Инапровалин, RMC14
+ent-RMCSyringeDylovene = { ent-RMCPrefilledSyringe }
+    .desc = Содержит антитоксины.
+    .suffix = Диловен, RMC14
+ent-RMCSyringeDrugs = { ent-RMCPrefilledSyringe }
+    .desc = Содержит агрессивные препараты, предназначенные для пыток.
+    .suffix = Препараты, RMC14

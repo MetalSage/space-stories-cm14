@@ -178,8 +178,9 @@
     icon:
       sprite: _Stories/Actions/xeno_actions.rsi
       state: toggle_long_range
-    event: !type:XenoZoomActionEvent
     useDelay: 0.2
+  - type: InstantAction
+    event: !type:XenoZoomActionEvent
 
 - type: entity
   id: ActionXenoTrapperZoom
@@ -191,8 +192,9 @@
     icon:
       sprite: _Stories/Actions/xeno_actions.rsi
       state: toggle_long_range
-    event: !type:XenoZoomActionEvent
     useDelay: 0.2
+  - type: InstantAction
+    event: !type:XenoZoomActionEvent
 
 - type: entity
   parent: CMGuidebookActionXenoBase

@@ -1,5 +1,6 @@
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Pulling;
+using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerJab;
@@ -9,13 +10,10 @@ using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Effects;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
@@ -28,25 +26,25 @@ namespace Content.Shared._Stories.Xenonids.XenoBoxer.BoxerUppercut;
 
 public sealed class BoxerUppercutSystem : EntitySystem
 {
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _colorFlash = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly XenoSystem _xeno = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedRMCDamageableSystem _rmcDamage = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedBoxerKOSystem _koSystem = default!;
-
+    [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
+    [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly RMCSizeStunSystem _rmcStun = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly SharedBoxerKnockoutSystem _knockout = default!;
+    [Dependency] private readonly XenoSystem _xeno = default!;
+    
     public override void Initialize()
     {
         SubscribeLocalEvent<BoxerUppercutComponent, BoxerUppercutActionEvent>(OnBoxerUppercutAction);
@@ -54,87 +52,92 @@ public sealed class BoxerUppercutSystem : EntitySystem
 
     private void OnBoxerUppercutAction(Entity<BoxerUppercutComponent> xeno, ref BoxerUppercutActionEvent args)
     {
-        if (args.Handled || !_timing.IsFirstTimePredicted || _net.IsClient)
-            return;
-
-        if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
+        if (args.Handled)
             return;
 
         args.Handled = true;
 
-        if (!TryComp(xeno, out XenoBoxerKOComponent? koComp) ||
-            !TryComp(xeno, out XenoBoxerKORecentlyComponent? recently) ||
-            !TryComp(xeno, out MobThresholdsComponent? mobThreshold))
-            return;
-
-        if (!_mobThresholdSystem.TryGetDeadThreshold(xeno, out var threshold, mobThreshold))
-            return;
-
-        var targetId = args.Target;
+        var targetUid = args.Target;
         var comp = xeno.Comp;
-        var tracker = recently.Trackers.GetValueOrDefault(args.Target);
         var popupPower = "weak";
 
-        _audio.PlayPvs(comp.Sound, xeno);
+        if (!_xeno.CanAbilityAttackTarget(xeno, targetUid))
+            return;
 
-        var damageModificator = Math.Min(tracker.Count * comp.DamageModificator, 150);
+        if (!TryComp(xeno, out XenoBoxerKnockoutComponent? knockoutComp) ||
+            !TryComp(xeno, out XenoBoxerKnockoutRecentlyComponent? recently))
+            return;
+
+        if (!_mobThreshold.TryGetDeadThreshold(xeno, out var threshold))
+            return;
+
+        var tracker = recently.Trackers.GetValueOrDefault(args.Target);
+        _audio.PlayPredicted(comp.ClawSound, xeno, xeno);
+
+        var damageModificator = Math.Min(tracker.Count * comp.DamageModificator, comp.MaxDamage);
 
         var origin = _transform.GetMapCoordinates(xeno);
-        var target = _transform.GetMapCoordinates(targetId);
-        var diff = target.Position - origin.Position;
-        diff = diff.Normalized() * (tracker.Count / comp.Range);
+        var target = _transform.GetMapCoordinates(targetUid);
+        var diff = (target.Position - origin.Position).Normalized() * (tracker.Count / comp.Range);
 
-        var damage = _damageable.TryChangeDamage(targetId, new DamageSpecifier(
+        var damage = _damageable.TryChangeDamage(targetUid, new DamageSpecifier(
             _proto.Index<DamageTypePrototype>("Blunt"), damageModificator), true);
 
         if (damage?.GetTotal() > FixedPoint2.Zero)
         {
-            var filter = Filter.Pvs(targetId, entityManager: EntityManager).RemoveWhereAttachedEntity(o => o == xeno.Owner);
-            _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> { targetId }, filter);
+            var filter = Filter.Pvs(targetUid, entityManager: EntityManager)
+                .RemoveWhereAttachedEntity(o => o == xeno.Owner);
+
+            _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> { targetUid }, filter);
             popupPower = "good";
         }
 
-        var heal = threshold.Value *
-        (Math.Clamp(tracker.Count, 0, koComp.MaxKO) * comp.HealPerStack);
-
+        var heal = threshold.Value * (Math.Clamp(tracker.Count, 0, knockoutComp.MaxKnockout) * comp.HealPerStack);
         var amount = -_rmcDamage.DistributeTypesTotal(xeno.Owner, heal);
-        _damageable.TryChangeDamage(xeno, amount, true);
-        SpawnAttachedTo(comp.HealEffect, xeno.Owner.ToCoordinates());
 
-        _rmcPulling.TryStopAllPullsFromAndOn(targetId);
+        _damageable.TryChangeDamage(xeno, amount, true);
+
+        if (_net.IsServer)
+            SpawnAttachedTo(comp.HealEffect, xeno.Owner.ToCoordinates());
+
+        _rmcPulling.TryStopAllPullsFromAndOn(targetUid);
 
         if (tracker.Count <= 5)
         {
-            _throwing.TryThrow(targetId, diff, 10);
+            _throwing.TryThrow(targetUid, diff, 10);
             popupPower = "powerful";
         }
         else if (tracker.Count <= 10)
         {
-            _throwing.TryThrow(targetId, diff, 10);
-            _stun.TryParalyze(targetId, xeno.Comp.ParalyzeTime, true);
+            _throwing.TryThrow(targetUid, diff, 10);
+            _stun.TryParalyze(targetUid, comp.ParalyzeTime, true);
             popupPower = "gigantic";
         }
         else
         {
-            _throwing.TryThrow(targetId, diff, 10);
-            _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(targetId, comp.StatusEffectKey,
-                comp.StatusEffectTime, false);
-            _stun.TryParalyze(targetId, xeno.Comp.TitanicParalyzeTime, true);
-            _audio.PlayEntity(comp.GongSound, Filter.Entities(xeno), xeno, true);
-            EnsureComp<KOLabelComponent>(targetId);
-            Timer.Spawn(TimeSpan.FromSeconds(4), () =>
-            {
-                RemCompDeferred<KOLabelComponent>(targetId);
-            });
+            _throwing.TryThrow(targetUid, diff, 10);
+            _rmcStun.TryKnockOut(targetUid, comp.UnconsciousTime);
+            _audio.PlayLocal(comp.GongSound, xeno, xeno);
+
+            EnsureComp<KnockoutLabelComponent>(targetUid);
             popupPower = "titanic";
         }
 
-        var messageOther = Loc.GetString("stories-xeno-boxer-strain-other-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
-        var messageSelf = Loc.GetString("stories-xeno-boxer-strain-self-uppercut-" + popupPower, ("target", Identity.Entity(targetId, EntityManager)), ("boxer", Identity.Entity(xeno, EntityManager)));
+        if (_net.IsClient)
+            SpawnAttachedTo(comp.Effect, targetUid.ToCoordinates());
+
+        var messageOther = Loc.GetString("stories-xeno-boxer-strain-other-uppercut-" + popupPower,
+            ("target", Identity.Name(targetUid, EntityManager)),
+            ("boxer", Identity.Name(xeno, EntityManager)));
+
+        var messageSelf = Loc.GetString("stories-xeno-boxer-strain-self-uppercut-" + popupPower,
+            ("target", Identity.Name(targetUid, EntityManager)),
+            ("boxer", Identity.Name(xeno, EntityManager)));
+
         _popup.PopupPredicted(messageSelf, messageOther, xeno, xeno, PopupType.LargeCaution);
 
-        _rmcMelee.DoLunge(xeno, targetId);
-        SpawnAttachedTo(comp.Effect, targetId.ToCoordinates());
+        _rmcMelee.DoLunge(xeno, targetUid);
+
         foreach (var (actionId, action) in _actions.GetActions(xeno))
         {
             var actionEvent = _actions.GetEvent(actionId);
@@ -142,6 +145,6 @@ public sealed class BoxerUppercutSystem : EntitySystem
                 _actions.SetCooldown(actionId, comp.Cooldown);
         }
 
-        _koSystem.ResetTracker(xeno, recently);
+        _knockout.ResetTracker(xeno, recently);
     }
 }

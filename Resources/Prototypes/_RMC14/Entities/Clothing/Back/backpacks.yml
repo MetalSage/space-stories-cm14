@@ -55,6 +55,8 @@
     - whitelist:
         tags:
         - CMFirstAidKit
+        - GlassBeaker
+        - PressurizedCanister
       skills:
         all:
           RMCSkillMedical: 2

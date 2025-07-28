@@ -14,9 +14,14 @@ gun-FullAuto = авто
 # BallisticAmmoProvider
 gun-ballistic-cycle = Перезарядка
 gun-ballistic-cycled = Перезаряжено
+gun-ballistic-cycle-delayed = Вы начинаете разряжать { CAPITALIZE(THE($entity)) }. Оставайтесь неподвижны...
+gun-ballistic-cycle-delayed-cancelled = Вы прекратили разряжать { CAPITALIZE(THE($entity)) }.
+gun-ballistic-cycle-delayed-empty = { CAPITALIZE(THE($entity)) } уже разряжен.
 gun-ballistic-cycled-empty = Разряжено
 gun-ballistic-transfer-invalid = { CAPITALIZE($ammoEntity) } нельзя поместить в { $targetEntity }!
 gun-ballistic-transfer-empty = В { CAPITALIZE($entity) } пусто.
+gun-ballistic-transfer-cancelled = Ваша перезарядка была прервана!
+gun-ballistic-transfer-primed = Вы не можете загрузить готовый { $ammoEntity }!
 gun-ballistic-transfer-target-full = { CAPITALIZE($entity) } уже полностью заряжен.
 # CartridgeAmmo
 gun-cartridge-spent = Он [color=red]израсходован[/color].

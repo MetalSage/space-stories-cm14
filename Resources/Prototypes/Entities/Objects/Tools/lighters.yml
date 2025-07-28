@@ -193,10 +193,10 @@
     spriteLayer: lighter_flame
     inhandVisuals:
       left:
-      - state: zippo-inhand-left-flame
+      - state: inhand-left-flame
         shader: unshaded
       right:
-      - state: zippo-inhand-right-flame
+      - state: inhand-right-flame
         shader: unshaded
   - type: MeleeWeapon
     wideAnimationRotation: 180

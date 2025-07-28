@@ -1,7 +1,9 @@
 ent-CMClosetBaseUnanchored = шкаф
     .desc = Это базовая единица хранения.
+    .suffix = Незакрепленный
 ent-CMClosetBase = шкаф
     .desc = Это базовая единица хранения.
+    .suffix = Закрепленный
 ent-RMCCabinetBase = шкаф
     .desc = Старое всегда будет в моде.
 ent-RMCClosetBlack = формальный шкаф
@@ -38,3 +40,4 @@ ent-CMClosetAlien = странный шкаф
     .desc = Он выглядит как инопланетный!
 ent-RMCClosetGoldenArrowGear = персональный шкаф
     .desc = Неподвижный блок хранения.
+    .suffix = PvE, Солнечные рейдеры

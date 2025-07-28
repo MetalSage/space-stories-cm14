@@ -19,8 +19,8 @@ CMJobExecutiveOfficer = Исполнительный офицер
 rmc-job-prefix-forecon-marksman = МАРКСМН
 rmc-job-prefix-forecon-support-tech = ТП
 # Спецназ
-rmc-job-prefix-forecon = ФОРЕКОН
-rmc-job-prefix-forecon-co = КО ФОРЕКОН
+rmc-job-prefix-forecon = ФОРКОН
+rmc-job-prefix-forecon-co = КО ФОРКОН
 # Только для админов сейчас.
 cm-job-name-high-command = Верховное Командование
 # Только для админа (бриг. ген.).

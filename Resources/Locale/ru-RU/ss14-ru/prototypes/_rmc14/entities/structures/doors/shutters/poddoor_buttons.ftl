@@ -19,3 +19,6 @@ ent-RMCPodDoorButtonWeYaOfficeMaintenanceDoor = ставни для технич
     .desc = { ent-RMCPodDoorButtonWeYa.desc }
 ent-RMCPodDoorButtonWeYaOfficeQuarterWindows = ставни на четверть окна
     .desc = { ent-RMCPodDoorButtonWeYa.desc }
+ent-RMCPodDoorButtonHybrisaCavesLockdown = Блокировка пещер
+    .suffix = Гибриса
+    .desc = { ent-RMCPodDoorButton.desc }

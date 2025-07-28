@@ -34,6 +34,14 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 30
+  - type: StorageStoreSkillRequired
+    entries:
+    - whitelist:
+        tags:
+        - GlassBeaker
+      skills:
+        all:
+          RMCSkillMedical: 2
 
 - type: entity
   abstract: true

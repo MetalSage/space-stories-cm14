@@ -20,6 +20,14 @@
       path: /Audio/_RMC14/Machines/armor_equip.ogg
   - type: MoveOrderArmor
   - type: StoreAfterFailedInteract
+  - type: StorageStoreSkillRequired
+    entries:
+    - whitelist:
+        tags:
+        - GlassBeaker
+      skills:
+        all:
+          RMCSkillMedical: 2
 
 - type: entity
   abstract: true

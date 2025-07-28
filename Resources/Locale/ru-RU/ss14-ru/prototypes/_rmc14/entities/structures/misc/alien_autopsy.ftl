@@ -1,0 +1,16 @@
+ent-RMCResearchThingies = Исследовательские штуковины
+    .desc = { "" }
+ent-RMCAlienTank = криогенный резервуар
+    .desc = Внутри что-то большое...
+ent-RMCAlienTankBroken = { ent-RMCAlienTank }
+    .suffix = Сломанный
+    .desc = { ent-RMCAlienTank.desc }
+ent-RMCAlienTankEmpty = { ent-RMCAlienTank }
+    .suffix = Пустой
+    .desc = { ent-RMCAlienTank.desc }
+ent-RMCAlienTankParasite = { ent-RMCAlienTank }
+    .suffix = Паразит
+    .desc = { ent-RMCAlienTank.desc }
+ent-RMCAlienTankLarva = { ent-RMCAlienTank }
+    .suffix = Личинка
+    .desc = { ent-RMCAlienTank.desc }

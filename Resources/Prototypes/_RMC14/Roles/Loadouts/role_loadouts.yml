@@ -14,14 +14,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -36,14 +36,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -58,14 +58,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -80,14 +80,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -102,14 +102,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 # Command
@@ -127,14 +127,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -149,14 +149,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -171,14 +171,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 # Engineering
@@ -194,14 +194,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -216,14 +216,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -238,14 +238,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 # Squad Roles
@@ -261,14 +261,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -283,14 +283,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -305,14 +305,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -327,14 +327,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -349,14 +349,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -371,14 +371,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -393,14 +393,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 # Medical
@@ -416,14 +416,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -438,14 +438,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -460,14 +460,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -482,14 +482,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 # Military Police
@@ -506,14 +506,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -528,14 +528,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -550,14 +550,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 # Other
@@ -579,7 +579,7 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - CivilianOnlyRMC
 
@@ -601,7 +601,7 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - CivilianOnlyRMC
 
@@ -617,14 +617,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -639,14 +639,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -664,8 +664,8 @@
   - SynthSuitsRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
-  - RMCLoadoutGroupPins
+  # - PlushiesRMC
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 # Requsitions
@@ -681,14 +681,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 - type: roleLoadout
@@ -703,14 +703,14 @@
   - AccessoriesRMC
   - PaperworkRMC
   - RecreationalRMC
-  - PlushiesRMC
+  # - PlushiesRMC
   - WeaponsRMC
   - CannedDrinksRMC
   - FlasksRMC
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
 
 # Survivors
@@ -727,7 +727,7 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - CivilianOnlyRMC
 
@@ -743,7 +743,7 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - CivilianOnlyRMC
 
@@ -759,7 +759,7 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - CivilianOnlyRMC
 
@@ -775,7 +775,7 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - CivilianOnlyRMC
 
@@ -791,7 +791,7 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - CivilianOnlyRMC
 
@@ -807,7 +807,7 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - CivilianOnlyRMC
 
@@ -823,7 +823,7 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - CivilianOnlyRMC
 
@@ -839,5 +839,5 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
+  # - RMCLoadoutGroupPins
   - SmokablesRMC

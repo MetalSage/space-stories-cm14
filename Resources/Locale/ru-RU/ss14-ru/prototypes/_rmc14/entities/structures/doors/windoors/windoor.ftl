@@ -1,4 +1,9 @@
+ent-CMBaseWindoor = { ent-BaseStructure }
+    .desc = { ent-BaseStructure.desc }
 ent-CMWindoor = стеклянная дверь
     .desc = Окно, которое одновременно является и дверью. Ветряная дверь, если хотите.
+ent-RMCWindoorSoro = { ent-CMWindoor }
+    .suffix = Синяя
+    .desc = { ent-CMWindoor.desc }
 ent-CMWindoorSecure = защишёная стеклянная дверь
     .desc = Толстый кусок закаленного стекла на металлических направляющих. Возможно, более прочная, чем вы.

@@ -41,6 +41,14 @@
       components:
       - Xeno
   - type: StoreAfterFailedInteract
+  - type: StorageStoreSkillRequired
+    entries:
+    - whitelist:
+        tags:
+        - GlassBeaker
+      skills:
+        all:
+          RMCSkillMedical: 2
 
 - type: entity
   parent: CMWebbingBase

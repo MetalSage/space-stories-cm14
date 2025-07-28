@@ -1,12 +1,13 @@
 cm-pill-contains = Таблетка содержит:
 cm-pill-contains-none = Таблетка содержит: Никаких реагентов.
-cm-pill-contents-unknown = Вы не знаете, что в нем находится.
-cm-pill-contents-none = { "" }
-cm-pill-contents-bicaridine = Пилюля бикаридина. Лечит грубый урон.
+cm-pill-contents-unknown = Вы не знаете, что в ней находится.
+cm-pill-contents-none = {""}
+cm-pill-contents-bicaridine = Пилюля бикаридина. Лечит грубые повреждения.
 cm-pill-contents-dexalin = Таблетка "Дексалин". Используется для лечения кислородного голодания.
 cm-pill-contents-dylovene = Таблетка против токсинов. Нейтрализует многие распространенные токсины, а также лечит повреждения, вызванные токсинами.
 cm-pill-contents-inaprovaline = Таблетка инапровалина. Используется для стабилизации состояния пациентов.
 cm-pill-contents-kelotane = Таблетки "Келотан". Используется для лечения ожогов.
 cm-pill-contents-tricordrazine = Таблетка трикордразина. Слабое лекарство общего назначения для лечения повреждений.
-rmc-pill-contents-meralyne-bicaridine = Мералин-бикаридин. Быстро исцеляет грубый урон.
+rmc-pill-contents-meralyne-bicaridine = Мералин-бикаридин. Быстро лечит грубые повреждения.
 rmc-pill-contents-russianred = Русская красная таблетка. Очень опасное вещество, противодействующее радиации.
+rmc-pill-contents-antized = Таблетка какого-то уникального лекарства. Вы считаете, что она может лечить некротические инфекции.

@@ -1,0 +1,17 @@
+ent-RMCCalendarBase = настенный календарь
+    .desc = Классическое офисное украшение и место, на которое можно безумно пялиться.
+ent-RMCCalendarColonist = { ent-RMCCalendarBase }
+    .suffix = Колония
+    .desc = { ent-RMCCalendarBase.desc }
+ent-RMCCalendarWeYa = { ent-RMCCalendarBase }
+    .suffix = Ве-Я
+    .desc = { ent-RMCCalendarBase.desc }
+ent-RMCCalendarUNMC = { ent-RMCCalendarBase }
+    .suffix = КМП США
+    .desc = { ent-RMCCalendarBase.desc }
+ent-RMCCalendarTWE = { ent-RMCCalendarBase }
+    .suffix = ИТМ
+    .desc = { ent-RMCCalendarBase.desc }
+ent-RMCCalendarSPP = { ent-RMCCalendarBase }
+    .suffix = СПН
+    .desc = { ent-RMCCalendarBase.desc }
