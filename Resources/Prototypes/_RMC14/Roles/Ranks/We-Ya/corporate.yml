@@ -18,8 +18,8 @@
 
 - type: rank
   id: RMCRankWeYaSeniorExecutive
-  name: Senior Executive
-  prefix: Sr. Exec.
+  name: Старший Руководитель
+  prefix: Ст. Рук.
   paygrade: ВЯС4
 
 - type: rank
