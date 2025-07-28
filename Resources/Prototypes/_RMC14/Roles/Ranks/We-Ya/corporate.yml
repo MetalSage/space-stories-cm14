@@ -2,67 +2,67 @@
   id: RMCRankWeYaTrainee
   name: Стажер
   prefix: Стж.
-  paygrade: ВЯС1
+  paygrade: WYC1
 
 - type: rank
   id: RMCRankWeYaJuniorExecutive
   name: Младший Руководитель
   prefix: Мл. Рук.
-  paygrade: ВЯС2
+  paygrade: WYC2
 
 - type: rank
   id: RMCRankWeYaExecutive
   name: Руководитель
   prefix: Рук.
-  paygrade: ВЯС3
+  paygrade: WYC3
 
 - type: rank
   id: RMCRankWeYaSeniorExecutive
   name: Старший Руководитель
   prefix: Ст. Рук.
-  paygrade: ВЯС4
+  paygrade: WYC4
 
 - type: rank
   id: RMCRankWeYaExecutiveSpecialist
   name: Исполнительный Специалист
   prefix: Исп. Спц.
-  paygrade: ВЯС5
+  paygrade: WYC5
 
 - type: rank
   id: RMCRankWeYaExecutiveSupervisor
   name: Исполнительный Супервайзер
   prefix: Исп. Спвайз.
-  paygrade: ВЯС6
+  paygrade: WYC6
 
 - type: rank
   id: RMCRankWeYaAssistantManager
   name: Ассистент Менеджера
   prefix: Ассист. Мндж.
-  paygrade: ВЯС7
+  paygrade: WYC7
 
 - type: rank
   id: RMCRankWeYaDivisionManager
   name: Менеджер Подразделения
   prefix: Подр. Мндж.
-  paygrade: ВЯС8
+  paygrade: WYC8
 
 - type: rank
   id: RMCRankWeYaChiefExecutive
   name: Главный Руководитель
   prefix: Гл. Рук.
-  paygrade: ВЯС9
+  paygrade: WYC9
 
 - type: rank
   id: RMCRankWeYaDeputyDirector
   name: Заместитель Директора
   prefix: Зам. Директор
-  paygrade: ВЯС10
+  paygrade: WYC10
 
 - type: rank
   id: RMCRankWeYaDirector
   name: Директор
   prefix: Директор
-  paygrade: ВЯС11
+  paygrade: WYC11
 
 # Lawyers
 - type: rank
@@ -80,4 +80,4 @@
   id: RMCRankWeYaPilotOfficer
   name: Капитан
   prefix: Капитан
-  paygrade: ВЯПО2
+  paygrade: WYPO2
