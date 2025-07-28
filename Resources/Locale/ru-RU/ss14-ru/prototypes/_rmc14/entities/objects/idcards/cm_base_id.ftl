@@ -1,5 +1,7 @@
 ent-CMIDCardStandardDogtag = жетон
     .desc = Содержит информацию о своем носителе и предоставляет доступ на корабль.
+ent-RMCIDCardStandardDogtagHidden = { ent-CMIDCardStandardDogtag }
+    .desc = { ent-CMIDCardStandardDogtag.desc }
 ent-RMCInformationDogtagProp = потёртый информационный жетон
     .desc = Информационный жетон павшего морпеха. Выглядит потрепанным, имя стерлось.
 ent-RMCInformationDogtag = информационный жетон

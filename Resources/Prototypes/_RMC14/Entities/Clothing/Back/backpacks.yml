@@ -55,6 +55,8 @@
     - whitelist:
         tags:
         - CMFirstAidKit
+        - GlassBeaker
+        - PressurizedCanister
       skills:
         all:
           RMCSkillMedical: 2
@@ -266,6 +268,9 @@
     whitelist:
       tags:
       - RMCAmmoBox
+      components:
+      - EmptySandbag
+      - FullSandbag
   - type: CMStorageVisualizer
     storageClosed: null
     storageOpen: null

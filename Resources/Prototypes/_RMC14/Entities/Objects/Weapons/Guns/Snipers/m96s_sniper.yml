@@ -94,7 +94,7 @@
         Tiger: sniperbarrel_t
 
 - type: entity
-  parent: BaseMagazineRifle
+  parent: BaseItem
   id: CMMagazineSniperM96S
   name: "M96S marksman magazine (10x28mm)"
   description: A magazine of sniper rifle ammo. An aimed shot with it will deal significant damage.
@@ -110,6 +110,8 @@
       - CMCartridgeSniper10x28mm
     proto: CMCartridgeSniper10x28mm
     capacity: 15
+  - type: Item
+    size: Normal
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m42c.rsi
     layers:
@@ -122,7 +124,13 @@
     steps: 2
     zeroVisible: false
     zeroOnlyOnEmpty: true
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
   - type: Appearance
+  - type: Clothing
+    slots:
+    - suitStorage
 
 - type: entity
   parent: CMMagazineSniperM96S

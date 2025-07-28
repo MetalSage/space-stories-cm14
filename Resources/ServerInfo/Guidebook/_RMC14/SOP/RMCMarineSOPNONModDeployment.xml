@@ -1,65 +1,66 @@
 ﻿<Document>
-  # НЕ изменяемые Ограничения Развертывания
+  # NON-Modifiable Deployment Restrictions
 
-  ## Ядерный Протокол
+  ## Nuclear Protocol
 
-  В случае развертывания ядерных боеприпасов весь персонал уполномочен развернуться на [bold]ПОБ[/bold], чтобы защитить ее во время обратного отсчета, что отменяет все другие СОП департаментов, запрещающие развертывание.
+  In the event of nuclear ordnance being deployed, all personnel are authorized to deploy to the [bold]FOB[/bold] to protect it during countdown, which overrides all other department SOP preventing deployments.
 
-  - [color=#008000][bold]Командир[/bold][/color] может приказать персоналу оставаться на борту корабля по своему усмотрению.
-  - Заключенных нельзя развертывать.
+  - The [color=#008000][bold]Commander[/bold][/color] may order personnel to remain aboard the ship at their discretion.
+  - Prisoners may not be deployed.
 
-  ## Полевое Развертывание Командира
+  ## Command Field Deployment
 
-  - [color=#008000][bold]Командир[/bold][/color] имеет право развернуться на передовой, чтобы командовать своим персоналом с прямой точки зрения. Развертывание должно быть ради персонала и операции, а не для личной славы [color=#008000][bold]Командира[/bold][/color].
-  - [color=#90EE90][bold]Дежурный Офицер[/bold][/color] не может развертываться.
-  - Это право на развертывание является исключительным для [color=#00CBFE][bold]Командующего Офицера[/bold][/color] и [bold]Исполнительного Офицера[/bold], оно не может быть передано.
+  - The [color=#00CBFE][bold]Commanding Officer[/bold][/color] and [bold]Executive Officer[/bold] have the exclusive, non-transferable right to deploy to the frontline for the sake of commanding their personnel from a direct point of view.
+  - Deployments must be for the sake of the personnel and operation, and not for the personal glory.
+  - The [color=#00CBFE][bold]Commanding Officer[/bold][/color] and [bold]Executive Officer[/bold] must not be deployed at the same time, if both are present.
 
-  [bold]Подготовка к Развертыванию[/bold]
+  [bold]Preparing to Deploy[/bold]
 
-  - [color=#00CBFE][bold]Командующий Офицер[/bold][/color] и [bold]Исполнительный Офицер[/bold] не должны развертываться одновременно, если оба присутствуют.
-  - Развертывание не следует проводить, если они не уверены, что ЦИК может управляться в их отсутствие.
-  - Действия, предпринятые [bold]Персоналом ЦИК[/bold] в отсутствие, являются ответственностью [color=#008000][bold]Командира[/bold][/color].
-  - Если [color=#00CBFE][bold]Командующий Офицер[/bold][/color] присутствует, [bold]Старшему Помощнику[/bold] требуется разрешение на развертывание, в противном случае он должен уведомить [bold]Персонал ЦИК[/bold] о своем намерении развернуться.
-  - [color=#00CBFE][bold]Командующий Офицер[/bold][/color] должен уведомить [bold]Персонал ЦИК[/bold] о своем намерении развернуться.
-  - [color=#00CBFE][bold]Командующий Офицер[/bold][/color] может назначить почетный караул для своей собственной защиты, но [bold]Старшие Помощники[/bold] должны запросить разрешение у [color=#00CBFE][bold]Командующего Офицера[/bold][/color], чтобы сделать то же самое.
+  - Deployment must not be done unless they are confident CIC can be managed in their absence.
+  - Actions taken by [bold]CIC Personnel[/bold] during the absence is the responsibility of the [color=#008000][bold]Commander[/bold][/color], not the [color=#90EE90][bold]Duty Officer[/bold][/color].
+  - If the [color=#00CBFE][bold]Commanding Officer[/bold][/color] is present, the [bold]Executive Officer[/bold] requires permission to deploy.
+  - Both must notify [bold]CIC Personnel[/bold] of their intent to deploy.
+  - The [color=#00CBFE][bold]Commanding Officer[/bold][/color] may appoint honor guards for their own protection but [bold]Executive Officer[/bold]s must request permission from the [color=#00CBFE][bold]Commanding Officer[/bold][/color] to do the same.
 
-  [bold]Во Время Развертывания[/bold]
+  [bold]When Deployed[/bold]
 
-  - Развертывающийся [color=#008000][bold]Командир[/bold][/color] должен по-прежнему командовать и часто общаться как с [bold]ЦИК[/bold], так и с экипажами морпехов.
-  - В бой следует вступать при оказании помощи морпехам в качестве поддержки, для защиты других и себя или при непосредственном руководстве наступательным маневром.
-  - Им следует избегать ненужного подвергания себя опасности и оставаться рядом с морпехами, чтобы сосредоточиться на предоставлении четких приказов.
+  - A deploying [color=#008000][bold]Commander[/bold][/color] must still command and communicate frequently with both the [bold]CIC[/bold] and marine crews.
+  - Combat should be reserved when assisting the marines in a supporting capacity, in defense of others and self, or directly leading an offensive maneuver.
+  - They should avoid unnecessarily putting themselves in danger, and remain close to marines to focus on providing clear orders.
 
-  ## Корабельный Персонал
+  ## Shipside Personnel
 
-  Персонал, обычно ограниченный корабельными обязанностями, такой как врачи и военная полиция, может быть развернут на [bold]ПОБ[/bold]; однако необходимы особые обстоятельства или разрешения.
+  Personnel normally restricted to shipside duties such as doctors and Military Police may be deployed to the [bold]FOB[/bold]; however special circumstances or clearances are needed.
 
-  - Главы департаментов не могут развертываться вообще, за исключением [bold]Главного Инженера[/bold] при определенных условиях.
-  - Весь персонал, намеревающийся развернуться, включая штабных офицеров, [bold]требует разрешения[/bold] либо от своего начальника отдела, либо от [color=#008000][bold]Командира[/bold][/color].
-  - Весь гражданский персонал, за исключением восстановленного персонала, определенного в [textlink="НЕ изменяемые Положения о Третьих Сторонах" link="RMCMarineSOPNONModThirdparty"] [bold]требуют разрешения[/bold] от [color=#008000][bold]Командира[/bold][/color] на развертывание.
-  - [color=#008000][bold]Командир[/bold][/color] может отменить решение главы департамента относительно развертывания.
+  - A [color=#90EE90][bold]Duty Officer[/bold][/color] may not deploy.
+  - Civilians (Personnel that are not enlisted or officers of the UNMC) may deploy at their discretion, provided their landing zone is not in direct danger.
+  - All recovered personnel defined by [textlink="NON-Modifiable Third-Party Personnel" link="RMCMarineSOPNONModThirdparty"] do not require permission to deploy.
+  - Department Heads may not deploy at all, except the [bold]Chief Engineer[/bold] under some conditions.
+  - All personnel that intend to deploy, including Staff Officers [bold]require permission[/bold] from either their head of department, or the [color=#008000][bold]Commander[/bold][/color].
+  - The [color=#008000][bold]Commander[/bold][/color] may overrule the department head regarding deployment.
 
-  [bold]Инженерия[/bold]
+  [bold]Engineering[/bold]
 
-  - [bold]Главный Инженер[/bold] может развернуться на [bold]ПОБ[/bold], если на борту есть [bold]Офицер Вспомогательной Поддержки[/bold], но все равно требует разрешения от него или от [color=#008000][bold]Командира[/bold][/color].
-  - И [bold]Главный Инженер[/bold], и техники по обслуживанию могут развертываться только с целью строительства [bold]ПОБ[/bold] и телекоммуникаций, но должны уйти, если эти зоны больше не считаются безопасными.
+  - The [bold]Chief Engineer[/bold] may deploy to the [bold]FOB[/bold] if there is an [bold]Auxiliary Support Officer[/bold] on board, but still requires permission from them or the [color=#008000][bold]Commander[/bold][/color].
+  - Both the [bold]Chief Engineer[/bold] and maintenance techs may only deploy with the purpose of building the [bold]FOB[/bold], and telecommunications, but must leave if these areas are no longer considered secure.
 
-  [bold]Медицинский Департамент[/bold]
+  [bold]Medical[/bold]
 
-  - Врачи и медсестры могут быть развернуты на [bold]ПОБ[/bold] и в назначенном [bold]Полевом Госпитале[/bold], пока они больше не являются [bold]Безопасными Зонами[/bold].
+  - Doctors and Nurses may deploy to the [bold]FOB[/bold], and designated [bold]Field Hospital[/bold], until they are no longer [bold]Secure Area[/bold]s.
 
-  [bold]Снабжение[/bold]
+  [bold]Requisitions[/bold]
 
-  - Грузовые техники могут быть развернуты на [bold]ПОБ[/bold] для оказания помощи в организации и учете поставок.
+  - Cargo techs may deploy to the [bold]FOB[/bold] to assist in organizing and accounting for supplies.
 
-  [bold]Военная Полиция[/bold]
+  [bold]Military Police[/bold]
 
-  - [bold]Персонал ЦИК[/bold] может запросить до четырех добровольцев из [color=#ff000d][bold]Военной Полиции[/bold][/color] для развертывания на [bold]ПОБ[/bold] и в [bold]Безопасных Зонах[/bold] для защиты развернутого корабельного экипажа и проведения арестов.
-  - Это не связано с эскортом [color=#00CBFE][bold]Командующего Офицера[/bold][/color] и может быть отменено либо вышестоящим персоналом, либо [color=#008000][bold]Командиром[/bold][/color].
-  - По крайней мере один [color=#ff000d][bold]Военный Полицейский[/bold][/color] должен постоянно оставаться на корабле. Если [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] присутствует, это должен быть он.
-  - [bold]Военный Надзиратель[/bold] может развернуться для выполнения запрошенных арестов в отсутствие [color=#ff000d][bold]Офицеров Военной Полиции[/bold][/color], но в противном случае должен оставаться на корабле.
-  - Развернутые [color=#ff000d][bold]Офицеры Военной Полиции[/bold][/color] могут перемещаться между [bold]Безопасными Зонами[/bold] и должны избегать боя при этом, если только не для защиты небоевого персонала, такого как врачи, или самих себя.
-  - [color=#ff000d][bold]Офицеры Военной Полиции[/bold][/color] должны отступить и помочь небоевому персоналу отступить из [bold]Безопасной Зоны[/bold], если она больше не является безопасной.
-  - [color=#ff000d][bold]Офицерам Военной Полиции[/bold][/color] может потребоваться перевести заключенного из Зоны Операций на корабль, и они должны, в меру своих возможностей, обеспечить безопасную доставку заключенного на корабль.
+  - [bold]CIC Personnel[/bold] may request up to four volunteers from the [color=#ff000d][bold]MP[/bold][/color] to be deployed to the [bold]FOB[/bold] and [bold]Secure Area[/bold]s to protect deployed shipside personnel and handle arrests.
+  - This is unrelated to [color=#00CBFE][bold]Commanding Officer[/bold][/color] escorts, and can be overridden by either higher ranking personnel or the [color=#008000][bold]Commander[/bold][/color].
+  - At least one [color=#ff000d][bold]MP[/bold][/color] must remain on the ship at all times. If the [color=#8B0000][bold]Chief MP[/bold][/color] is present, it must be them.
+  - The [bold]Warden[/bold] may deploy to perform requested arrests in the absence of [color=#ff000d][bold]MP[/bold][/color] officers, but must otherwise remain on the ship.
+  - Deployed [color=#ff000d][bold]MP[/bold][/color] may move between [bold]Secure Area[/bold]s and should be avoiding combat while doing so, unless in protection of non-combat personnel like doctors or themselves.
+  - [color=#ff000d][bold]MP[/bold][/color] must retreat and assist non-combat personnel in retreating from a [bold]Secure Area[/bold] if it is no longer secure.
+  - [color=#ff000d][bold]MP[/bold][/color] may be required to transfer a prisoner from the AO to the ship, and should, to the best of their ability, ensure the prisoner makes it to the ship safely.
 
 
 </Document>

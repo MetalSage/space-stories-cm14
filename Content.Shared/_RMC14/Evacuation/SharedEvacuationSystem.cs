@@ -14,13 +14,18 @@ using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
+using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Prying.Components;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Map;
@@ -285,10 +290,11 @@ public abstract class SharedEvacuationSystem : EntitySystem
             }
         }
 
+        _audio.PlayPredicted(ent.Comp.WarmupSound, ent, user);
+
         if (ent.Comp.Mode == EvacuationComputerMode.Crashed)
             return;
 
-        _audio.PlayPredicted(ent.Comp.WarmupSound, ent, user);
         ent.Comp.Mode = EvacuationComputerMode.Travelling;
         Dirty(ent);
 
@@ -588,12 +594,21 @@ public abstract class SharedEvacuationSystem : EntitySystem
         var query = EntityQueryEnumerator<DetonatingEvacuationComputerComponent>();
         while (query.MoveNext(out var uid, out var detonating))
         {
+            if (Transform(uid).GridUid is not { } grid)
+                continue;
+
+            if (!TryComp(grid, out MapGridComponent? gridComp))
+                continue;
+
+            var gridTransform = Transform(grid);
+
             if (!detonating.Detonated && time >= detonating.DetonateAt)
             {
                 detonating.Detonated = true;
                 Dirty(uid, detonating);
 
-                _rmcExplosion.TriggerExplosive(uid, delete: false);
+                var coordinates = _transform.ToMapCoordinates(gridTransform.Coordinates);
+                _rmcExplosion.QueueExplosion(coordinates, "RMC", 40, 5, 25, uid, canCreateVacuum: false);
             }
 
             if (!detonating.Ejected && time >= detonating.EjectAt)
@@ -601,20 +616,18 @@ public abstract class SharedEvacuationSystem : EntitySystem
                 detonating.Ejected = true;
                 Dirty(uid, detonating);
 
-                if (Transform(uid).GridUid is { } grid)
-                {
-                    var children = Transform(grid).ChildEnumerator;
-                    while (children.MoveNext(out var child))
-                    {
-                        _hyperSleep.EjectChamber(child);
+                var children = gridTransform.ChildEnumerator;
 
-                        if (_doorQuery.TryComp(uid, out var door))
-                        {
-                            var evacuationDoor = EnsureComp<EvacuationDoorComponent>(uid);
-                            evacuationDoor.Locked = true;
-                            Dirty(uid, evacuationDoor);
-                            _door.TryClose(uid, door);
-                        }
+                while (children.MoveNext(out var child))
+                {
+                    _hyperSleep.EjectChamber(child);
+
+                    if (_doorQuery.TryComp(child, out var door))
+                    {
+                        var evacuationDoor = EnsureComp<EvacuationDoorComponent>(child);
+                        evacuationDoor.Locked = false;
+                        Dirty(child, evacuationDoor);
+                        _door.TryOpenAndBolt(child, door);
                     }
                 }
             }

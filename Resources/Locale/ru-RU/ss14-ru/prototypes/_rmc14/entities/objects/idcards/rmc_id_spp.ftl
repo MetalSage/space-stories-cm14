@@ -1,4 +1,13 @@
 ent-FactionSPP = { "" }
     .desc = { "" }
+ent-FactionHalcyon = { "" }
+    .desc = { "" }
 ent-RMCIDSPP = { ent-CMIDCardStandardDogtag }
     .desc = Солдатский жетон.
+ent-RMCIDSPPHidden = { ent-RMCIDCardStandardDogtagHidden }
+    .desc = { ent-RMCIDCardStandardDogtagHidden.desc }
+ent-RMCIDCardPaP = идентификационный голо-значок НВП
+    .desc = Стандартный голо-значок для сотрудников Народной вооружённой полиции СПН. Отображает звание и принадлежность сотрудника.
+ent-RMCIDCardHalcyon = корпоративный голо-значок
+    .desc = Корпоративный голо-значок. Он выполнен в фирменном оранжево-чёрном цвете Корпорации.
+    .suffix = Halcyon

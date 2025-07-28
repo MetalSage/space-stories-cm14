@@ -437,6 +437,7 @@
     - MarineCommand
     - MarineEngineer
     - MarineJTAC
+    - MarineRequisition
     - MarineMedical
     - MarineAlpha
     - MarineBravo

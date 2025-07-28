@@ -2,6 +2,7 @@ rmc-attachable-holder-strip-ui-title = обвесы
 rmc-attachable-holder-strip-ui-empty-slot = ничего
 rmc-verb-strip-attachables = Просмотреть обвесы
 rmc-aslot-barrel = Дуло
+rmc-bslot-barrel = Дуло Матебы
 rmc-aslot-rail = Рельса
 rmc-aslot-stock = Приклад
 rmc-aslot-underbarrel = Подствольное

@@ -11,3 +11,5 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'We-Ya Office'
+        - type: StationJobs
+          availableJobs: {}

@@ -25,6 +25,8 @@
   - type: AirlockReceiverXenoClaws
     maxHealth: 9000
     minimumClawStrength: VerySharp
+  - type: Door
+    location: Starboard
 
 - type: entity
   parent: STDoubleDoorInvincible
@@ -53,6 +55,8 @@
   - type: AirlockReceiverXenoClaws
     maxHealth: 9000
     minimumClawStrength: VerySharp
+  - type: Door
+    location: Port
 
 - type: entity
   parent: RMCBaseDoorInvincible
@@ -97,3 +101,5 @@
     minimumClawStrength: VerySharp
   - type: Occluder
     boundingBox: "-0.5,-1.5,0.5,1.5"
+  - type: Door
+    location: Aft

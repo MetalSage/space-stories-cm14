@@ -1,18 +1,25 @@
 ﻿<Document>
-  # Стандарты ролевой игры морпехов
-  - Не пытайтесь открыто сотрудничать с очевидными или известными враждебными силами, будучи членом противоположной фракции.
-  - Весь персонал, работающий в морской пехоте, психически устойчив и годен к службе.
-  - Морпехи знают обо всех возможных угрозах.
-  - Морпехи еще не знают о том, что на планете есть ксеноморфы, в начале операции.
-  - Морпехи не знают и не верят в способность ксеноморфов взаимодействовать с десантными кораблями и могут действовать только в ответ на фактическое объявление об угоне.
-  - Важные морпехи, такие как специалисты, операторы умного оружия и санитары, должны следовать целям своей роли.
-  - Все боевые роли должны быть задействованы, когда это возможно.
-  - Корреспонденты сосредоточены на освещении боев и выходят из боя при нападении.
-  - Медицинские роли (за исключением санитаров) не являются боевыми ролями.
+  # Marine roleplay standards
+  - Do not disrupt the start of the round (first drop). If you're engaging in unrelated or disruptive activities (including but not limited to; fights, minor crime, tackling others), keep it to the lower deck gym, where the boxing ring is located.
+  - All personnel employed by the Marines are mentally stable and fit for duty.
+  - Don't openly try to cooperate with obvious or known hostile forces as a member of the opposite faction.
+  - The Marines have knowledge of all possible threats.
+  - The Marines are not yet aware there are xenonids on the planet at the start of the operation.
+  - The marines are not aware nor believe in the capability of the xenonids to interact with dropships, and may only act in response to the actual hijack announcement.
+  - Important marines such as specialists and smart gun operators and corpsmen should be following their role objectives.
+  - All combat roles should deploy when possible.
+  - Correspondents focus on reporting on combat and disengage when attacked.
+  - Medical roles (excluding corpsmen) are not combat roles.
 
-  ## Модификации корабля
-  - Разборка корабля на материалы не должна происходить до первой высадки. Морпехи не станут немедленно разбирать свой военный корабль на части из-за случайного неподтвержденного сигнала бедствия.
-  - Включает в себя извлечение таких вещей, как стулья на инструктаже, однако не включает в себя бочки и ящики в обслуживании.
-  - Включает в себя вывоз припасов с корабля, когда это не является явно необходимым. Вы не будете сразу же тащить половину содержимого медицинского отсека на поле боя.
-  - Модификации корабля не должны производиться в мета-целях, не стройте лабиринт или бункер на корабле, предназначенный для обеспечения безопасности корабля от угона, прежде чем вы даже узнаете, что угон существует.
+  ## Character Restrictions
+  - Characters that are not synthetics by role must be entirely biological, and genuinely sentient; capable of independent thought, emotions, and free will.
+
+  Artificial intelligence, programmed personalities, or synthetic minds are not permitted outside of this role.
+
+  ## Ship modifications
+  - Deconstruction of the ship for materials should not be occuring before first drop. The marines would not immediately resort to taking their warship to pieces for a random unconfirmed distress call.
+  - Includes salvaging of things like chairs in briefing, however does not include the barrels and crates in maintenance.
+  - Includes the removal of supplies from the ship where not explicitly necessary. You would not drag half the contents of the medical bay to the field immediately.
+  - Modifications to the ship should not be made with meta-purposes, do not build a maze or bunker on the ship intended to secure the ship for hijack before you even know hijack is a thing.
+
 </Document>

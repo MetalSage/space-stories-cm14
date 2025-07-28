@@ -15,28 +15,28 @@
     jobs:
     - CMHospitalCorpsman
     sections:
-    - name: Медицинский Набор (обязательно)
+    - name: Medical Set (Mandatory)
       takeAll: CMMedicalSet
       entries:
       - id: CMVendorBundleSquadMedicalEssentials
-    - name: Полевые Запасы
+    - name: Field Supplies
       entries:
       - id: CMBurnKit10
         points: 2
-#        recommended: true
+        recommended: true
       - id: CMTraumaKit10
         points: 2
-#        recommended: true
+        recommended: true
     #    CMMedicalSplints: 1P
 #        recommended: true
       - id: CMBloodPackFull # TODO RMC14 O-
-        name: пакет крови (O-)
+        name: blood bag (O-)
         points: 4
-    - name: Аптечки
+    - name: Firstaid Kits
       entries:
       - id: CMAdvFirstAidKitFilled
         points: 12
-#        recommended: true
+        recommended: true
       - id: CMFirstAidKitFilled
         points: 5
       - id: CMBurnAidKitFilled
@@ -47,7 +47,7 @@
         points: 6
       - id: RMCRadiationAidKitFilled
         points: 6
-    - name: Таблетницы
+    - name: Pill Bottles
       entries:
       - id: CMPillCanisterBicaridine
         points: 5
@@ -66,7 +66,7 @@
 #      - id: CMPillCanisterTramadol
 #        points: 5
 #        recommended: true
-    - name: Автоинъекторы
+    - name: Autoinjectors
       entries:
       - id: CMBicaridineAutoInjector
         points: 1
@@ -84,7 +84,7 @@
 #        points: 1
       - id: CMTricordrazineAutoInjector
         points: 1
-    - name: Медицинские Утилиты
+    - name: Medical Utilities
       entries:
      #    CMMS11SmartRefillTank: 6P
      # FixOVien: 7P
@@ -94,7 +94,7 @@
         points: 4
       - id: CMStasisBagFolded
         points: 6
-    - name: Взрывчатка
+    - name: Explosives
       entries:
       - id: CMPacketGrenadeHighExplosiveFilled
         points: 18
@@ -111,9 +111,11 @@
         points: 10
       - id: RMCPacketGrenadeM74AGMSHornetFilled
         points: 20
-    - name: Основные Боеприпасы
+    - name: Primary Ammunition
       entries:
       - id: CMMagazineRifleM4SPRAP
+        points: 6
+      - id: CMMagazineRifleM4SPRExt
         points: 6
       - id: CMMagazineSMGM63AP
         points: 6
@@ -123,35 +125,46 @@
         points: 6
       - id: CMMagazineRifleM54CExt
         points: 6
-    - name: Боеприпасы К Вторичному Оружию
+    - name: Sidearm Ammunition
       entries:
+      - id: RMCMagazinePistolM13Ext
+        points: 10
+      - id: RMCMagazinePistolM13Drum
+        points: 15
+      # - id: RMCSpeedLoader44Heavy
+      #  points: 6
       - id: RMCSpeedLoader44Marksman
         points: 6
+      # - id: RMCMagazinePistolM1984HP
+      #   points: 3
+      - id: RMCMagazinePistolM1984AP
+        points: 3
       - id: CMMagazinePistolMK80
         points: 3
       - id: RMCMagazinePistolSU6
         points: 6
-    - name: Броня
+    - name: Armors
       entries:
       - id: CMArmorB12
         points: 28
       - id: CMArmorM4
         points: 16
-    - name: Вторичное Огнестрельное Оружие
+    - name: Restricted Firearms
       entries:
       - id: RMCGunCasePistolMK80
         points: 8
       - id: RMCGunCasePistolSmart
         points: 12
-    - name: Предметы Одежды
+    - name: Clothing Items
       entries:
       - id: RMCPouchMacheteFilled
-        name: подсумок для мачете (полный)
+        name: machete pouch (Full)
         points: 8
       - id: RMCBackpackRTO
         points: 15
-    #    CMWeldingGoggles: 3P
-    - name: Утилиты
+      - id: RMCWeldingGoggles
+        points: 3
+    - name: Utilities
       entries:
       - id: CMFireExtinguisherPortable
         points: 3
@@ -159,7 +172,7 @@
         points: 8
       - id: RMCWhistle
         points: 3
-    - name: Бинокли
+    - name: Binoculars
       entries:
       - id: RMCBinoculars
         points: 5
@@ -167,15 +180,15 @@
         points: 10
       - id: RMCLaserDesignator
         points: 15
-    - name: Оптика Для Шлема
+    - name: Helmet Optics
       entries:
       - id: RMCVisorWelding
         points: 5
-    - name: Памфлеты
+    - name: Pamphlets
       entries:
       - id: CMPamphletEngineer
         points: 15
-    - name: Ключи Шифрования
+    - name: Radio Keys
       entries:
       - id: CMEncryptionKeyEngineer
         points: 3
@@ -201,93 +214,95 @@
     jobs:
     - CMHospitalCorpsman
     sections:
-    - name: Стандартное Оборудование
+    - name: Standard Equipment
       takeAll: CMStandard
       entries:
       - id: CMVendorBundleSquadMedicalApparel
       - id: RMCHandsLatexMarine
-        name: боевые стерильные перчатки
+        name: combat sterile gloves
       - id: CMMRE
       #- id: CMMap # TODO: Make a map
-    - name: Броня
+    - name: Armor
       choices: { CMArmor: 1 }
       entries:
       - id: RMCArmorVestMedic
       - id: RMCArmorM3LightVariants
-        name: лёгкая броня
+        name: light armor
       - id: RMCArmorM3MediumVariants
-        name: средняя броня
+        name: medium armor
         recommended: true
       - id: RMCArmorM3HeavyVariants
-        name: тяжёлая броня
-    - name: Шлем
+        name: heavy armor
+    - name: Helmet
       choices: { CMHelmet: 1 }
       entries:
       - id: CMArmorHelmetM10Medic
       - id: RMCArmorHelmetM10MedicWhite
         recommended: true
-    - name: Рюкзак
+    - name: Backpack
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpackMarineMedic
       - id: CMSatchelMarineMedic
         recommended: true
-    - name: Пояс
+    - name: Belt
       choices: { CMBelt: 1 }
       entries:
       - id: CMBeltMedicBagFilled
-        name: пояс M276 медицинский (полный)
+        name: M276 lifesaver bag (Full)
       - id: CMBeltMedicalFilled
-        name: пояс M276 медицинский (полный)
-    - name: Подсумки
+        name: M276 medical storage rig (Full)
+    - name: Pouches
       choices: { RMCPouch: 2 }
       entries:
       - id: RMCPouchReagentCanisterTricordrazineRevival
-        name: канистра реагентов (возрождающая смесь - трикордразин)
+        name: Pressurized Reagent Canister Pouch\n(Revival Mix - Tricordrazine)
         recommended: true
       - id: RMCPouchMedkit
         recommended: true
 #     - id: CMPressurizedReagentCanisterPouchPeridaxonRevivalMix
-#       name: канистра реагентов (возрождающая смесь - перидаксон)
+#       name: Pressurized Reagent Canister Pouch\n(Revival Mix - Peridaxon)
 #       recommended: true
       - id: RMCPouchAutoinjector
       - id: RMCPouchFirstResponder
       - id: RMCPouchReagentCanisterBicaridine
-        name: канистра реагентов (бикаридин)
+        name: Pressurized Reagent Canister Pouch\n(Bicaridine)
       - id: RMCPouchReagentCanisterKelotane
-        name: канистра реагентов (келотан)
+        name: Pressurized Reagent Canister Pouch\n(Kelotane)
       - id: RMCPouchReagentCanisterTricordrazine
-        name: канистра реагентов (трикордразин)
+        name: Pressurized Reagent Canister Pouch\n(Tricordrazine)
       - id: RMCPouchReagentCanister
-        name: канистра реагентов (пустая)
+        name: Pressurized Reagent Canister Pouch\n(EMPTY)
       - id: RMCPouchVialFill
-        name: подсумок пробирок (полный)
+        name: vial pouch (Full)
       - id: RMCPouchMedical
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: first-aid pouch (refillable injectors)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: подсумок первой помощи (таблетки)
+        name: first-aid pouch (pills)
       - id: RMCPouchFlareFilled
-        name: подсумок фаеров (полный)
+        name: Flare pouch (Full)
       - id: RMCPouchGeneralLarge
      #- id: CMSlingPouch
       - id: RMCPouchMagazinePistolLarge
       - id: RMCPouchMagazine
       - id: RMCPouchShotgun
       - id: RMCPouchPistol
-    - name: Аксессуары
+    - name: Accessories
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown
         recommended: true
       - id: CMWebbingBlack
         recommended: true
+      - id: RMCWebbingLegPouch
+      - id: RMCWebbingLegPouchBlack
       - id: CMWebbing
-      - id: CMWebbingPouch
+      - id: RMCWebbingDropPouch
       - id: CMWebbingHolster
-    - name: Маска
+    - name: Mask
       choices: { CMMask: 1 }
       entries:
       - id: CMMaskSterile

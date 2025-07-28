@@ -16,3 +16,5 @@ ent-RMCPlanetChances = LV-522 Претензия Шанса
     .desc = { "" }
 ent-RMCPlanetHybrisa = LV-759 Гибриса Проспера
     .desc = { "" }
+ent-RMCPlanetSorokyne = LV-976 Сорокина Страта
+    .desc = { "" }
