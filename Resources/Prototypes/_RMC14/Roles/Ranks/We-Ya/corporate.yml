@@ -1,8 +1,8 @@
 - type: rank
   id: RMCRankWeYaTrainee
-  name: Trainee
-  prefix: Trn.
-  paygrade: WYC1
+  name: Стажер
+  prefix: Стж.
+  paygrade: ВЯС1
 
 - type: rank
   id: RMCRankWeYaJuniorExecutive

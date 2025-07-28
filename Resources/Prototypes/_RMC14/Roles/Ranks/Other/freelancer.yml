@@ -1,7 +1,7 @@
 - type: rank
   id: RMCRankFLFreelancer
-  name: Mercenary
-  prefix: Merc.
+  name: Наемник
+  prefix: Наем.
 
 - type: rank
   id: RMCRankFLMedic
@@ -15,7 +15,7 @@
 
 - type: rank
   id: RMCRankFLEliteFreelancer
-  name: Elite
+  name: Элита
   prefix: Наем.
 
 - type: rank
