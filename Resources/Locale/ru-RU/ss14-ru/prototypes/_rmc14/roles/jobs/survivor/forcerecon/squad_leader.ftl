@@ -1,4 +1,4 @@
-ent-CMSpawnPointForeconSquadLeader = точка спавна командира отряда ФОРЕКОН
+ent-CMSpawnPointForeconSquadLeader = точка спавна командира отряда ФОРКОН
     .desc = { ent-CMSpawnPointJobBase.desc }
-ent-RMCSurvivorPresetForeconSquadLead = набор снаряжения командира отряда ФОРЕКОН
+ent-RMCSurvivorPresetForeconSquadLead = набор снаряжения командира отряда ФОРКОН
     .desc = { ent-RMCSurvivorPresetForecon.desc }

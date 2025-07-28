@@ -5,12 +5,13 @@
   components:
   - type: Item
     size: Tiny
-    sprite: Objects/Tools/lighters.rsi
+    sprite: _RMC14/Objects/Tools/Lighters/basic.rsi
   - type: Clothing
     quickEquip: false
     slots:
     - suitstorage
   - type: RMCLighter
+  - type: ItemTogglePointLight
 
 - type: entity
   name: zippo lighter
@@ -35,7 +36,7 @@
       shader: unshaded
   - type: Item
     size: Tiny
-    sprite: Objects/Tools/lighters.rsi
+    sprite: _RMC14/Objects/Tools/Lighters/basic.rsi
   - type: Clothing
     quickEquip: false
     slots:
@@ -101,7 +102,7 @@
       map: ["flame"]
       visible: false
       shader: unshaded
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: lighter_flame
     inhandVisuals:
       left:

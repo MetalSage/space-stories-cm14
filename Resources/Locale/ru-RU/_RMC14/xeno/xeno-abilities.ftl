@@ -53,19 +53,23 @@ cm-xeno-fortify-cant-headbutt = Вы не можете ударить голов
 cm-xeno-fortify-cant-rest = Вы не можете отдыхать во время укрепления!
 cm-xeno-fortify-cant-tail-sweep = Вы не можете подметать хвостом во время укрепления!
 cm-xeno-fortify-cant-toggle-crest = Вы не можете опускать гребень во время укрепления!
-# Headbutt
+# Прыжок
+cm-xeno-leap-blocked = Мы не можем этого сделать, когда сжимаемся и крадемся!
+# Удар головой
 rmc-xeno-headbutt-too-far = Мы не можем бить головой с такого расстояния с опущенным гребнем!
-# Leap
+# Прыжок
 cm-xeno-leap-cancelled = Вы отменяете свой прыжок!
-# Plant weeds
+rmc-xeno-weeds-blocked = Мы не можем сделать это здесь.
+# Сажать сорняки
 cm-xeno-weeds-source-already-here = Здесь уже есть узел смолы!
-# Corrosive acid
+# Едкая кислота
 cm-xeno-acid-not-corrodible = Вы не можете разъесть { $target }!
 cm-xeno-acid-already-corroding = На { $target } уже есть коррозийная кислота!
 rmc-xeno-acid-structure-unmeltable = Мы можем плавить только баррикады и предметы!
-# Paralyzing Slash
+# Парализующий удар
 cm-xeno-paralyzing-slash-activate = Ваш следующий удар применит нейротоксин!
 cm-xeno-paralyzing-slash-expire = Вы слишком долго ждали, ваш удар больше не будет применять нейротоксин!
+cm-xeno-paralyzing-slash-immune = { $target } невосприимчив к нейротоксину!
 cm-xeno-paralyzing-slash-hit = Вы добавили нейротоксин в свою атаку, { $target } вот-вот упадет парализованный!
 # Crippling Strike
 cm-xeno-crippling-strike-activate = Следующий удар будет нанесен нейротоксином!

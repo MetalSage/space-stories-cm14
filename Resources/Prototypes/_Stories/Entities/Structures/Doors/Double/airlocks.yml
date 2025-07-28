@@ -12,6 +12,8 @@
     openingSpriteState: door_opening
     closingSpriteState: door_closing
     emaggingSpriteState: unlit
+    canCrush: false
+    performCollisionCheck: true
   - type: Sprite
     layers:
     - state: door_closed
@@ -24,3 +26,4 @@
     - state: door_spark
       shader: unshaded
       map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+  - type: BlockTileFire

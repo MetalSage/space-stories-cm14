@@ -40,6 +40,8 @@
     tier: 2
     hudOffset: 0,0.25
     unlockAt: 540 # 9 minutes
+  - type: XenoRegen
+    restHealMultiplier:  1.4
   - type: XenoLight
   - type: XenoDevolve
     devolvesTo:
@@ -74,7 +76,7 @@
       groups:
         Brute: 45
   - type: Tackle
-    min: 4
+    min: 5
   - type: XenoStrain
     name: stories-xeno-boxer-name
     description: stories-xeno-boxer-description
@@ -102,8 +104,10 @@
       state: warrior
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 0.2
-  - type: XenoBoxerKO
+  - type: XenoBoxerKnockout
   - type: RMCSize
     size: Big
   - type: FixedIdentity
     name: cm-job-name-xeno-warrior
+  - type: RMCSurgeryXenoHeart
+    item: RMCOrganXenoHeartT2

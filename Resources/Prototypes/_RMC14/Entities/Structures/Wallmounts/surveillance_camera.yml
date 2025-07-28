@@ -71,10 +71,10 @@
   - type: Physics
     bodyType: Static
   - type: Sprite
-    drawdepth: SmallObjects # Stories-Fixes
     sprite: _RMC14/Structures/Machines/computer.rsi
     state: security_cam
     layers: []
+    drawdepth: SmallObjects
   - type: InteractionOutline
   - type: ActivatableUI
     key: enum.RMCCameraUiKey.Key
