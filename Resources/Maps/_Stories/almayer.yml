@@ -29950,26 +29950,6 @@ entities:
         112,56: RMCAreaAlmayerPowered
         -91,11: RMCAreaAlmayerLivingPilotbunks
         -91,12: RMCAreaAlmayerLivingPilotbunks
-- proto: ActionToggleLight
-  entities:
-  - uid: 3
-    components:
-    - type: Transform
-      parent: 2
-  - uid: 5
-    components:
-    - type: Transform
-      parent: 4
-  - uid: 7
-    components:
-    - type: Transform
-      parent: 6
-  - uid: 9
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 8
 - proto: AirAlarm
   entities:
   - uid: 10
@@ -159612,12 +159592,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 36.5,-37.5
       parent: 1
-- proto: RMCActionWhistle
-  entities:
-  - uid: 22172
-    components:
-    - type: Transform
-      parent: 22171
 - proto: RMCAIConsoleARES
   entities:
   - uid: 22173
@@ -173539,53 +173513,21 @@ entities:
     - type: Transform
       pos: -85.36925,102.44282
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 3
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 3
   - uid: 4
     components:
     - type: Transform
       pos: -59.878307,118.65228
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 5
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 5
   - uid: 6
     components:
     - type: Transform
       pos: -71.730644,119.17041
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 7
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 7
   - uid: 8
     components:
     - type: Transform
       pos: -49.657684,97.504875
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 9
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 9
   - uid: 24680
     components:
     - type: Transform
@@ -188859,14 +188801,6 @@ entities:
     - type: Transform
       pos: -70.708534,103.37693
       parent: 1
-    - type: RMCWhistle
-      action: 22172
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 22172
   - uid: 26901
     components:
     - type: Transform
