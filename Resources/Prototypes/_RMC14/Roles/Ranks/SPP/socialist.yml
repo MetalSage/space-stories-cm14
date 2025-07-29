@@ -2,20 +2,20 @@
 
 - type: rank
   id: RMCRankSPPMlts
-  name: Militsioner
-  prefix: Milit.
+  name: Милиционер
+  prefix: Милиц.
   paygrade: MLTS
 
 - type: rank
   id: RMCRankSPPSMlts
-  name: Starshiy Militsioner
-  prefix: St. Mlts.
+  name: Старший Милиционер
+  prefix: Ст. Милиц.
   paygrade: SMLTS
 
 - type: rank
   id: RMCRankSPPStrsh
-  name: Starshina
-  prefix: Strsh.
+  name: Старшина
+  prefix: Стрш.
   paygrade: STRSH
 
 # Military
@@ -93,7 +93,7 @@
 - type: rank
   id: RMCRankSPPKapitan
   name: Капитан
-  prefix: Кпт.
+  prefix: Капитан
   paygrade: O3
 
 - type: rank

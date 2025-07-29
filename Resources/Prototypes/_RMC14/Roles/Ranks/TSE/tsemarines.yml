@@ -1,7 +1,7 @@
 - type: rank
   id: RMCRankTSEMarine
   name: Морпех
-  prefix: Мрх.
+  prefix: Мрпх.
   paygrade: E1
 
 - type: rank
