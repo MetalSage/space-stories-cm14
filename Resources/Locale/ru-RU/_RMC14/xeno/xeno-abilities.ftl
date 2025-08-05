@@ -78,11 +78,11 @@ cm-xeno-crippling-strike-hit = Мы значительно усиливаем н
 # Pheromones
 rmc-xeno-pheromones-help =
     Феромоны ежесекундно дают бафф всем ксеносам в радиусе действия за счет некоторого количества запасенной плазмы, как показано ниже:
-    
+
     Безумие (красный) - увеличивает скорость бега, урон и шанс сбить маски охотников за головами.
-    
+
     Защита (зеленый) - в критическом состоянии увеличивается максимальное отрицательное здоровье и замедляется отток травы.
-    
+
     Восстановление (синий) - увеличение регенерации плазмы и здоровья.
 # Pheromones
 cm-xeno-choose-pheromones = Выберите феромоны
@@ -177,16 +177,16 @@ rmc-xeno-heal-ailments-target = Нас омолаживает { $target }!
 rmc-xeno-heal-ailments-others = { $user } наводит на { $target }, и она спазмируется, восстанавливаясь неестественно быстро!
 rmc-xeno-heal-sisters = Мы должны выбрать одну из наших сестер!
 # Resin Surge
-rmc-xeno-resin-surge-shield-self = Мы нагнетаем смолу вокруг { $target }, делая ее временно практически несокрушимой!
+rmc-xeno-resin-surge-shield-self = Мы высвобождаем смолу вокруг { $target }, делая ее временно практически несокрушимой!
 rmc-xeno-resin-surge-shield-others = { CAPITALIZE($xeno) } увеличивает количество смолы вокруг { $target }, делая ее временно практически несокрушимой!
-rmc-xeno-resin-surge-shield-fail = Мы незадачливо пытаемся выплеснуть смолу вокруг { $target }, но она уже укреплена. Нам понадобится время, чтобы восстановиться.
-rmc-xeno-resin-surge-fruit = Мы нагнетаем смолу вокруг { $target }, несколько ускоряя ее рост!
+rmc-xeno-resin-surge-shield-fail = Мы незадачливо пытаемся высвободить смолу вокруг { $target }, но она уже укреплена. Нам понадобится время, чтобы восстановиться.
+rmc-xeno-resin-surge-fruit = Мы высвобождаем смолу вокруг { $target }, несколько ускоряя ее рост!
 rmc-xeno-resin-surge-fruit-fail = { CAPITALIZE($target) } уже созрел. Всплеск смолы ничего не дает.
-rmc-xeno-resin-surge-wall-self = Мы вспрыскиваем смолу, создавая неустойчивую стену!
-rmc-xeno-resin-surge-wall-others = { CAPITALIZE($xeno) } выплескивает смолу, создавая неустойчивую стену!
-rmc-xeno-resin-surge-sticky-self = Мы всплываем на глубину, создавая нестабильную липкую смоляную заплату!
-rmc-xeno-resin-surge-sticky-others = { CAPITALIZE($xeno) } всплывает глубокая смола, создавая нестабильный липкий смоляной пластырь!
-rmc-xeno-resin-surge-see-fail = Мы не можем видеть это место!
+rmc-xeno-resin-surge-wall-self = Мы высвобождаем смолу, создавая неустойчивую стену!
+rmc-xeno-resin-surge-wall-others = { CAPITALIZE($xeno) } высвобождает смолу, создавая неустойчивую стену!
+rmc-xeno-resin-surge-sticky-self = Мы высвобождаем глубинную смолу, создавая нестабильную липкую смоляную заплатку!
+rmc-xeno-resin-surge-sticky-others = { CAPITALIZE($xeno) } высвобождает глубинную смолу, создавая нестабильную липкую смоляную заплатку!
+rmc-xeno-resin-surge-see-fail = Мы не видим это место!
 # Burrow
 rmc-xeno-burrow-down-start = Мы начинаем зарываться в землю.
 rmc-xeno-burrow-down-failure-break = Мы перестаем зарываться.
