@@ -7,7 +7,7 @@
   requirements:
   - !type:TotalDepartmentsTimeRequirement
     group: CMDepartmentsHuman
-    time: 3600 # 1 hour
+    time: 7200 # 2 hour
   ranks:
     RMCRankSergeant:
     - !type:RoleTimeRequirement
