@@ -1,7 +1,6 @@
 # Компьютер снабжения
 requisition-paperwork-receiver-name = Отдел логистики
 requisition-paperwork-reward-message = Подтверждение получено! Переведено ${ $amount } из излишков бюджета.
-
 # Счет-фактура
 requisition-paper-print-name = { $name } счет-фактура
 requisition-paper-print-manifest =
@@ -11,7 +10,6 @@ requisition-paper-print-manifest =
     Партия: { $lot }
     Серийный номер: { $serialNumber }[/head]
 requisition-paper-print-content = - { $count } { $item }
-
 # Консоль вызова припасов
 ui-supply-drop-consle-name = Консоль вызова припасов
 ui-supply-drop-console-name-bolded = [bold]ВЫЗОВ ПРИПАСОВ[/bold]
@@ -25,5 +23,5 @@ ui-supply-drop-console-cooldown = { $time } секунд до следующег
 ui-supply-drop-crate-status =
     { $hasCrate ->
         [true] Состояние площадки снабжения: контейнер загружен.
-        *[false] Контейнер не загружен.
+       *[false] Контейнер не загружен.
     }

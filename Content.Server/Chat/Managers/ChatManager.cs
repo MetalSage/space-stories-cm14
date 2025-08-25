@@ -388,7 +388,7 @@ internal sealed partial class ChatManager : IChatManager
         var netSource = _entityManager.GetNetEntity(source);
         user?.AddEntity(netSource);
 
-        var msg = new ChatMessage(channel, message, wrappedMessage, netSource, user?.Key, hideChat, colorOverride, audioPath, audioVolume, hidePopup, speechStyleClass: _entityManager.GetComponentOrNull<RMCSpeechBubbleSpecificStyleComponent>(source)?.SpeechStyleClass);
+        var msg = new ChatMessage(channel, message, wrappedMessage, netSource, user?.Key, hideChat, colorOverride, audioPath, audioVolume, hidePopup, speechStyleClass: _entityManager.GetComponentOrNull<RMCSpeechBubbleSpecificStyleComponent>(source)?.SpeechStyleClass, repeatCheckSender: !_entityManager.HasComponent<ChatRepeatIgnoreSenderComponent>(source));
         _netManager.ServerSendMessage(new MsgChatMessage() { Message = msg }, client);
 
         if (!recordReplay)
@@ -410,7 +410,7 @@ internal sealed partial class ChatManager : IChatManager
         var netSource = _entityManager.GetNetEntity(source);
         user?.AddEntity(netSource);
 
-        var msg = new ChatMessage(channel, message, wrappedMessage, netSource, user?.Key, hideChat, colorOverride, audioPath, audioVolume, speechStyleClass: _entityManager.GetComponentOrNull<RMCSpeechBubbleSpecificStyleComponent>(source)?.SpeechStyleClass);
+        var msg = new ChatMessage(channel, message, wrappedMessage, netSource, user?.Key, hideChat, colorOverride, audioPath, audioVolume, speechStyleClass: _entityManager.GetComponentOrNull<RMCSpeechBubbleSpecificStyleComponent>(source)?.SpeechStyleClass, repeatCheckSender: !_entityManager.HasComponent<ChatRepeatIgnoreSenderComponent>(source));
         _netManager.ServerSendToMany(new MsgChatMessage() { Message = msg }, clients);
 
         if (!recordReplay)
@@ -444,7 +444,7 @@ internal sealed partial class ChatManager : IChatManager
         var netSource = _entityManager.GetNetEntity(source);
         user?.AddEntity(netSource);
 
-        var msg = new ChatMessage(channel, message, wrappedMessage, netSource, user?.Key, hideChat, colorOverride, audioPath, audioVolume, speechStyleClass: _entityManager.GetComponentOrNull<RMCSpeechBubbleSpecificStyleComponent>(source)?.SpeechStyleClass);
+        var msg = new ChatMessage(channel, message, wrappedMessage, netSource, user?.Key, hideChat, colorOverride, audioPath, audioVolume, speechStyleClass: _entityManager.GetComponentOrNull<RMCSpeechBubbleSpecificStyleComponent>(source)?.SpeechStyleClass, repeatCheckSender: !_entityManager.HasComponent<ChatRepeatIgnoreSenderComponent>(source));
         _netManager.ServerSendToAll(new MsgChatMessage() { Message = msg });
 
         if (!recordReplay)

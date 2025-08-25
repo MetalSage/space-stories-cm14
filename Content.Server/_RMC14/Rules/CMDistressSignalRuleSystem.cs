@@ -79,6 +79,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.StatusEffect;
 using Content.Shared.Destructible;
@@ -173,7 +174,6 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
     private float _marinesPerSurvivor;
     private float _maximumSurvivors;
     private float _minimumSurvivors;
-    private string _adminFaxAreaMap = string.Empty;
     private int _mapVoteExcludeLast;
     private bool _useCarryoverVoting;
     private readonly TimeSpan _hijackStunTime = TimeSpan.FromSeconds(5);
@@ -249,7 +249,6 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
         Subs.CVar(_config, RMCCVars.RMCMarinesPerSurvivor, v => _marinesPerSurvivor = v, true);
         Subs.CVar(_config, RMCCVars.RMCSurvivorsMaximum, v => _maximumSurvivors = v, true);
         Subs.CVar(_config, RMCCVars.RMCSurvivorsMinimum, v => _minimumSurvivors = v, true);
-        Subs.CVar(_config, RMCCVars.RMCAdminFaxAreaMap, v => _adminFaxAreaMap = v, true);
         Subs.CVar(_config, RMCCVars.RMCPlanetMapVoteExcludeLast, v => _mapVoteExcludeLast = v, true);
         Subs.CVar(_config, RMCCVars.RMCUseCarryoverVoting, v => _useCarryoverVoting = v, true);
         Subs.CVar(_config, RMCCVars.RMCLandingZoneMiasmaEnabled, v => _landingZoneMiasmaEnabled = v, true);
@@ -1633,17 +1632,18 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
             component.AresGreetingDone = true;
 
             if (component.StartARESAnnouncements)
-                _marineAnnounce.AnnounceARES(default, "ARES. Online. Good morning, marines.", component.AresGreetingAudio,"rmc-announcement-ares-online");
+                _marineAnnounce.AnnounceARESStaging(default, "ARES. Online. Good morning, marines.", component.AresGreetingAudio,"rmc-announcement-ares-online");
         }
 
         if (!component.AresMapDone && announcementTime >= component.AresMapDelay)
         {
             component.AresMapDone = true;
 
-            if (SelectedPlanetMap != null && component.StartARESAnnouncements)
+            if (SelectedPlanetMap != null &&
+                component.StartARESAnnouncements &&
+                SelectedPlanetMap.Value.Comp.Announcement is { } announcement)
             {
-                var announcement = SelectedPlanetMap.Value.Comp.Announcement;
-                _marineAnnounce.AnnounceARES(default, announcement, announcement: "rmc-announcement-ares-map");
+                _marineAnnounce.AnnounceARESStaging(default, announcement, announcement: "rmc-announcement-ares-map");
             }
         }
 
@@ -1680,7 +1680,7 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
         if (SelectedPlanetMap != null)
             return SelectedPlanetMap.Value;
 
-        var planet = _random.Pick(_rmcPlanet.GetCandidates());
+        var planet = _random.Pick(_rmcPlanet.GetCandidatesInRotation());
         SelectedPlanetMap = planet;
         return planet;
     }
@@ -1706,7 +1706,7 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
         if (!_config.GetCVar(RMCCVars.RMCPlanetMapVote))
             return;
 
-        var planets = _rmcPlanet.GetCandidates();
+        var planets = _rmcPlanet.GetCandidatesInRotation();
         if (!_useCarryoverVoting)
         {
             foreach (var planet in planets)
@@ -1825,13 +1825,17 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
             }
             catch (Exception e)
             {
-                Log.Error($"Error loading admin fax area:\n{e}");
+                Log.Error($"Error loading {path} map:\n{e}");
             }
 
             return false;
         }
 
-        SpawnMap(new ResPath(_adminFaxAreaMap), out _);
+        foreach (string _map in comp.AuxiliaryMaps)
+        {
+            SpawnMap(new ResPath(_map), out _);
+        }
+
         if (SpawnMap(comp.Thunderdome, out var mapEnt))
             EnsureComp<ThunderdomeMapComponent>(mapEnt.Value);
     }
