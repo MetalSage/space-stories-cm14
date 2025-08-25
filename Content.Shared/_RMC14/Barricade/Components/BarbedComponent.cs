@@ -1,6 +1,7 @@
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Tools;
+using Content.Shared.Interaction;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -9,7 +10,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._RMC14.Barricade.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedBarbedSystem))]
+[Access(typeof(SharedBarbedSystem), typeof(SharedInteractionSystem))] // Stories-InteractionFix
 public sealed partial class BarbedComponent : Component
 {
     [DataField(required: true)]

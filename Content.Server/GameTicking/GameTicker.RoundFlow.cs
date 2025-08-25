@@ -7,6 +7,7 @@ using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Shared._RMC14.Rules;
+using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Prototypes;
 using Content.Server.Voting.Managers;
 using Content.Shared.CCVar;
@@ -711,6 +712,9 @@ namespace Content.Server.GameTicking
                 UpdateInfoText();
 
                 ReqWindowAttentionAll();
+
+                if (_cfg.GetCVar(RMCCVars.RMCLobbyStartPaused))
+                    PauseStart();
             }
         }
 

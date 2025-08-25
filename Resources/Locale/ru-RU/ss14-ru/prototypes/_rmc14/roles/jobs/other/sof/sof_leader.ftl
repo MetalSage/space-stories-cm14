@@ -1,4 +1,4 @@
-ent-RMCRandomHumanoidMarineRaiderLead = роль призрака морпех рейдер командир отряда 
+ent-RMCRandomHumanoidMarineRaiderLead = роль призрака морпех рейдер командир отряда
     .suffix = Роль, ОТРЯД СМЕРТИ
     .desc = { "" }
 ent-RMCDogtagMarineRaiderLeader = жетон командира отряда морпех-рейдеров

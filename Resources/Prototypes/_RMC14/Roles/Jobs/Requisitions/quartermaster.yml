@@ -34,6 +34,7 @@
     - type: Skills
       skills:
         RMCSkillConstruction: 2
+        RMCSkillEndurance: 1
         RMCSkillFirearms: 1
         RMCSkillFireman: 1
         RMCSkillIntel: 1
@@ -47,11 +48,12 @@
     - type: JobPrefix
       prefix: cm-job-prefix-quartermaster
     - type: CMVendorUser # Stories-Partners
+      id: CMQuartermaster
     - type: ViewIntelObjectives
     - type: CommandAccent
     - type: TacticalMapIcon
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: cargo
     - type: RMCTrackable
 
