@@ -8,3 +8,5 @@ ent-RMCCrateGearPackFlareCAS = ящик сигнальных ракет (x4, CAS
     .desc = { ent-RMCCrateAmmo.desc }
 ent-RMCCrateGearFulton = ящик фултонов (x4)
     .desc = { ent-RMCCrateAmmo.desc }
+ent-RMCCrateGearParachute = ящик парашута (x20)
+    .desc = { ent-RMCCrateSupply.desc }

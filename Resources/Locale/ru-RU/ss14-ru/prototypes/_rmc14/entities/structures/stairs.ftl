@@ -1,5 +1,8 @@
 ent-RMCStairs = лестница
     .desc = Величайшее изобретение со времен гранатометов.
+ent-RMCStairsOffset = { ent-RMCStairs }
+    .suffix = Смещение
+    .desc = { ent-RMCStairs.desc }
 ent-RMCStairsCorner = { ent-RMCStairs }
     .suffix = Угол
     .desc = { ent-RMCStairs.desc }

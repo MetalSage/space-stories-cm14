@@ -34,8 +34,8 @@ rmc-dropship-weapons-cams = КАМЕРЫ
 rmc-dropship-weapons-cancel = ОТМЕНА
 rmc-dropship-weapons-exit = ВЫХОД
 rmc-dropship-weapons-offset-calibration =
- Калибровка
- смещения
+    Калибровка
+    смещения
 rmc-dropship-weapons-fire = ОГОНЬ
 rmc-dropship-weapons-strike = УДАР
 rmc-dropship-weapons-lock = ЗАХВАТ

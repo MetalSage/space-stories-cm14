@@ -1,11 +1,16 @@
+ent-RMCJumpsuitVeteranPMCNoWebbing = Форменная одежда ЧВК
+    .desc = Белый комплект обмундирования, предназначенный для частных охранников. На нём изображен символ корпорации «Вестон-Ямада».
 ent-RMCJumpsuitVeteran = { ent-JumpsuitMarine }
     .desc = { ent-JumpsuitMarine.desc }
 ent-RMCJumpsuitVeteranPMCMedic = { ent-RMCJumpsuitVeteranPMC }
     .desc = { ent-RMCJumpsuitVeteranPMC.desc }
+    .suffix = Разгрузка, Медик
 ent-RMCJumpsuitVeteranPMCGunner = { ent-RMCJumpsuitVeteranPMC }
     .desc = { ent-RMCJumpsuitVeteranPMC.desc }
+    .suffix = Разгрузка, Стрелок
 ent-RMCJumpsuitVeteranPMC = униформа ЧВК
     .desc = Белый комплект обмундирования для частных охранников. На нём изображен символ корпорации «Вестон-Ямада».
+    .suffix = Разгрузка
 ent-RMCJumpsuitVeteranPMCCommando = элитная боевая форма ЧВК
     .desc = Броневая форма, используемая элитными командос «Вестон-Ямада». Лёгкая и комфортная, но хорошо защищена.
 ent-RMCJumpsuitVeteranPMCCorporate = форма охранников «Вестон-Ямада»
