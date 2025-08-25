@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 264.0.0
+  engineVersion: 264.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/04/2025 03:07:15
+  time: 08/25/2025 21:07:12
   entityCount: 27126
 maps:
 - 1
@@ -135,7 +135,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: LV-522 Притензия Шанса
+      name: Chances Claim
     - type: Transform
     - type: Map
       mapPaused: True
@@ -42523,7 +42523,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -60506.043
+      secondsUntilStateChange: -60623.86
       state: Opening
 - proto: CMAirlockMedicalLocked
   entities:
@@ -43618,7 +43618,7 @@ entities:
   - uid: 370
     components:
     - type: Transform
-      pos: -50.5,-16.09375
+      pos: -50.5,-16.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43631,7 +43631,7 @@ entities:
   - uid: 372
     components:
     - type: Transform
-      pos: -50.5,-13.09375
+      pos: -50.5,-13.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43644,7 +43644,7 @@ entities:
   - uid: 374
     components:
     - type: Transform
-      pos: -50.5,-10.09375
+      pos: -50.5,-10.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43657,7 +43657,7 @@ entities:
   - uid: 376
     components:
     - type: Transform
-      pos: -50.5,-7.09375
+      pos: -50.5,-7.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43670,7 +43670,7 @@ entities:
   - uid: 378
     components:
     - type: Transform
-      pos: -50.5,3.90625
+      pos: -50.5,3.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43683,7 +43683,7 @@ entities:
   - uid: 380
     components:
     - type: Transform
-      pos: -50.5,6.90625
+      pos: -50.5,6.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43696,7 +43696,7 @@ entities:
   - uid: 382
     components:
     - type: Transform
-      pos: -50.5,9.90625
+      pos: -50.5,9.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43709,7 +43709,7 @@ entities:
   - uid: 384
     components:
     - type: Transform
-      pos: -50.5,12.90625
+      pos: -50.5,12.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43732,7 +43732,7 @@ entities:
   - uid: 388
     components:
     - type: Transform
-      pos: -41.5,-6.09375
+      pos: -41.5,-6.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43745,7 +43745,7 @@ entities:
   - uid: 390
     components:
     - type: Transform
-      pos: -40.5,-20.09375
+      pos: -40.5,-20.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43753,7 +43753,7 @@ entities:
   - uid: 391
     components:
     - type: Transform
-      pos: -40.5,-7.125
+      pos: -40.5,-7.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43761,7 +43761,7 @@ entities:
   - uid: 392
     components:
     - type: Transform
-      pos: -40.5,-6.71875
+      pos: -40.5,-6.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43774,7 +43774,7 @@ entities:
   - uid: 394
     components:
     - type: Transform
-      pos: -38.5,9.90625
+      pos: -38.5,9.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43782,7 +43782,7 @@ entities:
   - uid: 395
     components:
     - type: Transform
-      pos: -37.5,-17.125
+      pos: -37.5,-17.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43790,7 +43790,7 @@ entities:
   - uid: 396
     components:
     - type: Transform
-      pos: -37.5,-16.71875
+      pos: -37.5,-16.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43798,7 +43798,7 @@ entities:
   - uid: 397
     components:
     - type: Transform
-      pos: -37.5,8.875
+      pos: -37.5,8.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43806,7 +43806,7 @@ entities:
   - uid: 398
     components:
     - type: Transform
-      pos: -37.5,9.28125
+      pos: -37.5,9.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43814,7 +43814,7 @@ entities:
   - uid: 399
     components:
     - type: Transform
-      pos: -37.5,12.25
+      pos: -37.5,12.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43822,7 +43822,7 @@ entities:
   - uid: 400
     components:
     - type: Transform
-      pos: -37.5,12.65625
+      pos: -37.5,12.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43835,7 +43835,7 @@ entities:
   - uid: 402
     components:
     - type: Transform
-      pos: -37.5,14.90625
+      pos: -37.5,14.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43848,7 +43848,7 @@ entities:
   - uid: 404
     components:
     - type: Transform
-      pos: 4.5,-28.09375
+      pos: 4.5,-28.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43871,7 +43871,7 @@ entities:
   - uid: 408
     components:
     - type: Transform
-      pos: 29.5,-84.09375
+      pos: 29.5,-84.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43884,7 +43884,7 @@ entities:
   - uid: 410
     components:
     - type: Transform
-      pos: 29.5,-82.09375
+      pos: 29.5,-82.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43897,7 +43897,7 @@ entities:
   - uid: 412
     components:
     - type: Transform
-      pos: 29.5,-80.09375
+      pos: 29.5,-80.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43910,7 +43910,7 @@ entities:
   - uid: 414
     components:
     - type: Transform
-      pos: 29.5,-78.09375
+      pos: 29.5,-78.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43923,7 +43923,7 @@ entities:
   - uid: 416
     components:
     - type: Transform
-      pos: 30.5,-84.09375
+      pos: 30.5,-84.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43936,7 +43936,7 @@ entities:
   - uid: 418
     components:
     - type: Transform
-      pos: 30.5,-82.09375
+      pos: 30.5,-82.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43949,7 +43949,7 @@ entities:
   - uid: 420
     components:
     - type: Transform
-      pos: 30.5,-80.09375
+      pos: 30.5,-80.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43962,7 +43962,7 @@ entities:
   - uid: 422
     components:
     - type: Transform
-      pos: 30.5,-78.09375
+      pos: 30.5,-78.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43975,7 +43975,7 @@ entities:
   - uid: 424
     components:
     - type: Transform
-      pos: 51.5,41.90625
+      pos: 51.5,41.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43988,7 +43988,7 @@ entities:
   - uid: 426
     components:
     - type: Transform
-      pos: 51.5,43.90625
+      pos: 51.5,43.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -44001,7 +44001,7 @@ entities:
   - uid: 428
     components:
     - type: Transform
-      pos: 53.5,41.90625
+      pos: 53.5,41.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -44014,7 +44014,7 @@ entities:
   - uid: 430
     components:
     - type: Transform
-      pos: 55.5,41.90625
+      pos: 55.5,41.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -44027,7 +44027,7 @@ entities:
   - uid: 432
     components:
     - type: Transform
-      pos: 57.5,41.90625
+      pos: 57.5,41.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -44040,7 +44040,7 @@ entities:
   - uid: 434
     components:
     - type: Transform
-      pos: 57.5,43.90625
+      pos: 57.5,43.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -49395,13 +49395,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -56.46875,-0.40625
+      pos: -56.5,-0.5
       parent: 1
   - uid: 1479
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -56.4375,-0.3125
+      pos: -56.5,-0.5
       parent: 1
   - uid: 1480
     components:
@@ -49413,13 +49413,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -56.46875,0.59375
+      pos: -56.5,0.5
       parent: 1
   - uid: 1482
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -56.4375,0.6875
+      pos: -56.5,0.5
       parent: 1
   - uid: 1483
     components:
@@ -49467,13 +49467,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.46875,-8.40625
+      pos: -48.5,-8.5
       parent: 1
   - uid: 1491
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.4375,-8.3125
+      pos: -48.5,-8.5
       parent: 1
   - uid: 1492
     components:
@@ -49485,13 +49485,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.46875,-7.40625
+      pos: -48.5,-7.5
       parent: 1
   - uid: 1494
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.4375,-7.3125
+      pos: -48.5,-7.5
       parent: 1
   - uid: 1495
     components:
@@ -49503,13 +49503,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.46875,10.59375
+      pos: -48.5,10.5
       parent: 1
   - uid: 1497
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.4375,10.6875
+      pos: -48.5,10.5
       parent: 1
   - uid: 1498
     components:
@@ -49533,13 +49533,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -44.46875,0.59375
+      pos: -44.5,0.5
       parent: 1
   - uid: 1502
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -44.4375,0.6875
+      pos: -44.5,0.5
       parent: 1
   - uid: 1503
     components:
@@ -49551,13 +49551,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -43.46875,0.59375
+      pos: -43.5,0.5
       parent: 1
   - uid: 1505
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -43.4375,0.6875
+      pos: -43.5,0.5
       parent: 1
   - uid: 1506
     components:
@@ -49569,13 +49569,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -43.46875,17.59375
+      pos: -43.5,17.5
       parent: 1
   - uid: 1508
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -43.4375,17.6875
+      pos: -43.5,17.5
       parent: 1
   - uid: 1509
     components:
@@ -49587,19 +49587,19 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -41.46875,0.59375
+      pos: -41.5,0.5
       parent: 1
   - uid: 1511
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -41.4375,0.6875
+      pos: -41.5,0.5
       parent: 1
   - uid: 1512
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -39.40625,40.5
+      pos: -39.5,40.5
       parent: 1
   - uid: 1513
     components:
@@ -50091,7 +50091,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -0.20299459,-38.347786
+      pos: -0.5,-38.5
       parent: 1
   - uid: 1597
     components:
@@ -50109,34 +50109,34 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -2.5,-9.15625
+      pos: -2.5,-9.5
       parent: 1
   - uid: 1600
     components:
     - type: Transform
-      pos: -2.5,-8.09375
+      pos: -2.5,-8.5
       parent: 1
   - uid: 1601
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -1.5,-9.15625
+      pos: -1.5,-9.5
       parent: 1
   - uid: 1602
     components:
     - type: Transform
-      pos: -1.5,-8.09375
+      pos: -1.5,-8.5
       parent: 1
   - uid: 1603
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -0.5,-9.15625
+      pos: -0.5,-9.5
       parent: 1
   - uid: 1604
     components:
     - type: Transform
-      pos: -0.5,-8.09375
+      pos: -0.5,-8.5
       parent: 1
   - uid: 1605
     components:
@@ -50153,12 +50153,12 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 0.5,-9.15625
+      pos: 0.5,-9.5
       parent: 1
   - uid: 1608
     components:
     - type: Transform
-      pos: 0.5,-8.09375
+      pos: 0.5,-8.5
       parent: 1
   - uid: 1609
     components:
@@ -51691,7 +51691,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -34.45299,16.188887
+      pos: -34.5,16.5
       parent: 1
   - uid: 1874
     components:
@@ -53068,7 +53068,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10666.0893339
     - type: Door
-      secondsUntilStateChange: -48084.695
+      secondsUntilStateChange: -48202.51
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -53084,7 +53084,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10666.0893339
     - type: Door
-      secondsUntilStateChange: -48084.695
+      secondsUntilStateChange: -48202.51
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -54344,14 +54344,14 @@ entities:
   - uid: 2275
     components:
     - type: MetaData
-      name: 'ЗП1: Юго-Западная Зона Посадки'
+      name: 'LZ1: Southwest Landing Zone'
     - type: Transform
       pos: -77.5,-65.5
       parent: 1
   - uid: 2276
     components:
     - type: MetaData
-      name: 'ЗП2: Юго-Восточная Зона Посадки'
+      name: 'LZ2: Southeast Landing Zone'
     - type: Transform
       pos: 64.5,-81.5
       parent: 1
@@ -96754,161 +96754,161 @@ entities:
   - uid: 9824
     components:
     - type: MetaData
-      name: ЗП-1
+      name: LZ1
     - type: Transform
       pos: -77.5,-65.5
       parent: 1
   - uid: 9825
     components:
     - type: MetaData
-      name: Тоннели ЗП-1
+      name: LZ1 Tunnels
     - type: Transform
       pos: -66.5,-89.5
       parent: 1
   - uid: 9826
     components:
     - type: MetaData
-      name: Гидро-Юг
+      name: Hydro South
     - type: Transform
       pos: -23.5,-88.5
       parent: 1
   - uid: 9827
     components:
     - type: MetaData
-      name: Шахта
+      name: Mining
     - type: Transform
       pos: 12.5,-84.5
       parent: 1
   - uid: 9828
     components:
     - type: MetaData
-      name: ЗП-2
+      name: LZ2
     - type: Transform
       pos: 64.5,-81.5
       parent: 1
   - uid: 9829
     components:
     - type: MetaData
-      name: Гараж
+      name: Garage
     - type: Transform
       pos: 62.5,-28.5
       parent: 1
   - uid: 9830
     components:
     - type: MetaData
-      name: Карго
+      name: Cargo
     - type: Transform
       pos: 8.5,-41.5
       parent: 1
   - uid: 9831
     components:
     - type: MetaData
-      name: Гидро-Север
+      name: Hydro North
     - type: Transform
       pos: -25.5,-38.5
       parent: 1
   - uid: 9832
     components:
     - type: MetaData
-      name: Бар
+      name: Bar
     - type: Transform
       pos: -44.5,-34.5
       parent: 1
   - uid: 9833
     components:
     - type: MetaData
-      name: Гриль
+      name: Grill
     - type: Transform
       pos: -53.5,-39.5
       parent: 1
   - uid: 9834
     components:
     - type: MetaData
-      name: Тех. Отсек
+      name: Engineering
     - type: Transform
       pos: -69.5,-33.5
       parent: 1
   - uid: 9835
     components:
     - type: MetaData
-      name: Казармы А
+      name: A-Block Dorms And Offices
     - type: Transform
       pos: -46.5,-1.5
       parent: 1
   - uid: 9836
     components:
     - type: MetaData
-      name: Тайфун
+      name: Typhoon Dropship
     - type: Transform
       pos: -75.5,36.5
       parent: 1
   - uid: 9837
     components:
     - type: MetaData
-      name: Реактор-Запад
+      name: Reactor West
     - type: Transform
       pos: -62.5,82.5
       parent: 1
   - uid: 9838
     components:
     - type: MetaData
-      name: Реактор-Восток
+      name: Reactor East
     - type: Transform
       pos: 28.5,82.5
       parent: 1
   - uid: 9839
     components:
     - type: MetaData
-      name: Дирекция
+      name: Corporate Executive Office
     - type: Transform
       pos: 2.5,27.5
       parent: 1
   - uid: 9840
     components:
     - type: MetaData
-      name: Охрана
+      name: Security
     - type: Transform
       pos: 4.5,5.5
       parent: 1
   - uid: 9841
     components:
     - type: MetaData
-      name: Кухня
+      name: Kitchen
     - type: Transform
       pos: 14.5,-9.5
       parent: 1
   - uid: 9842
     components:
     - type: MetaData
-      name: Медблок
+      name: Medical
     - type: Transform
       pos: 45.5,-11.5
       parent: 1
   - uid: 9843
     components:
     - type: MetaData
-      name: Администрация
+      name: Administration
     - type: Transform
       pos: 45.5,-1.5
       parent: 1
   - uid: 9844
     components:
     - type: MetaData
-      name: Торнадо
+      name: Tornado Dropship
     - type: Transform
       pos: 79.5,21.5
       parent: 1
   - uid: 9845
     components:
     - type: MetaData
-      name: Казино
+      name: Casino
     - type: Transform
       pos: 29.5,-33.5
       parent: 1
   - uid: 9846
     components:
     - type: MetaData
-      name: Спортзал
+      name: Fitness
     - type: Transform
       pos: -30.5,35.5
       parent: 1
@@ -101047,6 +101047,8 @@ entities:
     - type: Transform
       pos: 33.5,40.5
       parent: 1
+    - type: Corrodible
+      isCorrodible: False
     - type: RMCPodDoor
       id: map_corpo2
   - uid: 10546
@@ -101057,6 +101059,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 33.5,40.5
       parent: 1
+    - type: Corrodible
+      isCorrodible: False
     - type: RMCPodDoor
       id: map_corpo
   - uid: 10547
