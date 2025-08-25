@@ -43,6 +43,7 @@
   - type: Tag
     tags:
     - RMCWeaponLauncherM85A1
+  - type: CadetRestrictedGun # Stories-AntiGrief-Tweak
 
 - type: Tag
   id: RMCWeaponLauncherM85A1
