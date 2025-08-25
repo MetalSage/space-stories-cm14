@@ -24,6 +24,12 @@
   name: chair
   description: A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably.
   components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Foldable
+    anchorOnUnfold: true
   - type: Sprite
     sprite: _RMC14/Structures/Furniture/folding_chair.rsi
     layers:
@@ -58,7 +64,7 @@
   - type: Foldable
     folded: true
   - type: Strap
-    enabled: False
+    enabled: false
 
 - type: entity
   parent: CMSeatBase

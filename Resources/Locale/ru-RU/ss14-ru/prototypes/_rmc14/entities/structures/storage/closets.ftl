@@ -41,3 +41,6 @@ ent-CMClosetAlien = странный шкаф
 ent-RMCClosetGoldenArrowGear = персональный шкаф
     .desc = Неподвижный блок хранения.
     .suffix = PvE, Солнечные рейдеры
+ent-RMCClosetPMCGear = { ent-RMCClosetGoldenArrowGear }
+    .suffix = PvE, ЧВК
+    .desc = { ent-RMCClosetGoldenArrowGear.desc }

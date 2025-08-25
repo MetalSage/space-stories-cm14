@@ -1,7 +1,7 @@
 cm-pill-contains = Таблетка содержит:
 cm-pill-contains-none = Таблетка содержит: Никаких реагентов.
 cm-pill-contents-unknown = Вы не знаете, что в ней находится.
-cm-pill-contents-none = {""}
+cm-pill-contents-none = { "" }
 cm-pill-contents-bicaridine = Пилюля бикаридина. Лечит грубые повреждения.
 cm-pill-contents-dexalin = Таблетка "Дексалин". Используется для лечения кислородного голодания.
 cm-pill-contents-dylovene = Таблетка против токсинов. Нейтрализует многие распространенные токсины, а также лечит повреждения, вызванные токсинами.

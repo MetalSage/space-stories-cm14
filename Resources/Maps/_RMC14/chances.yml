@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/20/2025 20:58:49
-  entityCount: 27124
+  time: 08/04/2025 03:07:15
+  entityCount: 27126
 maps:
 - 1
 grids:
@@ -42523,7 +42523,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -60456.945
+      secondsUntilStateChange: -60506.043
       state: Opening
 - proto: CMAirlockMedicalLocked
   entities:
@@ -53068,7 +53068,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10666.0893339
     - type: Door
-      secondsUntilStateChange: -48035.598
+      secondsUntilStateChange: -48084.695
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -53084,7 +53084,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10666.0893339
     - type: Door
-      secondsUntilStateChange: -48035.598
+      secondsUntilStateChange: -48084.695
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -79805,13 +79805,6 @@ entities:
     - type: Transform
       pos: 67.5,-35
       parent: 1
-- proto: CMWeaponLauncherM79
-  entities:
-  - uid: 6783
-    components:
-    - type: Transform
-      pos: -17.5,12.5
-      parent: 1
 - proto: CMWeaponPistolM1984
   entities:
   - uid: 6784
@@ -85216,7 +85209,7 @@ entities:
     - type: Transform
       pos: 3.65625,10.65625
       parent: 1
-- proto: RMCBoxMagazineRifleM4SPRAP
+- proto: RMCBoxMagazineRifleM4SPRAPEmpty
   entities:
   - uid: 7802
     components:
@@ -85228,8 +85221,6 @@ entities:
     - type: Transform
       pos: -4.5,2.5
       parent: 1
-- proto: RMCBoxMagazineRifleM4SPRAPEmpty
-  entities:
   - uid: 7804
     components:
     - type: Transform
@@ -96962,6 +96953,18 @@ entities:
     components:
     - type: Transform
       pos: -22.389387,24.674892
+      parent: 1
+- proto: RMCMonitorCameraLandingZone
+  entities:
+  - uid: 27125
+    components:
+    - type: Transform
+      pos: 64.5,-81.5
+      parent: 1
+  - uid: 27126
+    components:
+    - type: Transform
+      pos: -77.5,-65.5
       parent: 1
 - proto: RMCNanoMed
   entities:
@@ -182331,6 +182334,13 @@ entities:
       parent: 1
     - type: SpriteSetRenderOrder
       renderOrder: 3000
+- proto: RMCWeaponLauncherM85A1
+  entities:
+  - uid: 6783
+    components:
+    - type: Transform
+      pos: -17.5,12.5
+      parent: 1
 - proto: RMCWeaponPistolHoldout
   entities:
   - uid: 26239
