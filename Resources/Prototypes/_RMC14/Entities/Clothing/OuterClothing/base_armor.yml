@@ -15,11 +15,25 @@
     blacklist:
       components:
       - Xeno
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RMCEquipArmor
+  - type: EmitSoundOnLand
+    sound:
+      collection: RMCEquipArmor
   - type: Clothing
     equipSound:
       path: /Audio/_RMC14/Machines/armor_equip.ogg
   - type: MoveOrderArmor
   - type: StoreAfterFailedInteract
+  - type: StorageStoreSkillRequired
+    entries:
+    - whitelist:
+        tags:
+        - GlassBeaker
+      skills:
+        all:
+          RMCSkillMedical: 2
 
 - type: entity
   abstract: true
@@ -275,7 +289,7 @@
     blinkingBehaviourId: blinking
     radiatingBehaviourId: radiating
     turnOffSound:
-      path: /Audio/_RMC14/Machines/suitlight_off.ogg
+      path: /Audio/_RMC14/Handling/suitlight_crank.ogg
     turnOnSound:
       path: /Audio/_RMC14/Machines/suitlight_on.ogg
   - type: NoHandsInteractionBlocked

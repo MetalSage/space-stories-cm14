@@ -19,6 +19,7 @@
       - RMCSpeedLoaderM44
       - RMCSpeedLoader44Marksman
       - RMCCartridgeRevolver44
+      - RMCCartridgeRevolver44Marksman
     proto: RMCCartridgeRevolver44
     capacity: 7
     chambers: [ True, True, True, True, True, True, True ]
@@ -62,6 +63,14 @@
     skins:
       Default: /Textures/_RMC14/Objects/Weapons/Guns/Pistols/m44.rsi
       GoldRush: /Textures/_Stories/Objects/Weapons/Pistols/m44.rsi
+
+- type: entity
+  parent: RMCWeaponRevolverM44
+  id: RMCWeaponRevolverM44Marksman
+  suffix: Marksman
+  components:
+  - type: RevolverAmmoProvider
+    proto: RMCCartridgeRevolver44Marksman
 
 - type: entity
   parent: RMCWeaponRevolverM44

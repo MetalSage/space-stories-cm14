@@ -85,6 +85,14 @@ rmc-ui-figurine-in-preferences =
 rmc-ui-ghost-color = Цвет призрака
 rmc-ui-ghost-color-clear = Очистить
 rmc-ui-ghost-color-save = Сохранить
+rmc-area-info = { $area }{ $restrictions }
+rmc-tacmap-alert-ceiling-level-0 = [color=green]✓[/color] Все действия разрешены
+rmc-tacmap-alert-ceiling-level-1 = [color=red]✗[/color] Размещение миномётов, целеуказание лазером, медэвак
+rmc-tacmap-alert-ceiling-level-2 = [color=red]✗[/color] Сброс припасов, миномётный огонь
+rmc-tacmap-alert-ceiling-level-3 = [color=red]✗[/color] Авиационная поддержка
+rmc-tacmap-alert-ceiling-level-4 = [color=red]✗[/color] Орбитальная бомбардировка
+rmc-tacmap-alert-allowed-actions = [color=green]✓[/color] { $actions }
+rmc-tacmap-alert-restricted-actions = [color=red]✗[/color] { $actions }
 rmc-ui-shoutout-marine = [bold]Операция финансируется [color=green]{ $name }[/color]![/bold]
 rmc-ui-shoutout-xeno = [bold]Улей, основаный [color=purple]{ $name }[/color]![/bold]
 rmc-ui-discord = Дискорд

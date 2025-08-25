@@ -422,6 +422,7 @@
 - type: entity
   parent: RMCMarineUniformBase
   id: RMCJumpsuitEMT
+  name: EMT - Paramedic uniform
   description: A set of EMT - Paramedic fatigues, this one is green.
   components:
   - type: Sprite
@@ -439,6 +440,17 @@
     sprite: _RMC14/Objects/Clothing/Uniforms/Civilian/emt_green.rsi
   - type: Clothing
     sprite: _RMC14/Objects/Clothing/Uniforms/Civilian/emt_green.rsi
+
+- type: entity
+  parent: RMCMarineUniformBase
+  id: RMCJumpsuitLaborersOveralls
+  name: laborer's overalls
+  description: A set of durable overalls for getting the job done.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Clothing/Uniforms/Survivor/laborers_overalls.rsi
+  - type: Clothing
+    sprite: _RMC14/Objects/Clothing/Uniforms/Survivor/laborers_overalls.rsi
 
 # Kutjevo
 - type: entity

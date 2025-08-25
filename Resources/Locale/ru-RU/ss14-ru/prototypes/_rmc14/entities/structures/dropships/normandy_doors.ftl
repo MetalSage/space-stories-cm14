@@ -1,5 +1,14 @@
 ent-CMNormandyDoor = шлюз Нормандии
     .desc = { ent-CMAlamoDoor.desc }
+ent-CMNormandyDoorAft = { ent-CMAlamoDoorAft }
+    .suffix = Кормовая
+    .desc = { ent-CMAlamoDoorAft.desc }
+ent-CMNormandyDoorPort = { ent-CMAlamoDoorPort }
+    .suffix = Левая
+    .desc = { ent-CMAlamoDoorPort.desc }
+ent-CMNormandyDoorStarboard = { ent-CMAlamoDoorStarboard }
+    .suffix = Правая
+    .desc = { ent-CMAlamoDoorStarboard.desc }
 ent-CMNormandyCockpit = { ent-CMAlamoCockpit }
     .suffix = Нормандия
     .desc = { ent-CMAlamoCockpit.desc }

@@ -1,0 +1,15 @@
+ent-RMCSpawnerRandomPillBase = спавнер баночек с таблетками
+    .desc = Это случайная бутылка с таблетками для выживших.
+    .suffix = Базовый
+ent-RMCSpawnerRandomPillBottle = { ent-RMCSpawnerRandomPillBase }
+    .suffix = Гарантированный
+    .desc = { ent-RMCSpawnerRandomPillBase.desc }
+ent-RMCSpawnerRandomPillBottleLowChance = { ent-RMCSpawnerRandomPillBottle }
+    .suffix = Низкий шанс
+    .desc = { ent-RMCSpawnerRandomPillBottle.desc }
+ent-RMCSpawnerRandomPillBottleMidChance = { ent-RMCSpawnerRandomPillBottle }
+    .suffix = Средний шанс
+    .desc = { ent-RMCSpawnerRandomPillBottle.desc }
+ent-RMCSpawnerRandomPillBottleHighChance = { ent-RMCSpawnerRandomPillBottle }
+    .suffix = Высокий шанс
+    .desc = { ent-RMCSpawnerRandomPillBottle.desc }

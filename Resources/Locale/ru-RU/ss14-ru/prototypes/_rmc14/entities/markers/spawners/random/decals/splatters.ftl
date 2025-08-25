@@ -1,0 +1,12 @@
+ent-RMCDecalSpawnerBase = { ent-DecalSpawnerBase }
+    .suffix = RMC14, Кровавые брызги
+    .desc = { ent-DecalSpawnerBase.desc }
+ent-RMCDecalSpawnerBloodSplatters = спавнер крови
+    .suffix = RMC14
+    .desc = { ent-RMCDecalSpawnerBase.desc }
+ent-RMCDecalSpawnerXenoSplatters = спавнер ксено-крови
+    .suffix = RMC14
+    .desc = { ent-RMCDecalSpawnerBase.desc }
+ent-RMCDecalSpawnerOilSplatters = спавнер масла
+    .suffix = RMC14
+    .desc = { ent-RMCDecalSpawnerBase.desc }

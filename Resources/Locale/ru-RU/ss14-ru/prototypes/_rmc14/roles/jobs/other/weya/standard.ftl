@@ -14,5 +14,5 @@ ent-RMCRandomHumanoidPMCStandardM54C2 = роль призрака ЧВК Ве-Я
     .suffix = Спавнер, Игрок
     .desc = { ent-MarkerBase.desc }
 ent-RMCPMCStandardM54C2 = точка появления ЧВК Ве-Я стандарт m41a2
-    .suffix = M54C2
+    .suffix = M41A2
     .desc = { ent-CMSpawnPointJobBase.desc }

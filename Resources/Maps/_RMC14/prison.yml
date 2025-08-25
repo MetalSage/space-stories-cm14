@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/20/2025 21:10:03
-  entityCount: 21714
+  time: 08/04/2025 03:01:22
+  entityCount: 21716
 maps:
 - 1
 grids:
@@ -91162,13 +91162,6 @@ entities:
     - type: Transform
       pos: -9.5,67.5
       parent: 1
-- proto: RMCJumpsuitMarshal
-  entities:
-  - uid: 6386
-    components:
-    - type: Transform
-      pos: 21.502884,-52.475098
-      parent: 1
 - proto: RMCJumpsuitOrange
   entities:
   - uid: 6387
@@ -98095,6 +98088,13 @@ entities:
     - type: Transform
       pos: 42.5,-19.5
       parent: 1
+- proto: RMCMarshalCMBUniform
+  entities:
+  - uid: 6386
+    components:
+    - type: Transform
+      pos: 21.502884,-52.475098
+      parent: 1
 - proto: RMCMaskSWAT
   entities:
   - uid: 4644
@@ -98184,6 +98184,18 @@ entities:
     components:
     - type: Transform
       pos: -46.5,15.5
+      parent: 1
+- proto: RMCMonitorCameraLandingZone
+  entities:
+  - uid: 21715
+    components:
+    - type: Transform
+      pos: 35.5,-73.5
+      parent: 1
+  - uid: 21716
+    components:
+    - type: Transform
+      pos: 110.5,9.5
       parent: 1
 - proto: RMCMonorailBend
   entities:

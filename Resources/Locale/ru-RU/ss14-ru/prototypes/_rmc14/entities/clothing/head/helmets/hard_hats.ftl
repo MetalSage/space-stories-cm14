@@ -8,3 +8,7 @@ ent-RMCHardhatBlue = { ent-RMCHardHat }
     .desc = { ent-RMCHardHat.desc }
 ent-RMCHardhatWhite = { ent-RMCHardHat }
     .desc = { ent-RMCHardHat.desc }
+ent-RMCHardhatWhiteAlt = шахтёрская каска корпорации "Чанъе"
+    .desc = { ent-RMCHardHat.desc }
+ent-RMCHardhatRedTMCC = шахтёрская каска "Тартар-Майнинг"
+    .desc = { ent-RMCHardhatRed.desc }

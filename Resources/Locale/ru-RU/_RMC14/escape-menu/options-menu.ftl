@@ -15,6 +15,7 @@ ui-options-header-rmc-xeno = Ксеноморфы
 ui-options-function-rmc-rest = Отдыхать
 ui-options-function-cm-xeno-wide-swing = Широкий размах ксеноморфа
 ui-options-function-cm-unique-action = Уникальное действие
+ui-options-function-rmc-xeno-rest = Отдых ксеноморфов
 ui-options-function-cm-holster-primary = Снять с хранения
 ui-options-function-cm-holster-secondary = Снять с хранения вторичный
 ui-options-function-cm-holster-tertiary = Снять с хранения третичный

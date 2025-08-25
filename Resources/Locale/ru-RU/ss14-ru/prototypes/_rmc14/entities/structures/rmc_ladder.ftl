@@ -6,3 +6,6 @@ ent-RMCLadderUp = { ent-RMCLadder }
 ent-RMCLadderThrough = { ent-RMCLadder }
     .suffix = Сквозь
     .desc = { ent-RMCLadder.desc }
+ent-RMCLadderHatch = { ent-RMCLadder }
+    .suffix = Люк
+    .desc = { ent-RMCLadder.desc }

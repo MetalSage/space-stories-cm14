@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._RMC14.Barricade.Components;
 using Content.Shared._RMC14.CombatMode;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
@@ -86,10 +87,11 @@ namespace Content.Shared.Interaction
         private EntityQuery<WallMountComponent> _wallMountQuery;
         private EntityQuery<UseDelayComponent> _delayQuery;
         private EntityQuery<ActivatableUIComponent> _uiQuery;
+        private EntityQuery<BarbedComponent> _barbedQuery;
 
         private const CollisionGroup InRangeUnobstructedMask = CollisionGroup.Impassable | CollisionGroup.InteractImpassable;
 
-        public const float InteractionRange = 1.5f;
+        public const float InteractionRange = 0.8f;
         public const float InteractionRangeSquared = InteractionRange * InteractionRange;
         public const float MaxRaycastRange = 100f;
         public const string RateLimitKey = "Interaction";
@@ -110,6 +112,7 @@ namespace Content.Shared.Interaction
             _wallMountQuery = GetEntityQuery<WallMountComponent>();
             _delayQuery = GetEntityQuery<UseDelayComponent>();
             _uiQuery = GetEntityQuery<ActivatableUIComponent>();
+            _barbedQuery = GetEntityQuery<BarbedComponent>();
 
             SubscribeLocalEvent<BoundUserInterfaceCheckRangeEvent>(HandleUserInterfaceRangeCheck);
 
@@ -676,10 +679,27 @@ namespace Content.Shared.Interaction
                 length = MaxRaycastRange;
             }
 
-            var ray = new CollisionRay(origin.Position, dir.Normalized(), (int) collisionMask);
-            var rayResults = _broadphase.IntersectRayWithPredicate(origin.MapId, ray, length, predicate.Invoke, false).ToList();
+            const CollisionGroup barbedCheckMask = CollisionGroup.MidImpassable | CollisionGroup.LowImpassable | CollisionGroup.HighImpassable;
+            var combinedMask = (int) collisionMask | (int) barbedCheckMask;
 
-            return rayResults.Count == 0;
+            var ray = new CollisionRay(origin.Position, dir.Normalized(), combinedMask);
+            var rayResults = _broadphase.IntersectRayWithPredicate(origin.MapId, ray, length, predicate.Invoke, false);
+
+            foreach (var result in rayResults)
+            {
+                if (_barbedQuery.TryComp(result.HitEntity, out var barbed) && barbed.IsBarbed)
+                    return false;
+
+                if (_physicsQuery.TryComp(result.HitEntity, out var physics))
+                {
+                    if ((physics.CollisionLayer & (int) collisionMask) != 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         public bool InRangeUnobstructed(

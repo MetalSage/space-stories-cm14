@@ -1,3 +1,5 @@
+ent-RMCSimpleMob = абстрактный простой моб
+    .desc = { "" }
 ent-RMCSmallHost = абстрактный маленький носитель
     .desc = { "" }
 ent-CMMobMonkey = { ent-MobMonkey }

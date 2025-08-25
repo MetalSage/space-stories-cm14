@@ -1,0 +1,16 @@
+ent-RMCWeaponRifleAK4047 = штурмовая винтовка АК-4047
+    .desc = Эквивалент СПН винтовки M41A, АК-4047 — дешевая и надежная замена. Поэтому оружие часто попадает в руки наемников и повстанцев. Хотя АК-4047 не так точна, как M41, она прочнее оружия КМП США. АК-4047 все еще работает после того, как ее сбросили со скалы и оставили под водой на месяц.
+ent-RMCWeaponRifleAK4047Tactical = { ent-RMCWeaponRifleAK4047 }
+    .suffix = Тактическая
+    .desc = { ent-RMCWeaponRifleAK4047.desc }
+ent-RMCMagazineRifleAK4047 = магазин АК4047 (10x24мм)
+    .desc = { ent-CMMagazineRifleBase.desc }
+ent-RMCMagazineRifleAK4047AP = бронебойный магазин АК4047 (10x24мм)
+    .suffix = ББ
+    .desc = { ent-RMCMagazineRifleAK4047.desc }
+ent-RMCMagazineRifleAK4047Incendiary = зажигательный магазин АК4047 (10x24мм)
+    .suffix = Зажигательный
+    .desc = { ent-RMCMagazineRifleAK4047.desc }
+ent-RMCMagazineRifleAK4047HEAP = HEAP магазин АК4047 (10x24мм)
+    .suffix = HEAP
+    .desc = { ent-RMCMagazineRifleAK4047.desc }

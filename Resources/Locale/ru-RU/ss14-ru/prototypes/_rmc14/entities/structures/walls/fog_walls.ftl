@@ -27,3 +27,6 @@ ent-RMCFogWallAdderThree = { ent-RMCFogWallAdderOne }
     .desc = { ent-RMCFogWallAdderOne.desc }
 ent-RMCFogShockwave = ударная волна дыма
     .desc = { "" }
+ent-RMCFogSpawner15 = блокиратор тумана
+    .suffix = 15 минут
+    .desc = { ent-MarkerBase.desc }

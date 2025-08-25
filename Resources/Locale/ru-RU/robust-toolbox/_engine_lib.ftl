@@ -29,6 +29,15 @@ zzzz-dat-object =
         [epicene] им
        *[neuter] ему
     }
+# Used internally by the GENITIVE() function.
+# Not used in en-US. Created to support other languages.
+# e.g., "у него" (Russian), "seines Vaters" (German).
+zzzz-genitive = { GENDER($ent) ->
+    [male] него
+    [female] её
+    [epicene] них
+   *[neuter] него
+   }
 # Used internally by the POSS-PRONOUN() function.
 zzzz-possessive-pronoun =
     { GENDER($ent) ->

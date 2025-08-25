@@ -10,3 +10,5 @@ seeds-grass-name = трава
 seeds-grass-display-name = трава
 seeds-rmc-grape-name = виноград
 seeds-rmc-grape-display-name = виноградные лозы
+seeds-mango-name = манго
+seeds-mango-display-name = манговые деревья

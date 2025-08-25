@@ -49,5 +49,6 @@ command-description-spawnallmapinserts = Спавнит все вставки н
 command-description-forceplanetmap = Заставляет начать следующий раунд с указанной планеты.
 command-description-rmcresetahelptracking = Сбрасывает все данные об отслеживаемых разговорах AHelp в Discord. Полезно для случаев, когда AHelp не отображаются в ретрансляторе Discord должным образом.
 command-description-hijack-trigger = Запускает захват на карте, на которой вы находитесь в данный момент.
+command-description-setoperationname = Меняет название операции для предстоящего раунда.
 command-description-marinesperxeno-set = Устанавливает начальное соотношение морпехов к ксеносам на определенной карте.
 command-description-withxenotier = Фильтрует сущности или прототипы сущностей до тех, которые относятся к определенному уровню ксенонидов.
