@@ -6,3 +6,5 @@ ent-RMCEffectHighfive = { ent-RMCEffectEmoteBase }
     .desc = { ent-RMCEffectEmoteBase.desc }
 ent-RMCEffectTailswipe = { ent-RMCEffectEmoteBase }
     .desc = { ent-RMCEffectEmoteBase.desc }
+ent-RMCEffectHug = { ent-RMCEffectEmoteBase }
+    .desc = { ent-RMCEffectEmoteBase.desc }

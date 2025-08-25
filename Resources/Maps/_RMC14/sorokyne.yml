@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/21/2025 16:55:27
-  entityCount: 32368
+  time: 08/04/2025 03:10:53
+  entityCount: 32370
 maps:
 - 1
 grids:
@@ -65241,15 +65241,6 @@ entities:
     - type: Transform
       pos: 151.5,120.5
       parent: 1
-- proto: CMWeaponLauncherM79
-  entities:
-  - uid: 3462
-    components:
-    - type: Transform
-      parent: 3461
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: CMWelder
   entities:
   - uid: 3463
@@ -89641,6 +89632,18 @@ entities:
     components:
     - type: Transform
       pos: 176.5,92.5
+      parent: 1
+- proto: RMCMonitorCameraLandingZone
+  entities:
+  - uid: 32369
+    components:
+    - type: Transform
+      pos: 46.5,18.5
+      parent: 1
+  - uid: 32370
+    components:
+    - type: Transform
+      pos: 10.5,108.5
       parent: 1
 - proto: RMCMotionDetector
   entities:
@@ -211156,6 +211159,15 @@ entities:
     - type: Transform
       pos: 75.5,32.5
       parent: 1
+- proto: RMCWeaponLauncherM85A1
+  entities:
+  - uid: 3462
+    components:
+    - type: Transform
+      parent: 3461
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: RMCWeaponPistolHoldout
   entities:
   - uid: 31210

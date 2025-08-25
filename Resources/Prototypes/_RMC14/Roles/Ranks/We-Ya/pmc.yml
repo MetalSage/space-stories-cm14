@@ -77,6 +77,12 @@
   paygrade: ЧВК-ЛИД
 
 - type: rank
+  id: RMCRankWeYaForceLeader
+  name: Force Leader
+  prefix: FL.
+  paygrade: PMC-FL
+
+- type: rank
   id: RMCRankWeYaEliteTeamLeader
   name: Элитный Лидер Группы
   prefix: ЭЛИД.
@@ -87,3 +93,9 @@
   name: ЧВК Директор Объекта
   prefix: Директор
   paygrade: ЧВК-ДИР
+
+- type: rank
+  id: RMCRankWeYaForceCommand
+  name: ЧВК Командование Сил
+  prefix: КОC.
+  paygrade: ЧВК-КОС

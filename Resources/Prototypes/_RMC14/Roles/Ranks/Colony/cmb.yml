@@ -48,11 +48,11 @@
 - type: rank
   id: RMCRankICBCorporateLiaison
   name: Корпоративный Связной Межзвездного Бюро Торговли
-  prefix: Рук.
+  prefix: МБТ Пред.
   paygrade: МБТКС
 
 - type: rank
   id: RMCRankIHROObserver
-  name: Межзвездный Наблюдатель За Правами Человека
+  name: Межзвездный Наблюдатель за Правами Человека
   prefix: "Нблд."
-  paygrade: НМЗП
+  paygrade: МНПЧ

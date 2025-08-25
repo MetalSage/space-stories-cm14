@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/20/2025 21:50:51
-  entityCount: 49431
+  time: 08/04/2025 03:09:35
+  entityCount: 49433
 maps:
 - 1
 grids:
@@ -142245,6 +142245,43 @@ entities:
     - type: Transform
       pos: -169.5,-97.5
       parent: 1
+- proto: RMCAegisCorpseSpawner
+  entities:
+  - uid: 49425
+    components:
+    - type: Transform
+      pos: -54.5,-20.5
+      parent: 1
+  - uid: 49426
+    components:
+    - type: Transform
+      pos: -99.5,-32.5
+      parent: 1
+  - uid: 49427
+    components:
+    - type: Transform
+      pos: -101.5,-125.5
+      parent: 1
+  - uid: 49428
+    components:
+    - type: Transform
+      pos: -112.5,-120.5
+      parent: 1
+  - uid: 49429
+    components:
+    - type: Transform
+      pos: -83.5,-3.5
+      parent: 1
+  - uid: 49430
+    components:
+    - type: Transform
+      pos: -104.5,-85.5
+      parent: 1
+  - uid: 49431
+    components:
+    - type: Transform
+      pos: -115.5,-73.5
+      parent: 1
 - proto: RMCAegisSpawner
   entities:
   - uid: 49422
@@ -142427,7 +142464,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -15771.9375
+      secondsUntilStateChange: -15815.9375
       state: Opening
   - uid: 13030
     components:
@@ -142845,7 +142882,7 @@ entities:
     - type: Transform
       pos: -173.5,-12.5
       parent: 1
-- proto: RMCAttachmentM42A2WoodenStock
+- proto: RMCAttachmentM42A1WoodenStock
   entities:
   - uid: 13116
     components:
@@ -193325,6 +193362,18 @@ entities:
     - type: Transform
       pos: -149.5,-50.5
       parent: 1
+- proto: RMCMonitorCameraLandingZone
+  entities:
+  - uid: 49432
+    components:
+    - type: Transform
+      pos: -12.5,-17.5
+      parent: 1
+  - uid: 49433
+    components:
+    - type: Transform
+      pos: -15.5,-147.5
+      parent: 1
 - proto: RMCMonorailStraight
   entities:
   - uid: 21768
@@ -227614,7 +227663,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: sensor_tower
 - proto: RMCSheetCardboard
   entities:
@@ -233162,43 +233211,6 @@ entities:
     components:
     - type: Transform
       pos: -208.5,-179.5
-      parent: 1
-- proto: RMCAegisCorpseSpawner
-  entities:
-  - uid: 49425
-    components:
-    - type: Transform
-      pos: -54.5,-20.5
-      parent: 1
-  - uid: 49426
-    components:
-    - type: Transform
-      pos: -99.5,-32.5
-      parent: 1
-  - uid: 49427
-    components:
-    - type: Transform
-      pos: -101.5,-125.5
-      parent: 1
-  - uid: 49428
-    components:
-    - type: Transform
-      pos: -112.5,-120.5
-      parent: 1
-  - uid: 49429
-    components:
-    - type: Transform
-      pos: -83.5,-3.5
-      parent: 1
-  - uid: 49430
-    components:
-    - type: Transform
-      pos: -104.5,-85.5
-      parent: 1
-  - uid: 49431
-    components:
-    - type: Transform
-      pos: -115.5,-73.5
       parent: 1
 - proto: RMCSpawnerCorpseSecurity
   entities:
@@ -341890,7 +341902,7 @@ entities:
     - type: Transform
       pos: -129.5,-144.5
       parent: 1
-- proto: WeaponRifleSSG45
+- proto: RMCWeaponRifleSSG45
   entities:
   - uid: 49337
     components:
@@ -342025,7 +342037,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49350
     components:
@@ -342035,7 +342047,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49351
     components:
@@ -342045,7 +342057,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49352
     components:
@@ -342055,7 +342067,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49353
     components:
@@ -342065,7 +342077,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49354
     components:
@@ -342075,7 +342087,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49355
     components:
@@ -342085,7 +342097,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49356
     components:
@@ -342095,7 +342107,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49357
     components:
@@ -342105,7 +342117,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49358
     components:
@@ -342115,7 +342127,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49359
     components:
@@ -342125,7 +342137,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
 - proto: XenoTunnelMaintHybrisaNoXenoDesc
   entities:
@@ -342137,7 +342149,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49361
     components:
@@ -342147,7 +342159,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49362
     components:
@@ -342157,7 +342169,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49363
     components:
@@ -342167,7 +342179,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49364
     components:
@@ -342177,7 +342189,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
 - proto: XenoTunnelMaintNoXenoDesc
   entities:
@@ -342189,7 +342201,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49366
     components:
@@ -342199,7 +342211,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49367
     components:
@@ -342209,7 +342221,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
   - uid: 49368
     components:
@@ -342219,7 +342231,7 @@ entities:
     - type: ActiveTacticalMapTracked
       color: '#FFFFFFFF'
       icon:
-        sprite: _RMC14/Interface/map_blips.rsi
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: xenotunnel
 - proto: XenoWeedsSource
   entities:

@@ -53,7 +53,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/prison.yml
-    camouflage: Classic
+    camouflage: Urban
     minPlayers: 130
     announcement: "Получен автоматический сигнал бедствия из тюрьмы максимальной безопасности 'Орбитальная тюрьма Фиорина'. Группа реагирования с борта ВКСШ Алмайер будет отправлена в ближайшее время для расследования." # Stories-Translate
 
@@ -66,6 +66,32 @@
     camouflage: Desert
     minPlayers: 130
     announcement: "Мы потеряли связь с внесолнечной колонией компании Вестон-Ямада, 'Дамба Триджент', на планете 'Райдзин'. ВКСШ Алмайер отправлен для оказания помощи."
+    survivorJobs:
+    - CMSurvivor: -1
+    - CMSurvivorCorporate: 2
+    - CMSurvivorDoctor: 3
+    - CMSurvivorEngineer: 4
+    - CMSurvivorSecurity: 2
+    - CMSurvivorScientist: 2
+    survivorJobInserts:
+      CMSurvivor:
+      - CMSurvivorTrijentTrucker: -1
+      - CMSurvivorMiner: -1
+      - CMSurvivorTrijentChaplain: 1
+      CMSurvivorCorporate:
+      - CMSurvivorICB: 1
+      - CMSurvivorTrijentCorporate: 1
+      CMSurvivorDoctor:
+      - CMSurvivorTrijentDoctor: 3
+      CMSurvivorEngineer:
+      - CMSurvivorTrijentEngiHydro: 2
+      - CMSurvivorTrijentDamTech: 2
+      CMSurvivorSecurity:
+      - CMSurvivorTrijentGoon: 1
+      - CMSurvivorCMBDeputy: 1
+      CMSurvivorScientist:
+      - CMSurvivorTrijentResearcher: 2
+
 
 - type: entity
   id: RMCPlanetVaradero
@@ -125,7 +151,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/chances.yml
-    camouflage: Classic
+    camouflage: Urban
     announcement: "Пан-пан. Говорит командующий офицер ВКСШ Ханьют, КМП США ФОРКОН. В настоящее время мы находимся на планете LV-522 в непосредственной близости от 'Претензии Шанса'. Мы не можем связаться с 'Ханьют', и наши десантные корабли не могут взлететь в данный момент. Мы запрашиваем помощь у любых находящихся поблизости судов; эта трансляция будет повторяться каждые 24 часа." # Stories-Translate
     selectRandomSurvivorInsert: false
     survivorJobs:
@@ -185,7 +211,6 @@
       - RMCSurvivorHybrisaXenoarchaeologist: 2
       - RMCSurvivorHybrisaXenobiologist: 2
 
-
 - type: entity
   id: RMCPlanetSorokyne
   name: LV-976 Sorokyne Strata
@@ -212,3 +237,30 @@
       - CMJobSurvivorArmyReservist: 2
       CMSurvivorScientist:
       - CMJobSurvivorCECResearcher: 2
+
+- type: entity
+  id: RMCPlanetArcticValley
+  name: Arctic Valley
+  components:
+  - type: RMCPlanetMapPrototype
+    map: /Maps/_RMC14/arctic_valley.yml
+    camouflage: Snow
+    inRotation: false
+
+- type: entity
+  id: RMCPlanetCorsat
+  name: CORSAT
+  components:
+  - type: RMCPlanetMapPrototype
+    map: /Maps/_RMC14/corsat.yml
+    camouflage: Classic
+    inRotation: false
+
+- type: entity
+  id: RMCPlanetHybrisaRepaired
+  name: LV-759 Hybrisa Prospera (Repaired)
+  components:
+  - type: RMCPlanetMapPrototype
+    map: /Maps/_RMC14/hybrisa_greenshift.yml
+    camouflage: Urban
+    inRotation: false

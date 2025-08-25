@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/20/2025 21:21:34
-  entityCount: 32946
+  time: 08/04/2025 03:04:25
+  entityCount: 32948
 maps:
 - 1
 grids:
@@ -142889,6 +142889,18 @@ entities:
     components:
     - type: Transform
       pos: 50.43463,-145.52802
+      parent: 1
+- proto: RMCMonitorCameraLandingZone
+  entities:
+  - uid: 32947
+    components:
+    - type: Transform
+      pos: 34.5,-26.5
+      parent: 1
+  - uid: 32948
+    components:
+    - type: Transform
+      pos: 21.5,-206.5
       parent: 1
 - proto: RMCNanoMed
   entities:

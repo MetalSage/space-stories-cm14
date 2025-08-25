@@ -16,6 +16,7 @@ rmc-xeno-ui-burrowed-need-time = Вы недавно были призраком
 rmc-xeno-tracker-target-Queen = Королева
 rmc-xeno-tracker-target-HiveLeader = Лидер улья
 rmc-xeno-tracker-target-Tunnel = Туннель
+rmc-xeno-tracker-target-HiveCore = Ядро Улья
 cm-ui-cm-actions = Действия MC
 cm-ui-transform-tab = Трансформация
 cm-ui-xeno-tab = Ксено

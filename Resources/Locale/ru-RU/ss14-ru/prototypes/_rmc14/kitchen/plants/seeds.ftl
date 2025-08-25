@@ -8,3 +8,5 @@ ent-PeanutSeeds = пакетик семян арахиса
     .desc = { ent-SeedBase.desc }
 ent-SunflowerSeeds = пакетик семян подсолнечника
     .desc = { ent-SeedBase.desc }
+ent-MangoSeeds = пакетик семян манго
+    .desc = { ent-SeedBase.desc }

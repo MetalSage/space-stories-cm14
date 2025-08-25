@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/20/2025 21:24:46
-  entityCount: 26768
+  time: 08/04/2025 03:06:07
+  entityCount: 26770
 maps:
 - 1
 grids:
@@ -153825,7 +153825,7 @@ entities:
       pos: 94.5,21.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -16459.682
+      secondsUntilStateChange: -16524.758
       state: Opening
   - uid: 20857
     components:
@@ -166417,7 +166417,7 @@ entities:
       pos: 73.5,59.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -66154.09
+      secondsUntilStateChange: -66219.17
       state: Opening
   - uid: 23009
     components:
@@ -170096,6 +170096,18 @@ entities:
     components:
     - type: Transform
       pos: 114.5,56.5
+      parent: 1
+- proto: RMCMonitorCameraLandingZone
+  entities:
+  - uid: 26769
+    components:
+    - type: Transform
+      pos: 70.5,142.5
+      parent: 1
+  - uid: 26770
+    components:
+    - type: Transform
+      pos: 144.5,148.5
       parent: 1
 - proto: RMCNewVaraderoSign
   entities:
