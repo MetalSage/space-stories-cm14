@@ -490,7 +490,9 @@ public sealed partial class TacticalMapControl : TextureRect
             UIBox2 rect = UIBox2.FromDimensions(position, new Vector2(scaledBlipSize, scaledBlipSize));
 
             handle.DrawTextureRect(blip.Background != null ? system.GetFrame(blip.Background, curTime) : background, rect, blip.Color);
-            handle.DrawTextureRect(system.GetFrame(blip.Image, curTime), rect);
+
+            if (blip.Image != null)
+                handle.DrawTextureRect(system.GetFrame(blip.Image, curTime), rect);
 
             if (blip.HiveLeader)
                 handle.DrawTextureRect(system.GetFrame(hiveLeaderRsi, curTime), rect);
