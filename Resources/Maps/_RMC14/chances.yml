@@ -135,7 +135,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Chances Claim
+      name: LV-522 Претензия Шанса
     - type: Transform
     - type: Map
       mapPaused: True
@@ -54344,14 +54344,14 @@ entities:
   - uid: 2275
     components:
     - type: MetaData
-      name: 'LZ1: Southwest Landing Zone'
+      name: 'ЗП-1: Юго-западная Зона Посадки'
     - type: Transform
       pos: -77.5,-65.5
       parent: 1
   - uid: 2276
     components:
     - type: MetaData
-      name: 'LZ2: Southeast Landing Zone'
+      name: 'ЗП-2: Юго-восточная Зона Посадки'
     - type: Transform
       pos: 64.5,-81.5
       parent: 1
@@ -96754,161 +96754,161 @@ entities:
   - uid: 9824
     components:
     - type: MetaData
-      name: LZ1
+      name: ЗП-1
     - type: Transform
       pos: -77.5,-65.5
       parent: 1
   - uid: 9825
     components:
     - type: MetaData
-      name: LZ1 Tunnels
+      name: ЗП-1 Тоннели
     - type: Transform
       pos: -66.5,-89.5
       parent: 1
   - uid: 9826
     components:
     - type: MetaData
-      name: Hydro South
+      name: Гидро Юг
     - type: Transform
       pos: -23.5,-88.5
       parent: 1
   - uid: 9827
     components:
     - type: MetaData
-      name: Mining
+      name: Горнодобыча
     - type: Transform
       pos: 12.5,-84.5
       parent: 1
   - uid: 9828
     components:
     - type: MetaData
-      name: LZ2
+      name: ЗП-2
     - type: Transform
       pos: 64.5,-81.5
       parent: 1
   - uid: 9829
     components:
     - type: MetaData
-      name: Garage
+      name: Гараж
     - type: Transform
       pos: 62.5,-28.5
       parent: 1
   - uid: 9830
     components:
     - type: MetaData
-      name: Cargo
+      name: Карго
     - type: Transform
       pos: 8.5,-41.5
       parent: 1
   - uid: 9831
     components:
     - type: MetaData
-      name: Hydro North
+      name: Гидро Север
     - type: Transform
       pos: -25.5,-38.5
       parent: 1
   - uid: 9832
     components:
     - type: MetaData
-      name: Bar
+      name: Бар
     - type: Transform
       pos: -44.5,-34.5
       parent: 1
   - uid: 9833
     components:
     - type: MetaData
-      name: Grill
+      name: Гриль
     - type: Transform
       pos: -53.5,-39.5
       parent: 1
   - uid: 9834
     components:
     - type: MetaData
-      name: Engineering
+      name: Инженерия
     - type: Transform
       pos: -69.5,-33.5
       parent: 1
   - uid: 9835
     components:
     - type: MetaData
-      name: A-Block Dorms And Offices
+      name: А-Блок Спальни И Офисы
     - type: Transform
       pos: -46.5,-1.5
       parent: 1
   - uid: 9836
     components:
     - type: MetaData
-      name: Typhoon Dropship
+      name: Шаттл "Тайфун"
     - type: Transform
       pos: -75.5,36.5
       parent: 1
   - uid: 9837
     components:
     - type: MetaData
-      name: Reactor West
+      name: Западный Реактор
     - type: Transform
       pos: -62.5,82.5
       parent: 1
   - uid: 9838
     components:
     - type: MetaData
-      name: Reactor East
+      name: Восточный Реактор
     - type: Transform
       pos: 28.5,82.5
       parent: 1
   - uid: 9839
     components:
     - type: MetaData
-      name: Corporate Executive Office
+      name: Офис Корпоративного Руководителя
     - type: Transform
       pos: 2.5,27.5
       parent: 1
   - uid: 9840
     components:
     - type: MetaData
-      name: Security
+      name: Бриг
     - type: Transform
       pos: 4.5,5.5
       parent: 1
   - uid: 9841
     components:
     - type: MetaData
-      name: Kitchen
+      name: Кухня
     - type: Transform
       pos: 14.5,-9.5
       parent: 1
   - uid: 9842
     components:
     - type: MetaData
-      name: Medical
+      name: Мед. Блок
     - type: Transform
       pos: 45.5,-11.5
       parent: 1
   - uid: 9843
     components:
     - type: MetaData
-      name: Administration
+      name: Администрация
     - type: Transform
       pos: 45.5,-1.5
       parent: 1
   - uid: 9844
     components:
     - type: MetaData
-      name: Tornado Dropship
+      name: Шаттл "Торнадо"
     - type: Transform
       pos: 79.5,21.5
       parent: 1
   - uid: 9845
     components:
     - type: MetaData
-      name: Casino
+      name: Казино
     - type: Transform
       pos: 29.5,-33.5
       parent: 1
   - uid: 9846
     components:
     - type: MetaData
-      name: Fitness
+      name: Фитнес
     - type: Transform
       pos: -30.5,35.5
       parent: 1
