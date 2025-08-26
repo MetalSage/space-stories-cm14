@@ -6,3 +6,5 @@
   - type: GameRule
     minPlayers: 1
   - type: CMDistressSignalRule
+    requireXenoPlayers: false
+    autoEnd: false
