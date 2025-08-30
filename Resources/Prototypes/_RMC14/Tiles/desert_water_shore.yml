@@ -5,7 +5,9 @@
   parent: CMPlanetBase
   id: RMCPlanetDesertWaterShoreBase
   name: tile-rmc-desert-water-shore
-  weedsSpreadable: false # Stories-Fixes
+  weedsSpreadable: false # Stories-Fixes start
+  blockAnchoring: true
+  blockConstruction: true # Stories-Fixes end
 
 # Shore
 
