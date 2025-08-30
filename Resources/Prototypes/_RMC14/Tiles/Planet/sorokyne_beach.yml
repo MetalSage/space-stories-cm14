@@ -7,7 +7,6 @@
   abstract: true
   blockAnchoring: true
   blockConstruction: true
-  weedsSpreadable: false
 # Stories-Fixes end
 
 - type: tile
