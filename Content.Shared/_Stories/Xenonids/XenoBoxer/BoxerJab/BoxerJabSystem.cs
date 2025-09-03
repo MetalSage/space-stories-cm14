@@ -1,4 +1,5 @@
 using Content.Shared._RMC14.Slow;
+using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerPunch;
@@ -35,6 +36,9 @@ public sealed class BoxerJabSystem : EntitySystem
             return;
 
         if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
+            return;
+
+        if (TryComp<RMCSizeComponent>(args.Target, out var targetSize) && targetSize.Size == RMCSizes.Immobile)
             return;
 
         args.Handled = true;

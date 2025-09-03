@@ -1,5 +1,6 @@
 using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Slow;
+using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerJab;
@@ -41,6 +42,9 @@ public sealed class BoxerPunchSystem : EntitySystem
         var targetUid = args.Target;
 
         if (!_xeno.CanAbilityAttackTarget(xeno, targetUid))
+            return;
+
+        if (TryComp<RMCSizeComponent>(targetUid, out var targetSize) && targetSize.Size == RMCSizes.Immobile)
             return;
 
         args.Handled = true;

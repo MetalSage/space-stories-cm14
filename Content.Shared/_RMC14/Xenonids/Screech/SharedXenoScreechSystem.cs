@@ -61,6 +61,8 @@ public sealed class XenoScreechSystem : EntitySystem
         _closeMobs.Clear();
         _entityLookup.GetEntitiesInRange(xform.Coordinates, xeno.Comp.ParalyzeRange, _closeMobs);
 
+        _closeMobs.RemoveWhere(uid => HasComp<XenoScreechComponent>(uid)); // Stories-HiveVsHive-Screech-Fix
+
         foreach (var receiver in _closeMobs)
         {
             if (!_xeno.CanAbilityAttackTarget(xeno, receiver))
@@ -72,6 +74,7 @@ public sealed class XenoScreechSystem : EntitySystem
 
         _mobs.Clear();
         _entityLookup.GetEntitiesInRange(xform.Coordinates, xeno.Comp.StunRange, _mobs);
+        _mobs.RemoveWhere(uid => HasComp<XenoScreechComponent>(uid)); // Stories-HiveVsHive-Screech-Fix
 
         foreach (var receiver in _mobs)
         {

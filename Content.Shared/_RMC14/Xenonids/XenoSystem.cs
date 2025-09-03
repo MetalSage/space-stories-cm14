@@ -23,6 +23,7 @@ using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared._RMC14.Xenonids.Rest;
 using Content.Shared._RMC14.Xenonids.ScissorCut;
 using Content.Shared._RMC14.Xenonids.Weeds;
+using Content.Shared._Stories.Xenonids;
 using Content.Shared.Access.Components;
 using Content.Shared.Actions;
 using Content.Shared.Atmos;
@@ -82,6 +83,7 @@ public sealed partial class XenoSystem : EntitySystem
     [Dependency] private readonly WeldableSystem _weldable = default!;
     [Dependency] private readonly XenoPlasmaSystem _xenoPlasma = default!;
     [Dependency] private readonly SharedXenoWeedsSystem _weeds = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private static readonly ProtoId<DamageTypePrototype> HeatDamage = "Heat";
 
@@ -201,7 +203,15 @@ public sealed partial class XenoSystem : EntitySystem
 
     private void OnXenoGetDefaultRadioChannel(Entity<XenoComponent> ent, ref GetDefaultRadioChannelEvent args)
     {
-        args.Channel = SharedChatSystem.HivemindChannel;
+        if (!TryComp<XenoHivemindChannelComponent>(ent, out var xenoHivemindChannelComp))
+        {
+            args.Channel = SharedChatSystem.HivemindChannel;
+            return;
+        }
+
+        var indexedChannel = _prototypeManager.Index<RadioChannelPrototype>(xenoHivemindChannelComp.Channel);
+
+        args.Channel = indexedChannel.IsXenoHivemind ? indexedChannel : SharedChatSystem.HivemindChannel;
     }
 
     private void OnXenoAttackAttempt(Entity<XenoComponent> xeno, ref AttackAttemptEvent args)

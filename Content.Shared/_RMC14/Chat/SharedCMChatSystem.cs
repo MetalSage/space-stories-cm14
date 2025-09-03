@@ -3,6 +3,7 @@ using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Chat;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Shared._Stories.Xenonids;
 
 namespace Content.Shared._RMC14.Chat;
 
@@ -16,13 +17,13 @@ public abstract class SharedCMChatSystem : EntitySystem
 
     private void OnMarineGetPrefix(Entity<MarineComponent> ent, ref ChatGetPrefixEvent args)
     {
-        if (args.Channel?.ID == SharedChatSystem.HivemindChannel.Id)
+        if (args.Channel != null && args.Channel.IsXenoHivemind) // Stories-Chat-Tweak
             args.Channel = null;
     }
 
     private void OnXenoGetPrefix(Entity<XenoComponent> ent, ref ChatGetPrefixEvent args)
     {
-        if (args.Channel?.ID != SharedChatSystem.HivemindChannel.Id)
+        if (args.Channel != null && !args.Channel.IsXenoHivemind) // Stories-Chat-Tweak
             args.Channel = null;
     }
 

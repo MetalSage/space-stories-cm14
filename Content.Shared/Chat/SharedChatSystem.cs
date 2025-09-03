@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 using Content.Shared._RMC14.Chat;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Evolution;
+using Content.Shared._RMC14.Xenonids.Hive;
+using Content.Shared._Stories.Xenonids;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
@@ -144,13 +146,39 @@ public abstract class SharedChatSystem : EntitySystem
 
         if (firstChar == RadioCommonPrefix)
         {
+            // Stories-Chat-Tweak-Start
             output = SanitizeMessageCapital(message[1..].TrimStart());
-            channel = HasComp<XenoComponent>(source)
-                ? _prototypeManager.Index<RadioChannelPrototype>(HivemindChannel)
-                : _prototypeManager.Index<RadioChannelPrototype>(CommonChannel);
 
-            if (channel.ID == HivemindChannel &&
-                !_xenoEvolution.HasLiving<XenoEvolutionGranterComponent>(1))
+            string xenoHivemindChannelId = HivemindChannel;
+            if (HasComp<XenoComponent>(source) &&
+                TryComp<XenoHivemindChannelComponent>(source, out var xenoHivemindChannelComp))
+            {
+                var indexedChannel = _prototypeManager.Index<RadioChannelPrototype>(xenoHivemindChannelComp.Channel);
+
+                if (indexedChannel.IsXenoHivemind) 
+                    xenoHivemindChannelId = xenoHivemindChannelComp.Channel;
+            }
+
+            if (HasComp<XenoComponent>(source))
+                channel = _prototypeManager.Index<RadioChannelPrototype>(xenoHivemindChannelId);
+            else
+                channel = _prototypeManager.Index<RadioChannelPrototype>(CommonChannel);
+
+            Logger.Debug($"chanId: {channel.ID}");
+            Logger.Debug($"xenohvid: {xenoHivemindChannelId}");
+
+            if (!TryComp<HiveMemberComponent>(source, out var hiveMember))
+            {
+                if (!quiet)
+                    _popup.PopupEntity(Loc.GetString("rmc-no-queen-hivemind-chat"), source, source, PopupType.LargeCaution);
+
+                return false;
+            }
+
+            if (HasComp<XenoComponent>(source) &&
+                channel.ID == xenoHivemindChannelId &&
+                !_xenoEvolution.HasLiving<XenoEvolutionGranterComponent>(1, hiveMember.Hive))
+                // Stories-Chat-Tweak-End
             {
                 if (!quiet)
                     _popup.PopupEntity(Loc.GetString("rmc-no-queen-hivemind-chat"), source, source, PopupType.LargeCaution);

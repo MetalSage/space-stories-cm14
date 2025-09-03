@@ -6,4 +6,7 @@ public sealed partial class RadioChannelPrototype
 {
     [DataField]
     public Color? ColorblindColor;
+
+    [DataField] // Stories-Chat-Tweak
+    public bool IsXenoHivemind;
 }
