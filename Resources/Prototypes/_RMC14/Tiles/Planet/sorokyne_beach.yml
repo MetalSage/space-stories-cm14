@@ -1,13 +1,13 @@
 # Sorokyne Strata Beach
 
-# Stories-Fixes start
+# Stories-Fixes-Start
 - type: tile
-  parent: CMPlanetBase # Stories-Fixes
+  parent: CMPlanetBase
   id: RMCPlanetCoastDirtBase
   abstract: true
   blockAnchoring: true
   blockConstruction: true
-# Stories-Fixes end
+# Stories-Fixes-End
 
 - type: tile
   parent: RMCPlanetCoastDirtBase # Stories-Fixes
