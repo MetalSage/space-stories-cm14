@@ -1,13 +1,13 @@
 # Coast/Beach
 
-# Stories-Fixes start
+# Stories-Fixes-Start
 - type: tile
   parent: CMPlanetBase
   id: CMPlanetBeachBase
   abstract: true
   blockAnchoring: true
   blockConstruction: true
-# Stories-Fixes end
+# Stories-Fixes-End
 
 - type: tile
   parent: CMPlanetBeachBase # Stories-Fixes
