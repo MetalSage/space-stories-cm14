@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.2
   forkId: ""
   forkVersion: ""
-  time: 09/08/2025 20:26:05
-  entityCount: 27475
+  time: 09/08/2025 21:02:02
+  entityCount: 27476
 maps:
 - 1
 grids:
@@ -57873,7 +57873,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -108815.086
+      secondsUntilStateChange: -109163.88
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -57897,7 +57897,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -108815.086
+      secondsUntilStateChange: -109163.88
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -99642,6 +99642,11 @@ entities:
     - type: Transform
       pos: -38.5,107.5
       parent: 1
+  - uid: 16339
+    components:
+    - type: Transform
+      pos: -73.5,85.5
+      parent: 1
 - proto: CMWallMetalAlmayerWhite
   entities:
   - uid: 12350
@@ -120457,11 +120462,6 @@ entities:
     components:
     - type: Transform
       pos: -74.5,85.5
-      parent: 1
-  - uid: 16339
-    components:
-    - type: Transform
-      pos: -73.5,85.5
       parent: 1
   - uid: 16340
     components:
@@ -149241,7 +149241,7 @@ entities:
       pos: 71.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -255402.64
+      secondsUntilStateChange: -255751.44
       state: Opening
   - uid: 24434
     components:
@@ -149249,7 +149249,7 @@ entities:
       pos: 72.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -255402.2
+      secondsUntilStateChange: -255751
       state: Opening
   - uid: 24435
     components:
@@ -149257,7 +149257,7 @@ entities:
       pos: 73.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -255401.8
+      secondsUntilStateChange: -255750.6
       state: Opening
   - uid: 24436
     components:
@@ -149265,7 +149265,7 @@ entities:
       pos: 71.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -255396.28
+      secondsUntilStateChange: -255745.08
       state: Opening
   - uid: 24437
     components:
@@ -149273,7 +149273,7 @@ entities:
       pos: 72.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -255396.69
+      secondsUntilStateChange: -255745.48
       state: Opening
   - uid: 24438
     components:
@@ -149281,7 +149281,7 @@ entities:
       pos: 73.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -255397.08
+      secondsUntilStateChange: -255745.88
       state: Opening
 - proto: RMCDecalSpawnerBloodSplatters
   entities:
@@ -173959,37 +173959,37 @@ entities:
   - uid: 16055
     components:
     - type: Transform
-      pos: 73.3,117.3
+      pos: 73.5,117.5
       parent: 1
   - uid: 16056
     components:
     - type: Transform
-      pos: -44.7,110.3
+      pos: -44.5,110.5
       parent: 1
   - uid: 16060
     components:
     - type: Transform
-      pos: -90.25,93.25
+      pos: -90.5,93.5
       parent: 1
   - uid: 16061
     components:
     - type: Transform
-      pos: -96.75,87.5
+      pos: -96.5,87.5
       parent: 1
   - uid: 16062
     components:
     - type: Transform
-      pos: 88.25,3.25
+      pos: 88.5,3.5
       parent: 1
   - uid: 16063
     components:
     - type: Transform
-      pos: -109.5,1.25
+      pos: -109.5,1.5
       parent: 1
   - uid: 24592
     components:
     - type: Transform
-      pos: -46.75,98.4
+      pos: -46.5,98.5
       parent: 1
   - uid: 24593
     components:
@@ -178310,11 +178310,15 @@ entities:
     - type: Transform
       pos: -69.5,110.5
       parent: 1
+    - type: RMCPodDoor
+      id: CIC Lockdown
   - uid: 25243
     components:
     - type: Transform
       pos: -68.5,110.5
       parent: 1
+    - type: RMCPodDoor
+      id: CIC Lockdown
   - uid: 25244
     components:
     - type: Transform
@@ -178401,7 +178405,7 @@ entities:
   - uid: 25255
     components:
     - type: Transform
-      pos: -73.5,85.5
+      pos: -69.5,94.5
       parent: 1
     - type: RMCPodDoor
       id: CIC Lockdown
@@ -178419,12 +178423,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -73.5,96.5
       parent: 1
+    - type: RMCPodDoor
+      id: CIC Lockdown
   - uid: 25258
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -73.5,108.5
       parent: 1
+    - type: RMCPodDoor
+      id: CIC Lockdown
   - uid: 25259
     components:
     - type: Transform
@@ -178511,21 +178519,21 @@ entities:
       pos: -63.5,-20.5
       parent: 1
     - type: RMCPodDoor
-      id: Hangar Lockdown
+      id: Hangar_Lockdown
   - uid: 25270
     components:
     - type: Transform
       pos: -73.5,-21.5
       parent: 1
     - type: RMCPodDoor
-      id: Hangar Lockdown
+      id: Hangar_Lockdown
   - uid: 25271
     components:
     - type: Transform
       pos: -81.5,-21.5
       parent: 1
     - type: RMCPodDoor
-      id: Hangar Lockdown
+      id: Hangar_Lockdown
   - uid: 25272
     components:
     - type: Transform
@@ -178750,6 +178758,13 @@ entities:
       parent: 1
     - type: RMCPodDoor
       id: Hangar_Lockdown
+  - uid: 27476
+    components:
+    - type: Transform
+      pos: -68.5,94.5
+      parent: 1
+    - type: RMCPodDoor
+      id: CIC Lockdown
 - proto: RMCPodDoorButton
   entities:
   - uid: 25300
@@ -189201,7 +189216,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -11.1,83.5
+      pos: -11.5,83.5
       parent: 1
 - proto: RMCToolboxElectricalFilled
   entities:
