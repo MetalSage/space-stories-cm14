@@ -56843,7 +56843,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 5016
     components:
     - type: Transform
@@ -56852,7 +56852,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - CMAccessCommand
+      - - RMCAccessCommand
 - proto: CMDoubleDoorAlmayerSolid
   entities:
   - uid: 5017
@@ -70565,7 +70565,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - CMAccessCommand
+      - - RMCAccessCommand
 - proto: CMLockerCommanderSecureFilled
   entities:
   - uid: 6989
@@ -178813,7 +178813,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessOT
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25305
     components:
@@ -178829,7 +178829,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessOT
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25306
     components:
@@ -178845,7 +178845,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25307
     components:
@@ -178861,7 +178861,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25308
     components:
@@ -178877,7 +178877,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25309
     components:
@@ -178893,7 +178893,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25310
     components:
@@ -178926,7 +178926,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25312
     components:
@@ -178942,7 +178942,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25313
     components:
@@ -178975,7 +178975,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25315
     components:
@@ -178991,7 +178991,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25316
     components:
@@ -179023,7 +179023,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25318
     components:
@@ -179039,7 +179039,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25319
     components:
@@ -179067,7 +179067,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessMedical
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25321
     components:
@@ -179095,7 +179095,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25323
     components:
@@ -179118,7 +179118,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25325
     components:
@@ -179135,7 +179135,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25326
     components:
@@ -179151,7 +179151,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25327
     components:
@@ -179167,7 +179167,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessMedical
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25328
     components:
@@ -179211,7 +179211,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25331
     components:
@@ -179239,7 +179239,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25333
     components:
@@ -179255,7 +179255,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25334
     components:
@@ -179271,7 +179271,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25335
     components:
@@ -179288,7 +179288,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25336
     components:
@@ -179305,7 +179305,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25337
     components:
@@ -179321,7 +179321,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25338
     components:
@@ -179337,7 +179337,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25339
     components:
@@ -179353,7 +179353,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25340
     components:
@@ -179397,7 +179397,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25343
     components:
@@ -179413,7 +179413,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25344
     components:
@@ -179429,7 +179429,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25345
     components:
@@ -179446,7 +179446,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25346
     components:
@@ -179462,7 +179462,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25347
     components:
@@ -179478,7 +179478,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25348
     components:
@@ -179494,7 +179494,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessCMO
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25349
     components:
@@ -179510,7 +179510,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessChemistry
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25350
     components:
@@ -179539,7 +179539,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25353
     components:
@@ -179657,7 +179657,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessBrig
-      - - CMAccessCommand
+      - - RMCAccessCommand
       - - CMAccessDropship
       denyTags: []
   - uid: 25362
@@ -179696,7 +179696,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25366
     components:
@@ -179713,7 +179713,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25367
     components:
@@ -179730,7 +179730,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25368
     components:
@@ -179761,7 +179761,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25370
     components:
@@ -179778,7 +179778,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25371
     components:
@@ -179795,7 +179795,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25372
     components:
@@ -179812,7 +179812,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25373
     components:
@@ -179843,7 +179843,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25375
     components:
@@ -179902,7 +179902,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25379
     components:
@@ -179919,7 +179919,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25380
     components:
@@ -179936,7 +179936,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25381
     components:
@@ -179953,7 +179953,7 @@ entities:
       access:
       - - CMAccessBrig
       - - CMAccessSquadLeaderPrep
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25382
     components:
@@ -180042,7 +180042,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessResearch
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25394
     components:
@@ -180058,7 +180058,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessResearch
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25395
     components:
@@ -180074,7 +180074,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessResearch
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25396
     components:
@@ -180090,7 +180090,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessResearch
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25397
     components:
@@ -180357,7 +180357,7 @@ entities:
       accessLog: []
       accessKeys: []
       access:
-      - - CMAccessCommand
+      - - RMCAccessSeniorCommand
       denyTags: []
   - uid: 25415
     components:
@@ -180400,6 +180400,12 @@ entities:
       id: CIC Lockdown
     - type: Fixtures
       fixtures: {}
+    - type: AccessReader
+      accessLog: []
+      accessKeys: []
+      access:
+      - - RMCAccessSeniorCommand
+      denyTags: []
   - uid: 25418
     components:
     - type: MetaData
@@ -180415,7 +180421,7 @@ entities:
       accessLog: []
       accessKeys: []
       access:
-      - - CMAccessCommand
+      - - RMCAccessSeniorCommand
       denyTags: []
   - uid: 25419
     components:
@@ -180433,7 +180439,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessArmory
-      - - CMAccessCommand
+      - - RMCAccessSeniorCommand
       denyTags: []
   - uid: 25420
     components:
@@ -180713,7 +180719,7 @@ entities:
       accessKeys: []
       access:
       - - CMAccessOT
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25451
     components:
@@ -180776,7 +180782,7 @@ entities:
       accessLog: []
       accessKeys: []
       access:
-      - - CMAccessCommand
+      - - RMCAccessCommand
       denyTags: []
   - uid: 25458
     components:
