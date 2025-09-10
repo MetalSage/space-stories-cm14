@@ -82,6 +82,8 @@
     aimedShotCooldown: 4.5
   - type: TargetingLaser
   - type: RMCFocusedShooting
+  - type: RMCGunChamber
+    enabled: false
   - type: WeaponSkin # Stories-Partners
     defaultSkin: Default
     skins:

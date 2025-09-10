@@ -76,6 +76,7 @@
       types:
         Blunt: 150
   - type: RMCMesonsNonviewable
+  - type: DamageReceivedModifierWhenUnanchored
 
 - type: entity
   parent: RMCBarricadeUpgradeBase
@@ -563,9 +564,11 @@
     graph: BarricadeMetalDoorGraph
     node: nodeBarricadeMetalDoor
   - type: InteractedBlacklist
+    anchoredOnly: true
     blacklist:
       components:
       - Xeno
   - type: UseDelay
     delay: 0.3
   - type: Climbable
+  - type: RMCOpenOnlyWhenUnanchored
