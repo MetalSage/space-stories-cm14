@@ -92,7 +92,7 @@ public sealed partial class MortarComponent : Component
     public int[] FireRandomOffset = new[] { -1, 0, 0, 1 };
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
-    public TimeSpan ProjectileFlightTime = TimeSpan.Zero;
+    public TimeSpan ProjectileFlightTime = TimeSpan.FromSeconds(3);
 
     [DataField, AutoNetworkedField]
     public EntityUid? LockedEntityTarget;

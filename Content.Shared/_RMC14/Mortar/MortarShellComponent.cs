@@ -25,7 +25,7 @@ public sealed partial class MortarShellComponent : Component
     public bool Guided;
 
     [DataField, AutoNetworkedField]
-    public string Fuel = "WeldingFuel";
+    public string SolutionId = "fuel";
 
     [DataField, AutoNetworkedField]
     public float FuelVolume = 10f;

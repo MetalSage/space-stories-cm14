@@ -108,6 +108,8 @@ public sealed class MortarBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
             button.OnPressed += _ =>
             {
                 _lastSelectedTarget = target.Entity;
+                _window.TargetX = targetCoords.X;
+                _window.TargetY = targetCoords.Y;
                 SendPredictedMessage(new MortarSetTargetEntityMsg(target.Entity, targetCoords));
                 UpdateTargetsList(targets);
             };
@@ -146,7 +148,7 @@ public sealed class MortarBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
 
         _lastSelectedTarget = mortarState.LockedTarget;
 
-        if (mortarState.LastFlightTime is float lastTime)
+        if (mortarState.LastFlightTime is (float) lastTime)
         {
             var clamped = Math.Clamp(lastTime, 3, 10);
             if (Math.Abs(_window.FlightTime.Value - clamped) > 0.01f)

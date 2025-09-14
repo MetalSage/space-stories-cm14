@@ -11,12 +11,13 @@
     solutions:
       fuel:
         maxVol: 10
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 0
   - type: RMCFlamerTank
+    solutionId: fuel
   - type: RMCSolutionTransferWhitelist
     popup: rmc-solution-transfer-whitelist-failed-not-reagent-tank
+    targetWhitelist:
+      tags:
+      - RMCTankReagent
   - type: RefillableSolution
     solution: fuel
   - type: DetailedExaminableSolution

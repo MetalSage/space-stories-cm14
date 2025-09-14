@@ -100,11 +100,11 @@ public abstract class SharedMortarSystem : EntitySystem
 
         SubscribeLocalEvent<LaserDesignatorTargetComponent, MapInitEvent>(OnGuidedTargetInit);
         SubscribeLocalEvent<SpottedComponent, MapInitEvent>(OnGuidedTargetInit);
-        //SubscribeLocalEvent<DropshipTargetComponent, MapInitEvent>(OnGuidedTargetInit);
+        SubscribeLocalEvent<ActiveFlareSignalComponent, MapInitEvent>(OnGuidedTargetInit);
 
         SubscribeLocalEvent<LaserDesignatorTargetComponent, ComponentShutdown>(OnGuidedTargetShutdown);
         SubscribeLocalEvent<SpottedComponent, ComponentShutdown>(OnGuidedTargetShutdown);
-        //SubscribeLocalEvent<DropshipTargetComponent, ComponentShutdown>(OnGuidedTargetShutdown);
+        SubscribeLocalEvent<ActiveFlareSignalComponent, ComponentShutdown>(OnGuidedTargetShutdown);
     }
 
     private void OnMortarBeforeDamageChanged(Entity<MortarComponent> ent, ref BeforeDamageChangedEvent args)
@@ -342,7 +342,7 @@ public abstract class SharedMortarSystem : EntitySystem
         var ev = new MortarFiredEvent(GetNetEntity(mortar));
         RaiseNetworkEvent(ev, filter);
 
-        if (shell.Guided && (!_solution.TryGetSolution(shellId, shell.Fuel, out var soln, out var solu) ||
+        if (shell.Guided && (!_solution.TryGetSolution(shellId, shell.SolutionId, out var soln, out var solu) ||
          solu.Volume < shell.FuelVolume))
         {
             var mortarCoords = mortar.Owner.ToCoordinates();
@@ -381,9 +381,29 @@ public abstract class SharedMortarSystem : EntitySystem
 
         if (shell.Guided && mortar.Comp.ProjectileFlightTime > TimeSpan.Zero)
         {
+            var flightTime = mortar.Comp.ProjectileFlightTime.TotalSeconds;
+            
+            TimeSpan warnDelay, impactWarnDelay;
+            
+            if (flightTime <= 4)
+            {
+                warnDelay = TimeSpan.FromSeconds(1);
+                impactWarnDelay = TimeSpan.FromSeconds(Math.Max(1, flightTime - 1));
+            }
+            else if (flightTime <= 7)
+            {
+                warnDelay = mortar.Comp.ProjectileFlightTime / 2;
+                impactWarnDelay = TimeSpan.FromSeconds(flightTime - 1);
+            }
+            else
+            {
+                warnDelay = TimeSpan.FromSeconds(3.0);
+                impactWarnDelay = TimeSpan.FromSeconds(flightTime - 2);
+            }
+            
             active.LandAt = time + mortar.Comp.ProjectileFlightTime;
-            active.WarnAt = time + mortar.Comp.ProjectileFlightTime / 2;
-            active.ImpactWarnAt = time + mortar.Comp.ProjectileFlightTime / 1.5;
+            active.WarnAt = time + warnDelay;
+            active.ImpactWarnAt = time + impactWarnDelay;
 
             Dirty(mortar);
         }
@@ -710,6 +730,39 @@ public abstract class SharedMortarSystem : EntitySystem
                     QueueDel(uid);
             }
         }
+
+        var updated = false;
+        foreach (var target in _guidedTargets.ToList())
+        {
+            var ent = GetEntity(target.Entity);
+            if (ent == null || !HasComp<SpottedComponent>(ent))
+                continue;
+
+            if (!HasActiveCommunicationTower(ent))
+                continue;
+
+            if (_transformQuery.TryComp(ent, out var xform))
+            {
+                var mapCoords = _transform.GetMapCoordinates(xform);
+                if (!_area.CanMortarFire(_transform.ToCoordinates(mapCoords)))
+                    continue;
+
+                if (_rmcPlanet.TryGetOffset(mapCoords, out var offset))
+                    mapCoords = mapCoords.Offset(offset);
+
+                var netCoords = GetNetCoordinates(_transform.ToCoordinates(mapCoords));
+                if (!target.Coords.Equals(netCoords))
+                {
+                    _guidedTargets.Remove(target);
+                    _guidedTargets.Add(new MortarTargetInfo(target.Entity, target.Name, netCoords));
+                    // mortar.Comp.Target = new Vector2i((int)netCoords.X, (int)netCoords.Y); как то реализовать это
+                    updated = true;
+                }
+            }
+        }
+
+        if (updated)
+            RefreshAllMortarBUIs(_guidedTargets.ToList());
     }
 
     private void OnGuidedTargetInit<T>(Entity<T> target, ref MapInitEvent args) where T : IComponent
@@ -722,6 +775,9 @@ public abstract class SharedMortarSystem : EntitySystem
 
         var coords = _transform.GetMapCoordinates(xform);
         var name = Comp<MetaDataComponent>(uid).EntityName ?? "Target";
+
+        if (!HasActiveCommunicationTower(uid) || !_area.CanMortarFire(_transform.ToCoordinates(coords)))
+            return;
 
         if (_rmcPlanet.TryGetOffset(coords, out var offset))
             coords = coords.Offset(offset);

@@ -259,6 +259,14 @@
         crate: RMCCrateMortarShellIncendiary
       - cost: 1000
         crate: RMCCrateMortarShellFlare
+# Stories-Guided-Shells-Start
+      - cost: 2500
+        crate: STCrateGuidedMortarShellHE
+      - cost: 2500
+        crate: STCrateGuidedMortarShellIncendiary
+      - cost: 1500
+        crate: STCrateGuidedMortarShellFlare
+# Stories-Guided-Shells-End
 #    - name: Операции # Stories-Translate
 #      entries: []
 #    - name: Резервуары для реагентов # Stories-Translate
