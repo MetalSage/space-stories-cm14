@@ -1,4 +1,6 @@
-﻿using Content.Shared._Stories.AntiGrief.Cadet;
+﻿using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Stories.AntiGrief.Cadet;
 using Content.Shared._RMC14.Areas;
 using Content.Shared._RMC14.Camera;
 using Content.Shared._RMC14.Chat;
@@ -28,6 +30,12 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared._RMC14.Rangefinder;
+using Content.Shared._RMC14.Rangefinder.Spotting;
+using Content.Shared._RMC14.Dropship.Weapon;
+using Content.Shared._RMC14.Communications;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Throwing;
 
 namespace Content.Shared._RMC14.Mortar;
 
@@ -54,8 +62,11 @@ public abstract class SharedMortarSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
 
     private EntityQuery<TransformComponent> _transformQuery;
+    private readonly HashSet<MortarTargetInfo> _guidedTargets = new();
 
     public override void Initialize()
     {
@@ -83,7 +94,17 @@ public abstract class SharedMortarSystem : EntitySystem
                 subs.Event<MortarTargetBuiMsg>(OnMortarTargetBui);
                 subs.Event<MortarDialBuiMsg>(OnMortarDialBui);
                 subs.Event<MortarViewCamerasMsg>(OnMortarViewCameras);
+                subs.Event<MortarSetTargetEntityMsg>(OnMortarSetTargetEntity);
+                subs.Event<MortarFlightTimeChangedMsg>(OnMortarFlightTimeChanged);
             });
+
+        SubscribeLocalEvent<LaserDesignatorTargetComponent, MapInitEvent>(OnGuidedTargetInit);
+        SubscribeLocalEvent<SpottedComponent, MapInitEvent>(OnGuidedTargetInit);
+        //SubscribeLocalEvent<DropshipTargetComponent, MapInitEvent>(OnGuidedTargetInit);
+
+        SubscribeLocalEvent<LaserDesignatorTargetComponent, ComponentShutdown>(OnGuidedTargetShutdown);
+        SubscribeLocalEvent<SpottedComponent, ComponentShutdown>(OnGuidedTargetShutdown);
+        //SubscribeLocalEvent<DropshipTargetComponent, ComponentShutdown>(OnGuidedTargetShutdown);
     }
 
     private void OnMortarBeforeDamageChanged(Entity<MortarComponent> ent, ref BeforeDamageChangedEvent args)
@@ -295,7 +316,6 @@ public abstract class SharedMortarSystem : EntitySystem
             return;
 
         var time = _timing.CurTime;
-        mortar.Comp.LastFiredAt = time;
 
         var active = new ActiveMortarShellComponent
         {
@@ -303,9 +323,11 @@ public abstract class SharedMortarSystem : EntitySystem
             WarnAt = time + travelTime,
             ImpactWarnAt = time + travelTime + shell.ImpactWarningDelay,
             LandAt = time + travelTime + shell.ImpactDelay,
+            IsGuided = shell.Guided,
+            TargetEntity = mortar.Comp.LockedEntityTarget,
+            LastUpdate = time,
+            Mortar = mortar
         };
-
-        AddComp(shellId, active, true);
 
         var selfMsg = Loc.GetString("rmc-mortar-shell-load-finish-self", ("mortar", mortar), ("shell", shellId));
         var othersMsg = Loc.GetString("rmc-mortar-shell-load-finish-others", ("user", user), ("mortar", mortar), ("shell", shellId));
@@ -318,8 +340,53 @@ public abstract class SharedMortarSystem : EntitySystem
         _audio.PlayPvs(mortar.Comp.FireSound, mortar);
 
         var ev = new MortarFiredEvent(GetNetEntity(mortar));
-        if (_net.IsServer)
-            RaiseNetworkEvent(ev, filter);
+        RaiseNetworkEvent(ev, filter);
+
+        if (shell.Guided && (!_solution.TryGetSolution(shellId, shell.Fuel, out var soln, out var solu) ||
+         solu.Volume < shell.FuelVolume))
+        {
+            var mortarCoords = mortar.Owner.ToCoordinates();
+
+            var rand = _random.NextFloat();
+            if (rand < 0.2f)
+            {
+                _popup.PopupCoordinates("Снаряд подлетает на несколько метров вверх, сваливается на землю и подрывается! Кто-то должен быть прочесть инструкцию.", mortarCoords);
+                _rmcExplosion.TriggerExplosive(shellId);
+
+                QueueDel(shellId);
+            }
+            else if (rand < 0.7f)
+            {
+                _container.Remove(shellId, container, true, true);
+                var origin = _transform.GetMapCoordinates(shellId);
+                var target = _transform.GetMapCoordinates(mortar);
+                var diff = (target.Position - origin.Position).Normalized() * 2;
+
+                _popup.PopupCoordinates("Снаряд подлетает на несколько метров вверх и сваливается на землю! Кому-то сегодня очень повезло.", mortarCoords);
+                _throwing.TryThrow(shellId, diff, 10);
+            }
+            else
+            {
+                _popup.PopupCoordinates(
+                    "Снаряд не вылетел и застрял в миномёте! Кто-то должен проверить инструкции.",
+                    mortarCoords);
+                mortar.Comp.NeedAbort = true;
+            }
+            return;
+        }
+
+        mortar.Comp.LastFiredAt = time;
+
+        AddComp(shellId, active, true);
+
+        if (shell.Guided && mortar.Comp.ProjectileFlightTime > TimeSpan.Zero)
+        {
+            active.LandAt = time + mortar.Comp.ProjectileFlightTime;
+            active.WarnAt = time + mortar.Comp.ProjectileFlightTime / 2;
+            active.ImpactWarnAt = time + mortar.Comp.ProjectileFlightTime / 1.5;
+
+            Dirty(mortar);
+        }
     }
 
     private void OnMortarUnanchorAttempt(Entity<MortarComponent> mortar, ref UnanchorAttemptEvent args)
@@ -343,6 +410,18 @@ public abstract class SharedMortarSystem : EntitySystem
             _physics.SetHard(mortar, fixture, false);
 
         _appearance.SetData(mortar, MortarVisualLayers.State, MortarVisuals.Item);
+
+        if (mortar.Comp.NeedAbort && _container.TryGetContainer(mortar, mortar.Comp.ContainerId, out var container))
+        {
+            foreach (var shell in container.ContainedEntities)
+            {
+                if (HasComp<ActiveMortarShellComponent>(shell))
+                    continue;
+
+                _container.Remove(shell, container);
+                mortar.Comp.NeedAbort = false;
+            }
+        }
     }
 
     private void OnMortarExamined(Entity<MortarComponent> ent, ref ExaminedEvent args)
@@ -432,6 +511,42 @@ public abstract class SharedMortarSystem : EntitySystem
     private void OnMortarViewCameras(Entity<MortarComponent> ent, ref MortarViewCamerasMsg args)
     {
         _ui.OpenUi(ent.Owner, RMCCameraUiKey.Key, args.Actor);
+    }
+
+    private void OnMortarSetTargetEntity(Entity<MortarComponent> mortar, ref MortarSetTargetEntityMsg args)
+    {
+        if (_net.IsClient)
+            return;
+
+        var user = args.Actor;
+
+        if (!HasActiveCommunicationTower(mortar))
+        {
+            _popup.PopupCursor(Loc.GetString("need-active-tower"), user, PopupType.Medium);
+            RefreshAllMortarBUIs(_guidedTargets.ToList());
+            return;
+        }
+
+        mortar.Comp.LockedEntityTarget = GetEntity(args.TargetEntity);
+        mortar.Comp.Target = args.Coordinates;
+
+        Dirty(mortar);
+
+        var selfMsg = Loc.GetString("rmc-mortar-target-locked", ("target", GetEntity(args.TargetEntity)));
+        _popup.PopupCursor(selfMsg, user, PopupType.Medium);
+
+        RefreshAllMortarBUIs(_guidedTargets.ToList());
+    }
+
+    private void OnMortarFlightTimeChanged(Entity<MortarComponent> mortar, ref MortarFlightTimeChangedMsg args)
+    {
+        if (_net.IsClient)
+            return;
+
+        mortar.Comp.ProjectileFlightTime = args.FlightTime;
+
+        Dirty(mortar);
+        RefreshAllMortarBUIs(_guidedTargets.ToList());
     }
 
     private void DeployMortar(Entity<MortarComponent> mortar, EntityUid user)
@@ -533,6 +648,26 @@ public abstract class SharedMortarSystem : EntitySystem
         var shells = EntityQueryEnumerator<ActiveMortarShellComponent>();
         while (shells.MoveNext(out var uid, out var active))
         {
+            if (active.IsGuided && active.TargetEntity != null && HasActiveCommunicationTower(uid))
+            {
+                if (TryComp<SpottedComponent>(active.TargetEntity, out _) &&
+                    _transformQuery.TryComp(active.TargetEntity, out var targetTransform))
+                {
+                    var targetCoords = _transform.GetMoverCoordinates(active.TargetEntity.Value, targetTransform);
+
+                    var mortarCoords = _transform.ToMapCoordinates(active.Mortar.ToCoordinates());
+                    var dist = (targetCoords.Position - mortarCoords.Position).Length();
+                    if (dist <= 80 && _area.CanMortarFire(targetCoords))
+                    {
+                        if (time >= active.LastUpdate + TimeSpan.FromSeconds(0.5))
+                        {
+                            active.LastUpdate = time;
+                            active.Coordinates = targetCoords;
+                        }
+                    }
+                }
+            }
+
             if (!active.Warned && time >= active.WarnAt)
             {
                 active.Warned = true;
@@ -547,11 +682,19 @@ public abstract class SharedMortarSystem : EntitySystem
             if (!active.ImpactWarned && time >= active.ImpactWarnAt)
             {
                 active.ImpactWarned = true;
-                var coordinates = _transform.ToMapCoordinates(active.Coordinates);
-                PopupWarning(coordinates,
-                    active.WarnRange,
-                    "rmc-mortar-shell-impact-warning",
-                    "rmc-mortar-shell-impact-warning-above");
+                PopupWarning(_transform.ToMapCoordinates(active.Coordinates),
+                             active.WarnRange,
+                             "rmc-mortar-shell-impact-warning",
+                             "rmc-mortar-shell-impact-warning-above");
+            }
+
+            if (time >= active.GuidedWarn + TimeSpan.FromSeconds(2.5))
+            {
+                active.GuidedWarn = time;
+                PopupWarning(_transform.ToMapCoordinates(active.Coordinates),
+                             10f,
+                             "rmc-mortar-shell-proximity-warning",
+                             "rmc-mortar-shell-proximity-warning-above");
             }
 
             if (time >= active.LandAt)
@@ -567,5 +710,90 @@ public abstract class SharedMortarSystem : EntitySystem
                     QueueDel(uid);
             }
         }
+    }
+
+    private void OnGuidedTargetInit<T>(Entity<T> target, ref MapInitEvent args) where T : IComponent
+    {
+        if (_net.IsClient)
+            return;
+
+        var uid = target.Owner;
+        var xform = Comp<TransformComponent>(uid);
+
+        var coords = _transform.GetMapCoordinates(xform);
+        var name = Comp<MetaDataComponent>(uid).EntityName ?? "Target";
+
+        if (_rmcPlanet.TryGetOffset(coords, out var offset))
+            coords = coords.Offset(offset);
+
+        var netCoords = GetNetCoordinates(_transform.ToCoordinates(coords));
+
+        _guidedTargets.Add(new MortarTargetInfo(GetNetEntity(uid), name, netCoords));
+
+        RefreshAllMortarBUIs(_guidedTargets.ToList());
+    }
+
+    private void OnGuidedTargetShutdown<T>(Entity<T> target, ref ComponentShutdown args) where T : IComponent
+    {
+        if (_net.IsClient)
+            return;
+
+        var netEntity = GetNetEntity(target.Owner);
+
+        _guidedTargets.RemoveWhere(t => t.Entity == netEntity);
+
+        RefreshAllMortarBUIs(_guidedTargets.ToList());
+    }
+
+    public void RefreshAllMortarBUIs(List<MortarTargetInfo> targets)
+    {
+        var query = EntityQueryEnumerator<MortarComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out var mortar, out var ui))
+        {
+            NetEntity? locked = null;
+            float? flight = null;
+
+            if (mortar.LockedEntityTarget != null)
+                locked = GetNetEntity(mortar.LockedEntityTarget.Value);
+
+            if (mortar.ProjectileFlightTime != TimeSpan.Zero)
+                flight = (float)mortar.ProjectileFlightTime.TotalSeconds;
+
+            var state = new MortarState(targets, locked, flight);
+            _ui.SetUiState(uid, MortarUiKey.Key, state);
+        }
+    }
+
+    public bool HasActiveCommunicationTower(EntityUid target)
+    {
+        var targetGrid = _transform.GetGrid(target);
+
+        var towers = EntityQueryEnumerator<CommunicationsTowerComponent, TransformComponent>();
+        while (towers.MoveNext(out var towerUid, out var tower, out var _))
+        {
+            var towerGrid = _transform.GetGrid(towerUid);
+
+            if (towerGrid == targetGrid && tower.State == CommunicationsTowerState.On)
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool HasActiveGuidedShells(Entity<MortarComponent> mortar, [NotNullWhen(true)] out EntityUid? activeGuidedShell)
+    {
+        activeGuidedShell = null;
+
+        var shells = EntityQueryEnumerator<ActiveMortarShellComponent, TransformComponent>();
+        while (shells.MoveNext(out var shellUid, out var shell, out _))
+        {
+            if (shell.Mortar != mortar.Owner)
+                continue;
+
+            activeGuidedShell = shellUid;
+            return true;
+        }
+
+        return false;
     }
 }

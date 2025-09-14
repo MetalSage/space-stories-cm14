@@ -90,4 +90,13 @@ public sealed partial class MortarComponent : Component
 
     [DataField, AutoNetworkedField]
     public int[] FireRandomOffset = new[] { -1, 0, 0, 1 };
+
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
+    public TimeSpan ProjectileFlightTime = TimeSpan.Zero;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? LockedEntityTarget;
+
+    [DataField, AutoNetworkedField]
+    public bool NeedAbort;
 }
