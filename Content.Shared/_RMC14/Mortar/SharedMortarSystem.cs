@@ -89,6 +89,8 @@ public abstract class SharedMortarSystem : EntitySystem
         SubscribeLocalEvent<MortarComponent, BeforeDamageChangedEvent>(OnMortarBeforeDamageChanged);
         SubscribeLocalEvent<MortarComponent, ComponentShutdown>(OnMortarShutdown);
 
+        SubscribeLocalEvent<ActivateMortarShellOnSpawnComponent, MapInitEvent>(OnMortarExplosionOnSpawn);
+
         SubscribeLocalEvent<MortarCameraShellComponent, MortarShellLandEvent>(OnMortarCameraShellLand);
 
         Subs.BuiEvents<MortarComponent>(MortarUiKey.Key,
@@ -672,6 +674,26 @@ public abstract class SharedMortarSystem : EntitySystem
                 _rmcChat.ChatMessageToOne(ChatChannel.Radio, msg, msg, default, false, session.Channel);
             }
         }
+    }
+
+    private void OnMortarExplosionOnSpawn(Entity<ActivateMortarShellOnSpawnComponent> explosion, ref MapInitEvent args)
+    {
+        if (!TryComp(explosion, out MortarShellComponent? shell))
+            return;
+
+        var time = _timing.CurTime;
+
+        var coords = _transform.GetMapCoordinates(explosion);
+
+        var active = new ActiveMortarShellComponent
+        {
+            Coordinates = _transform.ToCoordinates(coords),
+            WarnAt = time + shell.TravelDelay,
+            ImpactWarnAt = time + shell.TravelDelay + shell.ImpactWarningDelay,
+            LandAt = time + shell.TravelDelay + shell.ImpactDelay,
+        };
+
+        AddComp(explosion, active, true);
     }
 
     public override void Update(float frameTime)

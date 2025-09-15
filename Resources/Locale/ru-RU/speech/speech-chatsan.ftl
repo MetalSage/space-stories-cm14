@@ -130,7 +130,6 @@ chatsan-word-66 = smth
 chatsan-replacement-66 = something
 chatsan-word-67 = allg
 chatsan-replacement-67 = all good
-
 # Corvax-Brainrot-Start
 corvax-chatsan-word-1 = хос
 corvax-chatsan-replacement-1 = гсб
@@ -382,6 +381,7 @@ corvax-chatsan-word-124 = лкм
 corvax-chatsan-replacement-124 = левая рука
 corvax-chatsan-word-125 = пкм
 corvax-chatsan-replacement-125 = правая рука
+
 # Corvax-Brainrot-End
 
 # Stories-Brainrot-Start
@@ -435,4 +435,6 @@ stories-chatsan-word-25 = лз1
 stories-chatsan-replacement-25 = зп1
 stories-chatsan-word-26 = лз2
 stories-chatsan-replacement-26 = зп2
+
 # Stories-Brainrot-End
+

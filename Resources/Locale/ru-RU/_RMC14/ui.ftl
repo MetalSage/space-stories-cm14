@@ -106,3 +106,4 @@ rmc-tacmap-alert-no-area = Неизвесно
 rmc-ui-options-alternate-sprites = Используйте спрайты, не вызывающие трипофобии
 cm-ui-audio-humanoid-voicelines = Воспроизводить голоса
 cm-ui-roadmap = Дорожная карта
+rmc-ui-options-chat-squad-color-mode = Раскрашивать имена говорящих по отрядам

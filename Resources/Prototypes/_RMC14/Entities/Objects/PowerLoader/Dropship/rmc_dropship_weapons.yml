@@ -32,7 +32,7 @@
   - type: DropshipFabricatorPrintable
     cost: 400
   - type: DropshipWeapon
-    abbreviation: GAU
+    abbreviation: АПС
     fireDelay: 2
     fireInTransport: true
     skills:
@@ -61,7 +61,7 @@
   - type: DropshipFabricatorPrintable
     cost: 600
   - type: DropshipWeapon
-    abbreviation: MSL
+    abbreviation: РКТ
     fireDelay: 5
     weaponAttachedSprite:
       sprite: _RMC14/Objects/dropship_attachments.rsi
@@ -72,3 +72,29 @@
     ammoAttachedSprite:
       sprite: _RMC14/Objects/dropship_attachments.rsi
       state: rocket_pod_loaded
+
+- type: entity
+  parent: RMCDropshipAttachmentWeapon
+  id: RMCDropshipAttachmentRocketPod
+  name: LAU-229 rocket pod
+  description: A rocket pod capable of launching six laser-guided mini rockets. Moving this will require some sort of lifter. Accepts the AGR-59 series of minirockets.
+  components:
+  - type: Sprite
+    layers:
+    - state: minirocket_pod
+      offset: 0.5, 0.5
+  - type: DropshipFabricatorPrintable
+    cost: 600
+  - type: DropshipWeapon
+    abbreviation: РКТ
+    fireDelay: 1
+    weaponAttachedSprite:
+      sprite: _RMC14/Objects/dropship_attachments.rsi
+      state: minirocket_pod_installed
+    ammoEmptyAttachedSprite:
+      sprite: _RMC14/Objects/dropship_attachments.rsi
+      state: minirocket_pod_installed
+    ammoAttachedSprite:
+      sprite: _RMC14/Objects/dropship_attachments.rsi
+      state: minirocket_pod_loaded
+    ammoSpriteThresholds: [5, 4, 3, 2, 1]

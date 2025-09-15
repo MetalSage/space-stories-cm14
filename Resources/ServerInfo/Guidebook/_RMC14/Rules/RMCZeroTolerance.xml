@@ -1,29 +1,44 @@
 ﻿<Document>
-  #ПРАВИЛА С НУЛЕВОЙ ТЕРПИМОСТЬЮ
-  Вы можете быть забанены за любое из приведенных ниже правил без предупреждения.
+  #ZERO TOLERANCE RULES
+  You may be banned for any of the below rules with no warning, questioning, or message.
 
-  - Игрокам должно быть не менее 16 лет, чтобы играть в RMC14. Игроки должны быть и вести себя как минимум на 16 лет, иначе они будут забанены до достижения ими этого возраста.
+  ### Minimum Age Requirement
 
-  - Грифинг собственной фракции в конце раунда не допускается и приводит к немедленному 3-часовому бану без возможности обжалования.
-  Это включает в себя самоубийства без уважительной причины для ролевой игры.
+  - Players must be at least 16 years of age to play RMC14. Players must be and act at least 16 years old or they will be removed until they are of age, regardless of standing in the community.
 
-  - Будут приняты меры в отношении [bold]любого[/bold] дружественного огня в конце раунда, независимо от того, кто начал грифинг, поскольку раунд может быть не полностью завершен, даже если основное условие было достигнуто.
-  Не отвечайте на дружественный огонь в конце раунда, откройте запрос администратора, так как это явно показывает, кто занимается грифингом.
+  ### End of Round Grief
+
+  - End of round grief (EORG) of your own faction is not permitted and results in an instant unappealable 3 hour ban.\n[bold]This includes suicides without a valid roleplay reason.[/bold]
 
   - Категорически [bold]запрещен сексуальный контент[/bold] или [bold]эротическая ролевая игра (ЭРП)[/bold], включая прямые или косвенные упоминания сексуального поведения или действий. Минимальный возраст для сервера - 16 лет, могут присутствовать несовершеннолетние.
   Не играйте в романтические отношения по той же причине.
 
-  - Категорически запрещены ненавистнические высказывания, оскорбления, фанатизм, расизм (как реальный, так и вымышленный), видовизм (унижение персонажей в игре на основе их расы), сексизм, эйблизм или любая другая форма дискриминации. Это включает использование буквенных замен для маскировки оскорбительных выражений или в качестве "шутки".
+  ### Sexual content
 
-  [italic](Виды сосуществуют на протяжении многих десятилетий и должны рассматриваться как обычные люди.)[/italic]
+  - Absolutely [bold]no sexual content[/bold] or [bold]Erotic Roleplay (ERP)[/bold], including direct or indirect mentions of sexual behavior or actions. The server age minimum is 16, minors may be present.\nDo not roleplay romances for this same reason.
+
+  ### Slurs, Racism, etc.
+
+  - Absolutely no hate speech, slurs, bigotry, racism (both real and fictional towards any playable race), sexism, ableism, or any other form of discrimination. This includes using letter substitutions to disguise offensive language or as a "joke".
 
   - Не передавайте внутриигровую или внутриперсонажную информацию через внешние средства. Администраторы не обязаны обеспечивать добросовестное использование, и любые случаи могут привести к принятию мер. Это правило введено для обеспечения честного и сбалансированного опыта для всех, предотвращая несправедливые преимущества и обеспечивая сохранение общения в рамках игры.
 
   - Попытка уклониться от игровых банов приведет к автоматическому постоянному бану только с возможностью обжалования, которая возможна только через шесть месяцев и только с ваучером хорошего поведения с другого сервера SS13/SS14.
 
-  - Попытка уклониться от баннов на работы приведет к значительно более серьезным банам.
+  ### Information Fairness
 
-  - Не используйте эксплойты ошибок или внешние программы для получения преимущества или нарушения работы сервера каким-либо образом.
-  Использование внешней программы для расчета координат разрешено.
-  Использование внешней программы для чтения текста на экране в целях доступности разрешено.
+  - Don't share in-game information with anyone playing, neither in-character or any ooc/external means. These rules are in place to ensure a fair and balanced experience for everyone, preventing unfair advantages and ensuring communication remains within the game.
+  - Streaming the game in general is allowed, but players in the round should not watch the stream or discuss any current round events to the streamer. As a streamer, please try to make an effort to communicate this.
+
+  ### Ban evasion
+
+  - Attempting to evade game bans will result in an automatic appeal-only permanent ban that is only able to be appealed after six months from the most recent attempt.
+
+  - Attempting to evade job bans through promotions or similar will result in significantly worse bans.
+
+  ### Exploits and External Programs
+  - Don't use exploits of bugs or external programs to gain an advantage, or disrupt the server in any way.\nUsing an external program to calculate coordinate locations is permitted.\nUsing an external program to read text on the screen for accessibility purposes is permitted.
+
+  ### Advertising and Spam
+  - Do not promote/advertise external communities or servers. Exposure to unmoderated spaces has consistently introduced toxic behavior into our own, harming the healthy culture we work hard to build and maintain. Out-of-character toxicity observed can and should be reported under the context of core rule 4.
 </Document>

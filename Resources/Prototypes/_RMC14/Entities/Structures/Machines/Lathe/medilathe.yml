@@ -141,7 +141,7 @@
   - RMCMedicAutoInjector30
   - CMHypospray
   - CMBloodPack
-  - RMCBeakerHighCapacity
+  # - RMCBeakerHighCapacity
   - CMBonesetter
   #    - FixOVein (5000 Plastic)->(6250)
   - CMStasisBag
@@ -157,5 +157,5 @@
   - CMSurgicalCase
   - RMCSurgicalTrayEmpty
   - RMCVialBox
-  - RMCPouchReagentCanister
-  - RMCPressurizedCanister
+  # - RMCPouchReagentCanister
+  # - RMCPressurizedCanister

@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 264.0.0
+  engineVersion: 264.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/04/2025 03:01:22
+  time: 08/30/2025 13:37:39
   entityCount: 21716
 maps:
 - 1
@@ -76517,83 +76517,6 @@ entities:
     - type: Transform
       pos: -79.5,-55.5
       parent: 1
-- proto: CMVendorCigs
-  entities:
-  - uid: 3824
-    components:
-    - type: Transform
-      pos: -103.5,-61.5
-      parent: 1
-  - uid: 3825
-    components:
-    - type: Transform
-      pos: -83.5,-51.5
-      parent: 1
-  - uid: 3826
-    components:
-    - type: Transform
-      pos: 98.5,13.5
-      parent: 1
-  - uid: 3827
-    components:
-    - type: Transform
-      pos: 5.5,48.5
-      parent: 1
-  - uid: 3828
-    components:
-    - type: Transform
-      pos: -36.5,36.5
-      parent: 1
-  - uid: 3829
-    components:
-    - type: Transform
-      pos: -2.5,-2.5
-      parent: 1
-  - uid: 3830
-    components:
-    - type: Transform
-      pos: -95.5,-27.5
-      parent: 1
-  - uid: 3831
-    components:
-    - type: Transform
-      pos: 22.5,81.5
-      parent: 1
-  - uid: 3832
-    components:
-    - type: Transform
-      pos: 29.5,75.5
-      parent: 1
-  - uid: 3833
-    components:
-    - type: Transform
-      pos: 31.5,63.5
-      parent: 1
-  - uid: 3834
-    components:
-    - type: Transform
-      pos: 39.5,63.5
-      parent: 1
-  - uid: 3835
-    components:
-    - type: Transform
-      pos: 59.5,50.5
-      parent: 1
-  - uid: 3836
-    components:
-    - type: Transform
-      pos: 53.5,-42.5
-      parent: 1
-  - uid: 3837
-    components:
-    - type: Transform
-      pos: -23.5,-16.5
-      parent: 1
-  - uid: 3838
-    components:
-    - type: Transform
-      pos: 94.5,12.5
-      parent: 1
 - proto: CMVendorCoffee
   entities:
   - uid: 3839
@@ -80434,42 +80357,6 @@ entities:
     components:
     - type: Transform
       pos: 92.5735,-66.34078
-      parent: 1
-- proto: GasPipeBend
-  entities:
-  - uid: 4517
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,17.5
-      parent: 1
-  - uid: 4518
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,17.5
-      parent: 1
-- proto: GasPipeStraight
-  entities:
-  - uid: 4519
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,17.5
-      parent: 1
-- proto: GasPipeTJunction
-  entities:
-  - uid: 4520
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,17.5
-      parent: 1
-  - uid: 4521
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,17.5
       parent: 1
 - proto: GasPort
   entities:
@@ -89388,6 +89275,42 @@ entities:
     components:
     - type: Transform
       pos: 81.48112,-61.499996
+      parent: 1
+- proto: RMCGasPipeBend
+  entities:
+  - uid: 4517
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,17.5
+      parent: 1
+  - uid: 4518
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,17.5
+      parent: 1
+- proto: RMCGasPipeStraight
+  entities:
+  - uid: 4519
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,17.5
+      parent: 1
+- proto: RMCGasPipeTJunction
+  entities:
+  - uid: 4520
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,17.5
+      parent: 1
+  - uid: 4521
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,17.5
       parent: 1
 - proto: RMCGeneratorFusionCell
   entities:
@@ -118296,6 +118219,85 @@ entities:
     components:
     - type: Transform
       pos: 104.5,-0.5
+      parent: 1
+- proto: RMCVendorCigsElectro
+  entities:
+  - uid: 3827
+    components:
+    - type: Transform
+      pos: 59.5,50.5
+      parent: 1
+  - uid: 3828
+    components:
+    - type: Transform
+      pos: 31.5,63.5
+      parent: 1
+  - uid: 3829
+    components:
+    - type: Transform
+      pos: 39.5,63.5
+      parent: 1
+  - uid: 3832
+    components:
+    - type: Transform
+      pos: -95.5,-27.5
+      parent: 1
+  - uid: 3833
+    components:
+    - type: Transform
+      pos: -2.5,-2.5
+      parent: 1
+  - uid: 3835
+    components:
+    - type: Transform
+      pos: 5.5,48.5
+      parent: 1
+  - uid: 3836
+    components:
+    - type: Transform
+      pos: 98.5,13.5
+      parent: 1
+  - uid: 3837
+    components:
+    - type: Transform
+      pos: -83.5,-51.5
+      parent: 1
+- proto: RMCVendorCigsWeYa
+  entities:
+  - uid: 3824
+    components:
+    - type: Transform
+      pos: 94.5,12.5
+      parent: 1
+  - uid: 3825
+    components:
+    - type: Transform
+      pos: -23.5,-16.5
+      parent: 1
+  - uid: 3826
+    components:
+    - type: Transform
+      pos: 53.5,-42.5
+      parent: 1
+  - uid: 3830
+    components:
+    - type: Transform
+      pos: 29.5,75.5
+      parent: 1
+  - uid: 3831
+    components:
+    - type: Transform
+      pos: 22.5,81.5
+      parent: 1
+  - uid: 3834
+    components:
+    - type: Transform
+      pos: -36.5,36.5
+      parent: 1
+  - uid: 3838
+    components:
+    - type: Transform
+      pos: -103.5,-61.5
       parent: 1
 - proto: RMCVialBoxFull
   entities:
@@ -168490,7 +168492,7 @@ entities:
     - type: Transform
       pos: 82.5,-33.5
       parent: 1
-- proto: WeaponShotgunM42A2
+- proto: WeaponShotgunM42A1
   entities:
   - uid: 20724
     components:

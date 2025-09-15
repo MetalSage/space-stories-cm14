@@ -25,6 +25,7 @@
   - type: XenoNestSurface
   - type: XenoConstructionPlasmaCost
     plasma: 120
+    scalingCost: true
   - type: XenoStructureUpgradeable
     to: WallXenoResinThick
     cost: 50
@@ -63,6 +64,7 @@
         Slash: 338
   - type: XenoConstructionPlasmaCost
     plasma: 170
+    scalingCost: true
   - type: XenoStructureUpgradeable
     to: null
 
@@ -100,6 +102,7 @@
   - type: XenoNestSurface
   - type: XenoConstructionPlasmaCost
     plasma: 95
+    scalingCost: true
   - type: MeleeReceivedMultiplier
     xenoDamage:
       types:
@@ -163,6 +166,7 @@
         Slash: 300
   - type: XenoConstructionPlasmaCost
     plasma: 120
+    scalingCost: true
 
 - type: entity
   parent: WallXenoResin

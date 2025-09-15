@@ -34,10 +34,10 @@ public sealed class BoxerJabSystem : EntitySystem
         if (args.Handled)
             return;
 
-        args.Handled = true;
-
         if (!_xeno.CanAbilityAttackTarget(xeno, args.Target))
             return;
+
+        args.Handled = true;
 
         if (!TryComp<XenoBoxerKnockoutComponent>(xeno, out var knockoutComp))
             return;

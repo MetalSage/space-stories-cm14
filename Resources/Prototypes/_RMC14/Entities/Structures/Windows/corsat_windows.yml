@@ -83,7 +83,7 @@
     sprite: _RMC14/Structures/Windows/corsat_rwindow_sec.rsi
     state: paddedsec_rwindow0
   - type: IconSmooth
-    key: walls
+    key: window # Stories-Fixes
     base: paddedsec_rwindow
     mode: CardinalFlags
     
@@ -99,7 +99,7 @@
     sprite: _RMC14/Structures/Windows/corsat_rwindow_sci.rsi
     state: paddedresearch_rwindow0  
   - type: IconSmooth
-    key: walls
+    key: window # Stories-Fixes
     base: paddedresearch_rwindow
     mode: CardinalFlags
 
@@ -118,7 +118,7 @@
     sprite: _RMC14/Structures/Windows/corsat_rwindow.rsi
     state: padded_rwindow0
   - type: IconSmooth
-    key: walls
+    key: window # Stories-Fixes
     base: padded_rwindow
     mode: CardinalFlags
     
@@ -133,7 +133,7 @@
     sprite: _RMC14/Structures/Windows/corsat_rwindow_sci.rsi
     state: paddedresearch_rwindow0
   - type: IconSmooth
-    key: walls
+    key: window # Stories-Fixes
     base: paddedresearch_rwindow
     mode: CardinalFlags
     
@@ -148,6 +148,6 @@
     sprite: _RMC14/Structures/Windows/corsat_rwindow_sec.rsi
     state: paddedsec_rwindow0
   - type: IconSmooth
-    key: walls
+    key: window # Stories-Fixes
     base: paddedsec_rwindow
     mode: CardinalFlags

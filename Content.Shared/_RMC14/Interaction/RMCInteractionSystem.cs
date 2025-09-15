@@ -1,4 +1,5 @@
-﻿using Content.Shared.Hands.Components;
+﻿using Content.Shared._RMC14.Marines.Squads;
+using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Light.Components;
@@ -34,6 +35,12 @@ public sealed class RMCInteractionSystem : EntitySystem
         if (args.Cancelled || ent.Comp.Blacklist == null)
             return;
 
+        if (!TryComp(ent, out TransformComponent? xform))
+            return;
+
+        if (ent.Comp.AnchoredOnly && !xform.Anchored)
+            return;
+
         if (TryComp(ent, out HandheldLightComponent? handheldLight) && handheldLight.Activated)
             return;
 
@@ -52,7 +59,7 @@ public sealed class RMCInteractionSystem : EntitySystem
 
     private void OnInRangeOverride(Entity<IgnoreInteractionRangeComponent> ent, ref InRangeOverrideEvent args)
     {
-        if (!_whitelist.IsWhitelistPassOrNull(ent.Comp.Whitelist, args.Target))
+        if (ent.Comp.Whitelist != null && !_whitelist.IsValid(ent.Comp.Whitelist, args.Target))
             return;
 
         if (!_transform.InRange(args.User, args.Target, ent.Comp.Range))

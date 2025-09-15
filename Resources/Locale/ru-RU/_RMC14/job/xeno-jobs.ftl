@@ -45,3 +45,4 @@ cm-job-supervisors-queen = Королеве
 role-timer-xeno-roles = Ксеноморф
 role-timer-xeno-drones = эволюция дронов и дроны
 role-timer-xeno-tier-three = касты третьего уровня
+cm-job-name-xeno-parasite-xeno = Лицехват

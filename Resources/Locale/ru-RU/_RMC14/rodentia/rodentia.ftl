@@ -2,6 +2,7 @@ species-name-rodentia = Rodentia
 
 # head markings
 
+
 ## patterns
 
 marking-RodentiaHeadBlaze = Head - Blaze
@@ -84,6 +85,7 @@ marking-RodentiaCheeksWhiskers = Whiskers
 marking-RodentiaCheeksWhiskers-whiskers = Whiskers
 
 # body markings
+
 
 ## tail
 

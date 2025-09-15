@@ -14,3 +14,6 @@ cm-job-supervisors-staff = составу серверу
 cm-job-supervisors-sl = командиру отряда
 cm-job-supervisors-colonists = разумные колонисты
 cm-job-supervisors-nobody = никому, вы сами по себе
+cm-job-supervisors-secserg = сержанту роты
+cm-job-supervisors-platco = командиру взвода
+cm-job-supervisors-company-command = командованию роты

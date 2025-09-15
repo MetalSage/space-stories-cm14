@@ -25,3 +25,4 @@ rmc-loadout-group-synthetic-shoes = Обувь синтетиков
 rmc-loadout-group-synthetic-headwear = Головные уборы синтетиков
 rmc-loadout-group-synthetic-suits = Костюмы синтетиков
 loadout-group-points-insufficient = Недостаточно очков!
+rmc-loadout-group-miscellaneous = Разное
