@@ -40,3 +40,5 @@ ent-RMCCrateAttachmentShotgunStock = ящик прикладов дробови�
     .desc = { ent-RMCCrateWeldable.desc }
 ent-RMCCrateAttachmentSmgStock = ящик прикладов пистолета-пулемета (x4)
     .desc = { ent-RMCCrateWeldable.desc }
+ent-STCrateAttachmentXM82SmartScope = ящик умных прицелов XM82 (x1)
+    .desc = { ent-RMCCrateWeldable.desc }

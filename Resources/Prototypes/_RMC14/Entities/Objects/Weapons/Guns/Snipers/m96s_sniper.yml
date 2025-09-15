@@ -97,6 +97,7 @@
         Tiger: sniperbarrel_t
   - type: RMCGunChamber
     enabled: false
+  - type: IFFToggle
 
 - type: entity
   parent: BaseItem

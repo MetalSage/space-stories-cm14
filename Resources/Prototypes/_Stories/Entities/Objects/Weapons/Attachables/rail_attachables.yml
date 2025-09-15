@@ -1,0 +1,42 @@
+- type: entity
+  parent: RMCAttachmentScopeBase
+  id: STAttachmentXM82SmartScope
+  name: XM-82 smart-scope 
+  description: An experimental XM82 Smart-Scope. Based on the technologies used in the Smart Gun by AEGIS, this sight has integrated IFF systems. It can only attach to the M5-ATL Rocket Launchers
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Attachments/rail.rsi
+    state: m5_atl_iffbarrel
+  - type: Tag
+    tags:
+    - RMCAttachmentRail
+    - STAttachmentXM82SmartScope
+  - type: AttachableToggleable
+    breakOnMove: false
+    icon:
+      sprite: _RMC14/Objects/Weapons/Guns/Attachments/rail.rsi
+      state: huntingscope
+    actionName: Look through XM82 Smart-Scope
+    actionDesc: Lets you see further and shoot through your fellow marines without harming them.
+  - type: AttachableToggleableSimpleActivate
+  - type: Scope
+    zoomLevels:
+    - zoom: 1
+      offset: 13
+      allowMovement: true
+      doAfter: 0
+  - type: AttachableAimedShot
+  - type: AttachableVisuals
+
+- type: entity
+  id: STCrateAttachmentXM82SmartScope
+  parent: RMCCrateBase
+  name: XM82 smart-scope attachment crate (x1)
+  components:
+  - type: StorageFill
+    contents:
+      - id: STAttachmentXM82SmartScope
+        amount: 1
+
+- type: Tag
+  id: STAttachmentXM82SmartScope
