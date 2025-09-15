@@ -15,6 +15,24 @@
           0.6
         ]
       ]
+    },
+    {
+      "name": "mortar_ammo_guided_inc",
+      "delays": [
+        [
+          0.6,
+          0.6
+        ]
+      ]
+    },
+    {
+      "name": "mortar_ammo_guided_flr",
+      "delays": [
+        [
+          0.6,
+          0.6
+        ]
+      ]
     }
   ]
 }

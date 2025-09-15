@@ -57,7 +57,7 @@
                                 Orientation="Horizontal" 
                                 Margin="0 0 0 8">
                                 <Label 
-                                    Text="{Loc 'rmc-mortar-flight-time'}" 
+                                    Text="{Loc 'st-guided-mortar-flight-time'}" 
                                     Margin="0 0 5 0" 
                                     Access="Public" />
                             </BoxContainer>
@@ -94,7 +94,7 @@
                 <BoxContainer Orientation="Vertical" Margin="6" Access="Public">
                     <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Access="Public">
                         <RichTextLabel 
-                            Text="{Loc 'rmc-mortar-spotted-targets'}" 
+                            Text="{Loc 'st-mortar-spotted-targets'}" 
                             HorizontalAlignment="Center" 
                             HorizontalExpand="True"
                             Access="Public" />

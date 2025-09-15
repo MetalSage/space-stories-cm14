@@ -37,7 +37,7 @@
 - type: entity
   parent: CMPaper
   id: STGuidedShellUsageWarningPaper
-  name: предупреждение об использовании управляемых минометных снарядов серии XM-82
+  name: warning on use of XM-82 series guided mortar shells
   components:
     - type: Paper
       stampState: paper_stamp-marine

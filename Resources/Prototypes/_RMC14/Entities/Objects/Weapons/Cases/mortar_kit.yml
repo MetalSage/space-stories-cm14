@@ -26,6 +26,7 @@
       - Rangefinder
       tags:
       - Wrench
+      - Paper
   - type: GenericVisualizer
     visuals:
       enum.StorageVisuals.Open:
@@ -50,13 +51,19 @@
       amount: 2
     - id: CMBackpackMortar
     - id: RMCMortarShellIncendiary # TODO RMC14 replace 1 incend and 1 HE with 2 Frag shells
-      amount: 3
+      amount: 2
     - id: RMCMortarShellFlare
       amount: 2
     #    - id: RMCMortarShellFrag
     #      amount: 2
     - id: RMCMortarShellHE
-      amount: 3
+      amount: 2
     - id: CMWrench
     - id: RMCRangefinder
       amount: 2
+    - id: STMortarShellGuidedHE
+      amount: 2
+    - id: STMortarShellGuidedIncendiary
+      amount: 1
+    - id: STGuidedShellUsageWarningPaper
+      amount: 1

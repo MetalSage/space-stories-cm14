@@ -134,19 +134,19 @@ public sealed class MortarSystem : SharedMortarSystem
 
         if (shell.Comp.Guided && !HasActiveCommunicationTower(shell))
         {
-            _popup.PopupEntity(Loc.GetString("need-active-tower"), user, user, SmallCaution);
+            _popup.PopupEntity(Loc.GetString("st-guided-shell-need-active-tower"), user, user, SmallCaution);
             return false;
         }
 
         if (shell.Comp.Guided && HasActiveGuidedShells(mortar, out var _))
         {
-            _popup.PopupEntity(Loc.GetString("cant-control-more-shells"), user, user, SmallCaution);
+            _popup.PopupEntity(Loc.GetString("st-guided-cant-control-more-shells"), user, user, SmallCaution);
             return false;
         }
 
         if (mortar.Comp.NeedAbort)
         {
-            _popup.PopupEntity(Loc.GetString("need-abort"), user, user, SmallCaution);
+            _popup.PopupEntity(Loc.GetString("st-mortar-need-abort"), user, user, SmallCaution);
             return false;
         }
         return true;

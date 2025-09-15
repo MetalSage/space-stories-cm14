@@ -65,6 +65,12 @@ public sealed class MortarBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
         };
     }
 
+    public static void SetValue(FloatSpinBox? spinBox, int value)
+    {
+        if (spinBox != null)
+            spinBox.Value = value;
+    }
+
     public void Refresh()
     {
         if (_window is not { IsOpen: true })
@@ -73,12 +79,6 @@ public sealed class MortarBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
         if (!EntMan.TryGetComponent(Owner, out MortarComponent? mortar))
             return;
 
-        static void SetValue(FloatSpinBox? spinBox, int value)
-        {
-            if (spinBox != null)
-                spinBox.Value = value;
-        }
-
         SetValue(_window.TargetX, mortar.Target.X);
         SetValue(_window.TargetY, mortar.Target.Y);
         SetValue(_window.DialX, mortar.Dial.X);
@@ -86,54 +86,65 @@ public sealed class MortarBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
         _window.MaxDialLabel.Text = Loc.GetString("rmc-mortar-offset-max", ("max", mortar.MaxDial));
     }
 
+    private void StyleTargetButton(Button button, MortarTargetInfo target, bool isSelected)
+    {
+        if (!target.IsAvailable)
+        {
+            button.Modulate = new Color(0.5f, 0.5f, 0.5f);
+            button.Disabled = true;
+        }
+        else if (isSelected)
+        {
+            button.Modulate = new Color(0.4f, 0.7f, 1f);
+            button.Disabled = false;
+        }
+        else
+        {
+            button.Modulate = Color.White;
+            button.Disabled = false;
+        }
+    }
+
     private void UpdateTargetsList(List<MortarTargetInfo> targets)
     {
         if (_window is not { IsOpen: true })
             return;
 
-        _window.TargetsList.RemoveAllChildren();
+        var existing = _window.TargetsList.Children
+            .OfType<TargetButton>()
+            .ToDictionary(b => b.Entity);
 
         foreach (var target in targets)
         {
-            var targetCoords = new Vector2i((int)target.Coords.X, (int)target.Coords.Y);
+            var coords = new Vector2i((int) target.Coords.X, (int) target.Coords.Y);
             var isSelected = _lastSelectedTarget == target.Entity;
-            var button = new Button
-            {
-                Text = $"{target.Name} ({targetCoords.X}, {targetCoords.Y})",
-                HorizontalExpand = true,
-                Margin = new Thickness(2, 1),
-                Modulate = isSelected ? new Color(0.4f, 0.7f, 1f) : Color.White
-            };
 
-            button.OnPressed += _ =>
+            if (!existing.TryGetValue(target.Entity, out var button))
             {
-                _lastSelectedTarget = target.Entity;
-                _window.TargetX = targetCoords.X;
-                _window.TargetY = targetCoords.Y;
-                SendPredictedMessage(new MortarSetTargetEntityMsg(target.Entity, targetCoords));
-                UpdateTargetsList(targets);
-            };
+                button = new TargetButton(target.Entity);
+                button.OnPressed += _ =>
+                {
+                    _lastSelectedTarget = target.Entity;
+                    SetValue(_window.TargetX, coords.X);
+                    SetValue(_window.TargetY, coords.Y);
+                    SendPredictedMessage(new MortarSetTargetEntityMsg(target.Entity, coords));
+                };
+                _window.TargetsList.AddChild(button);
+            }
 
-            _window.TargetsList.AddChild(button);
+            button.Text = $"{target.Name} ({coords.X}, {coords.Y})";
+            StyleTargetButton(button, target, isSelected);
+
+            existing.Remove(target.Entity);
         }
+
+        foreach (var dead in existing.Values)
+            _window.TargetsList.RemoveChild(dead);
 
         if (_window.TargetsCountLabel != null)
             _window.TargetsCountLabel.Text = $"({targets.Count})";
 
-        if (targets.Count > 0)
-        {
-            _window.TargetsPanel.Visible = true;
-        }
-        else
-        {
-            _window.TargetsPanel.Visible = false;
-            _window.TargetsList.AddChild(new Label
-            {
-                Text = Loc.GetString("rmc-mortar-no-targets"),
-                HorizontalExpand = true,
-                Margin = new Thickness(2, 1)
-            });
-        }
+        _window.TargetsPanel.Visible = targets.Count > 0;
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -148,7 +159,7 @@ public sealed class MortarBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
 
         _lastSelectedTarget = mortarState.LockedTarget;
 
-        if (mortarState.LastFlightTime is (float) lastTime)
+        if (mortarState.LastFlightTime is float lastTime)
         {
             var clamped = Math.Clamp(lastTime, 3, 10);
             if (Math.Abs(_window.FlightTime.Value - clamped) > 0.01f)
@@ -156,5 +167,17 @@ public sealed class MortarBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
         }
 
         UpdateTargetsList(mortarState.Targets);
+    }
+
+    private sealed class TargetButton : Button
+    {
+        public NetEntity Entity { get; }
+
+        public TargetButton(NetEntity entity)
+        {
+            Entity = entity;
+            HorizontalExpand = true;
+            Margin = new Thickness(2, 1);
+        }
     }
 }

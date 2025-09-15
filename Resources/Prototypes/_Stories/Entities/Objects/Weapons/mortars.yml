@@ -52,8 +52,8 @@
   - type: Item
     heldPrefix: inc
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/mortar.rsi
-    state: mortar_ammo_inc
+    sprite: _Stories/Objects/Weapons/mortar.rsi
+    state: mortar_ammo_guided_inc
   - type: Explosive
     explosionType: RMCMortar
     maxIntensity: 0
@@ -73,6 +73,6 @@
   - type: Item
     heldPrefix: flr
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/mortar.rsi
-    state: mortar_ammo_flr
+    sprite: _Stories/Objects/Weapons/mortar.rsi
+    state: mortar_ammo_guided_flr
   - type: MortarCameraShell

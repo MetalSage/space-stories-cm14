@@ -53,4 +53,9 @@ public sealed class MortarState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
-public sealed record MortarTargetInfo(NetEntity Entity, string Name, NetCoordinates Coords);
+public readonly record struct MortarTargetInfo(
+    NetEntity Entity, 
+    string Name, 
+    NetCoordinates Coords,
+    bool IsAvailable = true
+);
