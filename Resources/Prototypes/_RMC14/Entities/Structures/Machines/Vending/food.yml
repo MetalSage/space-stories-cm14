@@ -149,6 +149,12 @@
         amount: 30
       - id: CMMarineFlask
         amount: 5
+# Stories-Fixes-Start
+  - type: Corrodible
+    isCorrodible: false
+  - type: Destructible
+    thresholds: []
+# Stories-Fixes-End
 
 - type: entity
   parent: ColMarTechBaseAnchorable
@@ -208,3 +214,9 @@
       - id: RMCDrinkAlcoholVodkaChessBlackQueen
         name: Королева
         amount: 2
+# Stories-Fixes-Start
+  - type: Corrodible
+    isCorrodible: false
+  - type: Destructible
+    thresholds: []
+# Stories-Fixes-End
