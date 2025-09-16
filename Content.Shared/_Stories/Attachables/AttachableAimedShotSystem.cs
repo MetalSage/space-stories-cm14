@@ -15,7 +15,7 @@ public sealed class AttachableAimedShotSystem : EntitySystem
 {
     [Dependency] private readonly GunIFFSystem _gunIFF = default!;
 
-    private const float BaseRange = 6.0f;  // Original range in tiles
+    private const float BaseRange = 6.0f;  // Original range (7 tiles)
     private const float BaseDelay = 0.2f;  // Original delay in seconds for 7 tiles
     private const float BaseTimePerTile = BaseDelay / BaseRange;
 
@@ -82,7 +82,7 @@ public sealed class AttachableAimedShotSystem : EntitySystem
             return;
 
         // Calculate new delay based on range
-        // Original 7 tiles = 0.2 seconds, so base ratio is 0.2/7 = ~0.0286 seconds per tile
+        // Original 7 tiles = 0.2 seconds, so base ratio is 0.2/6 = ~0.033 seconds per tile
         timerComp.Delay = (float)Math.Round(range * BaseTimePerTile, 2);
         Dirty(weapon, timerComp);
     }
