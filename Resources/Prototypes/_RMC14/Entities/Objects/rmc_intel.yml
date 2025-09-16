@@ -312,7 +312,7 @@
             state: overshield
         - name: Приобрести специализированный прицел для M5-ATL
           description: Прицел M5-ATL позволяет вести прицельную стрельбу с учетом влияния системы опознавания «свой-чужой»
-          cost: 9
+          cost: 5
           events:
           - !type:TechWarheadEvent
             warhead: STCrateAttachmentXM82SmartScope
