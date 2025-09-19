@@ -6,6 +6,11 @@
     mode: SnapgridCenter
     snap:
     - Wall
+  # Stories-Fixes-Start
+  blockAnchoring: true
+  blockConstruction: true
+  weedsSpreadable: false
+  # Stories-Fixes-End
   components:
   - type: FloorOccluder
   - type: Transform

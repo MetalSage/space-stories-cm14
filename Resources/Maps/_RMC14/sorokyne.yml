@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 264.0.0
+  engineVersion: 264.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/04/2025 03:10:53
+  time: 08/30/2025 15:10:40
   entityCount: 32370
 maps:
 - 1
@@ -46253,6 +46253,46 @@ entities:
         17,56: RMCAreaStrataInteriorOutpostEngiDromeShuttleMK3
         17,55: RMCAreaStrataInteriorOutpostEngiDromeShuttleMK3
         61,23: RMCAreaStrataInteriorOutOfBounds
+        38,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        38,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        38,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        38,131: RMCAreaStrataInteriorMiningOutpostCanteen
+        39,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        39,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        39,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        39,131: RMCAreaStrataInteriorMiningOutpostCanteen
+        40,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        40,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        40,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        40,131: RMCAreaStrataInteriorMiningOutpostCanteen
+        41,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        41,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        41,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        41,131: RMCAreaStrataInteriorMiningOutpostCanteen
+        42,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        42,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        42,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        42,131: RMCAreaStrataInteriorMiningOutpostCanteen
+        43,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        43,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        43,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        43,131: RMCAreaStrataInteriorMiningOutpostCanteen
+        44,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        44,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        44,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        44,131: RMCAreaStrataInteriorMiningOutpostCanteen
+        45,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        45,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        45,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        45,131: RMCAreaStrataInteriorMiningOutpostCanteen
+        46,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        46,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        46,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        46,131: RMCAreaStrataInteriorMiningOutpostCanteen
+        47,128: RMCAreaStrataInteriorMiningOutpostCanteen
+        47,129: RMCAreaStrataInteriorMiningOutpostCanteen
+        47,130: RMCAreaStrataInteriorMiningOutpostCanteen
+        47,131: RMCAreaStrataInteriorMiningOutpostCanteen
 - proto: Ash
   entities:
   - uid: 2
@@ -48416,7 +48456,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 33.513344,102.26898
+      pos: 33.5,102.5
       parent: 1
   - uid: 378
     components:
@@ -48439,7 +48479,7 @@ entities:
   - uid: 381
     components:
     - type: Transform
-      pos: 27.600452,4.6505046
+      pos: 27.5,4.5
       parent: 1
   - uid: 382
     components:
@@ -49800,7 +49840,7 @@ entities:
   - uid: 615
     components:
     - type: Transform
-      pos: 29.024538,123.8625
+      pos: 29.5,123.5
       parent: 1
   - uid: 616
     components:
@@ -49817,18 +49857,18 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 170.7352,112.502014
+      pos: 170.5,112.5
       parent: 1
   - uid: 619
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 169.24908,112.502014
+      pos: 169.5,112.5
       parent: 1
   - uid: 620
     components:
     - type: Transform
-      pos: 168.53381,111.89785
+      pos: 168.5,111.5
       parent: 1
 - proto: CMChairComfy
   entities:
@@ -59444,73 +59484,6 @@ entities:
     - type: Transform
       pos: 31.5,120.5
       parent: 1
-- proto: CMVendorCigs
-  entities:
-  - uid: 2312
-    components:
-    - type: Transform
-      pos: 207.5,51.5
-      parent: 1
-  - uid: 2313
-    components:
-    - type: Transform
-      pos: 225.5,118.5
-      parent: 1
-  - uid: 2314
-    components:
-    - type: Transform
-      pos: 247.5,138.5
-      parent: 1
-  - uid: 2315
-    components:
-    - type: Transform
-      pos: 28.328302,123.76286
-      parent: 1
-  - uid: 2316
-    components:
-    - type: Transform
-      pos: 156.5,116.5
-      parent: 1
-  - uid: 2317
-    components:
-    - type: Transform
-      pos: 145.5,114.5
-      parent: 1
-  - uid: 2318
-    components:
-    - type: Transform
-      pos: 121.5,62.5
-      parent: 1
-  - uid: 2319
-    components:
-    - type: Transform
-      pos: 120.5,90.5
-      parent: 1
-  - uid: 2320
-    components:
-    - type: Transform
-      pos: 129.5,84.5
-      parent: 1
-  - uid: 2321
-    components:
-    - type: Transform
-      pos: 63.5,83.5
-      parent: 1
-  - uid: 2322
-    components:
-    - type: Transform
-      pos: 48.5,70.5
-      parent: 1
-  - uid: 2323
-    components:
-    - type: Transform
-      pos: 22.5,120.5
-      parent: 1
-  - uid: 2324
-    components:
-    - type: Transform
-      pos: 36.5,127.5
-      parent: 1
 - proto: CMVendorCoffee
   entities:
   - uid: 2325
@@ -65800,48 +65773,7 @@ entities:
     - type: CMArmor
       bio: 15
     - type: Storage
-      savedLocations: {}
       grid: []
-      maxItemSize: Small
-      storageInsertSound: !type:SoundCollectionSpecifier
-        collection: storageRustle
-      storageOpenSound: !type:SoundCollectionSpecifier
-        collection: storageRustle
-      storedItems: {}
-    - type: Item
-      heldPrefix: off
-    - type: Clothing
-      unequipDelay: 2
-      equipDelay: 2
-      equippedPrefix: off
-      clothingVisuals:
-        outerClothing:
-        - cycle: False
-          copyToShaderParameters: null
-          renderingStrategy: null
-          map: null
-          color: null
-          visible: null
-          offset: null
-          rotation: null
-          scale: null
-          state: equipped-OUTERCLOTHING
-          sprite: null
-          texture: null
-          shader: null
-        - cycle: False
-          copyToShaderParameters: null
-          renderingStrategy: null
-          map: null
-          color: null
-          visible: null
-          offset: null
-          rotation: null
-          scale: null
-          state: lamp-off
-          sprite: _RMC14/Objects/Clothing/OuterClothing/Armor/armor_overlays.rsi
-          texture: null
-          shader: null
     - type: Physics
       canCollide: False
     - type: AllowSuitStorage
@@ -65872,10 +65804,6 @@ entities:
         - Gun
         - CassettePlayer
     - type: InsideEntityStorage
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          ents: []
   - uid: 3543
     components:
     - type: Transform
@@ -65883,48 +65811,7 @@ entities:
     - type: CMArmor
       bio: 15
     - type: Storage
-      savedLocations: {}
       grid: []
-      maxItemSize: Small
-      storageInsertSound: !type:SoundCollectionSpecifier
-        collection: storageRustle
-      storageOpenSound: !type:SoundCollectionSpecifier
-        collection: storageRustle
-      storedItems: {}
-    - type: Item
-      heldPrefix: off
-    - type: Clothing
-      unequipDelay: 2
-      equipDelay: 2
-      equippedPrefix: off
-      clothingVisuals:
-        outerClothing:
-        - cycle: False
-          copyToShaderParameters: null
-          renderingStrategy: null
-          map: null
-          color: null
-          visible: null
-          offset: null
-          rotation: null
-          scale: null
-          state: equipped-OUTERCLOTHING
-          sprite: null
-          texture: null
-          shader: null
-        - cycle: False
-          copyToShaderParameters: null
-          renderingStrategy: null
-          map: null
-          color: null
-          visible: null
-          offset: null
-          rotation: null
-          scale: null
-          state: lamp-off
-          sprite: _RMC14/Objects/Clothing/OuterClothing/Armor/armor_overlays.rsi
-          texture: null
-          shader: null
     - type: Physics
       canCollide: False
     - type: AllowSuitStorage
@@ -65955,10 +65842,6 @@ entities:
         - Gun
         - CassettePlayer
     - type: InsideEntityStorage
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          ents: []
   - uid: 3544
     components:
     - type: Transform
@@ -65966,48 +65849,7 @@ entities:
     - type: CMArmor
       bio: 15
     - type: Storage
-      savedLocations: {}
       grid: []
-      maxItemSize: Small
-      storageInsertSound: !type:SoundCollectionSpecifier
-        collection: storageRustle
-      storageOpenSound: !type:SoundCollectionSpecifier
-        collection: storageRustle
-      storedItems: {}
-    - type: Item
-      heldPrefix: off
-    - type: Clothing
-      unequipDelay: 2
-      equipDelay: 2
-      equippedPrefix: off
-      clothingVisuals:
-        outerClothing:
-        - cycle: False
-          copyToShaderParameters: null
-          renderingStrategy: null
-          map: null
-          color: null
-          visible: null
-          offset: null
-          rotation: null
-          scale: null
-          state: equipped-OUTERCLOTHING
-          sprite: null
-          texture: null
-          shader: null
-        - cycle: False
-          copyToShaderParameters: null
-          renderingStrategy: null
-          map: null
-          color: null
-          visible: null
-          offset: null
-          rotation: null
-          scale: null
-          state: lamp-off
-          sprite: _RMC14/Objects/Clothing/OuterClothing/Armor/armor_overlays.rsi
-          texture: null
-          shader: null
     - type: Physics
       canCollide: False
     - type: AllowSuitStorage
@@ -66038,10 +65880,6 @@ entities:
         - Gun
         - CassettePlayer
     - type: InsideEntityStorage
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          ents: []
   - uid: 3545
     components:
     - type: Transform
@@ -66049,48 +65887,7 @@ entities:
     - type: CMArmor
       bio: 15
     - type: Storage
-      savedLocations: {}
       grid: []
-      maxItemSize: Small
-      storageInsertSound: !type:SoundCollectionSpecifier
-        collection: storageRustle
-      storageOpenSound: !type:SoundCollectionSpecifier
-        collection: storageRustle
-      storedItems: {}
-    - type: Item
-      heldPrefix: off
-    - type: Clothing
-      unequipDelay: 2
-      equipDelay: 2
-      equippedPrefix: off
-      clothingVisuals:
-        outerClothing:
-        - cycle: False
-          copyToShaderParameters: null
-          renderingStrategy: null
-          map: null
-          color: null
-          visible: null
-          offset: null
-          rotation: null
-          scale: null
-          state: equipped-OUTERCLOTHING
-          sprite: null
-          texture: null
-          shader: null
-        - cycle: False
-          copyToShaderParameters: null
-          renderingStrategy: null
-          map: null
-          color: null
-          visible: null
-          offset: null
-          rotation: null
-          scale: null
-          state: lamp-off
-          sprite: _RMC14/Objects/Clothing/OuterClothing/Armor/armor_overlays.rsi
-          texture: null
-          shader: null
     - type: Physics
       canCollide: False
     - type: AllowSuitStorage
@@ -66121,10 +65918,6 @@ entities:
         - Gun
         - CassettePlayer
     - type: InsideEntityStorage
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          ents: []
 - proto: RMCArmorSPPFirefighter
   entities:
   - uid: 787
@@ -116728,6 +116521,75 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 30.5,26.5
+      parent: 1
+- proto: RMCVendorCigsElectro
+  entities:
+  - uid: 2313
+    components:
+    - type: Transform
+      pos: 22.5,120.5
+      parent: 1
+  - uid: 2314
+    components:
+    - type: Transform
+      pos: 48.5,70.5
+      parent: 1
+  - uid: 2316
+    components:
+    - type: Transform
+      pos: 129.5,84.5
+      parent: 1
+  - uid: 2317
+    components:
+    - type: Transform
+      pos: 120.5,90.5
+      parent: 1
+  - uid: 2318
+    components:
+    - type: Transform
+      pos: 121.5,62.5
+      parent: 1
+  - uid: 2320
+    components:
+    - type: Transform
+      pos: 156.5,116.5
+      parent: 1
+  - uid: 2321
+    components:
+    - type: Transform
+      pos: 28.328302,123.76286
+      parent: 1
+  - uid: 2322
+    components:
+    - type: Transform
+      pos: 247.5,138.5
+      parent: 1
+  - uid: 2324
+    components:
+    - type: Transform
+      pos: 207.5,51.5
+      parent: 1
+- proto: RMCVendorCigsWeYa
+  entities:
+  - uid: 2312
+    components:
+    - type: Transform
+      pos: 36.5,127.5
+      parent: 1
+  - uid: 2315
+    components:
+    - type: Transform
+      pos: 63.5,83.5
+      parent: 1
+  - uid: 2319
+    components:
+    - type: Transform
+      pos: 145.5,114.5
+      parent: 1
+  - uid: 2323
+    components:
+    - type: Transform
+      pos: 225.5,118.5
       parent: 1
 - proto: RMCVialBoxFull
   entities:

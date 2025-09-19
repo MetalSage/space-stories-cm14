@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 264.0.0
+  engineVersion: 264.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/04/2025 02:59:21
+  time: 08/30/2025 13:44:47
   entityCount: 28136
 maps:
 - 1
@@ -53374,7 +53374,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -25914.395
+      secondsUntilStateChange: -26053.87
       state: Opening
   - uid: 136
     components:
@@ -53870,7 +53870,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -27993.826
+      secondsUntilStateChange: -28133.3
       state: Opening
   - uid: 203
     components:
@@ -53882,7 +53882,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -27994.86
+      secondsUntilStateChange: -28134.334
       state: Opening
   - uid: 204
     components:
@@ -53915,7 +53915,7 @@ entities:
       pos: 127.5,-79.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -30437.496
+      secondsUntilStateChange: -30576.97
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -53987,7 +53987,7 @@ entities:
       pos: 77.5,-75.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -26998.86
+      secondsUntilStateChange: -27138.334
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -54008,7 +54008,7 @@ entities:
       pos: 80.5,-75.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -26998.56
+      secondsUntilStateChange: -27138.035
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -54113,7 +54113,7 @@ entities:
       pos: 63.5,-64.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -27294.527
+      secondsUntilStateChange: -27434.002
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -54510,7 +54510,7 @@ entities:
       pos: 68.5,-33.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -28476.992
+      secondsUntilStateChange: -28616.467
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -56525,49 +56525,49 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 169.4131,-35.315613
+      pos: 169.5,-35.5
       parent: 1
   - uid: 641
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 169.4131,-36.253113
+      pos: 169.5,-36.5
       parent: 1
   - uid: 642
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 169.4131,-32.315613
+      pos: 169.5,-32.5
       parent: 1
   - uid: 643
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 169.45998,-33.190613
+      pos: 169.5,-33.5
       parent: 1
   - uid: 644
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 177.58484,-57.407097
+      pos: 177.5,-57.5
       parent: 1
   - uid: 645
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 178.44992,-57.32897
+      pos: 178.5,-57.5
       parent: 1
   - uid: 646
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 181.40305,-53.36022
+      pos: 181.5,-53.5
       parent: 1
   - uid: 647
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 181.51242,-56.36022
+      pos: 181.5,-56.5
       parent: 1
   - uid: 648
     components:
@@ -56892,30 +56892,30 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 28.666847,-164.15486
+      pos: 28.5,-164.5
       parent: 1
   - uid: 705
     components:
     - type: Transform
-      pos: 20.35668,-187.35043
+      pos: 20.5,-187.5
       parent: 1
   - uid: 706
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 19.653555,-188.35043
+      pos: 19.5,-188.5
       parent: 1
   - uid: 707
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 21.434805,-188.41293
+      pos: 21.5,-188.5
       parent: 1
   - uid: 708
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 19.70043,-189.80356
+      pos: 19.5,-189.5
       parent: 1
   - uid: 709
     components:
@@ -57526,111 +57526,111 @@ entities:
   - uid: 815
     components:
     - type: Transform
-      pos: 26.618773,-168.34032
+      pos: 26.5,-168.5
       parent: 1
   - uid: 816
     components:
     - type: Transform
-      pos: 35.48938,-178.50284
+      pos: 35.5,-178.5
       parent: 1
   - uid: 817
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 36.33313,-179.33096
+      pos: 36.5,-179.5
       parent: 1
   - uid: 818
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 36.67688,-180.25284
+      pos: 36.5,-180.5
       parent: 1
   - uid: 819
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 33.598755,-179.40909
+      pos: 33.5,-179.5
       parent: 1
   - uid: 820
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 33.27063,-180.44034
+      pos: 33.5,-180.5
       parent: 1
   - uid: 821
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 34.67688,-181.40909
+      pos: 34.5,-181.5
       parent: 1
   - uid: 822
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 49.189194,-174.7341
+      pos: 49.5,-174.5
       parent: 1
   - uid: 823
     components:
     - type: Transform
-      pos: 21.671352,-199.43114
+      pos: 21.5,-199.5
       parent: 1
   - uid: 824
     components:
     - type: Transform
-      pos: 22.686977,-199.49364
+      pos: 22.5,-199.5
       parent: 1
   - uid: 825
     components:
     - type: Transform
-      pos: 23.311977,-199.32176
+      pos: 23.5,-199.5
       parent: 1
   - uid: 826
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 24.483852,-200.29051
+      pos: 24.5,-200.5
       parent: 1
   - uid: 827
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 24.561977,-201.07176
+      pos: 24.5,-201.5
       parent: 1
   - uid: 828
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 21.780727,-202.35301
+      pos: 21.5,-202.5
       parent: 1
   - uid: 829
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 22.671352,-202.41551
+      pos: 22.5,-202.5
       parent: 1
   - uid: 830
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 23.311977,-202.43114
+      pos: 23.5,-202.5
       parent: 1
   - uid: 831
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 20.608852,-200.61864
+      pos: 20.5,-200.5
       parent: 1
   - uid: 832
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 20.546352,-201.30614
+      pos: 20.5,-201.5
       parent: 1
   - uid: 833
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 61.49934,-32.496376
+      pos: 61.5,-32.5
       parent: 1
   - uid: 834
     components:
@@ -57682,7 +57682,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 19.955782,-184.24771
+      pos: 19.5,-184.5
       parent: 1
   - uid: 843
     components:
@@ -59791,7 +59791,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 865.2991347
     - type: Door
-      secondsUntilStateChange: -28527.092
+      secondsUntilStateChange: -28666.566
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -59806,7 +59806,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 865.2991347
     - type: Door
-      secondsUntilStateChange: -28527.092
+      secondsUntilStateChange: -28666.566
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -60339,7 +60339,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 2393.0309403
     - type: Door
-      secondsUntilStateChange: -26999.36
+      secondsUntilStateChange: -27138.834
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -60355,7 +60355,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 2393.0309403
     - type: Door
-      secondsUntilStateChange: -26999.36
+      secondsUntilStateChange: -27138.834
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -60371,7 +60371,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 2078.4979215
     - type: Door
-      secondsUntilStateChange: -27313.893
+      secondsUntilStateChange: -27453.367
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -60387,7 +60387,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 2078.4979215
     - type: Door
-      secondsUntilStateChange: -27313.893
+      secondsUntilStateChange: -27453.367
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -74466,53 +74466,6 @@ entities:
     components:
     - type: Transform
       pos: 124.5,-74.5
-      parent: 1
-- proto: CMVendorCigs
-  entities:
-  - uid: 3505
-    components:
-    - type: Transform
-      pos: 176.5,-57.5
-      parent: 1
-  - uid: 3506
-    components:
-    - type: Transform
-      pos: 172.5,-60.5
-      parent: 1
-  - uid: 3507
-    components:
-    - type: Transform
-      pos: 102.5,-62.5
-      parent: 1
-  - uid: 3508
-    components:
-    - type: Transform
-      pos: 44.5,-10.5
-      parent: 1
-  - uid: 3509
-    components:
-    - type: Transform
-      pos: 85.5,-128.5
-      parent: 1
-  - uid: 3510
-    components:
-    - type: Transform
-      pos: 121.5,-170.5
-      parent: 1
-  - uid: 3511
-    components:
-    - type: Transform
-      pos: 22.5,-196.5
-      parent: 1
-  - uid: 3512
-    components:
-    - type: Transform
-      pos: 57.5,-97.5
-      parent: 1
-  - uid: 3513
-    components:
-    - type: Transform
-      pos: 130.5,-52.5
       parent: 1
 - proto: CMVendorCoffee
   entities:
@@ -181623,7 +181576,7 @@ entities:
       pos: 126.5,-167.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -46087.527
+      secondsUntilStateChange: -46227.004
       state: Opening
   - uid: 24756
     components:
@@ -182190,62 +182143,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 30.5,-170.5
-      parent: 1
-- proto: GasPipeBend
-  entities:
-  - uid: 24864
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 26.5,-170.5
-      parent: 1
-- proto: GasPipeStraight
-  entities:
-  - uid: 24865
-    components:
-    - type: Transform
-      pos: 26.5,-175.5
-      parent: 1
-  - uid: 24866
-    components:
-    - type: Transform
-      pos: 26.5,-173.5
-      parent: 1
-  - uid: 24867
-    components:
-    - type: Transform
-      pos: 26.5,-171.5
-      parent: 1
-  - uid: 24868
-    components:
-    - type: Transform
-      pos: 26.5,-172.5
-      parent: 1
-- proto: GasPipeTJunction
-  entities:
-  - uid: 24869
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 27.5,-170.5
-      parent: 1
-  - uid: 24870
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 28.5,-170.5
-      parent: 1
-  - uid: 24871
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 29.5,-170.5
-      parent: 1
-  - uid: 24872
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 31.5,-170.5
       parent: 1
 - proto: GasValve
   entities:
@@ -187044,6 +186941,62 @@ entities:
     components:
     - type: Transform
       pos: 63.500816,-41.06132
+      parent: 1
+- proto: RMCGasPipeBend
+  entities:
+  - uid: 24864
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 26.5,-170.5
+      parent: 1
+- proto: RMCGasPipeStraight
+  entities:
+  - uid: 24865
+    components:
+    - type: Transform
+      pos: 26.5,-175.5
+      parent: 1
+  - uid: 24866
+    components:
+    - type: Transform
+      pos: 26.5,-173.5
+      parent: 1
+  - uid: 24867
+    components:
+    - type: Transform
+      pos: 26.5,-171.5
+      parent: 1
+  - uid: 24868
+    components:
+    - type: Transform
+      pos: 26.5,-172.5
+      parent: 1
+- proto: RMCGasPipeTJunction
+  entities:
+  - uid: 24869
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 27.5,-170.5
+      parent: 1
+  - uid: 24870
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 28.5,-170.5
+      parent: 1
+  - uid: 24871
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 29.5,-170.5
+      parent: 1
+  - uid: 24872
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,-170.5
       parent: 1
 - proto: RMCGeneratorFusionCell
   entities:
@@ -198630,6 +198583,55 @@ entities:
     - type: Transform
       pos: 34.602306,-194.54646
       parent: 1
+- proto: RMCVendorCigsElectro
+  entities:
+  - uid: 3508
+    components:
+    - type: Transform
+      pos: 85.5,-128.5
+      parent: 1
+  - uid: 3510
+    components:
+    - type: Transform
+      pos: 22.5,-196.5
+      parent: 1
+  - uid: 3511
+    components:
+    - type: Transform
+      pos: 57.5,-97.5
+      parent: 1
+  - uid: 3512
+    components:
+    - type: Transform
+      pos: 130.5,-52.5
+      parent: 1
+- proto: RMCVendorCigsWeYa
+  entities:
+  - uid: 3505
+    components:
+    - type: Transform
+      pos: 176.5,-57.5
+      parent: 1
+  - uid: 3506
+    components:
+    - type: Transform
+      pos: 172.5,-60.5
+      parent: 1
+  - uid: 3507
+    components:
+    - type: Transform
+      pos: 102.5,-62.5
+      parent: 1
+  - uid: 3509
+    components:
+    - type: Transform
+      pos: 121.5,-170.5
+      parent: 1
+  - uid: 3513
+    components:
+    - type: Transform
+      pos: 44.5,-10.5
+      parent: 1
 - proto: RMCVial
   entities:
   - uid: 27422
@@ -198982,6 +198984,62 @@ entities:
     - type: Transform
       pos: 64.5,-198.5
       parent: 1
+- proto: RMCWeaponRifleM54CE2
+  entities:
+  - uid: 27708
+    components:
+    - type: Transform
+      pos: 135.61945,-99.28054
+      parent: 1
+- proto: RMCWeaponRifleM54CStripped
+  entities:
+  - uid: 27709
+    components:
+    - type: Transform
+      pos: 15.5,-164.5
+      parent: 1
+  - uid: 27710
+    components:
+    - type: Transform
+      pos: 72.5,-199.5
+      parent: 1
+- proto: RMCWeaponRifleSSG45
+  entities:
+  - uid: 25516
+    components:
+    - type: Transform
+      parent: 25510
+    - type: Physics
+      canCollide: False
+    - type: ContainerContainer
+      containers:
+        gun_magazine: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        gun_chamber: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        rmc-aslot-barrel: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        rmc-aslot-rail: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        rmc-aslot-stock: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        rmc-aslot-underbarrel: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+    - type: InsideEntityStorage
+    missingComponents:
+    - GunIDLock
 - proto: RMCWeaponShotgunHG3712
   entities:
   - uid: 1589
@@ -200330,62 +200388,6 @@ entities:
     - type: Transform
       pos: 74.5,-179.5
       parent: 1
-- proto: WeaponRifleM54CE2
-  entities:
-  - uid: 27708
-    components:
-    - type: Transform
-      pos: 135.61945,-99.28054
-      parent: 1
-- proto: WeaponRifleM54CStripped
-  entities:
-  - uid: 27709
-    components:
-    - type: Transform
-      pos: 15.5,-164.5
-      parent: 1
-  - uid: 27710
-    components:
-    - type: Transform
-      pos: 72.5,-199.5
-      parent: 1
-- proto: RMCWeaponRifleSSG45
-  entities:
-  - uid: 25516
-    components:
-    - type: Transform
-      parent: 25510
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        gun_magazine: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        gun_chamber: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        rmc-aslot-barrel: !type:ContainerSlot
-          showEnts: False
-          occludes: False
-          ent: null
-        rmc-aslot-rail: !type:ContainerSlot
-          showEnts: False
-          occludes: False
-          ent: null
-        rmc-aslot-stock: !type:ContainerSlot
-          showEnts: False
-          occludes: False
-          ent: null
-        rmc-aslot-underbarrel: !type:ContainerSlot
-          showEnts: False
-          occludes: False
-          ent: null
-    - type: InsideEntityStorage
-    missingComponents:
-    - GunIDLock
 - proto: WeaponShotgunM357
   entities:
   - uid: 27711

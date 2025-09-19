@@ -32,28 +32,21 @@
     medium: 0.75
     heavy: 0.806
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     layers:
     - state: base
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
-    - state: camo
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
-      map: [ "enum.ItemCamouflageLayers.Layer" ]
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
     - state: mag-0
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
+    - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
+      state: m56_barrel
+      offset: 0.625, 0
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     slots:
     - suitStorage
     - Back
-  - type: ItemCamouflage
-    colors:
-      Jungle: "#ccd08d"
-      Desert: "#ffd2a6"
-      Snow: "#ddcbc9"
-      Classic: "#c7e7d9"
-      Urban: "#acb8c7"
   - type: MeleeWeapon
     damage:
       types:
@@ -159,7 +152,7 @@
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-rail: -0.1875, 0.125
-      rmc-aslot-harness: -0.1875, 0.1
+      rmc-aslot-harness: -0.0625, -0.0625
   - type: WieldedCrosshair
     rsi:
       sprite: _RMC14/Interface/MousePointer/smartgun_mouse.rsi

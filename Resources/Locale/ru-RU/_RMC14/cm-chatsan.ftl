@@ -489,15 +489,69 @@ cm-chatsan-replacement-survs = planet talls
 # cm-chatsan-word-#tank = #tank
 # cm-chatsan-replacement-#tank = turtle
 
+
 # cm-chatsan-word-# laser = # laser
 # cm-chatsan-replacement-# laser = dot
+
 
 # cm-chatsan-word-# lazer = # lazer
 # cm-chatsan-replacement-# lazer = dot
 
+
 # cm-chatsan-word-# flamer = # flamer
 # cm-chatsan-replacement-# flamer = fire spitter
+
 
 # cm-chatsan-word-# flamethrower = # flamethrower
 # cm-chatsan-replacement-# flamethrower =  fire spitter
 
+cm-chatsan-word-staff-officers = staff officers
+cm-chatsan-replacement-staff-officers = tall watchers
+cm-chatsan-word-senior-enlisted-advisors = senior enlisted advisors
+cm-chatsan-replacement-senior-enlisted-advisors = young tall queens
+rmc-chatsan-word-auxiliary-support-officer = auxiliary support officer
+rmc-chatsan-replacement-auxiliary-support-officer = young tall queen
+rmc-chatsan-word-aux-support-officer = aux support officer
+rmc-chatsan-replacement-aux-support-officer = young tall queen
+rmc-chatsan-word-aso = aso
+rmc-chatsan-replacement-aso = young tall queen
+rmc-chatsan-word-honor-guard = honor guard
+rmc-chatsan-replacement-honor-guard = tall praetorian
+rmc-chatsan-word-honor-guards = honor guards
+rmc-chatsan-replacement-honor-guards = tall praetorians
+rmc-chatsan-word-brigadier = brigadier
+rmc-chatsan-replacement-brigadier = tall queen mother
+rmc-chatsan-word-major-general = major general
+rmc-chatsan-replacement-major-general = tall queen mother
+rmc-chatsan-word-lieutenant-general = lieutenant general
+rmc-chatsan-replacement-lieutenant-general = tall queen mother
+rmc-chatsan-word-lt-general = lt general
+rmc-chatsan-replacement-lt-general = tall queen mother
+rmc-chatsan-word-commandant = commandant
+rmc-chatsan-replacement-commandant = tall queen mother
+rmc-chatsan-word-high-command = high command
+rmc-chatsan-replacement-high-command = tall queen mother
+cm-chatsan-word-zerker = zerker
+cm-chatsan-word-replacement-zerker = berserker
+cm-chatsan-word-zerkers = zerkers
+cm-chatsan-word-replacement-zerkers = berserkers
+cm-chatsan-word-rav = rav
+cm-chatsan-word-replacement-rav = ravager
+cm-chatsan-word-ravs = ravs
+cm-chatsan-word-replacement-ravs = ravagers
+cm-chatsan-word-prae = prae
+cm-chatsan-word-replacement-prae = praetorian
+cm-chatsan-word-praes = praes
+cm-chatsan-word-replacement-praes = praetorians
+cm-chatsan-word-hivey = hivey
+cm-chatsan-word-replacement-hivey = hivelord
+cm-chatsan-word-hiveys = hiveys
+cm-chatsan-word-replacement-hiveys = hivelords
+cm-chatsan-word-cap = cap
+cm-chatsan-word-replacement-cap = capture
+cm-chatsan-word-caps = caps
+cm-chatsan-word-replacement-caps = captures
+cm-chatsan-word-capped = capped
+cm-chatsan-word-replacement-capped = captured
+cm-chatsan-word-phero = phero
+cm-chatsan-word-replacement-phero = pheromone

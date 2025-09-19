@@ -341841,7 +341841,7 @@ entities:
     - type: Transform
       pos: -125.5,-145.5
       parent: 1
-- proto: WeaponRifleM54C
+- proto: RMCWeaponRifleM54C
   entities:
   - uid: 1481
     components:
@@ -341895,7 +341895,7 @@ entities:
           showEnts: False
           occludes: False
           ent: null
-- proto: WeaponRifleM54CE2
+- proto: RMCWeaponRifleM54CE2
   entities:
   - uid: 49336
     components:
@@ -341949,7 +341949,7 @@ entities:
     - type: Transform
       pos: -98.5,-41.5
       parent: 1
-- proto: WeaponShotgunM42A2
+- proto: WeaponShotgunM42A1
   entities:
   - uid: 49340
     components:

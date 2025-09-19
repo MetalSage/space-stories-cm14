@@ -119,7 +119,6 @@
   - type: AllowSuitStorage
     whitelist:
       components:
-      - BallisticAmmoProvider #Note should get all maganizes
       - SmartGun
       - CassettePlayer
       tags:
@@ -129,6 +128,11 @@
       - RMCG8Pouch
       #TODO mines
       - RMCDetector
+      #Note should get all magazines and ignore guns
+      - CMMagazineSmg
+      - CMMagazinePistol
+      - CMMagazineRifle
+      - CMMagazineSniper
 
 - type: entity
   abstract: true

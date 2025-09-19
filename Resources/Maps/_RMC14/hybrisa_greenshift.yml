@@ -327972,7 +327972,7 @@ entities:
     - type: Transform
       pos: -70.42406,-145.15779
       parent: 1
-- proto: WeaponRifleM54C
+- proto: RMCWeaponRifleM54C
   entities:
   - uid: 1552
     components:
@@ -328047,7 +328047,7 @@ entities:
     - type: Transform
       pos: -78.55281,-13.20909
       parent: 1
-- proto: WeaponShotgunM42A2
+- proto: WeaponShotgunM42A1
   entities:
   - uid: 15359
     components:

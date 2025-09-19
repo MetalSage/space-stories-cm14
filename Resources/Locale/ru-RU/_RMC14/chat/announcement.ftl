@@ -12,7 +12,7 @@ rmc-announcement-message-signed = [font size=16][bold][color=#CECECE]Объяв�
 rmc-announcement-message-raw = [font size=16][bold][color=#CECECE]{ $author }[/color][/bold][/font][font size=16][color=red]
     
     { $message }
-rmc-announcement-ares-message = [color=#CECECE][font size=16][bold]ARES v3.2 Приказ о начале операции[/bold][/font][/color][color=red][font size=16][bold]
+rmc-announcement-ares-message = [color=#CECECE][font size=16][bold]ARES v3.2 Приказ о порядке проведения операции[/bold][/font][/color][color=red][font size=16][bold]
     
     { $message }[/bold][/font][/color]
 rmc-announcement-ares-lz-designated =
@@ -43,3 +43,5 @@ rmc-announcement-ares-command = [color=#CECECE][font size=16][bold]ARES v3.2[/bo
 rmc-announcement-unidentified-lifesigns = [color=#CECECE][font size=16][bold]Неопознанные формы жизни[/bold][/font][/color][color=red][font size=16][bold]
     
     Обнаружены неопознанные формы жизни ({ $count }) на борту десантного корабля { $name }. Рекомендация: блокировка внешних портов доступа, включая вентиляционные каналы и шахты.[/bold][/font][/color]
+rmc-announcement-author-shipside = Командование корабль
+rmc-announcement-shipside-header = Пожалуйста, напишите сообщение для экипажа

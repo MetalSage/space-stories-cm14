@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 264.0.0
+  engineVersion: 264.0.1
   forkId: ""
   forkVersion: ""
-  time: 07/26/2025 22:01:08
+  time: 08/30/2025 13:28:55
   entityCount: 22720
 maps:
 - 1
@@ -64280,7 +64280,7 @@ entities:
       pos: 28.5,-186.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -12175.217
+      secondsUntilStateChange: -12535.516
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -75089,7 +75089,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 4194.3958056
     - type: Door
-      secondsUntilStateChange: -19421.955
+      secondsUntilStateChange: -19782.254
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -75105,7 +75105,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 4194.3958056
     - type: Door
-      secondsUntilStateChange: -19421.955
+      secondsUntilStateChange: -19782.254
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -75653,7 +75653,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 11892.4547742
     - type: Door
-      secondsUntilStateChange: -11809.584
+      secondsUntilStateChange: -12169.883
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -75676,7 +75676,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 11892.4547742
     - type: Door
-      secondsUntilStateChange: -11809.584
+      secondsUntilStateChange: -12169.883
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -100905,98 +100905,6 @@ entities:
     components:
     - type: Transform
       pos: 78.5,-61.5
-      parent: 1
-- proto: CMVendorCigs
-  entities:
-  - uid: 6879
-    components:
-    - type: Transform
-      pos: 9.5,-51.5
-      parent: 1
-  - uid: 6880
-    components:
-    - type: Transform
-      pos: 99.5,-1.5
-      parent: 1
-  - uid: 6881
-    components:
-    - type: Transform
-      pos: 58.5,-176.5
-      parent: 1
-  - uid: 6882
-    components:
-    - type: Transform
-      pos: 78.5,-53.5
-      parent: 1
-  - uid: 6883
-    components:
-    - type: Transform
-      pos: 184.5,-194.5
-      parent: 1
-  - uid: 6884
-    components:
-    - type: Transform
-      pos: 167.5,-197.5
-      parent: 1
-  - uid: 6885
-    components:
-    - type: Transform
-      pos: 230.5,-141.5
-      parent: 1
-  - uid: 6886
-    components:
-    - type: Transform
-      pos: 73.5,-20.5
-      parent: 1
-  - uid: 6887
-    components:
-    - type: Transform
-      pos: 246.5,-116.5
-      parent: 1
-  - uid: 6888
-    components:
-    - type: Transform
-      pos: 124.5,-62.5
-      parent: 1
-  - uid: 6889
-    components:
-    - type: Transform
-      pos: 156.5,-214.5
-      parent: 1
-  - uid: 6890
-    components:
-    - type: Transform
-      pos: 81.5,-30.5
-      parent: 1
-  - uid: 6891
-    components:
-    - type: Transform
-      pos: 108.5,-90.5
-      parent: 1
-  - uid: 6892
-    components:
-    - type: Transform
-      pos: 126.5,-200.5
-      parent: 1
-  - uid: 6893
-    components:
-    - type: Transform
-      pos: 16.5,-181.5
-      parent: 1
-  - uid: 6894
-    components:
-    - type: Transform
-      pos: 212.5,-155.5
-      parent: 1
-  - uid: 6895
-    components:
-    - type: Transform
-      pos: 241.5,-155.5
-      parent: 1
-  - uid: 6896
-    components:
-    - type: Transform
-      pos: 25.5,-167.5
       parent: 1
 - proto: CMVendorCoffee
   entities:
@@ -141776,6 +141684,100 @@ entities:
     - type: Transform
       pos: 30.5,-14.5
       parent: 1
+- proto: RMCVendorCigsElectro
+  entities:
+  - uid: 6879
+    components:
+    - type: Transform
+      pos: 9.5,-51.5
+      parent: 1
+  - uid: 6880
+    components:
+    - type: Transform
+      pos: 58.5,-176.5
+      parent: 1
+  - uid: 6881
+    components:
+    - type: Transform
+      pos: 99.5,-1.5
+      parent: 1
+  - uid: 6882
+    components:
+    - type: Transform
+      pos: 78.5,-53.5
+      parent: 1
+  - uid: 6883
+    components:
+    - type: Transform
+      pos: 184.5,-194.5
+      parent: 1
+  - uid: 6884
+    components:
+    - type: Transform
+      pos: 167.5,-197.5
+      parent: 1
+  - uid: 6885
+    components:
+    - type: Transform
+      pos: 230.5,-141.5
+      parent: 1
+- proto: RMCVendorCigsWeYa
+  entities:
+  - uid: 6886
+    components:
+    - type: Transform
+      pos: 73.5,-20.5
+      parent: 1
+  - uid: 6887
+    components:
+    - type: Transform
+      pos: 246.5,-116.5
+      parent: 1
+  - uid: 6888
+    components:
+    - type: Transform
+      pos: 124.5,-62.5
+      parent: 1
+  - uid: 6889
+    components:
+    - type: Transform
+      pos: 156.5,-214.5
+      parent: 1
+  - uid: 6890
+    components:
+    - type: Transform
+      pos: 81.5,-30.5
+      parent: 1
+  - uid: 6891
+    components:
+    - type: Transform
+      pos: 108.5,-90.5
+      parent: 1
+  - uid: 6892
+    components:
+    - type: Transform
+      pos: 126.5,-200.5
+      parent: 1
+  - uid: 6893
+    components:
+    - type: Transform
+      pos: 16.5,-181.5
+      parent: 1
+  - uid: 6894
+    components:
+    - type: Transform
+      pos: 212.5,-155.5
+      parent: 1
+  - uid: 6895
+    components:
+    - type: Transform
+      pos: 241.5,-155.5
+      parent: 1
+  - uid: 6896
+    components:
+    - type: Transform
+      pos: 25.5,-167.5
+      parent: 1
 - proto: RMCWallCorsat
   entities:
   - uid: 13705
@@ -175069,6 +175071,13 @@ entities:
     - type: Transform
       pos: 59.5,-233.5
       parent: 1
+- proto: RMCWeaponRifleM54C
+  entities:
+  - uid: 22144
+    components:
+    - type: Transform
+      pos: 180.5,-113.5
+      parent: 1
 - proto: RMCWeaponShotgunHG3712
   entities:
   - uid: 20360
@@ -184064,13 +184073,6 @@ entities:
     components:
     - type: Transform
       pos: 118.5,-90.5
-      parent: 1
-- proto: WeaponRifleM54C
-  entities:
-  - uid: 22144
-    components:
-    - type: Transform
-      pos: 180.5,-113.5
       parent: 1
 - proto: WeaponShotgunM890
   entities:

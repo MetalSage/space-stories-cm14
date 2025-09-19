@@ -89,7 +89,4 @@
     - name: Left Hand
       location: Left
   - type: IgnoreInteractionRange
-    whitelist:
-      tags:
-      - RMCDropshipEnginePoint
     range: 2

@@ -105,7 +105,6 @@
   - type: XenoWeedable
     spawn: XenoWeedsWall
   - type: XenoConstructionSupport
-  - type: RMCDropshipBlocked
   - type: MinimapColor
     color: "#ebe5e5ee"
   - type: IsRoof
@@ -227,7 +226,6 @@
         - LowImpassable
         - InteractImpassable
         density: 1000
-  - type: RMCDropshipBlocked
 
 - type: entity
   parent: MarkerBase

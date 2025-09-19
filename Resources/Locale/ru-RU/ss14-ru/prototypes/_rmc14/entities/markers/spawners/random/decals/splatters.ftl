@@ -10,3 +10,6 @@ ent-RMCDecalSpawnerXenoSplatters = спавнер ксено-крови
 ent-RMCDecalSpawnerOilSplatters = спавнер масла
     .suffix = RMC14
     .desc = { ent-RMCDecalSpawnerBase.desc }
+ent-RMCDecalSpawnerAcidBloodSplash = спавнер ксенокислотный всплеск
+    .suffix = RMC14
+    .desc = { ent-RMCDecalSpawnerXenoSplatters.desc }

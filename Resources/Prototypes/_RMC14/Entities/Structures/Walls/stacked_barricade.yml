@@ -24,7 +24,6 @@
     damageContainer: Inorganic
     damageModifierSet: CMBarricade
   - type: InteractionOutline
-  - type: RMCDropshipBlocked
   - type: Sprite
     sprite: _RMC14/Structures/Walls/Barricades/stacked_barricade.rsi
     state: metal
