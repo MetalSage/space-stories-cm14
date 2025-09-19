@@ -34,4 +34,19 @@ public sealed partial class ActiveMortarShellComponent : Component
 
     [DataField, AutoNetworkedField]
     public TimeSpan LandAt;
+
+    [DataField, AutoNetworkedField]
+    public bool IsGuided;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? TargetEntity;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan LastUpdate;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan GuidedWarn;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid Mortar; 
 }

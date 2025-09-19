@@ -1,4 +1,4 @@
-﻿using Robust.Shared.GameStates;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared._RMC14.Mortar;
 
@@ -20,4 +20,14 @@ public sealed partial class MortarShellComponent : Component
 
     [DataField, AutoNetworkedField]
     public TimeSpan ImpactDelay = TimeSpan.FromSeconds(4.5);
+
+    [DataField, AutoNetworkedField]
+    public bool Guided;
+
+    [DataField, AutoNetworkedField]
+    public string SolutionId = "fuel";
+
+    [DataField, AutoNetworkedField]
+    public float FuelVolume = 10f;
+
 }

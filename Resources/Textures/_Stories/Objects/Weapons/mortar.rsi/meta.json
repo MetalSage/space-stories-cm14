@@ -1,0 +1,38 @@
+﻿{
+  "version": 1,
+  "license": "Собственная лицензия. Копирование, модификация и использование вне проекта Space Stories полностью запрещено без предварительного согласия текущего владельца проекта",
+  "copyright": "Создано inconnu1337(discord:inconnu1337) для Space Stories(Server SS14). За основу взяты спрайты https://github.com/cmss13-devs/cmss13/blob/ca94d2e8715b73103fa9f213be53d343359b4107/icons/obj/structures/mortar.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "mortar_ammo_guided_he",
+      "delays": [
+        [
+          0.6,
+          0.6
+        ]
+      ]
+    },
+    {
+      "name": "mortar_ammo_guided_inc",
+      "delays": [
+        [
+          0.6,
+          0.6
+        ]
+      ]
+    },
+    {
+      "name": "mortar_ammo_guided_flr",
+      "delays": [
+        [
+          0.6,
+          0.6
+        ]
+      ]
+    }
+  ]
+}

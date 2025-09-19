@@ -13,6 +13,7 @@ using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._RMC14.Medical.MedevacStretcher;
+using Content.Shared._RMC14.Mortar;
 using Content.Shared._RMC14.OnCollide;
 using Content.Shared._RMC14.PowerLoader;
 using Content.Shared._RMC14.Rangefinder;
@@ -1149,6 +1150,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
     {
         var dropshipTarget = new DropshipTargetComponent { Abbreviation = abbreviation };
         AddComp(ent, dropshipTarget, true);
+        EnsureComp<MortarTargetComponent>(ent); // Stories-Guided-Shells
         Dirty(ent, dropshipTarget);
     }
 

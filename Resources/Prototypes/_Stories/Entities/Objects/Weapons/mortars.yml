@@ -1,0 +1,78 @@
+- type: entity
+  parent: RMCMortarShellBase
+  id: STGuidedShellBase
+  abstract: true
+  description: An 80mm mortar shell with a guidance system and programmable fuze. Held briefly in the barrel before firing, it calibrates and then adjusts its trajectory in flight to follow moving targets. Requires an active communication tower to function properly.
+  components:
+  - type: Item
+  - type: MortarShell
+    guided: true
+  - type: SolutionContainerManager
+    solutions:
+      fuel:
+        maxVol: 10
+  - type: RMCFlamerTank
+    solutionId: fuel
+  - type: RMCSolutionTransferWhitelist
+    popup: rmc-solution-transfer-whitelist-failed-not-reagent-tank
+    targetWhitelist:
+      tags:
+      - RMCTankReagent
+  - type: RefillableSolution
+    solution: fuel
+  - type: DetailedExaminableSolution
+    solution: fuel
+  - type: NoMixingReagents
+  - type: Appearance
+  - type: SolutionStorageFillable
+    solution: fuel
+
+- type: entity
+  parent: STGuidedShellBase
+  id: STMortarShellGuidedHE
+  name: 80mm XM-82 “Argus” precision guided high explosive mortar shell
+  components: 
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/mortar.rsi
+    state: mortar_ammo_guided_he
+  - type: Explosive
+    explosionType: RMCMortar
+    maxIntensity: 30.10 # max 150 brute, 150 burn
+    intensitySlope: 5
+    totalIntensity: 800
+    canCreateVacuum: false
+  - type: CMExplosionEffect
+  - type: RMCScorchEffect
+
+- type: entity
+  parent: STGuidedShellBase
+  id: STMortarShellGuidedIncendiary
+  name: 80mm XM-82 “Argus” precision guided incendiary mortar shell
+  components:
+  - type: Item
+    heldPrefix: inc
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/mortar.rsi
+    state: mortar_ammo_guided_inc
+  - type: Explosive
+    explosionType: RMCMortar
+    maxIntensity: 0
+    intensitySlope: 0
+    totalIntensity: 0
+    canCreateVacuum: false
+  - type: RMCScorchEffect
+  - type: TileFireOnTrigger
+    spawn: RMCTileFireGreen
+    range: 5
+
+- type: entity
+  parent: STGuidedShellBase
+  id: STMortarShellGuidedFlare
+  name: 80mm XM-82 “Argus” precision guided flare/camera mortar shell
+  components:
+  - type: Item
+    heldPrefix: flr
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/mortar.rsi
+    state: mortar_ammo_guided_flr
+  - type: MortarCameraShell

@@ -1,0 +1,83 @@
+- type: entity
+  parent: RMCCrateMortarAmmo
+  id: STCrateGuidedMortarShellHE
+  name: M402 guided mortar shells crate (x3 HE)
+  components:
+  - type: StorageFill
+    contents:
+    - id: STMortarShellGuidedHE
+      amount: 3
+    - id: STGuidedShellUsageWarningPaper
+      amount: 1
+
+- type: entity
+  parent: RMCCrateMortarAmmo
+  id: STCrateGuidedMortarShellIncendiary
+  name: M402 guided mortar shells crate (x3 Incend)
+  components:
+  - type: StorageFill
+    contents:
+    - id: STMortarShellGuidedIncendiary
+      amount: 3
+    - id: STGuidedShellUsageWarningPaper
+      amount: 1
+
+- type: entity
+  parent: RMCCrateMortarAmmo
+  id: STCrateGuidedMortarShellFlare
+  name: M402 guided mortar shells crate (x3 Flare/Camera)
+  components:
+  - type: StorageFill
+    contents:
+    - id: STMortarShellGuidedFlare
+      amount: 3
+    - id: STGuidedShellUsageWarningPaper
+      amount: 1
+
+- type: entity
+  parent: CMPaper
+  id: STGuidedShellUsageWarningPaper
+  name: warning on use of XM-82 series guided mortar shells
+  components:
+    - type: Paper
+      stampState: paper_stamp-marine
+      stampedBy:
+        - stampedColor: '#4E806AFF'
+          stampedName: stamp-component-stamped-name-cm-marine
+      content: |
+        [color=#383838]▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄[/color]
+        [color=#8c0000]▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀[/color]
+
+                                               [color=red][bold]!!! ВНИМАНИЕ !!![/bold][/color]
+                            ПРЕДУПРЕЖДЕНИЕ ОБ ИСПОЛЬЗОВАНИИ
+                                       УПРАВЛЯЕМОГО СНАРЯДА
+
+        [color=#383838]▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄[/color]
+        [color=#8c0000]▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀[/color]
+
+        [bold]ОБЯЗАТЕЛЬНО ПЕРЕД ИСПОЛЬЗОВАНИЕМ:[/bold]
+
+            [color=red][bold]>[/bold][/color] ЗАПРАВЬТЕ СНАРЯД [color=red][bold]10u[/bold][/color] СВАРОЧНОГО ТОПЛИВА [color=red][bold]<[/bold][/color]
+
+
+        [color=#134975]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+        [bold]БЕЗ ПРАВИЛЬНОЙ ЗАПРАВКИ ВОЗМОЖНЫ:[/bold]
+
+            * [color=red][bold]Взрыв[/bold][/color] в стволе миномета
+            * [color=red][bold]Повреждение[/bold][/color] оборудования  
+            * [color=red][bold]Серьезные травмы[/bold][/color] персонала
+            * [color=red][bold]Непредвиденные происшествия[/bold][/color] происшествия
+
+        [color=#134975]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+        [bold]ПОРЯДОК ДЕЙСТВИЙ:[/bold]
+
+            1. Возьмите бак или иное хранилище со [color=red][bold]сварочным топливом[/bold][/color]
+            2. Заправьте снаряд [color=red][bold]10u[/bold][/color] топлива
+            3. Убедитесь в готовности снаряда
+            4. Только после этого используйте
+
+        [color=#134975]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+                    [bold]ПОМНИТЕ: БЕЗОПАСНОСТЬ ПРЕВЫШЕ ВСЕГО![/bold]
+
+        [color=#134975]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+        [color=gray]Данное предупреждение утверждено департаментом безопасности[/color]

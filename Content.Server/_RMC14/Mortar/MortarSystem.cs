@@ -117,7 +117,8 @@ public sealed class MortarSystem : SharedMortarSystem
             return false;
         }
 
-        if (mortar.Comp.FireRandomOffset is { Length: > 0 } fireRandomOffset)
+        var fireRandomOffset = mortar.Comp.FireRandomOffset;
+        if (!shell.Comp.Guided && fireRandomOffset != null && fireRandomOffset.Length > 0)
         {
             var xDeviation = _random.Pick(fireRandomOffset);
             var yDeviation = _random.Pick(fireRandomOffset);
@@ -131,6 +132,23 @@ public sealed class MortarSystem : SharedMortarSystem
             return false;
         }
 
+        if (shell.Comp.Guided && !HasActiveCommunicationTower(shell))
+        {
+            _popup.PopupEntity(Loc.GetString("st-guided-shell-need-active-tower"), user, user, SmallCaution);
+            return false;
+        }
+
+        if (shell.Comp.Guided && HasActiveGuidedShells(mortar, out var _))
+        {
+            _popup.PopupEntity(Loc.GetString("st-guided-cant-control-more-shells"), user, user, SmallCaution);
+            return false;
+        }
+
+        if (mortar.Comp.NeedAbort)
+        {
+            _popup.PopupEntity(Loc.GetString("st-mortar-need-abort"), user, user, SmallCaution);
+            return false;
+        }
         return true;
     }
 }

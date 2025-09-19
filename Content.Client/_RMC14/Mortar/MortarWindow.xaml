@@ -4,7 +4,7 @@
     xmlns:ui="clr-namespace:Content.Client._RMC14.UserInterface"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'rmc-mortar-interface'}"
-    MinSize="450 350"
+    MinSize="450 500"
     Access="Public">
     <PanelContainer Access="Public">
         <PanelContainer.PanelOverride>
@@ -14,7 +14,10 @@
                 BackgroundColor="#1A1A1A" />
         </PanelContainer.PanelOverride>
         <BoxContainer Orientation="Vertical" Margin="4" Access="Public">
-            <PanelContainer HorizontalExpand="True" Margin="0 0 0 8" Access="Public">
+            <PanelContainer 
+                HorizontalExpand="True" 
+                Margin="0 0 0 8" 
+                Access="Public">
                 <PanelContainer.PanelOverride>
                     <graphics:StyleBoxFlat 
                         BorderColor="#3A3A3A" 
@@ -22,25 +25,103 @@
                         BackgroundColor="#252525" />
                 </PanelContainer.PanelOverride>
                 <BoxContainer Orientation="Vertical" Margin="4" Access="Public">
-                    <RichTextLabel Text="{Loc 'rmc-mortar-target-title'}" HorizontalAlignment="Center" Access="Public" />
+                    <RichTextLabel 
+                        Text="{Loc 'rmc-mortar-target-title'}" 
+                        HorizontalAlignment="Center" 
+                        Access="Public" />
                     <BoxContainer Orientation="Horizontal" Margin="4 8" Access="Public">
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" Access="Public">
-                            <BoxContainer Name="TargetXContainer" Access="Public" Orientation="Horizontal" Margin="0 0 0 4">
-                                <Label Text="{Loc 'rmc-mortar-target-x'}" Margin="0 0 5 0" Access="Public" />
+                            <BoxContainer 
+                                Name="TargetXContainer" 
+                                Access="Public" 
+                                Orientation="Horizontal" 
+                                Margin="0 0 0 4">
+                                <Label 
+                                    Text="{Loc 'rmc-mortar-target-x'}" 
+                                    Margin="0 0 5 0" 
+                                    Access="Public" />
                             </BoxContainer>
-                            <BoxContainer Name="TargetYContainer" Access="Public" Orientation="Horizontal" Margin="0 0 0 8">
-                                <Label Text="{Loc 'rmc-mortar-target-y'}" Margin="0 0 5 0" Access="Public" />
+                            <BoxContainer 
+                                Name="TargetYContainer" 
+                                Access="Public" 
+                                Orientation="Horizontal" 
+                                Margin="0 0 0 4">
+                                <Label 
+                                    Text="{Loc 'rmc-mortar-target-y'}" 
+                                    Margin="0 0 5 0" 
+                                    Access="Public" />
                             </BoxContainer>
-                            <Button Name="SetTargetButton" Access="Public" StyleClasses="OpenBoth"
-                                    Text="{Loc 'rmc-mortar-target-set'}" HorizontalExpand="True" />
+                            <BoxContainer 
+                                Name="FlightTimeContainer" 
+                                Access="Public" 
+                                Orientation="Horizontal" 
+                                Margin="0 0 0 8">
+                                <Label 
+                                    Text="{Loc 'st-guided-mortar-flight-time'}" 
+                                    Margin="0 0 5 0" 
+                                    Access="Public" />
+                            </BoxContainer>
+                            <Button 
+                                Name="SetTargetButton" 
+                                Access="Public" 
+                                StyleClasses="OpenBoth"
+                                Text="{Loc 'rmc-mortar-target-set'}" 
+                                HorizontalExpand="True" />
                         </BoxContainer>
                         <ui:BlueHorizontalSeparator Margin="8 0" Access="Public" />
-                        <Button Name="ViewCameraButton" Access="Public" StyleClasses="OpenBoth"
-                                Text="{Loc 'rmc-mortar-view-camera'}" Margin="8 0" HorizontalExpand="True" />
+                        <Button 
+                            Name="ViewCameraButton" 
+                            Access="Public" 
+                            StyleClasses="OpenBoth"
+                            Text="{Loc 'rmc-mortar-view-camera'}" 
+                            Margin="8 0" 
+                            HorizontalExpand="True" />
                     </BoxContainer>
                 </BoxContainer>
             </PanelContainer>
-            <PanelContainer HorizontalExpand="True" Margin="0 0 0 8" Access="Public">
+            <PanelContainer 
+                Name="TargetsPanel" 
+                HorizontalExpand="True" 
+                Margin="0 0 0 8" 
+                Access="Public" 
+                Visible="False">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat 
+                        BorderColor="#35A3FF" 
+                        BorderThickness="2" 
+                        BackgroundColor="#1A2A3A" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" Margin="6" Access="Public">
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Access="Public">
+                        <RichTextLabel 
+                            Text="{Loc 'st-mortar-spotted-targets'}" 
+                            HorizontalAlignment="Center" 
+                            HorizontalExpand="True"
+                            Access="Public" />
+                        <Label 
+                            Name="TargetsCountLabel"
+                            Text="(0)"
+                            Margin="4 0 0 0"
+                            Access="Public" />
+                    </BoxContainer>
+                    <ScrollContainer 
+                        HorizontalExpand="True" 
+                        VerticalExpand="True" 
+                        MinSize="0 120"
+                        MaxSize="5000 200"
+                        Access="Public">
+                        <BoxContainer 
+                            Name="TargetsList" 
+                            Access="Public" 
+                            Orientation="Vertical" 
+                            HorizontalExpand="True" />
+                    </ScrollContainer>
+                </BoxContainer>
+            </PanelContainer>
+            <PanelContainer 
+                HorizontalExpand="True" 
+                Margin="0 0 0 8" 
+                Access="Public">
                 <PanelContainer.PanelOverride>
                     <graphics:StyleBoxFlat 
                         BorderColor="#3A3A3A" 
@@ -48,21 +129,46 @@
                         BackgroundColor="#252525" />
                 </PanelContainer.PanelOverride>
                 <BoxContainer Orientation="Vertical" Margin="4" Access="Public">
-                    <RichTextLabel Text="{Loc 'rmc-mortar-offset-title'}" HorizontalAlignment="Center" Access="Public" />
+                    <RichTextLabel 
+                        Text="{Loc 'rmc-mortar-offset-title'}" 
+                        HorizontalAlignment="Center" 
+                        Access="Public" />
                     <BoxContainer Orientation="Horizontal" Margin="4 8" Access="Public">
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" Access="Public">
-                            <BoxContainer Name="DialXContainer" Access="Public" Orientation="Horizontal" Margin="0 0 0 4">
-                                <Label Text="{Loc 'rmc-mortar-offset-x'}" Margin="0 0 5 0" Access="Public" />
+                            <BoxContainer 
+                                Name="DialXContainer" 
+                                Access="Public" 
+                                Orientation="Horizontal" 
+                                Margin="0 0 0 4">
+                                <Label 
+                                    Text="{Loc 'rmc-mortar-offset-x'}" 
+                                    Margin="0 0 5 0" 
+                                    Access="Public" />
                             </BoxContainer>
-                            <BoxContainer Name="DialYContainer" Access="Public" Orientation="Horizontal" Margin="0 0 0 8">
-                                <Label Text="{Loc 'rmc-mortar-offset-y'}" Margin="0 0 5 0" Access="Public" />
+                            <BoxContainer 
+                                Name="DialYContainer" 
+                                Access="Public" 
+                                Orientation="Horizontal" 
+                                Margin="0 0 0 8">
+                                <Label 
+                                    Text="{Loc 'rmc-mortar-offset-y'}" 
+                                    Margin="0 0 5 0" 
+                                    Access="Public" />
                             </BoxContainer>
-                            <Button Name="SetOffsetButton" Access="Public" StyleClasses="OpenBoth"
-                                    Text="{Loc 'rmc-mortar-offset-set'}" HorizontalExpand="True" />
+                            <Button 
+                                Name="SetOffsetButton" 
+                                Access="Public" 
+                                StyleClasses="OpenBoth"
+                                Text="{Loc 'rmc-mortar-offset-set'}" 
+                                HorizontalExpand="True" />
                         </BoxContainer>
                         <ui:BlueHorizontalSeparator Margin="8 0" Access="Public" />
-                        <Label Name="MaxDialLabel" Access="Public" VerticalAlignment="Center"
-                               Margin="8 0" HorizontalAlignment="Center" />
+                        <Label 
+                            Name="MaxDialLabel" 
+                            Access="Public" 
+                            VerticalAlignment="Center"
+                            Margin="8 0" 
+                            HorizontalAlignment="Center" />
                     </BoxContainer>
                 </BoxContainer>
             </PanelContainer>
