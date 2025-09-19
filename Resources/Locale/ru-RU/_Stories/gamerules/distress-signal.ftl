@@ -1,0 +1,1 @@
+st-distress-signal-minorxenovictory-refuse = [color=purple]Ксеноморфы победили на колонии,[/color] [color=yellow]но Королева Улья отказалась от Угона![/color]

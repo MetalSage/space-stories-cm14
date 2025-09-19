@@ -4,6 +4,8 @@ using Content.Shared._RMC14.Entrenching;
 using Content.Shared._RMC14.Ladder;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.Rules;
 using Content.Shared.Construction.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.DoAfter;
@@ -231,7 +233,15 @@ public sealed class RMCConstructionSystem : EntitySystem
         else
         {
             var built = SpawnAtPosition(entry.Prototype, coordinates);
-
+            // Stories-UnAnchor-Hijack-Cades-Start
+            var builtGrid = _transform.GetGrid(coordinates)
+            var distressQuery = EntityQueryEnumerator<CMDistressSignalRuleComponent>();
+            while (distressQuery.MoveNext(out var uid, out var distress))
+            {
+                if (distress.Hijack && HasComp<BarricadeComponent>(built) && HasComp<AlmayerComponent>(builtGrid))
+                    _transform.Unanchor(built);
+            }
+            // Stories-UnAnchor-Hijack-Cades-End
             if (!entry.NoRotate)
                 _transform.SetLocalRotation(built, args.Direction.ToAngle());
 

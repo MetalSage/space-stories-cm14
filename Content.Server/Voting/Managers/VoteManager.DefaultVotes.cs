@@ -608,5 +608,16 @@ namespace Content.Server.Voting.Managers
             }
             return presets;
         }
+        // Stories-Auto-Restart-Vote-Start
+        public void CreateForceRestartVote()
+        {
+            _gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+
+            StartVote(null);
+            
+            _gameTicker.UpdateInfoText();
+            TimeoutStandardVote(StandardVoteType.Restart);
+        }
+        // Stories-Auto-Restart-End
     }
 }
