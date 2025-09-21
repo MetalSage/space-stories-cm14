@@ -178,4 +178,10 @@ public sealed class SCCVars
     public static readonly CVarDef<int> AutoRestartRoundMaxHours =
         CVarDef.Create("scc.autorestart_round_max_hours", 2, CVar.SERVER | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Minimum marines on planet to block hijack refuse
+    /// </summary>
+    public static readonly CVarDef<int> MinMarinesForHijackRefuseBlock =
+        CVarDef.Create("scc.min_marines_for_block_hijack_refuse", 15, CVar.SERVER | CVar.ARCHIVE);
+
 }

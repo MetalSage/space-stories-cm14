@@ -234,7 +234,7 @@ public sealed class RMCConstructionSystem : EntitySystem
         {
             var built = SpawnAtPosition(entry.Prototype, coordinates);
             // Stories-UnAnchor-Hijack-Cades-Start
-            var builtGrid = _transform.GetGrid(coordinates)
+            var builtGrid = _transform.GetGrid(coordinates);
             var distressQuery = EntityQueryEnumerator<CMDistressSignalRuleComponent>();
             while (distressQuery.MoveNext(out var uid, out var distress))
             {
