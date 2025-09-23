@@ -1,3 +1,3 @@
-ent-RMCRandomHumanoidWeYaGoon = призрачная роль телохранителя ВеЯ
+ent-RMCRandomHumanoidWeYaGoon = роль призрака телохранитель Ве-Я
     .suffix = Спавнер, Игрок
     .desc = { ent-MarkerBase.desc }

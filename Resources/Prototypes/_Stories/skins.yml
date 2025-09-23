@@ -1,3 +1,5 @@
+# DEFAULT
+
 - type: xenoSkin
   id: STBoilerAcidSkin
   name: Кислотный
@@ -29,13 +31,63 @@
   xeno: CMXenoRunner
 
 - type: xenoSkin
-  id: STDefenderEternalFrostSkin
-  name: Вечный Мороз
-  spriteRsi: _Stories/Mobs/Xenos/Skins/steelcrest_defender.rsi
-  xeno: CMXenoDefender
-
-- type: xenoSkin
   id: STWarriorStoneTumorSkin
   name: Каменная Опухоль
   spriteRsi: _Stories/Mobs/Xenos/Skins/warrior.rsi
   xeno: CMXenoWarrior
+
+- type: xenoSkin
+  id: STBoilerGasSkin
+  name: Газовый
+  spriteRsi: _Stories/Mobs/Xenos/Skins/gasboiler.rsi
+  xeno: CMXenoBoiler
+
+# STRAINS
+
+- type: xenoSkin
+  id: STWarriorBoxerHardenedSkin
+  name: Закаленный Боксер
+  spriteRsi: _Stories/Mobs/Xenos/Skins/warrior_boxer.rsi
+  xeno: CMXenoWarrior
+  isStrain: true
+  strainId: CMXenoWarriorBoxer
+
+- type: xenoSkin
+  id: STDefenderSteelcrestEternalFrostSkin
+  name: Вечный Мороз
+  spriteRsi: _Stories/Mobs/Xenos/Skins/steelcrest_defender.rsi
+  xeno: CMXenoDefender
+  isStrain: true
+  strainId: CMXenoDefenderSteelcrest
+
+- type: xenoSkin
+  id: STPraetorianOppressorCursedSkin
+  name: Выносливый Угнетатель
+  spriteRsi: _Stories/Mobs/Xenos/Skins/oppressor_praetorian.rsi
+  xeno: CMXenoPraetorian
+  isStrain: true
+  strainId: RMCXenoPraetorianOppressor
+
+- type: xenoSkin
+  id: STPraetorianVanguardCursedSkin
+  name: Бывалый Авангард
+  spriteRsi: _Stories/Mobs/Xenos/Skins/vanguard_praetorian.rsi
+  xeno: CMXenoPraetorian
+  isStrain: true
+  strainId: RMCXenoPraetorianVanguard
+
+- type: xenoSkin
+  id: STPraetorianDancerCursedSkin
+  name: Стойкий Танцор
+  spriteRsi: _Stories/Mobs/Xenos/Skins/dancer_praetorian.rsi
+  xeno: CMXenoPraetorian
+  isStrain: true
+  strainId: RMCXenoPraetorianDancer
+
+- type: xenoSkin
+  id: STPraetorianValkyrieCursedSkin
+  name: Неустрашимая Валькирия
+  spriteRsi: _Stories/Mobs/Xenos/Skins/valkyrie_praetorian.rsi
+  xeno: CMXenoPraetorian
+  isStrain: true
+  strainId: RMCXenoPraetorianValkyrie

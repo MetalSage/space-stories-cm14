@@ -1,5 +1,6 @@
 using Content.Server.Interaction;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._RMC14.Barricade.Components;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -22,8 +23,11 @@ public sealed partial class NPCCombatSystem : EntitySystem
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly NPCSteeringSystem _steering = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+
+    private EntityQuery<BarbedComponent> _barbedQuery;
 
     /// <summary>
     /// If disabled we'll move into range but not attack.
@@ -33,6 +37,7 @@ public sealed partial class NPCCombatSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        _barbedQuery = GetEntityQuery<BarbedComponent>();
         InitializeMelee();
         InitializeRanged();
     }

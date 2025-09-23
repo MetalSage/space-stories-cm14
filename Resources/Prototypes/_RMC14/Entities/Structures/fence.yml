@@ -41,7 +41,6 @@
   - type: Construction
     graph: CMFence
     node: fenceMetal
-  - type: RMCDropshipBlocked
   - type: MinimapColor
     color: "#8d2294ad"
   - type: DamageOnXenoScissors
@@ -55,6 +54,7 @@
       types:
         Blunt: 22
   - type: XenoCrusherChargable
+  - type: RMCMesonsNonviewable
 
 - type: entity
   parent: CMBaseStructureCorrodible
@@ -88,7 +88,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: RMCDropshipBlocked
   - type: MinimapColor
     color: "#8d2294ad"
   - type: Construction

@@ -20,3 +20,6 @@ ent-RMCPouchFirstAidPMC = подсумок первой помощи Ве-Я
 ent-RMCPouchFirstAidPMCFill = { ent-RMCPouchFirstAidPMC }
     .suffix = Заполненный
     .desc = { ent-RMCPouchFirstAidPMC.desc }
+ent-RMCPouchFirstAidSPPArmyFill = подсумок первой помощи
+    .suffix = Заполненный
+    .desc = { ent-RMCPouchFirstAidPMC.desc }

@@ -4,6 +4,9 @@
   id: WeaponLauncherM83
   description: A heavy, 6-shot grenade launcher used by the UNMC for area denial and big explosions.
   components:
+  - type: GuideHelp
+    guides:
+    - RMCGuideRoleSpecGrenadier
   - type: Sprite # Stories-Partiy
     sprite: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
     layers:

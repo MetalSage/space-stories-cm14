@@ -15,7 +15,6 @@
     resistance: 3
   - type: PlacementReplacement
     key: walls
-  - type: RMCDropshipBlocked
   - type: MeleeSound
     soundGroups:
       Brute:

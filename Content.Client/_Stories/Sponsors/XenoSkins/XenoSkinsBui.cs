@@ -1,12 +1,14 @@
-﻿using Content.Client.Message;
+using Content.Client.Message;
 using Content.Client.Stylesheets;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._RMC14.Xenonids.Strain;
 using Content.Shared._Stories.Sponsors.XenoSkins;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client._Stories.Sponsors.XenoSkins;
 
@@ -71,14 +73,14 @@ public sealed class XenoSkinsBui : BoundUserInterface
 
     private void OnPrevDirectionButtonPressed(BaseButton.ButtonEventArgs args)
     {
-        _currentCardinalIndex = (_currentCardinalIndex - 1 + CardinalCycle.Length) % CardinalCycle.Length;
+        _currentCardinalIndex = (_currentCardinalIndex + 1) % CardinalCycle.Length;
         _previewRotation = CardinalCycle[_currentCardinalIndex];
         RotatePreview(_previewRotation);
     }
 
     private void OnNextDirectionButtonPressed(BaseButton.ButtonEventArgs args)
     {
-        _currentCardinalIndex = (_currentCardinalIndex + 1) % CardinalCycle.Length;
+        _currentCardinalIndex = (_currentCardinalIndex - 1 + CardinalCycle.Length) % CardinalCycle.Length;
         _previewRotation = CardinalCycle[_currentCardinalIndex];
         RotatePreview(_previewRotation);
     }
@@ -122,10 +124,21 @@ public sealed class XenoSkinsBui : BoundUserInterface
         bool hasValidSkins = false;
         _window.SkinsContainer.DisposeAllChildren();
 
+        bool isStrain = EntMan.HasComponent<XenoStrainComponent>(Owner);
         foreach (var skinId in xenoSkins.Skins)
         {
-            if (!_prototype.TryIndex(skinId, out var skinProto) || xeno.Role.Id != skinProto.Xeno.Id)
+            if (!_prototype.TryIndex(skinId, out var skinProto) || 
+                !EntMan.TryGetComponent(Owner, out MetaDataComponent? meta))
                 continue;
+
+            if (skinProto.Xeno != xeno.Role.Id)
+                continue;
+
+            if ((skinProto.IsStrain && (skinProto.StrainId is null || meta.EntityPrototype?.ID != skinProto.StrainId))
+                || (!skinProto.IsStrain && isStrain))
+            {
+                continue;
+            }
 
             AddSkinButtonToList(xenoSkins, skinId, skinProto);
             hasValidSkins = true;

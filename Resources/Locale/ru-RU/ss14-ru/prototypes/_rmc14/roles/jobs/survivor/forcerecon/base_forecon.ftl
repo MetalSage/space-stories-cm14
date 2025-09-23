@@ -1,6 +1,6 @@
-ent-RMCSurvivorPresetForeconNoPrimary = набор снаряжения выжившего ФОРЕКОН без основного оружия
+ent-RMCSurvivorPresetForeconNoPrimary = набор снаряжения выжившего ФОРКОН без основного оружия
     .desc = { "" }
-ent-RMCSurvivorPresetForecon = набор снаряжения выжившего ФОРЕКОН
+ent-RMCSurvivorPresetForecon = набор снаряжения выжившего ФОРКОН
     .desc = { ent-RMCSurvivorPresetForeconNoPrimary.desc }
-ent-RMCSurvivorPresetForeconNoPistol = набор снаряжения выжившего ФОРЕКОН
+ent-RMCSurvivorPresetForeconNoPistol = набор снаряжения выжившего ФОРКОН
     .desc = { ent-RMCSurvivorPresetForecon.desc }

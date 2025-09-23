@@ -11243,7 +11243,7 @@ entities:
   - uid: 1584
     components:
     - type: MetaData
-      name: Офис Империи Трёх Миров
+      name: Офис Империи Трёх Солнц
     - type: Transform
       pos: 25.392475,-23.405437
       parent: 1
@@ -11282,7 +11282,7 @@ entities:
   - uid: 1587
     components:
     - type: MetaData
-      name: Офис Проректора Морпехов
+      name: Офис Провост Маршалов
     - type: Transform
       pos: 18.755299,-11.204901
       parent: 1
@@ -11295,7 +11295,7 @@ entities:
   - uid: 1588
     components:
     - type: MetaData
-      name: Высшее Командование КМП США
+      name: Верховное Командование КМП США
     - type: Transform
       pos: 10.252311,-11.228197
       parent: 1

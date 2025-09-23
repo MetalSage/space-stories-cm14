@@ -1,2 +1,2 @@
-ent-RMCSpawnPointTSEPASynthetic = спавнер синтетика ИТСПД
+ent-RMCSpawnPointTSEPASynthetic = спавнер синтетик ИТСПД
     .desc = { ent-CMSpawnPointJobBase.desc }

@@ -1,2 +1,2 @@
-ent-RMCSpawnPointTSEPASeniorConstable = точка спавна старший констебль TSEPA
+ent-RMCSpawnPointTSEPASeniorConstable = точка спавна старший констебль ИТСПД
     .desc = { ent-CMSpawnPointJobBase.desc }

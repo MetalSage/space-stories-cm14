@@ -1,0 +1,4 @@
+ent-RMCSpawnPointSurvivorLV624CargoTechnician = точка появления археолога выжившего lv624
+    .desc = { ent-CMSpawnPointJobBase.desc }
+ent-RMCGearSurvivorPresetLV624CargoTechnician = предустановка колониста грузового техника lv624
+    .desc = { ent-RMCSurvivorPresetEngineer.desc }

@@ -1,6 +1,6 @@
-ent-RMCSpawnerPMCLeader = спавнер лидера Ве-Я ЧВК
+ent-RMCSpawnerPMCLeader = спавнер лидер Ве-Я ЧВК
     .suffix = Спавнер
     .desc = { ent-MarkerBase.desc }
-ent-RMCRandomHumanoidPMCLeader = призрачная роль лидера ЧВК Ве-Я
+ent-RMCRandomHumanoidPMCLeader = роль призрака лидер ЧВК Ве-Я
     .suffix = Роль
     .desc = { "" }

@@ -1,9 +1,9 @@
-ent-RMCRandomHumanoidSPPEngineerHostile = призрачная роль инженера СПН
+ent-RMCRandomHumanoidSPPEngineerHostile = роль призрака инженер СПН
     .suffix = Спавнер, Игрок, Враждебный
     .desc = { "" }
-ent-RMCRandomHumanoidSPPEngineerFriendly = призрачная роль инженера СПН
+ent-RMCRandomHumanoidSPPEngineerFriendly = роль призрака инженер СПН
     .suffix = Спавнер, Игрок, Дружелюбный
     .desc = { "" }
-ent-RMCRandomHumanoidSPPEngineer = призрачная роль инженера СПН
+ent-RMCRandomHumanoidSPPEngineer = роль призрака инженер СПН
     .suffix = Спавнер, Игрок
     .desc = { ent-MarkerBase.desc }

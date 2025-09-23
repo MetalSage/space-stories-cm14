@@ -52,6 +52,7 @@ rmc-xeno-fruit-feed-success-others = { CAPITALIZE($user) } кормит { $targe
 # Fruit removed
 rmc-xeno-fruit-destroyed = Мы чувствуем, что один из наших фруктов был уничтожен!
 rmc-xeno-fruit-consumed = Один из посаженных нами плодов смолы был съеден.
+rmc-xeno-fruit-picked = Один из наших смоляных плодов сорван.
 # Fruit effect pop-ups
 rmc-xeno-fruit-effect-lesser = Мы немного оправились от травм.
 rmc-xeno-fruit-effect-greater = Мы немного оправились от ран и начали быстро восстанавливаться.
@@ -77,3 +78,13 @@ rmc-xeno-fruit-ui-count = Посаженные фрукты: { $count }/{ $max }
 # Not-same hive
 rmc-xeno-fruit-wrong-hive = Это не из нашего улья!
 rmc-xeno-fruit-feed-wrong-hive = { $target } не из нашего улья!
+# Сорняки
+rmc-xeno-fruit-weed-boost = Мы чувствуем, что эти сорняки уменьшают время роста смолистых плодов на [bold]{ $percent }%[/bold].
+# Эффекты
+rmc-xeno-fruit-consume-examine = Этот плод оказывает следующие эффекты при употреблении:
+rmc-xeno-fruit-instant-heal = Мгновенно восстанавливает [bold]{ $amount }[/bold] здоровья.
+rmc-xeno-fruit-regen-heal = Восстанавливает [bold]{ $amount }[/bold] здоровья в секунду в течение { $time } секунд.
+rmc-xeno-fruit-shield = Дает сверхщит, равный [bold]{ $percent }%[/bold] от нашего максимального здоровья, но не более [bold]{ $max }[/bold]. Он разрушается через { $duration } секунд, теряя { $decay } в секунду.
+rmc-xeno-fruit-cooldown = Уменьшает время перезарядки способностей при следующем применении на [bold]{ $amount }%[/bold], но не более [bold]{ $max }%[/bold]. Этот эффект длится { $time } секунд.
+rmc-xeno-fruit-speed = Увеличивает нашу скорость на [bold]{ $amount }[/bold] в течение { $time } секунд.
+rmc-xeno-fruit-regen-plasma = Восстанавливает [bold]{ $amount }[/bold] плазмы в секунду в течение { $time } секунд.

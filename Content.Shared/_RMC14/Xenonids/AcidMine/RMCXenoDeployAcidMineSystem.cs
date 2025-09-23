@@ -152,7 +152,9 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
         {
             foreach (var (actionId, action) in _actions.GetActions(ent.Comp.Attached.Value))
             {
-                if (action.BaseEvent is not RMCXenoDeployTrapsActionEvent)
+                var actionEvent = _actions.GetEvent(ent.Comp.Attached.Value);
+
+                if (actionEvent is not RMCXenoDeployTrapsActionEvent)
                     continue;
 
                 if (action.Cooldown is null)

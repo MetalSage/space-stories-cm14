@@ -1,12 +1,12 @@
-ent-RMCRandomHumanoidFreelancerMedicHostile = призрачная роль медика фрилансера
+ent-RMCRandomHumanoidFreelancerMedicHostile = роль призрака медика фрилансера
     .suffix = Спавнер, Игрок, Враждебный
     .desc = { "" }
-ent-RMCRandomHumanoidFreelancerMedicFriendly = призрачная роль медика фрилансера
+ent-RMCRandomHumanoidFreelancerMedicFriendly = роль призрака медика фрилансера
     .suffix = Спавнер, Игрок, Дружелюбный
     .desc = { "" }
 ent-RMCSpawnerFreelancerMedic = спавнер медика фрилансера
     .suffix = Спавнер
     .desc = { ent-MarkerBase.desc }
-ent-RMCRandomHumanoidFreelancerMedic = призрачная роль медика фрилансера
+ent-RMCRandomHumanoidFreelancerMedic = роль призрака медика фрилансера
     .suffix = Роль
     .desc = { "" }

@@ -10,3 +10,4 @@ rmc-construction-more-material = Вам нужно больше { $material }, �
 rmc-construction-list = { $name }
 rmc-construction-entry = { $name } ({ $amount } { $material })
 rmc-construction-build-here = Построить здесь
+rmc-construction-name = строительство

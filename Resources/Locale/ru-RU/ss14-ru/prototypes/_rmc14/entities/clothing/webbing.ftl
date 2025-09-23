@@ -52,5 +52,5 @@ ent-CMWebbingPouchRoyal = { ent-CMWebbingPouch }
     .suffix = Заполненный, Королевские
     .desc = { ent-CMWebbingPouch.desc }
 ent-RMCWebbingPouchForecon = { ent-CMWebbingPouch }
-    .suffix = Заполненный, ФОРЕКОН
+    .suffix = Заполненный, ФОРКОН
     .desc = { ent-CMWebbingPouch.desc }

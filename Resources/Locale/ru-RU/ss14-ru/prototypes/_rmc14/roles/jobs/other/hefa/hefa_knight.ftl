@@ -1,12 +1,12 @@
-ent-RMCRandomHumanoidHEFAShrapnelswornMeleeHostile = призрачная роль поклявшегося осколками ОППГ
+ent-RMCRandomHumanoidHEFAShrapnelswornMeleeHostile = роль призрака поклявшегося осколками ОППГ
     .suffix = Спавнер, Игрок, Враждебный
     .desc = { "" }
-ent-RMCRandomHumanoidHEFAShrapnelswornMeleeFriendly = призрачная роль поклявшегося осколками ОППГ
+ent-RMCRandomHumanoidHEFAShrapnelswornMeleeFriendly = роль призрака поклявшегося осколками ОППГ
     .suffix = Спавнер, Игрок, Дружелюбный
     .desc = { "" }
 ent-RMCSpawnerHEFAShrapnelsworn = спавнер поклявшегося осколками ОППГ
     .suffix = Спавнер
     .desc = { ent-MarkerBase.desc }
-ent-RMCRandomHumanoidHEFAShrapnelsworn = призрачная роль поклявшегося осколками ОППГ
+ent-RMCRandomHumanoidHEFAShrapnelsworn = роль призрака поклявшегося осколками ОППГ
     .suffix = Роль
     .desc = { "" }

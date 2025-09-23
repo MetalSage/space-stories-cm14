@@ -149,8 +149,6 @@
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-rail: -0.1875, 0.125
-  - type: ItemCamouflage # Stories-Parity
-    camouflageVariations: {}
   - type: WieldedCrosshair
     rsi:
       sprite: _RMC14/Interface/MousePointer/smartgun_mouse.rsi
@@ -160,6 +158,17 @@
     skins:
       Default: /Textures/_Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
       Impulse: /Textures/_Stories/Objects/Weapons/SmartGuns/smart_gun.rsi
+
+- type: entity
+  parent: RMCSmartGun
+  id: RMCSmartGunUNMC
+  name: ML66A smart gun
+  description: The actual firearm in the Smart Gun System. Essentially a heavy, mobile machinegun.
+  components:
+  - type: RMCLoreExaminable
+    content: rmc-lore-examinable-smart-gun
+    factions:
+    - UNMC
 
 - type: entity
   parent: RMCSmartGun
@@ -227,9 +236,6 @@
       icon:
         sprite: _RMC14/Actions/marine_smart_gun_actions.rsi
         state: ammo_swap_ap
-  - type: ItemCamouflage
-    camouflageVariations: {}
-    colors: {}
 
 - type: entity
   parent: RMCSmartGun
@@ -238,15 +244,18 @@
   description: The actual firearm in the Smart Gun System. Back order only. Besides a more robust weapons casing, an ID lock system and a fancy paintjob, the gun's performance is identical to the standard-issue ML66A.
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/CO.rsi # the game cries errors if i dont add blank camo sprites even though they dont fucking appear
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     layers:
     - state: base
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/CO.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
     - state: mag-0
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/CO.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
+    - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
+      state: m56_barrel
+      offset: 0.625, 0
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/CO.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
   - type: Gun
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_ml66a.ogg
@@ -268,9 +277,6 @@
           components:
           - SmartGunBattery
   - type: GunIDLock
-  - type: ItemCamouflage
-    camouflageVariations: { }
-    colors: {}
 
 - type: entity
   parent: RMCSmartGun
@@ -285,15 +291,18 @@
   description: The actual firearm in the 2-piece ML66C Smart Gun System. This Variant is used by the Three Sun Empires Royal Marines Commando units. You may toggle firing restrictions by using a special action.
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a_royal.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     layers:
     - state: base
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a_royal.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
     - state: mag-0
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a_royal.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
+    - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
+      state: m56_barrel
+      offset: 0.625, 0
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a_royal.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -312,9 +321,6 @@
         whitelist:
           components:
           - SmartGunBattery
-  - type: ItemCamouflage
-    camouflageVariations: { }
-    colors: {}
 
 - type: entity
   parent: CMMagazineRifleBase
@@ -340,8 +346,6 @@
   - type: Clothing
     slots:
     - suitStorage
-  - type: ItemCamouflage
-    camouflageVariations: {} # Stories-Parity
 
 - type: entity
   parent: RMCMagazineSmartGun

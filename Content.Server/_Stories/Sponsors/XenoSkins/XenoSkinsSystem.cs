@@ -58,7 +58,7 @@ public sealed class XenoSkinsSystem : EntitySystem
 
     private void OnComponentShutdown(Entity<XenoSkinsComponent> xeno, ref ComponentShutdown args)
     {
-        _actions.RemoveAction(xeno, xeno.Comp.ActionEntity);
+        _actions.RemoveAction(xeno.Owner, xeno.Comp.ActionEntity);
     }
 
     private void OnXenoSkinsMenuAction(Entity<XenoSkinsComponent> xeno, ref XenoOpenSkinsMenuActionEvent args)
@@ -116,10 +116,11 @@ public sealed class XenoSkinsSystem : EntitySystem
             return;
         }
 
-        RaiseNetworkEvent(new XenoSkinChangeRSIEvent(GetNetEntity(xeno), args.Path), xeno);
         xeno.Comp.CurrentSkin = new ProtoId<XenoSkinsPrototype>(args.Proto);
         xeno.Comp.ActiveDoAfter = null;
+        Dirty(xeno);
 
-        _actions.RemoveAction(xeno, xeno.Comp.ActionEntity);
+        RaiseNetworkEvent(new XenoSkinChangeRSIEvent(GetNetEntity(xeno), args.Path), xeno);
+        _actions.RemoveAction(xeno.Owner, xeno.Comp.ActionEntity);
     }
 }

@@ -1,6 +1,9 @@
 ent-RMCMapInsertLV624Armory = Оружейная
     .suffix = Вставка LV624
     .desc = { ent-RMCMapInsertBase.desc }
+ent-RMCMapInsertLV624CorporateDome = Корпоративный Купол
+    .suffix = Вставка LV624
+    .desc = { ent-RMCMapInsertBase.desc }
 ent-RMCMapInsertLV624Gym = Тренажерный Зал
     .suffix = Вставка LV624
     .desc = { ent-RMCMapInsertBase.desc }

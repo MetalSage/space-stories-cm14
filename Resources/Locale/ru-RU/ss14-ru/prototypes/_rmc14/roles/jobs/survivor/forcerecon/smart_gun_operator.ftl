@@ -1,2 +1,2 @@
-ent-CMSpawnPointForeconSmartGunOperator = точка спавна оператора умной пушки ФОРЕКОН
+ent-CMSpawnPointForeconSmartGunOperator = точка спавна оператора умной пушки ФОРКОН
     .desc = { ent-CMSpawnPointJobBase.desc }

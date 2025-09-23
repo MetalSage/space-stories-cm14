@@ -1,2 +1,2 @@
-ent-RMCSpawnPointTSEPAConstable = точка спавна констебль TSEPA
+ent-RMCSpawnPointTSEPAConstable = точка спавна констебль ИТСПД
     .desc = { ent-CMSpawnPointJobBase.desc }

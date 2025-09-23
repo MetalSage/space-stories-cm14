@@ -1,0 +1,12 @@
+ent-RMCBaseFoamedMetal = Базовый вспененный металл RMC
+    .desc = { "" }
+ent-RMCAluminiumMetalFoamEffect = вспененный алюминий
+    .desc = { ent-MetalFoam.desc }
+ent-RMCIronMetalFoamEffect = вспененное железо
+    .desc = { ent-MetalFoam.desc }
+ent-RMCFoamedAluminiumMetal = вспененный алюминий
+    .desc = Легкая стена из вспененного металла.
+    .suffix = RMC
+ent-RMCFoamedIronMetal = вспененное железо
+    .desc = Немного более прочная легкая стена из вспененного железа.
+    .suffix = RMC
