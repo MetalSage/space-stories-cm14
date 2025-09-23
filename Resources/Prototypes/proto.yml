@@ -10,7 +10,7 @@
     icon:
       sprite: _Stories/Actions/xeno_actions.rsi
       state: corrosive_acid
-    event: !type:APCHardpointsMenuActionEvent
+    event: !type:VehicleHardpointsMenuActionEvent
 
 - type: entity
   parent: BaseStructureDynamic
@@ -101,7 +101,7 @@
     noRot: true
     sprite: _Stories/apc.rsi
     layers:
-    - map: [ "enum.APCEntityVisualLayers.Base" ]
+    - map: [ "enum.VehicleVisualLayers.Base" ]
       state: apc_base
   - type: ContainerContainer
     containers:
@@ -115,30 +115,57 @@
     interfaces:
       enum.DialogUiKey.Key:
         type: DialogBui
-      enum.APCAttachmentUI.StripKey:
-        type: APCAttachmentStripBui
-      enum.APCAttachmentUI.ChooseSlotKey:
-        type: APCAttachmentChooseSlotBui
-      enum.APCSelectHardpointUI.Key:
-        type: APCSelectHardpointBui
+      enum.VehicleAttachmentUI.StripKey:
+        type: VehicleAttachmentStripBui
+      enum.VehicleAttachmentUI.ChooseSlotKey:
+        type: VehicleAttachmentChooseSlotBui
+      enum.VehicleSelectHardpointUI.Key:
+        type: VehicleSelectHardpointBui
         interactionRange: 0
         requireInputValidation: true
   - type: NoRotateOnInteract
-  - type: APCEntity
+  - type: Vehicle
     movementSlot: apc-slot-movement
-  - type: APCAttachableHolder
+    damageMults:
+      Heat: 1.6
+      Slash: 1
+      Piercing: 0.6
+      Blunt: 0.7
+    health: 1000
+    passengerSlots:
+      current: 0
+      max: 15
+    revivableDeadSlots:
+      current: 0
+      max: 2
+    xenoSlots:
+      current: 0
+      max: 8
+  - type: ExplosionResistance
+    DamageCoefficient: 0.7
+    Worn: false
+    Examine: "explosion-resistance-coefficient-value"
+  - type: VehicleAttachableHolder
     slots:
       apc-slot-movement:
         startingAttachable:
         whitelist:
           tags:
           - RMCAttachmentExtendedBarrel
-      apc-slot-hardpoints:
+      apc-slot-maincannon:
         whitelist:
           tags:
           - Airlock
-  - type: APCAttachableHolderVisuals
-  - type: APCHardpointsMenu
+      apc-slot-frontalcannon:
+        whitelist:
+          tags:
+          - APCMiniXyi
+      apc-slot-supportcannon:
+        whitelist:
+          tags:
+          - APCFlareLauncher
+  - type: VehicleAttachableHolderVisuals
+  - type: VehicleHardpointsMenu
   - type: NpcFactionMember
     factions:
     - UNMC
@@ -151,21 +178,21 @@
   - type: Sprite
     sprite: _Stories/apcitems.rsi
     layers:
-    - map: [ "enum.APCAttachableVisualLayers.Base" ]
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
       state: dual_cannon
   - type: Item
     size: Normal
   - type: StaticPrice
     price: 0
-  - type: APCAttachable
-  - type: APCAttachableVisuals
+  - type: VehicleAttachable
+  - type: VehicleAttachableVisuals
     rsi: _Stories/apc.rsi
     state: dualcannon_0
   - type: Tag
     tags:
     - Airlock
-  - type: APCMovementAttachable
-  - type: APCHardpointAttachable
+  - type: VehicleMovementAttachable
+#  - type: VehicleHardpointAttachable
   - type: NpcFactionMember
     factions:
     - UNMC
@@ -185,14 +212,128 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: BallisticAPCAmmoProvider
+  - type: BallisticVehicleAmmoProvider
     prototype: CartridgeCaselessRifle
     shots: 20
     capacity: 20
     ammoType: CartridgeCaselessRifle
-  - type: APCGun
+  - type: VehicleGun
   - type: AmmoCounter
-  
+  - type: VehicleGunAttachable
+
+- type: entity
+  parent: BaseItem
+  id: APCFlareLauncher
+  description: big black d....Gun
+  components:
+  - type: Sprite
+    sprite: _Stories/apcitems.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: flare_launcher
+  - type: Item
+    size: Normal
+  - type: StaticPrice
+    price: 0
+  - type: VehicleAttachable
+    health: 500
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/apc.rsi
+    state: flare_launcher_0
+  - type: Tag
+    tags:
+    - APCFlareLauncher
+#  - type: VehicleHardpointAttachable
+  - type: NpcFactionMember
+    factions:
+    - UNMC
+  - type: UserIFF
+    faction: FactionMarine
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 0.3333
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    projectileSpeed: 10
+  - type: BallisticVehicleAmmoProvider
+    prototype: CMFlare
+    shots: 10
+    capacity: 10
+    ammoType: CMFlares
+  - type: GunPointBlank
+  - type: VehicleGun
+  - type: AmmoCounter
+  - type: VehicleGunAttachable
+  - type: OnShootTriggerAmmoTimer
+    delay: 1.5
+    beepInterval: 2
+    initialBeepDelay: 0
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    timerStart: enum.TimerStartMode.OnHitGround
+
+- type: entity
+  parent: BaseItem
+  id: APCMiniXyi
+  description: big black d....Gun
+  components:
+  - type: Sprite
+    sprite: _Stories/apcitems.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: front_cannon
+  - type: Item
+    size: Normal
+  - type: StaticPrice
+    price: 0
+  - type: VehicleAttachable
+    health: 350
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/apc.rsi
+    state: frontalcannon_0
+  - type: Tag
+    tags:
+    - APCMiniXyi
+#  - type: VehicleHardpointAttachable
+  - type: NpcFactionMember
+    factions:
+    - UNMC
+  - type: UserIFF
+    faction: FactionMarine
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 0.3
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticVehicleAmmoProvider
+    prototype: CartridgeCaselessRifle
+    shots: 20
+    capacity: 20
+    ammoType: CartridgeCaselessRifle
+  - type: VehicleGun
+  - type: AmmoCounter
+  - type: VehicleGunAttachable
+
 - type: entity
   parent: BaseItem
   id: APCWheelsBase
@@ -205,14 +346,15 @@
     size: Normal
   - type: StaticPrice
     price: 0
-  - type: APCAttachable
-  - type: APCAttachableVisuals
+  - type: VehicleAttachable
+    health: 500
+  - type: VehicleAttachableVisuals
     rsi: _Stories/apc.rsi
     state: wheels_0
   - type: Tag
     tags:
     - RMCAttachmentExtendedBarrel
-  - type: APCMovementAttachable
+  - type: VehicleMovementAttachable
     walkSpeed: 6
     sprintSpeed: 6
   
@@ -228,7 +370,7 @@
   - type: Marker
   - type: Clickable
   - type: InteractionOutline
-  - type: APCEnterPoint
+  - type: VehicleEnterPoint
 
 
 - type: entity
@@ -322,7 +464,7 @@
         - MachineMask
         layer:
         - MachineLayer
-  - type: APCWeaponLoader
+  - type: VehicleWeaponLoader
 
 - type: entity
   parent: BaseItem
@@ -333,8 +475,28 @@
   - type: Sprite
     sprite: _Stories/general_wy.rsi
     state: weapons_loader
-  - type: APCGunMagazine
+  - type: VehicleGunMagazine
     prototype: CartridgeCaselessRifle
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
+
+- type: entity
+  parent: BaseItem
+  id: APCAmmoBox2
+  name: ammo box2
+  components:
+  - type: BallisticAmmoProvider
+  - type: Sprite
+    sprite: _Stories/general_wy.rsi
+    state: weapons_loader
+  - type: VehicleGunMagazine
+    prototype: CMFlares
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: Tag
+  id: APCMiniXyi
+- type: Tag
+  id: APCFlareLauncher

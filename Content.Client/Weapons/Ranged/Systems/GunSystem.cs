@@ -48,7 +48,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly TransformSystem _transform = default!;
 
     //Stories
-    [Dependency] private readonly APCAttachableHolderSystem _apcAttachableHolder = default!;
+    [Dependency] private readonly VehicleAttachableHolderSystem _vehicleAttachableHolder = default!;
 
     [ValidatePrototypeId<EntityPrototype>]
     public const string HitscanProto = "HitscanEffect";
@@ -210,7 +210,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
         // Stories-APC-Gun-Tweak-Start
         var changedEntity = entity;
-        if (_apcAttachableHolder.TryGetHolder(gunUid, out var nullableHolder) && nullableHolder is {} holder)
+        if (_vehicleAttachableHolder.TryGetHolder(gunUid, out var nullableHolder) && nullableHolder is { } holder)
             changedEntity = holder;
 
         var coordinates = TransformSystem.ToCoordinates(changedEntity, mousePos);

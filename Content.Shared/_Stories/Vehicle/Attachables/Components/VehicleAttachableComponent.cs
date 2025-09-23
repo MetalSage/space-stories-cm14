@@ -1,11 +1,13 @@
 using System.Numerics;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Content.Shared._Stories.Vehicle.Systems;
 
 namespace Content.Shared._Stories.Attachables;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(VehicleAttachableHolderSystem))]
+[Access(typeof(VehicleAttachableHolderSystem), typeof(SharedVehicleSystem))]
 public sealed partial class VehicleAttachableComponent : Component
 {
     [DataField, AutoNetworkedField]
@@ -25,4 +27,7 @@ public sealed partial class VehicleAttachableComponent : Component
 
     [DataField, AutoNetworkedField]
     public Vector2 Offset = Vector2.Zero;
+
+    [DataField, AutoNetworkedField]
+    public FixedPoint2 Health = FixedPoint2.New(100);
 }

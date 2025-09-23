@@ -50,7 +50,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared._Stories.APC;
+using Content.Shared._Stories.Vehicle;
 using Content.Shared._Stories.Attachables;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
@@ -121,7 +121,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         InitializeContainer();
         InitializeSolution();
 
-        InitializeAPCGun(); // Stories-APC-Gun-Tweak
+        InitializeVehicleGun(); // Stories-APC-Gun-Tweak
 
         // Interactions
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);
@@ -191,9 +191,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         gunComp = null;
 
         // Stories-APC-Gun-Content-Start
-        if (TryComp<APCGunnerComponent>(entity, out var apcGunner) &&
-            TryComp<APCEntityComponent>(apcGunner.APC, out var apc) &&
-            apc.ActiveHardpoint is {} hardpoint &&
+        if (TryComp<VehiclePilotComponent>(entity, out var pilot) &&
+            TryComp<VehicleComponent>(pilot.Vehicle, out var vehicle) &&
+            vehicle.ActiveHardpoint is { } hardpoint &&
             TryComp<GunComponent>(hardpoint, out var hardpointGunComp))
         {
             gunEntity = hardpoint;
@@ -368,9 +368,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         var userXform = Transform(user);
         var fromCoordinates = userXform.Coordinates;
 
-        if (TryComp<APCEntityComponent>(user, out var apc) && 
-            apc.ActiveHardpoint is { } hardpoint &&
-            TryComp<APCAttachableComponent>(hardpoint, out var hardpointAttachable))
+        if (TryComp<VehicleComponent>(user, out var vehicle) && 
+            vehicle.ActiveHardpoint is { } hardpoint &&
+            TryComp<VehicleAttachableComponent>(hardpoint, out var hardpointAttachable))
         {
             var rotation = userXform.WorldRotation;
 

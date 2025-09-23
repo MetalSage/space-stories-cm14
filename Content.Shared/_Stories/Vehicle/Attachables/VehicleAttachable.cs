@@ -28,7 +28,7 @@ public readonly record struct VehicleAttachableAlteredEvent(
 public readonly record struct VehicleAttachableHolderAttachablesAlteredEvent(
     EntityUid Attachable,
     string SlotId,
-    APCAttachableAlteredType Alteration
+    VehicleAttachableAlteredType Alteration
 );
 
 public enum VehicleAttachableAlteredType : byte

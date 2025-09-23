@@ -9,10 +9,11 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Prototypes;
+using Content.Shared.Coordinates;
 
-namespace Content.Shared._Stories.APC.Systems;
+namespace Content.Shared._Stories.Vehicle.Systems;
 
-public sealed partial class SharedAPCEntitySystem
+public sealed partial class SharedVehicleSystem
 {
     private void InitializeController()
     {
@@ -31,17 +32,21 @@ public sealed partial class SharedAPCEntitySystem
         if (!TryGetVehicle(seat, out var vehicle))
             return;
 
-        seat.Vehicle = GetEntity(vehicle);
+        seat.Comp.Vehicle = vehicle.Owner;
     }
 
     private void OnSeatShutdown(Entity<VehiclePilotSeatComponent> seat, ref ComponentShutdown args)
     {
-        Return(seat.Pilot);
+        if (seat.Comp.Pilot is not null)
+            Return(seat.Comp.Pilot.Value);
     }
 
     private void OnPilotSeatStrapped(Entity<VehiclePilotSeatComponent> seat, ref StrappedEvent args)
     {
         if (_net.IsClient)
+            return;
+
+        if (seat.Comp.Vehicle is null)
             return;
 
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
@@ -63,7 +68,7 @@ public sealed partial class SharedAPCEntitySystem
             _eye.SetTarget(args.Buckle, seat.Comp.Vehicle, eye);
 
             if (seat.Comp.Action is { } gunnerAction)
-                seat.Comp.ActionEntity = _actions.AddAction(args.Buckle, gunnerAction);
+                pilot.ActionEntity = _actions.AddAction(args.Buckle, gunnerAction);
 
             if (TryComp<VehicleComponent>(seat.Comp.Vehicle, out var vehicle) &&
                 vehicle.ActiveHardpoint is { } hardpoint &&
@@ -75,7 +80,7 @@ public sealed partial class SharedAPCEntitySystem
             }
             else
             {
-                _popup.PopupCoordinates("Для начала выберите hardpoint", vehicle.ToCoordinates(), args.Buckle);
+                _popup.PopupCoordinates("Для начала выберите hardpoint", seat.Comp.Vehicle.Value.ToCoordinates(), args.Buckle);
             }
         }
         else
@@ -127,8 +132,8 @@ public sealed partial class SharedAPCEntitySystem
     {
         _eye.SetTarget(target, null);
 
-        if (TryComp<VehiclePilotComponent>(target, out var gunner) && gunner.ActionEntity is not null)
-            _actions.RemoveAction(target, gunner.ActionEntity.Value);
+        if (TryComp<VehiclePilotComponent>(target, out var pilot) && pilot.ActionEntity is not null)
+            _actions.RemoveAction(target, pilot.ActionEntity.Value);
 
         RemCompDeferred<VehiclePilotComponent>(target);
         RemCompDeferred<RelayInputMoverComponent>(target);

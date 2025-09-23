@@ -14,5 +14,5 @@ public partial struct VehicleAttachableSlot()
     public EntityWhitelist? Whitelist;
 
     [DataField]
-    public EntProtoId<APCAttachableComponent>? StartingAttachable;
+    public EntProtoId<VehicleAttachableComponent>? StartingAttachable;
 }

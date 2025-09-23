@@ -1,0 +1,12 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="{Loc 'st-vehicle-attachable-holder-strip-ui-title'}"
+    MinSize="250 150"
+    SetSize="250 150">
+    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" 
+        StyleClasses="TransparentScroll">
+        <BoxContainer Name="SlotsContainer" Orientation="Vertical" VerticalExpand="True"
+                      HorizontalExpand="True" Margin="8 8 8 8" />
+    </ScrollContainer>
+</controls:FancyWindow>

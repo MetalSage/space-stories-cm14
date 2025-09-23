@@ -6,7 +6,7 @@ using Content.Shared.Hands;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Utility;
-using Content.Shared._Stories.APC;
+using Content.Shared._Stories.Vehicle;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -20,7 +20,7 @@ public abstract partial class SharedGunSystem
         if (HasComp<XenoComponent>(args.Examiner))
             return;
 
-        if (HasComp<APCGunComponent>(args.Examined)) // Stories-APC-Content-Tweak
+        if (HasComp<VehicleGunComponent>(args.Examined)) // Stories-APC-Content-Tweak
             return;
 
         using (args.PushGroup(nameof(GunComponent)))
@@ -45,7 +45,7 @@ public abstract partial class SharedGunSystem
         if (HasComp<XenoComponent>(args.User))
             return;
             
-        if (HasComp<APCGunComponent>(args.Target)) // Stories-APC-Content-Tweak
+        if (HasComp<VehicleGunComponent>(args.Target)) // Stories-APC-Content-Tweak
             return;
 
         var nextMode = GetNextMode(component);

@@ -1,20 +1,35 @@
 using System.Linq;
 using System.Numerics;
-using Content.Shared._Stories.APC;
+using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._RMC14.Pulling;
+using Content.Shared._RMC14.Stun;
+using Content.Shared._RMC14.Xenonids;
+using Content.Shared._Stories.Attachables;
+using Content.Shared.Actions;
+using Content.Shared.Damage;
+using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
+using Content.Shared.Mind;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Roles.Jobs;
+using Content.Shared.Traits.Assorted;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
-namespace Content.Server._Stories.APC;
+namespace Content.Shared._Stories.Vehicle.Systems;
 
-public sealed partial class VehicleSystem : EntitySystem
+public sealed partial class SharedVehicleSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
@@ -25,6 +40,19 @@ public sealed partial class VehicleSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedJobSystem _job = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedMoverController _mover = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly VehicleAttachableHolderSystem _attachableHolder = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
 
     public override void Initialize()
     {
@@ -33,9 +61,9 @@ public sealed partial class VehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, VehicleEnterDoAfterEvent>(OnEnterDoAfter);
         SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VehicleComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<VehicleComponent, BreakageEventArgs>(OnDestruction);
         SubscribeLocalEvent<VehicleComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
         SubscribeLocalEvent<VehiclePilotComponent, VehicleHardpointsMenuActionEvent>(OnVehicleHardpointsMenuAction);
+        SubscribeLocalEvent<VehicleComponent, BeforeDamageChangedEvent>(BeforeDamageTaken);
 
         Subs.BuiEvents<VehicleComponent>(VehicleSelectHardpointUI.Key,
             subs =>
@@ -44,6 +72,7 @@ public sealed partial class VehicleSystem : EntitySystem
             });
 
         InitializeController();
+        InitializeMovement();
     }
 
     private void OnMapInit(Entity<VehicleComponent> vehicle, ref MapInitEvent args)
@@ -52,7 +81,8 @@ public sealed partial class VehicleSystem : EntitySystem
         vehicle.Comp.AmmoStorage.OccludesLight = false;
 
         _movement.RefreshMovementSpeedModifiers(vehicle);
-        LoadMap(vehicle);
+        if (!_net.IsClient)
+            LoadMap(vehicle); // lmao.
     }
 
     private void OnShutdown(Entity<VehicleComponent> vehicle, ref ComponentShutdown args)
@@ -82,14 +112,14 @@ public sealed partial class VehicleSystem : EntitySystem
     {
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
-
+/*
         if (entity.Comp.Passangers >= entity.Comp.MaxPassangers)
         {
             _popup.PopupEntity(Loc.GetString("stories-transport-is-full"), args.User);
             args.Handled = true;
             return;
         }
-
+*/
         if (entity.Comp.GridEnt is not { } gridEnt)
             return;
 
@@ -107,7 +137,7 @@ public sealed partial class VehicleSystem : EntitySystem
         var map = _map.CreateMap(out var mapId);
         if (!_mapLoader.TryLoadGrid(mapId, vehicle.Comp.GridPath, out var grid, null))
         {
-            ISawmill.Error($"Failed to load Vehicle Grid from entity {vehicle}");
+            Log.Error($"Failed to load Vehicle Grid from entity {vehicle}");
             _map.DeleteMap(mapId);
             return;
         }
@@ -123,12 +153,15 @@ public sealed partial class VehicleSystem : EntitySystem
         var gridComp = EnsureComp<VehicleGridComponent>(grid.Value);
         gridComp.Vehicle = GetNetEntity(vehicle);
 
-        Dirty(grid.Value, component);
+        Dirty(grid.Value, gridComp);
     }
 
 
-    private bool CanEnter(EntityUid user, Entity<VehicleComponent> target)
+    private bool CanEnter(EntityUid user, EntityUid target)
     {
+        if (!TryComp<VehicleComponent>(target, out var vehicle))
+            return false;
+
         var userPos = _transform.GetMapCoordinates(user).Position;
         var targetPos = _transform.GetMapCoordinates(target).Position;
 
@@ -136,8 +169,8 @@ public sealed partial class VehicleSystem : EntitySystem
 
         var facing = Transform(target).LocalRotation.GetCardinalDir().ToAngle().Degrees;
 
-        var range = target.Comp.EntryInteractionRange;
-        var allowed = target.Comp.EntryDirections;
+        var range = vehicle.EntryInteractionRange;
+        var allowed = vehicle.EntryDirections;
 
         bool Check(double offset, EntryDirection dir)
         {
@@ -164,10 +197,10 @@ public sealed partial class VehicleSystem : EntitySystem
     private Vector2? GetEnterPoint(EntityUid gridId)
     {
         var query = EntityQueryEnumerator<VehicleEnterPointComponent, TransformComponent>();
-        while (query.MoveNext(out _, out _, out var xform))
+        while (query.MoveNext(out var uid, out _, out var xform))
         {
             if (xform.GridUid == gridId)
-                return xform.WorldPosition;
+                return _transform.GetWorldPosition(uid);
         }
 
         return null;
@@ -175,23 +208,50 @@ public sealed partial class VehicleSystem : EntitySystem
 
     private void HandleEnterPulling(Entity<VehicleComponent> vehicle, EntityUid user, EntityCoordinates coords)
     {
-        _rmcPulling.TryStopAllPullsFromAndOn(user);
+        EntityUid targetEntity;
 
-        if (vehicle.Comp.Passangers >= vehicle.Comp.MaxPassangers)
+        var comp = vehicle.Comp;
+
+        if (!TryComp(user, out PullerComponent? puller) || puller.Pulling is not { } pulledUid)
+            targetEntity = user;
+        else
+            targetEntity = pulledUid;
+
+        var hasSlot = false;
+
+        if (HasComp<XenoComponent>(targetEntity) && comp.XenoSlots.Current < comp.XenoSlots.Max)
+        {
+            comp.XenoSlots.Current += 1;
+            hasSlot = true;
+        }
+        else if ((_mobState.IsDead(targetEntity) &&
+                 !HasComp<UnrevivableComponent>(targetEntity)) && comp.RevivableDeadSlots.Current < comp.RevivableDeadSlots.Max)
+        {
+            comp.RevivableDeadSlots.Current += 1;
+            hasSlot = true;
+        }
+        else if (_job.MindTryGetJob(targetEntity, out var job) &&
+                 comp.RoleReservedSlots.TryGetValue(job.ID, out var roleSlots) &&
+                 roleSlots.Current < roleSlots.Max)
+        {
+            roleSlots.Current += 1;
+            comp.RoleReservedSlots[job.ID] = roleSlots;
+            hasSlot = true;
+        }
+        else if (comp.PassengerSlots.Current < comp.PassengerSlots.Max)
+        {
+            comp.PassengerSlots.Current += 1;
+            hasSlot = true;
+        }
+
+        if (!hasSlot)
         {
             _popup.PopupEntity("stories-transport-is-full", user);
             return;
         }
 
-        if (!TryComp(user, out PullerComponent? puller) || puller.Pulling is not { } pulledUid)
-        {
-            _transform.SetCoordinates(user, coords);
-            vehicle.Comp.Passangers += 1;
-            return;
-        }
-
-        _transform.SetCoordinates(pulledUid, coords);
-        vehicle.Comp.Passangers += 1;
+        _rmcPulling.TryStopAllPullsFromAndOn(user);
+        _transform.SetCoordinates(targetEntity, coords);
     }
 
     private void OnRefreshMovementSpeedModifiers(Entity<VehicleComponent> vehicle, ref RefreshMovementSpeedModifiersEvent args)
@@ -215,23 +275,18 @@ public sealed partial class VehicleSystem : EntitySystem
         args.ModifySpeed(0f, 0f);
     }
 
-    private void OnVehicleHardpointsMenuAction(Entity<BaseVehicleSeatComponent> gunner, ref VehicleHardpointsMenuActionEvent args)
+    private void OnVehicleHardpointsMenuAction(Entity<VehiclePilotComponent> pilot, ref VehicleHardpointsMenuActionEvent args)
     {
-        if (gunner.Comp.Vehicle is not { } vehicle)
+        if (pilot.Comp.Vehicle is not { } vehicle)
             return;
 
-        _ui.OpenUi(vehicle, VehicleSelectHardpointUI.Key, gunner);
+        _ui.OpenUi(vehicle, VehicleSelectHardpointUI.Key, pilot);
     }
 
     private void OnSelectHardpoint(Entity<VehicleComponent> vehicle, ref VehicleSelectHardpointBuiMsg args)
     {
         vehicle.Comp.ActiveHardpoint = GetEntity(args.Choice);
         Dirty(vehicle, vehicle.Comp);
-    }
-    
-    private void OnDestruction(Entity<VehicleComponent> vehicle, ref BreakageEventArgs args)
-    {
-        DestroyVehicle(vehicle, vehicle.Comp);
     }
 
     public void DestroyVehicle(EntityUid uid, VehicleComponent? component = null)
@@ -252,20 +307,89 @@ public sealed partial class VehicleSystem : EntitySystem
         _appearance.SetData(uid, VehicleVisuals.Destroyed, component.Destroyed, appearance);
     }
 
-    public bool TryGetVehicle(Entity<TransformComponent> target, out Entity<VehicleComponent> vehicle)
+    public bool TryGetVehicle(EntityUid target, out Entity<VehicleComponent> vehicle, TransformComponent? xform = null)
     {
         vehicle = default;
 
-        if (!TryComp<VehicleGridComponent>(target.Comp.GridUid, out var grid) || 
-            !TryGetEntity(grid.Vehicle, out var vehicle))
+        if (!Resolve(target, ref xform))
+            return false;
+
+        if (!TryComp<VehicleGridComponent>(xform.GridUid, out var grid) ||
+            !TryGetEntity(grid.Vehicle, out var vehicleUid))
         {
             return false;
         }
 
-        if (vehicle is not { } uid || !TryComp<VehicleComponent>(uid, out var comp))
+        if (vehicleUid is null || !TryComp<VehicleComponent>(vehicleUid, out var comp))
             return false;
 
-        vehicle = (uid, comp);
+        vehicle = (vehicleUid.Value, comp);
         return true;
+    }
+
+
+    private void BeforeDamageTaken(Entity<VehicleComponent> vehicle, ref BeforeDamageChangedEvent args)
+    {
+        var comp = vehicle.Comp;
+
+        if (args.Cancelled)
+            return;
+
+        if (TryComp<RMCSizeComponent>(args.Origin, out var rmcSize) && rmcSize.Size == RMCSizes.Small)
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        var modified = new DamageSpecifier();
+        foreach (var (type, value) in args.Damage.DamageDict)
+        {
+            var mult = 1f;
+            if (comp.DamageMults != null && comp.DamageMults.TryGetValue(type, out var m))
+                mult = m;
+
+            modified.DamageDict[type] = value * mult;
+        }
+
+        var activeHardpoints = new List<(EntityUid ent, VehicleAttachableComponent comp)>();
+
+        foreach (var h in comp.Hardpoints)
+        {
+            if (TryComp<VehicleAttachableComponent>(h, out var hard) && hard.Health > FixedPoint2.Zero)
+                activeHardpoints.Add((h, hard));
+        }
+
+        if (activeHardpoints.Count > 0)
+        {
+            var hullDamage = modified * 0.1f;
+            ApplyToHull(vehicle, hullDamage);
+
+            foreach (var hardpoint in activeHardpoints)
+                ApplyToHardpoint(hardpoint, modified);
+
+            args.Cancelled = true;
+        }
+        else
+        {
+            ApplyToHull(vehicle, modified);
+            args.Cancelled = true;
+        }
+    }
+
+    private void ApplyToHardpoint(Entity<VehicleAttachableComponent> attachable, DamageSpecifier damage)
+    {
+        attachable.Comp.Health -= damage.GetTotal();
+    }
+
+    private void ApplyToHull(Entity<VehicleComponent> vehicle, DamageSpecifier damage)
+    {
+        var comp = vehicle.Comp;
+
+        var total = damage.GetTotal();
+        comp.Health -= total;
+
+        if (comp.Health == FixedPoint2.Zero)
+            DestroyVehicle(vehicle.Owner);
+
     }
 }

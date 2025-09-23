@@ -19,7 +19,7 @@ using Robust.Client.State;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
-using Content.Client._Stories.APC.Attachables;
+using Content.Client._Stories.Vehicle.Attachables;
 
 namespace Content.Client.Weapons.Melee;
 
@@ -172,7 +172,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // Stories-APC-Attachable-Content-Start
         foreach (var target in targets)
         {
-            if (HasComp<APCAttachableDamageVisualsComponent>(target))
+            if (HasComp<VehicleAttachableDamageVisualsComponent>(target))
                 continue;
 
             // Server never sends the event to us for predictiveeevent.
