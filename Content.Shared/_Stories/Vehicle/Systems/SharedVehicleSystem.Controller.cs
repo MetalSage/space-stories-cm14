@@ -22,6 +22,7 @@ public sealed partial class SharedVehicleSystem
         SubscribeLocalEvent<VehiclePilotSeatComponent, ComponentShutdown>(OnSeatShutdown);
 
         SubscribeLocalEvent<VehiclePilotSeatComponent, StrappedEvent>(OnPilotSeatStrapped);
+        SubscribeLocalEvent<VehiclePilotSeatComponent, StrapAttemptEvent>(OnStrapAttempt);
         SubscribeLocalEvent<VehiclePilotSeatComponent, UnstrappedEvent>(OnSeatUnstrapped);
 
         SubscribeLocalEvent<MarineComponent, MindRemovedMessage>(OnMindRemoved);
@@ -41,6 +42,15 @@ public sealed partial class SharedVehicleSystem
             Return(seat.Comp.Pilot.Value);
     }
 
+    private void OnStrapAttempt(Entity<VehiclePilotSeatComponent> seat, ref StrapAttemptEvent args)
+    {
+        if (!IsConscious(args.Buckle, seat.Comp.Skills, out _) && seat.Comp.Vehicle is not null)
+        {
+            _popup.PopupEntity(Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle.Value)), args.Buckle);
+            args.Cancelled = true;
+        }
+
+    }
     private void OnPilotSeatStrapped(Entity<VehiclePilotSeatComponent> seat, ref StrappedEvent args)
     {
         if (_net.IsClient)
@@ -80,7 +90,7 @@ public sealed partial class SharedVehicleSystem
             }
             else
             {
-                _popup.PopupCoordinates("Для начала выберите hardpoint", seat.Comp.Vehicle.Value.ToCoordinates(), args.Buckle);
+                _popup.PopupCursor("Для начала выберите точку крепления", args.Buckle);
             }
         }
         else
@@ -93,6 +103,7 @@ public sealed partial class SharedVehicleSystem
 
     private void OnSeatUnstrapped(Entity<VehiclePilotSeatComponent> seat, ref UnstrappedEvent args)
     {
+        seat.Comp.Pilot = null;
         Return(args.Buckle);
     }
 

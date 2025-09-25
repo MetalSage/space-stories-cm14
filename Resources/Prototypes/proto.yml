@@ -65,41 +65,26 @@
     baseSprintSpeed: 1
     acceleration: 10
   - type: Physics
-    bodyType: KinematicController
-  - type: Clickable
+    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-2,-1.5,2,1.5"
+          bounds: "-1.15,-2,1.2,2"
         density: 1000
         mask:
-          - Transport
+        - Transport
+        - LargeMobMask
         layer:
-          - WallLayer
-          - MobLayer
+        - LargeMobLayer
+  - type: Clickable
   - type: Appearance
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 450
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:DoActsBehavior
-        acts: [ "Breakage" ]
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      1000: Critical
   - type: MobState
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: _Stories/apc.rsi
+    sprite: _Stories/Mobs/Vehicles/base_apc.rsi
     layers:
     - map: [ "enum.VehicleVisualLayers.Base" ]
       state: apc_base
@@ -125,13 +110,14 @@
         requireInputValidation: true
   - type: NoRotateOnInteract
   - type: Vehicle
-    movementSlot: apc-slot-movement
+    gridPath: "/Maps/_Stories/hahahaa_apc_vehicle_pjb_lol_lmao_kekw_super_ultra_hd_btr_metalsage_1984_148F.yml"
+    maxHealth: 1000
+    movementSlot: vehicle-slot-treads
     damageMults:
       Heat: 1.6
       Slash: 1
       Piercing: 0.6
       Blunt: 0.7
-    health: 1000
     passengerSlots:
       current: 0
       max: 15
@@ -141,58 +127,62 @@
     xenoSlots:
       current: 0
       max: 8
+#    roleReservedSlots:
+#      - categoryName: "Crewmen"
+#        roles:
+#          - JOB_TANK_CREW
+#          - JOB_WO_CREWMAN
+#          - JOB_UPP_CREWMAN
+#          - JOB_PMC_CREWMAN
+#        total:
+#          current: 0
+#          max: 2
+#      - categoryName: "Synthetic Unit"
+#        roles:
+#          - JOB_SYNTH
+#          - JOB_WO_SYNTH
+#        total:
+#          current: 0
+#          max: 1
   - type: ExplosionResistance
     DamageCoefficient: 0.7
     Worn: false
     Examine: "explosion-resistance-coefficient-value"
   - type: VehicleAttachableHolder
     slots:
-      apc-slot-movement:
-        startingAttachable:
-        whitelist:
-          tags:
-          - RMCAttachmentExtendedBarrel
-      apc-slot-maincannon:
-        whitelist:
-          tags:
-          - Airlock
-      apc-slot-frontalcannon:
-        whitelist:
-          tags:
-          - APCMiniXyi
-      apc-slot-supportcannon:
-        whitelist:
-          tags:
-          - APCFlareLauncher
+      vehicle-slot-treads:
+        startingAttachable: STMarineVehicleWheelsBase
+        hardpointType: HDPT_TREADS
+      vehicle-slot-support:
+        startingAttachable: STMarineVehicleFlareLauncher
+        hardpointType: HDPT_SUPPORT
+      vehicle-slot-secondary:
+        startingAttachable: STMarineVehicleFrontalCannon
+        hardpointType: HDPT_SECONDARY
+      vehicle-slot-primary:
+        startingAttachable: STMarineVehicleDualcannon
+        hardpointType: HDPT_PRIMARY
   - type: VehicleAttachableHolderVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    damagedState: damaged_frame
   - type: VehicleHardpointsMenu
   - type: NpcFactionMember
     factions:
     - UNMC
+  - type: AccessReader
+    access: [["CMAccessBrig"],["CMAccessCommand"]]
+#   - ACCESS_MARINE_CREWMAN
+  - type: UserIFF
+    faction: FactionMarine
 
 - type: entity
   parent: BaseItem
-  id: APCDualCannonBase
-  description: big black d....Gun
+  id: STMarineVehicleAttachableBase
+  abstract: true
   components:
-  - type: Sprite
-    sprite: _Stories/apcitems.rsi
-    layers:
-    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
-      state: dual_cannon
   - type: Item
-    size: Normal
-  - type: StaticPrice
-    price: 0
+    size: Large
   - type: VehicleAttachable
-  - type: VehicleAttachableVisuals
-    rsi: _Stories/apc.rsi
-    state: dualcannon_0
-  - type: Tag
-    tags:
-    - Airlock
-  - type: VehicleMovementAttachable
-#  - type: VehicleHardpointAttachable
   - type: NpcFactionMember
     factions:
     - UNMC
@@ -200,6 +190,33 @@
     faction: FactionMarine
   - type: NoRotateOnInteract
   - type: NoRotateOnMove
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: null
+  - type: VehicleAttachableDamageVisuals
+  - type: Appearance
+
+- type: entity
+  parent: STMarineVehicleAttachableBase
+  name: ARS-159 Boyars Dualcannon
+  id: STMarineVehicleDualcannon
+  description: none
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: dual_cannon
+  - type: VehicleAttachable
+    hardpointType: HDPT_PRIMARY
+    damageMult: 0.2
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 500
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: dualcannon
+    destroyedState: dualcannon_destroyed
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -219,38 +236,28 @@
     ammoType: CartridgeCaselessRifle
   - type: VehicleGun
   - type: AmmoCounter
-  - type: VehicleGunAttachable
 
 - type: entity
-  parent: BaseItem
-  id: APCFlareLauncher
-  description: big black d....Gun
+  parent: STMarineVehicleAttachableBase
+  name: M-87F Flare Launcher
+  id: STMarineVehicleFlareLauncher
+  description:
   components:
   - type: Sprite
-    sprite: _Stories/apcitems.rsi
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
     layers:
     - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
       state: flare_launcher
-  - type: Item
-    size: Normal
-  - type: StaticPrice
-    price: 0
   - type: VehicleAttachable
-    health: 500
+    hardpointType: HDPT_SUPPORT
+    damageMult: 0.1
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 500
   - type: VehicleAttachableVisuals
-    rsi: _Stories/apc.rsi
-    state: flare_launcher_0
-  - type: Tag
-    tags:
-    - APCFlareLauncher
-#  - type: VehicleHardpointAttachable
-  - type: NpcFactionMember
-    factions:
-    - UNMC
-  - type: UserIFF
-    faction: FactionMarine
-  - type: NoRotateOnInteract
-  - type: NoRotateOnMove
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: flare_launcher
+    destroyedState: flare_launcher_destroyed
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -269,50 +276,30 @@
     shots: 10
     capacity: 10
     ammoType: CMFlares
-  - type: GunPointBlank
   - type: VehicleGun
   - type: AmmoCounter
-  - type: VehicleGunAttachable
-  - type: OnShootTriggerAmmoTimer
-    delay: 1.5
-    beepInterval: 2
-    initialBeepDelay: 0
-    beepSound:
-      path: "/Audio/Effects/beep1.ogg"
-      params:
-        volume: 5
-    timerStart: enum.TimerStartMode.OnHitGround
+  - type: ActivateExpendableLightOnShoot
 
 - type: entity
-  parent: BaseItem
-  id: APCMiniXyi
-  description: big black d....Gun
+  parent: STMarineVehicleAttachableBase
+  id: STMarineVehicleFrontalCannon
+  description:
   components:
   - type: Sprite
-    sprite: _Stories/apcitems.rsi
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
     layers:
     - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
       state: front_cannon
-  - type: Item
-    size: Normal
-  - type: StaticPrice
-    price: 0
   - type: VehicleAttachable
-    health: 350
+    hardpointType: HDPT_SECONDARY
+    damageMult: 0.11
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 350
   - type: VehicleAttachableVisuals
-    rsi: _Stories/apc.rsi
-    state: frontalcannon_0
-  - type: Tag
-    tags:
-    - APCMiniXyi
-#  - type: VehicleHardpointAttachable
-  - type: NpcFactionMember
-    factions:
-    - UNMC
-  - type: UserIFF
-    faction: FactionMarine
-  - type: NoRotateOnInteract
-  - type: NoRotateOnMove
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: frontalcannon
+    destroyedState: frontalcannon_destroyed
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -332,35 +319,34 @@
     ammoType: CartridgeCaselessRifle
   - type: VehicleGun
   - type: AmmoCounter
-  - type: VehicleGunAttachable
 
 - type: entity
-  parent: BaseItem
-  id: APCWheelsBase
-  description: A sheet of metal, used often on the station in various applications.
+  parent: STMarineVehicleAttachableBase
+  id: STMarineVehicleWheelsBase
+  description:
   components:
   - type: Sprite
-    sprite: _Stories/apcitems.rsi
-    state: tires
-  - type: Item
-    size: Normal
-  - type: StaticPrice
-    price: 0
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: tires
   - type: VehicleAttachable
-    health: 500
+    hardpointType: HDPT_TREADS
+    damageMult: 0.15
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 500
   - type: VehicleAttachableVisuals
-    rsi: _Stories/apc.rsi
-    state: wheels_0
-  - type: Tag
-    tags:
-    - RMCAttachmentExtendedBarrel
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: wheels
+    destroyedState: wheels_destroyed
   - type: VehicleMovementAttachable
     walkSpeed: 6
     sprintSpeed: 6
   
 - type: entity
-  id: STAPCEnterPoint
-  name: APC EnterPoint
+  id: STVehicleEnterpoint
+  name: Vehicle EnterPoint Marker
   components:
   - type: Transform
     anchored: true
@@ -374,46 +360,9 @@
 
 
 - type: entity
-  abstract: true
-  parent: CMBaseWallInvincible
-  id: CMBaseAPCWall
-  name: apc wall
-  components:
-  - type: Corrodible
-    isCorrodible: false
-  - type: Sprite
-    sprite: _Stories/apcvisuals.rsi
-  - type: Icon
-    sprite: _Stories/apcvisuals.rsi
-
-- type: entity
-  parent: CMBaseAlamoWall
-  id: STAPCWall
-  suffix: 1
-  components:
-  - type: Sprite
-    state: "1"
-  - type: Icon
-    state: "1"
-  - type: Occluder
-    enabled: false
-
-- type: entity
-  parent: RMCNanoMed
-  id: STAPCNanoMed
-  name: APC NanoMed
-  description: A wall-mounted medical equipment dispenser.
-  components:
-  - type: Sprite
-    drawdepth: WallMountedItems
-    sprite: _Stories/general_wy.rsi
-    layers:
-    - state: "nanomed"
-
-- type: entity
   parent: BaseStructure
   id: APCMoveBlockerMarker
-  name: apc move block marker
+  name: vehicle move block marker
   description:
   placement:
     mode: SnapgridCenter
@@ -436,14 +385,13 @@
         - Transport
         density: 1000
 
-
 - type: entity
   parent: BaseStructure
-  id: APCWeaponsLoaderBase
+  id: VehicleWeaponsLoaderBase
   components:
   - type: Sprite
-    sprite: _Stories/general_wy.rsi
-    state: weapons_loader
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    state: comms_relay
   - type: Animateable
   - type: InteractionOutline
   - type: Anchorable
@@ -473,8 +421,8 @@
   components:
   - type: BallisticAmmoProvider
   - type: Sprite
-    sprite: _Stories/general_wy.rsi
-    state: weapons_loader
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    state: comms_relay
   - type: VehicleGunMagazine
     prototype: CartridgeCaselessRifle
   - type: ContainerContainer
@@ -488,15 +436,52 @@
   components:
   - type: BallisticAmmoProvider
   - type: Sprite
-    sprite: _Stories/general_wy.rsi
-    state: weapons_loader
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    state: comms_relay
   - type: VehicleGunMagazine
     prototype: CMFlares
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
 
-- type: Tag
-  id: APCMiniXyi
-- type: Tag
-  id: APCFlareLauncher
+- type: hardpointType
+  id: HDPT_ARMOR
+  repairPerSecond: 0.014  # 1.4% в секунду
+  attachDelay: 30 # num_delay * 3
+
+- type: hardpointType
+  id: HDPT_PRIMARY
+  repairPerSecond: 0.02  # 2% в секунду
+  attachDelay: 5 # num_delay * 3
+
+- type: hardpointType
+  id: HDPT_SECONDARY
+  repairPerSecond: 0.025  # 2.5% в секунду
+  attachDelay: 9 # num_delay * 3
+
+- type: hardpointType
+  id: HDPT_SUPPORT
+  repairPerSecond: 0.025  # 2.5% в секунду
+  attachDelay: 6 # num_delay * 3
+
+- type: hardpointType
+  id: HDPT_TREADS
+  repairPerSecond: 0.033  # 3.3% в секунду
+  attachDelay: 7 # num_delay * 3
+
+
+- type: entity
+  id: STVehicleGunnerSeat
+  parent: RMCSeatDark
+  name: gunner seat
+  components:
+  - type: VehiclePilotSeat
+    isGunner: true
+
+- type: entity
+  id: STVehicleDriverSeat
+  parent: RMCSeatDark
+  name: gunner seat
+  components:
+  - type: VehiclePilotSeat
+    isGunner: false

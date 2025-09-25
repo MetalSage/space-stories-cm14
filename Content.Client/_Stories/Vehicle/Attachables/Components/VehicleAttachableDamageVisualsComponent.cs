@@ -8,5 +8,5 @@ namespace Content.Client._Stories.Vehicle.Attachables;
 public sealed partial class VehicleAttachableDamageVisualsComponent : Component
 {
 	[DataField]
-	public float DarknessLevel = 0.8f;
+	public float DarknessLevel = 0.6f;
 }

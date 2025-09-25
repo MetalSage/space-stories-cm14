@@ -56,7 +56,6 @@ public sealed partial class VehicleAttachableHolderChooseSlotMenu : FancyWindow
 
             var icon = new TextureRect
             {
-//                Texture = StaticIcons.GenericGear,
                 HorizontalAlignment = HAlignment.Left,
                 VerticalAlignment = VAlignment.Center,
                 Stretch = TextureRect.StretchMode.KeepAspectCentered,

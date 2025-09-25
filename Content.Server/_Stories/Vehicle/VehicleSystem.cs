@@ -3,6 +3,9 @@ using Content.Shared._Stories.Vehicle.Systems;
 using Content.Shared._Stories.Attachables;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Server.Light.EntitySystems;
+using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Light.Components;
 
 namespace Content.Server._Stories.Vehicle;
 
@@ -11,12 +14,14 @@ public sealed class VehicleSystem : EntitySystem
     [Dependency] private readonly VehicleAttachableHolderSystem _attachable = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly ExpendableLightSystem _expendableLight = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<BallisticVehicleAmmoProviderComponent, VehicleGunReloadEvent>(OnReload);
+        SubscribeLocalEvent<ActivateExpendableLightOnShootComponent, AmmoShotEvent>(ActivateExpendableLightOnShot);
     }
 
     private void OnReload(Entity<BallisticVehicleAmmoProviderComponent> provider, ref VehicleGunReloadEvent args)
@@ -61,5 +66,14 @@ public sealed class VehicleSystem : EntitySystem
             return magazine;
         }
         return null;
+    }
+
+    private void ActivateExpendableLightOnShot(Entity<ActivateExpendableLightOnShootComponent> ent, ref AmmoShotEvent args)
+    {
+        foreach (var projectile in args.FiredProjectiles)
+        {
+            if (TryComp<ExpendableLightComponent>(projectile, out var light))
+            _expendableLight.TryActivate((projectile, light));
+        }
     }
 }

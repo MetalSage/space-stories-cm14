@@ -16,7 +16,7 @@ public sealed partial class VehicleMovementComponent : Component
     public AudioParams AudioParams = AudioParams.Default.WithVolume(-5f);
 
     [DataField, AutoNetworkedField]
-    public TimeSpan LastSoundTime;
+    public TimeSpan NextSoundTime;
 
     [DataField, AutoNetworkedField]
     public float SoundInterval = 3f;

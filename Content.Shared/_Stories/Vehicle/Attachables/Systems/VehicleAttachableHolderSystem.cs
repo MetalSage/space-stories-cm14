@@ -11,6 +11,10 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
+using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared.Popups;
+using Content.Shared.Movement.Components;
 
 namespace Content.Shared._Stories.Attachables;
 
@@ -22,6 +26,9 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -65,7 +72,7 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         if (HasComp<XenoComponent>(args.User))
             return;
 
-        if (CanAttach(holder, args.Used))
+        if (CanAttach(holder, args.Used, args.User))
         {
             StartAttach(holder, args.Used, args.User);
             args.Handled = true;
@@ -120,10 +127,18 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
             slotId = validSlots[0];
         }
 
+        var attachableComp = Comp<VehicleAttachableComponent>(attachableUid);
+
+        if (!_prototypeManager.TryIndex<HardpointTypePrototype>(attachableComp.HardpointType, out var prototype))
+            return;
+
+        var mult = _skills.GetSkillDelayMultiplier(userUid, attachableComp.Skill);
+        var delay = prototype.AttachDelay * mult;
+
         _doAfter.TryStartDoAfter(new DoAfterArgs(
             EntityManager,
             userUid,
-            Comp<VehicleAttachableComponent>(attachableUid).AttachDoAfter,
+            delay,
             new VehicleAttachableAttachDoAfterEvent(slotId),
             holder,
             target: holder.Owner,
@@ -155,7 +170,7 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         EntityUid userUid,
         string slotId = "")
     {
-        if (!CanAttach(holder, attachableUid, ref slotId))
+        if (!CanAttach(holder, attachableUid, userUid, ref slotId))
             return false;
 
         var container = _container.EnsureContainer<ContainerSlot>(holder, slotId);
@@ -191,7 +206,6 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         RaiseLocalEvent(holder, ref holderEv);
     }
 
-    //Detaching
     public void StartDetach(Entity<VehicleAttachableHolderComponent> holder, string slotId, EntityUid userUid)
     {
         if (TryGetAttachable(holder, slotId, out var attachable) && holder.Comp.Slots.ContainsKey(slotId) &&
@@ -206,7 +220,21 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         if (HasComp<XenoComponent>(userUid))
             return;
 
-        var delay = Comp<VehicleAttachableComponent>(attachableUid).AttachDoAfter;
+        var attachableComp = Comp<VehicleAttachableComponent>(attachableUid);
+
+        if (!_prototypeManager.TryIndex<HardpointTypePrototype>(attachableComp.HardpointType, out var prototype))
+            return;
+
+        var mult = _skills.GetSkillDelayMultiplier(userUid, attachableComp.Skill);
+        var delay = prototype.AttachDelay * mult;
+
+        if (!_skills.HasSkill(userUid, attachableComp.Skill, attachableComp.SkillLevel))
+        {
+            var msg = Loc.GetString("rmc-skills-cant-use", ("item", attachableUid));
+            _popup.PopupClient(msg, userUid, PopupType.SmallCaution);
+            return;
+        }
+
         var args = new DoAfterArgs(
             EntityManager,
             userUid,
@@ -264,33 +292,52 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         var holderEv = new VehicleAttachableHolderAttachablesAlteredEvent(attachableUid, slotId, VehicleAttachableAlteredType.Detached);
         RaiseLocalEvent(holder.Owner, ref holderEv);
 
-        _audio.PlayPredicted(Comp<VehicleAttachableComponent>(attachableUid).DetachSound,
+        var attachableComp = Comp<VehicleAttachableComponent>(attachableUid);
+        _audio.PlayPredicted(attachableComp.DetachSound,
             holder,
             userUid);
 
         Dirty(holder);
         _hands.TryPickupAnyHand(userUid, attachable);
 
+        if (attachableComp.Destroyed)
+        {
+            var msg = Loc.GetString("st-destroyed-vehicle-attachable-deleted", ("attachable", attachable));
+            _popup.PopupEntity(msg, attachable, PopupType.Small);
+
+            QueueDel(attachable);
+            return true; // succesfully deattached but deleted 
+        }
+
         return true;
     }
 
-    private bool CanAttach(Entity<VehicleAttachableHolderComponent> holder, EntityUid attachableUid)
+    private bool CanAttach(Entity<VehicleAttachableHolderComponent> holder, EntityUid attachableUid, EntityUid user)
     {
         var slotId = "";
-        return CanAttach(holder, attachableUid, ref slotId);
+        return CanAttach(holder, attachableUid, user, ref slotId);
     }
 
-    private bool CanAttach(Entity<VehicleAttachableHolderComponent> holder, EntityUid attachableUid, ref string slotId)
+    private bool CanAttach(Entity<VehicleAttachableHolderComponent> holder, EntityUid attachableUid, 
+        EntityUid user, 
+        ref string slotId)
     {
-        if (!HasComp<VehicleAttachableComponent>(attachableUid))
+        if (!TryComp<VehicleAttachableComponent>(attachableUid, out var attachableComp))
             return false;
 
+        if (!_skills.HasSkill(user, attachableComp.Skill, attachableComp.SkillLevel))
+        {
+            var msg = Loc.GetString("rmc-skills-cant-use", ("item", attachableUid));
+            _popup.PopupClient(msg, user, PopupType.SmallCaution);
+            return false;
+        }
+
         if (!string.IsNullOrWhiteSpace(slotId))
-            return _whitelist.IsWhitelistPass(holder.Comp.Slots[slotId].Whitelist, attachableUid);
+            return holder.Comp.Slots[slotId].HardpointType == attachableComp.HardpointType;
 
         foreach (var key in holder.Comp.Slots.Keys)
         {
-            if (_whitelist.IsWhitelistPass(holder.Comp.Slots[key].Whitelist, attachableUid))
+            if (holder.Comp.Slots[key].HardpointType == attachableComp.HardpointType)
             {
                 slotId = key;
                 return true;
@@ -330,12 +377,12 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
     {
         var list = new List<string>();
 
-        if (!HasComp<VehicleAttachableComponent>(attachableUid))
+        if (!TryComp<VehicleAttachableComponent>(attachableUid, out var attachableComp))
             return list;
 
         foreach (var slotId in holder.Comp.Slots.Keys)
         {
-            if (_whitelist.IsWhitelistPass(holder.Comp.Slots[slotId].Whitelist, attachableUid) && (!ignoreLock || !holder.Comp.Slots[slotId].Locked))
+            if (holder.Comp.Slots[slotId].HardpointType == attachableComp.HardpointType && (!ignoreLock || !holder.Comp.Slots[slotId].Locked))
                 list.Add(slotId);
         }
 
@@ -401,10 +448,10 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         if (!TryGetHolder(attachable, out var holderUid))
             return false;
 
-        if (!TryComp<TransformComponent>(holderUid, out var transformComponent) || !transformComponent.ParentUid.Valid)
+        if (!TryComp<MovementRelayTargetComponent>(holderUid, out var relayMover))
             return false;
 
-        userUid = transformComponent.ParentUid;
+        userUid = relayMover.Source;
         return true;
     }
 

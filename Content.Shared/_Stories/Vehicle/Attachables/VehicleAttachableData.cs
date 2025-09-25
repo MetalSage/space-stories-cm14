@@ -11,7 +11,7 @@ public partial struct VehicleAttachableSlot()
     public bool Locked;
 
     [DataField]
-    public EntityWhitelist? Whitelist;
+    public ProtoId<HardpointTypePrototype>? HardpointType;
 
     [DataField]
     public EntProtoId<VehicleAttachableComponent>? StartingAttachable;

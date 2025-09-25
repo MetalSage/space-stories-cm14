@@ -30,12 +30,12 @@ public sealed class VehicleAttachableVisualizerSystem : VisualizerSystem<Vehicle
 
     public void UpdateSprite(Entity<SpriteComponent?, AppearanceComponent?, DamageableComponent?, VehicleAttachableDamageVisualsComponent?> entity)
     {
-        var (uid, sprite, appearance, damageable, attachable) = entity;
+        var (uid, sprite, appearance, damageable, attachableVisuals) = entity;
 
         if (!Resolve(uid, ref sprite, ref appearance, ref damageable, false))
             return;
 
-        if (!Resolve(uid, ref attachable, false))
+        if (!Resolve(uid, ref attachableVisuals, false))
             return;
 
         if (sprite is not { BaseRSI: { } rsi } ||
@@ -44,12 +44,21 @@ public sealed class VehicleAttachableVisualizerSystem : VisualizerSystem<Vehicle
             return;
         }
 
-        if (!TryComp<MaxDamageComponent>(entity, out var maxDamageComp) || maxDamageComp.Max == FixedPoint2.Zero)
+        if (!TryComp<VehicleAttachableComponent>(entity, out var attachable) || attachable.MaxHealth <= FixedPoint2.Zero)
             return;
 
-        var ratio = Math.Clamp((float)(damageable.TotalDamage / maxDamageComp.Max), 0f, 1f);
-        var brightness = (byte)(255 * (1f - ratio * attachable.DarknessLevel)); 
-        var color = new Color(brightness, brightness, brightness, 255);
+        Color color;
+
+        if (attachable.Destroyed)
+        {
+            color = Color.White;
+        }
+        else
+        {
+            var ratio = Math.Clamp((float)(damageable.TotalDamage / attachable.MaxHealth), 0f, 1f);
+            var brightness = (byte)(255 * (1f - ratio * attachableVisuals.DarknessLevel));
+            color = new Color(brightness, brightness, brightness, 255);
+        }
 
         SetAttachedColor(uid, color);
         sprite.Color = color;

@@ -1,6 +1,9 @@
 using Content.Shared.Movement.Systems;
 using Content.Shared._Stories.Vehicle;
 using Robust.Shared.Network;
+using Content.Shared.Damage;
+using Content.Shared.Popups;
+using Content.Shared._Stories.Attachables;
 
 namespace Content.Shared._Stories.Attachables;
 
@@ -8,12 +11,16 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly VehicleAttachableHolderSystem _holder = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<VehicleMovementAttachableComponent, VehicleAttachableAlteredEvent>(OnMovementAttachableAltered);
-        SubscribeLocalEvent<VehicleGunAttachableComponent, VehicleAttachableAlteredEvent>(OnHardpointAttachableAltered);
+        SubscribeLocalEvent<VehicleAttachableComponent, VehicleAttachableAlteredEvent>(OnHardpointAttachableAltered);
         SubscribeLocalEvent<VehicleHardpointsMenuComponent, BoundUIOpenedEvent>(OnHardpointsUiOpened);
+        SubscribeLocalEvent<VehicleAttachableComponent, DamageModifyEvent>(AttachableDamageModify);
+        SubscribeLocalEvent<VehicleAttachableComponent, DamageChangedEvent>(OnAttachableDamaged);
     }
 
     private void OnMovementAttachableAltered(Entity<VehicleMovementAttachableComponent> attachable, ref VehicleAttachableAlteredEvent args)
@@ -29,7 +36,7 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
         }
     }
 
-    private void OnHardpointAttachableAltered(Entity<VehicleGunAttachableComponent> attachable, ref VehicleAttachableAlteredEvent args)
+    private void OnHardpointAttachableAltered(Entity<VehicleAttachableComponent> attachable, ref VehicleAttachableAlteredEvent args)
     {
         if (!TryComp<VehicleComponent>(args.Holder, out var vehicle))
             return;
@@ -67,5 +74,35 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
 
         var state = new VehicleHardpointWindowUserInterfaceState();
         _ui.SetUiState(uid, VehicleSelectHardpointUI.Key, state);
+    }
+
+    private void AttachableDamageModify(Entity<VehicleAttachableComponent> ent, ref DamageModifyEvent args)
+    {
+        args.Damage = args.Damage * ent.Comp.DamageMult;
+        Log.Error($"Final dmg: {args.Damage.GetTotal()}");
+    }
+
+    private void OnAttachableDamaged(Entity<VehicleAttachableComponent> ent, ref DamageChangedEvent args)
+    {
+        if (args.Damageable.TotalDamage >= ent.Comp.MaxHealth)
+        {
+            ent.Comp.Destroyed = true;
+            Dirty(ent);
+
+            if (!_holder.TryGetHolder(ent.Owner, out var holder) || holder is null)
+            {
+                var msg = Loc.GetString("st-destroyed-vehicle-attachable-deleted", ("attachable", ent.Owner));
+                _popup.PopupEntity(msg, ent, PopupType.Small);
+
+                QueueDel(ent);
+            }
+
+            if (holder is not null && TryComp<VehicleComponent>(holder.Value, out var vehicle))
+            {
+                vehicle.Hardpoints.Remove(ent.Owner);
+                Dirty(holder.Value, vehicle);
+                _movement.RefreshMovementSpeedModifiers(holder.Value);
+            }
+        }
     }
 }

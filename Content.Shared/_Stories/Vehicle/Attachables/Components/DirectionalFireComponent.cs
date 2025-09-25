@@ -1,10 +1,13 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Stories.Attachables;
+namespace Content.Shared.Weapons.Ranged.Systems;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class DirectionalFireComponent : Component
+public sealed partial class GunArcRestrictionComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public Angle MaxFireAngle = Angle.FromDegrees(45);
+    public Angle MaxAngleDeviation = Angle.FromDegrees(45);
+
+    [DataField, AutoNetworkedField]
+    public string? RestrictionMessage;
 }

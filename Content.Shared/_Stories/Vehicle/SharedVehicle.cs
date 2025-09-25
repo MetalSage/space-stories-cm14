@@ -15,6 +15,11 @@ public sealed partial class VehicleLeaveDoAfterEvent : SimpleDoAfterEvent
 }
 
 [Serializable, NetSerializable]
+public sealed partial class MotionDetectorScanDoAfterEvent : SimpleDoAfterEvent
+{
+}
+
+[Serializable, NetSerializable]
 public enum VehicleVisuals : byte
 {
     Destroyed

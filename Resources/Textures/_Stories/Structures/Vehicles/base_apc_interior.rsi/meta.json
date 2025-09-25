@@ -219,22 +219,6 @@
     },
     {
       "name": "door_rear_left"
-    },
-    {
-      "name": "m56_FPW",
-      "directions": 4
-    },
-    {
-      "name": "sensors_equipment",
-      "delays": [
-        [
-          0.2,
-          0.2,
-          0.2,
-          0.2,
-          0.2
-        ]
-      ]
     }
   ]
 }

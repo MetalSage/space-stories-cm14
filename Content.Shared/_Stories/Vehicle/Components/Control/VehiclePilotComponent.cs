@@ -11,4 +11,7 @@ public sealed partial class VehiclePilotComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntityUid? ActionEntity;
+
+    [DataField, AutoNetworkedField]
+    public bool DrawOverlay = true;
 }

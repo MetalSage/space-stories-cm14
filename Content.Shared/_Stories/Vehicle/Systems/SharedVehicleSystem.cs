@@ -26,6 +26,11 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Access.Systems;
+using Content.Shared._RMC14.Weapons.Ranged.IFF;
+using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.MotionDetector;
+using Content.Shared.Weapons.Melee;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -53,17 +58,29 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly VehicleAttachableHolderSystem _attachableHolder = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly AccessReaderSystem _access = default!;
+    [Dependency] private readonly GunIFFSystem _gunIFF = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<VehicleComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<VehicleComponent, VehicleEnterDoAfterEvent>(OnEnterDoAfter);
+        SubscribeLocalEvent<VehicleInteriorDoorComponent, InteractHandEvent>(OnInteriorDoorInteractHand);
+        SubscribeLocalEvent<VehicleComponent, VehicleLeaveDoAfterEvent>(OnLeaveDoAfter);
+
+
         SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VehicleComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VehicleComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
         SubscribeLocalEvent<VehiclePilotComponent, VehicleHardpointsMenuActionEvent>(OnVehicleHardpointsMenuAction);
-        SubscribeLocalEvent<VehicleComponent, BeforeDamageChangedEvent>(BeforeDamageTaken);
+        SubscribeLocalEvent<VehicleComponent, DamageModifyEvent>(OnVehicleDamageModify);
+        SubscribeLocalEvent<VehicleComponent, DamageChangedEvent>(OnVehicleDamageChanged);
+        SubscribeLocalEvent<VehicleComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
+
+        SubscribeLocalEvent<MotionDetectorComponent, AfterInteractEvent>(OnMotionDetectorInteract);
+        SubscribeLocalEvent<MotionDetectorComponent, MotionDetectorScanDoAfterEvent>(OnMotionDetectorScanFinished);
 
         Subs.BuiEvents<VehicleComponent>(VehicleSelectHardpointUI.Key,
             subs =>
@@ -91,47 +108,6 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             QueueDel(vehicle.Comp.GridEnt.Value);
     }
 
-    private void OnInteractHand(Entity<VehicleComponent> entity, ref InteractHandEvent args)
-    {
-        if (args.Handled || !CanEnter(args.User, args.Target))
-            return;
-
-        args.Handled = true;
-
-        var doAfter = new DoAfterArgs(EntityManager, args.User,
-            entity.Comp.EntryDelay, new VehicleEnterDoAfterEvent(),
-            entity, target: args.Target, used: entity)
-        {
-            BreakOnMove = true
-        };
-
-        _doAfter.TryStartDoAfter(doAfter);
-    }
-
-    private void OnEnterDoAfter(Entity<VehicleComponent> entity, ref VehicleEnterDoAfterEvent args)
-    {
-        if (args.Cancelled || args.Handled || args.Args.Target == null)
-            return;
-/*
-        if (entity.Comp.Passangers >= entity.Comp.MaxPassangers)
-        {
-            _popup.PopupEntity(Loc.GetString("stories-transport-is-full"), args.User);
-            args.Handled = true;
-            return;
-        }
-*/
-        if (entity.Comp.GridEnt is not { } gridEnt)
-            return;
-
-        var position = GetEnterPoint(gridEnt);
-        if (position is not { } pos)
-            return;
-
-        args.Handled = true;
-        var coords = new EntityCoordinates(gridEnt, pos);
-        HandleEnterPulling(entity, args.User, coords);
-    }
-
     private void LoadMap(Entity<VehicleComponent> vehicle)
     {
         var map = _map.CreateMap(out var mapId);
@@ -154,8 +130,149 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         gridComp.Vehicle = GetNetEntity(vehicle);
 
         Dirty(grid.Value, gridComp);
+
+        var seatsQuery = EntityQueryEnumerator<VehiclePilotSeatComponent, TransformComponent>();
+        while (seatsQuery.MoveNext(out var uid, out var comp, out var xform))
+        {
+            if (xform.GridUid != grid.Value.Owner)
+                continue;
+
+            comp.Vehicle = vehicle.Owner;
+        }
     }
 
+    private void OnInteractHand(Entity<VehicleComponent> entity, ref InteractHandEvent args)
+    {
+        if (args.Handled || !CanEnter(args.User, args.Target))
+            return;
+
+        args.Handled = true;
+
+        var entryDelay = TimeSpan.FromSeconds(GetEntryDelay(entity, args.User));
+
+        var doAfter = new DoAfterArgs(EntityManager, args.User,
+            entryDelay, new VehicleEnterDoAfterEvent(),
+            entity, target: args.Target, used: entity)
+        {
+            BreakOnMove = true
+        };
+
+        _doAfter.TryStartDoAfter(doAfter);
+    }
+
+    private void OnInteriorDoorInteractHand(Entity<VehicleInteriorDoorComponent> entity, ref InteractHandEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryGetVehicle(entity.Owner, out var vehicle))
+            return;
+
+        args.Handled = true;
+
+        var entryDelay = TimeSpan.FromSeconds(GetEntryDelay(vehicle, args.User));
+
+        var doAfter = new DoAfterArgs(EntityManager, args.User,
+            entryDelay, new VehicleLeaveDoAfterEvent(),
+            vehicle, target: args.Target, used: entity)
+        {
+            BreakOnMove = true
+        };
+
+        _doAfter.TryStartDoAfter(doAfter);
+    }
+
+    private void OnLeaveDoAfter(Entity<VehicleComponent> ent, ref VehicleLeaveDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Args.Target == null)
+            return;
+        
+        if (!TryComp<TransformComponent>(ent, out var xform) || xform.GridUid is null)
+            return;
+
+        var pos = _transform.GetWorldPosition(args.Args.Target.Value);
+
+        args.Handled = true;
+        var coords = new EntityCoordinates(xform.GridUid.Value, pos);
+        HandleLeavePulling(ent, args.User, coords);
+    }
+
+    private float GetEntryDelay(Entity<VehicleComponent> vehicle, EntityUid user)
+    {
+        bool isPulling = TryComp(user, out PullerComponent? puller) && puller.Pulling != null;
+        
+        if (isPulling)
+            return vehicle.Comp.EntryDelayPulling;
+
+        if (HasComp<XenoComponent>(user))
+            return vehicle.Comp.EntryDelayXeno;
+
+        if (HasComp<MarineComponent>(user))
+            return vehicle.Comp.EntryDelay;
+
+        return vehicle.Comp.EntryDelay;
+    }
+
+    private void OnEnterDoAfter(Entity<VehicleComponent> ent, ref VehicleEnterDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Args.Target == null)
+            return;
+
+        if (ent.Comp.Locked && TryComp<DamageableComponent>(ent, out var damageable) && 
+            damageable.TotalDamage < ent.Comp.MaxHealth)
+        {
+            if (!CheckVehicleAccess(ent, args.User))
+                return;
+        }
+        
+        if (ent.Comp.GridEnt is not { } gridEnt)
+            return;
+            
+        var position = GetEnterPoint(gridEnt);
+        if (position is not { } pos)
+            return;
+            
+        args.Handled = true;
+        var coords = new EntityCoordinates(gridEnt, pos);
+        HandleEnterPulling(ent, args.User, coords);
+    }
+
+    private bool CheckVehicleAccess(Entity<VehicleComponent> vehicle, EntityUid user)
+    {
+        var comp = vehicle.Comp;
+
+        if (HasComp<XenoComponent>(user))
+            return true;
+        
+        if (HasComp<MarineComponent>(user))
+        {
+            bool hasAccess = _access.IsAllowed(user, vehicle.Owner);
+            
+            bool correctFaction = CheckFactionAccess(vehicle.Owner, user);
+
+            if (!hasAccess || !correctFaction)
+            {
+                _popup.PopupEntity("The vehicle is locked!", user);
+                return false;
+            }
+            
+            return true;
+        }
+        
+        _popup.PopupEntity("The vehicle is locked!", user);
+        return false;
+    }
+
+    private bool CheckFactionAccess(EntityUid vehicle, EntityUid user)
+    {
+        if (!HasComp<UserIFFComponent>(vehicle))
+            return true;
+
+        if (!_gunIFF.TryGetUserFaction(vehicle, out var faction))
+            return false;
+            
+        return _gunIFF.IsInFaction(user, faction);
+    }
 
     private bool CanEnter(EntityUid user, EntityUid target)
     {
@@ -208,46 +325,78 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
     private void HandleEnterPulling(Entity<VehicleComponent> vehicle, EntityUid user, EntityCoordinates coords)
     {
-        EntityUid targetEntity;
-
+        EntityUid targetEntity = (!TryComp(user, out PullerComponent? puller) || puller.Pulling is not { } pulledUid)
+            ? user
+            : pulledUid;
+            
         var comp = vehicle.Comp;
-
-        if (!TryComp(user, out PullerComponent? puller) || puller.Pulling is not { } pulledUid)
-            targetEntity = user;
-        else
-            targetEntity = pulledUid;
-
-        var hasSlot = false;
-
-        if (HasComp<XenoComponent>(targetEntity) && comp.XenoSlots.Current < comp.XenoSlots.Max)
+        
+        if (targetEntity != user)
         {
-            comp.XenoSlots.Current += 1;
-            hasSlot = true;
+            if (comp.Locked && TryComp<DamageableComponent>(vehicle, out var damageable) && 
+                damageable.TotalDamage < comp.MaxHealth)
+            {
+                if (!CheckVehicleAccess(vehicle, user))
+                    return;
+            }
         }
-        else if ((_mobState.IsDead(targetEntity) &&
-                 !HasComp<UnrevivableComponent>(targetEntity)) && comp.RevivableDeadSlots.Current < comp.RevivableDeadSlots.Max)
+        
+        if (HasComp<XenoComponent>(targetEntity))
         {
-            comp.RevivableDeadSlots.Current += 1;
-            hasSlot = true;
+            if (comp.XenoSlots.Current < comp.XenoSlots.Max)
+                comp.XenoSlots.Current++;
+            else
+            {
+                _popup.PopupEntity("stories-transport-is-full", user);
+                return;
+            }
         }
-        else if (_job.MindTryGetJob(targetEntity, out var job) &&
-                 comp.RoleReservedSlots.TryGetValue(job.ID, out var roleSlots) &&
-                 roleSlots.Current < roleSlots.Max)
+        else if (_mobState.IsDead(targetEntity) && !HasComp<UnrevivableComponent>(targetEntity))
         {
-            roleSlots.Current += 1;
-            comp.RoleReservedSlots[job.ID] = roleSlots;
-            hasSlot = true;
+            if (comp.RevivableDeadSlots.Current < comp.RevivableDeadSlots.Max)
+                comp.RevivableDeadSlots.Current++;
+            else
+            {
+                _popup.PopupEntity("stories-transport-is-full", user);
+                return;
+            }
         }
         else if (comp.PassengerSlots.Current < comp.PassengerSlots.Max)
         {
-            comp.PassengerSlots.Current += 1;
-            hasSlot = true;
+            comp.PassengerSlots.Current++;
         }
-
-        if (!hasSlot)
+        else
         {
             _popup.PopupEntity("stories-transport-is-full", user);
             return;
+        }
+        
+        _rmcPulling.TryStopAllPullsFromAndOn(user);
+        _transform.SetCoordinates(targetEntity, coords);
+    }
+
+
+    private void HandleLeavePulling(Entity<VehicleComponent> vehicle, EntityUid user, EntityCoordinates coords)
+    {
+        EntityUid targetEntity = (!TryComp(user, out PullerComponent? puller) || puller.Pulling is not { } pulledUid)
+            ? user
+            : pulledUid;
+
+        var comp = vehicle.Comp;
+
+        if (HasComp<XenoComponent>(targetEntity))
+        {
+            if (comp.XenoSlots.Current > 0)
+                comp.XenoSlots.Current--;
+        }
+        else if (_mobState.IsDead(targetEntity) && !HasComp<UnrevivableComponent>(targetEntity))
+        {
+            if (comp.RevivableDeadSlots.Current > 0)
+                comp.RevivableDeadSlots.Current--;
+        }
+        else if (comp.PassengerSlots.Current > 0)
+        {
+            comp.PassengerSlots.Current--;
         }
 
         _rmcPulling.TryStopAllPullsFromAndOn(user);
@@ -266,7 +415,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         var holder = (vehicle.Owner, holderComp);
 
         if (_attachableHolder.TryGetAttachable(holder, vehicle.Comp.MovementSlot, out var attachable) &&
-            TryComp<VehicleMovementAttachableComponent>(attachable, out var attachableMovement))
+            TryComp<VehicleMovementAttachableComponent>(attachable, out var attachableMovement) && !attachable.Comp.Destroyed)
         {
             args.ModifySpeed(attachableMovement.WalkSpeed, attachableMovement.SprintSpeed);
             return;
@@ -295,16 +444,9 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             return;
 
         component.Destroyed = true;
-        UpdateAppearance(uid, component);
-    }
+        Dirty(uid, component);
 
-    public void UpdateAppearance(EntityUid uid, VehicleComponent? component = null,
-        AppearanceComponent? appearance = null)
-    {
-        if (!Resolve(uid, ref component, ref appearance, false))
-            return;
-
-        _appearance.SetData(uid, VehicleVisuals.Destroyed, component.Destroyed, appearance);
+        _movement.RefreshMovementSpeedModifiers(uid);
     }
 
     public bool TryGetVehicle(EntityUid target, out Entity<VehicleComponent> vehicle, TransformComponent? xform = null)
@@ -327,13 +469,13 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         return true;
     }
 
-
-    private void BeforeDamageTaken(Entity<VehicleComponent> vehicle, ref BeforeDamageChangedEvent args)
+    private void OnBeforeDamageChanged(Entity<VehicleComponent> ent, ref BeforeDamageChangedEvent args)
     {
-        var comp = vehicle.Comp;
-
-        if (args.Cancelled)
+        if (args.Cancelled ||
+            !TryComp<DamageableComponent>(ent, out var damageable))
+        {
             return;
+        }
 
         if (TryComp<RMCSizeComponent>(args.Origin, out var rmcSize) && rmcSize.Size == RMCSizes.Small)
         {
@@ -341,55 +483,143 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             return;
         }
 
-        var modified = new DamageSpecifier();
+        if (damageable.TotalDamage >= ent.Comp.MaxHealth && args.Damage.GetTotal() > FixedPoint2.Zero)
+            args.Cancelled = true;
+    }
+
+    private void OnVehicleDamageModify(Entity<VehicleComponent> vehicle, ref DamageModifyEvent args)
+    {
+        var comp = vehicle.Comp;
+
+        var modifiedDamage = new DamageSpecifier();
         foreach (var (type, value) in args.Damage.DamageDict)
         {
             var mult = 1f;
             if (comp.DamageMults != null && comp.DamageMults.TryGetValue(type, out var m))
                 mult = m;
+            modifiedDamage.DamageDict[type] = value * mult;
+        }
 
-            modified.DamageDict[type] = value * mult;
+        if (args.Origin != null &&
+            TryComp<MarineComponent>(args.Origin.Value, out var marine) &&
+            args.Tool != null &&
+            TryComp<MeleeWeaponComponent>(args.Tool.Value, out var melee))
+        {
+            modifiedDamage *= 0.05f;
         }
 
         var activeHardpoints = new List<(EntityUid ent, VehicleAttachableComponent comp)>();
-
         foreach (var h in comp.Hardpoints)
         {
-            if (TryComp<VehicleAttachableComponent>(h, out var hard) && hard.Health > FixedPoint2.Zero)
-                activeHardpoints.Add((h, hard));
+            if (TryComp<VehicleAttachableComponent>(h, out var hard))
+            {
+                var currentHealth = hard.MaxHealth;
+                if (TryComp<DamageableComponent>(h, out var hardDamageable))
+                    currentHealth = FixedPoint2.Max(hard.MaxHealth - hardDamageable.TotalDamage, 0);
+
+                if (currentHealth > FixedPoint2.Zero)
+                    activeHardpoints.Add((h, hard));
+            }
         }
 
         if (activeHardpoints.Count > 0)
         {
-            var hullDamage = modified * 0.1f;
-            ApplyToHull(vehicle, hullDamage);
+            foreach (var (hardpointEnt, hardpointComp) in activeHardpoints)
+            {
+                _damageable.TryChangeDamage(hardpointEnt, modifiedDamage, ignoreResistances: false,
+                    interruptsDoAfters: false, origin: args.Origin, tool: args.Tool);
+            }
 
-            foreach (var hardpoint in activeHardpoints)
-                ApplyToHardpoint(hardpoint, modified);
-
-            args.Cancelled = true;
+            args.Damage = modifiedDamage * 0.1f;
         }
         else
         {
-            ApplyToHull(vehicle, modified);
-            args.Cancelled = true;
+            args.Damage = modifiedDamage;
         }
     }
 
-    private void ApplyToHardpoint(Entity<VehicleAttachableComponent> attachable, DamageSpecifier damage)
-    {
-        attachable.Comp.Health -= damage.GetTotal();
-    }
 
-    private void ApplyToHull(Entity<VehicleComponent> vehicle, DamageSpecifier damage)
+
+    private void OnVehicleDamageChanged(Entity<VehicleComponent> vehicle, ref DamageChangedEvent args)
     {
         var comp = vehicle.Comp;
-
-        var total = damage.GetTotal();
-        comp.Health -= total;
-
-        if (comp.Health == FixedPoint2.Zero)
+        
+        var currentHealth = FixedPoint2.Max(comp.MaxHealth - args.Damageable.TotalDamage, 0);
+        if (currentHealth == FixedPoint2.Zero && comp.MaxHealth > FixedPoint2.Zero)
+        {
             DestroyVehicle(vehicle.Owner);
+        }
+    }
 
+    private void OnMotionDetectorInteract(Entity<MotionDetectorComponent> md, ref AfterInteractEvent args)
+    {
+        if (args.Target == null || !args.CanReach || !HasComp<VehicleComponent>(args.Target))
+            return;
+
+        if (!md.Comp.Enabled)
+        {
+            _popup.PopupClient($"The {ToPrettyString(md)} must be activated to scan {ToPrettyString(args.Target.Value)}.", args.User);
+            return;
+        }
+
+        var selfMsg = $"You start recalibrating {ToPrettyString(md)} to scan the vehicle's interior for signatures.";
+        var otherMsg = $"{ToPrettyString(args.User)} fumbles with {ToPrettyString(md)} aimed at {ToPrettyString(args.Target.Value)}.";
+
+        _popup.PopupPredicted(selfMsg, otherMsg, args.User, args.User);
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 3f, new MotionDetectorScanDoAfterEvent(),
+            md.Owner, target: args.Target, used: md.Owner)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfterArgs))
+        {
+            var selfStopMsg = $"You stop trying to scan {ToPrettyString(args.Target.Value)}'s interior.";
+            var otherStopMsg = $"{ToPrettyString(args.User)} stops fumbling with {ToPrettyString(md)}.";
+            _popup.PopupPredicted(selfStopMsg, otherStopMsg, args.User, args.User);
+            return;
+        }
+        args.Handled = true;
+    }
+
+    private void OnMotionDetectorScanFinished(Entity<MotionDetectorComponent> md, ref MotionDetectorScanDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled || args.Target == null)
+            return;
+
+        if (!TryComp<VehicleComponent>(args.Target, out var vehicleComp))
+            return;
+
+        var otherMsg = $"{ToPrettyString(args.User)} finishes fumbling with {ToPrettyString(md)}.";
+        var selfMsg = $"You finish recalibrating {ToPrettyString(md)} and scanning {ToPrettyString(args.Target)}'s interior for signatures.";
+        _popup.PopupPredicted(selfMsg, otherMsg, args.User, args.User);
+        int humansInside = 0;
+
+        if (vehicleComp.RoleReservedSlots != null)
+        {
+            foreach (var rrs in vehicleComp.RoleReservedSlots)
+                humansInside += rrs.Total.Current;
+        }
+
+        humansInside += vehicleComp.PassengerSlots.Current;
+        int xenosInside = vehicleComp.XenoSlots.Current;
+
+        if (humansInside > 0 || xenosInside > 0)
+        {
+            var msg = $"The {ToPrettyString(md)} shows " +
+                  (humansInside > 0 ? $"approximately {humansInside} signatures" : "no signatures") +
+                  (xenosInside > 0 ? $" and about {xenosInside} abnormal signatures" : "") +
+                  $" inside of {ToPrettyString(args.Target.Value)}.";
+
+            _audio.PlayPvs(md.Comp.ScanSound, args.User);
+            _popup.PopupClient(msg, args.User);
+        }
+        else
+        {
+            _audio.PlayPvs(md.Comp.ScanEmptySound, args.User);
+            _popup.PopupClient($"The {ToPrettyString(md)} can't pick up any signatures, so the vehicle should be empty. In theory.", args.User);
+        }
     }
 }

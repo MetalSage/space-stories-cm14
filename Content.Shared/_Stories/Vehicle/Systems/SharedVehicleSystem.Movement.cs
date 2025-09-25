@@ -1,9 +1,9 @@
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Events;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Timing;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Audio;
+using Robust.Shared.Timing;
+using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Systems;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -11,51 +11,29 @@ public sealed partial class SharedVehicleSystem
 {
     private void InitializeMovement()
     {
-        SubscribeLocalEvent<VehicleMovementComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<VehicleMovementComponent, MoveInputEvent>(OnVehicleMoveInput);
     }
 
-    private void OnMapInit(Entity<VehicleMovementComponent> ent, ref MapInitEvent args)
+    private void OnVehicleMoveInput(Entity<VehicleMovementComponent> ent, ref MoveInputEvent args)
     {
-        ent.Comp.LastSoundTime = _timing.CurTime;
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
         var currentTime = _timing.CurTime;
-        var query = EntityQueryEnumerator<VehicleMovementComponent, InputMoverComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var moverComp))
+        var comp = ent.Comp;
+
+        var inputComp = args.Entity.Comp;
+        var oldButtons = inputComp.HeldMoveButtons;
+
+        var hasMovement = inputComp.HeldMoveButtons != MoveButtons.None;
+        var wasMoving = comp.IsCurrentlyMoving;
+
+        comp.IsCurrentlyMoving = hasMovement;
+
+        if (hasMovement && (!wasMoving || inputComp.HeldMoveButtons != oldButtons))
         {
-            var isMoving = _mover.UseMobMovement(uid) && _mover.GetWishDir((uid, moverComp)).Length() > 0.1f;
-
-            if (!isMoving)
+            if (currentTime >= comp.NextSoundTime)
             {
-                comp.IsCurrentlyMoving = false;
-                continue;
-            }
-
-            if (!comp.IsCurrentlyMoving)
-            {
-                comp.IsCurrentlyMoving = true;
-                comp.LastSoundTime = currentTime;
-                
-                PlayMovementSound((uid, comp));
-            }
-
-            if (currentTime - comp.LastSoundTime >= TimeSpan.FromSeconds(comp.SoundInterval))
-            {
-                PlayMovementSound((uid, comp));
-                comp.LastSoundTime = currentTime;
+                _audio.PlayPredicted(comp.SoundCollection, ent, ent, comp.AudioParams);
+                comp.NextSoundTime = currentTime + TimeSpan.FromSeconds(comp.SoundInterval);
             }
         }
-    }
-
-    private void PlayMovementSound(Entity<VehicleMovementComponent> ent)
-    {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        _audio.PlayPredicted(ent.Comp.SoundCollection, ent, ent, ent.Comp.AudioParams);
     }
 }

@@ -19,5 +19,8 @@ public sealed partial class VehicleAttachableVisualsComponent : Component
     public string State = string.Empty;
 
     [DataField, AutoNetworkedField]
+    public string DestroyedState = string.Empty;
+
+    [DataField, AutoNetworkedField]
     public bool RedrawOnAppearanceChange = true;
 }

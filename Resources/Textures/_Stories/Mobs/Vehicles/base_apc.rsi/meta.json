@@ -16,37 +16,11 @@
       "directions": 4
     },
     {
-      "name": "apc_base_com",
-      "directions": 4,
-      "delays": [
-        [
-          1,
-          1,
-          1
-        ],
-        [
-          1,
-          1,
-          1
-        ],
-        [
-          1,
-          1,
-          1
-        ],
-        [
-          1,
-          1,
-          1
-        ]
-      ]
-    },
-    {
-      "name": "dualcannon_0",
+      "name": "dualcannon",
       "directions": 4
     },
     {
-      "name": "dualcannon_1",
+      "name": "dualcannon_destroyed",
       "directions": 4
     },
     {
@@ -54,23 +28,19 @@
       "directions": 4
     },
     {
-      "name": "frontalcannon_0",
+      "name": "frontalcannon",
       "directions": 4
     },
     {
-      "name": "frontalcannon_1",
+      "name": "frontalcannon_destroyed",
       "directions": 4
     },
     {
-      "name": "freight_0",
+      "name": "freight",
       "directions": 4
     },
     {
-      "name": "freight_1",
-      "directions": 4
-    },
-    {
-      "name": "freight_2",
+      "name": "freight_destroyed",
       "directions": 4
     },
     {
@@ -78,23 +48,19 @@
       "directions": 4
     },
     {
-      "name": "comms_relay_0",
+      "name": "comms_relay",
       "directions": 4
     },
     {
-      "name": "comms_relay_1",
+      "name": "comms_relay_destroyed",
       "directions": 4
     },
     {
-      "name": "flare_launcher_0",
+      "name": "flare_launcher",
       "directions": 4
     },
     {
-      "name": "flare_launcher_1",
-      "directions": 4
-    },
-    {
-      "name": "flare_launcher_2",
+      "name": "flare_launcher_destroyed",
       "directions": 4
     },
     {
@@ -102,7 +68,7 @@
       "directions": 4
     },
     {
-      "name": "wheels_0",
+      "name": "wheels",
       "directions": 4,
       "delays": [
         [
@@ -148,11 +114,11 @@
       ]
     },
     {
-      "name": "wheels_1",
+      "name": "wheels_destroyed",
       "directions": 4
     },
     {
-      "name": "empty fuel cell",
+      "name": "empty_fuel_cell",
       "directions": 4
     },
     {
