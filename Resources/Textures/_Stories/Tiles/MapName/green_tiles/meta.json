@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0 & Собственная лицензия. Копирование, модификация и использование вне проекта Space Stories полностью запрещено без предварительного согласия текущего владельца проекта",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/f7b9367cb5c083a8c052a40dece9417031e28ffe/icons/turf/floors/bigred.dmi & Редактировано RustedTim(Helloo4771) для SpaceStories",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "green_cave_1"
+    },
+    {
+      "name": "green_cave_2"
+    },
+    {
+      "name": "green_cave_3"
+    },
+    {
+      "name": "green_cave_4"
+    },
+    {
+      "name": "green_cave_5"
+    },
+    {
+      "name": "green_cave_6"
+    },
+    {
+      "name": "green_cave_7"
+    },
+    {
+      "name": "green_cave_8"
+    },
+    {
+      "name": "green_cave_9"
+    },
+    {
+      "name": "green_cave_10"
+    },
+    {
+      "name": "green_cave_11"
+    },
+    {
+      "name": "green_cave_12"
+    },
+    {
+      "name": "green_cave_13"
+    },
+    {
+      "name": "green_cave_14"
+    },
+    {
+      "name": "green_cave_15"
+    },
+    {
+      "name": "green_cave_16"
+    },
+    {
+      "name": "green_cave_17"
+    },
+    {
+      "name": "green_cave_18"
+    },
+    {
+      "name": "green_cave_19"
+    },
+    {
+      "name": "green_cave_20"
+    },
+    {
+      "name": "green_cave_21"
+    },
+    {
+      "name": "green_cave_22"
+    },
+    {
+      "name": "green_cave_23"
+    },
+    {
+      "name": "green_sand_1"
+    },
+    {
+      "name": "green_sand_2"
+    },
+    {
+      "name": "green_sand_3"
+    },
+    {
+      "name": "green_sand_4"
+    },
+    {
+      "name": "green_sand_5"
+    },
+    {
+      "name": "green_sand_6"
+    },
+    {
+      "name": "green_sand_7"
+    },
+    {
+      "name": "green_sand_8"
+    },
+    {
+      "name": "green_sand_9"
+    },
+    {
+      "name": "green_sand_10"
+    },
+    {
+      "name": "green_sand_11"
+    },
+    {
+      "name": "green_sand_12"
+    },
+    {
+      "name": "green_sand_13"
+    },
+    {
+      "name": "green_sand_13"
+    },
+    {
+      "name": "green_sand_13"
+    }
+  ]
+}

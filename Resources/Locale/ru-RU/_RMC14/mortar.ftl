@@ -47,3 +47,5 @@ rmc-mortar-view-camera =
     Камеру
 rmc-mortar-camera-title = Интерфейс камеры миномета
 rmc-mortar-camera-name = Паракам ({ $x }):({ $y })
+rmc-mortar-target-title = Координаты цели
+rmc-mortar-offset-title = Смещение цели

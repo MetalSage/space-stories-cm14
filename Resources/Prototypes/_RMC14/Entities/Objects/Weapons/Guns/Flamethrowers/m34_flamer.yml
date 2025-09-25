@@ -101,6 +101,16 @@
   - type: Tag
     tags:
     - RMCWeaponIncineratorM34
+  - type: RMCNameItemOnVend
+    item: PrimaryGun
+
+- type: entity
+  parent: RMCWeaponFlamer
+  id: RMCWeaponFlamerPVE
+  suffix: PVE
+  components:
+  - type: Gun
+    fireRate: 2
 
 - type: Tag
   id: RMCWeaponIncineratorM34
@@ -163,6 +173,12 @@
   - type: Appearance
   - type: SolutionStorageFillable
     solution: rmc_flamer_tank
+  - type: Tag
+    tags:
+    - RMCTankFlamer
+
+- type: Tag
+  id: RMCTankFlamer
 
 - type: entity
   parent: RMCGunCaseBase

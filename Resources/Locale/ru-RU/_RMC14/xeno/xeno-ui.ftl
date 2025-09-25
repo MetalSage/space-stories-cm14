@@ -13,6 +13,10 @@ xeno-ui-enter-tunnel-verb = Войти в туннель
 xeno-ui-select-destination-tunnel-title = Выберите туннель назначения
 xeno-ui-select-destination-tunnel-submit-text = Выберите туннель
 rmc-xeno-ui-burrowed-need-time = Вы недавно были призраком. Вы не можете стать закопавшейся личинкой, пока не пройдет 2,5 минуты (осталось { $seconds } секунд).
+rmc-xeno-tracker-target-Queen = Королева
+rmc-xeno-tracker-target-HiveLeader = Лидер улья
+rmc-xeno-tracker-target-Tunnel = Туннель
+rmc-xeno-tracker-target-HiveCore = Ядро Улья
 cm-ui-cm-actions = Действия MC
 cm-ui-transform-tab = Трансформация
 cm-ui-xeno-tab = Ксено
@@ -22,3 +26,6 @@ cm-ui-create-new-hive = Создать новый улей
 cm-ui-create-hive-title = Новое название улья
 cm-ui-humanoid = Гуманоид
 cm-ui-tier = Уровень { $tier }
+rmc-xeno-ui-ovi-needed-label = [bold][color=red]Для получения очков Королева должна находиться в своем\n яйцекладе![/color][/bold]
+rmc-xeno-ui-evolution-points = Очки эволюции: { $points } / { $maxPoints }
+rmc-ui-xeno-strain-confirm = Подтвердить

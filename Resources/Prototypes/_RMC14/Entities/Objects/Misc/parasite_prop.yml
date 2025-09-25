@@ -10,5 +10,5 @@
     bodyType: Static
     canCollide: false
   - type: Sprite
-    sprite:  _RMC14/Mobs/Xenonids/Parasite/parasite.rsi
+    sprite:  _Stories/Mobs/Xenos/Parasite/parasite.rsi
     state: impregnated

@@ -1,6 +1,6 @@
-ent-RMCRandomHumanoidCorporateExecutiveSupervisor = призрачная роль корпоративного супервайзера
+ent-RMCRandomHumanoidCorporateExecutiveSupervisor = роль призрака корпоративного супервайзера
     .suffix = Спавнер, Игрок, Нейтральный
     .desc = { "" }
-ent-RMCRandomHumanoidCorporateExecutiveSpecialist = призрачная роль корпоративного специалиста
+ent-RMCRandomHumanoidCorporateExecutiveSpecialist = роль призрака корпоративного специалиста
     .suffix = Спавнер, Игрок, Нейтральный
     .desc = { "" }

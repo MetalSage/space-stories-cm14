@@ -1,5 +1,7 @@
 ent-RMCWeaponRevolverSpearhead = авторевольвер БКМ "Острие Копья"
     .desc = Массивный револьвер, иногда встречающийся у штурмовых подразделений и офицеров Корпуса морской пехоты, а также у гражданских правоохранительных органов. Стреляет патронами .357 Magnum.
+ent-RMCWeaponRevolverSpearheadCustom = авторевольвер БКМ "Острие Копья" (кастомная версия)
+    .desc = Автоматический револьвер калибра .357, выполненный из более темного металла с деревянной рукояткой, явно созданный для человека с хорошим вкусом.
 ent-RMCWeaponRevolverSpearheadEmpty = { ent-RMCWeaponRevolverSpearhead }
     .suffix = Пустой
     .desc = { ent-RMCWeaponRevolverSpearhead.desc }

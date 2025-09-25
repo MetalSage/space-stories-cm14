@@ -1,6 +1,3 @@
-using System.Numerics;
-using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -18,10 +15,7 @@ public sealed partial class BoxerUppercutComponent : Component
     public EntProtoId Effect = "CMEffectPunch";
 
     [DataField, AutoNetworkedField]
-    public EntProtoId StatusEffectKey = "TemporaryBlindness";
-
-    [DataField, AutoNetworkedField]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_RMC14/Xeno/alien_claw_block.ogg");
+    public SoundSpecifier ClawSound = new SoundPathSpecifier("/Audio/_RMC14/Xeno/alien_claw_block.ogg");
 
     [DataField, AutoNetworkedField]
     public SoundSpecifier GongSound = new SoundPathSpecifier("/Audio/_Stories/Effects/dingding.ogg");
@@ -30,10 +24,7 @@ public sealed partial class BoxerUppercutComponent : Component
     public TimeSpan ParalyzeTime = TimeSpan.FromSeconds(1.5);
 
     [DataField, AutoNetworkedField]
-    public TimeSpan TitanicParalyzeTime = TimeSpan.FromSeconds(10);
-
-    [DataField, AutoNetworkedField]
-    public TimeSpan StatusEffectTime = TimeSpan.FromSeconds(15);
+    public TimeSpan UnconsciousTime = TimeSpan.FromSeconds(15);
 
     [DataField, AutoNetworkedField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(15);
@@ -45,5 +36,8 @@ public sealed partial class BoxerUppercutComponent : Component
     public float DamageModificator = 10f;
 
     [DataField, AutoNetworkedField]
-    public EntProtoId? HealEffect = "RMCEffectHealQueen";
+    public float MaxDamage = 150f;
+
+    [DataField, AutoNetworkedField]
+    public EntProtoId HealEffect = "RMCEffectHealQueen";
 }

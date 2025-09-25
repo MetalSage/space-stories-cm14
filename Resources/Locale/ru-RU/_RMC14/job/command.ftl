@@ -19,13 +19,13 @@ CMJobExecutiveOfficer = Исполнительный офицер
 rmc-job-prefix-forecon-marksman = МАРКСМН
 rmc-job-prefix-forecon-support-tech = ТП
 # Спецназ
-rmc-job-prefix-forecon = ФОРЕКОН
-rmc-job-prefix-forecon-co = КО ФОРЕКОН
+rmc-job-prefix-forecon = ФОРКОН
+rmc-job-prefix-forecon-co = КО ФОРКОН
 # Только для админов сейчас.
-cm-job-name-high-command = Верховное командование
+cm-job-name-high-command = Верховное Командование
 # Только для админа (бриг. ген.).
 rmc-job-name-unmc-brigadier-general = Верховное Командование
-rmc-job-description-unmc-brigadier-general = "Верховное командование. Поздравляем, вы бригадный генерал!"
+rmc-job-description-unmc-brigadier-general = "Верховное Командование. Поздравляем, вы бригадный генерал!"
 # Только для спавна админа (адъютант Вк)
 rmc-job-name-unmc-adjutant = Адъютант Верховного командования
 rmc-job-description-unmc-adjutant = "Вы адъютант высокопоставленного офицера. Он должен быть важным!"

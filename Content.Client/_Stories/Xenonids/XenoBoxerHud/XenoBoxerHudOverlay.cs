@@ -25,13 +25,10 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly ContainerSystem _container;
-    private readonly MobStateSystem _mobState;
     private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
 
-    private readonly EntityQuery<MobStateComponent> _mobStateQuery;
     private readonly EntityQuery<TransformComponent> _xformQuery;
-    private readonly EntityQuery<XenoComponent> _xenoQuery;
     private readonly EntityQuery<EntityActiveInvisibleComponent> _invisQuery;
 
     private readonly ResPath _rsiPath = new("/Textures/_Stories/Interface/boxer_hud.rsi");
@@ -46,17 +43,13 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
         IoCManager.InjectDependencies(this);
 
         _container = _entity.System<ContainerSystem>();
-        _mobState = _entity.System<MobStateSystem>();
         _sprite = _entity.System<SpriteSystem>();
         _transform = _entity.System<TransformSystem>();
 
-        _mobStateQuery = _entity.GetEntityQuery<MobStateComponent>();
         _xformQuery = _entity.GetEntityQuery<TransformComponent>();
         _invisQuery = _entity.GetEntityQuery<EntityActiveInvisibleComponent>();
-        _xenoQuery = _entity.GetEntityQuery<XenoComponent>();
 
         _shader = _prototype.Index<ShaderPrototype>("unshaded").Instance();
-        ZIndex = 1;
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -72,10 +65,10 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
 
         handle.UseShader(_shader);
 
-        if (_entity.HasComponent<XenoBoxerKORecentlyComponent>(_players.LocalEntity))
+        if (_entity.HasComponent<XenoBoxerKnockoutRecentlyComponent>(_players.LocalEntity))
             DrawTracker(in args, scaleMatrix, rotationMatrix);
 
-        DrawKOLabel(in args, scaleMatrix, rotationMatrix);
+        DrawKnockoutLabel(in args, scaleMatrix, rotationMatrix);
 
         handle.UseShader(null);
         handle.SetTransform(Matrix3x2.Identity);
@@ -84,7 +77,7 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
     private void DrawTracker(in OverlayDrawArgs args, Matrix3x2 scaleMatrix, Matrix3x2 rotationMatrix)
     {
         var handle = args.WorldHandle;
-        var trackers = _entity.EntityQueryEnumerator<XenoBoxerKORecentlyComponent>();
+        var trackers = _entity.EntityQueryEnumerator<XenoBoxerKnockoutRecentlyComponent>();
         while (trackers.MoveNext(out var uid, out var comp))
         {
             foreach (var (target, tracker) in comp.Trackers)
@@ -95,13 +88,13 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
                 if (!_entity.TryGetComponent<TransformComponent>(target, out var xform))
                     continue;
 
+                if (_invisQuery.HasComp(target))
+                    continue;
+
                 if (xform.MapID != args.MapId)
                     continue;
 
                 if (_container.IsEntityOrParentInContainer(target, xform: xform))
-                    continue;
-
-                if (_invisQuery.HasComp(target))
                     continue;
 
                 var bounds = sprite.Bounds;
@@ -128,12 +121,12 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
         }
     }
 
-    private void DrawKOLabel(in OverlayDrawArgs args, Matrix3x2 scaleMatrix, Matrix3x2 rotationMatrix)
+    private void DrawKnockoutLabel(in OverlayDrawArgs args, Matrix3x2 scaleMatrix, Matrix3x2 rotationMatrix)
     {
         var handle = args.WorldHandle;
-        var icon = new Rsi(_rsiPath, $"ko_label");
+        var icon = new Rsi(_rsiPath, "ko_label");
 
-        var query = _entity.EntityQueryEnumerator<KOLabelComponent, SpriteComponent, TransformComponent>();
+        var query = _entity.EntityQueryEnumerator<KnockoutLabelComponent, SpriteComponent, TransformComponent>();
         while (query.MoveNext(out var target, out var _, out var sprite, out var xform))
         {
             if (xform.MapID != args.MapId)
@@ -163,7 +156,6 @@ public sealed class XenoBoxerTrackerOverlay : Overlay
 
             var position = new Vector2(xOffset, yOffset);
             handle.DrawTexture(texture, position);
-
         }
     }
 }

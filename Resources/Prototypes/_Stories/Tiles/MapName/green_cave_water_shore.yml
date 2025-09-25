@@ -1,0 +1,194 @@
+# BASE
+
+- type: tile
+  abstract: true
+  parent: CMPlanetBase
+  id: STPlanetGreenCaveWaterShoreBase
+  name: st-tiles-green-planet-water-shore
+  weedsSpreadable: false
+
+# SHORE
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore0
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_0.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore1
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_1.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore2
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_2.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore3
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_3.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore4
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_4.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore5
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_5.png
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore6
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_6.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore7
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_7.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore8
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_8.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore9
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_9.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore10
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_10.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShore11
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore1_11.png
+
+# SHORE CORNER 
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner0
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_0.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner1
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_1.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner2
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_2.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner3
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_3.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner4
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_4.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner5
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_5.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner6
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_6.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner7
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_7.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner8
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_8.png
+
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner9
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_9.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner10
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_10.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreCorner11
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_corner2_11.png
+
+# SHORE EDGE
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge0
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_0.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge1
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_1.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge2
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_2.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge3
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_3.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge4
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_4.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge5
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_5.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge6
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_6.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge7
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_7.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge8
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_8.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge9
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_9.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge10
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_10.png
+
+- type: tile
+  parent: STPlanetGreenCaveWaterShoreBase
+  id: STPlanetGreenCaveWaterShoreEdge11
+  sprite: /Textures/_Stories/Tiles/MapName/green_cave_water_shore/shore_edge1_11.png

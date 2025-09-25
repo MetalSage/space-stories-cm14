@@ -99,7 +99,7 @@
 - type: entity
   parent: RMCChemDispenserBase
   id: RMCChemDispenserMedbay
-  suffix: Medbay
+  suffix: Medbay, DO NOT MAP OUTSIDE WARSHIPS
   components:
   - type: RMCChemicalDispenser
     network: RMCChemStorageMedbay
@@ -107,10 +107,18 @@
 - type: entity
   parent: RMCChemDispenserBase
   id: RMCChemDispenserResearch
-  suffix: Research
+  suffix: Research, DO NOT MAP OUTSIDE WARSHIPS
   components:
   - type: RMCChemicalDispenser
     network: RMCChemStorageResearch
+
+- type: entity
+  parent: RMCChemDispenserBase
+  id: RMCChemDispenserOCP
+  suffix: OCP
+  components:
+  - type: RMCChemicalDispenser
+    network: RMCChemStorageOCP
 
 - type: entity
   abstract: true
@@ -140,6 +148,7 @@
     state: chemstorage
     offset: 0.5,0
   - type: RMCChemicalStorage
+    baseRecharge: 10
 
 - type: entity
   parent: RMCChemStorageBase
@@ -148,6 +157,8 @@
   components:
   - type: RMCChemicalStorage
     network: RMCChemStorageGround
+    energy: 150
+    baseMax: 300
 
 - type: entity
   parent: RMCChemStorageBase
@@ -164,6 +175,16 @@
   components:
   - type: RMCChemicalStorage
     network: RMCChemStorageResearch
+    rechargePer: 2.5
+    maxPer: 50
+
+- type: entity
+  parent: RMCChemStorageBase
+  id: RMCChemStorageOCP
+  suffix: OCP
+  components:
+  - type: RMCChemicalStorage
+    network: RMCChemStorageOCP
 
 - type: entity
   parent: RMCChemDispenserBase
@@ -202,9 +223,12 @@
       - CMKelotane
       - CMDylovene
       - CMDexalin
+      - CMDexalinPlus
       - CMInaprovaline
       - CMEpinephrine
-      # TODO RMC-14 Peridaxon and tramadol
+      # TODO RMC-14 Peridaxon
+      # TODO RMC-14 Tramadol
+      # TODO RMC-14 Oxycodone
       - CMTricordrazine
 
 - type: entity
@@ -214,4 +238,3 @@
   components:
   - type: RMCChemicalDispenser
     network: RMCChemStorageGround
-

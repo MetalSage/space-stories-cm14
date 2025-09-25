@@ -2,7 +2,6 @@
   id: Pyro
   background: /Textures/_RMC14/Lobby/PyrotechnicianXeno.png
 
-# Stories-XenoRemoval-Start
 # - type: lobbyBackground
 #   id: fob
 #   background: /Textures/_RMC14/Lobby/from_fobbiton_with_love.png
@@ -10,11 +9,10 @@
 # - type: lobbyBackground
 #   id: shnee
 #   background: /Textures/_RMC14/Lobby/only_you_shnee.png
-# Stories-XenoRemoval-End
 
-- type: lobbyBackground
-  id: sisters
-  background: /Textures/_RMC14/Lobby/sisters.png
+# - type: lobbyBackground
+#   id: sisters
+#   background: /Textures/_RMC14/Lobby/sisters.png
 
 - type: lobbyBackground
   id: smartgunoperator
@@ -24,11 +22,10 @@
   id: MarineMajor
   background: /Textures/_RMC14/Lobby/MarineMajor.png
 
-- type: lobbyBackground
-  id: Battered
-  background: /Textures/_RMC14/Lobby/Battered.png
+# - type: lobbyBackground
+#   id: Battered
+#   background: /Textures/_RMC14/Lobby/Battered.png
 
-# Stories-XenoRemoval-Start
 # - type: lobbyBackground
 #   id: FriendlySkies
 #   background: /Textures/_RMC14/Lobby/Fly_the_Friendly_Skies.png
@@ -46,6 +43,17 @@
 #   background: /Textures/_RMC14/Lobby/Eyes_Up.png
 
 # - type: lobbyBackground
+#   id: EyesUp
+#   background: /Textures/_RMC14/Lobby/Eyes_Up.png
+
+# - type: lobbyBackground
 #   id: FocusFire
 #   background: /Textures/_RMC14/Lobby/Focus_Fire.png
-# Stories-XenoRemoval-End
+
+# - type: lobbyBackground
+#   id: Evac
+#   background: /Textures/_RMC14/Lobby/Evac.png
+
+# - type: lobbyBackground
+#   id: Intelligence
+#   background: /Textures/_RMC14/Lobby/Intelligence.png 

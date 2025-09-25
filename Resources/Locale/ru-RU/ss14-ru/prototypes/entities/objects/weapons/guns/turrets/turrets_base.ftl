@@ -1,5 +1,6 @@
-
-ent-BaseWeaponBallisticTurret = ballistic turret
-    .desc = A ballistic machine gun auto-turret.
-ent-BaseWeaponEnergyTurret = laser turret
-    .desc = An auto-turret armed with a heavy laser. Its weapon will recharge while connected to an active power grid.
+ent-BaseWeaponTurret = турель
+    .desc = { ent-BaseStructure.desc }
+ent-BaseWeaponBallisticTurret = баллистическая турель
+    .desc = Автоматическая турель с баллистическим пулемётом.
+ent-BaseWeaponEnergyTurret = лазерная турель
+    .desc = Автоматическая турель, вооружённая тяжёлым лазером. Её оружие перезаряжается при подключении к активной энергосети.

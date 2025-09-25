@@ -1,6 +1,4 @@
-using System.Numerics;
 using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -21,7 +19,7 @@ public sealed partial class BoxerJabComponent : Component
     public TimeSpan SlowDuration = TimeSpan.FromSeconds(0.5);
 
     [DataField, AutoNetworkedField]
-    public float KOIncrease = 1;
+    public float KnockoutIncrease = 1;
 
     [DataField, AutoNetworkedField]
     public TimeSpan RootTime = TimeSpan.FromSeconds(1);

@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: [Clothing, RMCBaseUniformAccessoryItemJumpsuit]
   id: RMCUniformBase
   components:
   - type: Clothing
@@ -14,6 +14,8 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+      enum.UniformAccessoriesUi.Key:
+        type: UniformAccessoryBui
   - type: Sprite
     state: null
     layers:
@@ -23,7 +25,6 @@
     tags:
     - ClothMade
     - WhitelistChameleon
-  - type: PlaytimeMedalHolder
   - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
@@ -33,6 +34,14 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 30
+  - type: StorageStoreSkillRequired
+    entries:
+    - whitelist:
+        tags:
+        - GlassBeaker
+      skills:
+        all:
+          RMCSkillMedical: 2
 
 - type: entity
   abstract: true
@@ -56,6 +65,7 @@
     - name: rmc-jacket-verb
       prefix: jacket
       priority: 0
+      hideAccessories: true
     - name: rmc-sleeves-verb
       prefix: sleeves
       priority: 1

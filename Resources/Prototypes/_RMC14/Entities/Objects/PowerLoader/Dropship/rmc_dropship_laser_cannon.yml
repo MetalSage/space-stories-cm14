@@ -11,7 +11,7 @@
   - type: DropshipFabricatorPrintable
     cost: 500
   - type: DropshipWeapon
-    abbreviation: LZR
+    abbreviation: ЛЗР
     fireDelay: 5
     fireInTransport: true
     skills:

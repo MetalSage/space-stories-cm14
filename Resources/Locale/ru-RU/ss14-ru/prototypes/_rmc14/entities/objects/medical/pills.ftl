@@ -14,3 +14,6 @@ ent-CMPillTricordrazine = таблетка трикордразина (15u)
     .desc = { ent-CMPill.desc }
 ent-RMCPillRussianRed = { ent-CMPill }
     .desc = { ent-CMPill.desc }
+ent-RMCPillAntiZed = { ent-CMPill }
+    .suffix = НЕ МАППИТЬ, АнтиЗед
+    .desc = { ent-CMPill.desc }

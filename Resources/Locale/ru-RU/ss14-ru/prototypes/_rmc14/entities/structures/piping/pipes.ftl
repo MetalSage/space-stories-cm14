@@ -1,0 +1,17 @@
+ent-RMCBasePipe = { "" }
+    .desc = { "" }
+ent-RMCGasPipeHalf = { ent-RMCBasePipe }
+    .suffix = RMC Half
+    .desc = { ent-RMCBasePipe.desc }
+ent-RMCGasPipeStraight = { ent-RMCBasePipe }
+    .suffix = RMC Straight
+    .desc = { ent-RMCBasePipe.desc }
+ent-RMCGasPipeBend = { ent-RMCBasePipe }
+    .suffix = RMC Bend
+    .desc = { ent-RMCBasePipe.desc }
+ent-RMCGasPipeTJunction = { ent-RMCBasePipe }
+    .suffix = RMC TJunction
+    .desc = { ent-RMCBasePipe.desc }
+ent-RMCGasPipeFourway = { ent-RMCBasePipe }
+    .suffix = RMC Fourway
+    .desc = { ent-RMCBasePipe.desc }

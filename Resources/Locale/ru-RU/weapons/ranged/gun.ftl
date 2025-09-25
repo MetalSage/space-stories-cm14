@@ -6,7 +6,7 @@ gun-disabled = Вы не можете использовать оружие!
 gun-clumsy = Оружие взрывается вам в лицо!
 gun-set-fire-mode = Выбран режим { $mode }
 gun-magazine-whitelist-fail = Это не помещается в оружие!
-gun-magazine-fired-empty = No ammo left!
+gun-magazine-fired-empty = Нет патронов!
 # SelectiveFire
 gun-SemiAuto = полуавто
 gun-Burst = очередь
@@ -14,15 +14,15 @@ gun-FullAuto = авто
 # BallisticAmmoProvider
 gun-ballistic-cycle = Перезарядка
 gun-ballistic-cycled = Перезаряжено
+gun-ballistic-cycle-delayed = Вы начинаете разряжать { CAPITALIZE(THE($entity)) }. Оставайтесь неподвижны...
+gun-ballistic-cycle-delayed-cancelled = Вы прекратили разряжать { CAPITALIZE(THE($entity)) }.
+gun-ballistic-cycle-delayed-empty = { CAPITALIZE(THE($entity)) } уже разряжен.
 gun-ballistic-cycled-empty = Разряжено
-gun-ballistic-cycle-delayed = Вы начинаете разгрузку { CAPITALIZE($entity) }. Не двигаться...
-gun-ballistic-cycle-delayed-cancelled = Вы прекращаете разгрузку { CAPITALIZE($entity) }.
-gun-ballistic-cycle-delayed-empty = { CAPITALIZE($entity) } уже выгружен.
 gun-ballistic-transfer-invalid = { CAPITALIZE($ammoEntity) } нельзя поместить в { $targetEntity }!
 gun-ballistic-transfer-empty = В { CAPITALIZE($entity) } пусто.
-gun-ballistic-transfer-target-full = { CAPITALIZE($entity) } уже полностью заряжен.
 gun-ballistic-transfer-cancelled = Ваша перезарядка была прервана!
-gun-ballistic-transfer-primed = Вы не можете загрузить загруженный { $ammoEntity }!
+gun-ballistic-transfer-primed = Вы не можете загрузить готовый { $ammoEntity }!
+gun-ballistic-transfer-target-full = { CAPITALIZE($entity) } уже полностью заряжен.
 # CartridgeAmmo
 gun-cartridge-spent = Он [color=red]израсходован[/color].
 gun-cartridge-unspent = Он [color=lime]не израсходован[/color].
@@ -57,3 +57,6 @@ gun-revolver-insert = Заряжен
 gun-revolver-spin = Вращать барабан
 gun-revolver-spun = Барабан вращается
 gun-speedloader-empty = Спидлоадер пуст
+# GunSpreadModifier
+examine-gun-spread-modifier-reduction = Разброс снижен на [color=yellow]{ $percentage }%[/color].
+examine-gun-spread-modifier-increase = Разброс повышен на [color=yellow]{ $percentage }%[/color].

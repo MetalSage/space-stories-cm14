@@ -1,12 +1,12 @@
-ent-RMCRandomHumanoidFreelancerLeaderHostile = призрачная роль лидера фрилансеров
+ent-RMCRandomHumanoidFreelancerLeaderHostile = роль призрака лидера фрилансеров
     .suffix = Спавнер, Игрок, Враждебный
     .desc = { "" }
-ent-RMCRandomHumanoidFreelancerLeaderFriendly = призрачная роль лидера фрилансеров
+ent-RMCRandomHumanoidFreelancerLeaderFriendly = роль призрака лидера фрилансеров
     .suffix = Спавнер, Игрок, Дружелюбный
     .desc = { "" }
 ent-RMCSpawnerFreelancerLeader = спавнер лидера фрилансеров
     .suffix = Спавнер
     .desc = { ent-MarkerBase.desc }
-ent-RMCRandomHumanoidFreelancerLeader = призрачная роль лидера фрилансеров
+ent-RMCRandomHumanoidFreelancerLeader = роль призрака лидера фрилансеров
     .suffix = Роль
     .desc = { "" }

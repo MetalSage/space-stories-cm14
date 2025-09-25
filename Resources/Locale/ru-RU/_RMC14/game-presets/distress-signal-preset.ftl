@@ -2,7 +2,7 @@ rmc-distress-signal-title = Сигнал бедствия
 rmc-distress-signal-description = Ответьте на сигнал бедствия, посланный соседней планетой.
 cm-distress-signal-majormarinevictory = [color=green]Все ксеноморфы были уничтожены![/color].
 rmc-distress-signal-majormarinevictory-timeout = [color=green]Улей ксеноморфов был уничтожен![/color]
-cm-distress-signal-minormarinevictory = [color=green]Улей ксеноморфов впал в смятении после потери своей королевы![/color]
+cm-distress-signal-minormarinevictory = [color=green]Улей ксеноморфов впал в смятение после потери своей королевы![/color]
 cm-distress-signal-majorxenovictory = [color=purple]Все морпехи были уничтожены![/color]
 cm-distress-signal-minorxenovictory = [color=purple]Ксеноморфы захватили Алмайер[/color] [color=green]но были уничтожены морпехами![/color]
 rmc-distress-signal-minorxenovictory-timeout = [color=purple]Ксеносы захватили Алмайер,[/color] [color=yellow]но Алмайер разбился, прежде чем оставшиеся морпехи смогли спастись![/color]
@@ -11,7 +11,7 @@ cm-distress-signal-none = [color=yellow]Безрезультатно![/color]
 cm-distress-signal-marine = { $player }
 rmc-distress-signal-next-map-title = Карта следующей планеты
 rmc-distress-signal-next-map-tie = Ничья при голосовании за карту! Выбираем... { $picked }
-rmc-distress-signal-next-map-win = { $winner } выиграл голосование за карту!
+rmc-distress-signal-next-map-win = { $winner } выиграла голосование за карту!
 rmc-distress-signal-fallen =
     В память о наших павших солдатах:
     { $fallen }
