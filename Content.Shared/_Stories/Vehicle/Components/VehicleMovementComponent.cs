@@ -9,7 +9,7 @@ namespace Content.Shared._Stories.Vehicle;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class VehicleMovementComponent : Component
 {
-    [DataField("soundCollection", required: true), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public SoundSpecifier SoundCollection = new SoundPathSpecifier("/Audio/_Stories/tank_driving.ogg");
 
     [DataField, AutoNetworkedField]

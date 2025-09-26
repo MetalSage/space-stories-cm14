@@ -79,9 +79,6 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, DamageChangedEvent>(OnVehicleDamageChanged);
         SubscribeLocalEvent<VehicleComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
 
-        SubscribeLocalEvent<MotionDetectorComponent, AfterInteractEvent>(OnMotionDetectorInteract);
-        SubscribeLocalEvent<MotionDetectorComponent, MotionDetectorScanDoAfterEvent>(OnMotionDetectorScanFinished);
-
         Subs.BuiEvents<VehicleComponent>(VehicleSelectHardpointUI.Key,
             subs =>
             {
@@ -501,11 +498,17 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         }
 
         if (args.Origin != null &&
-            TryComp<MarineComponent>(args.Origin.Value, out var marine) &&
+            HasComp<MarineComponent>(args.Origin.Value) &&
             args.Tool != null &&
-            TryComp<MeleeWeaponComponent>(args.Tool.Value, out var melee))
+            HasComp<MeleeWeaponComponent>(args.Tool.Value))
         {
             modifiedDamage *= 0.05f;
+        }
+
+        if (args.Origin != null && 
+            TryComp<VehicleDamageMultiplierComponent>(args.Origin.Value, out var vehicleDamageMult))
+        {
+            modifiedDamage *= vehicleDamageMult.Mult;
         }
 
         var activeHardpoints = new List<(EntityUid ent, VehicleAttachableComponent comp)>();
@@ -548,78 +551,6 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         if (currentHealth == FixedPoint2.Zero && comp.MaxHealth > FixedPoint2.Zero)
         {
             DestroyVehicle(vehicle.Owner);
-        }
-    }
-
-    private void OnMotionDetectorInteract(Entity<MotionDetectorComponent> md, ref AfterInteractEvent args)
-    {
-        if (args.Target == null || !args.CanReach || !HasComp<VehicleComponent>(args.Target))
-            return;
-
-        if (!md.Comp.Enabled)
-        {
-            _popup.PopupClient($"The {ToPrettyString(md)} must be activated to scan {ToPrettyString(args.Target.Value)}.", args.User);
-            return;
-        }
-
-        var selfMsg = $"You start recalibrating {ToPrettyString(md)} to scan the vehicle's interior for signatures.";
-        var otherMsg = $"{ToPrettyString(args.User)} fumbles with {ToPrettyString(md)} aimed at {ToPrettyString(args.Target.Value)}.";
-
-        _popup.PopupPredicted(selfMsg, otherMsg, args.User, args.User);
-
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 3f, new MotionDetectorScanDoAfterEvent(),
-            md.Owner, target: args.Target, used: md.Owner)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true
-        };
-
-        if (!_doAfter.TryStartDoAfter(doAfterArgs))
-        {
-            var selfStopMsg = $"You stop trying to scan {ToPrettyString(args.Target.Value)}'s interior.";
-            var otherStopMsg = $"{ToPrettyString(args.User)} stops fumbling with {ToPrettyString(md)}.";
-            _popup.PopupPredicted(selfStopMsg, otherStopMsg, args.User, args.User);
-            return;
-        }
-        args.Handled = true;
-    }
-
-    private void OnMotionDetectorScanFinished(Entity<MotionDetectorComponent> md, ref MotionDetectorScanDoAfterEvent args)
-    {
-        if (args.Handled || args.Cancelled || args.Target == null)
-            return;
-
-        if (!TryComp<VehicleComponent>(args.Target, out var vehicleComp))
-            return;
-
-        var otherMsg = $"{ToPrettyString(args.User)} finishes fumbling with {ToPrettyString(md)}.";
-        var selfMsg = $"You finish recalibrating {ToPrettyString(md)} and scanning {ToPrettyString(args.Target)}'s interior for signatures.";
-        _popup.PopupPredicted(selfMsg, otherMsg, args.User, args.User);
-        int humansInside = 0;
-
-        if (vehicleComp.RoleReservedSlots != null)
-        {
-            foreach (var rrs in vehicleComp.RoleReservedSlots)
-                humansInside += rrs.Total.Current;
-        }
-
-        humansInside += vehicleComp.PassengerSlots.Current;
-        int xenosInside = vehicleComp.XenoSlots.Current;
-
-        if (humansInside > 0 || xenosInside > 0)
-        {
-            var msg = $"The {ToPrettyString(md)} shows " +
-                  (humansInside > 0 ? $"approximately {humansInside} signatures" : "no signatures") +
-                  (xenosInside > 0 ? $" and about {xenosInside} abnormal signatures" : "") +
-                  $" inside of {ToPrettyString(args.Target.Value)}.";
-
-            _audio.PlayPvs(md.Comp.ScanSound, args.User);
-            _popup.PopupClient(msg, args.User);
-        }
-        else
-        {
-            _audio.PlayPvs(md.Comp.ScanEmptySound, args.User);
-            _popup.PopupClient($"The {ToPrettyString(md)} can't pick up any signatures, so the vehicle should be empty. In theory.", args.User);
         }
     }
 }

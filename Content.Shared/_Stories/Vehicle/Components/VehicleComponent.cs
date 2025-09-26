@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.FixedPoint;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
@@ -77,7 +78,6 @@ public sealed partial class VehicleComponent : Component
 
     [DataField, AutoNetworkedField]
     public SlotCount XenoSlots = new();
-
 }
 
 [DataDefinition, Serializable, NetSerializable]

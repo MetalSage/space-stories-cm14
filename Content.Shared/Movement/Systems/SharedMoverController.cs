@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.ActionBlocker;
+using Content.Shared._Stories.Vehicle;
 using Content.Shared.CCVar;
 using Content.Shared.Friction;
 using Content.Shared.Gravity;
@@ -59,6 +60,7 @@ public abstract partial class SharedMoverController : VirtualController
     protected EntityQuery<RelayInputMoverComponent> RelayQuery;
     protected EntityQuery<PullableComponent> PullableQuery;
     protected EntityQuery<TransformComponent> XformQuery;
+    protected EntityQuery<VehicleMovementComponent> VehicleMoveQuery; // Stories-Vehicle-Movement-Tweak
 
     private static readonly ProtoId<TagPrototype> FootstepSoundTag = "FootstepSound";
 
@@ -90,6 +92,7 @@ public abstract partial class SharedMoverController : VirtualController
         FootstepModifierQuery = GetEntityQuery<FootstepModifierComponent>();
         MapGridQuery = GetEntityQuery<MapGridComponent>();
         MapQuery = GetEntityQuery<MapComponent>();
+        VehicleMoveQuery = GetEntityQuery<VehicleMovementComponent>(); // Stories-Vehicle-Movement-Tweak
 
         SubscribeLocalEvent<MovementSpeedModifierComponent, TileFrictionEvent>(OnTileFriction);
 
@@ -323,8 +326,20 @@ public abstract partial class SharedMoverController : VirtualController
                 // TODO apparently this results in a duplicate move event because "This should have its event run during
                 // island solver"??. So maybe SetRotation needs an argument to avoid raising an event?
                 var worldRot = _transform.GetWorldRotation(xform);
+                // Stories-Vehicle-Movement-Tweak-Start
+                var delta = xform.LocalRotation + wishDir.ToWorldAngle() - worldRot;
 
-                _transform.SetLocalRotation(uid, xform.LocalRotation + wishDir.ToWorldAngle() - worldRot, xform);
+                if (VehicleMoveQuery.HasComponent(uid))
+                {
+                    var cardinalAngle = wishDir.ToWorldAngle().GetCardinalDir().ToAngle();
+                    var cardinalDelta = xform.LocalRotation + cardinalAngle - worldRot;
+                    _transform.SetLocalRotationNoLerp(uid, cardinalDelta, xform);
+                }
+                else
+                {
+                    _transform.SetLocalRotation(uid, delta, xform);
+                }
+                // Stories-Vehicle-Movement-Tweak-End
             }
 
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&

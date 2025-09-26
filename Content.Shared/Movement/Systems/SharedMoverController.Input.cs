@@ -367,12 +367,13 @@ namespace Content.Shared.Movement.Systems
 
         public (Vector2 Walking, Vector2 Sprinting) GetVelocityInput(InputMoverComponent mover)
         {
+            var moverEntity = (mover.Owner, mover); // Stories-Vehicle-Movement-Tweak
             if (!Timing.InSimulation)
             {
                 // Outside of simulation we'll be running client predicted movement per-frame.
                 // So return a full-length vector as if it's a full tick.
                 // Physics system will have the correct time step anyways.
-                var immediateDir = DirVecForButtons(mover.HeldMoveButtons);
+                var immediateDir = DirVecForButtons(mover.HeldMoveButtons, moverEntity); // Stories-Vehicle-Movement-Tweak
                 return mover.Sprinting ? (Vector2.Zero, immediateDir) : (immediateDir, Vector2.Zero);
             }
 
@@ -393,7 +394,7 @@ namespace Content.Shared.Movement.Systems
                 remainingFraction = (ushort.MaxValue - mover.LastInputSubTick) / (float) ushort.MaxValue;
             }
 
-            var curDir = DirVecForButtons(mover.HeldMoveButtons) * remainingFraction;
+            var curDir = DirVecForButtons(mover.HeldMoveButtons, moverEntity) * remainingFraction; // Stories-Vehicle-Movement-Tweak
 
             if (mover.Sprinting)
             {
@@ -440,7 +441,7 @@ namespace Content.Shared.Movement.Systems
 
                 ref var lastMoveAmount = ref entity.Comp.Sprinting ? ref entity.Comp.CurTickSprintMovement : ref entity.Comp.CurTickWalkMovement;
 
-                lastMoveAmount += DirVecForButtons(entity.Comp.HeldMoveButtons) * fraction;
+                lastMoveAmount += DirVecForButtons(entity.Comp.HeldMoveButtons, entity) * fraction; // Stories-Vehicle-Movement-Tweak
 
                 entity.Comp.LastInputSubTick = subTick;
             }
@@ -450,6 +451,8 @@ namespace Content.Shared.Movement.Systems
             if (enabled)
             {
                 buttons |= bit;
+                if (bit == MoveButtons.Up || bit == MoveButtons.Down || bit == MoveButtons.Left || bit == MoveButtons.Right)
+                    entity.Comp.LastPressedDirection = bit;
             }
             else
             {
@@ -479,11 +482,14 @@ namespace Content.Shared.Movement.Systems
         /// <summary>
         ///     Retrieves the normalized direction vector for a specified combination of movement keys.
         /// </summary>
-        public Vector2 DirVecForButtons(MoveButtons buttons)
+        public Vector2 DirVecForButtons(MoveButtons buttons, Entity<InputMoverComponent>? entity = null) // Stories-Vehicle-Movement-Tweak
         {
             // key directions are in screen coordinates
             // _moveDir is in world coordinates
             // if the camera is moved, this needs to be changed
+
+            if (entity != null && VehicleMoveQuery.HasComponent(entity)) // Stories-Vehicle-Movement-Tweak
+                return VehicleDirVecForButtons(buttons, entity.Value);
 
             var x = 0;
             x -= HasFlag(buttons, MoveButtons.Left) ? 1 : 0;
@@ -507,7 +513,38 @@ namespace Content.Shared.Movement.Systems
 
             return vec;
         }
+        // Stories-Vehicle-Movement-Tweak-Start
+        public Vector2 VehicleDirVecForButtons(MoveButtons buttons, Entity<InputMoverComponent> entity)
+        {
+            var currentDirection = MoveButtons.None;
+            var lastPressed = entity.Comp.LastPressedDirection;
 
+            if (lastPressed != MoveButtons.None && HasFlag(buttons, lastPressed))
+                currentDirection = lastPressed;
+            else
+            {
+                if (HasFlag(buttons, MoveButtons.Up))
+                    currentDirection = MoveButtons.Up;
+                else if (HasFlag(buttons, MoveButtons.Down))
+                    currentDirection = MoveButtons.Down;
+                else if (HasFlag(buttons, MoveButtons.Left))
+                    currentDirection = MoveButtons.Left;
+                else if (HasFlag(buttons, MoveButtons.Right))
+                    currentDirection = MoveButtons.Right;
+            }
+
+            Vector2 vec = currentDirection switch
+            {
+                MoveButtons.Up => new Vector2(0, 1),
+                MoveButtons.Down => new Vector2(0, -1),
+                MoveButtons.Left => new Vector2(-1, 0),
+                MoveButtons.Right => new Vector2(1, 0),
+                _ => Vector2.Zero
+            };
+
+            return vec;
+        }
+        // Stories-Vehicle-Movement-Tweak-End
         private static bool HasFlag(MoveButtons buttons, MoveButtons flag)
         {
             return (buttons & flag) == flag;

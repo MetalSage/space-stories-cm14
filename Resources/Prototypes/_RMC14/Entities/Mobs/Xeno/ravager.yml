@@ -127,6 +127,8 @@
     name: cm-job-name-xeno-ravager
   - type: RMCSurgeryXenoHeart
     item: RMCOrganXenoHeartT3
+  - type: VehicleDamageMultiplier
+    mult: 1.111
 
 - type: entity
   parent: RMCXenoRavagerBase

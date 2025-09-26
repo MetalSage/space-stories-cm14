@@ -116,7 +116,7 @@ public sealed partial class SharedVehicleSystem
             return false;
 
         if (HasComp<SleepingComponent>(pilot)
-            || HasComp<ForcedSleepingComponent>(pilot)
+            || HasComp<ForcedSleepingStatusEffectComponent>(pilot)
             || HasComp<StunnedComponent>(pilot))
         {
             return false;
