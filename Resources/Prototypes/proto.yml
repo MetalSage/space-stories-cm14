@@ -175,6 +175,13 @@
   - type: UserIFF
     faction: FactionMarine
   - type: VehicleMovement
+  - type: VehicleRepairable
+    toolThresholds:
+      Welding: 0.0
+      Anchoring: 0.75
+    toolSoundThresholds:
+      Welding: /Audio/Items/welder.ogg
+      Anchoring: /Audio/Items/ratchet.ogg
 
 - type: entity
   parent: BaseItem
@@ -196,6 +203,11 @@
     damageModifierSet: null
   - type: VehicleAttachableDamageVisuals
   - type: Appearance
+  - type: VehicleRepairable
+    toolThresholds:
+      Welding: 0.0
+    toolSoundThresholds:
+      Welding: /Audio/Items/welder.ogg
 
 - type: entity
   parent: STMarineVehicleAttachableBase
@@ -344,7 +356,7 @@
   - type: VehicleMovementAttachable
     walkSpeed: 6
     sprintSpeed: 6
-  
+
 - type: entity
   id: STVehicleEnterpoint
   name: Vehicle EnterPoint Marker
@@ -447,27 +459,27 @@
 
 - type: hardpointType
   id: HDPT_ARMOR
-  repairPerSecond: 0.014  # 1.4% в секунду
+  repairPerSecond: 1.4      # 1.4% в секунду (значение 1.4, а не 0.014)
   attachDelay: 30 # num_delay * 3
 
 - type: hardpointType
   id: HDPT_PRIMARY
-  repairPerSecond: 0.02  # 2% в секунду
+  repairPerSecond: 2.0      # 2% в секунду (значение 2.0, а не 0.02)
   attachDelay: 5 # num_delay * 3
 
 - type: hardpointType
   id: HDPT_SECONDARY
-  repairPerSecond: 0.025  # 2.5% в секунду
+  repairPerSecond: 2.5      # 2.5% в секунду
   attachDelay: 9 # num_delay * 3
 
 - type: hardpointType
   id: HDPT_SUPPORT
-  repairPerSecond: 0.025  # 2.5% в секунду
+  repairPerSecond: 2.5      # 2.5% в секунду
   attachDelay: 6 # num_delay * 3
 
 - type: hardpointType
-  id: HDPT_TREADS
-  repairPerSecond: 0.033  # 3.3% в секунду
+  id: HDPT_TREADS # Наличие данного типа у колес БТРа не является парити, но так лучше, чем в парити.
+  repairPerSecond: 3.3      # 3.3% в секунду
   attachDelay: 7 # num_delay * 3
 
 
