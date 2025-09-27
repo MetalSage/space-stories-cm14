@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared._RMC14.Xenonids;
@@ -51,17 +52,25 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         foreach (var slotId in holder.Comp.Slots.Keys)
         {
             var slot = holder.Comp.Slots[slotId];
-            var attachment = slot.StartingAttachable;
+            var attachments = slot.StartingAttachables;
 
-            if (attachment == null)
+            if (attachments == null || attachments.Count == 0)
                 continue;
 
-            var container = _container.EnsureContainer<ContainerSlot>(holder, slotId);
+            BaseContainer container;
+            if (slot.MultiModule)
+                container = _container.EnsureContainer<Container>(holder, slotId);
+            else
+                container = _container.EnsureContainer<ContainerSlot>(holder, slotId);
+
             container.OccludesLight = false;
 
-            var attachableUid = Spawn(attachment, coords);
-            if (!_container.Insert(attachableUid, container, containerXform: xform))
-                continue;
+            foreach (var attachment in attachments)
+            {
+                var attachableUid = Spawn(attachment, coords);
+                if (!_container.Insert(attachableUid, container, containerXform: xform))
+                    continue;
+            }
         }
 
         Dirty(holder);
@@ -173,11 +182,27 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         if (!CanAttach(holder, attachableUid, userUid, ref slotId))
             return false;
 
-        var container = _container.EnsureContainer<ContainerSlot>(holder, slotId);
+        var slot = holder.Comp.Slots[slotId];
+        
+        BaseContainer container;
+        if (slot.MultiModule)
+            container = _container.EnsureContainer<Container>(holder, slotId);
+        else
+        {
+            container = _container.EnsureContainer<ContainerSlot>(holder, slotId);
+
+            if (container.Count > 0 && !Detach(holder, container.ContainedEntities[0], userUid, slotId))
+                return false;
+        }
+        
         container.OccludesLight = false;
 
-        if (container.Count > 0 && !Detach(holder, container.ContainedEntities[0], userUid, slotId))
+        if (slot.MultiModule && slot.MaxModules > 0 && container.Count >= slot.MaxModules)
+        {
+            var msg = Loc.GetString("vehicle-attachable-slot-full", ("slot", slotId));
+            _popup.PopupClient(msg, userUid, PopupType.SmallCaution);
             return false;
+        }
 
         if (!_container.Insert(attachableUid, container))
             return false;
@@ -208,6 +233,16 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
 
     public void StartDetach(Entity<VehicleAttachableHolderComponent> holder, string slotId, EntityUid userUid)
     {
+        if (holder.Comp.Slots.ContainsKey(slotId) && holder.Comp.Slots[slotId].MultiModule)
+        {
+            if (_container.TryGetContainer(holder, slotId, out var container) && container.Count > 0)
+            {
+                var lastAttachable = container.ContainedEntities[^1];
+                StartDetach(holder, lastAttachable, userUid);
+            }
+            return;
+        }
+
         if (TryGetAttachable(holder, slotId, out var attachable) && holder.Comp.Slots.ContainsKey(slotId) &&
         !holder.Comp.Slots[slotId].Locked)
         {
@@ -279,10 +314,10 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         if (!_container.TryGetContainer(holder, slotId, out var container) || container.Count <= 0)
             return false;
 
-        if (!TryGetAttachable(holder, slotId, out var attachable))
+        if (!container.ContainedEntities.Contains(attachableUid))
             return false;
 
-        if (!_container.Remove(attachable.Owner, container, force: true))
+        if (!_container.Remove(attachableUid, container, force: true))
             return false;
 
         UpdateStripUi(holder.Owner, holder.Comp);
@@ -298,15 +333,15 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
             userUid);
 
         Dirty(holder);
-        _hands.TryPickupAnyHand(userUid, attachable);
+        _hands.TryPickupAnyHand(userUid, attachableUid);
 
         if (attachableComp.Destroyed)
         {
-            var msg = Loc.GetString("st-destroyed-vehicle-attachable-deleted", ("attachable", attachable));
-            _popup.PopupEntity(msg, attachable, PopupType.Small);
+            var msg = Loc.GetString("st-destroyed-vehicle-attachable-deleted", ("attachable", attachableUid));
+            _popup.PopupEntity(msg, attachableUid, PopupType.Small);
 
-            QueueDel(attachable);
-            return true; // succesfully deattached but deleted 
+            QueueDel(attachableUid);
+            return true;
         }
 
         return true;
@@ -333,12 +368,35 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         }
 
         if (!string.IsNullOrWhiteSpace(slotId))
-            return holder.Comp.Slots[slotId].HardpointType == attachableComp.HardpointType;
+        {
+            var slot = holder.Comp.Slots[slotId];
+            if (slot.HardpointType != attachableComp.HardpointType)
+                return false;
+
+            if (slot.MultiModule)
+            {
+                if (slot.MaxModules > 0 && 
+                    _container.TryGetContainer(holder, slotId, out var container) && 
+                    container.Count >= slot.MaxModules)
+                    return false;
+            }
+            
+            return true;
+        }
 
         foreach (var key in holder.Comp.Slots.Keys)
         {
-            if (holder.Comp.Slots[key].HardpointType == attachableComp.HardpointType)
+            var slot = holder.Comp.Slots[key];
+            if (slot.HardpointType == attachableComp.HardpointType)
             {
+                if (slot.MultiModule)
+                {
+                    if (slot.MaxModules > 0 && 
+                        _container.TryGetContainer(holder, key, out var container) && 
+                        container.Count >= slot.MaxModules)
+                        continue;
+                }
+                
                 slotId = key;
                 return true;
             }
@@ -364,11 +422,40 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         return true;
     }
 
+    public List<Entity<VehicleAttachableComponent>> GetAllAttachables(Entity<VehicleAttachableHolderComponent> holder, string slotId)
+    {
+        var result = new List<Entity<VehicleAttachableComponent>>();
+
+        if (!_container.TryGetContainer(holder, slotId, out var container) || container.Count <= 0)
+            return result;
+
+        foreach (var ent in container.ContainedEntities)
+        {
+            if (TryComp<VehicleAttachableComponent>(ent, out var attachableComp))
+            {
+                result.Add((ent, attachableComp));
+            }
+        }
+
+        return result;
+    }
+
     private void EnsureSlots(Entity<VehicleAttachableHolderComponent> holder)
     {
         foreach (var slotId in holder.Comp.Slots.Keys)
         {
-            var container = _container.EnsureContainer<ContainerSlot>(holder, slotId);
+            var slot = holder.Comp.Slots[slotId];
+            BaseContainer container;
+            
+            if (slot.MultiModule)
+            {
+                container = _container.EnsureContainer<Container>(holder, slotId);
+            }
+            else
+            {
+                container = _container.EnsureContainer<ContainerSlot>(holder, slotId);
+            }
+            
             container.OccludesLight = false;
         }
     }
@@ -382,8 +469,18 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
 
         foreach (var slotId in holder.Comp.Slots.Keys)
         {
-            if (holder.Comp.Slots[slotId].HardpointType == attachableComp.HardpointType && (!ignoreLock || !holder.Comp.Slots[slotId].Locked))
+            var slot = holder.Comp.Slots[slotId];
+            if (slot.HardpointType == attachableComp.HardpointType && (!ignoreLock || !slot.Locked))
+            {
+                if (slot.MultiModule && slot.MaxModules > 0)
+                {
+                    if (_container.TryGetContainer(holder, slotId, out var container) && 
+                        container.Count >= slot.MaxModules)
+                        continue;
+                }
+                
                 list.Add(slotId);
+            }
         }
 
         return list;
@@ -404,7 +501,7 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
             if (!_container.TryGetContainer(holderUid, id, out var container) || container.Count <= 0)
                 continue;
 
-            if (container.ContainedEntities[0] != attachableUid)
+            if (!container.ContainedEntities.Contains(attachableUid))
                 continue;
 
             slotId = id;
@@ -462,8 +559,11 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
             if (!_container.TryGetContainer(holder, slotId, out var container) || container.Count <= 0)
                 continue;
 
-            var ev = new VehicleAttachableAlteredEvent(holder.Owner, alteration);
-            RaiseLocalEvent(container.ContainedEntities[0], ref ev);
+            foreach (var attachableUid in container.ContainedEntities)
+            {
+                var ev = new VehicleAttachableAlteredEvent(holder.Owner, alteration);
+                RaiseLocalEvent(attachableUid, ref ev);
+            }
         }
     }
 
@@ -481,14 +581,25 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
 
         foreach (var slotId in holder.Comp.Slots.Keys)
         {
+            var slot = holder.Comp.Slots[slotId];
+
+            if (slot.HiddenInUI)
+                continue;
+
             if (TryGetAttachable(holder, slotId, out var attachable) &&
                 metaQuery.TryGetComponent(attachable.Owner, out var metadata))
             {
-                result.Add(slotId, (metadata.EntityName, holder.Comp.Slots[slotId].Locked, attachable.Comp.Description, attachable.Comp.Stats));
+                var displayName = metadata.EntityName;
+                if (slot.MultiModule && _container.TryGetContainer(holder, slotId, out var container))
+                {
+                    displayName = $"{metadata.EntityName} ({container.Count})";
+                }
+                
+                result.Add(slotId, (displayName, slot.Locked, attachable.Comp.Description, attachable.Comp.Stats));
             }
             else
             {
-                result.Add(slotId, (null, holder.Comp.Slots[slotId].Locked, null, null));
+                result.Add(slotId, (null, slot.Locked, null, null));
             }
         }
 
@@ -504,5 +615,4 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
             new VehicleAttachableHolderStripUserInterfaceState(GetSlotsForStripUi((holderUid, holderComponent)));
         _ui.SetUiState(holderUid, VehicleAttachmentUI.StripKey, state);
     }
-
 }

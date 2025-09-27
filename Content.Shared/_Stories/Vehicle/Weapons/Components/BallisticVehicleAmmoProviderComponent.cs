@@ -13,6 +13,21 @@ public sealed partial class BallisticVehicleAmmoProviderComponent : AmmoProvider
     [DataField, AutoNetworkedField]
     public int Shots = 10;
 
+    [DataField, AutoNetworkedField]
+    public int InitialShots;
+
+    [DataField, AutoNetworkedField]
+    public bool AutoReload = false;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan ReloadCooldown = TimeSpan.FromSeconds(10);
+
+    [DataField, AutoNetworkedField]
+    public bool IsReloading = false;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan? ReloadEndTime;
+
     [DataField]
     public int Capacity = 10;
 

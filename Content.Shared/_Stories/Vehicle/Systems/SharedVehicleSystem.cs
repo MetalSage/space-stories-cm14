@@ -110,13 +110,13 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         var map = _map.CreateMap(out var mapId);
         if (!_mapLoader.TryLoadGrid(mapId, vehicle.Comp.GridPath, out var grid, null))
         {
-            Log.Error($"Failed to load Vehicle Grid from entity {vehicle}");
+            Log.Error($"[{nameof(LoadMap)}] Failed to load vehicle grid from {ToPrettyString(vehicle)}");
             _map.DeleteMap(mapId);
             return;
         }
 
-        _meta.SetEntityName(grid.Value, $"VehicleGrid: {vehicle}");
-        _meta.SetEntityName(map, $"VehicleMap: {vehicle}");
+        _meta.SetEntityName(grid.Value, $"VehicleGrid: {ToPrettyString(vehicle)}");
+        _meta.SetEntityName(map, $"VehicleMap: {ToPrettyString(vehicle)}");
 
         vehicle.Comp.MapEnt = map;
         vehicle.Comp.GridEnt = grid.Value;
@@ -135,6 +135,27 @@ public sealed partial class SharedVehicleSystem : EntitySystem
                 continue;
 
             comp.Vehicle = vehicle.Owner;
+        }
+
+        var controllersQuery = EntityQueryEnumerator<VehicleControllerComponent, TransformComponent>();
+        while (controllersQuery.MoveNext(out var uid, out var comp, out var xform))
+        {
+            if (xform.GridUid != grid.Value.Owner)
+                continue;
+
+            comp.Vehicle = vehicle.Owner;
+
+            foreach (var hardpoint in vehicle.Comp.Hardpoints)
+            {
+                if (!TryComp<VehicleControllableComponent>(hardpoint, out var controllable))
+                    continue;
+
+                if (controllable.Id == comp.Id)
+                {
+                    comp.ControllableEntity = hardpoint;
+                    break;
+                }
+            }
         }
     }
 
@@ -196,9 +217,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
     private float GetEntryDelay(Entity<VehicleComponent> vehicle, EntityUid user)
     {
-        bool isPulling = TryComp(user, out PullerComponent? puller) && puller.Pulling != null;
-        
-        if (isPulling)
+        if (TryComp<PullerComponent>(user, out var puller) && puller.Pulling != null)
             return vehicle.Comp.EntryDelayPulling;
 
         if (HasComp<XenoComponent>(user))
@@ -275,6 +294,12 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     {
         if (!TryComp<VehicleComponent>(target, out var vehicle))
             return false;
+
+        if (HasComp<XenoComponent>(user) && vehicle.Destroyed)
+        {
+            _popup.PopupEntity("Мы начинаем отодвигать сломанные пластины корпуса!", user);
+            return true;
+        }
 
         var userPos = _transform.GetMapCoordinates(user).Position;
         var targetPos = _transform.GetMapCoordinates(target).Position;
@@ -474,20 +499,39 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             return;
         }
 
-        if (TryComp<RMCSizeComponent>(args.Origin, out var rmcSize) && rmcSize.Size == RMCSizes.Small)
+        if (TryComp<RMCSizeComponent>(args.Origin, out var rmcSize) && rmcSize.Size < ent.Comp.SizeRequiredToHit)
         {
+            _popup.PopupEntity("We're too small to do any significant damage to this vehicle!", args.Origin!.Value);
             args.Cancelled = true;
             return;
         }
 
-        if (damageable.TotalDamage >= ent.Comp.MaxHealth && args.Damage.GetTotal() > FixedPoint2.Zero)
+        var maxHealth = ent.Comp.MaxHealth;
+        var currentDamage = damageable.TotalDamage;
+        var incomingDamage = args.Damage.GetTotal();
+
+        if (currentDamage >= maxHealth)
+        {
             args.Cancelled = true;
+        }
+        else if (currentDamage + incomingDamage > maxHealth)
+        {
+            var allowedDamage = maxHealth - currentDamage;
+            var factor = allowedDamage / incomingDamage;
+
+            var newDamage = new DamageSpecifier();
+            foreach (var kv in args.Damage.DamageDict)
+            {
+                newDamage.DamageDict[kv.Key] = kv.Value * factor;
+            }
+
+            args.Damage = newDamage;
+        }
     }
 
     private void OnVehicleDamageModify(Entity<VehicleComponent> vehicle, ref DamageModifyEvent args)
     {
         var comp = vehicle.Comp;
-
         var modifiedDamage = new DamageSpecifier();
         foreach (var (type, value) in args.Damage.DamageDict)
         {
@@ -533,14 +577,34 @@ public sealed partial class SharedVehicleSystem : EntitySystem
                     interruptsDoAfters: false, origin: args.Origin, tool: args.Tool);
             }
 
-            args.Damage = modifiedDamage * 0.1f;
+            modifiedDamage *= 0.1f;
         }
-        else
-        {
-            args.Damage = modifiedDamage;
-        }
-    }
 
+        if (TryComp<DamageableComponent>(vehicle, out var damageable))
+        {
+            var maxHealth = comp.MaxHealth;
+            var currentDamage = damageable.TotalDamage;
+            var incomingDamage = modifiedDamage.GetTotal();
+
+            if (currentDamage >= maxHealth)
+            {
+                modifiedDamage *= 0f;
+            }
+            else if (currentDamage + incomingDamage > maxHealth)
+            {
+                var allowedDamage = maxHealth - currentDamage;
+                var factor = allowedDamage / incomingDamage;
+
+                var clampedDamage = new DamageSpecifier();
+                foreach (var kv in modifiedDamage.DamageDict)
+                    clampedDamage.DamageDict[kv.Key] = kv.Value * factor;
+
+                modifiedDamage = clampedDamage;
+            }
+        }
+
+        args.Damage = modifiedDamage;
+    }
 
 
     private void OnVehicleDamageChanged(Entity<VehicleComponent> vehicle, ref DamageChangedEvent args)

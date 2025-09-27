@@ -128,7 +128,7 @@
   - type: RMCSurgeryXenoHeart
     item: RMCOrganXenoHeartT3
   - type: VehicleDamageMultiplier
-    mult: 1.111
+    mult: 2
 
 - type: entity
   parent: RMCXenoRavagerBase

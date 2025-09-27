@@ -151,17 +151,23 @@
   - type: VehicleAttachableHolder
     slots:
       vehicle-slot-treads:
-        startingAttachable: STMarineVehicleWheelsBase
+        startingAttachables: [STMarineVehicleWheelsBase]
         hardpointType: HDPT_TREADS
       vehicle-slot-support:
-        startingAttachable: STMarineVehicleFlareLauncher
+        startingAttachables: [STMarineVehicleFlareLauncher]
         hardpointType: HDPT_SUPPORT
       vehicle-slot-secondary:
-        startingAttachable: STMarineVehicleFrontalCannon
+        startingAttachables: [STMarineVehicleFrontalCannon]
         hardpointType: HDPT_SECONDARY
       vehicle-slot-primary:
-        startingAttachable: STMarineVehicleDualcannon
+        startingAttachables: [STMarineVehicleDualcannon]
         hardpointType: HDPT_PRIMARY
+      vehicle-slot-special:
+        startingAttachables: [STMarineVehicleFiringPortWeaponOne, STMarineVehicleFiringPortWeaponTwo]
+        hardpointType: HDPT_SPECIAL
+        multiModule: true
+        maxModules: 2
+        hiddenInUI: true
   - type: VehicleAttachableHolderVisuals
     rsi: _Stories/Mobs/Vehicles/base_apc.rsi
     damagedState: damaged_frame
@@ -335,6 +341,61 @@
 
 - type: entity
   parent: STMarineVehicleAttachableBase
+  id: STMarineVehicleFiringPortWeaponOne
+  description:
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: front_cannon
+  - type: VehicleAttachable
+    hardpointType: HDPT_SECONDARY
+    damageMult: 0
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 100
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: frontalcannon
+    destroyedState: frontalcannon_destroyed
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 0.3
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticVehicleAmmoProvider
+    prototype: CartridgeCaselessRifle
+    shots: 75
+    capacity: 75
+    ammoType: CartridgeCaselessRifle
+    initialShots: 75
+    autoReload: true
+  - type: VehicleGun
+    needHands: true
+    disableAtHullDamage: 0.5
+  - type: AmmoCounter
+  - type: VehicleControllable
+    id: FiringPortWeaponOne
+  - type: GunArcRestriction
+    maxAngleDeviation: 120
+
+- type: entity
+  parent: STMarineVehicleFiringPortWeaponOne
+  id: STMarineVehicleFiringPortWeaponTwo
+  components:
+  - type: VehicleControllable
+    id: FiringPortWeaponTwo
+
+- type: entity
+  parent: STMarineVehicleAttachableBase
   id: STMarineVehicleWheelsBase
   description:
   components:
@@ -482,6 +543,10 @@
   repairPerSecond: 3.3      # 3.3% в секунду
   attachDelay: 7 # num_delay * 3
 
+- type: hardpointType
+  id: HDPT_SPECIAL
+  repairPerSecond: 0
+  attachDelay: 0
 
 - type: entity
   id: STVehicleGunnerSeat
@@ -498,3 +563,19 @@
   components:
   - type: VehiclePilotSeat
     isGunner: false
+
+- type: entity
+  id: STVehicleFireportControllerOne
+  parent: RMCSeatDark
+  name: one seat
+  components:
+  - type: VehicleController
+    id: FiringPortWeaponOne
+
+- type: entity
+  id: STVehicleFireportControllerTwo
+  parent: RMCSeatDark
+  name: two seat
+  components:
+  - type: VehicleController
+    id: FiringPortWeaponTwo

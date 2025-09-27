@@ -277,7 +277,7 @@
     item: RMCOrganXenoHeartTQ
   - type: RMCTrackable
   - type: VehicleDamageMultiplier
-    mult: 1.5
+    mult: 2
 
 - type: entity
   parent: RMCXenoQueenBase

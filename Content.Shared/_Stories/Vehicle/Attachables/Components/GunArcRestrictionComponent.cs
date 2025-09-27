@@ -9,5 +9,5 @@ public sealed partial class GunArcRestrictionComponent : Component
     public Angle MaxAngleDeviation = Angle.FromDegrees(45);
 
     [DataField, AutoNetworkedField]
-    public string? RestrictionMessage;
+    public string? RestrictionMessage = "The target is not within your firing arc!";
 }

@@ -79,7 +79,29 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
     private void AttachableDamageModify(Entity<VehicleAttachableComponent> ent, ref DamageModifyEvent args)
     {
         args.Damage = args.Damage * ent.Comp.DamageMult;
-        Log.Error($"Final dmg: {args.Damage.GetTotal()}");
+
+        if (TryComp<DamageableComponent>(ent, out var damageable))
+        {
+            var maxHealth = ent.Comp.MaxHealth;
+            var currentDamage = damageable.TotalDamage;
+            var incomingDamage = args.Damage.GetTotal();
+
+            if (currentDamage >= maxHealth)
+            {
+                args.Damage *= 0f;
+            }
+            else if (currentDamage + incomingDamage > maxHealth)
+            {
+                var allowedDamage = maxHealth - currentDamage;
+                var factor = allowedDamage / incomingDamage;
+
+                var clampedDamage = new DamageSpecifier();
+                foreach (var kv in args.Damage.DamageDict)
+                    clampedDamage.DamageDict[kv.Key] = kv.Value * factor;
+
+                args.Damage = clampedDamage;
+            }
+        }
     }
 
     private void OnAttachableDamaged(Entity<VehicleAttachableComponent> ent, ref DamageChangedEvent args)

@@ -10,6 +10,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Roles;
 using Robust.Shared.Serialization;
+using Content.Shared._RMC14.Stun;
 
 namespace Content.Shared._Stories.Vehicle;
 
@@ -78,6 +79,9 @@ public sealed partial class VehicleComponent : Component
 
     [DataField, AutoNetworkedField]
     public SlotCount XenoSlots = new();
+
+    [DataField, AutoNetworkedField]
+    public RMCSizes SizeRequiredToHit = RMCSizes.SmallXeno;
 }
 
 [DataDefinition, Serializable, NetSerializable]

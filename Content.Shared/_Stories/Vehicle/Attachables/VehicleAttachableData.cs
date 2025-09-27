@@ -14,5 +14,14 @@ public partial struct VehicleAttachableSlot()
     public ProtoId<HardpointTypePrototype>? HardpointType;
 
     [DataField]
-    public EntProtoId<VehicleAttachableComponent>? StartingAttachable;
+    public List<EntProtoId<VehicleAttachableComponent>>? StartingAttachables = new();
+
+    [DataField]
+    public bool MultiModule;
+
+    [DataField]
+    public int MaxModules;
+
+    [DataField]
+    public bool HiddenInUI;
 }
