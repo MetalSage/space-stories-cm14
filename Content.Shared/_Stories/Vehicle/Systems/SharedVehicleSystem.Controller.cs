@@ -208,7 +208,7 @@ public sealed partial class SharedVehicleSystem
         {
             gun.User = pilot.Owner;
             Dirty(controllable, gun);
-            Logger.Error("Dirty called")
+            // не работает. Хз почему. Потом гляну
         }
 
     }

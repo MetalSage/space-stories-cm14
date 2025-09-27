@@ -33,15 +33,6 @@ public abstract partial class SharedGunSystem
         }
     }
 
-    private void OnVehicleReloadAction(VehicleGunReloadActionEvent args)
-    {
-        if (!TryComp<BallisticVehicleAmmoProviderComponent>(args.Target, out var ammoProvider))
-            return;
-
-        StartReload((args.Target!.Value, ammoProvider));
-        args.Handled = true;
-    }
-
     private void OnVehicleMuzzleFlashAttempt(Entity<VehicleComponent> apc, ref GunMuzzleFlashAttemptEvent args)
     {
         args.Cancelled = true;
