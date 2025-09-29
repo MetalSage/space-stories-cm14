@@ -977,7 +977,6 @@
     enabled: true
 
 - type: entity
-  parent: BaseStructureDynamic
   id: STVehicleInteriorLight
   name: vehicle light
   components:
@@ -989,4 +988,5 @@
     - None
   - type: PointLight
     softness: 1.5
-    energy: 0.5
+    energy: 2
+    radius: 30

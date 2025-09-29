@@ -32,3 +32,7 @@
         type: VehicleWeaponLoaderBui
   - type: ActivatableUI
     key: enum.VehicleWeaponLoaderUI.Key
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno

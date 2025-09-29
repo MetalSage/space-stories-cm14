@@ -64,7 +64,7 @@
   - type: RMCMesonsNonviewable
   - type: VehicleRequisitionsComputer
     orders:
-      APCVehicle: 1
+      STVehicleM577APC: 1 # change to 190 
 
 - type: entity
   id: STVehicleRequisitionElevator

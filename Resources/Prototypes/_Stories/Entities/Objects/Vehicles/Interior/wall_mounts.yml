@@ -1,5 +1,4 @@
 - type: entity
-  parent: BaseStructureDynamic
   id: STVehicleInteriorViewport
   name: viewport
   description: noe
@@ -7,33 +6,20 @@
     mode: PlaceFree
   components:
   - type: Sprite
-    noRot: true
     drawdepth: WallMountedItems
     sprite: _Stories/Objects/Vehicles/Interior/general.rsi
     state: viewport
   - type: Appearance
   - type: Transform
     anchored: true
-  - type: Physics
-    bodyType: Static
   - type: Anchorable
     flags:
     - None
   - type: MovedByPressure
-  - type: InteractionOutline
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.25,-0.48,0.25,0.48"
-        density: 75
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
   - type: WallMount
     arc: 175
+  - type: InteractionOutline
+  - type: Clickable
 
 - type: entity 
   parent: RMCSurveillanceCameraAlmayer
@@ -120,8 +106,6 @@
           True: { state: extinguisher }
           False: { state: extinguisher_closed }
 
-
-
 - type: entity
   parent: CMLockerBase
   id: STVehicleAPCLocker
@@ -155,3 +139,7 @@
   - type: AccessReader
     access: [["RMCAccessSeniorCommand"]] # TODO TANK CREW ACCESS
   - type: RMCMesonsNonviewable
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno

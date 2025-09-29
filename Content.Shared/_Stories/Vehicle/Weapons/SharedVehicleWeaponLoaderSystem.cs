@@ -120,13 +120,10 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
         if (!vehicle.Comp.Hardpoints.Contains(hardpoint))
             return;
 
-        if (!string.IsNullOrEmpty(gun.RequiredSkill))
+        if (!_skills.HasAllSkills(args.Actor, loader.Comp.Skills))
         {
-            if (!_skills.HasSkill(args.Actor, gun.RequiredSkill, gun.RequiredSkillLevel))
-            {
-                _popup.PopupEntity("You lack the required skill to reload this weapon!", args.Actor);
-                return;
-            }
+            _popup.PopupEntity($"You lack the required skill to load this weapon!", args.Actor);
+            return;
         }
 
         if (gun.SpareMagazinesContainer.ContainedEntities.Count == 0)
