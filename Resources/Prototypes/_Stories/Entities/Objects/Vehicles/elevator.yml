@@ -1,0 +1,164 @@
+- type: entity
+  parent: CMBaseStructureCorrodible
+  id: STVehicleRequisitionConsole
+  name: vehicle elevator
+  description: A console for the Vehicle
+  suffix: Vehicle
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Machines/asrs_console.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: off
+    - map: ["computerLayerScreen"]
+      state: on
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: ActivatableUI
+    key: enum.VehicleRequisitionsUIKey.Key
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [ [ "CMAccessRequisitions" ] ]
+  - type: UserInterface
+    interfaces:
+      enum.VehicleRequisitionsUIKey.Key:
+        type: VehicleRequisitionsBui
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: CargoSellBlacklist
+  - type: ApcPowerReceiver
+    powerLoad: 0
+    needsPower: false
+  - type: Appearance
+  - type: LitOnPowered
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: RMCKeyboardTyping
+      params:
+        volume: -1
+  - type: RequireProjectileTarget
+  - type: InteractionOutline
+  - type: Corrodible
+    isCorrodible: false
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: RMCMesonsNonviewable
+  - type: VehicleRequisitionsComputer
+    orders:
+      APCVehicle: 1
+
+- type: entity
+  id: STVehicleRequisitionElevator
+  name: cargo elevator
+  suffix: Lowered, Requisitions
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _RMC14/Effects/elevator.rsi
+    drawdepth: LowFloors
+    layers:
+    - state: supply_elevator_lowered
+      map: [ "enum.RequisitionsElevatorLayers.Base" ]
+  - type: Physics
+    bodyType: static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-2.3,-2.3,2.3,2.3"
+        layer:
+        - MidImpassable
+        mask:
+        - ItemMask
+        density: 1000
+        hard: false
+  - type: Chasm
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 1
+    blacklist:
+      tags:
+      - Catwalk
+  - type: VehicleRequisitionsElevator
+  - type: CargoSellBlacklist
+  - type: WarpPoint
+    location: the vehicle pit
+
+- type: entity
+  parent: CMBaseStructureCorrodible
+  id: STVehicleRequisitionRailing
+  name: retractable railing
+  description: That looks like it doesn't open easily.
+  suffix: Raised
+  components:
+  - type: Transform
+    anchored: false
+    noRot: false
+  - type: Sprite
+    sprite: _RMC14/Structures/railing.rsi
+    offset: 0,0.5
+    layers:
+    - state: raised
+      map: [ "enum.RequisitionsRailingLayers.Base" ]
+    noRot: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,-0.3"
+        layer:
+        - TableLayer
+        mask:
+        - TableMask
+        density: 1000
+  - type: Climbable
+  - type: VehicleRequisitionsRailing
+    mode: Raised
+  - type: CargoSellBlacklist
+  - type: RMCMesonsNonviewable
+
+- type: entity
+  id: STVehicleRequisitionGear
+  name: gear
+  description: ""
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _RMC14/Structures/gear.rsi
+    layers:
+    - state: base
+      map: [ "enum.RequisitionsGearLayers.Base" ]
+  - type: VehicleRequisitionsGear
+  - type: CargoSellBlacklist

@@ -1,0 +1,182 @@
+- type: entity
+  parent: STMarineVehicleAttachableBase
+  name: ARS-159 Boyars Dualcannon
+  id: STMarineVehicleDualcannon
+  description: none
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: dual_cannon
+  - type: VehicleAttachable
+    hardpointType: HDPT_PRIMARY
+    damageMult: 0.2
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 500
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: dualcannon
+    destroyedState: dualcannon_destroyed
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 0.3
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+#  - type: VehicleGun
+  - type: AmmoCounter
+
+- type: entity
+  parent: STMarineVehicleAttachableBase
+  name: M-87F Flare Launcher
+  id: STMarineVehicleFlareLauncher
+  description:
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: flare_launcher
+  - type: VehicleAttachable
+    hardpointType: HDPT_SUPPORT
+    damageMult: 0.1
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 500
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: flare_launcher
+    destroyedState: flare_launcher_destroyed
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 0.3333
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    projectileSpeed: 10
+  - type: VehicleGun
+    acceptedMagazineTypes:
+    - "flare_launcher"
+  - type: AmmoCounter
+  - type: ActivateExpendableLightOnShoot
+
+- type: entity
+  parent: STMarineVehicleAttachableBase
+  id: STMarineVehicleFrontalCannon
+  description:
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: front_cannon
+  - type: VehicleAttachable
+    hardpointType: HDPT_SECONDARY
+    damageMult: 0.11
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 350
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: frontalcannon
+    destroyedState: frontalcannon_destroyed
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 0.3
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+#  - type: VehicleGun
+  - type: AmmoCounter
+
+- type: entity
+  parent: STMarineVehicleAttachableBase
+  id: STMarineVehicleFiringPortWeaponOne
+  description:
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: front_cannon
+  - type: VehicleAttachable
+    hardpointType: HDPT_SECONDARY
+    damageMult: 0
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 100
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: frontalcannon
+    destroyedState: frontalcannon_destroyed
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 0.3
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+#  - type: VehicleGun
+#    needHands: true
+#    disableAtHullDamage: 0.5
+  - type: AmmoCounter
+  - type: VehicleControllable
+    id: FiringPortWeaponOne
+  - type: GunArcRestriction
+    maxAngleDeviation: 120
+
+- type: entity
+  parent: STMarineVehicleFiringPortWeaponOne
+  id: STMarineVehicleFiringPortWeaponTwo
+  components:
+  - type: VehicleControllable
+    id: FiringPortWeaponTwo
+
+- type: entity
+  parent: STMarineVehicleAttachableBase
+  id: STMarineVehicleWheelsBase
+  description:
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: tires
+  - type: VehicleAttachable
+    hardpointType: HDPT_TREADS
+    damageMult: 0.15
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 500
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: wheels
+    destroyedState: wheels_destroyed
+  - type: VehicleMovementAttachable
+    walkSpeed: 6
+    sprintSpeed: 6

@@ -5,25 +5,14 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Stories.Vehicle;
 
 [Serializable, NetSerializable]
-public sealed partial class VehicleEnterDoAfterEvent : SimpleDoAfterEvent
-{
-}
+public sealed partial class VehicleEnterDoAfterEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
-public sealed partial class VehicleLeaveDoAfterEvent : SimpleDoAfterEvent
-{
-}
+public sealed partial class VehicleLeaveDoAfterEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
-public sealed partial class MotionDetectorScanDoAfterEvent : SimpleDoAfterEvent
-{
-}
+public sealed partial class MotionDetectorScanDoAfterEvent : SimpleDoAfterEvent;
 
-[Serializable, NetSerializable]
-public enum VehicleVisuals : byte
-{
-    Destroyed
-}
 
 [Serializable, NetSerializable]
 public enum VehicleVisualLayers : byte
@@ -60,3 +49,5 @@ public sealed class VehicleWeaponLoaderWindowState : BoundUserInterfaceState
         SelectedHardpoint = selectedHardpoint;
     }
 }
+
+public sealed partial class VehicleLockDoorsEvent : InstantActionEvent;

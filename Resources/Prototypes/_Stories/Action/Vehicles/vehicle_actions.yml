@@ -1,0 +1,31 @@
+- type: entity
+  id: STVehicleSelectHardpointAction
+  name: Select Hardpoint
+  description: Open hardpoints menu
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: resting
+    useDelay: 1
+  - type: InstantAction
+    event: !type:VehicleSelectHardpointEvent
+
+- type: entity
+  id: STVehicleLockDoorsAction
+  name: Lock Doors
+  description: nn
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: resting
+    useDelay: 1
+  - type: InstantAction
+    event: !type:VehicleLockDoorsEvent

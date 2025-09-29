@@ -1,0 +1,157 @@
+- type: entity
+  parent: BaseStructureDynamic
+  id: STVehicleInteriorViewport
+  name: viewport
+  description: noe
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: viewport
+  - type: Appearance
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+    flags:
+    - None
+  - type: MovedByPressure
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        density: 75
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: WallMount
+    arc: 175
+
+- type: entity 
+  parent: RMCSurveillanceCameraAlmayer
+  id: STVehicleInteriorCamera
+  name: camera
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    offset: 0.0, 0.5
+    layers:
+    - map: [ "enum.SurveillanceCameraVisualsKey.Layer" ]
+      state: vehicle_camera
+      cycle: true
+  - type: SurveillanceCameraVisuals
+    sprites:
+      Active: vehicle_camera
+      Disabled: vehicle_camera
+      InUse: vehicle_camera
+  - type: RMCCamera
+    id: STVehicleInteriorCamera
+
+- type: entity
+  parent: RMCRotaryPhone
+  id: STVehicleInteriorWallMountPhone
+  name: wall-mounted phone
+  description: "It is a wall mounted telephone. The fine text reads: To log your details with the mainframe please insert your keycard into the slot below. Unfortunately the slot is jammed. You can still use the phone, however."
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+      - state: wall_phone
+        map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.RotaryPhoneLayers.Layer:
+        base:
+          Base: { state: wall_phone }
+          Ring: { state: wall_phone_ring }
+          Ear: { state: wall_phone_ear }
+
+- type: entity
+  parent: RMCNanoMed
+  id: STVehicleInteriorNanoMed
+  name: nanomed
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+    - state: "nanomed"
+    - state: "nanomed"
+
+- type: entity
+  parent: RMCExtinguisherCabinet
+  id: STVehicleInteriorExtinguisherCabinet
+  suffix: ST, Filled
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+    - state: extinguisher_empty
+    - state: extinguisher_closed
+      map: ["enum.ItemCabinetVisuals.Layer"]
+      visible: true
+    - state: extinguisher_closed
+      map: ["enum.OpenableVisuals.Layer"]
+  - type: ContainerFill
+    containers:
+      ItemCabinet:
+      - CMFireExtinguisher
+  - type: GenericVisualizer
+    visuals:
+      enum.ItemCabinetVisuals.ContainsItem:
+        enum.ItemCabinetVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: { state: extinguisher }
+          False: { state: extinguisher_closed }
+
+
+
+- type: entity
+  parent: CMLockerBase
+  id: STVehicleAPCLocker
+  name: locker
+  suffix: Empty
+  description: A bulletproof cabinet.
+  components:
+  - type: WallMount
+    arc: 175
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+    - state: locker_open
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: locker
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locker
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: locker
+    stateDoorOpen: locker_open
+    stateDoorClosed: locker
+  - type: EntityStorage
+    capacity: 3 # IDK NOW
+    isCollidableWhenOpen: true
+    enteringOffset: 0, -0.6
+    enteringRange: 0.03
+    # IDK NOW whitelist:
+# IDK NOW  - type: RMCEntityStorageWhitelist
+  - type: AccessReader
+    access: [["RMCAccessSeniorCommand"]] # TODO TANK CREW ACCESS
+  - type: RMCMesonsNonviewable

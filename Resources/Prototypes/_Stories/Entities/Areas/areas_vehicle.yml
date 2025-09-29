@@ -1,0 +1,26 @@
+﻿- type: entity
+  parent: RMCAreaBase
+  id: STVehicleArea
+  name: Vehicle
+  components:
+  - type: Sprite
+    state: green
+  - type: Area
+    powerNet: vehicle
+    CAS: false
+    fulton: false
+    lasing: false
+    mortarPlacement: false
+    mortarFire: false
+    medevac: false
+    paradropping: false
+    OB: false
+    supplyDrop: false
+    avoidBioscan: false
+    noTunnel: true
+    unweedable: true
+    buildSpecial: false
+    resinAllowed: false
+    weatherEnabled: false
+    alwaysPowered: true
+    resinConstructionAllowed: false

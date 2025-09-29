@@ -7,11 +7,8 @@ namespace Content.Shared._Stories.Vehicle;
 [Serializable, NetSerializable]
 public enum VehicleAttachableVisualLayers : byte
 {
-    Base, 
-    Destroyed
+    Base
 }
 
-public sealed partial class VehicleHardpointsMenuActionEvent : InstantActionEvent;
+public sealed partial class VehicleSelectHardpointEvent : InstantActionEvent;
 
-[ByRefEvent]
-public record struct VehicleGunReloadEvent(EntityUid Equipment);

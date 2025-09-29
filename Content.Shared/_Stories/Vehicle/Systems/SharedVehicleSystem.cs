@@ -74,7 +74,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VehicleComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VehicleComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
-        SubscribeLocalEvent<VehiclePilotComponent, VehicleHardpointsMenuActionEvent>(OnVehicleHardpointsMenuAction);
+        SubscribeLocalEvent<VehiclePilotComponent, VehicleSelectHardpointEvent>(OnVehicleHardpointsMenuAction);
         SubscribeLocalEvent<VehicleComponent, DamageModifyEvent>(OnVehicleDamageModify);
         SubscribeLocalEvent<VehicleComponent, DamageChangedEvent>(OnVehicleDamageChanged);
         SubscribeLocalEvent<VehicleComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
@@ -446,7 +446,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         args.ModifySpeed(0f, 0f);
     }
 
-    private void OnVehicleHardpointsMenuAction(Entity<VehiclePilotComponent> pilot, ref VehicleHardpointsMenuActionEvent args)
+    private void OnVehicleHardpointsMenuAction(Entity<VehiclePilotComponent> pilot, ref VehicleSelectHardpointEvent args)
     {
         if (pilot.Comp.Vehicle is not { } vehicle)
             return;

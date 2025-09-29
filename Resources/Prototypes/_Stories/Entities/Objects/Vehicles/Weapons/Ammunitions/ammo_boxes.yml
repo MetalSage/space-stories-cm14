@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseItem
+  id: APCAmmoBox
+  name: ammo box
+  components:
+  - type: BallisticAmmoProvider
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    state: comms_relay
+  - type: VehicleGunMagazine
+    magazineType: flare_launcher
+    projectilePrototype: CMFlare

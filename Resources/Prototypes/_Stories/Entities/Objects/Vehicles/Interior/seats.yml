@@ -1,0 +1,56 @@
+- type: entity
+  parent: CMSeatBase
+  id: STVehicleArmorDriverSeat
+  name: armor driver seat
+  description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+  - type: RMCAllowStrapMovement
+  - type: VehiclePilotSeat
+
+- type: entity
+  parent: CMSeatBase
+  id: STVehicleArmorGunnerSeat
+  name: armor gunner's seat
+  description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+  - type: RMCAllowStrapMovement
+  - type: VehiclePilotSeat
+    isGunner: true
+
+- type: entity
+  parent: CMSeatBase
+  id: STVehicle1stSupportGunnerSeat
+  name: 1st support gunner's seat
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+  - type: RMCAllowStrapMovement
+  - type: VehicleController
+    id: 1stSupportGunnerSeat
+
+- type: entity
+  parent: CMSeatBase
+  id: STVehicle2stSupportGunnerSeat
+  name: 2st support gunner's seat
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+  - type: RMCAllowStrapMovement
+  - type: VehicleController
+    id: 2stSupportGunnerSeat

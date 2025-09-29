@@ -1,0 +1,137 @@
+- type: entity
+  id: STVehicleM577APC
+  name: M577 Armored Personnel Carrier
+  description: "An M577 Armored Personnel Carrier. An armored transport with four big wheels. Entrances on the sides and back."
+  components:
+  - type: MobMover
+  - type: DoAfter
+  - type: InputMover
+  - type: InteractionOutline
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
+    acceleration: 10
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.1,-1.9,1.15,1.9"
+        density: 1000
+        mask:
+        - Transport
+        - LargeMobMask
+        layer:
+        - LargeMobLayer
+  - type: Clickable
+  - type: Appearance
+  - type: MobState
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Stories/Mobs/Vehicles/base_apc.rsi
+    layers:
+    - map: [ "enum.VehicleVisualLayers.Base" ]
+      state: apc_base
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container
+  - type: Actions
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: null
+  - type: RequireProjectileTarget
+  - type: UserInterface
+    interfaces:
+      enum.DialogUiKey.Key:
+        type: DialogBui
+      enum.VehicleAttachmentUI.StripKey:
+        type: VehicleAttachmentStripBui
+      enum.VehicleAttachmentUI.ChooseSlotKey:
+        type: VehicleAttachmentChooseSlotBui
+      enum.VehicleSelectHardpointUI.Key:
+        type: VehicleSelectHardpointBui
+        interactionRange: 0
+        requireInputValidation: true
+  - type: NoRotateOnInteract
+  - type: Vehicle
+    gridPath: "/Maps/_Stories/hahahaa_apc_vehicle_pjb_lol_lmao_kekw_super_ultra_hd_btr_metalsage_1984_148F.yml"
+    maxHealth: 1000
+    movementSlot: vehicle-slot-treads
+    damageMults:
+      Heat: 1.6
+      Slash: 1
+      Piercing: 0.6
+      Blunt: 0.7
+    passengerSlots:
+      current: 0
+      max: 15
+    revivableDeadSlots:
+      current: 0
+      max: 2
+    xenoSlots:
+      current: 0
+      max: 8
+#    roleReservedSlots:
+#      - categoryName: "Crewmen"
+#        roles:
+#          - JOB_TANK_CREW
+#          - JOB_WO_CREWMAN
+#          - JOB_UPP_CREWMAN
+#          - JOB_PMC_CREWMAN
+#        total:
+#          current: 0
+#          max: 2
+#      - categoryName: "Synthetic Unit"
+#        roles:
+#          - JOB_SYNTH
+#          - JOB_WO_SYNTH
+#        total:
+#          current: 0
+#          max: 1
+  - type: ExplosionResistance
+    DamageCoefficient: 0.7
+    Worn: false
+    Examine: "explosion-resistance-coefficient-value"
+  - type: VehicleAttachableHolder
+    slots:
+      vehicle-slot-treads:
+        startingAttachables: [STMarineVehicleWheelsBase]
+        hardpointType: HDPT_TREADS
+      vehicle-slot-support:
+        startingAttachables: [STMarineVehicleFlareLauncher]
+        hardpointType: HDPT_SUPPORT
+      vehicle-slot-secondary:
+        startingAttachables: [STMarineVehicleFrontalCannon]
+        hardpointType: HDPT_SECONDARY
+      vehicle-slot-primary:
+        startingAttachables: [STMarineVehicleDualcannon]
+        hardpointType: HDPT_PRIMARY
+      vehicle-slot-special:
+        startingAttachables: [STMarineVehicleFiringPortWeaponOne, STMarineVehicleFiringPortWeaponTwo]
+        hardpointType: HDPT_SPECIAL
+        multiModule: true
+        maxModules: 2
+        hiddenInUI: true
+  - type: VehicleAttachableHolderVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    damagedState: damaged_frame
+  - type: VehicleHardpointsMenu
+  - type: NpcFactionMember
+    factions:
+    - UNMC
+  - type: AccessReader
+    access: [["CMAccessBrig"],["CMAccessCommand"]]
+#   - ACCESS_MARINE_CREWMAN
+  - type: UserIFF
+    faction: FactionMarine
+  - type: VehicleMovement
+  - type: VehicleRepairable
+    toolThresholds:
+      Welding: 0.0
+      Anchoring: 0.75
+    toolSoundThresholds:
+      Welding: /Audio/Items/welder.ogg
+      Anchoring: /Audio/Items/ratchet.ogg
