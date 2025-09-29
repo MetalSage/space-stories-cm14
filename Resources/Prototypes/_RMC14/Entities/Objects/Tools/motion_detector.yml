@@ -44,6 +44,8 @@
   - type: Tag
     tags:
     - RMCDetector
+  - type: Speech # Stories-Vehicle-Content
+    speechVerb: Robotic
 
 - type: entity
   parent: RMCMotionDetector

@@ -13,48 +13,9 @@
     event: !type:VehicleHardpointsMenuActionEvent
 
 - type: entity
-  parent: BaseStructureDynamic
-  id: STAPCDoor
-  name: APC door
-  description: noe
-  components:
-  - type: Sprite
-    noRot: true
-    drawdepth: WallMountedItems
-    sprite: _RMC14/Structures/Wallmounts/cmdcabinet.rsi
-    layers:
-    - state: closed
-      map: ["enum.StorageVisualLayers.Base"]
-  - type: Appearance
-  - type: Transform
-    noRot: true
-    anchored: true
-  - type: Physics
-    bodyType: Static
-  - type: Anchorable
-    flags:
-    - None
-  - type: MovedByPressure
-  - type: InteractionOutline
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.25,-0.48,0.25,0.48"
-        density: 75
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: PlaceableSurface
-    placeCentered: true
-    isPlaceable: false
-  - type: WallMount
-    arc: 175
-
-- type: entity
-  id: APCVehicle
+  id: STVehicleM577APC
+  name: M577 Armored Personnel Carrier
+  description: "An M577 Armored Personnel Carrier. An armored transport with four big wheels. Entrances on the sides and back."
   components:
   - type: MobMover
   - type: DoAfter
@@ -435,7 +396,7 @@
 
 - type: entity
   parent: BaseStructure
-  id: APCMoveBlockerMarker
+  id: STVehicleMoveBlockerMarker
   name: vehicle move block marker
   description:
   placement:
@@ -464,8 +425,8 @@
   id: VehicleWeaponsLoaderBase
   components:
   - type: Sprite
-    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
-    state: comms_relay
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: weapons_loader
   - type: Animateable
   - type: InteractionOutline
   - type: Anchorable
@@ -520,12 +481,12 @@
 
 - type: hardpointType
   id: HDPT_ARMOR
-  repairPerSecond: 1.4      # 1.4% в секунду (значение 1.4, а не 0.014)
+  repairPerSecond: 1.4      # 1.4% в секунду
   attachDelay: 30 # num_delay * 3
 
 - type: hardpointType
   id: HDPT_PRIMARY
-  repairPerSecond: 2.0      # 2% в секунду (значение 2.0, а не 0.02)
+  repairPerSecond: 2.0      # 2% в секунду
   attachDelay: 5 # num_delay * 3
 
 - type: hardpointType
@@ -549,33 +510,2066 @@
   attachDelay: 0
 
 - type: entity
-  id: STVehicleGunnerSeat
-  parent: RMCSeatDark
-  name: gunner seat
+  parent: CMSeatBase
+  id: STVehicleArmorDriverSeat
+  name: armor driver seat
+  description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
   components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+  - type: RMCAllowStrapMovement
+  - type: VehiclePilotSeat
+
+- type: entity
+  parent: CMSeatBase
+  id: STVehicleArmorGunnerSeat
+  name: armor gunner's seat
+  description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+  - type: RMCAllowStrapMovement
   - type: VehiclePilotSeat
     isGunner: true
 
 - type: entity
-  id: STVehicleDriverSeat
-  parent: RMCSeatDark
-  name: gunner seat
+  parent: CMSeatBase
+  id: STVehicle1stSupportGunnerSeat
+  name: 1st support gunner's seat
   components:
-  - type: VehiclePilotSeat
-    isGunner: false
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+  - type: RMCAllowStrapMovement
+  - type: VehicleController
+    id: 1stSupportGunnerSeat
 
 - type: entity
-  id: STVehicleFireportControllerOne
-  parent: RMCSeatDark
-  name: one seat
+  parent: CMSeatBase
+  id: STVehicle2stSupportGunnerSeat
+  name: 2st support gunner's seat
   components:
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+  - type: RMCAllowStrapMovement
   - type: VehicleController
-    id: FiringPortWeaponOne
+    id: 2stSupportGunnerSeat
 
 - type: entity
-  id: STVehicleFireportControllerTwo
-  parent: RMCSeatDark
-  name: two seat
+  parent: CMLockerBase
+  id: STVehicleAPCLocker
+  name: locker
+  suffix: Empty
+  description: A bulletproof cabinet.
   components:
-  - type: VehicleController
-    id: FiringPortWeaponTwo
+  - type: WallMount
+    arc: 175
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+    - state: locker_open
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: locker
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locker
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: locker
+    stateDoorOpen: locker_open
+    stateDoorClosed: locker
+  - type: EntityStorage
+    capacity: 3 # IDK NOW
+    isCollidableWhenOpen: true
+    enteringOffset: 0, -0.6
+    enteringRange: 0.03
+    # IDK NOW whitelist:
+# IDK NOW  - type: RMCEntityStorageWhitelist
+  - type: AccessReader
+    access: [["RMCAccessSeniorCommand"]] # TODO TANK CREW ACCESS
+  - type: RMCMesonsNonviewable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- type: entity
+  parent: CMBaseStructureCorrodible
+  id: STVehicleRequisitionConsole
+  name: vehicle elevator
+  description: A console for the Vehicle
+  suffix: Vehicle
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Machines/asrs_console.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: off
+    - map: ["computerLayerScreen"]
+      state: on
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: ActivatableUI
+    key: enum.VehicleRequisitionsUIKey.Key
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [ [ "CMAccessRequisitions" ] ]
+  - type: UserInterface
+    interfaces:
+      enum.VehicleRequisitionsUIKey.Key:
+        type: VehicleRequisitionsBui
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: CargoSellBlacklist
+  - type: ApcPowerReceiver
+    powerLoad: 0
+    needsPower: false
+  - type: Appearance
+  - type: LitOnPowered
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: RMCKeyboardTyping
+      params:
+        volume: -1
+  - type: RequireProjectileTarget
+  - type: InteractionOutline
+  - type: Corrodible
+    isCorrodible: false
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: RMCMesonsNonviewable
+  - type: VehicleRequisitionsComputer
+    orders:
+      APCVehicle: 1
+
+- type: entity
+  id: STVehicleRequisitionElevator
+  name: cargo elevator
+  suffix: Lowered, Requisitions
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _RMC14/Effects/elevator.rsi
+    drawdepth: LowFloors
+    layers:
+    - state: supply_elevator_lowered
+      map: [ "enum.RequisitionsElevatorLayers.Base" ]
+  - type: Physics
+    bodyType: static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-2.3,-2.3,2.3,2.3"
+        layer:
+        - MidImpassable
+        mask:
+        - ItemMask
+        density: 1000
+        hard: false
+  - type: Chasm
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 1
+    blacklist:
+      tags:
+      - Catwalk
+  - type: VehicleRequisitionsElevator
+  - type: CargoSellBlacklist
+  - type: WarpPoint
+    location: the vehicle pit
+
+- type: entity
+  parent: CMBaseStructureCorrodible
+  id: STVehicleRequisitionRailing
+  name: retractable railing
+  description: That looks like it doesn't open easily.
+  suffix: Raised
+  components:
+  - type: Transform
+    anchored: false
+    noRot: false
+  - type: Sprite
+    sprite: _RMC14/Structures/railing.rsi
+    offset: 0,0.5
+    layers:
+    - state: raised
+      map: [ "enum.RequisitionsRailingLayers.Base" ]
+    noRot: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,-0.3"
+        layer:
+        - TableLayer
+        mask:
+        - TableMask
+        density: 1000
+  - type: Climbable
+  - type: VehicleRequisitionsRailing
+    mode: Raised
+  - type: CargoSellBlacklist
+  - type: RMCMesonsNonviewable
+
+- type: entity
+  id: STVehicleRequisitionGear
+  name: gear
+  description: ""
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _RMC14/Structures/gear.rsi
+    layers:
+    - state: base
+      map: [ "enum.RequisitionsGearLayers.Base" ]
+  - type: VehicleRequisitionsGear
+  - type: CargoSellBlacklist
+
+
+- type: entity
+  parent: RMCAreaBase
+  id: STVehicleArea
+  name: Vehicle
+  components:
+  - type: Sprite
+    state: green
+  - type: Area
+    powerNet: vehicle
+
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor3
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor4
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor5
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_10.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor6
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_11.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor7
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_12.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor8
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_13.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor9
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_14.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor10
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor11
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor12
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_4.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor13
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_5.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor14
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_6.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor15
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_7.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor16
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_8.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor17
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/dark_sterile_green_9.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor18
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor19
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor20
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_10.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor21
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_11.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor22
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_12.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor23
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_13.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor24
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_14.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor25
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_1_15.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor26
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor27
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor28
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_4.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor29
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_5.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor30
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_6.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor31
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_7.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor32
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_8.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor33
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_0_9.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor34
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor35
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor36
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_10.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor37
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_10_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor38
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_11.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor39
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_12.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor40
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_13.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor41
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_14.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor42
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_1_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor43
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_1_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor44
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_1_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor45
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor46
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_2_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor47
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_2_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor48
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_2_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor49
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor50
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_3_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor51
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_3_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor52
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_3_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor53
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_4.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor54
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_4_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor55
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_4_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor56
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_4_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor57
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_5.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor58
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_6.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor59
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_7.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor60
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_7_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor61
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_8.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor62
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_8_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor63
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_9.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor64
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_1_9_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor65
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor66
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor67
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_10.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor68
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_11.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor69
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_12.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor70
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_13.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor71
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_14.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor72
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_15.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor73
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor74
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor75
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_4.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor76
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_5.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor77
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_6.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor78
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_7.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor79
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_8.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor80
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_2_9.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor81
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor82
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor83
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_10.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor84
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_10_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor85
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_11.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor86
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_12.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor87
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_13.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor88
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_14.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor89
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_1_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor90
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_1_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor91
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_1_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor92
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor93
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_2_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor94
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_2_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor95
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_2_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor96
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor97
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_3_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor98
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_3_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor99
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_3_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor100
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_4.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor101
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_4_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor102
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_4_2.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor103
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_4_3.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor104
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_5.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor105
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_6.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor106
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_7.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor107
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_7_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor108
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_8.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor109
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_8_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor110
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_9.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor111
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_3_9_1.png
+  
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor113
+  name: floor
+  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/sterile_green.png
+
+- type: entity
+  parent: CMBaseAlamoWall
+  id: STVehicleAPCWallBase
+  name: vehicle wall
+  suffix: 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_back_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_back_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall2
+  suffix: 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_back_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_back_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall3
+  suffix: 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_back_3
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_back_3
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall4
+  suffix: 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_front_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_front_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall5
+  suffix: 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_front_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_front_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall6
+  suffix: 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_front_3
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_front_3
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall7
+  suffix: 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_left_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_left_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall8
+  suffix: 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_left_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_left_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWall13
+  id: STVehicleAPCWall9
+  suffix: 9
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_left_3
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_left_3
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall10
+  suffix: 10
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_left_4
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_left_4
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall11
+  suffix: 11
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_right_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_right_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall12
+  suffix: 12
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_right_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_right_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWall63
+  id: STVehicleAPCWall13
+  suffix: 13
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_right_3
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_right_3
+  - type: VehicleInteriorDoor
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall14
+  suffix: 14
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_right_4
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: apc_right_4
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall15
+  suffix: 15
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_L
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_L
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall16
+  suffix: 16
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_R
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_R
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall17
+  suffix: 17
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall18
+  suffix: 18
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall19
+  suffix: 19
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall20
+  suffix: 20
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_3
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_3
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall21
+  suffix: 21
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_4
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_4
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall22
+  suffix: 22
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_5
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_L_5
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall23
+  suffix: 23
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall24
+  suffix: 24
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall25
+  suffix: 25
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall26
+  suffix: 26
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R_3
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R_3
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall27
+  suffix: 27
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R_4
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_inverse_R_4
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWall63
+  id: STVehicleAPCWall28
+  suffix: 28
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_small_L
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_small_L
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWall63
+  id: STVehicleAPCWall29
+  suffix: 29
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_small_R
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: corner_small_R
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall31
+  suffix: 31
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_back
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_back
+  - type: Occluder
+    enabled: true
+  - type: VehicleInteriorDoor
+
+- type: entity
+  parent: STVehicleAPCWall31
+  id: STVehicleAPCWall32
+  suffix: 32
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_front
+    color: "#FFFFFF64"
+    drawdepth: 7
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_front
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: STVehicleAPCWall31
+  id: STVehicleAPCWall33
+  suffix: 33
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_rear_center
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_rear_center
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWall31
+  id: STVehicleAPCWall34
+  suffix: 34
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_rear_left
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_rear_left
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWall31
+  id: STVehicleAPCWall35
+  suffix: 35
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_rear_right
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: door_rear_right
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWall31
+  id: STVehicleAPCWall36
+  suffix: 36
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: exit_door
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: exit_door
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall37
+  suffix: 37
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall38
+  suffix: 38
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall39
+  suffix: 39
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_3
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_3
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall40
+  suffix: 40
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_4
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_4
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall41
+  suffix: 41
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_5
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_5
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall42
+  suffix: 42
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_6
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_6
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall43
+  suffix: 43
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_wheel_L
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_wheel_L
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall44
+  suffix: 44
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_wheel_R
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: front_wheel_R
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWall63
+  id: STVehicleAPCWall45
+  suffix: 45
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: m56_FPW
+    drawdepth: 6
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: m56_FPW
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall46
+  suffix: 46
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall47
+  suffix: 47
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall48
+  suffix: 48
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_3
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_3
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall49
+  suffix: 49
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_4
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_4
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall50
+  suffix: 50
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_5
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_5
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall51
+  suffix: 51
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_6
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_6
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall52
+  suffix: 52
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_wheel_L
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_wheel_L
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall53
+  suffix: 53
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_wheel_R
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: rear_wheel_R
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall54
+  suffix: 54
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: sensors_equipment
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: sensors_equipment
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall55
+  suffix: 55
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall56
+  suffix: 56
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall57
+  suffix: 57
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall58
+  suffix: 58
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_3
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_3
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall59
+  suffix: 59
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_4
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_4
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall60
+  suffix: 60
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_5
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_5
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall61
+  suffix: 61
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_6
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_6
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall62
+  suffix: 62
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_door_front
+    color: "#FFFFFF64"
+    drawdepth: 7
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_door_front
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  id: STVehicleAPCWall63
+  name: vehicle wall
+  suffix: 63
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_small_L
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_small_L
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Clickable
+
+- type: entity
+  parent: STVehicleAPCWall63
+  id: STVehicleAPCWall64
+  suffix: 64
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_small_R
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wall_small_R
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall65
+  suffix: 65
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wheel_back_top_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wheel_back_top_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall66
+  suffix: 66
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wheel_back_top_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wheel_back_top_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall67
+  suffix: 67
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wheel_front_top_1
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wheel_front_top_1
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall68
+  suffix: 68
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wheel_front_top_2
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: wheel_front_top_2
+  - type: Occluder
+    enabled: true
+
+- type: entity
+  id: STVehicleAPCWall69
+  name: vehicle wall
+  suffix: 69
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc_corner.rsi
+    state: corner
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc_corner.rsi
+    state: corner
+  - type: Transform
+    anchored: true
+
+- type: entity
+  parent: STVehicleAPCWallBase
+  id: STVehicleAPCWall70
+  suffix: 70
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: black
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: black
+  - type: Occluder
+    enabled: true
+
+- type: tile
+  parent: CMShuttleTileBase
+  id: STVehicleFloor114
+  name: floor black
+  sprite: /Textures/_Stories/Objects/Vehicles/Interior/apc.rsi/black.png
+
+- type: entity
+  parent: BaseStructureDynamic
+  id: STVehicleInteriorViewport
+  name: viewport
+  description: noe
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: viewport
+  - type: Appearance
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+    flags:
+    - None
+  - type: MovedByPressure
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        density: 75
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: WallMount
+    arc: 175
+
+- type: entity 
+  parent: RMCSurveillanceCameraAlmayer
+  id: STVehicleInteriorCamera
+  name: camera
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    offset: 0.0, 0.5
+    layers:
+    - map: [ "enum.SurveillanceCameraVisualsKey.Layer" ]
+      state: vehicle_camera
+      cycle: true
+  - type: SurveillanceCameraVisuals
+    sprites:
+      Active: vehicle_camera
+      Disabled: vehicle_camera
+      InUse: vehicle_camera
+  - type: RMCCamera
+    id: STVehicleInteriorCamera
+
+- type: entity
+  parent: RMCRotaryPhone
+  id: STVehicleInteriorWallMountPhone
+  name: wall-mounted phone
+  description: "It is a wall mounted telephone. The fine text reads: To log your details with the mainframe please insert your keycard into the slot below. Unfortunately the slot is jammed. You can still use the phone, however."
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+      - state: wall_phone
+        map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.RotaryPhoneLayers.Layer:
+        base:
+          Base: { state: wall_phone }
+          Ring: { state: wall_phone_ring }
+          Ear: { state: wall_phone_ear }
+
+- type: entity
+  parent: RMCNanoMed
+  id: STVehicleInteriorNanoMed
+  name: nanomed
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+    - state: "nanomed"
+    - state: "nanomed"
+
+- type: entity
+  parent: RMCExtinguisherCabinet
+  id: STVehicleInteriorExtinguisherCabinet
+  suffix: ST, Filled
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+    - state: extinguisher_empty
+    - state: extinguisher_closed
+      map: ["enum.ItemCabinetVisuals.Layer"]
+      visible: true
+    - state: extinguisher_closed
+      map: ["enum.OpenableVisuals.Layer"]
+  - type: ContainerFill
+    containers:
+      ItemCabinet:
+      - CMFireExtinguisher
+  - type: GenericVisualizer
+    visuals:
+      enum.ItemCabinetVisuals.ContainsItem:
+        enum.ItemCabinetVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: { state: extinguisher }
+          False: { state: extinguisher_closed }
+
+- type: entity
+  parent: BaseStructureDynamic
+  id: STVehicleInteriorLight
+  name: vehicle light
+  components:
+  - type: Appearance
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+    flags:
+    - None
+  - type: PointLight
+    softness: 1.5
+    energy: 0.5

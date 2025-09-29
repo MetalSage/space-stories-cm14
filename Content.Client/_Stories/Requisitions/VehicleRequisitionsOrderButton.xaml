@@ -1,0 +1,6 @@
+﻿<controls:VehicleRequisitionsOrderButton
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._Stories.Requisitions"
+    Orientation="Horizontal">
+    <Button Name="Button" Access="Public" StyleClasses="ButtonSquare" HorizontalExpand="True" />
+</controls:VehicleRequisitionsOrderButton>

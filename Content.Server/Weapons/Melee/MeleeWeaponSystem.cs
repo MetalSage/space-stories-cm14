@@ -93,12 +93,8 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
     protected override void DoDamageEffect(List<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
     {
-        var filteredTargets = targets
-            .Where(t => !HasComp<VehicleComponent>(t))
-            .ToList(); // Stories-Vehicle-Tweak
-
         var filter = Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager).RemoveWhereAttachedEntity(o => o == user);
-        _color.RaiseEffect(Color.Red, filteredTargets, filter);
+        _color.RaiseEffect(Color.Red, targets, filter);
     }
 
     public override void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true)

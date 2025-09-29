@@ -1,0 +1,297 @@
+﻿using System.Numerics;
+using Content.Server.Administration.Logs;
+using Content.Shared._Stories.Requisitions;
+using Content.Shared._Stories.Requisitions.Components;
+using Content.Shared.Coordinates;
+using Content.Shared.Database;
+using Content.Shared.UserInterface;
+using Robust.Server.Audio;
+using Robust.Server.GameObjects;
+using Robust.Server.Player;
+using Robust.Shared.Network;
+using Robust.Shared.Timing;
+using static Content.Shared._RMC14.Requisitions.Components.RequisitionsElevatorMode;
+using Content.Shared._RMC14.Requisitions.Components;
+
+namespace Content.Server._Stories.VehicleRequisitions;
+
+public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisitionsSystem
+{
+    [Dependency] private readonly IAdminLogManager _adminLogs = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<VehicleRequisitionsComputerComponent, MapInitEvent>(OnComputerMapInit);
+        SubscribeLocalEvent<VehicleRequisitionsComputerComponent, BeforeActivatableUIOpenEvent>(OnComputerBeforeActivatableUIOpen);
+
+        Subs.BuiEvents<VehicleRequisitionsComputerComponent>(VehicleRequisitionsUIKey.Key, subs =>
+        {
+            subs.Event<VehicleRequisitionsBuyMsg>(OnBuy);
+            subs.Event<VehicleRequisitionsPlatformMsg>(OnPlatform);
+        });
+    }
+
+    private void OnComputerMapInit(Entity<VehicleRequisitionsComputerComponent> computer, ref MapInitEvent args)
+    {
+        SendUIState(computer);
+    }
+
+    private void OnComputerBeforeActivatableUIOpen(Entity<VehicleRequisitionsComputerComponent> computer, ref BeforeActivatableUIOpenEvent args)
+    {
+        SendUIState(computer);
+    }
+
+    private void OnBuy(Entity<VehicleRequisitionsComputerComponent> computer, ref VehicleRequisitionsBuyMsg args)
+    {
+        var actor = args.Actor;
+        
+        if (!computer.Comp.IsActive)
+            return;
+
+        if (!computer.Comp.Orders.ContainsKey(args.Order))
+            return;
+
+        var requiredOnline = computer.Comp.Orders[args.Order];
+        if (_playerManager.PlayerCount < requiredOnline)
+            return;
+
+        if (GetElevator(computer) is not { } elevator)
+            return;
+
+        if (elevator.Comp.Mode != Lowered || elevator.Comp.Busy || elevator.Comp.CurrentOrder != null)
+            return;
+
+        elevator.Comp.CurrentOrder = args.Order;
+        elevator.Comp.ToggledAt = _timing.CurTime;
+        elevator.Comp.Busy = true;
+        SetMode(elevator, Preparing, Raising);
+
+        computer.Comp.IsActive = false;
+        computer.Comp.UsedOnce = true;
+        
+        Dirty(elevator);
+        Dirty(computer);
+        SendUIStateAll();
+        
+        _adminLogs.Add(LogType.RMCRequisitionsBuy, $"{ToPrettyString(args.Actor):actor} ordered vehicle requisitions item {args.Order}");
+    }
+
+    private void OnPlatform(Entity<VehicleRequisitionsComputerComponent> computer, ref VehicleRequisitionsPlatformMsg args)
+    {
+        if (computer.Comp.UsedOnce)
+            return;
+
+        if (GetElevator(computer) is not { } elevator)
+            return;
+
+        var comp = elevator.Comp;
+        if (comp.NextMode != null || comp.Busy)
+            return;
+
+        if (comp.Mode == Lowering || comp.Mode == Raising)
+            return;
+
+        if (args.Raise && comp.Mode == Raised)
+            return;
+
+        if (!args.Raise && comp.Mode == Lowered)
+            return;
+
+        RequisitionsElevatorMode? nextMode = comp.Mode switch
+        {
+            Lowered => Raising,
+            Raised => Lowering,
+            _ => null
+        };
+
+        if (nextMode == null)
+            return;
+
+        comp.ToggledAt = _timing.CurTime;
+        comp.Busy = true;
+        SetMode(elevator, Preparing, nextMode);
+        Dirty(elevator);
+    }
+
+    private void UpdateRailings(Entity<VehicleRequisitionsElevatorComponent> elevator, RequisitionsRailingMode mode)
+    {
+        var coordinates = _transform.GetMapCoordinates(elevator);
+        var railings = _lookup.GetEntitiesInRange<VehicleRequisitionsRailingComponent>(coordinates, elevator.Comp.Radius + 5);
+        foreach (var railing in railings)
+        {
+            SetRailingMode(railing, mode);
+        }
+    }
+
+    private void UpdateGears(Entity<VehicleRequisitionsElevatorComponent> elevator, RequisitionsGearMode mode)
+    {
+        var coordinates = _transform.GetMapCoordinates(elevator);
+        var railings = _lookup.GetEntitiesInRange<VehicleRequisitionsGearComponent>(coordinates, elevator.Comp.Radius + 5);
+        foreach (var railing in railings)
+        {
+            if (railing.Comp.Mode == mode)
+                continue;
+
+            railing.Comp.Mode = mode;
+            Dirty(railing);
+        }
+    }
+
+    private void TryPlayAudio(Entity<VehicleRequisitionsElevatorComponent> elevator)
+    {
+        var comp = elevator.Comp;
+        if (comp.Audio != null)
+            return;
+
+        var time = _timing.CurTime;
+        if (comp.NextMode == Lowering || comp.Mode == Lowering)
+        {
+            if (time < comp.ToggledAt + comp.LowerSoundDelay)
+                return;
+
+            comp.Audio = _audio.PlayPvs(comp.LoweringSound, elevator)?.Entity;
+            return;
+        }
+
+        if (comp.NextMode == Raising || comp.Mode == Raising)
+        {
+            if (time < comp.ToggledAt + comp.RaiseSoundDelay)
+                return;
+
+            comp.Audio = _audio.PlayPvs(comp.RaisingSound, elevator)?.Entity;
+        }
+    }
+
+    private void SetMode(Entity<VehicleRequisitionsElevatorComponent> elevator, RequisitionsElevatorMode mode, RequisitionsElevatorMode? nextMode)
+    {
+        elevator.Comp.Mode = mode;
+        elevator.Comp.NextMode = nextMode;
+        Dirty(elevator);
+
+        RequisitionsGearMode? gearMode = mode switch
+        {
+            Lowered or Raised or Preparing => RequisitionsGearMode.Static,
+            Lowering or Raising => RequisitionsGearMode.Moving,
+            _ => null
+        };
+
+        if (gearMode != null)
+            UpdateGears(elevator, gearMode.Value);
+
+        RequisitionsRailingMode? railingMode = (mode, nextMode) switch
+        {
+            (Lowered, _) => RequisitionsRailingMode.Raised,
+            (Raised, _) => RequisitionsRailingMode.Lowering,
+            (_, Lowering) => RequisitionsRailingMode.Raising,
+            _ => null
+        };
+
+        if (railingMode != null)
+            UpdateRailings(elevator, railingMode.Value);
+
+        SendUIStateAll();
+    }
+
+    private void SpawnOrder(Entity<VehicleRequisitionsElevatorComponent> elevator)
+    {
+        var comp = elevator.Comp;
+        if (comp.Mode == Raised && comp.CurrentOrder != null)
+        {
+            var coordinates = _transform.GetMoverCoordinates(elevator);
+            var entity = SpawnAtPosition(comp.CurrentOrder.Value, coordinates);
+            comp.CurrentOrder = null;
+            
+            Dirty(elevator);
+        }
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var time = _timing.CurTime;
+        var updateUI = false;
+        var elevators = EntityQueryEnumerator<VehicleRequisitionsElevatorComponent>();
+        while (elevators.MoveNext(out var uid, out var elevator))
+        {
+            if (ProcessElevator((uid, elevator)))
+                updateUI = true;
+        }
+
+        if (updateUI)
+            SendUIStateAll();
+    }
+
+    private bool ProcessElevator(Entity<VehicleRequisitionsElevatorComponent> ent)
+    {
+        var time = _timing.CurTime;
+        var elevator = ent.Comp;
+        
+        if (elevator.ToggledAt == null)
+            return false;
+
+        if (time > elevator.ToggledAt + elevator.ToggleDelay)
+        {
+            elevator.ToggledAt = null;
+            elevator.Busy = false;
+            Dirty(ent);
+            return true;
+        }
+
+        TryPlayAudio(ent);
+
+        var delay = elevator.NextMode == Raising ? elevator.RaiseDelay : elevator.LowerDelay;
+        if (elevator.Mode == Preparing &&
+            elevator.NextMode != null &&
+            time > elevator.ToggledAt + delay)
+        {
+            SetMode(ent, elevator.NextMode.Value, null);
+            return false;
+        }
+
+        if (elevator.Mode != Lowering && elevator.Mode != Raising)
+            return false;
+
+        var startDelay = delay + elevator.NextMode switch
+        {
+            Lowering => elevator.LowerDelay,
+            Raising => elevator.RaiseDelay,
+            _ => TimeSpan.Zero,
+        };
+
+        var moveDelay = startDelay + elevator.Mode switch
+        {
+            Lowering => elevator.LowerDelay,
+            Raising => elevator.RaiseDelay,
+            _ => TimeSpan.Zero,
+        };
+
+        if (time > elevator.ToggledAt + moveDelay)
+        {
+            elevator.Audio = null;
+
+            var mode = elevator.Mode switch
+            {
+                Raising => Raised,
+                Lowering => Lowered,
+                _ => elevator.Mode,
+            };
+            SetMode(ent, mode, elevator.NextMode);
+
+            SpawnOrder(ent);
+
+            return true;
+        }
+
+        return false;
+    }
+}
