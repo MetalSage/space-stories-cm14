@@ -1,13 +1,13 @@
 using System.Linq;
-using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Audio;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -136,7 +136,7 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
         }
 
         var spareMag = gun.SpareMagazinesContainer.ContainedEntities.First();
-        
+
         if (_net.IsServer)
         {
             if (gun.ActiveMagazineContainer.ContainedEntity != null)
@@ -147,7 +147,7 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
 
             _container.Remove(spareMag, gun.SpareMagazinesContainer);
             _container.Insert(spareMag, gun.ActiveMagazineContainer);
-            
+
             //_audio.PlayPvs(LoadSound, hardpoint);
             _popup.PopupEntity($"Magazine loaded into {Name(hardpoint)}", args.Actor);
         }

@@ -1,8 +1,8 @@
 using Content.Shared._Stories.Vehicle;
-using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Utility;
 using JetBrains.Annotations;
+using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Maths;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Stories.Vehicle.UI.Weapons;
 
@@ -65,7 +65,7 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
             var metaData = EntMan.GetComponent<MetaDataComponent>(hardpoint);
             var spareCount = gun.SpareMagazinesContainer?.ContainedEntities.Count ?? 0;
             var hasActiveMag = gun.ActiveMagazineContainer?.ContainedEntity != null;
-            
+
             var statusText = hasActiveMag ? "✓" : "✗";
             var buttonText = $"{metaData.EntityName} [{statusText}] ({spareCount}/{gun.MaxSpareMagazines})";
 
@@ -97,7 +97,7 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
         {
             var button = kvp.Key;
             var hardpoint = kvp.Value;
-            
+
             if (_selectedHardpoint == hardpoint)
             {
                 button.ModulateSelfOverride = Color.LightGreen;
@@ -114,8 +114,8 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
         base.UpdateState(state);
         if (_window != null && state is VehicleWeaponLoaderWindowState loaderState)
         {
-            _selectedHardpoint = loaderState.SelectedHardpoint != null 
-                ? EntMan.GetEntity(loaderState.SelectedHardpoint.Value) 
+            _selectedHardpoint = loaderState.SelectedHardpoint != null
+                ? EntMan.GetEntity(loaderState.SelectedHardpoint.Value)
                 : null;
             PopulateHardpoints();
         }

@@ -1,10 +1,10 @@
+using Content.Shared._Stories.Attachables;
 using Content.Shared._Stories.Vehicle;
-using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Utility;
 using JetBrains.Annotations;
+using Robust.Client.UserInterface.Controls;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
-using Content.Shared._Stories.Attachables;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Stories.Vehicle.UI;
 
@@ -95,7 +95,7 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
         {
             var button = kvp.Key;
             var hardpoint = kvp.Value;
-            
+
             if (_selectedHardpoint == hardpoint)
             {
                 button.ModulateSelfOverride = Color.LightGreen;

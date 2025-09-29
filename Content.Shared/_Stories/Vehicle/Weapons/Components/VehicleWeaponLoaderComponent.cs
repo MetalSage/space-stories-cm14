@@ -1,6 +1,6 @@
+using Content.Shared._RMC14.Marines.Skills;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared._RMC14.Marines.Skills;
 
 namespace Content.Shared._Stories.Vehicle;
 

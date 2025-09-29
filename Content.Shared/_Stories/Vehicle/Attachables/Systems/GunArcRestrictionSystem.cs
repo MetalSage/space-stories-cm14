@@ -1,11 +1,11 @@
 using System;
+using Content.Shared._Stories.Attachables;
 using Content.Shared.Examine;
+using Content.Shared.Popups;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
-using Content.Shared.Popups;
-using Content.Shared._Stories.Attachables;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -18,7 +18,7 @@ public sealed class GunArcRestrictionSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<GunArcRestrictionComponent, AttemptShootEvent>(OnAttemptShoot);
         SubscribeLocalEvent<GunArcRestrictionComponent, ExaminedEvent>(OnExamined);
     }
@@ -57,20 +57,20 @@ public sealed class GunArcRestrictionSystem : EntitySystem
         var degreesDeviation = component.MaxAngleDeviation.Degrees;
         var totalArc = degreesDeviation * 2;
 
-        args.PushMarkup(Loc.GetString("gun-arc-restriction-examine", 
+        args.PushMarkup(Loc.GetString("gun-arc-restriction-examine",
             ("degrees", Math.Round(totalArc, 1))));
     }
 
     private static Angle GetAngleDifference(Angle from, Angle to)
     {
         var diff = to - from;
-        
+
         while (diff.Theta > Math.PI)
             diff -= 2 * Math.PI; // implicit conversion
 
         while (diff.Theta < -Math.PI)
             diff += 2 * Math.PI; // implicit conversion
-        
+
         return diff;
     }
 

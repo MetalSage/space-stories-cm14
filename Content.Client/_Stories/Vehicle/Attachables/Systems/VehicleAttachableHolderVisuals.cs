@@ -137,7 +137,7 @@ public sealed class VehicleAttachableHolderVisuals : EntitySystem
         while (query.MoveNext(out var holderUid, out var holderComp))
         {
             var layersNeedingUpdate = new List<(EntityUid attachableUid, VehicleAttachableVisualsComponent attachable)>();
-            
+
             foreach (var kvp in holderComp.ActiveLayers)
             {
                 var attachableUid = kvp.Key;

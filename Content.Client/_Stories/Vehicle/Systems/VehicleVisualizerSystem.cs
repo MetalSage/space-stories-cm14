@@ -1,10 +1,10 @@
-using Content.Shared._Stories.Vehicle;
+using Content.Client._Stories.Vehicle.Attachables;
 using Content.Shared._Stories.Attachables;
+using Content.Shared._Stories.Vehicle;
+using Content.Shared.Damage;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Damage;
 using Robust.Client.GameObjects;
-using Content.Client._Stories.Vehicle.Attachables;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Utility;
 
@@ -57,24 +57,24 @@ public sealed class VehicleVisualizerSystem : VisualizerSystem<VehicleComponent>
 
         UpdateDamageOverlay(uid, sprite, holder);
     }
-    
+
     private void UpdateDamageOverlay(EntityUid uid, SpriteComponent sprite, VehicleAttachableHolderVisualsComponent holder)
     {
         if (!TryComp(uid, out VehicleComponent? vehicleComp))
             return;
-    
+
         if (!TryComp(uid, out DamageableComponent? damageComp))
             return;
-            
+
         var maxHealth = (float) vehicleComp.MaxHealth;
         var totalDamage = (float) damageComp.TotalDamage;
         var currentHealth = maxHealth - totalDamage;
 
         var shouldShowDamage = totalDamage > 0 && !string.IsNullOrEmpty(holder.DamagedState);
-        
+
         const string damageLayerKey = "damage_overlay";
         var damageLayerIndex = -1;
-        
+
         if (sprite.LayerMapTryGet(damageLayerKey, out var existingLayer))
         {
             damageLayerIndex = existingLayer;
@@ -84,16 +84,16 @@ public sealed class VehicleVisualizerSystem : VisualizerSystem<VehicleComponent>
             damageLayerIndex = sprite.AddLayer(new SpriteSpecifier.Rsi(holder.Rsi, holder.DamagedState));
             sprite.LayerMapSet(damageLayerKey, damageLayerIndex);
         }
-        
+
         if (damageLayerIndex == -1)
             return;
-            
+
         if (shouldShowDamage)
         {
             var healthRatio = (float)currentHealth / maxHealth;
             var damageRatio = 1.0f - healthRatio;
             var alpha = damageRatio; // BYOND: damage_overlay.alpha = 255 * (1 - (health / initial(health)))
-            
+
             sprite.LayerSetVisible(damageLayerIndex, true);
             sprite.LayerSetColor(damageLayerIndex, Color.White.WithAlpha(alpha));
         }
@@ -102,7 +102,7 @@ public sealed class VehicleVisualizerSystem : VisualizerSystem<VehicleComponent>
             sprite.LayerSetVisible(damageLayerIndex, false);
         }
     }
-    
+
     public override void Update(float frameTime)
     {
         var vehicleQuery = EntityQueryEnumerator<VehicleComponent>();

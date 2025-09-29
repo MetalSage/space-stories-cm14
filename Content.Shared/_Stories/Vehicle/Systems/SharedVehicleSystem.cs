@@ -1,10 +1,14 @@
 using System.Linq;
 using System.Numerics;
+using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._RMC14.MotionDetector;
 using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Stun;
+using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Attachables;
+using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
@@ -19,6 +23,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Traits.Assorted;
+using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
@@ -26,11 +31,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared.Access.Systems;
-using Content.Shared._RMC14.Weapons.Ranged.IFF;
-using Content.Shared._RMC14.Marines;
-using Content.Shared._RMC14.MotionDetector;
-using Content.Shared.Weapons.Melee;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -204,7 +204,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     {
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
-        
+
         if (!TryComp<TransformComponent>(ent, out var xform) || xform.GridUid is null)
             return;
 
@@ -234,20 +234,20 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
-        if (ent.Comp.Locked && TryComp<DamageableComponent>(ent, out var damageable) && 
+        if (ent.Comp.Locked && TryComp<DamageableComponent>(ent, out var damageable) &&
             damageable.TotalDamage < ent.Comp.MaxHealth)
         {
             if (!CheckVehicleAccess(ent, args.User))
                 return;
         }
-        
+
         if (ent.Comp.GridEnt is not { } gridEnt)
             return;
-            
+
         var position = GetEnterPoint(gridEnt);
         if (position is not { } pos)
             return;
-            
+
         args.Handled = true;
         var coords = new EntityCoordinates(gridEnt, pos);
         HandleEnterPulling(ent, args.User, coords);
@@ -259,11 +259,11 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         if (HasComp<XenoComponent>(user))
             return true;
-        
+
         if (HasComp<MarineComponent>(user))
         {
             bool hasAccess = _access.IsAllowed(user, vehicle.Owner);
-            
+
             bool correctFaction = CheckFactionAccess(vehicle.Owner, user);
 
             if (!hasAccess || !correctFaction)
@@ -271,10 +271,10 @@ public sealed partial class SharedVehicleSystem : EntitySystem
                 _popup.PopupEntity("The vehicle is locked!", user);
                 return false;
             }
-            
+
             return true;
         }
-        
+
         _popup.PopupEntity("The vehicle is locked!", user);
         return false;
     }
@@ -286,7 +286,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         if (!_gunIFF.TryGetUserFaction(vehicle, out var faction))
             return false;
-            
+
         return _gunIFF.IsInFaction(user, faction);
     }
 
@@ -350,19 +350,19 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         EntityUid targetEntity = (!TryComp(user, out PullerComponent? puller) || puller.Pulling is not { } pulledUid)
             ? user
             : pulledUid;
-            
+
         var comp = vehicle.Comp;
-        
+
         if (targetEntity != user)
         {
-            if (comp.Locked && TryComp<DamageableComponent>(vehicle, out var damageable) && 
+            if (comp.Locked && TryComp<DamageableComponent>(vehicle, out var damageable) &&
                 damageable.TotalDamage < comp.MaxHealth)
             {
                 if (!CheckVehicleAccess(vehicle, user))
                     return;
             }
         }
-        
+
         if (HasComp<XenoComponent>(targetEntity))
         {
             if (comp.XenoSlots.Current < comp.XenoSlots.Max)
@@ -392,7 +392,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             _popup.PopupEntity("stories-transport-is-full", user);
             return;
         }
-        
+
         _rmcPulling.TryStopAllPullsFromAndOn(user);
         _transform.SetCoordinates(targetEntity, coords);
     }
@@ -549,7 +549,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             modifiedDamage *= 0.05f;
         }
 
-        if (args.Origin != null && 
+        if (args.Origin != null &&
             TryComp<VehicleDamageMultiplierComponent>(args.Origin.Value, out var vehicleDamageMult))
         {
             modifiedDamage *= vehicleDamageMult.Mult;
@@ -610,7 +610,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     private void OnVehicleDamageChanged(Entity<VehicleComponent> vehicle, ref DamageChangedEvent args)
     {
         var comp = vehicle.Comp;
-        
+
         var currentHealth = FixedPoint2.Max(comp.MaxHealth - args.Damageable.TotalDamage, 0);
         if (currentHealth == FixedPoint2.Zero && comp.MaxHealth > FixedPoint2.Zero)
         {

@@ -1,19 +1,19 @@
-using Content.Shared._Stories.Vehicle;
-using Content.Shared._Stories.Vehicle.Systems;
-using Content.Shared._Stories.Attachables;
-using Robust.Shared.Containers;
-using Robust.Shared.Timing;
+using Content.Server.Chat.Systems;
 using Content.Server.Light.EntitySystems;
-using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Light.Components;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.MotionDetector;
-using Content.Server.Chat.Systems;
-using Content.Shared.Interaction;
-using Content.Shared.Popups;
-using Content.Shared.DoAfter;
-using Robust.Shared.Audio.Systems;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._Stories.Attachables;
+using Content.Shared._Stories.Vehicle;
+using Content.Shared._Stories.Vehicle.Systems;
+using Content.Shared.DoAfter;
+using Content.Shared.Interaction;
+using Content.Shared.Light.Components;
+using Content.Shared.Popups;
+using Content.Shared.Weapons.Ranged.Events;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Stories.Vehicle;
 
@@ -32,7 +32,7 @@ public sealed class VehicleSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<ActivateExpendableLightOnShootComponent, AmmoShotEvent>(ActivateExpendableLightOnShot);
         SubscribeLocalEvent<MotionDetectorComponent, AfterInteractEvent>(OnMotionDetectorInteract);
         SubscribeLocalEvent<MotionDetectorComponent, MotionDetectorScanDoAfterEvent>(OnMotionDetectorScanFinished);
@@ -48,7 +48,7 @@ public sealed class VehicleSystem : EntitySystem
         if (!TryComp<VehicleGridComponent>(xform.GridUid, out var vehicleGrid))
             return;
 
-        if (!TryGetEntity(vehicleGrid.Vehicle, out var vehicleUid) || 
+        if (!TryGetEntity(vehicleGrid.Vehicle, out var vehicleUid) ||
             !TryComp<VehicleComponent>(vehicleUid, out var vehicle))
             return;
 

@@ -4,12 +4,13 @@ using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._Stories.Attachables;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Coordinates;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Stunnable;
+
 using Robust.Shared.Prototypes;
-using Content.Shared.Coordinates;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -91,7 +92,7 @@ public sealed partial class SharedVehicleSystem
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out _))
         {
             _popup.PopupEntity(
-                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle.Value)), 
+                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle.Value)),
                 args.Buckle
             );
             args.Cancelled = true;
@@ -106,7 +107,7 @@ public sealed partial class SharedVehicleSystem
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out _))
         {
             _popup.PopupEntity(
-                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle.Value)), 
+                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle.Value)),
                 args.Buckle
             );
             args.Cancelled = true;
@@ -121,7 +122,7 @@ public sealed partial class SharedVehicleSystem
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
         {
             _popup.PopupEntity(
-                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle)), 
+                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle)),
                 args.Buckle
             );
             return;
@@ -137,7 +138,7 @@ public sealed partial class SharedVehicleSystem
             SetupPilotSeat(seat, args.Buckle, eye);
     }
 
-    private void SetupGunnerSeat(Entity<VehiclePilotSeatComponent> seat, 
+    private void SetupGunnerSeat(Entity<VehiclePilotSeatComponent> seat,
         Entity<VehiclePilotComponent> pilot, EyeComponent eye)
     {
         _eye.SetTarget(pilot, seat.Comp.Vehicle, eye);
@@ -179,7 +180,7 @@ public sealed partial class SharedVehicleSystem
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
         {
             _popup.PopupEntity(
-                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle)), 
+                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle)),
                 args.Buckle
             );
             return;
@@ -213,7 +214,7 @@ public sealed partial class SharedVehicleSystem
 
     }
 
-    public bool IsConscious(EntityUid pilot, Dictionary<EntProtoId<SkillDefinitionComponent>, int> skills, 
+    public bool IsConscious(EntityUid pilot, Dictionary<EntProtoId<SkillDefinitionComponent>, int> skills,
         [NotNullWhen(true)] out EyeComponent? eye)
     {
         eye = null;
@@ -224,8 +225,8 @@ public sealed partial class SharedVehicleSystem
         if (!HasComp<SkillsComponent>(pilot))
             return false;
 
-        if (HasComp<SleepingComponent>(pilot) || 
-            HasComp<ForcedSleepingStatusEffectComponent>(pilot) || 
+        if (HasComp<SleepingComponent>(pilot) ||
+            HasComp<ForcedSleepingStatusEffectComponent>(pilot) ||
             HasComp<StunnedComponent>(pilot))
         {
             return false;
