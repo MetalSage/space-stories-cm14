@@ -1,13 +1,12 @@
 using Content.Shared._Stories.Vehicle;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
-using Content.Shared._Stories.Vehicle;
 using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Actions;
 using Robust.Shared.Timing;
 using Content.Shared.Damage;
 using Content.Shared.Popups;
+using Robust.Shared.Containers;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -19,33 +18,35 @@ public abstract partial class SharedGunSystem
         SubscribeLocalEvent<VehicleGunComponent, ShotAttemptedEvent>(OnShotAttempt);
         SubscribeLocalEvent<VehicleComponent, GunMuzzleFlashAttemptEvent>(OnVehicleMuzzleFlashAttempt);
         SubscribeLocalEvent<VehicleGunComponent, GunMuzzleFlashAttemptEvent>(OnVehicleGunMuzzleFlashAttempt);
-
-        SubscribeLocalEvent<BallisticVehicleAmmoProviderComponent, TakeAmmoEvent>(OnTakeAmmo);
-        SubscribeLocalEvent<BallisticVehicleAmmoProviderComponent, GetAmmoCountEvent>(OnVehicleAmmoCount);
-        SubscribeLocalEvent<BallisticVehicleAmmoProviderComponent, ComponentInit>(OnAmmoProviderInit);
+        SubscribeLocalEvent<VehicleGunComponent, TakeAmmoEvent>(OnTakeAmmo);
+        SubscribeLocalEvent<VehicleGunComponent, GetAmmoCountEvent>(OnGetAmmoCount);
+        SubscribeLocalEvent<VehicleGunComponent, ComponentInit>(OnGunInit);
     }
 
-    private void OnAmmoProviderInit(Entity<BallisticVehicleAmmoProviderComponent> provider, ref ComponentInit args)
+    private void OnGunInit(Entity<VehicleGunComponent> gun, ref ComponentInit args)
     {
-        if (provider.Comp.AutoReload && provider.Comp.InitialShots == 0)
-        {
-            provider.Comp.InitialShots = provider.Comp.Shots;
-        }
+        gun.Comp.ActiveMagazineContainer = Containers.EnsureContainer<ContainerSlot>(
+            gun, gun.Comp.ActiveMagazineContainerId);
+        gun.Comp.ActiveMagazineContainer.OccludesLight = false;
+
+        gun.Comp.SpareMagazinesContainer = Containers.EnsureContainer<Container>(
+            gun, gun.Comp.SpareMagazinesContainerId);
+        gun.Comp.SpareMagazinesContainer.OccludesLight = false;
     }
 
-    private void OnVehicleMuzzleFlashAttempt(Entity<VehicleComponent> apc, ref GunMuzzleFlashAttemptEvent args)
+    private void OnVehicleMuzzleFlashAttempt(Entity<VehicleComponent> vehicle, ref GunMuzzleFlashAttemptEvent args)
     {
         args.Cancelled = true;
     }
 
-    private void OnVehicleGunMuzzleFlashAttempt(Entity<VehicleGunComponent> apc, ref GunMuzzleFlashAttemptEvent args)
+    private void OnVehicleGunMuzzleFlashAttempt(Entity<VehicleGunComponent> gun, ref GunMuzzleFlashAttemptEvent args)
     {
         args.Cancelled = true;
     }
 
     private void OnShotAttempt(Entity<VehicleGunComponent> gun, ref ShotAttemptedEvent args)
     {
-        if (!TryComp<VehicleComponent>(args.User, out var apc))
+        if (!TryComp<VehicleComponent>(args.User, out var vehicle))
         {
             args.Cancel();
             return;
@@ -57,25 +58,24 @@ public abstract partial class SharedGunSystem
             return;
         }
 
-        if (TryComp<BallisticVehicleAmmoProviderComponent>(gun, out var projVehicle))
+        if (gun.Comp.ActiveMagazineContainer.ContainedEntity == null)
         {
-            if (projVehicle.IsReloading)
-            {
-                PopupSystem.PopupClient("Перезарядка...", gun.Comp.User.Value, gun.Owner, PopupType.Small);
-                args.Cancel();
-                return;
-            }
+            PopupSystem.PopupCursor("No magazine loaded!", gun.Comp.User.Value, PopupType.Small);
+            args.Cancel();
+            return;
+        }
 
-            if (projVehicle.Shots <= 0)
-            {
-                if (projVehicle.AutoReload)
-                {
-                    StartReload((gun, projVehicle));
-                    PopupSystem.PopupClient("Начинается автоматическая перезарядка...", gun.Comp.User.Value, gun.Owner, PopupType.Small);
-                }
-                args.Cancel();
-                return;
-            }
+        if (!TryComp<VehicleGunMagazineComponent>(gun.Comp.ActiveMagazineContainer.ContainedEntity.Value, out var magazine))
+        {
+            args.Cancel();
+            return;
+        }
+
+        if (magazine.Shots <= 0)
+        {
+            PopupSystem.PopupCursor("Magazine empty!", gun.Comp.User.Value, PopupType.Small);
+            args.Cancel();
+            return;
         }
 
         if (args.Used.Comp.Target == args.User)
@@ -83,98 +83,71 @@ public abstract partial class SharedGunSystem
 
         if (gun.Comp.NeedHands && Hands.CountFreeHands(gun.Comp.User.Value) < 2)
         {
-            PopupSystem.PopupClient("need-free-hands", gun.Comp.User.Value, gun.Owner, PopupType.Small);
+            PopupSystem.PopupCursor("need-free-hands", gun.Comp.User.Value, PopupType.Small);
             args.Cancel();
         }
 
         if (gun.Comp.DisableAtHullDamage != -1f &&
-            TryComp<DamageableComponent>(args.User, out var damageable) &&
-            TryComp<VehicleComponent>(args.User, out var vehicle))
+            TryComp<DamageableComponent>(args.User, out var damageable))
         {
             var hullIntegrityPercent = (float)(vehicle.MaxHealth - damageable.TotalDamage) / vehicle.MaxHealth;
             if (hullIntegrityPercent < gun.Comp.DisableAtHullDamage)
             {
-                PopupSystem.PopupClient("Корпус слишком поврежден", gun.Comp.User.Value, gun.Owner, PopupType.Small);
+                PopupSystem.PopupCursor("Hull too damaged!", gun.Comp.User.Value, PopupType.Small);
                 args.Cancel();
             }
         }
     }
 
-    private void OnVehicleAmmoCount(Entity<BallisticVehicleAmmoProviderComponent> provider, ref GetAmmoCountEvent args)
+    private void OnGetAmmoCount(Entity<VehicleGunComponent> gun, ref GetAmmoCountEvent args)
     {
-        args.Count = provider.Comp.Shots;
-        args.Capacity = provider.Comp.Capacity;
+        if (gun.Comp.ActiveMagazineContainer.ContainedEntity == null)
+        {
+            args.Count = 0;
+            args.Capacity = 0;
+            return;
+        }
+
+        if (!TryComp<VehicleGunMagazineComponent>(gun.Comp.ActiveMagazineContainer.ContainedEntity.Value, out var magazine))
+        {
+            args.Count = 0;
+            args.Capacity = 0;
+            return;
+        }
+
+        args.Count = magazine.Shots;
+        args.Capacity = magazine.Capacity;
     }
 
-    private void OnTakeAmmo(Entity<BallisticVehicleAmmoProviderComponent> provider, ref TakeAmmoEvent args)
+    private void OnTakeAmmo(Entity<VehicleGunComponent> gun, ref TakeAmmoEvent args)
     {
-        var shots = Math.Min(args.Shots, provider.Comp.Shots);
+        if (gun.Comp.ActiveMagazineContainer.ContainedEntity == null)
+            return;
 
-        // Dont dirty if it an empty fire
+        if (!TryComp<VehicleGunMagazineComponent>(gun.Comp.ActiveMagazineContainer.ContainedEntity.Value, out var magazine))
+            return;
+
+        var shots = Math.Min(args.Shots, magazine.Shots);
+
         if (shots == 0)
             return;
 
         for (var i = 0; i < shots; i++)
         {
-            args.Ammo.Add(GetShootable(provider.Comp, args.Coordinates));
-            provider.Comp.Shots--;
+            var projectile = Spawn(magazine.ProjectilePrototype, args.Coordinates);
+            args.Ammo.Add((projectile, EnsureShootable(projectile)));
+            magazine.Shots--;
         }
 
-        if (provider.Comp.AutoReload && provider.Comp.Shots <= 0 && !provider.Comp.IsReloading)
-            StartReload(provider);
+        // If magazine is empty, remove it
+        if (magazine.Shots <= 0 && _netManager.IsServer)
+        {
+            var magEntity = gun.Comp.ActiveMagazineContainer.ContainedEntity.Value;
+            Containers.Remove(magEntity, gun.Comp.ActiveMagazineContainer);
+            QueueDel(magEntity);
+        }
 
         if (_netManager.IsServer)
-            Dirty(provider, provider.Comp);
-    }
-
-    private void StartReload(Entity<BallisticVehicleAmmoProviderComponent> ent)
-    {
-        var comp = ent.Comp;
-
-        if (comp.IsReloading || !comp.AutoReload)
-            return;
-
-        comp.IsReloading = true;
-        comp.ReloadEndTime = Timing.CurTime + comp.ReloadCooldown;
-
-        if (_netManager.IsServer)
-        {
-            Dirty(ent);
-        }
-    }
-
-    private (EntityUid? Entity, IShootable) GetShootable(BallisticVehicleAmmoProviderComponent component, EntityCoordinates coordinates)
-    {
-        var ent = Spawn(component.Prototype, coordinates);
-        return (ent, EnsureShootable(ent));
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-        
-        if (_netManager.IsClient)
-            return;
-
-        var currentTime = Timing.CurTime;
-
-        var query = EntityQueryEnumerator<BallisticVehicleAmmoProviderComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (!comp.AutoReload || !comp.IsReloading || comp.ReloadEndTime == null)
-                continue;
-
-            if (currentTime >= comp.ReloadEndTime)
-            {
-                comp.IsReloading = false;
-                comp.Shots = comp.InitialShots;
-                comp.ReloadEndTime = null;
-
-                Dirty(uid, comp);
-
-                if (TryComp<VehicleGunComponent>(uid, out var gun) && gun.User != null)
-                    PopupSystem.PopupClient("Перезарядка завершена!", gun.User.Value, uid, PopupType.Small);
-            }
-        }
+            Dirty(gun.Comp.ActiveMagazineContainer.ContainedEntity.Value, magazine);
     }
 }

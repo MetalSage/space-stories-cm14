@@ -27,60 +27,44 @@ public sealed class VehicleSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<BallisticVehicleAmmoProviderComponent, VehicleGunReloadEvent>(OnReload);
+        
         SubscribeLocalEvent<ActivateExpendableLightOnShootComponent, AmmoShotEvent>(ActivateExpendableLightOnShot);
-
         SubscribeLocalEvent<MotionDetectorComponent, AfterInteractEvent>(OnMotionDetectorInteract);
         SubscribeLocalEvent<MotionDetectorComponent, MotionDetectorScanDoAfterEvent>(OnMotionDetectorScanFinished);
+
+        SubscribeLocalEvent<VehicleWeaponLoaderComponent, BoundUIOpenedEvent>(OnWeaponLoaderUIOpened);
     }
 
-    private void OnReload(Entity<BallisticVehicleAmmoProviderComponent> provider, ref VehicleGunReloadEvent args)
+    private void OnWeaponLoaderUIOpened(Entity<VehicleWeaponLoaderComponent> loader, ref BoundUIOpenedEvent args)
     {
-        if (!_attachable.TryGetHolder(provider.Owner, out var holder) ||
-            holder is not { } apc)
+        if (!TryComp<TransformComponent>(loader.Owner, out var xform))
             return;
 
-        if (!_timing.IsFirstTimePredicted)
+        if (!TryComp<VehicleGridComponent>(xform.GridUid, out var vehicleGrid))
             return;
 
-        if (provider.Comp.Shots >= provider.Comp.Capacity)
+        if (!TryGetEntity(vehicleGrid.Vehicle, out var vehicleUid) || 
+            !TryComp<VehicleComponent>(vehicleUid, out var vehicle))
             return;
 
-        var magazine = TryMagazine(apc, provider.Comp);
-        if (magazine == null)
-            return;
-
-        provider.Comp.Shots = provider.Comp.Capacity;
-
-        QueueDel(magazine);
-
-        Dirty(provider, provider.Comp);
-    }
-
-    private EntityUid? TryMagazine(EntityUid apc, BallisticVehicleAmmoProviderComponent comp)
-    {
-        _container.TryGetContainer(apc, comp.AmmoContainerId, out var apcContainer);
-
-        if (apcContainer == null)
-            return null;
-
-        foreach (var magazine in apcContainer.ContainedEntities)
+        var hardpoints = new List<NetEntity>();
+        foreach (var hardpoint in vehicle.Hardpoints)
         {
-            if (!TryComp<VehicleGunMagazineComponent>(magazine, out var magazineComp))
-                continue;
-
-            if (comp.Prototype != magazineComp.Prototype)
-                continue;
-
-            QueueDel(magazine);
-            return magazine;
+            if (HasComp<VehicleGunComponent>(hardpoint))
+                hardpoints.Add(GetNetEntity(hardpoint));
         }
-        return null;
+
+        var state = new VehicleWeaponLoaderWindowState(
+            hardpoints,
+            loader.Comp.SelectedHardpoint != null ? GetNetEntity(loader.Comp.SelectedHardpoint.Value) : null
+        );
+
+        _ui.SetUiState(loader.Owner, VehicleWeaponLoaderUI.Key, state);
     }
 
     private void ActivateExpendableLightOnShot(Entity<ActivateExpendableLightOnShootComponent> ent, ref AmmoShotEvent args)
@@ -88,7 +72,7 @@ public sealed class VehicleSystem : EntitySystem
         foreach (var projectile in args.FiredProjectiles)
         {
             if (TryComp<ExpendableLightComponent>(projectile, out var light))
-            _expendableLight.TryActivate((projectile, light));
+                _expendableLight.TryActivate((projectile, light));
         }
     }
 

@@ -5,11 +5,13 @@
   categories:
   - HideSpawnMenu
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Stories/Actions/xeno_actions.rsi
-      state: corrosive_acid
+      state: resting
+    useDelay: 1
+  - type: InstantAction
     event: !type:VehicleHardpointsMenuActionEvent
 
 - type: entity
@@ -209,12 +211,7 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: BallisticVehicleAmmoProvider
-    prototype: CartridgeCaselessRifle
-    shots: 20
-    capacity: 20
-    ammoType: CartridgeCaselessRifle
-  - type: VehicleGun
+#  - type: VehicleGun
   - type: AmmoCounter
 
 - type: entity
@@ -251,12 +248,9 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     projectileSpeed: 10
-  - type: BallisticVehicleAmmoProvider
-    prototype: CMFlare
-    shots: 10
-    capacity: 10
-    ammoType: CMFlares
   - type: VehicleGun
+    acceptedMagazineTypes:
+    - "flare_launcher"
   - type: AmmoCounter
   - type: ActivateExpendableLightOnShoot
 
@@ -292,12 +286,7 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: BallisticVehicleAmmoProvider
-    prototype: CartridgeCaselessRifle
-    shots: 20
-    capacity: 20
-    ammoType: CartridgeCaselessRifle
-  - type: VehicleGun
+#  - type: VehicleGun
   - type: AmmoCounter
 
 - type: entity
@@ -332,16 +321,9 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: BallisticVehicleAmmoProvider
-    prototype: CartridgeCaselessRifle
-    shots: 75
-    capacity: 75
-    ammoType: CartridgeCaselessRifle
-    initialShots: 75
-    autoReload: true
-  - type: VehicleGun
-    needHands: true
-    disableAtHullDamage: 0.5
+#  - type: VehicleGun
+#    needHands: true
+#    disableAtHullDamage: 0.5
   - type: AmmoCounter
   - type: VehicleControllable
     id: FiringPortWeaponOne
@@ -448,6 +430,12 @@
         layer:
         - MachineLayer
   - type: VehicleWeaponLoader
+  - type: UserInterface
+    interfaces:
+      enum.VehicleWeaponLoaderUI.Key:
+        type: VehicleWeaponLoaderBui
+  - type: ActivatableUI
+    key: enum.VehicleWeaponLoaderUI.Key
 
 - type: entity
   parent: BaseItem
@@ -459,25 +447,8 @@
     sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
     state: comms_relay
   - type: VehicleGunMagazine
-    prototype: CartridgeCaselessRifle
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-
-- type: entity
-  parent: BaseItem
-  id: APCAmmoBox2
-  name: ammo box2
-  components:
-  - type: BallisticAmmoProvider
-  - type: Sprite
-    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
-    state: comms_relay
-  - type: VehicleGunMagazine
-    prototype: CMFlares
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
+    magazineType: flare_launcher
+    projectilePrototype: CMFlare
 
 - type: hardpointType
   id: HDPT_ARMOR
@@ -599,20 +570,6 @@
   - type: AccessReader
     access: [["RMCAccessSeniorCommand"]] # TODO TANK CREW ACCESS
   - type: RMCMesonsNonviewable
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
