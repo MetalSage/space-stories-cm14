@@ -18,7 +18,7 @@ public sealed partial class VehicleControllerComponent : Component
     public Dictionary<EntProtoId<SkillDefinitionComponent>, int> Skills = new();
 
     [DataField, AutoNetworkedField]
-    public EntProtoId? Action = "";
+    public List<EntProtoId> ActionIds = new();
 
     [DataField, AutoNetworkedField]
     public EntityUid? ControllableEntity;

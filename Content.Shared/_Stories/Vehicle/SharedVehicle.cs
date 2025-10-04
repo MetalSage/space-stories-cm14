@@ -13,7 +13,6 @@ public sealed partial class VehicleLeaveDoAfterEvent : SimpleDoAfterEvent;
 [Serializable, NetSerializable]
 public sealed partial class MotionDetectorScanDoAfterEvent : SimpleDoAfterEvent;
 
-
 [Serializable, NetSerializable]
 public enum VehicleVisualLayers : byte
 {
@@ -24,6 +23,18 @@ public enum VehicleVisualLayers : byte
 public enum VehicleWeaponLoaderUI : byte
 {
     Key
+}
+
+[Serializable, NetSerializable]
+public enum VehicleSelectHardpointUI : byte
+{
+    Key,
+}
+
+[Serializable, NetSerializable]
+public enum VehicleStatusUI : byte
+{
+    Key,
 }
 
 [Serializable, NetSerializable]
@@ -40,14 +51,34 @@ public sealed class VehicleWeaponLoaderSelectHardpointMsg : BoundUserInterfaceMe
 [Serializable, NetSerializable]
 public sealed class VehicleWeaponLoaderWindowState : BoundUserInterfaceState
 {
-    public List<NetEntity> Hardpoints;
-    public NetEntity? SelectedHardpoint;
+    public List<HardpointInfo> Hardpoints = new();
 
-    public VehicleWeaponLoaderWindowState(List<NetEntity> hardpoints, NetEntity? selectedHardpoint)
+    [Serializable, NetSerializable]
+    public sealed class HardpointInfo
     {
-        Hardpoints = hardpoints;
-        SelectedHardpoint = selectedHardpoint;
+        public NetEntity Entity;
+        public string Name = string.Empty;
+        public bool HasActiveMagazine;
+        public int SpareCount;
+        public int MaxSpares;
+        public int CurrentAmmo;
+        public int MaxAmmo;
     }
 }
 
+
+[Serializable, NetSerializable]
+public sealed class VehicleSelectHardpointBuiMsg(NetEntity choice) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Choice = choice;
+}
+
+[Serializable, NetSerializable]
+public sealed class VehicleHardpointWindowUserInterfaceState : BoundUserInterfaceState;
+
+[Serializable, NetSerializable]
+public sealed class VehicleStatusUIState : BoundUserInterfaceState;
+
 public sealed partial class VehicleLockDoorsEvent : InstantActionEvent;
+
+public sealed partial class VehicleStatusMenuEvent : InstantActionEvent;

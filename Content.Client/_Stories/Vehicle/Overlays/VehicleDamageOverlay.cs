@@ -64,10 +64,13 @@ public sealed class VehicleDamageOverlay : Overlay
     {
         if (!_entityManager.HasComponent<VehiclePilotComponent>(_playerManager.LocalEntity))
             return false;
+
         if (!_entityManager.TryGetComponent<EyeComponent>(_playerManager.LocalEntity, out var eyeComp))
             return false;
+
         if (args.Viewport.Eye != eyeComp.Eye)
             return false;
+
         return _currentDamageLevel > 0.001f;
     }
 

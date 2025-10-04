@@ -11,6 +11,8 @@
   - type: Clickable
   - type: InteractionOutline
   - type: VehicleEnterPoint
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   parent: BaseItem
@@ -37,6 +39,8 @@
       Welding: 0.0
     toolSoundThresholds:
       Welding: /Audio/Items/welder.ogg
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   parent: BaseStructure
@@ -63,6 +67,8 @@
         layer:
         - Transport
         density: 1000
+  - type: Corrodible
+    isCorrodible: false
 
 - type: hardpointType
   id: HDPT_ARMOR

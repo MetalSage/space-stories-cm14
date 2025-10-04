@@ -1,6 +1,8 @@
 using Content.Shared._RMC14.Marines.Skills;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Audio;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Stories.Vehicle;
 
@@ -12,4 +14,7 @@ public sealed partial class VehicleWeaponLoaderComponent : Component
 
     [DataField, AutoNetworkedField]
     public Dictionary<EntProtoId<SkillDefinitionComponent>, int> Skills = new();
+
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier? LoadSound = new SoundPathSpecifier("/Audio/_Stories/hydraulics_3.ogg");
 }

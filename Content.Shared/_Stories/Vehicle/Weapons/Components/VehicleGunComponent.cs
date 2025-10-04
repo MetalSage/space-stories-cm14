@@ -32,4 +32,7 @@ public sealed partial class VehicleGunComponent : Component
 
     [DataField(required: true), AutoNetworkedField]
     public List<string> AcceptedMagazineTypes = new();
+
+    [DataField, AutoNetworkedField]
+    public string? StartingMagazinePrototype;
 }

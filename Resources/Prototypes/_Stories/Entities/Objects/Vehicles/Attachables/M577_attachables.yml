@@ -2,7 +2,7 @@
   parent: STMarineVehicleAttachableBase
   name: ARS-159 Boyars Dualcannon
   id: STMarineVehicleDualcannon
-  description: none
+  description: A primary two-barrel cannon for the APC that shoots 20mm IFF-compatible rounds.
   components:
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
@@ -23,22 +23,25 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Gun
-    fireRate: 0.3
+    fireRate: 3.333333333
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      path: /Audio/_Stories/dual_autocannon_fire.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-#  - type: VehicleGun
-  - type: AmmoCounter
+  - type: VehicleGun
+    maxSpareMagazines: 2
+    acceptedMagazineTypes: ["boyars_dualcannon"]
+  - type: GunArcRestriction
+    maxAngleDeviation: 60
 
 - type: entity
   parent: STMarineVehicleAttachableBase
   name: M-87F Flare Launcher
   id: STMarineVehicleFlareLauncher
-  description:
+  description: A support module for APCs that shoots flares.
   components:
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
@@ -59,25 +62,30 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Gun
-    fireRate: 0.3333
-    selectedMode: FullAuto
+    fireRate: 0.3333333333
+    selectedMode: SemiAuto
     availableModes:
-      - FullAuto
+      - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-    projectileSpeed: 10
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_ugl.ogg
+    projectileSpeed: 25
   - type: VehicleGun
-    acceptedMagazineTypes:
-    - "flare_launcher"
-  - type: AmmoCounter
+    acceptedMagazineTypes: ["flare_launcher"]
   - type: ActivateExpendableLightOnShoot
+  - type: ShootAtFixedPoint
+    maxFixedRange: 25
+  - type: GunIFF
+    enabled: true
+  - type: GunIgnorePrediction
+  - type: IgnorePredictionHide
+  - type: GunArcRestriction
+    maxAngleDeviation: 120
 
 - type: entity
   parent: STMarineVehicleAttachableBase
   id: STMarineVehicleFrontalCannon
-  description:
+  name: Bleihagel RE-RE700 Frontal Cannon
+  description: The marketing department over at Bleihagel would have you believe that the RE-RE700 is an original design. However, experts who pried the cover off the cannon have discovered an object with a striking similarity to the popular M56 Cupola. It is still unknown why the cannon has two barrels.
   components:
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
@@ -98,21 +106,25 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Gun
-    fireRate: 0.3
+    fireRate: 3.333333333
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      collection: CMM56BShoot
     soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-#  - type: VehicleGun
-  - type: AmmoCounter
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: VehicleGun
+    maxSpareMagazines: 1
+    acceptedMagazineTypes: ["re_frontalcannon"]
+  - type: GunArcRestriction
+    maxAngleDeviation: 120
 
 - type: entity
   parent: STMarineVehicleAttachableBase
   id: STMarineVehicleFiringPortWeaponOne
-  description:
+  name: M56 FPW
+  description: A modified M56A2 Smartgun installed on the sides of M577 Armored Personnel Carrier as a Firing Port Weapon. Used by support gunners to cover friendly infantry at APC sides.
   components:
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
@@ -120,31 +132,31 @@
     - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
       state: front_cannon
   - type: VehicleAttachable
-    hardpointType: HDPT_SECONDARY
+    hardpointType: HDPT_SPECIAL
     damageMult: 0
     skill: RMCSkillEngineer
     level: 2
     maxHealth: 100
-  - type: VehicleAttachableVisuals
-    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
-    state: frontalcannon
-    destroyedState: frontalcannon_destroyed
+    ignored: true
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Gun
-    fireRate: 0.3
+    fireRate: 3.333333333
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      collection: CMM56BShoot
     soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-#  - type: VehicleGun
-#    needHands: true
-#    disableAtHullDamage: 0.5
-  - type: AmmoCounter
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: VehicleGun
+    needHands: true
+    disableAtHullDamage: 0.5
+    acceptedMagazineTypes: ["m56_fpw"]
+    maxSpareMagazines: 0
+    startingMagazinePrototype: STVehicleAmmoM56FPW
+  - type: VehicleAutoReloadGun
   - type: VehicleControllable
     id: FiringPortWeaponOne
   - type: GunArcRestriction
@@ -159,8 +171,9 @@
 
 - type: entity
   parent: STMarineVehicleAttachableBase
-  id: STMarineVehicleWheelsBase
-  description:
+  id: STMarineVehicleM577Wheels
+  name: APC Wheels
+  description: Integral to the movement of the APC.
   components:
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/base_apc_items.rsi

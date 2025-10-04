@@ -2,9 +2,11 @@ using Content.Shared._Stories.Attachables;
 using Content.Shared._Stories.Vehicle;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
+using Robust.Client.UserInterface;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using Robust.Shared.Utility;
+using System.Collections.Generic;
 
 namespace Content.Client._Stories.Vehicle.UI;
 
@@ -12,8 +14,7 @@ namespace Content.Client._Stories.Vehicle.UI;
 public sealed class VehicleSelectHardpointBui : BoundUserInterface
 {
     private VehicleSelectHardpointWindow? _window;
-    private EntityUid? _selectedHardpoint;
-    private readonly Dictionary<Button, EntityUid> _buttonToHardpoint = new();
+    private readonly Dictionary<EntityUid, Button> _hardpointButtons = new();
 
     public VehicleSelectHardpointBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -22,9 +23,11 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
     protected override void Open()
     {
         base.Open();
+
         _window = new VehicleSelectHardpointWindow();
         _window.OnClose += Close;
         _window.OpenCentered();
+
         PopulateHardpoints();
     }
 
@@ -50,12 +53,16 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
             return;
 
         _window.HardpointsContainer.DisposeAllChildren();
-        _buttonToHardpoint.Clear();
+        _hardpointButtons.Clear();
 
         var vehicle = GetVehicleComponent();
         if (vehicle == null || vehicle.Hardpoints.Count == 0)
         {
-            _window.HardpointsContainer.AddChild(new Label { Text = "Нет доступных модулей" });
+            _window.HardpointsContainer.AddChild(new Label
+            {
+                Text = Loc.GetString("st-vehicle-ui-no-any-hardpoint"),
+                HorizontalExpand = true
+            });
             return;
         }
 
@@ -67,22 +74,23 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
             if (!EntMan.HasComponent<VehicleGunComponent>(hardpoint))
                 continue;
 
+            if (EntMan.TryGetComponent<VehicleAttachableComponent>(hardpoint, out var attachable) && attachable.Ignored)
+                continue;
+
             var button = new Button
             {
                 Text = EntMan.GetComponent<MetaDataComponent>(hardpoint).EntityName,
                 HorizontalExpand = true,
-                Margin = new Thickness(2)
+                Margin = new Thickness(4)
             };
-
-            _buttonToHardpoint[button] = hardpoint;
 
             button.OnPressed += _ =>
             {
-                _selectedHardpoint = hardpoint;
-                UpdateButtons();
                 SendMessage(new VehicleSelectHardpointBuiMsg(EntMan.GetNetEntity(hardpoint)));
+                UpdateButtons();
             };
 
+            _hardpointButtons[hardpoint] = button;
             _window.HardpointsContainer.AddChild(button);
         }
 
@@ -91,29 +99,27 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
 
     private void UpdateButtons()
     {
-        foreach (var kvp in _buttonToHardpoint)
-        {
-            var button = kvp.Key;
-            var hardpoint = kvp.Value;
+        var vehicle = GetVehicleComponent();
+        var activeHardpoint = vehicle?.ActiveHardpoint;
 
-            if (_selectedHardpoint == hardpoint)
-            {
-                button.ModulateSelfOverride = Color.LightGreen;
-            }
+        foreach (var kvp in _hardpointButtons)
+        {
+            var hardpoint = kvp.Key;
+            var button = kvp.Value;
+
+            if (activeHardpoint != null && activeHardpoint == hardpoint)
+                button.ModulateSelfOverride = Color.FromHex("#90EE90");
             else
-            {
                 button.ModulateSelfOverride = null;
-            }
         }
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
+
         if (_window != null && state is VehicleHardpointWindowUserInterfaceState)
-        {
-            PopulateHardpoints();
-        }
+            UpdateButtons();
     }
 
     protected override void Dispose(bool disposing)
@@ -123,6 +129,7 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
         {
             _window?.Dispose();
             _window = null;
+            _hardpointButtons.Clear();
         }
     }
 }

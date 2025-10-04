@@ -12,3 +12,4 @@ public enum VehicleAttachableVisualLayers : byte
 
 public sealed partial class VehicleSelectHardpointEvent : InstantActionEvent;
 
+public sealed partial class VehicleReloadSpecialGunEvent : InstantActionEvent;

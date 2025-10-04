@@ -1,12 +1,100 @@
 - type: entity
+  abstract: true
   parent: BaseItem
-  id: APCAmmoBox
-  name: ammo box
+  id: STBaseVehicleMagazine
   components:
-  - type: BallisticAmmoProvider
+  - type: Item
+    size: Large
+  - type: VehicleGunMagazine
+    shots: 10
+    capacity: 10
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VehicleAmmoVisuals.Layer:
+        base:
+          Fill: { state: slauncher_1 }
+          Empty: { state: slauncher_0 }
+
+- type: entity
+  parent: STBaseVehicleMagazine
+  id: STVehicleAmmoFlareLauncher
+  name: M-87F Flare Launcher magazine
+  components:
   - type: Sprite
-    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
-    state: comms_relay
+    sprite: _Stories/Objects/Vehicles/Weapons/Ammunitions/ammo.rsi
+    layers:
+    - state: slauncher_1
+      map: [ "base" ]
   - type: VehicleGunMagazine
     magazineType: flare_launcher
     projectilePrototype: CMFlare
+
+- type: entity
+  parent: STBaseVehicleMagazine
+  id: STVehicleAmmoBoyarsDualcannon
+  name: PARS-159 Dualcannon IFF Magazine
+  description: A magazine for PARS-159 Boyars Dualcannon filled with 20mm rounds. Slightly contuses targets upon hit. Supports IFF.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Weapons/Ammunitions/ammo.rsi
+    layers:
+    - state: ace_autocannon
+      map: [ "base" ]
+  - type: VehicleGunMagazine
+    magazineType: boyars_dualcannon
+    projectilePrototype: CMBulletTankDualcannon
+    shots: 60
+    capacity: 60
+  - type: GenericVisualizer
+    visuals:
+      enum.VehicleAmmoVisuals.Layer:
+        base:
+          Fill: { state: ace_autocannon }
+          Empty: { state: ace_autocannon_empty }
+
+- type: entity
+  parent: STBaseVehicleMagazine
+  id: STVehicleAmmoREFrontalCannon
+  name: RE-RE700 Frontal Cannon magazine
+  description: A big box of bullets that looks suspiciously similar to the box you would use to refill a M56 Cupola. The Bleihagel logo sticker has peeled slightly and it looks like there's another logo underneath...
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Weapons/Ammunitions/ammo.rsi
+    layers:
+    - state: frontal_1
+      map: [ "base" ]
+  - type: VehicleGunMagazine
+    magazineType: re_frontalcannon
+    projectilePrototype: CMBulletVehicleMachinegun
+    shots: 500
+    capacity: 500
+  - type: GenericVisualizer
+    visuals:
+      enum.VehicleAmmoVisuals.Layer:
+        base:
+          Fill: { state: frontal_1 }
+          Empty: { state: frontal_0 }
+
+- type: entity
+  parent: STBaseVehicleMagazine
+  id: STVehicleAmmoM56FPW
+  name: M56 FPW Magazine
+  description: A magazine for an M56 Firing Port Weapon. Supports IFF.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Weapons/Ammunitions/ammo.rsi
+    layers:
+    - state: cupola_1
+      map: [ "base" ]
+  - type: VehicleGunMagazine
+    magazineType: m56_fpw
+    projectilePrototype: CMBulletVehicleM56FPW
+    shots: 75
+    capacity: 75
+  - type: GenericVisualizer
+    visuals:
+      enum.VehicleAmmoVisuals.Layer:
+        base:
+          Fill: { state: cupola_1 }
+          Empty: { state: cupola_0 }

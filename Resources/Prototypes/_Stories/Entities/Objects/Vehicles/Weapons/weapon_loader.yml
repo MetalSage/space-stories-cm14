@@ -36,3 +36,5 @@
     blacklist:
       components:
       - Xeno
+  - type: Corrodible
+    isCorrodible: false

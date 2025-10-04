@@ -1,56 +1,64 @@
 - type: entity
   parent: CMSeatBase
+  id: STVehicleBaseSeat
+  components:
+  - type: Physics
+    bodyType: Static
+
+- type: entity
+  parent: CMSeatBase
   id: STVehicleArmorDriverSeat
   name: armor driver seat
   description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
   components:
-  - type: Physics
-    bodyType: Static
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/Interior/general.rsi
     state: armor_chair
-  - type: RMCAllowStrapMovement
   - type: VehiclePilotSeat
+    actionIds:
+    - STVehicleVehicleStatusAction
+    - STVehicleLockDoorsAction
 
 - type: entity
-  parent: CMSeatBase
+  parent: STVehicleBaseSeat
   id: STVehicleArmorGunnerSeat
   name: armor gunner's seat
   description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
   components:
-  - type: Physics
-    bodyType: Static
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/Interior/general.rsi
     state: armor_chair
-  - type: RMCAllowStrapMovement
   - type: VehiclePilotSeat
     isGunner: true
+    zoom: 1.43, 1.43
+    actionIds:
+    - STVehicleVehicleStatusAction
+    - STVehicleSelectHardpointAction
 
 - type: entity
-  parent: CMSeatBase
+  parent: STVehicleBaseSeat
   id: STVehicle1stSupportGunnerSeat
   name: 1st support gunner's seat
   components:
-  - type: Physics
-    bodyType: Static
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/Interior/general.rsi
     state: armor_chair
-  - type: RMCAllowStrapMovement
   - type: VehicleController
-    id: 1stSupportGunnerSeat
+    id: FiringPortWeaponOne
+    actionIds:
+    - STVehicleReloadSpecialAction
+    - STVehicleVehicleStatusAction
 
 - type: entity
-  parent: CMSeatBase
+  parent: STVehicleBaseSeat
   id: STVehicle2stSupportGunnerSeat
   name: 2st support gunner's seat
   components:
-  - type: Physics
-    bodyType: Static
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/Interior/general.rsi
     state: armor_chair
-  - type: RMCAllowStrapMovement
   - type: VehicleController
-    id: 2stSupportGunnerSeat
+    id: FiringPortWeaponTwo
+    actionIds:
+    - STVehicleReloadSpecialAction
+    - STVehicleVehicleStatusAction

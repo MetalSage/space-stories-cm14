@@ -33,18 +33,3 @@ public enum VehicleAttachmentUI : byte
     StripKey,
     ChooseSlotKey,
 }
-
-[Serializable, NetSerializable]
-public enum VehicleSelectHardpointUI : byte
-{
-    Key,
-}
-
-[Serializable, NetSerializable]
-public sealed class VehicleSelectHardpointBuiMsg(NetEntity choice) : BoundUserInterfaceMessage
-{
-    public readonly NetEntity Choice = choice;
-}
-
-[Serializable, NetSerializable]
-public sealed class VehicleHardpointWindowUserInterfaceState() : BoundUserInterfaceState;

@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Stories.Vehicle;
 
@@ -17,4 +18,17 @@ public sealed partial class VehicleGunMagazineComponent : Component
 
     [DataField, AutoNetworkedField]
     public int Capacity = 10;
+}
+
+[Serializable, NetSerializable]
+public enum VehicleAmmoVisuals
+{
+    Layer,
+}
+
+[Serializable, NetSerializable]
+public enum VehicleAmmoState
+{
+    Fill,
+    Empty,
 }

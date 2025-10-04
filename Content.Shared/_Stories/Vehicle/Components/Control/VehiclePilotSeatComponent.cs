@@ -1,3 +1,4 @@
+using System.Numerics;
 using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -21,5 +22,8 @@ public sealed partial class VehiclePilotSeatComponent : Component
     public Dictionary<EntProtoId<SkillDefinitionComponent>, int> Skills = new();
 
     [DataField, AutoNetworkedField]
-    public EntProtoId? Action = "STAPCHardpointMenuAction";
+    public List<EntProtoId> ActionIds = new();
+
+    [DataField, AutoNetworkedField]
+    public Vector2 Zoom = Vector2.One;
 }

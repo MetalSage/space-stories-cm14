@@ -20,6 +20,8 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -27,12 +29,25 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
 
         SubscribeLocalEvent<VehicleWeaponLoaderComponent, InteractHandEvent>(OnLoaderHandInteract);
         SubscribeLocalEvent<VehicleWeaponLoaderComponent, InteractUsingEvent>(OnLoaderInteractUsing);
+        SubscribeLocalEvent<VehicleGunMagazineComponent, MapInitEvent>(OnMagazineMapInit);
+
+        SubscribeLocalEvent<VehicleWeaponLoaderComponent, BoundUIOpenedEvent>(OnWeaponLoaderUIOpened);
 
         Subs.BuiEvents<VehicleWeaponLoaderComponent>(VehicleWeaponLoaderUI.Key,
             subs =>
             {
                 subs.Event<VehicleWeaponLoaderSelectHardpointMsg>(OnLoaderSelectHardpoint);
             });
+    }
+
+    private void OnWeaponLoaderUIOpened(Entity<VehicleWeaponLoaderComponent> loader, ref BoundUIOpenedEvent args)
+    {
+        UpdateLoaderUI(loader);
+    }
+
+    private void OnMagazineMapInit(Entity<VehicleGunMagazineComponent> magazine, ref MapInitEvent args)
+    {
+        UpdateAppearance(magazine);
     }
 
     private void OnLoaderHandInteract(Entity<VehicleWeaponLoaderComponent> loader, ref InteractHandEvent args)
@@ -76,32 +91,30 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
 
         if (compatibleHardpoint == null || gunComp == null)
         {
-            _popup.PopupEntity("No compatible weapon found for this magazine type!", args.User);
+            _popup.PopupCursor("No compatible weapon found for this magazine type!", args.User);
             args.Handled = true;
             return;
         }
 
         if (!_skills.HasAllSkills(args.User, loader.Comp.Skills))
         {
-            _popup.PopupEntity($"You lack the required skill to load this weapon!", args.User);
+            _popup.PopupCursor($"You lack the required skill to load this weapon!", args.User);
             args.Handled = true;
             return;
         }
 
         if (gunComp.SpareMagazinesContainer.ContainedEntities.Count >= gunComp.MaxSpareMagazines)
         {
-            _popup.PopupEntity("The weapon's magazine storage is full!", args.User);
+            _popup.PopupCursor("The weapon's magazine storage is full!", args.User);
             args.Handled = true;
             return;
         }
 
-        if (_net.IsServer)
+        if (_net.IsServer && _container.Insert(args.Used, gunComp.SpareMagazinesContainer))
         {
-            if (_container.Insert(args.Used, gunComp.SpareMagazinesContainer))
-            {
-                //_audio.PlayPvs(LoadSound, loader.Owner);
-                _popup.PopupEntity($"Magazine loaded into {Name(compatibleHardpoint.Value)}", args.User);
-            }
+            _popup.PopupEntity($"Magazine loaded into {Name(compatibleHardpoint.Value)}", loader.Owner, args.User);
+            _audio.PlayPvs(loader.Comp.LoadSound, loader.Owner);
+            UpdateLoaderUI(loader);
         }
 
         args.Handled = true;
@@ -122,13 +135,13 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
 
         if (!_skills.HasAllSkills(args.Actor, loader.Comp.Skills))
         {
-            _popup.PopupEntity($"You lack the required skill to load this weapon!", args.Actor);
+            _popup.PopupCursor($"You lack the required skill to load this weapon!", args.Actor);
             return;
         }
 
         if (gun.SpareMagazinesContainer.ContainedEntities.Count == 0)
         {
-            _popup.PopupEntity("No spare magazines available!", args.Actor);
+            _popup.PopupCursor("No spare magazines available!", args.Actor);
             return;
         }
 
@@ -138,18 +151,84 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
         {
             if (gun.ActiveMagazineContainer.ContainedEntity != null)
             {
-                _container.Remove(gun.ActiveMagazineContainer.ContainedEntity.Value, gun.ActiveMagazineContainer);
-                QueueDel(gun.ActiveMagazineContainer.ContainedEntity.Value);
+                var oldMag = gun.ActiveMagazineContainer.ContainedEntity.Value;
+                _container.Remove(oldMag, gun.ActiveMagazineContainer);
+                
+                var loaderCoords = _transform.GetMapCoordinates(loader.Owner);
+                _transform.SetMapCoordinates(oldMag, loaderCoords);
+                
+                if (TryComp<VehicleGunMagazineComponent>(oldMag, out var oldMagComp))
+                    UpdateAppearance((oldMag, oldMagComp));
             }
 
             _container.Remove(spareMag, gun.SpareMagazinesContainer);
             _container.Insert(spareMag, gun.ActiveMagazineContainer);
 
-            //_audio.PlayPvs(LoadSound, hardpoint);
-            _popup.PopupEntity($"Magazine loaded into {Name(hardpoint)}", args.Actor);
+            _popup.PopupEntity($"Magazine loaded into {Name(hardpoint)}", loader.Owner, args.Actor);
+            _audio.PlayPvs(loader.Comp.LoadSound, loader.Owner);
+            Dirty(hardpoint, gun);
+            
+            UpdateLoaderUI(loader);
+            UpdateVehicleStatusUI(vehicle);
         }
 
         loader.Comp.SelectedHardpoint = hardpoint;
         Dirty(loader);
+    }
+
+    private void UpdateAppearance(Entity<VehicleGunMagazineComponent> magazine)
+    {
+        var state = magazine.Comp.Shots > 0 ? VehicleAmmoState.Fill : VehicleAmmoState.Empty;
+        _appearance.SetData(magazine, VehicleAmmoVisuals.Layer, state);
+    }
+
+    private void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
+    {
+        var state = new VehicleStatusUIState();
+        _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
+    }
+
+    private void UpdateLoaderUI(Entity<VehicleWeaponLoaderComponent> loader)
+    {
+        if (!_vehicle.TryGetVehicle(loader.Owner, out var vehicle))
+            return;
+
+        var hardpoints = new List<VehicleWeaponLoaderWindowState.HardpointInfo>();
+
+        foreach (var hardpoint in vehicle.Comp.Hardpoints)
+        {
+            if (!TryComp<VehicleGunComponent>(hardpoint, out var gun))
+                continue;
+
+            var hasActiveMag = gun.ActiveMagazineContainer.ContainedEntity != null;
+            var spareCount = gun.SpareMagazinesContainer.ContainedEntities.Count;
+            var maxSpares = gun.MaxSpareMagazines;
+
+            int currentAmmo = 0;
+            int maxAmmo = 0;
+            if (hasActiveMag && TryComp<VehicleGunMagazineComponent>(gun.ActiveMagazineContainer.ContainedEntity!.Value, out var activeMag))
+            {
+                currentAmmo = activeMag.Shots;
+                maxAmmo = activeMag.Capacity;
+            }
+
+            hardpoints.Add(new VehicleWeaponLoaderWindowState.HardpointInfo
+            {
+                Entity = GetNetEntity(hardpoint),
+                Name = Name(hardpoint),
+                HasActiveMagazine = hasActiveMag,
+                SpareCount = spareCount,
+                MaxSpares = maxSpares,
+                CurrentAmmo = currentAmmo,
+                MaxAmmo = maxAmmo
+            });
+        }
+
+        var state = new VehicleWeaponLoaderWindowState
+        {
+            Hardpoints = hardpoints
+        };
+
+        _ui.SetUiState(loader.Owner, VehicleWeaponLoaderUI.Key, state);
     }
 }

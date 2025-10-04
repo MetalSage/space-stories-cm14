@@ -168,7 +168,6 @@
     enabled: true
 
 - type: entity
-  parent: STVehicleAPCWall63
   id: STVehicleAPCWall13
   suffix: 13
   components:
@@ -179,6 +178,9 @@
     sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
     state: apc_right_3
   - type: VehicleInteriorDoor
+  - type: Transform
+    anchored: true
+  - type: Clickable
 
 - type: entity
   parent: STVehicleAPCWallBase
@@ -405,7 +407,6 @@
     enabled: true
 
 - type: entity
-  parent: STVehicleAPCWallBase
   id: STVehicleAPCWall31
   suffix: 31
   components:
@@ -418,9 +419,15 @@
   - type: Occluder
     enabled: true
   - type: VehicleInteriorDoor
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: true
 
 - type: entity
-  parent: STVehicleAPCWall31
+  parent: STVehicleAPCWall62
   id: STVehicleAPCWall32
   suffix: 32
   components:
@@ -434,6 +441,8 @@
     state: door_front
   - type: Occluder
     enabled: false
+  - type: VehicleInteriorDoor
+  - type: Clickable
 
 - type: entity
   parent: STVehicleAPCWall31
@@ -604,8 +613,9 @@
     enabled: true
 
 - type: entity
-  parent: STVehicleAPCWall63
   id: STVehicleAPCWall45
+  placement:
+    mode: PlaceFree
   suffix: 45
   components:
   - type: Sprite
@@ -617,6 +627,27 @@
     state: m56_FPW
   - type: Occluder
     enabled: false
+  - type: Transform
+    anchored: true
+
+- type: entity
+  id: STVehicleAPCWall45Alt
+  placement:
+    mode: PlaceFree
+  suffix: 45
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: m56_FPW
+    drawdepth: 6
+    offset: 0, 0.5
+  - type: Icon
+    sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
+    state: m56_FPW
+  - type: Occluder
+    enabled: false
+  - type: Transform
+    anchored: true
 
 - type: entity
   parent: STVehicleAPCWallBase
@@ -856,7 +887,10 @@
     sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
     state: wall_door_front
   - type: Occluder
-    enabled: true
+    enabled: false
+  - type: Physics
+    bodyType: Static
+    canCollide: false
 
 - type: entity
   id: STVehicleAPCWall63
@@ -956,6 +990,8 @@
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/Interior/apc_corner.rsi
     state: corner
+    offset: -0.5, 0
+    drawdepth: 2
   - type: Icon
     sprite: _Stories/Objects/Vehicles/Interior/apc_corner.rsi
     state: corner
@@ -983,9 +1019,6 @@
   - type: Appearance
   - type: Transform
     anchored: true
-  - type: Anchorable
-    flags:
-    - None
   - type: PointLight
     softness: 1.5
     energy: 2

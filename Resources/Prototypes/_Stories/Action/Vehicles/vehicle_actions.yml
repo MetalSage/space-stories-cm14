@@ -8,11 +8,27 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _Stories/Actions/xeno_actions.rsi
-      state: resting
+      sprite: _Stories/Actions/vehicle_actions.rsi
+      state: chamber_swap
     useDelay: 1
   - type: InstantAction
     event: !type:VehicleSelectHardpointEvent
+
+- type: entity
+  id: STVehicleVehicleStatusAction
+  name: Vehicle Status
+  description: Vehicle Status
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/vehicle_actions.rsi
+      state: vehicle_status
+    useDelay: 1
+  - type: InstantAction
+    event: !type:VehicleStatusMenuEvent
 
 - type: entity
   id: STVehicleLockDoorsAction
@@ -24,8 +40,24 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _Stories/Actions/xeno_actions.rsi
-      state: resting
+      sprite: _Stories/Actions/vehicle_actions.rsi
+      state: door_unlocked
     useDelay: 1
   - type: InstantAction
     event: !type:VehicleLockDoorsEvent
+
+- type: entity
+  id: STVehicleReloadSpecialAction
+  name: Reload
+  description: nn
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/vehicle_actions.rsi
+      state: chamber_swap
+    useDelay: 1
+  - type: InstantAction
+    event: !type:VehicleReloadSpecialGunEvent

@@ -2,24 +2,27 @@
   id: STVehicleInteriorViewport
   name: viewport
   description: noe
-  placement:
-    mode: PlaceFree
   components:
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: _Stories/Objects/Vehicles/Interior/general.rsi
     state: viewport
   - type: Appearance
-  - type: Transform
-    anchored: true
-  - type: Anchorable
-    flags:
-    - None
-  - type: MovedByPressure
   - type: WallMount
-    arc: 175
+    arc: 360
   - type: InteractionOutline
   - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: ActivatableUIBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: RMCMesonsNonviewable
+  - type: Corrodible
+    isCorrodible: false
+  - type: VehicleViewport
 
 - type: entity 
   parent: RMCSurveillanceCameraAlmayer
@@ -34,6 +37,8 @@
     - map: [ "enum.SurveillanceCameraVisualsKey.Layer" ]
       state: vehicle_camera
       cycle: true
+    state: vehicle_camera
+    cycle: true
   - type: SurveillanceCameraVisuals
     sprites:
       Active: vehicle_camera
@@ -41,6 +46,8 @@
       InUse: vehicle_camera
   - type: RMCCamera
     id: STVehicleInteriorCamera
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   parent: RMCRotaryPhone
@@ -60,9 +67,10 @@
           Base: { state: wall_phone }
           Ring: { state: wall_phone_ring }
           Ear: { state: wall_phone_ear }
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
-  parent: RMCNanoMed
   id: STVehicleInteriorNanoMed
   name: nanomed
   placement:
@@ -74,27 +82,117 @@
     layers:
     - state: "nanomed"
     - state: "nanomed"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.38,-0.5,0.35,0.5"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+        hard: false
+  - type: CMSolutionRefiller
+    current: 250
+    max: 250
+    recharge: 125 # TODO RMC14 auto-restock items as well if round is >= 20 minutes in
+    rechargeCooldown: 4
+    reagents:
+    - CMTricordrazine
+#    - CMTramadol # TODO RMC14
+    whitelist:
+      components:
+      - Hypospray
+  - type: CMAutomatedVendor
+    hackable: true
+    sections:
+    - name: Припасы
+      entries:
+      # - id: CMPainStopAutoinjector
+      #   amount: 2
+      - id: CMTricordrazineAutoInjectorNoSkill
+        amount: 2
+      - id: CMGauze10
+        amount: 4
+      - id: CMOintment10
+        amount: 4
+      # - id: CMMedicalSplints5
+      #   amount: 4
+    - name: Утилиты
+      entries:
+      - id: CMHealthAnalyzer
+        amount: 3
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: ActivatableUIBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: UserInterface
+    interfaces:
+      enum.CMAutomatedVendorUI.Key:
+        type: CMAutomatedVendorBui
+  - type: ActivatableUI
+    key: enum.CMAutomatedVendorUI.Key
+  - type: ActivatableUIRequiresAccess
+  - type: WallMount
+    arc: 360
+  - type: RMCMesonsNonviewable
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
-  parent: RMCExtinguisherCabinet
   id: STVehicleInteriorExtinguisherCabinet
-  suffix: ST, Filled
+  name: extinguisher cabinet
+  description: A small wall mounted cabinet designed to hold a fire extinguisher.
   placement:
     mode: PlaceFree
   components:
+  - type: Openable
+    openOnActivate: true
+    closeable: true
+    sound:
+      path: /Audio/Machines/machine_switch.ogg
+    closeSound:
+      path: /Audio/Machines/machine_switch.ogg
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: WallMount
+    arc: 360
+  - type: Clickable
+  - type: InteractionOutline
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/Interior/general.rsi
     layers:
-    - state: extinguisher_empty
-    - state: extinguisher_closed
-      map: ["enum.ItemCabinetVisuals.Layer"]
-      visible: true
-    - state: extinguisher_closed
-      map: ["enum.OpenableVisuals.Layer"]
+      - state: extinguisher_empty
+      - state: extinguisher_closed
+        map: ["enum.ItemCabinetVisuals.Layer"]
+        visible: true
+      - state: extinguisher_closed
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: ItemCabinet
+  - type: ItemSlots
+    slots:
+      ItemCabinet:
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - SpraySafety
+  - type: ContainerContainer
+    containers:
+      ItemCabinet: !type:ContainerSlot
   - type: ContainerFill
     containers:
       ItemCabinet:
-      - CMFireExtinguisher
+        - CMFireExtinguisher
   - type: GenericVisualizer
     visuals:
       enum.ItemCabinetVisuals.ContainsItem:
@@ -105,6 +203,10 @@
         enum.OpenableVisuals.Layer:
           True: { state: extinguisher }
           False: { state: extinguisher_closed }
+  - type: Appearance
+  - type: RMCMesonsNonviewable
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   parent: CMLockerBase
@@ -130,12 +232,10 @@
     stateDoorOpen: locker_open
     stateDoorClosed: locker
   - type: EntityStorage
-    capacity: 3 # IDK NOW
+    capacity: 3
     isCollidableWhenOpen: true
     enteringOffset: 0, -0.6
     enteringRange: 0.03
-    # IDK NOW whitelist:
-# IDK NOW  - type: RMCEntityStorageWhitelist
   - type: AccessReader
     access: [["RMCAccessSeniorCommand"]] # TODO TANK CREW ACCESS
   - type: RMCMesonsNonviewable
@@ -143,3 +243,9 @@
     blacklist:
       components:
       - Xeno
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Transform
+  - type: Corrodible
+    isCorrodible: false

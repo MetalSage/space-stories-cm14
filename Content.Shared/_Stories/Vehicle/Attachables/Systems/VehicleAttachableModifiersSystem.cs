@@ -1,3 +1,6 @@
+using System.Linq;
+using System.Numerics;
+using Content.Shared.FixedPoint;
 using Content.Shared._Stories.Attachables;
 using Content.Shared._Stories.Vehicle;
 using Content.Shared.Damage;
@@ -13,12 +16,13 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly VehicleAttachableHolderSystem _holder = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<VehicleMovementAttachableComponent, VehicleAttachableAlteredEvent>(OnMovementAttachableAltered);
         SubscribeLocalEvent<VehicleAttachableComponent, VehicleAttachableAlteredEvent>(OnHardpointAttachableAltered);
-        SubscribeLocalEvent<VehicleHardpointsMenuComponent, BoundUIOpenedEvent>(OnHardpointsUiOpened);
+        SubscribeLocalEvent<VehicleComponent, BoundUIOpenedEvent>(OnHardpointsUiOpened);
         SubscribeLocalEvent<VehicleAttachableComponent, DamageModifyEvent>(AttachableDamageModify);
         SubscribeLocalEvent<VehicleAttachableComponent, DamageChangedEvent>(OnAttachableDamaged);
     }
@@ -38,6 +42,9 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
 
     private void OnHardpointAttachableAltered(Entity<VehicleAttachableComponent> attachable, ref VehicleAttachableAlteredEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         if (!TryComp<VehicleComponent>(args.Holder, out var vehicle))
             return;
 
@@ -49,11 +56,13 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
             case VehicleAttachableAlteredType.Attached:
                 vehicle.Hardpoints.Add(attachable.Owner);
                 Dirty(args.Holder, vehicle);
+                UpdateVehicleStatusUI((args.Holder, vehicle));
                 break;
 
             case VehicleAttachableAlteredType.Detached:
                 vehicle.Hardpoints.Remove(attachable.Owner);
                 Dirty(args.Holder, vehicle);
+                UpdateVehicleStatusUI((args.Holder, vehicle));
                 break;
         }
 
@@ -61,13 +70,13 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
     }
 
     private void OnHardpointsUiOpened(EntityUid uid,
-        VehicleHardpointsMenuComponent component,
+        VehicleComponent component,
         BoundUIOpenedEvent args)
     {
         UpdateHardpointUi(uid);
     }
 
-    private void UpdateHardpointUi(EntityUid uid, VehicleHardpointsMenuComponent? component = null)
+    private void UpdateHardpointUi(EntityUid uid, VehicleComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
@@ -79,13 +88,12 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
     private void AttachableDamageModify(Entity<VehicleAttachableComponent> ent, ref DamageModifyEvent args)
     {
         args.Damage = args.Damage * ent.Comp.DamageMult;
-
         if (TryComp<DamageableComponent>(ent, out var damageable))
         {
             var maxHealth = ent.Comp.MaxHealth;
             var currentDamage = damageable.TotalDamage;
             var incomingDamage = args.Damage.GetTotal();
-
+            
             if (currentDamage >= maxHealth)
             {
                 args.Damage *= 0f;
@@ -94,11 +102,24 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
             {
                 var allowedDamage = maxHealth - currentDamage;
                 var factor = allowedDamage / incomingDamage;
-
                 var clampedDamage = new DamageSpecifier();
-                foreach (var kv in args.Damage.DamageDict)
-                    clampedDamage.DamageDict[kv.Key] = kv.Value * factor;
-
+                
+                FixedPoint2 accumulatedDamage = FixedPoint2.Zero;
+                var damageList = args.Damage.DamageDict.ToList();
+                
+                for (int i = 0; i < damageList.Count - 1; i++)
+                {
+                    var scaled = damageList[i].Value * factor;
+                    clampedDamage.DamageDict[damageList[i].Key] = scaled;
+                    accumulatedDamage += scaled;
+                }
+                
+                if (damageList.Count > 0)
+                {
+                    var lastKey = damageList[damageList.Count - 1].Key;
+                    clampedDamage.DamageDict[lastKey] = allowedDamage - accumulatedDamage;
+                }
+                
                 args.Damage = clampedDamage;
             }
         }
@@ -106,25 +127,38 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
 
     private void OnAttachableDamaged(Entity<VehicleAttachableComponent> ent, ref DamageChangedEvent args)
     {
+        if (_holder.TryGetHolder(ent.Owner, out var holder) && 
+            holder is not null && 
+            TryComp<VehicleComponent>(holder.Value, out var vehicle))
+        {
+            UpdateVehicleStatusUI((holder.Value, vehicle));
+        }
+
         if (args.Damageable.TotalDamage >= ent.Comp.MaxHealth)
         {
             ent.Comp.Destroyed = true;
             Dirty(ent);
 
-            if (!_holder.TryGetHolder(ent.Owner, out var holder) || holder is null)
+            if (!_holder.TryGetHolder(ent.Owner, out holder) || holder is null)
             {
                 var msg = Loc.GetString("st-destroyed-vehicle-attachable-deleted", ("attachable", ent.Owner));
-                _popup.PopupEntity(msg, ent, PopupType.Small);
+                _popup.PopupPredicted(msg, msg, ent, ent, PopupType.Small);
 
                 QueueDel(ent);
             }
 
-            if (holder is not null && TryComp<VehicleComponent>(holder.Value, out var vehicle))
+            if (holder is not null && TryComp<VehicleComponent>(holder.Value, out vehicle))
             {
                 vehicle.Hardpoints.Remove(ent.Owner);
                 Dirty(holder.Value, vehicle);
                 _movement.RefreshMovementSpeedModifiers(holder.Value);
+                UpdateVehicleStatusUI((holder.Value, vehicle));
             }
         }
+    }
+    private void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
+    {
+        var state = new VehicleStatusUIState();
+        _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
     }
 }

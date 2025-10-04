@@ -356,6 +356,8 @@
       - RMCDoorButton
       - OrbitalCannonFuel
       - OrbitalCannonWarhead
+      - Vehicle
+      - VehicleAttachable
       tags:
       - RMCDropshipEnginePoint
     range: 1.8

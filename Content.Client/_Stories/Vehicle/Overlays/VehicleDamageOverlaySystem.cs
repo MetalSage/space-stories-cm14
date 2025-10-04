@@ -30,16 +30,17 @@ public sealed class VehicleDamageOverlaySystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        UpdateOverlayDamage();
-    }
 
-    private void UpdateOverlayDamage()
-    {
         var player = _player.LocalEntity;
-        if (player == null || !TryComp<VehiclePilotComponent>(player, out var pilot))
+        if (player == null || !TryComp<VehiclePilotComponent>(player, out var pilot) || pilot.Vehicle == null)
+        {
+            if (_overlayMan.HasOverlay<VehicleDamageOverlay>())
+                _overlayMan.RemoveOverlay(_overlay);
             return;
-        if (pilot == null || pilot.Vehicle == null)
-            return;
+        }
+
+        if (pilot.DrawOverlay && !_overlayMan.HasOverlay<VehicleDamageOverlay>())
+            _overlayMan.AddOverlay(_overlay);
 
         var damageLevel = CalculateDamageLevel(pilot.Vehicle.Value);
         _overlay.UpdateDamage(damageLevel, (float)_timing.CurTime.TotalSeconds);
@@ -57,7 +58,6 @@ public sealed class VehicleDamageOverlaySystem : EntitySystem
         if (maxHealth <= 0)
             return 0f;
 
-        // damage as a percentage 0 = no damage 1 = gg
         var damageRatio = Math.Min(totalDamage / maxHealth, 1f);
 
         if (damageRatio < 0.2f)

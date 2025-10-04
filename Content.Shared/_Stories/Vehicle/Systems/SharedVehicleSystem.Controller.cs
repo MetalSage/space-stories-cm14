@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._RMC14.Synth;
 using Content.Shared._Stories.Attachables;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
@@ -9,8 +10,8 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Stunnable;
-
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -24,11 +25,10 @@ public sealed partial class SharedVehicleSystem
         SubscribeLocalEvent<VehiclePilotSeatComponent, UnstrappedEvent>(OnSeatUnstrapped);
         SubscribeLocalEvent<VehiclePilotSeatComponent, StrapAttemptEvent>(OnStrapAttempt);
 
-        SubscribeLocalEvent<VehicleControllerComponent, StrapAttemptEvent>(OnStrapAttempt);
+        SubscribeLocalEvent<VehicleControllerComponent, StrapAttemptEvent>(OnControllerStrapAttempt);
         SubscribeLocalEvent<VehicleControllerComponent, MapInitEvent>(OnControllerInit);
         SubscribeLocalEvent<VehicleControllerComponent, ComponentShutdown>(OnControllerShutdown);
         SubscribeLocalEvent<VehicleControllerComponent, UnstrappedEvent>(OnControllerUnstrapped);
-
         SubscribeLocalEvent<VehicleControllerComponent, StrappedEvent>(OnVehicleControllerStrapped);
 
         SubscribeLocalEvent<VehiclePilotComponent, MindRemovedMessage>(OnMindRemoved);
@@ -86,32 +86,35 @@ public sealed partial class SharedVehicleSystem
 
     private void OnStrapAttempt(Entity<VehiclePilotSeatComponent> seat, ref StrapAttemptEvent args)
     {
-        if (seat.Comp.Vehicle == null)
-            return;
-
-        if (!IsConscious(args.Buckle, seat.Comp.Skills, out _))
+        if (seat.Comp.IsGunner && HasComp<SynthComponent>(args.Buckle))
         {
-            _popup.PopupEntity(
-                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle.Value)),
-                args.Buckle
-            );
+            _popup.PopupEntity(Loc.GetString("Your programming does not allow you to use heavy weaponry."), args.Buckle);
             args.Cancelled = true;
+            return;
         }
+
+        if (!TryValidateStrap(args.Buckle, seat.Comp.Vehicle, seat.Comp.Skills))
+            args.Cancelled = true;
     }
 
-    private void OnStrapAttempt(Entity<VehicleControllerComponent> seat, ref StrapAttemptEvent args)
+    private void OnControllerStrapAttempt(Entity<VehicleControllerComponent> controller, ref StrapAttemptEvent args)
     {
-        if (seat.Comp.Vehicle == null)
-            return;
-
-        if (!IsConscious(args.Buckle, seat.Comp.Skills, out _))
-        {
-            _popup.PopupEntity(
-                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle.Value)),
-                args.Buckle
-            );
+        if (!TryValidateStrap(args.Buckle, controller.Comp.Vehicle, controller.Comp.Skills))
             args.Cancelled = true;
+    }
+
+    private bool TryValidateStrap(EntityUid buckle, EntityUid? vehicle, Dictionary<EntProtoId<SkillDefinitionComponent>, int> skills)
+    {
+        if (vehicle == null)
+            return true;
+
+        if (!IsConscious(buckle, skills, out _))
+        {
+            _popup.PopupEntity(Loc.GetString("rmc-skills-cant-operate", ("target", vehicle.Value)), buckle);
+            return false;
         }
+
+        return true;
     }
 
     private void OnPilotSeatStrapped(Entity<VehiclePilotSeatComponent> seat, ref StrappedEvent args)
@@ -132,10 +135,14 @@ public sealed partial class SharedVehicleSystem
         pilot.Vehicle = seat.Comp.Vehicle;
         seat.Comp.Pilot = args.Buckle;
 
+        pilot.StoredZoom = eye.Zoom;
+
+        _contentEye.SetZoom(args.Buckle, pilot.StoredZoom * seat.Comp.Zoom, true);
+
         if (seat.Comp.IsGunner)
             SetupGunnerSeat(seat, (args.Buckle, pilot), eye);
         else
-            SetupPilotSeat(seat, args.Buckle, eye);
+            SetupPilotSeat(seat, (args.Buckle, pilot), eye);
     }
 
     private void SetupGunnerSeat(Entity<VehiclePilotSeatComponent> seat,
@@ -143,8 +150,7 @@ public sealed partial class SharedVehicleSystem
     {
         _eye.SetTarget(pilot, seat.Comp.Vehicle, eye);
 
-        if (seat.Comp.Action is { } gunnerAction)
-            pilot.Comp.ActionEntity = _actions.AddAction(pilot.Owner, gunnerAction);
+        AddActions(pilot, seat.Comp.ActionIds);
 
         if (TryComp<VehicleComponent>(seat.Comp.Vehicle, out var vehicle) &&
             vehicle.ActiveHardpoint is { } hardpoint &&
@@ -157,19 +163,24 @@ public sealed partial class SharedVehicleSystem
             if (TryComp<VehicleGunComponent>(hardpoint, out var gun))
             {
                 gun.User = pilot.Owner;
+                pilot.Comp.Gun = hardpoint;
                 Dirty(hardpoint, gun);
+                Dirty(pilot);
             }
         }
         else
         {
-            _popup.PopupCursor("Для начала выберите точку крепления", pilot);
+            _popup.PopupCursor(Loc.GetString("st-vehicle-select-hardpoint"), pilot);
         }
     }
 
-    private void SetupPilotSeat(Entity<VehiclePilotSeatComponent> seat, EntityUid pilotUid, EyeComponent eye)
+    private void SetupPilotSeat(Entity<VehiclePilotSeatComponent> seat,
+        Entity<VehiclePilotComponent> pilot, EyeComponent eye)
     {
-        _eye.SetTarget(pilotUid, seat.Comp.Vehicle, eye);
-        _mover.SetRelay(pilotUid, seat.Comp.Vehicle!.Value);
+        _eye.SetTarget(pilot, seat.Comp.Vehicle, eye);
+        _mover.SetRelay(pilot, seat.Comp.Vehicle!.Value);
+
+        AddActions(pilot, seat.Comp.ActionIds);
     }
 
     private void OnVehicleControllerStrapped(Entity<VehicleControllerComponent> seat, ref StrappedEvent args)
@@ -199,19 +210,39 @@ public sealed partial class SharedVehicleSystem
         _interaction.SetRelay(args.Buckle, controllable, relay);
         _mover.SetRelay(args.Buckle, controllable);
 
-        if (seat.Comp.Action is { } reloadAction &&
-            HasComp<VehiclePilotComponent>(args.Buckle))
-        {
-            pilot.ActionEntity = _actions.AddAction(args.Buckle, reloadAction);
-        }
+        AddActions((args.Buckle, pilot), seat.Comp.ActionIds);
 
         if (TryComp<VehicleGunComponent>(controllable, out var gun))
         {
             gun.User = pilot.Owner;
+            pilot.Gun = controllable;
             Dirty(controllable, gun);
-            // не работает. Хз почему. Потом гляну
+            Dirty(args.Buckle, pilot);
+            Logger.Debug($"{controllable}, {gun.User}, {pilot.Gun}");
         }
+    }
 
+    private void AddActions(Entity<VehiclePilotComponent> pilot, List<EntProtoId> actionIds)
+    {
+        foreach (var actionId in actionIds)
+        {
+            var actionEntity = _actions.AddAction(pilot, actionId);
+            if (actionEntity != null)
+            {
+                pilot.Comp.Actions[actionId] = actionEntity.Value;
+
+                if (_actions.GetEvent(actionEntity.Value) is VehicleLockDoorsEvent && 
+                    TryComp<VehicleComponent>(pilot.Comp.Vehicle, out var vehicle))
+                {
+                    var icon = vehicle.Locked
+                        ? new SpriteSpecifier.Rsi(new ResPath("/Textures/_Stories/Actions/vehicle_actions.rsi"), "door_locked")
+                        : new SpriteSpecifier.Rsi(new ResPath("/Textures/_Stories/Actions/vehicle_actions.rsi"), "door_unlocked");
+
+                    _actions.SetIcon(actionEntity.Value, icon);
+    
+                }
+            }
+        }
     }
 
     public bool IsConscious(EntityUid pilot, Dictionary<EntProtoId<SkillDefinitionComponent>, int> skills,
@@ -249,8 +280,15 @@ public sealed partial class SharedVehicleSystem
     {
         _eye.SetTarget(target, null);
 
-        if (TryComp<VehiclePilotComponent>(target, out var pilot) && pilot.ActionEntity is { } action)
-            _actions.RemoveAction(target, action);
+        if (TryComp<VehiclePilotComponent>(target, out var pilot))
+        {
+            _contentEye.SetZoom(target, pilot.StoredZoom, true);
+
+            foreach (var (_, action) in pilot.Actions)
+            {
+                _actions.RemoveAction(target, action);
+            }
+        }
 
         RemCompDeferred<VehiclePilotComponent>(target);
         RemCompDeferred<RelayInputMoverComponent>(target);

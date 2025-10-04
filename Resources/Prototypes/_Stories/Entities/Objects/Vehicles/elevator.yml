@@ -108,6 +108,8 @@
   - type: CargoSellBlacklist
   - type: WarpPoint
     location: the vehicle pit
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   parent: CMBaseStructureCorrodible
@@ -143,6 +145,8 @@
     mode: Raised
   - type: CargoSellBlacklist
   - type: RMCMesonsNonviewable
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   id: STVehicleRequisitionGear
@@ -162,3 +166,5 @@
       map: [ "enum.RequisitionsGearLayers.Base" ]
   - type: VehicleRequisitionsGear
   - type: CargoSellBlacklist
+  - type: Corrodible
+    isCorrodible: false

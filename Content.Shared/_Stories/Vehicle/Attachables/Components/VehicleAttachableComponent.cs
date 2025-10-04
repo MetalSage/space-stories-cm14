@@ -45,4 +45,6 @@ public sealed partial class VehicleAttachableComponent : Component
     [DataField, AutoNetworkedField]
     public bool Destroyed;
 
+    [DataField, AutoNetworkedField]
+    public bool Ignored;
 }

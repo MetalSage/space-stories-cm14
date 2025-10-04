@@ -36,35 +36,6 @@ public sealed class VehicleSystem : EntitySystem
         SubscribeLocalEvent<ActivateExpendableLightOnShootComponent, AmmoShotEvent>(ActivateExpendableLightOnShot);
         SubscribeLocalEvent<MotionDetectorComponent, AfterInteractEvent>(OnMotionDetectorInteract);
         SubscribeLocalEvent<MotionDetectorComponent, MotionDetectorScanDoAfterEvent>(OnMotionDetectorScanFinished);
-
-        SubscribeLocalEvent<VehicleWeaponLoaderComponent, BoundUIOpenedEvent>(OnWeaponLoaderUIOpened);
-    }
-
-    private void OnWeaponLoaderUIOpened(Entity<VehicleWeaponLoaderComponent> loader, ref BoundUIOpenedEvent args)
-    {
-        if (!TryComp<TransformComponent>(loader.Owner, out var xform))
-            return;
-
-        if (!TryComp<VehicleGridComponent>(xform.GridUid, out var vehicleGrid))
-            return;
-
-        if (!TryGetEntity(vehicleGrid.Vehicle, out var vehicleUid) ||
-            !TryComp<VehicleComponent>(vehicleUid, out var vehicle))
-            return;
-
-        var hardpoints = new List<NetEntity>();
-        foreach (var hardpoint in vehicle.Hardpoints)
-        {
-            if (HasComp<VehicleGunComponent>(hardpoint))
-                hardpoints.Add(GetNetEntity(hardpoint));
-        }
-
-        var state = new VehicleWeaponLoaderWindowState(
-            hardpoints,
-            loader.Comp.SelectedHardpoint != null ? GetNetEntity(loader.Comp.SelectedHardpoint.Value) : null
-        );
-
-        _ui.SetUiState(loader.Owner, VehicleWeaponLoaderUI.Key, state);
     }
 
     private void ActivateExpendableLightOnShot(Entity<ActivateExpendableLightOnShootComponent> ent, ref AmmoShotEvent args)

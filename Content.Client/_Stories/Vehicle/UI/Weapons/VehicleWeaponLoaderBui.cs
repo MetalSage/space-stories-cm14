@@ -2,7 +2,6 @@ using Content.Shared._Stories.Vehicle;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Maths;
-using Robust.Shared.Utility;
 
 namespace Content.Client._Stories.Vehicle.UI.Weapons;
 
@@ -10,8 +9,7 @@ namespace Content.Client._Stories.Vehicle.UI.Weapons;
 public sealed class VehicleWeaponLoaderBui : BoundUserInterface
 {
     private VehicleWeaponLoaderWindow? _window;
-    private EntityUid? _selectedHardpoint;
-    private readonly Dictionary<Button, EntityUid> _buttonToHardpoint = new();
+    private readonly Dictionary<Button, NetEntity> _buttonToHardpoint = new();
 
     public VehicleWeaponLoaderBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -23,23 +21,19 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
         _window = new VehicleWeaponLoaderWindow();
         _window.OnClose += Close;
         _window.OpenCentered();
-        PopulateHardpoints();
     }
 
-    private VehicleComponent? GetVehicleComponent()
+    protected override void UpdateState(BoundUserInterfaceState state)
     {
-        if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform) &&
-            xform.GridUid.HasValue &&
-            EntMan.TryGetComponent<VehicleGridComponent>(xform.GridUid.Value, out var vehicleGrid) &&
-            EntMan.TryGetComponent(EntMan.GetEntity(vehicleGrid.Vehicle), out VehicleComponent? vehicle))
-        {
-            return vehicle;
-        }
+        base.UpdateState(state);
+        
+        if (state is not VehicleWeaponLoaderWindowState loaderState)
+            return;
 
-        return null;
+        PopulateHardpoints(loaderState);
     }
 
-    private void PopulateHardpoints()
+    private void PopulateHardpoints(VehicleWeaponLoaderWindowState state)
     {
         if (_window == null)
             return;
@@ -47,77 +41,59 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
         _window.HardpointsContainer.DisposeAllChildren();
         _buttonToHardpoint.Clear();
 
-        var vehicle = GetVehicleComponent();
-        if (vehicle == null || vehicle.Hardpoints.Count == 0)
+        if (state.Hardpoints.Count == 0)
         {
-            _window.HardpointsContainer.AddChild(new Label { Text = "Нет доступных орудий" });
+            _window.HardpointsContainer.AddChild(new Label { Text = "No available weapons" });
             return;
         }
 
-        foreach (var hardpoint in vehicle.Hardpoints)
+        foreach (var hardpointInfo in state.Hardpoints)
         {
-            if (!EntMan.EntityExists(hardpoint))
+            if (EntMan.TryGetComponent<VehicleAttachableComponent>(EntMan.GetEntity(hardpointInfo.Entity), 
+                out var attachable) && 
+                attachable.Ignored)
                 continue;
 
-            if (!EntMan.TryGetComponent<VehicleGunComponent>(hardpoint, out var gun))
-                continue;
-
-            var metaData = EntMan.GetComponent<MetaDataComponent>(hardpoint);
-            var spareCount = gun.SpareMagazinesContainer?.ContainedEntities.Count ?? 0;
-            var hasActiveMag = gun.ActiveMagazineContainer?.ContainedEntity != null;
-
-            var statusText = hasActiveMag ? "✓" : "✗";
-            var buttonText = $"{metaData.EntityName} [{statusText}] ({spareCount}/{gun.MaxSpareMagazines})";
-
-            var button = new Button
+            var container = new BoxContainer
             {
-                Text = buttonText,
+                Orientation = BoxContainer.LayoutOrientation.Vertical,
                 HorizontalExpand = true,
                 Margin = new Thickness(2)
             };
 
-            _buttonToHardpoint[button] = hardpoint;
+            var statusText = hardpointInfo.HasActiveMagazine ? "✓" : "✗";
+            var ammoInfo = hardpointInfo.HasActiveMagazine 
+                ? $" | Ammo: {hardpointInfo.CurrentAmmo}/{hardpointInfo.MaxAmmo}" 
+                : "";
+
+            var buttonText = $"{hardpointInfo.Name} [{statusText}]{ammoInfo}";
+
+            var button = new Button
+            {
+                Text = buttonText,
+                HorizontalExpand = true
+            };
+
+            var spareInfo = new Label
+            {
+                Text = $"   Spare magazines: {hardpointInfo.SpareCount}/{hardpointInfo.MaxSpares}",
+                StyleClasses = { "LabelSubText" },
+                FontColorOverride = Color.Gray
+            };
+
+            _buttonToHardpoint[button] = hardpointInfo.Entity;
 
             button.OnPressed += _ =>
             {
-                _selectedHardpoint = hardpoint;
-                UpdateButtons();
-                SendMessage(new VehicleWeaponLoaderSelectHardpointMsg(EntMan.GetNetEntity(hardpoint)));
+                SendMessage(new VehicleWeaponLoaderSelectHardpointMsg(hardpointInfo.Entity));
             };
 
-            _window.HardpointsContainer.AddChild(button);
-        }
+            button.Disabled = hardpointInfo.SpareCount == 0;
 
-        UpdateButtons();
-    }
+            container.AddChild(button);
+            container.AddChild(spareInfo);
 
-    private void UpdateButtons()
-    {
-        foreach (var kvp in _buttonToHardpoint)
-        {
-            var button = kvp.Key;
-            var hardpoint = kvp.Value;
-
-            if (_selectedHardpoint == hardpoint)
-            {
-                button.ModulateSelfOverride = Color.LightGreen;
-            }
-            else
-            {
-                button.ModulateSelfOverride = null;
-            }
-        }
-    }
-
-    protected override void UpdateState(BoundUserInterfaceState state)
-    {
-        base.UpdateState(state);
-        if (_window != null && state is VehicleWeaponLoaderWindowState loaderState)
-        {
-            _selectedHardpoint = loaderState.SelectedHardpoint != null
-                ? EntMan.GetEntity(loaderState.SelectedHardpoint.Value)
-                : null;
-            PopulateHardpoints();
+            _window.HardpointsContainer.AddChild(container);
         }
     }
 

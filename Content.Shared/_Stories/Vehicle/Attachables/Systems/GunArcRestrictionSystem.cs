@@ -66,10 +66,10 @@ public sealed class GunArcRestrictionSystem : EntitySystem
         var diff = to - from;
 
         while (diff.Theta > Math.PI)
-            diff -= 2 * Math.PI; // implicit conversion
+            diff -= 2 * Math.PI;
 
         while (diff.Theta < -Math.PI)
-            diff += 2 * Math.PI; // implicit conversion
+            diff += 2 * Math.PI;
 
         return diff;
     }

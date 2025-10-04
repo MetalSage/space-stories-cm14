@@ -16,6 +16,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Shared._Stories.Vehicle;
 
 namespace Content.Shared._Stories.Attachables;
 
@@ -333,7 +334,12 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
             userUid);
 
         Dirty(holder);
-        _hands.TryPickupAnyHand(userUid, attachableUid);
+
+        if (TryComp<VehicleComponent>(holder, out var vehicle))
+        {
+            vehicle.ActiveHardpoint = null;
+            Dirty(holder.Owner, vehicle);
+        }
 
         if (attachableComp.Destroyed)
         {
@@ -344,6 +350,7 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
             return true;
         }
 
+        _hands.TryPickupAnyHand(userUid, attachableUid);
         return true;
     }
 

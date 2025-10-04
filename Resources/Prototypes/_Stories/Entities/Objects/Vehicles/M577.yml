@@ -55,14 +55,18 @@
         type: VehicleSelectHardpointBui
         interactionRange: 0
         requireInputValidation: true
+      enum.VehicleStatusUI.Key:
+        type: VehicleStatusBui
+        interactionRange: 0
+        requireInputValidation: true
   - type: NoRotateOnInteract
   - type: Vehicle
-    gridPath: "/Maps/_Stories/hahahaa_apc_vehicle_pjb_lol_lmao_kekw_super_ultra_hd_btr_metalsage_1984_148F.yml"
+    gridPath: "/Maps/_Stories/Vehicles/M577.yml"
     maxHealth: 1000
     movementSlot: vehicle-slot-treads
     damageMults:
       Heat: 1.6
-      Slash: 1
+      Slash: 0.8
       Piercing: 0.6
       Blunt: 0.7
     passengerSlots:
@@ -92,13 +96,12 @@
 #          current: 0
 #          max: 1
   - type: ExplosionResistance
-    DamageCoefficient: 0.7
-    Worn: false
-    Examine: "explosion-resistance-coefficient-value"
+    damageCoefficient: 0.7
+    worn: false
   - type: VehicleAttachableHolder
     slots:
       vehicle-slot-treads:
-        startingAttachables: [STMarineVehicleWheelsBase]
+        startingAttachables: [STMarineVehicleM577Wheels]
         hardpointType: HDPT_TREADS
       vehicle-slot-support:
         startingAttachables: [STMarineVehicleFlareLauncher]
@@ -118,7 +121,6 @@
   - type: VehicleAttachableHolderVisuals
     rsi: _Stories/Mobs/Vehicles/base_apc.rsi
     damagedState: damaged_frame
-  - type: VehicleHardpointsMenu
   - type: NpcFactionMember
     factions:
     - UNMC
@@ -135,3 +137,16 @@
     toolSoundThresholds:
       Welding: /Audio/Items/welder.ogg
       Anchoring: /Audio/Items/ratchet.ogg
+  - type: MovementIgnoreGravity 
+  - type: PointLight
+    energy: 2
+    softness: 2
+    radius: 5
+  - type: RMCCamera
+    id: STVehicleInteriorCamera
+    rename: false
+  - type: RMCStaticZoomLevel
+  - type: Eye
+    drawFov: false
+  - type: Corrodible
+    isCorrodible: false
