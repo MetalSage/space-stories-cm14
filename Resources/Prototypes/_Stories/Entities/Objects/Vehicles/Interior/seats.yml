@@ -18,6 +18,8 @@
     actionIds:
     - STVehicleVehicleStatusAction
     - STVehicleLockDoorsAction
+    skills:
+      RMCSkillVehicles: 2
 
 - type: entity
   parent: STVehicleBaseSeat
@@ -34,6 +36,8 @@
     actionIds:
     - STVehicleVehicleStatusAction
     - STVehicleSelectHardpointAction
+    skills:
+      RMCSkillVehicles: 2
 
 - type: entity
   parent: STVehicleBaseSeat
@@ -47,7 +51,6 @@
     id: FiringPortWeaponOne
     actionIds:
     - STVehicleReloadSpecialAction
-    - STVehicleVehicleStatusAction
 
 - type: entity
   parent: STVehicleBaseSeat
@@ -61,4 +64,3 @@
     id: FiringPortWeaponTwo
     actionIds:
     - STVehicleReloadSpecialAction
-    - STVehicleVehicleStatusAction

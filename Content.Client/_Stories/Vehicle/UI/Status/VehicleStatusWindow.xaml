@@ -84,9 +84,6 @@
                         <BoxContainer Name="PassengersContentContainer" Access="Public" 
                                     Orientation="Vertical" Margin="6 4 4 4" 
                                     Visible="False">
-                            <Label Name="TotalPassengersLabel" Access="Public" 
-                                   StyleClasses="LabelSubHeading"
-                                   Margin="4 2"/>
                             <BoxContainer Name="PassengerCategoriesContainer" Access="Public" 
                                         Orientation="Vertical"
                                         Margin="4 2"/>

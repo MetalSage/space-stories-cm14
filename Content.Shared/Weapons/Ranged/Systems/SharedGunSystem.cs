@@ -7,6 +7,8 @@ using Content.Shared._RMC14.Random;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.Flamer;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
+using Content.Shared._Stories.Vehicle;
+using Content.Shared._Stories.Attachables;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
@@ -51,8 +53,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared._Stories.Vehicle;
-using Content.Shared._Stories.Attachables;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -192,17 +192,17 @@ public abstract partial class SharedGunSystem : EntitySystem
         gunEntity = default;
         gunComp = null;
 
-        // Stories-APC-Gun-Content-Start
+        // Stories-Vehicle-Gun-Content-Start
         if (TryComp<VehiclePilotComponent>(entity, out var pilot) &&
-            TryComp<VehicleComponent>(pilot.Vehicle, out var vehicle) &&
-            vehicle.ActiveHardpoint is { } hardpoint &&
-            TryComp<GunComponent>(hardpoint, out var hardpointGunComp))
+            HasComp<VehicleComponent>(pilot.Vehicle) &&
+            pilot.Gun is { } vehGun &&
+            TryComp<GunComponent>(vehGun, out var vehGunComp))
         {
-            gunEntity = hardpoint;
-            gunComp = hardpointGunComp;
+            gunEntity = vehGun;
+            gunComp = vehGunComp;
             return true;
         }
-        // Stories-APC-Gun-Content-End
+        // Stories-Vehicle-Gun-Content-End
 
         if (Hands.GetActiveItem(entity) is { } held &&
             TryComp(held, out GunComponent? gun))
@@ -411,12 +411,14 @@ public abstract partial class SharedGunSystem : EntitySystem
             // If they're firing an existing clip then don't play anything.
             if (shots > 0)
             {
-                PopupSystem.PopupCursor(ev.Reason ?? Loc.GetString("gun-magazine-fired-empty"));
+                // STORIES | Prediction kicked my ass, so I whipped this up. Catch me later when Im not clueless
+                if (!HasComp<VehicleGunComponent>(gunUid))
+                {
+                    PopupSystem.PopupCursor(ev.Reason ?? Loc.GetString("gun-magazine-fired-empty"));
+                    gun.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.NextFire.TotalSeconds));
+                    Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
+                }
 
-                // Don't spam safety sounds at gun fire rate, play it at a reduced rate.
-                // May cause prediction issues? Needs more tweaking
-                gun.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.NextFire.TotalSeconds));
-                Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
                 return null;
             }
 

@@ -2,12 +2,12 @@
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client._Stories.Requisitions;
+namespace Content.Client._Stories.VehicleElevator;
 
 [GenerateTypedNameReferences]
-public sealed partial class VehicleRequisitionsWindow : DefaultWindow
+public sealed partial class VehicleElevatorWindow : DefaultWindow
 {
-    public VehicleRequisitionsWindow()
+    public VehicleElevatorWindow()
     {
         RobustXamlLoader.Load(this);
     }

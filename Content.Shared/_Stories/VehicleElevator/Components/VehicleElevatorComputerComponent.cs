@@ -1,11 +1,11 @@
 ﻿using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Stories.Requisitions.Components;
+namespace Content.Shared._Stories.VehicleElevator.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedVehicleRequisitionsSystem))]
-public sealed partial class VehicleRequisitionsComputerComponent : Component
+[Access(typeof(SharedVehicleElevatorSystem))]
+public sealed partial class VehicleElevatorComputerComponent : Component
 {
     [DataField]
     public EntityUid? Platform;

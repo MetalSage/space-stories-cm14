@@ -57,6 +57,8 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
                 vehicle.Hardpoints.Add(attachable.Owner);
                 Dirty(args.Holder, vehicle);
                 UpdateVehicleStatusUI((args.Holder, vehicle));
+                if (HasComp<VehicleControllableComponent>(attachable.Owner))
+                    HandleControllerSeats(vehicle, args.Holder);
                 break;
 
             case VehicleAttachableAlteredType.Detached:
@@ -76,13 +78,31 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
         UpdateHardpointUi(uid);
     }
 
-    private void UpdateHardpointUi(EntityUid uid, VehicleComponent? component = null)
+    private void HandleControllerSeats(VehicleComponent vehicle, EntityUid grid)
     {
-        if (!Resolve(uid, ref component))
-            return;
+        var controllersQuery = EntityQueryEnumerator<VehicleControllerComponent, TransformComponent>();
+        while (controllersQuery.MoveNext(out var uid, out var comp, out var xform))
+        {
+            if (xform.GridUid != grid)
+                continue;
 
-        var state = new VehicleHardpointWindowUserInterfaceState();
-        _ui.SetUiState(uid, VehicleSelectHardpointUI.Key, state);
+            comp.Vehicle = grid;
+
+            foreach (var hardpoint in vehicle.Hardpoints)
+            {
+                if (!TryComp<VehicleControllableComponent>(hardpoint, out var controllable))
+                    continue;
+
+                if (controllable.Id == comp.Id)
+                {
+                    comp.ControllableEntity = hardpoint;
+                    Dirty(uid, comp);
+                    break;
+                }
+            }
+
+            Dirty(uid, comp);
+        }
     }
 
     private void AttachableDamageModify(Entity<VehicleAttachableComponent> ent, ref DamageModifyEvent args)
@@ -156,9 +176,19 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
             }
         }
     }
+
     private void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
     {
         var state = new VehicleStatusUIState();
         _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
+    }
+
+    private void UpdateHardpointUi(EntityUid uid, VehicleComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        var state = new VehicleHardpointWindowUserInterfaceState();
+        _ui.SetUiState(uid, VehicleSelectHardpointUI.Key, state);
     }
 }

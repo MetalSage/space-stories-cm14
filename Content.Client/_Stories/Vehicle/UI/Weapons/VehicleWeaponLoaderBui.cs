@@ -1,4 +1,5 @@
 using Content.Shared._Stories.Vehicle;
+using Content.Shared._Stories.Attachables;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Maths;

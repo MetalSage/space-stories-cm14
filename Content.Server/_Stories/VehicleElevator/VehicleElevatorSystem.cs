@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using Content.Server.Administration.Logs;
-using Content.Shared._Stories.Requisitions;
-using Content.Shared._Stories.Requisitions.Components;
+using Content.Shared._Stories.VehicleElevator;
+using Content.Shared._Stories.VehicleElevator.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.UserInterface;
@@ -15,7 +15,7 @@ using Content.Shared._RMC14.Requisitions.Components;
 
 namespace Content.Server._Stories.VehicleRequisitions;
 
-public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisitionsSystem
+public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
 {
     [Dependency] private readonly IAdminLogManager _adminLogs = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
@@ -30,27 +30,27 @@ public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisition
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VehicleRequisitionsComputerComponent, MapInitEvent>(OnComputerMapInit);
-        SubscribeLocalEvent<VehicleRequisitionsComputerComponent, BeforeActivatableUIOpenEvent>(OnComputerBeforeActivatableUIOpen);
+        SubscribeLocalEvent<VehicleElevatorComputerComponent, MapInitEvent>(OnComputerMapInit);
+        SubscribeLocalEvent<VehicleElevatorComputerComponent, BeforeActivatableUIOpenEvent>(OnComputerBeforeActivatableUIOpen);
 
-        Subs.BuiEvents<VehicleRequisitionsComputerComponent>(VehicleRequisitionsUIKey.Key, subs =>
+        Subs.BuiEvents<VehicleElevatorComputerComponent>(VehicleElevatorUIKey.Key, subs =>
         {
-            subs.Event<VehicleRequisitionsBuyMsg>(OnBuy);
-            subs.Event<VehicleRequisitionsPlatformMsg>(OnPlatform);
+            subs.Event<VehicleElevatorBuyMsg>(OnBuy);
+            subs.Event<VehicleElevatorPlatformMsg>(OnPlatform);
         });
     }
 
-    private void OnComputerMapInit(Entity<VehicleRequisitionsComputerComponent> computer, ref MapInitEvent args)
+    private void OnComputerMapInit(Entity<VehicleElevatorComputerComponent> computer, ref MapInitEvent args)
     {
         SendUIState(computer);
     }
 
-    private void OnComputerBeforeActivatableUIOpen(Entity<VehicleRequisitionsComputerComponent> computer, ref BeforeActivatableUIOpenEvent args)
+    private void OnComputerBeforeActivatableUIOpen(Entity<VehicleElevatorComputerComponent> computer, ref BeforeActivatableUIOpenEvent args)
     {
         SendUIState(computer);
     }
 
-    private void OnBuy(Entity<VehicleRequisitionsComputerComponent> computer, ref VehicleRequisitionsBuyMsg args)
+    private void OnBuy(Entity<VehicleElevatorComputerComponent> computer, ref VehicleElevatorBuyMsg args)
     {
         var actor = args.Actor;
         
@@ -85,7 +85,7 @@ public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisition
         _adminLogs.Add(LogType.RMCRequisitionsBuy, $"{ToPrettyString(args.Actor):actor} ordered vehicle requisitions item {args.Order}");
     }
 
-    private void OnPlatform(Entity<VehicleRequisitionsComputerComponent> computer, ref VehicleRequisitionsPlatformMsg args)
+    private void OnPlatform(Entity<VehicleElevatorComputerComponent> computer, ref VehicleElevatorPlatformMsg args)
     {
         if (computer.Comp.UsedOnce)
             return;
@@ -122,20 +122,20 @@ public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisition
         Dirty(elevator);
     }
 
-    private void UpdateRailings(Entity<VehicleRequisitionsElevatorComponent> elevator, RequisitionsRailingMode mode)
+    private void UpdateRailings(Entity<VehicleElevatorComponent> elevator, RequisitionsRailingMode mode)
     {
         var coordinates = _transform.GetMapCoordinates(elevator);
-        var railings = _lookup.GetEntitiesInRange<VehicleRequisitionsRailingComponent>(coordinates, elevator.Comp.Radius + 5);
+        var railings = _lookup.GetEntitiesInRange<VehicleElevatorRailingComponent>(coordinates, elevator.Comp.Radius + 5);
         foreach (var railing in railings)
         {
             SetRailingMode(railing, mode);
         }
     }
 
-    private void UpdateGears(Entity<VehicleRequisitionsElevatorComponent> elevator, RequisitionsGearMode mode)
+    private void UpdateGears(Entity<VehicleElevatorComponent> elevator, RequisitionsGearMode mode)
     {
         var coordinates = _transform.GetMapCoordinates(elevator);
-        var railings = _lookup.GetEntitiesInRange<VehicleRequisitionsGearComponent>(coordinates, elevator.Comp.Radius + 5);
+        var railings = _lookup.GetEntitiesInRange<VehicleElevatorGearComponent>(coordinates, elevator.Comp.Radius + 5);
         foreach (var railing in railings)
         {
             if (railing.Comp.Mode == mode)
@@ -146,7 +146,7 @@ public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisition
         }
     }
 
-    private void TryPlayAudio(Entity<VehicleRequisitionsElevatorComponent> elevator)
+    private void TryPlayAudio(Entity<VehicleElevatorComponent> elevator)
     {
         var comp = elevator.Comp;
         if (comp.Audio != null)
@@ -171,7 +171,7 @@ public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisition
         }
     }
 
-    private void SetMode(Entity<VehicleRequisitionsElevatorComponent> elevator, RequisitionsElevatorMode mode, RequisitionsElevatorMode? nextMode)
+    private void SetMode(Entity<VehicleElevatorComponent> elevator, RequisitionsElevatorMode mode, RequisitionsElevatorMode? nextMode)
     {
         elevator.Comp.Mode = mode;
         elevator.Comp.NextMode = nextMode;
@@ -201,7 +201,7 @@ public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisition
         SendUIStateAll();
     }
 
-    private void SpawnOrder(Entity<VehicleRequisitionsElevatorComponent> elevator)
+    private void SpawnOrder(Entity<VehicleElevatorComponent> elevator)
     {
         var comp = elevator.Comp;
         if (comp.Mode == Raised && comp.CurrentOrder != null)
@@ -220,7 +220,7 @@ public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisition
 
         var time = _timing.CurTime;
         var updateUI = false;
-        var elevators = EntityQueryEnumerator<VehicleRequisitionsElevatorComponent>();
+        var elevators = EntityQueryEnumerator<VehicleElevatorComponent>();
         while (elevators.MoveNext(out var uid, out var elevator))
         {
             if (ProcessElevator((uid, elevator)))
@@ -231,7 +231,7 @@ public sealed partial class VehicleRequisitionsSystem : SharedVehicleRequisition
             SendUIStateAll();
     }
 
-    private bool ProcessElevator(Entity<VehicleRequisitionsElevatorComponent> ent)
+    private bool ProcessElevator(Entity<VehicleElevatorComponent> ent)
     {
         var time = _timing.CurTime;
         var elevator = ent.Comp;

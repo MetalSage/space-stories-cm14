@@ -58,6 +58,7 @@ public sealed partial class SharedVehicleSystem
                 break;
             }
         }
+        Dirty(controller);
     }
 
     private void OnSeatShutdown(Entity<VehiclePilotSeatComponent> seat, ref ComponentShutdown args)
@@ -218,7 +219,6 @@ public sealed partial class SharedVehicleSystem
             pilot.Gun = controllable;
             Dirty(controllable, gun);
             Dirty(args.Buckle, pilot);
-            Logger.Debug($"{controllable}, {gun.User}, {pilot.Gun}");
         }
     }
 

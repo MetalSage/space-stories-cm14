@@ -27,5 +27,8 @@ public sealed partial class VehicleRepairableComponent : Component
     public Dictionary<ProtoId<ToolQualityPrototype>, SoundSpecifier>? ToolSoundThresholds = new();
 
     [DataField, AutoNetworkedField]
+    public Dictionary<ProtoId<ToolQualityPrototype>, string>? ToolMessages = new();
+
+    [DataField, AutoNetworkedField]
     public FixedPoint2 FuelUsed = FixedPoint2.New(1);
 }

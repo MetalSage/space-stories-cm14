@@ -1,15 +1,15 @@
-﻿<controls:VehicleRequisitionsWindow
+﻿<controls:VehicleElevatorWindow
     xmlns="https://spacestation14.io"
-    xmlns:controls="clr-namespace:Content.Client._Stories.Requisitions"
+    xmlns:controls="clr-namespace:Content.Client._Stories.VehicleElevator"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
-    Title="Automated Storage and Retrieval System"
+    Title="Vehicle Elevator"
     MinSize="500 600">
     <BoxContainer Orientation="Vertical">
         <RichTextLabel Name="PlatformLabel" Access="Public" />
         <Button Name="LowerPlatformButton" Access="Public" Text="Lower platform" StyleClasses="ButtonSquare" Visible="False" />
         <cc:HSeparator Color="#4972A1" Margin="0 5" />
         <ScrollContainer VerticalExpand="True">
-            <BoxContainer Name="ItemsContainer" Access="Public" Orientation="Vertical" />
+            <BoxContainer Name="VehiclesContainer" Access="Public" Orientation="Vertical" />
         </ScrollContainer>
     </BoxContainer>
-</controls:VehicleRequisitionsWindow>
+</controls:VehicleElevatorWindow>

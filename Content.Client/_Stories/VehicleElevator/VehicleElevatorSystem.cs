@@ -1,13 +1,13 @@
-﻿using Content.Shared._Stories.Requisitions;
-using Content.Shared._Stories.Requisitions.Components;
+﻿using Content.Shared._Stories.VehicleElevator;
+using Content.Shared._Stories.VehicleElevator.Components;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using static Robust.Client.GameObjects.SpriteComponent;
 using Content.Shared._RMC14.Requisitions.Components;
 
-namespace Content.Client._Stories.Requisitions;
+namespace Content.Client._Stories.VehicleElevator;
 
-public sealed class VehicleRequisitionsSystem : SharedVehicleRequisitionsSystem
+public sealed class VehicleElevatorSystem : SharedVehicleElevatorSystem
 {
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
 
@@ -17,12 +17,12 @@ public sealed class VehicleRequisitionsSystem : SharedVehicleRequisitionsSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VehicleRequisitionsElevatorComponent, AfterAutoHandleStateEvent>(OnElevatorHandleState);
-        SubscribeLocalEvent<VehicleRequisitionsGearComponent, AfterAutoHandleStateEvent>(OnGearHandleState);
-        SubscribeLocalEvent<VehicleRequisitionsRailingComponent, AfterAutoHandleStateEvent>(OnRailingHandleState);
+        SubscribeLocalEvent<VehicleElevatorComponent, AfterAutoHandleStateEvent>(OnElevatorHandleState);
+        SubscribeLocalEvent<VehicleElevatorGearComponent, AfterAutoHandleStateEvent>(OnGearHandleState);
+        SubscribeLocalEvent<VehicleElevatorRailingComponent, AfterAutoHandleStateEvent>(OnRailingHandleState);
     }
 
-    private void OnElevatorHandleState(Entity<VehicleRequisitionsElevatorComponent> elevator, ref AfterAutoHandleStateEvent args)
+    private void OnElevatorHandleState(Entity<VehicleElevatorComponent> elevator, ref AfterAutoHandleStateEvent args)
     {
         if (!TryComp(elevator, out SpriteComponent? sprite) ||
             !sprite.LayerMapTryGet(RequisitionsElevatorLayers.Base, out var layer))
@@ -82,7 +82,7 @@ public sealed class VehicleRequisitionsSystem : SharedVehicleRequisitionsSystem
         }
     }
 
-    private void OnGearHandleState(Entity<VehicleRequisitionsGearComponent> gear, ref AfterAutoHandleStateEvent args)
+    private void OnGearHandleState(Entity<VehicleElevatorGearComponent> gear, ref AfterAutoHandleStateEvent args)
     {
         if (!TryComp(gear, out SpriteComponent? sprite) ||
             !sprite.LayerMapTryGet(RequisitionsGearLayers.Base, out var layer))
@@ -100,7 +100,7 @@ public sealed class VehicleRequisitionsSystem : SharedVehicleRequisitionsSystem
         sprite.LayerSetState(layer, state);
     }
 
-    private void OnRailingHandleState(Entity<VehicleRequisitionsRailingComponent> railing, ref AfterAutoHandleStateEvent args)
+    private void OnRailingHandleState(Entity<VehicleElevatorRailingComponent> railing, ref AfterAutoHandleStateEvent args)
     {
         if (!TryComp(railing, out SpriteComponent? sprite) ||
             !sprite.LayerMapTryGet(RequisitionsRailingLayers.Base, out var layer))
@@ -175,13 +175,13 @@ public sealed class VehicleRequisitionsSystem : SharedVehicleRequisitionsSystem
     {
         base.FrameUpdate(frameTime);
 
-        var elevatorQuery = EntityQueryEnumerator<VehicleRequisitionsElevatorComponent, SpriteComponent>();
+        var elevatorQuery = EntityQueryEnumerator<VehicleElevatorComponent, SpriteComponent>();
         while (elevatorQuery.MoveNext(out var elevator, out var sprite))
         {
             Animate(sprite, elevator.Mode);
         }
 
-        var railingQuery = EntityQueryEnumerator<VehicleRequisitionsRailingComponent, SpriteComponent>();
+        var railingQuery = EntityQueryEnumerator<VehicleElevatorRailingComponent, SpriteComponent>();
         while (railingQuery.MoveNext(out var gear, out var sprite))
         {
             Animate(sprite, gear.Mode);

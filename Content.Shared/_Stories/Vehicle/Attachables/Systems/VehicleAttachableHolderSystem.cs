@@ -559,6 +559,17 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         return true;
     }
 
+    public bool TryGetAttachableUser(EntityUid attachable, [NotNullWhen(true)] out EntityUid? userUid)
+    {
+        userUid = null;
+
+        if (!TryComp<MovementRelayTargetComponent>(attachable, out var relayMover))
+            return false;
+
+        userUid = relayMover.Source;
+        return true;
+    }
+
     private void AlterAllAttachables(Entity<VehicleAttachableHolderComponent> holder, VehicleAttachableAlteredType alteration)
     {
         foreach (var slotId in holder.Comp.Slots.Keys)

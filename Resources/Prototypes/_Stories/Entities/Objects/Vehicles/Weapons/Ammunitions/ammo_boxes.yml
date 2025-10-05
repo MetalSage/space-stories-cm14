@@ -20,6 +20,7 @@
   parent: STBaseVehicleMagazine
   id: STVehicleAmmoFlareLauncher
   name: M-87F Flare Launcher magazine
+  description: A support armament grenade magazine. This one is loaded with flares packaged in expendable shells.
   components:
   - type: Sprite
     sprite: _Stories/Objects/Vehicles/Weapons/Ammunitions/ammo.rsi

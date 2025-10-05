@@ -77,7 +77,16 @@ public sealed class SharedVehicleRepairableSystem : EntitySystem
         };
 
         if (_doAfter.TryStartDoAfter(doAfter))
-            _popup.PopupPredicted("Start Repair", "Start Repair other", args.User, args.User);
+        {
+            string msg = "Repair";
+            if (repairable.Comp.ToolMessages != null &&
+                repairable.Comp.ToolMessages.TryGetValue(tool.Value, out var custom))
+            {
+                msg = custom;
+            }
+
+            _popup.PopupPredicted(msg, msg, args.User, args.User);
+        }
     }
 
     private void OnRepairableDoAfter(Entity<VehicleRepairableComponent> repairable, ref RMCRepairableDoAfterEvent args)
@@ -97,6 +106,11 @@ public sealed class SharedVehicleRepairableSystem : EntitySystem
             return;
         }
 
+        var toolUseEv = new ToolUseAttemptEvent(args.User, (float)repairable.Comp.FuelUsed);
+        RaiseLocalEvent(args.Used.Value, toolUseEv);
+        if (toolUseEv.Cancelled)
+            return;
+
         var (currentHp, maxHp) = GetHealthValues(repairable, damageable);
         if (maxHp <= 0)
             return;
@@ -110,7 +124,6 @@ public sealed class SharedVehicleRepairableSystem : EntitySystem
         var amountFixedAdjustment = _skills.GetSkillDelayMultiplier(args.User, repairable.Comp.Skill);
 
         float healAmount;
-
         if (TryComp<VehicleAttachableComponent>(repairable, out var vehicleAttachable) &&
             _proto.TryIndex<HardpointTypePrototype>(vehicleAttachable.HardpointType, out var proto))
         {

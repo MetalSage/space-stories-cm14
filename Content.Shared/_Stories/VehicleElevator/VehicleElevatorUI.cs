@@ -1,25 +1,25 @@
-﻿using Content.Shared._Stories.Requisitions.Components;
+﻿using Content.Shared._Stories.VehicleElevator.Components;
 using Robust.Shared.Serialization;
 using Robust.Shared.Prototypes;
 using Content.Shared._RMC14.Requisitions.Components;
 
-namespace Content.Shared._Stories.Requisitions;
+namespace Content.Shared._Stories.VehicleElevator;
 
 [Serializable, NetSerializable]
-public enum VehicleRequisitionsUIKey
+public enum VehicleElevatorUIKey
 {
     Key
 }
 
 [Serializable, NetSerializable]
-public sealed class VehicleRequisitionsBuiState : BoundUserInterfaceState
+public sealed class VehicleElevatorBuiState : BoundUserInterfaceState
 {
     public RequisitionsElevatorMode? PlatformLowered;
     public bool Busy;
     public bool HasOrder;
     public bool ComputerActive;
 
-    public VehicleRequisitionsBuiState(RequisitionsElevatorMode? platformLowered, bool busy, bool hasOrder, bool computerActive)
+    public VehicleElevatorBuiState(RequisitionsElevatorMode? platformLowered, bool busy, bool hasOrder, bool computerActive)
     {
         PlatformLowered = platformLowered;
         Busy = busy;
@@ -29,13 +29,13 @@ public sealed class VehicleRequisitionsBuiState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
-public sealed class VehicleRequisitionsBuyMsg(EntProtoId order) : BoundUserInterfaceMessage
+public sealed class VehicleElevatorBuyMsg(EntProtoId order) : BoundUserInterfaceMessage
 {
     public EntProtoId Order = order;
 }
 
 [Serializable, NetSerializable]
-public sealed class VehicleRequisitionsPlatformMsg(bool raise) : BoundUserInterfaceMessage
+public sealed class VehicleElevatorPlatformMsg(bool raise) : BoundUserInterfaceMessage
 {
     public bool Raise = raise;
 }

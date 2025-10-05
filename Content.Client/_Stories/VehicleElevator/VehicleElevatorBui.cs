@@ -1,42 +1,44 @@
-﻿using Content.Shared._Stories.Requisitions;
-using Content.Shared._Stories.Requisitions.Components;
+﻿using Content.Shared._Stories.VehicleElevator;
+using Content.Shared._Stories.VehicleElevator.Components;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Client.Player;
+using Robust.Client.UserInterface.Controls;
+using Content.Client._RMC14;
 using static Content.Shared._RMC14.Requisitions.Components.RequisitionsElevatorMode;
 
-namespace Content.Client._Stories.Requisitions;
+namespace Content.Client._Stories.VehicleElevator;
 
 [UsedImplicitly]
-public sealed class VehicleRequisitionsBui(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     [ViewVariables]
-    private VehicleRequisitionsWindow? _window;
+    private VehicleElevatorWindow? _window;
 
-    private readonly List<(EntProtoId Order, VehicleRequisitionsOrderButton button)> _orderButtons = new();
+    private readonly List<(EntProtoId Order, Button button)> _orderButtons = new();
 
     protected override void Open()
     {
         base.Open();
-        _window = this.CreateWindow<VehicleRequisitionsWindow>();
+        _window = this.CreateWindow<VehicleElevatorWindow>();
 
-        _window.LowerPlatformButton.OnPressed += _ => SendMessage(new VehicleRequisitionsPlatformMsg(false));
+        _window.LowerPlatformButton.OnPressed += _ => SendMessage(new VehicleElevatorPlatformMsg(false));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
-        if (state is VehicleRequisitionsBuiState uiState)
+        if (state is VehicleElevatorBuiState uiState)
             UpdateState(uiState);
     }
 
-    private void UpdateState(VehicleRequisitionsBuiState uiState)
+    private void UpdateState(VehicleElevatorBuiState uiState)
     {
-        _window ??= this.CreateWindow<VehicleRequisitionsWindow>();
+        _window ??= this.CreateWindow<VehicleElevatorWindow>();
 
         var platformLabel = "No platform";
         var showLowerButton = false;
@@ -76,15 +78,15 @@ public sealed class VehicleRequisitionsBui(EntityUid owner, Enum uiKey) : BoundU
             _window.OpenCentered();
     }
 
-    private void CreateOrderButtons(VehicleRequisitionsBuiState uiState)
+    private void CreateOrderButtons(VehicleElevatorBuiState uiState)
     {
         if (_window == null)
             return;
 
-        if (!_entities.TryGetComponent(Owner, out VehicleRequisitionsComputerComponent? computer))
+        if (!_entities.TryGetComponent(Owner, out VehicleElevatorComputerComponent? computer))
             return;
 
-        _window.ItemsContainer.DisposeAllChildren();
+        _window.VehiclesContainer.DisposeAllChildren();
         _orderButtons.Clear();
 
         foreach (var (orderProto, requiredOnline) in computer.Orders)
@@ -92,38 +94,46 @@ public sealed class VehicleRequisitionsBui(EntityUid owner, Enum uiKey) : BoundU
             if (_playerManager.PlayerCount < requiredOnline)
                 continue;
 
-            var order = new VehicleRequisitionsOrderButton();
+            var button = new Button
+            {
+                HorizontalExpand = true
+            };
+            
+            button.AddStyleClass("ButtonSquare");
+            button.AddStyleClass(CMStyleClasses.CMLabelAlignLeft);
+            button.Label.AddStyleClass(CMStyleClasses.CMLabelAlignLeft);
             
             var itemName = _prototypes.Index<EntityPrototype>(orderProto).Name;
-            order.Button.Text = $"{itemName} (Required: {requiredOnline} players)";
+            button.Text = $"{itemName} (Required: {requiredOnline} players)";
             
-            order.Button.OnPressed += _ => OnOrderButtonPressed(orderProto);
+            var order = orderProto;
+            button.OnPressed += _ => OnOrderButtonPressed(order);
             
-            _orderButtons.Add((orderProto, order));
-            _window.ItemsContainer.AddChild(order);
+            _orderButtons.Add((orderProto, button));
+            _window.VehiclesContainer.AddChild(button);
         }
     }
 
     private void OnOrderButtonPressed(EntProtoId order)
     {
-        var state = State as VehicleRequisitionsBuiState;
+        var state = State as VehicleElevatorBuiState;
         if (state == null)
             return;
 
         if (state.PlatformLowered == Lowered && !state.Busy && !state.HasOrder && state.ComputerActive)
         {
-            SendMessage(new VehicleRequisitionsBuyMsg(order));
+            SendMessage(new VehicleElevatorBuyMsg(order));
         }
     }
 
-    private void UpdateOrderButtonsState(VehicleRequisitionsBuiState uiState)
+    private void UpdateOrderButtonsState(VehicleElevatorBuiState uiState)
     {
         foreach (var (_, button) in _orderButtons)
         {
-            button.Button.Disabled = !uiState.ComputerActive ||
-                                    uiState.PlatformLowered != Lowered ||
-                                    uiState.Busy ||
-                                    uiState.HasOrder;
+            button.Disabled = !uiState.ComputerActive ||
+                            uiState.PlatformLowered != Lowered ||
+                            uiState.Busy ||
+                            uiState.HasOrder;
         }
     }
 }

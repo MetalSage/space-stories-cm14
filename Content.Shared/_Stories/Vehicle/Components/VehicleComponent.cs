@@ -33,10 +33,10 @@ public sealed partial class VehicleComponent : Component
     public float EntryDelayXeno = 3f;
 
     [DataField, AutoNetworkedField]
-    public float EntryDelayPulling = 2;
+    public float EntryDelayPulling = 2f;
 
     [DataField, AutoNetworkedField]
-    public float EntryInteractionRange = 45f;
+    public float EntryInteractionRange = 35f;
 
     [DataField, AutoNetworkedField]
     public bool Locked;
@@ -54,7 +54,7 @@ public sealed partial class VehicleComponent : Component
     public EntityUid? ActiveHardpoint;
 
     [DataField, AutoNetworkedField]
-    public EntryDirection EntryDirections = EntryDirection.Left | EntryDirection.Right;
+    public EntryDirection EntryDirections = EntryDirection.Left | EntryDirection.Right | EntryDirection.Front;
 
     [ViewVariables]
     public ContainerSlot AmmoStorage = default!;
@@ -81,7 +81,7 @@ public sealed partial class VehicleComponent : Component
     public SlotCount XenoSlots = new();
 
     [DataField, AutoNetworkedField]
-    public RMCSizes SizeRequiredToHit = RMCSizes.SmallXeno;
+    public RMCSizes SizeRequiredToHit = RMCSizes.Xeno;
 }
 
 [DataDefinition, Serializable, NetSerializable]

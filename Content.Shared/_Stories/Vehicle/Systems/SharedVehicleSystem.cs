@@ -17,6 +17,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
@@ -86,6 +87,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, DamageModifyEvent>(OnVehicleDamageModify);
         SubscribeLocalEvent<VehicleComponent, DamageChangedEvent>(OnVehicleDamageChanged);
         SubscribeLocalEvent<VehicleComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
+        SubscribeLocalEvent<VehicleComponent, GettingAttackedAttemptEvent>(OnBeingAttacked);
         SubscribeLocalEvent<VehicleViewportComponent, ActivateInWorldEvent>(OnViewportInteract);
         SubscribeLocalEvent<VehicleViewportWatcherComponent, MoveInputEvent>(OnViewportWatcherMove);
 
@@ -184,15 +186,36 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     {
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
-
+        
         if (!TryComp<TransformComponent>(ent, out var xform) || xform.GridUid is null)
             return;
-
-        var pos = _transform.GetWorldPosition(args.Args.Target.Value);
-
+        
+        if (!TryComp<VehicleInteriorDoorComponent>(args.Args.Target.Value, out var door))
+            return;
+        
+        var vehiclePos = _transform.GetWorldPosition(ent.Owner);
+        var vehicleRotation = _transform.GetWorldRotation(ent.Owner);
+        
+        var exitOffset = GetExitOffset(door.Side, vehicleRotation);
+        var exitPos = vehiclePos + exitOffset;
+        
         args.Handled = true;
-        var coords = new EntityCoordinates(xform.GridUid.Value, pos);
+        var coords = new EntityCoordinates(xform.GridUid.Value, exitPos);
         HandleLeavePulling(ent, args.User, coords);
+    }
+
+    private Vector2 GetExitOffset(EntryDirection direction, Angle rotation)
+    {
+        const float exitDistance = 2f;
+        
+        return direction switch
+        {
+            EntryDirection.Front => rotation.RotateVec(new Vector2(0, exitDistance)),
+            EntryDirection.Back => rotation.RotateVec(new Vector2(0, -exitDistance)),
+            EntryDirection.Left => rotation.RotateVec(new Vector2(-exitDistance, 0)),
+            EntryDirection.Right => rotation.RotateVec(new Vector2(exitDistance, 0)),
+            _ => rotation.RotateVec(new Vector2(0, -exitDistance))
+        };
     }
 
     private void OnLockActionEvent(Entity<VehiclePilotComponent> pilot, ref VehicleLockDoorsEvent args)
@@ -290,6 +313,15 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         }
     }
 
+    private void OnBeingAttacked(Entity<VehicleComponent> ent, ref GettingAttackedAttemptEvent args)
+    {
+        if (TryComp<RMCSizeComponent>(args.Attacker, out var rmcSize) && rmcSize.Size < ent.Comp.SizeRequiredToHit)
+        {
+            _popup.PopupClient(Loc.GetString("st-vehicle-wrong-size-to-attack"), args.Attacker);
+            args.Cancelled = true;
+        }
+    }
+
     private void OnBeforeDamageChanged(Entity<VehicleComponent> ent, ref BeforeDamageChangedEvent args)
     {
         if (args.Cancelled ||
@@ -345,16 +377,6 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             if (comp.DamageMults != null && comp.DamageMults.TryGetValue(type, out var m))
                 mult = m;
             modifiedDamage.DamageDict[type] = value * mult;
-        }
-
-        if (args.Origin != null &&
-            args.Tool != null &&
-            args.Origin.Value == args.Tool.Value &&
-            TryComp<RMCSizeComponent>(args.Origin.Value, out var rmcSize) &&
-            rmcSize.Size < comp.SizeRequiredToHit)
-        {
-            _popup.PopupClient(Loc.GetString("st-vehicle-wrong-size-to-attack"), args.Origin.Value);
-            modifiedDamage *= 0f;
         }
 
         if (args.Origin != null &&
@@ -454,6 +476,9 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         foreach (var hardpoint in vehicle.Comp.Hardpoints)
         {
             if (!TryComp<VehicleAttachableComponent>(hardpoint, out var attachable))
+                continue;
+
+            if (attachable.Ignored)
                 continue;
 
             if (!TryComp<DamageableComponent>(hardpoint, out var dmg))
@@ -582,28 +607,6 @@ public sealed partial class SharedVehicleSystem : EntitySystem
                 continue;
 
             comp.Vehicle = vehicle.Owner;
-        }
-
-        var controllersQuery = EntityQueryEnumerator<VehicleControllerComponent, TransformComponent>();
-        while (controllersQuery.MoveNext(out var uid, out var comp, out var xform))
-        {
-            if (xform.GridUid != grid.Value.Owner)
-                continue;
-
-            comp.Vehicle = vehicle.Owner;
-
-            foreach (var hardpoint in vehicle.Comp.Hardpoints)
-            {
-                if (!TryComp<VehicleControllableComponent>(hardpoint, out var controllable))
-                    continue;
-
-                if (controllable.Id == comp.Id)
-                {
-                    comp.ControllableEntity = hardpoint;
-                    Dirty(uid, comp);
-                    break;
-                }
-            }
         }
     }
 

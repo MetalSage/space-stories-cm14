@@ -1,4 +1,4 @@
-using Content.Shared._Stories.Requisitions.Components;
+using Content.Shared._Stories.VehicleElevator.Components;
 using Content.Shared.Climbing.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.StepTrigger.Systems;
@@ -10,9 +10,9 @@ using System.Numerics;
 using static Content.Shared._RMC14.Requisitions.Components.RequisitionsRailingMode;
 using Content.Shared._RMC14.Requisitions.Components;
 
-namespace Content.Shared._Stories.Requisitions;
+namespace Content.Shared._Stories.VehicleElevator;
 
-public abstract class SharedVehicleRequisitionsSystem : EntitySystem
+public abstract class SharedVehicleElevatorSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly FixtureSystem _fixtures = default!;
@@ -25,23 +25,23 @@ public abstract class SharedVehicleRequisitionsSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VehicleRequisitionsElevatorComponent, StepTriggerAttemptEvent>(OnElevatorStepTriggerAttempt);
+        SubscribeLocalEvent<VehicleElevatorComponent, StepTriggerAttemptEvent>(OnElevatorStepTriggerAttempt);
 
-        SubscribeLocalEvent<VehicleRequisitionsRailingComponent, MapInitEvent>(OnRailingMapInit);
+        SubscribeLocalEvent<VehicleElevatorRailingComponent, MapInitEvent>(OnRailingMapInit);
     }
 
-    private void OnElevatorStepTriggerAttempt(Entity<VehicleRequisitionsElevatorComponent> elevator, ref StepTriggerAttemptEvent args)
+    private void OnElevatorStepTriggerAttempt(Entity<VehicleElevatorComponent> elevator, ref StepTriggerAttemptEvent args)
     {
         if (elevator.Comp.Mode == RequisitionsElevatorMode.Raised)
             args.Cancelled = true;
     }
 
-    private void OnRailingMapInit(Entity<VehicleRequisitionsRailingComponent> railing, ref MapInitEvent args)
+    private void OnRailingMapInit(Entity<VehicleElevatorRailingComponent> railing, ref MapInitEvent args)
     {
         UpdateRailing(railing);
     }
 
-    private void UpdateRailing(Entity<VehicleRequisitionsRailingComponent> railing)
+    private void UpdateRailing(Entity<VehicleElevatorRailingComponent> railing)
     {
         if (!TryComp(railing, out FixturesComponent? fixtures) ||
             _fixtures.GetFixtureOrNull(railing, railing.Comp.Fixture, fixtures) is not { } fixture)
@@ -58,7 +58,7 @@ public abstract class SharedVehicleRequisitionsSystem : EntitySystem
             RemCompDeferred<ClimbableComponent>(railing);
     }
 
-    protected void SetRailingMode(Entity<VehicleRequisitionsRailingComponent> railing, RequisitionsRailingMode mode)
+    protected void SetRailingMode(Entity<VehicleElevatorRailingComponent> railing, RequisitionsRailingMode mode)
     {
         if (railing.Comp.Mode == mode)
             return;
@@ -71,28 +71,28 @@ public abstract class SharedVehicleRequisitionsSystem : EntitySystem
 
     protected void SendUIStateAll()
     {
-        var query = EntityQueryEnumerator<VehicleRequisitionsComputerComponent>();
+        var query = EntityQueryEnumerator<VehicleElevatorComputerComponent>();
         while (query.MoveNext(out var uid, out var computer))
         {
             SendUIState((uid, computer));
         }
     }
 
-    protected void SendUIState(Entity<VehicleRequisitionsComputerComponent> computer)
+    protected void SendUIState(Entity<VehicleElevatorComputerComponent> computer)
     {
         var elevator = GetElevator(computer);
         var mode = elevator?.Comp.NextMode ?? elevator?.Comp.Mode;
         var busy = elevator?.Comp.Busy ?? false;
         var hasOrder = elevator?.Comp.CurrentOrder != null;
 
-        var state = new VehicleRequisitionsBuiState(mode, busy, hasOrder, computer.Comp.IsActive);
-        _ui.SetUiState(computer.Owner, VehicleRequisitionsUIKey.Key, state);
+        var state = new VehicleElevatorBuiState(mode, busy, hasOrder, computer.Comp.IsActive);
+        _ui.SetUiState(computer.Owner, VehicleElevatorUIKey.Key, state);
     }
 
-    protected Entity<VehicleRequisitionsElevatorComponent>? GetElevator(Entity<VehicleRequisitionsComputerComponent> computer)
+    protected Entity<VehicleElevatorComponent>? GetElevator(Entity<VehicleElevatorComputerComponent> computer)
     {
-        var elevators = new List<Entity<VehicleRequisitionsElevatorComponent, TransformComponent>>();
-        var query = EntityQueryEnumerator<VehicleRequisitionsElevatorComponent, TransformComponent>();
+        var elevators = new List<Entity<VehicleElevatorComponent, TransformComponent>>();
+        var query = EntityQueryEnumerator<VehicleElevatorComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var elevator, out var xform))
         {
             elevators.Add((uid, elevator, xform));
@@ -105,7 +105,7 @@ public abstract class SharedVehicleRequisitionsSystem : EntitySystem
             return elevators[0];
 
         var computerCoords = _transform.GetMapCoordinates(computer);
-        Entity<VehicleRequisitionsElevatorComponent>? closest = null;
+        Entity<VehicleElevatorComponent>? closest = null;
         var closestDistance = float.MaxValue;
         foreach (var (uid, elevator, xform) in elevators)
         {

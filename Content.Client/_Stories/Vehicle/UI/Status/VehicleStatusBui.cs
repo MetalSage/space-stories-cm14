@@ -22,7 +22,6 @@ public sealed class VehicleStatusBui : BoundUserInterface
     private VehicleStatusWindow? _window;
     private bool _resistancesExpanded = false;
     private bool _passengersExpanded = false;
-    private bool? _lastDoorLocked;
 
     public VehicleStatusBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -164,11 +163,6 @@ public sealed class VehicleStatusBui : BoundUserInterface
     {
         if (_window == null)
             return;
-        
-        if (_lastDoorLocked.HasValue && _lastDoorLocked.Value == vehicle.Locked)
-            return;
-
-        _lastDoorLocked = !vehicle.Locked;
 
         _window.DoorLockLabel.Text = Loc.GetString("st-ui-vehicle-door-state", ("locked", !vehicle.Locked));
 
@@ -322,19 +316,6 @@ public sealed class VehicleStatusBui : BoundUserInterface
     {
         if (_window == null)
             return;
-
-        var totalTaken = vehicle.PassengerSlots.Current + vehicle.RevivableDeadSlots.Current;
-        var totalMax = vehicle.PassengerSlots.Max + vehicle.RevivableDeadSlots.Max;
-
-        foreach (var roleGroup in vehicle.RoleReservedSlots)
-        {
-            totalTaken += roleGroup.Total.Current;
-            totalMax += roleGroup.Total.Max;
-        }
-
-        _window.TotalPassengersLabel.Text = Loc.GetString("st-ui-vehicle-total-passengers",
-            ("current", totalTaken),
-            ("max", totalMax));
 
         _window.PassengerCategoriesContainer.RemoveAllChildren();
 

@@ -25,27 +25,32 @@ public sealed class GunArcRestrictionSystem : EntitySystem
 
     private void OnAttemptShoot(Entity<GunArcRestrictionComponent> ent, ref AttemptShootEvent args)
     {
-        var user = args.User;
         if (!TryComp<GunComponent>(ent, out var gun) || gun.ShootCoordinates == null)
             return;
 
-        if (_holder.TryGetHolder(args.User, out var holder) || holder is not null)
-            user = holder.Value;
+        var shooterEntity = args.User;
+        if (_holder.TryGetHolder(ent.Owner, out var holder) && holder is not null)
+            shooterEntity = holder.Value;
 
-        var shooterTransform = _transform.GetWorldPosition(user);
-        var targetPosition = _transform.ToMapCoordinates(gun.ShootCoordinates.Value).Position;
-        var shooterRotation = _transform.GetWorldRotation(user);
+        var shooterPos = _transform.GetWorldPosition(shooterEntity);
+        var targetPos = _transform.ToMapCoordinates(gun.ShootCoordinates.Value).Position;
 
-        var directionToTarget = (targetPosition - shooterTransform).Normalized();
+        var shooterRotation = _transform.GetWorldRotation(shooterEntity);
+        var forward = shooterRotation.ToWorldVec();
+
+        var directionToTarget = (targetPos - shooterPos).Normalized();
         var targetAngle = directionToTarget.ToAngle();
 
-        var angleDifference = GetAngleDifference(shooterRotation, targetAngle);
+        var angleDifference = GetAngleDifference(forward.ToAngle(), targetAngle);
 
         if (Math.Abs(angleDifference.Theta) > ent.Comp.MaxAngleDeviation.Theta)
         {
             args.Cancelled = true;
-            if (holder != null && _holder.TryGetUser(holder.Value, out var pilot) && pilot != null)
+
+            if (_holder.TryGetAttachableUser(ent.Owner, out var pilot) && pilot != null)
+            {
                 _popup.PopupCursor(ent.Comp.RestrictionMessage, pilot.Value, PopupType.SmallCaution);
+            }
         }
     }
 

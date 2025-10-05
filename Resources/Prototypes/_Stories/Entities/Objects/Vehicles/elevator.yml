@@ -30,14 +30,14 @@
       Brute:
         collection: GlassSmash
   - type: ActivatableUI
-    key: enum.VehicleRequisitionsUIKey.Key
+    key: enum.VehicleElevatorUIKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
     access: [ [ "CMAccessRequisitions" ] ]
   - type: UserInterface
     interfaces:
-      enum.VehicleRequisitionsUIKey.Key:
-        type: VehicleRequisitionsBui
+      enum.VehicleElevatorUIKey.Key:
+        type: VehicleElevatorBui
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -62,7 +62,7 @@
       components:
       - Xeno
   - type: RMCMesonsNonviewable
-  - type: VehicleRequisitionsComputer
+  - type: VehicleElevatorComputer
     orders:
       STVehicleM577APC: 1 # change to 190 
 
@@ -104,7 +104,7 @@
     blacklist:
       tags:
       - Catwalk
-  - type: VehicleRequisitionsElevator
+  - type: VehicleElevator
   - type: CargoSellBlacklist
   - type: WarpPoint
     location: the vehicle pit
@@ -141,7 +141,7 @@
         - TableMask
         density: 1000
   - type: Climbable
-  - type: VehicleRequisitionsRailing
+  - type: VehicleElevatorRailing
     mode: Raised
   - type: CargoSellBlacklist
   - type: RMCMesonsNonviewable
@@ -164,7 +164,7 @@
     layers:
     - state: base
       map: [ "enum.RequisitionsGearLayers.Base" ]
-  - type: VehicleRequisitionsGear
+  - type: VehicleElevatorGear
   - type: CargoSellBlacklist
   - type: Corrodible
     isCorrodible: false

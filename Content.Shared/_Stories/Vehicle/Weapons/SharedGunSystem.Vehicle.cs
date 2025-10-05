@@ -1,6 +1,7 @@
 using Content.Shared._RMC14.CameraShake;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._Stories.Vehicle;
+using Content.Shared._Stories.Attachables;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
@@ -163,7 +164,6 @@ public abstract partial class SharedGunSystem
             {
                 PopupSystem.PopupPredictedCursor("Magazine empty!", userForPopup, PopupType.Medium);
             }
-            
             args.Cancel();
             return;
         }
@@ -226,6 +226,9 @@ public abstract partial class SharedGunSystem
 
     private void OnTakeAmmo(Entity<VehicleGunComponent> gun, ref TakeAmmoEvent args)
     {
+        if (_netManager.IsClient)
+            return;
+    
         if (gun.Comp.ActiveMagazineContainer.ContainedEntity == null)
             return;
             
@@ -236,25 +239,17 @@ public abstract partial class SharedGunSystem
         if (shots == 0)
             return;
         
-        if (_netManager.IsServer || (GunPrediction && Timing.IsFirstTimePredicted))
+        magazine.Shots -= shots;
+        Dirty(gun.Comp.ActiveMagazineContainer.ContainedEntity.Value, magazine);
+        UpdateVehicleStatusUIForGun(gun.Owner);
+
+        for (var i = 0; i < shots; i++)
         {
-            magazine.Shots -= shots;
-            Dirty(gun.Comp.ActiveMagazineContainer.ContainedEntity.Value, magazine);
-            UpdateVehicleStatusUIForGun(gun.Owner);
+            var projectile = Spawn(magazine.ProjectilePrototype, args.Coordinates);
+            args.Ammo.Add((projectile, EnsureShootable(projectile)));
         }
         
-        if (_netManager.IsServer || GunPrediction)
-        {
-            for (var i = 0; i < shots; i++)
-            {
-                var projectile = Spawn(magazine.ProjectilePrototype, args.Coordinates);
-                args.Ammo.Add((projectile, EnsureShootable(projectile)));
-            }
-        }
-        
-        if (magazine.Shots <= 0 && 
-            TryComp<VehicleAutoReloadGunComponent>(gun, out var autoReload) && 
-            _netManager.IsServer)
+        if (magazine.Shots <= 0 && TryComp<VehicleAutoReloadGunComponent>(gun, out var autoReload))
         {
             StartReload((gun, autoReload, gun.Comp), gun.Comp.User);
         }
@@ -274,7 +269,7 @@ public abstract partial class SharedGunSystem
         Dirty(gun, gun.Comp1);
 
         if (pilot != null)
-            PopupSystem.PopupPredictedCursor($"Reloading... ({gun.Comp1.ReloadTime:F1}s)", pilot.Value, PopupType.Medium);
+            PopupSystem.PopupCursor($"Reloading... ({gun.Comp1.ReloadTime:F1}s)", pilot.Value, PopupType.Medium);
     }
 
     private void CompleteReload(Entity<VehicleAutoReloadGunComponent, VehicleGunComponent> gun)
@@ -316,7 +311,7 @@ public abstract partial class SharedGunSystem
 
         if (autoReloadComp.IsReloading)
         {
-            PopupSystem.PopupPredictedCursor("Already reloading!", ent, PopupType.Medium);
+            PopupSystem.PopupCursor("Already reloading!", ent, PopupType.Medium);
             return;
         }
 
@@ -328,7 +323,7 @@ public abstract partial class SharedGunSystem
 
         if (magazine.Shots >= magazine.Capacity)
         {
-            PopupSystem.PopupPredictedCursor("Magazine is full!", ent, PopupType.Medium);
+            PopupSystem.PopupCursor("Magazine is full!", ent, PopupType.Medium);
             return;
         }
 

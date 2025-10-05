@@ -5,11 +5,11 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Prototypes;
 using Content.Shared._RMC14.Requisitions.Components;
 
-namespace Content.Shared._Stories.Requisitions.Components;
+namespace Content.Shared._Stories.VehicleElevator.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), AutoGenerateComponentPause]
-[Access(typeof(SharedVehicleRequisitionsSystem))]
-public sealed partial class VehicleRequisitionsElevatorComponent : Component
+[Access(typeof(SharedVehicleElevatorSystem))]
+public sealed partial class VehicleElevatorComponent : Component
 {
     [DataField]
     public float Radius = 2;

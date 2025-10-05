@@ -283,9 +283,6 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
-      canCollide: True
 - proto: STVehicleAPCLocker
   entities:
   - uid: 21
@@ -328,9 +325,7 @@ entities:
       pos: 0.5,3.5
       parent: 1
     - type: Physics
-      canCollide: False
-    - type: Fixtures
-      fixtures: {}
+      canCollide: True
 - proto: STVehicleAPCWall32
   entities:
   - uid: 50

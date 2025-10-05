@@ -407,6 +407,7 @@
     enabled: true
 
 - type: entity
+  parent: STVehicleAPCWallBase
   id: STVehicleAPCWall31
   suffix: 31
   components:
@@ -419,12 +420,8 @@
   - type: Occluder
     enabled: true
   - type: VehicleInteriorDoor
-  - type: Transform
-    anchored: true
+    side: Left
   - type: Clickable
-  - type: Physics
-    bodyType: Static
-    canCollide: true
 
 - type: entity
   parent: STVehicleAPCWall62
@@ -442,6 +439,7 @@
   - type: Occluder
     enabled: false
   - type: VehicleInteriorDoor
+    side: Right
   - type: Clickable
 
 - type: entity
@@ -690,6 +688,9 @@
     state: rear_3
   - type: Occluder
     enabled: true
+  - type: Clickable
+  - type: VehicleInteriorDoor
+    side: Front
 
 - type: entity
   parent: STVehicleAPCWallBase

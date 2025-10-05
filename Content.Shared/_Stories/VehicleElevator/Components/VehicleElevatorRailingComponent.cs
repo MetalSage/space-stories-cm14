@@ -2,11 +2,11 @@
 using Robust.Shared.Serialization;
 using Content.Shared._RMC14.Requisitions.Components;
 
-namespace Content.Shared._Stories.Requisitions.Components;
+namespace Content.Shared._Stories.VehicleElevator.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
-[Access(typeof(SharedVehicleRequisitionsSystem))]
-public sealed partial class VehicleRequisitionsRailingComponent : Component
+[Access(typeof(SharedVehicleElevatorSystem))]
+public sealed partial class VehicleElevatorRailingComponent : Component
 {
     [DataField, AutoNetworkedField]
     public RequisitionsRailingMode Mode;

@@ -293,8 +293,14 @@
         crate: RMCCrateSupplyJanitor
       - cost: 2000
         crate: RMCCrateSuppliesCrayons
-#    - name: Боеприпасы для техники # Stories-Translate
-#      entries: []
+    - name: Боеприпасы для техники # Stories-Translate
+      entries:
+      - cost: 3000
+        crate: STCrateBoxAmmoDualcannon
+      - cost: 2000
+        crate: STCrateBoxAmmoFrontalcannon
+      - cost: 2000
+        crate: STCrateBoxAmmoFlareLauncher
     - name: Оружие # Stories-Translate
       entries:
       - cost: 4000
