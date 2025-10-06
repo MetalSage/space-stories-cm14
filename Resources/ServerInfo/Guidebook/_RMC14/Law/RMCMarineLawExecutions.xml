@@ -1,29 +1,29 @@
 ﻿<Document>
-  # Казни
+  # Executions
 
-  ## Разрешение
-  - Казни ограничены заключенными, совершившими преступления, за которые казнь является возможным наказанием.
-  - Они должны быть санкционированы [color=#00CBFE][bold]Командующим Офицером[/bold][/color].
-  - В случае отсутствия [color=#00CBFE][bold]Командующего Офицера[/bold][/color] разрешение должны дать [bold]ОБА[/bold] [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] и [color=#008000][bold]Командир[/bold][/color].
-  - [color=#90EE90][bold]Дежурный Офицер[/bold][/color] не может санкционировать казнь.
-  - Казни могут быть отложены, если уровень тревоги КРАСНЫЙ или ДЕЛЬТА.
-  - Заключенный, приговоренный к пожизненному заключению, может запросить казнь вместо своего заключения, но она все равно должна быть санкционирована.
+  ## Authorization
+  - Executions are limited to prisoners who have committed crimes with execution as a possible punishment.
+  - They must be authorized by the [color=#00CBFE][bold]Commanding Officer[/bold][/color].
+  - In the event the [color=#00CBFE][bold]Commanding Officer[/bold][/color] is absent, [bold]BOTH[/bold] the [color=#8B0000][bold]Chief MP[/bold][/color] and [color=#008000][bold]Commander[/bold][/color] must give the authorization.
+  - A [color=#90EE90][bold]Duty Officer[/bold][/color] is unable to authorize an execution.
+  - Executions may be delayed if the alert level is RED or DELTA.
+  - A prisoner that is permanently confined may request to be executed in place of their confinement, but must still be authorized.
 
-  ## Разрешенные методы казни
-  При казнях должны использоваться разрешенные методы казни, которые перечислены ниже.
-  - Смертельная инъекция, проводимая нынешним [bold]Главным Врачом[/bold].
-  - Расстрел должен проводится [color=#ff000d][bold]Военной Полицией[/bold][/color] или [color=#00CBFE][bold]Командующим Офицером[/bold][/color]. Это должно быть сделано из стандартного огнестрельного оружия, а не из взрывчатки или оружия, считающегося жестоким. [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] или [color=#008000][bold]Командир[/bold][/color] могут разрешить только жертвам преступлений заключенного присоединиться к расстрельной команде.
+  ## Authorized methods of execution
+  Authorized methods of execution must be used in executions and are listed below.
+  - Lethal injection handled by the current [bold]Chief Medical Officer[/bold].
+  - Firing squad by the [color=#ff000d][bold]MP[/bold][/color] or [color=#00CBFE][bold]Commanding Officer[/bold][/color]. This must be done with standard issue firearms, and not with explosives or weapons considered cruel. The [color=#8B0000][bold]Chief MP[/bold][/color] or [color=#008000][bold]Commander[/bold][/color] may permit only the victims of the prisoner's crimes to join the firing line.
 
-  ## Процедура
-  - [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] или [color=#008000][bold]Командир[/bold][/color] [bold]ОБЯЗАН[/bold] сделать объявление по всему кораблю, информирующее экипаж о намерении казнить, причине/преступлении и методе казни.
+  ## Procedure
+  - The [color=#8B0000][bold]Chief MP[/bold][/color] or [color=#008000][bold]Commander[/bold][/color] [bold]MUST[/bold] make a ship-wide announcement informing the crew of the intent to execute, the reason/crime, and the execution method.
 
-  [italic]Ни один из приведенных ниже шагов не должен занимать более 5 минут для полной обработки, в противном случае их можно пропустить, если заключенный был предупрежден до истечения времени.[/italic]
+  [italic]None of the below steps should each exceed 5 minutes to fully process, otherwise they may be skipped if the prisoner was warned prior to the time expiring.[/italic]
 
-  - Заключенный может запросить табачное изделие, а также еду и напитки в качестве последнего приема пищи. Предметы должны быть разумно доступны, в противном случае им следует предоставить альтернативу.
-  - Заключенный может запросить повязку на глаза для казни, если она есть в наличии.
-  - До трех человек могут быть запрошены заключенным для просмотра казни.
-  - Заключенному предоставляется возможность произнести последнее слово. Заключенный может использовать для этого радио.
-  - Казнь может быть продолжена.
+  - The prisoner may request a tobacco product, and a food and drink as a last meal. The items should be reasonably acquirable, else they should be provided an alternative.
+  - The prisoner may request a blindfold for the execution if available.
+  - Up to three people may be requested by the prisoner to view the execution.
+  - The prisoner is given a chance to give final words. The prisoner may use the radio for this.
+  - The execution may proceed.
 
 
 

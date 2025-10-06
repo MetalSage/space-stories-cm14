@@ -1,48 +1,48 @@
 ﻿<Document>
-  # Звания
+  # Ranks
 
-  ## Офицерский Состав
-  Бригадный Генерал\nПрефикс: Бриг. Ген.\nРазряд: O7
+  ## Officer
+  Brigadier General\nPrefix: BGen\nPaygrade: O7
 
-  Полковник\nПрефикс: Полк.\nРазряд: O6
+  Colonel\nPrefix: Col\nPaygrade: O6
 
-  Подполковник\nПрефикс: Подполк.\nРазряд: O5
+  Lieutenant Colonel\nPrefix: LtCol\nPaygrade: O5
 
-  Майор\nПрефикс: Майор\nРазряд: O4
+  Major\nPrefix: Maj\nPaygrade: O4
 
-  Капитан\nПрефикс: Капитан\nРазряд: O3
+  Captain\nPrefix: Capt\nPaygrade: O3
 
-  Старший Лейтенант\nПрефикс: Ст. Лейт.\nРазряд: O2
+  First Lieutenant\nPrefix: 1stLt\nPaygrade: O2
 
-  Младший Лейтенант\nПрефикс: Мл. Лейт.\nРазряд: O1
+  Second Lieutenant\nPrefix: 2ndLt\nPaygrade: O1
 
   Chief Warrant Officer\nPrefix: WarOff.\nPaygrade: O0-2
 
   Warrant Officer\nPrefix: WarOff.\nPaygrade: O0-1
 
 
-  ## Рядовой и Сержантский Состав
+  ## Enlisted
 
-  Сержант-Майор\nПрефикс: Серж.-Майор\nРазряд: E9E
+  Sergeant Major\nPrefix: SgtMaj\nPaygrade: E9E
 
-  Главный Сержант Артиллерист\nПрефикс: Гл. Серж. Арт.\nРазряд: E9
+  Master Gunnery Sergeant\nPrefix: MGySgt\nPaygrade: E9
 
-  Первый Сержант\nПрефикс: 1-й Сержант\nРазряд: E8E
+  First Sergeant\nPrefix: 1Sgt\nPaygrade: E8E
 
-  Главный Сержант\nПрефикс: Гл. Сержант\nРазряд: E8
+  Master Sergeant\nPrefix: MSgt\nPaygrade: E8
 
-  Сержант Артиллерист\nПрефикс: Серж. Арт.\nРазряд: E7
+  Gunnery Sergeant\nPrefix: GySgt\nPaygrade: E7
 
-  Штаб-Сержант\nПрефикс: Штаб-Сержант\nРазряд: E6
+  Staff Sergeant\nPrefix: SSgt\nPaygrade: E6
 
-  Сержант\nПрефикс: Сержант\nРазряд: E5
+  Sergeant\nPrefix: Sgt\nPaygrade: E5
 
-  Капрал\nПрефикс: Капрал\nРазряд: E4
+  Corporal\nPrefix: Cpl\nPaygrade: E4
 
-  Младший Капрал\nПрефикс: Мл. Капрал\nРазряд: E3
+  Lance Corporal\nPrefix: LCpl\nPaygrade: E3
 
-  Рядовой Первого Класса\nПрефикс: Ряд. 1-го Кл.\nРазряд: E2
+  Private First Class\nPrefix: PFC\nPaygrade: E2
 
-  Рядовой\nПрефикс: Ряд.\nРазряд: E1
+  Private\nPrefix: PVT\nPaygrade: E1
 
 </Document>

@@ -1,59 +1,61 @@
 ﻿<Document>
 
-  # Процедуры Ареста
-  Если военный корабль будет захвачен враждебными силами, аресты не должны производиться, если лицо не представляет опасности для военного корабля и/или его персонала.
+  # Arresting Procedures
+  Should the warship get boarded by a hostile force, no arrests should be made unless the person presents a danger to the warship and/or its personnel.
 
-  ## Аресты по Приказу Офицера
-  Если офицер КМП США приказывает арестовать кого-либо за преступление, ВОЕННАЯ ПОЛИЦИЯ ОБЯЗАНА арестовать этого человека.
-  - Только [color=#008000][bold]Командир[/bold][/color] [italic](не [color=#90EE90][bold]Дежурный Офицер[/bold][/color])[/italic] и [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] могут отдать приказ офицеру об аресте другого офицера Военной Полиции.
-  - Они могут арестовать и задержать этого человека на десять минут после того, как он доставлен в бриг, пока они собирают доказательства.
-  - Если подозреваемый будет признан невиновным во всех инкриминируемых преступлениях, офицеру, запросившему арест, может быть предъявлено обвинение в Клевете. Однако время за любые преступления, которые подозреваемый совершил в результате ареста, все равно должно быть отбыто.
-  - До задержания подозреваемого офицер может отозвать приказ.
-  - В случае [bold]арестов по приказу офицера[/bold] [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] или [color=#008000][bold]Командир[/bold][/color] могут принять решение о назначении Дисциплинарного Взыскания без Суда (ДВС) вместо первоначального обвинения (где это допустимо).
+  - Any orders given by any personnel who are legally detained or facing charges are considered void until the charges are cleared, the brig time is served, or the detention is resolved.
 
-  ## Арест Подозреваемого
-  [italic]Эти аресты могут быть произведены в любом месте на военном корабле.[/italic]
-  - Обезвредьте Подозреваемого, если он сопротивляется, и надежно свяжите его.
-  - Переместите Подозреваемого в камеру брига.
-  - Перейдите к [bold]процедуре предъявления обвинения[/bold].
+  ## Officer Ordered Arrests
+  Should an Officer of the UNMC order an arrest for a crime, MPs MUST arrest that person.
+  - Only the [color=#008000][bold]Commander[/bold][/color] [italic](not a [color=#90EE90][bold]Duty Officer[/bold][/color])[/italic] and [color=#8B0000][bold]Chief MP[/bold][/color] can Officer order an arrest on an MP.
+  - They may arrest and hold that person for ten minutes after they have reached the brig while they gather evidence.
+  - Should the suspect be declared innocent of all accused crimes, the requesting officer may incur a Prevarication charge. The time for any crimes the suspect committed as a result of the arrest must still be served, however.
+  - Before the suspect is detained, the Officer may rescind the order.
+  - In the case of [bold]officer ordered arrests[/bold] the [color=#8B0000][bold]Chief MP[/bold][/color] or [color=#008000][bold]Commander[/bold][/color] may choose to assign an NJP over the initial charge (where valid).
 
-  ## Арест Военной Полиции
-  - [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] может быть арестован только с одобрения [color=#008000][bold]Командира[/bold][/color] или [color=#ffa500][bold]Офиса Провост Маршалов[/bold][/color].
-  - Любой [color=#ff000d][bold]Офицер Военной Полиции[/bold][/color] может быть арестован только с одобрения [color=#008000][bold]Командира[/bold][/color] или [color=#8B0000][bold]Начальника Военной Полиции[/bold][/color]. [color=#008000][bold]Командир[/bold][/color] имеет последнее слово.
-  - [color=#90EE90][bold]Дежурный Офицер[/bold][/color] не может санкционировать арест [color=#ff000d][bold]Офицера Военной Полиции[/bold][/color] или [color=#8B0000][bold]Начальника Военной Полиции[/bold][/color].
-  - Убедитесь, что соблюдена дополнительная процедура обвинения Военной Полиции.
+  ## Arresting a Suspect
+  [italic]These arrests can be performed anywhere on the warship.[/italic]
+  - Take down the Suspect if they resist and securely restrain them.
+  - Move the Suspect to a holding cell.
+  - Continue to [bold]charging procedure[/bold].
 
-  ## Действия Против Командира
-  - [color=#ff000d][bold]Военная Полиция[/bold][/color] должны связаться с [color=#ffa500][bold]Офисом Провост Маршалов[/bold][/color] перед тем, как предпринимать какие-либо действия, связанные с законом, против [color=#00CBFE][bold]Командующего Офицера[/bold][/color].
-  - Если нет [color=#00CBFE][bold]Командующего Офицера[/bold][/color], [color=#008000][bold]Командир[/bold][/color] операции может быть арестован, но [color=#ffa500][bold]Офис Провост Маршалов[/bold][/color] должен быть уведомлен об этом постфактум, по факсу.
+  ## Arresting MP
+  - The [color=#8B0000][bold]Chief MP[/bold][/color] can only be arrested if approved by the [color=#008000][bold]Commander[/bold][/color] or [color=#ffa500][bold]Provost Marshal Office[/bold][/color].
+  - Any [color=#ff000d][bold]MP[/bold][/color]s can only be arrested if approved by the [color=#008000][bold]Commander[/bold][/color] or [color=#8B0000][bold]Chief MP[/bold][/color]. The [color=#008000][bold]Commander[/bold][/color] has the final say.
+  - A [color=#90EE90][bold]Duty Officer[/bold][/color] is unable to authorise the arrest of an [color=#ff000d][bold]MP[/bold][/color] or the [color=#8B0000][bold]Chief MP[/bold][/color].
+  - Ensure additional charging of Military Police procedure is followed.
 
-
-  ## Полевые Аресты
-  [italic]Это относится к арестам, проводимым в районе операций.[/italic]
-  - Полевые аресты ограничены [bold]ПОБ[/bold], десантными кораблями и безопасными зонами, за исключением случаев преследования.
-  - Если подозреваемый убегает за пределы вышеуказанных зон или замечен [color=#ff000d][bold]Офицерами Военной Полиции[/bold][/color], он может быть преследован.
-  - Если поблизости находятся враждебные силы, [color=#ff000d][bold]Офицеры Военной Полиции[/bold][/color] должны прекратить арест и переместиться в безопасную зону.
-  - [color=#ff000d][bold]Офицеры Военной Полиции[/bold][/color] могут перемещаться между безопасными зонами.
-  - [bold]Командиры Отрядов[/bold] могут задерживать морпехов своего отряда, нарушающих закон и должны задерживать морпехов своего отряда по приказу [color=#8B0000][bold]Начальника Военной Полиции[/bold][/color], [color=#008000][bold]Командира[/bold][/color] или любого офицера. Это также может относиться к персоналу, который развертывается несанкционированно.
-  - Морпехи и персонал, задержанные [bold]Командирами Отрядов[/bold], должны быть переданы [color=#ff000d][bold]Офицерам Военной Полиции[/bold][/color] в безопасной зоне, когда это возможно.
-
-  ## Жертвы Могут Снять Обвинения
-  - За исключением тяжких преступлений, пренебрежения служебными обязанностями и нанесения тяжких телесных повреждений, жертва преступления сохраняет право снять обвинения.
-  - Это разрешено после того, как обвиняемый перемещен в безопасное место или бриг.
-  - [color=#ff000d][bold]Офицеры Военной Полиции[/bold][/color] должны освободить обвиняемого по просьбе жертвы, при этом продолжение попыток ареста за первоначальное преступление считается клеветой.
-  - [color=#ff000d][bold]Офицеры Военной Полиции[/bold][/color] могут задержать обвиняемого не более чем на [bold]5 минут[/bold], если они хотят связаться с [color=#ffa500][bold]Офисом Провост Маршалов[/bold][/color], чтобы обжаловать арест против воли жертвы.
-  - Если апелляция на арест от [color=#ffa500][bold]Офиса Провост Маршалов[/bold][/color] не получена в течение 5 минут, обвиняемый должен быть освобожден.
+  ## Actions Against the Commander
+  - [color=#ff000d][bold]MP[/bold][/color] must contact [color=#ffa500][bold]Provost Marshal Office[/bold][/color] before taking any law-related actions against the [color=#00CBFE][bold]Commanding Officer[/bold][/color].
+  - If there is no [color=#00CBFE][bold]Commanding Officer[/bold][/color], the [color=#008000][bold]Commander[/bold][/color] of the operation may be arrested, but [color=#ffa500][bold]Provost Marshal Office[/bold][/color] must be notified after the fact, through fax.
 
 
-  ## Самооборона или Защита Других
-  Обвинения не должны предъявляться тем, кто применяет силу к другим при самообороне от незаконного вреда, если они защищаются пропорциональной силой. Это также распространяется на защиту других, если они считают, что другие находятся в смертельной опасности. Это не относится к законным убийствам, таким как казни.
+  ## Field Arrests
+  [italic]These refer to arrests performed in the area of operations.[/italic]
+  - Field arrests are restricted to the [bold]FOB[/bold], dropships, and secure areas unless in pursuit.
+  - If a suspect flees outside the above areas or are witnessed by the [color=#ff000d][bold]MP[/bold][/color], they may be pursued.
+  - If there are hostiles in the vicinity, the [color=#ff000d][bold]MP[/bold][/color] must abort the arrest and move to a secure area.
+  - [color=#ff000d][bold]MP[/bold][/color]s may move between secure areas.
+  - [bold]Squad Leaders[/bold] may detain marines of their squad that violate the law, but must detain marines of their squad by orders of the [color=#8B0000][bold]Chief MP[/bold][/color], [color=#008000][bold]Commander[/bold][/color], or any commisioned officer. This may also apply to personnel that are deploying unauthorised.
+  - Marines and personnel detained by the [bold]Squad Leaders[/bold] should be passed onto the [color=#ff000d][bold]MP[/bold][/color] in a secure area when possible.
+
+  ## Victims May Drop Charges
+  - Excluding capital crimes, neglect of duty, and grievous bodily harm, the victim of a crime retains the right to drop charges.
+  - This is permitted after the defendant is moved to a secure location or the brig.
+  - [color=#ff000d][bold]MP[/bold][/color] must release the defendant on the victim's request, with continued arrest attempts for the original crime being considered prevarication.
+  - [color=#ff000d][bold]MP[/bold][/color] may hold the defendant for no longer than [bold]5 minutes[/bold] if they wish to contact [color=#ffa500][bold]Provost Marshal Office[/bold][/color] to appeal the arrest against the victim's wishes.
+  - If an appeal to arrest from [color=#ffa500][bold]Provost Marshal Office[/bold][/color] is not received within the 5 minutes, the defendant must be released.
 
 
-  Подвергшийся нападению должен применять пропорциональную смертоносную силу только до тех пор, пока нападавший не сможет больше атаковать, и стремиться уйти от нападавшего, где это возможно, чтобы предупредить [color=#ff000d][bold]Военную Полицию[/bold][/color]. Подвергшийся нападению должен уведомить [color=#ff000d][bold]Военную Полицию[/bold][/color] или своего руководителя о применении самообороны.
+  ## Self Defense or Defense of Others
+  Charges are not to be applied to those who use force on others when defending themselves from illegal harm, so long as they defend themselves with proportional force. This also extends to the defense of others if they believe the others are in lethal danger. This does not apply to lawful killings such as executions.
 
-  Примеры пропорциональной силы:
-  - Удар кулаком в ответ на удар кулаком.
-  - Холодное оружие в ответ на нападение с холодным оружием.
-  - Пули против пуль.
+
+  The person being attacked should only use proportional lethal force until the person is no longer able to attack, and look to get away from the attacker where possible to alert the [color=#ff000d][bold]MP[/bold][/color]. The person being attacked should notify the [color=#ff000d][bold]MP[/bold][/color] or their supervisor about the use of self-defense.
+
+  Examples of proportional force are;
+  - Punching when being punched.
+  - Melee weapons when being attacked with melee weapons.
+  - Bullets against bullets.
 
 </Document>
