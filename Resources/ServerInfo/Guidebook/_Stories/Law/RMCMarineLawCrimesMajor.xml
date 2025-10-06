@@ -1,0 +1,202 @@
+﻿<Document>
+  # Тяжкие Преступления
+  - Эти преступления имеют высокую степень тяжести.
+  <Table Columns="3">
+    <ColorBox>
+      <Box>
+        Обвинение
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Описание
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Наказание
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Нарушение Общественного Порядка
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Прямое и намеренное нарушение основных операций корабля. Драка в очереди снабжения, длительное или неоднократное срыв брифинга.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]10 Минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Диверсия
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Выполнение задач или связь с материалами, описывающими запланированные действия, идущие вразрез с КМП США. Требуются веские доказательства того, что человек работает против КМП США.\n[italic]Тяжкое обвинение в Несанкционированном Использовании Подслушивающего Устройства, когда такое устройство также связано с иностранным правительством или террористической организацией, дополнительно считается Диверсией.[/italic]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]15 Минут, изъятие удостоверения личности и высадка на планету.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Пренебрежение Служебными Обязанностями
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Невыполнение своей роли на приемлемом уровне.\n[italic]Например, [color=#008000][bold]Командир[/bold][/color], не сумевший должным образом организовать и обеспечить получение приказов своим персоналом, не соблюдающий надлежащую процедуру в ущерб своим обязанностям, или корабельный экипаж, покидающий корабль или свой пост без разрешения [color=#008000][bold]Командира[/bold][/color] или главы своего департамента.[/italic]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]15 Минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Нападение
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Угрожать или применять физическую силу против кого-либо со злым умыслом, но без намерения убить.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]15 Минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Клевета
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Намеренно отдать приказ об аресте человека по ложным обвинениям, который впоследствии признан невиновным, или применить ненадлежащее или оскорбительное Дисциплинарное Взыскание без Суда (ДВС). Это включает в себя намеренный арест человека по ложным обвинениям по собственной инициативе без приказов.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]20 Минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Непредумышленное Убийство
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Убийство кого-либо без злого умысла. Непредумышленное убийство может быть применено, если кто-то умирает в результате драки, в которой не было намерения убивать.
+        \nЭто также включает в себя отказ от воскрешения кого-либо без разумной попытки, не казненного в соответствии с процедурой казни.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]20 Минут и/или понижение в звании.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Нападение со Смертоносным Оружием
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Угрожать или применять физическую силу против кого-либо со злым умыслом и со смертоносным оружием, таким как личное оружие, клинок или винтовка, но не пытаясь убить его.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]20 Минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Незаконное Лишение Свободы
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Незаконное задержание человека против его воли. Включает в себя похищение, захват заложников и заключение людей в камеры без предъявления им обвинения в преступлении. Это не относится к военнопленным.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]20 Минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Жестокое Обращение с Животными
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Нанесение увечий или убийство любого домашнего животного или дикой природы со злым умыслом. Исследовательские обезьяны, используемые для химических исследований, научных целей или враждебной дикой природы, освобождаются от ответственности.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]30 Минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Злоупотребление Властью
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Осуществление власти в [bold]злонамеренных целях[/bold] [color=#ff000d][bold]Военной Полиции[/bold][/color] или делегированным персоналом, действующим в качестве [color=#ff000d][bold]Военной Полиции[/bold][/color].
+        \n[italic]Примеры включают избиение поверженного заключенного, чрезмерное применение вредной или нелетальной силы или другие оскорбительные действия, которые привели к причинению вреда лицу, находящемуся под стражей.[/italic]\nК задержанным подозреваемым не следует применять силу больше, чем необходимо для их усмирения.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]20 Минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Несанкционированное Развертывание
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Развертывание в районе операций без разрешения соответствующего главы департамента или [color=#008000][bold]Командира[/bold][/color], когда это уместно, при одновременном выполнении назначенных обязанностей. (Т.е. врач, развертывающийся без разрешения, с намерением выполнить полевую операцию.) Развертывание без намерения выполнять назначенные обязанности остается дезертирством.
+        \n- Соответствующий глава департамента или [color=#008000][bold]Командир[/bold][/color], где это уместно, могут задним числом санкционировать развертывание. [color=#008000][bold]Командир[/bold][/color] может отменить решение главы департамента по этому вопросу.
+        \n- Соответствующий глава департамента или [color=#008000][bold]Командир[/bold][/color] может назначить другое лицо для развертывания вместо несанкционированного лица, в этом случае [color=#ff000d][bold]Офицеры Военной Полиции[/bold][/color] должны координировать свои действия с назначенным лицом, чтобы уменьшить сбои в полевых условиях. Максимальная задержка для этого периода составляет пять минут.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]10 Минут.[/bold]
+      </Box>
+    </ColorBox>
+
+  </Table>
+</Document>
