@@ -22,7 +22,7 @@
   id: RMCCommandChain
   name: rmc-guide-entry-rules-command-chain
   priority: 0
-  text: "/ServerInfo/Guidebook/_Stories/Rules/Roleplay/RMCCommandChain.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Law/RMCCommandChain.xml"
 
 - type: guideEntry
   parent: RMC
