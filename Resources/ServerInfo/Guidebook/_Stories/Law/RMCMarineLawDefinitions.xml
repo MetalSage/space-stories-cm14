@@ -1,127 +1,133 @@
 ﻿<Document>
-  # Definitions
+  # Определения
 
-  [italic]These definitions are used throughout the rest of Marine Law.[/italic]
+  [italic]Эти определения используются во всём тексте Морского Устава.[/italic]
 
-  [color=#00CBFE][bold]Commanding Officer[/bold][/color]
-  - The official UNMC Commanding Officer of the ship.
-  - Anything with the words [color=#00CBFE][bold]Commanding Officer[/bold][/color] only applies to the current whitelisted Commanding Officer of the ship. These rights can be transferred to any UNMC Officers that are ranked [bold]Major[/bold] or above by the [color=#008000][bold]Commander[/bold][/color].
-
-  \n
-
-  [color=#008000][bold]Commander[/bold][/color]
-  - The current [color=#008000][bold]Commander[/bold][/color] of an operation.
-  - Transferable to a new [color=#008000][bold]Commander[/bold][/color], per the [textlink="Commander Succession" link="RMCCommandChain"].
-
-  If the [color=#008000][bold]Commander[/bold][/color] is rendered incapable of command [bold]temporarily[/bold], the [color=#90EE90][bold]Duty Officer[/bold][/color] inherits [color=#008000][bold]Commander[/bold][/color] rights, but should the [color=#008000][bold]Commander[/bold][/color] return, they are still the [color=#008000][bold]Commander[/bold][/color]. This includes but is not limited to:
-
-  - Prolonged communications outage.
-  - The [color=#008000][bold]Commander[/bold][/color] deploying in the field.
-
-  If the [color=#008000][bold]Commander[/bold][/color] is rendered [bold]permanently[/bold] incapable of command, the next in the [textlink="Commander Succession" link="RMCCommandChain"] becomes the [color=#008000][bold]Commander[/bold][/color], rather than becoming a [color=#90EE90][bold]Duty Officer[/bold][/color]. This includes but is not limited to:
-  - The [color=#008000][bold]Commander[/bold][/color] is relieved of duty due to [bold]arrest[/bold] or [bold]mutiny[/bold].
-  - The [color=#008000][bold]Commander[/bold][/color] becoming [bold]unrevivable[/bold].
-
-  Ensure when assigning a new [color=#008000][bold]Commander[/bold][/color], that this is announced. Include the new [color=#008000][bold]Commander[/bold][/color]'s name and the reason for them being assigned as the new [color=#008000][bold]Commander[/bold][/color], to avoid confusion.
+  [color=#00CBFE][bold]Командующий Офицер[/bold][/color]
+  - Официальный Командующий Офицер корабля КМП США.
+  - Всё, что связано с [color=#00CBFE][bold]Командующим Офицером[/bold][/color], относится только к текущему утверждённому Командующему Офицеру КМП США. Эти полномочия могут быть переданы любому офицеру КМП США со званием [bold]Майор[/bold] или выше по решению [color=#008000][bold]Командира[/bold][/color].
 
   \n
 
-  [color=#90EE90][bold]Duty Officer[/bold][/color]
-  - The ranking officer in the [textlink="Commander Succession" link="RMCCommandChain"] who, in the temporary absence of the [color=#008000][bold]Commander[/bold][/color], is placed in command of the warship.
-  - Unless explicitly stated otherwise, the [color=#90EE90][bold]Duty Officer[/bold][/color] is interchangeable with, and inherits the rights of [color=#008000][bold]Commander[/bold][/color] in this case.
+  [color=#008000][bold]Командир[/bold][/color]
+  - Текущий [color=#008000][bold]Командир[/bold][/color] операции.
+  - Может быть передан новому [color=#008000][bold]Командиру[/bold][/color] согласно [textlink="Командной цепи" link="RMCCommandChain"].
+
+  Если [color=#008000][bold]Командир[/bold][/color] временно не способен выполнять обязанности, [color=#90EE90][bold]Дежурный офицер[/bold][/color] получает права [color=#008000][bold]Командира[/bold][/color], однако по возвращении [color=#008000][bold]Командира[/bold][/color] все права переходят ему. Это включает, но не ограничивается:
+
+  - Длительным отсутствием связи.
+  - Участием [color=#008000][bold]Командира[/bold][/color] в боевых действиях.
+
+  Если [color=#008000][bold]Командир[/bold][/color] становится [bold]перманентно[/bold] неспособным командовать, следующий по [textlink="Командной цепи" link="RMCCommandChain"] становится новым [color=#008000][bold]Командиром[/bold][/color], а не [color=#90EE90][bold]Дежурным офицером[/bold][/color]. Это включает, но не ограничивается:
+  - [color=#008000][bold]Командир[/bold][/color] отстранён от службы из-за [bold]ареста[/bold] или [bold]мятежа[/bold].
+  - [color=#008000][bold]Командир[/bold][/color] становится [bold]перманентно мёртвым[/bold].
+
+  При назначении нового [color=#008000][bold]Командира[/bold][/color] обязательно объявите об этом, указав его имя и причину назначения, чтобы избежать путаницы.
 
   \n
 
-  [color=#8B0000][bold]Chief MP[/bold][/color]
-  - The Chief of Military Police, assigned to the warship.
-  - Only transferable to the [bold]Warden[/bold] by the [color=#008000][bold]Commander[/bold][/color], if another [color=#ff000d][bold]MP[/bold][/color] is appointed to be the acting [bold]Warden[/bold] in their place.
-  - An acting [bold]Warden[/bold] cannot be the acting [color=#8B0000][bold]Chief MP[/bold][/color]
-  - A deputized person may not be the acting [bold]Warden[/bold].
+  [color=#90EE90][bold]Дежурный офицер[/bold][/color]
+  - Старший офицер по [textlink="Командной цепи" link="RMCCommandChain"], который временно принимает командование кораблём при отсутствии [color=#008000][bold]Командира[/bold][/color].
+  - Если не указано иное, [color=#90EE90][bold]Дежурный офицер[/bold][/color] приравнивается к [color=#008000][bold]Командиру[/bold][/color] и обладает теми же правами в этот период.
 
   \n
 
-  [color=#ff000d][bold]MP[/bold][/color]
-  - Military Police, including personnel validly deputized by the [color=#00CBFE][bold]Commanding Officer[/bold][/color], who deal with Marine Law.
+  [color=#8B0000][bold]Начальник военной полиции[/bold][/color]
+  - Начальник военной полиции, назначенный на корабль.
+  - Может передать свои обязанности [bold]Военному надзирателю[/bold] только по решению [color=#008000][bold]Командира[/bold][/color], если другой [color=#ff000d][bold]Сотрудник ВП[/bold][/color] назначен исполняющим обязанности [bold]Военного надзирателя[/bold].
+  - Исполняющий обязанности [bold]Военного надзирателя[/bold] не может быть исполняющим обязанности [color=#8B0000][bold]Начальника военной полиции[/bold][/color].
+  - Лицо, назначенное временно исполняющим обязанности ВП, не может быть исполняющим обязанности [bold]Военного надзирателя[/bold].
 
   \n
 
-  [bold]Officer[/bold]
-  - A person who is a Commissioned Officer. These rights cannot be transferred.
-  - A person who is a Warrant Officer. These rights cannot be transferred.
+  [color=#ff000d][bold]Сотрудник ВП[/bold][/color]
+  - Представитель Военной полиции, включая лиц, официально уполномоченных [color=#00CBFE][bold]Командиром корабля[/bold][/color], занимающихся исполнением Морского Устава.
 
   \n
 
-  [bold]Department heads[/bold]
-  - A person who is responsible for an entire department, which includes the [bold]Chief Engineer[/bold], [bold]Chief Medical Officer[/bold], [bold]Auxiliary Support Officer[/bold], [bold]Quartermaster[/bold], [color=#8B0000][bold]Chief MP[/bold][/color].
+  [bold]Офицер[/bold]
+  - Лицо, имеющее офицерское звание. Эти права непередаваемы.
+  - Лицо, являющееся уорент-офицером. Эти права непередаваемы.
 
   \n
 
-  [bold]CIC Personnel[/bold]
-  - Standard personnel whose main duties are within CIC. This includes the [color=#00CBFE][bold]Commanding Officer[/bold][/color], [bold]Executive Officer[/bold], and [bold]Staff Officers[/bold].
+  [bold]Главы отделов[/bold]
+  - Лица, отвечающие за целые отделы: [bold]Главный инженер[/bold], [bold]Главный врач[/bold], [bold]Офицер вспомогательной поддержки[/bold], [bold]Квартирмейстер[/bold], [color=#8B0000][bold]Начальник военной полиции[/bold][/color].
 
   \n
 
-  [bold]Aiding, abetting, conspiring[/bold]
-  - Assisting others in committing a crime, directly or indirectly, encouraging them to commit one (including bribery), conspiring or attempting to commit a crime will be treated as having committed that crime with regards to punishment.
+  [bold]Персонал ЦИК[/bold]
+  - Обычные члены экипажа, чьи основные обязанности выполняются в Центральном командном пункте (ЦИК). Включает [color=#00CBFE][bold]Командующего Офицера[/bold][/color], [bold]Исполнительного офицера[/bold] и [bold]Офицеров штаба[/bold].
 
   \n
 
-  [bold]Lawful Orders[/bold]
-  - Personnel are required to follow all lawful orders from their superiors and are NOT-required to follow unlawful orders.
-  - If personnel are refusing to follow an order, they must state why they believe it would break Marine Law, making it an unlawful order.
-  - Valid NJPs are not unlawful orders in the case of neglected duties.
+  [bold]Лётный экипаж[/bold]
+  - Назначенные Пилоты и Командиры экипажа транспортёра.
 
   \n
 
-  [bold]Riot equipment[/bold]
-  - Flashbangs.
-  - Teargas.
-  - Riot shotguns with beanbag rounds.
-  - Riot shields and armor.
-  - Riot grenade launchers.
+  [bold]Содействие, пособничество, сговор[/bold]
+  - Помощь другим в совершении преступления прямо или косвенно, поощрение к преступлению (включая подкуп), сговор или попытка совершить преступление рассматриваются как само преступление при вынесении наказания.
 
   \n
 
-  [bold]FOB[/bold]
-  - The Forward Operating Base.
-  - Designated by the [color=#008000][bold]Commander[/bold][/color]. It is a reinforced area, usually being the primary landing zone.
-  - FOBs do not have to be placed adjacent to a landing zone. However, the primary landing zone itself must at least be properly defended and guarded.
+  [bold]Законные приказы[/bold]
+  - Персонал обязан выполнять все законные приказы своих начальников и не обязан выполнять незаконные.
+  - В случае отказа от исполнения приказа необходимо указать, почему он считается нарушающим Морской Устав.
+  - Дисциплинарные взыскания (ДВС) не считаются незаконными приказами при Принебрежении служебными обязанностями.
 
   \n
 
-  [bold]Area of Operations (AO)[/bold]
-  - The area of operations is the broad location where personnel are being deployed to conduct an operation.
+  [bold]Снаряжение для подавления беспорядков[/bold]
+  - Светошумовые гранаты.
+  - Слезоточивый газ.
+  - Дробовики с резиновыми пулями.
+  - Щиты и броня для подавления беспорядков.
+  - Гранатомёты для стрельбы нелетальными боеприпасами.
+  - Резиновые пули.
 
   \n
 
-  [bold]Secure Areas[/bold]
-  - Must be designated by the [color=#008000][bold]Commander[/bold][/color] or staff officers. It is a reinforced area, where there has been no recent combat or threats.
-  - The [bold]FOB[/bold] is usually a secure area until it is attacked, for example.
-  - The [color=#008000][bold]Commander[/bold][/color] or any [bold]CIC Personnel[/bold] at any point may designate an area no longer secure.
-  - Areas that have been recently attacked are presumed no longer secure, and should be reported for safety.
+  [bold]ПОБ[/bold]
+  - Передовая оперативная база.
+  - Определяется [color=#008000][bold]Командиром[/bold][/color], обычно является основной зоной высадки.
+  - ПОБ не обязательно должна быть рядом с зоной посадки, но сама зона посадки должна быть защищена и охраняема.
 
   \n
 
-  [bold]Field Hospital[/bold]
-  - Must be designated by the [color=#008000][bold]Commander[/bold][/color] or [bold]Chief Medical Officer[/bold]. It is a reinforced area, where there has been no recent combat or threats.
-  - It is the only area aside from the [bold]FOB[/bold] that the [bold]Chief Medical Officer[/bold] or [color=#008000][bold]Commander[/bold][/color] may give permission to doctors and nurses to move to.
-  - It must be designated as a [bold]Secure Area.[/bold]
+  [bold]Зона боевых действий (ЗБД)[/bold]
+  - Обширная область, в которой размещается персонал для проведения операции.
 
   \n
 
-  [bold]Alert Levels[/bold]
-  - Code [bold][color=lightgreen]Green[/color][/bold]: All clear.
-  - Code [bold][color=lightblue]Blue[/color][/bold]: Potentially hostile activity on board.
-  - Code [bold][color=red]Red[/color][/bold]: There is an immediate threat to the ship or it's crew. Examples of usage include; AI Core Security issue, biohazard containment breach, general quarters. Distress beacon, evacuation, and usage of sentry systems authorized.
-  - Code [bold][color=black]Delta[/color][/bold]:  Immediately applies if the warship hull has a major breach by intruders. An order of evacuation, self-destruction, or hold of the warship will be made at this time.
+  [bold]Безопасные зоны[/bold]
+  - Должны быть определены [color=#008000][bold]Командиром[/bold][/color] или офицерами штаба. Это укреплённые участки, где не было недавних боевых действий или угроз.
+  - Например, [bold]ПОБ[/bold] считается безопасной зоной до тех пор, пока не подвергнется атаке.
+  - [color=#008000][bold]Командир[/bold][/color] или любой [bold]персонал ЦИК[/bold] могут в любой момент объявить зону небезопасной.
+  - Зоны, недавно подвергшиеся атаке, считаются небезопасными и информация об этом должна быть доложена персоналу ЦИК для обеспечения безопасности.
 
   \n
 
-  [color=#ffa500][bold]Provost Marshal Office[/bold][/color]
-  - Hold significant weight on how Marine Law is handled in their operational areas.
-  - In the event that Marine Law is being mishandled aboard a UNMC warship or within the AO of a UNMC warship, [color=#ffa500][bold]Provost Marshal Office[/bold][/color] may see fit to dispatch personnel.
-  - Members of the [color=#ffa500][bold]Provost Marshal Office[/bold][/color] obey only their direct superiors and are not beholden to Marine command or officers.
-  - Provost [bold]Marshals[/bold] are not required to follow Marine Law.
-  - Provost [bold]Inspectors[/bold] and above are the final word on Marine Law in their AO.
-  - Provost [bold]Advisors[/bold] do not hold any direct authority themselves, however they are expected to ensure Marine Law is correctly handled.
+  [bold]Полевой госпиталь[/bold]
+  - Должен быть определён [color=#008000][bold]Командиром[/bold][/color] или [bold]Главным врачом[/bold]. Это укреплённая зона, где нет недавних боевых действий или угроз.
+  - Это единственная зона, кроме [bold]ПОБа[/bold], куда [bold]Главный врач[/bold] или [color=#008000][bold]Командир[/bold][/color] могут разрешить перемещение врачей и интернов.
+  - Обязательно должна быть обозначена как [bold]Безопасная зона.[/bold]
+
+  \n
+
+  [bold]Уровни тревоги[/bold]
+  - Код [bold][color=lightgreen]Зелёный[/color][/bold]: Всё спокойно.
+  - Код [bold][color=lightblue]Синий[/color][/bold]: Возможная враждебная активность на борту.
+  - Код [bold][color=red]Красный[/color][/bold]: Непосредственная угроза кораблю или экипажу. Примеры: проблема с ИИ, утечка биологической угрозы, общая тревога. Разрешается использование сигнала бедствия, эвакуация и активация систем обороны.
+  - Код [bold][color=black]Дельта[/color][/bold]: Применяется немедленно при крупном нарушении корпуса корабля противником. В этот момент могут быть отданы приказы об эвакуации, самоуничтожении или удержании корабля.
+
+  \n
+
+  [color=#ffa500][bold]Офис Провост Маршала[/bold][/color]
+  - Обладает значительными полномочиями в вопросах применения Морского Устава в зоне своей ответственности.
+  - В случае неправильного применения Морского Устава на корабле КМП США или в БЗД, [color=#ffa500][bold]Офис Провост Маршала[/bold][/color] может направить свой персонал.
+  - Члены [color=#ffa500][bold]Офиса Провост Маршала[/bold][/color] подчиняются только своим непосредственным начальникам и не зависят от командования КМП или офицеров.
+  - Провост [bold]Маршалы[/bold] не обязаны следовать Морскому Уставу.
+  - Провост [bold]Инспекторы[/bold] и выше имеют окончательное слово в вопросах Морского Устава в БЗД.
+  - Провост [bold]Советники[/bold] не обладают прямыми полномочиями, но обязаны следить за корректным соблюдением Морского Устава.
 </Document>
