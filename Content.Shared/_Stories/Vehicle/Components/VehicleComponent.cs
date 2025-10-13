@@ -1,14 +1,7 @@
-using System.Numerics;
 using Content.Shared._RMC14.Stun;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
-using Content.Shared.Roles;
-using Content.Shared.Whitelist;
-using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
-using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
@@ -36,16 +29,16 @@ public sealed partial class VehicleComponent : Component
     public float EntryDelayPulling = 2f;
 
     [DataField, AutoNetworkedField]
-    public float EntryInteractionRange = 35f;
+    public float EntryInteractionRange = 15f;
 
     [DataField, AutoNetworkedField]
     public bool Locked;
 
     [DataField, AutoNetworkedField]
-    public ResPath GridPath = new ResPath("/Maps/Test/admin_test_arena.yml");
+    public ResPath GridPath = new ResPath("/Maps/_Stories/Vehicles/M577.yml");
 
     [DataField, AutoNetworkedField]
-    public string MovementSlot = string.Empty;
+    public string MovementSlot = "vehicle-slot-treads";
 
     [ViewVariables, AutoNetworkedField]
     public List<EntityUid> Hardpoints = new();
@@ -54,7 +47,7 @@ public sealed partial class VehicleComponent : Component
     public EntityUid? ActiveHardpoint;
 
     [DataField, AutoNetworkedField]
-    public EntryDirection EntryDirections = EntryDirection.Left | EntryDirection.Right | EntryDirection.Front;
+    public EntryDirection EntryDirections = EntryDirection.Left | EntryDirection.Right | EntryDirection.Back;
 
     [ViewVariables]
     public ContainerSlot AmmoStorage = default!;
@@ -66,7 +59,7 @@ public sealed partial class VehicleComponent : Component
     public Dictionary<string, float> DamageMults = new();
 
     [DataField, AutoNetworkedField]
-    public FixedPoint2 MaxHealth = default!;
+    public FixedPoint2 MaxHealth = FixedPoint2.New(1000);
 
     [DataField, AutoNetworkedField]
     public SlotCount PassengerSlots = new();
@@ -82,6 +75,12 @@ public sealed partial class VehicleComponent : Component
 
     [DataField, AutoNetworkedField]
     public RMCSizes SizeRequiredToHit = RMCSizes.Xeno;
+
+    [DataField, AutoNetworkedField]
+    public VehicleClass Class = VehicleClass.Light;
+
+    [DataField, AutoNetworkedField]
+    public FixedPoint2 WallRamDamage = 50;
 }
 
 [DataDefinition, Serializable, NetSerializable]
@@ -115,4 +114,13 @@ public enum EntryDirection : byte
     Right = 1 << 1,
     Front = 1 << 2,
     Back = 1 << 3
+}
+
+[Flags]
+public enum VehicleClass : byte
+{
+    Weak = 1 << 1,
+    Light = 1 << 2,
+    Medium = 1 << 3,
+    Heavy = 1 << 4
 }

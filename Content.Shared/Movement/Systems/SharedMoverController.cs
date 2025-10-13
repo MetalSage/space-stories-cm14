@@ -194,7 +194,14 @@ public abstract partial class SharedMoverController : VirtualController
             UsedMobMovement[uid] = false;
             return;
         }
-
+        // Stories-Vehicle-Movement-Tweak-Start
+        if (VehicleMoveQuery.TryComp(uid, out var vehicleMove) && vehicleMove.Blocked)
+        {
+            PhysicsSystem.ResetDynamics(uid, physicsComponent);
+            UsedMobMovement[uid] = false;
+            return;
+        }
+        // Stories-Vehicle-Movement-Tweak-End
         // If the body is in air but isn't weightless then it can't move
         // TODO: MAKE ISWEIGHTLESS EVENT BASED
         var weightless = _gravity.IsWeightless(uid, physicsComponent, xform);

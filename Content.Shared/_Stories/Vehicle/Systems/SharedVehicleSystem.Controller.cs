@@ -27,6 +27,7 @@ public sealed partial class SharedVehicleSystem
 
         SubscribeLocalEvent<VehicleControllerComponent, StrapAttemptEvent>(OnControllerStrapAttempt);
         SubscribeLocalEvent<VehicleControllerComponent, MapInitEvent>(OnControllerInit);
+        SubscribeLocalEvent<VehicleControllerComponent, ComponentInit>(OnControllerCompInit);
         SubscribeLocalEvent<VehicleControllerComponent, ComponentShutdown>(OnControllerShutdown);
         SubscribeLocalEvent<VehicleControllerComponent, UnstrappedEvent>(OnControllerUnstrapped);
         SubscribeLocalEvent<VehicleControllerComponent, StrappedEvent>(OnVehicleControllerStrapped);
@@ -38,6 +39,27 @@ public sealed partial class SharedVehicleSystem
     {
         if (TryGetVehicle(seat, out var vehicle))
             seat.Comp.Vehicle = vehicle.Owner;
+    }
+
+    private void OnControllerCompInit(Entity<VehicleControllerComponent> controller, ref ComponentInit args)
+    {
+        if (!TryGetVehicle(controller, out var vehicle))
+            return;
+
+        controller.Comp.Vehicle = vehicle.Owner;
+
+        foreach (var hardpoint in vehicle.Comp.Hardpoints)
+        {
+            if (!TryComp<VehicleControllableComponent>(hardpoint, out var controllable))
+                continue;
+
+            if (controllable.Id == controller.Comp.Id)
+            {
+                controller.Comp.ControllableEntity = hardpoint;
+                break;
+            }
+        }
+        Dirty(controller);
     }
 
     private void OnControllerInit(Entity<VehicleControllerComponent> controller, ref MapInitEvent args)

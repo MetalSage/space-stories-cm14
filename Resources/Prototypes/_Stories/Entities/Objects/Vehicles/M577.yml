@@ -19,7 +19,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-1.1,-1.9,1.15,1.9"
-        density: 1000
+        density: 10000
         mask:
         - Transport
         - LargeMobMask
@@ -61,9 +61,6 @@
         requireInputValidation: true
   - type: NoRotateOnInteract
   - type: Vehicle
-    gridPath: "/Maps/_Stories/Vehicles/M577.yml"
-    maxHealth: 1000
-    movementSlot: vehicle-slot-treads
     damageMults:
       Heat: 1.6
       Slash: 0.8

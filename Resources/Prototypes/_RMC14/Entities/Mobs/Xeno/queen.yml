@@ -143,6 +143,13 @@
         density: 185
         layer:
         - BulletImpassable
+      fix3:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.90
+        density: 185
+        layer:
+        - Transport
   - type: DropshipHijacker
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.4

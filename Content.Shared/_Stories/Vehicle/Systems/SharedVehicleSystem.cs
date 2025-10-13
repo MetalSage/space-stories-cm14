@@ -36,6 +36,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -575,6 +576,23 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         vehicle = (vehicleUid.Value, comp);
         return true;
+    }
+
+    public bool TryGetDriver(Entity<VehicleComponent> vehicle, [NotNullWhen(true)] out EntityUid? driver)
+    {
+        driver = default;
+
+        var query = EntityQueryEnumerator<VehiclePilotSeatComponent>();
+        while (query.MoveNext(out var uid, out var seat))
+        {
+            if (seat.Vehicle == vehicle.Owner && seat.Pilot != null && !seat.IsGunner)
+            {
+                driver = seat.Pilot;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void LoadMap(Entity<VehicleComponent> vehicle)

@@ -1,12 +1,14 @@
 using System.Numerics;
+using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._Stories.Vehicle.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared._RMC14.Marines.Skills;
 
 namespace Content.Shared._Stories.Vehicle;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(SharedVehicleSystem))]
 public sealed partial class VehiclePilotSeatComponent : Component
 {
     [DataField, AutoNetworkedField]
