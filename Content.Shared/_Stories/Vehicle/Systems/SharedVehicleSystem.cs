@@ -28,6 +28,7 @@ using Content.Shared.Popups;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Ghost;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
@@ -636,6 +637,15 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         var comp = vehicle.Comp;
 
+        if (HasComp<GhostComponent>(targetEntity))
+        {
+            _rmcPulling.TryStopAllPullsFromAndOn(user);
+            _transform.SetCoordinates(targetEntity, coords);
+            Dirty(vehicle);
+            UpdateVehicleStatusUI(vehicle);
+            return;
+        }
+
         if (targetEntity != user)
         {
             if (comp.Locked && TryComp<DamageableComponent>(vehicle, out var damageable) &&
@@ -666,11 +676,18 @@ public sealed partial class SharedVehicleSystem : EntitySystem
                 return;
             }
         }
-        else if (_job.MindTryGetJob(targetEntity, out var job) &&
-                 comp.RoleReservedSlots.TryGetValue(job.ID, out var roleSlots) && roleSlots.Current < roleSlots.Max)
+        else if (_job.MindTryGetJob(targetEntity, out var job))
         {
-            roleSlots.Current += 1;
-            comp.RoleReservedSlots[job.ID] = roleSlots;
+            var roleGroup = comp.RoleReservedSlots.FirstOrDefault(r => r.CategoryName == job.ID);
+            if (roleGroup != null && roleGroup.Total.Current < roleGroup.Total.Max)
+            {
+                roleGroup.Total.Current++;
+            }
+            else
+            {
+                _popup.PopupEntity(Loc.GetString("stories-transport-is-full"), user);
+                return;
+            }
         }
         else if (comp.PassengerSlots.Current < comp.PassengerSlots.Max)
         {
@@ -696,6 +713,15 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         var comp = vehicle.Comp;
 
+        if (HasComp<GhostComponent>(targetEntity))
+        {
+            _rmcPulling.TryStopAllPullsFromAndOn(user);
+            _transform.SetCoordinates(targetEntity, coords);
+            Dirty(vehicle);
+            UpdateVehicleStatusUI(vehicle);
+            return;
+        }
+
         if (HasComp<XenoComponent>(targetEntity))
         {
             if (comp.XenoSlots.Current > 0)
@@ -706,11 +732,13 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             if (comp.RevivableDeadSlots.Current > 0)
                 comp.RevivableDeadSlots.Current--;
         }
-        else if (_job.MindTryGetJob(targetEntity, out var job) &&
-                 comp.RoleReservedSlots.TryGetValue(job.ID, out var roleSlots) && roleSlots.Current > 0)
+        else if (_job.MindTryGetJob(targetEntity, out var job))
         {
-            roleSlots.Current--;
-            comp.RoleReservedSlots[job.ID] = roleSlots;
+            var roleGroup = comp.RoleReservedSlots.FirstOrDefault(r => r.CategoryName == job.ID);
+            if (roleGroup != null && roleGroup.Total.Current > 0)
+            {
+                roleGroup.Total.Current--;
+            }
         }
         else if (comp.PassengerSlots.Current > 0)
         {
@@ -722,6 +750,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         Dirty(vehicle);
         UpdateVehicleStatusUI(vehicle);
     }
+
 
     private bool CanEnter(EntityUid user, EntityUid target)
     {
