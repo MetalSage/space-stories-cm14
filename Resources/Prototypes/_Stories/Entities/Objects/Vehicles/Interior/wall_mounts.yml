@@ -237,7 +237,7 @@
     enteringOffset: 0, -0.6
     enteringRange: 0.03
   - type: AccessReader
-    access: [["RMCAccessSeniorCommand"]] # TODO TANK CREW ACCESS
+    access: [["CMAccessCrewman"]]
   - type: RMCMesonsNonviewable
   - type: InteractedBlacklist
     blacklist:

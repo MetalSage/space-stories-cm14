@@ -666,6 +666,12 @@ public sealed partial class SharedVehicleSystem : EntitySystem
                 return;
             }
         }
+        else if (_job.MindTryGetJob(targetEntity, out var job) &&
+                 comp.RoleReservedSlots.TryGetValue(job.ID, out var roleSlots) && roleSlots.Current < roleSlots.Max)
+        {
+            roleSlots.Current += 1;
+            comp.RoleReservedSlots[job.ID] = roleSlots;
+        }
         else if (comp.PassengerSlots.Current < comp.PassengerSlots.Max)
         {
             comp.PassengerSlots.Current++;
@@ -699,6 +705,12 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         {
             if (comp.RevivableDeadSlots.Current > 0)
                 comp.RevivableDeadSlots.Current--;
+        }
+        else if (_job.MindTryGetJob(targetEntity, out var job) &&
+                 comp.RoleReservedSlots.TryGetValue(job.ID, out var roleSlots) && roleSlots.Current > 0)
+        {
+            roleSlots.Current--;
+            comp.RoleReservedSlots[job.ID] = roleSlots;
         }
         else if (comp.PassengerSlots.Current > 0)
         {

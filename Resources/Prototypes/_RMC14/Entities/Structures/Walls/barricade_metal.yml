@@ -284,8 +284,8 @@
     - type: Construction
       graph: BarricadeTurnstileGraph
       node: nodeTurnstile
-  - type: VehicleStructureTarget
-    minimumClassToDestroy: Weak
+    - type: VehicleStructureTarget
+      minimumClassToDestroy: Weak
 
 - type: entity
   parent: CMBarricadeTurnstile
@@ -340,8 +340,8 @@
     - type: Construction
       graph: BarricadeHandrailGraph
       node: nodeHandrail
-  - type: VehicleStructureTarget
-    minimumClassToDestroy: Weak
+    - type: VehicleStructureTarget
+      minimumClassToDestroy: Weak
 
 - type: entity
   parent: RMCBarricadeHandrail

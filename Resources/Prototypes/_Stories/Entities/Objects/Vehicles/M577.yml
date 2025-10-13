@@ -75,23 +75,23 @@
     xenoSlots:
       current: 0
       max: 8
-#    roleReservedSlots:
-#      - categoryName: "Crewmen"
-#        roles:
-#          - JOB_TANK_CREW
-#          - JOB_WO_CREWMAN
-#          - JOB_UPP_CREWMAN
-#          - JOB_PMC_CREWMAN
-#        total:
-#          current: 0
-#          max: 2
-#      - categoryName: "Synthetic Unit"
-#        roles:
-#          - JOB_SYNTH
-#          - JOB_WO_SYNTH
-#        total:
-#          current: 0
-#          max: 1
+    roleReservedSlots:
+      - categoryName: "Crewmen"
+        roles:
+          - CMVehicleCrewman
+          #- JOB_WO_CREWMAN
+          #- JOB_UPP_CREWMAN
+          #- JOB_PMC_CREWMAN
+        total:
+          current: 0
+          max: 2
+      - categoryName: "Synthetic Unit"
+        roles:
+          - RMCJobSynthetic
+          #- JOB_WO_SYNTH
+        total:
+          current: 0
+          max: 1
   - type: ExplosionResistance
     damageCoefficient: 0.7
     worn: false
@@ -122,8 +122,7 @@
     factions:
     - UNMC
   - type: AccessReader
-    access: [["CMAccessBrig"],["CMAccessCommand"]]
-#   - ACCESS_MARINE_CREWMAN
+    access: [["CMAccessBrig"],["CMAccessCommand"],["CMAccessCrewman"]]
   - type: UserIFF
     faction: FactionMarine
   - type: VehicleMovement

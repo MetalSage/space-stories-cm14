@@ -56,10 +56,10 @@ public sealed partial class SharedVehicleSystem
             if (controllable.Id == controller.Comp.Id)
             {
                 controller.Comp.ControllableEntity = hardpoint;
+                Dirty(controller);
                 break;
             }
         }
-        Dirty(controller);
     }
 
     private void OnControllerInit(Entity<VehicleControllerComponent> controller, ref MapInitEvent args)
@@ -77,10 +77,10 @@ public sealed partial class SharedVehicleSystem
             if (controllable.Id == controller.Comp.Id)
             {
                 controller.Comp.ControllableEntity = hardpoint;
+                Dirty(controller);
                 break;
             }
         }
-        Dirty(controller);
     }
 
     private void OnSeatShutdown(Entity<VehiclePilotSeatComponent> seat, ref ComponentShutdown args)

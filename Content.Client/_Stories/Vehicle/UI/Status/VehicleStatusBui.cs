@@ -254,7 +254,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
 
             var overallLabel = new Label
             {
-                Text = Loc.GetString("st-ui-vehicle-explosion-resistance"),
+                Text = Loc.GetString("st-ui-vehicle-resistance-entry", ("type", "Expl")),
                 HorizontalExpand = true,
                 FontColorOverride = Color.FromHex("#E0E0E0")
             };
