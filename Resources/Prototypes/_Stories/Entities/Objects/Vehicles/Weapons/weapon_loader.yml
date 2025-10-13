@@ -1,5 +1,6 @@
 - type: entity
   parent: BaseStructure
+  name: Weapon Loader
   id: VehicleWeaponsLoader
   components:
   - type: Sprite

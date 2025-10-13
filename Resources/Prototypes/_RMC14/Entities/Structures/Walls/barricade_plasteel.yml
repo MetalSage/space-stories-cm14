@@ -104,7 +104,9 @@
   - type: Tag
     tags:
     - RMCPlasteelBarricade
-
+  - type: VehicleStructureTarget
+    minimumClassToDestroy: Weak
+    
 # Metal Barricade Upgrades
 - type: entity
   parent: RMCBarricadePlasteel

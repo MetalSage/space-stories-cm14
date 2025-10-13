@@ -1,0 +1,1 @@
+ent-VehicleWeaponsLoader = "Загрузчик боекомплекта"

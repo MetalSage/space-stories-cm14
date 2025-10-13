@@ -183,6 +183,8 @@
   - type: Tag
     tags:
     - RMCMetalBarricade
+  - type: VehicleStructureTarget
+    minimumClassToDestroy: Weak
 
 # Metal Barricade Upgrades
 - type: entity
@@ -282,6 +284,8 @@
     - type: Construction
       graph: BarricadeTurnstileGraph
       node: nodeTurnstile
+  - type: VehicleStructureTarget
+    minimumClassToDestroy: Weak
 
 - type: entity
   parent: CMBarricadeTurnstile
@@ -336,6 +340,8 @@
     - type: Construction
       graph: BarricadeHandrailGraph
       node: nodeHandrail
+  - type: VehicleStructureTarget
+    minimumClassToDestroy: Weak
 
 - type: entity
   parent: RMCBarricadeHandrail

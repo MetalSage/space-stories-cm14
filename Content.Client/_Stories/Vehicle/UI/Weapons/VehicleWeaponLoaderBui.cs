@@ -44,7 +44,10 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
 
         if (state.Hardpoints.Count == 0)
         {
-            _window.HardpointsContainer.AddChild(new Label { Text = "No available weapons" });
+            _window.HardpointsContainer.AddChild(new Label
+            {
+                Text = Loc.GetString("st-vehicle-ui-no-any-hardpoint")
+            });
             return;
         }
 
@@ -62,12 +65,18 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
                 Margin = new Thickness(2)
             };
 
-            var statusText = hardpointInfo.HasActiveMagazine ? "✓" : "✗";
+            var statusText = hardpointInfo.HasActiveMagazine 
+                ? Loc.GetString("st-vehicle-ui-magazine-loaded") 
+                : Loc.GetString("st-vehicle-ui-magazine-empty");
+
             var ammoInfo = hardpointInfo.HasActiveMagazine 
-                ? $" | Ammo: {hardpointInfo.CurrentAmmo}/{hardpointInfo.MaxAmmo}" 
+                ? Loc.GetString("st-vehicle-ui-ammo-info", ("current", hardpointInfo.CurrentAmmo), ("max", hardpointInfo.MaxAmmo)) 
                 : "";
 
-            var buttonText = $"{hardpointInfo.Name} [{statusText}]{ammoInfo}";
+            var buttonText = Loc.GetString("st-vehicle-ui-hardpoint-button", 
+                ("name", hardpointInfo.Name), 
+                ("status", statusText), 
+                ("ammo", ammoInfo));
 
             var button = new Button
             {
@@ -77,7 +86,7 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
 
             var spareInfo = new Label
             {
-                Text = $"   Spare magazines: {hardpointInfo.SpareCount}/{hardpointInfo.MaxSpares}",
+                Text = Loc.GetString("st-vehicle-ui-spare-info", ("current", hardpointInfo.SpareCount), ("max", hardpointInfo.MaxSpares)),
                 StyleClasses = { "LabelSubText" },
                 FontColorOverride = Color.Gray
             };

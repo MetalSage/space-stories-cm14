@@ -102,6 +102,8 @@
       Brute:
         path:
           "/Audio/_RMC14/Structures/metalhit.ogg"
+  - type: VehicleStructureTarget
+    minimumClassToDestroy: Weak
 
 - type: entity
   abstract: true

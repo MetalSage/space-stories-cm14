@@ -16,7 +16,7 @@ namespace Content.Shared._Stories.Vehicle;
 public sealed partial class VehicleStructureTargetComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public VehicleClass MinimumClassToDestroy = VehicleClass.Medium;
+    public VehicleClass MinimumClassToDestroy = VehicleClass.Light;
 
     [DataField, AutoNetworkedField]
     public float MomentumLossFactor = 0.5f;

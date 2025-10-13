@@ -3,13 +3,13 @@
                      SetSize="450 350"
                      MinSize="350 250"
                      Resizable="True"
-                     Title="Weapon Loader - Select Weapon to Reload">
+                     Title="{Loc st-vehicle-ui-window-title}">
     <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8">
-        <Label Text="Available Weapons:" Margin="0,0,0,8" />
-        <Label Text="[✓] = Loaded Magazine | [✗] = Empty" 
+        <Label Text="{Loc st-vehicle-ui-available-weapons}" Margin="0,0,0,8" />
+        <Label Text="{Loc st-vehicle-ui-loaded-empty-legend}" 
                Margin="0,0,0,4" 
                StyleClasses="LabelSubText"/>
-        <Label Text="(Spare/Max) shows backup magazine count" 
+        <Label Text="{Loc st-vehicle-ui-spare-legend}" 
                Margin="0,0,0,8" 
                StyleClasses="LabelSubText"/>
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
@@ -18,7 +18,7 @@
                          VerticalExpand="True" 
                          Access="Public" />
         </ScrollContainer>
-        <Label Text="Click weapon to reload from spare magazines" 
+        <Label Text="{Loc st-vehicle-ui-click-to-reload}" 
                Margin="0,8,0,0" 
                StyleClasses="LabelSubText"/>
     </BoxContainer>

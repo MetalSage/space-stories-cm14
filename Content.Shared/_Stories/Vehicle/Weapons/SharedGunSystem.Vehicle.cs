@@ -14,6 +14,7 @@ using Content.Shared.Coordinates;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Robust.Shared.Localization;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -134,7 +135,7 @@ public abstract partial class SharedGunSystem
             if (autoReload.IsReloading)
             {
                 if (Timing.IsFirstTimePredicted)
-                    PopupSystem.PopupPredictedCursor("Weapon is reloading!", userForPopup, PopupType.Medium);
+                    PopupSystem.PopupPredictedCursor(Loc.GetString("st-vehicle-gun-reloading"), userForPopup, PopupType.Medium);
                 args.Cancel();
                 return;
             }
@@ -143,7 +144,7 @@ public abstract partial class SharedGunSystem
         if (gun.Comp.ActiveMagazineContainer.ContainedEntity == null)
         {
             if (Timing.IsFirstTimePredicted)
-                PopupSystem.PopupPredictedCursor("No magazine loaded!", userForPopup, PopupType.Medium);
+                PopupSystem.PopupPredictedCursor(Loc.GetString("st-vehicle-gun-no-magazine"), userForPopup, PopupType.Medium);
             args.Cancel();
             return;
         }
@@ -162,7 +163,7 @@ public abstract partial class SharedGunSystem
             }
             else if (autoReload == null && Timing.IsFirstTimePredicted)
             {
-                PopupSystem.PopupPredictedCursor("Magazine empty!", userForPopup, PopupType.Medium);
+                PopupSystem.PopupPredictedCursor(Loc.GetString("st-vehicle-gun-magazine-empty"), userForPopup, PopupType.Medium);
             }
             args.Cancel();
             return;
@@ -181,7 +182,7 @@ public abstract partial class SharedGunSystem
         if (gun.Comp.NeedHands && actualPilot != null && Hands.CountFreeHands(actualPilot.Value) < 2)
         {
             if (Timing.IsFirstTimePredicted)
-                PopupSystem.PopupPredictedCursor("You need free hands!", userForPopup, PopupType.Medium);
+                PopupSystem.PopupPredictedCursor(Loc.GetString("st-vehicle-gun-need-hands"), userForPopup, PopupType.Medium);
             args.Cancel();
             return;
         }
@@ -196,7 +197,7 @@ public abstract partial class SharedGunSystem
                 if (hullIntegrityPercent < gun.Comp.DisableAtHullDamage)
                 {
                     if (Timing.IsFirstTimePredicted)
-                        PopupSystem.PopupPredictedCursor("Hull integrity too low to fire!", userForPopup, PopupType.Large);
+                        PopupSystem.PopupPredictedCursor(Loc.GetString("st-vehicle-gun-hull-low"), userForPopup, PopupType.Large);
                     args.Cancel();
                     return;
                 }
@@ -269,7 +270,8 @@ public abstract partial class SharedGunSystem
         Dirty(gun, gun.Comp1);
 
         if (pilot != null)
-            PopupSystem.PopupCursor($"Reloading... ({gun.Comp1.ReloadTime:F1}s)", pilot.Value, PopupType.Medium);
+            PopupSystem.PopupCursor(Loc.GetString("st-vehicle-gun-reloading-time", 
+                ("time", gun.Comp1.ReloadTime.ToString("F1"))), pilot.Value, PopupType.Medium);
     }
 
     private void CompleteReload(Entity<VehicleAutoReloadGunComponent, VehicleGunComponent> gun)
@@ -289,7 +291,7 @@ public abstract partial class SharedGunSystem
             Dirty(gun, gun.Comp1);
 
             if (gun.Comp2.User != null)
-                PopupSystem.PopupPredictedCursor("Reload complete!", gun.Comp2.User.Value, PopupType.Medium);
+                PopupSystem.PopupPredictedCursor(Loc.GetString("st-vehicle-gun-reload-complete"), gun.Comp2.User.Value, PopupType.Medium);
             
             UpdateVehicleStatusUIForGun(gun.Owner);
         }
@@ -311,7 +313,7 @@ public abstract partial class SharedGunSystem
 
         if (autoReloadComp.IsReloading)
         {
-            PopupSystem.PopupCursor("Already reloading!", ent, PopupType.Medium);
+            PopupSystem.PopupCursor(Loc.GetString("st-vehicle-gun-already-reloading"), ent, PopupType.Medium);
             return;
         }
 
@@ -323,7 +325,7 @@ public abstract partial class SharedGunSystem
 
         if (magazine.Shots >= magazine.Capacity)
         {
-            PopupSystem.PopupCursor("Magazine is full!", ent, PopupType.Medium);
+            PopupSystem.PopupCursor(Loc.GetString("st-vehicle-gun-magazine-full"), ent, PopupType.Medium);
             return;
         }
 

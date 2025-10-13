@@ -8,6 +8,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
+using Robust.Shared.Localization;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -91,28 +92,29 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
 
         if (compatibleHardpoint == null || gunComp == null)
         {
-            _popup.PopupCursor("No compatible weapon found for this magazine type!", args.User);
+            _popup.PopupCursor(Loc.GetString("st-vehicle-loader-no-compatible-weapon"), args.User);
             args.Handled = true;
             return;
         }
 
         if (!_skills.HasAllSkills(args.User, loader.Comp.Skills))
         {
-            _popup.PopupCursor($"You lack the required skill to load this weapon!", args.User);
+            _popup.PopupCursor(Loc.GetString("st-vehicle-loader-skill-required"), args.User);
             args.Handled = true;
             return;
         }
 
         if (gunComp.SpareMagazinesContainer.ContainedEntities.Count >= gunComp.MaxSpareMagazines)
         {
-            _popup.PopupCursor("The weapon's magazine storage is full!", args.User);
+            _popup.PopupCursor(Loc.GetString("st-vehicle-loader-storage-full"), args.User);
             args.Handled = true;
             return;
         }
 
         if (_net.IsServer && _container.Insert(args.Used, gunComp.SpareMagazinesContainer))
         {
-            _popup.PopupEntity($"Magazine loaded into {Name(compatibleHardpoint.Value)}", loader.Owner, args.User);
+            _popup.PopupEntity(Loc.GetString("st-vehicle-loader-magazine-loaded", 
+                ("weapon", Name(compatibleHardpoint.Value))), loader.Owner, args.User);
             _audio.PlayPvs(loader.Comp.LoadSound, loader.Owner);
             UpdateLoaderUI(loader);
         }
@@ -135,13 +137,13 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
 
         if (!_skills.HasAllSkills(args.Actor, loader.Comp.Skills))
         {
-            _popup.PopupCursor($"You lack the required skill to load this weapon!", args.Actor);
+            _popup.PopupCursor(Loc.GetString("st-vehicle-loader-skill-required"), args.Actor);
             return;
         }
 
         if (gun.SpareMagazinesContainer.ContainedEntities.Count == 0)
         {
-            _popup.PopupCursor("No spare magazines available!", args.Actor);
+            _popup.PopupCursor(Loc.GetString("st-vehicle-loader-no-spare-magazines"), args.Actor);
             return;
         }
 
@@ -164,7 +166,8 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
             _container.Remove(spareMag, gun.SpareMagazinesContainer);
             _container.Insert(spareMag, gun.ActiveMagazineContainer);
 
-            _popup.PopupEntity($"Magazine loaded into {Name(hardpoint)}", loader.Owner, args.Actor);
+            _popup.PopupEntity(Loc.GetString("st-vehicle-loader-magazine-loaded", 
+                ("weapon", Name(hardpoint))), loader.Owner, args.Actor);
             _audio.PlayPvs(loader.Comp.LoadSound, loader.Owner);
             Dirty(hardpoint, gun);
             

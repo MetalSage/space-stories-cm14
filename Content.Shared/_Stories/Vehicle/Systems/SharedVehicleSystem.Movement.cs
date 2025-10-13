@@ -6,6 +6,7 @@ using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Fortify;
 using Content.Shared._RMC14.Xenonids.Rest;
+using Content.Shared._RMC14.Doors;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Destructible;
@@ -313,7 +314,7 @@ public sealed partial class SharedVehicleSystem
         var (stunTime, damage) = GetMobCollisionEffects(vehicle.Comp.Class, momentum, movement.MaxMomentum);
 
         _popup.PopupEntity(
-            Loc.GetString("rmc-vehicle-rams-mob", ("vehicle", vehicle.Owner), ("target", mob)),
+            Loc.GetString("st-vehicle-rams-mob", ("vehicle", vehicle.Owner), ("target", mob)),
             mob,
             mob,
             PopupType.LargeCaution
@@ -351,7 +352,7 @@ public sealed partial class SharedVehicleSystem
         var (stunTime, damage) = GetHumanCollisionEffects(vehicle.Comp.Class, isFriendly, momentum, movement.MaxMomentum);
 
         _popup.PopupEntity(
-            Loc.GetString("rmc-vehicle-rams-mob", ("vehicle", vehicle.Owner), ("target", human)),
+            Loc.GetString("st-vehicle-rams-mob", ("vehicle", vehicle.Owner), ("target", human)),
             human,
             human,
             PopupType.LargeCaution
@@ -362,7 +363,7 @@ public sealed partial class SharedVehicleSystem
             if (isFriendly)
             {
                 _popup.PopupEntity(
-                    Loc.GetString("rmc-vehicle-rammed-ally"),
+                    Loc.GetString("st-vehicle-rammed-ally"),
                     driver!.Value,
                     driver!.Value,
                     PopupType.MediumCaution
@@ -437,7 +438,7 @@ public sealed partial class SharedVehicleSystem
             if (blocked)
             {
                 _popup.PopupEntity(
-                    Loc.GetString("rmc-xeno-blocks-vehicle", ("xeno", xeno), ("vehicle", vehicle.Owner)),
+                    Loc.GetString("st-xeno-blocks-vehicle", ("xeno", xeno), ("vehicle", vehicle.Owner)),
                     xeno,
                     PopupType.LargeCaution
                 );
@@ -472,7 +473,7 @@ public sealed partial class SharedVehicleSystem
         }
 
         _popup.PopupEntity(
-            Loc.GetString("rmc-vehicle-rams-xeno", ("vehicle", vehicle.Owner), ("xeno", xeno)),
+            Loc.GetString("st-vehicle-rams-xeno", ("vehicle", vehicle.Owner), ("xeno", xeno)),
             xeno,
             PopupType.LargeCaution
         );
@@ -701,6 +702,12 @@ public sealed partial class SharedVehicleSystem
         if (!_movementQuery.TryComp(vehicle, out var movement))
             return;
 
+        if (TryComp<CorrodibleComponent>(wall, out var corrodible) && !corrodible.IsCorrodible)
+        {
+            ResetMomentum((vehicle.Owner, movement));
+            return;
+        }
+
         if (vehicle.Comp.Class == VehicleClass.Weak)
         {
             ResetMomentum((vehicle.Owner, movement));
@@ -714,7 +721,7 @@ public sealed partial class SharedVehicleSystem
         if (_net.IsServer)
         {
             _popup.PopupEntity(
-                Loc.GetString("rmc-vehicle-rams", ("vehicle", vehicle.Owner), ("target", wall)),
+                Loc.GetString("st-vehicle-rams", ("vehicle", vehicle.Owner), ("target", wall)),
                 wall,
                 PopupType.LargeCaution
             );
@@ -725,7 +732,7 @@ public sealed partial class SharedVehicleSystem
 
     private void HandleDoorCollision(Entity<VehicleComponent> vehicle, EntityUid door, DoorComponent doorComp, float momentum)
     {
-        if (TryGetDriver(vehicle, out var driver))
+        if (TryGetDriver(vehicle, out var driver) || !HasComp<RMCPodDoorComponent>(door))
         {
             if (_access.IsAllowed(driver!.Value, door))
             {
@@ -746,7 +753,7 @@ public sealed partial class SharedVehicleSystem
         if (_net.IsServer)
         {
             _popup.PopupEntity(
-                Loc.GetString("rmc-vehicle-pushes-over", ("vehicle", vehicle.Owner), ("target", door)),
+                Loc.GetString("st-vehicle-pushes-over", ("vehicle", vehicle.Owner), ("target", door)),
                 door,
                 PopupType.LargeCaution
             );
@@ -786,10 +793,16 @@ public sealed partial class SharedVehicleSystem
         }
 
         _popup.PopupEntity(
-            Loc.GetString("rmc-vehicle-crushes", ("vehicle", vehicle.Owner), ("target", structure)),
+            Loc.GetString("st-vehicle-crushes", ("vehicle", vehicle.Owner), ("target", structure)),
             structure,
             PopupType.MediumCaution
         );
+
+        if (HasComp<MortarComponent>(structure))
+        {
+            _transform.Unanchor(structure);
+            return;
+        }
 
         _destructible.DestroyEntity(structure);
 
@@ -810,7 +823,7 @@ public sealed partial class SharedVehicleSystem
         ApplyDamage(otherVehicle, FixedPoint2.New(damage));
 
         _popup.PopupEntity(
-            Loc.GetString("rmc-vehicle-crushes-vehicle", ("vehicle", vehicle.Owner), ("target", otherVehicle)),
+            Loc.GetString("st-vehicle-crushes-vehicle", ("vehicle", vehicle.Owner), ("target", otherVehicle)),
             otherVehicle,
             PopupType.LargeCaution
         );
