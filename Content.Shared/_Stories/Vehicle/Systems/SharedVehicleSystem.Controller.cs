@@ -27,7 +27,6 @@ public sealed partial class SharedVehicleSystem
 
         SubscribeLocalEvent<VehicleControllerComponent, StrapAttemptEvent>(OnControllerStrapAttempt);
         SubscribeLocalEvent<VehicleControllerComponent, MapInitEvent>(OnControllerInit);
-        SubscribeLocalEvent<VehicleControllerComponent, ComponentInit>(OnControllerCompInit);
         SubscribeLocalEvent<VehicleControllerComponent, ComponentShutdown>(OnControllerShutdown);
         SubscribeLocalEvent<VehicleControllerComponent, UnstrappedEvent>(OnControllerUnstrapped);
         SubscribeLocalEvent<VehicleControllerComponent, StrappedEvent>(OnVehicleControllerStrapped);
@@ -39,27 +38,6 @@ public sealed partial class SharedVehicleSystem
     {
         if (TryGetVehicle(seat, out var vehicle))
             seat.Comp.Vehicle = vehicle.Owner;
-    }
-
-    private void OnControllerCompInit(Entity<VehicleControllerComponent> controller, ref ComponentInit args)
-    {
-        if (!TryGetVehicle(controller, out var vehicle))
-            return;
-
-        controller.Comp.Vehicle = vehicle.Owner;
-
-        foreach (var hardpoint in vehicle.Comp.Hardpoints)
-        {
-            if (!TryComp<VehicleControllableComponent>(hardpoint, out var controllable))
-                continue;
-
-            if (controllable.Id == controller.Comp.Id)
-            {
-                controller.Comp.ControllableEntity = hardpoint;
-                Dirty(controller);
-                break;
-            }
-        }
     }
 
     private void OnControllerInit(Entity<VehicleControllerComponent> controller, ref MapInitEvent args)
@@ -111,7 +89,7 @@ public sealed partial class SharedVehicleSystem
     {
         if (seat.Comp.IsGunner && HasComp<SynthComponent>(args.Buckle))
         {
-            _popup.PopupEntity(Loc.GetString("Your programming does not allow you to use heavy weaponry."), args.Buckle);
+            _popup.PopupEntity(Loc.GetString("st-vehicle-synth-no-heavy-weapons"), args.Buckle);
             args.Cancelled = true;
             return;
         }
@@ -193,7 +171,7 @@ public sealed partial class SharedVehicleSystem
         }
         else
         {
-            _popup.PopupCursor(Loc.GetString("st-vehicle-select-hardpoint"), pilot);
+            _popup.PopupCursor(Loc.GetString("st-vehicle-select-hardpoint-prompt"), pilot);
         }
     }
 

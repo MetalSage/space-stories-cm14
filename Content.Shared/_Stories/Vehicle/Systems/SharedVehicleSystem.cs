@@ -55,6 +55,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedJobSystem _job = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
@@ -515,7 +516,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         if (ent.Comp.Watcher != null)
         {
-            _popup.PopupEntity("taken", args.User);
+            _popup.PopupEntity(Loc.GetString("st-vehicle-viewport-taken"), args.User);
             return;
         }
 
@@ -626,6 +627,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
                 continue;
 
             comp.Vehicle = vehicle.Owner;
+            Dirty(uid, comp);
         }
     }
 
@@ -658,44 +660,45 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         if (HasComp<XenoComponent>(targetEntity))
         {
-            if (comp.XenoSlots.Current < comp.XenoSlots.Max)
+            if (comp.XenoSlots.Current >= comp.XenoSlots.Max)
                 comp.XenoSlots.Current++;
             else
             {
-                _popup.PopupEntity(Loc.GetString("stories-transport-is-full"), user);
+                _popup.PopupEntity(Loc.GetString("st-vehicle-is-full"), user);
                 return;
             }
         }
         else if (_mobState.IsDead(targetEntity) && !HasComp<UnrevivableComponent>(targetEntity))
         {
-            if (comp.RevivableDeadSlots.Current < comp.RevivableDeadSlots.Max)
+            if (comp.RevivableDeadSlots.Current >= comp.RevivableDeadSlots.Max)
                 comp.RevivableDeadSlots.Current++;
             else
             {
-                _popup.PopupEntity(Loc.GetString("stories-transport-is-full"), user);
+                _popup.PopupEntity(Loc.GetString("st-vehicle-is-full"), user);
                 return;
             }
         }
-        else if (_job.MindTryGetJob(targetEntity, out var job))
+        else if (_mind.TryGetMind(targetEntity, out var mindId, out _) &&
+                 _job.MindTryGetJob(mindId, out var job) && comp.RoleReservedSlots.FirstOrDefault(g => g.Roles?.Contains(job.ID) == true))
         {
-            var roleGroup = comp.RoleReservedSlots.FirstOrDefault(r => r.CategoryName == job.ID);
-            if (roleGroup != null && roleGroup.Total.Current < roleGroup.Total.Max)
+            var group = comp.RoleReservedSlots.FirstOrDefault(g =>
+                g.Roles?.Contains(job.ID) == true);
+
+            if (group?.Total.Current >= group?.Total.Max)
             {
-                roleGroup.Total.Current++;
-            }
-            else
-            {
-                _popup.PopupEntity(Loc.GetString("stories-transport-is-full"), user);
+                _popup.PopupEntity(Loc.GetString("st-vehicle-is-full"), user);
                 return;
             }
+
+            group!.Total.Current++;
         }
-        else if (comp.PassengerSlots.Current < comp.PassengerSlots.Max)
+        else if (comp.PassengerSlots.Current >= comp.PassengerSlots.Max)
         {
             comp.PassengerSlots.Current++;
         }
         else
         {
-            _popup.PopupEntity(Loc.GetString("stories-transport-is-full"), user);
+            _popup.PopupEntity(Loc.GetString("st-vehicle-is-full"), user);
             return;
         }
 
@@ -732,13 +735,14 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             if (comp.RevivableDeadSlots.Current > 0)
                 comp.RevivableDeadSlots.Current--;
         }
-        else if (_job.MindTryGetJob(targetEntity, out var job))
+        else if (_mind.TryGetMind(targetEntity, out var mindId, out _) &&
+                 _job.MindTryGetJob(mindId, out var job) && comp.RoleReservedSlots.FirstOrDefault(g => g.Roles?.Contains(job.ID) == true))
         {
-            var roleGroup = comp.RoleReservedSlots.FirstOrDefault(r => r.CategoryName == job.ID);
-            if (roleGroup != null && roleGroup.Total.Current > 0)
-            {
-                roleGroup.Total.Current--;
-            }
+            var group = comp.RoleReservedSlots.FirstOrDefault(g =>
+                g.Roles?.Contains(job.ID) == true);
+
+            if (group != null && group.Total.Current > 0)
+                group.Total.Current--;
         }
         else if (comp.PassengerSlots.Current > 0)
         {

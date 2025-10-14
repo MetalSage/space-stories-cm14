@@ -1,1 +1,1 @@
-ent-VehicleWeaponsLoader = "Загрузчик боекомплекта"
+ent-VehicleWeaponsLoader = Загрузчик боекомплекта

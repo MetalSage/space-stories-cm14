@@ -806,7 +806,8 @@ public sealed partial class SharedVehicleSystem
             return;
         }
 
-        _destructible.DestroyEntity(structure);
+        if (_net.IsServer)
+            _destructible.DestroyEntity(structure);
 
         ReduceMomentum((vehicle.Owner, movement), 1);
     }
