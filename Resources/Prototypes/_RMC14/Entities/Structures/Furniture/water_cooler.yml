@@ -52,6 +52,9 @@
   - type: StaticPrice
     price: 500
   - type: RMCMesonsNonviewable
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0
 
 - type: entity
   parent: RMCWaterCooler

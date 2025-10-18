@@ -41,6 +41,8 @@
       Welding: /Audio/Items/welder.ogg
   - type: Corrodible
     isCorrodible: false
+  - type: GunIFF
+    enabled: true
 
 - type: entity
   parent: BaseStructure

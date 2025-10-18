@@ -4,7 +4,8 @@
   name: Vehicle
   components:
   - type: Sprite
-    state: green
+    sprite: _RMC14/Areas/areas_interiors.rsi
+    state: apc
   - type: Area
     powerNet: vehicle
     CAS: false

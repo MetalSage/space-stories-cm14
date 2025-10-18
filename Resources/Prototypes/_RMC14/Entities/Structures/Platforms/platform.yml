@@ -16,6 +16,9 @@
   - type: Tag
     tags:
     - Platform
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0
 
 - type: entity
   abstract: true

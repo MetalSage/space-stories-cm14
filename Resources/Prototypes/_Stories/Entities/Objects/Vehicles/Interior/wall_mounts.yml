@@ -1,7 +1,7 @@
 - type: entity
   id: STVehicleInteriorViewport
   name: viewport
-  description: noe
+  description: A reinforced viewing port allowing the vehicle crew to observe the outside world. Thick glass and armored casing protect it from external damage.
   components:
   - type: Sprite
     drawdepth: WallMountedItems

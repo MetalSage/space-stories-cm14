@@ -25,5 +25,4 @@ public sealed partial class VehicleControllerComponent : Component
 
     [DataField, AutoNetworkedField]
     public string Id = string.Empty;
-
 }

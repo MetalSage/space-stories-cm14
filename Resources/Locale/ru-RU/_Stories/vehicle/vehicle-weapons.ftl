@@ -13,3 +13,5 @@ st-vehicle-gun-reloading-time = Перезарядка... ({ $time }с)
 st-vehicle-gun-reload-complete = Перезарядка завершена!
 st-vehicle-gun-already-reloading = Уже перезаряжается!
 st-vehicle-gun-magazine-full = Магазин полон!
+
+gun-arc-restriction-examine = [color=yellow]Ограниченный радиус стрельбы:[/color] [color=red]{ $degrees }[/color] [color=yellow]градусов[/color]

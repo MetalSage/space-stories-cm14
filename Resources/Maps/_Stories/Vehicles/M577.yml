@@ -732,6 +732,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,0.5
       parent: 1
+    - type: WarpPoint
+      location: M577 бронетранспортёр
 - proto: STVehicleInteriorNanoMed
   entities:
   - uid: 90
@@ -769,7 +771,7 @@ entities:
   - uid: 30
     components:
     - type: Transform
-      pos: 1.7492869,2.4665737
+      pos: 1.7971872,2.5629783
       parent: 1
     - type: Fixtures
       fixtures: {}

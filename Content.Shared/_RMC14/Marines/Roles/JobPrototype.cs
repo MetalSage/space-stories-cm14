@@ -76,4 +76,7 @@ public sealed partial class JobPrototype : IInheritingPrototype, ICMSpecific
     [DataField]
     [NeverPushInheritance]
     public bool BasePlaytimeTracker;
+
+    [DataField]
+    public int MinPlayers = 0; // Stories-Vehicle-Crewman-Content
 }

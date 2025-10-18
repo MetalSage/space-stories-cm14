@@ -42,23 +42,7 @@ public sealed partial class SharedVehicleSystem
 
     private void OnControllerInit(Entity<VehicleControllerComponent> controller, ref MapInitEvent args)
     {
-        if (!TryGetVehicle(controller, out var vehicle))
-            return;
-
-        controller.Comp.Vehicle = vehicle.Owner;
-
-        foreach (var hardpoint in vehicle.Comp.Hardpoints)
-        {
-            if (!TryComp<VehicleControllableComponent>(hardpoint, out var controllable))
-                continue;
-
-            if (controllable.Id == controller.Comp.Id)
-            {
-                controller.Comp.ControllableEntity = hardpoint;
-                Dirty(controller);
-                break;
-            }
-        }
+        TryInitController(controller);
     }
 
     private void OnSeatShutdown(Entity<VehiclePilotSeatComponent> seat, ref ComponentShutdown args)
@@ -144,6 +128,14 @@ public sealed partial class SharedVehicleSystem
             SetupGunnerSeat(seat, (args.Buckle, pilot), eye);
         else
             SetupPilotSeat(seat, (args.Buckle, pilot), eye);
+
+        foreach (var (ent, key) in _ui.GetActorUis(args.Buckle.Owner))
+        {
+            if (key is not (VehicleWeaponLoaderUI or VehicleSelectHardpointUI or VehicleStatusUI))
+                continue;
+
+            _ui.CloseUi(args.Buckle.Owner, key);
+        }
     }
 
     private void SetupGunnerSeat(Entity<VehiclePilotSeatComponent> seat,
@@ -189,6 +181,11 @@ public sealed partial class SharedVehicleSystem
         if (seat.Comp.Vehicle == null)
             return;
 
+        if (seat.Comp.ControllableEntity is null && !TryInitController(seat))
+            return;
+
+        var controllable = seat.Comp.ControllableEntity!.Value;
+
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
         {
             _popup.PopupEntity(
@@ -201,9 +198,6 @@ public sealed partial class SharedVehicleSystem
         var pilot = EnsureComp<VehiclePilotComponent>(args.Buckle);
         pilot.Vehicle = seat.Comp.Vehicle;
         seat.Comp.Pilot = args.Buckle;
-
-        if (seat.Comp.ControllableEntity is not { } controllable)
-            return;
 
         var relay = EnsureComp<InteractionRelayComponent>(args.Buckle);
 
@@ -253,7 +247,7 @@ public sealed partial class SharedVehicleSystem
         if (!TryComp(pilot, out EyeComponent? e))
             return false;
 
-        if (!HasComp<SkillsComponent>(pilot))
+        if (skills.Count > 0 && !HasComp<SkillsComponent>(pilot))
             return false;
 
         if (HasComp<SleepingComponent>(pilot) ||
@@ -290,8 +284,39 @@ public sealed partial class SharedVehicleSystem
             }
         }
 
+        foreach (var (ent, key) in _ui.GetActorUis(target))
+        {
+            if (key is not (VehicleWeaponLoaderUI or VehicleSelectHardpointUI or VehicleStatusUI))
+                continue;
+
+            _ui.CloseUi(target, key);
+        }
+
         RemCompDeferred<VehiclePilotComponent>(target);
         RemCompDeferred<RelayInputMoverComponent>(target);
         RemCompDeferred<InteractionRelayComponent>(target);
+    }
+
+    private bool TryInitController(Entity<VehicleControllerComponent> controller)
+    {
+        if (!TryGetVehicle(controller, out var vehicle))
+            return false;
+
+        controller.Comp.Vehicle = vehicle.Owner;
+
+        foreach (var hardpoint in vehicle.Comp.Hardpoints)
+        {
+            if (!TryComp<VehicleControllableComponent>(hardpoint, out var controllable))
+                continue;
+
+            if (controllable.Id == controller.Comp.Id)
+            {
+                controller.Comp.ControllableEntity = hardpoint;
+                break;
+            }
+        }
+
+        Dirty(controller);
+        return true;
     }
 }

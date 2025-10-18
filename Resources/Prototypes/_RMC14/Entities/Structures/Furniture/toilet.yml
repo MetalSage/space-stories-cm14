@@ -60,3 +60,6 @@
 #        DoorVisualState.DoorOpen:
 #          DoorOpen: { state: disposal-open }
 #          DoorClosed: { state: disposal-closed }
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0

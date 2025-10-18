@@ -5,7 +5,7 @@
     xmlns:ui="clr-namespace:Content.Client._RMC14.UserInterface"
     xmlns:stui="clr-namespace:Content.Client._Stories.UserInterface.Control"
     Title="{Loc st-ui-vehicle-status-title}"
-    MinSize="480 700">
+    MinSize="520 700">
     <PanelContainer>
         <PanelContainer.PanelOverride>
             <graphics:StyleBoxFlat 

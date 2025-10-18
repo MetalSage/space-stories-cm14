@@ -40,6 +40,9 @@
     instantDestroy: true
     passOnDestroy: true
   - type: RMCMesonsNonviewable
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0
 
 - type: entity
   parent: BaseStructure

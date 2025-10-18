@@ -4,13 +4,14 @@
   name: cm-job-name-vc
   description: cm-job-description-vc
   playTimeTracker: CMJobVehicleCrewman
+  minPlayers: 55
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: CMSquad
-    time: 36000 # 10 hours
   - !type:RoleTimeRequirement
     role: CMJobCombatTech
-    time: 18000 # 5 hours
+    time: 36000 # 10 hours
+  - !type:RoleTimeRequirement
+    role: CMJobFireteamLeader
+    time: 36000 # 10 hours
   ranks:
     RMCRankCorporal: []
   startingGear: CMGearVC
@@ -54,7 +55,6 @@
       background:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: background_intel
-  hidden: true #TODO RMC14
 
 - type: startingGear
   id: CMGearVC
