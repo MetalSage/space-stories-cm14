@@ -1,4 +1,4 @@
-ent-CMIDCardQuartermaster = ID квартирмейстера
+ent-CMIDCardQuartermaster = ID-карта квартирмейстера
     .desc = { ent-CMIDCardSilver.desc }
-ent-CMIDCardCargoTech = ID грузчика
+ent-CMIDCardCargoTech = ID-карта грузчика
     .desc = { ent-CMIDCardBase.desc }

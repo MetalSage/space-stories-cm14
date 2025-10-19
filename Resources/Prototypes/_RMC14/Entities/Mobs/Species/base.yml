@@ -1,7 +1,7 @@
-- type: entity
+﻿- type: entity
   save: false
   parent: BaseMobSpecies
-  id: CMBaseMobSpeciesOrganic
+  id: RMCBaseMobSpeciesOrganic
   abstract: true
   name: Urist C.M. McHands
   suffix: RMC14
@@ -354,6 +354,8 @@
       - CMAutomatedVendor
       - FaxMachine
       - RMCDoorButton
+      - OrbitalCannonFuel
+      - OrbitalCannonWarhead
       tags:
       - RMCDropshipEnginePoint
     range: 1.8
@@ -397,3 +399,7 @@
       components:
       - Xeno
   - type: RMCHealthIcons
+  - type: RMCMesonsNonviewable
+    xenoVisible: true
+  - type: RMCActionOrder
+    id: RMCBaseMobSpeciesOrganic

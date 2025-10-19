@@ -8,7 +8,7 @@ namespace Content.Shared._RMC14.Interaction;
 [Access(typeof(RMCInteractionSystem))]
 public sealed partial class IgnoreInteractionRangeComponent : Component
 {
-    [DataField(required: true), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public EntityWhitelist? Whitelist;
 
     [DataField, AutoNetworkedField]

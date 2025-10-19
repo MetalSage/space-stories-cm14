@@ -1,4 +1,5 @@
 using Content.Server.Interaction;
+using Content.Shared._RMC14.Barricade.Components;
 using Content.Shared.Physics;
 
 namespace Content.Server.NPC.HTN.Preconditions;
@@ -33,6 +34,6 @@ public sealed partial class TargetInLOSPrecondition : HTNPrecondition
         var range = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
         var collisionGroup = UseOpaqueForLOSChecksKey ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
 
-        return _interaction.InRangeUnobstructed(owner, target, range, collisionGroup);
+        return _interaction.InRangeUnobstructed(owner, target, range, collisionGroup, predicate: e => _entManager.HasComponent<BarbedComponent>(e));
     }
 }

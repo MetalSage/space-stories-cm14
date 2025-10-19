@@ -3,7 +3,7 @@
   id: STOverview
   name: Правила
   priority: -1
-  text: "/ServerInfo/Guidebook/_Stories/Rules/Overview.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Rules/STOverview.xml"
   children:
   - STCommunityExpectations
   - STGrief
@@ -22,7 +22,7 @@
   id: STENGOverview
   name: Rules
   priority: 0
-  text: "/ServerInfo/Guidebook/_Stories/Rules/Overview_ENG.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Rules/STOverview_ENG.xml"
   children:
   - STENGCommunityExpectations
   - STENGGrief

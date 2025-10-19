@@ -37,13 +37,13 @@ public sealed class BoxerPunchSystem : EntitySystem
         if (args.Handled)
             return;
 
-        args.Handled = true;
-
         var comp = xeno.Comp;
         var targetUid = args.Target;
 
         if (!_xeno.CanAbilityAttackTarget(xeno, targetUid))
             return;
+
+        args.Handled = true;
 
         if (!TryComp<XenoBoxerKnockoutComponent>(xeno, out var knockoutComp))
             return;

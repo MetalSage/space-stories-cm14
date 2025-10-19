@@ -1,38 +1,38 @@
 ﻿<Document>
-  # Военный Закон
+  # Marine Law
 
-  Военный Закон и СОП применяются ко всему персоналу в районе операции или на борту военного корабля КМП США, включая враждебные фракции и другие организации, для которых прямо не предусмотрено исключение.
+  Marine Law and SOP applies to all personnel in the vicinity of the operation or aboard the UNMC warship, including hostile factions and other organizations not explicitly exempt.
 
-  ## Основы
+  ## Basics
 
-  - Командование и [color=#ff000d][bold]Военная Полиция[/bold][/color] обязаны как обеспечивать соблюдение закона, так и соблюдать его, в пределах, разрешенных их положением на корабле.
-  - На военных кораблях и операциях КМП США закон обеспечивается [color=#ff000d][bold]Военной Полицией[/bold][/color] и [color=#8B0000][bold]Начальником Военной Полиции[/bold][/color], и они действуют независимо от обычной командной структуры ТОЛЬКО в вопросах, связанных с обеспечением соблюдения Закона.
-  - [color=#00CBFE][bold]Командующий Офицер[/bold][/color] военного корабля имеет последнее слово в вопросах правопорядка в пределах своей оперативной зоны, если это не контролируется вышестоящими должностными лицами [color=#ffa500][bold]Офисом Провост Маршала/bold][/color] или Высшего Командования.
-  - [color=#ff000d][bold]Военная Полиция[/bold][/color] могут по своему усмотрению игнорировать Мелкие Преступления, если им не приказано обеспечивать соблюдение какого-либо из них.
-  - [color=#ff000d][bold]Военной Полиции[/bold][/color] нельзя приказывать игнорировать Мелкие Преступления.
-  - [color=#ff000d][bold]Военная Полиция[/bold][/color], нарушающая закон в любом виде, не могут быть проигнорированы.
+  - Command and [color=#ff000d][bold]MP[/bold][/color] are required to both enforce the law and abide by it, where allowed by their position on the ship.
+  - On UNMC warships and operations, the law is enforced by the [color=#ff000d][bold]MP[/bold][/color]s and [color=#8B0000][bold]Chief MP[/bold][/color], and they operate independently from the normal command structure ONLY in matters related to the enforcement of the Law.
+  - The [color=#00CBFE][bold]Commanding Officer[/bold][/color] of the warship has the final say on law enforcement within their operational area unless overseen by higher officials of the [color=#ffa500][bold]Provost Marshal Office[/bold][/color] or High Command.
+  - [color=#ff000d][bold]MP[/bold][/color] may, at their discretion, ignore Minor Crimes unless they are ordered to enforce one.
+  - [color=#ff000d][bold]MP[/bold][/color] cannot be ordered to ignore Minor Crimes.
+  - [color=#ff000d][bold]MP[/bold][/color] breaking the law in any capacity cannot be ignored.
 
-  В случае разногласий между [color=#ff000d][bold]Военной Полицией[/bold][/color] по делам, необходимо соблюдать ранговую структуру Военного Закона.
+  Should [color=#ff000d][bold]MP[/bold][/color]s disagree on cases, Marine Law rank structure must be followed.
 
-  - [color=#ffa500][bold]Офис Провост Маршала[/bold][/color] > [color=#00CBFE][bold]Командующий Офицер[/bold][/color] > [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] > [bold]Военный Надзиратель[/bold] > [color=#ff000d][bold]Офицеры Военной Полиции[/bold][/color] > Уполномоченные [color=#ff000d][bold]Военной Полицией[/bold][/color]
+  - [color=#ffa500][bold]Provost Marshal Office[/bold][/color] > [color=#00CBFE][bold]Commanding Officer[/bold][/color] > [color=#8B0000][bold]Chief MP[/bold][/color] > [bold]Warden[/bold] > [color=#ff000d][bold]MP[/bold][/color] > Deputized [color=#ff000d][bold]MP[/bold][/color]
 
-  ## Закон и Связанное
-  - [textlink="Командная Цепь" link="RMCCommandChain"]
-  - [textlink="Звания" link="RMCMarineLawRanks"]
-  - [textlink="Определения" link="RMCMarineLawDefinitions"]
-  - [textlink="Процедуры" link="RMCMarineLawProcedures"]
-  - [textlink="Преступления" link="RMCMarineLawCrimes"]
-  - [textlink="Права Заключенных" link="RMCMarineLawPrisonerRights"]
-  - [textlink="Права Заключенных, Апелляции" link="RMCMarineLawAppeals"]
-  - [textlink="Особые Положения" link="RMCMarineLawSpecialProvisions"]
-  - [textlink="Синтетики" link="RMCMarineLawSynthetics"]
-  - [textlink="Положения и Правила для Командующего Офицера" link="RMCMarineLawCOProvisions"]
+  ## Law and Related
+  - [textlink="Commander Succession" link="RMCCommandChain"]
+  - [textlink="Ranks" link="RMCMarineLawRanks"]
+  - [textlink="Definitions" link="RMCMarineLawDefinitions"]
+  - [textlink="Procedures" link="RMCMarineLawProcedures"]
+  - [textlink="Crimes" link="RMCMarineLawCrimes"]
+  - [textlink="Prisoner Rights" link="RMCMarineLawPrisonerRights"]
+  - [textlink="Prisoner Rights, Appeals" link="RMCMarineLawAppeals"]
+  - [textlink="Special Provisions" link="RMCMarineLawSpecialProvisions"]
+  - [textlink="Synthetics" link="RMCMarineLawSynthetics"]
+  - [textlink="Commanding Officer Provisions and Regulations" link="RMCMarineLawCOProvisions"]
 
-  ## Стандартная Оперативная Процедура
+  ## Standard Operating Procedure
 
-  Это свод правил и политик КМП США.
-  Несоблюдение Стандартной Оперативной Процедуры может привести к обвинениям в [bold]Несоблюдении Процедуры[/bold].
+  These are sets of regulations and polices of the UNMC.
+  Failure to follow the Standard Operating Procedure may result in [bold]Failure to Follow Procedure[/bold] charges.
 
-  - [textlink="Стандартная Оперативная Процедура" link="RMCMarineSOP"]
+  - [textlink="Standard Operating Procedure" link="RMCMarineSOP"]
 
 </Document>

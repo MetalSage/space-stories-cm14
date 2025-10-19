@@ -1,52 +1,52 @@
 ﻿<Document>
-  # Меры Предосторожности
-  - Они используются для бессрочного заключения людей под стражу.
+  # Precautionary Charges
+  - These are used to confine people indefinitely.
   <Table Columns="2">
     <ColorBox>
       <Box>
-        Обвинение
+        Charge
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Описание
+        Description
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Невменяемость
+        Insanity
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Объявляется только Главным Врачом или синтетиком, действующим таким образом, который заставляет правонарушителя казаться не в здравом уме. Субъект, после того как будет признан в здравом уме, может быть освобожден от этого конкретного обвинения.
-        \nВ отсутствие Главного Врача или Синтетика [color=#008000][bold]Командир[/bold][/color] или [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] могут назначить офицера медицинского департамента для проведения оценки вместо них.
-        \nИсключением из этого являются случаи подтвержденного самоубийства или попытки самоубийства, и субъект может подать апелляцию или обратиться к любому медицинскому персоналу.
-      </Box>
-    </ColorBox>
-
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Военнопленный
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Быть враждебным членом законной и признанной фракции.
-        \nВоеннопленные не могут быть казнены, если только они не представляют активную угрозу для других.
+        Declared only by the CMO or a synthetic, acting in such a manner which makes the offender not sound clear of mind. The subject, once cleared to be of sound mind, may be released from this particular charge.
+        \nIn the absence of a CMO or Synthetic, the [color=#008000][bold]Commander[/bold][/color] or [color=#8B0000][bold]Chief MP[/bold][/color] can appoint an officer of the medical department to perform an evaluation in their stead.
+        \nAn exception to this is in cases of verified suicide or attempted suicide, and the subject may appeal, or appeal to any medical personnel.
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Задержание по Усмотрению
+        Prisoner of War
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Дискреционное обвинение, используемое [color=#00CBFE][bold]Командующим Офицером[/bold][/color] для задержания персонала по любой причине - для безопасности и пользы операции или безопасности.
-        \nЭто может быть обжаловано только [color=#00CBFE][bold]Командующему Офицеру[/bold][/color] или [color=#ffa500][bold]Офису Провост Маршалов[/bold][/color], и может быть снято в любое время [color=#00CBFE][bold]Командующим Офицером[/bold][/color].
+        Being a hostile member of a legitimate and recognised faction. (For example, CLF and SPP)
+        \nPrisoners of war cannot be executed. See [textlink="Third-Parties" link="RMCMarineSOPNONModThirdparty"] for more information and exceptions.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Discretionary Detainment
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        A discretionary charge used by [color=#00CBFE][bold]Commanding Officer[/bold][/color] to detain personnel for any reason - for the safety and benefit of the operation or security.
+        \nThis is only appealable to the [color=#00CBFE][bold]Commanding Officer[/bold][/color], or the [color=#ffa500][bold]Provost Marshal Office[/bold][/color], and may be lifted at any time by the [color=#00CBFE][bold]Commanding Officer[/bold][/color].
       </Box>
     </ColorBox>
 

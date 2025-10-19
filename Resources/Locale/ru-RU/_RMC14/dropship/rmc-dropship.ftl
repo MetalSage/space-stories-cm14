@@ -80,3 +80,5 @@ rmc-dropship-paradrop-target-screen-target-targeting =
     Высадка возможна.
 rmc-dropship-paradrop-lock-no-target = Цель не выбрана.
 rmc-dropship-paradrop-lock-target-not-flying = Модуль десантирования можно активировать только в полете.
+rmc-dropship-weapons-enable = ВКЛЮЧИТЬ
+rmc-dropship-weapons-disable = ОТКЛЮЧИТЬ

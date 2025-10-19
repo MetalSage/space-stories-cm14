@@ -32,3 +32,5 @@ rmc-emote-peep = пищит от удивления!
 rmc-emote-anger = сердито трилькает!
 rmc-emote-trill = трилькает!
 rmc-emote-warble = возглашает!
+rmc-emote-name-r-rattle = Хвост-Погремушка
+rmc-emote-r-rattle = трясёт { POSS-ADJ($entity) } хвост.

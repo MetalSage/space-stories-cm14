@@ -9,16 +9,116 @@
   "states": [
     {
       "name": "alive",
-      "directions": 4
+      "directions": 4,
+      "size": {
+        "x": 128,
+        "y": 128
+      }
     },
     {
-      "name": "sleeping"
+      "name": "dead"
     },
     {
       "name": "crit"
     },
     {
-      "name": "dead"
+      "name": "sleeping"
+    },
+    {
+      "name": "ravager_walk_0",
+      "directions": 4
+    },
+    {
+      "name": "ravager_walk_1",
+      "directions": 4
+    },
+    {
+      "name": "ravager_walk_2",
+      "directions": 4
+    },
+    {
+      "name": "ravager_walk_3",
+      "directions": 4
+    },
+    {
+      "name": "ravager_downed_3"
+    },
+    {
+      "name": "ravager_downed_0"
+    },
+    {
+      "name": "ravager_downed_1"
+    },
+    {
+      "name": "ravager_downed_2"
+    },
+    {
+      "name": "ravager_rest_3"
+    },
+    {
+      "name": "ravager_rest_0"
+    },
+    {
+      "name": "ravager_rest_1"
+    },
+    {
+      "name": "ravager_rest_2"
+    },
+    {
+      "name": "hedgehog_1",
+      "directions": 4,
+      "size": {
+        "x": 128,
+        "y": 128
+      }
+    },
+    {
+      "name": "hedgehog_2",
+      "directions": 4,
+      "size": {
+        "x": 128,
+        "y": 128
+      }
+    },
+    {
+      "name": "hedgehog_3",
+      "directions": 4,
+      "size": {
+        "x": 128,
+        "y": 128
+      }
+    },
+    {
+      "name": "hedgehog_4",
+      "directions": 4,
+      "size": {
+        "x": 128,
+        "y": 128
+      }
+    },
+    {
+      "name": "Hedgehog_1_crit"
+    },
+    {
+      "name": "Hedgehog_1_resting"
+    },
+    {
+      "name": "hedgehog_2_crit"
+    },
+    {
+      "name": "hedgehog_2_resting"
+    },
+    {
+      "name": "hedgehog_3_crit"
+    },
+    {
+      "name": "hedgehog_3_resting"
+    },
+    {
+      "name": "hedgehog_4_crit"
+    },
+    {
+      "name": "hedgehog_4_resting"
     }
   ]
 }

@@ -110,7 +110,6 @@
     containers:
     - board
   - type: PryUnpowered
-  - type: RMCDropshipBlocked
 
 - type: entity
   parent: CMBaseWindoor
@@ -146,6 +145,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: XenoCrusherChargable
+  - type: RMCMesonsNonviewable
 
 - type: entity
   parent: CMWindoor

@@ -43,6 +43,7 @@
   - type: Clothing
     sprite: _RMC14/Objects/Clothing/Eyes/Glasses/m42_scoutsight.rsi
   - type: NightVisionItem
+    mesons: true
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -67,6 +68,7 @@
   - type: Clothing
     sprite: _RMC14/Objects/Clothing/Eyes/Glasses/m42_scoutsight.rsi
   - type: NightVisionItem
+    mesons: true
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -89,7 +91,7 @@
     - state: icon
       map: [ "icon" ]
   - type: Clothing
-    sprite: _RMC14/Objects/Clothing/Eyes/Glasses/ml66a_sight.rsi
+    sprite: _RMC14/Objects/Clothing/Eyes/Glasses/m42_scoutsight.rsi
   - type: NightVisionItem
     skills:
       RMCSkillSmartGun: 1

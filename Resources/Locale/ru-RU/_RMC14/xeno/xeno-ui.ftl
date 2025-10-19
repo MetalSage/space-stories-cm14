@@ -26,3 +26,6 @@ cm-ui-create-new-hive = Создать новый улей
 cm-ui-create-hive-title = Новое название улья
 cm-ui-humanoid = Гуманоид
 cm-ui-tier = Уровень { $tier }
+rmc-xeno-ui-ovi-needed-label = [bold][color=red]Для получения очков Королева должна находиться в своем\n яйцекладе![/color][/bold]
+rmc-xeno-ui-evolution-points = Очки эволюции: { $points } / { $maxPoints }
+rmc-ui-xeno-strain-confirm = Подтвердить

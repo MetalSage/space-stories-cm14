@@ -1,10 +1,10 @@
-ent-CMIDCardASO = ID офицера вспомогательной службы
+ent-CMIDCardASO = ID-карта офицера вспомогательной службы
     .desc = { ent-CMIDCardSilver.desc }
-ent-CMIDCardPilotDropship = ID пилота транспортника
+ent-CMIDCardPilotDropship = ID-карта пилота транспортника
     .desc = { ent-CMIDCardBase.desc }
-ent-CMIDCardPilotGunship = ID пилота штурмовика
+ent-CMIDCardPilotGunship = ID-карта пилота штурмовика
     .desc = { ent-CMIDCardBase.desc }
-ent-CMIDCardDCC = ID командира экипажа дропшипа
+ent-CMIDCardDCC = ID-карта командира экипажа дропшипа
     .desc = { ent-CMIDCardBase.desc }
-ent-CMIDCardIntelOfficer = ID офицера разведки
+ent-CMIDCardIntelOfficer = ID-карта офицера разведки
     .desc = { ent-CMIDCardBase.desc }

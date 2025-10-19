@@ -5,7 +5,7 @@ using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Xenonids.XenoBoxer.BoxerUppercut;
 using Content.Shared.Actions;
 using Content.Shared.Popups;
-using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Interaction.Events;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
@@ -19,6 +19,11 @@ public sealed class SharedBoxerKnockoutSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
 
     private readonly List<EntityUid> _trackersToRemove = new();
+
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<XenoBoxerKnockoutRecentlyComponent, AttackAttemptEvent>(OnAttackAttempt);
+    }
 
     public void UpdateKnockoutTracker(EntityUid ent, XenoBoxerKnockoutComponent comp, EntityUid target, float count)
     {
@@ -111,5 +116,14 @@ public sealed class SharedBoxerKnockoutSystem : EntitySystem
         }
 
         return false;
+    }
+
+    private void OnAttackAttempt(Entity<XenoBoxerKnockoutRecentlyComponent> recently, ref AttackAttemptEvent args)
+    {
+        if (args.Target is not { } target)
+            return;
+
+        if (recently.Comp.Trackers.TryGetValue(target, out var tracker) && tracker.Count != 0)
+            args.Cancel();
     }
 }

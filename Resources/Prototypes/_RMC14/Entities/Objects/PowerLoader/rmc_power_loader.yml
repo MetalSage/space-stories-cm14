@@ -3,7 +3,7 @@
   id: RMCMechBase
   components:
   - type: Corrodible
-    isCorrodible: false
+    isCorrodible: true
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -89,7 +89,4 @@
     - name: Left Hand
       location: Left
   - type: IgnoreInteractionRange
-    whitelist:
-      tags:
-      - RMCDropshipEnginePoint
     range: 2

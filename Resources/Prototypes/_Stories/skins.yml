@@ -1,9 +1,33 @@
 # DEFAULT
 
 - type: xenoSkin
+  id: STRunnerBloodAngelSkin
+  name: Кровавый Ангел
+  spriteRsi: _Stories/Mobs/Xenos/Skins/runner.rsi
+  xeno: CMXenoRunner
+
+- type: xenoSkin
+  id: STDefenderEternalFrostSkin
+  name: Вечный Мороз
+  spriteRsi: _Stories/Mobs/Xenos/Skins/defender.rsi
+  xeno: CMXenoDefender
+
+- type: xenoSkin
+  id: STWarriorStoneTumorSkin
+  name: Каменная Опухоль
+  spriteRsi: _Stories/Mobs/Xenos/Skins/warrior.rsi
+  xeno: CMXenoWarrior
+
+- type: xenoSkin
   id: STBoilerAcidSkin
   name: Кислотный
   spriteRsi: _Stories/Mobs/Xenos/Skins/boiler.rsi
+  xeno: CMXenoBoiler
+
+- type: xenoSkin
+  id: STBoilerGasSkin
+  name: Газовый
+  spriteRsi: _Stories/Mobs/Xenos/Skins/gasboiler.rsi
   xeno: CMXenoBoiler
 
 - type: xenoSkin
@@ -24,25 +48,15 @@
   spriteRsi: _Stories/Mobs/Xenos/Skins/Queen/queen.rsi
   xeno: CMXenoQueen
 
-- type: xenoSkin
-  id: STRunnerBloodAngelSkin
-  name: Кровавый Ангел
-  spriteRsi: _Stories/Mobs/Xenos/Skins/runner.rsi
-  xeno: CMXenoRunner
-
-- type: xenoSkin
-  id: STWarriorStoneTumorSkin
-  name: Каменная Опухоль
-  spriteRsi: _Stories/Mobs/Xenos/Skins/warrior.rsi
-  xeno: CMXenoWarrior
-
-- type: xenoSkin
-  id: STBoilerGasSkin
-  name: Газовый
-  spriteRsi: _Stories/Mobs/Xenos/Skins/gasboiler.rsi
-  xeno: CMXenoBoiler
-
 # STRAINS
+
+- type: xenoSkin
+  id: STDefenderSteelcrestEternalFrostSkin
+  name: Вечный Мороз
+  spriteRsi: _Stories/Mobs/Xenos/Skins/defender.rsi
+  xeno: CMXenoDefender
+  isStrain: true
+  strainId: CMXenoDefenderSteelcrest
 
 - type: xenoSkin
   id: STWarriorBoxerHardenedSkin
@@ -53,12 +67,12 @@
   strainId: CMXenoWarriorBoxer
 
 - type: xenoSkin
-  id: STDefenderSteelcrestEternalFrostSkin
-  name: Вечный Мороз
-  spriteRsi: _Stories/Mobs/Xenos/Skins/steelcrest_defender.rsi
-  xeno: CMXenoDefender
+  id: STCrusherChargerBattleHardenedSkin
+  name: Ветеран
+  spriteRsi: _Stories/Mobs/Xenos/Skins/crusher.rsi
+  xeno: CMXenoCrusher
   isStrain: true
-  strainId: CMXenoDefenderSteelcrest
+  strainId: RMCXenoCrusherCharger
 
 - type: xenoSkin
   id: STPraetorianOppressorCursedSkin

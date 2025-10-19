@@ -82,11 +82,15 @@
       - id: RMCWebbingLegPouch
       - id: RMCWebbingLegPouchBlack
       - id: CMWebbingHolster
+      - id: RMCWebbingHolsterBlack
       - id: CMWebbing
+      - id: RMCWebbingBlackSmall
     - name: Books
       entries:
       - id: RMCGuidebookLawMarine
+        amount: 10
       - id: RMCGuidebookSOP
+        amount: 10
 
 # WARDEN
 - type: entity
@@ -112,7 +116,7 @@
       takeAll: CMStandard
       entries:
       - id: CMHandsBlackMarine
-      - id: CMHeadsetCMP
+      - id: RMCHeadsetMW
       - id: CMBootsBlackFilled
     - name: Helmet
       choices: { CMHelmet: 1 }
@@ -169,8 +173,11 @@
       - id: RMCWebbingLegPouch
       - id: RMCWebbingLegPouchBlack
       - id: CMWebbingHolster
+      - id: RMCWebbingHolsterBlack
       - id: CMWebbing
     - name: Books
       entries:
       - id: RMCGuidebookLawMarine
+        amount: 10
       - id: RMCGuidebookSOP
+        amount: 10
