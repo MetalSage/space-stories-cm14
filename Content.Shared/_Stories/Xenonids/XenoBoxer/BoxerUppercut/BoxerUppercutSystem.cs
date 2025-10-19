@@ -55,14 +55,17 @@ public sealed class BoxerUppercutSystem : EntitySystem
         if (args.Handled)
             return;
 
-        args.Handled = true;
-
         var targetUid = args.Target;
         var comp = xeno.Comp;
         var popupPower = "weak";
 
         if (!_xeno.CanAbilityAttackTarget(xeno, targetUid))
             return;
+
+        if (TryComp<RMCSizeComponent>(targetUid, out var size) && size.Size == RMCSizes.Immobile)
+            return;
+
+        args.Handled = true;
 
         if (!TryComp(xeno, out XenoBoxerKnockoutComponent? knockoutComp) ||
             !TryComp(xeno, out XenoBoxerKnockoutRecentlyComponent? recently))
@@ -111,6 +114,7 @@ public sealed class BoxerUppercutSystem : EntitySystem
         {
             _throwing.TryThrow(targetUid, diff, 10);
             _stun.TryParalyze(targetUid, comp.ParalyzeTime, true);
+            _stun.TrySlowdown(targetUid, comp.ParalyzeTime * 2, true);
             popupPower = "gigantic";
         }
         else

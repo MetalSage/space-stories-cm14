@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 264.0.0
+  engineVersion: 264.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/04/2025 03:02:19
-  entityCount: 23921
+  time: 09/06/2025 13:59:23
+  entityCount: 23922
 maps:
 - 1
 grids:
@@ -42608,7 +42608,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - CMAccessCommand
+      - - RMCAccessCommand
       - - CMAccessColonyCommand
 - proto: CMAirlockSecurity
   entities:
@@ -44655,7 +44655,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 3891.1294422
     - type: Door
-      secondsUntilStateChange: -17530.775
+      secondsUntilStateChange: -17638.451
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -44673,7 +44673,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 3891.1294422
     - type: Door
-      secondsUntilStateChange: -17530.775
+      secondsUntilStateChange: -17638.451
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -61383,28 +61383,6 @@ entities:
     - type: Transform
       pos: 41.5,-87.5
       parent: 1
-- proto: CMVendorCigs
-  entities:
-  - uid: 3558
-    components:
-    - type: Transform
-      pos: -31.5,-78.5
-      parent: 1
-  - uid: 3559
-    components:
-    - type: Transform
-      pos: 49.5,-73.5
-      parent: 1
-  - uid: 3560
-    components:
-    - type: Transform
-      pos: 26.5,-73.5
-      parent: 1
-  - uid: 3561
-    components:
-    - type: Transform
-      pos: 28.5,-58.5
-      parent: 1
 - proto: CMVendorCoffee
   entities:
   - uid: 3562
@@ -61594,44 +61572,92 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 16.5,-68.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 3594
     components:
     - type: Transform
       pos: 16.5,-88.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 3595
     components:
     - type: Transform
       pos: 20.5,-62.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 3596
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 39.5,-93.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 3597
     components:
     - type: Transform
       pos: 40.5,-61.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 3598
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 46.5,-88.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 3599
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 21.5,-93.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 3600
     components:
     - type: Transform
       pos: 46.5,-88.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: CMVinesHeavy
   entities:
   - uid: 3601
@@ -139704,18 +139730,6 @@ entities:
     - type: Transform
       pos: 38.5,-83.5
       parent: 1
-- proto: Grille
-  entities:
-  - uid: 19168
-    components:
-    - type: Transform
-      pos: -7.5,-84.5
-      parent: 1
-  - uid: 19169
-    components:
-    - type: Transform
-      pos: -7.5,-82.5
-      parent: 1
 - proto: KitchenSpike
   entities:
   - uid: 19170
@@ -146166,6 +146180,14 @@ entities:
     - type: Transform
       pos: -23.494713,-79.4269
       parent: 1
+- proto: RMCDogLizard
+  entities:
+  - uid: 23922
+    components:
+    - type: Transform
+      pos: 0.5,91.5
+      parent: 1
+    - type: SpeedModifiedByContact
 - proto: RMCDrinkAlcoholAbsinthe
   entities:
   - uid: 20139
@@ -153916,6 +153938,16 @@ entities:
       parent: 1
 - proto: RMCGrille
   entities:
+  - uid: 19168
+    components:
+    - type: Transform
+      pos: -7.5,-84.5
+      parent: 1
+  - uid: 19169
+    components:
+    - type: Transform
+      pos: -7.5,-82.5
+      parent: 1
   - uid: 21500
     components:
     - type: Transform
@@ -160178,6 +160210,28 @@ entities:
     - type: Transform
       pos: -61.5,-79.5
       parent: 1
+- proto: RMCVendorCigsWeYa
+  entities:
+  - uid: 3558
+    components:
+    - type: Transform
+      pos: -31.5,-78.5
+      parent: 1
+  - uid: 3559
+    components:
+    - type: Transform
+      pos: 49.5,-73.5
+      parent: 1
+  - uid: 3560
+    components:
+    - type: Transform
+      pos: 26.5,-73.5
+      parent: 1
+  - uid: 3561
+    components:
+    - type: Transform
+      pos: 28.5,-58.5
+      parent: 1
 - proto: RMCWallGold
   entities:
   - uid: 22563
@@ -161084,6 +161138,27 @@ entities:
     components:
     - type: Transform
       pos: 19.512451,-84.39455
+      parent: 1
+- proto: RMCWeaponRifleM54C
+  entities:
+  - uid: 23481
+    components:
+    - type: Transform
+      pos: -44.5,-98.5
+      parent: 1
+- proto: RMCWeaponRifleM54CE2
+  entities:
+  - uid: 23482
+    components:
+    - type: Transform
+      pos: 26.5,23.5
+      parent: 1
+- proto: RMCWeaponRifleSSG45
+  entities:
+  - uid: 23487
+    components:
+    - type: Transform
+      pos: 36.49449,33.469055
       parent: 1
 - proto: RMCWeaponShotgunHG3712
   entities:
@@ -164909,20 +164984,6 @@ entities:
     - type: Transform
       pos: 1.5,-101.5
       parent: 1
-- proto: WeaponRifleM54C
-  entities:
-  - uid: 23481
-    components:
-    - type: Transform
-      pos: -44.5,-98.5
-      parent: 1
-- proto: WeaponRifleM54CE2
-  entities:
-  - uid: 23482
-    components:
-    - type: Transform
-      pos: 26.5,23.5
-      parent: 1
 - proto: WeaponRifleMAR40
   entities:
   - uid: 23483
@@ -164945,13 +165006,6 @@ entities:
     - type: Transform
       pos: -16.5,107.5
       parent: 1
-- proto: RMCWeaponRifleSSG45
-  entities:
-  - uid: 23487
-    components:
-    - type: Transform
-      pos: 36.49449,33.469055
-      parent: 1
 - proto: WeaponShotgunM357
   entities:
   - uid: 23488
@@ -164959,7 +165013,7 @@ entities:
     - type: Transform
       pos: -59.488625,-48.471107
       parent: 1
-- proto: WeaponShotgunM42A2
+- proto: WeaponShotgunM42A1
   entities:
   - uid: 23489
     components:

@@ -1,7 +1,7 @@
 - type: entity
   parent: [ CMBaseWeaponRifle, RMCBaseWeaponMagazineVisuals ]
   name: M54C assault rifle MK2
-  id: WeaponRifleM54C
+  id: RMCWeaponRifleM54C
   description: The standard issue rifle of the Marines. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition.
   components:
   - type: Sprite
@@ -17,6 +17,8 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+  - type: RMCLoreExaminable
+    content: rmc-lore-examinable-m54c-mk2
   - type: Gun
     selectedMode: FullAuto
     availableModes:
@@ -115,8 +117,8 @@
       Phoenix: /Textures/_Stories/Objects/Weapons/Rifles/m54c.rsi
 
 - type: entity
-  parent: WeaponRifleM54C
-  id: WeaponRifleM54CStripped
+  parent: RMCWeaponRifleM54C
+  id: RMCWeaponRifleM54CStripped
   suffix: Stripped, Filled
   components:
   - type: ItemSlots
@@ -172,7 +174,7 @@
           - RMCAttachmentFlamer
 
 - type: entity
-  parent: WeaponRifleM54C
+  parent: RMCWeaponRifleM54C
   id: RMCWeaponRifleM54CSemiStripped
   suffix: No UGL, Filled
   components:
@@ -201,7 +203,7 @@
           - RMCAttachmentM54CStockCollapsible
 
 - type: entity
-  parent: WeaponRifleM54C
+  parent: RMCWeaponRifleM54C
   id: RMCWeaponRifleM54CFilled
   suffix: Filled
   components:

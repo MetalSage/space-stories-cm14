@@ -41,11 +41,12 @@
         RMCSkillOverwatch: 1
         RMCSkillPolice: 1
         RMCSkillPowerLoader: 2
+    - type: CMVendorUser
+      points: 45
     - type: MarineOrders
     - type: RMCPointing
     - type: JobPrefix
       prefix: cm-job-prefix-chief-engineer
-    - type: CMVendorUser # Stories-Partners
     - type: ViewIntelObjectives
     - type: CommandAccent
     - type: TacticalMapIcon

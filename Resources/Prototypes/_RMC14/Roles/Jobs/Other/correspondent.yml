@@ -26,10 +26,11 @@
         RMCSkillEndurance: 0
         RMCSkillFirearms: 0
         RMCSkillVehicles: 1
+    - type: CMVendorUser
+      points: 45
+      id: CMCorrespondent
     - type: JobPrefix
       prefix: cm-job-prefix-correspondent # TODO RMC14 combat correspondent is CC
-    - type: CMVendorUser # Stories-Partners
-      id: CMCorrespondent
     - type: TacticalMapIcon
       icon:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi

@@ -6,6 +6,7 @@ using Content.Server.DoAfter;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Events;
 using Content.Server.NPC.Pathfinding;
+using Content.Shared._RMC14.Barricade.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.CombatMode;
@@ -63,6 +64,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedCombatModeSystem _combat = default!;
 
+    private EntityQuery<BarbedComponent> _barbedQuery;
     private EntityQuery<FixturesComponent> _fixturesQuery;
     private EntityQuery<MovementSpeedModifierComponent> _modifierQuery;
     private EntityQuery<NpcFactionMemberComponent> _factionQuery;
@@ -92,6 +94,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         base.Initialize();
 
         Log.Level = LogLevel.Info;
+        _barbedQuery = GetEntityQuery<BarbedComponent>();
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
         _modifierQuery = GetEntityQuery<MovementSpeedModifierComponent>();
         _factionQuery = GetEntityQuery<NpcFactionMemberComponent>();

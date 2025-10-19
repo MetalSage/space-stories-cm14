@@ -52,3 +52,4 @@ command-description-hijack-trigger = Запускает захват на кар
 command-description-setoperationname = Меняет название операции для предстоящего раунда.
 command-description-marinesperxeno-set = Устанавливает начальное соотношение морпехов к ксеносам на определенной карте.
 command-description-withxenotier = Фильтрует сущности или прототипы сущностей до тех, которые относятся к определенному уровню ксенонидов.
+command-description-rmcresetahelprelay = Перезапускает реле AHelp и MHelp.

@@ -8,5 +8,5 @@ ent-FoodSunflower = подсолнух
     .desc = Он прекрасен! Кое-кто может убить вас, если вы их потопчете.
 ent-FoodGrass = пучок травы
     .desc = Давай, прикоснись к траве.
-ent-FoodMango = манго
+ent-RMCFoodMango = манго
     .desc = МАНГО МАНГО МАНГО

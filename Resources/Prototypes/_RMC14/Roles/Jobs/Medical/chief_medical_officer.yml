@@ -43,11 +43,12 @@
         RMCSkillPolice: 1
         RMCSkillResearch: 1
         RMCSkillSurgery: 2
+    - type: CMVendorUser
+      points: 45
     - type: MarineOrders
     - type: RMCPointing
     - type: JobPrefix
       prefix: cm-job-prefix-cmo
-    - type: CMVendorUser # Stories-Partners
     - type: ViewIntelObjectives
     - type: CommandAccent
     - type: TacticalMapIcon

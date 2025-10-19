@@ -1,5 +1,6 @@
 ent-RMCCoffeeCup = кружка
     .desc = Прочная кружка военного образца с эмблемой КМП США, созданная для выносливости в любых условиях — как на корабле, так и в полевых условиях.
+    .suffix = RMC
 ent-RMCCoffeeCupFilled = { ent-RMCCoffeeCup }
     .suffix = Полная
     .desc = { ent-RMCCoffeeCup.desc }

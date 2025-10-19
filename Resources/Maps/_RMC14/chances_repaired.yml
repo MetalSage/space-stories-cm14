@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 264.0.0
+  engineVersion: 264.0.1
   forkId: ""
   forkVersion: ""
-  time: 07/22/2025 21:14:20
+  time: 08/30/2025 05:15:30
   entityCount: 24393
 maps:
 - 1
@@ -42436,7 +42436,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -71713.805
+      secondsUntilStateChange: -71785.07
       state: Opening
 - proto: CMAirlockMedicalLocked
   entities:
@@ -42909,7 +42909,7 @@ entities:
   - uid: 370
     components:
     - type: Transform
-      pos: -50.5,-16.09375
+      pos: -50.5,-16.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -42922,7 +42922,7 @@ entities:
   - uid: 372
     components:
     - type: Transform
-      pos: -50.5,-13.09375
+      pos: -50.5,-13.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -42935,7 +42935,7 @@ entities:
   - uid: 374
     components:
     - type: Transform
-      pos: -50.5,-10.09375
+      pos: -50.5,-10.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -42948,7 +42948,7 @@ entities:
   - uid: 376
     components:
     - type: Transform
-      pos: -50.5,-7.09375
+      pos: -50.5,-7.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -42961,7 +42961,7 @@ entities:
   - uid: 378
     components:
     - type: Transform
-      pos: -50.5,3.90625
+      pos: -50.5,3.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -42974,7 +42974,7 @@ entities:
   - uid: 380
     components:
     - type: Transform
-      pos: -50.5,6.90625
+      pos: -50.5,6.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -42987,7 +42987,7 @@ entities:
   - uid: 382
     components:
     - type: Transform
-      pos: -50.5,9.90625
+      pos: -50.5,9.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43000,7 +43000,7 @@ entities:
   - uid: 384
     components:
     - type: Transform
-      pos: -50.5,12.90625
+      pos: -50.5,12.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43023,7 +43023,7 @@ entities:
   - uid: 388
     components:
     - type: Transform
-      pos: -41.5,-6.09375
+      pos: -41.5,-6.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43036,7 +43036,7 @@ entities:
   - uid: 390
     components:
     - type: Transform
-      pos: -40.5,-20.09375
+      pos: -40.5,-20.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43044,7 +43044,7 @@ entities:
   - uid: 391
     components:
     - type: Transform
-      pos: -40.5,-7.125
+      pos: -40.5,-7.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43052,7 +43052,7 @@ entities:
   - uid: 392
     components:
     - type: Transform
-      pos: -40.5,-6.71875
+      pos: -40.5,-6.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43065,7 +43065,7 @@ entities:
   - uid: 394
     components:
     - type: Transform
-      pos: -38.5,9.90625
+      pos: -38.5,9.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43073,7 +43073,7 @@ entities:
   - uid: 395
     components:
     - type: Transform
-      pos: -37.5,-17.125
+      pos: -37.5,-17.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43081,7 +43081,7 @@ entities:
   - uid: 396
     components:
     - type: Transform
-      pos: -37.5,-16.71875
+      pos: -37.5,-16.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43089,7 +43089,7 @@ entities:
   - uid: 397
     components:
     - type: Transform
-      pos: -37.5,8.875
+      pos: -37.5,8.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43097,7 +43097,7 @@ entities:
   - uid: 398
     components:
     - type: Transform
-      pos: -37.5,9.28125
+      pos: -37.5,9.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43105,7 +43105,7 @@ entities:
   - uid: 399
     components:
     - type: Transform
-      pos: -37.5,12.25
+      pos: -37.5,12.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43113,7 +43113,7 @@ entities:
   - uid: 400
     components:
     - type: Transform
-      pos: -37.5,12.65625
+      pos: -37.5,12.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43126,7 +43126,7 @@ entities:
   - uid: 402
     components:
     - type: Transform
-      pos: -37.5,14.90625
+      pos: -37.5,14.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43139,7 +43139,7 @@ entities:
   - uid: 404
     components:
     - type: Transform
-      pos: 4.5,-28.09375
+      pos: 4.5,-28.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43162,7 +43162,7 @@ entities:
   - uid: 408
     components:
     - type: Transform
-      pos: 29.5,-84.09375
+      pos: 29.5,-84.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43175,7 +43175,7 @@ entities:
   - uid: 410
     components:
     - type: Transform
-      pos: 29.5,-82.09375
+      pos: 29.5,-82.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43188,7 +43188,7 @@ entities:
   - uid: 412
     components:
     - type: Transform
-      pos: 29.5,-80.09375
+      pos: 29.5,-80.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43201,7 +43201,7 @@ entities:
   - uid: 414
     components:
     - type: Transform
-      pos: 29.5,-78.09375
+      pos: 29.5,-78.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43214,7 +43214,7 @@ entities:
   - uid: 416
     components:
     - type: Transform
-      pos: 30.5,-84.09375
+      pos: 30.5,-84.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43227,7 +43227,7 @@ entities:
   - uid: 418
     components:
     - type: Transform
-      pos: 30.5,-82.09375
+      pos: 30.5,-82.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43240,7 +43240,7 @@ entities:
   - uid: 420
     components:
     - type: Transform
-      pos: 30.5,-80.09375
+      pos: 30.5,-80.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43253,7 +43253,7 @@ entities:
   - uid: 422
     components:
     - type: Transform
-      pos: 30.5,-78.09375
+      pos: 30.5,-78.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43266,7 +43266,7 @@ entities:
   - uid: 424
     components:
     - type: Transform
-      pos: 51.5,41.90625
+      pos: 51.5,41.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43279,7 +43279,7 @@ entities:
   - uid: 426
     components:
     - type: Transform
-      pos: 51.5,43.90625
+      pos: 51.5,43.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43292,7 +43292,7 @@ entities:
   - uid: 428
     components:
     - type: Transform
-      pos: 53.5,41.90625
+      pos: 53.5,41.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43305,7 +43305,7 @@ entities:
   - uid: 430
     components:
     - type: Transform
-      pos: 55.5,41.90625
+      pos: 55.5,41.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43318,7 +43318,7 @@ entities:
   - uid: 432
     components:
     - type: Transform
-      pos: 57.5,41.90625
+      pos: 57.5,41.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -43331,7 +43331,7 @@ entities:
   - uid: 434
     components:
     - type: Transform
-      pos: 57.5,43.90625
+      pos: 57.5,43.5
       parent: 1
     - type: Appearance
     - type: SpriteSetRenderOrder
@@ -48685,13 +48685,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -56.46875,-0.40625
+      pos: -56.5,-0.5
       parent: 1
   - uid: 1479
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -56.4375,-0.3125
+      pos: -56.5,-0.5
       parent: 1
   - uid: 1480
     components:
@@ -48703,13 +48703,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -56.46875,0.59375
+      pos: -56.5,0.5
       parent: 1
   - uid: 1482
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -56.4375,0.6875
+      pos: -56.5,0.5
       parent: 1
   - uid: 1483
     components:
@@ -48757,13 +48757,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.46875,-8.40625
+      pos: -48.5,-8.5
       parent: 1
   - uid: 1491
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.4375,-8.3125
+      pos: -48.5,-8.5
       parent: 1
   - uid: 1492
     components:
@@ -48775,13 +48775,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.46875,-7.40625
+      pos: -48.5,-7.5
       parent: 1
   - uid: 1494
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.4375,-7.3125
+      pos: -48.5,-7.5
       parent: 1
   - uid: 1495
     components:
@@ -48793,13 +48793,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.46875,10.59375
+      pos: -48.5,10.5
       parent: 1
   - uid: 1497
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -48.4375,10.6875
+      pos: -48.5,10.5
       parent: 1
   - uid: 1498
     components:
@@ -48823,13 +48823,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -44.46875,0.59375
+      pos: -44.5,0.5
       parent: 1
   - uid: 1502
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -44.4375,0.6875
+      pos: -44.5,0.5
       parent: 1
   - uid: 1503
     components:
@@ -48841,13 +48841,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -43.46875,0.59375
+      pos: -43.5,0.5
       parent: 1
   - uid: 1505
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -43.4375,0.6875
+      pos: -43.5,0.5
       parent: 1
   - uid: 1506
     components:
@@ -48859,13 +48859,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -43.46875,17.59375
+      pos: -43.5,17.5
       parent: 1
   - uid: 1508
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -43.4375,17.6875
+      pos: -43.5,17.5
       parent: 1
   - uid: 1509
     components:
@@ -48877,19 +48877,19 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -41.46875,0.59375
+      pos: -41.5,0.5
       parent: 1
   - uid: 1511
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -41.4375,0.6875
+      pos: -41.5,0.5
       parent: 1
   - uid: 1512
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -39.40625,40.5
+      pos: -39.5,40.5
       parent: 1
   - uid: 1513
     components:
@@ -49381,7 +49381,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -0.20299459,-38.347786
+      pos: -0.5,-38.5
       parent: 1
   - uid: 1597
     components:
@@ -49399,34 +49399,34 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -2.5,-9.15625
+      pos: -2.5,-9.5
       parent: 1
   - uid: 1600
     components:
     - type: Transform
-      pos: -2.5,-8.09375
+      pos: -2.5,-8.5
       parent: 1
   - uid: 1601
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -1.5,-9.15625
+      pos: -1.5,-9.5
       parent: 1
   - uid: 1602
     components:
     - type: Transform
-      pos: -1.5,-8.09375
+      pos: -1.5,-8.5
       parent: 1
   - uid: 1603
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -0.5,-9.15625
+      pos: -0.5,-9.5
       parent: 1
   - uid: 1604
     components:
     - type: Transform
-      pos: -0.5,-8.09375
+      pos: -0.5,-8.5
       parent: 1
   - uid: 1605
     components:
@@ -49443,12 +49443,12 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 0.5,-9.15625
+      pos: 0.5,-9.5
       parent: 1
   - uid: 1608
     components:
     - type: Transform
-      pos: 0.5,-8.09375
+      pos: 0.5,-8.5
       parent: 1
   - uid: 1609
     components:
@@ -51106,12 +51106,12 @@ entities:
   - uid: 1864
     components:
     - type: Transform
-      pos: 25.35834,2.647676
+      pos: 25.5,2.5
       parent: 1
   - uid: 1865
     components:
     - type: Transform
-      pos: 25.42084,2.553926
+      pos: 25.5,2.5
       parent: 1
   - uid: 1866
     components:
@@ -51136,17 +51136,17 @@ entities:
   - uid: 1870
     components:
     - type: Transform
-      pos: -42.811157,-22.326172
+      pos: -42.5,-22.5
       parent: 1
   - uid: 1871
     components:
     - type: Transform
-      pos: -42.5297,-22.263672
+      pos: -42.5,-22.5
       parent: 1
   - uid: 1872
     components:
     - type: Transform
-      pos: -31.487202,16.396107
+      pos: -31.5,16.5
       parent: 1
     - type: Foldable
       folded: False
@@ -51155,7 +51155,7 @@ entities:
   - uid: 1873
     components:
     - type: Transform
-      pos: -33.55124,16.63942
+      pos: -33.5,16.5
       parent: 1
     - type: Foldable
       folded: False
@@ -51164,7 +51164,7 @@ entities:
   - uid: 1874
     components:
     - type: Transform
-      pos: 67.572586,0.41311824
+      pos: 67.5,0.5
       parent: 1
   - uid: 1875
     components:
@@ -52049,7 +52049,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2040
     components:
     - type: Transform
@@ -52059,7 +52059,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2041
     components:
     - type: Transform
@@ -52069,7 +52069,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2042
     components:
     - type: Transform
@@ -52079,7 +52079,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2043
     components:
     - type: Transform
@@ -52088,7 +52088,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2044
     components:
     - type: Transform
@@ -52098,7 +52098,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2045
     components:
     - type: Transform
@@ -52107,7 +52107,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2046
     components:
     - type: Transform
@@ -52117,7 +52117,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2047
     components:
     - type: Transform
@@ -52127,7 +52127,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2048
     components:
     - type: Transform
@@ -52137,7 +52137,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2049
     components:
     - type: Transform
@@ -52146,7 +52146,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
   - uid: 2050
     components:
     - type: Transform
@@ -52156,7 +52156,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessEngineering
-      - - CMAccessCommand
+      - - RMCAccessCommand
 - proto: CMDoubleDoorGenericGlass
   entities:
   - uid: 2051
@@ -52530,7 +52530,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10666.0893339
     - type: Door
-      secondsUntilStateChange: -59292.457
+      secondsUntilStateChange: -59363.72
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -52546,7 +52546,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10666.0893339
     - type: Door
-      secondsUntilStateChange: -59292.457
+      secondsUntilStateChange: -59363.72
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -71146,691 +71146,1519 @@ entities:
     - type: Transform
       pos: -69.5,-36.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5349
     components:
     - type: Transform
       pos: -62.5,77.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5350
     components:
     - type: Transform
       pos: -59.5,-15.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5351
     components:
     - type: Transform
       pos: -57.5,-36.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5352
     components:
     - type: Transform
       pos: -57.5,-9.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5353
     components:
     - type: Transform
       pos: -57.5,8.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5354
     components:
     - type: Transform
       pos: -55.5,-41.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5355
     components:
     - type: Transform
       pos: -53.5,15.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5356
     components:
     - type: Transform
       pos: -53.5,56.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5357
     components:
     - type: Transform
       pos: -52.5,-4.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5358
     components:
     - type: Transform
       pos: -51.5,-15.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5359
     components:
     - type: Transform
       pos: -51.5,-9.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5360
     components:
     - type: Transform
       pos: -51.5,-6.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5361
     components:
     - type: Transform
       pos: -51.5,5.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5362
     components:
     - type: Transform
       pos: -51.5,8.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5363
     components:
     - type: Transform
       pos: -51.5,11.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5364
     components:
     - type: Transform
       pos: -51.5,15.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5365
     components:
     - type: Transform
       pos: -50.5,-19.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5366
     components:
     - type: Transform
       pos: -50.5,-12.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5367
     components:
     - type: Transform
       pos: -50.5,2.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5368
     components:
     - type: Transform
       pos: -49.5,38.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5369
     components:
     - type: Transform
       pos: -46.5,-19.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5370
     components:
     - type: Transform
       pos: -45.5,71.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5371
     components:
     - type: Transform
       pos: -43.5,16.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5372
     components:
     - type: Transform
       pos: -43.5,43.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5373
     components:
     - type: Transform
       pos: -41.5,-19.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5374
     components:
     - type: Transform
       pos: -41.5,-13.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5375
     components:
     - type: Transform
       pos: -41.5,2.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5376
     components:
     - type: Transform
       pos: -41.5,9.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5377
     components:
     - type: Transform
       pos: -39.5,-79.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5378
     components:
     - type: Transform
       pos: -39.5,56.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5379
     components:
     - type: Transform
       pos: -38.5,-19.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5380
     components:
     - type: Transform
       pos: -38.5,-6.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5381
     components:
     - type: Transform
       pos: -38.5,11.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5382
     components:
     - type: Transform
       pos: -38.5,17.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5383
     components:
     - type: Transform
       pos: -38.5,29.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5384
     components:
     - type: Transform
       pos: -37.5,23.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5385
     components:
     - type: Transform
       pos: -35.5,-40.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5386
     components:
     - type: Transform
       pos: -35.5,-12.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5387
     components:
     - type: Transform
       pos: -35.5,-10.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5388
     components:
     - type: Transform
       pos: -35.5,-8.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5389
     components:
     - type: Transform
       pos: -35.5,-6.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5390
     components:
     - type: Transform
       pos: -35.5,14.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5391
     components:
     - type: Transform
       pos: -34.5,-32.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5392
     components:
     - type: Transform
       pos: -30.5,9.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5393
     components:
     - type: Transform
       pos: -29.5,-11.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5394
     components:
     - type: Transform
       pos: -28.5,-18.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5395
     components:
     - type: Transform
       pos: -26.5,-50.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5396
     components:
     - type: Transform
       pos: -25.5,-85.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5397
     components:
     - type: Transform
       pos: -23.5,-37.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5398
     components:
     - type: Transform
       pos: -21.5,-68.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5399
     components:
     - type: Transform
       pos: -19.5,-31.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5400
     components:
     - type: Transform
       pos: -19.5,38.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5401
     components:
     - type: Transform
       pos: -18.5,-86.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5402
     components:
     - type: Transform
       pos: -16.5,33.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5403
     components:
     - type: Transform
       pos: -14.5,47.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5404
     components:
     - type: Transform
       pos: -14.5,50.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5405
     components:
     - type: Transform
       pos: -11.5,10.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5406
     components:
     - type: Transform
       pos: -11.5,32.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5407
     components:
     - type: Transform
       pos: -10.5,6.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5408
     components:
     - type: Transform
       pos: -10.5,24.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5409
     components:
     - type: Transform
       pos: -10.5,72.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5410
     components:
     - type: Transform
       pos: -8.5,-47.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5411
     components:
     - type: Transform
       pos: -8.5,-28.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5412
     components:
     - type: Transform
       pos: -7.5,38.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5413
     components:
     - type: Transform
       pos: -6.5,-91.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5414
     components:
     - type: Transform
       pos: -6.5,6.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5415
     components:
     - type: Transform
       pos: -5.5,0.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5416
     components:
     - type: Transform
       pos: -4.5,13.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5417
     components:
     - type: Transform
       pos: -4.5,38.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5418
     components:
     - type: Transform
       pos: -3.5,-82.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5419
     components:
     - type: Transform
       pos: -3.5,-56.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5420
     components:
     - type: Transform
       pos: -0.5,42.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5421
     components:
     - type: Transform
       pos: -0.5,45.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5422
     components:
     - type: Transform
       pos: 0.5,-34.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5423
     components:
     - type: Transform
       pos: 0.5,63.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5424
     components:
     - type: Transform
       pos: 2.5,-37.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5425
     components:
     - type: Transform
       pos: 2.5,-33.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5426
     components:
     - type: Transform
       pos: 3.5,-93.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5427
     components:
     - type: Transform
       pos: 3.5,-28.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5428
     components:
     - type: Transform
       pos: 3.5,-7.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5429
     components:
     - type: Transform
       pos: 3.5,5.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5430
     components:
     - type: Transform
       pos: 4.5,-24.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5431
     components:
     - type: Transform
       pos: 5.5,33.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5432
     components:
     - type: Transform
       pos: 8.5,-61.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5433
     components:
     - type: Transform
       pos: 10.5,-66.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5434
     components:
     - type: Transform
       pos: 10.5,-32.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5435
     components:
     - type: Transform
       pos: 10.5,-7.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5436
     components:
     - type: Transform
       pos: 10.5,4.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5437
     components:
     - type: Transform
       pos: 13.5,-53.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5438
     components:
     - type: Transform
       pos: 13.5,2.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5439
     components:
     - type: Transform
       pos: 13.5,7.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5440
     components:
     - type: Transform
       pos: 13.5,74.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5441
     components:
     - type: Transform
       pos: 13.5,89.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5442
     components:
     - type: Transform
       pos: 20.5,19.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5443
     components:
     - type: Transform
       pos: 20.5,28.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5444
     components:
     - type: Transform
       pos: 21.5,-86.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5445
     components:
     - type: Transform
       pos: 22.5,-56.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5446
     components:
     - type: Transform
       pos: 22.5,-36.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5447
     components:
     - type: Transform
       pos: 24.5,98.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5448
     components:
     - type: Transform
       pos: 25.5,-39.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5449
     components:
     - type: Transform
       pos: 25.5,-32.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5450
     components:
     - type: Transform
       pos: 25.5,-0.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5451
     components:
     - type: Transform
       pos: 25.5,11.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5452
     components:
     - type: Transform
       pos: 25.5,91.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5453
     components:
     - type: Transform
       pos: 26.5,5.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5454
     components:
     - type: Transform
       pos: 27.5,-80.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5455
     components:
     - type: Transform
       pos: 27.5,-69.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5456
     components:
     - type: Transform
       pos: 28.5,72.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5457
     components:
     - type: Transform
       pos: 31.5,-26.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5458
     components:
     - type: Transform
       pos: 31.5,35.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5459
     components:
     - type: Transform
       pos: 32.5,-39.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5460
     components:
     - type: Transform
       pos: 33.5,98.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5461
     components:
     - type: Transform
       pos: 36.5,-12.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5462
     components:
     - type: Transform
       pos: 37.5,-3.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5463
     components:
     - type: Transform
       pos: 37.5,10.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5464
     components:
     - type: Transform
       pos: 38.5,-7.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5465
     components:
     - type: Transform
       pos: 40.5,-14.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5466
     components:
     - type: Transform
       pos: 42.5,5.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5467
     components:
     - type: Transform
       pos: 44.5,21.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5468
     components:
     - type: Transform
       pos: 44.5,74.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5469
     components:
     - type: Transform
       pos: 44.5,89.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5470
     components:
     - type: Transform
       pos: 46.5,15.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5471
     components:
     - type: Transform
       pos: 48.5,-30.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5472
     components:
     - type: Transform
       pos: 51.5,-6.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5473
     components:
     - type: Transform
       pos: 51.5,12.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5474
     components:
     - type: Transform
       pos: 53.5,43.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5475
     components:
     - type: Transform
       pos: 54.5,2.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5476
     components:
     - type: Transform
       pos: 55.5,-12.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5477
     components:
     - type: Transform
       pos: 55.5,35.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5478
     components:
     - type: Transform
       pos: 56.5,-9.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5479
     components:
     - type: Transform
       pos: 57.5,-44.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5480
     components:
     - type: Transform
       pos: 57.5,-24.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5481
     components:
     - type: Transform
       pos: 63.5,-39.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5482
     components:
     - type: Transform
       pos: 64.5,-41.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5483
     components:
     - type: Transform
       pos: 65.5,-12.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 5484
     components:
     - type: Transform
       pos: 65.5,-7.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 8893
     components:
     - type: Transform
       pos: -71.5,56.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: CMWallShuttleOrange
   entities:
   - uid: 5485
@@ -87804,6 +88632,17 @@ entities:
     - type: Transform
       pos: -29.5,-38.5
       parent: 1
+- proto: RMCLadder
+  entities:
+  - uid: 8841
+    components:
+    - type: Transform
+      pos: 89.5,99.5
+      parent: 1
+    - type: Ladder
+      id: hatch_pve
+    - type: Fixtures
+      fixtures: {}
 - proto: RMCLadderUp
   entities:
   - uid: 9627
@@ -87812,16 +88651,7 @@ entities:
       pos: 33.5,42.5
       parent: 1
     - type: Ladder
-      id: hatch
-    - type: Fixtures
-      fixtures: {}
-  - uid: 9628
-    components:
-    - type: Transform
-      pos: 89.5,99.5
-      parent: 1
-    - type: Ladder
-      id: hatch
+      id: hatch_pve
     - type: Fixtures
       fixtures: {}
 - proto: RMCLamp
