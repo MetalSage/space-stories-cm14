@@ -13,3 +13,6 @@ ent-STVehicleRequisitionRailing = выдвижное ограждение
 ent-STVehicleRequisitionGear = шестерня
     .desc = ""
     .suffix = Транспорт
+
+ent-STVendingVehicleGearM577 = консоль снабжения модулей ASRS
+    .desc = Автоматизированная стойка снабжения, подключённая к большому складу различных модулей. Доступна только для экипажа техники.

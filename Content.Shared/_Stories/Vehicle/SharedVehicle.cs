@@ -74,7 +74,10 @@ public sealed class VehicleSelectHardpointBuiMsg(NetEntity choice) : BoundUserIn
 }
 
 [Serializable, NetSerializable]
-public sealed class VehicleHardpointWindowUserInterfaceState : BoundUserInterfaceState;
+public sealed class VehicleHardpointWindowUserInterfaceState(NetEntity? activeHardpoint) : BoundUserInterfaceState
+{
+    public readonly NetEntity? ActiveHardpoint = activeHardpoint;
+}
 
 [Serializable, NetSerializable]
 public sealed class VehicleStatusUIState : BoundUserInterfaceState;

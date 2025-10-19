@@ -53,13 +53,16 @@ public sealed class VehicleSystem : EntitySystem
 
         if (!md.Comp.Enabled)
         {
-            _popup.PopupEntity($"The {ToPrettyString(md)} must be activated to scan {ToPrettyString(args.Target.Value)}.", md.Owner, args.User);
+            _popup.PopupEntity(
+                Loc.GetString("st-motion-detector-scan-disabled", ("md", md), ("target", args.Target.Value)),
+                md.Owner, args.User);
             return;
         }
 
-        var selfMsg = $"You start recalibrating {ToPrettyString(md)} to scan the vehicle's interior for signatures.";
-        var otherMsg = $"{ToPrettyString(args.User)} fumbles with {ToPrettyString(md)} aimed at {ToPrettyString(args.Target.Value)}.";
-        _popup.PopupPredicted(selfMsg, otherMsg, md.Owner, args.User);
+        _popup.PopupPredicted(
+            Loc.GetString("st-motion-detector-scan-start-self", ("md", md), ("target", args.Target.Value)),
+            Loc.GetString("st-motion-detector-scan-start-others", ("user", args.User), ("md", md), ("target", args.Target.Value)),
+            md.Owner, args.User);
 
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 3f, new MotionDetectorScanDoAfterEvent(),
             md.Owner, target: args.Target, used: md.Owner)
@@ -70,9 +73,10 @@ public sealed class VehicleSystem : EntitySystem
 
         if (!_doAfter.TryStartDoAfter(doAfterArgs))
         {
-            var selfStopMsg = $"You stop trying to scan {ToPrettyString(args.Target.Value)}'s interior.";
-            var otherStopMsg = $"{ToPrettyString(args.User)} stops fumbling with {ToPrettyString(md)}.";
-            _popup.PopupPredicted(selfStopMsg, otherStopMsg, md.Owner, args.User);
+            _popup.PopupPredicted(
+                Loc.GetString("st-motion-detector-scan-stop-self", ("target", args.Target.Value)),
+                Loc.GetString("st-motion-detector-scan-stop-others", ("user", args.User), ("md", md)),
+                md.Owner, args.User);
             return;
         }
 
@@ -86,17 +90,19 @@ public sealed class VehicleSystem : EntitySystem
 
         if (!md.Comp.Enabled)
         {
-            _popup.PopupEntity($"The {ToPrettyString(md)} must be activated to scan {ToPrettyString(args.Target.Value)}.", md.Owner, args.User);
+            _popup.PopupEntity(
+                Loc.GetString("st-motion-detector-scan-disabled", ("md", md), ("target", args.Target.Value)),
+                md.Owner, args.User);
             return;
         }
 
         if (!TryComp<VehicleComponent>(args.Target, out var vehicleComp))
             return;
 
-        var otherMsg = $"{ToPrettyString(args.User)} finishes fumbling with {ToPrettyString(md)}.";
-        var selfMsg = $"You finish recalibrating {ToPrettyString(md)} and scanning {ToPrettyString(args.Target)}'s interior for signatures.";
-
-        _popup.PopupPredicted(selfMsg, otherMsg, md.Owner, args.User);
+        _popup.PopupPredicted(
+            Loc.GetString("st-motion-detector-scan-finish-self", ("md", md), ("target", args.Target.Value)),
+            Loc.GetString("st-motion-detector-scan-finish-others", ("user", args.User), ("md", md)),
+            md.Owner, args.User);
 
         int humansInside = 0;
         int xenosInside = 0;
@@ -119,10 +125,11 @@ public sealed class VehicleSystem : EntitySystem
 
         if (humansInside > 0 || xenosInside > 0)
         {
-            var msg = $"The {ToPrettyString(md)} shows " +
-                      (humansInside > 0 ? $"approximately {humansInside} signatures" : "no signatures") +
-                      (xenosInside > 0 ? $" and about {xenosInside} abnormal signatures" : "") +
-                      $" inside of {ToPrettyString(args.Target.Value)}.";
+            var msg = Loc.GetString("st-motion-detector-scan-result",
+                ("md", md),
+                ("target", args.Target.Value),
+                ("humans", humansInside),
+                ("xenos", xenosInside));
 
             _audio.PlayPvs(md.Comp.ScanSound, args.User);
             _chatManager.TrySendInGameICMessage(md.Owner, msg, InGameICChatType.Speak, true);
@@ -130,7 +137,9 @@ public sealed class VehicleSystem : EntitySystem
         else
         {
             _audio.PlayPvs(md.Comp.ScanEmptySound, args.User);
-            _popup.PopupEntity($"The {ToPrettyString(md)} can't pick up any signatures, so the vehicle should be empty. In theory.", md.Owner, args.User);
+            _popup.PopupEntity(
+                Loc.GetString("st-motion-detector-scan-empty", ("md", md), ("target", args.Target.Value)),
+                md.Owner, args.User);
         }
     }
 }

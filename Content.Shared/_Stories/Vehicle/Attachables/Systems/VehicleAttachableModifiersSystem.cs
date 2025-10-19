@@ -186,7 +186,7 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        var state = new VehicleHardpointWindowUserInterfaceState();
+        var state = new VehicleHardpointWindowUserInterfaceState(GetNetEntity(component.ActiveHardpoint));
         _ui.SetUiState(uid, VehicleSelectHardpointUI.Key, state);
     }
 }

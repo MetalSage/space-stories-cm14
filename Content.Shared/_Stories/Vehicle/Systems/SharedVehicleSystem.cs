@@ -285,6 +285,9 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         vehicle.Comp.ActiveHardpoint = hardpoint;
         Dirty(vehicle, vehicle.Comp);
 
+        var state = new VehicleHardpointWindowUserInterfaceState(GetNetEntity(vehicle.Comp.ActiveHardpoint));
+        _ui.SetUiState(vehicle.Owner, VehicleSelectHardpointUI.Key, state);
+
         var gunnerSeats = EntityQueryEnumerator<VehiclePilotSeatComponent>();
         while (gunnerSeats.MoveNext(out var seatUid, out var seat))
         {

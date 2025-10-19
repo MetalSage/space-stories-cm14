@@ -10,6 +10,7 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
 {
     private VehicleSelectHardpointWindow? _window;
     private readonly Dictionary<EntityUid, Button> _hardpointButtons = new();
+    private EntityUid? _currentHardpoint;
 
     public VehicleSelectHardpointBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -81,6 +82,7 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
 
             button.OnPressed += _ =>
             {
+                _currentHardpoint = hardpoint;
                 SendMessage(new VehicleSelectHardpointBuiMsg(EntMan.GetNetEntity(hardpoint)));
                 UpdateButtons();
             };
@@ -94,18 +96,11 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
 
     private void UpdateButtons()
     {
-        var vehicle = GetVehicleComponent();
-        var activeHardpoint = vehicle?.ActiveHardpoint;
-
-        foreach (var kvp in _hardpointButtons)
+        foreach (var (hardpoint, button) in _hardpointButtons)
         {
-            var hardpoint = kvp.Key;
-            var button = kvp.Value;
-
-            if (activeHardpoint != null && activeHardpoint == hardpoint)
-                button.ModulateSelfOverride = Color.FromHex("#90EE90");
-            else
-                button.ModulateSelfOverride = null;
+            button.ModulateSelfOverride = (_currentHardpoint == hardpoint)
+                ? Color.FromHex("#90EE90")
+                : null;
         }
     }
 
@@ -113,8 +108,11 @@ public sealed class VehicleSelectHardpointBui : BoundUserInterface
     {
         base.UpdateState(state);
 
-        if (_window != null && state is VehicleHardpointWindowUserInterfaceState)
-            UpdateButtons();
+        if (state is not VehicleHardpointWindowUserInterfaceState uiState)
+            return;
+
+        _currentHardpoint = EntMan.GetEntity(uiState.ActiveHardpoint);
+        UpdateButtons();
     }
 
     protected override void Dispose(bool disposing)

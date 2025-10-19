@@ -39,6 +39,9 @@ public sealed class SharedVehicleRepairableSystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (!HasComp<ToolComponent>(args.Used))
+            return;
+
         if (!TryComp<DamageableComponent>(repairable, out var damageable))
             return;
 

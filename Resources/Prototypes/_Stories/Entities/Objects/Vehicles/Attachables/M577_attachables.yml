@@ -34,6 +34,7 @@
   - type: VehicleGun
     maxSpareMagazines: 2
     acceptedMagazineTypes: ["boyars_dualcannon"]
+    startingMagazinePrototype: STVehicleAmmoBoyarsDualcannon
   - type: GunArcRestriction
     maxAngleDeviation: 60
 
@@ -71,6 +72,7 @@
     projectileSpeed: 25
   - type: VehicleGun
     acceptedMagazineTypes: ["flare_launcher"]
+    startingMagazinePrototype: STVehicleAmmoFlareLauncher
   - type: ActivateExpendableLightOnShoot
   - type: ShootAtFixedPoint
     maxFixedRange: 25
@@ -117,6 +119,7 @@
   - type: VehicleGun
     maxSpareMagazines: 1
     acceptedMagazineTypes: ["re_frontalcannon"]
+    startingMagazinePrototype: STVehicleAmmoREFrontalCannon
   - type: GunArcRestriction
     maxAngleDeviation: 120
 

@@ -176,10 +176,10 @@ public sealed partial class SharedVehicleSystem
 
     private void OnVehicleControllerStrapped(Entity<VehicleControllerComponent> seat, ref StrappedEvent args)
     {
-        if (seat.Comp.Vehicle == null)
+        if (seat.Comp.ControllableEntity is null && !TryInitController(seat))
             return;
 
-        if (seat.Comp.ControllableEntity is null && !TryInitController(seat))
+        if (seat.Comp.Vehicle == null)
             return;
 
         var controllable = seat.Comp.ControllableEntity!.Value;

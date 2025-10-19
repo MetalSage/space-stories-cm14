@@ -33,7 +33,7 @@
     key: enum.VehicleElevatorUIKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
-    access: [ [ "CMAccessRequisitions" ] ]
+    access: [ [ "CMAccessCrewman" ] ]
   - type: UserInterface
     interfaces:
       enum.VehicleElevatorUIKey.Key:
@@ -64,7 +64,7 @@
   - type: RMCMesonsNonviewable
   - type: VehicleElevatorComputer
     orders:
-      STVehicleM577APC: 170 # change to 190 
+      STVehicleM577APC: 170
 
 - type: entity
   id: STVehicleRequisitionElevator
@@ -168,3 +168,40 @@
   - type: CargoSellBlacklist
   - type: Corrodible
     isCorrodible: false
+
+- type: entity
+  parent: ColMarTechCargo
+  id: STVendingVehicleGearM577
+  name: ASRS automated modules vendor
+  description: An automated supply rack hooked up to a big storage of various modules. Can be accessed by the Vehicle Crew.
+  components:
+  - type: AccessReader
+    access:
+    - [ "CMAccessCrewman" ]
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Vending/vehicle_gear.rsi
+  - type: CMAutomatedVendor
+    baseSprite:
+      sprite: _Stories/Objects/Vehicles/Vending/vehicle_gear.rsi
+      state: base
+    animationSprite:
+      sprite: _Stories/Objects/Vehicles/Vending/vehicle_gear.rsi
+      state: vend
+    sound:
+      path: /Audio/_RMC14/Machines/vending_drop.ogg
+      params:
+        maxDistance: 2
+        volume: -4
+    jobs:
+    - CMVehicleCrewman
+    sections:
+    - name: M577 бронетранспортёр
+      entries:
+      - id: STMarineVehicleDualcannon
+        amount: 1
+      - id: STMarineVehicleFrontalCannon
+        amount: 1
+      - id: STMarineVehicleFlareLauncher
+        amount: 1
+      - id: STMarineVehicleM577Wheels
+        amount: 1

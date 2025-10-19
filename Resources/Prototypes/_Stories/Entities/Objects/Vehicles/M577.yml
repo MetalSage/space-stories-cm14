@@ -98,16 +98,12 @@
   - type: VehicleAttachableHolder
     slots:
       vehicle-slot-treads:
-        startingAttachables: [STMarineVehicleM577Wheels]
         hardpointType: HDPT_TREADS
       vehicle-slot-support:
-        startingAttachables: [STMarineVehicleFlareLauncher]
         hardpointType: HDPT_SUPPORT
       vehicle-slot-secondary:
-        startingAttachables: [STMarineVehicleFrontalCannon]
         hardpointType: HDPT_SECONDARY
       vehicle-slot-primary:
-        startingAttachables: [STMarineVehicleDualcannon]
         hardpointType: HDPT_PRIMARY
       vehicle-slot-special:
         startingAttachables: [STMarineVehicleFiringPortWeaponOne, STMarineVehicleFiringPortWeaponTwo]
