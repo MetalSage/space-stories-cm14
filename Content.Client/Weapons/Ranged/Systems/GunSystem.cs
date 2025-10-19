@@ -7,8 +7,8 @@ using Content.Client.Animations;
 using Content.Client.Gameplay;
 using Content.Client.Items;
 using Content.Client.Weapons.Ranged.Components;
-using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
+using Content.Shared._Stories.Attachables;
 using Content.Shared.CombatMode;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -26,7 +26,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Shared._Stories.Attachables;
 
 namespace Content.Client.Weapons.Ranged.Systems;
 

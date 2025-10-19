@@ -1,14 +1,9 @@
 using System.Linq;
 using Content.Client.Gameplay;
 using Content.Shared._RMC14.Input;
-using Content.Shared._RMC14.Tackle;
 using Content.Shared._Stories.Attachables;
 using Content.Shared._Stories.Vehicle;
-using Content.Shared.CombatMode;
 using Content.Shared.Effects;
-using Content.Shared.Hands.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
@@ -170,7 +165,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     }
 
     protected override void DoDamageEffect(List<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
-    {   
+    {
         // Stories-Vehicle-Damage-Visuals-Start
         foreach (var target in targets)
         {

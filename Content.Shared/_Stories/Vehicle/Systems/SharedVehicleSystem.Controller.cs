@@ -1,11 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Synth;
 using Content.Shared._Stories.Attachables;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Coordinates;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
@@ -225,7 +223,7 @@ public sealed partial class SharedVehicleSystem
             {
                 pilot.Comp.Actions[actionId] = actionEntity.Value;
 
-                if (_actions.GetEvent(actionEntity.Value) is VehicleLockDoorsEvent && 
+                if (_actions.GetEvent(actionEntity.Value) is VehicleLockDoorsEvent &&
                     TryComp<VehicleComponent>(pilot.Comp.Vehicle, out var vehicle))
                 {
                     var icon = vehicle.Locked
@@ -233,7 +231,7 @@ public sealed partial class SharedVehicleSystem
                         : new SpriteSpecifier.Rsi(new ResPath("/Textures/_Stories/Actions/vehicle_actions.rsi"), "door_unlocked");
 
                     _actions.SetIcon(actionEntity.Value, icon);
-    
+
                 }
             }
         }

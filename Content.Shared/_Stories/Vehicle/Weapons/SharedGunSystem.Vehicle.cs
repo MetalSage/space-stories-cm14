@@ -1,20 +1,13 @@
 using Content.Shared._RMC14.CameraShake;
 using Content.Shared._RMC14.Stun;
-using Content.Shared._Stories.Vehicle;
 using Content.Shared._Stories.Attachables;
-using Content.Shared.Actions;
+using Content.Shared._Stories.Vehicle;
 using Content.Shared.Damage;
-using Content.Shared.Hands.Components;
-using Content.Shared.Popups;
-using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Examine;
+using Content.Shared.Popups;
 using Content.Shared.Projectiles;
-using Content.Shared.Coordinates;
+using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
-using Robust.Shared.Timing;
-using Robust.Shared.Localization;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -43,10 +36,10 @@ public abstract partial class SharedGunSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        
+
         if (_netManager.IsClient)
             return;
-        
+
         var query = EntityQueryEnumerator<VehicleAutoReloadGunComponent, VehicleGunComponent>();
         while (query.MoveNext(out var uid, out var autoReload, out var gun))
         {
@@ -193,7 +186,7 @@ public abstract partial class SharedGunSystem
             {
                 var currentHealth = vehicle.MaxHealth - damageable.TotalDamage;
                 var hullIntegrityPercent = (float)currentHealth / vehicle.MaxHealth;
-                
+
                 if (hullIntegrityPercent < gun.Comp.DisableAtHullDamage)
                 {
                     if (Timing.IsFirstTimePredicted)
@@ -229,17 +222,17 @@ public abstract partial class SharedGunSystem
     {
         if (_netManager.IsClient)
             return;
-    
+
         if (gun.Comp.ActiveMagazineContainer.ContainedEntity == null)
             return;
-            
+
         if (!TryComp<VehicleGunMagazineComponent>(gun.Comp.ActiveMagazineContainer.ContainedEntity.Value, out var magazine))
             return;
-            
+
         var shots = Math.Min(args.Shots, magazine.Shots);
         if (shots == 0)
             return;
-        
+
         magazine.Shots -= shots;
         Dirty(gun.Comp.ActiveMagazineContainer.ContainedEntity.Value, magazine);
         UpdateVehicleStatusUIForGun(gun.Owner);
@@ -249,7 +242,7 @@ public abstract partial class SharedGunSystem
             var projectile = Spawn(magazine.ProjectilePrototype, args.Coordinates);
             args.Ammo.Add((projectile, EnsureShootable(projectile)));
         }
-        
+
         if (magazine.Shots <= 0 && TryComp<VehicleAutoReloadGunComponent>(gun, out var autoReload))
         {
             StartReload((gun, autoReload, gun.Comp), gun.Comp.User);
@@ -266,11 +259,11 @@ public abstract partial class SharedGunSystem
 
         gun.Comp1.IsReloading = true;
         gun.Comp1.ReloadEndTime = Timing.CurTime + TimeSpan.FromSeconds(gun.Comp1.ReloadTime);
-        
+
         Dirty(gun, gun.Comp1);
 
         if (pilot != null)
-            PopupSystem.PopupCursor(Loc.GetString("st-vehicle-gun-reloading-time", 
+            PopupSystem.PopupCursor(Loc.GetString("st-vehicle-gun-reloading-time",
                 ("time", gun.Comp1.ReloadTime.ToString("F1"))), pilot.Value, PopupType.Medium);
     }
 
@@ -286,13 +279,13 @@ public abstract partial class SharedGunSystem
             TryComp<VehicleGunMagazineComponent>(gun.Comp2.ActiveMagazineContainer.ContainedEntity.Value, out var magazine))
         {
             magazine.Shots = magazine.Capacity;
-            
+
             Dirty(gun.Comp2.ActiveMagazineContainer.ContainedEntity.Value, magazine);
             Dirty(gun, gun.Comp1);
 
             if (gun.Comp2.User != null)
                 PopupSystem.PopupPredictedCursor(Loc.GetString("st-vehicle-gun-reload-complete"), gun.Comp2.User.Value, PopupType.Medium);
-            
+
             UpdateVehicleStatusUIForGun(gun.Owner);
         }
     }
@@ -307,7 +300,7 @@ public abstract partial class SharedGunSystem
 
         var gun = ent.Comp.Gun.Value;
 
-        if (!TryComp<VehicleGunComponent>(gun, out var gunComp) || 
+        if (!TryComp<VehicleGunComponent>(gun, out var gunComp) ||
             !TryComp<VehicleAutoReloadGunComponent>(gun, out var autoReloadComp))
             return;
 
@@ -362,13 +355,13 @@ public abstract partial class SharedGunSystem
 
     private void UpdateVehicleStatusUIForGun(EntityUid gunUid)
     {
-        if (!TryComp<TransformComponent>(gunUid, out var xform) || 
+        if (!TryComp<TransformComponent>(gunUid, out var xform) ||
             !xform.ParentUid.Valid)
             return;
 
         if (!TryComp<VehicleComponent>(xform.ParentUid, out var vehicle))
             return;
-        
+
         if (vehicle.Hardpoints.Contains(gunUid))
         {
             var state = new VehicleStatusUIState();

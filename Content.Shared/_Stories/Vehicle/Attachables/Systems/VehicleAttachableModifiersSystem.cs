@@ -1,9 +1,7 @@
 using System.Linq;
-using System.Numerics;
-using Content.Shared.FixedPoint;
-using Content.Shared._Stories.Attachables;
 using Content.Shared._Stories.Vehicle;
 using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
@@ -113,7 +111,7 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
             var maxHealth = ent.Comp.MaxHealth;
             var currentDamage = damageable.TotalDamage;
             var incomingDamage = args.Damage.GetTotal();
-            
+
             if (currentDamage >= maxHealth)
             {
                 args.Damage *= 0f;
@@ -123,23 +121,23 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
                 var allowedDamage = maxHealth - currentDamage;
                 var factor = allowedDamage / incomingDamage;
                 var clampedDamage = new DamageSpecifier();
-                
+
                 FixedPoint2 accumulatedDamage = FixedPoint2.Zero;
                 var damageList = args.Damage.DamageDict.ToList();
-                
+
                 for (int i = 0; i < damageList.Count - 1; i++)
                 {
                     var scaled = damageList[i].Value * factor;
                     clampedDamage.DamageDict[damageList[i].Key] = scaled;
                     accumulatedDamage += scaled;
                 }
-                
+
                 if (damageList.Count > 0)
                 {
                     var lastKey = damageList[damageList.Count - 1].Key;
                     clampedDamage.DamageDict[lastKey] = allowedDamage - accumulatedDamage;
                 }
-                
+
                 args.Damage = clampedDamage;
             }
         }
@@ -147,8 +145,8 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
 
     private void OnAttachableDamaged(Entity<VehicleAttachableComponent> ent, ref DamageChangedEvent args)
     {
-        if (_holder.TryGetHolder(ent.Owner, out var holder) && 
-            holder is not null && 
+        if (_holder.TryGetHolder(ent.Owner, out var holder) &&
+            holder is not null &&
             TryComp<VehicleComponent>(holder.Value, out var vehicle))
         {
             UpdateVehicleStatusUI((holder.Value, vehicle));

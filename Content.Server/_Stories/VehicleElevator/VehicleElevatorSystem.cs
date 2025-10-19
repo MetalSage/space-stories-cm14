@@ -1,8 +1,7 @@
-﻿using System.Numerics;
-using Content.Server.Administration.Logs;
+﻿using Content.Server.Administration.Logs;
+using Content.Shared._RMC14.Requisitions.Components;
 using Content.Shared._Stories.VehicleElevator;
 using Content.Shared._Stories.VehicleElevator.Components;
-using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.UserInterface;
 using Robust.Server.Audio;
@@ -11,7 +10,6 @@ using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using static Content.Shared._RMC14.Requisitions.Components.RequisitionsElevatorMode;
-using Content.Shared._RMC14.Requisitions.Components;
 
 namespace Content.Server._Stories.VehicleRequisitions;
 
@@ -53,7 +51,7 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
     private void OnBuy(Entity<VehicleElevatorComputerComponent> computer, ref VehicleElevatorBuyMsg args)
     {
         var actor = args.Actor;
-        
+
         if (!computer.Comp.IsActive)
             return;
 
@@ -77,11 +75,11 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
 
         computer.Comp.IsActive = false;
         computer.Comp.UsedOnce = true;
-        
+
         Dirty(elevator);
         Dirty(computer);
         SendUIStateAll();
-        
+
         _adminLogs.Add(LogType.RMCRequisitionsBuy, $"{ToPrettyString(args.Actor):actor} ordered vehicle requisitions item {args.Order}");
     }
 
@@ -209,7 +207,7 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
             var coordinates = _transform.GetMoverCoordinates(elevator);
             var entity = SpawnAtPosition(comp.CurrentOrder.Value, coordinates);
             comp.CurrentOrder = null;
-            
+
             Dirty(elevator);
         }
     }
@@ -235,7 +233,7 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
     {
         var time = _timing.CurTime;
         var elevator = ent.Comp;
-        
+
         if (elevator.ToggledAt == null)
             return false;
 

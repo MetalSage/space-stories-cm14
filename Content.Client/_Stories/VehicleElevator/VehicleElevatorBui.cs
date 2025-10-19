@@ -1,11 +1,11 @@
-﻿using Content.Shared._Stories.VehicleElevator;
+﻿using Content.Client._RMC14;
+using Content.Shared._Stories.VehicleElevator;
 using Content.Shared._Stories.VehicleElevator.Components;
 using JetBrains.Annotations;
-using Robust.Client.UserInterface;
-using Robust.Shared.Prototypes;
 using Robust.Client.Player;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Content.Client._RMC14;
+using Robust.Shared.Prototypes;
 using static Content.Shared._RMC14.Requisitions.Components.RequisitionsElevatorMode;
 
 namespace Content.Client._Stories.VehicleElevator;
@@ -42,7 +42,7 @@ public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserI
 
         var platformLabel = "No platform";
         var showLowerButton = false;
-        
+
         switch (uiState.PlatformLowered)
         {
             case Lowered:
@@ -98,17 +98,17 @@ public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserI
             {
                 HorizontalExpand = true
             };
-            
+
             button.AddStyleClass("ButtonSquare");
             button.AddStyleClass(CMStyleClasses.CMLabelAlignLeft);
             button.Label.AddStyleClass(CMStyleClasses.CMLabelAlignLeft);
-            
+
             var itemName = _prototypes.Index<EntityPrototype>(orderProto).Name;
             button.Text = $"{itemName} (Required: {requiredOnline} players)";
-            
+
             var order = orderProto;
             button.OnPressed += _ => OnOrderButtonPressed(order);
-            
+
             _orderButtons.Add((orderProto, button));
             _window.VehiclesContainer.AddChild(button);
         }

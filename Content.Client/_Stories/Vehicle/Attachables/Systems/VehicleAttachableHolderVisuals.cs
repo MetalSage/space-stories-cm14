@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared._Stories.Attachables;
 using Robust.Client.GameObjects;
 using Robust.Shared.Containers;

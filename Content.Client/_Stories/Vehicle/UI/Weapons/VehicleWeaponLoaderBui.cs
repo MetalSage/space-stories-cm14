@@ -1,8 +1,7 @@
-using Content.Shared._Stories.Vehicle;
 using Content.Shared._Stories.Attachables;
+using Content.Shared._Stories.Vehicle;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Maths;
 
 namespace Content.Client._Stories.Vehicle.UI.Weapons;
 
@@ -27,7 +26,7 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-        
+
         if (state is not VehicleWeaponLoaderWindowState loaderState)
             return;
 
@@ -53,8 +52,8 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
 
         foreach (var hardpointInfo in state.Hardpoints)
         {
-            if (EntMan.TryGetComponent<VehicleAttachableComponent>(EntMan.GetEntity(hardpointInfo.Entity), 
-                out var attachable) && 
+            if (EntMan.TryGetComponent<VehicleAttachableComponent>(EntMan.GetEntity(hardpointInfo.Entity),
+                out var attachable) &&
                 attachable.Ignored)
                 continue;
 
@@ -65,17 +64,17 @@ public sealed class VehicleWeaponLoaderBui : BoundUserInterface
                 Margin = new Thickness(2)
             };
 
-            var statusText = hardpointInfo.HasActiveMagazine 
-                ? Loc.GetString("st-vehicle-ui-magazine-loaded") 
+            var statusText = hardpointInfo.HasActiveMagazine
+                ? Loc.GetString("st-vehicle-ui-magazine-loaded")
                 : Loc.GetString("st-vehicle-ui-magazine-empty");
 
-            var ammoInfo = hardpointInfo.HasActiveMagazine 
-                ? Loc.GetString("st-vehicle-ui-ammo-info", ("current", hardpointInfo.CurrentAmmo), ("max", hardpointInfo.MaxAmmo)) 
+            var ammoInfo = hardpointInfo.HasActiveMagazine
+                ? Loc.GetString("st-vehicle-ui-ammo-info", ("current", hardpointInfo.CurrentAmmo), ("max", hardpointInfo.MaxAmmo))
                 : "";
 
-            var buttonText = Loc.GetString("st-vehicle-ui-hardpoint-button", 
-                ("name", hardpointInfo.Name), 
-                ("status", statusText), 
+            var buttonText = Loc.GetString("st-vehicle-ui-hardpoint-button",
+                ("name", hardpointInfo.Name),
+                ("status", statusText),
                 ("ammo", ammoInfo));
 
             var button = new Button

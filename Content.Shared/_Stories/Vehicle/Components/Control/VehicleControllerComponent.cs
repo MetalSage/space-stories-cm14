@@ -1,5 +1,4 @@
 using Content.Shared._RMC14.Marines.Skills;
-using Content.Shared._Stories.Vehicle.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 

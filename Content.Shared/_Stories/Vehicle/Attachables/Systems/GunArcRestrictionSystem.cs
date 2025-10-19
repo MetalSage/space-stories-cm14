@@ -1,11 +1,7 @@
-using System;
 using Content.Shared._Stories.Attachables;
 using Content.Shared.Examine;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Weapons.Ranged.Events;
-using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 

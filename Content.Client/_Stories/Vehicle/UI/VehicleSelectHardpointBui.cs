@@ -2,11 +2,6 @@ using Content.Shared._Stories.Attachables;
 using Content.Shared._Stories.Vehicle;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
-using Robust.Client.UserInterface;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Maths;
-using Robust.Shared.Utility;
-using System.Collections.Generic;
 
 namespace Content.Client._Stories.Vehicle.UI;
 

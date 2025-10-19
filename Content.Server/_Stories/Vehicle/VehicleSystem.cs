@@ -5,7 +5,6 @@ using Content.Shared._RMC14.MotionDetector;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Attachables;
 using Content.Shared._Stories.Vehicle;
-using Content.Shared._Stories.Vehicle.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Light.Components;

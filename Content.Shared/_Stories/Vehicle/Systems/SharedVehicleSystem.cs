@@ -1,43 +1,38 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Shared._RMC14.Camera;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Skills;
-using Content.Shared._RMC14.MotionDetector;
 using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids;
-using Content.Shared._RMC14.Camera;
 using Content.Shared._Stories.Attachables;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
-using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
+using Content.Shared.Ghost;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Traits.Assorted;
-using Content.Shared.Weapons.Melee;
-using Content.Shared.Ghost;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
-using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -189,19 +184,19 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     {
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
-        
+
         if (!TryComp<TransformComponent>(ent, out var xform) || xform.GridUid is null)
             return;
-        
+
         if (!TryComp<VehicleInteriorDoorComponent>(args.Args.Target.Value, out var door))
             return;
-        
+
         var vehiclePos = _transform.GetWorldPosition(ent.Owner);
         var vehicleRotation = _transform.GetWorldRotation(ent.Owner);
-        
+
         var exitOffset = GetExitOffset(door.Side, vehicleRotation);
         var exitPos = vehiclePos + exitOffset;
-        
+
         args.Handled = true;
         var coords = new EntityCoordinates(xform.GridUid.Value, exitPos);
         HandleLeavePulling(ent, args.User, coords);
@@ -210,7 +205,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     private Vector2 GetExitOffset(EntryDirection direction, Angle rotation)
     {
         const float exitDistance = 2f;
-        
+
         return direction switch
         {
             EntryDirection.Front => rotation.RotateVec(new Vector2(0, exitDistance)),
@@ -533,7 +528,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     {
         if (!args.HasDirectionalMovement)
             return;
-        
+
         var query = EntityQueryEnumerator<VehicleViewportComponent>();
         while (query.MoveNext(out var uid, out var viewport))
         {
@@ -544,7 +539,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
                 break;
             }
         }
-        
+
         RemCompDeferred<VehicleViewportWatcherComponent>(ent);
         _eye.SetTarget(ent, null);
     }

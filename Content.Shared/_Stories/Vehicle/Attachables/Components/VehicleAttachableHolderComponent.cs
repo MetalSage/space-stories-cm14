@@ -1,4 +1,3 @@
-using Content.Shared._Stories.Vehicle.Systems;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Stories.Attachables;

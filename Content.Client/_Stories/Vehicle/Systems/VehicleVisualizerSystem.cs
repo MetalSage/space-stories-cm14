@@ -5,7 +5,6 @@ using Content.Shared.Damage;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Client.GameObjects;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Stories.Vehicle;

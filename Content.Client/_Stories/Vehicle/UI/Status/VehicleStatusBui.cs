@@ -1,16 +1,14 @@
-using System.Linq;
-using Content.Shared._Stories.Vehicle;
+using Content.Client._Stories.UserInterface.Control;
 using Content.Shared._Stories.Attachables;
+using Content.Shared._Stories.Vehicle;
 using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
 using Content.Shared.Explosion.Components;
+using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
-using Content.Client._Stories.UserInterface.Control;
 
 namespace Content.Client._Stories.Vehicle.UI.Status;
 
@@ -31,10 +29,10 @@ public sealed class VehicleStatusBui : BoundUserInterface
     {
         base.Open();
         _window = this.CreateWindow<VehicleStatusWindow>();
-        
+
         _window.ResistancesToggle.OnPressed += _ => ToggleResistances();
         _window.PassengersToggle.OnPressed += _ => TogglePassengers();
-        
+
         UpdateToggleButtonTexts();
         Refresh();
     }
@@ -42,7 +40,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-        
+
         if (state is VehicleStatusUIState)
         {
             Refresh();
@@ -110,7 +108,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
         var labelText = integrity <= 0 || vehicle.Destroyed
             ? Loc.GetString("st-ui-vehicle-hull-destroyed")
             : Loc.GetString("st-ui-vehicle-hull-integrity", ("integrity", integrity.ToString("F0")));
-        
+
         if (_window.IntegrityProgressBar.Label.Text != labelText)
             _window.IntegrityProgressBar.Label.Text = labelText;
 
@@ -168,8 +166,8 @@ public sealed class VehicleStatusBui : BoundUserInterface
 
         if (!vehicle.Locked)
         {
-            _window.DoorLockPanel.PanelOverride = new StyleBoxFlat 
-            { 
+            _window.DoorLockPanel.PanelOverride = new StyleBoxFlat
+            {
                 BorderColor = Color.FromHex("#D32F2F"),
                 BorderThickness = new Thickness(2),
                 BackgroundColor = Color.FromHex("#2A1A1A")
@@ -178,8 +176,8 @@ public sealed class VehicleStatusBui : BoundUserInterface
         }
         else
         {
-            _window.DoorLockPanel.PanelOverride = new StyleBoxFlat 
-            { 
+            _window.DoorLockPanel.PanelOverride = new StyleBoxFlat
+            {
                 BorderColor = Color.FromHex("#4CAF50"),
                 BorderThickness = new Thickness(2),
                 BackgroundColor = Color.FromHex("#1A2A1A")
@@ -202,7 +200,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
         {
             var resistance = (1f - value) * 100f;
             var resistanceColor = GetResistanceColor(resistance);
-            
+
             var resistanceRow = new BoxContainer
             {
                 Orientation = BoxContainer.LayoutOrientation.Horizontal,
@@ -235,16 +233,16 @@ public sealed class VehicleStatusBui : BoundUserInterface
             {
                 MinHeight = 1,
                 Margin = new Thickness(0, 6),
-                PanelOverride = new StyleBoxFlat 
-                { 
-                    BackgroundColor = Color.FromHex("#3A3A3A") 
+                PanelOverride = new StyleBoxFlat
+                {
+                    BackgroundColor = Color.FromHex("#3A3A3A")
                 }
             };
             _window.ResistancesContainer.AddChild(separator);
 
             var overall = (1f - explResistance.DamageCoefficient) * 100f;
             var overallColor = GetResistanceColor(overall);
-            
+
             var overallRow = new BoxContainer
             {
                 Orientation = BoxContainer.LayoutOrientation.Horizontal,
@@ -273,7 +271,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
             {
                 var typeResist = (1f - coeff) * 100f;
                 var typeColor = GetResistanceColor(typeResist);
-                
+
                 var modRow = new BoxContainer
                 {
                     Orientation = BoxContainer.LayoutOrientation.Horizontal,
@@ -321,7 +319,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
 
         if (vehicle.PassengerSlots.Max > 0)
             AddPassengerCategory("st-ui-vehicle-passengers-category", vehicle.PassengerSlots, "#4CAF50");
-        
+
         if (vehicle.RevivableDeadSlots.Max > 0)
             AddPassengerCategory("st-ui-vehicle-dead-category", vehicle.RevivableDeadSlots, "#FF9800");
 
@@ -417,16 +415,16 @@ public sealed class VehicleStatusBui : BoundUserInterface
         for (var i = 0; i < vehicle.Hardpoints.Count; i++)
         {
             var hardpoint = vehicle.Hardpoints[i];
-            
+
             if (i > 0)
             {
                 var separator = new PanelContainer
                 {
                     MinHeight = 1,
                     Margin = new Thickness(0, 12),
-                    PanelOverride = new StyleBoxFlat 
-                    { 
-                        BackgroundColor = Color.FromHex("#3A3A3A") 
+                    PanelOverride = new StyleBoxFlat
+                    {
+                        BackgroundColor = Color.FromHex("#3A3A3A")
                     }
                 };
                 _window.HardpointsContainer.AddChild(separator);
@@ -443,8 +441,8 @@ public sealed class VehicleStatusBui : BoundUserInterface
 
         var container = new PanelContainer
         {
-            PanelOverride = new StyleBoxFlat 
-            { 
+            PanelOverride = new StyleBoxFlat
+            {
                 BackgroundColor = Color.FromHex("#1E1E1E"),
                 BorderColor = Color.FromHex("#3A3A3A"),
                 BorderThickness = new Thickness(1)
@@ -469,7 +467,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
 
         var health = 0f;
         var hasHealth = false;
-        
+
         if (EntMan.TryGetComponent<DamageableComponent>(hardpoint, out var hardpointDamageable))
         {
             var currentHealth = FixedPoint2.Max(attachable.MaxHealth - hardpointDamageable.TotalDamage, 0);
@@ -492,29 +490,29 @@ public sealed class VehicleStatusBui : BoundUserInterface
             healthBar.Label.Text = Loc.GetString("st-ui-vehicle-hardpoint-integrity", ("integrity", health.ToString("F0")));
 
             if (health >= 70)
-                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat 
-                { 
+                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat
+                {
                     BackgroundColor = Color.FromHex("#2E7D32"),
                     BorderColor = Color.FromHex("#4CAF50"),
                     BorderThickness = new Thickness(1)
                 };
             else if (health >= 40)
-                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat 
-                { 
+                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat
+                {
                     BackgroundColor = Color.FromHex("#EF6C00"),
                     BorderColor = Color.FromHex("#FF9800"),
                     BorderThickness = new Thickness(1)
                 };
             else if (health >= 20)
-                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat 
-                { 
+                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat
+                {
                     BackgroundColor = Color.FromHex("#C62828"),
                     BorderColor = Color.FromHex("#F44336"),
                     BorderThickness = new Thickness(1)
                 };
             else
-                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat 
-                { 
+                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat
+                {
                     BackgroundColor = Color.FromHex("#7A1A1A"),
                     BorderColor = Color.FromHex("#D32F2F"),
                     BorderThickness = new Thickness(1)
@@ -526,8 +524,8 @@ public sealed class VehicleStatusBui : BoundUserInterface
         {
             var destroyedContainer = new PanelContainer
             {
-                PanelOverride = new StyleBoxFlat 
-                { 
+                PanelOverride = new StyleBoxFlat
+                {
                     BackgroundColor = Color.FromHex("#2A1A1A"),
                     BorderColor = Color.FromHex("#D32F2F"),
                     BorderThickness = new Thickness(1)
@@ -565,7 +563,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
 
         int currentRounds = 0;
         int maxRounds = 0;
-        
+
         if (gun.ActiveMagazineContainer?.ContainedEntity is { } magEntity &&
             EntMan.TryGetComponent<VehicleGunMagazineComponent>(magEntity, out var magazine))
         {
@@ -583,8 +581,8 @@ public sealed class VehicleStatusBui : BoundUserInterface
             Margin = new Thickness(0, 0, 0, 4)
         };
         ammoBar.Label.Text = Loc.GetString("st-ui-vehicle-ammo", ("current", currentRounds), ("max", maxRounds));
-        ammoBar.ForegroundStyleBoxOverride = new StyleBoxFlat 
-        { 
+        ammoBar.ForegroundStyleBoxOverride = new StyleBoxFlat
+        {
             BackgroundColor = Color.FromHex("#1565C0"),
             BorderColor = Color.FromHex("#2196F3"),
             BorderThickness = new Thickness(1)

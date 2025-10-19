@@ -1,14 +1,11 @@
 using System.Linq;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Xenonids;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
-using Robust.Shared.Localization;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -113,7 +110,7 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
 
         if (_net.IsServer && _container.Insert(args.Used, gunComp.SpareMagazinesContainer))
         {
-            _popup.PopupEntity(Loc.GetString("st-vehicle-loader-magazine-loaded", 
+            _popup.PopupEntity(Loc.GetString("st-vehicle-loader-magazine-loaded",
                 ("weapon", Name(compatibleHardpoint.Value))), loader.Owner, args.User);
             _audio.PlayPvs(loader.Comp.LoadSound, loader.Owner);
             UpdateLoaderUI(loader);
@@ -155,10 +152,10 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
             {
                 var oldMag = gun.ActiveMagazineContainer.ContainedEntity.Value;
                 _container.Remove(oldMag, gun.ActiveMagazineContainer);
-                
+
                 var loaderCoords = _transform.GetMapCoordinates(loader.Owner);
                 _transform.SetMapCoordinates(oldMag, loaderCoords);
-                
+
                 if (TryComp<VehicleGunMagazineComponent>(oldMag, out var oldMagComp))
                     UpdateAppearance((oldMag, oldMagComp));
             }
@@ -166,11 +163,11 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
             _container.Remove(spareMag, gun.SpareMagazinesContainer);
             _container.Insert(spareMag, gun.ActiveMagazineContainer);
 
-            _popup.PopupEntity(Loc.GetString("st-vehicle-loader-magazine-loaded", 
+            _popup.PopupEntity(Loc.GetString("st-vehicle-loader-magazine-loaded",
                 ("weapon", Name(hardpoint))), loader.Owner, args.Actor);
             _audio.PlayPvs(loader.Comp.LoadSound, loader.Owner);
             Dirty(hardpoint, gun);
-            
+
             UpdateLoaderUI(loader);
             UpdateVehicleStatusUI(vehicle);
         }

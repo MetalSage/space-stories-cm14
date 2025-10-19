@@ -1,4 +1,3 @@
-using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 

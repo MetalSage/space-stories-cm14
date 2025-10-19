@@ -2,7 +2,6 @@ using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using UIRange = Robust.Client.UserInterface.Controls.Range;
-using Robust.Shared.Maths;
 
 namespace Content.Client._Stories.UserInterface.Control;
 
@@ -106,10 +105,10 @@ public class STProgressBar : UIRange
     {
         var bgSize = GetBackground()?.MinimumSize ?? Vector2.Zero;
         var fgSize = GetForeground()?.MinimumSize ?? Vector2.Zero;
-        
+
         Label.Measure(availableSize);
         var labelSize = Label.DesiredSize;
-        
+
         return Vector2.Max(Vector2.Max(bgSize, fgSize), labelSize);
     }
 }

@@ -1,7 +1,3 @@
-using System.Numerics;
-using Robust.Shared.Utility;
-using Robust.Shared.Maths;
-
 namespace Content.Client._Stories.Vehicle.Attachables;
 
 [RegisterComponent]
