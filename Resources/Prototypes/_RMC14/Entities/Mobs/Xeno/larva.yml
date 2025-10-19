@@ -103,6 +103,8 @@
     ventCrawlIcon: larva
   - type: TTS # Stories-TTS
     voice: sophronia_franklin
+  - type: RMCActionOrder
+    id: CMXenoLarva
 
 # For surgeries/failed incubations
 - type: entity

@@ -95,7 +95,6 @@
       whitelist:
         components:
         - XenoHeavy
-  - type: XenoLifesteal
   - type: RMCXenoDamageVisuals
     prefix: warrior
   - type: TacticalMapIcon

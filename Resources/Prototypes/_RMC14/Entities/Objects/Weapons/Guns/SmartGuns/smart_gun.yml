@@ -1,6 +1,8 @@
-﻿- type: entity
+﻿
+- type: entity
+  abstract: true
   parent: [ CMBaseWeaponGun, BaseItem, RMCBaseAttachableHolder ]
-  id: RMCSmartGun
+  id: RMCSmartGunNoCamo
   name: ML66A smart gun
   description: The actual firearm in the Smart Gun System. Essentially a heavy, mobile machinegun.
   components:
@@ -160,10 +162,32 @@
       Impulse: /Textures/_Stories/Objects/Weapons/SmartGuns/smart_gun.rsi
 
 - type: entity
+  parent: RMCSmartGunNoCamo
+  id: RMCSmartGun
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+    layers:
+    - state: base
+      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+    - state: camo
+      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+      map: [ "enum.ItemCamouflageLayers.Layer" ]
+    - state: mag-0
+      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: ItemCamouflage
+    colors:
+      Jungle: "#ccd08d"
+      Desert: "#ffd2a6"
+      Snow: "#ddcbc9"
+      Classic: "#c7e7d9"
+      Urban: "#acb8c7"
+
+- type: entity
   parent: RMCSmartGun
   id: RMCSmartGunUNMC
-  name: ML66A smart gun
-  description: The actual firearm in the Smart Gun System. Essentially a heavy, mobile machinegun.
+  suffix: UNMC
   components:
   - type: RMCLoreExaminable
     content: rmc-lore-examinable-smart-gun
@@ -171,10 +195,11 @@
     - UNMC
 
 - type: entity
-  parent: RMCSmartGun
-  id: RMCSmartGunWhiteOut
+  parent: RMCSmartGunNoCamo
+  id: RMCSmartGunPMC
   name: ML79A smart gun
   description: The actual firearm in the 4-piece ML79A Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way. You may toggle firing restrictions by using a special action.
+  suffix: PMC
   components:
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
@@ -189,17 +214,6 @@
       offset: 0.625, 0
   - type: Clothing
     sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
-  - type: RMCSelectiveFire
-    recoilWielded: 3
-    scatterWielded: 10
-    baseFireRate: 10
-    burstScatterMult: 1
-    modifiers:
-      FullAuto:
-        maxScatterModifier: 0
-        useBurstScatterMult: true
-        unwieldedScatterMultiplier: 2
-        shotsToMaxScatter: 80
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -238,7 +252,26 @@
         state: ammo_swap_ap
 
 - type: entity
-  parent: RMCSmartGun
+  parent: RMCSmartGunPMC
+  id: RMCSmartGunWhiteOut
+  name: "ML79A 'Breaker' smart gun"
+  description: The actual firearm in the 4-piece ML79A Smartgun System, modified for extra power. If you have this, you're about to bring some serious pain to anyone in your way. You may toggle firing restrictions by using a special action.
+  suffix: Whiteout
+  components:
+  - type: RMCSelectiveFire
+    recoilWielded: 3
+    scatterWielded: 10
+    baseFireRate: 10
+    burstScatterMult: 1
+    modifiers:
+      FullAuto:
+        maxScatterModifier: 0
+        useBurstScatterMult: true
+        unwieldedScatterMultiplier: 2
+        shotsToMaxScatter: 80
+
+- type: entity
+  parent: RMCSmartGunNoCamo
   id: RMCSmartGunCO
   name: ML66B 'cavalier' smart gun
   description: The actual firearm in the Smart Gun System. Back order only. Besides a more robust weapons casing, an ID lock system and a fancy paintjob, the gun's performance is identical to the standard-issue ML66A.
@@ -285,10 +318,10 @@
   description: The actual firearm in the 4-piece ML66B Smartgun System. Essentially a heavy, mobile machinegun. This one has the CLF logo carved over the manufacturing stamp.
 
 - type: entity
-  parent: RMCSmartGun
+  parent: RMCSmartGunNoCamo
   id: RMCSmartGunRoyal
   name: ML66C 'royal' smart gun
-  description: The actual firearm in the 2-piece ML66C Smart Gun System. This Variant is used by the Three Sun Empires Royal Marines Commando units. You may toggle firing restrictions by using a special action.
+  description: The actual firearm in the 2-piece ML66C Smart Gun System. This variant is used by the Three Sun Empires Royal Marines Commando units. You may toggle firing restrictions by using a special action.
   components:
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
@@ -346,6 +379,8 @@
   - type: Clothing
     slots:
     - suitStorage
+  - type: RefillableByBulletBox
+    bulletType: RMCBoxBulletsSmartGun
 
 - type: entity
   parent: RMCMagazineSmartGun

@@ -4,9 +4,10 @@
   name: Xeno Skins Menu
   description: For sponsors
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: _Stories/Actions/xeno_actions.rsi
-      state: evolve
+      state: skin
+  - type: InstantAction
     event: !type:XenoOpenSkinsMenuActionEvent
