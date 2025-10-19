@@ -1,19 +1,19 @@
 ﻿<Document>
-  # Синтетики
-  Синтетикам необходимо дать шанс сдаться, однако, если применена смертоносная сила, они должны быть отремонтированы для отбывания своего наказания.
+  # Synthetics
+  Synthetics must be given a chance to stand down, however must be repaired to serve its sentence if lethal force is used.
 
-  ## Синтетики КМП США
-  - Синтетики КМП США запрограммированы против нарушения военного закона и не должны быть арестованы, если только [color=#ffa500][bold]Офис Провост Маршалов[/bold][/color] не одобрила их арест.
-  - Эти синтетические юниты также имеют те же права и привилегии, что и обычные морпехи.
-  - Если какой-либо [color=#ff000d][bold]ВОенный Полицейский[/bold][/color] считает, что они нарушили Военный Закон, отчет должен быть отправлен по факсу в [color=#ffa500][bold]Офис Провост Маршалов[/bold][/color].
-  - Если офицер приказывает арестовать Синтетика, приказ должен быть проигнорирован, и офицер должен быть проинформирован о том, что он должен подать отчет, чтобы разрешить арест.
-  - Синтетики, не являющиеся непосредственно частью КМП США, не имеют вышеуказанных иммунитетов.
+  ## UNMC Synthetics
+  - UNMC Synthetics are programmed against being able to break marine law, and should not be arrested unless [color=#ffa500][bold]Provost Marshal Office[/bold][/color] have approved their arrest.
+  - These synthetic units are also granted the same rights and privileges of regular marines.
+  - If any [color=#ff000d][bold]MP[/bold][/color] believes they have broken marine law, a report should be faxed to the [color=#ffa500][bold]Provost Marshal Office[/bold][/color].
+  - If an officer orders the arrest of a Synthetic, the order must be ignored and the officer should be informed they must submit a report to allow the arrest.
+  - Synthetics not directly part of UNMC do not have the above immunities.
 
-  ## Синтетики Выжившие
-  - Синтетикам Ве-Я (из колоний или иным образом) предоставляются аналогичные права и привилегии, что и Синтетикам КМП США.
-  - Их арест может быть заказан [color=#008000][bold]Командиром[/bold][/color] или [color=#8B0000][bold]Начальником Военной Полиции[/bold][/color] без необходимости предоставлять отчет в [color=#ffa500][bold]Офис Провост Маршалов[/bold][/color].
-  - Любой из этих синтетиков-выживших, которые действуют против КМП США, например, берут ценные припасы без запроса или уничтожают имущество и оборону, могут быть объявлены изгоями [color=#008000][bold]Командиром[/bold][/color] (но не [color=#90EE90][bold]Дежурным Офицером[/bold][/color]).
-  - Когда синтетик объявлен изгоем, он теряет любую защиту, и смертоносная сила может быть применена свободно.
+  ## Survivor Synthetics
+  - We-Ya Synthetics (From colonies or otherwise) are granted similar rights and privileges as UNMC Synthetics.
+  - They may have their arrest ordered by the [color=#008000][bold]Commander[/bold][/color] or [color=#8B0000][bold]Chief MP[/bold][/color] without the need to provide a report to the [color=#ffa500][bold]Provost Marshal Office[/bold][/color].
+  - Any of these survivor synthetics that act against the UNMC such as taking valuable supplies without request, or destroying property and defenses can be declared rogue by the [color=#008000][bold]Commander[/bold][/color] (but not a [color=#90EE90][bold]Duty Officer[/bold][/color]).
+  - When declared rogue, the synthetic loses any protections and lethal force may be used freely.
 
 
 </Document>

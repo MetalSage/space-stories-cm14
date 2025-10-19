@@ -96,7 +96,7 @@ enabled = true
 
 [server]
 rules_file = "STOverview"
-default_guide = "RMC14"
+default_guide = "Stories"
 
 [shuttle]
 arrivals_planet = false

@@ -141,6 +141,8 @@
   - type: XenoToggleChargingStop
   - type: FixedIdentity
     name: cm-job-name-xeno-boiler
+  - type: RMCActionOrder
+    id: CMXenoBoiler
   - type: XenoDeathcloud
 
 - type: entity

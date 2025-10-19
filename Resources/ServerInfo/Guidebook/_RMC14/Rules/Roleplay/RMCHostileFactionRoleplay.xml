@@ -1,16 +1,14 @@
 ﻿<Document>
-  # Стандарты ролевой игры враждебных фракций
-  У вас нет правил ведения боя, и вы можете стрелять и быть враждебными к силам морпехов, если:
-  - Вы не сдались.
-  - Вы не приняли медицинскую помощь от морпехов или не были ими воскрешены.
-  Вы можете попытаться сбежать без боя и возобновить враждебные действия, когда выйдете из поля зрения.
-  - Вы не сменили форму своей фракции.
-  - Вы остались враждебны к силам морпехов.
-  Претензии на невраждебность будут считаться сдачей, если только это не ради переговоров по первому контакту, которые приводят к боевым действиям.
+  # Hostile Faction Roleplay Standards
+  You do not have rules of engagement and may fire at and be hostile to Marine forces if:
+  - You have not surrendered.
+  - You have not accepted medical aid from the Marines, or been revived by them.\nYou may attempt to escape without combat and resume hostile activities when out of sight.
+  - You have not changed your faction uniform.
+  - You have remained hostile to Marine forces.\nPretending not be hostile will be counted as surrendering, unless it is for the sake of first contact negotiations which result in hostilities.
 
-  [bold]Исключения[/bold]
+  [bold]Exceptions[/bold]
 
-  - В случае захвата вы можете попытаться начать тюремный бунт, находясь в карцере, чтобы сбежать и возобновить враждебные намерения. Это не требует разрешения, если вы являетесь членом враждебной фракции.
+  - If captured, you may attempt to start a prison riot when in the brig, to escape and resume hostile intentions. This does not require permission if you are a hostile faction member.
 
-  - Если вы являетесь враждебной силой, атакующей морпехов до угона, [color=#ff0000]запрещено атаковать недавно появившихся игроков в крио, дайте им шанс экипироваться, прежде чем вы нападете на них![/color] Достаточно будет избегать крио-комнат, если только морпехи не используют их в качестве укрытия.
+  - If you are a hostile force attacking the Marines prior to hijack, [color=#ff0000]attacking newly spawned players in cryo is forbidden, let them have a chance to gear up before you attack them![/color] Avoiding the cryo rooms unless the Marines are using them as cover will be enough.
 </Document>
