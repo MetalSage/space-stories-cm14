@@ -1,46 +1,60 @@
 ﻿<Document>
-  # НЕ изменяемая Командная СОП
+  # NON-Modifiable Command SOP
 
-  ## Передовые Оперативные Базы
+  ## Forward Operating Bases
 
-  [color=#008000][bold]Командир[/bold][/color], отвечающий за операцию, должен принимать минимальные меры предосторожности для обеспечения безопасности и обороны размещенного персонала и прибывающего транспорта при назначении Передовой Оперативной Базы.
+  The [color=#008000][bold]Commander[/bold][/color] in charge of an operation must take the minimum precautions to ensure security and defense for stationed personnel, and incoming transport, when designating a Forward Operating Base.
 
-  - [bold]ПОБ[/bold] должна быть [bold]Безопасной Зоной[/bold] и назначена [color=#008000][bold]Командиром[/bold][/color].
-  - [bold]ПОБ[/bold] не обязательно должна располагаться рядом с посадочной зоной, но основная посадочная зона по-прежнему требует обозначенной обороны.
+  - The [bold]FOB[/bold] must be a [bold]Secure Area[/bold] and designated by the [color=#008000][bold]Commander[/bold][/color].
+  - The [bold]FOB[/bold] does not have to be placed adjacent to a landing zone, but the primary landing zone still requires its outlined defenses.
+  - Only Bravo may be stationed as the primary landing zone and [bold]FOB[/bold]'s primary defense. Any additional squads may assist where needed, and combat technicians may also be ordered to help reinforce the [bold]FOB[/bold] and primary landing zone defenses before resuming their original squad's orders.
 
-  ## Безопасные Зоны
+  ## Secure Areas
 
-  - Дополнительные зоны могут быть назначены как [bold]Безопасные Зоны[/bold] любым [bold]Персоналом ЦИК[/bold]. Они не считаются [bold]ПОБ[/bold], и их безопасный статус может быть отменен по любой причине любым [bold]Персоналом ЦИК[/bold].
-  - Эти зоны определяют, где определенному корабельному персоналу разрешено работать.
-  - Эти зоны больше не являются безопасными, если есть прорыв или зона подвергается нападению противника.
+  - Additional areas may be designated as [bold]Secure Area[/bold]s by any [bold]CIC Personnel[/bold]. These are not considered a [bold]FOB[/bold], and their secure status may be revoked for any reason by any [bold]CIC Personnel[/bold].
+  - These areas dictate where certain shipside personnel are allowed to be given permission to work.
+  - These areas are no longer secure if there is a breach or the area is being attacked by hostiles.
 
-  ## Полевые госпитали
+  ## Field hospitals
 
-  - Он должен быть обозначен как [bold]Безопасная Зона.[/bold]
-  - Полевой госпиталь должен быть обозначен как таковой [color=#008000][bold]Командиром[/bold][/color] или [bold]Главным Врачом[/bold].
+  - It must be designated as a [bold]Secure Area.[/bold]
+  - The field hospital must be designated as such by the [color=#008000][bold]Commander[/bold][/color] or [bold]Chief Medical Officer[/bold].
 
 
-  ## Основные Посадочные Зоны
+  ## Primary Landing Zones
 
-  - Выбирается на все время операции [color=#008000][bold]Командиром[/bold][/color].
-  - Основная посадочная зона должна быть усилена как минимум линией не самодельной обороны, включая размещенных морпехов.
+  - Selected for the entire duration of the operation by the [color=#008000][bold]Commander[/bold][/color].
+  - The primary landing zone must be reinforced with a minimum of a line of non-makeshift defenses, including stationed marines.
 
-  ## Проведение Брифинга
+  ## Conduct of Briefing
 
-  [color=#008000][bold]Командир[/bold][/color] должен обеспечить надлежащий брифинг перед началом любой операции и высадкой персонала, но он может быть пропущен в случае кода [bold][color=black]Дельта[/color][/bold] или другой чрезвычайной ситуации той же серьезности.
+  The [color=#008000][bold]Commander[/bold][/color] is to ensure a proper briefing before any operation is being held and personnel deployed, but may be skipped in the event of a code [bold][color=black]Delta[/color][/bold] or another emergency situation of the same severity.
 
-  Специалисты-разведчики и члены разведывательного отряда могут быть развернуты до начала операции, если все члены имеют коллективный брифинг своих приказов и готовы к развертыванию до основного брифинга.
+  Scout Specialists and Intelligence Squad members may deploy before the operation begins, if all members have a collective briefing of their orders and are ready to deploy before the main briefing.
 
-  - Он должен проводиться в месте, где можно провести надлежащую проверку персонала и где персонал может услышать любые приказы.
-  - Следует избегать мест, которые мешают небоевому персоналу, например, медблок.
-  - Брифинги как минимум должны включать командиров отрядов.
-  - Брифинги как минимум должны включать [bold]Персонал ЦИК[/bold], если только [bold]Персонал ЦИК[/bold] не выполняет другие важные роли в это время и может быть освобожден от участия [color=#008000][bold]Командиром[/bold][/color] по своему усмотрению, если [color=#ff000d][bold]Военная Полиция[/bold][/color] уведомлена заранее.
-  - Несоблюдение требования посещать брифинг, когда это требуется, как указано выше, повлечет за собой обвинение в пренебрежении служебными обязанностями.
+  - It must be performed in an area where a proper inspection of personnel can be held and where personnel can hear any orders.
+  - Areas that interfere with non-combat personnel must be avoided, for example the medbay.
+  - Briefings at minimum must include the Squad Leaders.
+  - Briefings at minimum must include [bold]CIC Personnel[/bold], unless the [bold]CIC Personnel[/bold] are performing other essential roles at the time, and may be excused by the [color=#008000][bold]Commander[/bold][/color] at their discretion if the [color=#ff000d][bold]MP[/bold][/color] are notified beforehand.
+  - Failure to adhere to attend the briefing when required as stated above will incur neglect of duty charges.
 
-  ## Высокопоставленные Офицеры
-  Офицеры КМП США в звании [bold]Майор[/bold] или выше, но еще не являющиеся [color=#00CBFE][bold]Командующим Офицером[/bold][/color] корабля, получают следующие права:
-  - Те же иммунитеты от ареста, которые обычно предоставляются [color=#00CBFE][bold]Командующему Офицеру[/bold][/color] корабля.
-  - Право согласиться с назначением на должность [color=#00CBFE][bold]Командующего Офицера[/bold][/color] корабля по запросу [color=#008000][bold]Командира[/bold][/color].
-  - Право принять должность [color=#00CBFE][bold]Командующего Офицера[/bold][/color] корабля, в случае если [color=#008000][bold]Командиру[/bold][/color] потребуется замена в соответствии с "[textlink="Определениями" link="RMCMarineLawDefinitions"]", став на пост [color=#008000][bold]Командира[/bold][/color] в то же время.
+  ## High Ranking Officers
+  UNMC Officers ranked [bold]Major[/bold] or above but are not already the [color=#00CBFE][bold]Commanding Officer[/bold][/color] of the ship receive these rights:
+  - The same arrest immunities normally granted to the ship [color=#00CBFE][bold]Commanding Officer[/bold][/color].
+  - The right to accept being appointed as the ship [color=#00CBFE][bold]Commanding Officer[/bold][/color] by the [color=#008000][bold]Commander[/bold][/color].
+  - The right to take the [color=#00CBFE][bold]Commanding Officer[/bold][/color] position of the ship if the [color=#008000][bold]Commander[/bold][/color] would need to be replaced as defined by "[textlink="Definitions" link="RMCMarineLawDefinitions"]", becoming the new [color=#008000][bold]Commander[/bold][/color] as well.
+
+  ## Deputizing
+
+  When deputized, these personnel are expected and required to follow Marine Law like an [color=#ff000d][bold]MP[/bold][/color], and will carry the same punishments.
+
+  The [color=#008000][bold]Commander[/bold][/color] may deputize the following personnel to make arrests and enforce marine law, should [color=#ff000d][bold]MP[/bold][/color]s be unavailable or unable to respond in a timely manner.
+  - The Executive Officer.
+  - The Auxiliary Support Officer.
+  - Staff Officers.
+  - UNMC Synthetics.
+  - Department heads.
+
+  The [color=#00CBFE][bold]Commanding Officer[/bold][/color] may deputize under the above conditions, however any other [color=#008000][bold]Commander[/bold][/color] must also obtain the approval of the current [color=#8B0000][bold]Chief MP[/bold][/color], unless it is not currently possible to assign an acting [color=#8B0000][bold]Chief MP[/bold][/color].
 
 </Document>

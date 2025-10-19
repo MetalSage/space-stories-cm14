@@ -1,78 +1,150 @@
 <Document>
-  # Умная Пушка M56B и Ты: Введение
+  # ML66A 'Smart Gun' and You: An Introduction
 
-  ## Введение
-  Поздравляем, Младший Капрал! Вы были выбраны для работы с одним из, если не [italic]самым[/italic] лучшим достижением в области огнестрельного оружия за последнее столетие: [bold]Умной Пушкой M56B[/bold]! Вершина инженерной мысли Морской Пехоты, она может похвастаться [bold]боезапасом в 500 патронов[/bold], поставляется в комплекте с [bold]боевой разгрузкой с пневмоподдержкой[/bold] для удобства использования и, самое главное, оснащена [bold]системой IFF[/bold] для предотвращения инцидентов с дружественным огнем.
+  ## Introduction
+  Congratulations, Lance Corporal! You've been selected to handle one of, if not [italic]the[/italic] finest pieces of technological advancement in firearms in the last century: the [bold]ML66A Smartgun[/bold]!
 
-  Это оружие сделает вас [bold]мобильной зоной отрицания[/bold] против вражеских сил, позволяя вам обеспечивать прикрывающий огонь для всего вашего батальона. Хотя это может придать вам чувство новообретенной силы, освоение ее тонкостей превратит вас из ходячей турели в [bold]незаменимый актив[/bold] в любой операции.
+  <Box>
+    <GuideEntityEmbed Entity="RMCSmartGun" Caption="ML66A Smartgun"/>
+  </Box>
 
-  ## Пробуждение
-  Постарайтесь сдержать свою радость от получения этой высокой должности — некоторые другие морпехи могут позавидовать вашей удаче. Лучше быстро одеться и снарядиться, прежде чем вы начнете сиять от гордости.
+  A pinnacle of Marine engineering, it boasts a [bold]500-round ammo capacity[/bold], comes standard with a [bold]pneumo-assisted combat harness[/bold] for ease of use, and most importantly, features an [bold]IFF system[/bold] to prevent friendly fire incidents.
 
-  Ваша [bold]подготовительная комната[/bold] всегда будет предпоследней дверью перед входом в [bold]основную зону подготовки[/bold] в каждой секции казармы. Здесь вы найдете двух торговцев, поставляющих как основное, так и опциональное снаряжение для вашей высадки. [bold]Запомните[/bold]: ваш патронный ремень поставляется [bold]торговцем униформой[/bold], в то время как [bold]торговец оружием[/bold] содержит саму пушку, боеприпасы и разгрузку.
+  This weapon will make you a [bold]mobile point of denial[/bold] against enemy forces, allowing you to provide covering fire for your entire battalion. While this might imbue you with a sense of newfound power, mastering its nuances will turn you from a walking turret into an [bold]indispensable asset[/bold] in any operation.
 
-  Доступен [bold]вариант кобуры для личного оружия[/bold] патронного ремня Умной Пушки, позволяющий хранить стандартное личное оружие ценой одного слота для магазина-барабана. Некоторые УП-операторы клянутся быстроизвлекаемым личным оружием, в то время как другие считают его ненужным — выбирайте исходя из ваших личных предпочтений.
+  ## Waking Up
+  Try to contain your elation at receiving this lofty position—some of the other marines may envy your luck. Best to get dressed quickly and gear up before you start beaming with pride.
 
-  ## Снаряжение
-  Ваш [bold]Торговец Оружием для УП-оператора[/bold] предоставляет ящик, содержащий:
-  - [bold]1 Умная Пушка M56B (заряженная)[/bold]
-  - [bold]1 Боевая Разгрузка M56B[/bold]
-  - [bold]1 Запасная батарея[/bold]
-  - [bold]3 Запасных магазина-барабана[/bold]
+  <Box>
+    <GuideEntityEmbed Entity="RMCGuidebookRoleSGO" Caption="You!"/>
+  </Box>
 
-  Вспомогательные подсумки по умолчанию не предоставляются, поэтому снаряжайтесь ими по мере необходимости.
+  Your [bold]prep room[/bold] will always be the second-to-last door before entering the [bold]main prep area[/bold] in each barracks section. Here, you will find two vendors supplying both essential and optional equipment for your deployment. [bold]Remember[/bold]: your ammo belt is provided by the [bold]uniform vendor[/bold], while the [bold]weapons vendor[/bold] contains the gun, ammunition, and harness.
 
-  ### Основные Заметки по Снаряжению:
-  - Вы [italic]должны[/italic] носить [bold]Боевую Разгрузку M56B[/bold], чтобы носить Умную Пушку за спиной. Снимите все предметы с пояса перед тем, как надеть ее.
-  - После экипировки ваши [bold]головные оптические приборы ночного видения[/bold] автоматически активируются. Они не разряжают батарею оружия и могут быть включены/выключены через ваш HUD.
-  - Включите [bold]фонарь на разгрузке[/bold], чтобы товарищи-морпехи могли видеть вас в условиях плохой видимости.
-  - [bold]Хранение боеприпасов[/bold]: Как минимум [bold]один (1) Большой Универсальный Подсумок[/bold], способный вместить [bold]два дополнительных магазина-барабана[/bold] или другое снаряжение.
+  <Box>
+    <GuideEntityEmbed Entity="ColMarTechSGEquipment" Caption="Uniform vendor"/>
+    <GuideEntityEmbed Entity="CMBeltSmartGunOperatorFilled" Caption="ML66A ammo belt"/>
+  </Box>
 
-  После экипировки проверьте [bold]торговца специальными боеприпасами[/bold] на стороне вашего отряда в подготовительной комнате на предмет [bold]дополнительных бесплатных магазинов-барабанов[/bold]. Дополнительные боеприпасы становятся доступными по мере пробуждения морпехов, поэтому загляните еще раз перед высадкой.
+  A [bold]sidearm holster variant[/bold] of the Smartgun ammo belt is available, allowing for the storage of a standard sidearm at the cost of a single drum slot. Some SGOs swear by a quickdraw sidearm, while others deem it unnecessary—choose based on your personal preference.
 
-  Для получения большего количества боеприпасов посетите [bold]отдел снабжения[/bold], где вы можете запросить до [bold]двух (2) дополнительных магазинов-барабанов[/bold]. [bold]Квартирмейстер/ВПО[/bold] могут одобрить дополнительные запросы, но не рассчитывайте на это — боеприпасы ограничены, а пополнение запасов на земле займет время и потребует координации.
+  <Box>
+    <GuideEntityEmbed Entity="RMCBeltSmartGunOperatorPistolFilled" Caption="Ammo belt with sidearm holster"/>
+  </Box>
 
-  ### Слоты Шлема:
-  Большинство [bold]Командиров требуют ношения шлема[/bold] для морских пехотинцев-специалистов. Хотя это ограничивает модные предпочтения, оно предоставляет два дополнительных слота для [bold]автоинжекторов, фляги или личных вещей[/bold].
+  ## Gearing Up
+  Your [bold]Smartgunner Weapons Vendor[/bold] provides a crate containing:
 
-  ## Как Пользоваться Умной Пушкой
-  Вы снарядились, быстро перекусили и кивнули во время брифинга. Теперь вы бежите к [bold]десантному кораблю[/bold] с сигаретой в зубах, спрашивая себя: [italic]"Что теперь?"[/italic]
+  <Box>
+  <GuideEntityEmbed Entity="ColMarTechSGGear" Caption="Weapons vendor"/>
+    <GuideEntityEmbed Entity="CMSmartGunOperatorEquipmentCase" Caption="ML66A Smartgun case"/>
+  </Box>
 
-  ### Высадка и Позиционирование:
-  1. [bold]Собирайтесь у своего Командира Отряда (КО)[/bold] и следуйте его приказам.
+  - [bold]1 ML66A Smartgun (loaded)[/bold]
+  - [bold]1 ML66A Combat Harness[/bold]
+  - [bold]1 ML66A head mounted sight[/bold]
+  - [bold]1 Spare battery[/bold]
+  - [bold]3 Spare ammo drums[/bold]
 
-  2. Оставайтесь [bold]рядом с центром движения отряда[/bold] и будьте внимательны к морпехам без оружия с IFF.
+  <Box>
+    <GuideEntityEmbed Entity="RMCPowerCellSmartgun" Caption="ML66A battery"/>
+    <GuideEntityEmbed Entity="RMCMagazineSmartGun" Caption="ML66A ammo drums"/>
+  </Box>
 
-  3. Ваша роль — [bold]поддерживающий огонь[/bold] — ваша [bold]Зона Отрицания[/bold] имитирует стационарную турель, но с мобильностью и адаптивностью.
+  No auxiliary pouches are provided by default, so equip these as needed.
 
-  4. [bold]Не преследуйте врагов[/bold]; вместо этого поддерживайте своих наступающих союзников, прикрывая их.
+  ### Key Equipment Notes:
+  - You [italic]must[/italic] wear the [bold]ML66A Combat Harness[/bold] to holster the Smartgun on your back. Remove any belt items before equipping it.
+  <Box>
+    <GuideEntityEmbed Entity="CMArmorSmartGunCombatHarness" Caption="ML66A Combat Harness"/>
+  </Box>
+  - Once equipped, your [bold]head-mounted NV optics[/bold] will automatically activate. These do not drain the weapon's battery and can be toggled via your HUD.
+  <Box>
+    <GuideEntityEmbed Entity="RMCGlassesSmartGunSight" Caption="ML66A Head Mounted Sight"/>
+  </Box>
+  - Enable your [bold]harness light[/bold] so fellow marines can see you in low-visibility conditions.
+  - [bold]Ammo storage[/bold]: At least [bold]one (1) Large General Pouch[/bold], capable of holding [bold]two additional ammo drums[/bold] or other equipment.
 
-  5. Приоритет — прикрывать [bold]Санитаров, Боевых Техников и вашего КО[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="RMCPouchGeneralLargeFilledSmartGunDrums" Caption="Large general pouch"/>
+  </Box>
 
-  6. При эвакуации [bold]критического персонала[/bold] (раненых или убитых морпехов) вместо этого обеспечивайте прикрытие для спасателей.
+  After suiting up, check the [bold]special ammo vendor[/bold] on your squad's side of the prep room for [bold]extra free drums[/bold]. Additional ammunition becomes available as more marines wake up, so check back before deployment.
 
-  ### Осведомленность о Позиции:
-  - Если вас подстрелили, это часто вина [bold]50/50[/bold] — ваши товарищи по отряду могут не видеть вашего перемещения.
-  - Ожидайте, что [bold]чрезмерно рьяные морпехи[/bold] будут безрассудно рваться вперед. Перемещайтесь за ними и поддерживайте подавляющий огонь.
-  - Никогда не входите первым в комнату или за угол, наступайте ТОЛЬКО с группами.
+  <Box>
+    <GuideEntityEmbed Entity="ColMarTechMunitions" Caption="Special ammo vendor"/>
+  </Box>
 
-  ### Использование Детектора Движения:
-  - Держите ваш [bold]Детектор Движения (ДД) включенным всегда[/bold].
-  - Настройте его на предпочитаемую дальность после высадки.
-  - Поскольку у него нет [bold]отображения количества целей[/bold], [bold]сообщайте о сигналах[/bold] о больших скоплениях и движении врагов.
-  - Если другой морпех руководит сообщениями о сигналах ДД, используйте свой для [bold]обнаружения целей[/bold] вместо излишней болтовни по радио.
+  For more ammo, visit [bold]requisitions[/bold], where you can request up to [bold]two (2) additional drums[/bold]. The [bold]LO[/bold] may approve extra requests, but do not count on it—ammo is limited, and resupply groundside will take time and coordination.
 
-  ### Система IFF:
-  - По умолчанию [bold]IFF ВКЛЮЧЕН[/bold], что обозначается [bold]контуром в форме человека[/bold] на вашем HUD.
-  - [bold]НЕ переключайте IFF, если это не абсолютно необходимо[/bold] (например, при взаимодействии с «нецелевыми» угрозами).
-  - Отключение IFF включает [bold]дружественный огонь[/bold], требующий чрезвычайной ситуационной осведомленности.
+  ### Helmet Slots:
+  Most [bold]Commanders enforce helmet use[/bold] for Specialist Marines. While this limits fashionable expression, it grants two additional slots for [bold]auto-injectors, a canteen, or personal items[/bold].
 
-  ## Заключительные Заметки:
-  - [bold]Оставайтесь со своим КО.[/bold] Прикрывайте его, повторяйте его команды при необходимости и оказывайте огневую поддержку.
-  - [bold]Хороший УП-оператор усиливает отряд[/bold], действуя как мобильный щит из горящего свинца.
-  - [bold]Не[/bold] относитесь к себе слишком серьезно — хотя вы и важны, [bold]вы не неуязвимы[/bold].
-  - [bold]Сплоченность — ключ[/bold] — неорганизованный отряд потерпит неудачу, как бы хорошо вы ни стреляли.
-  - Держите [bold]ушки на макушке[/bold], [bold]палец на спусковом крючке[/bold] и [bold]шнурки на ботинках затянутыми[/bold] — у вас есть работа!
+  ## How to Smartgun
+  You've geared up, grabbed a quick meal, and nodded through the briefing. Now, you're sprinting to the [bold]dropship[/bold] with a cigarette between your lips, asking yourself: [italic]"Now what?"[/italic]
 
-  ### Руководство составлено GoodShowOldChap
+  ### Landing and Positioning:
+  1. [bold]Rally on your Squad Leader (SL)[/bold] and follow their commands.
+
+  <Box>
+    <GuideEntityEmbed Entity="RMCGuidebookRoleSL"/>
+  </Box>
+
+  2. Stay [bold]near the center of squad movement[/bold] and be mindful of marines without IFF weapons.
+
+  3. Your role is [bold]supportive fire[/bold]—your [bold]Area of Denial[/bold] mimics a stationary turret, but with mobility and adaptability.
+
+  4. [bold]Do not chase enemies[/bold]; instead, support your advancing allies by covering them.
+
+  5. Prioritize covering [bold]Hospital Corpsmen, Combat Technicians, and your SL[/bold].
+
+  <Box>
+    <GuideEntityEmbed Entity="RMCGuidebookRoleHM"/>
+    <GuideEntityEmbed Entity="RMCGuidebookRoleCT"/>
+    <GuideEntityEmbed Entity="RMCGuidebookRoleSL"/>
+  </Box>
+
+  6. If retrieving [bold]critical personnel[/bold] (wounded or dead marines), instead provide cover for rescuers.
+
+  <Box>
+    <GuideEntityEmbed Entity="RMCGuidebookCorpseMarine"/>
+  </Box>
+
+  ### Positional Awareness:
+  - If you get shot, it's often [bold]50/50[/bold] fault—your squadmates may not see your repositioning.
+  - Expect [bold]over-eager marines[/bold] to push forward recklessly. Rotate behind them and maintain suppressive fire.
+  - Never be the first into a room or around a corner, push with groups ONLY.
+
+  ### Motion Detector Usage:
+  - Keep your [bold]Motion Detector (MD) on at all times[/bold].
+
+  <Box>
+    <GuideEntityEmbed Entity="RMCGuidebookActionMotionDetector" Caption="Motion detector toggle" />
+  </Box>
+
+  - Tune it to your preferred range after landing.
+  - Since it lacks [bold]target count display[/bold], [bold]call out pings[/bold] for large enemy clusters and movement.
+  - If another marine is leading MD calls, use yours for [bold]target acquisition[/bold] instead of excessive radio chatter.
+
+  ### IFF System:
+  - By default, [bold]IFF is ON[/bold], indicated by a [bold]person-shaped outline[/bold] on your HUD.
+  - [bold]DO NOT toggle IFF unless absolutely necessary[/bold] (e.g., engaging “untargetable” threats).
+  - Disabling IFF enables [bold]friendly fire[/bold], requiring extreme situational awareness.
+
+  <Box>
+    <GuideEntityEmbed Entity="RMCGuidebookActionIFF" Caption="IFF toggle being ON" />
+  </Box>
+
+  ## Final Notes:
+  - [bold]Stay with your SL.[/bold] Cover them, echo their commands if needed, and provide fire support.
+  - A [bold]good Smartgunner enhances the squad[/bold] by acting as a mobile shield of burning lead.
+  - Do [bold]not[/bold] take yourself too seriously—while crucial, [bold]you are not invincible[/bold].
+  - [bold]Cohesion is key[/bold]—a disorganized squad will fail, no matter how well you shoot.
+  - Keep your [bold]eyes peeled[/bold], your [bold]finger on the trigger[/bold], and your [bold]boots tied tight[/bold]—you've got a job to do!
+  - Talk to your superior or SEA if you are confused or have any questions.
+  <Box>
+    <GuideEntityEmbed Entity="CMGuidebookRoleSEA"/>
+  </Box>
+
+  ### Guide made by GoodShowOldChap
 </Document>

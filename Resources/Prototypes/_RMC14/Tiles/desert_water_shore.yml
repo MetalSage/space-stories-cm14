@@ -5,10 +5,8 @@
   parent: CMPlanetBase
   id: RMCPlanetDesertWaterShoreBase
   name: tile-rmc-desert-water-shore
-  # Stories-Fixes-Start
   blockAnchoring: true
   blockConstruction: true
-  # Stories-Fixes-End
 
 # Shore
 

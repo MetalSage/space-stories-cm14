@@ -271,7 +271,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.ShotCounter = 0;
     }
 
-    public List<EntityUid>? AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, List<int>? predictedProjectiles = null, List<int>? predictedPointBlanks = null, ICommonSession? userSession = null)
+    public List<EntityUid>? AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, List<int>? predictedProjectiles = null, ICommonSession? userSession = null)
     {
         if (gun.FireRateModified <= 0f ||
             !_actionBlockerSystem.CanAttack(user))
@@ -452,7 +452,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var userImpulse = false;
         if (Timing.IsFirstTimePredicted)
         {
-            projectiles = Shoot(gunUid, gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out userImpulse, user, throwItems: attemptEv.ThrowItems, predictedProjectiles, predictedPointBlanks, userSession);
+            projectiles = Shoot(gunUid, gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out userImpulse, user, throwItems: attemptEv.ThrowItems, predictedProjectiles, userSession);
         }
 
         var shotEv = new GunShotEvent(user, ev.Ammo, fromCoordinates, toCoordinates.Value);
@@ -504,7 +504,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityUid? user = null,
         bool throwItems = false,
         List<int>? predictedProjectiles = null,
-        List<int>? predictedPointBlanks = null,
         ICommonSession? userSession = null)
     {
         userImpulse = true;
@@ -558,12 +557,6 @@ public abstract partial class SharedGunSystem : EntitySystem
                 };
                 AddComp(projectile, comp, true);
                 Dirty(projectile, comp);
-            }
-
-            if (predictedPointBlanks != null &&
-                predictedPointBlanks.TryGetValue(index, out _))
-            {
-                EnsureComp<RMCProjectilePointBlankedComponent>(projectile);
             }
         }
 

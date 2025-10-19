@@ -181,6 +181,8 @@
         points: 15
       - id: CMWebbingHolster
         points: 15
+      - id: RMCWebbingHolsterBlack
+        points: 15
       - id: RMCScabbardMacheteFilled
         name: ножны для мачете (заполненные)
         points: 15

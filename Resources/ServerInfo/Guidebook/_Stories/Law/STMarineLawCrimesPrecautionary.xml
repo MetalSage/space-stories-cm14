@@ -1,0 +1,54 @@
+﻿<Document>
+  # Меры Предосторожности
+  - Они используются для бессрочного заключения людей под стражу.
+  <Table Columns="2">
+    <ColorBox>
+      <Box>
+        Обвинение
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Описание
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Невменяемость
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Объявляется только Главным Врачом или синтетиком, действующим таким образом, который заставляет правонарушителя казаться не в здравом уме. Субъект, после того как будет признан в здравом уме, может быть освобожден от этого конкретного обвинения.
+        \nВ отсутствие Главного Врача или Синтетика [color=#008000][bold]Командир[/bold][/color] или [color=#8B0000][bold]Начальник Военной Полиции[/bold][/color] могут назначить офицера медицинского департамента для проведения оценки вместо них.
+        \nИсключением из этого являются случаи подтвержденного самоубийства или попытки самоубийства, и субъект может подать апелляцию или обратиться к любому медицинскому персоналу.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Военнопленный
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Быть враждебным членом законной и признанной фракции.
+        \nВоеннопленные не могут быть казнены, если только они не представляют активную угрозу для других.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Задержание по Усмотрению
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Дискреционное обвинение, используемое [color=#00CBFE][bold]Командующим Офицером[/bold][/color] для задержания персонала по любой причине - для безопасности и пользы операции или безопасности.
+        \nЭто может быть обжаловано только [color=#00CBFE][bold]Командующему Офицеру[/bold][/color] или [color=#ffa500][bold]Офису Провост Маршалов[/bold][/color], и может быть снято в любое время [color=#00CBFE][bold]Командующим Офицером[/bold][/color].
+      </Box>
+    </ColorBox>
+
+  </Table>
+</Document>
