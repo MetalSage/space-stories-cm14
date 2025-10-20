@@ -13,7 +13,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: rock
 
 - type: entity
@@ -29,7 +30,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: rock_border
 
 
@@ -48,7 +50,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: colony
 
 - type: entity
@@ -66,7 +69,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: colonyr
 
 - type: entity
@@ -84,5 +88,6 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: colonyr

@@ -9,7 +9,13 @@
     sprite: _RMC14/Structures/Windows/Frames/solaris_frame.rsi
     state: solaris_frame0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: solaris_frame
     mode: CardinalFlags
   - type: Construction
@@ -27,7 +33,13 @@
     sprite: _RMC14/Structures/Windows/Frames/solaris_rframe.rsi
     state: solaris_rframe0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: solaris_rframe
     mode: CardinalFlags
   - type: Construction
@@ -47,7 +59,13 @@
     sprite: _RMC14/Structures/Windows/solaris_window.rsi
     state: solaris_window0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: solaris_window
     mode: CardinalFlags
   - type: Repairable
@@ -99,7 +117,13 @@
     sprite: _RMC14/Structures/Windows/solaris_rwindow.rsi
     state: solaris_rwindow0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: solaris_rwindow
     mode: CardinalFlags
   - type: Repairable
@@ -156,7 +180,13 @@
     sprite: _RMC14/Structures/Windows/solaris_rwindow.rsi
     state: solaris_rwindow0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: solaris_rwindow
     mode: CardinalFlags
 

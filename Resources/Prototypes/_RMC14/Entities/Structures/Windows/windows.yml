@@ -82,7 +82,13 @@
     sprite: _RMC14/Structures/Windows/almayer_window.rsi
     state: alm_rwindow0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: alm_rwindow
     mode: CardinalFlags
 
@@ -107,7 +113,13 @@
     sprite: _RMC14/Structures/Windows/almayer_window.rsi
     state: alm_rwindow0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: alm_rwindow
     mode: CardinalFlags
   - type: Repairable
@@ -165,7 +177,13 @@
     sprite: _RMC14/Structures/Windows/white_reinforced_window.rsi
     state: white_rwindow0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: white_rwindow
     mode: CardinalFlags
 
@@ -182,7 +200,13 @@
     sprite: _RMC14/Structures/Windows/white_reinforced_window.rsi
     state: white_rwindow0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: white_rwindow
     mode: CardinalFlags
   - type: Repairable
@@ -237,7 +261,13 @@
     sprite: _RMC14/Structures/Windows/colony_window.rsi
     state: col_window0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: col_window
     mode: CardinalFlags
   - type: Repairable
@@ -289,7 +319,13 @@
     sprite: _RMC14/Structures/Windows/colony_rwindow.rsi
     state: col_rwindow0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: col_rwindow
     mode: CardinalFlags
   - type: Repairable
@@ -347,7 +383,13 @@
     state: col_rwindow0
     color: "#aba9a9"
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: col_rwindow
     mode: CardinalFlags
   - type: Repairable
@@ -402,7 +444,13 @@
     sprite: _RMC14/Structures/Windows/wood_window.rsi
     state: wood_window0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: wood_window
     mode: CardinalFlags
   - type: Repairable
@@ -454,7 +502,13 @@
     sprite: _RMC14/Structures/Windows/wood_rwindow.rsi
     state: wood_rwindow0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: wood_rwindow
     mode: CardinalFlags
   - type: Repairable
@@ -509,7 +563,13 @@
     sprite: _RMC14/Structures/Windows/ai_rwindow.rsi
     state: ai_rwindow0
   - type: IconSmooth
+<<<<<<< HEAD
     key: window # Stories-Fixes
+=======
+    key: windows
+    additionalKeys:
+    - doors
+>>>>>>> 391f3f8ebd78024778b976bb38cf68aa11dbb282
     base: ai_rwindow
     mode: CardinalFlags
   - type: Repairable
