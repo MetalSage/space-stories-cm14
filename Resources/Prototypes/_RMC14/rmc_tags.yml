@@ -5,7 +5,7 @@
   id: CMCartridgePistol9mm
 
 - type: Tag
-  id: CMCartridgePistol22mm # Stories-Fixes
+  id: CMCartridgePistol22mm
 
 - type: Tag
   id: CMCartridgePistol9mmAP

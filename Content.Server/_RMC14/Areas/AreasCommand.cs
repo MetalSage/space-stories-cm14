@@ -8,7 +8,7 @@ using Robust.Shared.Toolshed;
 
 namespace Content.Server._RMC14.Areas;
 
-[ToolshedCommand, AdminCommand(AdminFlags.Host)]
+[ToolshedCommand, AdminCommand(AdminFlags.Mapping)] // Stories-Tweak
 public sealed class AreasCommand : ToolshedCommand
 {
     [Dependency] private readonly IComponentFactory _compFactory = default!;

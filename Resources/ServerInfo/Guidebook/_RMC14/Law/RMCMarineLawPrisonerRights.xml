@@ -1,30 +1,30 @@
 ﻿<Document>
-  # Права Заключенных
-  Это список прав, которыми обладают заключенные.
-  - В них нельзя отказать, за исключением доступа к радиосвязи, за исключением крайних ситуаций с разрешения [color=#8B0000][bold]Начальника Военной Полиции[/bold][/color] или [color=#008000][bold]Командира[/bold][/color]. Заключенные могут отправить факс провосту, чтобы их права были восстановлены.
+  # Prisoner Rights
+  This is a list of rights prisoners have.
+  - They cannot be denied, with the exception of radio access, except in extreme situations with authorization from the [color=#8B0000][bold]Chief MP[/bold][/color] or [color=#008000][bold]Commander[/bold][/color]. Prisoners can fax provost to have their rights be given back.
 
-  ## Общая Зона
-  Всем заключенным по умолчанию разрешается входить в общую зону.
-  - Заключенные, приговоренные к пожизненному заключению в бриге, не имеют этого права, но могут получить доступ в сопровождении за хорошее поведение.
+  ## Common Space
+  All prisoners are permitted to enter the common space by default.
+  - Permabrigged prisoners do not have this right, but can be given access with an escort for good behavior.
 
-  Это право может быть утрачено в случае:
-  - Мятежа, беспорядков, чрезвычайных ситуаций
-  - Побега из тюрьмы
-  - Совершения преступления в пределах брига. Если это произойдет, право может быть возвращено [color=#8B0000][bold]Начальником Военной Полиции[/bold][/color] или [color=#008000][bold]Командиром[/bold][/color].
+  This right can be lost in the event of:
+  - Mutiny, riots, emergencies
+  - Jailbreaking
+  - Commiting a crime within the brig. If this happens, the right can be given back by the [color=#8B0000][bold]Chief MP[/bold][/color] or [color=#008000][bold]Commander[/bold][/color].
 
-  ## Защита и Медицинская Помощь
-  - Если есть заключенные, сотрудник [color=#ff000d][bold]Военной Полиции[/bold][/color] должен постоянно оставаться в бриге, за исключением случаев, когда единственные заключенные находятся в пожизненном заключении или произошла чрезвычайная ситуация.
-  - Заключенные должны быть в безопасности и невредимы.
-  - Хирургический набор должен постоянно находиться в бриге, за исключением чрезвычайных ситуаций.
-  - Лечение должно проводиться в пределах брига, когда это возможно. Если нет, [color=#ff000d][bold]Военной Полиции[/bold][/color] должен сопроводить заключенного в медблок и присматривать за ним во время лечения.
-  - Заключенные должны получать медицинскую помощь в случае необходимости.
-  - Заключенные должны быть воскрешены, если только они не были законно казнены.
-  - Самоповреждение может привести к ограничению свободы на время отбывания наказания.
+  ## Protection and Medical Treatment
+   - If there are prisoners, a member of the [color=#ff000d][bold]MP[/bold][/color] must remain in the brig at all times except if the only prisoners are in permanent confinement or there is an emergency.
+  - Prisoners must be kept safe and unharmed.
+  - A surgical tray is to remain within the brig at all times, unless there is an emergency.
+  - Treatment should take place within the brig when possible. If not, an [color=#ff000d][bold]MP[/bold][/color] must escort the prisoner to the medbay and watch over them while they are treated.
+  - Prisoners must receive medical aid if needed.
+  - Prisoners must be revived unless they have been legally executed.
+  - Self-harm may result in being constrained for the duration of the sentence.
 
-  ## Доступ к Радиосвязи
-  Заключенным разрешается стандартная гарнитура с общим каналом.
-  - Если какой-либо [color=#ff000d][bold]Военный Полицейский[/bold][/color] считает, что ею злоупотребляют, он может отменить это право после четкого предупреждения о поведении.
-  - Заключенные могут обжаловать это решение.
-  - Радиосвязь заключенных может быть отозвана, если мятеж активен, до окончания мятежа.
+  ## Access to a Radio
+  Prisoners are authorized a standard headset with the common channel.
+  - If any [color=#ff000d][bold]MP[/bold][/color] believes that it is being abused, they can revoke this right after a clear warning of the behavior.
+  - Prisoners may appeal this.
+  - Prisoners may have their radio revoked if a mutiny is active until the mutiny is over.
 
 </Document>

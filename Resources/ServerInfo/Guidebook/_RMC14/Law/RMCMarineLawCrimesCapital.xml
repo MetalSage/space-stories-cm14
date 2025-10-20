@@ -1,87 +1,87 @@
 ﻿<Document>
-  # Особо Тяжкие Преступления
-  - Эти преступления имеют чрезвычайно высокую степень тяжести.
-  - Все эти преступления могут быть наказаны [bold]Пожизненным заключением и понижением в звании, или казнью и аннулированием удостоверения личности.[/bold]
+  # Capital Crimes
+  - These crimes are extreme severity.
+  - All of these crimes may be punished by [bold]Permanent confinement and demotion, or execution and ID termination.[/bold]
   <Table Columns="2">
     <ColorBox>
       <Box>
-        Обвинение
+        Charge
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Описание
+        Description
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Побег из тюрьмы/Побег
+        Jailbreak/Escape
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Совершить побег, помочь в побеге, попытаться совершить побег или быть сознательно и умышленно освобожденным из камеры.
-      </Box>
-    </ColorBox>
-
-
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Покушение на убийство
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Попытка убить человека, но неудача в этом. Если доказательства показывают, что арестованный человек явно пытался убить кого-то со злым умыслом, но потерпел неудачу в самом действии.
+        To escape, assist in an escape, attempt escape, or be willfully and knowingly broken out from a cell.
       </Box>
     </ColorBox>
 
+
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Убийство/Несанкционированная казнь
+        Attempted Murder
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Убийство кого-либо со злым умыслом. Это включает в себя синтетических юнитов. Обвинение применяется, даже если жертва впоследствии воскрешена. Казни разрешены только в соответствии с Процедурой Казни.
-        \nЭто также включает в себя отказ или препятствование воскрешению любого, кто не был казнен в соответствии с процедурой казни.
+        Attempting to murder a person but failing to do so. If the evidence shows that the arrested person was clearly trying to kill someone with ill intent but failed in the action itself.
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Мятеж
+        Murder/Unauthorized Execution
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Участие в действиях или отказ от выполнения приказов с целью свержения или узурпации законной командной структуры.
-        Создание масштабной угрозы для корабля без ведома и одобрения [color=#008000][bold]Командира[/bold][/color] подпадает под мятеж.
-        [color=#90EE90][bold]Дежурный Офицер[/bold][/color] не может одобрять действия, подпадающие под это условие.
-        Провозглашение верности или действия от имени предполагаемого КФО является актом мятежа против США.
-      </Box>
-    </ColorBox>
-
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Дезертирство
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Отказ от выполнения обязанностей, необходимых для своего поста, или самовольное оставление поста без намерения вернуться. (Отступление с планеты, когда ПОБ прорвана, не является Дезертирством, отказ вернуться по приказу является).
+        Killing someone with malicious intent. This includes Synthetic units. The charge applies even if the victim is later revived. Executions are only authorized as outlined in the Execution Procedure.
+        \nThis also includes refusing or preventing to revive anyone not executed by the execution procedure.
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Преступления против Разума
+        Sedition
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Участие в действиях, нарушающих права разумной жизни, или иным образом являющихся гнусными актами против разумной жизни. Примеры: пытки, каннибализм и принудительное заражение любого рода.
+        To engage in actions or refuse to follow orders as to overthrow or usurp the legitimate command structure.
+        Creating a massive threat to the ship without the knowledge and approval of the [color=#008000][bold]Commander[/bold][/color] falls under sedition.
+        A [color=#90EE90][bold]Duty Officer[/bold][/color] is unable to approve actions that fall under this condition.
+        Proclaiming allegiance to, or acting on behalf of, the supposed CLF is an act of sedition against the UN.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Desertion
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Refusing to carry out the duties essential to one’s post or abandoning post unauthorized, without intent to return. (Retreating from the planet when the FOB is breached is not Desertion, refusing to return when ordered is).
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Crimes against Sapience
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        To engage in actions that violate sapient life rights or otherwise are heinous acts against sapient life. Examples are torture, cannibalism and forced infection of any kind.
       </Box>
     </ColorBox>
 

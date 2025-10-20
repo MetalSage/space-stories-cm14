@@ -1,0 +1,111 @@
+﻿<Document>
+  # Переменные Преступления
+  - Эти преступления могут варьироваться по степени тяжести и иметь масштабируемые наказания.
+  <Table Columns="4">
+    <ColorBox>
+      <Box>
+        Обвинение
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Описание
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Мелкое
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Тяжкое
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Повреждение Имущества КМП США
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Повреждение корабля или внесение в него каких-либо несанкционированных модификаций, как указано в Стандартной Оперативной Процедуре.\nМатериалы для ремонта должны быть взяты из складов технического обслуживания.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Разбить окно, повредить стену и т.д.\n[bold]Верните кораблю его прежнее состояние или отбудьте 7,5 минут, если это невозможно.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Нарушение закона в серьезной форме включает в себя разрушение/демонтаж стен или нескольких окон.\n[bold]10 минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Неповиновение
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Невыполнение законного приказа вышестоящего по званию или должности лица или неуважение к кому-либо более высокого звания или должности, не являющемуся офицером.\nНеуважение к старшему офицеру относится к мелким преступлениям.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Приказ, который не адресован лично, или неуважение к кому-либо более высокого звания или должности, не являющемуся офицером.\n[bold]7,5 минут.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Приказ, лично адресованный человеку, о котором идет речь, с использованием его имени или четким сообщением о том, что он предназначен для него.\n[bold]15 минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Вмешательство
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Вмешательство в законный арест.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Вмешательство без злого умысла, например, блокирование пути или помощь кому-либо подняться.\n[bold]7,5 минут.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Вмешательство со злым умыслом или явным образом, чтобы помешать проведению ареста.\n[bold]15 минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Несанкционированное Использование Подслушивающих Устройств
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Использование подслушивающих устройств в нарушение Стандартной Оперативной Процедуры.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Незаконная установка подслушивающего устройства в общественном месте, например, в спортзале.\n[bold]7,5 минут.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Незаконная установка подслушивающего устройства в охраняемой зоне или зоне с защитными жалюзи, такой как ЦИК или кабинет Корпоративного Связного.\n[italic]Если подслушивающее устройство также связано с иностранным правительством или террористической организацией, это дополнительно считается Диверсией[/italic].\n[bold]15 минут.[/bold]
+      </Box>
+    </ColorBox>
+
+  </Table>
+</Document>
