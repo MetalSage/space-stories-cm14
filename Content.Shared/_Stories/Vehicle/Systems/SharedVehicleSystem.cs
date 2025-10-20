@@ -171,12 +171,16 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         if (ent.Comp.GridEnt is not { } gridEnt)
             return;
 
-        var position = GetEnterPoint(gridEnt);
-        if (position is not { } pos)
+        var entryDirection = GetUserEntryDirection(ent, args.User);
+        if (entryDirection == null)
+            return;
+
+        var enterPoint = GetEnterPoint(gridEnt, entryDirection.Value);
+        if (enterPoint is null)
             return;
 
         args.Handled = true;
-        var coords = new EntityCoordinates(gridEnt, pos);
+        var coords = _transform.GetMoverCoordinates(enterPoint.Value);
         HandleEnterPulling(ent, args.User, coords);
     }
 
@@ -214,6 +218,32 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             EntryDirection.Right => rotation.RotateVec(new Vector2(exitDistance, 0)),
             _ => rotation.RotateVec(new Vector2(0, -exitDistance))
         };
+    }
+
+    private EntryDirection? GetUserEntryDirection(Entity<VehicleComponent> vehicle, EntityUid user)
+    {
+        var userPos = _transform.GetMapCoordinates(user).Position;
+        var targetPos = _transform.GetMapCoordinates(vehicle.Owner).Position;
+
+        var directionToUser = (userPos - targetPos).ToWorldAngle().Degrees;
+        var facing = Transform(vehicle.Owner).LocalRotation.GetCardinalDir().ToAngle().Degrees;
+
+        var range = vehicle.Comp.EntryInteractionRange;
+        var allowed = vehicle.Comp.EntryDirections;
+
+        EntryDirection? CheckDirection(double offset, EntryDirection dir)
+        {
+            if (!allowed.HasFlag(dir))
+                return null;
+
+            var angle = (facing + offset + 360) % 360;
+            return IsWithinRange(directionToUser, angle, range) ? dir : null;
+        }
+
+        return CheckDirection(0, EntryDirection.Front)
+            ?? CheckDirection(180, EntryDirection.Back)
+            ?? CheckDirection(-90, EntryDirection.Left)
+            ?? CheckDirection(90, EntryDirection.Right);
     }
 
     private void OnLockActionEvent(Entity<VehiclePilotComponent> pilot, ref VehicleLockDoorsEvent args)
@@ -762,30 +792,8 @@ public sealed partial class SharedVehicleSystem : EntitySystem
             return true;
         }
 
-        var userPos = _transform.GetMapCoordinates(user).Position;
-        var targetPos = _transform.GetMapCoordinates(target).Position;
-
-        var directionToUser = (userPos - targetPos).ToWorldAngle().Degrees;
-
-        var facing = Transform(target).LocalRotation.GetCardinalDir().ToAngle().Degrees;
-
-        var range = vehicle.EntryInteractionRange;
-        var allowed = vehicle.EntryDirections;
-
-        bool Check(double offset, EntryDirection dir)
-        {
-            if (!allowed.HasFlag(dir))
-                return false;
-
-            var angle = (facing + offset + 360) % 360;
-            return IsWithinRange(directionToUser, angle, range);
-        }
-
-        return
-            Check(0, EntryDirection.Front) ||
-            Check(180, EntryDirection.Back) ||
-            Check(-90, EntryDirection.Left) ||
-            Check(90, EntryDirection.Right);
+        var ent = (target, vehicle);
+        return GetUserEntryDirection(ent, user) != null;
     }
 
     private float GetEntryDelay(Entity<VehicleComponent> vehicle, EntityUid user)
@@ -839,13 +847,13 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         return _gunIFF.IsInFaction(user, faction);
     }
 
-    private Vector2? GetEnterPoint(EntityUid gridId)
+    private EntityUid? GetEnterPoint(EntityUid gridId, EntryDirection direction)
     {
         var query = EntityQueryEnumerator<VehicleEnterPointComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out _, out var xform))
+        while (query.MoveNext(out var uid, out var enterPoint, out var xform))
         {
-            if (xform.GridUid == gridId)
-                return _transform.GetWorldPosition(uid);
+            if (xform.GridUid == gridId && enterPoint.Direction == direction)
+                return uid;
         }
 
         return null;

@@ -205,3 +205,14 @@
         amount: 1
       - id: STMarineVehicleM577Wheels
         amount: 1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-0.5,1,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer

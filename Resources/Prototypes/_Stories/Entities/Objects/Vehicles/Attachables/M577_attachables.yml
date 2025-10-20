@@ -163,7 +163,7 @@
   - type: VehicleControllable
     id: FiringPortWeaponOne
   - type: GunArcRestriction
-    maxAngleDeviation: 120
+    maxAngleDeviation: 50
 
 - type: entity
   parent: STMarineVehicleFiringPortWeaponOne
@@ -171,6 +171,9 @@
   components:
   - type: VehicleControllable
     id: FiringPortWeaponTwo
+  - type: GunArcRestriction
+    maxAngleDeviation: 50
+    arcDirection: 180
 
 - type: entity
   parent: STMarineVehicleAttachableBase

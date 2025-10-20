@@ -20,7 +20,7 @@ public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserI
     [ViewVariables]
     private VehicleElevatorWindow? _window;
 
-    private readonly List<(EntProtoId Order, Button button)> _orderButtons = new();
+    private readonly List<(EntProtoId Order, Button Button)> _orderButtons = new();
 
     protected override void Open()
     {
@@ -40,34 +40,20 @@ public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserI
     {
         _window ??= this.CreateWindow<VehicleElevatorWindow>();
 
-        var platformLabel = "No platform";
-        var showLowerButton = false;
-
-        switch (uiState.PlatformLowered)
+        string stateKey = uiState.PlatformLowered switch
         {
-            case Lowered:
-                platformLabel = "Platform position: Lowered";
-                break;
-            case Raised:
-                platformLabel = "Platform position: Raised";
-                showLowerButton = true;
-                break;
-            case Lowering:
-                platformLabel = "Platform lowering...";
-                break;
-            case Raising:
-                platformLabel = "Platform raising...";
-                break;
-            case null:
-                platformLabel = "No platform";
-                break;
-            default:
-                platformLabel = $"Platform position: {uiState.PlatformLowered}";
-                break;
-        }
+            Lowered => "lowered",
+            Raised => "raised",
+            Lowering => "lowering",
+            Raising => "raising",
+            null => "no-platform",
+            _ => "other"
+        };
 
+        var platformLabel = Loc.GetString("st-vehicle-elevator-label", ("state", stateKey));
         _window.PlatformLabel.SetMessage(platformLabel);
-        _window.LowerPlatformButton.Visible = showLowerButton;
+
+        _window.LowerPlatformButton.Visible = uiState.PlatformLowered == Raised;
 
         if (_orderButtons.Count == 0)
             CreateOrderButtons(uiState);
@@ -104,7 +90,7 @@ public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserI
             button.Label.AddStyleClass(CMStyleClasses.CMLabelAlignLeft);
 
             var itemName = _prototypes.Index<EntityPrototype>(orderProto).Name;
-            button.Text = $"{itemName} (Required: {requiredOnline} players)";
+            button.Text = Loc.GetString("st-vehicle-elevator-button-order", ("itemName", itemName));
 
             var order = orderProto;
             button.OnPressed += _ => OnOrderButtonPressed(order);
@@ -121,9 +107,7 @@ public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserI
             return;
 
         if (state.PlatformLowered == Lowered && !state.Busy && !state.HasOrder && state.ComputerActive)
-        {
             SendMessage(new VehicleElevatorBuyMsg(order));
-        }
     }
 
     private void UpdateOrderButtonsState(VehicleElevatorBuiState uiState)

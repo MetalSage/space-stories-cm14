@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.2
   forkId: ""
   forkVersion: ""
-  time: 10/02/2025 21:02:03
-  entityCount: 95
+  time: 10/20/2025 13:18:03
+  entityCount: 97
 maps: []
 grids:
 - 1
@@ -176,7 +176,6 @@ entities:
     - type: Shuttle
       dampingModifier: 0.25
     - type: GravityShake
-      nextShake: 0
       shakeTimes: 10
 - proto: CMSeatPassenger
   entities:
@@ -324,8 +323,6 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
-    - type: Physics
-      canCollide: True
 - proto: STVehicleAPCWall32
   entities:
   - uid: 50
@@ -702,9 +699,24 @@ entities:
   - uid: 95
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,0.5
+      pos: 0.5,-0.5
       parent: 1
+    - type: VehicleEnterPoint
+      direction: Left
+  - uid: 96
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 1
+    - type: VehicleEnterPoint
+      direction: Right
+  - uid: 97
+    components:
+    - type: Transform
+      pos: -2.5,0.5
+      parent: 1
+    - type: VehicleEnterPoint
+      direction: Back
 - proto: STVehicleInteriorCamera
   entities:
   - uid: 87

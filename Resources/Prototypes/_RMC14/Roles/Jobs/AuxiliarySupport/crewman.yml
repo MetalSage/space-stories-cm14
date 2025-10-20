@@ -1,5 +1,5 @@
 ﻿- type: job
-  parent: CMJobSquadBase
+  parent: CMJobBase
   id: CMVehicleCrewman
   name: cm-job-name-vc
   description: cm-job-description-vc
@@ -41,13 +41,6 @@
     - type: RMCPointing
     - type: JobPrefix
       prefix: cm-job-prefix-vc
-    - type: AssignSquad
-      whitelist:
-        tags:
-        - RMCSquadEcho
-    - type: SquadArmorWearer
-    - type: SquadNameOverride
-      name: cm-job-name-vc
     - type: TacticalMapIcon
       icon:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi

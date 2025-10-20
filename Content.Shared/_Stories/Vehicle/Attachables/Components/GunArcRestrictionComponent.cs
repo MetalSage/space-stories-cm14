@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Weapons.Ranged.Systems;
+namespace Content.Shared.Weapons.Ranged.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GunArcRestrictionComponent : Component
@@ -9,5 +9,8 @@ public sealed partial class GunArcRestrictionComponent : Component
     public Angle MaxAngleDeviation = Angle.FromDegrees(45);
 
     [DataField, AutoNetworkedField]
-    public string? RestrictionMessage = "The target is not within your firing arc!";
+    public Angle ArcDirection = Angle.Zero;
+
+    [DataField]
+    public string? RestrictionMessage = "st-vehicle-gun-arc-restriction";
 }

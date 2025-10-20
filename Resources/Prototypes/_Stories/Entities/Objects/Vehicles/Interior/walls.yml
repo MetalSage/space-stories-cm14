@@ -420,7 +420,7 @@
   - type: Occluder
     enabled: true
   - type: VehicleInteriorDoor
-    side: Left
+    side: Right
   - type: Clickable
 
 - type: entity
@@ -439,7 +439,7 @@
   - type: Occluder
     enabled: false
   - type: VehicleInteriorDoor
-    side: Right
+    side: Left
   - type: Clickable
 
 - type: entity

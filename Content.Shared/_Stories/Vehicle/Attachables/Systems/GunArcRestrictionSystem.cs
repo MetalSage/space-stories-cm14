@@ -13,8 +13,6 @@ public sealed class GunArcRestrictionSystem : EntitySystem
 
     public override void Initialize()
     {
-        base.Initialize();
-
         SubscribeLocalEvent<GunArcRestrictionComponent, AttemptShootEvent>(OnAttemptShoot);
         SubscribeLocalEvent<GunArcRestrictionComponent, ExaminedEvent>(OnExamined);
     }
@@ -25,27 +23,27 @@ public sealed class GunArcRestrictionSystem : EntitySystem
             return;
 
         var shooterEntity = args.User;
-        if (_holder.TryGetHolder(ent.Owner, out var holder) && holder is not null)
+        if (_holder.TryGetHolder(ent.Owner, out var holder))
             shooterEntity = holder.Value;
 
         var shooterPos = _transform.GetWorldPosition(shooterEntity);
         var targetPos = _transform.ToMapCoordinates(gun.ShootCoordinates.Value).Position;
 
-        var shooterRotation = _transform.GetWorldRotation(shooterEntity);
-        var forward = shooterRotation.ToWorldVec();
-
+        var shooterRot = _transform.GetWorldRotation(shooterEntity);
         var directionToTarget = (targetPos - shooterPos).Normalized();
         var targetAngle = directionToTarget.ToAngle();
 
-        var angleDifference = GetAngleDifference(forward.ToAngle(), targetAngle);
+        var allowedCenter = shooterRot + ent.Comp.ArcDirection;
 
-        if (Math.Abs(angleDifference.Theta) > ent.Comp.MaxAngleDeviation.Theta)
+        var diff = GetAngleDifference(allowedCenter, targetAngle);
+
+        if (Math.Abs(diff.Theta) > ent.Comp.MaxAngleDeviation.Theta)
         {
             args.Cancelled = true;
 
             if (_holder.TryGetAttachableUser(ent.Owner, out var pilot) && pilot != null)
             {
-                _popup.PopupCursor(ent.Comp.RestrictionMessage, pilot.Value, PopupType.SmallCaution);
+                _popup.PopupCursor(Loc.GetString($"{ent.Comp.RestrictionMessage}"), pilot.Value, PopupType.SmallCaution);
             }
         }
     }
@@ -55,11 +53,8 @@ public sealed class GunArcRestrictionSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        var degreesDeviation = component.MaxAngleDeviation.Degrees;
-        var totalArc = degreesDeviation * 2;
-
-        args.PushMarkup(Loc.GetString("gun-arc-restriction-examine",
-            ("degrees", Math.Round(totalArc, 1))));
+        args.PushMarkup(Loc.GetString("st-vehicle-gun-arc-restriction-examine",
+            ("degrees", Math.Round(component.MaxAngleDeviation.Degrees * 2, 1))));
     }
 
     private static Angle GetAngleDifference(Angle from, Angle to)
@@ -73,15 +68,5 @@ public sealed class GunArcRestrictionSystem : EntitySystem
             diff += 2 * Math.PI;
 
         return diff;
-    }
-
-
-    public void SetMaxAngleDeviation(EntityUid uid, Angle maxDeviation, GunArcRestrictionComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-
-        component.MaxAngleDeviation = maxDeviation;
-        Dirty(uid, component);
     }
 }

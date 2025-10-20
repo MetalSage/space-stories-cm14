@@ -236,6 +236,9 @@ public sealed partial class SharedVehicleSystem
 
         if (TryComp<MobStateComponent>(args.OtherEntity, out var mobState))
         {
+            if (_recentlyCollidedQuery.HasComp(args.OtherEntity))
+                args.Cancelled = true;
+
             if (!_movementQuery.TryComp(vehicle, out var movement))
             {
                 args.Cancelled = false;
