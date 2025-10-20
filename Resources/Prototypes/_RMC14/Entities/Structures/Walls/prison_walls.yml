@@ -14,7 +14,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: metal
 
 - type: entity
@@ -32,7 +33,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: rwall
 
 - type: entity
@@ -50,7 +52,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: rwall
 
 - type: entity
@@ -68,5 +71,6 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: bone_resin
