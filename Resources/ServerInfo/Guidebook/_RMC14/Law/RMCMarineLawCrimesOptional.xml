@@ -1,88 +1,88 @@
 ﻿<Document>
-  # Факультативные Преступления
-  - Эти преступления могут быть добавлены к существующим обвинениям, где это уместно.
+  # Optional Crimes
+  - These crimes can be added on to existing charges where relevant.
   <Table Columns="4">
     <ColorBox>
       <Box>
-        Обвинение
+        Charge
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Описание
+        Description
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Мелкое
+        Minor
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Тяжкое
+        Major
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Сопротивление Аресту
+        Resisting Arrest
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Сопротивление законному аресту или обыску, проводимому сотрудником Военной Полиции.
+        To resist a lawful arrest or search by a Military Police officer.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Отказ подчиниться законному обыску или аресту.\n[bold]5 минут.[/bold]
+        Refusing to comply with a lawful search or arrest.\n[bold]5 minutes.[/bold]
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Сопротивление законному аресту со стороны Военной Полиции путем бегства или применения силы.\n[bold]10 минут.[/bold]
-      </Box>
-    </ColorBox>
-
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Пособничество и Подстрекательство
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Помощь другим в совершении преступления, прямо или косвенно, или подстрекательство их к совершению преступления. Любому лицу, оказывающему Пособничество и Подстрекательство, необходимо сообщить о преступлениях лица, которому они помогали.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]То же наказание, что и за совершенное преступление.[/bold]
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]То же наказание, что и за совершенное преступление.[/bold]
+        Resisting a legal arrest by an MP by fleeing or using force.\n[bold]10 minutes.[/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Нарушение Общественного Порядка в Заключении
+        Aiding and Abetting
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Вызывать значительные нарушения порядка, находясь в Бриге и под арестом. Это может быть добавлено к любому обвинению.
+        Assisting others in committing a crime, directly or indirectly, or encouraging them to commit one. Any person Aiding and Abetting is required to be told the crimes of the person they aided.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Нарушение Мелкого Закона, находясь под арестом или в Тюрьме.\n[bold]7,5 минут.[/bold]
+        [bold]Same punishment as crime committed.[/bold]
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Нарушение Тяжкого Закона, находясь под арестом или в Тюрьме.[bold]15 минут.[/bold]
+        [bold]Same punishment as crime committed.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Disorderly Conduct in Confinement
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        To cause disruption in a significant manner while in Brig and under arrest. This can be added on to any charge.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Breaking a Minor Law while under arrest or in Prison.\n[bold]7.5 minutes.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Breaking a Major Law while under arrest or in Prison.[bold]15 minutes.[/bold]
       </Box>
     </ColorBox>
 

@@ -1,109 +1,109 @@
 ﻿<Document>
-  # Переменные Преступления
-  - Эти преступления могут варьироваться по степени тяжести и иметь масштабируемые наказания.
+  # Variable Crimes
+  - These crimes can vary in severity and have scaling punishments.
   <Table Columns="4">
     <ColorBox>
       <Box>
-        Обвинение
+        Charge
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Описание
+        Description
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Мелкое
+        Minor
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Тяжкое
+        Major
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Повреждение Имущества КМП США
+        Damage to UNMC Property
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Повреждение корабля или внесение в него каких-либо несанкционированных модификаций, как указано в Стандартной Оперативной Процедуре.\nМатериалы для ремонта должны быть взяты из складов технического обслуживания.
+        Damaging the ship or making any unauthorized modifications to it as outlined in Standard Operating Procedure.\nMaterials for repairs should be taken from maintenance storages.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Разбить окно, повредить стену и т.д.\n[bold]Верните кораблю его прежнее состояние или отбудьте 7,5 минут, если это невозможно.[/bold]
+        Breaking a window, damaging a wall, etc.\n[bold]Return the ship to it's exact previous state, or serve 7.5 minutes if not possible.[/bold]
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Нарушение закона в серьезной форме включает в себя разрушение/демонтаж стен или нескольких окон.\n[bold]10 минут.[/bold]
-      </Box>
-    </ColorBox>
-
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Неповиновение
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Невыполнение законного приказа вышестоящего по званию или должности лица или неуважение к кому-либо более высокого звания или должности, не являющемуся офицером.\nНеуважение к старшему офицеру относится к мелким преступлениям.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Приказ, который не адресован лично, или неуважение к кому-либо более высокого звания или должности, не являющемуся офицером.\n[bold]7,5 минут.[/bold]
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Приказ, лично адресованный человеку, о котором идет речь, с использованием его имени или четким сообщением о том, что он предназначен для него.\n[bold]15 минут.[/bold]
+        Breaking the law in a major manner includes breaking /dismantling walls or several windows.\n[bold]10 minutes.[/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Вмешательство
+        Insubordination
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Вмешательство в законный арест.
+        Failing to follow a lawful order from a superior person of rank or position, or disrespecting someone of a higher rank or position.\nDisrespecting an [bold]Officer[/bold] is charged as [bold]Disrespecting a Superior Officer[/bold] and is under [textlink="Minor Crimes" link="RMCMarineLawCrimesMinor"].
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Вмешательство без злого умысла, например, блокирование пути или помощь кому-либо подняться.\n[bold]7,5 минут.[/bold]
+        Failing to follow an order which is not personally directed.\n\nOR\n\nDisrespecting someone of a higher rank or position.\n[bold]7.5 minutes.[/bold]
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Вмешательство со злым умыслом или явным образом, чтобы помешать проведению ареста.\n[bold]15 минут.[/bold]
+        Failing to follow an order personally directed at a person in question using either their name or clearly communicating its meant for them.\n[bold]15 minutes.[/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Несанкционированное Использование Подслушивающих Устройств
+        Interference
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Использование подслушивающих устройств в нарушение Стандартной Оперативной Процедуры.
+        Interfering in a legal arrest being performed.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Незаконная установка подслушивающего устройства в общественном месте, например, в спортзале.\n[bold]7,5 минут.[/bold]
+        Interfering without ill intent, such as blocking the way or helping someone up.\n[bold]7.5 minutes.[/bold]
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Незаконная установка подслушивающего устройства в охраняемой зоне или зоне с защитными жалюзи, такой как ЦИК или кабинет Корпоративного Связного.\n[italic]Если подслушивающее устройство также связано с иностранным правительством или террористической организацией, это дополнительно считается Диверсией[/italic].\n[bold]15 минут.[/bold]
+        Interfering with ill intent or in a clear way to hinder the arrest being performed.\n[bold]15 minutes.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Unauthorized use of Listening Devices
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        The use of listening devices in violation of Standard Operating Procedures.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Illegally placing a listening device in a public area such as the gym.\n[bold]7.5 minutes.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Illegally placing a listening device in a secure area, or area with privacy shutters, such as CIC or the CL's office.\n[italic]If the listening device is also tied to a foreign government or terror organisation this is additionally considered Subterfuge[/italic].\n[bold]15 minutes.[/bold]
       </Box>
     </ColorBox>
 

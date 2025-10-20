@@ -1,6 +1,7 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Radio.Components;
+using Content.Shared._RMC14.Chat;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
@@ -19,6 +20,9 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 {
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
+
+    //RMC14
+    [Dependency] private readonly SharedCMChatSystem _cmChat = default!;
 
     public override void Initialize()
     {
@@ -55,6 +59,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
             && keys.Channels.Contains(args.Channel.ID))
         {
+            //RMC14
+            if (keys.ReadOnlyChannels.Contains(args.Channel.ID))
+            {
+                _cmChat.ChatMessageToOne("You hear a crackle as if nothing goes through", args.Source);
+                args.Channel = null;
+                return;
+            }
             _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
             args.Channel = null;
         }

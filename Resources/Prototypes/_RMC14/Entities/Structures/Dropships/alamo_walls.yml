@@ -703,6 +703,8 @@
   - type: Tag
     tags:
     - RMCDropshipWeaponPoint
+  - type: Corrodible
+    isCorrodible: true
 
 - type: entity
   parent: CMBaseAlamoWall
@@ -758,6 +760,8 @@
   - type: Tag
     tags:
     - RMCDropshipWeaponPoint
+  - type: Corrodible
+    isCorrodible: true
 
 - type: entity
   parent: CMBaseAlamoWall

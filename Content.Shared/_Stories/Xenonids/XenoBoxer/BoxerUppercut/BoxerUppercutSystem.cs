@@ -62,6 +62,9 @@ public sealed class BoxerUppercutSystem : EntitySystem
         if (!_xeno.CanAbilityAttackTarget(xeno, targetUid))
             return;
 
+        if (TryComp<RMCSizeComponent>(targetUid, out var size) && size.Size == RMCSizes.Immobile)
+            return;
+
         args.Handled = true;
 
         if (!TryComp(xeno, out XenoBoxerKnockoutComponent? knockoutComp) ||

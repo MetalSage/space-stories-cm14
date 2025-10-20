@@ -1,54 +1,57 @@
 ﻿<Document>
-  # Знайте своих начальников
-  ## Руководство по командному составу и главам департаментов
+  [color=#5f698a]█    █ █▄ █[/color] [head=2][bold]UNITED NATIONS MARINE CORPS[/bold][/head]\n
+  [color=#5f698a]▀ ▄▀ █ ▀█ [/color]
 
-  Итак, вы проснулись, вас накормили, одели и вооружили. Вы пришли на брифинг и теперь задаетесь вопросом, кому стоит подлизаться, чтобы получить медаль или повышение. Вот краткий обзор начальства, чтобы вы могли начать добиваться расположения:
+  #Know your betters
+  ##A guide to command staff and department heads
+
+  So, you're awake, you're fed, you're dressed, and you're armed. You've made it to briefing and now you're wondering who to suck up to for that medal or promotion. Here's a rundown on the brass so you can get to kissing ass:
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookRoleCO"/>
   </Box>
-  - [bold]Командующий Офицер[/bold] (обычно именуемый КО) руководит всем. Он будет говорить другим офицерам, что делать, чтобы они могли говорить ВАМ, что делать.
-  - Должность КО занимают только те, кто доказал свою храбрость, лояльность и компетентность. Они обладают верховной властью на этом судне и подчиняются только Верховному Командованию.
+  -The [bold]Commanding Officer[/bold] (commonly referred to as CO) is running the show. They will tell the other officers what to do so they can tell YOU what to do.
+  -The position of CO is held only by those who have proven their courage, loyalty, and competence. They have supreme authority aboard this vessel, and answer only to High Command.
   \n
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookRoleXO"/>
   </Box>
-  - [bold]Исполнительный офицер[/bold] (или ИО) является вторым после Командующего Офицера. Если КО - мозг, то ИО - рука.
+  -The [bold]Executive Officer[/bold] (or XO) is second to the Commanding Officer. If the CO is the brain, the XO is the hand.
   \n
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookRoleSO"/>
   </Box>
-  - [bold]Офицер Штаба[/bold] (или ОШ) координирует действия с командирами отрядов и передает приказы и разведданные ИО и КО. Они осуществляют надзор за отрядами и могут видеть через камеру на вашем шлеме (который вы ведь НОСИТЕ, не так ли?).
+  -A [bold]Staff Officer[/bold] (or SO) coordinates with the squad leaders and relays orders and intel to the XO and CO. They run overwatch on the squad and can see through the camera on your helmet (which you ARE wearing, aren't you?).
   \n
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookRoleCMP"/>
   </Box>
-  - [bold]Главный Военной Полиции[/bold] руководит Военной Полицией и обеспечивает соблюдение и исполнение морского устава.
+  -The [bold]Chief of Military Police[/bold] oversees the Military Police and ensures that marine law is observed and enforced.
   \n
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookRoleCMO"/>
   </Box>
-  - [bold]Главный Врач[/bold] руководит Медблоком и обеспечивает эффективную работу медицинского персонала, а также безопасное и этичное проведение исследований.
+  -The [bold]Chief Medical Officer[/bold] oversees the Medbay and ensures the medical staff are operating efficiently and that research is being conducted safely and ethically.
   \n
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookRoleASO"/>
   </Box>
-  - [bold]Вспомогательный Офицер Поддержки[/bold] руководит департаментами Ангара, Разведки, Снабжения и Инженерии. В то время как в Снабжении и Инженерии есть свои начальники секций, ВПО имеет прямую власть над ними.
+  -The [bold]Auxiliary Support Officer[/bold] oversees the Hangar, Intel, and Engineering departments. While Engineering has their own section head, the ASO has direct authority over them.
   \n
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookRoleCE"/>
   </Box>
-  - [bold]Главный Инженер[/bold] руководит Техниками по Обслуживанию и Техниками по Боеприпасам.
+  -The [bold]Chief Engineer[/bold] oversees the Maintenance and Ordnance Technicians.
   \n
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookRoleQM"/>
   </Box>
-  - [bold]Квартирмейстер[/bold] управляет департаментом снабжения и руководит Грузовыми Техниками. Хотя он не является офицером, КМ является одним из самых высокопоставленных рядовых на борту и заслуживает места в этом списке.
+  -The [bold]Logistics Officer[/bold] operates the requisitions department and oversees the Requisitions Technicians.
   <Box>
-  Обратитесь к Командной Цепи, чтобы узнать иерархию и запомните:
+  Refer to the Commander Succession to learn the pecking order and remember:
   </Box>
   <Box>
-    [bold]ОТДАЙТЕ ЧЕСТЬ![/bold]
+    [bold]SALUTE![/bold]
   </Box>
 
-  ### Руководство от teatotaltemplar
+  ### Guide by teatotaltemplar
 </Document>

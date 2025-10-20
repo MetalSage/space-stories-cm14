@@ -81,10 +81,7 @@ public sealed class CMGunSystem : EntitySystem
 
     private readonly int _blockArcCollisionGroup = (int) (CollisionGroup.HighImpassable | CollisionGroup.Impassable);
 
-    private const string accuracyExamineColour = "yellow";
-
-    private bool _lagCompensatePointBlanks;
-    private float _lagCompensatePointBlanksMarginTiles;
+    private const string AccuracyExamineColour = "yellow";
 
     public override void Initialize()
     {
@@ -154,9 +151,6 @@ public sealed class CMGunSystem : EntitySystem
         SubscribeLocalEvent<GunDualWieldingComponent, GetWeaponAccuracyEvent>(OnDualWieldingGetWeaponAccuracy);
 
         SubscribeLocalEvent<UnremoveableComponent, RMCItemDropAttemptEvent>(OnUnremoveableDropAttempt);
-
-        Subs.CVar(_config, RMCCVars.RMCLagCompensationPointBlanks, v => _lagCompensatePointBlanks = v, true);
-        Subs.CVar(_config, RMCCVars.RMCLagCompensationPointBlanksMarginTiles, v => _lagCompensatePointBlanksMarginTiles = v, true);
     }
 
     /// <summary>
@@ -280,7 +274,7 @@ public sealed class CMGunSystem : EntitySystem
 
     private void OnExtraProjectilesShot(Entity<RMCExtraProjectilesDamageModsComponent> weapon, ref AmmoShotEvent args)
     {
-        for (int t = 1; t < args.FiredProjectiles.Count; ++t)
+        for (var t = 1; t < args.FiredProjectiles.Count; ++t)
         {
             if (!TryComp(args.FiredProjectiles[t], out ProjectileComponent? projectileComponent))
                 continue;
@@ -296,7 +290,7 @@ public sealed class CMGunSystem : EntitySystem
 
         using (args.PushGroup(nameof(RMCWeaponAccuracyComponent)))
         {
-            args.PushMarkup(Loc.GetString("rmc-examine-text-weapon-accuracy", ("colour", accuracyExamineColour), ("accuracy", weapon.Comp.ModifiedAccuracyMultiplier)));
+            args.PushMarkup(Loc.GetString("rmc-examine-text-weapon-accuracy", ("colour", AccuracyExamineColour), ("accuracy", weapon.Comp.ModifiedAccuracyMultiplier)));
         }
     }
 
@@ -331,7 +325,7 @@ public sealed class CMGunSystem : EntitySystem
             orderAccuracyPerTile = orderComponent.Received[0].Multiplier * orderComponent.AccuracyPerTileModifier;
         }
 
-        for (int t = 0; t < args.FiredProjectiles.Count; ++t)
+        for (var t = 0; t < args.FiredProjectiles.Count; ++t)
         {
             if (!TryComp(args.FiredProjectiles[t], out RMCProjectileAccuracyComponent? accuracyComponent))
                 continue;
@@ -452,39 +446,27 @@ public sealed class CMGunSystem : EntitySystem
         if (_timing.CurTime < userDelay.LastPBAt + userDelay.TimeBetweenPBs)
             return;
 
+        var session = CompOrNull<ActorComponent>(user)?.PlayerSession;
         if (gunComp.Target.Value == user.Owner)
         {
             if (gunComp.SelectedMode == SelectiveFire.FullAuto)
                 return;
 
-            if (TryComp(user, out ActorComponent? actor) &&
-                !_netConfig.GetClientCVar(actor.PlayerSession.Channel, RMCCVars.RMCDamageYourself))
+            if (session != null &&
+                !_netConfig.GetClientCVar(session.Channel, RMCCVars.RMCDamageYourself))
             {
                 return;
             }
         }
 
-        if (!_interaction.InRangeUnobstructed(gun.Owner, gunComp.Target.Value, gun.Comp.Range, lagCompensated: _lagCompensatePointBlanks))
+        if (!_interaction.InRangeUnobstructed(gun.Owner, gunComp.Target.Value, gun.Comp.Range, user: user))
             return;
 
-        var session = CompOrNull<ActorComponent>(user)?.PlayerSession;
         foreach (var projectile in args.FiredProjectiles)
         {
-            var projectileRange = _net.IsServer && _lagCompensatePointBlanks && HasComp<RMCProjectilePointBlankedComponent>(projectile)
-                ? gun.Comp.Range + _lagCompensatePointBlanksMarginTiles
-                : gun.Comp.Range;
-
-            var projectilePosition = _transform.GetMoverCoordinates(projectile);
-            var targetPosition = _transform.GetMoverCoordinates(gunComp.Target.Value);
-            if (_net.IsServer && _lagCompensatePointBlanks)
-            {
-                projectilePosition = _rmcLagCompensation.GetCoordinates(projectile, session);
-                targetPosition = _rmcLagCompensation.GetCoordinates(gunComp.Target.Value, session);
-            }
-
             if (!TryComp(projectile, out ProjectileComponent? projectileComp) ||
                 !TryComp(projectile, out PhysicsComponent? physicsComp) ||
-                !_transform.InRange(projectilePosition, targetPosition, projectileRange))
+                !_rmcLagCompensation.IsWithinMargin(projectile, gunComp.Target.Value, session, gun.Comp.Range))
             {
                 continue;
             }
@@ -495,11 +477,11 @@ public sealed class CMGunSystem : EntitySystem
                 Dirty(projectile, projectileComp);
             }
 
-            EnsureComp<RMCProjectilePointBlankedComponent>(projectile);
             _projectile.ProjectileCollide((projectile, projectileComp, physicsComp), gunComp.Target.Value);
         }
 
         userDelay.LastPBAt = _timing.CurTime;
+        Dirty(user, userDelay);
 
         if (!TryComp<MeleeWeaponComponent>(gun, out var melee))
             return;
@@ -649,7 +631,7 @@ public sealed class CMGunSystem : EntitySystem
         if (args.Handled)
             return;
 
-        int randomCount = _random.Next(1, gun.Comp.Capacity + 1);
+        var randomCount = _random.Next(1, gun.Comp.Capacity + 1);
 
         gun.Comp.CurrentIndex = (gun.Comp.CurrentIndex + randomCount) % gun.Comp.Capacity;
 

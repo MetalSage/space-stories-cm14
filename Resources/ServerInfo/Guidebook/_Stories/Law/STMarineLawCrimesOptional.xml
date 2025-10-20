@@ -1,0 +1,90 @@
+﻿<Document>
+  # Факультативные Преступления
+  - Эти преступления могут быть добавлены к существующим обвинениям, где это уместно.
+  <Table Columns="4">
+    <ColorBox>
+      <Box>
+        Обвинение
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Описание
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Мелкое
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Тяжкое
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Сопротивление Аресту
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Сопротивление законному аресту или обыску, проводимому сотрудником Военной Полиции.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Отказ подчиниться законному обыску или аресту.\n[bold]5 минут.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Сопротивление законному аресту со стороны Военной Полиции путем бегства или применения силы.\n[bold]10 минут.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Пособничество и Подстрекательство
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Помощь другим в совершении преступления, прямо или косвенно, или подстрекательство их к совершению преступления. Любому лицу, оказывающему Пособничество и Подстрекательство, необходимо сообщить о преступлениях лица, которому они помогали.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]То же наказание, что и за совершенное преступление.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]То же наказание, что и за совершенное преступление.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Нарушение Общественного Порядка в Заключении
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Вызывать значительные нарушения порядка, находясь в Бриге и под арестом. Это может быть добавлено к любому обвинению.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Нарушение Мелкого Закона, находясь под арестом или в Тюрьме.\n[bold]7,5 минут.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Нарушение Тяжкого Закона, находясь под арестом или в Тюрьме.[bold]15 минут.[/bold]
+      </Box>
+    </ColorBox>
+
+  </Table>
+</Document>

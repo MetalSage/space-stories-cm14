@@ -1,66 +1,66 @@
-# Whisper
+# МеталСидж
 - type: rank
   id: RMCRankProvostSectorMarshal
   name: Секторный Маршал
   prefix: Сек. Маршл
   paygrade: O9
 
-# Any admin with high law understanding
+# Любой администратор с высоким пониманием закона
 - type: rank
   id: RMCRankProvostSeniorMarshal
   name: Старший Маршал
   prefix: Ст. Маршал
   paygrade: O8
 
-# Any admin with low law understanding, or wanting a lower rank
+# Любой администратор с низким пониманием закона, или что хочет ранг пониже
 - type: rank
   id: RMCRankProvostMarshal
   name: Маршал
   prefix: Маршал
   paygrade: O7
 
-# Any whitelisted CO
+# Любой Вайтлист КО
 - type: rank
   id: RMCRankProvostDeputyMarshal
   name: Заместитель Маршала
   prefix: Зам. Маршала
   paygrade: O6
 
-# Fax responder
+# Факс Респондер
 - type: rank
   id: RMCRankProvostCommunicationsOfficer
-  name: Communications Officer
-  prefix: ComOff.
+  name: Офицер Коммуникаций
+  prefix: КомОф.
 
-# Any player with high law understanding
+# Любой игрок с высоким пониманием закона
 - type: rank
   id: RMCRankProvostChiefInspector
   name: Главный Инспектор
   prefix: Гл. Инспектор
   paygrade: CI
 
-# Any player with medium-low law understanding
+# Любой игрок со средне-низким пониманием закона
 - type: rank
   id: RMCRankProvostInspector
   name: Провост Инспектор
   prefix: Провост Инспектор
   paygrade: I
 
-# Any player with low law understanding, with guidance
+# Любой игрок с низким пониманием закона, с доп. помощью
 - type: rank
   id: RMCRankProvostAdvisor
   name: Сержант Майор
   prefix: Серж. Майор
   paygrade: E9E
 
-# Any player with given objective, possible team leader
+# Любой игрок с определенной целью, возможно лидер группы
 - type: rank
   id: RMCRankProvostProvostTeamLeader
   name: Мастер Сержант
   prefix: Маст. Серж.
   paygrade: E8
 
-# Any player with given objective, squad member
+# Любой игрок с определенной целью, член группы
 - type: rank
   id: RMCRankProvostProvostEnforcer
   name: Старший Сержант

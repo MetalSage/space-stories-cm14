@@ -18,7 +18,7 @@
 
 - type: rank
   id: RMCRankLieutenantColonel
-  name: Подполковник
+  name: Лейтенант-Полковник
   prefix: Подполк.
   paygrade: O5
 
@@ -36,24 +36,24 @@
 
 - type: rank
   id: RMCRankFirstLT
-  name: Старший Лейтенант
-  prefix: Ст. Лейт.
+  name: Первый Лейтенант
+  prefix: 1ый. Лейт.
   paygrade: O2
 
 - type: rank
   id: RMCRankSecondLT
-  name: Младший Лейтенант
-  prefix: Мл. Лейт.
+  name: Второй Лейтенант
+  prefix: 2ой. Лейт.
   paygrade: O1
 
 - type: rank
   id: RMCRankChiefWarrantOfficer
-  name: Chief Warrant Officer
-  prefix: CWarOff.
+  name: Старший Уорент-Офицер
+  prefix: СтУорОф.
   paygrade: O0-2
 
 - type: rank
   id: RMCRankWarrantOfficer
-  name: Warrant Officer
-  prefix: WarOff.
+  name: Уоррент-Офицер
+  prefix: УорОф.
   paygrade: O0-1
