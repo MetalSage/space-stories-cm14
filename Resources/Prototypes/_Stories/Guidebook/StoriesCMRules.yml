@@ -17,7 +17,6 @@
   - STCharacterNames
   - STUseOfLethalForce
   - STMilitaryLawMutinies
-  - STInGameRewards
 
 - type: guideEntry
   parent: RMC
@@ -63,71 +62,64 @@
   parent: RMC
   id: STCommunication
   name: "Правило 2.1: Коммуникация IC"
-  priority: 3
+  priority: 4
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/Communication.xml"
 
 - type: guideEntry
   parent: RMC
   id: STMetagamingMetacommunication
   name: "Правило 3: Метагейминг и метакоммуникации"
-  priority: 4
+  priority: 5
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/MetagamingMetacommunication.xml"
 
 - type: guideEntry
   parent: RMC
   id: STERP
   name: "Правило 4: ERP"
-  priority: 5
+  priority: 6
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/ERP.xml"
 
 - type: guideEntry
   parent: RMC
   id: STBuggingFoulPlay
   name: "Правило 5: Багоюз и нечестная игра"
-  priority: 6
+  priority: 7
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/BuggingFoulPlay.xml"
 
 - type: guideEntry
   parent: RMC
   id: STBypassBlockingMultiAccounts
   name: "Правило 6: Обход блокировок, мультиаккаунты"
-  priority: 7
+  priority: 8
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/BypassBlockingMultiAccounts.xml"
 
 - type: guideEntry
   parent: RMC
   id: STPlayYourRole
   name: "Правило 7: Отыгрывайте свою роль"
-  priority: 8
+  priority: 9
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/PlayYourRole.xml"
 
 - type: guideEntry
   parent: RMC
   id: STCharacterNames
   name: "Правило 8: Имена персонажей"
-  priority: 9
+  priority: 10
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/CharacterNames.xml"
 
 - type: guideEntry
   parent: RMC
   id: STUseOfLethalForce
   name: "Правило 9: Применение летальной силы"
-  priority: 10
+  priority: 11
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/UseOfLethalForce.xml"
 
 - type: guideEntry
   parent: RMC
   id: STMilitaryLawMutinies
   name: "Правило 10: Военный закон, мятежи"
-  priority: 11
-  text: "/ServerInfo/Guidebook/_Stories/Rules/Core/MilitaryLawMutinies.xml"
-
-- type: guideEntry
-  parent: RMC
-  id: STInGameRewards
-  name: "Правило 11: Внутриигровые награды"
   priority: 12
-  text: "/ServerInfo/Guidebook/_Stories/Rules/Core/InGameRewards.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Rules/Core/MilitaryLawMutinies.xml"
 
 - type: guideEntry
   parent: RMC
