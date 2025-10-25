@@ -15879,5 +15879,5 @@ entities:
       parent: 2
     - type: WarpPoint
       follow: True
-      location: Admin Fax
+      location: Аванпост Факс Ответчиков
 ...

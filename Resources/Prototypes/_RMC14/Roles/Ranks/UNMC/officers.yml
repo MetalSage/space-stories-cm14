@@ -49,11 +49,11 @@
 - type: rank
   id: RMCRankChiefWarrantOfficer
   name: Старший Уорент-Офицер
-  prefix: СтУорОф.
+  prefix: Ст. Уор. Оф.
   paygrade: O0-2
 
 - type: rank
   id: RMCRankWarrantOfficer
   name: Уоррент-Офицер
-  prefix: УорОф.
+  prefix: Уор. Оф.
   paygrade: O0-1

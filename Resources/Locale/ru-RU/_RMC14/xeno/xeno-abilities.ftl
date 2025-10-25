@@ -51,7 +51,7 @@ rmc-xeno-evolution-start-others = { $xeno } начинает крутиться 
 # Fortify
 cm-xeno-fortify-cant-headbutt = Вы не можете ударить головой во время укрепления!
 cm-xeno-fortify-cant-rest = Вы не можете отдыхать во время укрепления!
-cm-xeno-fortify-cant-tail-sweep = Вы не можете подметать хвостом во время укрепления!
+cm-xeno-fortify-cant-tail-sweep = Вы не можете сделать удар хвостом во время укрепления!
 cm-xeno-fortify-cant-toggle-crest = Вы не можете опускать гребень во время укрепления!
 # Прыжок
 cm-xeno-leap-blocked = Мы не можем этого сделать, когда сжимаемся и крадемся!
@@ -78,11 +78,11 @@ cm-xeno-crippling-strike-hit = Мы значительно усиливаем н
 # Pheromones
 rmc-xeno-pheromones-help =
     Феромоны ежесекундно дают бафф всем ксеносам в радиусе действия за счет некоторого количества запасенной плазмы, как показано ниже:
-    
+
     Безумие (красный) - увеличивает скорость бега, урон и шанс сбить маски охотников за головами.
-    
+
     Защита (зеленый) - в критическом состоянии увеличивается максимальное отрицательное здоровье и замедляется отток травы.
-    
+
     Восстановление (синий) - увеличение регенерации плазмы и здоровья.
 # Pheromones
 cm-xeno-choose-pheromones = Выберите феромоны
@@ -96,7 +96,7 @@ cm-xeno-none-devoured = Вы никого не сожрали!
 # Rest
 rmc-xeno-rest-cant-headbutt = Нельзя бить головой во время отдыха!
 rmc-xeno-rest-cant-fortify = Вы не можете укрепляться во время отдыха!
-rmc-xeno-rest-cant-tail-sweep = Вы не можете подметать хвостом во время отдыха!
+rmc-xeno-rest-cant-tail-sweep = Вы не можете сделать удар хвостом во время отдыха!
 rmc-xeno-rest-cant-toggle-crest = Вы не можете опустить гребень во время отдыха!
 rmc-xeno-rest-cant-leap = Вы не можете прыгать во время отдыха!
 rmc-xeno-rest-cant-lunge = Нельзя делать выпады во время отдыха!
@@ -111,12 +111,12 @@ rmc-xeno-rest-cant = Вы не можете делать это во время 
 # Rest
 cm-xeno-rest-cant-headbutt = Вы не можете бить головой, пока отдыхаете!
 cm-xeno-rest-cant-fortify = Вы не можете укрепиться во время отдыха!
-cm-xeno-rest-cant-tail-sweep = Вы не можете подметать хвостом, пока отдыхаете!
+cm-xeno-rest-cant-tail-sweep = Вы не можете сделать удар хвостом, пока отдыхаете!
 cm-xeno-rest-cant-toggle-crest = Вы не можете опустить свой гребень во время отдыха!
 # Toggle Crest Defense
 cm-xeno-toggle-crest-cant-fortify = Вы не можете укрепиться, пока ваш гребень понижен!
 cm-xeno-toggle-crest-cant-rest = Вы не можете отдыхать, пока ваш гребень опущен!
-cm-xeno-toggle-crest-cant-tail-sweep = Вы не можете зачищать хвост, пока ваш гребень опущен!
+cm-xeno-toggle-crest-cant-tail-sweep = Вы не можете сделать удар хвостом, пока ваш гребень опущен!
 rmc-xeno-plasma-ovipositor = Мы не можем перенести плазму в королеву, закрепленную на яйцекладе.
 # Transfer Plasma
 cm-xeno-plasma-transferred-to-other = Вы передали { $plasma } плазмы в { $target }. Теперь у вас есть { $total }
@@ -132,14 +132,14 @@ cm-xeno-ovipositor-attach = Мы начинаем прикрепляться к 
 # Retrieve Egg
 cm-xeno-retrieve-egg-no-eggs = У нас не хранятся яйца!
 cm-xeno-retrieve-egg-too-many-eggs = Мы не можем нести больше яиц!
-cm-xeno-retrieve-egg-stash-egg = Мы складываем яйцо в надежном месте. Сейчас храниться: { $cur_eggs }/{ $max_eggs }.
-cm-xeno-retrieve-egg-unstash-egg = Мы берем яйцо из нашего хранилища. Сейчас храниться: { $cur_eggs }/{ $max_eggs }.
+cm-xeno-retrieve-egg-stash-egg = Мы складываем яйцо в надежном месте. Сейчас хранится: { $cur_eggs }/{ $max_eggs }.
+cm-xeno-retrieve-egg-unstash-egg = Мы берем яйцо из нашего хранилища. Сейчас хранится: { $cur_eggs }/{ $max_eggs }.
 rmc-xeno-retrieve-egg-current = { CAPITALIZE(SUBJECT($xeno)) } { CONJUGATE-BE($xeno) } хранит: { $cur_eggs }/{ $max_eggs } яйца.
 # Throw Parasite
 cm-xeno-throw-parasite-no-parasites = У нас нет никаких лицехватов!
 cm-xeno-throw-parasite-too-many-parasites = Мы не можем носить больше лицехватов!
-cm-xeno-throw-parasite-stash-parasite = Мы складываем лицехватов в надежном месте. Сейчас храниться: { $cur_parasites }/{ $max_parasites }.
-cm-xeno-throw-parasite-unstash-parasite = Мы берем лицехватов из нашего хранилища. Сейчас храниться: { $cur_parasites }/{ $max_parasites }.
+cm-xeno-throw-parasite-stash-parasite = Мы складываем лицехватов в надежном месте. Сейчас хранится: { $cur_parasites }/{ $max_parasites }.
+cm-xeno-throw-parasite-unstash-parasite = Мы берем лицехвата из нашего хранилища. Сейчас хранится: { $cur_parasites }/{ $max_parasites }.
 rmc-xeno-throw-parasite-current = { CAPITALIZE(SUBJECT($xeno)) } { CONJUGATE-BE($xeno) } укрытие: { $cur_paras }/{ $max_paras } лицехватов.
 rmc-xeno-throw-parasite-reserves =
     { CAPITALIZE(SUBJECT($xeno)) } { CONJUGATE-HAVE($xeno) } { $rev_paras } призрак лицехвата { $rev_paras ->

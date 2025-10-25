@@ -61,7 +61,7 @@
   - type: DropshipFabricatorPrintable
     cost: 600
   - type: DropshipWeapon
-    abbreviation: РКТ
+    abbreviation: РКУ
     fireDelay: 5
     weaponAttachedSprite:
       sprite: _RMC14/Objects/dropship_attachments.rsi
@@ -86,7 +86,7 @@
   - type: DropshipFabricatorPrintable
     cost: 600
   - type: DropshipWeapon
-    abbreviation: РКТ
+    abbreviation: РКБ
     fireDelay: 1
     weaponAttachedSprite:
       sprite: _RMC14/Objects/dropship_attachments.rsi
