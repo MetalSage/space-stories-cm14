@@ -194,6 +194,7 @@
     - ActionXenoAcidShotgun
     - ActionXenoTrapperZoom
     - ActionXenoDevolve
+    hidden: true
   - type: XenoStrain
     name: rmc-xeno-trapper-name
     description: rmc-xeno-trapper-description
