@@ -368,9 +368,9 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         // Stories-Vehicle-Gun-Content-Tweak-Start
         var userXform = Transform(user);
-        var fromCoordinates = userXform.Coordinates;
+        fromCoordinates = userXform.Coordinates;
 
-        if (TryComp<VehicleComponent>(user, out var vehicle) && 
+        if (TryComp<VehicleComponent>(user, out var vehicle) &&
             vehicle.ActiveHardpoint is { } hardpoint &&
             TryComp<VehicleAttachableComponent>(hardpoint, out var hardpointAttachable))
         {
