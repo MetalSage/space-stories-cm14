@@ -8,7 +8,6 @@
   - STCommunityExpectations
   - STGrief
   - STRolePlay
-  - STCommunication
   - STMetagamingMetacommunication
   - STERP
   - STBuggingFoulPlay
@@ -60,140 +59,133 @@
 
 - type: guideEntry
   parent: RMC
-  id: STCommunication
-  name: "Правило 2.1: Коммуникация IC"
-  priority: 4
-  text: "/ServerInfo/Guidebook/_Stories/Rules/Core/Communication.xml"
-
-- type: guideEntry
-  parent: RMC
   id: STMetagamingMetacommunication
   name: "Правило 3: Метагейминг и метакоммуникации"
-  priority: 5
+  priority: 4
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/MetagamingMetacommunication.xml"
 
 - type: guideEntry
   parent: RMC
   id: STERP
   name: "Правило 4: ERP"
-  priority: 6
+  priority: 5
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/ERP.xml"
 
 - type: guideEntry
   parent: RMC
   id: STBuggingFoulPlay
   name: "Правило 5: Багоюз и нечестная игра"
-  priority: 7
+  priority: 6
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/BuggingFoulPlay.xml"
 
 - type: guideEntry
   parent: RMC
   id: STBypassBlockingMultiAccounts
   name: "Правило 6: Обход блокировок, мультиаккаунты"
-  priority: 8
+  priority: 7
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/BypassBlockingMultiAccounts.xml"
 
 - type: guideEntry
   parent: RMC
   id: STPlayYourRole
   name: "Правило 7: Отыгрывайте свою роль"
-  priority: 9
+  priority: 8
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/PlayYourRole.xml"
 
 - type: guideEntry
   parent: RMC
   id: STCharacterNames
   name: "Правило 8: Имена персонажей"
-  priority: 10
+  priority: 9
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/CharacterNames.xml"
 
 - type: guideEntry
   parent: RMC
   id: STUseOfLethalForce
   name: "Правило 9: Применение летальной силы"
-  priority: 11
+  priority: 10
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/UseOfLethalForce.xml"
 
 - type: guideEntry
   parent: RMC
   id: STMilitaryLawMutinies
   name: "Правило 10: Военный закон, мятежи"
-  priority: 12
+  priority: 11
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core/MilitaryLawMutinies.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGCommunityExpectations
   name: "Rule 0: Community Expectations"
-  priority: 13
+  priority: 12
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/CommunityExpectations.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGGrief
   name: "Rule 1: Griefing"
-  priority: 14
+  priority: 13
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/Grief.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGRolePlay
   name: "Rule 2: Roleplaying"
-  priority: 15
+  priority: 14
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/RolePlay.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGMetagamingMetacommunication
   name: "Rule 3: Metagaming and Metacommunication"
-  priority: 16
+  priority: 15
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/MetagamingMetacommunication.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGERP
   name: "Rule 4: ERP"
-  priority: 17
+  priority: 16
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/ERP.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGBuggingFoulPlay
   name: "Rule 5: Bug Exploitation and Foul Play"
-  priority: 18
+  priority: 17
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/BuggingFoulPlay.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGBypassBlockingMultiAccounts
   name: "Rule 6: Ban Evasion and Multi-accounting"
-  priority: 19
+  priority: 18
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/BypassBlockingMultiAccounts.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGPlayYourRole
   name: "Rule 7: Play Your Role"
-  priority: 20
+  priority: 19
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/PlayYourRole.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGCharacterNames
   name: "Rule 8: Character Names"
-  priority: 21
+  priority: 20
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/CharacterNames.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGUseOfLethalForce
   name: "Rule 9: Use of Lethal Force"
-  priority: 22
+  priority: 21
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/UseOfLethalForce.xml"
 
 - type: guideEntry
   parent: RMC
   id: STENGMilitaryLawMutinies
   name: "Rule 10: Military Law and Mutinies"
-  priority: 23
+  priority: 22
   text: "/ServerInfo/Guidebook/_Stories/Rules/Core_ENG/MilitaryLawMutinies.xml"
