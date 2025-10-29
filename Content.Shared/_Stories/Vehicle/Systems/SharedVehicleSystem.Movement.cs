@@ -784,8 +784,6 @@ public sealed partial class SharedVehicleSystem
                 _audio.PlayLocal(collidable.DestroySound, driver.Value, driver);
         }
 
-        
-
         _popup.PopupEntity(
             Loc.GetString("st-vehicle-crushes", ("vehicle", vehicle.Owner), ("target", structure)),
             structure,
