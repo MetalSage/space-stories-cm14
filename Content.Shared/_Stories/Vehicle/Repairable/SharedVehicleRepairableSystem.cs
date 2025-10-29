@@ -48,14 +48,7 @@ public sealed class SharedVehicleRepairableSystem : EntitySystem
         if (_tool.HasQuality(args.Used, "Welding") &&
             HasComp<BlowtorchComponent>(args.Used) &&
             !_rmcRepairable.UseFuel(args.Used, args.User, repairable.Comp.FuelUsed, true))
-            return;
-
-        if (damageable.TotalDamage <= FixedPoint2.Zero)
         {
-            _popup.PopupClient(Loc.GetString("rmc-repairable-not-damaged", ("target", repairable)),
-                args.User,
-                args.User,
-                PopupType.SmallCaution);
             return;
         }
 
@@ -68,6 +61,15 @@ public sealed class SharedVehicleRepairableSystem : EntitySystem
 
         if (tool is null || !_tool.HasQuality(args.Used, tool.Value))
             return;
+
+        if (damageable.TotalDamage <= FixedPoint2.Zero)
+        {
+            _popup.PopupClient(Loc.GetString("rmc-repairable-not-damaged", ("target", repairable)),
+                args.User,
+                args.User,
+                PopupType.SmallCaution);
+            return;
+        }
 
         args.Handled = true;
 

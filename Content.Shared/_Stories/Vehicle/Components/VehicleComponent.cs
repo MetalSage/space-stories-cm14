@@ -38,7 +38,7 @@ public sealed partial class VehicleComponent : Component
     public ResPath GridPath = new ResPath("/Maps/_Stories/Vehicles/M577.yml");
 
     [DataField, AutoNetworkedField]
-    public string MovementSlot = "vehicle-slot-treads";
+    public string MovementSlot = "st-vehicle-slot-treads";
 
     [ViewVariables, AutoNetworkedField]
     public List<EntityUid> Hardpoints = new();

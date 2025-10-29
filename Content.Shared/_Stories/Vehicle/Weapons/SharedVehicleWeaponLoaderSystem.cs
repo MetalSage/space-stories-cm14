@@ -184,7 +184,7 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
 
     private void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
     {
-        var state = new VehicleStatusUIState();
+        var state = new VehicleStatusUIState(vehicle.Comp.Locked);
         _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
     }
 

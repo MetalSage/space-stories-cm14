@@ -15,7 +15,6 @@ public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserI
 {
     [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     [ViewVariables]
     private VehicleElevatorWindow? _window;
@@ -75,11 +74,8 @@ public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserI
         _window.VehiclesContainer.DisposeAllChildren();
         _orderButtons.Clear();
 
-        foreach (var (orderProto, requiredOnline) in computer.Orders)
+        foreach (var orderProto in computer.Orders)
         {
-            if (_playerManager.PlayerCount < requiredOnline)
-                continue;
-
             var button = new Button
             {
                 HorizontalExpand = true
@@ -89,8 +85,7 @@ public sealed class VehicleElevatorBui(EntityUid owner, Enum uiKey) : BoundUserI
             button.AddStyleClass(CMStyleClasses.CMLabelAlignLeft);
             button.Label.AddStyleClass(CMStyleClasses.CMLabelAlignLeft);
 
-            var itemName = _prototypes.Index<EntityPrototype>(orderProto).Name;
-            button.Text = Loc.GetString("st-vehicle-elevator-button-order", ("itemName", itemName));
+            button.Text = _prototypes.Index<EntityPrototype>(orderProto).Name;
 
             var order = orderProto;
             button.OnPressed += _ => OnOrderButtonPressed(order);

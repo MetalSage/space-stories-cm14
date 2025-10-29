@@ -80,7 +80,10 @@ public sealed class VehicleHardpointWindowUserInterfaceState(NetEntity? activeHa
 }
 
 [Serializable, NetSerializable]
-public sealed class VehicleStatusUIState : BoundUserInterfaceState;
+public sealed class VehicleStatusUIState(bool doorState) : BoundUserInterfaceState
+{
+    public readonly bool DoorState = doorState;
+}
 
 public sealed partial class VehicleLockDoorsEvent : InstantActionEvent;
 

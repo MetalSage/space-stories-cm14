@@ -554,7 +554,11 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         EnsureComp<VehicleViewportWatcherComponent>(args.User);
         Dirty(ent);
 
-        _eye.SetTarget(args.User, vehicle.Owner);
+        if (TryComp<TransformComponent>(vehicle.Owner, out var xform) &&
+            xform.MapID != MapId.Nullspace)
+        {
+            _eye.SetTarget(args.User, vehicle.Owner);
+        }
     }
 
     private void OnViewportWatcherMove(Entity<VehicleViewportWatcherComponent> ent, ref MoveInputEvent args)
@@ -867,7 +871,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
     private void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
     {
-        var state = new VehicleStatusUIState();
+        var state = new VehicleStatusUIState(vehicle.Comp.Locked);
         _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
     }
 }

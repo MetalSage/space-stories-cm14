@@ -18,12 +18,12 @@ public sealed class VehicleStatusBui : BoundUserInterface
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private VehicleStatusWindow? _window;
+    private VehicleStatusUIState? _lastState;
+
     private bool _resistancesExpanded = false;
     private bool _passengersExpanded = false;
 
-    public VehicleStatusBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
+    public VehicleStatusBui(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
 
     protected override void Open()
     {
@@ -41,8 +41,9 @@ public sealed class VehicleStatusBui : BoundUserInterface
     {
         base.UpdateState(state);
 
-        if (state is VehicleStatusUIState)
+        if (state is VehicleStatusUIState vs)
         {
+            _lastState = vs;
             Refresh();
         }
     }
@@ -85,7 +86,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
             return;
 
         UpdateIntegrity(vehicle);
-        UpdateDoorLock(vehicle);
+        UpdateDoorLock();
         UpdateResistances(vehicle);
         UpdatePassengers(vehicle);
         UpdateHardpoints(vehicle);
@@ -157,14 +158,16 @@ public sealed class VehicleStatusBui : BoundUserInterface
             };
     }
 
-    private void UpdateDoorLock(VehicleComponent vehicle)
+    private void UpdateDoorLock()
     {
         if (_window == null)
             return;
 
-        _window.DoorLockLabel.Text = Loc.GetString("st-ui-vehicle-door-state", ("locked", !vehicle.Locked));
+        var locked = _lastState?.DoorState ?? false;
 
-        if (!vehicle.Locked)
+        _window.DoorLockLabel.Text = Loc.GetString("st-ui-vehicle-door-state", ("locked", locked));
+
+        if (locked)
         {
             _window.DoorLockPanel.PanelOverride = new StyleBoxFlat
             {
@@ -334,7 +337,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
 
             var nameLabel = new Label
             {
-                Text = roleGroup.CategoryName,
+                Text = Loc.GetString("st-ui-vehicle-role-reserved-slot", ("name", roleGroup.CategoryName)),
                 HorizontalExpand = true,
                 FontColorOverride = Color.FromHex("#E0E0E0")
             };

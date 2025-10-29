@@ -21,5 +21,5 @@ public sealed partial class VehicleStructureTargetComponent : Component
     public int DamageToVehicleOnFail = 5;
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier? DestroySound = new SoundPathSpecifier("/Audio/Effects/metal_crash.ogg");
+    public SoundSpecifier? DestroySound = new SoundPathSpecifier("/Audio/_Stories/metal_crash.ogg", AudioParams.Default.WithVolume(20));
 }

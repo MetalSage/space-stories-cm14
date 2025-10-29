@@ -22,7 +22,6 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     public override void Initialize()
     {
@@ -55,11 +54,7 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
         if (!computer.Comp.IsActive)
             return;
 
-        if (!computer.Comp.Orders.ContainsKey(args.Order))
-            return;
-
-        var requiredOnline = computer.Comp.Orders[args.Order];
-        if (_playerManager.PlayerCount < requiredOnline)
+        if (!computer.Comp.Orders.Contains(args.Order))
             return;
 
         if (GetElevator(computer) is not { } elevator)

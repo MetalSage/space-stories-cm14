@@ -592,9 +592,9 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
         UpdateStripUi(holderUid);
     }
 
-    private Dictionary<string, (string?, bool, string?, string?)> GetSlotsForStripUi(Entity<VehicleAttachableHolderComponent> holder)
+    private Dictionary<string, (string?, bool)> GetSlotsForStripUi(Entity<VehicleAttachableHolderComponent> holder)
     {
-        var result = new Dictionary<string, (string?, bool, string?, string?)>();
+        var result = new Dictionary<string, (string?, bool)>();
         var metaQuery = GetEntityQuery<MetaDataComponent>();
 
         foreach (var slotId in holder.Comp.Slots.Keys)
@@ -613,11 +613,11 @@ public sealed class VehicleAttachableHolderSystem : EntitySystem
                     displayName = $"{metadata.EntityName} ({container.Count})";
                 }
 
-                result.Add(slotId, (displayName, slot.Locked, attachable.Comp.Description, attachable.Comp.Stats));
+                result.Add(slotId, (displayName, slot.Locked));
             }
             else
             {
-                result.Add(slotId, (null, slot.Locked, null, null));
+                result.Add(slotId, (null, slot.Locked));
             }
         }
 

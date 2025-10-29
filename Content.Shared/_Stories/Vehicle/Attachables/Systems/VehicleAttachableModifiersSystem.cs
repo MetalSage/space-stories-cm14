@@ -162,7 +162,7 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
                 var msg = Loc.GetString("st-destroyed-vehicle-attachable-deleted", ("attachable", ent.Owner));
                 _popup.PopupPredicted(msg, msg, ent, ent, PopupType.Small);
 
-                QueueDel(ent);
+                PredictedQueueDel(ent.Owner);
             }
 
             if (holder is not null && TryComp<VehicleComponent>(holder.Value, out vehicle))
@@ -177,7 +177,7 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
 
     private void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
     {
-        var state = new VehicleStatusUIState();
+        var state = new VehicleStatusUIState(vehicle.Comp.Locked);
         _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
     }
 

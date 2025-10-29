@@ -1,4 +1,5 @@
 using Content.Shared._Stories.Vehicle.Systems;
+using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -6,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Shared._Stories.Vehicle;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(SharedVehicleSystem))]
+[Access(typeof(SharedVehicleSystem), typeof(SharedMoverController))]
 public sealed partial class VehicleMovementComponent : Component
 {
     [DataField, AutoNetworkedField]
@@ -49,22 +50,7 @@ public sealed partial class VehicleMovementComponent : Component
     public Direction LastMoveDirection;
 
     [DataField, AutoNetworkedField]
-    public Angle LastRotation = Angle.Zero;
-
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
-    public TimeSpan LastBlockedTime;
-
-    [DataField]
-    public float BlockedCooldown = 0.05f;
-
-    [DataField, AutoNetworkedField]
-    public SoundSpecifier? MovementSound = new SoundPathSpecifier("/Audio/_Stories/tank_driving.ogg");
-
-    [DataField, AutoNetworkedField]
-    public int SoundEvery = 25;
-
-    [DataField, AutoNetworkedField]
-    public float SoundSteps;
+    public SoundSpecifier? MovementSound = new SoundPathSpecifier("/Audio/_Stories/tank_driving.ogg", AudioParams.Default.WithVolume(-4));
 
     [DataField, AutoNetworkedField]
     public EntityUid? AudioStream;

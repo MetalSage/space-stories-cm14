@@ -27,6 +27,8 @@
         layer:
         - MachineLayer
   - type: VehicleWeaponLoader
+    skills:
+      RMCSkillVehicles: 2
   - type: UserInterface
     interfaces:
       enum.VehicleWeaponLoaderUI.Key:

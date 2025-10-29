@@ -364,7 +364,7 @@ public abstract partial class SharedGunSystem
 
         if (vehicle.Hardpoints.Contains(gunUid))
         {
-            var state = new VehicleStatusUIState();
+            var state = new VehicleStatusUIState(vehicle.Locked);
             _ui.SetUiState(xform.ParentUid, VehicleStatusUI.Key, state);
         }
     }

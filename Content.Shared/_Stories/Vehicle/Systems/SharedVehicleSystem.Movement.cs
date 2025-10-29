@@ -79,20 +79,8 @@ public sealed partial class SharedVehicleSystem
         SubscribeLocalEvent<VehicleComponent, PreventCollideEvent>(OnVehiclePreventCollide);
         SubscribeLocalEvent<VehicleComponent, MoveInputEvent>(OnVehicleMoveInput);
 
-        SubscribeLocalEvent<VehicleMovementComponent, ComponentInit>(OnMovementInit);
-        SubscribeLocalEvent<VehicleMovementComponent, ComponentShutdown>(OnMovementShutdown);
         SubscribeLocalEvent<VehicleMovementComponent, RefreshMovementSpeedModifiersEvent>(OnMovementSpeedRefresh);
         SubscribeLocalEvent<VehicleMovementComponent, MoveEvent>(OnVehicleMove);
-    }
-
-    private void OnMovementInit(Entity<VehicleMovementComponent> ent, ref ComponentInit args)
-    {
-        _movement.RefreshMovementSpeedModifiers(ent);
-    }
-
-    private void OnMovementShutdown(Entity<VehicleMovementComponent> ent, ref ComponentShutdown args)
-    {
-        _movement.RefreshMovementSpeedModifiers(ent);
     }
 
     private void OnMovementSpeedRefresh(Entity<VehicleMovementComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
@@ -132,7 +120,6 @@ public sealed partial class SharedVehicleSystem
         }
 
         ent.Comp.LastMoveDirection = moveDir;
-        ent.Comp.LastRotation = currentRotation;
 
         if (ent.Comp.DistanceMoved < ent.Comp.StepIncrement)
             return;
@@ -146,14 +133,9 @@ public sealed partial class SharedVehicleSystem
         if (ent.Comp.CurrentMomentum < ent.Comp.MaxMomentum)
         {
             ent.Comp.CurrentMomentum++;
-            ent.Comp.SoundSteps += ent.Comp.StepIncrement;
 
-            if (ent.Comp.CurrentMomentum == 1 || ent.Comp.SoundSteps >= ent.Comp.SoundEvery)
-            {
-                ent.Comp.SoundSteps = 0;
-                if (_timing.InSimulation && ent.Comp.MovementSound != null)
-                    PlayMovementSound(ent);
-            }
+            if (ent.Comp.CurrentMomentum == 1)
+                PlayMovementSound(ent);
 
             Dirty(ent);
             _movement.RefreshMovementSpeedModifiers(ent);
@@ -165,23 +147,23 @@ public sealed partial class SharedVehicleSystem
         if (ent.Comp.MovementSound == null)
             return;
 
-        StopMovementSound(ent.Owner);
+        if (ent.Comp.AudioStream != null && _audio.IsPlaying(ent.Comp.AudioStream.Value))
+            return;
 
-        var sound = _audio.PlayPredicted(
-            ent.Comp.MovementSound,
-            ent,
-            ent,
-            new AudioParams
-            {
-                Loop = true,
-                MaxDistance = 15f,
-                Volume = -5f
-            }
-        );
-
-        if (sound != null)
+        EntityUid? stream = null;
+        var audioParams = new AudioParams
         {
-            ent.Comp.AudioStream = sound.Value.Entity;
+            Loop = true,
+            MaxDistance = 15f,
+            Volume = -5f
+        };
+
+        if (_net.IsServer)
+            stream = _audio.PlayPvs(ent.Comp.MovementSound, ent.Owner, audioParams)?.Entity;
+
+        if (stream != null)
+        {
+            ent.Comp.AudioStream = stream.Value;
             Dirty(ent);
         }
     }
@@ -191,7 +173,7 @@ public sealed partial class SharedVehicleSystem
         if (!Resolve(vehicle, ref comp) || comp.AudioStream == null)
             return;
 
-        _audio.Stop(comp.AudioStream);
+        _audio.Stop(comp.AudioStream.Value);
         comp.AudioStream = null;
         Dirty(vehicle, comp);
     }
@@ -790,12 +772,19 @@ public sealed partial class SharedVehicleSystem
                 ReduceMomentum((vehicle.Owner, movement), (int)(movement.CurrentMomentum * collidable.MomentumLossFactor));
 
             ApplyDamage(vehicle.Owner, FixedPoint2.New(collidable.DamageToVehicleOnFail));
-
-            if (collidable.DestroySound != null)
-                _audio.PlayPvs(collidable.DestroySound, structure);
-
             return;
         }
+
+        if (collidable.DestroySound != null)
+        {
+            if (_net.IsServer)
+                _audio.PlayPvs(collidable.DestroySound, structure);
+
+            if (TryGetDriver(vehicle, out var driver))
+                _audio.PlayLocal(collidable.DestroySound, driver.Value, driver);
+        }
+
+        
 
         _popup.PopupEntity(
             Loc.GetString("st-vehicle-crushes", ("vehicle", vehicle.Owner), ("target", structure)),
@@ -888,10 +877,8 @@ public sealed partial class SharedVehicleSystem
         movement.Comp.CurrentMomentum = 0;
         movement.Comp.Steps = 0;
         movement.Comp.DistanceMoved = 0;
-        movement.Comp.SoundSteps = 0;
         Dirty(movement);
         _movement.RefreshMovementSpeedModifiers(movement);
-
         StopMovementSound(movement.Owner);
     }
 
@@ -901,10 +888,9 @@ public sealed partial class SharedVehicleSystem
         if (movement.Comp.CurrentMomentum == 0)
         {
             movement.Comp.Steps = 0;
-            movement.Comp.SoundSteps = 0;
-
             StopMovementSound(movement.Owner);
         }
+
         Dirty(movement);
         _movement.RefreshMovementSpeedModifiers(movement);
     }

@@ -10,6 +10,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.Shared.Map;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -139,7 +140,12 @@ public sealed partial class SharedVehicleSystem
     private void SetupGunnerSeat(Entity<VehiclePilotSeatComponent> seat,
         Entity<VehiclePilotComponent> pilot, EyeComponent eye)
     {
-        _eye.SetTarget(pilot, seat.Comp.Vehicle, eye);
+        if (seat.Comp.Vehicle != null && 
+            TryComp<TransformComponent>(seat.Comp.Vehicle, out var xform) &&
+            xform.MapID != MapId.Nullspace)
+        {
+            _eye.SetTarget(pilot, seat.Comp.Vehicle, eye);
+        }
 
         AddActions(pilot, seat.Comp.ActionIds);
 
@@ -168,7 +174,13 @@ public sealed partial class SharedVehicleSystem
     private void SetupPilotSeat(Entity<VehiclePilotSeatComponent> seat,
         Entity<VehiclePilotComponent> pilot, EyeComponent eye)
     {
-        _eye.SetTarget(pilot, seat.Comp.Vehicle, eye);
+        if (seat.Comp.Vehicle != null && 
+            TryComp<TransformComponent>(seat.Comp.Vehicle, out var xform) &&
+            xform.MapID != MapId.Nullspace)
+        {
+            _eye.SetTarget(pilot, seat.Comp.Vehicle, eye);
+        }
+
         _mover.SetRelay(pilot, seat.Comp.Vehicle!.Value);
 
         AddActions(pilot, seat.Comp.ActionIds);
@@ -199,7 +211,13 @@ public sealed partial class SharedVehicleSystem
 
         var relay = EnsureComp<InteractionRelayComponent>(args.Buckle);
 
-        _eye.SetTarget(args.Buckle, seat.Comp.Vehicle, eye);
+        if (seat.Comp.Vehicle != null && 
+            TryComp<TransformComponent>(seat.Comp.Vehicle, out var xform) &&
+            xform.MapID != MapId.Nullspace)
+        {
+            _eye.SetTarget(args.Buckle, seat.Comp.Vehicle, eye);
+        }
+
         _interaction.SetRelay(args.Buckle, controllable, relay);
         _mover.SetRelay(args.Buckle, controllable);
 

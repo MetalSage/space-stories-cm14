@@ -64,7 +64,7 @@
   - type: RMCMesonsNonviewable
   - type: VehicleElevatorComputer
     orders:
-      STVehicleM577APC: 170
+    - STVehicleM577APC
 
 - type: entity
   id: STVehicleRequisitionElevator

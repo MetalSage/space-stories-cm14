@@ -41,8 +41,17 @@
       Welding: /Audio/Items/welder.ogg
   - type: Corrodible
     isCorrodible: false
+
+- type: entity
+  parent: STMarineVehicleAttachableBase
+  id: STMarineVehicleGunAttachableBase
+  abstract: true
+  components:
   - type: GunIFF
     enabled: true
+  - type: GunArcRestriction
+    arcDirection: 270
+    maxAngleDeviation: 360
 
 - type: entity
   parent: BaseStructure

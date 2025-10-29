@@ -22,7 +22,7 @@ public sealed partial class VehicleAttachableHolderStripMenu : FancyWindow
         _attachableSlotControls = new Dictionary<string, VehicleAttachableSlotControl>();
     }
 
-    public void UpdateMenu(Dictionary<string, (string? attachableName, bool locked, string? description, string? stats)> attachableSlots, Action<string> onPressed)
+    public void UpdateMenu(Dictionary<string, (string? attachableName, bool locked)> attachableSlots, Action<string> onPressed)
     {
         foreach (var slotId in attachableSlots.Keys)
         {
@@ -31,9 +31,7 @@ public sealed partial class VehicleAttachableHolderStripMenu : FancyWindow
 
             _attachableSlotControls[slotId].Update(
                 attachableSlots[slotId].attachableName,
-                attachableSlots[slotId].locked,
-                attachableSlots[slotId].description,
-                attachableSlots[slotId].stats);
+                attachableSlots[slotId].locked);
         }
     }
 
@@ -47,18 +45,13 @@ public sealed partial class VehicleAttachableHolderStripMenu : FancyWindow
     private sealed class VehicleAttachableSlotControl : Control
     {
         private readonly Button _attachableButton;
-        private readonly Button _infoButton;
-        private readonly PanelContainer _descriptionPanel;
-        private readonly RichTextLabel _descriptionLabel;
         private readonly string _slotId;
         private readonly Action<string> _onPressed;
-        private bool _expanded;
 
         public VehicleAttachableSlotControl(string slotId, Action<string> onPressed)
         {
             _slotId = slotId;
             _onPressed = onPressed;
-            _expanded = false;
 
             var slotLabel = new Label
             {
@@ -86,35 +79,6 @@ public sealed partial class VehicleAttachableHolderStripMenu : FancyWindow
                 VerticalAlignment = VAlignment.Center
             };
 
-            _infoButton = new Button
-            {
-                Text = "ⓘ",
-                StyleClasses = { StyleBase.ButtonOpenLeft },
-                ToolTip = Loc.GetString("st-vehicle-attachable-holder-strip-ui-info-button-tooltip"),
-                VerticalAlignment = VAlignment.Center
-            };
-
-            _descriptionLabel = new RichTextLabel
-            {
-                Margin = new Thickness(5, 5, 5, 5),
-                MaxWidth = 380
-            };
-
-            _descriptionPanel = new PanelContainer
-            {
-                PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#25252A") },
-                Visible = false,
-                VerticalExpand = false,
-                Children = { _descriptionLabel }
-            };
-
-            var buttonContainer = new BoxContainer
-            {
-                Orientation = LayoutOrientation.Horizontal,
-                HorizontalExpand = true,
-                Children = { _attachableButton, _infoButton }
-            };
-
             var hBox = new BoxContainer
             {
                 Orientation = LayoutOrientation.Horizontal,
@@ -122,61 +86,27 @@ public sealed partial class VehicleAttachableHolderStripMenu : FancyWindow
                 {
                     icon,
                     slotLabel,
-                    buttonContainer,
+                    _attachableButton
                 },
                 Margin = new Thickness(0, 0, 0, 5)
             };
 
-            var vBox = new BoxContainer
-            {
-                Orientation = LayoutOrientation.Vertical,
-                Children =
-                {
-                    hBox,
-                    _descriptionPanel
-                }
-            };
+            AddChild(hBox);
 
             _attachableButton.OnPressed += _ => onPressed(slotId);
-            _infoButton.OnPressed += _ => ToggleDescription();
-
-            AddChild(vBox);
         }
 
-        private void ToggleDescription()
-        {
-            _expanded = !_expanded;
-            _descriptionPanel.Visible = _expanded;
-            _infoButton.Text = _expanded ? "▲" : "ⓘ";
-        }
-
-        public void Update(string? attachableName, bool slotLocked, string? description, string? stats)
+        public void Update(string? attachableName, bool slotLocked)
         {
             if (attachableName == null)
             {
                 _attachableButton.Text = Loc.GetString("st-ui-attachable-holder-strip-ui-empty-slot");
                 _attachableButton.Disabled = true;
-                _infoButton.Disabled = true;
-                _descriptionPanel.Visible = false;
-                _expanded = false;
                 return;
             }
 
             _attachableButton.Text = attachableName;
             _attachableButton.Disabled = slotLocked;
-            _infoButton.Disabled = false;
-
-            var descText = "";
-            if (!string.IsNullOrEmpty(description))
-            {
-                descText += $"[font size=12][color=#AAA]{description}[/color][/font]\n";
-            }
-            if (!string.IsNullOrEmpty(stats))
-            {
-                descText += $"\n[font size=12][color=#DDD]{stats}[/color][/font]";
-            }
-
-            _descriptionLabel.SetMarkupPermissive(descText);
         }
     }
 }

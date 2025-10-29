@@ -17,5 +17,5 @@ public sealed partial class VehicleElevatorComputerComponent : Component
     public bool UsedOnce = false;
 
     [DataField(required: true), AutoNetworkedField, AlwaysPushInheritance]
-    public Dictionary<EntProtoId, int> Orders = new();
+    public List<EntProtoId> Orders = new();
 }

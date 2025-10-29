@@ -85,7 +85,7 @@
         total:
           current: 0
           max: 2
-      - categoryName: "Synthetic Unit"
+      - categoryName: "Synthetic-Unit"
         roles:
           - RMCJobSynthetic
           #- JOB_WO_SYNTH
@@ -97,15 +97,15 @@
     worn: false
   - type: VehicleAttachableHolder
     slots:
-      vehicle-slot-treads:
+      st-vehicle-slot-treads:
         hardpointType: HDPT_TREADS
-      vehicle-slot-support:
+      st-vehicle-slot-support:
         hardpointType: HDPT_SUPPORT
-      vehicle-slot-secondary:
+      st-vehicle-slot-secondary:
         hardpointType: HDPT_SECONDARY
-      vehicle-slot-primary:
+      st-vehicle-slot-primary:
         hardpointType: HDPT_PRIMARY
-      vehicle-slot-special:
+      st-vehicle-slot-special:
         startingAttachables: [STMarineVehicleFiringPortWeaponOne, STMarineVehicleFiringPortWeaponTwo]
         hardpointType: HDPT_SPECIAL
         multiModule: true

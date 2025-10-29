@@ -3,10 +3,10 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Stories.Attachables;
 
 [Serializable, NetSerializable]
-public sealed class VehicleAttachableHolderStripUserInterfaceState(Dictionary<string, (string?, bool, string?, string?)> attachableSlots)
+public sealed class VehicleAttachableHolderStripUserInterfaceState(Dictionary<string, (string?, bool)> attachableSlots)
     : BoundUserInterfaceState
 {
-    public Dictionary<string, (string?, bool, string?, string?)> AttachableSlots = attachableSlots;
+    public Dictionary<string, (string?, bool)> AttachableSlots = attachableSlots;
 }
 
 [Serializable, NetSerializable]
