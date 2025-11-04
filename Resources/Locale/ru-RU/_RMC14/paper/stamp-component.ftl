@@ -1,10 +1,10 @@
 stamp-component-stamped-name-cm-default = С печатью
 stamp-component-stamped-name-cm-we-ya = Ве-Я
 stamp-component-stamped-name-cm-marine = ВК КМП США
-stamp-component-stamped-name-cm-weyyu = Вестон Ямада
+stamp-component-stamped-name-cm-weyyu = Вестон-Ямада
 stamp-component-stamped-name-cm-provost = Офис Провост Маршала
 stamp-component-stamped-name-cm-clf = Колониальный Освободительный Фронт
-stamp-component-stamped-name-cm-spp = Социалистический Прогрессивный Народ
+stamp-component-stamped-name-cm-spp = Союз Прогрессивных Народов
 stamp-component-stamped-name-cm-free-press = Свободная Пресса
 stamp-component-stamped-name-cm-tse = Империя Трех Солнц
 stamp-component-stamped-name-cm-xo = Исполнительный офицер

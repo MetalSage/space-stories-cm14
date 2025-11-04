@@ -1,8 +1,8 @@
 # МеталСидж
 - type: rank
   id: RMCRankProvostSectorMarshal
-  name: Секторный Маршал
-  prefix: Сек. Маршл
+  name: Секторальный Маршал
+  prefix: Сек. Маршал
   paygrade: O9
 
 # Любой администратор с высоким пониманием закона
