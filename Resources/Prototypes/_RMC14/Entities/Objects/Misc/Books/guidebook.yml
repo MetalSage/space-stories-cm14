@@ -9,7 +9,7 @@
     sprite: _RMC14/Objects/Misc/Books/Other/marine_law.rsi
   - type: GuideHelp
     guides:
-    - RMCMarineLaw
+    - STMarineLaw # Stories-Fixes
 
 - type: entity
   parent: RMCGuidebookLawMarine
@@ -48,4 +48,4 @@
     sprite: _RMC14/Objects/Misc/Books/Other/SOP.rsi
   - type: GuideHelp
     guides:
-    - RMCMarineSOP
+    - STMarineSOP # Stories-Fixes

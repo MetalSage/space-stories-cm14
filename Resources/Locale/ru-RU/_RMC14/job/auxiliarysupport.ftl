@@ -1,6 +1,6 @@
 # auxiliary support
 cm-job-name-aso = Офицер вспомогательной поддержки
-cm-job-description-aso = Координирует работу вспомогательных и вспомогательных подразделений операции.
+cm-job-description-aso = Координируйте работу разведки и вспомогательных подразделений операции, помогайте Исполнительному Офицеру.
 cm-job-prefix-aso = ОВП
 CMJobAuxiliarySupportOfficer = Офицер вспомогательной поддержки
 cm-job-name-dropship-pilot = Пилот транспортёра

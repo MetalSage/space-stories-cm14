@@ -460,15 +460,17 @@
       - id: RMCBoxMagazinePistolM13Drum
         name: Magazine Box (Drum M13 x 12)
         box: RMCMagazinePistolM13Drum
-      - id: RMCBoxMagazinePistolM13AP
-        name: Magazine Box (M13 AP x 22)
-        box: RMCMagazinePistolM13AP
-      - id: RMCBoxMagazinePistolM13ExtAP
-        name: Magazine Box (Ext M13 AP x 14)
-        box: RMCMagazinePistolM13ExtAP
-      - id: RMCBoxMagazinePistolM13DrumAP
-        name: Magazine Box (Drum M13 AP x 14)
-        box: RMCMagazinePistolM13DrumAP
+      # Stories-Fixes start
+      # - id: RMCBoxMagazinePistolM13AP
+      #   name: Magazine Box (M13 AP x 22)
+      #   box: RMCMagazinePistolM13AP
+      # - id: RMCBoxMagazinePistolM13ExtAP
+      #   name: Magazine Box (Ext M13 AP x 14)
+      #   box: RMCMagazinePistolM13ExtAP
+      # - id: RMCBoxMagazinePistolM13DrumAP
+      #   name: Magazine Box (Drum M13 AP x 14)
+      #   box: RMCMagazinePistolM13DrumAP
+      # Stories-Fixes end
       - id: RMCBoxMagazineSMGM63
         name: Magazine Box (M63 x 12)
         box: CMMagazineSMGM63
