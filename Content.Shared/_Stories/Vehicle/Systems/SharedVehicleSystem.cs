@@ -117,6 +117,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
     private void OnVehicleActivateInWorld(Entity<VehicleComponent> entity, ref ActivateInWorldEvent args)
     {
+        args.Complex = !HasComp<GhostComponent>(args.User);
         if (args.Handled || !CanEnter(args.User, args.Target))
             return;
 
@@ -136,6 +137,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
     private void OnInteriorDoorActivateInWorld(Entity<VehicleInteriorDoorComponent> entity, ref ActivateInWorldEvent args)
     {
+        args.Complex = !HasComp<GhostComponent>(args.User);
         if (args.Handled)
             return;
 
@@ -819,6 +821,9 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         var comp = vehicle.Comp;
 
         if (HasComp<XenoComponent>(user))
+            return true;
+
+        if (HasComp<GhostComponent>(user))
             return true;
 
         if (HasComp<MarineComponent>(user))

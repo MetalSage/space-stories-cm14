@@ -96,6 +96,9 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] private readonly AttachableHolderSystem _attachableHolder = default!;
     [Dependency] private readonly SharedRMCFlamerSystem _flamer = default!;
 
+    // Stories
+    [Dependency] private readonly VehicleAttachableHolderSystem _vehicleHolder = default!;
+
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
     private const float EjectOffset = 0.4f;
@@ -370,14 +373,16 @@ public abstract partial class SharedGunSystem : EntitySystem
         var userXform = Transform(user);
         fromCoordinates = userXform.Coordinates;
 
-        if (TryComp<VehicleComponent>(user, out var vehicle) &&
-            vehicle.ActiveHardpoint is { } hardpoint &&
-            TryComp<VehicleAttachableComponent>(hardpoint, out var hardpointAttachable))
+        if (TryComp<VehicleAttachableComponent>(gunUid, out var vehicleAttachable))
         {
             var rotation = userXform.WorldRotation;
+            if (_vehicleHolder.TryGetHolder(gunUid, out var holder) && TryComp<TransformComponent>(holder, out var holderXform))
+            {
+                fromCoordinates = holderXform.Coordinates;
+                rotation = holderXform.WorldRotation;
+            }
 
-            var rotatedOffset = rotation.RotateVec(hardpointAttachable.Offset);
-
+            var rotatedOffset = rotation.RotateVec(vehicleAttachable.Offset);
             fromCoordinates = fromCoordinates.Offset(rotatedOffset);
         }
         // Stories-Vehicle-Gun-Content-Tweak-End

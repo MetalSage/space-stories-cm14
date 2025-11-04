@@ -8,6 +8,9 @@
   components:
   - type: Sprite
     sprite: _RMC14/Structures/Flora/rocks.rsi
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0
 
 - type: entity
   parent: RMCBaseRockNonCollide
