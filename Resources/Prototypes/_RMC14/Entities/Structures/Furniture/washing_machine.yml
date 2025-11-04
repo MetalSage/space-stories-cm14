@@ -64,6 +64,9 @@
           True: { state: washing_machine_open }
           False: { state: washing_machine_closed }
   - type: RMCMesonsNonviewable
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0
 
 - type: entity
   parent: CMWashingMachine

@@ -19,3 +19,6 @@
     - map: [ "back" ]
     - map: [ "mask" ]
     - map: [ "head" ]
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0

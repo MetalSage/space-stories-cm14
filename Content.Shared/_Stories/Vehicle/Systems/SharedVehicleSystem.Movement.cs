@@ -33,6 +33,7 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Player;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -312,13 +313,6 @@ public sealed partial class SharedVehicleSystem
 
         var (stunTime, damage) = GetMobCollisionEffects(vehicle.Comp.Class, momentum, movement.MaxMomentum);
 
-        _popup.PopupEntity(
-            Loc.GetString("st-vehicle-rams-mob", ("vehicle", vehicle.Owner), ("target", mob)),
-            mob,
-            mob,
-            PopupType.LargeCaution
-        );
-
         bool wasStunned = false;
         if (stunTime > 0)
         {
@@ -350,21 +344,14 @@ public sealed partial class SharedVehicleSystem
 
         var (stunTime, damage) = GetHumanCollisionEffects(vehicle.Comp.Class, isFriendly, momentum, movement.MaxMomentum);
 
-        _popup.PopupEntity(
-            Loc.GetString("st-vehicle-rams-mob", ("vehicle", vehicle.Owner), ("target", human)),
-            human,
-            human,
-            PopupType.LargeCaution
-        );
-
         if (damage > 0)
         {
             if (isFriendly)
             {
                 _popup.PopupEntity(
                     Loc.GetString("st-vehicle-rammed-ally"),
-                    driver!.Value,
-                    driver!.Value,
+                    human,
+                    human,
                     PopupType.MediumCaution
                 );
             }
@@ -471,12 +458,6 @@ public sealed partial class SharedVehicleSystem
             takesDamage = true;
         }
 
-        _popup.PopupEntity(
-            Loc.GetString("st-vehicle-rams-xeno", ("vehicle", vehicle.Owner), ("xeno", xeno)),
-            xeno,
-            PopupType.LargeCaution
-        );
-
         bool wasStunned = false;
         if (isKnockedDown)
         {
@@ -519,6 +500,9 @@ public sealed partial class SharedVehicleSystem
 
     private void OnVehicleStartCollide(Entity<VehicleComponent> vehicle, ref StartCollideEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         if (!_movementQuery.TryComp(vehicle, out var movement))
             return;
 
@@ -748,14 +732,11 @@ public sealed partial class SharedVehicleSystem
         ApplyDamage(wall, damage, vehicle.Owner);
         ApplyDamage(vehicle.Owner, FixedPoint2.New(10));
 
-        if (_net.IsServer)
-        {
-            _popup.PopupEntity(
-                Loc.GetString("st-vehicle-rams", ("vehicle", vehicle.Owner), ("target", wall)),
-                wall,
-                PopupType.LargeCaution
-            );
-        }
+        //_popup.PopupEntity(
+        //    Loc.GetString("st-vehicle-rams", ("vehicle", vehicle.Owner), ("target", wall)),
+        //   wall,
+        //    PopupType.LargeCaution
+        //); todo make kd
 
         ReduceMomentum((vehicle.Owner, movement), 2);
     }
@@ -780,15 +761,12 @@ public sealed partial class SharedVehicleSystem
             return;
         }
 
-        if (_net.IsServer)
-        {
-            _popup.PopupEntity(
-                Loc.GetString("st-vehicle-pushes-over", ("vehicle", vehicle.Owner), ("target", door)),
-                door,
-                PopupType.LargeCaution
-            );
-            _destructible.DestroyEntity(door);
-        }
+        _popup.PopupEntity(
+            Loc.GetString("st-vehicle-pushes-over", ("vehicle", vehicle.Owner), ("target", door)),
+            door,
+            PopupType.LargeCaution
+        );
+        _destructible.DestroyEntity(door);
 
         ReduceMomentum((vehicle.Owner, movement), 1);
     }
@@ -820,11 +798,16 @@ public sealed partial class SharedVehicleSystem
 
         if (collidable.DestroySound != null)
         {
-            if (_net.IsServer)
-                _audio.PlayPvs(collidable.DestroySound, structure);
+            _audio.PlayPvs(collidable.DestroySound, structure);
 
-            if (TryGetDriver(vehicle, out var driver))
-                _audio.PlayLocal(collidable.DestroySound, driver.Value, driver);
+            if (TryGetDriver(vehicle, out var driver) &&
+                TryComp<ActorComponent>(driver.Value, out var actor))
+            {
+                _audio.PlayGlobal(
+                    collidable.DestroySound,
+                    Filter.SinglePlayer(actor.PlayerSession), true, null
+                );
+            }
         }
 
         _popup.PopupEntity(
@@ -839,8 +822,7 @@ public sealed partial class SharedVehicleSystem
             return;
         }
 
-        if (_net.IsServer)
-            _destructible.DestroyEntity(structure);
+        _destructible.DestroyEntity(structure);
 
         ReduceMomentum((vehicle.Owner, movement), 1);
     }
@@ -888,8 +870,8 @@ public sealed partial class SharedVehicleSystem
 
         return vehicleClass switch
         {
-            VehicleClass.Weak => (0.5f * momentumRatio, 0f),
-            VehicleClass.Light when isFriendly => (0.5f * momentumRatio, 5 + _random.Next(0, 5)),
+            VehicleClass.Weak => (1f * momentumRatio, 0f),
+            VehicleClass.Light when isFriendly => (1f * momentumRatio, 5 + _random.Next(0, 5)),
             VehicleClass.Light => (2f * momentumRatio, 10 + _random.Next(0, 10)),
             VehicleClass.Medium => (3f * momentumRatio, 10 + _random.Next(0, 10)),
             VehicleClass.Heavy => (5f * momentumRatio, 15 + _random.Next(0, 10)),

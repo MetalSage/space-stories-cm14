@@ -60,6 +60,9 @@
     damage:
       types:
         Blunt: 40
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0
 
 - type: entity
   parent: CMClosetBaseUnanchored

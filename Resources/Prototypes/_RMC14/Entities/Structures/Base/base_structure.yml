@@ -18,8 +18,6 @@
     timeToApply: 4
     structure: true
   - type: XenoCrusherChargable
-  - type: VehicleStructureTarget
-    minimumClassToDestroy: Light
 
 - type: entity
   parent: BaseStructure

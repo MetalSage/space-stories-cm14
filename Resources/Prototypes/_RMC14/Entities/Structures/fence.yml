@@ -55,6 +55,9 @@
         Blunt: 22
   - type: XenoCrusherChargable
   - type: RMCMesonsNonviewable
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0
 
 - type: entity
   parent: CMBaseStructureCorrodible
