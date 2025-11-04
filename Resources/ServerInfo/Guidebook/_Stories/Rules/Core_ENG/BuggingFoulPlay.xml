@@ -1,17 +1,17 @@
 <Document>
-  # Rule 5: Bug Exploitation and Foul Play
-  Do not exploit bugs or unintended features to gain an unfair advantage for yourself or your team.
+  # Rule 5: Bug Abuse and Unfair Play
+
+  Do not use bugs, oversights, or unintended game mechanics — regardless of whether they give you an advantage or just seem funny. Intentionally using bugs, glitches, or other non-standard mechanics for benefit, fun, sabotage, or destabilizing the round is prohibited.
 
   ## NOT a violation:
-  - Setting up keybinds or macros using the in-game keybind settings or the bind command.
+  - Setting up keybinds or macros using the game’s built-in functionality or the `bind` command.
 
   ## Examples of violations:
-  - Using autoclickers, non-gameplay macros.
-  - Using scripts/modifications to automatically aim at other players, disable shadows, or see through walls.
-  - Construction of barricades on water or other surfaces clearly not intended for construction.
-  - Building unfinished structures for defense purposes, such as unfinished locks.
-  - Manufacturing chemicals that are not available in [textlink=“Chemicals” link=“RMCChemicals”].
-  - Nesting one vault into another in order to hold more than would otherwise fit, except for specialized boxes (for grenades, flyers, etc.).
-  - Using the helmets of medics or technicians in order to get free medivisor or protection from welding, if you do not have the corresponding in-game skills, medicine 2 or engineering 2.
-  - Quickly, repeatedly pressing the shuttle lock button.
+  - Using autoclickers or external macros.
+  - Using modifications or scripts to automatically aim, see through walls, disable shadows, etc.
+  - Intentionally causing visual or mechanical glitches for entertainment.
+  - Building barricades or other structures on surfaces not intended for construction (for example, on water).
+  - Using incomplete structures (for example, unconstructed airlocks) as defensive elements.
+  - Obtaining and using reagents not available in [textlink="Chemicals" link="RMCChemicals"], except for specialized items (for example, survivor grenades). Using desoxyephedrine produced from plants is considered a violation.
+  - Nesting storage items inside one another to increase capacity beyond what the game allows. The exception is containers specifically designed for this purpose (for example, grenade boxes, medical kits, pill bottles, and other specialized items).
 </Document>

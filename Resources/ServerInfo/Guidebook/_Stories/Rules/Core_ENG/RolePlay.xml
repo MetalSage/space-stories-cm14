@@ -1,104 +1,124 @@
 <Document>
-  # Rule 2: Roleplaying
-  This server has medium roleplaying expectations. Play a believable character. Treat your character as a separate entity from yourself, the player. Your character's in-game actions, feelings, and knowledge should be based solely on the character's experiences, not your own experiences as a player. Low-effort roleplay actions that are irrelevant to your character or the setting (memes, silly IC copypasta) are unacceptable. Character development can occur across rounds, but each round is a soft reset, meaning you can have prior mission experience (unrelated to Xenomorphs), but your character has never died or escaped the ship in the past. Adhere to the roleplay standards outlined below.
+  # Rule 2: Roleplay
+  The server has a medium roleplay standard. Play as a believable character. Treat your character as a separate entity from yourself as a player. Your character’s actions, emotions, and knowledge must be based on the character’s experience — not your real-life experience or OOC knowledge. Low-effort behavior that does not fit your character or the setting (memes, silly IC copypasta spam, etc.) is not acceptable. Character development may occur over multiple rounds, but each round is considered a soft reset — you may have past mission experience (not involving Xenomorphs), but your character has not permanently died or fled the Almayer before. Maintain roleplay standards.
 
-  Major shenanigans that could disrupt the normal flow of the round at the beginning of the round (this includes but is not limited to major or lethal fights, brawls in the briefing, riots, brig breaches, major equipment restrictions, and capturing players trying to get to their prep room) are not permitted.
-
-  ## Language
-  - General Principles: Communication must be consistent with your character and the setting.
-  - Excessive Caps Lock Use: Do not use an excessive amount of capital letters (Caps Lock) in in-game communication without a strong role-playing reason (e.g., shouting in a critical situation). Constant communication in ALL CAPS breaks immersion.
-  Examples of violations:
-    - Writing EVERY MESSAGE IN CHAT IN ALL CAPS without reason. "DROP YOUR WEAPONS!!!!!" - when "Drop your weapons!" is sufficient.
-  - Spam: It is forbidden to clutter in-game chats (local, radio) with repetitive, meaningless, excessively long messages, or random symbols. This includes copypasta and flooding using macros.
-  Examples of violations: 
-    - Sending "aaaaaaaaaaaaaaaaa" or "%$#@^!(^%" in chat.
-    - Repeating the same phrase multiple times in a row: "Medic here!", "Medic here!", "Medic here!".
-    - Pasting a large chunk of text (e.g., from Wikipedia) into the game chat.
-  - Brainrot (OOC Slang): Avoid using modern internet slang, informal abbreviations, emojis, or memes that do not fit the setting and atmosphere of a serious military operation or survival scenario. Your character should not communicate like a 21st-century internet user steeped in online culture.
-  Examples of violations: 
-    - Using words, abbreviations, or emojis like "lol", "lmao", "kek", "rofl", "thx", "pls", "imo/imho", "xD", ":)", ":(", "brb", "afk", "gg", "ez", "pog", "poggers", "based", "cringe", "yeet", "sus", "bruh" in IC chat.
-    - "lol, a xeno ganked me, gg wp" or "lmao got wrecked, skill issue".
-    - Using current "brainrot" meme terms like "rizz", "gyatt", "fanum tax", "skibidi", "sigma", "Ohio", "looksmaxxing", etc., in character.
-    - Spamming chat with terms like "AMOGUS", "SUS", "IT'S JOEVER", "WE'RE SO BACK" or similar unrelated memes.
-    - Using Twitch emotes (text versions like 'KEKW', 'PogU', 'OMEGALUL'), streamer catchphrases, or Discord server inside jokes in IC chat.
-  Examples of acceptable use: 
-    - Using standard military or setting-appropriate abbreviations (if they are known and relevant within the game's universe/lore).
+  Major disruptions that interfere with the normal flow of the round at the start of the game are not allowed (this includes but is not limited to: large fights, lethal conflicts, brawls during briefing, riots, brig break-ins, heavy equipment theft, and obstructing players trying to prepare for deployment).
 
   ## Human Roleplay Standards
 
-  ## Drop Pod Arrests and Riots
-  - Causing a riot on the dropship over an arrest prior to the first drop will be considered sabotage and admins will intervene and apply punishments. You should not lynch the MP's and risk your career over them arresting a marine.
+  ## Arrests and Riots on the Ship
+  - Starting a riot over an arrest before first deployment will be treated as sabotage, and administrators will intervene. You should not lynch the MPs or throw away your Marine career just because someone got arrested.
 
   ## Sanity
-  - All USCM personnel are mentally stable and physically fit for duty. They will not abandon their post or go against the USCM without due cause.
-  - For example, a maintenance technician would not start cutting up bodies in a trash can.
-  - The USCM is knowledgeable about most threats, including all human forces (SOF, UPP, PMCs, etc.) as well as general knowledge of the Xenomorph Hive structure.
-  - The USCM command staff are not aware of the presence of a Xenomorph threat on the planet they are conducting operations on unless that information is provided in the custom deployment.
-  - All personnel involved in the operation should follow their role requirements: a field medic heals others as well as themselves, a weapons specialist should take and use their equipment, and a squad leader should not ignore command orders to just do their own thing.
-  - Senior squad members (e.g., Squad Leader, Specialist, Smartgunner, and SAW Gunner) should follow orders given to them by the Captain and not run off to fight alone.  Special circumstances preclude this requirement, but players should be prepared to justify their actions if contacted by staff.
-  - Certain department heads (Quartermaster, CMO, and CO) should not leave the ship except under exceptional circumstances.
-    - Command staff (XO/CO/Commander) should be deployed to perform command tasks, not be "special" riflemen.
-    - Command staff generally should not go planetside without the Captain's permission.
-  - All marines should deploy where possible, refusing to deploy because someone is arrested is unacceptable within the confines of an operation.
-  - Ship crew allowed to deploy should stay in safe zones and perform their functions: - Maintenance Technicians should assist in FOB construction or securing the areas near the FOB. - Medics shouldn't be combat medics, putting themselves in harm's way to drag injured or dead marines out of combat. - The Correspondent is to document the fighting and is expected to retreat in the event of hostile engagement.
+  - All personnel enlisted in the USCM are mentally stable and physically fit for duty. They will not abandon their posts or turn against the USCM without strong justification.
+    - For example: A maintenance technician would not dismember corpses in a trash compactor.
+  - The USCM is aware of most human-based threats (SPN, KOF, PMC forces, etc.) as well as general knowledge about Xenomorph hive structure.
+
+  - If an infected marine can still be saved, you are expected to try, rather than wall them in and wait for the larva to emerge.
 
   ## Ship Modifications
-  - Stripping the ship should not occur until after the first drop and confirmed contact. Marines would not immediately start tearing their warship apart over a random unconfirmed distress beacon.
-    - This includes stripping things like the briefing chairs; however, this does not include barrels and crates strewn about the engineering areas.
-    - This also includes unbolting vending machines from the ship where they are clearly not needed. You wouldn't drag half the contents of medbay onto the battlefield.
-  - Ship modifications should not be made with metagaming purposes; you cannot build a maze or bunker on the ship that will help defend against a hijack before you even know a hijack is possible.
+  - Disassembling the ship should not occur before first landing and confirmed contact. Marines would not dismantle a military ship over an unconfirmed distress signal.
+    - This includes removing briefing room chairs, but does not include barrels or crates scattered in maintenance storage.
+    - This also includes removing vending machines from the ship when there is no practical need. You would not take half the medical bay with you into combat.
 
   ## Survivors
-  - Survivors have more leeway than marines, with their mental stability due to the trauma they might have sustained during a Xenomorph attack. They can suffer from PTSD, paranoia, or similar conditions for roleplay purposes.
-  - Survivors may NOT be hostile towards marines unless they are of a hostile faction.
-    - Hostile survivors may not attempt to harm other survivors.
-  - Survivors should not rush to attack the hive while the Xenomorphs are in their early stages; their primary goal is survival.  Most survivors have never had combat experience (unless their profession states otherwise, e.g., prison guard) and assisting the marines would not be logical.
-  - Survivors cannot be assigned to enlisted, NCO, or officer tasks.
+  - Survivors are allowed more freedom of behavior due to possible trauma from the Xenomorph attack. They may roleplay PTSD, paranoia, or other psychological effects.
+  - Survivors cannot be hostile to Marines unless they belong to a hostile faction.
+      - Survivors should not deliberately harm other survivors.
+  - Survivors should not assault the hive while it is still in its early development stage (first ~10 minutes).
+  - Most survivors do not have combat training (unless their background suggests otherwise, e.g., prison guard, PMC, etc.), and therefore cannot fight alongside Marines effectively.
+  - Survivors generally cannot perform the roles of department heads, pilots, or ship officers.
+  - Survivors have sent a distress signal and must visit the Almayer at least once to report.
+      - After this, they may either return to the colony or remain on the Almayer and surrender their weapons to the MPs.
 
   ## Command
-  - The Captain is expected to follow immutable standard operating procedure.
-    - For example, you MUST hold a briefing before the operation commences and MUST make an attempt to build a defense around your primary landing zone.
+  - The Operation Commander must follow standard operating procedure.
+    - Example: You MUST hold a briefing and MUST attempt to establish defenses around the primary landing zone.
 
-  ## IDs
-  - These should only be taken for roleplay reasons, such as taking a dead XO's ID to call for evac on the ship's bridge computer. If you have taken an ID or found it on a living player (or a dead player who has been revived), you should make every effort to return it unless your character has a valid reason not to.
-    - You should not be granting yourself or others expanded access to areas of the ship unless there is a staffing shortage or exceptional reason.
-    - You should not be issuing yourself or others (semi-)all-access IDs.
-  - The death or absence of any senior staff is a valid reason to grant yourself necessary access to conduct the operation.
-    - Requisitions for missing personnel is a valid reason to grant others or yourself access to supplies, etc.
-
-  ## Xenomorphs
-  - Marines know what Xenomorphs are but have never encountered them. They have a basic idea of how a hive functions.  Accordingly, they're capable of coming up with and enacting a plan to counter such a threat.
-  - Marines do not know there are Xenomorphs on the colony.
-  - Marines do not know any specific Xeno's prefix and suffix - the most they can do is identify caste.
+  ## Identification Cards
+  - ID cards should only be taken for roleplay reasons (e.g., taking the Executive Officer’s ID from a corpse to authorize evacuation). If you find an ID from a living or revivable player, you should make reasonable effort to return it unless your character has valid justification not to.
+    - You should not grant yourself or others extended access unless there is a staffing shortage or exceptional necessity.
+    - You should not issue yourself or others (semi-)full-access IDs.
+  - The death or absence of senior officers is a valid reason to grant necessary access to continue the operation.
+    - Requests for missing personnel are valid reasons to authorize access to supplies, etc.
 
   ## Xenomorph Roleplay Standards
 
-  ## Free Will
-  - Xenomorphs do not have free will. They are a hive mind, and their purpose is to enact the will of the Queen and expand the Hive.
-  - Xenomorphs are not friendly and will not negotiate.
-    - They are not obligated to destroy synthetics and are neutral to them by default unless their behavior interferes with the Hive's expansion.
-
-  ## Language
-  - Hivemind is a translation of their thoughts into English, so words like "hydro" or "shuttle" are acceptable.  References to game mechanics like "evolve" and "plasma," for example, are permissible, but brainrot is still prohibited. Game mechanics, like "new xeno update" should be kept to LOOC chat.
-  - Spamming "meow" and similar behavior in hivemind or local chat is not permitted.
-
-  ## Marines
-  - Through the hivemind, Xenomorphs know everything every other Xenomorph knows and know the basics of human equipment, they can destroy electrical equipment (APC's, SMESes, Generators, Sensor Towers and Comms Towers).
-  - At the start of the round, Xenomorphs feel the human ship looming over their hive and know that human forces will be visiting the colony soon.
-  - Xenomorphs do not know the names of any individual humans but may know the role they serve.
+  ## Hive Mind and Purpose
+  - Xenomorphs lack individual free will. They operate as a collective and obey the Queen to expand the hive.
+  - They are not friendly and do not negotiate.
+    - Separate hives must be hostile toward all factions, including each other (unless an event explicitly states otherwise).
+    - Xenomorphs should not destroy synthetic life unless it interferes with them. The Queen may override this as needed.
 
   ## Larva
-  - Larva should stay within the hive and avoid the front lines.
-  - If marines are about to reach the heart of the hive and there are insufficient Xenomorphs to defend it, or a Queen ready to begin a hijack, these are legitimate reasons to leave the hive as larva.
-  - Larva should NOT be sneaking onto the dropship to head to the Almayer.
-    - Larvae are not a scout caste and should not be searching for survivors.
+  - Larvae should remain in safe areas and avoid frontlines.
+  - If Marines are about to reach the hive core or too few Xenos are available, leaving the hive as a larva to assist is acceptable.
+  - Larvae should not attempt to board the Almayer via dropship.
+    - Larvae are not scouts and should not search for survivors or perform recon.
 
   ## Queen
-  - The Queen can de-evolve anyone if she wants a particular caste; however, this should make sense, having only one type of T3 does not meet this criterion.
-  - The Queen cannot force Xenomorphs into a specific caste.
+  - The Queen may devolve Xenomorphs who fail to meet hive standards. Devolution must not be done as a joke or without reason.
+  - The Queen may devolve Xenomorphs to encourage certain castes (e.g., Boilers for defense).
+      - If initial attempts fail, the Queen should not devolve the majority of the hive for a single caste — the number of devolutions should be reasonable.
+      - The Queen must ensure another Xenomorph can evolve into the required caste before devolving others.
+  - The Queen may use devolution as punishment for severe roleplay violations (e.g., griefing or deliberate disruption).
+  - The Queen may not force specific sub-branches, strains, or mutations without valid justification.
 
   ## Xenomorphs on the Almayer
-  - While Xenomorphs aboard the ship can do practically whatever they want, they are not allowed to attack people who have just exited cryo and are getting their equipment.
-    - This restriction does not apply after a shuttle has been hijacked.
-  - Xenomorphs should not be rushing to get onto the ship before the second drop.
+  - Xenomorphs aboard the ship may act freely, but may not attack players who have just exited cryo and are acquiring gear.
+    - This restriction ends after hijack begins.
+  - Xenomorphs may not attempt to reach the Almayer before planet-side deployment occurs.
+
+  ## In-Game Rewards, Medals, and Royal Jellies
+  - Rewards must be given only for valid accomplishments. The reason for each award must reflect actual contributions.
+  - Awards containing insults, obscenities, or prohibited content are forbidden.
+  - Players may not grant multiple identical awards for the same accomplishment — each award in a round should be tied to a unique event.
+  - Awards must follow roleplay logic and the context of the round. Giving awards for inappropriate or chaotic actions is not allowed.
+
+  # IC Communication (In Character)
+
+  All in-game communication must reflect your role, the setting, and the atmosphere.  
+  This applies to all IC channels, including local chat, radios, announcements, phones, etc.
+
+  ## General Principles
+  - Modern internet slang, memes, and similar expressions inappropriate to the setting are not allowed.
+  - Do not discuss game mechanics, updates, balance, or other OOC topics in IC channels. Use LOOC for that.
+  - Messages should be meaningful and relevant to the situation.
+
+  ## Caps Abuse
+  - CAPS is allowed only with roleplay justification (battle shouting, panic, alarms).
+  - Excessive or constant shouting without reason is disruptive and considered a violation.
+  Example violation:
+    - "EVERYONE TO DEPLOYMENT NOWWWWWWW!!!!!!" when "Everyone to deployment, quickly!" would suffice.
+
+  ## Spam and Flooding
+  - Spam of any kind is prohibited — repetitive, meaningless, or overly long messages disrupt communication.
+  - This includes mass spam, copypasta, random characters, noise spam, and coordinated meme messages.
+  Examples of violations:
+    - "aaaaaaaaaaaaaaaaaaaa"
+    - "%$#@^!(^%"
+    - "Medic here!" (repeated 10 times)
+    - Meaningless chatter in IC channels at round start ("meow", "pookie", "we’re all going to die", etc.)
+
+  ## Brainrot (OOC Slang)
+  - Any use of OOC slang in IC is prohibited: "lol", "kek", "ez", "gg", "rofl", "imba", "afk", "xD", "thx", etc.
+  - Exception: legitimate military abbreviations when used correctly in context.
+
+  ## Hive Mind Speech
+  - Hive mind communication is IC and must preserve the atmosphere of the collective consciousness.
+  - Terms tied to Xenomorph mechanics are acceptable ("plasma", "shuttle", "evolution"), but meme talk, spam, and slang are not.
+
+  ## Toxicity in IC
+  - Insults are allowed when they fit roleplay, context, and are directed at characters, not players.
+  - Personal attacks that target the player rather than the character are strictly forbidden.
+  - If an IC conflict turns into personal hostility, it may be treated as a violation.
+  - Administrators make the final judgment on acceptable aggression levels.
+
+  Examples of acceptable IC lines:
+    - A marine yelling at a Xenomorph: "Die, monster!"
+    - The Queen commanding: "Destroy these foolish primates."
+
+  Examples of violations:
+    - Insulting a player directly in IC with personal or degrading remarks.
+    - Using IC as a vehicle to harass a real person rather than act through character.
 </Document>
