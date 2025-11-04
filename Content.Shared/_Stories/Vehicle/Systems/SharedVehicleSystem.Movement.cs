@@ -215,6 +215,18 @@ public sealed partial class SharedVehicleSystem
             args.Cancelled = true;
             return;
         }
+        else if (_inputMoverQuery.TryComp(vehicle, out var input))
+        {
+            var moveDir = _mover.DirVecForButtons(input.HeldMoveButtons, (vehicle.Owner, input));
+            if (moveDir.LengthSquared() > 0f)
+            {
+                if (IsEntityBlockedByChain(args.OtherEntity, moveDir.Normalized(), vehicle))
+                {
+                    args.Cancelled = false;
+                    return;
+                }
+            }
+        }
 
         if (TryComp<MobStateComponent>(args.OtherEntity, out var mobState))
         {
@@ -573,6 +585,37 @@ public sealed partial class SharedVehicleSystem
                     }
                 }
             }
+            return;
+        }
+
+        if (!HasComp<ItemComponent>(target))
+        {
+            var moveDir = _mover.DirVecForButtons(input.HeldMoveButtons, (vehicle.Owner, input));
+            if (moveDir.LengthSquared() > 0f)
+            {
+                if (IsEntityBlockedByChain(target, moveDir.Normalized(), vehicle))
+                {
+                    var vehicleWorldPos = _transform.GetWorldPosition(vehicle);
+                    var targetWorldPos = _transform.GetWorldPosition(target);
+                    var toTarget = (targetWorldPos - vehicleWorldPos).Normalized();
+                    var dot = Vector2.Dot(moveDir, toTarget);
+
+                    if (dot > 0.5f)
+                    {
+                        if (!_vehicleBlockingContacts.TryGetValue(vehicle, out var set))
+                            set = _vehicleBlockingContacts[vehicle] = new();
+
+                        set.Add(target);
+
+                        if (!movement.Blocked)
+                        {
+                            movement.Blocked = true;
+                            _physics.ResetDynamics(vehicle.Owner, vehiclePhysics);
+                            Dirty(vehicle, movement);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -891,5 +934,78 @@ public sealed partial class SharedVehicleSystem
 
         Dirty(movement);
         _movement.RefreshMovementSpeedModifiers(movement);
+    }
+
+    private bool IsEntityBlockedByChain(
+        EntityUid entity,
+        Vector2 moveDirection,
+        Entity<VehicleComponent> vehicle,
+        int maxDepth = 5,
+        HashSet<EntityUid>? visited = null)
+    {
+        if (maxDepth <= 0)
+            return false;
+
+        visited ??= new HashSet<EntityUid>();
+
+        if (!visited.Add(entity))
+            return false;
+
+        if (ShouldBlockVehicle(entity, vehicle))
+            return true;
+
+        if (!_physicsQuery.TryComp(entity, out var physics))
+            return false;
+
+        var entityPos = _transform.GetWorldPosition(entity);
+
+        var contactingEntities = new HashSet<EntityUid>();
+        _physics.GetContactingEntities((entity, physics), contactingEntities, approximate: false);
+
+        if (contactingEntities.Count == 0)
+            return false;
+
+        foreach (var contactEntity in contactingEntities)
+        {
+            if (contactEntity == vehicle.Owner)
+                continue;
+
+            var contactPos = _transform.GetWorldPosition(contactEntity);
+            var toContact = contactPos - entityPos;
+
+            if (toContact.LengthSquared() < 0.01f)
+                continue;
+
+            var toContactNormalized = toContact.Normalized();
+            var dot = Vector2.Dot(moveDirection, toContactNormalized);
+
+            if (dot <= 0.3f)
+                continue;
+
+            if (IsEntityBlockedByChain(contactEntity, moveDirection, vehicle, maxDepth - 1, visited))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool ShouldBlockVehicle(EntityUid entity, Entity<VehicleComponent> vehicle)
+    {
+        if (TryComp<RMCSizeComponent>(entity, out var size) &&
+            size.Size == RMCSizes.Immobile &&
+            !_mobState.IsIncapacitated(entity))
+        {
+            return true;
+        }
+
+        if (TryComp<XenoFortifyComponent>(entity, out var fortify) &&
+            fortify.Fortified &&
+            !fortify.CanMoveFortified &&
+            vehicle.Comp.Class >= VehicleClass.Light)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

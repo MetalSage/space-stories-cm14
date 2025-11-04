@@ -892,6 +892,9 @@
   - type: Physics
     bodyType: Static
     canCollide: false
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 - type: entity
   id: STVehicleAPCWall63
@@ -998,6 +1001,9 @@
     state: corner
   - type: Transform
     anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 - type: entity
   parent: STVehicleAPCWallBase
@@ -1012,6 +1018,9 @@
     state: black
   - type: Occluder
     enabled: true
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 - type: entity
   id: STVehicleInteriorLight
@@ -1024,3 +1033,6 @@
     softness: 1.5
     energy: 2
     radius: 30
+  - type: Tag
+    tags:
+    - HideContextMenu

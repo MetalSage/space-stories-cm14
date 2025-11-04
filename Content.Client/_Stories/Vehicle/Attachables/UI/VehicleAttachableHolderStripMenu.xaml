@@ -2,8 +2,8 @@
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     Title="{Loc 'st-vehicle-holder-strip-ui-title'}"
-    MinSize="400 500"
-    SetSize="400 500">
+    MinSize="550 350"
+    SetSize="550 350">
     <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" StyleClasses="TransparentScroll">
         <BoxContainer Name="VehicleAttachablesContainer" Orientation="Vertical" VerticalExpand="True"
                       Margin="8 8 8 8" />
