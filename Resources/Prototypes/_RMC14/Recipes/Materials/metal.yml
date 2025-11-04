@@ -80,7 +80,7 @@
 
 - type: rmcConstruction
   id: RMCWallGirderBuild
-  name: стенная балка
+  name: каркас стены
   prototype: CMGirder
   noRotate: true
   doAfterTime: 5

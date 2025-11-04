@@ -13,7 +13,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: strata_bare_outpost_
 
 - type: entity
@@ -31,7 +32,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: strata_ribbed_outpost_
 
 - type: entity
@@ -49,7 +51,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: strata_ribbed_outpost_
 
 - type: entity
@@ -67,7 +70,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: strata_ice
 
 - type: entity
@@ -83,7 +87,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: strata_ice_dirty
 
 - type: entity
@@ -100,4 +105,7 @@
     state: strata_rock
   - type: IconSmooth
     key: walls
+    additionalKeys:
+    - windows
+    - doors
     base: strata_rock

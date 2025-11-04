@@ -154,7 +154,7 @@ ent-RMCContainerMSPMiddle = { ent-RMCContainerMSPLeft }
 ent-RMCContainerMSPRight = { ent-RMCContainerMSPLeft }
     .suffix = MSP, Правый
     .desc = { ent-RMCContainerMSPLeft.desc }
-ent-RMCContainerUNMCLeft = грузовой контейнер Морской пехоты КМП США
+ent-RMCContainerUNMCLeft = грузовой контейнер Морской пехоты США
     .desc =
         Огромный промышленный транспортный контейнер.
         Этот принадлежит Морской пехоте КМП США.

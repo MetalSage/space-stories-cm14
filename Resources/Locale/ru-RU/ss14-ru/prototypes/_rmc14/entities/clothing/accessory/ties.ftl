@@ -12,5 +12,5 @@ ent-RMCTiePurple = фиолетовый галстук
     .desc = { ent-RMCTie.desc }
 ent-RMCTieRed = красный галстук
     .desc = { ent-RMCTie.desc }
-ent-RMCTieHorrible = ужасный галстук
+ent-RMCTieHorrible = кошмарный галстук
     .desc = { ent-RMCTie.desc }

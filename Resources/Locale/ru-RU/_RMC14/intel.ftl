@@ -37,7 +37,7 @@ rmc-ui-intel-clues = [bold]Подсказки[/bold]
 rmc-ui-intel-points-value = { $value }
 rmc-ui-intel-tier-value = { $value }
 rmc-ui-intel-total-credits = Всего заработано кредитов: { $value }
-rmc-ui-intel-progress = { $current } / { Russiantal }
+rmc-ui-intel-progress = { $current } / { $total }
 rmc-ui-intel-infinite-progress = { $current } / ∞
 rmc-ui-intel-colony-status =
     { $online ->

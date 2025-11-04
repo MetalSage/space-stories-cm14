@@ -84,7 +84,7 @@
       visible: false
   - type: Item
     sprite: _RMC14/Objects/Misc/Janitorial/bucket.rsi
-    size: Normal
+    size: Huge
   - type: SolutionContainerVisuals
     fillBaseName: mopbucket-
   - type: SolutionContainerManager
@@ -154,7 +154,7 @@
       visible: false
   - type: Item
     sprite: _RMC14/Objects/Medical/reagentjug.rsi
-    size: Normal
+    size: Huge
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: reagentjug-

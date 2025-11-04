@@ -1,205 +1,205 @@
 - type: rank
   id: RMCRankTSEMarine
-  name: Marine
-  prefix: Mne.
+  name: Морпех
+  prefix: Мрпх.
   paygrade: E1
 
 - type: rank
   id: RMCRankTSELanceCorporal
-  name: Lance Corporal
-  prefix: LCpl.
+  name: Младший Капрал
+  prefix: МКпрл.
   paygrade: E2
 
 - type: rank
   id: RMCRankTSECorporal
-  name: Corporal
-  prefix: Cpl.
+  name: Капрал
+  prefix: Кпрл.
   paygrade: E3
 
 - type: rank
   id: RMCRankTSESergeant
-  name: Sergeant
-  prefix: Sgt.
+  name: Сержант
+  prefix: Серж.
   paygrade: E4
 
 - type: rank
   id: RMCRankTSEColourSergeant
-  name: Colour Sergeant
-  prefix: CSgt.
+  name: Старший Сержант
+  prefix: ССерж.
   paygrade: E5
 
 - type: rank
   id: RMCRankTSEWarrantOfficer1
-  name: Warrant Officer Class 1
-  prefix: WO1.
+  name: Уоррент Офицер Класс 1
+  prefix: УО1.
   paygrade: E6
 
 - type: rank
   id: RMCRankTSEWarrantOfficer2
-  name: Warrant Officer Class 2
-  prefix: WO2.
+  name: Уоррент Офицер Класс 2
+  prefix: УО2.
   paygrade: E7
 
 - type: rank
   id: RMCRankTSESecondLieutenant
-  name: Second Lieutenant
-  prefix: 2nd LT
+  name: Второй Лейтенант
+  prefix: 2ой ЛТ
   paygrade: O1
 
 - type: rank
   id: RMCRankTSELieutenant
-  name: Lieutenant
-  prefix: Lt.
+  name: Лейтенант
+  prefix: Лт.
   paygrade: O2
 
 - type: rank
   id: RMCRankTSECaptain
-  name: Captain
-  prefix: Capt.
+  name: Капитан
+  prefix: Капитан
   paygrade: O3
 
 - type: rank
   id: RMCRankTSEMajor
-  name: Major
-  prefix: Maj.
+  name: Майор
+  prefix: Майор
   paygrade: O4
 
 - type: rank
   id: RMCRankTSELieutenantColonel
-  name: Lieutenant Colonel
-  prefix: Lt.Col.
+  name: Лейтенант Полковник
+  prefix: Лт.Полк.
   paygrade: O5
 
 - type: rank
   id: RMCRankTSEColonel
-  name: Colonel
-  prefix: Col.
+  name: Полковник
+  prefix: Полк.
   paygrade: O6
 
 - type: rank
   id: RMCRankTSEBrigadier
-  name: Brigadier
-  prefix: Brig.
+  name: Бригадный Генерал
+  prefix: Бриг.
   paygrade: O7
 
 - type: rank
   id: RMCRankTSEMajorGeneral
-  name: Major General
-  prefix: Maj Gen.
+  name: Генерал Майор
+  prefix: Майор Ген.
   paygrade: O8
 
 - type: rank
   id: RMCRankTSELieutenantGeneral
-  name: Lieutenant General
-  prefix: Lt Gen.
+  name: Лейтенант Генерал
+  prefix: Лт Ген.
   paygrade: O9
 
 - type: rank
   id: RMCRankTSEGeneral
-  name: General
-  prefix: Gen.
+  name: Генарл
+  prefix: Ген.
   paygrade: O10
 
 # The below ranks are for the JAPANESE TSE marines. What does that mean? Why do they have two sets of ranks? Why does this exist? Why must we suffer like this?
 
 - type: rank
   id: RMCRankIASFNitoRikushi
-  name: Nito Rikushi
-  prefix: Nt-Shi.
+  name: Нито Рикуши
+  prefix: Нт-Ши.
   paygrade: E2
 
 - type: rank
   id: RMCRankIASFIttoRikushi
-  name: Itto Rikushi
-  prefix: It-Shi.
+  name: Итто Рикуши
+  prefix: Ит-Ши.
   paygrade: E3
 
 - type: rank
   id: RMCRankIASFRikushicho
-  name: Rikushicho
-  prefix: Shi.
+  name: Рикушичо
+  prefix: Ши.
   paygrade: E4
 
 - type: rank
   id: RMCRankIASFSantoRikuso
-  name: Santo Rikuso
+  name: Санто Рикузо
   prefix: St-Rik.
   paygrade: E5
 
 - type: rank
   id: RMCRankIASFNitoRikuso
-  name: Nito Rikuso
-  prefix: Nt-Rik.
+  name: Нито Рикузо
+  prefix: Нт-Рик.
   paygrade: E6
 
 - type: rank
   id: RMCRankIASFIttoRikuso
-  name: Itto Rikuso
-  prefix: It-Rik.
+  name: Итто Рикузо
+  prefix: Ит-Рик.
   paygrade: E7
 
 - type: rank
   id: RMCRankIASFRikusocho
-  name: Rikusocho
-  prefix: Rik.
+  name: Рикузочо
+  prefix: Рик.
   paygrade: E8
 
 - type: rank
   id: RMCRankIASFSantoKaii
-  name: Santo Kaii
-  prefix: St-Wei.
+  name: Санто Кай
+  prefix: Ст-Вэй.
   paygrade: O1
 
 - type: rank
   id: RMCRankIASFNitoKaii
-  name: Nito Kaii
-  prefix: Nt-Wei.
+  name: Нито Кай
+  prefix: Нт-Вэй.
   paygrade: O2
 
 - type: rank
   id: RMCRankIASFIttoKaii
-  name: Itto Kaii
-  prefix: It-Wei.
+  name: Итто Кай
+  prefix: Ит-Вэй.
   paygrade: O3
 
 - type: rank
   id: RMCRankIASFSantoKaisa
-  name: Santo Kaisa
-  prefix: St-Sa.
+  name: Санто Кайса
+  prefix: Ст-Са.
   paygrade: O4
 
 - type: rank
   id: RMCRankIASFNitoKaisa
-  name: Nito Kaisa
-  prefix: Nt-Sa.
+  name: Нито Кайса
+  prefix: Нт-Са.
   paygrade: O5
 
 - type: rank
   id: RMCRankIASFIttoKaisa
-  name: Itto Kaisa
-  prefix: It-Sa.
+  name: Итто Кайса
+  prefix: Ит-Са.
   paygrade: O6
 
 - type: rank
   id: RMCRankIASFKaishoHo
-  name: Kaisho-ho
-  prefix: It-Sho.
+  name: Кайшо-хо
+  prefix: Ит-Шо.
   paygrade: O7
 
 - type: rank
   id: RMCRankIASFKaisho
-  name: Kaisho
-  prefix: Sho.
+  name: Кайшо
+  prefix: Шо.
   paygrade: O8
 
 - type: rank
   id: RMCRankIASFBakuryochotarusho
-  name: Bakuryōchō-taru-shō
-  prefix: Bt-Sho.
+  name: Бакурёчо-тару-шо
+  prefix: Бт-Шо.
   paygrade: O9
 
 - type: rank
   id: RMCRankTSEEmpress
-  name: Empress
-  prefix: HRM.
+  name: Bakuryōchō
+  prefix: ХРМ.
 # This needs to be changed to allow it to change dynamically for genders

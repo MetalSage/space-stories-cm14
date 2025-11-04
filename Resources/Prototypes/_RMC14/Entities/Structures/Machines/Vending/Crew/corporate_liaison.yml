@@ -234,7 +234,7 @@
         amount: 1
       - id: RMCBootsCorporate
         amount: 1
-    - name: Шляпа
+    - name: Галстук
       entries:
       - id: RMCTieBlack
         amount: 1
