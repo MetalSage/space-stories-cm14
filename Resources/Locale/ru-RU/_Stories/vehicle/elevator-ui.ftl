@@ -1,5 +1,4 @@
 st-vehicle-elevator-window-title = Лифт для техники
-
 st-vehicle-elevator-label =
     { $state ->
         [no-platform] Платформа отсутствует
@@ -9,5 +8,4 @@ st-vehicle-elevator-label =
         [raising] Платформа поднимается...
        *[other] Позиция платформы: { $state }
     }
-
 st-vehicle-elevator-button-lower = Опустить платформу

@@ -1,22 +1,17 @@
 ent-STVehicleEnterpoint = маркер точки входа в транспорт
 ent-STVehicleMoveBlockerMarker = маркер блокировки движения транспорта
-
 st-vehicle-wrong-size-to-attack = Вы слишком малы, чтобы повредить этот транспорт!
 st-vehicle-xeno-push-back-hull = Мы отодвигаем пластины корпуса и залезаем внутрь!
 st-vehicle-locked = Транспорт заблокирован!
-
 st-vehicle-is-full = Транспорт заполнен!
-
 st-vehicle-viewport-taken = Это место для наблюдения уже занято!
-
-st-vehicle-rams-mob = {$vehicle} врезается в {$target}!
-st-vehicle-rams-xeno = {$vehicle} врезается в {$xeno}!
+st-vehicle-rams-mob = { $vehicle } врезается в { $target }!
+st-vehicle-rams-xeno = { $vehicle } врезается в { $xeno }!
 st-vehicle-rammed-ally = Вы врезались в союзного морпеха!
-st-xeno-blocks-vehicle = {$xeno} блокирует {$vehicle}!
-st-vehicle-rams = {$vehicle} врезается в {$target}!
-st-vehicle-pushes-over = {$vehicle} сбивает {$target}!
-st-vehicle-crushes = {$vehicle} раздавливает {$target}!
-st-vehicle-crushes-vehicle = {$vehicle} сталкивается с {$target}!
-
+st-xeno-blocks-vehicle = { $xeno } блокирует { $vehicle }!
+st-vehicle-rams = { $vehicle } врезается в { $target }!
+st-vehicle-pushes-over = { $vehicle } сбивает { $target }!
+st-vehicle-crushes = { $vehicle } раздавливает { $target }!
+st-vehicle-crushes-vehicle = { $vehicle } сталкивается с { $target }!
 st-vehicle-select-hardpoint-prompt = Выберите точку крепления для управления!
 st-vehicle-synth-no-heavy-weapons = Ваше программирование не позволяет использовать тяжелое оружие.
