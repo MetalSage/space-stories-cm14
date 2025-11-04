@@ -108,16 +108,22 @@ public sealed class VehicleElevatorSystem : SharedVehicleElevatorSystem
             return;
         }
 
-        _animation.Stop(railing.Owner, AnimationKey);
+        var isAnimationPlaying = _animation.HasRunningAnimation(railing.Owner, AnimationKey);
+
         switch (railing.Comp.Mode)
         {
             case RequisitionsRailingMode.Lowered:
+                _animation.Stop(railing.Owner, AnimationKey);
                 sprite.LayerSetState(layer, railing.Comp.LoweredState);
                 break;
             case RequisitionsRailingMode.Raised:
+                _animation.Stop(railing.Owner, AnimationKey);
                 sprite.LayerSetState(layer, railing.Comp.RaisedState);
                 break;
             case RequisitionsRailingMode.Lowering:
+                if (isAnimationPlaying)
+                    break;
+
                 railing.Comp.LowerAnimation ??= new Animation
                 {
                     Length = TimeSpan.FromSeconds(1.2f),
@@ -137,6 +143,9 @@ public sealed class VehicleElevatorSystem : SharedVehicleElevatorSystem
                 _animation.Play(railing, (Animation) railing.Comp.LowerAnimation, AnimationKey);
                 break;
             case RequisitionsRailingMode.Raising:
+                if (isAnimationPlaying)
+                    break;
+
                 railing.Comp.RaiseAnimation ??= new Animation
                 {
                     Length = TimeSpan.FromSeconds(1.2f),

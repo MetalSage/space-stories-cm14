@@ -180,11 +180,10 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
         if (gearMode != null)
             UpdateGears(elevator, gearMode.Value);
 
-        RequisitionsRailingMode? railingMode = (mode, nextMode) switch
+        RequisitionsRailingMode? railingMode = mode switch
         {
-            (Lowered, _) => RequisitionsRailingMode.Raised,
-            (Raised, _) => RequisitionsRailingMode.Lowering,
-            (_, Lowering) => RequisitionsRailingMode.Raising,
+            Lowered => RequisitionsRailingMode.Raised,
+            Raised => RequisitionsRailingMode.Lowered,
             _ => null
         };
 
@@ -196,13 +195,11 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
 
     private void SpawnOrder(Entity<VehicleElevatorComponent> elevator)
     {
-        var comp = elevator.Comp;
-        if (comp.Mode == Raised && comp.CurrentOrder != null)
+        if (elevator.Comp.Mode == Raised && elevator.Comp.CurrentOrder != null)
         {
             var coordinates = _transform.GetMoverCoordinates(elevator);
-            var entity = SpawnAtPosition(comp.CurrentOrder.Value, coordinates);
-            comp.CurrentOrder = null;
-
+            SpawnAtPosition(elevator.Comp.CurrentOrder.Value, coordinates);
+            elevator.Comp.CurrentOrder = null;
             Dirty(elevator);
         }
     }
@@ -214,10 +211,19 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
         var time = _timing.CurTime;
         var updateUI = false;
         var elevators = EntityQueryEnumerator<VehicleElevatorComponent>();
+
         while (elevators.MoveNext(out var uid, out var elevator))
         {
             if (ProcessElevator((uid, elevator)))
                 updateUI = true;
+
+            if (elevator.RailingFinishAt is {} finish && time >= finish)
+            {
+                elevator.RailingFinishAt = null;
+                SetMode((uid, elevator), elevator.Mode, elevator.NextMode);
+                Dirty(uid, elevator);
+                updateUI = true;
+            }
         }
 
         if (updateUI)
@@ -278,10 +284,24 @@ public sealed partial class VehicleElevatorSystem : SharedVehicleElevatorSystem
                 Lowering => Lowered,
                 _ => elevator.Mode,
             };
+
             SetMode(ent, mode, elevator.NextMode);
 
-            SpawnOrder(ent);
+            RequisitionsRailingMode? railingMode = mode switch
+            {
+                Raised => RequisitionsRailingMode.Lowering,
+                Lowered => RequisitionsRailingMode.Raising,
+                _ => null
+            };
 
+            if (railingMode != null)
+            {
+                UpdateRailings(ent, railingMode.Value);
+                elevator.RailingFinishAt = time + elevator.RailingAnimDelay;
+                Dirty(ent);
+            }
+
+            SpawnOrder(ent);
             return true;
         }
 

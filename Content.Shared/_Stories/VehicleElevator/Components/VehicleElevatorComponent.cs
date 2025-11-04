@@ -57,6 +57,12 @@ public sealed partial class VehicleElevatorComponent : Component
     [DataField]
     public TimeSpan LowerSoundDelay = TimeSpan.FromSeconds(2);
 
+    [DataField] 
+    public TimeSpan RailingAnimDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan? RailingFinishAt = null;
+
     [DataField]
     public SoundSpecifier? LoweringSound = new SoundPathSpecifier("/Audio/_RMC14/Machines/asrs_lowering.ogg");
 
