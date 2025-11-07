@@ -25,6 +25,8 @@
         - LargeMobMask
         layer:
         - LargeMobLayer
+        - BulletImpassable
+        - XenoProjectileImpassable
   - type: Clickable
   - type: Appearance
   - type: MobState
@@ -142,6 +144,8 @@
     drawFov: false
   - type: Corrodible
     isCorrodible: false
+  - type: CMArmor
+    bullet: 48
 
 - type: entity
   parent: STVehicleM577APC
