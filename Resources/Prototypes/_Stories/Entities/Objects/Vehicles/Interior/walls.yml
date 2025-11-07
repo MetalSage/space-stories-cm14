@@ -620,6 +620,7 @@
     sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
     state: m56_FPW
     drawdepth: 6
+    offset: 0, 0.1
   - type: Icon
     sprite: _Stories/Objects/Vehicles/Interior/apc.rsi
     state: m56_FPW

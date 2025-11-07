@@ -142,3 +142,31 @@
     drawFov: false
   - type: Corrodible
     isCorrodible: false
+
+- type: entity
+  parent: STVehicleM577APC
+  id: STVehicleM577APCWithModules
+  name: M577 Armored Personnel Carrier
+  description: "An M577 Armored Personnel Carrier. An armored transport with four big wheels. Entrances on the sides and back."
+  suffix: "Modules"
+  components:
+  - type: VehicleAttachableHolder
+    slots:
+      st-vehicle-slot-treads:
+        startingAttachables: [STMarineVehicleM577Wheels]
+        hardpointType: HDPT_TREADS
+      st-vehicle-slot-support:
+        startingAttachables: [STMarineVehicleFlareLauncher]
+        hardpointType: HDPT_SUPPORT
+      st-vehicle-slot-secondary:
+        startingAttachables: [STMarineVehicleFrontalCannon]
+        hardpointType: HDPT_SECONDARY
+      st-vehicle-slot-primary:
+        startingAttachables: [STMarineVehicleDualcannon]
+        hardpointType: HDPT_PRIMARY
+      st-vehicle-slot-special:
+        startingAttachables: [STMarineVehicleFiringPortWeaponOne, STMarineVehicleFiringPortWeaponTwo]
+        hardpointType: HDPT_SPECIAL
+        multiModule: true
+        maxModules: 2
+        hiddenInUI: true

@@ -53,7 +53,6 @@ st-vehicle-ui-hardpoint-button = { $name } [{ $status }]{ $ammo }
 st-vehicle-ui-spare-info = Запасные магазины: { $current }/{ $max }
 st-vehicle-ui-available-weapons = Доступное оружие:
 st-vehicle-ui-loaded-empty-legend = [✓] = Загруженный магазин | [✗] = Пустой
-st-vehicle-ui-spare-legend = (Запас/Макс) показывает количество запасных магазинов
 st-vehicle-ui-click-to-reload = Нажмите на оружие для перезарядки из запасных магазинов
 st-vehicle-ui-window-title = Загрузчик боекомплекта
 st-vehicle-slot-treads = Передвижение

@@ -75,3 +75,8 @@
     id: FiringPortWeaponTwo
     actionIds:
     - STVehicleReloadSpecialAction
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+    noRot: true
+    offset: 0, 0.2
