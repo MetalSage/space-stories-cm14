@@ -30097,17 +30097,6 @@ entities:
         125,56: RMCAreaAlmayerCommandAiroom
         126,48: RMCAreaAlmayerCommandAiroom
         123,48: RMCAreaAlmayerCommandAiroom
-- proto: ActionToggleLight
-  entities:
-  - uid: 26818
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 24678
-    - type: Action
-      originalIconColor: '#FFFFFFFF'
-      container: 24678
 - proto: AirAlarm
   entities:
   - uid: 10
