@@ -18,7 +18,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1.1,-1.9,1.15,1.9"
+          bounds: "-1.4,-1.4,1.4,1.4"
         density: 10000
         mask:
         - Transport
@@ -44,7 +44,6 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: null
-  - type: RequireProjectileTarget
   - type: UserInterface
     interfaces:
       enum.DialogUiKey.Key:
@@ -146,6 +145,15 @@
     isCorrodible: false
   - type: CMArmor
     bullet: 48
+  - type: TacticalMapIcon
+    icon:
+      sprite: /Textures/_Stories/Interface/map_blips_large.rsi
+      state: apc
+    background:
+      sprite: /Textures/_Stories/Interface/map_blips_large.rsi
+      state: empty_background
+  - type: TacticalMapTracked
+  - type: MarineMapTracked
 
 - type: entity
   parent: STVehicleM577APC
