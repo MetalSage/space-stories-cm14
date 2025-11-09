@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared._RMC14.Projectiles.Penetration;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
 using Content.Shared._RMC14.Xenonids.Projectile;
+using Content.Shared._Stories.Vehicle;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Camera;
 using Content.Shared.Damage;
@@ -133,9 +134,23 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
             var shooterOrWeapon = EntityManager.EntityExists(component.Shooter) ? component.Shooter!.Value : component.Weapon!.Value;
 
+            // Stories-Vehicle-Content-Start
+            string hitLogMessage;
+
+            if (component.Weapon != null &&
+                TryComp<VehicleGunComponent>(component.Weapon.Value, out var vehicleGun) &&
+                vehicleGun.User != null)
+            {
+                hitLogMessage = $"{ToPrettyString(vehicleGun.User.Value)} fired from {ToPrettyString(component.Shooter ?? component.Weapon)} using {ToPrettyString(component.Weapon.Value)}, projectile {ToPrettyString(uid)} hit {otherName} for {modifiedDamage.GetTotal()} damage.";
+            }
+            else
+            {
+                hitLogMessage = $"{ToPrettyString(uid)} fired by {ToPrettyString(shooterOrWeapon)} hit {otherName} dealing {modifiedDamage.GetTotal()} damage.";
+            }
             _adminLogger.Add(LogType.BulletHit,
                 HasComp<ActorComponent>(target) ? LogImpact.Medium : LogImpact.Low,
-                $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(shooterOrWeapon):source} hit {otherName:target} and dealt {modifiedDamage.GetTotal():damage} damage");
+                $"{hitLogMessage}");
+            // Stories-Vehicle-Content-End
         }
 
         // TODO RMC14 move destructible to shared

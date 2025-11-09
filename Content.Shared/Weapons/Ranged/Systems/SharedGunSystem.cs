@@ -801,8 +801,14 @@ public abstract partial class SharedGunSystem : EntitySystem
             MuzzleFlash(gunUid, ammoComp, mapDirection.ToAngle(), user);
             Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
         }
-
-        Logs.Add(LogType.RMCGunShot, LogImpact.Low, $"{ToPrettyString(user)} shot {ToPrettyString(gunUid)} with {shotProjectiles.Count} projectiles aiming at {TransformSystem.ToMapCoordinates(toCoordinates)}.");
+        // Stories-Vehicle-Content-Start
+        string shotLogMessage = $"{ToPrettyString(user)} shot {ToPrettyString(gunUid)} with {shotProjectiles.Count} projectiles aiming at {TransformSystem.ToMapCoordinates(toCoordinates)}.";
+        if (TryComp<VehicleGunComponent>(gunUid, out var vehicleGun) && vehicleGun.User != null)
+        {
+            shotLogMessage = $"{ToPrettyString(vehicleGun.User.Value)} fired from {ToPrettyString(user)} using {ToPrettyString(gunUid)}, firing {shotProjectiles.Count} projectiles towards {TransformSystem.ToMapCoordinates(toCoordinates)}.";
+        }
+        // Stories-Vehicle-Content-End
+        Logs.Add(LogType.RMCGunShot, LogImpact.Low, $"{shotLogMessage}");
         return shotProjectiles;
     }
 
