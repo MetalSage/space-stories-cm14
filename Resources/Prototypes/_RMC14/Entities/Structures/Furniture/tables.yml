@@ -40,9 +40,11 @@
     instantDestroy: true
     passOnDestroy: true
   - type: RMCMesonsNonviewable
+    # Stories-Vehicle-Content-Start
   - type: VehicleStructureTarget
     momentumLossFactor: 0
     DamageToVehicleOnFail: 0
+    # Stories-Vehicle-Content-End
 
 - type: entity
   parent: BaseStructure

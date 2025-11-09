@@ -24,7 +24,7 @@
       falloff: 9999
       ignoreModifiers: true
   - type: RMCProjectileAccuracy
-    accuracy: 40
+    accuracy: 98
     thresholds:
     - range: 10
       falloff: 10
@@ -75,7 +75,7 @@
   - type: CMArmorPiercing
     amount: 50
   - type: RMCProjectileAccuracy
-    accuracy: 15
+    accuracy: 80
     thresholds:
     - range: 12
       falloff: 10

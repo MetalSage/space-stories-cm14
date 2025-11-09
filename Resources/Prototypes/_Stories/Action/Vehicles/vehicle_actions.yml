@@ -1,7 +1,7 @@
 - type: entity
   id: STVehicleSelectHardpointAction
-  name: Select Hardpoint
-  description: Open hardpoints menu
+  name: Weapon Mount Control
+  description: Open the vehicle’s weapon mount interface to manage installed weapons and modules.
   categories:
   - HideSpawnMenu
   components:
@@ -17,7 +17,7 @@
 - type: entity
   id: STVehicleVehicleStatusAction
   name: Vehicle Status
-  description: Vehicle Status
+  description: View hull integrity, systems status, and onboard crew conditions.
   categories:
   - HideSpawnMenu
   components:
@@ -33,7 +33,7 @@
 - type: entity
   id: STVehicleLockDoorsAction
   name: Lock Doors
-  description: nn
+  description: Lock the vehicle’s doors.
   categories:
   - HideSpawnMenu
   components:
@@ -48,8 +48,8 @@
 
 - type: entity
   id: STVehicleReloadSpecialAction
-  name: Reload
-  description: nn
+  name: Reload M56 FPW
+  description: "Reloads M56 FPW machine guns. Automatically reloads when ammo is depleted or when this action is used. Reload time: 10 seconds."
   categories:
   - HideSpawnMenu
   components:

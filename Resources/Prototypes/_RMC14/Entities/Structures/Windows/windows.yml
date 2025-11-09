@@ -66,9 +66,11 @@
         Blunt: 40 # TODO RMC14 reduce window health to 100, check per window
   - type: XenoCrusherChargable
     instantDestroy: True
+    # Stories-Vehicle-Content-Start
   - type: VehicleStructureTarget
     momentumLossFactor: 0
     DamageToVehicleOnFail: 0
+    # Stories-Vehicle-Content-End
 
 - type: entity
   parent: CMBaseWindowIndestructible

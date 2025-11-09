@@ -63,3 +63,6 @@
     minimumStage: 2
     unanchor: true
   - type: RMCMesonsNonviewable
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0

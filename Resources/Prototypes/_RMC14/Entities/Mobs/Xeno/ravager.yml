@@ -148,8 +148,10 @@
     name: cm-job-name-xeno-ravager
   - type: RMCSurgeryXenoHeart
     item: RMCOrganXenoHeartT3
+    # Stories-Vehicle-Content-Start
   - type: VehicleDamageMultiplier
     mult: 2
+    # Stories-Vehicle-Content-End
 
 - type: entity
   parent: RMCXenoRavagerBase
