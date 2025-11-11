@@ -122,7 +122,7 @@ public sealed partial class SharedVehicleSystem
         pilot.StoredZoom = eye.Zoom;
 
         _contentEye.SetZoom(args.Buckle, pilot.StoredZoom * seat.Comp.Zoom, true);
-        _contentEye.SetMaxZoom(target, pilot.StoredZoom * seat.Comp.Zoom);
+        _contentEye.SetMaxZoom(args.Buckle, pilot.StoredZoom * seat.Comp.Zoom);
 
         if (seat.Comp.IsGunner)
             SetupGunnerSeat(seat, (args.Buckle, pilot), eye);

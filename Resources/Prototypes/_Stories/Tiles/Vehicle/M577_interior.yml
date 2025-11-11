@@ -17,7 +17,7 @@
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor1
+  id: STVehicleFloor3
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_0_10.png
   
@@ -179,61 +179,61 @@
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor10
+  id: STVehicleFloor30
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_2_2.png
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor11
+  id: STVehicleFloor31
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_2_3.png
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor12
+  id: STVehicleFloor32
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_3.png
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor13
+  id: STVehicleFloor33
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_3_1.png
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor14
+  id: STVehicleFloor34
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_3_2.png
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor15
+  id: STVehicleFloor35
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_3_3.png
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor16
+  id: STVehicleFloor36
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_4.png
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor17
+  id: STVehicleFloor37
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_4_1.png
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor18
+  id: STVehicleFloor38
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_4_2.png
   
 - type: tile
   parent: STVehicleFloor1
-  id: STVehicleFloor19
+  id: STVehicleFloor39
   name: floor
   sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_1_4_3.png
   
