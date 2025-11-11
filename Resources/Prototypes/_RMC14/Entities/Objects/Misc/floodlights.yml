@@ -61,6 +61,9 @@
         layer:
         - WallLayer
   - type: Appearance
+    # Stories-Vehicle-Content-Start
+  - type: VehicleStructureTarget
+    # Stories-Vehicle-Content-End
 
 - type: entity
   parent: BaseStructure
@@ -203,6 +206,8 @@
     isCorrodible: false
   - type: Appearance
   - type: Eye
+  - type: Physics
+    canCollide: false # Stories-Fix
 
 # Engineer Ship Light
 

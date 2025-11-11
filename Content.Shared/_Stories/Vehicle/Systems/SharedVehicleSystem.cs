@@ -26,6 +26,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Traits.Assorted;
+using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
@@ -33,6 +34,14 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
+using Content.Shared.Shuttles.Components;
+using Content.Shared.Explosion.Components;
+using Content.Shared._RMC14.Entrenching;
+using Content.Shared.Storage.Components;
+using Content.Shared.Humanoid;
+using Content.Shared.Buckle.Components;
+using Content.Shared._RMC14.Dropship;
 
 namespace Content.Shared._Stories.Vehicle.Systems;
 
@@ -67,6 +76,9 @@ public sealed partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly GunIFFSystem _gunIFF = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     [Dependency] private readonly SharedRMCCameraSystem _rmcCamera = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+
+    private readonly ProtoId<TagPrototype> GrenadeTag = "Grenade";
 
     public override void Initialize()
     {
@@ -89,6 +101,8 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleViewportComponent, ActivateInWorldEvent>(OnViewportInteract);
         SubscribeLocalEvent<VehicleViewportWatcherComponent, MoveInputEvent>(OnViewportWatcherMove);
 
+        SubscribeLocalEvent<VehicleGridComponent, EntParentChangedMessage>(OnEntityLeftVehicleGrid);
+
         Subs.BuiEvents<VehicleComponent>(VehicleSelectHardpointUI.Key,
             subs =>
             {
@@ -97,6 +111,60 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         InitializeController();
         InitializeMovement();
+    }
+
+    private void OnEntityLeftVehicleGrid(Entity<VehicleGridComponent> ent, ref EntParentChangedMessage args)
+    {
+        if (!TryGetEntity(ent.Comp.Vehicle, out var vehicleUid) || 
+            !TryComp<VehicleComponent>(vehicleUid, out var vehicle))
+            return;
+
+        if (args.Entity == vehicleUid || HasComp<VehicleInteriorDoorComponent>(args.Entity) || 
+            HasComp<VehicleEnterPointComponent>(args.Entity))
+            return;
+
+        if (TryComp<TransformComponent>(args.Entity, out var xform) && 
+            xform.GridUid == ent.Owner)
+            return;
+
+        DecrementVehicleSlots((vehicleUid.Value, vehicle), args.Entity);
+    }
+
+    private void DecrementVehicleSlots(Entity<VehicleComponent> vehicle, EntityUid entity)
+    {
+        var comp = vehicle.Comp;
+
+        if (HasComp<GhostComponent>(entity))
+        {
+            Dirty(vehicle);
+            UpdateVehicleStatusUI(vehicle);
+            return;
+        }
+
+        if (HasComp<XenoComponent>(entity))
+        {
+            if (comp.XenoSlots.Current > 0)
+                comp.XenoSlots.Current--;
+        }
+        else if (_mobState.IsDead(entity) && !HasComp<UnrevivableComponent>(entity))
+        {
+            if (comp.RevivableDeadSlots.Current > 0)
+                comp.RevivableDeadSlots.Current--;
+        }
+        else if (_mind.TryGetMind(entity, out var mindId, out _) &&
+                 _job.MindTryGetJob(mindId, out var job) &&
+                 comp.RoleReservedSlots.FirstOrDefault(g => g.Roles?.Contains(job.ID) == true) is { } group)
+        {
+            if (group.Total.Current > 0)
+                group.Total.Current--;
+        }
+        else if (comp.PassengerSlots.Current > 0)
+        {
+            comp.PassengerSlots.Current--;
+        }
+
+        Dirty(vehicle);
+        UpdateVehicleStatusUI(vehicle);
     }
 
     private void OnMapInit(Entity<VehicleComponent> vehicle, ref MapInitEvent args)
@@ -143,6 +211,14 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         if (!TryGetVehicle(entity.Owner, out var vehicle))
             return;
+
+        var xform = Transform(vehicle);
+
+        if (HasComp<DropshipComponent>(xform.GridUid) || HasComp<FTLComponent>(xform.GridUid))
+        {
+            _popup.PopupClient(Loc.GetString("st-vehicle-cant-leave-on-shuttle"), args.User);
+            return;
+        }
 
         args.Handled = true;
 
@@ -204,7 +280,8 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         var exitPos = vehiclePos + exitOffset;
 
         args.Handled = true;
-        var coords = new EntityCoordinates(xform.GridUid.Value, exitPos);
+        var exitWorld = new MapCoordinates(exitPos, _transform.GetMapId(ent.Owner));
+        var coords = _transform.ToCoordinates(exitWorld);
         HandleLeavePulling(ent, args.User, coords);
     }
 
@@ -684,6 +761,9 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         if (targetEntity != user)
         {
+            if (!CanPullToVehicle(targetEntity))
+                return;
+
             if (comp.Locked && TryComp<DamageableComponent>(vehicle, out var damageable) &&
                 damageable.TotalDamage < comp.MaxHealth)
             {
@@ -785,6 +865,45 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         _transform.SetCoordinates(targetEntity, coords);
         Dirty(vehicle);
         UpdateVehicleStatusUI(vehicle);
+    }
+
+    private bool CanPullToVehicle(EntityUid target, HashSet<EntityUid>? visited = null)
+    {
+        visited ??= new HashSet<EntityUid>();
+
+        if (!visited.Add(target))
+            return true;
+
+        if (HasComp<ExplosiveComponent>(target) || _tag.HasTag(target, GrenadeTag))
+            return false;
+
+        if (HasComp<BarricadeComponent>(target))
+            return false;
+
+        if (TryComp<SharedEntityStorageComponent>(target, out var storage) &&
+            storage.Contents.Count > 0)
+        {
+            foreach (var entity in storage.Contents.ContainedEntities)
+            {
+                if (HasComp<HumanoidAppearanceComponent>(entity))
+                    return false;
+
+                if (HasComp<XenoComponent>(entity) || HasComp<MarineComponent>(entity))
+                    return false;
+
+                if (HasComp<ExplosiveComponent>(entity) || _tag.HasTag(entity, GrenadeTag))
+                    return false;
+
+                if (!CanPullToVehicle(entity, visited))
+                    return false;
+            }
+        }
+
+        if (TryComp<StrapComponent>(target, out var strap) &&
+            strap.BuckledEntities.Count > 0)
+            return false;
+
+        return true;
     }
 
     private bool CanEnter(EntityUid user, EntityUid target)

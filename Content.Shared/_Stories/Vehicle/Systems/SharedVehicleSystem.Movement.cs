@@ -9,6 +9,7 @@ using Content.Shared._RMC14.Xenonids.Acid;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Fortify;
 using Content.Shared._RMC14.Xenonids.Rest;
+using Content.Shared._RMC14.Xenonids.Construction.ResinHole;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Destructible;
@@ -191,6 +192,12 @@ public sealed partial class SharedVehicleSystem
     private void OnVehiclePreventCollide(Entity<VehicleComponent> vehicle, ref PreventCollideEvent args)
     {
         if (_standingQuery.TryComp(args.OtherEntity, out var standing) && !standing.Standing || _mobState.IsIncapacitated(args.OtherEntity))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        if (HasComp<XenoResinHoleComponent>(args.OtherEntity))
         {
             args.Cancelled = true;
             return;
