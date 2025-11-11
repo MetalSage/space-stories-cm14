@@ -72,7 +72,7 @@ public sealed partial class SharedVehicleSystem
     {
         if (seat.Comp.IsGunner && HasComp<SynthComponent>(args.Buckle))
         {
-            _popup.PopupEntity(Loc.GetString("st-vehicle-synth-no-heavy-weapons"), args.Buckle);
+            _popup.PopupClient(Loc.GetString("st-vehicle-synth-no-heavy-weapons"), args.Buckle);
             args.Cancelled = true;
             return;
         }
@@ -94,7 +94,7 @@ public sealed partial class SharedVehicleSystem
 
         if (!IsConscious(buckle, skills, out _))
         {
-            _popup.PopupEntity(Loc.GetString("rmc-skills-cant-operate", ("target", vehicle.Value)), buckle);
+            _popup.PopupClient(Loc.GetString("rmc-skills-cant-operate", ("target", vehicle.Value)), buckle);
             return false;
         }
 
@@ -108,7 +108,7 @@ public sealed partial class SharedVehicleSystem
 
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
         {
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle)),
                 args.Buckle
             );
@@ -122,6 +122,7 @@ public sealed partial class SharedVehicleSystem
         pilot.StoredZoom = eye.Zoom;
 
         _contentEye.SetZoom(args.Buckle, pilot.StoredZoom * seat.Comp.Zoom, true);
+        _contentEye.SetMaxZoom(target, pilot.StoredZoom * seat.Comp.Zoom);
 
         if (seat.Comp.IsGunner)
             SetupGunnerSeat(seat, (args.Buckle, pilot), eye);
@@ -165,10 +166,6 @@ public sealed partial class SharedVehicleSystem
                 Dirty(pilot);
             }
         }
-        else
-        {
-            _popup.PopupCursor(Loc.GetString("st-vehicle-select-hardpoint-prompt"), pilot);
-        }
     }
 
     private void SetupPilotSeat(Entity<VehiclePilotSeatComponent> seat,
@@ -198,7 +195,7 @@ public sealed partial class SharedVehicleSystem
 
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
         {
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle)),
                 args.Buckle
             );
@@ -293,6 +290,7 @@ public sealed partial class SharedVehicleSystem
         if (TryComp<VehiclePilotComponent>(target, out var pilot))
         {
             _contentEye.SetZoom(target, pilot.StoredZoom, true);
+            _contentEye.SetMaxZoom(target, pilot.StoredZoom);
 
             foreach (var (_, action) in pilot.Actions)
             {

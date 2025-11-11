@@ -6,6 +6,7 @@ using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.NPC;
 using Content.Shared._RMC14.Tools;
 using Content.Shared._RMC14.Weapons.Ranged.Homing;
+using Content.Shared._Stories.Vehicle;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -417,6 +418,11 @@ public sealed class SentrySystem : EntitySystem
             _popup.PopupClient(msg, user, user, PopupType.SmallCaution);
             return false;
         }
+
+        // Stories-Vehicle-Content-Start
+        if (HasComp<VehicleGridComponent>(Transform(sentry).GridUid))
+            return false;
+        // Stories-Vehicle-Content-End
 
         return true;
     }

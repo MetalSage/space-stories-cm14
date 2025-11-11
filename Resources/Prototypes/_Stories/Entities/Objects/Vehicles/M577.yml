@@ -123,6 +123,11 @@
   - type: UserIFF
     faction: FactionMarine
   - type: VehicleMovement
+    maxMomentum: 3
+    minimumStepsForMomentum: 3
+    stepIncrement: 0.7
+    speedPerMomentum: 0.25
+    maxMomentumSpeedBonus: 0.75
   - type: VehicleRepairable
     toolThresholds:
       Welding: 0.0

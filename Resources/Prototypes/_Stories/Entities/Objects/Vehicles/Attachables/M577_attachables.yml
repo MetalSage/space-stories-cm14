@@ -210,5 +210,5 @@
     state: wheels
     destroyedState: wheels_destroyed
   - type: VehicleMovementAttachable
-    walkSpeed: 6
-    sprintSpeed: 6
+    walkSpeed: 4
+    sprintSpeed: 4

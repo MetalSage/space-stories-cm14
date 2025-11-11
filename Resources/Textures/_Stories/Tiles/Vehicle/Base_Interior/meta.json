@@ -290,58 +290,13 @@
       "name": "floor_3_14"
     },
     {
-      "name": "dark_sterile"
-    },
-    {
-      "name": "sterile_green"
-    },
-    {
-      "name": "dark_sterile_green_1"
-    },
-    {
-      "name": "dark_sterile_green_2"
-    },
-    {
-      "name": "dark_sterile_green_3"
-    },
-    {
-      "name": "dark_sterile_green_4"
-    },
-    {
-      "name": "dark_sterile_green_5"
-    },
-    {
-      "name": "dark_sterile_green_6"
-    },
-    {
-      "name": "dark_sterile_green_7"
-    },
-    {
-      "name": "dark_sterile_green_8"
-    },
-    {
-      "name": "dark_sterile_green_9"
-    },
-    {
-      "name": "dark_sterile_green_10"
-    },
-    {
-      "name": "dark_sterile_green_11"
-    },
-    {
-      "name": "dark_sterile_green_12"
-    },
-    {
-      "name": "dark_sterile_green_13"
-    },
-    {
-      "name": "dark_sterile_green_14"
-    },
-    {
       "name": "floor_door_black"
     },
     {
       "name": "floor_door_black_2"
+    },
+    {
+      "name": "black"
     }
   ]
 }
