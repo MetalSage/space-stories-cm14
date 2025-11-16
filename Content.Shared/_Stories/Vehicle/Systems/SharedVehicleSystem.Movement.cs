@@ -17,6 +17,7 @@ using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Item;
+using Content.Shared.Throwing;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
@@ -220,6 +221,12 @@ public sealed partial class SharedVehicleSystem
 
         if (HasComp<ItemComponent>(args.OtherEntity))
         {
+            if (HasComp<ThrownItemComponent>(args.OtherEntity))
+            {
+                args.Cancelled = false;
+                return;
+            }
+            
             args.Cancelled = true;
             return;
         }

@@ -8,7 +8,8 @@
   weedsSpreadable: false
   blockConstruction: true
   blockAnchoring: true
-  
+  indestructible: true
+
 - type: tile
   parent: STVehicleFloor1
   id: STVehicleFloor2

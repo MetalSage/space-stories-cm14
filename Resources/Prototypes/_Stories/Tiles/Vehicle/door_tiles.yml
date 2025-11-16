@@ -1,11 +1,11 @@
 - type: tile
-  parent: CMShuttleTileBase
-  id: STVehicleFloor115
+  parent: STVehicleFloor1
+  id: STVehicleFloor96
   name: door floor black
-  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_door_black.png
+  sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_door_black.png
 
 - type: tile
-  parent: CMShuttleTileBase
-  id: STVehicleFloor116
+  parent: STVehicleFloor1
+  id: STVehicleFloor97
   name: door floor black 2
-  sprite: /Textures/_Stories/Tiles/Vehicle/Interior/floor_door_black_2.png
+  sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_door_black_2.png

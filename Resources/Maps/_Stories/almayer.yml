@@ -4,7 +4,7 @@ meta:
   engineVersion: 264.0.2
   forkId: ""
   forkVersion: ""
-  time: 11/07/2025 19:24:43
+  time: 11/16/2025 22:08:22
   entityCount: 27534
 maps:
 - 1
@@ -35050,11 +35050,6 @@ entities:
     - type: Transform
       pos: 68.5,116.5
       parent: 1
-  - uid: 749
-    components:
-    - type: Transform
-      pos: -97.5,-16.5
-      parent: 1
   - uid: 750
     components:
     - type: Transform
@@ -35193,11 +35188,6 @@ entities:
     components:
     - type: Transform
       pos: 50.5,88.5
-      parent: 1
-  - uid: 777
-    components:
-    - type: Transform
-      pos: -97.5,-16.5
       parent: 1
   - uid: 778
     components:
@@ -58182,7 +58172,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -114959.13
+      secondsUntilStateChange: -115075.984
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -58206,7 +58196,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -114959.13
+      secondsUntilStateChange: -115075.984
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -68708,6 +68698,18 @@ entities:
     - type: Transform
       pos: 11.5,89.5
       parent: 1
+- proto: CMSpawnPointCrewman
+  entities:
+  - uid: 7870
+    components:
+    - type: Transform
+      pos: -94.5,-14.5
+      parent: 1
+  - uid: 7871
+    components:
+    - type: Transform
+      pos: -94.5,-15.5
+      parent: 1
 - proto: CMSpawnPointDCC
   entities:
   - uid: 8216
@@ -71186,11 +71188,6 @@ entities:
     components:
     - type: Transform
       pos: -65.5,7.5
-      parent: 1
-  - uid: 8677
-    components:
-    - type: Transform
-      pos: -98.5,-16.5
       parent: 1
   - uid: 8678
     components:
@@ -116858,6 +116855,20 @@ entities:
       access:
       - - CMAccessMarinePrep
         - CMAccessAlpha
+- proto: ColMarTechVehicleCrewmanEquipment
+  entities:
+  - uid: 777
+    components:
+    - type: Transform
+      pos: -98.5,-16.5
+      parent: 1
+- proto: ColMarTechVehicleCrewmanWeapon
+  entities:
+  - uid: 749
+    components:
+    - type: Transform
+      pos: -97.5,-16.5
+      parent: 1
 - proto: ColMarTechWardenEquipment
   entities:
   - uid: 17336
@@ -140477,7 +140488,7 @@ entities:
       pos: 71.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261546.69
+      secondsUntilStateChange: -261663.55
       state: Opening
   - uid: 24434
     components:
@@ -140485,7 +140496,7 @@ entities:
       pos: 72.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261546.25
+      secondsUntilStateChange: -261663.11
       state: Opening
   - uid: 24435
     components:
@@ -140493,7 +140504,7 @@ entities:
       pos: 73.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261545.84
+      secondsUntilStateChange: -261662.7
       state: Opening
   - uid: 24436
     components:
@@ -140501,7 +140512,7 @@ entities:
       pos: 71.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261540.33
+      secondsUntilStateChange: -261657.19
       state: Opening
   - uid: 24437
     components:
@@ -140509,7 +140520,7 @@ entities:
       pos: 72.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261540.73
+      secondsUntilStateChange: -261657.6
       state: Opening
   - uid: 24438
     components:
@@ -140517,7 +140528,7 @@ entities:
       pos: 73.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261541.12
+      secondsUntilStateChange: -261657.98
       state: Opening
 - proto: RMCDecalSpawnerBloodSplatters
   entities:
@@ -165355,14 +165366,6 @@ entities:
     - type: Transform
       pos: 26.434029,84.77989
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 26818
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 26818
   - uid: 24679
     components:
     - type: Transform

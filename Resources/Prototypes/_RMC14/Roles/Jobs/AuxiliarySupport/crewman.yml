@@ -4,7 +4,7 @@
   name: cm-job-name-vc
   description: cm-job-description-vc
   playTimeTracker: CMJobVehicleCrewman
-  minPlayers: 55
+  minPlayers: 170
   requirements:
   - !type:RoleTimeRequirement
     role: CMJobCombatTech
