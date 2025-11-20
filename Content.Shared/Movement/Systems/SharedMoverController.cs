@@ -338,9 +338,17 @@ public abstract partial class SharedMoverController : VirtualController
 
                 if (VehicleMoveQuery.HasComponent(uid))
                 {
-                    var cardinalAngle = wishDir.ToWorldAngle().GetCardinalDir().ToAngle();
-                    var cardinalDelta = xform.LocalRotation + cardinalAngle - worldRot;
-                    _transform.SetLocalRotationNoLerp(uid, cardinalDelta, xform);
+                    var currentDir = worldRot.GetCardinalDir();
+
+                    var wishAngle = wishDir.ToWorldAngle();
+                    var wishCardinal = wishAngle.GetCardinalDir();
+
+                    if (currentDir.GetOpposite() != wishCardinal)
+                    {
+                        var cardinalAngle = wishCardinal.ToAngle();
+                        var cardinalDelta = xform.LocalRotation + cardinalAngle - worldRot;
+                        _transform.SetLocalRotationNoLerp(uid, cardinalDelta, xform);
+                    }
                 }
                 else
                 {

@@ -93,6 +93,16 @@ public sealed partial class SharedVehicleSystem
 
         var speedBonus = 1 + ent.Comp.CurrentMomentum * ent.Comp.SpeedPerMomentum;
         speedBonus = Math.Min(speedBonus, 1 + ent.Comp.MaxMomentumSpeedBonus);
+
+        if (ent.Comp.LastMoveDirection != Direction.Invalid)
+        {
+            var vehicleRot = _transform.GetWorldRotation(ent);
+            var vehicleDir = vehicleRot.GetCardinalDir();
+
+            if (vehicleDir.GetOpposite() == ent.Comp.LastMoveDirection)
+                return;
+        }
+
         args.ModifySpeed(speedBonus, speedBonus);
     }
 
@@ -115,11 +125,19 @@ public sealed partial class SharedVehicleSystem
         var moveDir = GetMoveDirection(ent, mover);
 
         if (ent.Comp.LastMoveDirection != Direction.Invalid &&
-            ent.Comp.LastMoveDirection != moveDir)
+            ent.Comp.LastMoveDirection != moveDir &&
+            moveDir != Direction.Invalid) 
         {
-            var momentumLoss = (int)(ent.Comp.CurrentMomentum * ent.Comp.MomentumTurnLossFactor);
-            ent.Comp.CurrentMomentum = Math.Max(0, ent.Comp.CurrentMomentum - momentumLoss);
-            Dirty(ent);
+            if (ent.Comp.LastMoveDirection == moveDir.GetOpposite())
+            {
+                ResetMomentum(ent);
+            }
+            else
+            {
+                var momentumLoss = (int)(ent.Comp.CurrentMomentum * ent.Comp.MomentumTurnLossFactor);
+                ent.Comp.CurrentMomentum = Math.Max(0, ent.Comp.CurrentMomentum - momentumLoss);
+                Dirty(ent);
+            }
         }
 
         ent.Comp.LastMoveDirection = moveDir;
@@ -745,12 +763,6 @@ public sealed partial class SharedVehicleSystem
         var damage = vehicle.Comp.WallRamDamage * (momentum / movement.MaxMomentum);
         ApplyDamage(wall, damage, vehicle.Owner);
         ApplyDamage(vehicle.Owner, FixedPoint2.New(10));
-
-        //_popup.PopupEntity(
-        //    Loc.GetString("st-vehicle-rams", ("vehicle", vehicle.Owner), ("target", wall)),
-        //   wall,
-        //    PopupType.LargeCaution
-        //); todo make kd
 
         ReduceMomentum((vehicle.Owner, movement), 2);
     }
