@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.2
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 16:49:03
-  entityCount: 27548
+  time: 11/21/2025 10:03:02
+  entityCount: 27550
 maps:
 - 1
 grids:
@@ -58283,7 +58283,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -114933.79
+      secondsUntilStateChange: -115320.01
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -58307,7 +58307,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -114933.79
+      secondsUntilStateChange: -115320.01
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -140703,7 +140703,7 @@ entities:
       pos: 71.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261521.34
+      secondsUntilStateChange: -261907.56
       state: Opening
   - uid: 24434
     components:
@@ -140711,7 +140711,7 @@ entities:
       pos: 72.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261520.9
+      secondsUntilStateChange: -261907.12
       state: Opening
   - uid: 24435
     components:
@@ -140719,7 +140719,7 @@ entities:
       pos: 73.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261520.5
+      secondsUntilStateChange: -261906.72
       state: Opening
   - uid: 24436
     components:
@@ -140727,7 +140727,7 @@ entities:
       pos: 71.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261514.98
+      secondsUntilStateChange: -261901.2
       state: Opening
   - uid: 24437
     components:
@@ -140735,7 +140735,7 @@ entities:
       pos: 72.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261515.39
+      secondsUntilStateChange: -261901.61
       state: Opening
   - uid: 24438
     components:
@@ -140743,7 +140743,7 @@ entities:
       pos: 73.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -261515.78
+      secondsUntilStateChange: -261902
       state: Opening
 - proto: RMCDecalSpawnerBloodSplatters
   entities:
@@ -181079,9 +181079,6 @@ entities:
     - type: Transform
       pos: -2.3,81.3
       parent: 1
-    - type: AccessReader
-      access:
-      - - RMCAccessWeYa
     - type: RMCDoorButton
       id: CLRoomDivider
     - type: Fixtures
@@ -181091,9 +181088,6 @@ entities:
     - type: Transform
       pos: -2.6,81.3
       parent: 1
-    - type: AccessReader
-      access:
-      - - RMCAccessWeYa
     - type: RMCDoorButton
       id: CL_Containment
     - type: Fixtures
@@ -181388,6 +181382,18 @@ entities:
     components:
     - type: Transform
       pos: 13.5,-32.5
+      parent: 1
+- proto: RMCRequisitionsChairMarkerWest
+  entities:
+  - uid: 27549
+    components:
+    - type: Transform
+      pos: 33.5,-1.5
+      parent: 1
+  - uid: 27550
+    components:
+    - type: Transform
+      pos: 33.5,0.5
       parent: 1
 - proto: RMCRollerBedHospitalSheet2
   entities:
