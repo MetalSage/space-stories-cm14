@@ -35,15 +35,6 @@ public abstract class SharedGunPredictionSystem : EntitySystem
         if (ent != GetEntity(netGun))
             return null;
 
-        // Stories-Vehicle-Gun-Content-Start
-        if (TryComp<VehiclePilotComponent>(user.Value, out var pilot) &&
-            HasComp<VehicleGunComponent>(GetEntity(netGun)) &&
-            pilot.Vehicle is {} vehicle)
-        {
-            user = vehicle;
-        }
-        // Stories-Vehicle-Gun-Content-End
-
 #pragma warning disable RA0002
         gun.ShootCoordinates = GetCoordinates(coordinates);
         gun.Target = GetEntity(target);

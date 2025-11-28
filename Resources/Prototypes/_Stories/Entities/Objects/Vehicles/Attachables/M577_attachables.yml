@@ -32,6 +32,8 @@
       path: /Audio/_Stories/dual_autocannon_fire.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+    cameraRecoilScalarModified: 0
+    cameraRecoilScalar: 0
   - type: VehicleGun
     maxSpareMagazines: 2
     acceptedMagazineTypes: ["boyars_dualcannon"]
@@ -72,6 +74,8 @@
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_ugl.ogg
     projectileSpeed: 25
+    cameraRecoilScalarModified: 0
+    cameraRecoilScalar: 0
   - type: VehicleGun
     acceptedMagazineTypes: ["flare_launcher"]
     startingMagazinePrototype: STVehicleAmmoFlareLauncher
@@ -119,6 +123,8 @@
       collection: CMM56BShoot
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+    cameraRecoilScalarModified: 0
+    cameraRecoilScalar: 0
   - type: VehicleGun
     maxSpareMagazines: 1
     acceptedMagazineTypes: ["re_frontalcannon"]
@@ -157,6 +163,8 @@
       collection: CMM56BShoot
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+    cameraRecoilScalarModified: 0
+    cameraRecoilScalar: 0
   - type: VehicleGun
     needHands: true
     disableAtHullDamage: 0.5

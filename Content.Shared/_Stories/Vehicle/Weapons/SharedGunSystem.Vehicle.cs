@@ -220,9 +220,6 @@ public abstract partial class SharedGunSystem
 
     private void OnTakeAmmo(Entity<VehicleGunComponent> gun, ref TakeAmmoEvent args)
     {
-        if (_netManager.IsClient)
-            return;
-
         if (gun.Comp.ActiveMagazineContainer.ContainedEntity == null)
             return;
 
@@ -292,9 +289,6 @@ public abstract partial class SharedGunSystem
 
     private void OnManualReload(Entity<VehiclePilotComponent> ent, ref VehicleReloadSpecialGunEvent args)
     {
-        if (_netManager.IsClient)
-            return;
-
         if (ent.Comp.Gun == null)
             return;
 

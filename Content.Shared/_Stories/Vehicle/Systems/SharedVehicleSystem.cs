@@ -216,7 +216,8 @@ public sealed partial class SharedVehicleSystem : EntitySystem
 
         if (HasComp<DropshipComponent>(xform.GridUid) || HasComp<FTLComponent>(xform.GridUid))
         {
-            _popup.PopupClient(Loc.GetString("st-vehicle-cant-leave-on-shuttle"), args.User);
+            _popup.PopupEntity(Loc.GetString("st-vehicle-cant-leave-on-shuttle"), args.User);
+            args.Handled = true;
             return;
         }
 
