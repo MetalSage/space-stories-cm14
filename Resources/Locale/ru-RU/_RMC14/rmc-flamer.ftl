@@ -2,3 +2,4 @@ rmc-flamer-tank-not-potent-enough = Этот химикат недостаточ
 rmc-flamer-ignite-first = Сначала нужно зажечь оружие с помощью { $key }!
 rmc-flamer-ignite-first-with = Сначала нужно поджечь оружие!
 rmc-flamer-refill = Вы пополняете { $refilled }
+rmc-flamer-too-close = Вы слишком близко к цели!
