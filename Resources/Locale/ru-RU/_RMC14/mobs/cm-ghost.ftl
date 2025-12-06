@@ -5,3 +5,4 @@ cm-ghost-window-text =
     Вы не сможете изменить свое решение, поэтому выбирайте с умом!
 cm-ghost-window-stay = Остаться в теле
 cm-ghost-ghost = Покинуть тело
+rmc-ghost-gui-toggle-lighting-manager-popup-halfbright = Режим полуяркости.

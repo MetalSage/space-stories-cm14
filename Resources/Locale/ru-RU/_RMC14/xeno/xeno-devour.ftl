@@ -6,6 +6,7 @@ cm-xeno-devour-start-target = { $user } пытается поглотить ва
 cm-xeno-devour-start-observer = { $user } начинает пожирать { $target }!
 cm-xeno-devour-regurgitate = Мы собираемся извергнуть { $target }...
 cm-xeno-devour-hurl-out = Мы извергаем содержимое своего желудка!
+cm-xeno-devour-fake-host = От этого не будет пользы.
 cm-xeno-devour-success = Это было бы не очень вкусно.
 cm-xeno-devour-failed = Вы не можете поглотить { $target }!
 cm-xeno-devour-failed-cant-now = Вы не можете сделать это прямо сейчас!
