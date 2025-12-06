@@ -20,6 +20,9 @@ rmc-job-prefix-provost-enforcer = СПР
 rmc-ghost-name-corp-provost-inspector = Инспектор Провост (Дружественный)
 rmc-job-name-corp-provost-inspector = Инспектор Провост
 rmc-job-prefix-provost-inspector = ИПР
+rmc-job-description-inspector =
+    Инструктируйте новых ВП, советуйте и расследуйте вопросы связанные с Морским Уставом и разрешайте конфликты на корабле, чтобы Военная Полиция следовала интересам Провоста.
+    Инспектора являются прямой связь с Провостом, и имеют последнее слово в законе на корабле, в этом они даже выше Командующего Офицера.
 rmc-ghost-name-corp-provost-marshal = Маршал Провост (Дружественный)
 rmc-job-name-corp-provost-marshal = Маршал Провост
 rmc-job-prefix-provost-marshal = МПР

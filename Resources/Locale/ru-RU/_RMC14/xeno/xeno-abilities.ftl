@@ -12,6 +12,9 @@ rmc-xeno-fury-increase-user = Нас одолевает ярость!
 # Acid reserves
 rmc-xeno-not-enough-acid = У вас недостаточно кислоты!
 rmc-xeno-acid-increase-user = Вы чувствуете, как увеличивается запас кислоты!
+# Shards
+rmc-xeno-not-enough-shards = У нас недостаточно осколков!
+rmc-xeno-shards-increase-user = Мы обрастаем осколками!
 # Construction
 cm-xeno-choose-resin-structure = Выберите структуру смолы
 cm-xeno-order-construction = Построить структуру
@@ -325,6 +328,18 @@ rmc-gut-start-self = We plunge our claws into the body of this unfortunate host,
 rmc-gut-start-others = { $user } plunges their claws into the body of { $target }, starting to tear them in half!
 rmc-gut-finish-self = We tear this pathetic host in half!!
 rmc-gut-finish-others = { $user } tears { $target } in half!!
+# Shed Spikes
+rmc-shed-spikes = Мы сбросили осколки и не можем получать новые 30 секунд!
+rmc-shed-spikes-back = Мы снова можем получать осколки!
+# Spike Shield
+rmc-spike-shield-self = Мы взъерошиваем иглы из костяных осколков, формируя защитную оболочку!
+rmc-spike-shield-others = { $user } взъерошивает иглы из костяных осколков, формируя защитную оболочку!
+rmc-spike-shield-hit = { $user } разбрызгивает костяные иглы повсюду!
+# Doomed
+rmc-doomed-fail = Не работает...
+# Destroy
+rmc-destroy-cant-reach = У нас нет свободного пути к этой точке!
+rmc-destroy-cant-area = Мы не можем прыгнуть в эту зону!
 rmc-xeno-ravager-super-empower-fade = Наше свечение исчезает, сила покидает нашу форму!
 rmc-xeno-defensive-shield-activate-self = Мы прижимаемся к земле и укрепляем свою защиту!
 cm-xeno-plasma-transferred-to-self = { $target } передал вам { $plasma } плазмы. Теперь у вас есть { $total }
