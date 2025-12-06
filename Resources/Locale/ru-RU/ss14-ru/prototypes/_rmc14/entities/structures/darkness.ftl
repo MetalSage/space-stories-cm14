@@ -1,0 +1,2 @@
+ent-RMCPerspectiveDarkness = тьма
+    .desc = { "" }
