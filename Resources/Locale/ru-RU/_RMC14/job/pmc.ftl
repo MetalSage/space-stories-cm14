@@ -3,6 +3,11 @@ rmc-ghost-role-information-pmc-rules =
     Вы ничего не помните из прошлой жизни и не помните ничего, что узнали, будучи призраком.
     Вам разрешено помнить общие игровые знания, например, как готовить или пользоваться предметами.
     { "[" }color=red]КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО[/color] помнить такие детали, как имя или внешность вашего предыдущего персонажа.
+rmc-ghost-role-information-pmc-whiteout-rules =
+    You are a [color=orange][bold]PMC Whiteout Operative[/bold][/color]. Follow admin instructions.
+    You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
+    You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
+    You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
 rmc-ghost-role-information-pmc-description = Обеспечьте сохранность Вестон-Ямады. Убедитесь, что корпоративный связист в безопасности. Отрицайте причастность Вестон-Ямады к инцидентам и не доверяйте силам КМП США. Открывайте огонь только в ответ или по приказу.
 rmc-ghost-name-pmc-standard = Оператор ЧВК Ве-Я (Нейтральный)
 rmc-job-name-pmc-standard = Оператор ЧВК Ве-Я
@@ -55,5 +60,26 @@ rmc-job-name-pmc-pve-team-leader = Руководитель группы
 rmc-job-name-pmc-pve-force-leader = Командир отряда
 rmc-job-name-pmc-pve-force-command = Командующий отрядом
 rmc-job-name-pmc-corporate-goon-engi = Корпоративный техник СБ Ве-Я
+rmc-job-prefix-pmc-pve-team-leader = РГ
 rmc-job-name-pmc-corporate-goon-medic = Корпоративный медик СБ Ве-Я
+rmc-job-prefix-pmc-pve-force-leader = КО
 rmc-job-name-pmc-corporate-goon-leader = Руководитель корпоративной СБ Ве-Я
+rmc-ghost-name-pmc-whiteout = Боевое подразделение «Белая метель» ЧВК ВЕ-Я (!ОТРЯД СМЕРТИ!)
+rmc-job-name-pmc-whiteout = Боевое подразделение команды «Белая метель»
+rmc-ghost-name-pmc-whiteout-gunner = Боевое подразделение стрелков «Белая метель» ЧВК ВЕ-Я (!ОТРЯД СМЕРТИ!)
+rmc-job-name-pmc-whiteout-gunner = Боевое подразделение стрелков команды «Белая метель»
+rmc-job-prefix-pmc-whiteout = БМ
+rmc-job-prefix-pmc-pve-force-command = КС
+rmc-ghost-role-information-corp-exec-description = Вы сотрудник корпорации ВЕ-Я. Вы должны поддерживать и защищать интересы ВЕ-Я.
+rmc-ghost-name-corp-exec-supervisor = Супервайзер-исполнитель (Нейтральный)
+rmc-job-name-corp-exec-supervisor = Супервайзер-исполнитель
+rmc-ghost-name-corp-exec-ass-man = Помощник менеджера (Нейтральный)
+rmc-job-name-corp-exec-ass-man = Помощник менеджера
+rmc-ghost-name-corp-exec-div-man = Менеджер подразделения (Нейтральный)
+rmc-job-name-corp-exec-div-man = Менеджер подразделения
+rmc-ghost-name-corp-exec-chief = Главный исполнительный директор (Нейтральный)
+rmc-job-name-corp-exec-chief = Главный исполнительный директор
+rmc-ghost-name-corp-dep-director = Заместитель директора ВЕ-Я (Нейтральный)
+rmc-job-name-corp-dep-director = Заместитель директора ВЕ-Я
+rmc-ghost-name-corp-director = Директор ВЕ-Я (Нейтральный)
+rmc-job-name-corp-director = Директор ВЕ-Я
