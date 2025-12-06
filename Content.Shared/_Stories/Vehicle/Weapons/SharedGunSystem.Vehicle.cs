@@ -2,6 +2,7 @@ using Content.Shared._RMC14.CameraShake;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._Stories.Attachables;
 using Content.Shared._Stories.Vehicle;
+using Content.Shared._Stories.Vehicle.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -17,6 +18,7 @@ public abstract partial class SharedGunSystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedVehicleWeaponLoaderSystem _weaponLoader = default!;
 
     protected virtual void InitializeVehicleGun()
     {
@@ -360,6 +362,23 @@ public abstract partial class SharedGunSystem
         {
             var state = new VehicleStatusUIState(vehicle.Locked);
             _ui.SetUiState(xform.ParentUid, VehicleStatusUI.Key, state);
+            
+            UpdateWeaponLoadersOnVehicle((xform.ParentUid, vehicle));
+        }
+    }
+
+    private void UpdateWeaponLoadersOnVehicle(Entity<VehicleComponent> vehicle)
+    {
+        if (vehicle.Comp.GridEnt == null)
+            return;
+        
+        var loaderQuery = EntityQueryEnumerator<VehicleWeaponLoaderComponent, TransformComponent>();
+        while (loaderQuery.MoveNext(out var loaderUid, out var loader, out var loaderXform))
+        {
+            if (loaderXform.GridUid != vehicle.Comp.GridEnt.Value)
+                continue;
+                
+            _weaponLoader.UpdateLoaderUI((loaderUid, loader));
         }
     }
 }

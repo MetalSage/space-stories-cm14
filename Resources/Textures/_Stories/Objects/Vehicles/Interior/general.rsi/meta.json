@@ -59,21 +59,6 @@
       "name": "locker_med"
     },
     {
-      "name": "extinguisher"
-    },
-    {
-      "name": "extinguisher_closed"
-    },
-    {
-      "name": "extinguisher_full"
-    },
-    {
-      "name": "extinguisher_mini"
-    },
-    {
-      "name": "extinguisher_empty"
-    },
-    {
       "name": "nanomed"
     },
     {
@@ -259,6 +244,33 @@
           0.1
         ]
       ]
+    },
+    {
+      "name": "extinguisher_closed"
+    },
+    {
+      "name": "extinguisher_empty"
+    },
+    {
+      "name": "extinguisher_full"
+    },
+    {
+      "name": "extinguisher_mini"
+    },
+    {
+      "name": "closed"
+    },
+    {
+      "name": "extinguisher"
+    },
+    {
+      "name": "extinguisher-mini"
+    },
+    {
+      "name": "frame"
+    },
+    {
+      "name": "open"
     }
   ]
 }

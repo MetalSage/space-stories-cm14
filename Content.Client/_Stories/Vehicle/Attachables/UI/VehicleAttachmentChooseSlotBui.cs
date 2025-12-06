@@ -32,7 +32,7 @@ public sealed class VehicleAttachmentChooseSlotBui(EntityUid owner, Enum uiKey) 
         _menu.UpdateMenu(msg.AttachableSlots,
             slotId =>
             {
-                SendMessage(new VehicleAttachableHolderAttachToSlotMessage(slotId));
+                SendPredictedMessage(new VehicleAttachableHolderAttachToSlotMessage(slotId));
                 _menu.Close();
             });
     }

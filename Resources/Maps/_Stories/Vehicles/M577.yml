@@ -794,6 +794,8 @@ entities:
   entities:
   - uid: 30
     components:
+    - type: MetaData
+      name: БТР M577
     - type: Transform
       pos: 1.7971872,2.5629783
       parent: 1

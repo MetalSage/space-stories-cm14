@@ -188,7 +188,7 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
         _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
     }
 
-    private void UpdateLoaderUI(Entity<VehicleWeaponLoaderComponent> loader)
+    public void UpdateLoaderUI(Entity<VehicleWeaponLoaderComponent> loader)
     {
         if (!_vehicle.TryGetVehicle(loader.Owner, out var vehicle))
             return;

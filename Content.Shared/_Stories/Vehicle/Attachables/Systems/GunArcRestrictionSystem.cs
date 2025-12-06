@@ -40,10 +40,10 @@ public sealed class GunArcRestrictionSystem : EntitySystem
         if (Math.Abs(diff.Theta) > ent.Comp.MaxAngleDeviation.Theta)
         {
             args.Cancelled = true;
-
+            args.ResetCooldown = true;
             if (_holder.TryGetAttachableUser(ent.Owner, out var pilot) && pilot != null)
             {
-                _popup.PopupCursor(Loc.GetString($"{ent.Comp.RestrictionMessage}"), pilot.Value, PopupType.SmallCaution);
+                _popup.PopupPredictedCursor(Loc.GetString($"{ent.Comp.RestrictionMessage}"), pilot.Value, PopupType.SmallCaution);
             }
         }
     }

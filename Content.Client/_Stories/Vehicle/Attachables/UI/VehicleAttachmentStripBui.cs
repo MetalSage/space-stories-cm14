@@ -27,6 +27,6 @@ public sealed class VehicleAttachmentStripBui(EntityUid owner, Enum uiKey) : Bou
         if (state is not VehicleAttachableHolderStripUserInterfaceState msg)
             return;
 
-        _menu?.UpdateMenu(msg.AttachableSlots, slotId => SendMessage(new VehicleAttachableHolderDetachMessage(slotId)));
+        _menu?.UpdateMenu(msg.AttachableSlots, slotId => SendPredictedMessage(new VehicleAttachableHolderDetachMessage(slotId)));
     }
 }

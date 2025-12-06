@@ -91,7 +91,20 @@ public sealed partial class SharedVehicleSystem
         if (ent.Comp.CurrentMomentum <= 0)
             return;
 
-        var speedBonus = 1 + ent.Comp.CurrentMomentum * ent.Comp.SpeedPerMomentum;
+        var progressToNextLevel = 0f;
+        if (ent.Comp.CurrentMomentum < ent.Comp.MaxMomentum)
+        {
+            var stepsInCurrentLevel = ent.Comp.Steps - ent.Comp.MinimumStepsForMomentum - (ent.Comp.CurrentMomentum - 1);
+            
+            if (stepsInCurrentLevel >= 0)
+            {
+                var progressInStep = ent.Comp.DistanceMoved / ent.Comp.StepIncrement;
+                progressToNextLevel = Math.Clamp(stepsInCurrentLevel + progressInStep, 0f, 1f);
+            }
+        }
+
+        var effectiveMomentum = ent.Comp.CurrentMomentum + progressToNextLevel;
+        var speedBonus = 1 + effectiveMomentum * ent.Comp.SpeedPerMomentum;
         speedBonus = Math.Min(speedBonus, 1 + ent.Comp.MaxMomentumSpeedBonus);
 
         if (ent.Comp.LastMoveDirection != Direction.Invalid)
@@ -121,7 +134,6 @@ public sealed partial class SharedVehicleSystem
         ent.Comp.DistanceMoved += absDistance;
         ent.Comp.LastMovementTime = _timing.CurTime;
 
-        var currentRotation = _transform.GetWorldRotation(ent);
         var moveDir = GetMoveDirection(ent, mover);
 
         if (ent.Comp.LastMoveDirection != Direction.Invalid &&
@@ -137,28 +149,32 @@ public sealed partial class SharedVehicleSystem
                 var momentumLoss = (int)(ent.Comp.CurrentMomentum * ent.Comp.MomentumTurnLossFactor);
                 ent.Comp.CurrentMomentum = Math.Max(0, ent.Comp.CurrentMomentum - momentumLoss);
                 Dirty(ent);
+                _movement.RefreshMovementSpeedModifiers(ent);
             }
         }
 
         ent.Comp.LastMoveDirection = moveDir;
 
-        if (ent.Comp.DistanceMoved < ent.Comp.StepIncrement)
-            return;
-
-        ent.Comp.Steps += 1;
-        ent.Comp.DistanceMoved -= ent.Comp.StepIncrement;
-
-        if (ent.Comp.Steps < ent.Comp.MinimumStepsForMomentum)
-            return;
-
-        if (ent.Comp.CurrentMomentum < ent.Comp.MaxMomentum)
+        if (ent.Comp.DistanceMoved >= ent.Comp.StepIncrement)
         {
-            ent.Comp.CurrentMomentum++;
+            ent.Comp.Steps += 1;
+            ent.Comp.DistanceMoved -= ent.Comp.StepIncrement;
 
-            if (ent.Comp.CurrentMomentum == 1)
-                PlayMovementSound(ent);
+            if (ent.Comp.Steps >= ent.Comp.MinimumStepsForMomentum && 
+                ent.Comp.CurrentMomentum < ent.Comp.MaxMomentum)
+            {
+                ent.Comp.CurrentMomentum++;
 
-            Dirty(ent);
+                if (ent.Comp.CurrentMomentum == 1)
+                    PlayMovementSound(ent);
+
+                Dirty(ent);
+            }
+            
+            _movement.RefreshMovementSpeedModifiers(ent);
+        }
+        else
+        {
             _movement.RefreshMovementSpeedModifiers(ent);
         }
     }
