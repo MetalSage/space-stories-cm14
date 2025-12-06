@@ -1,0 +1,10 @@
+ent-RMCWeaponFL3Flamer = тяжёлая установка сжигания Flammenwerfer 3
+    .desc = Тяжёлая промышленная установка для сжигания, производившаяся корпорацией Вестон, а позднее — Вестон-Ямада. Часто используется в миссиях по расчистке растительности на колониях-фронтирах, обычно не встречается в бою, но разрушительна при реальном применении.
+ent-RMCWeaponFL3FlamerPVE = { ent-RMCWeaponFL3Flamer }
+    .suffix = ПвЕ
+    .desc = { ent-RMCWeaponFL3Flamer.desc }
+ent-RMCWeaponFL3FlamerWhiteout = { ent-RMCWeaponFL3Flamer }
+    .suffix = Белая мгла
+    .desc = { ent-RMCWeaponFL3Flamer.desc }
+ent-RMCTankFlamerFL3 = бак тяжёлого огнемёта FW3
+    .desc = Тяжёлый бак большой ёмкости, используемый тяжёлой установкой зажигания Flammenwerfer 3. На нём нанесён синий, термостойкий логотип Вестон-Ямада.

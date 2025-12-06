@@ -49,3 +49,24 @@ rmc-mortar-camera-title = Интерфейс камеры миномета
 rmc-mortar-camera-name = Паракам ({ $x }):({ $y })
 rmc-mortar-target-title = Координаты цели
 rmc-mortar-offset-title = Смещение цели
+# Targeting mode
+rmc-mortar-toggle-mode = Переключить режим наведения
+rmc-mortar-toggle-mode-message = Переключиться между режимами наведения по координатам и по лазеру
+rmc-mortar-coordinates-mode-switched-self = Вы переключаете { $mortar } в режим наведения по координатам.
+rmc-mortar-laser-mode-switched-self = Вы переключаете { $mortar } в режим наведения по лазеру.
+rmc-mortar-coordinates-mode-switched-others = { $user } переключает { $mortar } в режим наведения по координатам.
+rmc-mortar-laser-mode-switched-others = { $user } переключает { $mortar } в режим наведения по лазеру.
+rmc-mortar-linking-start = Вы начинаете привязывать { $laserDesignator } к { $mortar }.
+rmc-mortar-laser-linked-self = Вы успешно привязали { $laserDesignator } к { $mortar }.
+rmc-mortar-laser-linked-others = { $user } успешно привязал { $laserDesignator } к { $mortar }.
+rmc-mortar-already-linking = { $mortar } уже привязывается к лазерному целеуказателю.
+rmc-mortar-no-laser-target = У { $mortar } нет лазерной цели для стрельбы!
+rmc-mortar-no-laser-designator = У { $mortar } нет привязанного лазерного целеуказателя!
+rmc-mortar-in-coordinates-mode = { $mortar } в данный момент находится в режиме наведения по координатам.
+rmc-mortar-in-laser-mode = { $mortar } в данный момент находится в режиме наведения по лазеру.
+rmc-mortar-laser-aimed = { $mortar } наведён на цель и готов к стрельбе!
+rmc-mortar-toggle-mode-hint = [color=cyan]Alt + клик по миномёту, чтобы переключить режимы наведения.[/color]
+rmc-mortar-dial-coordinates = { $mortar } находится в режиме лазерного наведения, переключитесь на координатное наведение для ввода координат!
+rmc-mortar-beeping = издаёт звуковой сигнал!
+rmc-mortar-beeping-warning = издаёт предупреждающий звуковой сигнал!
+rmc-mortar-targeting = { $mortar } всё ещё наводится.
