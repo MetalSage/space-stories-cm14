@@ -1,4 +1,5 @@
 using Content.Shared._RMC14.Targeting;
+using Content.Shared._RMC14.Attachable.Systems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -7,7 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._RMC14.Weapons.Ranged.AimedShot;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedRMCAimedShotSystem))]
+[Access(typeof(SharedRMCAimedShotSystem), typeof(AttachableAimedShotSystem))]
 public sealed partial class AimedShotComponent : Component
 {
     /// <summary>

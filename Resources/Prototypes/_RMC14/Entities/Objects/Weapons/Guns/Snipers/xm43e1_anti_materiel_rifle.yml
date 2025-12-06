@@ -89,6 +89,7 @@
       GoldenAutumn: /Textures/_Stories/Objects/Weapons/Snipers/xm43e1.rsi
   - type: RMCGunChamber
     enabled: false
+  - type: IFFToggle
 
 - type: entity
   parent: CMMagazineSniperM96S

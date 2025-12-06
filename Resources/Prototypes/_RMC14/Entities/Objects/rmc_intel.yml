@@ -304,6 +304,15 @@
           icon:
             sprite: _RMC14/Interface/tech_tree.rsi
             state: overshield
+        - name: Приобрести специализированный прицел для M5-ATL
+          description: Прицел M5-ATL позволяет вести прицельную стрельбу с учетом влияния системы опознавания «свой-чужой»
+          cost: 5
+          events:
+          - !type:TechWarheadEvent
+            warhead: STCrateAttachmentXM82SmartScope
+          icon:
+            sprite: _RMC14/Interface/tech_tree.rsi
+            state: overshield
 #        - name: Unlock Tier 4
 #          description: Transitions the tree to another tier.
 #          cost: 5

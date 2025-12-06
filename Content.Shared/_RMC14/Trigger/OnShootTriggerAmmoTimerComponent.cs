@@ -1,9 +1,9 @@
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 
-namespace Content.Server._RMC14.Trigger;
+namespace Content.Shared._RMC14.Trigger; // Stories-Moved-To-Shared
 
-[RegisterComponent]
-[Access(typeof(RMCTriggerSystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class OnShootTriggerAmmoTimerComponent : Component
 {
     [DataField]

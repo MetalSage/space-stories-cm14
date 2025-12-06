@@ -8,6 +8,7 @@ using Content.Shared._RMC14.Marines.Orders;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Movement;
 using Content.Shared._RMC14.Projectiles;
+using Content.Shared._RMC14.Projectiles.Aimed;
 using Content.Shared._RMC14.Weapons.Common;
 using Content.Shared._RMC14.Weapons.Ranged.Whitelist;
 using Content.Shared.Containers.ItemSlots;
@@ -181,12 +182,11 @@ public sealed class CMGunSystem : EntitySystem
         if (direction == Vector2.Zero)
             return;
 
-        // Check for a max range from the ShootAtFixedPointComponent. If defined, take the minimum between that and the calculated distance.
-        var distance = ent.Comp.MaxFixedRange != null ? Math.Min(ent.Comp.MaxFixedRange.Value, direction.Length()) : direction.Length();
         // Get current time and normalize the vector for physics math.
         var time = _timing.CurTime;
         var normalized = direction.Normalized();
 
+        var baseDistance = direction.Length(); // Stories-Demo-Spec-Aimed-Shot
         // Send each FiredProjectile with a PhysicsComponent off with the same Vector. Max
         foreach (var projectile in args.FiredProjectiles)
         {
@@ -211,13 +211,28 @@ public sealed class CMGunSystem : EntitySystem
             if (Comp<ShootAtFixedPointComponent>(ent).ShootArcProj && !ev.Cancelled)
                 comp.ArcProj = true;
 
-            // Take the lowest nonzero MaxFixedRange between projectile and gun for the capped vector length.
+            // Stories-Demo-Spec-Aimed-Shot-Start
+            var projectileDistance = baseDistance;
+
+            if (TryComp<AttachableAimedShotHolderComponent>(ent, out var aimedShotHolder) &&
+                HasComp<AimedProjectileComponent>(projectile))
+            {
+                projectileDistance = Math.Min(aimedShotHolder.Range, projectileDistance);
+            }
+            else if (ent.Comp.MaxFixedRange is not null)
+            {
+                projectileDistance = Math.Min(ent.Comp.MaxFixedRange.Value, projectileDistance);
+            }
+
             if (TryComp(projectile, out ProjectileComponent? normalProjectile) && normalProjectile.MaxFixedRange > 0)
             {
-                distance = distance > 0 ? Math.Min(normalProjectile.MaxFixedRange.Value, distance) : normalProjectile.MaxFixedRange.Value;
+                projectileDistance = projectileDistance > 0
+                    ? Math.Min(normalProjectile.MaxFixedRange.Value, projectileDistance)
+                    : normalProjectile.MaxFixedRange.Value;
             }
             // Calculate travel time and equivalent distance based either on click location or calculated max range, whichever is shorter.
-            comp.FlyEndTime = time + TimeSpan.FromSeconds(distance / gun.ProjectileSpeedModified);
+            comp.FlyEndTime = time + TimeSpan.FromSeconds(projectileDistance / gun.ProjectileSpeedModified);
+            // Stories-Demo-Spec-Aimed-Shot-End
         }
     }
 
