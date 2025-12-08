@@ -20,10 +20,14 @@
   - В случае успеха все стороны должны получить медицинскую помощь. Командовать должен следующий по рангу командир.
   - В мятеже должно быть минимум 3 участника.
 
-  [bold]Примеры причин для мятежа:[/bold]
-  - Некомпетентность командира, когда следующий в очереди будет руководить лучше.
-  - Командир не предпринимает никаких действий по руководству.
-  - Командир отказывается разрешить эвакуацию.
+  - Mutiny cannot occur during hijack, and any ongoing mutiny must be ended upon hijack.
+  - Only the Acting Commander can be mutinied against. They must be given a chance to stand down peacefully.
+  - During the mutiny, attacking any uninvolved, medical, or surrendered personnel is forbidden, as is perma-killing anyone involved.
+  - If you have surrendered during a mutiny, you must remain as such.
+  - You may not change sides unless you are surrendering.
+  - When failed, all sides must be given medical treatment. Commanding Officers or higher are able to deny treatment or battlefield execute mutineers.
+  - When succeeded, all sides must be given medical treatment. The next in the command chain should be put in charge.
+  - Mutinies must have 3 members minimum.
 
   [bold]Примеры недействительных причин для мятежа:[/bold]
   - Неприязнь к командиру.

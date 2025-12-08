@@ -1,34 +1,40 @@
 ﻿<Document>
   # Space Stories - Marine Corps Game Rules
 
-  The rules in this section and the in-game manual are primary and take precedence over all other sources such as Discord and Wiki.
+  The rules in this section and the in-game guide are primary and take priority over all other sources, including Discord and the Wiki.
 
-  ## Recent Changes
-  Please refer to the relevant sections for full details.
-  - [textlink="Rule 2: Roleplaying" link="STENGRolePlay"] Added rule about language norms(Caps, Spam, Breinroth)
+  ## Recent Changes (28.10.2025)
+  - [textlink="Rule 2: Roleplay" link="STRolePlay"] has been reworked and expanded — new sections added about IC communication, toxicity, awards, and Xenomorph behavior. This rule now establishes overall roleplay standards for all players on the server.
+  - [textlink="Rule 3: Metagaming and Metacommunication" link="STMetagamingMetacommunication"] completely rewritten, with new violation examples and clarified faction knowledge, Xenomorph behavior, and voice-chat teaching allowances.
+  - [textlink="Rule 4: ERP" link="STERP"] clarified that punishment depends on context and intent; minor IC profanity is not a violation.
+  - [textlink="Rule 5: Bug Abuse and Unfair Play" link="STBuggingFoulPlay"] expanded violation list — now includes intentional glitching and visual bug abuse even “just for fun,” with clarified allowed exceptions.
+  - [textlink="Rule 7: Play Your Role" link="STPlayYourRole"] fully reworked — role responsibility tiers and proper exit procedures added. This rule now defines core behavioral expectations and duty obligations within character roles.
+  - [textlink="Rule 8: Character Names" link="STCharacterNames"] clarified naming requirements, with new restrictions on copying characters and CAPS-style nicknames.
 
-  ## Admin Decisions are Final
-  - Rules are applied according to their intent.  It is impossible to list every example of a rule violation, so enforcement depends on the administrator's interpretation of the rule's meaning.
-  - At their discretion, administrators may address rule violations with in-character consequences. This does not apply to zero-tolerance rules.
-  - You may submit a complaint to Senior Staff if you feel a decision was incorrect.
+  The remaining rules have not been changed.
+
+  ## Administrative decisions are final.
+  - Rules are applied according to their intent. It is impossible to list every violation example; therefore enforcement depends on administrative interpretation of the rule’s meaning.
+  - Administrators may resolve rule violations using in-game consequences for characters at their discretion. This does not apply to zero-tolerance rules.
+  - You may submit an appeal to head staff if you believe a decision was incorrect.
 
   ## General Information
-  Disconnecting or ignoring/refusing admin ahelp will result in a ban appeal-only.
-  This is to prevent malicious players from evading punishment. If you have to leave urgently, inform us and this will be taken into account during your appeal.
+  Disabling, ignoring, or refusing to answer an admin’s ahelp will result in a ban that is only appealable.
+  This is to prevent players from avoiding consequences. If you need to leave urgently, inform us — this will be taken into account when reviewing an appeal.
 
-  All rules listed below are in effect at all times, including between rounds.
+  All rules below apply at all times, including between rounds.
 
   ## Core Rules
-  These are the core rules of Space Stories - Marine Corps. Click on them for more detailed information.
-  - [textlink="Rule 0: Community Expectations" link="STENGCommunityExpectations"]
-  - [textlink="Rule 1: Griefing" link="STENGGrief"]
-  - [textlink="Rule 2: Roleplaying" link="STENGRolePlay"]
-  - [textlink="Rule 3: Metagaming and Metacommunication" link="STENGMetagamingMetacommunication"]
-  - [textlink="Rule 4: ERP" link="STENGERP"]
-  - [textlink="Rule 5: Bug Exploitation and Foul Play" link="STENGBuggingFoulPlay"]
-  - [textlink="Rule 6: Ban Evasion and Multi-accounting" link="STENGBypassBlockingMultiAccounts"]
-  - [textlink="Rule 7: Play Your Role" link="STENGPlayYourRole"]
-  - [textlink="Rule 8: Character Names" link="STENGCharacterNames"]
-  - [textlink="Rule 9: Use of Lethal Force" link="STENGUseOfLethalForce"]
-  - [textlink="Rule 10: Military Law and Mutinies" link="STENGMilitaryLawMutinies"]
+  These are the primary Space Stories - Marine Corps rules. Click on them for detailed information.
+  - [textlink="Rule 0: Community Expectations" link="STCommunityExpectations"]
+  - [textlink="Rule 1: Grief" link="STGrief"]
+  - [textlink="Rule 2: Roleplay" link="STRolePlay"]
+  - [textlink="Rule 3: Metagaming and Metacommunication" link="STMetagamingMetacommunication"]
+  - [textlink="Rule 4: ERP" link="STERP"]
+  - [textlink="Rule 5: Bug Abuse and Unfair Play" link="STBuggingFoulPlay"]
+  - [textlink="Rule 6: Ban Evasion and Multi-Accounts" link="STBypassBlockingMultiAccounts"]
+  - [textlink="Rule 7: Play Your Role" link="STPlayYourRole"]
+  - [textlink="Rule 8: Character Names" link="STCharacterNames"]
+  - [textlink="Rule 9: Use of Lethal Force" link="STUseOfLethalForce"]
+  - [textlink="Rule 10: Military Law and Mutinies" link="STMilitaryLawMutinies"]
 </Document>

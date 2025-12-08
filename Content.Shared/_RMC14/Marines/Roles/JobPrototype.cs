@@ -78,5 +78,8 @@ public sealed partial class JobPrototype : IInheritingPrototype, ICMSpecific
     public bool BasePlaytimeTracker;
 
     [DataField]
+    public ProtoId<JobPrototype>? WhitelistParent;
+
+    [DataField]
     public int MinPlayers = 0; // Stories-Vehicle-Crewman-Content
 }

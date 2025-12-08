@@ -5,7 +5,7 @@ using Robust.Shared.Toolshed;
 
 namespace Content.Server._RMC14.AlertLevel;
 
-[ToolshedCommand, AdminCommand(AdminFlags.VarEdit)]
+[ToolshedCommand, AdminCommand(AdminFlags.Fun)] // Stories-1984-Admin-Tweak
 public sealed class AlertLevelCommand : ToolshedCommand
 {
     [CommandImplementation("get")]

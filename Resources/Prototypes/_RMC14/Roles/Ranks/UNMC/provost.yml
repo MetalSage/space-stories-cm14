@@ -26,25 +26,26 @@
   prefix: Зам. Маршала
   paygrade: O6
 
-# Факс Респондер
-- type: rank
-  id: RMCRankProvostCommunicationsOfficer
-  name: Офицер Коммуникаций
-  prefix: КомОф.
-
-# Любой игрок с высоким пониманием закона
+# Any player with high law understanding
 - type: rank
   id: RMCRankProvostChiefInspector
-  name: Главный Инспектор
-  prefix: Гл. Инспектор
-  paygrade: CI
+  name: Chief Inspector
+  prefix: PvCI.
+  paygrade: O5
 
 # Любой игрок со средне-низким пониманием закона
 - type: rank
   id: RMCRankProvostInspector
-  name: Провост Инспектор
-  prefix: Провост Инспектор
-  paygrade: I
+  name: Provost Inspector
+  prefix: PvI.
+  paygrade: O4
+
+# Fax responder
+- type: rank
+  id: RMCRankProvostCommunicationsOfficer
+  name: Communications Officer
+  prefix: ComOff.
+  paygrade: O2
 
 # Любой игрок с низким пониманием закона, с доп. помощью
 - type: rank

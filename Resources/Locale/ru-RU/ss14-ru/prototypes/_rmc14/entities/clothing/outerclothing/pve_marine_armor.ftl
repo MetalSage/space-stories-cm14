@@ -1,0 +1,15 @@
+ent-RMCArmorM3PVE = M3 pattern marine armor
+    .desc = Standard UNMC issue M3 Pattern Personal Armor. Composite ballistic armor, integral biomonitoring system, and brackets for the IMP system as well as the TNR Shoulder Lamp.
+    .suffix = PVE, Standard
+ent-RMCArmorM3PVESmooth = { ent-RMCArmorM3PVE }
+    .suffix = PVE, Smooth
+    .desc = { ent-RMCArmorM3PVE.desc }
+ent-RMCArmorM3PVERidged = { ent-RMCArmorM3PVE }
+    .suffix = PVE, Ridged
+    .desc = { ent-RMCArmorM3PVE.desc }
+ent-RMCArmorB12PVE = B12 pattern marine armor
+    .desc = Semi-experimental body armor system similar to M3, incorporating primarily carbon fiber instead of boron carbide.
+    .suffix = PVE, B12
+ent-RMCArmorM3PVESGO = ML66A combat harness
+    .desc = Lightweight vest composed of ballistic micromesh and a ceramic composite chestplate for practical protection, as well as the computers, straps, and armature required for operating the ML66A Smart Gun itself.
+    .suffix = PVE, Smart Gun harness

@@ -271,6 +271,12 @@
       - Marine
   - type: RMCProjectileAccuracy
     accuracy: 95
+  - type: Ammo
+    muzzleFlash: null
+  - type: IgnorePredictionHide
+  - type: TriggerOnFixedDistanceStop
+    delay: 0
+  - type: DeleteOnTrigger
 
 - type: entity
   id: CMGuidebookXenoBombardAcidProjectile
@@ -324,6 +330,12 @@
         Brute: 5
   - type: RMCProjectileAccuracy
     accuracy: 95
+  - type: Ammo
+    muzzleFlash: null
+  - type: IgnorePredictionHide
+  - type: TriggerOnFixedDistanceStop
+    delay: 0
+  - type: DeleteOnTrigger
 
 - type: entity
   id: CMGuidebookXenoBombardNeurotoxinProjectile

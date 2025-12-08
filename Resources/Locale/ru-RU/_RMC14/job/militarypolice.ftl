@@ -11,3 +11,5 @@ cm-job-name-militarypolice = Офицер военной полиции
 cm-job-description-militarypolice = Обеспечивают соблюдение морского законодательства. Задерживают преступников. Обеспечивает безопасность корабельного персонала.
 cm-job-prefix-militarypolice = ВП
 CMJobMilitaryPolice = Офицер военной полиции
+rmc-job-name-honor-guard = Honor Guard
+rmc-job-prefix-honor-guard = HG

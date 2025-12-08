@@ -1,0 +1,10 @@
+ent-RMCAreaHFOffice = Office
+    .desc = { ent-RMCAreaHF.desc }
+ent-RMCAreaHFEngineering = Engineering
+    .desc = { ent-RMCAreaHF.desc }
+ent-RMCAreaHFSyntheticCloset = Synthetic Closet
+    .desc = { ent-RMCAreaHFEngineering.desc }
+ent-RMCAreaHFAICore = AI Core
+    .desc = { ent-RMCAreaHFEngineering.desc }
+ent-RMCAreaHFHangar2 = Lower Hangar
+    .desc = { ent-RMCAreaHFHangar.desc }

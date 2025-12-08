@@ -3,6 +3,11 @@ rmc-ghost-role-information-pmc-rules =
     Вы ничего не помните из прошлой жизни и не помните ничего, что узнали, будучи призраком.
     Вам разрешено помнить общие игровые знания, например, как готовить или пользоваться предметами.
     { "[" }color=red]КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО[/color] помнить такие детали, как имя или внешность вашего предыдущего персонажа.
+rmc-ghost-role-information-pmc-whiteout-rules =
+    You are a [color=orange][bold]PMC Whiteout Operative[/bold][/color]. Follow admin instructions.
+    You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
+    You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
+    You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
 rmc-ghost-role-information-pmc-description = Обеспечьте сохранность Вестон-Ямады. Убедитесь, что корпоративный связист в безопасности. Отрицайте причастность Вестон-Ямады к инцидентам и не доверяйте силам КМП США. Открывайте огонь только в ответ или по приказу.
 rmc-ghost-name-pmc-standard = Оператор ЧВК Ве-Я (Нейтральный)
 rmc-job-name-pmc-standard = Оператор ЧВК Ве-Я
@@ -55,5 +60,26 @@ rmc-job-name-pmc-pve-team-leader = Руководитель группы
 rmc-job-name-pmc-pve-force-leader = Командир отряда
 rmc-job-name-pmc-pve-force-command = Командующий отрядом
 rmc-job-name-pmc-corporate-goon-engi = Корпоративный техник СБ Ве-Я
+rmc-job-prefix-pmc-pve-team-leader = TL
 rmc-job-name-pmc-corporate-goon-medic = Корпоративный медик СБ Ве-Я
+rmc-job-prefix-pmc-pve-force-leader = FL
 rmc-job-name-pmc-corporate-goon-leader = Руководитель корпоративной СБ Ве-Я
+rmc-ghost-name-pmc-whiteout = We-Ya PMC Whiteout Combat Unit (!DEATHSQUAD!)
+rmc-job-name-pmc-whiteout = Whiteout Team Combat Unit
+rmc-ghost-name-pmc-whiteout-gunner = We-Ya PMC Whiteout Combat Gunner Unit (!DEATHSQUAD!)
+rmc-job-name-pmc-whiteout-gunner = Whiteout Team Combat Gunner Unit
+rmc-job-prefix-pmc-whiteout = WO
+rmc-job-prefix-pmc-pve-force-command = FCO
+rmc-ghost-role-information-corp-exec-description = You are an employee of the Weston-Yamada Corporation. You are to support and maintain Weston-Yamada's interests.
+rmc-ghost-name-corp-exec-supervisor = Corporate Executive Supervisor (Neutral)
+rmc-job-name-corp-exec-supervisor = Corporate Executive Supervisor
+rmc-ghost-name-corp-exec-ass-man = Corporate Assistant Manager (Neutral)
+rmc-job-name-corp-exec-ass-man = Corporate Assistant Manager
+rmc-ghost-name-corp-exec-div-man = Corporate Division Manager (Neutral)
+rmc-job-name-corp-exec-div-man = Corporate Division Manager
+rmc-ghost-name-corp-exec-chief = Corporate Chief Executive (Neutral)
+rmc-job-name-corp-exec-chief = Corporate Chief Executive
+rmc-ghost-name-corp-dep-director = WE-YA Deputy Director (Neutral)
+rmc-job-name-corp-dep-director = WE-YA Deputy Director
+rmc-ghost-name-corp-director = WE-YA Director (Neutral)
+rmc-job-name-corp-director = WE-YA Director

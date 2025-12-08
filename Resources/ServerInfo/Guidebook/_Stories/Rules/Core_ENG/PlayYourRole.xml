@@ -1,22 +1,57 @@
 <Document>
   # Rule 7: Play Your Role
-  You are expected to utilize your slot and behave appropriately for your role. Every role has a function, and the player taking the role is expected to perform it. If you have a job you are supposed to be doing, ignoring it in favor of other tasks violates this rule. Furthermore, wasting your slot—such as by suiciding or improperly leaving the game—is punishable, as you are removing a slot another player could have been properly playing.
 
-  ## Going AFK or Leaving the Game
-  If you are a Marine and need to leave the game, return to the ship, go to cryo, and put yourself in a cryo tube. This will free up your job slot and allow another player to take over your job. If you are unable to reach cryo, AHelp an administrator. If you are the Queen, use AHelp to inform the admins of your imminent departure.  Leaving without cryoing yourself or informing the admins puts you at risk of a role ban, especially if your role is critical.
+  This rule governs the fulfillment of duties for all roles on the server, regardless of whether they are listed individually in responsibility descriptions. Every player who takes a role is required to perform the function of that role and use their slot effectively. Ignoring your duties or misusing your slot is considered a violation.
 
-  Certain roles carry a risk of punishment for leaving the game or going AFK without warning. This is especially strict at the beginning of the round (approximately the first 20 minutes).
+  - The player must fulfill the functional responsibilities of their role. If your role carries specific tasks that are expected of you, ignoring them in favor of unrelated activities or personal goals violates this rule.
+  - Not using your slot as intended — including suicide, intentionally leaving the game without using hypersleep, or otherwise making the slot unusable — is punishable, as it prevents another player from taking the role and performing it properly.
+
+  - All personnel involved in the operation must act according to their role requirements: a Hospital Corpsman treats others, not only themselves; a Weapon Specialist is expected to take and use their equipment; and a Squad Leader should not ignore Command orders to simply act as a frontline rifleman.
+
+  - Ship crew allowed to deploy must remain in safe zones and perform their shipboard duties.
+  - Deployment is only allowed with approval from the relevant department head or the Operation Commander.
+  - Department heads, except for the Chief Engineer, are prohibited from deploying unless in emergency situations explicitly authorized by the Operation Commander.
+    - Maintenance Technicians must assist with construction, reinforcement, and upkeep of safe zones.
+    - Doctors must focus on treating and stabilizing the wounded in secure environments. They are prohibited from acting as Hospital Corpsmen, putting themselves in danger, or attempting to evacuate casualties from active combat zones.
+    - The Correspondent must document the battle, immediately retreat when engaged by the enemy, and must not assist marines in combat in any way.
+
+  - Command roles (CO/XO/Staff Officer/Squad Leader) may be deployed for command-related tasks, not simply to act as “elite” shooters.
+
+  - Senior squad roles (e.g., Squad Leader, Weapon Specialist, Smartgun Operator) are required to follow the orders of the Operation Commander and not operate alone on the battlefield. In special cases this requirement may not apply, but players must be prepared to explain their actions if contacted by administration.
+
+  ## Leaving the game or going to observer
+
+  - If you need to leave the game and you are a marine, enter hypersleep on the ship to free your slot for another player.
+  - If hypersleep is not possible, contact administration via AHelp.
+  - If you occupy a high-responsibility role, you must notify the administration via AHelp before leaving.
+  - Leaving the game or going to ghost without notifying administration may result in punishment, especially if your role is critical. Punishment is particularly strict in the first ~20 minutes of the round.
 
   ## High-Responsibility Roles
-  - Commanding Officer/Captain
-  - Pilot (if they are the only pilot)
+
+  Players in these roles carry increased responsibility and may receive stricter punishment for failing their duties or leaving without notice:
+  - Operation Commander (CO)
+  - Executive Officer (XO)
+  - Staff Officer
   - Squad Leader
-  - Weapons Specialist
+  - Weapon Specialist
   - Smartgun Operator
   - Queen
+  - Whitelisted roles
 
   ## Medium-Responsibility Roles
-  - Executive Officer
+
+  Players in these roles are also expected to perform their duties, but punishments are generally less strict than for high-responsibility roles:
+  - Dropship Pilot
   - Department Heads
-  - Medical Doctor
+  - Cargo Technician
+  - Doctor
+
+  ## Low-Responsibility Roles
+
+  Players in these roles are less likely to be punished for failing duties or leaving without notice. However, severe or repeated failure to play the role properly may still result in punishment:
+  - Squad roles (Hospital Corpsman, Combat Technician, Rifleman, Fireteam Leader)
+  - Maintenance Technician
+
+  This rule applies to all roles, even if they are not listed above. Responsibility categories only determine the severity of punishment for violations.
+    - The exception is Xenomorphs. Except for the Queen, they are allowed to leave their role via /ghost without notifying administration, but only if they are in a safe area and their role can be taken by another player.
 </Document>

@@ -1,3 +1,5 @@
+ent-RMCHelmetGarbNightVisionPVE = old M1 multi-spectrum visor
+    .desc = A failed prototype for next generation HUD optics for the Marine Corps that was surpased by the current issue integrated IR optic, this flip down visor offers a full visor suite with multi-spectrum capabilities. A really cool piece until you realize you are one headbang away from losing night capability.
 ent-RMCRC6RiotShield = щит RC6 для борьбы с беспорядками
     .desc = Дополнительный, но продающийся отдельно лицевой щиток, совместимый со шлемом RC6 для борьбы с беспорядками.
 ent-RMCHelmetGarbChaplainPatch = нашивка капеллана на шлем КМП США

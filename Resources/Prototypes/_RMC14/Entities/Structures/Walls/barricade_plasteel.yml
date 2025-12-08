@@ -132,6 +132,10 @@
         sprite: _RMC14/Structures/Walls/Barricades/burn_barricade_cracks.rsi
     - type: RMCConstructionUpgradeTarget
       upgrades: null
+    - type: Flammable
+      damage:
+        types:
+          Heat: 2.8125
 
 - type: entity
   parent: RMCBarricadePlasteel
@@ -177,6 +181,10 @@
         sprite: _RMC14/Structures/Walls/Barricades/explosive_barricade_cracks.rsi
     - type: RMCConstructionUpgradeTarget
       upgrades: null
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.875
 
 - type: entity
   parent: CMBarricadeMetalDoor

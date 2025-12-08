@@ -1,8 +1,16 @@
+ent-RMCLightBulbBase = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-RMCLightBulb = light bulb
+    .desc = A replacement light bulb.
+    .suffix = Warm
 ent-CMLightBulbBase = { ent-BaseLightbulb }
     .desc = { ent-BaseLightbulb.desc }
 ent-CMLightBulb = лампочка
     .desc = Запасная лампочка.
     .suffix = Теплая
+ent-RMCLightBulbBroken = light bulb
+    .desc = A replacement light bulb.
+    .suffix = Broken
 ent-RMCLightBulbBlue = { ent-CMLightBulb }
     .suffix = Синяя
     .desc = { ent-CMLightBulb.desc }

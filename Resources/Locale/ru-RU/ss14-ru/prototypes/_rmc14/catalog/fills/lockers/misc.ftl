@@ -13,3 +13,6 @@ ent-CMLockerStaffShotgunFilled = { ent-CMLockerStaff }
 ent-CMLockerStaffRifleFilled = { ent-CMLockerStaff }
     .suffix = Заполненный
     .desc = { ent-CMLockerStaff.desc }
+ent-RMCLockerSecureSafeLiaisonFilled = { ent-RMCLockerSecureSafeLiaison }
+    .suffix = Corporate Liaison, Filled
+    .desc = { ent-RMCLockerSecureSafeLiaison.desc }

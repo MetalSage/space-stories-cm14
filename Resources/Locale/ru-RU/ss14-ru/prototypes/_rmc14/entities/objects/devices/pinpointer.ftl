@@ -1,4 +1,9 @@
 ent-RMCPinpointerBase = пинпойнтер
     .desc = Прочное устройство слежения военного класса. Меняет цвет в зависимости от расстояния до цели. Держите вертикально для сохранения точности.
+    .suffix = RMC
+ent-RMCPinpointerUniversal = { ent-RMCPinpointerBase }
+    .suffix = Universal
+    .desc = { ent-RMCPinpointerBase.desc }
 ent-RMCPinpointerAegisID = пинпойнтер
     .desc = { ent-RMCPinpointerBase.desc }
+    .suffix = AEGIS

@@ -2,6 +2,7 @@
 cm-job-supervisors-we-ya = корпоративному офису Ве-Я
 cm-job-supervisors-aso = офицеру вспомогательной поддержки
 cm-job-supervisors-co = командующему офицеру
+rmc-job-supervisors-commander = the current Commander
 cm-job-supervisors-cmo = главному врачу
 cm-job-supervisors-ares = АРЕСу и ГЕРМЕС
 cm-job-supervisors-marine-high-command = верховному командованию морской пехоты
@@ -16,4 +17,7 @@ cm-job-supervisors-colonists = разумные колонисты
 cm-job-supervisors-nobody = никому, вы сами по себе
 cm-job-supervisors-secserg = сержанту роты
 cm-job-supervisors-platco = командиру взвода
+cm-job-supervisors-royal-tl = the Team Leader
+cm-job-supervisors-royal-officer = the Lieutenant
+cm-job-supervisors-royal-major = the Major
 cm-job-supervisors-company-command = командованию роты

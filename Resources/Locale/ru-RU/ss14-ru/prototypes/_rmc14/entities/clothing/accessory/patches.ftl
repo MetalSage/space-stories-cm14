@@ -81,3 +81,7 @@ ent-RMCPatchFreelancerAlt = { ent-RMCPatchFreelancer }
     .desc = { ent-RMCPatchFreelancer.desc }
 ent-RMCPatchMedic = нашивка полевого медика
     .desc = Круглая нашивка с синим крестом на белом фоне и жирным синим контуром. Общепризнанный символ помощи и нейтралитета, его носят медики во всех колониях. Будь то признак настоящего медицинского опыта, сувенир или просто украшение, его присутствие дарит проблеск надежды в тяжелые времена.
+ent-RMCPatchOliveBranch = Interstellar Peace patch
+    .desc = A patch adorned with an olive branch, worn by those who believe in a better way forward. It stands for galactic peace, and universal empathy.
+ent-RMCPatchPeace = peace symbol sticker
+    .desc = This planet is made of LOVE AND PEACE!

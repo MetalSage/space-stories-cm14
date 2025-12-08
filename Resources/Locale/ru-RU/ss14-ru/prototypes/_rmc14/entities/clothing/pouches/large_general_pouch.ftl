@@ -3,3 +3,6 @@ ent-RMCPouchGeneralLarge = большой подсумок общего назн
 ent-RMCPouchGeneralLargeFilledSmartGunDrums = { ent-RMCPouchGeneralLarge }
     .suffix = Заполненный, барабаны для смартгана
     .desc = { ent-RMCPouchGeneralLarge.desc }
+ent-RMCPouchGeneralLargeFilledRoyalCommando = { ent-RMCPouchGeneralLarge }
+    .suffix = Filled, RoyalCommando
+    .desc = { ent-RMCPouchGeneralLarge.desc }

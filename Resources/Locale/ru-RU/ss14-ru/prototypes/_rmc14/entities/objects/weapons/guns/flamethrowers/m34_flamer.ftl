@@ -1,5 +1,8 @@
 ent-RMCWeaponFlamer = огнеметная установка M240A1
     .desc = Огнеметная установка M240A1 зарекомендовала себя как одно из самых эффективных орудий для уничтожения малозаметных целей. Это оружие следует бояться и уважать, поскольку оно весьма смертоносно.
+ent-RMCWeaponFlamerPVE = { ent-RMCWeaponFlamer }
+    .suffix = PVE
+    .desc = { ent-RMCWeaponFlamer.desc }
 ent-RMCWeaponFlamerUnloaded = { ent-RMCWeaponFlamer }
     .suffix = Незагруженный
     .desc = { ent-RMCWeaponFlamer.desc }
