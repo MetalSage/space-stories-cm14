@@ -1,2 +1,9 @@
 ent-CMRandomPosterAny = случайный плакат
     .desc = { ent-MarkerBase.desc }
+    .suffix = RMC14, all
+ent-CMRandomPosterUN = random poster spawner
+    .suffix = RMC14, UN
+    .desc = { ent-CMRandomPosterAny.desc }
+ent-CMRandomPosterSPP = random poster spawner
+    .suffix = RMC14, SPP
+    .desc = { ent-CMRandomPosterAny.desc }

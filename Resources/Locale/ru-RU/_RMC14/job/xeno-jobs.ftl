@@ -35,6 +35,8 @@ CMJobXenoSentinel = Страж
 cm-job-name-xeno-spitter = Плеватель
 CMJobXenoSpitter = Плеватель
 cm-job-name-xeno-warrior = Воин
+rmc-job-name-xeno-king = King
+RMCJobXenoKing = King
 CMJobXenoWarrior = Воин
 # TODO CM14
 department-CMXeno = Ксеноморфы

@@ -4,5 +4,7 @@ ent-CMBucketMop = ведро для швабры
     .desc = Ведро большего размера, обычно используется со шваброй. Вмещает 240 единиц
 ent-RMCBucketJanitorial = ведро для тележки уборщика
     .desc = Большое ведро, которое помещается в тележку уборщика. Вмещает 500 единиц.
+ent-RMCReagentJug = reagent jug
+    .desc = A large jug made of non-reactive plastic, capable of carrying large amounts of diverse chemicals to wherever they are needed. Holds 500 units.
 ent-CMBucketJani = ведро для уборки
     .desc = Большое ведро, которое помещается в тележку для уборки. Вмещает 500 единиц.

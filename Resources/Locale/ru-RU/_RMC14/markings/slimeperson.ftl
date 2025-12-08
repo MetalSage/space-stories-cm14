@@ -20,7 +20,6 @@ marking-SlimeBrain-brain = Brain
 
 # Snout
 
-
 # Eyes
 
 marking-SlimeEyesDefault = Eyes
@@ -52,9 +51,7 @@ marking-SlimeBonelegleft-bone = Floating Bones (Left Leg)
 
 # UndergarmentBottom
 
-
 # UndergarmentTop
-
 
 # LFoot
 
@@ -78,18 +75,13 @@ marking-SlimeBonehandright-bone = Floating Bones (Right Hand)
 
 # FacialHair
 
-
 # Hair
-
 
 # HeadSide
 
-
 # HeadTop
 
-
 # Tail
-
 
 # RArmExtension
 

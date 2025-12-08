@@ -1,7 +1,12 @@
 ent-CMWindowDirectional = окно
     .desc = Стеклянное окно. Оно выглядит тонким и хрупким. От нескольких ударов чем-либо оно должно разбиться.
+ent-RMCWindowDirectionalAltDrawDepth = { ent-CMWindowDirectional }
+    .suffix = Alt Drawdepth
+    .desc = { ent-CMWindowDirectional.desc }
 ent-CMWindowReinforcedDirectional = усиленное окно
     .desc = Стеклянное окно, укрепленное прутьями. Выглядит довольно прочным. Потребуется несколько хороших ударов, чтобы разбить его.
+ent-CMWindowStrongReinforcedDirectional = strong reinforced window
+    .desc = A glass window reinforced with bracing rods. It looks very strong. You can't break it with your fists.
 ent-CMWindowTintedDirectional = тонированное окно
     .desc = Окно из тонированного стекла. Выглядит довольно прочным и непрозрачным. Потребуется несколько ударов, чтобы разбить его.
 ent-RMCWindowTintedDirectionalBlue = { ent-CMWindowTintedDirectional }

@@ -9,3 +9,6 @@ ent-CMWelderSmall = ручной сварочный аппарат ME3
     .desc = Компактная ручная сварочная горелка, используемая морскими пехотинцами Колониальной морской пехоты США для резки и сварки в полевых условиях. Из-за небольшого размера и низкой прочности его функции ограничены по сравнению с полноразмерным паяльником техника.
 ent-RMCWelderIndustrial = промышленная горелка
     .desc = { ent-RMCWelderBase.desc }
+ent-RMCWelderPVE = modified blowtorch
+    .desc = A more 'advanced' version of the standard UNMC Blowtorch, this blowtorch has a welding shield for eye protection affixed to it. Seems the eye shield was ripped off of a standard ME3 hand welder and then crudely affixed.
+    .suffix = PVE, DO NOT MAP

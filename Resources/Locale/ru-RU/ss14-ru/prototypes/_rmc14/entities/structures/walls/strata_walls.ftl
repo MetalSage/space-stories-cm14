@@ -10,3 +10,6 @@ ent-RMCWallStrataIceDirty = { ent-RMCWallStrataIce }
     .desc = { ent-RMCWallStrataIce.desc }
 ent-RMCWallStrataRock = каменная стена
     .desc = Грубая стена из затвердевшего камня.
+ent-RMCWallStrataRockTimed = { ent-RMCWallStrataRock }
+    .suffix = Timed
+    .desc = { ent-RMCWallStrataRock.desc }

@@ -6,3 +6,7 @@ rmc-bottle-put-lid = Добавить крышку
 rmc-bottle-remove-lid = Снять крышку
 rmc-refillsolution-flush = Промыть контейнер
 rmc-refillsolution-flush-start = Вы удерживаете кнопку аварийной промывки. Подождите { $time } секунд...
+rmc-reagent-pouch-no-canister = This { $target } has no container inside!
+rmc-reagent-pouch-unskilled = You don't know what's in it.
+rmc-reagent-pouch-examine-contains = This { $target } contains: { $reagents }
+rmc-reagent-pouch-examine-empty = This { $target } contains: No reagents

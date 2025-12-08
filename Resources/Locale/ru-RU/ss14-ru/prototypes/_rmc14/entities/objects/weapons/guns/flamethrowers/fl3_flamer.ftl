@@ -1,0 +1,10 @@
+ent-RMCWeaponFL3Flamer = flammenwerfer 3 heavy incineration unit
+    .desc = A heavy industrial incineration unit produced by the Weston Corporation and later by Weston-Yamada. Often found among foliage cleaning missions on frontier colonies, it usually isn't seen in combat, but is devastating when actually used.
+ent-RMCWeaponFL3FlamerPVE = { ent-RMCWeaponFL3Flamer }
+    .suffix = PVE
+    .desc = { ent-RMCWeaponFL3Flamer.desc }
+ent-RMCWeaponFL3FlamerWhiteout = { ent-RMCWeaponFL3Flamer }
+    .suffix = Whiteout
+    .desc = { ent-RMCWeaponFL3Flamer.desc }
+ent-RMCTankFlamerFL3 = FW3 heavy incinerator tank
+    .desc = A heavy, high capacity tank utilized by the Flammenwerfer 3 Heavy Incineration Unit. This one has a blue, heat-resistant Weston-Yamada logo on it.

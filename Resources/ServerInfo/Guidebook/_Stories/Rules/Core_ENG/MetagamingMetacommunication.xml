@@ -1,28 +1,65 @@
 <Document>
   # Rule 3: Metagaming and Metacommunication
-  Acting on information your character would not have, or providing unknown information to another player is considered metagaming. If you are in a voice call with other players, you are still expected to relay information through IC channels (talking, radio, etc.) to preserve in-game roleplay.  IC information should not be posted in any public area where other parties can gain an advantage. Any form of gaining an advantage through metacommunication will result in a ban. All public Discord channels should refrain from discussing any ongoing round information until the round ends.
 
-  ## Metagaming Examples
+  Players must act within the knowledge and capabilities of their characters. Using information that your character does not have in-character (IC) falls under this rule.
 
-  ## NOT Metagaming:
-  - Xenomorphs destroying colony assets before marines land, such as lights, vending machines, etc.
-  - Xenomorphs and Marines setting traps to catch and kill the opposing side.
-  - Marines killing themselves after being infected or captured by Xenomorphs.
+  ## Improper Behavior
 
-  ## Examples of Metagaming:
-  - Xenomorphs sitting next to the dropship landing zone and attacking the moment the marines open the doors.
-  - Xenomorphs melting every wall of the colony in a specific location to destroy a building/defense point.
-  - Xenomorphs walling off marine bodies with the primary purpose of preventing revivals.
-  - Killing or otherwise preventing monkeys from being captured as facehugger hosts prior to the marines landing.
-  - Use of coordinates and offsets for an OB or mortar not obtained from the spotter.
+  This category regulates the use of information that a character does not possess or cannot logically access in the current situation.
 
-  ## Metacommunication Examples
+  ### Examples of violations:
+  - Mentioning an in-game ckey or Discord nickname in IC (for Xenomorphs — referring to a marine or another character by their real name; for marines — using a Xenomorph prefix).
+  - Using information that is not accessible IC under current conditions.
 
-  ## NOT Metacommunication:
-  - Teaching the game and various mechanics through voice chat, LOOC, or other out-of-game communication methods.
-  - Streaming the game without delays.
+  ### Knowledge Restrictions:
 
-  ## Examples of Metacommunication:
-  - Silently following a friend without any IC communication or interaction.
-  - Telling someone the location of an enemy, event details, or other character information that would otherwise be unavailable via voice chat, LOOC, or other out-of-game communication methods.
+  - Command and marines do not know about the presence of a Xenomorph threat on the planet where the operation takes place, unless administrators specifically make this known.
+
+  - Marines know what Xenomorphs are and may have encountered them in the past, but such operations are not routine.
+    - They typically fight other factions such as the KOF or SPN, so they do not initially know that the current operation is against Xenomorphs.
+    - Marines have a general understanding of hive structure and Xenomorph behavior, allowing them to form tactical strategies once the threat is identified.
+
+  - Marines do not know the specific prefix or suffix of a particular Xenomorph — at most, they can identify the caste.
+
+  - Marines do not know about the possibility of a hijack until the corresponding announcement is made.
+
+  - Ship modifications must not be performed with metagaming intent. You may not pre-build labyrinths or bunkers on the ship to defend it during hijack before knowing hijack is possible.
+
+  - Due to their collective consciousness, Xenomorphs share knowledge, including a basic understanding of human equipment. They are capable of disabling electronics such as APCs, SMES units, generators, sensor towers, and communication arrays.
+
+  - At the start of the round, Xenomorphs sense a massive ship above the hive and understand that hostile guests will soon arrive on the colony.
+
+  - Xenomorphs may know the role of a marine.
+
+  ## Metagaming
+
+  Metagaming is using knowledge that your character would not have, or sharing such information with others to gain an advantage. Administrators evaluate situations individually based on context and intent. IC information must be communicated through IC means (speech, radio, etc.) to preserve roleplay. Any attempt to gain an advantage through metacommunication may result in a game ban. All public Discord channels must avoid discussing active-round information until the round is over.
+
+  ### NOT Metagaming
+
+  - Xenomorphs destroy colony infrastructure before marine deployment, such as power systems, towers, and lighting that would make detection easier.
+  - Xenomorphs and marines build traps to ambush or kill the enemy.
+  - Marines kill themselves after being captured or infected by Xenomorphs.
+
+  ### Examples of Metagaming
+
+  - Xenomorphs destroy vending machines even when they do not obstruct movement or construction.
+  - Xenomorphs wait at the dropship landing zone and attack at the exact moment marines open the doors.
+  - Xenomorphs melt every wall in a specific area to destroy a building or defensive position.
+  - Xenomorphs wall off marine corpses solely to prevent recovery. This rule does not apply to infected marines. In most cases, Xenomorphs benefit from allowing a marine to be recovered so they can be captured again later.
+  - Killing or otherwise preventing the capture of monkeys before marine deployment.
+  - Using coordinates and offsets for orbital bombardment or mortars obtained outside of the designated in-game spotter tools (e.g., through calculators or external sources). A deviation of up to 10 tiles on both the X and Y axes is allowed.
+  - The Queen initiates hijack before defeating the main marine forces planetside.
+
+  ## Metacommunication
+
+  ### NOT Metacommunication
+
+  - Teaching gameplay and mechanics through voice chat, LOOC, or other external communication, as long as no IC information is transferred through those channels and primary interaction occurs in-game. It is recommended to notify administrators beforehand.
+  - Streaming the game without delay.
+
+  ### Examples of Metacommunication
+
+  - Following another player silently without any IC communication or interaction.
+  - Sharing enemy locations, event details, or any other character-dependent information through voice chat, LOOC, or other external means that would not otherwise be available IC.
 </Document>

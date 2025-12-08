@@ -1,8 +1,16 @@
+ent-RMCLightTubeBase = { ent-RMCLightBulbBase }
+    .desc = { ent-RMCLightBulbBase.desc }
+ent-RMCLightTube = light tube
+    .desc = A replacement light tube.
+    .suffix = Warm
 ent-CMLightTubeBase = { ent-CMLightBulbBase }
     .desc = { ent-CMLightBulbBase.desc }
 ent-CMLightTube = световая трубка
     .desc = Сменная световая трубка.
     .suffix = Теплая
+ent-RMCLightTubeBroken = light tube
+    .desc = A replacement light tube.
+    .suffix = Broken
 ent-RMCLightTubeBlue = { ent-CMLightTube }
     .suffix = Синяя
     .desc = { ent-CMLightTube.desc }

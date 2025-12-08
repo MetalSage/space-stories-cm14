@@ -1,0 +1,15 @@
+ent-RMCRequisitionsChairMarker = requisitions chair marker
+    .suffix = RMC14
+    .desc = { ent-MarkerBase.desc }
+ent-RMCRequisitionsChairMarkerNorth = { ent-RMCRequisitionsChairMarker }
+    .suffix = RMC14, North
+    .desc = { ent-RMCRequisitionsChairMarker.desc }
+ent-RMCRequisitionsChairMarkerEast = { ent-RMCRequisitionsChairMarker }
+    .suffix = RMC14, East
+    .desc = { ent-RMCRequisitionsChairMarker.desc }
+ent-RMCRequisitionsChairMarkerSouth = { ent-RMCRequisitionsChairMarker }
+    .suffix = RMC14, South
+    .desc = { ent-RMCRequisitionsChairMarker.desc }
+ent-RMCRequisitionsChairMarkerWest = { ent-RMCRequisitionsChairMarker }
+    .suffix = RMC14, West
+    .desc = { ent-RMCRequisitionsChairMarker.desc }

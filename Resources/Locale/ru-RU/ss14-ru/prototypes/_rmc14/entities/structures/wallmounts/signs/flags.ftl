@@ -20,3 +20,7 @@ ent-RMCBannerUN = флаг СА
     .desc = Флаг соединенных америк. Вдохновляет патриотизм, страх или отвращение, в зависимости от политических взглядов зрителя.
 ent-RMCBannerUNWorn = потрепанный флаг СА
     .desc = Очень потрепанный флаг соединенных америк. Вдохновляет патриотизм, страх или отвращение, в зависимости от политических взглядов зрителя.
+ent-RMCBannerWEYA = WEYA flag
+    .desc = A flag of the Weston-Yamada Corporation. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings.
+ent-RMCBannerTSEAlt = old TSE flag
+    .desc = A flag of the Three-Sun Empire. Inspires patriotism, fear, or revulsion depending on the viewer's political leanings. This design was used years ago; apparently it's got a niche following.

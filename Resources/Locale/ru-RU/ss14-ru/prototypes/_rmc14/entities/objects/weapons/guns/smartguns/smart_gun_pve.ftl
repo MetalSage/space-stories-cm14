@@ -1,6 +1,12 @@
+ent-RMCSmartGunPVENoCamo = ML66A heavy support gun
+    .desc = The actual firearm in the Support Gun System. Essentially a heavy, mobile machinegun.
+    .suffix = PVE
 ent-RMCSmartGunPVE = Тяжелая орудийная поддержка M56B
     .desc = Реальное огнестрельное оружие в системе поддержки. По сути, это тяжелый мобильный пулемет.
     .suffix = PVE
+ent-RMCSmartGunPMCPVE = ML79A heavy support gun
+    .desc = The actual firearm in the Support Gun System, modified for We-Ya PMCs. Essentially a heavy, mobile machinegun.
+    .suffix = PVE, PMC
 ent-RMCAttachmentSmartgunHarness = Упряжь для тяжелой орудийной поддержки M56B
     .desc = Специальная упряжь для тяжелой орудийной поддержки M56B, помогающая контролировать отдачу и обеспечивать стабильность, а также позволяющая легко маневрировать оружием и даже подвешивать его без рукоятки.
     .suffix = PVE, НЕ КАРТОГРАФИРОВАТЬ ДЛЯ PVP.

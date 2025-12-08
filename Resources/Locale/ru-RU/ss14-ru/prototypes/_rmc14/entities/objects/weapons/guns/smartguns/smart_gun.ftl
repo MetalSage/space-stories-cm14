@@ -1,9 +1,16 @@
+ent-RMCSmartGunNoCamo = ML66A smart gun
+    .desc = The actual firearm in the Smart Gun System. Essentially a heavy, mobile machinegun.
 ent-RMCSmartGun = умная пушка M56B
     .desc = Настоящее огнестрельное оружие в системе Smart Gun System. По сути, это тяжелый мобильный пулемет.
 ent-RMCSmartGunUNMC = умная пушка M56B
     .desc = Собственно огнестрельное оружие в системе Smart Gun. По сути, тяжелый, мобильный пулемет.
+    .suffix = UNMC
+ent-RMCSmartGunPMC = ML79A smart gun
+    .desc = The actual firearm in the 4-piece ML79A Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way. You may toggle firing restrictions by using a special action.
+    .suffix = PMC
 ent-RMCSmartGunWhiteOut = умная пушка M56B
     .desc = Настоящее огнестрельное оружие в системе Smart Gun System, состоящей из 4 частей. Если у вас есть это оружие, вы собираетесь причинить серьезную боль любому, кто окажется на вашем пути. Вы можете отключить ограничения на стрельбу с помощью специального действия.
+    .suffix = Whiteout
 ent-RMCSmartGunCO = умная пушка M56B "Кавалер"
     .desc = Настоящее огнестрельное оружие в системе Smart Gun System. Только под заказ. Помимо более прочного корпуса, системы идентификации и причудливой раскраски, характеристики пистолета идентичны стандартному M56B.
 ent-RMCSmartGunCLF = умная пушка M56B "Свобода"

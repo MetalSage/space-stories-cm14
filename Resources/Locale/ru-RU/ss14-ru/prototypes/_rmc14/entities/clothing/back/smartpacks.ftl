@@ -22,3 +22,6 @@ ent-RMCSmartpackA1Tan = { ent-RMCSmartpackA1Base }
     .desc = { ent-RMCSmartpackA1Base.desc }
 ent-RMCSmartpackA1White = { ent-RMCSmartpackA1Base }
     .desc = { ent-RMCSmartpackA1Base.desc }
+ent-RMCPMCSyntheticSmartpack = { ent-RMCSmartpackA1White }
+    .suffix = Filled, PMC Synthetic
+    .desc = { ent-RMCSmartpackA1White.desc }

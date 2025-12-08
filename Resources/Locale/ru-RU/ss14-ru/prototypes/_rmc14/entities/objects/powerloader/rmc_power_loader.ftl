@@ -1,4 +1,14 @@
 ent-RMCMechBase = { "" }
     .desc = { "" }
+ent-RMCMechPowerLoaderWreckage = LU-50 Power loader wreckage
+    .desc = The wreckage of a LU-50 Power loader.
+ent-RMCMechPowerLoaderWreckageGreen = LU-43 Power loader wreckage
+    .desc = The wreckage of a LU-43 Power loader.
+ent-RMCMechPowerLoaderWreckageBlue = LU-52 Power loader wreckage
+    .desc = The wreckage of a LU-52 Power loader.
 ent-RMCMechPowerLoader = электропогрузчик
     .desc = Старая, но надежная конструкция, используемая на складах, в строительстве и на военных кораблях повсеместно.
+ent-RMCMechPowerLoaderGreen = LU-43 Power loader
+    .desc = An really old but trusted design used in warehouses, constructions and military ships everywhere. This one has a signature green and yellow livery of Fujin. The label claims they make electronics and machinery, though you’ve never heard of them before.
+ent-RMCMechPowerLoaderBlue = LU-52 Power loader
+    .desc = A modernized design made to outdo the older models once used in fancy ports and facilities. It was built by Ferret Heavy Industries before they went bankrupt, making these units surprisingly affordable.

@@ -1,0 +1,14 @@
+ent-RMCMagazinePistolM13AP = M13 AP Magazine (10x20mm-APC)
+    .desc = { ent-RMCMagazinePistolM13.desc }
+ent-RMCMagazinePistolM13ExtAP = M13 AP Extended Magazine (10x20mm-APC)
+    .desc = { ent-CMBaseMagazinePistol.desc }
+ent-RMCMagazinePistolM13DrumAP = M13 AP Drum Magazine (10x20mm-APC)
+    .desc = { ent-CMBaseMagazinePistol.desc }
+ent-RMCCartridgeAutoPistol = cartridge (10x20mm-APC)
+    .desc = { ent-CMCartridgeSMGBase.desc }
+ent-RMCCartridgeAutoPistolAP = armor-piercing cartridge (10x20mm-APC)
+    .desc = { ent-CMCartridgeSMGBase.desc }
+ent-RMCBulletAutoPistol = { ent-RMCBaseBullet }
+    .desc = { ent-RMCBaseBullet.desc }
+ent-RMCBulletAutoPistolAP = { ent-RMCBulletAutoPistol }
+    .desc = { ent-RMCBulletAutoPistol.desc }

@@ -12,6 +12,9 @@ rmc-xeno-fury-increase-user = Нас одолевает ярость!
 # Acid reserves
 rmc-xeno-not-enough-acid = У вас недостаточно кислоты!
 rmc-xeno-acid-increase-user = Вы чувствуете, как увеличивается запас кислоты!
+# Shards
+rmc-xeno-not-enough-shards = We don't have enough shards!
+rmc-xeno-shards-increase-user = We grow more shards!
 # Construction
 cm-xeno-choose-resin-structure = Выберите структуру смолы
 cm-xeno-order-construction = Построить структуру
@@ -78,11 +81,11 @@ cm-xeno-crippling-strike-hit = Мы значительно усиливаем н
 # Pheromones
 rmc-xeno-pheromones-help =
     Феромоны ежесекундно дают бафф всем ксеносам в радиусе действия за счет некоторого количества запасенной плазмы, как показано ниже:
-
+    
     Безумие (красный) - увеличивает скорость бега, урон и шанс сбить маски охотников за головами.
-
+    
     Защита (зеленый) - в критическом состоянии увеличивается максимальное отрицательное здоровье и замедляется отток травы.
-
+    
     Восстановление (синий) - увеличение регенерации плазмы и здоровья.
 # Pheromones
 cm-xeno-choose-pheromones = Выберите феромоны
@@ -325,6 +328,18 @@ rmc-gut-start-self = We plunge our claws into the body of this unfortunate host,
 rmc-gut-start-others = { $user } plunges their claws into the body of { $target }, starting to tear them in half!
 rmc-gut-finish-self = We tear this pathetic host in half!!
 rmc-gut-finish-others = { $user } tears { $target } in half!!
+# Shed Spikes
+rmc-shed-spikes = We have shed our shards and cannot gain any more for 30 seconds!
+rmc-shed-spikes-back = We can gain shards again!
+# Spike Shield
+rmc-spike-shield-self = We ruffle our bone-shard quills, forming a defensive shell!
+rmc-spike-shield-others = { $user } ruffles its bone-shard quills, forming a defensive shell!
+rmc-spike-shield-hit = { $user } sprays bone quills everywhere!
+# Doomed
+rmc-doomed-fail = It's not working...
+# Destroy
+rmc-destroy-cant-reach = We don't have a clear path to that location!
+rmc-destroy-cant-area = We can't leap to that area!
 rmc-xeno-ravager-super-empower-fade = Наше свечение исчезает, сила покидает нашу форму!
 rmc-xeno-defensive-shield-activate-self = Мы прижимаемся к земле и укрепляем свою защиту!
 cm-xeno-plasma-transferred-to-self = { $target } передал вам { $plasma } плазмы. Теперь у вас есть { $total }
