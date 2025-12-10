@@ -91,19 +91,7 @@ public sealed partial class SharedVehicleSystem
         if (ent.Comp.CurrentMomentum <= 0)
             return;
 
-        var progressToNextLevel = 0f;
-        if (ent.Comp.CurrentMomentum < ent.Comp.MaxMomentum)
-        {
-            var stepsInCurrentLevel = ent.Comp.Steps - ent.Comp.MinimumStepsForMomentum - (ent.Comp.CurrentMomentum - 1);
-            
-            if (stepsInCurrentLevel >= 0)
-            {
-                var progressInStep = ent.Comp.DistanceMoved / ent.Comp.StepIncrement;
-                progressToNextLevel = Math.Clamp(stepsInCurrentLevel + progressInStep, 0f, 1f);
-            }
-        }
-
-        var effectiveMomentum = ent.Comp.CurrentMomentum + progressToNextLevel;
+        var effectiveMomentum = (float)ent.Comp.CurrentMomentum;
         var speedBonus = 1 + effectiveMomentum * ent.Comp.SpeedPerMomentum;
         speedBonus = Math.Min(speedBonus, 1 + ent.Comp.MaxMomentumSpeedBonus);
 
@@ -169,13 +157,8 @@ public sealed partial class SharedVehicleSystem
                     PlayMovementSound(ent);
 
                 Dirty(ent);
+                _movement.RefreshMovementSpeedModifiers(ent);
             }
-            
-            _movement.RefreshMovementSpeedModifiers(ent);
-        }
-        else
-        {
-            _movement.RefreshMovementSpeedModifiers(ent);
         }
     }
 
