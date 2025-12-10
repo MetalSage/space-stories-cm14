@@ -36,8 +36,10 @@
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpackMarine
+        replaceSlot: back
         name: рюкзак
       - id: CMSatchelMarine
+        replaceSlot: back
         name: сумка
         recommended: true
       - id: RMCScabbardShotgun
@@ -194,6 +196,7 @@
         name: подсумок для мачете (полный)
         points: 15
       - id: RMCBackpackRTO
+        replaceSlot: back
         points: 15
       - id: RMCPouchFuelTank
         points: 5

@@ -117,4 +117,4 @@
   parent: [RMCWeaponsSpecialist, RMCFoxtrotBase]
   id: RMCFoxtrotWeaponsSpecialist
   components:
-  - type: BypassSpecLimit # Stories-Foxtrot-Bypass
+  - type: IgnoreSpecLimits
