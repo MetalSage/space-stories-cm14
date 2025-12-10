@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at https://github.com/Git-Nivrak/cmss13/blob/56f63c36a85a82eb082a2bf92dee67e1bc395a55/icons/effects/heavyimpact.dmi",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "heavyimpact",
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.060000002,
+          0.07,
+          0.08,
+          0.089999996,
+          0.1,
+          0.11,
+          0.120000005,
+          0.13,
+          0.14,
+          0.15,
+          0.16
+        ]
+      ]
+    }
+  ]
+}
