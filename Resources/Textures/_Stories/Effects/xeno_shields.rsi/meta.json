@@ -3,12 +3,12 @@
   "license": "CC-BY-SA-3.0",
   "copyright": "Taken from cmss13 at https://github.com/Git-Nivrak/cmss13/blob/b616df189910002d07b769be4ad4c0fc4d428911/icons/mob/xenos/overlay_effects64x64.dmi",
   "size": {
-    "x": 32,
-    "y": 32
+    "x": 64,
+    "y": 64
   },
   "states": [
     {
-      "name": "purple_animated_shield_shattered",
+      "name": "king-shield-full",
       "delays": [
         [
           0.15,
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "name": "purple_animated_shield_full",
+      "name": "king-shield-half",
       "delays": [
         [
           0.15,
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "name": "purple_animated_shield_cracked",
+      "name": "king-shield-quarter",
       "delays": [
         [
           0.15,
