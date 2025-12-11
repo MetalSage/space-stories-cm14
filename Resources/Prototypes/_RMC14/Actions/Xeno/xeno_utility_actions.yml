@@ -368,12 +368,12 @@
   parent: ActionXenoBase
   id: ActionXenoSpikeShield
   name: Spike Shield (150 shards)
-  description: Expend shards to gain a temporary shield that lasts for a short amount of time. Whenever the shield is damaged, spray bone shards around you in a 5x5 AoE centered on yourself. Shield lasts for 2 seconds. 
+  description: Expend shards to gain a temporary shield that lasts for a short amount of time. Whenever the shield is damaged, spray bone shards around you in a 5x5 AoE centered on yourself. Shield lasts for 2 seconds.
   components:
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_shard_shield
     useDelay: 11.5
   - type: InstantAction
@@ -390,7 +390,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: soak
     useDelay: 60
   - type: InstantAction
@@ -405,7 +405,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: screech
     useDelay: 45
   - type: InstantAction

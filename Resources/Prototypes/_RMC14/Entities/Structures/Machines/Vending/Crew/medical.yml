@@ -88,11 +88,15 @@
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpackMarine
-        name: Рюкзак
+        name: рюкзак
+        replaceSlot: back
       - id: CMSatchelMarine
         name: сумка
+        replaceSlot: back
       - id: CMBackpackMedical
+        replaceSlot: back
       - id: CMSatchelMedical
+        replaceSlot: back
     - name: Подсумки
       choices: { RMCPouch: 2 }
       entries:

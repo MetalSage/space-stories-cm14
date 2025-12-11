@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at https://github.com/Git-Nivrak/cmss13/blob/8d2cc8fb839b9b3eb73fd440d8d75e0955af45cb/icons/effects/96x96.dmi",
+  "size": {
+    "x": 96,
+    "y": 96
+  },
+  "states": [
+    {
+      "name": "landing2",
+      "delays": [
+        [
+          0.02,
+          0.04,
+          0.02,
+          0.04,
+          0.02,
+          0.04,
+          0.02,
+          0.04,
+          0.02,
+          0.04,
+          0.02,
+          0.04,
+          0.02,
+          0.04,
+          0.04
+        ]
+      ]
+    }
+  ]
+}

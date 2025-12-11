@@ -90,8 +90,7 @@
   - type: Sprite
     state: xeno_telegraph_lash_anim
 
-- type: entity
-  parent: RMCEffectXenoTelegraphGreen
+- type: entity  # Stories-Fixes Start
   id: RMCEffectXenoTelegraphKing
   categories: [ HideSpawnMenu ]
   components:
@@ -99,6 +98,10 @@
     lifetime: 2
   - type: Sprite
     drawdepth: Effects
-    sprite: _RMC14/Effects/xeno_telegraph_big.rsi
-    state: expand_out
-    color: "#A50824"
+    sprite: _Stories/Effects/xeno_telegraph_big.rsi
+    noRot: true
+    state: landing2
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu # Stories-Fixes End

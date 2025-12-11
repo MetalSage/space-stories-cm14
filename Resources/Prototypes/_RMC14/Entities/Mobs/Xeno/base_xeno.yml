@@ -75,6 +75,9 @@
         volume: -4
   - type: RMCHealthExaminable
   - type: AcidBloodSplash
+    closeSplashRadius: 0.5
+    standardSplashRadius: 1.5
+    gibSplashRadius: 2.5
     damage:
       types:
         Heat: 25
@@ -114,8 +117,13 @@
       Flammable: [ Touch ]
       Extinguish: [ Touch ]
   - type: FireVisuals
-    sprite: Mobs/Effects/onfire.rsi
-    normalState: Generic_mob_burning
+    sprite: _RMC14/Mobs/Effects/on_fire_xeno.rsi
+    normalState: simple_onfire
+    lightEnergyPerStack: 0.2
+    lightRadiusPerStack: 0.1
+    maxLightRadius: 2
+    maxLightEnergy: 8
+  - type: RMCFireColor
   - type: Sprite
     noRot: true
     drawdepth: Mobs
@@ -129,7 +137,7 @@
     - map: [ "enum.XenoInhandVisualLayers.Right" ]
       visible: false
     - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _RMC14/Effects/xeno_shields.rsi
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
     - map: [ "focused" ]
       sprite: _RMC14/Interface/xeno_hud.rsi
