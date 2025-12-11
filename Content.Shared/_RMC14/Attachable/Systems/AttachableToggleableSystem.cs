@@ -4,7 +4,7 @@ using Content.Shared._RMC14.Attachable.Events;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Xenonids;
-using Content.Shared._Stories.AntiGrief.Cadet;
+using Content.Shared._Stories.AntiGrief.NewPlayerProtect;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
@@ -221,7 +221,7 @@ public sealed class AttachableToggleableSystem : EntitySystem
         }
 
         // Stories-AntiGrief-Start
-        if (HasComp<CadetComponent>(args.User))
+        if (HasComp<NewPlayerProtectComponent>(args.User))
         {   
             args.Cancelled = true;
 

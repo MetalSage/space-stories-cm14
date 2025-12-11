@@ -1,5 +1,5 @@
 ﻿using Content.Shared._RMC14.Attachable.Systems;
-using Content.Shared._Stories.AntiGrief.Cadet;
+using Content.Shared._Stories.AntiGrief.NewPlayerProtect;
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -169,7 +169,7 @@ public sealed class GunIFFSystem : EntitySystem
         {
             owner = container.Owner;
             // Storise-AnitGrief-Start
-            if (HasComp<CadetComponent>(owner))
+            if (HasComp<NewPlayerProtectComponent>(owner))
                 enabled = true;
             // Storise-AnitGrief-End
         }

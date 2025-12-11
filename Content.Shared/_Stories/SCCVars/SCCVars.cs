@@ -155,4 +155,14 @@ public sealed class SCCVars
     /// </summary>
     public static readonly CVarDef<bool> AutoClimb =
         CVarDef.Create("rmc.autoclimb", true, CVar.ARCHIVE | CVar.CLIENT | CVar.REPLICATED);
+
+    /*
+    * New Players Protect
+    */
+
+    /// <summary>
+    /// CVAR for setting the time after which a player is no longer considered a newbie.
+    /// </summary>
+    public static readonly CVarDef<float> NewPlayersProtectTime =
+        CVarDef.Create("scc.new_players_protect_time", 2f, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

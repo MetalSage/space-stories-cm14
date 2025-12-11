@@ -5,7 +5,7 @@ using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids.Devour;
 using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._RMC14.Xenonids.Projectile;
-using Content.Shared._Stories.AntiGrief.Cadet;
+using Content.Shared._Stories.AntiGrief.NewPlayerProtect;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Explosion.EntitySystems;
@@ -229,7 +229,7 @@ public sealed class ThermalCloakSystem : EntitySystem
     private void OnTimerUse(Entity<CancelUseWithCloakComponent> ent, ref UseInHandEvent args)
     {
         // Stories-AntiGrief-Start
-        if (HasComp<CadetComponent>(args.User))
+        if (HasComp<NewPlayerProtectComponent>(args.User))
         {
             args.Handled = true;
 
