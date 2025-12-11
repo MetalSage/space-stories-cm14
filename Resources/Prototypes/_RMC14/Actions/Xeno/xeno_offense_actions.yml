@@ -673,8 +673,9 @@
     range: 5
     deselectOnMiss: false
   - type: EntityTargetAction
-    event: !type:XenoLungeActionEvent
     toggleOutline: false
+  - type: WorldTargetAction
+    event: !type:XenoLungeActionEvent
   - type: XenoOffensiveAction
   - type: RMCDazeableAction
   - type: RMCCooldownOnMiss
@@ -1430,7 +1431,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_enrage
     useDelay: 18
   - type: InstantAction
@@ -1446,7 +1447,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_eviscerate
     useDelay: 23
   - type: InstantAction
@@ -1463,7 +1464,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_cleave_fling
     useDelay: 16
   - type: TargetAction
@@ -1483,7 +1484,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tumble
     useDelay: 10
   - type: TargetAction
@@ -1506,7 +1507,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_spike
     useDelay: 10
   - type: TargetAction
@@ -1527,7 +1528,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_shard_shed
     useDelay: 30
   - type: InstantAction
@@ -1544,7 +1545,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_eviscerate
     useDelay: 2.5
   - type: InstantAction
@@ -1562,7 +1563,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: charge
     useDelay: 60
   - type: TargetAction

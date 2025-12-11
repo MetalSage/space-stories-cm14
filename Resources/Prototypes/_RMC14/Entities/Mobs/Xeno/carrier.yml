@@ -186,7 +186,7 @@
     - map: [ "enum.XenoInhandVisualLayers.Right" ]
       visible: false
     - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _RMC14/Effects/xeno_shields.rsi
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
     - map: [ "focused" ]
       sprite: _RMC14/Interface/xeno_hud.rsi

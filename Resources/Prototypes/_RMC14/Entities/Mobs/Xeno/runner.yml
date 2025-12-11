@@ -116,7 +116,7 @@
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 0.1
   - type: AutoClimbBlocked # Stories-AutoClimb
-  
+
   - type: MobCollision
     minimumSpeedModifier: 0.1
   - type: FixedIdentity
@@ -178,7 +178,7 @@
     - map: [ "enum.XenoAcidGeneratingVisualLayers.Base" ]
       visible: false
     - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _RMC14/Effects/xeno_shields.rsi
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
     - map: [ "focused" ]
       sprite: _RMC14/Interface/xeno_hud.rsi
