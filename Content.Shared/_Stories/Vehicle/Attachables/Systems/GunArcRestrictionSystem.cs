@@ -19,6 +19,9 @@ public sealed class GunArcRestrictionSystem : EntitySystem
 
     private void OnAttemptShoot(Entity<GunArcRestrictionComponent> ent, ref AttemptShootEvent args)
     {
+        if (args.Cancelled)
+            return;
+
         if (!TryComp<GunComponent>(ent, out var gun) || gun.ShootCoordinates == null)
             return;
 

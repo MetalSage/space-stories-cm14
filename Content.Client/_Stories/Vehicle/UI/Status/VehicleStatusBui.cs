@@ -89,7 +89,7 @@ public sealed class VehicleStatusBui : BoundUserInterface
         UpdateDoorLock();
         UpdateResistances(vehicle);
         UpdatePassengers(vehicle);
-        UpdateHardpoints(vehicle);
+        UpdateHardpoints();
     }
 
     private void UpdateIntegrity(VehicleComponent vehicle)
@@ -395,33 +395,34 @@ public sealed class VehicleStatusBui : BoundUserInterface
         };
     }
 
-    private void UpdateHardpoints(VehicleComponent vehicle)
+    private void UpdateHardpoints()
     {
         if (_window == null)
             return;
 
         _window.HardpointsContainer.RemoveAllChildren();
 
-        if (vehicle.Hardpoints.Count == 0)
+        var hardpoints = _lastState?.Hardpoints;
+        if (hardpoints == null || hardpoints.Count == 0)
         {
-            var noHardpointsLabel = new Label
+            _window.HardpointsContainer.AddChild(new Label
             {
                 Text = Loc.GetString("st-ui-vehicle-no-hardpoints"),
                 Margin = new Thickness(8),
                 HorizontalAlignment = Control.HAlignment.Center,
                 FontColorOverride = Color.FromHex("#888888")
-            };
-            _window.HardpointsContainer.AddChild(noHardpointsLabel);
+            });
             return;
         }
 
-        for (var i = 0; i < vehicle.Hardpoints.Count; i++)
+        for (var i = 0; i < hardpoints.Count; i++)
         {
-            var hardpoint = vehicle.Hardpoints[i];
+            var info = hardpoints[i];
+            var hardpoint = EntMan.GetEntity(info.Entity);
 
             if (i > 0)
             {
-                var separator = new PanelContainer
+                _window.HardpointsContainer.AddChild(new PanelContainer
                 {
                     MinHeight = 1,
                     Margin = new Thickness(0, 12),
@@ -429,199 +430,161 @@ public sealed class VehicleStatusBui : BoundUserInterface
                     {
                         BackgroundColor = Color.FromHex("#3A3A3A")
                     }
-                };
-                _window.HardpointsContainer.AddChild(separator);
+                });
             }
 
-            AddHardpointDisplay(hardpoint);
-        }
-    }
-
-    private void AddHardpointDisplay(EntityUid hardpoint)
-    {
-        if (_window == null || !EntMan.TryGetComponent<VehicleAttachableComponent>(hardpoint, out var attachable))
-            return;
-
-        var container = new PanelContainer
-        {
-            PanelOverride = new StyleBoxFlat
-            {
-                BackgroundColor = Color.FromHex("#1E1E1E"),
-                BorderColor = Color.FromHex("#3A3A3A"),
-                BorderThickness = new Thickness(1)
-            },
-            Margin = new Thickness(4)
-        };
-
-        var content = new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Vertical,
-            Margin = new Thickness(6)
-        };
-
-        var nameLabel = new Label
-        {
-            Text = EntMan.GetComponent<MetaDataComponent>(hardpoint).EntityName,
-            Margin = new Thickness(0, 0, 0, 6),
-            StyleClasses = { "LabelHeading" },
-            FontColorOverride = Color.FromHex("#E0E0E0")
-        };
-        content.AddChild(nameLabel);
-
-        var health = 0f;
-        var hasHealth = false;
-
-        if (EntMan.TryGetComponent<DamageableComponent>(hardpoint, out var hardpointDamageable))
-        {
-            var currentHealth = FixedPoint2.Max(attachable.MaxHealth - hardpointDamageable.TotalDamage, 0);
-            health = attachable.MaxHealth > 0 ? (float)(currentHealth / attachable.MaxHealth) * 100f : 0f;
-            hasHealth = true;
-        }
-
-        if (hasHealth && !attachable.Destroyed)
-        {
-            var healthBar = new STProgressBar
-            {
-                MinValue = 0,
-                MaxValue = 100,
-                Value = health,
-                HorizontalExpand = true,
-                MinHeight = 20,
-                Margin = new Thickness(0, 0, 0, 6)
-            };
-
-            healthBar.Label.Text = Loc.GetString("st-ui-vehicle-hardpoint-integrity", ("integrity", health.ToString("F0")));
-
-            if (health >= 70)
-                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat
-                {
-                    BackgroundColor = Color.FromHex("#2E7D32"),
-                    BorderColor = Color.FromHex("#4CAF50"),
-                    BorderThickness = new Thickness(1)
-                };
-            else if (health >= 40)
-                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat
-                {
-                    BackgroundColor = Color.FromHex("#EF6C00"),
-                    BorderColor = Color.FromHex("#FF9800"),
-                    BorderThickness = new Thickness(1)
-                };
-            else if (health >= 20)
-                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat
-                {
-                    BackgroundColor = Color.FromHex("#C62828"),
-                    BorderColor = Color.FromHex("#F44336"),
-                    BorderThickness = new Thickness(1)
-                };
-            else
-                healthBar.ForegroundStyleBoxOverride = new StyleBoxFlat
-                {
-                    BackgroundColor = Color.FromHex("#7A1A1A"),
-                    BorderColor = Color.FromHex("#D32F2F"),
-                    BorderThickness = new Thickness(1)
-                };
-
-            content.AddChild(healthBar);
-        }
-        else if (attachable.Destroyed)
-        {
-            var destroyedContainer = new PanelContainer
+            var container = new PanelContainer
             {
                 PanelOverride = new StyleBoxFlat
                 {
-                    BackgroundColor = Color.FromHex("#2A1A1A"),
-                    BorderColor = Color.FromHex("#D32F2F"),
+                    BackgroundColor = Color.FromHex("#1E1E1E"),
+                    BorderColor = Color.FromHex("#3A3A3A"),
                     BorderThickness = new Thickness(1)
                 },
-                Margin = new Thickness(0, 0, 0, 6)
+                Margin = new Thickness(4)
             };
 
-            var destroyedLabel = new Label
+            var content = new BoxContainer
             {
-                Text = Loc.GetString("st-ui-vehicle-hardpoint-destroyed"),
-                HorizontalAlignment = Control.HAlignment.Center,
-                Margin = new Thickness(4),
-                FontColorOverride = Color.FromHex("#F44336")
+                Orientation = BoxContainer.LayoutOrientation.Vertical,
+                Margin = new Thickness(6)
             };
-            destroyedContainer.AddChild(destroyedLabel);
-            content.AddChild(destroyedContainer);
-        }
 
-        if (EntMan.TryGetComponent<VehicleGunComponent>(hardpoint, out var gun))
-        {
-            AddGunAmmoDisplay(content, hardpoint, gun);
-        }
-
-        container.AddChild(content);
-        _window.HardpointsContainer.AddChild(container);
-    }
-
-    private void AddGunAmmoDisplay(BoxContainer container, EntityUid hardpoint, VehicleGunComponent gun)
-    {
-        var ammoContainer = new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Vertical,
-            HorizontalExpand = true
-        };
-
-        int currentRounds = 0;
-        int maxRounds = 0;
-
-        if (gun.ActiveMagazineContainer?.ContainedEntity is { } magEntity &&
-            EntMan.TryGetComponent<VehicleGunMagazineComponent>(magEntity, out var magazine))
-        {
-            currentRounds = magazine.Shots;
-            maxRounds = magazine.Capacity;
-        }
-
-        var ammoBar = new STProgressBar
-        {
-            MinValue = 0,
-            MaxValue = maxRounds > 0 ? maxRounds : 100,
-            Value = currentRounds,
-            HorizontalExpand = true,
-            MinHeight = 18,
-            Margin = new Thickness(0, 0, 0, 4)
-        };
-        ammoBar.Label.Text = Loc.GetString("st-ui-vehicle-ammo", ("current", currentRounds), ("max", maxRounds));
-        ammoBar.ForegroundStyleBoxOverride = new StyleBoxFlat
-        {
-            BackgroundColor = Color.FromHex("#1565C0"),
-            BorderColor = Color.FromHex("#2196F3"),
-            BorderThickness = new Thickness(1)
-        };
-
-        ammoContainer.AddChild(ammoBar);
-
-        int spareMags = gun.SpareMagazinesContainer?.ContainedEntities.Count ?? 0;
-        int maxMags = gun.MaxSpareMagazines;
-
-        if (spareMags > 0)
-        {
-            var magContainer = new BoxContainer
+            content.AddChild(new Label
             {
-                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                Text = info.Name,
+                Margin = new Thickness(0, 0, 0, 6),
+                StyleClasses = { "LabelHeading" },
+                FontColorOverride = Color.FromHex("#E0E0E0")
+            });
+
+            float health = 0f;
+            var hasHealth = false;
+            var destroyed = false;
+
+            if (EntMan.TryGetComponent<VehicleAttachableComponent>(hardpoint, out var attachable))
+            {
+                destroyed = attachable.Destroyed;
+
+                if (EntMan.TryGetComponent<DamageableComponent>(hardpoint, out var dmg))
+                {
+                    var currentHealth = FixedPoint2.Max(attachable.MaxHealth - dmg.TotalDamage, 0);
+                    health = attachable.MaxHealth > 0
+                        ? (float)(currentHealth / attachable.MaxHealth) * 100f
+                        : 0f;
+
+                    hasHealth = true;
+                }
+            }
+
+            if (hasHealth && !destroyed)
+            {
+                var bar = new STProgressBar
+                {
+                    MinValue = 0,
+                    MaxValue = 100,
+                    Value = health,
+                    MinHeight = 20,
+                    HorizontalExpand = true,
+                    Margin = new Thickness(0, 0, 0, 6)
+                };
+
+                bar.Label.Text = Loc.GetString("st-ui-vehicle-hardpoint-integrity",
+                    ("integrity", health.ToString("F0")));
+
+                bar.ForegroundStyleBoxOverride =
+                    health >= 70 ? new StyleBoxFlat { BackgroundColor = Color.FromHex("#2E7D32"), BorderColor = Color.FromHex("#4CAF50"), BorderThickness = new Thickness(1) } :
+                    health >= 40 ? new StyleBoxFlat { BackgroundColor = Color.FromHex("#EF6C00"), BorderColor = Color.FromHex("#FF9800"), BorderThickness = new Thickness(1) } :
+                    health >= 20 ? new StyleBoxFlat { BackgroundColor = Color.FromHex("#C62828"), BorderColor = Color.FromHex("#F44336"), BorderThickness = new Thickness(1) } :
+                                   new StyleBoxFlat { BackgroundColor = Color.FromHex("#7A1A1A"), BorderColor = Color.FromHex("#D32F2F"), BorderThickness = new Thickness(1) };
+
+                content.AddChild(bar);
+            }
+            else if (destroyed)
+            {
+                var destroyedPanel = new PanelContainer
+                {
+                    PanelOverride = new StyleBoxFlat
+                    {
+                        BackgroundColor = Color.FromHex("#2A1A1A"),
+                        BorderColor = Color.FromHex("#D32F2F"),
+                        BorderThickness = new Thickness(1)
+                    },
+                    Margin = new Thickness(0, 0, 0, 6)
+                };
+
+                destroyedPanel.AddChild(new Label
+                {
+                    Text = Loc.GetString("st-ui-vehicle-hardpoint-destroyed"),
+                    HorizontalAlignment = Control.HAlignment.Center,
+                    Margin = new Thickness(4),
+                    FontColorOverride = Color.FromHex("#F44336")
+                });
+
+                content.AddChild(destroyedPanel);
+            }
+
+            var ammoContainer = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Vertical,
                 HorizontalExpand = true
             };
 
-            var magLabel = new Label
+            var ammoBar = new STProgressBar
             {
-                Text = Loc.GetString("st-ui-vehicle-spare-mags"),
+                MinValue = 0,
+                MaxValue = info.MaxAmmo > 0 ? info.MaxAmmo : 100,
+                Value = info.CurrentAmmo,
+                MinHeight = 18,
                 HorizontalExpand = true,
-                FontColorOverride = Color.FromHex("#B0B0B0")
+                Margin = new Thickness(0, 0, 0, 4)
             };
 
-            var magCount = new Label
+            ammoBar.Label.Text = Loc.GetString("st-ui-vehicle-ammo",
+                ("current", info.CurrentAmmo),
+                ("max", info.MaxAmmo));
+
+            ammoBar.ForegroundStyleBoxOverride = new StyleBoxFlat
             {
-                Text = $"{spareMags}/{maxMags}",
-                FontColorOverride = spareMags >= maxMags * 0.5f ? Color.FromHex("#4CAF50") : Color.FromHex("#FFA500")
+                BackgroundColor = Color.FromHex("#1565C0"),
+                BorderColor = Color.FromHex("#2196F3"),
+                BorderThickness = new Thickness(1)
             };
 
-            magContainer.AddChild(magLabel);
-            magContainer.AddChild(magCount);
-            ammoContainer.AddChild(magContainer);
-        }
+            ammoContainer.AddChild(ammoBar);
 
-        container.AddChild(ammoContainer);
+            if (info.MaxSpares > 0)
+            {
+                var magsRow = new BoxContainer
+                {
+                    Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                    HorizontalExpand = true
+                };
+
+                magsRow.AddChild(new Label
+                {
+                    Text = Loc.GetString("st-ui-vehicle-spare-mags"),
+                    HorizontalExpand = true,
+                    FontColorOverride = Color.FromHex("#B0B0B0")
+                });
+
+                var color = info.SpareCount >= info.MaxSpares * 0.5f
+                    ? Color.FromHex("#4CAF50")
+                    : Color.FromHex("#FFA500");
+
+                magsRow.AddChild(new Label
+                {
+                    Text = $"{info.SpareCount}/{info.MaxSpares}",
+                    FontColorOverride = color
+                });
+
+                ammoContainer.AddChild(magsRow);
+            }
+
+            content.AddChild(ammoContainer);
+
+            container.AddChild(content);
+            _window.HardpointsContainer.AddChild(container);
+        }
     }
 }

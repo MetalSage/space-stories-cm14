@@ -15,3 +15,5 @@ st-vehicle-crushes = { $vehicle } раздавливает { $target }!
 st-vehicle-crushes-vehicle = { $vehicle } сталкивается с { $target }!
 st-vehicle-select-hardpoint-prompt = Выберите точку крепления для управления!
 st-vehicle-synth-no-heavy-weapons = Ваше программирование не позволяет использовать тяжелое оружие.
+st-vehicle-cant-leave-on-shuttle = Выход заблокирован!
+st-vehicle-cannot-observe-while-scoping = Прицеливание мешает обзору!

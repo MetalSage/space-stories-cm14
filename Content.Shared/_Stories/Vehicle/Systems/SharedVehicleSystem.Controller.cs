@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Synth;
+using Content.Shared._RMC14.Scoping;
 using Content.Shared._Stories.Attachables;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
@@ -93,10 +94,7 @@ public sealed partial class SharedVehicleSystem
             return true;
 
         if (!IsConscious(buckle, skills, out _))
-        {
-            _popup.PopupClient(Loc.GetString("rmc-skills-cant-operate", ("target", vehicle.Value)), buckle);
             return false;
-        }
 
         return true;
     }
@@ -107,13 +105,7 @@ public sealed partial class SharedVehicleSystem
             return;
 
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
-        {
-            _popup.PopupClient(
-                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle)),
-                args.Buckle
-            );
             return;
-        }
 
         var pilot = EnsureComp<VehiclePilotComponent>(args.Buckle);
         pilot.Vehicle = seat.Comp.Vehicle;
@@ -194,13 +186,7 @@ public sealed partial class SharedVehicleSystem
         var controllable = seat.Comp.ControllableEntity!.Value;
 
         if (!IsConscious(args.Buckle, seat.Comp.Skills, out var eye))
-        {
-            _popup.PopupClient(
-                Loc.GetString("rmc-skills-cant-operate", ("target", seat.Comp.Vehicle)),
-                args.Buckle
-            );
             return;
-        }
 
         var pilot = EnsureComp<VehiclePilotComponent>(args.Buckle);
         pilot.Vehicle = seat.Comp.Vehicle;
@@ -261,7 +247,10 @@ public sealed partial class SharedVehicleSystem
             return false;
 
         if (skills.Count > 0 && !HasComp<SkillsComponent>(pilot))
+        {
+            _popup.PopupClient(Loc.GetString("rmc-skills-cant-operate", ("target", pilot)), pilot, pilot);
             return false;
+        }
 
         if (HasComp<SleepingComponent>(pilot) ||
             HasComp<ForcedSleepingStatusEffectComponent>(pilot) ||
@@ -275,7 +264,19 @@ public sealed partial class SharedVehicleSystem
 
         eye = e;
 
-        return skills.Count == 0 || _skills.HasAllSkills(pilot, skills);
+        if (skills.Count > 0 && !_skills.HasAllSkills(pilot, skills))
+        {
+            _popup.PopupClient(Loc.GetString("rmc-skills-cant-operate", ("target", pilot)), pilot, pilot);
+            return false;
+        }
+
+        if (HasComp<ScopingComponent>(pilot))
+        {
+            _popup.PopupClient(Loc.GetString("st-vehicle-cannot-observe-while-scoping"), pilot, pilot);
+            return false;
+        }
+
+        return true;
     }
 
     private void OnMindRemoved(Entity<VehiclePilotComponent> pilot, ref MindRemovedMessage args)

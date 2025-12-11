@@ -747,6 +747,35 @@ public sealed partial class SharedVehicleSystem
         if (!_movementQuery.TryComp(vehicle, out var movement))
             return;
 
+        if (!_physicsQuery.TryComp(vehicle, out var vehiclePhysics))
+            return;
+
+        if (!_inputMoverQuery.TryComp(vehicle, out var mover))
+            return;
+
+        var vel = vehiclePhysics.LinearVelocity;
+        if (vel.LengthSquared() < 0.01f)
+            return;
+
+        var moveDirVec = _mover.DirVecForButtons(mover.HeldMoveButtons, (vehicle.Owner, mover));
+        if (moveDirVec.LengthSquared() < 0.01f)
+            return;
+
+        var moveDir = moveDirVec.Normalized();
+
+        var vehiclePos = _transform.GetWorldPosition(vehicle);
+        var wallPos = _transform.GetWorldPosition(wall);
+        var toWall = wallPos - vehiclePos;
+
+        if (toWall.LengthSquared() < 0.01f)
+            return;
+
+        var toWallNormalized = toWall.Normalized();
+
+        var dot = Vector2.Dot(moveDir, toWallNormalized);
+        if (dot <= 0.5f)
+            return;
+
         if (TryComp<CorrodibleComponent>(wall, out var corrodible) && !corrodible.IsCorrodible)
         {
             ResetMomentum((vehicle.Owner, movement));

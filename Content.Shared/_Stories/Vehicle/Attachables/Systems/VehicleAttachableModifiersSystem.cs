@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._Stories.Vehicle;
+using Content.Shared._Stories.Vehicle.Systems;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Systems;
@@ -15,6 +16,7 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
     [Dependency] private readonly VehicleAttachableHolderSystem _holder = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedVehicleSystem _vehicle = default!;
 
     public override void Initialize()
     {
@@ -54,7 +56,7 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
             case VehicleAttachableAlteredType.Attached:
                 vehicle.Hardpoints.Add(attachable.Owner);
                 Dirty(args.Holder, vehicle);
-                UpdateVehicleStatusUI((args.Holder, vehicle));
+                _vehicle.UpdateVehicleStatusUI((args.Holder, vehicle));
                 if (HasComp<VehicleControllableComponent>(attachable.Owner))
                     HandleControllerSeats(vehicle, args.Holder);
                 break;
@@ -62,7 +64,7 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
             case VehicleAttachableAlteredType.Detached:
                 vehicle.Hardpoints.Remove(attachable.Owner);
                 Dirty(args.Holder, vehicle);
-                UpdateVehicleStatusUI((args.Holder, vehicle));
+                _vehicle.UpdateVehicleStatusUI((args.Holder, vehicle));
                 break;
         }
 
@@ -149,7 +151,7 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
             holder is not null &&
             TryComp<VehicleComponent>(holder.Value, out var vehicle))
         {
-            UpdateVehicleStatusUI((holder.Value, vehicle));
+            _vehicle.UpdateVehicleStatusUI((holder.Value, vehicle));
         }
 
         if (args.Damageable.TotalDamage >= ent.Comp.MaxHealth)
@@ -170,15 +172,9 @@ public sealed partial class AttachableModifiersSystem : EntitySystem
                 vehicle.Hardpoints.Remove(ent.Owner);
                 Dirty(holder.Value, vehicle);
                 _movement.RefreshMovementSpeedModifiers(holder.Value);
-                UpdateVehicleStatusUI((holder.Value, vehicle));
+                _vehicle.UpdateVehicleStatusUI((holder.Value, vehicle));
             }
         }
-    }
-
-    private void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
-    {
-        var state = new VehicleStatusUIState(vehicle.Comp.Locked);
-        _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
     }
 
     private void UpdateHardpointUi(EntityUid uid, VehicleComponent? component = null)

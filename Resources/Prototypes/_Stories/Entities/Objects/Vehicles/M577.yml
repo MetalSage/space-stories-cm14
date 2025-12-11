@@ -18,7 +18,8 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1.4,-1.4,1.4,1.4"
+          bounds: "-1.2,-2,1.2,2"
+          # Вверх, Влево, Вниз, Вправо
         density: 10000
         mask:
         - Transport

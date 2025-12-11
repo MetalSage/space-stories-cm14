@@ -8,6 +8,7 @@ using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._RMC14.Scoping;
 using Content.Shared._Stories.Attachables;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
@@ -23,6 +24,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Popups;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Traits.Assorted;
@@ -97,7 +99,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, DamageModifyEvent>(OnVehicleDamageModify);
         SubscribeLocalEvent<VehicleComponent, DamageChangedEvent>(OnVehicleDamageChanged);
         SubscribeLocalEvent<VehicleComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
-        SubscribeLocalEvent<VehicleComponent, GettingAttackedAttemptEvent>(OnBeingAttacked);
+        SubscribeLocalEvent<VehicleComponent, GettingMeleeAttemptEvent>(OnBeingAttacked);
         SubscribeLocalEvent<VehicleViewportComponent, ActivateInWorldEvent>(OnViewportInteract);
         SubscribeLocalEvent<VehicleViewportWatcherComponent, MoveInputEvent>(OnViewportWatcherMove);
 
@@ -424,7 +426,7 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         }
     }
 
-    private void OnBeingAttacked(Entity<VehicleComponent> ent, ref GettingAttackedAttemptEvent args)
+    private void OnBeingAttacked(Entity<VehicleComponent> ent, ref GettingMeleeAttemptEvent args)
     {
         if (TryComp<RMCSizeComponent>(args.Attacker, out var rmcSize) && rmcSize.Size < ent.Comp.SizeRequiredToHit)
         {
@@ -625,6 +627,12 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         if (ent.Comp.Watcher != null)
         {
             _popup.PopupEntity(Loc.GetString("st-vehicle-viewport-taken"), args.User);
+            return;
+        }
+
+        if (HasComp<ScopingComponent>(args.User))
+        {
+            _popup.PopupCursor(Loc.GetString("st-vehicle-cannot-observe-while-scoping"), args.User);
             return;
         }
 
@@ -994,9 +1002,43 @@ public sealed partial class SharedVehicleSystem : EntitySystem
         return Math.Abs(delta) <= range;
     }
 
-    private void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
+    public void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
     {
-        var state = new VehicleStatusUIState(vehicle.Comp.Locked);
+        var hardpoints = new List<HardpointInfo>();
+        foreach (var hardpoint in vehicle.Comp.Hardpoints)
+        {
+            if (!TryComp<VehicleGunComponent>(hardpoint, out var gun))
+                continue;
+
+            var hasActiveMag = gun.ActiveMagazineContainer.ContainedEntity != null;
+            var spareCount = gun.SpareMagazinesContainer.ContainedEntities.Count;
+            var maxSpares = gun.MaxSpareMagazines;
+
+            int currentAmmo = 0;
+            int maxAmmo = 0;
+            if (hasActiveMag && TryComp<VehicleGunMagazineComponent>(gun.ActiveMagazineContainer.ContainedEntity!.Value, out var activeMag))
+            {
+                currentAmmo = activeMag.Shots;
+                maxAmmo = activeMag.Capacity;
+            }
+
+            hardpoints.Add(new HardpointInfo
+            {
+                Entity = GetNetEntity(hardpoint),
+                Name = Name(hardpoint),
+                HasActiveMagazine = hasActiveMag,
+                SpareCount = spareCount,
+                MaxSpares = maxSpares,
+                CurrentAmmo = currentAmmo,
+                MaxAmmo = maxAmmo
+            });
+        }
+
+        var state = new VehicleStatusUIState(vehicle.Comp.Locked)
+        {
+            Hardpoints = hardpoints
+        };
+
         _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
     }
 }

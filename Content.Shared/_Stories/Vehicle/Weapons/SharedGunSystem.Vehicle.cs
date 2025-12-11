@@ -19,6 +19,7 @@ public abstract partial class SharedGunSystem
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedVehicleWeaponLoaderSystem _weaponLoader = default!;
+    [Dependency] private readonly SharedVehicleSystem _vehicle = default!;
 
     protected virtual void InitializeVehicleGun()
     {
@@ -302,7 +303,7 @@ public abstract partial class SharedGunSystem
 
         if (autoReloadComp.IsReloading)
         {
-            PopupSystem.PopupCursor(Loc.GetString("st-vehicle-gun-already-reloading"), ent, PopupType.Medium);
+            PopupSystem.PopupPredictedCursor(Loc.GetString("st-vehicle-gun-already-reloading"), ent, PopupType.Medium);
             return;
         }
 
@@ -314,7 +315,7 @@ public abstract partial class SharedGunSystem
 
         if (magazine.Shots >= magazine.Capacity)
         {
-            PopupSystem.PopupCursor(Loc.GetString("st-vehicle-gun-magazine-full"), ent, PopupType.Medium);
+            PopupSystem.PopupPredictedCursor(Loc.GetString("st-vehicle-gun-magazine-full"), ent, PopupType.Medium);
             return;
         }
 
@@ -360,9 +361,8 @@ public abstract partial class SharedGunSystem
 
         if (vehicle.Hardpoints.Contains(gunUid))
         {
-            var state = new VehicleStatusUIState(vehicle.Locked);
-            _ui.SetUiState(xform.ParentUid, VehicleStatusUI.Key, state);
-            
+            _vehicle.UpdateVehicleStatusUI((xform.ParentUid, vehicle));
+
             UpdateWeaponLoadersOnVehicle((xform.ParentUid, vehicle));
         }
     }

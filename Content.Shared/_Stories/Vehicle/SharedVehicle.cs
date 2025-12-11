@@ -28,13 +28,13 @@ public enum VehicleWeaponLoaderUI : byte
 [Serializable, NetSerializable]
 public enum VehicleSelectHardpointUI : byte
 {
-    Key,
+    Key
 }
 
 [Serializable, NetSerializable]
 public enum VehicleStatusUI : byte
 {
-    Key,
+    Key
 }
 
 [Serializable, NetSerializable]
@@ -52,18 +52,18 @@ public sealed class VehicleWeaponLoaderSelectHardpointMsg : BoundUserInterfaceMe
 public sealed class VehicleWeaponLoaderWindowState : BoundUserInterfaceState
 {
     public List<HardpointInfo> Hardpoints = new();
+}
 
-    [Serializable, NetSerializable]
-    public sealed class HardpointInfo
-    {
-        public NetEntity Entity;
-        public string Name = string.Empty;
-        public bool HasActiveMagazine;
-        public int SpareCount;
-        public int MaxSpares;
-        public int CurrentAmmo;
-        public int MaxAmmo;
-    }
+[Serializable, NetSerializable]
+public sealed class HardpointInfo
+{
+    public NetEntity Entity;
+    public string Name = string.Empty;
+    public bool HasActiveMagazine;
+    public int SpareCount;
+    public int MaxSpares;
+    public int CurrentAmmo;
+    public int MaxAmmo;
 }
 
 
@@ -83,6 +83,7 @@ public sealed class VehicleHardpointWindowUserInterfaceState(NetEntity? activeHa
 public sealed class VehicleStatusUIState(bool doorState) : BoundUserInterfaceState
 {
     public readonly bool DoorState = doorState;
+    public List<HardpointInfo> Hardpoints = new();
 }
 
 public sealed partial class VehicleLockDoorsEvent : InstantActionEvent;

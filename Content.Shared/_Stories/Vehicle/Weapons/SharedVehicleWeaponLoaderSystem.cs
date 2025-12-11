@@ -169,7 +169,7 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
             Dirty(hardpoint, gun);
 
             UpdateLoaderUI(loader);
-            UpdateVehicleStatusUI(vehicle);
+            _vehicle.UpdateVehicleStatusUI(vehicle);
         }
 
         loader.Comp.SelectedHardpoint = hardpoint;
@@ -182,18 +182,12 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
         _appearance.SetData(magazine, VehicleAmmoVisuals.Layer, state);
     }
 
-    private void UpdateVehicleStatusUI(Entity<VehicleComponent> vehicle)
-    {
-        var state = new VehicleStatusUIState(vehicle.Comp.Locked);
-        _ui.SetUiState(vehicle.Owner, VehicleStatusUI.Key, state);
-    }
-
     public void UpdateLoaderUI(Entity<VehicleWeaponLoaderComponent> loader)
     {
         if (!_vehicle.TryGetVehicle(loader.Owner, out var vehicle))
             return;
 
-        var hardpoints = new List<VehicleWeaponLoaderWindowState.HardpointInfo>();
+        var hardpoints = new List<HardpointInfo>();
 
         foreach (var hardpoint in vehicle.Comp.Hardpoints)
         {
@@ -212,7 +206,7 @@ public sealed partial class SharedVehicleWeaponLoaderSystem : EntitySystem
                 maxAmmo = activeMag.Capacity;
             }
 
-            hardpoints.Add(new VehicleWeaponLoaderWindowState.HardpointInfo
+            hardpoints.Add(new HardpointInfo
             {
                 Entity = GetNetEntity(hardpoint),
                 Name = Name(hardpoint),
