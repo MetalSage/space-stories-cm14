@@ -56,5 +56,5 @@ public sealed partial class XenoDestroyComponent : Component
     public ProtoId<ExplosionPrototype> ExplosionType = "RMCOB";
 
     [DataField, AutoNetworkedField]
-    public EntProtoId SmokeEffect = "CMExplosionEffectGrenade";
+    public EntProtoId SmokeEffect = "CMExplosionEffectHeavyImpact"; // Stories-Fixes
 }

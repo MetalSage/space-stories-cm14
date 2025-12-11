@@ -65199,6 +65199,8 @@ entities:
       parent: 1
   - uid: 4429
     components:
+    - type: MetaData
+      name: Filtration
     - type: Transform
       pos: 135.5,-128.5
       parent: 1
@@ -78150,7 +78152,7 @@ entities:
     - type: Transform
       pos: 43.5,-115.5
       parent: 1
-- proto: RMCTankFlamerImprovised
+- proto: RMCTankFlamerColony
   entities:
   - uid: 6622
     components:
@@ -173949,7 +173951,7 @@ entities:
     - type: Transform
       pos: 86.5,-97.5
       parent: 1
-- proto: RMCWeaponFlamerImprovised
+- proto: RMCWeaponFlamerColony
   entities:
   - uid: 25764
     components:

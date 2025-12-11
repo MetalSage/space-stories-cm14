@@ -1,6 +1,7 @@
 ﻿using Content.Shared._Stories.AntiGrief.Cadet;
 using Content.Shared._RMC14.Areas;
 using Content.Shared._RMC14.Camera;
+using Content.Shared._RMC14.CameraShake;
 using Content.Shared._RMC14.Chat;
 using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.Extensions;
@@ -52,6 +53,7 @@ public abstract class SharedMortarSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedCMChatSystem _rmcChat = default!;
     [Dependency] private readonly SharedRMCExplosionSystem _rmcExplosion = default!;
+    [Dependency] private readonly RMCCameraShakeSystem _rmcCameraShake = default!;
     [Dependency] private readonly RMCMapSystem _rmcMap = default!;
     [Dependency] private readonly RMCPlanetSystem _rmcPlanet = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
@@ -279,7 +281,8 @@ public abstract class SharedMortarSystem : EntitySystem
                     ("shell", used));
                 _popup.PopupPredicted(selfMsg, othersMsg, mortar, user);
 
-                _audio.PlayPredicted(mortar.Comp.ReloadSound, mortar, user);
+                if (_net.IsServer)
+                    _audio.PlayPvs(mortar.Comp.ReloadSound, mortar);
             }
         }
     }
@@ -345,8 +348,17 @@ public abstract class SharedMortarSystem : EntitySystem
         _audio.PlayPvs(mortar.Comp.FireSound, mortar);
 
         var ev = new MortarFiredEvent(GetNetEntity(mortar));
-        if (_net.IsServer)
-            RaiseNetworkEvent(ev, filter);
+        RaiseNetworkEvent(ev, filter);
+
+        var mapPos = _transform.ToMapCoordinates(mortar.Owner.ToCoordinates());
+        var shakeFilter = Filter.Empty().AddInRange(mapPos, 7);
+        foreach (var recipient in shakeFilter.Recipients)
+        {
+            if (recipient.AttachedEntity is not { } player)
+                continue;
+
+            _rmcCameraShake.ShakeCamera(player, 3, 1);
+        }
     }
 
     private void OnMortarUnanchorAttempt(Entity<MortarComponent> mortar, ref UnanchorAttemptEvent args)

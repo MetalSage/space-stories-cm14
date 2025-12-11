@@ -1,0 +1,9 @@
+- type: entity
+  id: CMExplosionEffectHeavyImpact
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Effects/heavyimpact.rsi
+    state: heavyimpact
+  - type: TimedDespawn
+    lifetime: 1.3
