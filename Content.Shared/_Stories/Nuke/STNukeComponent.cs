@@ -85,5 +85,5 @@ public sealed partial class STNukeComponent : Component
     public SoundSpecifier BeforeNukeSound = new SoundPathSpecifier("/Audio/_Stories/Nuke/nuke.ogg");
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier NukeSound = new SoundPathSpecifier("/Audio/_Stories/Nuke/nuke_explosion.ogg", AudioParams.Default.WithVolume(100));
+    public SoundSpecifier NukeSound = new SoundCollectionSpecifier("STNukeSoundCollection", AudioParams.Default.WithVolume(100));
 }
