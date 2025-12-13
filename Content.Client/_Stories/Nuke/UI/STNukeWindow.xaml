@@ -2,10 +2,9 @@
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-    Title="Blockbuster LAFDEDE"
-    SetSize="380 325"
-    MinSize="380 325">
-
+    Title="{Loc st-nuke-window-title}"
+    SetSize="400 355"
+    MinSize="400 355">
     <PanelContainer>
         <PanelContainer.PanelOverride>
             <graphics:StyleBoxFlat
@@ -13,10 +12,7 @@
                 BorderColor="#3A3A3A"
                 BorderThickness="1"/>
         </PanelContainer.PanelOverride>
-
         <BoxContainer Orientation="Vertical" Margin="4" SeparationOverride="4">
-
-            <!-- Status block -->
             <PanelContainer HorizontalExpand="True">
                 <PanelContainer.PanelOverride>
                     <graphics:StyleBoxFlat
@@ -24,9 +20,7 @@
                         BorderColor="#3A3A3A"
                         BorderThickness="1"/>
                 </PanelContainer.PanelOverride>
-
                 <BoxContainer Orientation="Vertical" Margin="4" SeparationOverride="0">
-
                     <PanelContainer HorizontalExpand="True">
                         <PanelContainer.PanelOverride>
                             <graphics:StyleBoxFlat
@@ -34,16 +28,14 @@
                                 BorderColor="#5A5030"
                                 BorderThickness="1"/>
                         </PanelContainer.PanelOverride>
-
                         <Label
                             Name="DecryptionNoticeLabel"
                             Access="Public"
-                            Text="Decryption complete."
+                            Text="{Loc st-nuke-decryption-complete-ui}"
                             HorizontalAlignment="Center"
                             Margin="4"
                             StyleClasses="LabelBig"/>
                     </PanelContainer>
-
                     <PanelContainer HorizontalExpand="True">
                         <PanelContainer.PanelOverride>
                             <graphics:StyleBoxFlat
@@ -51,20 +43,16 @@
                                 BorderColor="#5A2A2A"
                                 BorderThickness="1"/>
                         </PanelContainer.PanelOverride>
-
                         <Label
                             Name="TimingNoticeLabel"
                             Access="Public"
-                            Text="Not currently active."
+                            Text="{Loc st-nuke-not-active}"
                             HorizontalAlignment="Center"
                             Margin="4"
                             StyleClasses="LabelBigBold"/>
                     </PanelContainer>
-
                 </BoxContainer>
             </PanelContainer>
-
-            <!-- Main buttons -->
             <PanelContainer HorizontalExpand="True" VerticalExpand="True">
                 <PanelContainer.PanelOverride>
                     <graphics:StyleBoxFlat
@@ -72,45 +60,37 @@
                         BorderColor="#3A3A3A"
                         BorderThickness="1"/>
                 </PanelContainer.PanelOverride>
-
                 <BoxContainer Orientation="Vertical" Margin="4" SeparationOverride="4">
-
                     <Button
                         Name="ToggleSafetyButton"
                         Access="Public"
-                        Text="Disable safety"
+                        Text="{Loc st-nuke-disable-safety}"
                         StyleClasses="OpenBoth"
                         Modulate="Beige"
                         MinHeight="30"/>
-
                     <Button
                         Name="ToggleCommandLockoutButton"
                         Access="Public"
-                        Text="Enable command lockout"
+                        Text="{Loc st-nuke-enable-command-lockout}"
                         StyleClasses="OpenBoth"
                         Modulate="Beige"
                         MinHeight="30"/>
-
                     <Button
                         Name="ToggleAnchorButton"
                         Access="Public"
-                        Text="Activate anchor"
+                        Text="{Loc st-nuke-activate-anchor}"
                         StyleClasses="OpenBoth"
                         Modulate="Beige"
                         MinHeight="30"/>
-
                     <Button
                         Name="ToggleEncryptionButton"
                         Access="Public"
-                        Text="Start decryption"
+                        Text="{Loc st-nuke-start-decryption}"
                         StyleClasses="OpenBoth"
                         Modulate="Beige"
                         MinHeight="30"/>
-
                 </BoxContainer>
             </PanelContainer>
-
-            <!-- ACTIVATE (separate, bottom) -->
             <PanelContainer HorizontalExpand="True">
                 <PanelContainer.PanelOverride>
                     <graphics:StyleBoxFlat
@@ -118,61 +98,14 @@
                         BorderColor="#5A2A2A"
                         BorderThickness="1"/>
                 </PanelContainer.PanelOverride>
-
                 <Button
                     Name="ToggleNukeButton"
                     Access="Public"
-                    Text="ACTIVATE NUKE"
+                    Text="{Loc st-nuke-activate}"
                     StyleClasses="OpenBoth"
                     Modulate="Maroon"
                     MinHeight="36"/>
             </PanelContainer>
-
-            <!-- Overlays -->
-            <PanelContainer
-                Name="AccessDeniedOverlay"
-                Access="Public"
-                Visible="False"
-                MouseFilter="Stop"
-                HorizontalExpand="True"
-                VerticalExpand="True">
-                <PanelContainer.PanelOverride>
-                    <graphics:StyleBoxFlat
-                        BackgroundColor="#1A1A1AEE"
-                        BorderColor="#3A3A3A"
-                        BorderThickness="1"/>
-                </PanelContainer.PanelOverride>
-                <BoxContainer Orientation="Vertical"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              SeparationOverride="8">
-                    <Label Text="⚠" HorizontalAlignment="Center" StyleClasses="LabelBig"/>
-                    <Label Text="Access Denied!" StyleClasses="LabelBigBold"/>
-                </BoxContainer>
-            </PanelContainer>
-
-            <PanelContainer
-                Name="ProcessingOverlay"
-                Access="Public"
-                Visible="False"
-                MouseFilter="Stop"
-                HorizontalExpand="True"
-                VerticalExpand="True">
-                <PanelContainer.PanelOverride>
-                    <graphics:StyleBoxFlat
-                        BackgroundColor="#1A1A1AEE"
-                        BorderColor="#3A3A3A"
-                        BorderThickness="1"/>
-                </PanelContainer.PanelOverride>
-                <BoxContainer Orientation="Vertical"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              SeparationOverride="8">
-                    <Label Text="⏳" HorizontalAlignment="Center" StyleClasses="LabelBig"/>
-                    <Label Text="Processing..." StyleClasses="LabelBigBold"/>
-                </BoxContainer>
-            </PanelContainer>
-
         </BoxContainer>
     </PanelContainer>
 </DefaultWindow>

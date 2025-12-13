@@ -3,7 +3,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client._Stories.Nuke;
+namespace Content.Client._Stories.Nuke.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class STNukeWindow : DefaultWindow
