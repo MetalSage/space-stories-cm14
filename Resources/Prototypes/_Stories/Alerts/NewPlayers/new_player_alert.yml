@@ -1,0 +1,7 @@
+- type: alert
+  id: STNewPlayerProtectAlert
+  icons:
+  - sprite: /Textures/_Stories/Interface/Alerts/new_players_alert.rsi
+    state: icon
+  name: st-alerts-new-players-name
+  description: st-alerts-new-players-desc

@@ -43,6 +43,7 @@
   - type: Tag
     tags:
     - RMCWeaponLauncherM85A1
+  - type: NewPlayerRestrictedGun # Stories-AntiGrief
 
 - type: Tag
   id: RMCWeaponLauncherM85A1

@@ -8,6 +8,7 @@ using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Maturing;
 using Content.Shared._RMC14.Xenonids.Name;
 using Content.Shared._RMC14.Xenonids.Rank;
+using Content.Shared._Stories.SCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Preferences;
@@ -17,6 +18,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared._Stories.AntiGrief.NewPlayerProtect;
+using Content.Shared.Players.PlayTimeTracking;
 
 namespace Content.Server._RMC14.Xenonids;
 
@@ -42,6 +45,8 @@ public sealed class XenoRoleSystem : EntitySystem
     private TimeSpan _rankFiveTime;
     private TimeSpan _rankSixTime;
 
+    private float _newPlayerProtectTime = 2f;
+
     private readonly List<Entity<XenoComponent>> _toUpdate = new();
 
     public override void Initialize()
@@ -64,6 +69,8 @@ public sealed class XenoRoleSystem : EntitySystem
         Subs.CVar(_config, RMCCVars.RMCPlaytimePlatinumMedalTimeHours, v => _rankFiveTime = TimeSpan.FromHours(v), true);
         Subs.CVar(_config, RMCCVars.RMCPlaytimeRubyMedalTimeHours, v => _rankSixTime = TimeSpan.FromHours(v), true);
         Subs.CVar(_config, RMCCVars.RMCDisconnectedXenoGhostRoleTimeSeconds, v => _disconnectedXenoGhostRoleTime = TimeSpan.FromSeconds(v), true);
+
+        Subs.CVar(_config, SCCVars.NewPlayersProtectTime, v => _newPlayerProtectTime = v, true);
     }
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
@@ -79,6 +86,16 @@ public sealed class XenoRoleSystem : EntitySystem
 
     private void OnPlayerAttached(Entity<XenoComponent> xeno, ref PlayerAttachedEvent args)
     {
+        // Stories-AntiGrief-Start
+        var playtime = _playTimeManager.GetPlayTimes(args.Player);
+
+        if (!playtime.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out TimeSpan time) ||
+            time < TimeSpan.FromHours(_newPlayerProtectTime))
+        {
+            EnsureComp<NewPlayerProtectComponent>(xeno.Owner);
+        }
+        // Stories-AntiGrief-End
+
         RemCompDeferred<XenoDisconnectedComponent>(xeno);
         _toUpdate.Add(xeno);
     }

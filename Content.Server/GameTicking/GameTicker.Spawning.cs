@@ -2,7 +2,6 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Server._Stories.Sponsors;
-using Content.Shared._Stories.AntiGrief.Cadet;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
@@ -45,7 +44,6 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly IEntityManager _entities = default!; // Stories-Sponsors
         [Dependency] private readonly SponsorsManager _sponsorManager = default!; // Stories-Sponsors
         [Dependency] private readonly SharedCMAutomatedVendorSystem _automatedVendor = default!; // Stories-Sponsors
-        [Dependency] private readonly ISharedPlaytimeManager _playtimeManager = default!; // Stories-AntiGrief
         [Dependency] private readonly MarinePresenceAnnounceSystem _marinePresenceAnnounce = default!;
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
@@ -353,16 +351,6 @@ namespace Content.Server.GameTicking
                 _chatManager.DispatchServerMessage(player,
                     Loc.GetString("job-greet-planet-name", ("planetName",_distressSignal.SelectedPlanetMapName)));
             }
-
-            // Stories-AntiGrief
-            var playtime = _playtimeManager.GetPlayTimes(player);
-
-            if (!playtime.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out TimeSpan time) ||
-                time < TimeSpan.FromHours(2))
-            {
-                EntityManager.AddComponent<CadetComponent>(mob);
-            }
-            // Stories-AntiGrief
 
             // Stories-Sponsors
             if (_entities.TryGetComponent(mob, out CMVendorUserComponent? vendorUser)

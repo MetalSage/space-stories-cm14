@@ -4,7 +4,7 @@ using Content.Shared._RMC14.Attachable.Events;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Xenonids;
-using Content.Shared._Stories.AntiGrief.Cadet;
+using Content.Shared._Stories.AntiGrief.NewPlayerProtect;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
@@ -221,16 +221,15 @@ public sealed class AttachableToggleableSystem : EntitySystem
         }
 
         // Stories-AntiGrief-Start
-        if (HasComp<CadetComponent>(args.User))
+        if (TryComp<NewPlayerProtectComponent>(args.User, out var newPlayer))
         {   
             args.Cancelled = true;
 
             _popupSystem.PopupClient(
-                Loc.GetString("stories-cadet-attachable-shoot", ("attachable", attachable)),
+                Loc.GetString("stories-cadet-attachable-shoot", ("attachable", attachable), ("time", newPlayer.Hours)),
                 args.User,
                 args.User,
                 PopupType.SmallCaution);
-            return;
         }
         // Stories-AntiGrief-End
 
