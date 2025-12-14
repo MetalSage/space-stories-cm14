@@ -29,3 +29,5 @@ cm-distress-signal-discord-minormarinevictory = Малая победа морп
 cm-distress-signal-discord-majorxenovictory = Крупная победа ксеноморфов
 cm-distress-signal-discord-minorxenovictory = Малая победа ксеноморфов
 cm-distress-signal-discord-alldied = Ничья
+
+st-distress-signal-nuked = [color=yellow]Колония была уничтожена ядерным взрывом.[/color]

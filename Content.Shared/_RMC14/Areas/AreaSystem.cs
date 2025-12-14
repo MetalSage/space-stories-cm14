@@ -294,6 +294,14 @@ public sealed class AreaSystem : EntitySystem
         return area.Value.Comp.Paradropping;
     }
 
+    public bool CanBuildSpecial(EntityCoordinates coordinates)
+    {
+        if (!TryGetArea(coordinates, out var area, out _))
+            return false;
+
+        return area.Value.Comp.BuildSpecial;
+    }
+
     private bool IsRoofed(EntityCoordinates coordinates, Predicate<Entity<RoofingEntityComponent>> predicate)
     {
         var roofs = EntityQueryEnumerator<RoofingEntityComponent>();
