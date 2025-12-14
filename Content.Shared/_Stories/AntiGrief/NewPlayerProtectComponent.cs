@@ -13,4 +13,7 @@ public sealed partial class NewPlayerProtectComponent : Component
 
 	[DataField]
 	public ProtoId<AlertPrototype> AlertProto = "STNewPlayerProtectAlert";
+
+	[DataField]
+	public float Hours = 2f;
 }

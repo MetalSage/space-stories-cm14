@@ -229,11 +229,11 @@ public sealed class ThermalCloakSystem : EntitySystem
     private void OnTimerUse(Entity<CancelUseWithCloakComponent> ent, ref UseInHandEvent args)
     {
         // Stories-AntiGrief-Start
-        if (HasComp<NewPlayerProtectComponent>(args.User))
+        if (TryComp<NewPlayerProtectComponent>(args.User, out var newPlayer))
         {
             args.Handled = true;
 
-            var popup = Loc.GetString("stories-cadet-grenade-use");
+            var popup = Loc.GetString("stories-cadet-grenade-use", ("time", newPlayer.Hours));
             _popup.PopupClient(popup, args.User, args.User, PopupType.SmallCaution);
         }
         // Stories-AntiGrief-End

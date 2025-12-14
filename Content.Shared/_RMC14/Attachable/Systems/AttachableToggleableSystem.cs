@@ -221,16 +221,15 @@ public sealed class AttachableToggleableSystem : EntitySystem
         }
 
         // Stories-AntiGrief-Start
-        if (HasComp<NewPlayerProtectComponent>(args.User))
+        if (TryComp<NewPlayerProtectComponent>(args.User, out var newPlayer))
         {   
             args.Cancelled = true;
 
             _popupSystem.PopupClient(
-                Loc.GetString("stories-cadet-attachable-shoot", ("attachable", attachable)),
+                Loc.GetString("stories-cadet-attachable-shoot", ("attachable", attachable), ("time", newPlayer.Hours)),
                 args.User,
                 args.User,
                 PopupType.SmallCaution);
-            return;
         }
         // Stories-AntiGrief-End
 

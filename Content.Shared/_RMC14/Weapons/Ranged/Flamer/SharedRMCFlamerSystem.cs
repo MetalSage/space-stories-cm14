@@ -212,9 +212,9 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
         EntityCoordinates fromCoordinates,
         EntityCoordinates toCoordinates)
     {
-        if (HasComp<NewPlayerProtectComponent>(user))
+        if (TryComp<NewPlayerProtectComponent>(user, out var newPlayer))
         {
-            var popup = Loc.GetString("stories-cadet-flamer-use");
+            var popup = Loc.GetString("stories-cadet-flamer-use", ("time", newPlayer));
             _popup.PopupClient(popup, user.Value, user.Value, PopupType.SmallCaution);
 
             return;

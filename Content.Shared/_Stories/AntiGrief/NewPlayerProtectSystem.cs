@@ -55,7 +55,7 @@ public sealed class NewPlayerProtectSystem : EntitySystem
                 args.Cancel();
         }
 
-        _popup.PopupClient(Loc.GetString("stories-cant-use", ("hours", _newPlayerProtectTime)), ent.Owner);
+        _popup.PopupClient(Loc.GetString("stories-cant-use", ("time", _newPlayerProtectTime)), ent.Owner);
     }
 
     private void OnAttemptAttackStructure(Entity<NewPlayerProtectComponent> ent, ref AttackAttemptEvent args)
@@ -64,7 +64,7 @@ public sealed class NewPlayerProtectSystem : EntitySystem
             HasComp<HiveConstructionNodeComponent>(args.Target) &&
             HasComp<XenoComponent>(ent))
         {
-            _popup.PopupClient(Loc.GetString("stories-cant-destroy", ("hours", _newPlayerProtectTime)), ent.Owner);
+            _popup.PopupClient(Loc.GetString("stories-cant-destroy", ("time", _newPlayerProtectTime)), ent.Owner);
             args.Cancel();
             return;
         }
@@ -73,7 +73,7 @@ public sealed class NewPlayerProtectSystem : EntitySystem
             HasComp<MarineComponent>(args.Target) &&
             HasComp<MarineComponent>(ent))
         {
-            _popup.PopupClient(Loc.GetString("stories-cant-attack-allies", ("hours", _newPlayerProtectTime)), ent.Owner);
+            _popup.PopupClient(Loc.GetString("stories-cant-attack-allies", ("time", _newPlayerProtectTime)), ent.Owner);
             args.Cancel();
         }
     }
@@ -86,6 +86,7 @@ public sealed class NewPlayerProtectSystem : EntitySystem
             time < TimeSpan.FromHours(_newPlayerProtectTime))
         {
             var newPlayerComp = EnsureComp<NewPlayerProtectComponent>(marine.Owner);
+            newPlayerComp.Hours = _newPlayerProtectTime;
             _alerts.ShowAlert(marine.Owner, newPlayerComp.AlertProto);
         }
     }
