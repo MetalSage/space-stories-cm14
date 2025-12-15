@@ -116381,7 +116381,7 @@ entities:
   - uid: 14823
     components:
     - type: MetaData
-      name: Администрация
+      name: Кризис Центр
     - type: Transform
       pos: 107.5,79.5
       parent: 1
