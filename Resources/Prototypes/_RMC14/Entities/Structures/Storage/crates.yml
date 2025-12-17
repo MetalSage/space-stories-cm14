@@ -114,6 +114,9 @@
   - type: AnimationPlayer
   - type: RMCMesonsNonviewable
   - type: EntityStorageCloseOnMapInit
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0
 
 - type: entity
   parent: RMCCrateBase

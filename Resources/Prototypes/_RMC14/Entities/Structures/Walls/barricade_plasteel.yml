@@ -104,6 +104,10 @@
   - type: Tag
     tags:
     - RMCPlasteelBarricade
+    # Stories-Vehicle-Content-Start
+  - type: VehicleStructureTarget
+    minimumClassToDestroy: Weak
+    # Stories-Vehicle-Content-End
 
 # Metal Barricade Upgrades
 - type: entity

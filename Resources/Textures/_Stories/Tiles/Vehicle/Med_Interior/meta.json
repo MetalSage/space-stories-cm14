@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/71d46ee8057d19b12e1495419cb299d2fedef6cc/icons/turf/shuttle.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "sterile_green"
+    },
+    {
+      "name": "dark_sterile"
+    },
+    {
+      "name": "dark_sterile_green_1"
+    },
+    {
+      "name": "dark_sterile_green_2"
+    },
+    {
+      "name": "dark_sterile_green_3"
+    },
+    {
+      "name": "dark_sterile_green_4"
+    },
+    {
+      "name": "dark_sterile_green_5"
+    },
+    {
+      "name": "dark_sterile_green_6"
+    },
+    {
+      "name": "dark_sterile_green_7"
+    },
+    {
+      "name": "dark_sterile_green_8"
+    },
+    {
+      "name": "dark_sterile_green_9"
+    },
+    {
+      "name": "dark_sterile_green_10"
+    },
+    {
+      "name": "dark_sterile_green_11"
+    },
+    {
+      "name": "dark_sterile_green_12"
+    },
+    {
+      "name": "dark_sterile_green_13"
+    },
+    {
+      "name": "dark_sterile_green_14"
+    }
+  ]
+}

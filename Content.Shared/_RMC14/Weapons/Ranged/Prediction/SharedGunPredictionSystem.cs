@@ -4,6 +4,7 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Content.Shared._Stories.Vehicle;
 
 namespace Content.Shared._RMC14.Weapons.Ranged.Prediction;
 

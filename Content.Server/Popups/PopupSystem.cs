@@ -15,6 +15,92 @@ namespace Content.Server.Popups
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly RMCPopupSystem _rmcPopup = default!;
 
+        // Stories-Popup-Fix-Start
+        /// <summary>
+        /// Builds a popup visibility filter that respects a player's current view target.
+        /// If the player has an <see cref="EyeComponent"/> with a valid <c>Target</c>,
+        /// the visibility check is performed relative to that target's position instead of the player's own entity.
+        /// Otherwise, the player's entity position is used.
+        /// </summary>
+        private Filter CreateEyeAwareFilter(EntityUid uid)
+        {
+            var filter = Filter.Empty();
+            var popupPos = _transform.GetMapCoordinates(uid);
+            var pvsRange = _cfg.GetCVar(Robust.Shared.CVars.NetMaxUpdateRange);
+
+            foreach (var session in _player.Sessions)
+            {
+                if (session.AttachedEntity is not { } playerEntity)
+                    continue;
+
+                EntityUid viewEntity = playerEntity;
+
+                if (TryComp<EyeComponent>(playerEntity, out var eyeComp) &&
+                    eyeComp.Target is { } target &&
+                    EntityManager.EntityExists(target))
+                {
+                    viewEntity = target;
+                }
+
+                var viewPos = _transform.GetMapCoordinates(viewEntity);
+
+                if (viewPos.MapId == popupPos.MapId)
+                {
+                    var distance = (viewPos.Position - popupPos.Position).Length();
+                    if (distance <= pvsRange)
+                        filter.AddPlayer(session);
+                }
+                else
+                {
+                    filter.AddPlayer(session);
+                }
+            }
+
+            return filter;
+        }
+
+        /// <summary>
+        /// Same as <see cref="CreateEyeAwareFilter(EntityUid)"/>,
+        /// but takes popup coordinates directly instead of an entity.
+        /// Use when the popup is not tied to a specific entity.
+        /// </summary>
+        private Filter CreateEyeAwareFilterCoords(MapCoordinates popupPos)
+        {
+            var filter = Filter.Empty();
+            var pvsRange = _cfg.GetCVar(Robust.Shared.CVars.NetMaxUpdateRange);
+
+            foreach (var session in _player.Sessions)
+            {
+                if (session.AttachedEntity is not { } playerEntity)
+                    continue;
+
+                EntityUid viewEntity = playerEntity;
+
+                if (TryComp<EyeComponent>(playerEntity, out var eyeComp) &&
+                    eyeComp.Target is { } target &&
+                    EntityManager.EntityExists(target))
+                {
+                    viewEntity = target;
+                }
+
+                var viewPos = _transform.GetMapCoordinates(viewEntity);
+
+                if (viewPos.MapId == popupPos.MapId)
+                {
+                    var distance = (viewPos.Position - popupPos.Position).Length();
+                    if (distance <= pvsRange)
+                        filter.AddPlayer(session);
+                }
+                else
+                {
+                    filter.AddPlayer(session);
+                }
+            }
+
+            return filter;
+        }
+        // Stories-Popup-Fix-End
+
         public override void PopupCursor(string? message, PopupType type = PopupType.Small)
         {
             // No local user.
@@ -60,7 +146,7 @@ namespace Content.Server.Popups
             if (message == null)
                 return;
             var mapPos = _transform.ToMapCoordinates(coordinates);
-            var filter = Filter.Empty().AddPlayersByPvs(mapPos, entManager: EntityManager, playerMan: _player, cfgMan: _cfg);
+            var filter = CreateEyeAwareFilterCoords(mapPos); // Stories-Popup-Fix
             RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), filter);
         }
 
@@ -87,7 +173,7 @@ namespace Content.Server.Popups
                 return;
 
             var mapPos = _transform.ToMapCoordinates(coordinates);
-            var filter = Filter.Empty().AddPlayersByPvs(mapPos, entManager: EntityManager, playerMan: _player, cfgMan: _cfg);
+            var filter = CreateEyeAwareFilterCoords(mapPos); // Stories-Popup-Fix
             if (recipient != null)
             {
                 // Don't send to recipient, since they predicted it locally
@@ -101,7 +187,7 @@ namespace Content.Server.Popups
             if (message == null)
                 return;
 
-            var filter = Filter.Empty().AddPlayersByPvs(uid, entityManager: EntityManager, playerMan: _player, cfgMan: _cfg);
+            var filter = CreateEyeAwareFilter(uid); // Stories-Popup-Fix
             RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), filter);
         }
 
@@ -155,13 +241,14 @@ namespace Content.Server.Popups
                     return;
 
                 // Don't send to recipient, since they predicted it locally
-                var filter = Filter.PvsExcept(recipient.Value, entityManager: EntityManager);
+                var filter = CreateEyeAwareFilter(uid).RemovePlayerByAttachedEntity(recipient.Value); // Stories-Popup-Fix
                 RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), filter);
             }
             else
             {
                 // With no recipient, send to everyone (in PVS range)
-                RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)));
+                var filter = CreateEyeAwareFilter(uid); // Stories-Popup-Fix
+                RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), filter);
             }
         }
 

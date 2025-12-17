@@ -3,12 +3,9 @@ using Content.Client._RMC14.Movement;
 using Content.Client._RMC14.Weapons.Melee;
 using Content.Client.Gameplay;
 using Content.Shared._RMC14.Input;
-using Content.Shared._RMC14.Tackle;
-using Content.Shared.CombatMode;
+using Content.Shared._Stories.Attachables;
+using Content.Shared._Stories.Vehicle;
 using Content.Shared.Effects;
-using Content.Shared.Hands.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
@@ -175,8 +172,16 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
     protected override void DoDamageEffect(List<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
     {
-        // Server never sends the event to us for predictiveeevent.
-        _color.RaiseEffect(Color.Red, targets, Filter.Local());
+        // Stories-Vehicle-Damage-Visuals-Start
+        foreach (var target in targets)
+        {
+            if (HasComp<VehicleComponent>(target) || HasComp<VehicleAttachableComponent>(target))
+                continue;
+
+            // Server never sends the event to us for predictiveeevent.
+            _color.RaiseEffect(Color.Red, targets, Filter.Local());
+        }
+        // Stories-Vehicle-Damage-Visuals-End
     }
 
     /// <summary>

@@ -1,0 +1,11 @@
+- type: tile
+  parent: STVehicleFloor1
+  id: STVehicleFloor96
+  name: door floor black
+  sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_door_black.png
+
+- type: tile
+  parent: STVehicleFloor1
+  id: STVehicleFloor97
+  name: door floor black 2
+  sprite: /Textures/_Stories/Tiles/Vehicle/Base_Interior/floor_door_black_2.png

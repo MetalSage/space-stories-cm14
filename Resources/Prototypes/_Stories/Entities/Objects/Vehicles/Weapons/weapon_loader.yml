@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseStructure
+  name: Weapon Loader
+  id: VehicleWeaponsLoader
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: weapons_loader
+  - type: Animateable
+  - type: InteractionOutline
+  - type: Anchorable
+    flags:
+    - None
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: VehicleWeaponLoader
+    skills:
+      RMCSkillVehicles: 2
+  - type: UserInterface
+    interfaces:
+      enum.VehicleWeaponLoaderUI.Key:
+        type: VehicleWeaponLoaderBui
+  - type: ActivatableUI
+    key: enum.VehicleWeaponLoaderUI.Key
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: Corrodible
+    isCorrodible: false

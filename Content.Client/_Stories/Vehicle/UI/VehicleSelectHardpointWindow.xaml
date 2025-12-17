@@ -1,0 +1,13 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                     SetSize="400 300"
+                     MinSize="300 200"
+                     Resizable="True"
+                     Title="{Loc st-ui-select-hardpoint-title}">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8">
+        <Label Text="{Loc st-ui-select-hardpoint-contain}" Margin="0,0,0,8" />
+        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+            <BoxContainer Name="HardpointsContainer" Orientation="Vertical" VerticalExpand="True" Access="Public" />
+        </ScrollContainer>
+    </BoxContainer>
+</controls:FancyWindow>

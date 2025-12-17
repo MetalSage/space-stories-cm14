@@ -4,6 +4,7 @@ using Content.Shared._RMC14.Buckle;
 using Content.Shared._RMC14.Movement;
 using Content.Shared._RMC14.Standing;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._Stories.Vehicle;
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Cuffs.Components;
@@ -193,9 +194,12 @@ public abstract partial class SharedBuckleSystem
 
     private void OnBuckleUpdateCanMove(EntityUid uid, BuckleComponent component, UpdateCanMoveEvent args)
     {
-        // RMC14
-        if (HasComp<RMCAllowStrapMovementComponent>(component.BuckledTo))
+        // RMC14 && Stories
+        if (HasComp<RMCAllowStrapMovementComponent>(component.BuckledTo) ||
+            HasComp<VehiclePilotSeatComponent>(component.BuckledTo))
+        {
             return;
+        }
 
         if (component.Buckled)
             args.Cancel();

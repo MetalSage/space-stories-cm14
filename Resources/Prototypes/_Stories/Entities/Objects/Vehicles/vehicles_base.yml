@@ -1,0 +1,112 @@
+- type: entity
+  id: STVehicleEnterpoint
+  name: Vehicle EnterPoint Marker
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _RMC14/Areas/areas.rsi
+    state: unknown
+  - type: Marker
+  - type: Clickable
+  - type: InteractionOutline
+  - type: VehicleEnterPoint
+  - type: Corrodible
+    isCorrodible: false
+
+- type: entity
+  parent: BaseItem
+  id: STMarineVehicleAttachableBase
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+  - type: VehicleAttachable
+  - type: NpcFactionMember
+    factions:
+    - UNMC
+  - type: UserIFF
+    faction: FactionMarine
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: null
+  - type: VehicleAttachableDamageVisuals
+  - type: Appearance
+  - type: VehicleRepairable
+    toolThresholds:
+      Welding: 0.0
+    toolSoundThresholds:
+      Welding: /Audio/Items/welder.ogg
+  - type: Corrodible
+    isCorrodible: false
+
+- type: entity
+  parent: STMarineVehicleAttachableBase
+  id: STMarineVehicleGunAttachableBase
+  abstract: true
+  components:
+  - type: GunIFF
+    enabled: true
+  - type: GunArcRestriction
+    arcDirection: 270
+    maxAngleDeviation: 360
+
+- type: entity
+  parent: BaseStructure
+  id: STVehicleMoveBlockerMarker
+  name: vehicle move block marker
+  description:
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: _RMC14/Areas/areas.rsi
+    state: unknown
+  - type: Marker
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - Transport
+        density: 1000
+  - type: Corrodible
+    isCorrodible: false
+
+- type: hardpointType
+  id: HDPT_ARMOR
+  repairPerSecond: 1.4      # 1.4% в секунду
+  attachDelay: 30 # num_delay * 3
+
+- type: hardpointType
+  id: HDPT_PRIMARY
+  repairPerSecond: 2.0      # 2% в секунду
+  attachDelay: 5 # num_delay * 3
+
+- type: hardpointType
+  id: HDPT_SECONDARY
+  repairPerSecond: 2.5      # 2.5% в секунду
+  attachDelay: 9 # num_delay * 3
+
+- type: hardpointType
+  id: HDPT_SUPPORT
+  repairPerSecond: 2.5      # 2.5% в секунду
+  attachDelay: 6 # num_delay * 3
+
+- type: hardpointType
+  id: HDPT_TREADS # Наличие данного типа у колес БТРа не является парити, но так лучше, чем в парити.
+  repairPerSecond: 3.3      # 3.3% в секунду
+  attachDelay: 7 # num_delay * 3
+
+- type: hardpointType
+  id: HDPT_SPECIAL
+  repairPerSecond: 0
+  attachDelay: 0

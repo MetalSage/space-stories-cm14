@@ -1,0 +1,190 @@
+- type: entity
+  id: STVehicleM577APC
+  name: M577 Armored Personnel Carrier
+  description: "An M577 Armored Personnel Carrier. An armored transport with four big wheels. Entrances on the sides and back."
+  components:
+  - type: MobMover
+  - type: DoAfter
+  - type: InputMover
+  - type: InteractionOutline
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
+    acceleration: 10
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.2,-2,1.2,2"
+          # Вверх, Влево, Вниз, Вправо
+        density: 10000
+        mask:
+        - Transport
+        - LargeMobMask
+        layer:
+        - LargeMobLayer
+        - BulletImpassable
+        - XenoProjectileImpassable
+  - type: Clickable
+  - type: Appearance
+  - type: MobState
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Stories/Mobs/Vehicles/base_apc.rsi
+    layers:
+    - map: [ "enum.VehicleVisualLayers.Base" ]
+      state: apc_base
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container
+  - type: Actions
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: null
+  - type: UserInterface
+    interfaces:
+      enum.DialogUiKey.Key:
+        type: DialogBui
+      enum.VehicleAttachmentUI.StripKey:
+        type: VehicleAttachmentStripBui
+      enum.VehicleAttachmentUI.ChooseSlotKey:
+        type: VehicleAttachmentChooseSlotBui
+      enum.VehicleSelectHardpointUI.Key:
+        type: VehicleSelectHardpointBui
+        interactionRange: 0
+        requireInputValidation: true
+      enum.VehicleStatusUI.Key:
+        type: VehicleStatusBui
+        interactionRange: 0
+        requireInputValidation: true
+  - type: NoRotateOnInteract
+  - type: Vehicle
+    damageMults:
+      Heat: 1.6
+      Slash: 0.8
+      Piercing: 0.6
+      Blunt: 0.7
+    passengerSlots:
+      current: 0
+      max: 15
+    revivableDeadSlots:
+      current: 0
+      max: 2
+    xenoSlots:
+      current: 0
+      max: 8
+    roleReservedSlots:
+      - categoryName: "Crewmen"
+        roles:
+          - CMVehicleCrewman
+          #- JOB_WO_CREWMAN
+          #- JOB_UPP_CREWMAN
+          #- JOB_PMC_CREWMAN
+        total:
+          current: 0
+          max: 2
+      - categoryName: "Synthetic-Unit"
+        roles:
+          - RMCJobSynthetic
+          #- JOB_WO_SYNTH
+        total:
+          current: 0
+          max: 1
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+    worn: false
+  - type: VehicleAttachableHolder
+    slots:
+      st-vehicle-slot-treads:
+        hardpointType: HDPT_TREADS
+      st-vehicle-slot-support:
+        hardpointType: HDPT_SUPPORT
+      st-vehicle-slot-secondary:
+        hardpointType: HDPT_SECONDARY
+      st-vehicle-slot-primary:
+        hardpointType: HDPT_PRIMARY
+      st-vehicle-slot-special:
+        startingAttachables: [STMarineVehicleFiringPortWeaponOne, STMarineVehicleFiringPortWeaponTwo]
+        hardpointType: HDPT_SPECIAL
+        multiModule: true
+        maxModules: 2
+        hiddenInUI: true
+  - type: VehicleAttachableHolderVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    damagedState: damaged_frame
+  - type: NpcFactionMember
+    factions:
+    - UNMC
+  - type: AccessReader
+    access: [["CMAccessBrig"],["CMAccessCommand"],["CMAccessCrewman"]]
+  - type: UserIFF
+    faction: FactionMarine
+  - type: VehicleMovement
+    maxMomentum: 3
+    minimumStepsForMomentum: 3
+    stepIncrement: 0.7
+    speedPerMomentum: 0.25
+    maxMomentumSpeedBonus: 0.75
+  - type: VehicleRepairable
+    toolThresholds:
+      Welding: 0.0
+      Anchoring: 0.75
+    toolSoundThresholds:
+      Welding: /Audio/Items/welder.ogg
+      Anchoring: /Audio/Items/ratchet.ogg
+  - type: MovementIgnoreGravity 
+  - type: PointLight
+    energy: 2
+    softness: 2
+    radius: 5
+  - type: RMCCamera
+    id: STVehicleInteriorCamera
+    rename: false
+  - type: RMCStaticZoomLevel
+  - type: Eye
+    drawFov: false
+  - type: Corrodible
+    isCorrodible: false
+  - type: CMArmor
+    bullet: 48
+  - type: TacticalMapIcon
+    icon:
+      sprite: /Textures/_Stories/Interface/map_blips_large.rsi
+      state: apc
+    background:
+      sprite: /Textures/_Stories/Interface/map_blips_large.rsi
+      state: empty_background
+  - type: TacticalMapTracked
+  - type: MarineMapTracked
+
+- type: entity
+  parent: STVehicleM577APC
+  id: STVehicleM577APCWithModules
+  name: M577 Armored Personnel Carrier
+  description: "An M577 Armored Personnel Carrier. An armored transport with four big wheels. Entrances on the sides and back."
+  suffix: "Modules"
+  components:
+  - type: VehicleAttachableHolder
+    slots:
+      st-vehicle-slot-treads:
+        startingAttachables: [STMarineVehicleM577Wheels]
+        hardpointType: HDPT_TREADS
+      st-vehicle-slot-support:
+        startingAttachables: [STMarineVehicleFlareLauncher]
+        hardpointType: HDPT_SUPPORT
+      st-vehicle-slot-secondary:
+        startingAttachables: [STMarineVehicleFrontalCannon]
+        hardpointType: HDPT_SECONDARY
+      st-vehicle-slot-primary:
+        startingAttachables: [STMarineVehicleDualcannon]
+        hardpointType: HDPT_PRIMARY
+      st-vehicle-slot-special:
+        startingAttachables: [STMarineVehicleFiringPortWeaponOne, STMarineVehicleFiringPortWeaponTwo]
+        hardpointType: HDPT_SPECIAL
+        multiModule: true
+        maxModules: 2
+        hiddenInUI: true

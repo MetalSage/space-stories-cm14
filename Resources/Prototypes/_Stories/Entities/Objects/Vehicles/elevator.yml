@@ -1,0 +1,218 @@
+- type: entity
+  parent: CMBaseStructureCorrodible
+  id: STVehicleRequisitionConsole
+  name: vehicle elevator
+  description: A console for the Vehicle
+  suffix: Vehicle
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Machines/asrs_console.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: off
+    - map: ["computerLayerScreen"]
+      state: on
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: ActivatableUI
+    key: enum.VehicleElevatorUIKey.Key
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [ [ "CMAccessCrewman" ] ]
+  - type: UserInterface
+    interfaces:
+      enum.VehicleElevatorUIKey.Key:
+        type: VehicleElevatorBui
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: CargoSellBlacklist
+  - type: ApcPowerReceiver
+    powerLoad: 0
+    needsPower: false
+  - type: Appearance
+  - type: LitOnPowered
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: RMCKeyboardTyping
+      params:
+        volume: -1
+  - type: RequireProjectileTarget
+  - type: InteractionOutline
+  - type: Corrodible
+    isCorrodible: false
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: RMCMesonsNonviewable
+  - type: VehicleElevatorComputer
+    orders:
+    - STVehicleM577APC
+
+- type: entity
+  id: STVehicleRequisitionElevator
+  name: cargo elevator
+  suffix: Lowered, Requisitions
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _RMC14/Effects/elevator.rsi
+    drawdepth: LowFloors
+    layers:
+    - state: supply_elevator_lowered
+      map: [ "enum.RequisitionsElevatorLayers.Base" ]
+  - type: Physics
+    bodyType: static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-2.3,-2.3,2.3,2.3"
+        layer:
+        - MidImpassable
+        mask:
+        - ItemMask
+        density: 1000
+        hard: false
+  - type: Chasm
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 1
+    blacklist:
+      tags:
+      - Catwalk
+  - type: VehicleElevator
+  - type: CargoSellBlacklist
+  - type: WarpPoint
+    location: the vehicle pit
+  - type: Corrodible
+    isCorrodible: false
+
+- type: entity
+  parent: CMBaseStructureCorrodible
+  id: STVehicleRequisitionRailing
+  name: retractable railing
+  description: That looks like it doesn't open easily.
+  suffix: Raised
+  components:
+  - type: Transform
+    anchored: false
+    noRot: false
+  - type: Sprite
+    sprite: _RMC14/Structures/railing.rsi
+    offset: 0,0.5
+    layers:
+    - state: raised
+      map: [ "enum.RequisitionsRailingLayers.Base" ]
+    noRot: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,-0.3"
+        layer:
+        - TableLayer
+        mask:
+        - TableMask
+        density: 1000
+  - type: Climbable
+  - type: VehicleElevatorRailing
+    mode: Raised
+  - type: CargoSellBlacklist
+  - type: RMCMesonsNonviewable
+  - type: Corrodible
+    isCorrodible: false
+
+- type: entity
+  id: STVehicleRequisitionGear
+  name: gear
+  description: ""
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _RMC14/Structures/gear.rsi
+    layers:
+    - state: base
+      map: [ "enum.RequisitionsGearLayers.Base" ]
+  - type: VehicleElevatorGear
+  - type: CargoSellBlacklist
+  - type: Corrodible
+    isCorrodible: false
+
+- type: entity
+  parent: ColMarTechCargo
+  id: STVendingVehicleGearM577
+  name: ASRS automated modules vendor
+  description: An automated supply rack hooked up to a big storage of various modules. Can be accessed by the Vehicle Crew.
+  components:
+  - type: AccessReader
+    access:
+    - [ "CMAccessCrewman" ]
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Vending/vehicle_gear.rsi
+  - type: CMAutomatedVendor
+    baseSprite:
+      sprite: _Stories/Objects/Vehicles/Vending/vehicle_gear.rsi
+      state: base
+    animationSprite:
+      sprite: _Stories/Objects/Vehicles/Vending/vehicle_gear.rsi
+      state: vend
+    sound:
+      path: /Audio/_RMC14/Machines/vending_drop.ogg
+      params:
+        maxDistance: 2
+        volume: -4
+    jobs:
+    - CMVehicleCrewman
+    sections:
+    - name: M577 бронетранспортёр
+      entries:
+      - id: STMarineVehicleDualcannon
+        amount: 1
+      - id: STMarineVehicleFrontalCannon
+        amount: 1
+      - id: STMarineVehicleFlareLauncher
+        amount: 1
+      - id: STMarineVehicleM577Wheels
+        amount: 1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-0.5,1,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer

@@ -1,0 +1,270 @@
+- type: entity
+  id: STVehicleInteriorViewport
+  name: viewport
+  description: A reinforced viewing port allowing the vehicle crew to observe the outside world. Thick glass and armored casing protect it from external damage.
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: viewport
+  - type: Appearance
+  - type: WallMount
+    arc: 360
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: ActivatableUIBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: RMCMesonsNonviewable
+  - type: Corrodible
+    isCorrodible: false
+  - type: VehicleViewport
+
+- type: entity 
+  parent: RMCSurveillanceCameraAlmayer
+  id: STVehicleInteriorCamera
+  name: camera
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    offset: 0.4, 0.4
+    layers:
+    - map: [ "enum.SurveillanceCameraVisualsKey.Layer" ]
+      state: vehicle_camera
+      cycle: true
+    state: vehicle_camera
+    cycle: true
+  - type: SurveillanceCameraVisuals
+    sprites:
+      Active: vehicle_camera
+      Disabled: vehicle_camera
+      InUse: vehicle_camera
+  - type: RMCCamera
+    id: STVehicleInteriorCamera
+  - type: Corrodible
+    isCorrodible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.ItemCabinetVisuals.ContainsItem:
+        enum.ItemCabinetVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: { state: open }
+          False: { state: closed }
+
+- type: entity
+  parent: RMCRotaryPhone
+  id: STVehicleInteriorWallMountPhone
+  name: wall-mounted phone
+  description: "It is a wall mounted telephone. The fine text reads: To log your details with the mainframe please insert your keycard into the slot below. Unfortunately the slot is jammed. You can still use the phone, however."
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+      - state: wall_phone
+        map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.RotaryPhoneLayers.Layer:
+        base:
+          Base: { state: wall_phone }
+          Ring: { state: wall_phone_ring }
+          Ear: { state: wall_phone_ear }
+  - type: Corrodible
+    isCorrodible: false
+
+- type: entity
+  id: STVehicleInteriorNanoMed
+  name: nanomed
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+    - state: "nanomed"
+    - state: "nanomed"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.38,-0.5,0.35,0.5"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+        hard: false
+  - type: CMSolutionRefiller
+    current: 250
+    max: 250
+    recharge: 125 # TODO RMC14 auto-restock items as well if round is >= 20 minutes in
+    rechargeCooldown: 4
+    reagents:
+    - CMTricordrazine
+#    - CMTramadol # TODO RMC14
+    whitelist:
+      components:
+      - Hypospray
+  - type: CMAutomatedVendor
+    hackable: true
+    sections:
+    - name: Припасы
+      entries:
+      # - id: CMPainStopAutoinjector
+      #   amount: 2
+      - id: CMTricordrazineAutoInjectorNoSkill
+        amount: 2
+      - id: CMGauze10
+        amount: 4
+      - id: CMOintment10
+        amount: 4
+      # - id: CMMedicalSplints5
+      #   amount: 4
+    - name: Утилиты
+      entries:
+      - id: CMHealthAnalyzer
+        amount: 3
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: ActivatableUIBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: UserInterface
+    interfaces:
+      enum.CMAutomatedVendorUI.Key:
+        type: CMAutomatedVendorBui
+  - type: ActivatableUI
+    key: enum.CMAutomatedVendorUI.Key
+  - type: ActivatableUIRequiresAccess
+  - type: WallMount
+    arc: 360
+  - type: RMCMesonsNonviewable
+  - type: Corrodible
+    isCorrodible: false
+
+- type: entity
+  id: STVehicleInteriorExtinguisherCabinet
+  name: extinguisher cabinet
+  description: A small wall mounted cabinet designed to hold a fire extinguisher.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Openable
+    openOnActivate: true
+    closeable: true
+    sound:
+      path: /Audio/Machines/machine_switch.ogg
+    closeSound:
+      path: /Audio/Machines/machine_switch.ogg
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: WallMount
+    arc: 360
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+    - map: ["open"]
+      state: extinguisher_empty
+      visible: false
+    - map: ["closed"]
+      state: closed
+      visible: true
+  - type: ItemCabinet
+  - type: ItemSlots
+    slots:
+      ItemCabinet:
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - SpraySafety
+  - type: ContainerContainer
+    containers:
+      ItemCabinet: !type:ContainerSlot
+  - type: ContainerFill
+    containers:
+      ItemCabinet:
+        - CMFireExtinguisher
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        open:
+          True: { visible: true }
+          False: { visible: false }
+        closed:
+          True: { visible: false }
+          False: { visible: true }
+      enum.ItemCabinetVisuals.ContainsItem:
+        open:
+          True: { state: extinguisher_full }
+          False: { state: extinguisher_empty }
+        closed:
+          True: { state: extinguisher_closed }
+          False: { state: closed }
+  - type: Appearance
+  - type: RMCMesonsNonviewable
+  - type: Corrodible
+    isCorrodible: false
+
+- type: entity
+  parent: CMLockerBase
+  id: STVehicleAPCLocker
+  name: locker
+  suffix: Empty
+  description: A bulletproof cabinet.
+  components:
+  - type: WallMount
+    arc: 175
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    layers:
+    - state: locker_open
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: locker
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locker
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: locker
+    stateDoorOpen: locker_open
+    stateDoorClosed: locker
+  - type: EntityStorage
+    capacity: 3
+    isCollidableWhenOpen: true
+    enteringOffset: 0, -0.6
+    enteringRange: 0.03
+    whitelist:
+      components:
+      - Item
+  - type: AccessReader
+    access: [["CMAccessCrewman"]]
+  - type: RMCMesonsNonviewable
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Transform
+  - type: Corrodible
+    isCorrodible: false

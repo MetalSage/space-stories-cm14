@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/master/icons/obj/vehicles/apc.dmi",
+  "size": {
+    "x": 128,
+    "y": 128
+  },
+  "states": [
+    {
+      "name": "apc_base",
+      "directions": 4
+    },
+    {
+      "name": "apc_base_med",
+      "directions": 4
+    },
+    {
+      "name": "dualcannon",
+      "directions": 4
+    },
+    {
+      "name": "dualcannon_destroyed",
+      "directions": 4
+    },
+    {
+      "name": "damaged_hdpt_primary",
+      "directions": 4
+    },
+    {
+      "name": "frontalcannon",
+      "directions": 4
+    },
+    {
+      "name": "frontalcannon_destroyed",
+      "directions": 4
+    },
+    {
+      "name": "freight",
+      "directions": 4
+    },
+    {
+      "name": "freight_destroyed",
+      "directions": 4
+    },
+    {
+      "name": "damaged_hdpt_secondary",
+      "directions": 4
+    },
+    {
+      "name": "comms_relay",
+      "directions": 4
+    },
+    {
+      "name": "comms_relay_destroyed",
+      "directions": 4
+    },
+    {
+      "name": "flare_launcher",
+      "directions": 4
+    },
+    {
+      "name": "flare_launcher_destroyed",
+      "directions": 4
+    },
+    {
+      "name": "damaged_hdpt_support",
+      "directions": 4
+    },
+    {
+      "name": "wheels",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "wheels_destroyed",
+      "directions": 4
+    },
+    {
+      "name": "empty_fuel_cell",
+      "directions": 4
+    },
+    {
+      "name": "damaged_frame",
+      "directions": 4
+    }
+  ]
+}

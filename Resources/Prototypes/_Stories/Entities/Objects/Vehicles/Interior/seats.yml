@@ -1,0 +1,82 @@
+- type: entity
+  id: STVehicleBaseSeat
+  abstract: true
+  description: You sit in this. Either by will or force.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Animateable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - TableMask
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+    noRot: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,-0.05"
+  - type: RMCMesonsNonviewable
+
+- type: entity
+  parent: STVehicleBaseSeat
+  id: STVehicleArmorDriverSeat
+  name: armor driver seat
+  description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
+  components:
+  - type: VehiclePilotSeat
+    actionIds:
+    - STVehicleVehicleStatusAction
+    - STVehicleLockDoorsAction
+    skills:
+      RMCSkillVehicles: 2
+
+- type: entity
+  parent: STVehicleBaseSeat
+  id: STVehicleArmorGunnerSeat
+  name: armor gunner's seat
+  description: A sturdy chair with a brace that lowers over your body. Prevents being flung around in vehicle during crash being injured as a result. Fasten your seatbelts, kids! Fix with welding tool in case of damage.
+  components:
+  - type: VehiclePilotSeat
+    isGunner: true
+    zoom: 1.43, 1.43
+    actionIds:
+    - STVehicleVehicleStatusAction
+    - STVehicleSelectHardpointAction
+    skills:
+      RMCSkillVehicles: 2
+
+- type: entity
+  parent: STVehicleBaseSeat
+  id: STVehicle1stSupportGunnerSeat
+  name: 1st support gunner's seat
+  components:
+  - type: VehicleController
+    id: FiringPortWeaponOne
+    actionIds:
+    - STVehicleReloadSpecialAction
+
+- type: entity
+  parent: STVehicleBaseSeat
+  id: STVehicle2stSupportGunnerSeat
+  name: 2st support gunner's seat
+  components:
+  - type: VehicleController
+    id: FiringPortWeaponTwo
+    actionIds:
+    - STVehicleReloadSpecialAction
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/Interior/general.rsi
+    state: armor_chair
+    noRot: true
+    offset: 0, 0.2

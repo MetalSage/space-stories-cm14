@@ -1,0 +1,29 @@
+- type: entity
+  parent: RMCCrateAmmo
+  id: STCrateBoxAmmoDualcannon
+  name: PARS-159 Boyars Dualcannon magazines (x5)
+  components:
+  - type: StorageFill
+    contents:
+    - id: STVehicleAmmoBoyarsDualcannon
+      amount: 5
+
+- type: entity
+  parent: RMCCrateAmmo
+  id: STCrateBoxAmmoFrontalcannon
+  name: Bleihagel RE-RE700 Frontal Cannon magazines (x2)
+  components:
+  - type: StorageFill
+    contents:
+    - id: STVehicleAmmoREFrontalCannon
+      amount: 2
+
+- type: entity
+  parent: RMCCrateAmmo
+  id: STCrateBoxAmmoFlareLauncher
+  name: M-87F Flare Launcher magazines (x4)
+  components:
+  - type: StorageFill
+    contents:
+    - id: STVehicleAmmoFlareLauncher
+      amount: 4

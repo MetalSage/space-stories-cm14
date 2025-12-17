@@ -133,3 +133,5 @@ ent-RMCWEYARainCoat = WEYA rain coat
     .desc = A bright, yellow raincoat with the Company logo. It's gaudy, sure, but it keeps the rain off well. Typically distributed to frontier colonies with heavy rain.
 ent-CMCoatLong = длинное пальто
     .desc = Пальто стандартного образца.
+ent-RMCCoatTanker = куртка экипажа бронетехники
+    .desc = Удобная куртка для тех, кто работает рядом с тяжелой техникой или внутри неё. Специальный материал в рукавах блокирует механизм при захвате, защищая владельца от травм.

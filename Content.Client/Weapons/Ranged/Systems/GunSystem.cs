@@ -7,8 +7,8 @@ using Content.Client.Animations;
 using Content.Client.Gameplay;
 using Content.Client.Items;
 using Content.Client.Weapons.Ranged.Components;
-using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
+using Content.Shared._Stories.Attachables;
 using Content.Shared.CombatMode;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -45,6 +45,9 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly ItemPickupSystem _itemPickup = default!;
     [Dependency] private readonly GunPredictionSystem _gunPrediction = default!;
     [Dependency] private readonly RMCLagCompensationSystem _rmcLagCompensation = default!;
+
+    //Stories
+    [Dependency] private readonly VehicleAttachableHolderSystem _vehicleAttachableHolder = default!;
 
     public static readonly EntProtoId HitscanProto = "HitscanEffect";
 
@@ -202,7 +205,14 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         // Define target coordinates relative to gun entity, so that network latency on moving grids doesn't fuck up the target location.
-        var coordinates = TransformSystem.ToCoordinates(entity, mousePos);
+
+        // Stories-APC-Gun-Tweak-Start
+        var changedEntity = entity;
+        if (_vehicleAttachableHolder.TryGetHolder(gunUid, out var nullableHolder) && nullableHolder is { } holder)
+            changedEntity = holder;
+
+        var coordinates = TransformSystem.ToCoordinates(changedEntity, mousePos);
+        // Stories-APC-Gun-Tweak-End
 
         NetEntity? target = null;
         if (_state.CurrentState is GameplayStateBase screen)

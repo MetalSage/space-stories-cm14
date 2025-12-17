@@ -1,0 +1,65 @@
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp float damageLevel;
+uniform highp float time;
+
+const highp float NOISE_SCALE = 150.0;
+const highp float INTERFERENCE_INTENSITY = 0.3;
+const highp float VIGNETTE_POWER = 2.5;
+const highp float VIGNETTE_SCALE = 0.8;
+const highp float FLICKER_FREQUENCY = 8.0;
+const highp float SCANLINES_DENSITY = 800.0;
+
+highp float noise(highp vec2 coord) {
+    return fract(sin(dot(coord, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+highp float vignette(highp vec2 uv) {
+    highp vec2 center = uv - 0.5;
+    highp float dist = dot(center, center);
+    return 1.0 - smoothstep(0.0, VIGNETTE_SCALE, dist * VIGNETTE_POWER);
+}
+
+void fragment() {
+    highp vec2 uv = UV;
+    highp vec4 screenColor = zTextureSpec(SCREEN_TEXTURE, uv);
+    
+    if (damageLevel <= 0.001) {
+        COLOR = screenColor;
+        return;
+    }
+    
+    highp float damageIntensity = damageLevel * damageLevel;
+    
+    highp vec2 noiseCoord = FRAGCOORD.xy + time * 50.0;
+    highp float staticNoise = noise(noiseCoord * NOISE_SCALE / 100.0) * 0.5 + 
+                             noise(noiseCoord * NOISE_SCALE / 50.0) * 0.3 + 
+                             noise(noiseCoord * NOISE_SCALE / 25.0) * 0.2;
+    
+    highp float flicker = 0.8 + 0.2 * sin(time * FLICKER_FREQUENCY + staticNoise * 6.28);
+    
+    highp float scanlines = sin(FRAGCOORD.y * SCANLINES_DENSITY / SCREEN_PIXEL_SIZE.y) * 0.04 + 1.0;
+    
+    highp float interference = staticNoise * INTERFERENCE_INTENSITY * damageIntensity;
+    screenColor.rgb = mix(screenColor.rgb, vec3(interference), damageIntensity * 0.4);
+    
+    screenColor.rgb *= scanlines * flicker;
+    
+    if (damageIntensity > 0.3) {
+        highp vec2 redOffset = vec2(staticNoise * damageIntensity * 0.005, 0.0);
+        highp vec2 blueOffset = vec2(-staticNoise * damageIntensity * 0.003, 0.0);
+        
+        screenColor.r = zTextureSpec(SCREEN_TEXTURE, uv + redOffset).r;
+        screenColor.b = zTextureSpec(SCREEN_TEXTURE, uv + blueOffset).b;
+    }
+    
+    highp float vignetteStrength = vignette(uv);
+    vignetteStrength = mix(1.0, vignetteStrength, damageIntensity);
+    screenColor.rgb *= vignetteStrength;
+    
+    highp float gray = dot(screenColor.rgb, vec3(0.299, 0.587, 0.114));
+    screenColor.rgb = mix(screenColor.rgb, vec3(gray), damageIntensity * 0.5);
+    
+    screenColor.rgb *= (1.0 - damageIntensity * 0.6);
+    
+    COLOR = clamp(screenColor, 0.0, 1.0);
+}

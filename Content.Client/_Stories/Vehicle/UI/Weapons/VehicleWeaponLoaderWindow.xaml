@@ -1,0 +1,22 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                     SetSize="550 350"
+                     MinSize="550 350"
+                     Resizable="True"
+                     Title="{Loc st-vehicle-ui-window-title}">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8">
+        <Label Text="{Loc st-vehicle-ui-available-weapons}" Margin="0,0,0,8" />
+        <Label Text="{Loc st-vehicle-ui-loaded-empty-legend}" 
+               Margin="0,0,0,4" 
+               StyleClasses="LabelSubText"/>
+        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+            <BoxContainer Name="HardpointsContainer" 
+                         Orientation="Vertical" 
+                         VerticalExpand="True" 
+                         Access="Public" />
+        </ScrollContainer>
+        <Label Text="{Loc st-vehicle-ui-click-to-reload}" 
+               Margin="0,8,0,0" 
+               StyleClasses="LabelSubText"/>
+    </BoxContainer>
+</controls:FancyWindow>

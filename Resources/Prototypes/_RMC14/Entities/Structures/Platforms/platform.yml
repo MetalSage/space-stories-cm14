@@ -16,6 +16,12 @@
   - type: Tag
     tags:
     - Platform
+    # Stories-Vehicle-Content-Start
+  - type: VehicleStructureTarget
+    momentumLossFactor: 0
+    DamageToVehicleOnFail: 0
+    minimumClassToDestroy: Weak
+    # Stories-Vehicle-Content-End
 
 - type: entity
   abstract: true

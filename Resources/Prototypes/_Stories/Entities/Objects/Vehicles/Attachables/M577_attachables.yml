@@ -1,0 +1,222 @@
+- type: entity
+  parent: STMarineVehicleGunAttachableBase
+  name: ARS-159 Boyars Dualcannon
+  id: STMarineVehicleDualcannon
+  description: A primary two-barrel cannon for the APC that shoots 20mm IFF-compatible rounds.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: dual_cannon
+  - type: VehicleAttachable
+    hardpointType: HDPT_PRIMARY
+    damageMult: 0.2
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 500
+    offset: 0.8, 1.15
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: dualcannon
+    destroyedState: dualcannon_destroyed
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 3.333333333
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Stories/dual_autocannon_fire.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    cameraRecoilScalarModified: 0
+    cameraRecoilScalar: 0
+  - type: VehicleGun
+    maxSpareMagazines: 2
+    acceptedMagazineTypes: ["boyars_dualcannon"]
+    startingMagazinePrototype: STVehicleAmmoBoyarsDualcannon
+  - type: GunArcRestriction
+    maxAngleDeviation: 30
+
+- type: entity
+  parent: STMarineVehicleGunAttachableBase
+  name: M-87F Flare Launcher
+  id: STMarineVehicleFlareLauncher
+  description: A support module for APCs that shoots flares.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: flare_launcher
+  - type: VehicleAttachable
+    hardpointType: HDPT_SUPPORT
+    damageMult: 0.1
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 500
+    offset: -0.3, 0.6
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: flare_launcher
+    destroyedState: flare_launcher_destroyed
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 0.3333333333
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_ugl.ogg
+    projectileSpeed: 25
+    cameraRecoilScalarModified: 0
+    cameraRecoilScalar: 0
+  - type: VehicleGun
+    acceptedMagazineTypes: ["flare_launcher"]
+    startingMagazinePrototype: STVehicleAmmoFlareLauncher
+  - type: ActivateExpendableLightOnShoot
+  - type: ShootAtFixedPoint
+    maxFixedRange: 25
+  - type: GunIFF
+    enabled: true
+  - type: GunIgnorePrediction
+  - type: IgnorePredictionHide
+  - type: GunArcRestriction
+    maxAngleDeviation: 60
+
+- type: entity
+  parent: STMarineVehicleGunAttachableBase
+  id: STMarineVehicleFrontalCannon
+  name: Bleihagel RE-RE700 Frontal Cannon
+  description: The marketing department over at Bleihagel would have you believe that the RE-RE700 is an original design. However, experts who pried the cover off the cannon have discovered an object with a striking similarity to the popular M56 Cupola. It is still unknown why the cannon has two barrels.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: front_cannon
+  - type: VehicleAttachable
+    hardpointType: HDPT_SECONDARY
+    damageMult: 0.11
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 350
+    offset: 0.3, -1.6
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: frontalcannon
+    destroyedState: frontalcannon_destroyed
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 3.333333333
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      collection: CMM56BShoot
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+    cameraRecoilScalarModified: 0
+    cameraRecoilScalar: 0
+  - type: VehicleGun
+    maxSpareMagazines: 1
+    acceptedMagazineTypes: ["re_frontalcannon"]
+    startingMagazinePrototype: STVehicleAmmoREFrontalCannon
+  - type: GunArcRestriction
+    maxAngleDeviation: 50
+
+- type: entity
+  parent: STMarineVehicleGunAttachableBase
+  id: STMarineVehicleFiringPortWeaponOne
+  name: M56 FPW
+  description: A modified M56A2 Smartgun installed on the sides of M577 Armored Personnel Carrier as a Firing Port Weapon. Used by support gunners to cover friendly infantry at APC sides.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: front_cannon
+  - type: VehicleAttachable
+    hardpointType: HDPT_SPECIAL
+    damageMult: 0
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 100
+    ignored: true
+    offset: 0.8, 0.55
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 3.333333333
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      collection: CMM56BShoot
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+    cameraRecoilScalarModified: 0
+    cameraRecoilScalar: 0
+  - type: VehicleGun
+    needHands: true
+    disableAtHullDamage: 0.5
+    acceptedMagazineTypes: ["m56_fpw"]
+    maxSpareMagazines: 0
+    startingMagazinePrototype: STVehicleAmmoM56FPW
+  - type: VehicleAutoReloadGun
+  - type: VehicleControllable
+    id: FiringPortWeaponOne
+  - type: GunArcRestriction
+    maxAngleDeviation: 50
+    arcDirection: 360
+
+- type: entity
+  parent: STMarineVehicleFiringPortWeaponOne
+  id: STMarineVehicleFiringPortWeaponTwo
+  components:
+  - type: VehicleControllable
+    id: FiringPortWeaponTwo
+  - type: GunArcRestriction
+    maxAngleDeviation: 50
+    arcDirection: 180
+  - type: VehicleAttachable
+    hardpointType: HDPT_SPECIAL
+    damageMult: 0
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 100
+    ignored: true
+    offset: -0.8, 0.55
+
+- type: entity
+  parent: STMarineVehicleAttachableBase
+  id: STMarineVehicleM577Wheels
+  name: APC Wheels
+  description: Integral to the movement of the APC.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Vehicles/base_apc_items.rsi
+    layers:
+    - map: [ "enum.VehicleAttachableVisualLayers.Base" ]
+      state: tires
+  - type: VehicleAttachable
+    hardpointType: HDPT_TREADS
+    damageMult: 0.15
+    skill: RMCSkillEngineer
+    level: 2
+    maxHealth: 500
+  - type: VehicleAttachableVisuals
+    rsi: _Stories/Mobs/Vehicles/base_apc.rsi
+    state: wheels
+    destroyedState: wheels_destroyed
+  - type: VehicleMovementAttachable
+    walkSpeed: 4
+    sprintSpeed: 4

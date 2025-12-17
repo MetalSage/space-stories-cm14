@@ -199,7 +199,32 @@ public abstract class SharedRMCCameraSystem : EntitySystem
 
         Refresh(ent, old);
     }
+    // Stories-Vehicle-Content-Start
+    public void SetCameraActive(EntityUid camera, bool active, RMCCameraComponent? cameraComp = null)
+    {
+        if (!Resolve(camera, ref cameraComp))
+            return;
 
+        if (cameraComp.Active == active)
+            return;
+
+        cameraComp.Active = active;
+        Dirty(camera, cameraComp);
+
+        if (!active)
+        {
+            var computers = EntityQueryEnumerator<RMCCameraComputerComponent>();
+            while (computers.MoveNext(out var uid, out var comp))
+            {
+                if (comp.CurrentCamera == camera)
+                {
+                    comp.CurrentCamera = null;
+                    Refresh((uid, comp), camera);
+                }
+            }
+        }
+    }
+    // Stories-Vehicle-Content-End
     protected virtual void Refresh(Entity<RMCCameraComputerComponent> ent, EntityUid? old)
     {
         Dirty(ent);

@@ -1,0 +1,810 @@
+meta:
+  format: 7
+  category: Grid
+  engineVersion: 264.0.2
+  forkId: ""
+  forkVersion: ""
+  time: 11/11/2025 22:28:10
+  entityCount: 97
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
+tilemap:
+  4: Space
+  3: CMShuttleTileInvisible
+  19: STVehicleFloor12
+  30: STVehicleFloor13
+  36: STVehicleFloor21
+  39: STVehicleFloor23
+  32: STVehicleFloor24
+  0: STVehicleFloor25
+  22: STVehicleFloor27
+  12: STVehicleFloor35
+  8: STVehicleFloor38
+  9: STVehicleFloor39
+  26: STVehicleFloor4
+  11: STVehicleFloor40
+  1: STVehicleFloor41
+  27: STVehicleFloor42
+  23: STVehicleFloor43
+  28: STVehicleFloor46
+  13: STVehicleFloor57
+  6: STVehicleFloor58
+  20: STVehicleFloor59
+  24: STVehicleFloor6
+  40: STVehicleFloor64
+  42: STVehicleFloor68
+  41: STVehicleFloor69
+  34: STVehicleFloor70
+  31: STVehicleFloor8
+  17: STVehicleFloor83
+  15: STVehicleFloor85
+  16: STVehicleFloor86
+  14: STVehicleFloor87
+  29: STVehicleFloor88
+  25: STVehicleFloor89
+  35: STVehicleFloor92
+  38: STVehicleFloor93
+  33: STVehicleFloor95
+  37: STVehicleFloor96
+  43: STVehicleFloor97
+entities:
+- proto: ""
+  entities:
+  - uid: 1
+    components:
+    - type: MetaData
+      name: grid
+    - type: Transform
+      pos: -0.5206022,-0.5308647
+      parent: invalid
+    - type: MapGrid
+      chunks:
+        0,0:
+          ind: 0,0
+          tiles: HwAAAAAAACAAAAAAAAAQAAAAAAAAIQAAAAAAAAYAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAEAAAAAAAAiAAAAAAAAIwAAAAAAACEAAAAAAAAGAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAkAAAAAAAAIQAAAAAAACEAAAAAAAAhAAAAAAAABgAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAIQAAAAAAACEAAAAAAAAhAAAAAAAAIQAAAAAAAAYAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAA==
+          version: 7
+        0,-1:
+          ind: 0,-1
+          tiles: BAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAlAAAAAAAAIQAAAAAAACEAAAAAAAAhAAAAAAAABgAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAQAAAAAAACIAAAAAAAAmAAAAAAAAIQAAAAAAAAYAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAA==
+          version: 7
+        -1,0:
+          ind: -1,0
+          tiles: BAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAGAAAAAAAAIQAAAAAAACcAAAAAAAAWAAAAAAAACwAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABgAAAAAAACEAAAAAAAAoAAAAAAAAJAAAAAAAACkAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAYAAAAAAAAhAAAAAAAAIQAAAAAAACEAAAAAAAAqAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAGAAAAAAAAIQAAAAAAACEAAAAAAAAhAAAAAAAAIQAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAA==
+          version: 7
+        -1,-1:
+          ind: -1,-1
+          tiles: BAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAYAAAAAAAAhAAAAAAAAIQAAAAAAACEAAAAAAAArAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAGAAAAAAAAIQAAAAAAABkAAAAAAAAOAAAAAAAAIwAAAAAAAA==
+          version: 7
+    - type: Broadphase
+    - type: Physics
+      bodyStatus: InAir
+      fixedRotation: False
+      bodyType: Dynamic
+    - type: Fixtures
+      fixtures: {}
+    - type: OccluderTree
+    - type: SpreaderGrid
+    - type: ImplicitRoof
+    - type: GridPathfinding
+    - type: Gravity
+      gravityShakeSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/alert.ogg
+      inherent: True
+      enabled: True
+    - type: DecalGrid
+      chunkCollection:
+        version: 2
+        nodes: []
+    - type: GridAtmosphere
+      version: 2
+      data:
+        chunkSize: 4
+    - type: GasTileOverlay
+    - type: AreaGrid
+      labels: {}
+      areaEntities: {}
+      colors: {}
+      areas:
+        -5,4: STVehicleArea
+        -5,3: STVehicleArea
+        -5,2: STVehicleArea
+        -5,1: STVehicleArea
+        -5,0: STVehicleArea
+        -5,-1: STVehicleArea
+        -5,-2: STVehicleArea
+        -5,-3: STVehicleArea
+        -4,4: STVehicleArea
+        -4,3: STVehicleArea
+        -4,2: STVehicleArea
+        -4,0: STVehicleArea
+        -4,1: STVehicleArea
+        -4,-1: STVehicleArea
+        -4,-2: STVehicleArea
+        -4,-3: STVehicleArea
+        -3,4: STVehicleArea
+        -3,3: STVehicleArea
+        -3,2: STVehicleArea
+        -3,1: STVehicleArea
+        -3,-1: STVehicleArea
+        -3,-2: STVehicleArea
+        -3,-3: STVehicleArea
+        -2,4: STVehicleArea
+        -2,3: STVehicleArea
+        -2,2: STVehicleArea
+        -2,1: STVehicleArea
+        -2,0: STVehicleArea
+        -2,-1: STVehicleArea
+        -2,-2: STVehicleArea
+        -2,-3: STVehicleArea
+        -1,4: STVehicleArea
+        -1,3: STVehicleArea
+        -1,2: STVehicleArea
+        -1,1: STVehicleArea
+        -1,0: STVehicleArea
+        -1,-1: STVehicleArea
+        -1,-2: STVehicleArea
+        -1,-3: STVehicleArea
+        0,4: STVehicleArea
+        0,3: STVehicleArea
+        0,2: STVehicleArea
+        0,1: STVehicleArea
+        0,0: STVehicleArea
+        0,-1: STVehicleArea
+        0,-2: STVehicleArea
+        0,-3: STVehicleArea
+        1,4: STVehicleArea
+        1,3: STVehicleArea
+        1,2: STVehicleArea
+        1,1: STVehicleArea
+        1,0: STVehicleArea
+        1,-1: STVehicleArea
+        1,-2: STVehicleArea
+        1,-3: STVehicleArea
+        2,4: STVehicleArea
+        2,3: STVehicleArea
+        2,2: STVehicleArea
+        2,1: STVehicleArea
+        2,0: STVehicleArea
+        2,-1: STVehicleArea
+        2,-2: STVehicleArea
+        2,-3: STVehicleArea
+        3,4: STVehicleArea
+        3,3: STVehicleArea
+        3,2: STVehicleArea
+        3,1: STVehicleArea
+        3,0: STVehicleArea
+        3,-1: STVehicleArea
+        3,-2: STVehicleArea
+        3,-3: STVehicleArea
+        4,4: STVehicleArea
+        4,3: STVehicleArea
+        4,2: STVehicleArea
+        4,1: STVehicleArea
+        4,0: STVehicleArea
+        4,-1: STVehicleArea
+        4,-2: STVehicleArea
+        4,-3: STVehicleArea
+        -3,0: STVehicleArea
+- proto: CMSeatPassenger
+  entities:
+  - uid: 35
+    components:
+    - type: Transform
+      pos: -0.69660187,1.5
+      parent: 1
+  - uid: 36
+    components:
+    - type: Transform
+      pos: -0.21222687,1.5
+      parent: 1
+  - uid: 38
+    components:
+    - type: Transform
+      pos: -2.6740885,1.5
+      parent: 1
+  - uid: 39
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.6497269,-0.5
+      parent: 1
+  - uid: 40
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.2434769,-0.5
+      parent: 1
+  - uid: 41
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.7278519,-0.5
+      parent: 1
+  - uid: 42
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.1809769,-0.5
+      parent: 1
+  - uid: 43
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.77472687,-0.5
+      parent: 1
+  - uid: 44
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.32160187,-0.5
+      parent: 1
+  - uid: 45
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.2877731,-0.5
+      parent: 1
+  - uid: 46
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.8033981,-0.5
+      parent: 1
+  - uid: 47
+    components:
+    - type: Transform
+      pos: 1.3033981,1.5
+      parent: 1
+  - uid: 48
+    components:
+    - type: Transform
+      pos: 1.8033981,1.5
+      parent: 1
+  - uid: 92
+    components:
+    - type: Transform
+      pos: -2.1897135,1.5
+      parent: 1
+- proto: RMCBatonSlugHIRR
+  entities:
+  - uid: 51
+    components:
+    - type: MetaData
+      desc: Родственник резиновой пули M15, РПУВ картечь с резиновой пулей.                                                                         Подарок для Евы Риттер от Кэссэди Янг. (Пожалуйста, верните это владельцу, если нашли)
+      name: подарочная картечь с резиновой пулей РПУВ 40мм
+    - type: Transform
+      pos: -0.8884474,2.8350697
+      parent: 1
+- proto: STVehicle1stSupportGunnerSeat
+  entities:
+  - uid: 32
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,2.5
+      parent: 1
+- proto: STVehicle2stSupportGunnerSeat
+  entities:
+  - uid: 31
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 1
+- proto: STVehicleAPCLocker
+  entities:
+  - uid: 21
+    components:
+    - type: Transform
+      pos: 2.5,2.5
+      parent: 1
+    missingComponents:
+    - Anchorable
+- proto: STVehicleAPCWall17
+  entities:
+  - uid: 22
+    components:
+    - type: Transform
+      pos: -1.5,2.5
+      parent: 1
+    - type: Occluder
+      enabled: False
+- proto: STVehicleAPCWall23
+  entities:
+  - uid: 26
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
+    - type: Occluder
+      enabled: False
+- proto: STVehicleAPCWall29
+  entities:
+  - uid: 29
+    components:
+    - type: Transform
+      pos: 1.5,3.5
+      parent: 1
+- proto: STVehicleAPCWall31
+  entities:
+  - uid: 25
+    components:
+    - type: Transform
+      pos: 0.5,3.5
+      parent: 1
+- proto: STVehicleAPCWall32
+  entities:
+  - uid: 50
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
+- proto: STVehicleAPCWall37
+  entities:
+  - uid: 8
+    components:
+    - type: Transform
+      pos: 3.5,-1.5
+      parent: 1
+- proto: STVehicleAPCWall38
+  entities:
+  - uid: 3
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
+      parent: 1
+- proto: STVehicleAPCWall39
+  entities:
+  - uid: 5
+    components:
+    - type: Transform
+      pos: 3.5,0.5
+      parent: 1
+- proto: STVehicleAPCWall40
+  entities:
+  - uid: 6
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 1
+- proto: STVehicleAPCWall41
+  entities:
+  - uid: 4
+    components:
+    - type: Transform
+      pos: 3.5,2.5
+      parent: 1
+- proto: STVehicleAPCWall42
+  entities:
+  - uid: 2
+    components:
+    - type: Transform
+      pos: 3.5,3.5
+      parent: 1
+- proto: STVehicleAPCWall43
+  entities:
+  - uid: 7
+    components:
+    - type: Transform
+      pos: -2.5,-1.5
+      parent: 1
+  - uid: 10
+    components:
+    - type: Transform
+      pos: 1.5,-1.5
+      parent: 1
+- proto: STVehicleAPCWall44
+  entities:
+  - uid: 9
+    components:
+    - type: Transform
+      pos: 2.5,-1.5
+      parent: 1
+  - uid: 11
+    components:
+    - type: Transform
+      pos: -1.5,-1.5
+      parent: 1
+- proto: STVehicleAPCWall45
+  entities:
+  - uid: 34
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 1
+- proto: STVehicleAPCWall45Alt
+  entities:
+  - uid: 54
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,3.5
+      parent: 1
+- proto: STVehicleAPCWall46
+  entities:
+  - uid: 13
+    components:
+    - type: Transform
+      pos: -3.5,-1.5
+      parent: 1
+- proto: STVehicleAPCWall47
+  entities:
+  - uid: 12
+    components:
+    - type: Transform
+      pos: -3.5,-0.5
+      parent: 1
+- proto: STVehicleAPCWall48
+  entities:
+  - uid: 14
+    components:
+    - type: Transform
+      pos: -3.5,0.5
+      parent: 1
+- proto: STVehicleAPCWall49
+  entities:
+  - uid: 15
+    components:
+    - type: Transform
+      pos: -3.5,1.5
+      parent: 1
+- proto: STVehicleAPCWall50
+  entities:
+  - uid: 17
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 1
+- proto: STVehicleAPCWall51
+  entities:
+  - uid: 16
+    components:
+    - type: Transform
+      pos: -3.5,3.5
+      parent: 1
+- proto: STVehicleAPCWall55
+  entities:
+  - uid: 23
+    components:
+    - type: Transform
+      pos: -0.5,3.5
+      parent: 1
+  - uid: 24
+    components:
+    - type: Transform
+      pos: -2.5,2.5
+      parent: 1
+    - type: Occluder
+      enabled: False
+  - uid: 27
+    components:
+    - type: Transform
+      pos: 2.5,2.5
+      parent: 1
+    - type: Occluder
+      enabled: False
+- proto: STVehicleAPCWall62
+  entities:
+  - uid: 49
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 1
+- proto: STVehicleAPCWall65
+  entities:
+  - uid: 19
+    components:
+    - type: Transform
+      pos: -2.5,3.5
+      parent: 1
+- proto: STVehicleAPCWall66
+  entities:
+  - uid: 18
+    components:
+    - type: Transform
+      pos: -1.5,3.5
+      parent: 1
+- proto: STVehicleAPCWall67
+  entities:
+  - uid: 52
+    components:
+    - type: Transform
+      pos: 2.5,3.5
+      parent: 1
+- proto: STVehicleAPCWall68
+  entities:
+  - uid: 33
+    components:
+    - type: Transform
+      pos: 1.5,3.5
+      parent: 1
+- proto: STVehicleAPCWall69
+  entities:
+  - uid: 53
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+- proto: STVehicleAPCWall70
+  entities:
+  - uid: 55
+    components:
+    - type: Transform
+      pos: 4.5,-2.5
+      parent: 1
+  - uid: 56
+    components:
+    - type: Transform
+      pos: 4.5,-1.5
+      parent: 1
+  - uid: 57
+    components:
+    - type: Transform
+      pos: 4.5,-0.5
+      parent: 1
+  - uid: 58
+    components:
+    - type: Transform
+      pos: 4.5,0.5
+      parent: 1
+  - uid: 59
+    components:
+    - type: Transform
+      pos: 4.5,1.5
+      parent: 1
+  - uid: 60
+    components:
+    - type: Transform
+      pos: 4.5,2.5
+      parent: 1
+  - uid: 61
+    components:
+    - type: Transform
+      pos: 4.5,3.5
+      parent: 1
+  - uid: 62
+    components:
+    - type: Transform
+      pos: 4.5,4.5
+      parent: 1
+  - uid: 63
+    components:
+    - type: Transform
+      pos: 3.5,4.5
+      parent: 1
+  - uid: 64
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 1
+  - uid: 65
+    components:
+    - type: Transform
+      pos: 1.5,4.5
+      parent: 1
+  - uid: 66
+    components:
+    - type: Transform
+      pos: 0.5,4.5
+      parent: 1
+  - uid: 67
+    components:
+    - type: Transform
+      pos: -0.5,4.5
+      parent: 1
+  - uid: 68
+    components:
+    - type: Transform
+      pos: -1.5,4.5
+      parent: 1
+  - uid: 69
+    components:
+    - type: Transform
+      pos: -2.5,4.5
+      parent: 1
+  - uid: 70
+    components:
+    - type: Transform
+      pos: -3.5,4.5
+      parent: 1
+  - uid: 71
+    components:
+    - type: Transform
+      pos: 3.5,-2.5
+      parent: 1
+  - uid: 72
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
+      parent: 1
+  - uid: 73
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 1
+  - uid: 74
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+  - uid: 75
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 1
+  - uid: 76
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
+      parent: 1
+  - uid: 77
+    components:
+    - type: Transform
+      pos: -2.5,-2.5
+      parent: 1
+  - uid: 78
+    components:
+    - type: Transform
+      pos: -3.5,-2.5
+      parent: 1
+  - uid: 79
+    components:
+    - type: Transform
+      pos: -4.5,4.5
+      parent: 1
+  - uid: 80
+    components:
+    - type: Transform
+      pos: -4.5,3.5
+      parent: 1
+  - uid: 81
+    components:
+    - type: Transform
+      pos: -4.5,2.5
+      parent: 1
+  - uid: 82
+    components:
+    - type: Transform
+      pos: -4.5,1.5
+      parent: 1
+  - uid: 83
+    components:
+    - type: Transform
+      pos: -4.5,0.5
+      parent: 1
+  - uid: 84
+    components:
+    - type: Transform
+      pos: -4.5,-0.5
+      parent: 1
+  - uid: 85
+    components:
+    - type: Transform
+      pos: -4.5,-1.5
+      parent: 1
+  - uid: 86
+    components:
+    - type: Transform
+      pos: -4.5,-2.5
+      parent: 1
+- proto: STVehicleArmorDriverSeat
+  entities:
+  - uid: 28
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-0.5
+      parent: 1
+- proto: STVehicleArmorGunnerSeat
+  entities:
+  - uid: 20
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,1.5
+      parent: 1
+- proto: STVehicleEnterpoint
+  entities:
+  - uid: 95
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+    - type: VehicleEnterPoint
+      direction: Left
+  - uid: 96
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 1
+    - type: VehicleEnterPoint
+      direction: Right
+  - uid: 97
+    components:
+    - type: Transform
+      pos: -2.5,0.5
+      parent: 1
+    - type: VehicleEnterPoint
+      direction: Back
+- proto: STVehicleInteriorCamera
+  entities:
+  - uid: 87
+    components:
+    - type: Transform
+      pos: -1.5,2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: STVehicleInteriorExtinguisherCabinet
+  entities:
+  - uid: 89
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: STVehicleInteriorLight
+  entities:
+  - uid: 88
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,0.5
+      parent: 1
+    - type: WarpPoint
+      location: M577 бронетранспортёр
+- proto: STVehicleInteriorNanoMed
+  entities:
+  - uid: 90
+    components:
+    - type: Transform
+      pos: -2.25,2.5
+      parent: 1
+- proto: STVehicleInteriorViewport
+  entities:
+  - uid: 91
+    components:
+    - type: Transform
+      pos: -2.7269268,2.3519676
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 93
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.6502833,2.761609
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 94
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.7470021,-0.71140623
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: STVehicleInteriorWallMountPhone
+  entities:
+  - uid: 30
+    components:
+    - type: MetaData
+      name: БТР M577
+    - type: Transform
+      pos: 1.7971872,2.5629783
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: VehicleWeaponsLoader
+  entities:
+  - uid: 37
+    components:
+    - type: Transform
+      pos: 2.5,0.5
+      parent: 1
+...

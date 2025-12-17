@@ -17,6 +17,7 @@ using Robust.Shared.Player;
 using System.Linq;
 using System.Numerics;
 using Robust.Shared.Random;
+using Content.Shared._Stories.Vehicle;
 
 namespace Content.Server.Weapons.Melee;
 
