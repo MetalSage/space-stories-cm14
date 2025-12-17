@@ -732,7 +732,7 @@ public sealed partial class SharedVehicleSystem
         }
     }
 
-    private bool IsWall(EntityUid ent)
+    public bool IsWall(EntityUid ent)
     {
         if (!_physicsQuery.TryComp(ent, out var body))
             return false;

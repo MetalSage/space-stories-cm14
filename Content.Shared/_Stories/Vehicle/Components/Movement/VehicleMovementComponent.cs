@@ -19,7 +19,7 @@ public sealed partial class VehicleMovementComponent : Component
     [DataField, AutoNetworkedField]
     public int MinimumStepsForMomentum = 2;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float StepIncrement = 1.0f;
 
     [DataField, AutoNetworkedField]
@@ -31,7 +31,7 @@ public sealed partial class VehicleMovementComponent : Component
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
     public TimeSpan LastMovementTime;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public TimeSpan MomentumDecayDelay = TimeSpan.FromSeconds(0.5);
 
     [DataField]
@@ -48,6 +48,12 @@ public sealed partial class VehicleMovementComponent : Component
 
     [DataField, AutoNetworkedField]
     public Direction LastMoveDirection;
+
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
+    public TimeSpan LastInputTime;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan InputDelay = TimeSpan.FromSeconds(0.2);
 
     [DataField, AutoNetworkedField]
     public SoundSpecifier? MovementSound = new SoundPathSpecifier("/Audio/_Stories/tank_driving.ogg", AudioParams.Default.WithVolume(-4));

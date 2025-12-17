@@ -91,6 +91,20 @@ namespace Content.Shared.Movement.Systems
             if (entity.Comp.HeldMoveButtons == buttons)
                 return;
 
+            // Stories-Vehicle-Fix-Start
+            if (VehicleMoveQuery.TryGetComponent(entity.Owner, out var vehicleMove))
+            {
+                if ((buttons & ~entity.Comp.HeldMoveButtons) != 0)
+                {
+                    if (Timing.CurTime < vehicleMove.LastInputTime + vehicleMove.InputDelay)
+                        return;
+
+                    vehicleMove.LastInputTime = Timing.CurTime;
+                    Dirty(entity.Owner, vehicleMove);
+                }
+            }
+            // Stories-Vehicle-Fix-End
+
             // Relay the fact we had any movement event.
             // TODO: Ideally we'd do these in a tick instead of out of sim.
             var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons);

@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.ActionBlocker;
 using Content.Shared._Stories.Vehicle;
+using Content.Shared._Stories.Vehicle.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Friction;
 using Content.Shared.Gravity;
@@ -46,6 +47,9 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] private   readonly SharedGravitySystem _gravity = default!;
     [Dependency] private   readonly SharedTransformSystem _transform = default!;
     [Dependency] private   readonly TagSystem _tags = default!;
+
+    // Stories
+    [Dependency] private   readonly SharedVehicleSystem _vehicle = default!;
 
     protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
     protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;
@@ -339,7 +343,6 @@ public abstract partial class SharedMoverController : VirtualController
                 if (VehicleMoveQuery.HasComponent(uid))
                 {
                     var currentDir = worldRot.GetCardinalDir();
-
                     var wishAngle = wishDir.ToWorldAngle();
                     var wishCardinal = wishAngle.GetCardinalDir();
 
