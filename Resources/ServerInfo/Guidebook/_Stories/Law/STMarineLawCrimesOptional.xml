@@ -77,12 +77,12 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Нарушение Мелкого Закона, находясь под арестом или в Тюрьме.\n[bold]7,5 минут.[/bold]
+        Совершение Мелкого Преступления, находясь под арестом или в камере Брига.\n[bold]7,5 минут.[/bold]
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Нарушение Тяжкого Закона, находясь под арестом или в Тюрьме.[bold]15 минут.[/bold]
+        Совершение Тяжкого Преступления, находясь под арестом или в камере Брига.[bold]15 минут.[/bold]
       </Box>
     </ColorBox>
 
