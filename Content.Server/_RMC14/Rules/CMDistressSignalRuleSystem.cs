@@ -1211,6 +1211,12 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
             if (!GameTicker.IsGameRuleAdded(uid, gameRule))
                 continue;
 
+            if (distress.Nuked) // Stories-Fixes start (Nuke)
+            {
+                EndRound(distress, DistressSignalRuleResult.AllDied, "st-distress-signal-nuked");
+                continue;
+            }                   // Stories-Fixes end (Nuke)
+
             distress.NextCheck ??= Timing.CurTime + distress.CheckEvery;
 
             if (distress.ForceEndAt != null && Timing.CurTime >= distress.ForceEndAt)
