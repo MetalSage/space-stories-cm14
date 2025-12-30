@@ -56,19 +56,20 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1,-0.5,1,0.5"
+          bounds: "-0.45,-0.45,0.45,0.45"
         mask:
         - MachineMask
         layer:
         - MachineLayer
         density: 200
   - type: Pullable
-    prevFixedRotation: true
-    fixedRotationOnPull: true
   - type: Physics
     bodyType: Dynamic
   - type: Transform
+    noRot: true
     anchored: false
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   parent: MarkerBase

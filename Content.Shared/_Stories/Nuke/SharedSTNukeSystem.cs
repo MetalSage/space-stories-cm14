@@ -2,7 +2,6 @@ using Content.Shared._RMC14.Areas;
 using Content.Shared._RMC14.Camera;
 using Content.Shared._RMC14.Communications;
 using Content.Shared._RMC14.Dropship;
-using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Announce;
 using Content.Shared._RMC14.Marines.Skills;
@@ -11,6 +10,8 @@ using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Announce;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared.Access.Systems;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Coordinates;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
@@ -46,12 +47,15 @@ public sealed class SharedSTNukeSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly RMCPlanetSystem _rmcPlanet = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!;
 
     private EntityQuery<CommunicationsTowerComponent> _towerQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
     public override void Initialize()
     {
+        base.Initialize();
+
         _towerQuery = GetEntityQuery<CommunicationsTowerComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
 
@@ -59,6 +63,7 @@ public sealed class SharedSTNukeSystem : EntitySystem
         SubscribeLocalEvent<STNukeComponent, BeforeActivatableUIOpenEvent>(OnBeforeUI);
         SubscribeLocalEvent<STNukeComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<STNukeComponent, InteractHandEvent>(OnInteractHand);
+
         SubscribeLocalEvent<STNukeComponent, STNukeDefuseDoAfterEvent>(OnDefuseComplete);
         SubscribeLocalEvent<STNukeComponent, STNukeAnchorDoAfterEvent>(OnAnchorDoAfterComplete);
         SubscribeLocalEvent<STNukeComponent, STNukeSafetyDoAfterEvent>(OnSafetyDoAfterComplete);
@@ -75,26 +80,51 @@ public sealed class SharedSTNukeSystem : EntitySystem
         });
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_net.IsClient)
+            return;
+
+        var query = EntityQueryEnumerator<STNukeComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            var ent = new Entity<STNukeComponent>(uid, comp);
+            var curTime = _timing.CurTime;
+
+            if (comp.Decryption && comp.DecryptionOn.HasValue)
+            {
+                UpdateDecryption(ent, curTime);
+                UpdateTowerCheck(ent, curTime);
+            }
+
+            if (comp.Active && comp.ExplodeOn.HasValue)
+            {
+                UpdateExplosion(ent, curTime);
+            }
+
+            if (comp.ExplodeStage1At.HasValue && !comp.ExplodeSoundPlayed && curTime >= comp.ExplodeStage1At.Value)
+            {
+                _audio.PlayGlobal(ent.Comp.NukeSound, Filter.Broadcast(), true);
+                comp.ExplodeSoundPlayed = true;
+                Dirty(ent);
+                Spawn(comp.Explosion, uid.ToCoordinates());
+            }
+
+            if (comp.ExplodeStage2At.HasValue && comp.ExplodeSoundPlayed && !comp.Nuked && curTime >= comp.ExplodeStage2At.Value)
+            {
+                PerformNuke(ent);
+                comp.Nuked = true;
+                PredictedQueueDel(ent.Owner);
+            }
+        }
+    }
+
     private void OnMapInit(Entity<STNukeComponent> ent, ref MapInitEvent args)
     {
         LinkTowers(ent);
         UpdateUserInterface(ent);
-    }
-
-    private void LinkTowers(Entity<STNukeComponent> ent)
-    {
-        var xform = _xformQuery.GetComponent(ent);
-        var query = EntityQueryEnumerator<CommunicationsTowerComponent, TransformComponent>();
-
-        ent.Comp.LinkedTowers.Clear();
-
-        while (query.MoveNext(out var uid, out var tower, out var towerXform))
-        {
-            if (towerXform.GridUid == xform.GridUid)
-            {
-                ent.Comp.LinkedTowers.Add(uid);
-            }
-        }
     }
 
     private void OnBeforeUI(Entity<STNukeComponent> ent, ref BeforeActivatableUIOpenEvent args)
@@ -104,62 +134,31 @@ public sealed class SharedSTNukeSystem : EntitySystem
 
     private void OnInteractUsing(Entity<STNukeComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || !ent.Comp.Active || !ent.Comp.ExplodeOn.HasValue)
             return;
 
         if (!_tools.HasQuality(args.Used, "Cutting"))
             return;
 
-        if (!ent.Comp.Active || !ent.Comp.ExplodeOn.HasValue)
-            return;
-
         args.Handled = true;
-
-        _popup.PopupPredicted(
-            Loc.GetString("st-nuke-defusing"),
-            ent,
-            args.User,
-            PopupType.Medium
-        );
+        _popup.PopupPredicted(Loc.GetString("st-nuke-defusing"), ent, args.User, PopupType.Medium);
 
         var delay = TimeSpan.FromSeconds(15) * _skills.GetSkillDelayMultiplier(args.User, ent.Comp.DefuseSkill);
-        _tools.UseTool(
-            args.Used,
-            args.User,
-            ent,
-            (float)delay.TotalSeconds,
-            new[] { "Cutting" },
-            new STNukeDefuseDoAfterEvent(),
-            0f
-        );
+
+        _tools.UseTool(args.Used, args.User, ent, (float)delay.TotalSeconds, new[] { "Cutting" }, new STNukeDefuseDoAfterEvent());
     }
 
     private void OnInteractHand(Entity<STNukeComponent> ent, ref InteractHandEvent args)
     {
-        if (args.Handled)
-            return;
-
-        if (!HasComp<XenoEvolutionGranterComponent>(args.User))
+        if (args.Handled || !HasComp<XenoEvolutionGranterComponent>(args.User))
             return;
 
         if (!ent.Comp.Decryption || !ent.Comp.DecryptionOn.HasValue)
             return;
 
         args.Handled = true;
-
-        _popup.PopupPredicted(
-            Loc.GetString("st-nuke-xeno-resin-start", ("user", args.User)),
-            ent,
-            null,
-            PopupType.Medium
-        );
-
-        _popup.PopupPredicted(
-            Loc.GetString("st-nuke-xeno-resin-user"),
-            ent,
-            args.User,
-            PopupType.MediumCaution
-        );
+        _popup.PopupPredicted(Loc.GetString("st-nuke-xeno-resin-start", ("user", args.User)), ent, null, PopupType.Medium);
+        _popup.PopupPredicted(Loc.GetString("st-nuke-xeno-resin-user"), ent, args.User, PopupType.MediumCaution);
 
         var ev = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(5), new STNukeXenoResinDoAfterEvent(), ent, ent)
         {
@@ -167,7 +166,6 @@ public sealed class SharedSTNukeSystem : EntitySystem
             BreakOnDamage = true,
             NeedHand = true
         };
-
         _doAfter.TryStartDoAfter(ev);
     }
 
@@ -176,21 +174,9 @@ public sealed class SharedSTNukeSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        ent.Comp.Decryption = false;
-        ent.Comp.DecryptionOn = null;
-        ent.Comp.DecryptionTime = TimeSpan.FromMinutes(10);
-        ent.Comp.TowersWereOffline = false;
-
-        _popup.PopupPredicted(
-            Loc.GetString("st-nuke-xeno-resin-complete"),
-            ent,
-            null,
-            PopupType.Large
-        );
-
-        AnnounceDecryptionHalted(ent);
-
-        Dirty(ent);
+        ResetDecryption(ent);
+        _popup.PopupPredicted(Loc.GetString("st-nuke-xeno-resin-complete"), ent, null, PopupType.Large);
+        AnnounceGlobal(ent, "st-nuke-decryption-halted-marine", "st-nuke-decryption-halted-xeno");
         UpdateUserInterface(ent);
     }
 
@@ -200,47 +186,7 @@ public sealed class SharedSTNukeSystem : EntitySystem
             return;
 
         Disable(ent);
-        _popup.PopupPredicted(
-            Loc.GetString("st-nuke-defused"),
-            ent,
-            null,
-            PopupType.Large
-        );
-    }
-
-    private void OnAnchorButtonPressed(Entity<STNukeComponent> ent, ref STNukeToggleAnchorMessage args)
-    {
-        if (_net.IsClient)
-            return;
-
-        if (ent.Comp.Active)
-        {
-            _popup.PopupCursor(Loc.GetString("st-nuke-disengage-first"), args.Actor);
-            return;
-        }
-
-        if (ent.Comp.Decryption)
-        {
-            _popup.PopupCursor(Loc.GetString("st-nuke-stop-decrypting"), args.Actor);
-            return;
-        }
-
-        if (!_area.CanBuildSpecial(ent.Owner.ToCoordinates()) || !_rmcPlanet.IsOnPlanet(ent.Owner.ToCoordinates()))
-        {
-            _popup.PopupCursor(Loc.GetString("st-nuke-cannot-deploy-here"), args.Actor);
-            UpdateUserInterface(ent);
-            return;
-        }
-
-        UpdateUserInterface(ent);
-
-        var ev = new DoAfterArgs(EntityManager, args.Actor, TimeSpan.FromSeconds(5), new STNukeAnchorDoAfterEvent(), ent, ent)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true
-        };
-
-        _doAfter.TryStartDoAfter(ev);
+        _popup.PopupPredicted(Loc.GetString("st-nuke-defused"), ent, null, PopupType.Large);
     }
 
     private void OnAnchorDoAfterComplete(Entity<STNukeComponent> ent, ref STNukeAnchorDoAfterEvent args)
@@ -252,7 +198,6 @@ public sealed class SharedSTNukeSystem : EntitySystem
         }
 
         var xform = Transform(ent);
-
         if (xform.Anchored)
         {
             _transform.Unanchor(ent, xform);
@@ -272,45 +217,9 @@ public sealed class SharedSTNukeSystem : EntitySystem
             _popup.PopupPredicted(Loc.GetString("st-nuke-anchored"), ent, args.User, PopupType.Medium);
         }
 
-        if (ent.Comp.LinkedTowers.Count < 2)
-            LinkTowers(ent);
-
+        LinkTowers(ent);
         Dirty(ent);
         UpdateUserInterface(ent);
-    }
-
-    private void OnSafetyButtonPressed(Entity<STNukeComponent> ent, ref STNukeToggleSafetyMessage args)
-    {
-        if (_net.IsClient)
-            return;
-
-        if (ent.Comp.Active)
-        {
-            _popup.PopupCursor(Loc.GetString("st-nuke-disengage-first"), args.Actor);
-            return;
-        }
-
-        if (!_area.CanBuildSpecial(Transform(ent).Coordinates))
-        {
-            _popup.PopupCursor(Loc.GetString("st-nuke-cannot-deploy-here"), args.Actor);
-            return;
-        }
-
-        if (ent.Comp.Decryption)
-        {
-            _popup.PopupCursor(Loc.GetString("st-nuke-stop-decrypting"), args.Actor);
-            return;
-        }
-
-        UpdateUserInterface(ent);
-
-        var ev = new DoAfterArgs(EntityManager, args.Actor, TimeSpan.FromSeconds(5), new STNukeSafetyDoAfterEvent(), ent, ent)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true
-        };
-
-        _doAfter.TryStartDoAfter(ev);
     }
 
     private void OnSafetyDoAfterComplete(Entity<STNukeComponent> ent, ref STNukeSafetyDoAfterEvent args)
@@ -322,11 +231,8 @@ public sealed class SharedSTNukeSystem : EntitySystem
         }
 
         ent.Comp.Safety = !ent.Comp.Safety;
-
         _popup.PopupPredicted(
-            ent.Comp.Safety
-                ? Loc.GetString("st-nuke-safety-enabled")
-                : Loc.GetString("st-nuke-safety-disabled"),
+            ent.Comp.Safety ? Loc.GetString("st-nuke-safety-enabled") : Loc.GetString("st-nuke-safety-disabled"),
             ent,
             args.User,
             PopupType.Medium
@@ -334,66 +240,11 @@ public sealed class SharedSTNukeSystem : EntitySystem
 
         if (ent.Comp.Safety)
         {
-            ent.Comp.Active = false;
-            ent.Comp.Decryption = false;
-            ent.Comp.DecryptionComplete = false;
-            ent.Comp.TowersWereOffline = false;
+            Disable(ent);
         }
 
         Dirty(ent);
         UpdateUserInterface(ent);
-    }
-
-    private void OnCommandLockoutPressed(Entity<STNukeComponent> ent, ref STNukeToggleCommandLockoutMessage args)
-    {
-        if (_net.IsClient)
-            return;
-
-        ent.Comp.CommandLockout = !ent.Comp.CommandLockout;
-
-        Dirty(ent);
-        UpdateUserInterface(ent);
-    }
-
-    private void OnToggleEncryption(Entity<STNukeComponent> ent, ref STNukeToggleEncryptionMessage args)
-    {
-        if (_net.IsClient)
-            return;
-
-        if (!_xformQuery.TryGetComponent(ent, out var xform))
-            return;
-
-        if (!xform.Anchored)
-        {
-            _popup.PopupCursor(Loc.GetString("st-nuke-anchor-first"), args.Actor, PopupType.Medium);
-            return;
-        }
-
-        if (ent.Comp.Safety)
-        {
-            _popup.PopupCursor(Loc.GetString("st-nuke-safety-on"), args.Actor, PopupType.Medium);
-            return;
-        }
-
-        if (!CheckTelecommsTowers(ent))
-        {
-            _popup.PopupCursor(
-                Loc.GetString("st-nuke-towers-offline"),
-                args.Actor,
-                PopupType.LargeCaution
-            );
-            return;
-        }
-
-        UpdateUserInterface(ent);
-
-        var ev = new DoAfterArgs(EntityManager, args.Actor, TimeSpan.FromSeconds(5), new STNukeEncryptionDoAfterEvent(), ent, ent)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true
-        };
-
-        _doAfter.TryStartDoAfter(ev);
     }
 
     private void OnEncryptionDoAfterComplete(Entity<STNukeComponent> ent, ref STNukeEncryptionDoAfterEvent args)
@@ -405,7 +256,6 @@ public sealed class SharedSTNukeSystem : EntitySystem
         }
 
         ent.Comp.Decryption = !ent.Comp.Decryption;
-
         if (ent.Comp.Decryption)
         {
             ent.Comp.DecryptionOn = _timing.CurTime + ent.Comp.DecryptionTime;
@@ -413,7 +263,16 @@ public sealed class SharedSTNukeSystem : EntitySystem
             ent.Comp.AnnouncedOneMinute = false;
             ent.Comp.TowersWereOffline = false;
 
-            AnnounceDecryptionStart(ent);
+            var areaName = "Unknown";
+            if (_area.TryGetArea(ent, out _, out var areaProto))
+                areaName = areaProto.Name;
+
+            AnnounceGlobal(ent,
+                "st-nuke-decryption-started-marine",
+                "st-nuke-decryption-started-xeno",
+                marineArgs: new (string, object)[] { ("time", FormatTime(ent.Comp.DecryptionTime)) },
+                xenoArgs: new (string, object)[] { ("area", areaName), ("time", FormatTime(ent.Comp.DecryptionTime)) }
+            );
         }
         else
         {
@@ -421,50 +280,114 @@ public sealed class SharedSTNukeSystem : EntitySystem
             {
                 var remaining = ent.Comp.DecryptionOn.Value - _timing.CurTime;
                 var newTime = remaining + ent.Comp.PenaltionTime;
-
-                ent.Comp.DecryptionTime = newTime > TimeSpan.FromMinutes(10)
-                    ? TimeSpan.FromMinutes(10)
-                    : newTime;
+                ent.Comp.DecryptionTime = newTime > TimeSpan.FromMinutes(10) ? TimeSpan.FromMinutes(10) : newTime;
             }
-
             ent.Comp.DecryptionOn = null;
             ent.Comp.TowersWereOffline = false;
-
-            AnnounceDecryptionHalted(ent);
+            AnnounceGlobal(ent, "st-nuke-decryption-halted-marine", "st-nuke-decryption-halted-xeno");
         }
 
         Dirty(ent);
         UpdateUserInterface(ent);
     }
 
+    private void OnAnchorButtonPressed(Entity<STNukeComponent> ent, ref STNukeToggleAnchorMessage args)
+    {
+        if (_net.IsClient) return;
+
+        if (ent.Comp.Active)
+        {
+            _popup.PopupCursor(Loc.GetString("st-nuke-disengage-first"), args.Actor);
+            return;
+        }
+        if (ent.Comp.Decryption)
+        {
+            _popup.PopupCursor(Loc.GetString("st-nuke-stop-decrypting"), args.Actor);
+            return;
+        }
+        if (!_area.CanBuildSpecial(ent.Owner.ToCoordinates()) || !_rmcPlanet.IsOnPlanet(ent.Owner.ToCoordinates()))
+        {
+            _popup.PopupCursor(Loc.GetString("st-nuke-cannot-deploy-here"), args.Actor);
+            UpdateUserInterface(ent);
+            return;
+        }
+
+        StartDoAfter(ent, args.Actor, new STNukeAnchorDoAfterEvent());
+    }
+
+    private void OnSafetyButtonPressed(Entity<STNukeComponent> ent, ref STNukeToggleSafetyMessage args)
+    {
+        if (_net.IsClient) return;
+
+        if (ent.Comp.Active)
+        {
+            _popup.PopupCursor(Loc.GetString("st-nuke-disengage-first"), args.Actor);
+            return;
+        }
+        if (!_area.CanBuildSpecial(Transform(ent).Coordinates))
+        {
+            _popup.PopupCursor(Loc.GetString("st-nuke-cannot-deploy-here"), args.Actor);
+            return;
+        }
+        if (ent.Comp.Decryption)
+        {
+            _popup.PopupCursor(Loc.GetString("st-nuke-stop-decrypting"), args.Actor);
+            return;
+        }
+
+        StartDoAfter(ent, args.Actor, new STNukeSafetyDoAfterEvent());
+    }
+
+    private void OnCommandLockoutPressed(Entity<STNukeComponent> ent, ref STNukeToggleCommandLockoutMessage args)
+    {
+        if (_net.IsClient) return;
+        ent.Comp.CommandLockout = !ent.Comp.CommandLockout;
+        Dirty(ent);
+        UpdateUserInterface(ent);
+    }
+
+    private void OnToggleEncryption(Entity<STNukeComponent> ent, ref STNukeToggleEncryptionMessage args)
+    {
+        if (_net.IsClient) return;
+        if (!_xformQuery.TryGetComponent(ent, out var xform)) return;
+
+        if (!xform.Anchored)
+        {
+            _popup.PopupCursor(Loc.GetString("st-nuke-anchor-first"), args.Actor, PopupType.Medium);
+            return;
+        }
+        if (ent.Comp.Safety)
+        {
+            _popup.PopupCursor(Loc.GetString("st-nuke-safety-on"), args.Actor, PopupType.Medium);
+            return;
+        }
+        if (!CheckTelecommsTowers(ent))
+        {
+            _popup.PopupCursor(Loc.GetString("st-nuke-towers-offline"), args.Actor, PopupType.LargeCaution);
+            return;
+        }
+
+        StartDoAfter(ent, args.Actor, new STNukeEncryptionDoAfterEvent());
+    }
+
     private void OnToggleNuke(Entity<STNukeComponent> ent, ref STNukeToggleMessage args)
     {
-        if (_net.IsClient)
-            return;
+        if (_net.IsClient) return;
 
         if (ent.Comp.Active)
         {
             if (ent.Comp.DecryptionOn == null)
             {
-                _popup.PopupCursor(
-                    Loc.GetString("st-nuke-impossible-disengage"),
-                    args.Actor,
-                    PopupType.LargeCaution
-                );
+                _popup.PopupCursor(Loc.GetString("st-nuke-impossible-disengage"), args.Actor, PopupType.LargeCaution);
                 return;
             }
-
             Disable(ent);
             return;
         }
 
         if (!ent.Comp.DecryptionComplete)
         {
-            _popup.PopupCursor(
-                Loc.GetString("st-nuke-decryption-not-complete"),
-                args.Actor,
-                PopupType.LargeCaution
-            );
+            _popup.PopupCursor(Loc.GetString("st-nuke-decryption-not-complete"), args.Actor, PopupType.LargeCaution);
             return;
         }
 
@@ -472,234 +395,153 @@ public sealed class SharedSTNukeSystem : EntitySystem
         ent.Comp.ExplodeOn = _timing.CurTime + ent.Comp.DetonationTime;
         Dirty(ent);
 
-        AnnounceActivated(ent);
+        var areaName = Loc.GetString("generic-unknown-title");
+        if (_area.TryGetArea(ent, out _, out var areaProto))
+            areaName = areaProto.Name;
+
+        AnnounceGlobal(ent,
+            "st-nuke-activated-marine",
+            "st-nuke-activated-xeno",
+            marineArgs: new (string, object)[] { ("time", FormatTime(ent.Comp.DetonationTime)) },
+            xenoArgs: new (string, object)[] { ("area", areaName) }
+        );
+
         UpdateUserInterface(ent);
+    }
+
+    private void StartDoAfter<T>(Entity<STNukeComponent> ent, EntityUid user, T eventArgs, float time = 5f) where T : DoAfterEvent
+    {
+        UpdateUserInterface(ent);
+        var ev = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(time), eventArgs, ent, ent)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true
+        };
+        _doAfter.TryStartDoAfter(ev);
+    }
+
+    private void LinkTowers(Entity<STNukeComponent> ent)
+    {
+        var xform = _xformQuery.GetComponent(ent);
+
+        if (xform.GridUid == null)
+            return;
+
+        ent.Comp.LinkedTowers.Clear();
+        var query = EntityQueryEnumerator<CommunicationsTowerComponent, TransformComponent>();
+
+        while (query.MoveNext(out var uid, out _, out var towerXform))
+        {
+            if (towerXform.GridUid == xform.GridUid)
+            {
+                ent.Comp.LinkedTowers.Add(uid);
+            }
+        }
     }
 
     private bool CheckTelecommsTowers(Entity<STNukeComponent> ent)
     {
         var activeTowers = 0;
-
-        foreach (var tower in ent.Comp.LinkedTowers)
+        for (var i = ent.Comp.LinkedTowers.Count - 1; i >= 0; i--)
         {
+            var tower = ent.Comp.LinkedTowers[i];
             if (!_towerQuery.TryGetComponent(tower, out var towerComp))
                 continue;
 
             if (towerComp.State == CommunicationsTowerState.On)
                 activeTowers++;
         }
-
         return activeTowers >= ent.Comp.RequiredTowers;
     }
 
-    public override void Update(float frameTime)
+    private void UpdateDecryption(Entity<STNukeComponent> ent, TimeSpan curTime)
     {
-        base.Update(frameTime);
+        var remaining = ent.Comp.DecryptionOn!.Value - curTime;
 
-        if (_net.IsClient)
-            return;
-
-        var query = EntityQueryEnumerator<STNukeComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            var ent = new Entity<STNukeComponent>(uid, comp);
-
-            if (comp.Decryption && comp.DecryptionOn.HasValue)
-            {
-                UpdateDecryption(ent);
-                UpdateTowerCheck(ent);
-            }
-
-            if (comp.Active && comp.ExplodeOn.HasValue)
-            {
-                UpdateExplosion(ent);
-            }
-
-            if (comp.ExplodeStage1At.HasValue && !comp.ExplodeSoundPlayed)
-            {
-                if (_timing.CurTime >= comp.ExplodeStage1At.Value)
-                {
-                    _audio.PlayGlobal(
-                        ent.Comp.NukeSound,
-                        Filter.Broadcast(),
-                        true
-                    );
-                    comp.ExplodeSoundPlayed = true;
-                    Dirty(ent);
-
-                    Spawn(comp.Explosion, uid.ToCoordinates());
-                }
-            }
-
-            if (comp.ExplodeStage2At.HasValue && comp.ExplodeSoundPlayed && !comp.Nuked)
-            {
-                if (_timing.CurTime >= comp.ExplodeStage2At.Value)
-                {
-                    Nuke(ent);
-                    comp.Nuked = true;
-
-                    PredictedQueueDel(ent.Owner);
-                }
-            }
-        }
-    }
-
-    private void Nuke(Entity<STNukeComponent> ent)
-    {
-        var mobQuery = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
-        while (mobQuery.MoveNext(out var uid, out var _, out var xform))
-        {
-            if (!_rmcPlanet.IsOnPlanet(uid.ToCoordinates()))
-                continue;
-
-            var coordinates = xform.Coordinates;
-            Spawn("Ash", coordinates);
-            QueueDel(uid);
-        }
-
-        var cameraQuery = EntityQueryEnumerator<RMCCameraComponent, TransformComponent>();
-        while (cameraQuery.MoveNext(out var uid, out var _, out var _))
-        {
-            if (!_rmcPlanet.IsOnPlanet(uid.ToCoordinates()))
-                continue;
-
-            QueueDel(uid);
-
-        }
-
-        var dropshipDestQuery = EntityQueryEnumerator<DropshipDestinationComponent, TransformComponent>();
-        while (dropshipDestQuery.MoveNext(out var uid, out var _, out var _))
-        {
-            if (!_rmcPlanet.IsOnPlanet(uid.ToCoordinates()))
-                continue;
-
-            QueueDel(uid);
-        }
-
-        var distressQuery = EntityQueryEnumerator<CMDistressSignalRuleComponent, ActiveGameRuleComponent>();
-        while (distressQuery.MoveNext(out var uid, out var comp, out var _))
-        {
-            comp.Nuked = true;
-            Dirty(uid, comp);
-        }
-    }
-
-    private void UpdateTowerCheck(Entity<STNukeComponent> ent)
-    {
-        if (!ent.Comp.LastTowerCheck.HasValue ||
-            _timing.CurTime - ent.Comp.LastTowerCheck.Value >= ent.Comp.TowerCheckInterval)
-        {
-            ent.Comp.LastTowerCheck = _timing.CurTime;
-
-            var towersOnline = CheckTelecommsTowers(ent);
-
-            if (!towersOnline && !ent.Comp.TowersWereOffline)
-            {
-                ent.Comp.TowersWereOffline = true;
-
-                if (ent.Comp.DecryptionOn.HasValue)
-                {
-                    var newTime = ent.Comp.DecryptionOn.Value + ent.Comp.PenaltionTime;
-
-                    var maxTime = _timing.CurTime + TimeSpan.FromMinutes(10);
-                    ent.Comp.DecryptionOn = newTime > maxTime ? maxTime : newTime;
-                    ent.Comp.Decryption = false;
-
-                    _popup.PopupPredicted(
-                        Loc.GetString("st-nuke-towers-offline-penalty"),
-                        ent,
-                        null,
-                        PopupType.LargeCaution
-                    );
-
-                    Dirty(ent);
-                }
-            }
-            else if (towersOnline && ent.Comp.TowersWereOffline)
-            {
-                ent.Comp.TowersWereOffline = false;
-            }
-        }
-    }
-
-    private void UpdateDecryption(Entity<STNukeComponent> ent)
-    {
-        if (!ent.Comp.DecryptionOn.HasValue)
-            return;
-
-        var remaining = ent.Comp.DecryptionOn.Value - _timing.CurTime;
         if (remaining <= TimeSpan.FromMinutes(5) && remaining > TimeSpan.Zero && !ent.Comp.AnnouncedHalfway)
         {
-            AnnounceDecryptionHalfway(ent);
+            AnnounceGlobal(ent,
+                "st-nuke-decryption-halfway-marine",
+                "st-nuke-decryption-halfway-xeno",
+                marineArgs: new (string, object)[] { ("time", "5:00") }
+            );
             ent.Comp.AnnouncedHalfway = true;
             Dirty(ent);
         }
 
         if (remaining <= TimeSpan.FromMinutes(1) && remaining > TimeSpan.Zero && !ent.Comp.AnnouncedOneMinute)
         {
-            AnnounceDecryptionOneMinute(ent);
+            AnnounceGlobal(ent, "st-nuke-decryption-one-minute-marine", "st-nuke-decryption-one-minute-xeno");
             ent.Comp.AnnouncedOneMinute = true;
             Dirty(ent);
         }
 
-        if (_timing.CurTime >= ent.Comp.DecryptionOn.Value)
+        if (curTime >= ent.Comp.DecryptionOn.Value)
         {
-            CompleteDecryption(ent);
+            ent.Comp.Decryption = false;
+            ent.Comp.DecryptionOn = null;
+            ent.Comp.DecryptionComplete = true;
+            ent.Comp.TowersWereOffline = false;
+            Dirty(ent);
+
+            _popup.PopupPredicted(Loc.GetString("st-nuke-decryption-complete"), ent, null, PopupType.Large);
+            AnnounceGlobal(ent, "st-nuke-decryption-completed-marine", "st-nuke-decryption-completed-xeno");
         }
 
         UpdateUserInterface(ent);
     }
 
-    private void CompleteDecryption(Entity<STNukeComponent> ent)
+    private void UpdateTowerCheck(Entity<STNukeComponent> ent, TimeSpan curTime)
     {
-        ent.Comp.Decryption = false;
-        ent.Comp.DecryptionOn = null;
-        ent.Comp.DecryptionComplete = true;
-        ent.Comp.TowersWereOffline = false;
+        if (ent.Comp.LastTowerCheck.HasValue &&
+            curTime - ent.Comp.LastTowerCheck.Value < ent.Comp.TowerCheckInterval)
+            return;
 
-        Dirty(ent);
-        _popup.PopupPredicted(
-            Loc.GetString("st-nuke-decryption-complete"),
-            ent,
-            null,
-            PopupType.Large
-        );
+        ent.Comp.LastTowerCheck = curTime;
+        var towersOnline = CheckTelecommsTowers(ent);
 
-        AnnounceDecryptionCompleted(ent);
-        UpdateUserInterface(ent);
+        if (!towersOnline && !ent.Comp.TowersWereOffline)
+        {
+            ent.Comp.TowersWereOffline = true;
+            if (ent.Comp.DecryptionOn.HasValue)
+            {
+                var newTime = ent.Comp.DecryptionOn.Value + ent.Comp.PenaltionTime;
+                var maxTime = curTime + TimeSpan.FromMinutes(10);
+                ent.Comp.DecryptionOn = newTime > maxTime ? maxTime : newTime;
+                ent.Comp.Decryption = false;
+
+                _popup.PopupPredicted(Loc.GetString("st-nuke-towers-offline-penalty"), ent, null, PopupType.LargeCaution);
+                Dirty(ent);
+            }
+        }
+        else if (towersOnline && ent.Comp.TowersWereOffline)
+        {
+            ent.Comp.TowersWereOffline = false;
+        }
     }
 
-    private void UpdateExplosion(Entity<STNukeComponent> ent)
+    private void UpdateExplosion(Entity<STNukeComponent> ent, TimeSpan curTime)
     {
-        if (!ent.Comp.ExplodeOn.HasValue)
-            return;
+        if (ent.Comp.Exploded) return;
 
-        if (ent.Comp.Exploded)
-            return;
-
-        if (_timing.CurTime >= ent.Comp.ExplodeOn.Value)
+        if (curTime >= ent.Comp.ExplodeOn!.Value)
         {
-            Explode(ent);
+            PrepareExplosion(ent);
             ent.Comp.Exploded = true;
             Dirty(ent);
         }
-
         UpdateUserInterface(ent);
     }
 
-    private void Explode(Entity<STNukeComponent> ent)
+    private void PrepareExplosion(Entity<STNukeComponent> ent)
     {
         var marineQuery = EntityQueryEnumerator<MarineComponent, ActorComponent>();
         while (marineQuery.MoveNext(out var uid, out _, out _))
-        {
             _eye.SetTarget(uid, ent.Owner);
-        }
 
         var xenoQuery = EntityQueryEnumerator<XenoComponent, ActorComponent>();
         while (xenoQuery.MoveNext(out var uid, out _, out _))
-        {
             _eye.SetTarget(uid, ent.Owner);
-        }
 
         _audio.PlayGlobal(ent.Comp.BeforeNukeSound, Filter.Broadcast(), true);
 
@@ -712,20 +554,61 @@ public sealed class SharedSTNukeSystem : EntitySystem
         Dirty(ent);
     }
 
+    private void PerformNuke(Entity<STNukeComponent> ent)
+    {
+        var mobQuery = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
+        while (mobQuery.MoveNext(out var uid, out _, out var xform))
+        {
+            if (!_rmcPlanet.IsOnPlanet(uid.ToCoordinates()))
+                continue;
+
+            Spawn("Ash", xform.Coordinates);
+
+            if (HasComp<BodyComponent>(uid))
+                _body.GibBody(uid, true);
+            else
+                QueueDel(uid);
+        }
+
+        DeleteOnPlanet<RMCCameraComponent>();
+        DeleteOnPlanet<DropshipDestinationComponent>();
+
+        var distressQuery = EntityQueryEnumerator<CMDistressSignalRuleComponent, ActiveGameRuleComponent>();
+        while (distressQuery.MoveNext(out var uid, out var comp, out _))
+        {
+            comp.Nuked = true;
+            Dirty(uid, comp);
+        }
+    }
+
+    private void DeleteOnPlanet<T>() where T : Component
+    {
+        var query = EntityQueryEnumerator<T, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out _))
+        {
+            if (_rmcPlanet.IsOnPlanet(uid.ToCoordinates()))
+                QueueDel(uid);
+        }
+    }
+
     public void Disable(Entity<STNukeComponent> ent)
     {
+        ResetDecryption(ent);
         ent.Comp.Active = false;
         ent.Comp.ExplodeOn = null;
-        ent.Comp.DecryptionOn = null;
+        ent.Comp.Exploded = false;
+        AnnounceGlobal(ent, "st-nuke-deactivated-marine", "st-nuke-deactivated-xeno");
+        Dirty(ent);
+        UpdateUserInterface(ent);
+    }
+
+    private void ResetDecryption(Entity<STNukeComponent> ent)
+    {
         ent.Comp.Decryption = false;
+        ent.Comp.DecryptionOn = null;
         ent.Comp.DecryptionComplete = false;
         ent.Comp.DecryptionTime = TimeSpan.FromMinutes(10);
         ent.Comp.TowersWereOffline = false;
-
-        AnnounceDeactivated(ent);
-
-        Dirty(ent);
-        UpdateUserInterface(ent);
     }
 
     private void UpdateUserInterface(Entity<STNukeComponent> ent)
@@ -734,34 +617,29 @@ public sealed class SharedSTNukeSystem : EntitySystem
             return;
 
         var xform = Transform(ent);
-       var anchored = xform.Anchored;
+        var time = _timing.CurTime;
 
-        var allowed = true;
         var decryptionTime = "00:00";
         if (ent.Comp.Decryption && ent.Comp.DecryptionOn.HasValue)
         {
-            var remaining = ent.Comp.DecryptionOn.Value - _timing.CurTime;
-            if (remaining < TimeSpan.Zero)
-                remaining = TimeSpan.Zero;
-            decryptionTime = $"{(int)remaining.TotalMinutes:D2}:{remaining.Seconds:D2}";
+            var remaining = ent.Comp.DecryptionOn.Value - time;
+            decryptionTime = FormatTime(remaining > TimeSpan.Zero ? remaining : TimeSpan.Zero);
         }
 
         var timeLeft = "00:00";
         if (ent.Comp.Active && ent.Comp.ExplodeOn.HasValue)
         {
-            var remaining = ent.Comp.ExplodeOn.Value - _timing.CurTime;
-            if (remaining < TimeSpan.Zero)
-                remaining = TimeSpan.Zero;
-            timeLeft = $"{(int)remaining.TotalMinutes:D2}:{remaining.Seconds:D2}";
+            var remaining = ent.Comp.ExplodeOn.Value - time;
+            timeLeft = FormatTime(remaining > TimeSpan.Zero ? remaining : TimeSpan.Zero);
         }
 
         var state = new STNukeBuiState(
-            anchor: anchored,
+            anchor: xform.Anchored,
             safety: ent.Comp.Safety,
             timing: ent.Comp.Active,
             timeLeft: timeLeft,
             commandLockout: ent.Comp.CommandLockout,
-            allowed: allowed,
+            allowed: true,
             decryptionComplete: ent.Comp.DecryptionComplete,
             decrypting: ent.Comp.Decryption,
             decryptionTime: decryptionTime,
@@ -775,160 +653,26 @@ public sealed class SharedSTNukeSystem : EntitySystem
     private void UpdateAppearance(Entity<STNukeComponent> ent)
     {
         var xform = Transform(ent);
-
         _appearance.SetData(ent, STNukeVisuals.Deployed, xform.Anchored);
         _appearance.SetData(ent, STNukeVisuals.Unsafe, !ent.Comp.Safety);
         _appearance.SetData(ent, STNukeVisuals.Timing, ent.Comp.DecryptionComplete);
         _appearance.SetData(ent, STNukeVisuals.Activation, ent.Comp.Active);
     }
 
-    private void AnnounceDecryptionStart(Entity<STNukeComponent> ent)
+    private string FormatTime(TimeSpan time)
     {
-        if (_net.IsClient)
-            return;
-
-        var areaName = "Unknown";
-        if (_area.TryGetArea(ent, out _, out var areaProto))
-            areaName = areaProto.Name;
-
-        var timeLeft = $"{(int)ent.Comp.DecryptionTime.TotalMinutes}:{ent.Comp.DecryptionTime.Seconds:D2}";
-
-        var marineMsg = Loc.GetString("st-nuke-decryption-started-marine",
-            ("time", timeLeft));
-        _marineAnnounce.AnnounceARES(null,
-            marineMsg,
-            new SoundPathSpecifier("/Audio/_RMC14/AI/announce.ogg")
-        );
-
-        var xenoMsg = Loc.GetString("st-nuke-decryption-started-xeno",
-            ("area", areaName),
-            ("time", timeLeft));
-        _xenoAnnounce.AnnounceAll(
-            ent,
-            _xenoAnnounce.WrapHive(xenoMsg),
-            new SoundCollectionSpecifier("XenoQueenCommand")
-        );
+        return $"{(int)time.TotalMinutes:D2}:{time.Seconds:D2}";
     }
 
-    private void AnnounceDecryptionHalfway(Entity<STNukeComponent> ent)
+    private void AnnounceGlobal(Entity<STNukeComponent> ent, string marineKey, string xenoKey,
+        (string, object)[]? marineArgs = null, (string, object)[]? xenoArgs = null)
     {
-        if (_net.IsClient)
-            return;
+        if (_net.IsClient) return;
 
-        var timeLeft = "5:00";
+        var marineMsg = Loc.GetString(marineKey, marineArgs ?? Array.Empty<(string, object)>());
+        _marineAnnounce.AnnounceARES(null, marineMsg, new SoundPathSpecifier("/Audio/_RMC14/AI/announce.ogg"));
 
-        var marineMsg = Loc.GetString("st-nuke-decryption-halfway-marine", ("time", timeLeft));
-        _marineAnnounce.AnnounceARES(null,
-            marineMsg,
-            new SoundPathSpecifier("/Audio/_RMC14/AI/announce.ogg")
-        );
-
-        var xenoMsg = Loc.GetString("st-nuke-decryption-halfway-xeno");
-        _xenoAnnounce.AnnounceAll(
-            ent,
-            _xenoAnnounce.WrapHive(xenoMsg),
-            new SoundCollectionSpecifier("XenoQueenCommand")
-        );
-    }
-
-    private void AnnounceDecryptionOneMinute(Entity<STNukeComponent> ent)
-    {
-        if (_net.IsClient)
-            return;
-
-        var marineMsg = Loc.GetString("st-nuke-decryption-one-minute-marine");
-        _marineAnnounce.AnnounceARES(null,
-            marineMsg,
-            new SoundPathSpecifier("/Audio/_RMC14/AI/announce.ogg")
-        );
-
-        var xenoMsg = Loc.GetString("st-nuke-decryption-one-minute-xeno");
-        _xenoAnnounce.AnnounceAll(
-            ent,
-            _xenoAnnounce.WrapHive(xenoMsg),
-            new SoundCollectionSpecifier("XenoQueenCommand")
-        );
-    }
-
-    private void AnnounceDecryptionCompleted(Entity<STNukeComponent> ent)
-    {
-        if (_net.IsClient)
-            return;
-
-        var marineMsg = Loc.GetString("st-nuke-decryption-completed-marine");
-        _marineAnnounce.AnnounceARES(null,
-            marineMsg,
-            new SoundPathSpecifier("/Audio/_RMC14/AI/announce.ogg")
-        );
-
-        var xenoMsg = Loc.GetString("st-nuke-decryption-completed-xeno");
-        _xenoAnnounce.AnnounceAll(
-            ent,
-            _xenoAnnounce.WrapHive(xenoMsg),
-            new SoundCollectionSpecifier("XenoQueenCommand")
-        );
-    }
-
-    private void AnnounceDecryptionHalted(Entity<STNukeComponent> ent)
-    {
-        if (_net.IsClient)
-            return;
-
-        var marineMsg = Loc.GetString("st-nuke-decryption-halted-marine");
-        _marineAnnounce.AnnounceARES(null,
-            marineMsg,
-            new SoundPathSpecifier("/Audio/_RMC14/AI/announce.ogg")
-        );
-
-        var xenoMsg = Loc.GetString("st-nuke-decryption-halted-xeno");
-        _xenoAnnounce.AnnounceAll(
-            ent,
-            _xenoAnnounce.WrapHive(xenoMsg),
-            new SoundCollectionSpecifier("XenoQueenCommand")
-        );
-    }
-
-    private void AnnounceActivated(Entity<STNukeComponent> ent)
-    {
-        if (_net.IsClient)
-            return;
-
-        var areaName = Loc.GetString("generic-unknown-title");
-        if (_area.TryGetArea(ent, out _, out var areaProto))
-            areaName = areaProto.Name;
-
-        var timeLeft = $"{(int)ent.Comp.DetonationTime.TotalMinutes}:{ent.Comp.DetonationTime.Seconds:D2}";
-
-        var marineMsg = Loc.GetString("st-nuke-activated-marine", ("time", timeLeft));
-        _marineAnnounce.AnnounceARES(null,
-            marineMsg,
-            new SoundPathSpecifier("/Audio/_RMC14/AI/announce.ogg")
-        );
-
-        var xenoMsg = Loc.GetString("st-nuke-activated-xeno", ("area", areaName));
-        _xenoAnnounce.AnnounceAll(
-            ent,
-            _xenoAnnounce.WrapHive(xenoMsg),
-            new SoundCollectionSpecifier("XenoQueenCommand")
-        );
-    }
-
-    private void AnnounceDeactivated(Entity<STNukeComponent> ent)
-    {
-        if (_net.IsClient)
-            return;
-
-        var marineMsg = Loc.GetString("st-nuke-deactivated-marine");
-        _marineAnnounce.AnnounceARES(null,
-            marineMsg,
-            new SoundPathSpecifier("/Audio/_RMC14/AI/announce.ogg")
-        );
-
-        var xenoMsg = Loc.GetString("st-nuke-deactivated-xeno");
-        _xenoAnnounce.AnnounceAll(
-            ent,
-            _xenoAnnounce.WrapHive(xenoMsg),
-            new SoundCollectionSpecifier("XenoQueenCommand")
-        );
+        var xenoMsg = Loc.GetString(xenoKey, xenoArgs ?? Array.Empty<(string, object)>());
+        _xenoAnnounce.AnnounceAll(ent, _xenoAnnounce.WrapHive(xenoMsg), new SoundCollectionSpecifier("XenoQueenCommand"));
     }
 }
