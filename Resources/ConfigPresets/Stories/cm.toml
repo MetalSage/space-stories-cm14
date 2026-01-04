@@ -51,7 +51,6 @@ panic_bunker.enabled = false
 round_end_pvs_overrides = false
 round_restart_time = 180
 lobbyduration = 180
-planet_map_vote_exclude_last = 4
 
 [gateway]
 generator_enabled = false
