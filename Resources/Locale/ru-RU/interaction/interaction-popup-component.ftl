@@ -50,7 +50,7 @@ petting-failure-hamster = Вы тянетесь погладить { $target }, 
 petting-failure-bear = Вы думаете погладить { $target }, но { SUBJECT($target) } рычит, заставляя вас подумать ещё раз.
 petting-failure-monkey = Вы тянетесь погладить { $target }, но { SUBJECT($target) } едва не кусает вас за пальцы!
 petting-failure-nymph = Вы тянетесь погладить { $target }, но { POSS-ADJ($target) } отодвигает свои ветви в сторону.
-petting-failure-shadow = Вы тянетесь погладить { $target }, но ваша рука проходит сквозь холодную тьму { POSS-ADJ($target) } тела.
+petting-failure-shadow = Вы тянетесь погладить { $target }, но ваша рука проходит  холодную тьму { POSS-ADJ($target) } тела.
 
 ## Petting silicons
 

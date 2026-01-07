@@ -288,12 +288,12 @@
 
 - type: entity
   id: RMCPlanetKutjevo
-  name: НПЗ Кутьево # Stories-Translate
+  name: ПЗ Кутьево # Stories-Translate
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/kutjevo.yml
     camouflage: Snow
-    announcement: "Получен автоматический сигнал бедствия с колонии Вестон-Ямада 'НПЗ Кутьево', известного ботаническими исследованиями, экспортом и переработкой и очисткой сырья. ВКСШ Алмайер отправлен для расследования." # Stories-Translate
+    announcement: "Получен автоматический сигнал бедствия с колонии Вестон-Ямада 'Перерабатывающий Завод Кутьево', известного ботаническими исследованиями, экспортом и переработкой и очисткой сырья. ВКСШ Алмайер отправлен для расследования." # Stories-Translate
     survivorJobInserts:
       CMSurvivor:
       - CMSurvivor: -1
