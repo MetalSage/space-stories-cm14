@@ -1,0 +1,47 @@
+- type: entity
+  parent: RMCCurtainBase
+  id: STCurtainLeather0
+  name: leather curtain
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: _Stories/Structures/Furniture/Curtains/leather0.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RMCCurtainBase
+  id: STCurtainLeather1
+  name: leather curtain
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: _Stories/Structures/Furniture/Curtains/leather1.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RMCCurtainBase
+  id: STCurtainLeather2
+  name: leather curtain
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: _Stories/Structures/Furniture/Curtains/leather2.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+
+- type: entity
+  parent: RMCCurtainBase
+  id: STCurtainLeather3
+  name: leather curtain
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: _Stories/Structures/Furniture/Curtains/leather3.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]

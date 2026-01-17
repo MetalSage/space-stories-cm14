@@ -4,6 +4,7 @@
   sex: Male
   speaker: papich
   id: papich
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Бэбэй
@@ -11,6 +12,7 @@
   sex: Male
   speaker: bebey
   id: bebey
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Дмитрий Пучков
@@ -32,6 +34,7 @@
   sex: Female
   speaker: charlotte
   id: charlotte
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Планя
@@ -39,6 +42,7 @@
   sex: Female
   speaker: planya
   id: planya
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Мана
@@ -46,6 +50,7 @@
   sex: Female
   speaker: mana
   id: mana
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Амина
@@ -53,6 +58,7 @@
   sex: Female
   speaker: amina
   id: amina
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Джо Байден
@@ -60,6 +66,7 @@
   sex: Male
   speaker: biden
   id: biden
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Барак Обама
@@ -67,6 +74,7 @@
   sex: Male
   speaker: obama
   id: obama
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Дональд Трамп
@@ -74,6 +82,7 @@
   sex: Male
   speaker: trump
   id: trump
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Добакин
@@ -81,6 +90,7 @@
   sex: Male
   speaker: dbkn
   id: dbkn
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Хреноид
@@ -88,6 +98,7 @@
   sex: Male
   speaker: xrenoid
   id: xrenoid
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: PlayBoyzTV
@@ -95,6 +106,7 @@
   sex: Male
   speaker: playboyztv
   id: playboyztv
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Уоллес Брин
@@ -116,6 +128,7 @@
   sex: Male
   speaker: kleiner
   id: kleiner
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Джудит Моссман
@@ -130,6 +143,7 @@
   sex: Male
   speaker: vance
   id: vance
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Аликс Вэнс
@@ -137,6 +151,7 @@
   sex: Female
   speaker: alyx
   id: alyx
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: G-Man
@@ -144,6 +159,7 @@
   sex: Male
   speaker: gman
   id: gman
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Барни Калхун
@@ -151,6 +167,7 @@
   sex: Male
   speaker: barni
   id: barni
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Неко-Арк
@@ -158,6 +175,7 @@
   sex: Female
   speaker: neco
   id: neco
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Неко-Арк 2
@@ -165,6 +183,7 @@
   sex: Female
   speaker: neco_arc_2
   id: neco_arc_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Злая Неко-Арк
@@ -172,6 +191,7 @@
   sex: Female
   speaker: angry_neco_arc
   id: angry_neco_arc
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Сквидвард
@@ -186,6 +206,7 @@
   sex: Male
   speaker: sentrybot
   id: sentrybot
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Мойра Браун
@@ -200,6 +221,7 @@
   sex: Male
   speaker: robert_maccready
   id: robert_maccready
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Тридогнайт
@@ -221,6 +243,7 @@
   sex: Male
   speaker: mister_handy_fl3
   id: mister_handy_fl3
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Мистер Храбрец
@@ -284,6 +307,7 @@
   sex: Male
   speaker: romka
   id: romka
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Борис Петров
@@ -298,6 +322,7 @@
   sex: Female
   speaker: karina_petrova_tb
   id: karina_petrova_tb
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Катя Смирнова
@@ -312,6 +337,7 @@
   sex: Male
   speaker: semen_baburin_tb
   id: semen_baburin_tb
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Лейтенант Тихонов
@@ -326,6 +352,7 @@
   sex: Male
   speaker: cicero
   id: cicero
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Шеогорат
@@ -340,6 +367,7 @@
   sex: Male
   speaker: kodlakwhitemane
   id: kodlakwhitemane
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Каджит
@@ -382,6 +410,7 @@
   sex: Male
   speaker: hermaeus_mora
   id: hermaeus_mora
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Норд
@@ -445,6 +474,7 @@
   sex: Female
   speaker: glados
   id: glados
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Модуль Приключений
@@ -452,6 +482,7 @@
   sex: Male
   speaker: adventure_core
   id: adventure_core
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Модуль Фактов
@@ -459,6 +490,7 @@
   sex: Male
   speaker: fact_core
   id: fact_core
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Модуль Космоса
@@ -466,6 +498,7 @@
   sex: Male
   speaker: space_core
   id: space_core
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Турель
@@ -473,6 +506,7 @@
   sex: Female
   speaker: turret_floor
   id: turret_floor
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Геральт из Ривии
@@ -501,6 +535,7 @@
   sex: Male
   speaker: lambert
   id: lambert
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Трисс
@@ -515,6 +550,7 @@
   sex: Male
   speaker: kovir_nobleman
   id: kovir_nobleman
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Золтан Хивай
@@ -578,6 +614,7 @@
   sex: Male
   speaker: ekko
   id: ekko
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Твич
@@ -585,6 +622,7 @@
   sex: Male
   speaker: twitch
   id: twitch
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Зиггс
@@ -592,6 +630,7 @@
   sex: Male
   speaker: ziggs
   id: ziggs
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Кэйтлин
@@ -599,6 +638,7 @@
   sex: Female
   speaker: caitlyn
   id: caitlyn
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Артас Менетил
@@ -613,6 +653,7 @@
   sex: Male
   speaker: illidan
   id: illidan
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Рексар
@@ -620,6 +661,7 @@
   sex: Male
   speaker: rexxar
   id: rexxar
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Вол'джин
@@ -627,6 +669,7 @@
   sex: Male
   speaker: voljin
   id: voljin
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Бандит
@@ -641,6 +684,7 @@
   sex: Male
   speaker: forester
   id: forester
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Сидорович
@@ -648,6 +692,7 @@
   sex: Male
   speaker: sidorovich
   id: sidorovich
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Стрелок
@@ -655,6 +700,7 @@
   sex: Male
   speaker: strelok
   id: strelok
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Трэйсер
@@ -662,6 +708,7 @@
   sex: Female
   speaker: tracer
   id: tracer
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Солдат
@@ -669,6 +716,7 @@
   sex: Male
   speaker: soldier
   id: soldier
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Инженер
@@ -690,6 +738,7 @@
   sex: Male
   speaker: medic
   id: medic
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Подрывник
@@ -711,6 +760,7 @@
   sex: Male
   speaker: spy
   id: spy
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Каратель
@@ -760,6 +810,7 @@
   sex: Male
   speaker: skippy
   id: skippy
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Джеки Уэллс
@@ -802,6 +853,7 @@
   sex: Male
   speaker: steve
   id: steve
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Сержант Дорнан
@@ -851,6 +903,7 @@
   sex: Male
   speaker: myron
   id: myron
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Добрая Талия
@@ -977,6 +1030,7 @@
   sex: Male
   speaker: ernielark
   id: ernielark
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Игнатия Уайлдсмит
@@ -1047,6 +1101,7 @@
   sex: Male
   speaker: ominisgaunt
   id: ominisgaunt
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Поппи Добринг
@@ -1110,6 +1165,7 @@
   sex: Male
   speaker: everett_clopton
   id: everett_clopton
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Гоблин Б
@@ -1124,6 +1180,7 @@
   sex: Male
   speaker: sanctuary_house_elf
   id: sanctuary_house_elf
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Abaddon
@@ -1138,6 +1195,7 @@
   sex: Male
   speaker: alchemist_dota_2
   id: alchemist_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Anti-Mage
@@ -1145,6 +1203,7 @@
   sex: Male
   speaker: anti-mage_dota_2
   id: anti-mage_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Arc Warden
@@ -1208,6 +1267,7 @@
   sex: Male
   speaker: clockwerk_dota_2
   id: clockwerk_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Crystal Maiden
@@ -1250,6 +1310,7 @@
   sex: Male
   speaker: dragon_knight_dragon_dota_2
   id: dragon_knight_dragon_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Drow Ranger
@@ -1278,6 +1339,7 @@
   sex: Male
   speaker: enigma_dota_2
   id: enigma_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Gyrocopter
@@ -1285,6 +1347,7 @@
   sex: Male
   speaker: gyrocopter_dota_2
   id: gyrocopter_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Huskar
@@ -1313,6 +1376,7 @@
   sex: Male
   speaker: keeper_of_the_light_dota_2
   id: keeper_of_the_light_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Kunkka
@@ -1341,6 +1405,7 @@
   sex: Male
   speaker: lich_dota_2
   id: lich_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Lina
@@ -1376,6 +1441,7 @@
   sex: Male
   speaker: meepo_dota_2
   id: meepo_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Mirana
@@ -1397,6 +1463,7 @@
   sex: Male
   speaker: monkey_king_dota_2
   id: monkey_king_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Necrophos
@@ -1425,6 +1492,7 @@
   sex: Male
   speaker: outworld_destroyer_dota_2
   id: outworld_destroyer_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Phantom Assassin Arcana
@@ -1467,6 +1535,7 @@
   sex: Male
   speaker: razor_dota_2
   id: razor_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Riki
@@ -1481,6 +1550,7 @@
   sex: Male
   speaker: rubick_dota_2
   id: rubick_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Sand King
@@ -1495,6 +1565,7 @@
   sex: Male
   speaker: shadow_fiend_dota_2
   id: shadow_fiend_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Shadow Shaman
@@ -1502,6 +1573,7 @@
   sex: Male
   speaker: shadow_shaman_dota_2
   id: shadow_shaman_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Skywrath Mage
@@ -1537,6 +1609,7 @@
   sex: Male
   speaker: storm_spirit_dota_2
   id: storm_spirit_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Sven
@@ -1544,6 +1617,7 @@
   sex: Male
   speaker: sven_dota_2
   id: sven_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Templar Assassin
@@ -1600,6 +1674,7 @@
   sex: Male
   speaker: witch_doctor_dota_2
   id: witch_doctor_dota_2
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Wraith King
@@ -1621,6 +1696,7 @@
   sex: Female
   speaker: mita
   id: mita
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Сонная Мита
@@ -1628,6 +1704,7 @@
   sex: Female
   speaker: mitadream
   id: mitadream
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Мита Призрак
@@ -1635,6 +1712,7 @@
   sex: Female
   speaker: mitaghost
   id: mitaghost
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Добрая Мита
@@ -1642,6 +1720,7 @@
   sex: Female
   speaker: mitakind
   id: mitakind
+  blacklist: [Hunter]
 
 - type: ttsVoice
   name: Коротковолосая Мита
@@ -1649,3 +1728,4 @@
   sex: Female
   speaker: mitashorthairs
   id: mitashorthairs
+  blacklist: [Hunter]

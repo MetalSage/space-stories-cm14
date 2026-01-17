@@ -102,19 +102,19 @@ public partial class SharedBodySystem
         // One-time setup
         // Obviously can't run in Init to avoid double-spawns on save / load.
         var prototype = Prototypes.Index(ent.Comp.Prototype.Value);
-        MapInitBody(ent, prototype);
+        InitBody(ent, prototype); // Stories-Hunter
     }
 
-    private void MapInitBody(EntityUid bodyEntity, BodyPrototype prototype)
+    public void InitBody(Entity<BodyComponent> body, BodyPrototype prototype) // Stories-Hunter
     {
         var protoRoot = prototype.Slots[prototype.Root];
         if (protoRoot.Part is null)
             return;
 
         // This should already handle adding the entity to the root.
-        var rootPartUid = SpawnInContainerOrDrop(protoRoot.Part, bodyEntity, BodyRootContainerId);
+        var rootPartUid = SpawnInContainerOrDrop(protoRoot.Part, body, BodyRootContainerId); // Stories-Hunter
         var rootPart = Comp<BodyPartComponent>(rootPartUid);
-        rootPart.Body = bodyEntity;
+        rootPart.Body = body; // Stories-Hunter
         Dirty(rootPartUid, rootPart);
 
         // Setup the rest of the body entities.

@@ -634,6 +634,112 @@ namespace Content.Server.Database.Migrations.Postgres
                         });
                 });
 
+            modelBuilder.Entity("Content.Server.Database.HunterProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("st_hunter_profile_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer")
+                        .HasColumnName("age");
+
+                    b.Property<string>("ArmorPrototype")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("armor_prototype");
+
+                    b.Property<string>("BracerPrototype")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("bracer_prototype");
+
+                    b.Property<string>("CapeColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("cape_color");
+
+                    b.Property<string>("CasterPrototype")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("caster_prototype");
+
+                    b.Property<string>("CharacterName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("char_name");
+
+                    b.Property<string>("CloakSound")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("cloak_sound");
+
+                    b.Property<string>("FlavorText")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("flavor_text");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("gender");
+
+                    b.Property<string>("GreavesPrototype")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("greaves_prototype");
+
+                    b.Property<string>("HeadAccessory")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("head_accessory");
+
+                    b.Property<string>("MaskPrototype")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("mask_prototype");
+
+                    b.Property<string>("QuillMarkingId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("quill_marking_id");
+
+                    b.Property<string>("SkinColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("skin_color");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.Property<string>("TranslatorSound")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("translator_sound");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.Property<string>("Voice")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("voice");
+
+                    b.HasKey("Id")
+                        .HasName("PK_st_hunter_profile");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("st_hunter_profile", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")
@@ -917,12 +1023,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("species");
 
-                    // Stories-TTS-Start
                     b.Property<string>("Voice")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("voice");
-                    // Stories-TTS-End
 
                     b.Property<string>("XenoPostfix")
                         .IsRequired()

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Lidgren.Network;
 using Robust.Shared.Network;
@@ -8,6 +9,7 @@ namespace Content.Shared.Preferences
     /// <summary>
     /// The client sends this to update a character profile.
     /// </summary>
+    [Serializable, NetSerializable] // Stories-Hunter
     public sealed class MsgUpdateCharacter : NetMessage
     {
         public override MsgGroups MsgGroup => MsgGroups.Command;

@@ -1,0 +1,120 @@
+- type: species
+  id: STHunter
+  name: st-species-name-hunter
+  roundStart: false
+  prototype: STMobHunter
+  markingLimits: STMobHunterMarkingLimits
+  sprites: STMobHunterSprites
+  dollPrototype: STMobHunterDummy
+  skinColoration: Hues
+  maleFirstNames: names_hunter_unisex
+  femaleFirstNames: names_hunter_unisex
+  lastNames: names_hunter_last
+
+- type: speciesBaseSprites
+  id: STMobHunterSprites
+  sprites:
+    Head: STMobHunterHead
+    Hair: MobHumanoidAnyMarking
+    Chest: STMobHunterTorso
+    LArm: STMobHunterLArm
+    RArm: STMobHunterRArm
+    LHand: STMobHunterLHand
+    RHand: STMobHunterRHand
+    LLeg: STMobHunterLLeg
+    RLeg: STMobHunterRLeg
+    LFoot: STMobHunterLFoot
+    RFoot: STMobHunterRFoot
+
+- type: markingPoints
+  id: STMobHunterMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Hair:
+      points: 1
+      required: true
+      defaultMarkings: [ HunterHairStandard ]
+
+- type: humanoidBaseSprite
+  id: STMobHunterHead
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: STMobHunterHeadMale
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: STMobHunterHeadFemale
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: STMobHunterTorso
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: STMobHunterTorsoMale
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: STMobHunterTorsoFemale
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: STMobHunterLLeg
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: STMobHunterLHand
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: STMobHunterLArm
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: STMobHunterLFoot
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: STMobHunterRLeg
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: STMobHunterRHand
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: STMobHunterRArm
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: STMobHunterRFoot
+  baseSprite:
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: r_foot

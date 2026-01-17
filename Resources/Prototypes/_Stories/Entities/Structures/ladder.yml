@@ -1,0 +1,24 @@
+- type: entity
+  parent: RMCLadder
+  id: STLadderHunter
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/ladder.rsi
+    drawdepth: WallTops
+    state: ladderdown
+
+- type: entity
+  parent: STLadderHunter
+  id: STLadderHunterUp
+  suffix: Up
+  components:
+  - type: Sprite
+    state: ladderup
+
+- type: entity
+  parent: STLadderHunter
+  id: STLadderHunterThrough
+  suffix: Through
+  components:
+  - type: Sprite
+    state: ladder11

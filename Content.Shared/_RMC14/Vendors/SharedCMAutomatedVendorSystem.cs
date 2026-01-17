@@ -681,21 +681,30 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
             Dirty(actor, jobPrefix);
         }
 
+        // Stories-Hunter-Start
+        var itemsToVend = new List<EntProtoId>();
+        if (_prototypes.Index(entry.Id).TryGetComponent(out CMVendorBundleComponent? bundle, _compFactory))
+        {
+            itemsToVend.AddRange(bundle.Bundle);
+        }
+        else
+        {
+            itemsToVend.Add(entry.Id);
+        }
+
+        var ev = new BeforeItemsVendedEvent(actor, entry.Id, itemsToVend);
+        RaiseLocalEvent(vendor.Owner, ref ev);
+        itemsToVend = ev.Items;
+        // Stories-Hunter-End
+
         var min = comp.MinOffset;
         var max = comp.MaxOffset;
         for (var i = 0; i < entry.Spawn; i++)
         {
             var offset = _random.NextVector2Box(min.X, min.Y, max.X, max.Y);
-            if (entity.TryGetComponent(out CMVendorBundleComponent? bundle, _compFactory))
+            foreach (var toVend in itemsToVend) // Stories-Hunter
             {
-                foreach (var bundled in bundle.Bundle)
-                {
-                    Vend(vendor, actor, bundled, offset, entry.ReplaceSlot);
-                }
-            }
-            else
-            {
-                Vend(vendor, actor, entry.Id, offset, entry.ReplaceSlot);
+                Vend(vendor, actor, toVend, offset, entry.ReplaceSlot);
             }
         }
 
@@ -735,11 +744,22 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
             var finalPlacementCoordinates = requisitionsChair.Owner.ToCoordinates().Offset(itemPlacementOffset);
             var spawn = SpawnAtPosition(toVend, finalPlacementCoordinates);
 
+            // Stories-Hunter-Start
+            var vendedEv = new AfterItemVendedEvent(player, spawn);
+            RaiseLocalEvent(vendor, ref vendedEv);
+            // Stories-Hunter-End
+
             AfterVend(spawn, player, vendor, offset, true, replaceSlot);
         }
         else
         {
             var spawn = SpawnNextToOrDrop(toVend, vendor);
+
+            // Stories-Hunter-Start
+            var vendedEv = new AfterItemVendedEvent(player, spawn);
+            RaiseLocalEvent(vendor, ref vendedEv);
+            // Stories-Hunter-End
+
             AfterVend(spawn, player, vendor, offset, replaceSlot: replaceSlot);
         }
     }

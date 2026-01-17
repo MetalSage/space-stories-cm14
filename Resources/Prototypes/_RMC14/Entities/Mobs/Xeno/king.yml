@@ -148,6 +148,9 @@
       components:
       - RMCFireImmunityBypass
   - type: StunFriendlyXenoOnStep
+    whitelist:
+      components:
+      - StunFriendlyXenoOnStep
   - type: RMCSurgeryXenoHeart
     item: RMCOrganXenoHeartT3
   - type: RMCActionOrder
@@ -156,6 +159,9 @@
     damage:
       groups:
         Brute: 20
+    whitelist:
+      components:
+      - Hunter
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 1.4
   - type: XenoRankNames

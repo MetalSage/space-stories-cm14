@@ -1,0 +1,7 @@
+<ScrollContainer
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    HScrollEnabled="False"
+    VerticalExpand="True">
+    <GridContainer Name="Container" Columns="6" />
+</ScrollContainer>

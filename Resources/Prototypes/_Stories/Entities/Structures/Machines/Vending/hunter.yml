@@ -1,0 +1,413 @@
+- type: entity
+  abstract: true
+  id: STHunterVendorBase
+  description: A gear rack for hunting.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: CMAutomatedVendor
+  - type: Transform
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Tag
+    tags:
+    - Structure
+  - type: Sprite
+    sprite: _Stories/Structures/Machines/VendingMachines/hunter_vendor.rsi
+    offset: 0,0.5
+    layers:
+    - state: "hunter_vendor_left"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+  - type: UserInterface
+    interfaces:
+      enum.CMAutomatedVendorUI.Key:
+        type: CMAutomatedVendorBui
+  - type: ActivatableUI
+    key: enum.CMAutomatedVendorUI.Key
+  - type: ActivatableUIRequiresAccess
+  - type: WallMount
+    arc: 360
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno
+
+- type: entity
+  parent: CMVendorBundleRiflemanApparel
+  id: STVendorBundleHunterEssential
+  name: hunting equipment bundle
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/hunter.rsi
+    state: icon
+  - type: CMVendorBundle
+    bundle:
+    - STMeshHunter
+    - STHunterPouch
+    - STPouchMediCompFilled
+    - STHunterTeleporterBeacon
+    - STHunterCleanerVial
+
+- type: entity
+  parent: CMVendorBundleRiflemanApparel
+  id: STVendorBundleHunterWristblades
+  name: wristblade bracer attachment
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/wristblade.rsi
+    state: icon
+  - type: CMVendorBundle
+    bundle:
+    - STBracerAttachmentWristblades
+    - STBracerAttachmentWristblades
+
+- type: entity
+  parent: CMVendorBundleRiflemanApparel
+  id: STVendorBundleHunterScimitars
+  name: scimitar bracer attachment
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/scimitar.rsi
+    state: icon
+  - type: CMVendorBundle
+    bundle:
+    - STBracerAttachmentScimitars
+    - STBracerAttachmentScimitars
+
+- type: entity
+  parent: CMVendorBundleRiflemanApparel
+  id: STVendorBundleHunterScimitarsAlt
+  name: scimitar bracer attachment
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/scimitar_alt.rsi
+    state: icon
+  - type: CMVendorBundle
+    bundle:
+    - STBracerAttachmentScimitarsAlt
+    - STBracerAttachmentScimitarsAlt
+
+- type: entity
+  parent: CMVendorBundleRiflemanApparel
+  id: STVendorBundleHunterChainGauntlets
+  name: chain gauntlets attachment
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/metal_gauntlet.rsi
+    state: icon
+  - type: CMVendorBundle
+    bundle:
+    - STBracerAttachmentChainGauntlets
+    - STBracerAttachmentChainGauntlets
+
+- type: entity
+  id: STVendorBundleHunterYoungEssential
+  name: young hunting equipment bundle
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Uniforms/hunter.rsi
+    state: icon
+  - type: CMVendorBundle
+    bundle:
+    - STMeshHunter
+    - STHunterPouch
+    - STPouchMediCompFilled
+    - STFlashlightLanternHunter
+
+- type: entity
+  parent: CMVendorBundleRiflemanApparel
+  id: STVendorBundleHunterArmor
+  name: armor
+  description: A suit of armor with light padding. It looks old, yet functional.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    state: 1-icon
+  - type: HunterProfileArmorBundle
+
+# Base
+- type: entity
+  abstract: true
+  parent: STHunterVendorBase
+  id: STHunterVendorEquipBase
+  name: Hunting Gear Rack
+  suffix: Base
+  components:
+  - type: CMAutomatedVendor
+    jobs:
+    - STHunter
+    sections:
+    - name: Essential Hunting Supplies
+      takeAll: CMEquipment
+      entries:
+      - id: STVendorBundleHunterEssential
+      - id: STVendorBundleHunterArmor
+    - name: Main Weapons
+      choices: { STWeapon: 1 }
+      entries:
+      - id: STClanSword
+      - id: STClanSwordAlt1
+      - id: STClanSwordAlt2
+      - id: STClanSwordAlt3
+      # - id: STWeaponTaruulanStaff
+      - id: STChainwhip
+      - id: STDualWarScythe
+      - id: STDoubleWarScythe
+      # - id: STCombistick
+      - id: STWarAxe
+      - id: STWarGlaive
+      - id: STCleavingGlaive
+      - id: STLongAxe
+      - id: STVendorBundleHunterScimitars
+      - id: STVendorBundleHunterScimitarsAlt
+      - id: STVendorBundleHunterChainGauntlets
+    - name: Bracer Attachments
+      choices: { STBracer: 1 }
+      entries:
+      - id: STVendorBundleHunterWristblades
+      # - id: STBracerAttachmentShield
+    - name: Secondary Equipment
+      choices: { STAdd: 2 }
+      entries:
+      # - id: STWeaponPlasmaCasterEbony
+      # - id: STWeaponPlasmaPistol
+      # - id: STFalconDrone
+      # - id: STSmartDisc
+      # - id: STWeaponShieldRiotHunter
+      - id: STFullArmorClanHunterEbony
+      - id: STQuiverHunterFilled
+    - name: Clothing Accessory
+      choices: { STAccessories: 1 }
+      entries:
+      - id: STHunterCapeThird
+      - id: STHunterCapeHalf
+      - id: STHunterCapeQuarter
+      - id: STHunterCapePoncho
+
+- type: entity
+  parent: STHunterVendorEquipBase
+  id: STHunterVendorLeft
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_left"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+- type: entity
+  parent: STHunterVendorEquipBase
+  id: STHunterVendorLeftCentre
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_lcenter"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+- type: entity
+  parent: STHunterVendorEquipBase
+  id: STHunterVendorCentre
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_centre"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+- type: entity
+  parent: STHunterVendorEquipBase
+  id: STHunterVendorRightCentre
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_rcentre"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+- type: entity
+  parent: STHunterVendorEquipBase
+  id: STHunterVendorRight
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_right"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+# Young
+- type: entity
+  abstract: true
+  parent: STHunterVendorBase
+  id: STHunterVendorEquipYoung
+  name: Young Hunting Gear Rack
+  suffix: Young
+  components:
+  - type: CMAutomatedVendor
+    jobs:
+    - STHunterYoung
+    sections:
+    - name: Essential Hunting Supplies
+      takeAll: CMEquipment
+      entries:
+      - id: STVendorBundleHunterYoungEssential
+      - id: STVendorBundleHunterArmor
+    - name: Main Weapons
+      choices: { STWeapon: 1 }
+      entries:
+      - id: STClanSword
+      - id: STClanSwordAlt1
+      - id: STClanSwordAlt2
+      - id: STClanSwordAlt3
+      # - id: STWeaponTaruulanStaff
+      - id: STChainwhip
+      - id: STDualWarScythe
+      - id: STDoubleWarScythe
+      # - id: STCombistick
+      - id: STWarAxe
+      - id: STWarGlaive
+      - id: STCleavingGlaive
+      - id: STLongAxe
+      - id: STVendorBundleHunterScimitars
+      - id: STVendorBundleHunterScimitarsAlt
+      - id: STVendorBundleHunterChainGauntlets
+    - name: Bracer Attachments
+      choices: { STBracer: 1 }
+      entries:
+      - id: STVendorBundleHunterWristblades
+      # - id: STBracerAttachmentShield
+
+- type: entity
+  parent: STHunterVendorEquipYoung
+  id: STHunterVendorYoungLeft
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_left"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+- type: entity
+  parent: STHunterVendorEquipYoung
+  id: STHunterVendorYoungLeftCentre
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_lcenter"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+- type: entity
+  parent: STHunterVendorEquipYoung
+  id: STHunterVendorYoungCentre
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_centre"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+- type: entity
+  parent: STHunterVendorEquipYoung
+  id: STHunterVendorYoungRightCentre
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_rcentre"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+- type: entity
+  parent: STHunterVendorEquipYoung
+  id: STHunterVendorYoungRight
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_right"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+# Elder
+- type: entity
+  abstract: true
+  parent: STHunterVendorBase
+  id: STHunterVendorElder
+  name: Elder Hunting Gear Rack
+  suffix: Elder
+  components:
+  - type: CMAutomatedVendor
+    jobs:
+    - STHunterLeader
+    sections:
+    - name: Essential Hunting Supplies
+      takeAll: CMEquipment
+      entries:
+      - id: STVendorBundleHunterEssential
+      - id: STVendorBundleHunterArmor
+    - name: Main Weapons
+      choices: { STWeapon: 1 }
+      entries:
+      - id: STClanSword
+      - id: STClanSwordAlt1
+      - id: STClanSwordAlt2
+      - id: STClanSwordAlt3
+      # - id: STWeaponTaruulanStaff
+      - id: STChainwhip
+      - id: STDualWarScythe
+      - id: STDoubleWarScythe
+      # - id: STCombistick
+      - id: STWarAxe
+      - id: STWarGlaive
+      - id: STCleavingGlaive
+      - id: STLongAxe
+      - id: STVendorBundleHunterScimitars
+      - id: STVendorBundleHunterScimitarsAlt
+      - id: STVendorBundleHunterChainGauntlets
+    - name: Bracer Attachments
+      choices: { STBracer: 1 }
+      entries:
+      - id: STVendorBundleHunterWristblades
+      # - id: STBracerAttachmentShield
+    - name: Secondary Equipment
+      choices: { STAdd: 2 }
+      entries:
+      # - id: STWeaponPlasmaCasterEbony
+      # - id: STWeaponPlasmaPistol
+      # - id: STFalconDrone
+      # - id: STSmartDisc
+      # - id: STWeaponShieldRiotHunter
+      # - id: STWeaponShieldAncient
+      # - id: STWeaponShieldAncientAlt
+      - id: STFullArmorClanHunterEbony
+      - id: STQuiverHunterFilled
+    - name: Clothing Accessory
+      choices: { STAccessories: 1 }
+      entries:
+      - id: STHunterCapeThird
+      - id: STHunterCapeHalf
+      - id: STHunterCapeQuarter
+      - id: STHunterCapePoncho
+      - id: STHunterCapeDamaged
+      - id: STHunterCapeCeremonial
+      - id: STHunterCapeFull
+
+- type: entity
+  parent: STHunterVendorElder
+  id: STHunterVendorElderLeft
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_elder_left"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+
+- type: entity
+  parent: STHunterVendorElder
+  id: STHunterVendorElderRight
+  components:
+  - type: Sprite
+    layers:
+    - state: "hunter_vendor_elder_right"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]

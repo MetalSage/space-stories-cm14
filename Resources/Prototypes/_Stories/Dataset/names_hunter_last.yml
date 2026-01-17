@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: names_hunter_last
+  values:
+    prefix: stories-name-hunter-last-
+    count: 104

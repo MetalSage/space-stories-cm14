@@ -1,0 +1,38 @@
+- type: Tag
+  id: STWoundClamp
+
+- type: Tag
+  id: STHealingGun
+
+- type: Tag
+  id: STStabilizerGel
+
+- type: Tag
+  id: STStabilizingCrystal
+
+- type: Tag
+  id: STHealingGel
+
+- type: Tag
+  id: STHunterHealthAnalyzer
+
+- type: Tag
+  id: STPredatorGear
+
+- type: Tag
+  id: STPlasmaCaster
+
+- type: Tag
+  id: STBracerAttachment
+
+- type: Tag
+  id: STHunterMaskAccessory
+
+- type: Tag
+  id: STHunterArrow
+
+- type: Tag
+  id: STHunterArrowExplosive
+
+- type: Tag
+  id: STHunterQuiver

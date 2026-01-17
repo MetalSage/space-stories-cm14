@@ -1,0 +1,26 @@
+- type: entity
+  parent: CryoPod
+  id: STHunterCryoPod
+  name: cryo cell
+  description: A donation from the old A.W. project, using cryogenic technology. It slowly heals whoever is inside the tube.
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machinery/cryogenics.rsi
+    drawdepth: Mobs
+    noRot: true
+    offset: 0, 0.5
+    layers:
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeHalf
+      offset: 0, -0.5
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pred_cell-on-empty
+      map: [ "enum.CryoPodVisualLayers.Base" ]
+    - state: pred_cell-on-occupied
+      map: [ "enum.CryoPodVisualLayers.Cover" ]
+      visible: false
+  - type: PointLight
+    color: "#ff0000"
+    radius: 2
+    energy: 10
+    enabled: false

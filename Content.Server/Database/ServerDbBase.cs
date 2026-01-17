@@ -11,6 +11,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.IP;
 using Content.Shared._RMC14.NamedItems;
+using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
@@ -25,6 +26,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using SharedHunterProfile = Content.Shared._Stories.Hunter.Profiles.HunterProfile;
 
 namespace Content.Server.Database
 {
@@ -415,6 +417,56 @@ namespace Content.Server.Database
             profile.XenoPostfix = humanoid.XenoPostfix;
 
             return profile;
+        }
+        #endregion
+
+        #region Hunter Customization
+        public abstract Task<SharedHunterProfile?> GetHunterProfileAsync(NetUserId userId, CancellationToken cancel = default);
+        public abstract Task SaveHunterProfileAsync(NetUserId userId, SharedHunterProfile profile, CancellationToken cancel = default);
+
+        protected static SharedHunterProfile ConvertToSharedHunterProfile(Database.HunterProfile dbProfile)
+        {
+            return new SharedHunterProfile
+            {
+                Name = dbProfile.CharacterName,
+                Gender = Enum.Parse<Gender>(dbProfile.Gender),
+                Age = dbProfile.Age,
+                FlavorText = dbProfile.FlavorText,
+                Status = Enum.Parse<HunterStatus>(dbProfile.Status),
+                SkinColor = Color.FromHex(dbProfile.SkinColor),
+                QuillMarkingId = new ProtoId<MarkingPrototype>(dbProfile.QuillMarkingId),
+                ArmorPrototype = new EntProtoId(dbProfile.ArmorPrototype),
+                MaskPrototype = new EntProtoId(dbProfile.MaskPrototype),
+                GreavesPrototype = new EntProtoId(dbProfile.GreavesPrototype),
+                CasterPrototype = new EntProtoId(dbProfile.CasterPrototype),
+                Voice = dbProfile.Voice,
+                HeadAccessory = new EntProtoId(dbProfile.HeadAccessory),
+                TranslatorSound = Enum.Parse<HunterSoundStyle>(dbProfile.TranslatorSound),
+                CloakSound = Enum.Parse<HunterSoundStyle>(dbProfile.CloakSound),
+                CapeColor = Color.FromHex(dbProfile.CapeColor),
+                BracerPrototype = new EntProtoId(dbProfile.BracerPrototype),
+            };
+        }
+
+        protected static void ConvertFromSharedHunterProfile(SharedHunterProfile profile, Database.HunterProfile dbProfile)
+        {
+            dbProfile.CharacterName = profile.Name;
+            dbProfile.Gender = profile.Gender.ToString();
+            dbProfile.Age = profile.Age;
+            dbProfile.FlavorText = profile.FlavorText;
+            dbProfile.Status = profile.Status.ToString();
+            dbProfile.SkinColor = profile.SkinColor.ToHex();
+            dbProfile.QuillMarkingId = profile.QuillMarkingId.Id;
+            dbProfile.ArmorPrototype = profile.ArmorPrototype.Id;
+            dbProfile.MaskPrototype = profile.MaskPrototype.Id;
+            dbProfile.GreavesPrototype = profile.GreavesPrototype.Id;
+            dbProfile.CasterPrototype = profile.CasterPrototype.Id;
+            dbProfile.Voice = profile.Voice;
+            dbProfile.HeadAccessory = string.IsNullOrEmpty(profile.HeadAccessory.Id) ? "Nothing" : profile.HeadAccessory.Id;
+            dbProfile.TranslatorSound = profile.TranslatorSound.ToString();
+            dbProfile.CloakSound = profile.CloakSound.ToString();
+            dbProfile.CapeColor = profile.CapeColor.ToHex();
+            dbProfile.BracerPrototype = profile.BracerPrototype.Id;
         }
         #endregion
 
@@ -2005,8 +2057,9 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             if (messages.Count == 0)
                 return null;
 
-            var random = messages[Random.Shared.Next(messages.Count)];
-            return (random.Message, random.LastSeenUserName);
+            var random = Random.Shared.Next(messages.Count);
+            var msg = messages[random];
+            return (msg.Message, msg.LastSeenUserName);
         }
 
         public async Task<(RoundEndShoutout? Marine, RoundEndShoutout? Xeno)> GetRandomShoutout()

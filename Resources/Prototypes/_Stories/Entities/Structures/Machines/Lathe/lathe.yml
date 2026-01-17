@@ -1,0 +1,12 @@
+- type: entity
+  parent: RMCAutolatheEmpty
+  id: STAutolatheEmptyHunter
+  name: hunter autolathe
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi
+    layers:
+    - state: autolathe
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: autolathe_t
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]

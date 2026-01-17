@@ -11,6 +11,7 @@ using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Synth;
 using Content.Shared._RMC14.Xenonids.Construction.Nest;
 using Content.Shared._RMC14.Xenonids.Parasite;
+using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
 using Content.Shared.Coordinates;
@@ -175,7 +176,7 @@ public abstract class SharedNeurotoxinSystem : EntitySystem
 
             neuro.NextNeuroEffectAt = time + neuro.UpdateEvery;
 
-            if (neuro.NeurotoxinAmount <= 0 || HasComp<SynthComponent>(uid))
+            if (neuro.NeurotoxinAmount <= 0 || HasComp<SynthComponent>(uid) || HasComp<HunterComponent>(uid)) // Stories-Hunter
             {
                 RemCompDeferred<NeurotoxinComponent>(uid);
                 continue;

@@ -1,0 +1,179 @@
+- type: entity
+  id: STActionHunterBase
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Action
+    background:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: pred_template
+    backgroundOn:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: pred_template_on
+  - type: ActionReducedUseDelay
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionToggleScope
+  name: Toggle Mask Zoom
+  description: Scope in or out with your optics.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: zoom
+    useDelay: 0.25
+  - type: InstantAction
+    event: !type:ToggleScopeEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionToggleHunterVision
+  name: Toggle Mask Visor
+  description: Allows you to see even in complete darkness.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: visor
+    iconOn:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: visor_on
+    useDelay: 0.25
+  - type: InstantAction
+    event: !type:ToggleHunterVisionEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionToggleHunterCloak
+  name: Toggle Cloak
+  description: Enable or Disable yours Cloak.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: cloak
+    useDelay: 1.5
+  - type: InstantAction
+    event: !type:ToggleBracerCloakEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionOpenMarkPanel
+  name: Open Mark Panel
+  description: Open a panel to manage your marks on various targets.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: mark_panel
+  - type: InstantAction
+    event: !type:OpenMarkPanelEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionMarkForHunt
+  name: Mark for Hunt
+  description: Mark a nearby creature as your prey.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: mark_for_hunt
+  - type: InstantAction
+    event: !type:RequestMarkForHuntEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionToggleSelfDestruct
+  name: Activate Self-Destruct
+  description: Activate the explosive device implanted into your bracers. A final, honorable act.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: self_destruct
+    useDelay: 1.0
+  - type: InstantAction
+    event: !type:RequestSelfDestructEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionTogglePlasmaCaster
+  name: Deploy Plasma Caster
+  description: Deploy or retract your shoulder-mounted plasma caster.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: plasma_caster
+    useDelay: 1.0
+  - type: InstantAction
+    event: !type:TogglePlasmaCasterEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionCreateHealingCapsule
+  name: Create Healing Capsule
+  description: Synthesize a potent healing agent from your bracer's internal reserves.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: gel_vial
+    useDelay: 240
+  - type: InstantAction
+    event: !type:CreateHealingCapsuleEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionCreateStabilizingCrystal
+  name: Create Stabilizing Crystal
+  description: Synthesize a focus crystal to energize your natural healing processes.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: thwei
+    useDelay: 120
+  - type: InstantAction
+    event: !type:CreateStabilizingCrystalEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionToggleBracerAttachments
+  name: Deploy/Retract Attachments
+  description: Deploy or retract your bracer's melee attachments.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: wristblade
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:ToggleBracerAttachmentsEvent
+
+- type: entity
+  parent: STActionHunterBase
+  id: STActionToggleTranslator
+  name: Use Translator
+  description: Emit a message from your bracer to those nearby.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/hunter_actions.rsi
+      state: translator
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:ToggleTranslatorEvent

@@ -29,6 +29,13 @@ public sealed partial class ActionComponent : Component
     [DataField, AutoNetworkedField]
     public SpriteSpecifier? IconOn;
 
+    // Stories-Hunter-Start
+    /// <summary>
+    ///     Background to show when the action is not toggled on. If null, a default texture is used.
+    /// </summary>
+    [DataField] public SpriteSpecifier? Background;
+    // Stories-Hunter-Start
+
     /// <summary>
     ///     For toggle actions only, background to show when toggled on.
     /// </summary>

@@ -9,6 +9,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
+using Content.Server.Radio.EntitySystems;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
@@ -16,6 +17,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Chat;
+using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared.ActionBlocker;
@@ -42,6 +44,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Server.Radio.Components;
+using Content.Shared.Radio.Components;
+using Content.Shared.Popups;
 
 namespace Content.Server.Chat.Systems;
 
@@ -272,21 +277,24 @@ public sealed partial class ChatSystem : SharedChatSystem
                     if (!TryProccessRadioMessage(source, msg, out var modMsg, out var modChannel))
                         continue;
 
-                    if (modChannel != null && channelsSent.Contains(modChannel.ID))
+                    // Stories-Hunter-Start
+                    if (modChannel == null)
                         continue;
 
-                    SendEntityWhisper(source, modMsg, range, modChannel, nameOverride, hideLog, ignoreActionBlocker);
+                    if (channelsSent.Contains(modChannel.ID))
+                        continue;
 
-                    if (modChannel != null)
-                        channelsSent.Add(modChannel.ID);
+                    SendEntityWhisper(source, modMsg, range, modChannel, nameOverride, hideLog, ignoreActionBlocker, ignoreXenos);
+                    channelsSent.Add(modChannel.ID);
+                    // Stories-Hunter-End
                 }
 
                 return;
             }
 
-            if (TryProccessRadioMessage(source, message, out var modMessage, out var channel))
+            if (TryProccessRadioMessage(source, message, out var modMessage, out var channel) && channel != null) // Stories-Hunter
             {
-                SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker, ignoreXenos); // Stories-Hunter
                 return;
             }
         }
@@ -825,10 +833,12 @@ public sealed partial class ChatSystem : SharedChatSystem
     // ReSharper disable once InconsistentNaming
     private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
     {
-        var newMessage = SanitizeMessageReplaceWords(source, message.Trim());
+        // Stories-Hunter-Start
+        var trimmedMessage = message.Trim();
+        GetRadioKeycodePrefix(source, trimmedMessage, out var messageBody, out var prefix);
 
-        GetRadioKeycodePrefix(source, newMessage, out newMessage, out var prefix);
-
+        var newMessage = SanitizeMessageReplaceWords(source, messageBody);
+        // Stories-Hunter-End
         if (capitalize)
             newMessage = SanitizeMessageCapital(newMessage);
         if (capitalizeTheWordI)
@@ -853,8 +863,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public string TransformSpeech(EntityUid sender, string message)
     {
         var ev = new TransformSpeechEvent(sender, message);
-        RaiseLocalEvent(ev);
-
+        RaiseLocalEvent(sender, ref ev, true); // Stories-Hunter
         return ev.Message;
     }
 
@@ -942,7 +951,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         RaiseLocalEvent(new ExpandICChatRecipientsEvent(source, voiceGetRange, recipients));
 
-        var ev = new ChatMessageAfterGetRecipients(recipients);
+        var ev = new ChatMessageAfterGetRecipients(recipients); // Stories-Hunter
         RaiseLocalEvent(source, ref ev);
 
         if (ignoreXenos)
@@ -1005,7 +1014,8 @@ public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Di
 /// <summary>
 ///     Raised broadcast in order to transform speech.transmit
 /// </summary>
-public sealed class TransformSpeechEvent : EntityEventArgs
+[ByRefEvent] // Stories-Hunter
+public struct TransformSpeechEvent
 {
     public EntityUid Sender;
     public string Message;

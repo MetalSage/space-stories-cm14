@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server._RMC14.LinkAccount;
 using Content.Server.Administration.Logs;
+using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -343,6 +344,13 @@ namespace Content.Server.Database
         Task<bool> CleanIPIntelCache(TimeSpan range);
 
         #endregion
+
+        // Stories-Hunter-Customization-Start
+        #region Hunter Customization
+        Task<Content.Shared._Stories.Hunter.Profiles.HunterProfile?> GetHunterProfileAsync(NetUserId userId, CancellationToken cancel = default);
+        Task SaveHunterProfileAsync(NetUserId userId, Content.Shared._Stories.Hunter.Profiles.HunterProfile profile, CancellationToken cancel = default);
+        #endregion
+        // Stories-Hunter-Customization-End
 
         #region RMC14
 
@@ -1120,6 +1128,22 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
         }
+
+        // Stories-Hunter-Customization-Start
+        #region Hunter Customization
+        public Task<Content.Shared._Stories.Hunter.Profiles.HunterProfile?> GetHunterProfileAsync(NetUserId userId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetHunterProfileAsync(userId, cancel));
+        }
+
+        public Task SaveHunterProfileAsync(NetUserId userId, Content.Shared._Stories.Hunter.Profiles.HunterProfile profile, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SaveHunterProfileAsync(userId, profile, cancel));
+        }
+        #endregion
+        // Stories-Hunter-Customization-End
 
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)
         {

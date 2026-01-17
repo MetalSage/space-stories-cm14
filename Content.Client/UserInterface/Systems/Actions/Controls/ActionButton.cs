@@ -308,7 +308,12 @@ public sealed class ActionButton : Control, IEntityControl
         }
         else
         {
-            _buttonBackgroundTexture = Theme.ResolveTexture("SlotBackground");
+            // Stories-Hunter-Start
+            if (action.Comp.Background != null)
+                _buttonBackgroundTexture = _spriteSys.Frame0(action.Comp.Background);
+            else
+                _buttonBackgroundTexture = Theme.ResolveTexture("SlotBackground");
+            // Stories-Hunter-End
         }
 
         SetActionIcon(icon != null ? _spriteSys.Frame0(icon) : null);

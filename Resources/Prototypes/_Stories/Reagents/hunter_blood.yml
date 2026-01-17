@@ -1,0 +1,9 @@
+- type: reagent
+  parent: Blood
+  id: STHunterBlood
+  name: st-reagent-name-hunter-blood
+  desc: st-reagent-desc-hunter-blood
+  physicalDesc: st-reagent-physical-desc-hunter-blood
+  color: "#5A934A"
+  unknown: true
+  flavor: acid

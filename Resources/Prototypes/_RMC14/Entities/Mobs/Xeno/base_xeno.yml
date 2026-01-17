@@ -316,6 +316,7 @@
       - Xeno
       - Infectable
       - Synth
+      - Hunter # Stories-Hunter
   - type: BlockPullingDead
   - type: XenoFriendly
   - type: Undisposable

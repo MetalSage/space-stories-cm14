@@ -1,0 +1,14 @@
+- type: entity
+  parent: CMSurgeryBase
+  id: STSurgeryTendWounds
+  name: Tend Wounds
+  description: Advanced Hunter medical treatment. Can be performed on self.
+  components:
+  - type: CMSurgery
+    selfOperable: true
+    priority: 2
+    steps:
+    - STSurgeryStepStabilizeWounds
+    - STSurgeryStepMendWounds
+    - STSurgeryStepClampWounds
+  - type: STSurgeryDamagedCondition

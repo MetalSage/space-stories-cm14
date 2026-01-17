@@ -1,0 +1,14 @@
+<ContainerButton
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    MinSize="64 64"
+    MaxSize="64 64">
+    <PanelContainer Name="Highlight" Visible="False">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#00FF0020" BorderColor="#00FF00" BorderThickness="2" />
+        </PanelContainer.PanelOverride>
+    </PanelContainer>
+
+    <SpriteView Name="SpriteView" Scale="2.0 2.0" Margin="2" MouseFilter="Ignore" />
+</ContainerButton>

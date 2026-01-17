@@ -13,11 +13,18 @@ public sealed class TTSVoicePrototype : IPrototype
     [IdDataField]
     public string ID { get; } = default!;
 
+    /// <summary>
+    /// List of categories forbidden to use this voice (e.g., "Human", "Hunter", "Xeno").
+    /// If null or empty, available to everyone.
+    /// </summary>
+    [DataField("blacklist")]
+    public HashSet<string>? Blacklist;
+
     [DataField("name")]
     public string Name { get; } = string.Empty;
 
     [DataField("sex", required: true)]
-    public Sex Sex { get; } = default!;
+    public Sex Sex { get; }
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("speaker", required: true)]
@@ -30,5 +37,5 @@ public sealed class TTSVoicePrototype : IPrototype
     public bool RoundStart { get; } = true;
 
     [DataField("sponsorOnly")]
-    public bool SponsorOnly { get; } = false;
+    public bool SponsorOnly { get; }
 }

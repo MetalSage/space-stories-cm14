@@ -8,6 +8,7 @@ using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -19,18 +20,13 @@ public sealed class JobWhitelistManager : IPostInjectInit
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly UserDbDataManager _userDb = default!;
     [Dependency] private readonly SponsorsManager _sponsors = default!; // Stories-Sponsor
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private readonly Dictionary<NetUserId, HashSet<string>> _whitelists = new();
-
-    public void Initialize()
-    {
-        _net.RegisterNetMessage<MsgJobWhitelist>();
-    }
 
     private async Task LoadData(ICommonSession session, CancellationToken cancel)
     {
@@ -67,7 +63,7 @@ public sealed class JobWhitelistManager : IPostInjectInit
         if (!_config.GetCVar(CCVars.GameRoleWhitelist) ||
             sponsorData?.WhitelistRoleTimeBypass == true) // Stories-Sponsor
             return true;
-        // RMC14-Whitelist-Tweak-Start
+
         if (!_prototypes.TryIndex(job, out var jobPrototype))
             return true;
 
@@ -81,7 +77,6 @@ public sealed class JobWhitelistManager : IPostInjectInit
             return IsAllowed(session, jobPrototype.WhitelistParent.Value);
 
         return false;
-        // RMC14-Whitelist-Tweak-End
     }
 
     public bool IsWhitelisted(NetUserId player, ProtoId<JobPrototype> job)
@@ -109,12 +104,12 @@ public sealed class JobWhitelistManager : IPostInjectInit
 
     public void SendJobWhitelist(ICommonSession player)
     {
-        var msg = new MsgJobWhitelist
+        var ev = new JobWhitelistUpdatedEvent
         {
             Whitelist = _whitelists.GetValueOrDefault(player.UserId) ?? new HashSet<string>()
         };
 
-        _net.ServerSendMessage(msg, player.Channel);
+        _entityManager.EntityNetManager.SendSystemNetworkMessage(ev, player.Channel);
     }
 
     void IPostInjectInit.PostInject()

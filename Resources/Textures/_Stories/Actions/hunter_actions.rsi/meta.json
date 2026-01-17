@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/cfa259bbd2d627ed94a359fa8c0dec63006f49fa/icons/mob/hud/actions_xeno.dmi, https://github.com/cmss13-devs/cmss13/blob/cfa259bbd2d627ed94a359fa8c0dec63006f49fa/icons/mob/hud/actions_xeno.dmi, new sprites by Aleksh",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pred_template"
+    },
+    {
+      "name": "pred_template_on"
+    },
+    {
+      "name": "wristblade"
+    },
+    {
+      "name": "smartdisc"
+    },
+    {
+      "name": "plasma_caster"
+    },
+    {
+      "name": "cloak"
+    },
+    {
+      "name": "gel_vial"
+    },
+    {
+      "name": "thwei"
+    },
+    {
+      "name": "translator",
+      "delays": [
+        [
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      ]
+    },
+    {
+      "name": "self_destruct"
+    },
+    {
+      "name": "zoom"
+    },
+    {
+      "name": "visor"
+    },
+    {
+      "name": "visor_on"
+    },
+    {
+      "name": "mark_for_hunt"
+    },
+    {
+      "name": "mark_panel"
+    },
+    {
+      "name": "claim_equipment",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "falcon_drone"
+    },
+    {
+      "name": "combi"
+    },
+    {
+      "name": "lantern_on"
+    },
+    {
+      "name": "lantern_off"
+    },
+    {
+      "name": "looc_toggle"
+    }
+  ]
+}

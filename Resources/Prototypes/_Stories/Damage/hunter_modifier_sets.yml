@@ -1,0 +1,9 @@
+- type: damageModifierSet
+  id: HunterResistances
+  coefficients:
+    Blunt: 0.3
+    Slash: 0.3
+    Piercing: 0.3
+    Heat: 0.55
+    Poison: 0.1
+    Caustic: 0.1

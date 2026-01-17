@@ -126,7 +126,6 @@ public abstract partial class SharedCMSurgerySystem : EntitySystem
         step = default;
 
         if (!HasComp<CMSurgeryTargetComponent>(body) ||
-            !IsLyingDown(body) ||
             !TryComp(targetPart, out BodyPartComponent? partComp) ||
             GetSingleton(surgery) is not { } surgeryEntId ||
             !TryComp(surgeryEntId, out CMSurgeryComponent? surgeryComp) ||
@@ -135,6 +134,9 @@ public abstract partial class SharedCMSurgerySystem : EntitySystem
         {
             return false;
         }
+
+        if (!surgeryComp.SelfOperable && !IsLyingDown(body)) // Stories-Hunter
+            return false;
 
         var ev = new CMSurgeryValidEvent(body, targetPart);
         RaiseLocalEvent(stepEnt, ref ev);
@@ -173,18 +175,15 @@ public abstract partial class SharedCMSurgerySystem : EntitySystem
 
     public bool IsLyingDown(EntityUid entity)
     {
-        if (_standing.IsDown(entity))
-            return true;
-
-        if (TryComp(entity, out BuckleComponent? buckle) &&
-            TryComp(buckle.BuckledTo, out StrapComponent? strap))
+        // Stories-Hunter-Start
+        if (_standing.IsDown(entity)) return true;
+        if (TryComp(entity, out BuckleComponent? buckle) && TryComp(buckle.BuckledTo, out StrapComponent? strap))
         {
             var rotation = strap.Rotation;
-            if (rotation.GetCardinalDir() is Direction.West or Direction.East)
-                return true;
+            if (rotation.GetCardinalDir() is Direction.West or Direction.East) return true;
         }
-
         return false;
+        // Stories-Hunter-End
     }
 
     protected virtual void RefreshUI(EntityUid body)

@@ -1,0 +1,14 @@
+st-hunter-teleporter-beacon-on-cooldown = Перезарядка маяка. Готов через { $seconds }с.
+st-hunter-teleporter-beacon-no-skill = Вы не понимаете, как работает это устройство.
+st-hunter-teleporter-beacon-youngblood = Доступ запрещён.
+st-hunter-teleporter-beacon-title = Выберите пункт назначения
+st-hunter-teleporter-beacon-activating = Активация маяка...
+st-hunter-teleporter-beacon-no-destinations-in-group = Нет доступных точек назначения в группе: { $group }.
+st-hunter-teleporter-beacon-disappears = Маяк исчезает во вспышке света.
+st-hunter-teleporter-beacon-examine-cooldown = Перезарядка: { $seconds }с
+rmc-hunter-teleporter-no-tech = Неопознанная технология.
+rmc-hunter-teleporter-young-no-access = Ранг недостаточен.
+rmc-hunter-teleporter-elder-no-access = Ранг слишком высок.
+rmc-hunter-teleporter-no-destinations = Нет доступных каналов связи.
+rmc-hunter-teleporter-title = Транслокационный канал
+rmc-hunter-teleporter-too-far = Связь потеряна: Цель вне зоны действия.

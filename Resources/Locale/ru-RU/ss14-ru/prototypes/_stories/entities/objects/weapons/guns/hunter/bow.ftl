@@ -1,0 +1,11 @@
+ent-STWeaponBowHunter = охотничий лук
+    .desc = Оружие аномального размера с исключительно тугой тетивой. Требует недюжинной силы для натяжения.
+ent-STArrowHunter = стрела
+    .desc = Острая охотничья стрела.
+ent-STArrowHunterExplosive = взрывная стрела
+    .desc = Острая охотничья стрела.
+ent-STQuiverHunter = ремень с колчаном
+    .desc = Ремень, на котором можно носить лук вместе с колчаном для стрел.
+ent-STQuiverHunterFilled = { ent-STQuiverHunter }
+    .suffix = Наполненный
+    .desc = { ent-STQuiverHunter.desc }

@@ -30,13 +30,12 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using Content.Shared._Stories.SCCVars;
+using Content.Shared.Ghost;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 
 namespace Content.Server.Radio.EntitySystems;
 
-/// <summary>
-///     This system handles intrinsic radios and the general process of converting radio messages into chat messages.
-/// </summary>
 public sealed class RadioSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _netMan = default!;
@@ -45,15 +44,14 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!; // RMC14
-    [Dependency] private readonly IChatManager _chatManager = default!; // RMC14
-    [Dependency] private readonly TTSSystem _tts = default!; // Stories-TTS
-    [Dependency] private readonly TtsAudioProcessingSystem _ttsProcessing = default!; // Stories-TTS
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Stories-TTS
+    [Dependency] private readonly SharedAudioSystem _audio = default!; 
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly TTSSystem _tts = default!; 
+    [Dependency] private readonly TtsAudioProcessingSystem _ttsProcessing = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
-
     private EntityQuery<TelecomExemptComponent> _exemptQuery;
 
     private readonly SoundSpecifier _radioSound = new SoundPathSpecifier("/Audio/_RMC14/Effects/radiostatic.ogg")
@@ -64,7 +62,7 @@ public sealed class RadioSystem : EntitySystem
             Variation = 0.1f,
             MaxDistance = 3.75f,
         },
-    }; // RMC14
+    }; 
 
     public override void Initialize()
     {
@@ -80,7 +78,7 @@ public sealed class RadioSystem : EntitySystem
         if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
         {
             SendRadioMessage(uid, args.Message, args.Channel, uid);
-            args.Channel = null; // prevent duplicate messages from other listeners.
+            args.Channel = null;
         }
     }
 
@@ -107,15 +105,7 @@ public sealed class RadioSystem : EntitySystem
         if (soundData == null)
             return;
 
-        byte[] processedSoundData;
-        if (channel.ID == "Hivemind")
-        {
-            processedSoundData = await _ttsProcessing.ApplyXenoHivemindEffect(soundData);
-        }
-        else
-        {
-            processedSoundData = await _ttsProcessing.ApplyRadioEffect(soundData);
-        }
+        var processedSoundData = await _ttsProcessing.ProcessRadioAudio(messageSource, soundData);
 
         var ttsEvent = new PlayTTSEvent(processedSoundData, sourceUid: null, isWhisper: false, originalSourceUid: GetNetEntity(messageSource));
 
@@ -133,22 +123,13 @@ public sealed class RadioSystem : EntitySystem
         return "father_grigori";
     }
 
-    /// <summary>
-    /// Send radio message to all active radio listeners
-    /// </summary>
     public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, bool escapeMarkup = true)
     {
         SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup);
     }
 
-    /// <summary>
-    /// Send radio message to all active radio listeners
-    /// </summary>
-    /// <param name="messageSource">Entity that spoke the message</param>
-    /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
     public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true)
     {
-        // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
             return;
 
@@ -188,7 +169,6 @@ public sealed class RadioSystem : EntitySystem
             ? FormattedMessage.EscapeText(message)
             : message;
 
-        // RMC14 increase font size
         var radioFontSize = speech.FontSize;
         if (TryComp<WearingHeadsetComponent>(messageSource, out var wearingHeadset) &&
             TryComp<RMCHeadsetComponent>(wearingHeadset.Headset, out var headsetComp))
@@ -199,13 +179,12 @@ public sealed class RadioSystem : EntitySystem
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
             ("fontType", speech.FontId),
-            ("fontSize", radioFontSize), // RMC14
+            ("fontSize", radioFontSize), 
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", name),
             ("message", content));
 
-        // most radios are relayed to chat, so lets parse the chat message beforehand
         var chat = new ChatMessage(
             ChatChannel.Radio,
             message,
@@ -226,6 +205,10 @@ public sealed class RadioSystem : EntitySystem
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
         var recipientUids = new List<EntityUid>();
+        
+        // Stories-Fix: Используем HashSet для отслеживания отправленных клиентов, чтобы избежать дублей (призрак + обычный)
+        var sentClients = new HashSet<INetChannel>();
+
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -239,27 +222,58 @@ public sealed class RadioSystem : EntitySystem
             if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
                 continue;
 
-            // don't need telecom server for long range channels or handheld radios and intercoms
             var needServer = !channel.LongRange && !sourceServerExempt;
             if (needServer && !hasActiveServer)
                 continue;
 
-            // check if message can be sent to specific receiver
             var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
             RaiseLocalEvent(ref attemptEv);
             RaiseLocalEvent(receiver, ref attemptEv);
             if (attemptEv.Cancelled)
                 continue;
 
-            // send the message
             RaiseLocalEvent(receiver, ref ev);
-
             recipientUids.Add(receiver);
+
+            // Регистрируем клиента получателя
+            if (transform.ParentUid.IsValid() && TryComp<ActorComponent>(transform.ParentUid, out var actor))
+            {
+                sentClients.Add(actor.PlayerSession.Channel);
+            }
+            else if (TryComp<ActorComponent>(receiver, out var directActor)) // На случай встроенного радио у игрока
+            {
+                sentClients.Add(directActor.PlayerSession.Channel);
+            }
         }
 
-        if (canSend && recipientUids.Count > 0)
+        // Stories-Fix: Отдельный список для призраков для TTS, чтобы не смешивать с EntityUid получателей
+        var ghostSessions = new List<ICommonSession>();
+
+        // Stories-Fix: Рассылка призракам
+        if (canSend)
+        {
+            foreach (var session in _playerManager.Sessions)
+            {
+                if (session.AttachedEntity is not { } ent) continue;
+                
+                // Если это призрак и он еще не получил сообщение (например, через вселение в тело с радио)
+                if (HasComp<GhostComponent>(ent))
+                {
+                    if (sentClients.Contains(session.Channel)) 
+                        continue;
+
+                    _netMan.ServerSendMessage(chatMsg, session.Channel);
+                    sentClients.Add(session.Channel);
+                    ghostSessions.Add(session);
+                }
+            }
+        }
+
+        if (canSend && (recipientUids.Count > 0 || ghostSessions.Count > 0))
         {
             var sessions = new List<ICommonSession>();
+            
+            // Добавляем обычных получателей
             var actorQuery = GetEntityQuery<ActorComponent>();
             foreach (var uid in recipientUids)
             {
@@ -273,6 +287,9 @@ public sealed class RadioSystem : EntitySystem
                 }
             }
 
+            // Добавляем призраков для TTS
+            sessions.AddRange(ghostSessions);
+
             if (sessions.Count > 0)
             {
                 ProcessAndSendRadioTts(messageSource, message, channel, sessions);
@@ -284,7 +301,7 @@ public sealed class RadioSystem : EntitySystem
             HasComp<RMCHeadsetComponent>(radioSource))
         {
             var filter = Filter.Pvs(messageSource).RemoveWhereAttachedEntity(HasComp<XenoComponent>);
-            _audio.PlayEntity(_radioSound, filter, messageSource, false); // RMC14
+            _audio.PlayEntity(_radioSound, filter, messageSource, false);
         }
 
         if (name != Name(messageSource))
@@ -296,7 +313,6 @@ public sealed class RadioSystem : EntitySystem
         _messages.Remove(message);
     }
 
-    /// <inheritdoc cref="TelecomServerComponent"/>
     private bool HasActiveServer(MapId mapId, string channelId)
     {
         var servers = EntityQuery<TelecomServerComponent, EncryptionKeyHolderComponent, ApcPowerReceiverComponent, TransformComponent>();

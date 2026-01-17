@@ -1,0 +1,5 @@
+- type: speechVerb
+  id: STHunter
+  name: chat-speech-verb-name-hunter
+  speechVerbStrings:
+  - chat-speech-verb-hunter-1

@@ -48,9 +48,9 @@ public sealed class TTSSystem : EntitySystem
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
     }
 
-    public void RequestPreviewTTS(string voiceId)
+    public void RequestPreviewTTS(string voiceId, bool isHunter = false)
     {
-        RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId));
+        RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId, isHunter));
     }
 
     public void Mute(NetEntity netEntity)

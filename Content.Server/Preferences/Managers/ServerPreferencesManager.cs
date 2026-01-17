@@ -2,17 +2,25 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server._Stories.Sponsors;
 using Content.Server.Database;
+using Content.Server.Players.JobWhitelist;
+using Content.Shared._Stories.Hunter;
+using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.Humanoid;
+using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Preferences;
+using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.Shared.Random;
+using SharedHunterProfile = Content.Shared._Stories.Hunter.Profiles.HunterProfile;
+using Content.Shared._Stories.Sponsors;
 
 namespace Content.Server.Preferences.Managers
 {
@@ -30,7 +38,9 @@ namespace Content.Server.Preferences.Managers
         [Dependency] private readonly ILogManager _log = default!;
         [Dependency] private readonly UserDbDataManager _userDb = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly SponsorsManager _sponsors = default!; // Stories-Sponsors
+        [Dependency] private readonly JobWhitelistManager _jobWhitelistManager = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
 
         // Cache player prefs on the server so we don't need as much async hell related to them.
         private readonly Dictionary<NetUserId, PlayerPrefData> _cachedPlayerPrefs =
@@ -39,6 +49,7 @@ namespace Content.Server.Preferences.Managers
         private ISawmill _sawmill = default!;
 
         private int MaxCharacterSlots => _cfg.GetCVar(CCVars.GameMaxCharacterSlots);
+        private static readonly ProtoId<JobPrototype> HunterJobId = "STHunter"; // Stories-Hunter
 
         public void Init()
         {
@@ -129,12 +140,45 @@ namespace Content.Server.Preferences.Managers
             }
 
             var curPrefs = prefsData.Prefs!;
-            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, favorites);
+        // Stories-Hunter-Start
+            var session = _playerManager.GetSessionById(userId);
+
+            var validatedSet = new HashSet<ProtoId<ConstructionPrototype>>();
+            foreach (var favorite in favorites)
+            {
+                if (_prototypeManager.HasIndex(favorite))
+                    validatedSet.Add(favorite);
+            }
+
+            var validatedList = validatedSet.ToList();
+            if (validatedSet.Count != favorites.Count)
+            {
+                _sawmill.Warning($"User {userId} sent invalid construction favorites.");
+            }
+
+            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, validatedList);
+
+            if (ShouldStorePrefs(session.Channel.AuthType))
+                await _db.SaveConstructionFavoritesAsync(userId, validatedList);
+        }
+
+        public async Task SetHunterProfile(NetUserId userId, SharedHunterProfile profile)
+        {
+            if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
+            {
+                _sawmill.Warning($"User {userId} tried to modify hunter profile before it loaded.");
+                return;
+            }
+
+            prefsData.HunterProfile = profile;
 
             var session = _playerManager.GetSessionById(userId);
             if (ShouldStorePrefs(session.Channel.AuthType))
-                await _db.SaveConstructionFavoritesAsync(userId, favorites);
+            {
+                await _db.SaveHunterProfileAsync(userId, profile); // Stories-Hunter
+            }
         }
+        // Stories-Hunter-End
 
         private async void HandleDeleteCharacterMessage(MsgDeleteCharacter message)
         {
@@ -205,12 +249,11 @@ namespace Content.Server.Preferences.Managers
                     validatedSet.Add(favorite);
             }
 
-            var validatedList = message.Favorites;
+            var validatedList = validatedSet.ToList(); // Stories-Hunter
             if (validatedSet.Count != message.Favorites.Count)
             {
                 // A difference in counts indicates that unrecognized or duplicate IDs are present.
                 _sawmill.Warning($"User {userId} sent invalid construction favorites.");
-                validatedList = validatedSet.ToList();
             }
 
             var curPrefs = prefsData.Prefs!;
@@ -225,10 +268,11 @@ namespace Content.Server.Preferences.Managers
         // Should only be called via UserDbDataManager.
         public async Task LoadData(ICommonSession session, CancellationToken cancel)
         {
+            // Stories-Hunter-Start
             if (!ShouldStorePrefs(session.Channel.AuthType))
             {
                 // Don't store data for guests.
-                var prefsData = new PlayerPrefData
+                var guestPrefsData = new PlayerPrefData
                 {
                     PrefsLoaded = true,
                     Prefs = new PlayerPreferences(
@@ -236,22 +280,55 @@ namespace Content.Server.Preferences.Managers
                         0, Color.Transparent, [])
                 };
 
-                _cachedPlayerPrefs[session.UserId] = prefsData;
+                _cachedPlayerPrefs[session.UserId] = guestPrefsData;
+                return;
+            }
+
+            var prefsData = new PlayerPrefData();
+            _cachedPlayerPrefs[session.UserId] = prefsData;
+
+            var tasks = new List<Task> { LoadPrefs() };
+
+            var whitelists = await _db.GetJobWhitelists(session.UserId, cancel);
+            cancel.ThrowIfCancellationRequested();
+
+            if (whitelists.Contains(HunterJobId))
+            {
+                _sawmill.Info($"User {session.UserId} is whitelisted for Hunter job. Loading hunter profile...");
+                tasks.Add(LoadHunterPrefs());
             }
             else
             {
-                var prefsData = new PlayerPrefData();
-                var loadTask = LoadPrefs();
-                _cachedPlayerPrefs[session.UserId] = prefsData;
-
-                await loadTask;
-
-                async Task LoadPrefs()
-                {
-                    var prefs = await GetOrCreatePreferencesAsync(session.UserId, cancel);
-                    prefsData.Prefs = prefs;
-                }
+                _sawmill.Info($"User {session.UserId} is NOT whitelisted for Hunter job. Skipping hunter profile load.");
             }
+
+            await Task.WhenAll(tasks);
+
+            async Task LoadPrefs()
+            {
+                var prefs = await GetOrCreatePreferencesAsync(session.UserId, cancel);
+                prefsData.Prefs = prefs;
+            }
+
+            async Task LoadHunterPrefs()
+            {
+                _sawmill.Info($"Loading hunter profile for user {session.UserId} from DB...");
+                var hunterProfile = await _db.GetHunterProfileAsync(session.UserId, cancel);
+                if (hunterProfile == null)
+                {
+                    _sawmill.Info($"No hunter profile found for {session.UserId}. Creating and saving a new random profile.");
+                    hunterProfile = SharedHunterProfile.Random(_prototypeManager, _random);
+                    var namingSystem = _entityManager.System<NamingSystem>();
+                    hunterProfile.Name = namingSystem.GetName("STHunter", hunterProfile.Gender);
+                    await _db.SaveHunterProfileAsync(session.UserId, hunterProfile, cancel);
+                }
+                else
+                {
+                    _sawmill.Info($"Successfully loaded hunter profile for {session.UserId}. Profile Name: {hunterProfile.Name}");
+                }
+                prefsData.HunterProfile = hunterProfile;
+            }
+            // Stories-Hunter-End
         }
 
         public void FinishLoad(ICommonSession session)
@@ -267,10 +344,14 @@ namespace Content.Server.Preferences.Managers
 
             var msg = new MsgPreferencesAndSettings();
             msg.Preferences = prefsData.Prefs;
+            // Stories-Hunter-Start
             msg.Settings = new GameSettings
             {
-                MaxCharacterSlots = MaxCharacterSlots
+                MaxCharacterSlots = MaxCharacterSlots,
+                IsHunterWhitelisted = prefsData.HunterProfile != null
             };
+            msg.HunterProfile = prefsData.HunterProfile;
+            // Stories-Hunter-End
             _netManager.ServerSendMessage(msg, session.Channel);
         }
 
@@ -336,7 +417,16 @@ namespace Content.Server.Preferences.Managers
             var prefs = await _db.GetPlayerPreferencesAsync(userId, cancel);
             if (prefs is null)
             {
-                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random(), cancel);
+                // Stories-Hunter-Start
+                var randomProfile = HumanoidCharacterProfile.Random();
+                var session = _playerManager.GetSessionById(userId);
+                randomProfile.EnsureValid(session, _dependencies);
+
+                var namingSystem = _entityManager.System<NamingSystem>();
+                randomProfile = randomProfile.WithName(namingSystem.GetName("STHunter", randomProfile.Gender));
+
+                return await _db.InitPrefsAsync(userId, randomProfile, cancel);
+                // Stories-Hunter-End
             }
 
             return prefs;
@@ -371,6 +461,7 @@ namespace Content.Server.Preferences.Managers
         {
             public bool PrefsLoaded;
             public PlayerPreferences? Prefs;
+            public SharedHunterProfile? HunterProfile; // Stories-Hunter
         }
 
         void IPostInjectInit.PostInject()
@@ -379,5 +470,24 @@ namespace Content.Server.Preferences.Managers
             _userDb.AddOnFinishLoad(FinishLoad);
             _userDb.AddOnPlayerDisconnect(OnClientDisconnected);
         }
+
+        // Stories-Hunter-Start
+        public SharedHunterProfile? GetHunterProfile(NetUserId userId)
+        {
+            _sawmill.Info($"Attempting to get hunter profile for user {userId}.");
+            if (_cachedPlayerPrefs.TryGetValue(userId, out var data))
+            {
+                if (data.HunterProfile != null)
+                {
+                    _sawmill.Info($"Found cached hunter profile for {userId}.");
+                    return data.HunterProfile;
+                }
+                _sawmill.Warning($"Cached data exists for {userId}, but HunterProfile is null.");
+                return null;
+            }
+            _sawmill.Warning($"No cached preferences data found for user {userId}.");
+            return null;
+        }
+        // Stories-Hunter-End
     }
 }

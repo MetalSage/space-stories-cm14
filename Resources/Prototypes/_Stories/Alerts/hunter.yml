@@ -1,0 +1,195 @@
+- type: alert
+  id: STBracerPowerBase
+  icons:
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_empty
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_0
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_1
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_2
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_3
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_4
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_5
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_6
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_7
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/base.rsi
+    state: powerbar_full
+  name: alerts-bracer-power-name
+  description: alerts-bracer-power-desc
+  minSeverity: 0
+  maxSeverity: 9
+
+- type: alert
+  id: STBracerPowerRetro
+  icons:
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_empty
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_0
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_1
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_2
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_3
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_4
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_5
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_6
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_7
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/retro.rsi
+    state: powerbar_full
+  name: alerts-bracer-power-name
+  description: alerts-bracer-power-desc
+  minSeverity: 0
+  maxSeverity: 9
+
+- type: alert
+  id: STBracerPowerEbony
+  icons:
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_empty
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_0
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_1
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_2
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_3
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_4
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_5
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_6
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_7
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/ebony.rsi
+    state: powerbar_full
+  name: alerts-bracer-power-name
+  description: alerts-bracer-power-desc
+  minSeverity: 0
+  maxSeverity: 9
+
+- type: alert
+  id: STBracerPowerBronze
+  icons:
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_empty
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_0
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_1
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_2
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_3
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_4
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_5
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_6
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_7
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bronze.rsi
+    state: powerbar_full
+  name: alerts-bracer-power-name
+  description: alerts-bracer-power-desc
+  minSeverity: 0
+  maxSeverity: 9
+
+- type: alert
+  id: STBracerPowerSilver
+  icons:
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_empty
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_0
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_1
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_2
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_3
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_4
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_5
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_6
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_7
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/silver.rsi
+    state: powerbar_full
+  name: alerts-bracer-power-name
+  description: alerts-bracer-power-desc
+  minSeverity: 0
+  maxSeverity: 9
+
+- type: alert
+  id: STBracerPowerBone
+  icons:
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_empty
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_0
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_1
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_2
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_3
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_4
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_5
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_6
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_7
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/bone.rsi
+    state: powerbar_full
+  name: alerts-bracer-power-name
+  description: alerts-bracer-power-desc
+  minSeverity: 0
+  maxSeverity: 9
+
+- type: alert
+  id: STBracerPowerCrimson
+  icons:
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_empty
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_0
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_1
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_2
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_3
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_4
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_5
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_6
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_7
+  - sprite: /Textures/_Stories/Interface/Alerts/Energy/crimson.rsi
+    state: powerbar_full
+  name: alerts-bracer-power-name
+  description: alerts-bracer-power-desc
+  minSeverity: 0
+  maxSeverity: 9

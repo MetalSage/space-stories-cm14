@@ -1,0 +1,182 @@
+- type: entity
+  parent: [STHunterBaseItem]
+  id: STHunterScrewdriver
+  name: alien screwdriver
+  description: Some hightech screwing abilities.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/screwdriver_drop.ogg
+  - type: Sprite
+    sprite: _Stories/Objects/Tools/hunter_screwdriver.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Stories/Objects/Tools/hunter_screwdriver.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    attackRate: 1
+    damage:
+      types:
+        Piercing: 6
+    soundHit:
+      path: "/Audio/Weapons/bladeslice.ogg"
+  - type: Tool
+    qualities:
+      - Screwing
+    useSound:
+      collection: Screwdriver
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_RMC14/Handling/screwdriver_pickup.ogg
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - Screwdriver
+
+- type: entity
+  parent: [STHunterBaseItem]
+  id: STHunterWirecutter
+  name: alien wirecutters
+  description: This cuts wires, also flesh. Made of some razorsharp animal teeth.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/wirecutter_drop.ogg
+  - type: Sprite
+    sprite: _Stories/Objects/Tools/hunter_wirecutters.rsi
+    layers:
+    - state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Piercing: 2
+    attackRate: 2
+    soundHit:
+      path: "/Audio/Items/wirecutter.ogg"
+  - type: Tool
+    qualities:
+      - Cutting
+    useSound:
+      path: /Audio/Items/wirecutter.ogg
+  - type: Item
+    size: Small
+    sprite: _Stories/Objects/Tools/hunter_wirecutters.rsi
+    state: icon
+  - type: ToolTileCompatible
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - Wirecutter
+
+- type: entity
+  parent: [STHunterBaseItem, CMWrench]
+  id: STHunterWrench
+  name: alien wrench
+  description: A wrench with many common uses. Made of some bizarre alien bones.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Tools/hunter_wrench.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Stories/Objects/Tools/hunter_wrench.rsi
+    state: icon
+    storedRotation: 90
+    storedSprite:
+      sprite: _Stories/Objects/Tools/hunter_wrench.rsi
+      state: icon
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - Wrench
+
+- type: entity
+  parent: [STHunterBaseItem, CMMultitool]
+  id: STHunterMultitool
+  name: alien multitool
+  description: Top notch alien tech for B&E through hacking.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Tools/hunter_multitool.rsi
+    layers: []
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Stories/Objects/Tools/hunter_multitool.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - Multitool
+
+- type: entity
+  parent: [STHunterBaseItem, CMCrowbar]
+  id: STHunterCrowbar
+  name: hunter crowbar
+  description: Used to remove floors and to pry open doors, made of an unusual alloy.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Tools/hunter_crowbar.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Stories/Objects/Tools/hunter_crowbar.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - Multitool
+
+- type: entity
+  parent: [STHunterBaseItem, CMWelder]
+  id: STHunterWelder
+  name: alien chem welding tool
+  description: A complex chemical welding device, keep away from youngblood.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Tools/hunter_welder.rsi
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
+        maxVol: 150
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - Welder
+
+- type: entity
+  parent: STHunterBaseItem
+  id: STHunterCleanerVial
+  name: cleaner gel vial
+  description: A small vial containing a powerful bio-acid capable of dissolving advanced alloys and organic matter instantly. Used to erase evidence of the Hunt.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Tools/cleaner_vial.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Stories/Objects/Tools/cleaner_vial.rsi
+  - type: HunterCleanerVial
+    doAfterDuration: 3.0
+    meltTime: 2.0
+    acidPrototype: STHunterDissolvingGel
+    strength: Hunter
+    dissolveSound: /Audio/Effects/acid_sizzle4.ogg 
+
+- type: entity
+  id: STHunterDissolvingGel
+  parent: XenoAcidNormal
+  name: dissolving gel
+  description: A powerful bio-chemical gel eating away at the material.
+  components:
+  - type: Sprite
+    sprite: _Stories/Effects/hunter_acid.rsi
+    layers:
+    - state: dissolving_gel

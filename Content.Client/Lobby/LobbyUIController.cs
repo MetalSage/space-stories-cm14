@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client._RMC14.LinkAccount;
+using Content.Client._Stories.Hunter.Profiles.UI;
 using Content.Client.Guidebook;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
@@ -29,7 +30,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby;
 
-public sealed partial class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState> // Stories-TTS
+public sealed partial class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
 {
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
@@ -49,6 +50,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
+    private HunterProfileEditor? _hunterProfileEditor; // Stories
     private CharacterSetupGuiSavePanel? _savePanel;
 
     /// <summary>
@@ -156,9 +158,11 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         PreviewPanel?.SetLoaded(false);
         _profileEditor?.Dispose();
         _characterSetup?.Dispose();
+        _hunterProfileEditor?.Dispose();
 
         _characterSetup = null;
         _profileEditor = null;
+        _hunterProfileEditor = null;
     }
 
     /// <summary>
@@ -172,6 +176,15 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         profileEditor.SetProfile(
             (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter,
             _preferencesManager.Preferences?.SelectedCharacterIndex);
+        // Stories-Start
+        if (_hunterProfileEditor != null)
+        {
+            _hunterProfileEditor.SetProfile(_preferencesManager.HunterProfile);
+            var isWhitelisted = _preferencesManager.Settings?.IsHunterWhitelisted ?? false;
+            
+            profileEditor.SetTabVisible(profileEditor.GetHunterTabIndex(), isWhitelisted);
+        }
+        // Stories-End
     }
 
     /// <summary>
@@ -285,6 +298,16 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 
         _characterSetup = new CharacterSetupGui(_profileEditor);
+        
+        // Stories-Start
+        if (_hunterProfileEditor == null)
+        {
+            _hunterProfileEditor = new HunterProfileEditor();
+            _profileEditor.HunterTab.AddChild(_hunterProfileEditor);
+            _profileEditor.SetTabTitle(_profileEditor.GetHunterTabIndex(), Loc.GetString("st-hunter-profile-editor-tab-title"));
+            _hunterProfileEditor.OnProfileChanged += RefreshLobbyPreview;
+        }
+        // Stories-End
 
         _characterSetup.CloseButton.OnPressed += _ =>
         {

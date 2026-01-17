@@ -95,11 +95,25 @@ public sealed class CMSurgerySystem : SharedCMSurgerySystem
             return;
         }
 
-        if (user == args.Target)
+        // Stories-Start
+        var canSelfOperate = false;
+        foreach (var surgeryProto in _surgeries)
+        {
+            if (GetSingleton(surgeryProto) is { } surgeryEnt &&
+                TryComp<CMSurgeryComponent>(surgeryEnt, out var surgeryComp) &&
+                surgeryComp.SelfOperable)
+            {
+                canSelfOperate = true;
+                break;
+            }
+        }
+
+        if (user == args.Target && !canSelfOperate)
         {
             _popup.PopupEntity("You can't perform surgery on yourself!", user, user);
             return;
         }
+        // Stories-End
 
         args.Handled = true;
         _ui.OpenUi(args.Target.Value, CMSurgeryUIKey.Key, user);

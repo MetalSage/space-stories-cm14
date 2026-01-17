@@ -1,12 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Client.Lobby;
+using Content.Client._Stories.Players.JobWhitelist;
 using Content.Client._Stories.Sponsors;
 using Content.Client._RMC14.PlayTimeTracking;
 using Content.Shared.CCVar;
 using Content.Shared.Localizations;
 using Content.Shared.Players;
-using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -18,6 +17,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Players.JobWhitelist;
 
 namespace Content.Client.Players.PlayTimeTracking;
 
@@ -32,9 +32,13 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly RMCPlayTimeManager _rmcPlayTime = default!;
     [Dependency] private readonly SponsorsManager _sponsors = default!; // Stories-Sponsor
 
+    // Stories-Start
+    private JobWhitelistSystem? _jobWhitelist;
+    private JobWhitelistSystem JobWhitelist => _jobWhitelist ??= _entManager.System<JobWhitelistSystem>();
+    // Stories-End
+
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
-    private readonly List<string> _jobWhitelists = new();
 
     private ISawmill _sawmill = default!;
 
@@ -47,7 +51,6 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         // Yeah the client manager handles role bans and playtime but the server ones are separate DEAL.
         _net.RegisterNetMessage<MsgRoleBans>(RxRoleBans);
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
-        _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
         _rmcPlayTime.Updated += () => Updated?.Invoke();
@@ -59,8 +62,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         {
             // Reset on disconnect, just in case.
             _roles.Clear();
-            _jobWhitelists.Clear();
-            _roleBans.Clear();
+            _roleBans.Clear(); // Stories-Hunter
         }
     }
 
@@ -91,17 +93,10 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         Updated?.Invoke();
     }
 
-    private void RxJobWhitelist(MsgJobWhitelist message)
-    {
-        _jobWhitelists.Clear();
-        _jobWhitelists.AddRange(message.Whitelist);
-        Updated?.Invoke();
-    }
-
     // RMC14-Whitelist-Tweak-Start
     private bool IsWhitelistedInternal(string jobId)
     {
-        if (_jobWhitelists.Contains(jobId))
+        if (JobWhitelist.IsWhitelisted(jobId)) // Stories-Hunter
             return true;
 
         if (!_prototypes.TryIndex<JobPrototype>(jobId, out var jobPrototype))

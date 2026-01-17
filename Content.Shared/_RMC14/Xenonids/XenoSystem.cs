@@ -23,6 +23,7 @@ using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared._RMC14.Xenonids.Rest;
 using Content.Shared._RMC14.Xenonids.ScissorCut;
 using Content.Shared._RMC14.Xenonids.Weeds;
+using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Actions;
 using Content.Shared.Atmos;
@@ -478,7 +479,7 @@ public sealed partial class XenoSystem : EntitySystem
         if (canAttackWindows && HasComp<DestroyOnXenoPierceScissorComponent>(target))
             return true;
 
-        return HasComp<MarineComponent>(target) || HasComp<XenoComponent>(target);
+        return HasComp<MarineComponent>(target) || HasComp<XenoComponent>(target) || HasComp<HunterComponent>(target); // Stories-Hunter
     }
 
     public bool CanHeal(EntityUid xeno)

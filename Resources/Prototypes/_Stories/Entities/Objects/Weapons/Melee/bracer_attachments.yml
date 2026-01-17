@@ -1,0 +1,90 @@
+- type: entity
+  abstract: true
+  parent: STHunterBaseItem
+  id: STBracerAttachmentBase
+  components:
+  - type: BracerAttachment
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STBracerAttachment
+  - type: Item
+    size: Small
+  - type: ItemSlots
+    slots:
+      st-bracer-attachment-weapon-slot:
+        name: st-bracer-attachment-weapon-slot
+        locked: true
+        insertOnInteract: false
+        ejectOnInteract: false
+        insertSound: null
+        ejectSound: null
+
+- type: entity
+  parent: STBracerAttachmentBase
+  id: STBracerAttachmentWristblades
+  name: wristblade bracer attachment
+  description: A pair of huge, serrated blades that can be attached to a bracer.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/wristblade.rsi
+    state: icon
+  - type: BracerAttachment
+    deploySound:
+      path: /Audio/_Stories/Weapons/wristblades_on.ogg
+    retractSound:
+      path: /Audio/_Stories/Weapons/wristblades_off.ogg
+  - type: ContainerFill
+    containers:
+      st-bracer-attachment-weapon-slot: [ STWeaponBracerWristblades ]
+
+- type: entity
+  parent: STBracerAttachmentBase
+  id: STBracerAttachmentScimitars
+  name: scimitar bracer attachment
+  description: A pair of deadly curved blades that can be attached to a bracer.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/scimitar.rsi
+    state: icon
+  - type: BracerAttachment
+    deploySound:
+      path: /Audio/_Stories/Weapons/scims_on.ogg
+    retractSound:
+      path: /Audio/_Stories/Weapons/scims_off.ogg
+  - type: ContainerFill
+    containers:
+      st-bracer-attachment-weapon-slot: [ STWeaponBracerScimitar ]
+
+- type: entity
+  parent: STBracerAttachmentScimitars
+  id: STBracerAttachmentScimitarsAlt
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/scimitar_alt.rsi
+  - type: BracerAttachment
+    deploySound:
+      path: /Audio/_Stories/Weapons/scims_alt_on.ogg
+    retractSound:
+      path: /Audio/_Stories/Weapons/scims_alt_off.ogg
+  - type: ContainerFill
+    containers:
+      st-bracer-attachment-weapon-slot: [ STWeaponBracerScimitarAlt ]
+
+- type: entity
+  parent: STBracerAttachmentBase
+  id: STBracerAttachmentChainGauntlets
+  name: chain gauntlets attachment
+  description: Gauntlets made out of alien alloy. Can be attached to a bracer to be used in melee.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/metal_gauntlet.rsi
+    state: icon
+  - type: BracerAttachment
+    deploySound:
+      path: /Audio/_Stories/Handling/combistick_close.ogg
+    retractSound:
+      path: /Audio/_Stories/Handling/combistick_close.ogg
+  - type: ContainerFill
+    containers:
+      st-bracer-attachment-weapon-slot: [ STWeaponBracerChainGauntlets ]

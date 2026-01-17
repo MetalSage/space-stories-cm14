@@ -522,4 +522,7 @@ public enum LogType
     RMCAdminCommandLogging = RMCMarineAnnounce + 40,
     RMCIdModify = RMCMarineAnnounce + 41,
     RMCTelephone = RMCMarineAnnounce + 42,
+
+    // Stories-LogType
+    STHunter = 20000,
 }

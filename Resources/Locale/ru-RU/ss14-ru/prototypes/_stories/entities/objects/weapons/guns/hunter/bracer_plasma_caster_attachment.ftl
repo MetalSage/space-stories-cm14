@@ -1,0 +1,12 @@
+ent-STBracerAttachmentPlasmaCasterBase = крепление для плазмалива
+    .desc = Крепёжный механизм для установки плазмолива на наручи.
+ent-STBracerAttachmentPlasmaCasterEbony = { ent-STBracerAttachmentPlasmaCasterBase }
+    .desc = { ent-STBracerAttachmentPlasmaCasterBase.desc }
+ent-STBracerAttachmentPlasmaCasterBronze = { ent-STBracerAttachmentPlasmaCasterBase }
+    .desc = { ent-STBracerAttachmentPlasmaCasterBase.desc }
+ent-STBracerAttachmentPlasmaCasterSilver = { ent-STBracerAttachmentPlasmaCasterBase }
+    .desc = { ent-STBracerAttachmentPlasmaCasterBase.desc }
+ent-STBracerAttachmentPlasmaCasterCrimson = { ent-STBracerAttachmentPlasmaCasterBase }
+    .desc = { ent-STBracerAttachmentPlasmaCasterBase.desc }
+ent-STBracerAttachmentPlasmaCasterBone = { ent-STBracerAttachmentPlasmaCasterBase }
+    .desc = { ent-STBracerAttachmentPlasmaCasterBase.desc }

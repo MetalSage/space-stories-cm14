@@ -46,6 +46,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<HunterProfile> HunterProfile { get; set; } = null!; // Stories-Hunter
 
         // RMC14
         public DbSet<RMCDiscordAccount> RMCDiscordAccounts { get; set; } = default!;
@@ -132,6 +133,12 @@ namespace Content.Server.Database
             modelBuilder.Entity<AssignedUserId>()
                 .HasIndex(p => p.UserId)
                 .IsUnique();
+
+            // Stories-Hunter-Start
+            modelBuilder.Entity<HunterProfile>()
+                .HasIndex(p => p.UserId)
+                .IsUnique();
+            // Stories-Hunter-End
 
             modelBuilder.Entity<Admin>()
                 .HasOne(p => p.AdminRank)
@@ -595,6 +602,42 @@ namespace Content.Server.Database
         public string XenoPrefix { get; set; } = string.Empty;
         public string XenoPostfix { get; set; } = string.Empty;
     }
+
+    // Stories-Hunter-Start
+    [Table("st_hunter_profile")]
+    public class HunterProfile
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required]
+        public Guid UserId { get; set; }
+
+        [Column("char_name")]
+        public string CharacterName { get; set; } = "Yautja";
+
+        public string Gender { get; set; } = "Male";
+        public int Age { get; set; } = 175;
+        public string FlavorText { get; set; } = "";
+        public string Status { get; set; } = "Normal";
+        public string SkinColor { get; set; } = "#FFFFFF";
+        public string QuillMarkingId { get; set; } = "HunterHairStandard";
+        public string ArmorPrototype { get; set; } = "STHalfArmorClanHunterEbony1";
+        public string MaskPrototype { get; set; } = "STMaskHunterEbony1";
+        public string GreavesPrototype { get; set; } = "STBootsHunterEbony1";
+        public string CasterPrototype { get; set; } = "STBracerAttachmentPlasmaCasterEbony";
+        public string Voice { get; set; } = "STHunter";
+        [Column("head_accessory")]
+        public string HeadAccessory { get; set; } = "Nothing";
+        [Column("translator_sound")]
+        public string TranslatorSound { get; set; } = "Modern";
+        [Column("cloak_sound")]
+        public string CloakSound { get; set; } = "Modern";
+        [Column("cape_color")]
+        public string CapeColor { get; set; } = "#FFFFFF";
+        public string BracerPrototype { get; set; } = "STBracerHunter";
+    }
+    // Stories-Hunter-End
 
     public class Job
     {

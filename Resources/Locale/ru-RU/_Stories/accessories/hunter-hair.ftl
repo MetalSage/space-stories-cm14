@@ -1,0 +1,9 @@
+marking-HunterHairStandard = Стандартные
+marking-HunterHairShortThick = Короткие густые
+marking-HunterHairStraightThin = Прямые тонкие
+marking-HunterHairLongTied = Длинные собранные
+marking-HunterHairShortThin = Короткие тонкие
+marking-HunterHairLongCurved = Длинные волнистые
+marking-HunterHairLongStraight = Длинные прямые
+marking-HunterHairLongWide = Длинные широкие
+marking-HunterHairShortWide = Короткие широкие

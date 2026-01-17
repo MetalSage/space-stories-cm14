@@ -1,0 +1,21 @@
+- type: npcFaction
+  id: STHunter
+  hostile:
+  - UNMC
+  - RMCXeno
+  - SPP
+  - WeYa
+  - Survivor
+  - CLF
+  - TSE
+
+- type: npcFaction
+  id: STHunterYoung
+  hostile:
+  - UNMC
+  - RMCXeno
+  - SPP
+  - WeYa
+  - Survivor
+  - CLF
+  - TSE

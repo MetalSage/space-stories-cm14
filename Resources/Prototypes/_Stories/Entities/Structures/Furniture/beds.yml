@@ -1,0 +1,22 @@
+- type: entity
+  parent: CMBed
+  id: STBedHunter
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Furniture/bed.rsi
+    state: bed
+
+- type: entity
+  parent: CMBed
+  id: STBedHunterAlt
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Furniture/bed.rsi
+    state: alien_bed
+
+- type: entity
+  parent: Bedroll
+  id: STBedrollHunter
+  components:
+  - type: Sprite
+    color: "#6B675E"

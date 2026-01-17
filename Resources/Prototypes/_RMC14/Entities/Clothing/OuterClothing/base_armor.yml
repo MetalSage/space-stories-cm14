@@ -80,6 +80,8 @@
       - RMCXM51Holster
       - RMCDetector
       - RMCMatebaHolster
+      - STHunterMelee # Stories-Hunter
+      - STHunterQuiver # Stories-Hunter
 
 - type: entity
   abstract: true

@@ -1,0 +1,23 @@
+- type: entity
+  parent: RMCTankReagentFuel
+  id: STTankReagentFuelHunter
+  name: fuel tank
+  description: A tank filled with fuel.
+  suffix: Fuel
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi
+    layers:
+    - state: weldtank
+
+- type: entity
+  parent: RMCTankReagentWater
+  id: STTankReagentWaterHunter
+  name: water tank
+  description: A tank filled with water.
+  suffix: Water
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi
+    layers:
+    - state: watertank

@@ -354,6 +354,9 @@
     state: wound_clamp
   - type: Item
     sprite: _RMC14/Objects/Medical/Surgery/wound_clamp.rsi
+  - type: Tag # Stories-Hunter
+    tags:
+    - STWoundClamp
 
 
 

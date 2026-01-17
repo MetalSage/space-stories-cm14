@@ -1,0 +1,14 @@
+st-hunter-not-hunting-ground = Эта зона не является охотничьими угодьями.
+st-hunter-slots-full = Охотничья группа заполнена.
+st-hunter-round-started-announcement = Этот раунд будет содержать охотников.
+st-hunter-round-admin-announcement = Начался раунд Охотников.
+st-hunter-join-failed-not-hunt-round = Ошибка входа: Сейчас не раунд охоты.
+st-hunter-join-failed-banned = Ошибка входа: Вам запрещено играть за Охотника.
+st-hunter-join-failed-no-profile = Ошибка входа: У вас не выбран профиль Охотника.
+st-hunter-join-failed-already-playing = Ошибка входа: Вы уже находитесь в игре.
+st-hunter-join-failed-status-whitelist = Ошибка входа: Вы не находитесь в вайтлисте для этого ранга Охотников.
+st-hunter-join-failed-no-slots = Ошибка входа: Нет свободных слотов для Охотников.
+st-hunter-join-failed-error = Ошибка входа: Произошла ошибка.
+job-name-hunter-normal = Охотник
+job-name-hunter-council = Член Совета
+job-name-hunter-leader = Лидер Клана

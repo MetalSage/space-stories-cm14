@@ -1,0 +1,17 @@
+ent-STHunterTeleporter = телепорт охотника
+    .desc = { ent-MarkerBase.desc }
+ent-STHunterTeleporterYoungblood = { ent-STHunterTeleporter }
+    .suffix = Молодая кровь
+    .desc = { ent-STHunterTeleporter.desc }
+ent-STHunterTeleportDestination = цель телепортации охотника
+    .suffix = Планета
+    .desc = { ent-MarkerBase.desc }
+ent-STHunterTeleportDestinationAlmayer = цель телепортации охотника
+    .suffix = Корабль Людей
+    .desc = { ent-MarkerBase.desc }
+ent-STHunterTeleportDestinationMoon = цель телепортации охотника
+    .suffix = Луна Охотников
+    .desc = { ent-MarkerBase.desc }
+ent-STHunterTeleportDestinationMoonYoungblood = цель телепортации охотника
+    .suffix = Луна Охотников, Молодая кровь
+    .desc = { ent-MarkerBase.desc }

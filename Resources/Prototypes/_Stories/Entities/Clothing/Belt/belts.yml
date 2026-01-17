@@ -1,0 +1,26 @@
+- type: entity
+  parent: [STHunterBaseItem, RMCBeltBaseStorageNoVisuals]
+  id: STHunterPouch
+  name: hunting pouch
+  description: A hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Back/Backpacks/Hunters/standard.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Back/Backpacks/Hunters/standard.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,11,3
+  - type: FixedItemSizeStorage
+
+- type: entity
+  parent: [STHunterBaseItem, CMBeltUtility]
+  id: STBeltHunterUtility
+  name: alien toolbelt
+  description: A modular belt with various clips. This version lacks any hunting functionality, and is commonly used by engineers to transport important tools.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Belt/Hunter/utility.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Belt/Hunter/utility.rsi

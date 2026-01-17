@@ -113,6 +113,7 @@
   - type: RMCLeapProtection
     inherentStunDuration: 3
   - type: ZombieImmune
+  - type: Unparalyzable # Stories-Hunter
 
 - type: entity
   id: RMCSynthRemoveComponents
