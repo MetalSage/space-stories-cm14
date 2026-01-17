@@ -6,7 +6,10 @@ namespace Content.Shared._Stories.Hunter.Teleporter.Components;
 public sealed partial class HunterTeleporterBeaconComponent : Component
 {
     [DataField]
-    public SoundSpecifier ActivateSound = new SoundPathSpecifier("/Audio/_Stories/Ambience/signal.ogg");
+    public SoundSpecifier ActivateSound = new SoundPathSpecifier(
+        "/Audio/_Stories/Ambience/signal.ogg",
+        AudioParams.Default.WithMaxDistance(5f)
+    );
 
     [DataField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(1);

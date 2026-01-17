@@ -11,6 +11,7 @@ using Content.Shared._RMC14.Clothing;
 using Content.Shared._RMC14.Vendors;
 using Content.Shared._Stories.Hunter;
 using Content.Shared._Stories.Hunter.Equipment;
+using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared._Stories.SCCVars;
 using Content.Shared.GameTicking;
@@ -224,6 +225,9 @@ public sealed partial class HunterSystem : SharedHunterSystem
     private void OnAfterItemVended(Entity<CMAutomatedVendorComponent> ent, ref AfterItemVendedEvent args)
     {
         if (!_playerManager.TryGetSessionByEntity(args.User, out var session))
+            return;
+
+        if (!HasComp<HunterComponent>(args.User))
             return;
 
         var profile = _prefsManager.GetHunterProfile(session.UserId);

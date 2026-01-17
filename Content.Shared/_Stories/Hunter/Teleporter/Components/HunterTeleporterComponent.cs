@@ -13,7 +13,10 @@ public sealed partial class HunterTeleporterComponent : Component
     public HunterTeleporterType TeleporterType;
 
     [DataField]
-    public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Effects/teleport_arrival.ogg");
+    public SoundSpecifier TeleportSound = new SoundPathSpecifier(
+        "/Audio/Effects/teleport_arrival.ogg",
+        AudioParams.Default.WithMaxDistance(5f)
+    );
 }
 
 public enum HunterTeleporterType

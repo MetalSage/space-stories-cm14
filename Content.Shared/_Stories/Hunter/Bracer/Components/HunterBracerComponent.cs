@@ -32,15 +32,20 @@ public sealed partial class HunterBracerComponent : Component
 
     [DataField]
     public SoundSpecifier CasterDeploySound = new SoundPathSpecifier(
-        "/Audio/_Stories/Weapons/pred_plasmacaster_on.ogg"
+        "/Audio/_Stories/Weapons/pred_plasmacaster_on.ogg",
+        AudioParams.Default.WithMaxDistance(5f)
     );
 
     [DataField]
-    public SoundSpecifier CasterModeCycleSound = new SoundPathSpecifier("/Audio/Machines/button.ogg");
+    public SoundSpecifier CasterModeCycleSound = new SoundPathSpecifier(
+        "/Audio/Machines/button.ogg",
+        AudioParams.Default.WithMaxDistance(2f)
+    );
 
     [DataField]
     public SoundSpecifier CasterRetractSound = new SoundPathSpecifier(
-        "/Audio/_Stories/Weapons/pred_plasmacaster_off.ogg"
+        "/Audio/_Stories/Weapons/pred_plasmacaster_off.ogg",
+        AudioParams.Default.WithMaxDistance(5f)
     );
 
     [DataField]
@@ -77,7 +82,10 @@ public sealed partial class HunterBracerComponent : Component
     public TimeSpan CountdownDuration = TimeSpan.FromSeconds(8);
 
     [DataField]
-    public SoundSpecifier CountdownSound = new SoundPathSpecifier("/Audio/_Stories/Effects/Hunter/pred_countdown.ogg");
+    public SoundSpecifier CountdownSound = new SoundPathSpecifier(
+        "/Audio/_Stories/Effects/Hunter/pred_countdown.ogg",
+        AudioParams.Default.WithMaxDistance(15f)
+    );
 
     [DataField] [AutoNetworkedField]
     public EntityUid? CreateHealingCapsuleAction;
@@ -110,7 +118,10 @@ public sealed partial class HunterBracerComponent : Component
     public bool Locked = true;
 
     [DataField]
-    public SoundSpecifier? LockSound = new SoundPathSpecifier("/Audio/_RMC14/Medical/air_release.ogg");
+    public SoundSpecifier? LockSound = new SoundPathSpecifier(
+        "/Audio/_RMC14/Medical/air_release.ogg",
+        AudioParams.Default.WithMaxDistance(3f)
+    );
 
     [DataField]
     public float MalfunctionDelimbChance = 0.20f;
@@ -191,7 +202,10 @@ public sealed partial class HunterBracerComponent : Component
     public float TranslatorPowerCost = 50f;
 
     [DataField]
-    public SoundSpecifier TranslatorSound = new SoundPathSpecifier("/Audio/Machines/button.ogg");
+    public SoundSpecifier TranslatorSound = new SoundPathSpecifier(
+        "/Audio/Machines/button.ogg",
+        AudioParams.Default.WithMaxDistance(2f)
+    );
 
     [DataField]
     public float UnauthorizedMalfunctionChance = 0.10f;
@@ -206,5 +220,8 @@ public sealed partial class HunterBracerComponent : Component
     public TimeSpan UncloakWeaponLockDuration = TimeSpan.FromSeconds(1.0);
 
     [DataField]
-    public SoundSpecifier? UnlockSound = new SoundPathSpecifier("/Audio/_RMC14/Medical/air_release.ogg");
+    public SoundSpecifier? UnlockSound = new SoundPathSpecifier(
+        "/Audio/_RMC14/Medical/air_release.ogg",
+        AudioParams.Default.WithMaxDistance(3f)
+    );
 }

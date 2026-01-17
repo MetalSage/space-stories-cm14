@@ -31,11 +31,11 @@ public sealed partial class BracerSystem
 
     private void OnAttachmentEjectAttempt(Entity<BracerAttachmentComponent> ent, ref ItemSlotEjectAttemptEvent args)
     {
+        if (args.Cancelled)
+            return;
+
         if (ent.Comp.AttachedWeapon.HasValue)
         {
-            if (args.User != null)
-                _popup.PopupClient(Loc.GetString("st-bracer-retract-before-eject"), args.User.Value, args.User.Value);
-
             args.Cancelled = true;
         }
     }

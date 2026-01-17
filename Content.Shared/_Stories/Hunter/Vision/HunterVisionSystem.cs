@@ -70,6 +70,9 @@ public sealed class HunterVisionSystem : EntitySystem
 
         if (_net.IsServer)
             UpdateMaskAbilities(ent, args.Equipee);
+
+        if (ent.Comp.IsActive)
+            EnableVisionEffects(args.Equipee, ent.Comp);
     }
 
     private void OnMaskUnequipped(Entity<HunterVisionMaskComponent> ent, ref GotUnequippedEvent args)
@@ -153,7 +156,9 @@ public sealed class HunterVisionSystem : EntitySystem
     {
         if (mask.Comp.ToggleVisionAction != null && Exists(mask.Comp.ToggleVisionAction))
         {
-            _actions.RemoveAction(user, mask.Comp.ToggleVisionAction.Value);
+            if (TryComp(mask.Comp.ToggleVisionAction, out ActionComponent? action) && action.AttachedEntity == user)
+                _actions.RemoveAction(user, mask.Comp.ToggleVisionAction.Value);
+            
             mask.Comp.ToggleVisionAction = null;
             Dirty(mask);
         }
@@ -161,7 +166,9 @@ public sealed class HunterVisionSystem : EntitySystem
         if (TryComp<ScopeComponent>(mask, out var scope) && scope.ScopingToggleActionEntity != null &&
             Exists(scope.ScopingToggleActionEntity))
         {
-            _actions.RemoveAction(user, scope.ScopingToggleActionEntity.Value);
+            if (TryComp(scope.ScopingToggleActionEntity, out ActionComponent? action) && action.AttachedEntity == user)
+                _actions.RemoveAction(user, scope.ScopingToggleActionEntity.Value);
+            
             scope.ScopingToggleActionEntity = null;
             Dirty(mask);
         }

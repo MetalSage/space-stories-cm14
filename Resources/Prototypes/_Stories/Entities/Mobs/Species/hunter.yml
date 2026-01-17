@@ -36,6 +36,7 @@
       types:
         Bloodloss: -0.5
     damageBleedModifiers: CMBloodlossHuman
+  - type: FootstepModifier
   - type: Body
     prototype: STHunter
   - type: Damageable
@@ -89,12 +90,6 @@
         type: TacticalMapUserBui
       enum.DialogUiKey.Key:
         type: DialogBui
-  - type: FixedIdentity
-    name: chat-speech-verb-name-hunter
-    whitelist:
-      components:
-      - Xeno
-      - Marine
   - type: RMCFireArmorDebuffModifier
     debuffModifier: 1.2
   - type: RMCImmuneToFireTileDamage

@@ -20,11 +20,20 @@ public sealed partial class HunterVisionMaskComponent : Component
     public EntProtoId ToggleVisionActionId = "STActionToggleHunterVision";
 
     [DataField]
-    public SoundSpecifier VisorSwitchSound = new SoundPathSpecifier("/Audio/_Stories/Effects/Hunter/pred_vision.ogg");
+    public SoundSpecifier VisorSwitchSound = new SoundPathSpecifier(
+        "/Audio/_Stories/Effects/Hunter/pred_vision.ogg",
+        AudioParams.Default.WithMaxDistance(2f)
+    );
 
     [DataField]
-    public SoundSpecifier ZoomInSound = new SoundPathSpecifier("/Audio/_Stories/Effects/Hunter/pred_zoom_on.ogg");
+    public SoundSpecifier ZoomInSound = new SoundPathSpecifier(
+        "/Audio/_Stories/Effects/Hunter/pred_zoom_on.ogg",
+        AudioParams.Default.WithMaxDistance(2f)
+    );
 
     [DataField]
-    public SoundSpecifier ZoomOutSound = new SoundPathSpecifier("/Audio/_Stories/Effects/Hunter/pred_zoom_off.ogg");
+    public SoundSpecifier ZoomOutSound = new SoundPathSpecifier(
+        "/Audio/_Stories/Effects/Hunter/pred_zoom_off.ogg",
+        AudioParams.Default.WithMaxDistance(2f)
+    );
 }

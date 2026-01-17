@@ -2,60 +2,75 @@ using Content.Shared._Stories.Hunter.Bracer.Components;
 using Content.Shared.Chat;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
+using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 
 namespace Content.Shared._Stories.Hunter.Bracer;
 
 public sealed partial class BracerSystem
 {
+    [Dependency] private readonly SharedIdentitySystem _identity = default!;
+
     private void InitializeIdentity()
     {
-        SubscribeLocalEvent<HunterBracerComponent, TransformSpeakerNameEvent>(OnTransformSpeakerName);
+        SubscribeLocalEvent<HunterBracerComponent, InventoryRelayedEvent<TransformSpeakerNameEvent>>(OnTransformSpeakerName);
+        
         SubscribeLocalEvent<HunterBracerComponent, MapInitEvent>(OnBracerIdentityInit);
     }
 
     private void OnBracerIdentityInit(Entity<HunterBracerComponent> ent, ref MapInitEvent args)
     {
-        EnsureComp<IdentityBlockerComponent>(ent);
-        UpdateIdentity(ent.Owner, ent.Comp, null);
+        var blocker = EnsureComp<IdentityBlockerComponent>(ent);
+        blocker.Enabled = !ent.Comp.ShowClanName;
+        blocker.Coverage = IdentityBlockerCoverage.FULL;
     }
 
     private void OnEquippedIdentity(Entity<HunterBracerComponent> ent, ref GotEquippedEvent args)
     {
-        UpdateIdentity(ent.Owner, ent.Comp, args.Equipee);
+        UpdateBracerBlockerStatus(ent, args.Equipee);
+
+        _identity.QueueIdentityUpdate(args.Equipee);
     }
 
     private void OnUnequippedIdentity(Entity<HunterBracerComponent> ent, ref GotUnequippedEvent args)
     {
-        UpdateIdentity(ent.Owner, ent.Comp, null);
+        _identity.QueueIdentityUpdate(args.Equipee);
     }
 
-    private void OnTransformSpeakerName(Entity<HunterBracerComponent> ent, ref TransformSpeakerNameEvent args)
+    private void OnTransformSpeakerName(Entity<HunterBracerComponent> ent, ref InventoryRelayedEvent<TransformSpeakerNameEvent> args)
     {
-        var wearer = Transform(ent).ParentUid;
-        if (wearer.IsValid() && IsAuthorized(wearer, ent.Comp) && !ent.Comp.ShowClanName)
-            args.VoiceName = Loc.GetString("identity-unknown-name");
+        var user = args.Args.Sender;
+
+        if (IsAuthorized(user, ent.Comp) && !ent.Comp.ShowClanName)
+        {
+            args.Args.VoiceName = Loc.GetString("identity-unknown-name");
+        }
     }
 
-    private void UpdateIdentity(EntityUid bracerUid, HunterBracerComponent component, EntityUid? wearer)
+    private void UpdateBracerBlockerStatus(Entity<HunterBracerComponent> ent, EntityUid? wearer)
     {
-        if (TryComp<IdentityBlockerComponent>(bracerUid, out var blocker))
+        if (!TryComp<IdentityBlockerComponent>(ent, out var blocker))
+            return;
+
+        var shouldBlock = false;
+
+        if (wearer != null && IsAuthorized(wearer.Value, ent.Comp) && !ent.Comp.ShowClanName)
         {
-            blocker.Enabled = false;
-
-            if (wearer != null && IsAuthorized(wearer.Value, component) && !component.ShowClanName)
-            {
-                blocker.Enabled = true;
-                blocker.Coverage = IdentityBlockerCoverage.FULL;
-            }
-
-            Dirty(bracerUid, blocker);
+            shouldBlock = true;
         }
 
-        if (wearer != null)
+        if (blocker.Enabled != shouldBlock)
         {
-            var identitySys = EntityManager.System<SharedIdentitySystem>();
-            identitySys.QueueIdentityUpdate(wearer.Value);
+            blocker.Enabled = shouldBlock;
+            Dirty(ent, blocker);
+
+            if (wearer != null)
+                _identity.QueueIdentityUpdate(wearer.Value);
         }
+    }
+
+    public void UpdateIdentity(EntityUid bracerUid, HunterBracerComponent component, EntityUid? wearer)
+    {
+        UpdateBracerBlockerStatus((bracerUid, component), wearer);
     }
 }
