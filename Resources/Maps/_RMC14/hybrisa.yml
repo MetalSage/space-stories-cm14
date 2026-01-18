@@ -13402,32 +13402,26 @@ entities:
             6045: -80,-26
     - type: RadiationGridResistance
     - type: RMCWeatherCycle
-      minTimeBetweenEvents: 1200
+      minTimeBetweenEvents: 900
       weatherEvents:
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataClearsky
-        duration: 600
-        name: Snow
+        lightningChance: 0.04
+        weatherType: RMCHybrisaRainLight
+        duration: 900
+        name: Hybrisa Light Rain
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataSnowing
-        duration: 360
-        name: Snowstorm
-      - lightningSound: !type:SoundCollectionSpecifier
-          collection: RMCThunder
-        lightningEffects:
-        - RMCColorSequenceLightningSharpPeak
-        - RMCColorSequenceLightningFlicker
-        weatherType: SnowfallHeavy
-        duration: 120
-        name: Blizzard
+        lightningChance: 0.02
+        weatherType: RMCHybrisaRainVeryLight
+        duration: 900
+        name: Hybrisa Very Light Rain
     - type: AreaGrid
       labels: {}
       areaEntities: {}

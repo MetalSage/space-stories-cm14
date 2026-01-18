@@ -363,17 +363,18 @@ entities:
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataClearsky
-        duration: 600
-        name: Snow
+        weatherType: RMCBigRedDust
+        duration: 360
+        name: Duststorm
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataSnowing
+        lightningChance: 0.01
+        weatherType: RMCTrijentRainLight
         duration: 360
-        name: Snowstorm
+        name: Rainstorm
     - type: RMCAmbientLightEffects
     - type: BecomesStation
       id: Trijent

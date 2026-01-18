@@ -171,17 +171,18 @@ entities:
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataClearsky
-        duration: 600
-        name: Snow
+        weatherType: RMCBigRedSand
+        duration: 360
+        name: Duststorm
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataSnowing
-        duration: 360
-        name: Snowstorm
+        lightningChance: 0.02
+        weatherType: RMCStrataStormLight
+        duration: 240
+        name: Rainstorm
     - type: RMCAmbientLightEffects
     - type: Broadphase
     - type: OccluderTree

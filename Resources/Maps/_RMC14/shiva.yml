@@ -155,8 +155,8 @@ entities:
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: SnowfallHeavy
-        duration: 120
+        weatherType: RMCStrataBlizzard
+        duration: 240
         name: Blizzard
     - type: RMCAmbientLightEffects
       sunset: RMCColorSequenceSunsetCold

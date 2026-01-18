@@ -4,7 +4,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/lv624.yml
-    camouflage: Snow
+    camouflage: Jungle
     announcement: "Получен автоматический сигнал бедствия с археологической площадки 'Пристань Лазаря', на пограничном мире LV-624. Группа реагирования с борта ВКСШ Алмайер будет отправлена в ближайшее время для расследования." # Stories-Translate
     nightmareScenarios:
     - scenarioName: fallen_ship
@@ -50,7 +50,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/solaris.yml
-    camouflage: Snow
+    camouflage: Desert
     announcement: "Компания Вестон-Ямада потеряла связь с одним из своих хранилищ биологических образцов, 'Хребет Солярис', на планете LV-1413. Командование Вестон-Ямада запросило ВКСШ Алмайер для расследования причин потери связи." # Stories-Translate
     nightmareScenarios:
     - scenarioName: clfmining
@@ -154,7 +154,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/prison.yml
-    camouflage: Snow
+    camouflage: Classic
     minPlayers: 130
     announcement: "Получен автоматический сигнал бедствия из тюрьмы максимальной безопасности 'Орбитальная тюрьма Фиорина'. Группа реагирования с борта ВКСШ Алмайер будет отправлена в ближайшее время для расследования." # Stories-Translate
     survivorJobInserts:
@@ -181,7 +181,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/trijent.yml
-    camouflage: Snow
+    camouflage: Desert
     minPlayers: 130
     announcement: "Мы потеряли связь с внесолнечной колонией компании Вестон-Ямада, 'Дамба Триджент', на планете 'Райдзин'. ВКСШ Алмайер отправлен для оказания помощи."
     survivorJobInserts:
@@ -249,7 +249,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/varadero.yml
-    camouflage: Snow
+    camouflage: Jungle
     announcement: "Получен автоматический сигнал бедствия с аванпоста США 'Новый-Варадеро'. Группа реагирования с борта ВКСШ Алмайер будет отправлена в ближайшее время для расследования.
       Обозначение: Островная исследовательская станция и горнодобывающий комплекс
 
@@ -292,7 +292,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/kutjevo.yml
-    camouflage: Snow
+    camouflage: Desert
     announcement: "Получен автоматический сигнал бедствия с колонии Вестон-Ямада 'Перерабатывающий Завод Кутьево', известного ботаническими исследованиями, экспортом и переработкой и очисткой сырья. ВКСШ Алмайер отправлен для расследования." # Stories-Translate
     survivorJobInserts:
       CMSurvivor:
@@ -317,7 +317,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/chances.yml
-    camouflage: Snow
+    camouflage: Classic
     announcement: "Пан-пан. Говорит командующий офицер ВКСШ Ханьют, КМП США ФОРКОН. В настоящее время мы находимся на планете LV-522 в непосредственной близости от 'Претензии Шанса'. Мы не можем связаться с 'Ханьют', и наши десантные корабли не могут взлететь в данный момент. Мы запрашиваем помощь у любых находящихся поблизости судов; эта трансляция будет повторяться каждые 24 часа." # Stories-Translate
     selectRandomSurvivorInsert: false
     survivorJobs:
@@ -347,7 +347,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/hybrisa.yml
-    camouflage: Snow
+    camouflage: Urban
     announcement: "Получен автоматический сигнал бедствия с колонии Вестон-Ямада, Гибриса Проспера - огромного, похожего на город поселения, известного своим огромным богатством, обширными горнодобывающими операциями и процветающей торговлей. Недавно полностью выкупленная у ИТС, эта бывшая колония теперь является ключевым активом Вестон-Ямады, с разросшимся городским центром, в котором проживают тысячи жителей, и множеством небольших внешних колоний под ее контролем. ВКСШ Алмайер отправлен для расследования ситуации." # Stories-Translate
     minPlayers: 130
     survivorJobInserts:
@@ -383,7 +383,7 @@
   components:
   - type: RMCPlanetMapPrototype
     map: /Maps/_RMC14/sorokyne.yml
-    camouflage: Snow
+    camouflage: Jungle
     minPlayers: 130
     announcement: "An automated distress signal has been recieved from a mining colony on border world LV-976, \"Sorokyne Outpost\". A response team from the UNS Almayer will be dispatched shortly to investigate."
     survivorJobInserts:

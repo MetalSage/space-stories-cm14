@@ -2874,32 +2874,35 @@ entities:
       data: {}
     - type: MapLight
     - type: RMCWeatherCycle
-      minTimeBetweenEvents: 1200
+      minTimeBetweenEvents: 1800
       weatherEvents:
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataClearsky
-        duration: 600
-        name: Snow
+        lightningChance: 0.04
+        weatherType: RMCStrataStormVeryLight
+        duration: 180
+        name: Light Rain
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataSnowing
-        duration: 360
-        name: Snowstorm
+        lightningChance: 0.01
+        weatherType: RMCStrataStormVeryLight
+        duration: 180
+        name: Tropical Storm
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: SnowfallHeavy
-        duration: 120
-        name: Blizzard
+        lightningChance: 0.06
+        weatherType: RMCStrataStormLight
+        duration: 240
+        name: Monsoon
     - type: RMCAmbientLightEffects
     - type: BecomesStation
       id: Sorokyne

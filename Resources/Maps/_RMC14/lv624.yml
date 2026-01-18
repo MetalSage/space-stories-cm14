@@ -194,17 +194,18 @@ entities:
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataClearsky
-        duration: 600
-        name: Snow
+        weatherType: RMCStrataStormVeryLight
+        duration: 480
+        name: Light Rain
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataSnowing
-        duration: 360
-        name: Snowstorm
+        lightningChance: 0.02
+        weatherType: RMCStrataStormLight
+        duration: 720
+        name: Heavy Rain
     - type: RMCAmbientLightEffects
     - type: MapGrid
       chunks:

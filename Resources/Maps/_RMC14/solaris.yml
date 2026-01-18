@@ -294,17 +294,17 @@ entities:
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataClearsky
+        weatherType: RMCBigRedDust
         duration: 600
-        name: Snow
+        name: Duststorm
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataSnowing
+        weatherType: RMCBigRedSand
         duration: 360
-        name: Snowstorm
+        name: Sandstorm
     - type: RMCAmbientLightEffects
     - type: MapGrid
       chunks:

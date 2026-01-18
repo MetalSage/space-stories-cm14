@@ -149,24 +149,26 @@ entities:
     - type: Roof
       data: {}
     - type: RMCWeatherCycle
-      minTimeBetweenEvents: 1200
+      minTimeBetweenEvents: 900
       weatherEvents:
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataClearsky
-        duration: 600
-        name: Snow
+        lightningChance: 0.01
+        weatherType: RMCStrataStormVeryLight
+        duration: 240
+        name: Tropical Storm
       - lightningSound: !type:SoundCollectionSpecifier
           collection: RMCThunder
         lightningEffects:
         - RMCColorSequenceLightningSharpPeak
         - RMCColorSequenceLightningFlicker
-        weatherType: RMCStrataSnowing
+        lightningChance: 0.06
+        weatherType: RMCStrataStormLight
         duration: 360
-        name: Snowstorm
+        name: Monsoon
     - type: RMCAmbientLightEffects
     - type: MapGrid
       chunks:
