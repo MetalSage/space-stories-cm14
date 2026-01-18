@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Text.RegularExpressions;
 using Content.Client._Stories.Players.JobWhitelist;
 using Content.Client._Stories.Sponsors;
 using Content.Client._Stories.TTS;
@@ -10,6 +9,7 @@ using Content.Shared._RMC14.Clothing;
 using Content.Shared._RMC14.NamedItems;
 using Content.Shared._Stories.Hunter;
 using Content.Shared._Stories.Hunter.Profiles;
+using Content.Shared._Stories.Hunter.Prototypes;
 using Content.Shared._Stories.SCCVars;
 using Content.Shared._Stories.TTS;
 using Content.Shared.Hands.Components;
@@ -38,7 +38,8 @@ namespace Content.Client._Stories.Hunter.Profiles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class HunterProfileEditor : Control
 {
-    private readonly Dictionary<string, Dictionary<string, List<EntProtoId>>> _categorizedPrototypes = new();
+    private readonly Dictionary<string, Dictionary<string, List<HunterGearPrototype>>> _categorizedGear = new();
+    
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
@@ -114,6 +115,7 @@ public sealed partial class HunterProfileEditor : Control
 
         SaveButton.OnPressed += _ => Save();
         ShowClothesButton.OnToggled += _ => UpdatePreview();
+        ShowCapeButton.OnToggled += _ => UpdatePreview();
 
         RotateLeftButton.OnPressed += _ =>
         {
@@ -216,16 +218,6 @@ public sealed partial class HunterProfileEditor : Control
     {
         if (_profile == null)
             return;
-
-        if (_statusAvailability.TryGetValue(args.Id, out var available) && !available)
-        {
-            var fallbackId = (int)HunterStatus.Normal;
-            if (_statusAvailability.TryGetValue((int)_profile.Status, out var currentIsAvailable) && currentIsAvailable)
-                fallbackId = (int)_profile.Status;
-
-            StatusButton.SelectId(fallbackId);
-            return;
-        }
 
         StatusButton.SelectId(args.Id);
         _profile.Status = (HunterStatus)args.Id;
@@ -331,101 +323,135 @@ public sealed partial class HunterProfileEditor : Control
         quillPicker.OnColorChanged += _ => UpdatePreview();
         QuillsContent.AddChild(quillPicker);
 
-        var categories = new Dictionary<string, (string[] SearchStrs, Control Tab)>
+        var gearTabs = new Dictionary<string, Control>
         {
-            { "Armor", (new[] { "STHalfArmor" }, ArmorTab) },
-            { "Mask", (new[] { "STMaskHunter", "STHelmetHunter" }, MaskTab) },
-            { "Accessory", (new[] { "STHunterMaskAccessory" }, AccessoryTab) },
-            { "Greaves", (new[] { "STBootsHunter", "STGreavesHunter" }, GreavesTab) },
+            { "Armor", ArmorTab },
+            { "Mask", MaskTab },
+            { "Accessory", AccessoryTab },
+            { "Greaves", GreavesTab },
+            { "Cape", CapeTab },
+            { "Caster", CasterTab },
+            { "Bracer", BracerTab }
         };
 
-        var materialRegex = new Regex(@"(Ebony|Bronze|Silver|Crimson|Crimzon|Bone|Gold)", RegexOptions.IgnoreCase);
+        var isSponsor = _sponsorsSystem.TryGetInfo(out var sponsorInfo) && sponsorInfo.CanUseHunterCustomization;
 
-        foreach (var (category, (searchStrs, tab)) in categories)
+        _categorizedGear.Clear();
+        foreach (var gearProto in _prototypeManager.EnumeratePrototypes<HunterGearPrototype>())
         {
-            _categorizedPrototypes[category] = new Dictionary<string, List<EntProtoId>>();
+            if (!_categorizedGear.ContainsKey(gearProto.Category))
+                _categorizedGear[gearProto.Category] = new Dictionary<string, List<HunterGearPrototype>>();
 
-            var materialTabs = new TabContainer { VerticalExpand = true };
-            tab.AddChild(materialTabs);
+            if (!_categorizedGear[gearProto.Category].ContainsKey(gearProto.Material))
+                _categorizedGear[gearProto.Category][gearProto.Material] = new List<HunterGearPrototype>();
 
-            var prototypes = _prototypeManager
-                .EnumeratePrototypes<EntityPrototype>()
-                .Where(p => !p.Abstract && searchStrs.Any(s => p.ID.StartsWith(s)))
-                .ToList();
+            _categorizedGear[gearProto.Category][gearProto.Material].Add(gearProto);
+        }
 
-            foreach (var proto in prototypes)
+        foreach (var (category, materials) in _categorizedGear)
+        {
+            if (!gearTabs.TryGetValue(category, out var tab))
+                continue;
+
+            tab.DisposeAllChildren();
+
+            if (materials.Count > 1)
             {
-                var match = materialRegex.Match(proto.ID);
-                var material = match.Success ? match.Value : "Standard";
+                var splitContainer = new SplitContainer
+                {
+                    Orientation = SplitContainer.SplitOrientation.Horizontal,
+                    VerticalExpand = true,
+                    HorizontalExpand = true,
+                    State = SplitContainer.SplitState.Auto,
+                };
 
-                if (!_categorizedPrototypes[category].ContainsKey(material))
-                    _categorizedPrototypes[category][material] = new List<EntProtoId>();
-                _categorizedPrototypes[category][material].Add(proto.ID);
-            }
-
-            foreach (var (material, protos) in _categorizedPrototypes[category].OrderBy(kvp => kvp.Key))
-            {
-                var picker = new SpritePicker();
-                picker.Populate(protos);
-                picker.OnSelectionChanged += protoId => OnSpriteSelected(category, protoId);
-
-                var materialTabBox = new BoxContainer
+                var materialListScroll = new ScrollContainer
+                {
+                    VerticalExpand = true,
+                    HorizontalExpand = false,
+                    MinWidth = 120,
+                    HScrollEnabled = false
+                };
+                var materialListContainer = new BoxContainer
                 {
                     Orientation = BoxContainer.LayoutOrientation.Vertical,
                     VerticalExpand = true,
+                    Margin = new Thickness(0, 0, 5, 0)
                 };
-                materialTabBox.AddChild(picker);
+                materialListScroll.AddChild(materialListContainer);
 
-                var matKey = $"st-hunter-material-{material.ToLowerInvariant()}";
-                var locTitle = Loc.GetString(matKey);
-                if (locTitle.StartsWith("st-hunter-material-"))
-                    locTitle = material;
+                var pickerArea = new BoxContainer
+                {
+                    Orientation = BoxContainer.LayoutOrientation.Vertical,
+                    VerticalExpand = true,
+                    HorizontalExpand = true
+                };
 
-                materialTabs.AddChild(materialTabBox);
-                materialTabs.SetTabTitle(materialTabs.ChildCount - 1, locTitle);
+                void PopulatePicker(string materialName)
+                {
+                    pickerArea.DisposeAllChildren();
+                    if (!materials.TryGetValue(materialName, out var gears)) return;
+
+                    var picker = new SpritePicker();
+                    picker.Populate(gears, isSponsor);
+
+                    if (category == "Accessory")
+                        picker.AddCustomButton("Nothing", Loc.GetString("st-hunter-gear-none"), false, true);
+
+                    picker.OnSelectionChanged += protoId => OnSpriteSelected(category, protoId);
+                    pickerArea.AddChild(picker);
+                }
+
+                var materialButtonGroup = new ButtonGroup();
+                string? firstMaterial = null;
+
+                foreach (var material in materials.Keys.OrderBy(k => k))
+                {
+                    firstMaterial ??= material;
+                    
+                    var matKey = $"st-hunter-material-{material.ToLowerInvariant()}";
+                    var locTitle = Loc.GetString(matKey);
+                    if (locTitle.StartsWith("st-hunter-material-"))
+                        locTitle = material;
+
+                    var btn = new Button
+                    {
+                        Text = locTitle,
+                        ToggleMode = true,
+                        Group = materialButtonGroup,
+                        TextAlign = Label.AlignMode.Left
+                    };
+                    btn.OnPressed += _ => PopulatePicker(material);
+                    materialListContainer.AddChild(btn);
+                }
+
+                splitContainer.AddChild(materialListScroll);
+                splitContainer.AddChild(pickerArea);
+                tab.AddChild(splitContainer);
+
+                if (firstMaterial != null)
+                {
+                    PopulatePicker(firstMaterial);
+                    if (materialListContainer.ChildCount > 0 && materialListContainer.GetChild(0) is Button firstBtn)
+                        firstBtn.Pressed = true;
+                }
+            }
+            else if (materials.Count == 1)
+            {
+                var gears = materials.First().Value;
+                var picker = new SpritePicker();
+                
+                picker.Populate(gears, isSponsor);
+
+                if (category == "Accessory")
+                {
+                    picker.AddCustomButton("Nothing", Loc.GetString("st-hunter-gear-none"), false, true);
+                }
+
+                picker.OnSelectionChanged += protoId => OnSpriteSelected(category, protoId);
+                tab.AddChild(picker);
             }
         }
-
-        _categorizedPrototypes["Caster"] = new Dictionary<string, List<EntProtoId>>();
-        var casterProtos = _prototypeManager
-            .EnumeratePrototypes<EntityPrototype>()
-            .Where(p => !p.Abstract && p.ID.StartsWith("STBracerAttachmentPlasmaCaster"))
-            .Select(p => (EntProtoId)p.ID)
-            .ToList();
-
-        _categorizedPrototypes["Caster"]["All"] = casterProtos;
-
-        var casterPicker = new SpritePicker();
-        casterPicker.Populate(casterProtos);
-        casterPicker.OnSelectionChanged += protoId => OnSpriteSelected("Caster", protoId);
-        CasterTab.AddChild(casterPicker);
-
-        _categorizedPrototypes["Bracer"] = new Dictionary<string, List<EntProtoId>>();
-        var bracerProtos = _prototypeManager
-            .EnumeratePrototypes<EntityPrototype>()
-            .Where(p => !p.Abstract && p.ID.StartsWith("STBracerHunter"))
-            .Select(p => (EntProtoId)p.ID)
-            .ToList();
-
-        _categorizedPrototypes["Bracer"]["All"] = bracerProtos;
-
-        var bracerPicker = new SpritePicker();
-        bracerPicker.Populate(bracerProtos);
-        bracerPicker.OnSelectionChanged += protoId => OnSpriteSelected("Bracer", protoId);
-        BracerTab.AddChild(bracerPicker);
-
-        _categorizedPrototypes["Cape"] = new Dictionary<string, List<EntProtoId>>();
-        var capeProtos = _prototypeManager
-            .EnumeratePrototypes<EntityPrototype>()
-            .Where(p => !p.Abstract && p.ID.StartsWith("STHunterCape"))
-            .Select(p => (EntProtoId)p.ID)
-            .ToList();
-        _categorizedPrototypes["Cape"]["All"] = capeProtos;
-
-        var capePicker = new SpritePicker();
-        capePicker.Populate(capeProtos);
-        capePicker.OnSelectionChanged += protoId => OnSpriteSelected("Cape", protoId);
-        CapeTab.AddChild(capePicker);
     }
 
     private void RandomizeName()
@@ -452,12 +478,14 @@ public sealed partial class HunterProfileEditor : Control
         _profile.Name = name;
         _profile.Gender = randomProfile.Gender;
         _profile.Age = randomProfile.Age;
+        
         _profile.ArmorPrototype = randomProfile.ArmorPrototype;
         _profile.MaskPrototype = randomProfile.MaskPrototype;
         _profile.GreavesPrototype = randomProfile.GreavesPrototype;
         _profile.CasterPrototype = randomProfile.CasterPrototype;
         _profile.BracerPrototype = randomProfile.BracerPrototype;
         _profile.HeadAccessory = randomProfile.HeadAccessory;
+        
         _profile.SkinColor = randomProfile.SkinColor;
         _profile.Voice = randomProfile.Voice;
         _profile.TranslatorSound = randomProfile.TranslatorSound;
@@ -550,10 +578,35 @@ public sealed partial class HunterProfileEditor : Control
 
         var statusId = (int)_profile.Status;
 
-        if (!_statusAvailability.TryGetValue(statusId, out var avail) || !avail)
+        var isStatusInList = false;
+        for (int i = 0; i < StatusButton.ItemCount; i++)
         {
-            statusId = (int)HunterStatus.Normal;
-            _profile.Status = HunterStatus.Normal;
+            if (StatusButton.GetItemId(i) == statusId)
+            {
+                isStatusInList = true;
+                break;
+            }
+        }
+
+        if (!isStatusInList)
+        {
+            var fallbackId = (int)HunterStatus.Normal;
+            var normalInList = false;
+            for (int i = 0; i < StatusButton.ItemCount; i++)
+            {
+                if (StatusButton.GetItemId(i) == fallbackId)
+                {
+                    normalInList = true;
+                    break;
+                }
+            }
+
+            if (normalInList)
+                statusId = fallbackId;
+            else if (StatusButton.ItemCount > 0)
+                statusId = StatusButton.GetItemId(0);
+            
+            _profile.Status = (HunterStatus)statusId;
             SetDirty();
         }
 
@@ -603,39 +656,67 @@ public sealed partial class HunterProfileEditor : Control
         if (tab == null)
             return;
 
-        if (category == "Caster" || category == "Bracer" || category == "Cape")
+        void SelectInPicker(Control container)
         {
-            if (tab.ChildCount > 0 && tab.GetChild(0) is SpritePicker picker)
+            if (container is SpritePicker picker)
+            {
                 picker.SetSelected(protoId);
-            return;
+                return;
+            }
+            if (container is BoxContainer box && box.ChildCount > 0 && box.GetChild(0) is SpritePicker innerPicker)
+            {
+                innerPicker.SetSelected(protoId);
+                return;
+            }
         }
 
-        if (tab.ChildCount > 0 && tab.GetChild(0) is TabContainer materialTabs)
+        if (tab.ChildCount > 0 && tab.GetChild(0) is SplitContainer split)
         {
-            if (!_categorizedPrototypes.ContainsKey(category))
-                return;
+            if (!_categorizedGear.ContainsKey(category)) return;
 
-            foreach (var (material, protos) in _categorizedPrototypes[category])
+            if (split.ChildCount < 2) return;
+
+            var leftScroll = split.GetChild(0) as ScrollContainer;
+            var rightArea = split.GetChild(1) as BoxContainer;
+
+            if (leftScroll?.GetChild(0) is BoxContainer listContainer)
             {
-                if (protos.Contains(protoId))
+                foreach (var (material, gears) in _categorizedGear[category])
                 {
-                    var sortedKeys = _categorizedPrototypes[category].Keys.OrderBy(k => k).ToList();
-                    var index = sortedKeys.IndexOf(material);
-
-                    if (index >= 0 && index < materialTabs.ChildCount)
+                    if (gears.Any(g => g.EntityProto == protoId))
                     {
-                        materialTabs.CurrentTab = index;
+                        int buttonIndex = -1;
+                        var sortedMaterials = _categorizedGear[category].Keys.OrderBy(k => k).ToList();
+                        buttonIndex = sortedMaterials.IndexOf(material);
 
-                        if (
-                            materialTabs.GetChild(index) is BoxContainer box
-                            && box.ChildCount > 0
-                            && box.GetChild(0) is SpritePicker picker
-                        )
-                            picker.SetSelected(protoId);
+                        if (buttonIndex >= 0 && buttonIndex < listContainer.ChildCount)
+                        {
+                            if (listContainer.GetChild(buttonIndex) is Button btn)
+                            {
+                                btn.Pressed = true;
+
+                                rightArea?.DisposeAllChildren();
+                                if (rightArea != null)
+                                {
+                                    var isSponsor = _sponsorsSystem.TryGetInfo(out var sponsorInfo) && sponsorInfo.CanUseHunterCustomization;
+                                    var picker = new SpritePicker();
+                                    picker.Populate(gears, isSponsor);
+                                    if (category == "Accessory") picker.AddCustomButton("Nothing", Loc.GetString("st-hunter-gear-none"), false, true);
+                                    
+                                    picker.OnSelectionChanged += pid => OnSpriteSelected(category, pid);
+                                    rightArea.AddChild(picker);
+                                    picker.SetSelected(protoId);
+                                }
+                            }
+                        }
                         return;
                     }
                 }
             }
+        }
+        else if (tab.ChildCount > 0)
+        {
+            SelectInPicker(tab.GetChild(0));
         }
     }
 
@@ -713,7 +794,9 @@ public sealed partial class HunterProfileEditor : Control
             EquipIfValid(_profile.ArmorPrototype, "outerClothing");
             EquipIfValid(_profile.MaskPrototype, "mask");
             EquipIfValid(_profile.GreavesPrototype, "shoes");
-            EquipIfValid(_previewCapePrototype, "back");
+            
+            if (ShowCapeButton.Pressed)
+                EquipIfValid(_previewCapePrototype, "back");
 
             if (_inventory.TryGetSlotEntity(_previewDummy, "mask", out var maskUid))
             {
@@ -735,7 +818,7 @@ public sealed partial class HunterProfileEditor : Control
                 }
             }
 
-            if (_inventory.TryGetSlotEntity(_previewDummy, "back", out var capeUid))
+            if (ShowCapeButton.Pressed && _inventory.TryGetSlotEntity(_previewDummy, "back", out var capeUid))
             {
                 _entityManager
                     .System<SharedAppearanceSystem>()

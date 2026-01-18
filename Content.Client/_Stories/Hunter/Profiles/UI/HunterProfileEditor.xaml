@@ -42,6 +42,11 @@
                             ToggleMode="True"
                             Pressed="True"
                             Text="{Loc 'humanoid-profile-editor-clothing-show'}" />
+                        <Button
+                            Name="ShowCapeButton"
+                            ToggleMode="True"
+                            Pressed="False"
+                            Text="{Loc 'st-hunter-profile-editor-show-cape'}" />
                         <Button Name="RotateRightButton" Text="▶" StyleClasses="OpenLeft" MinWidth="30" />
                     </BoxContainer>
                 </BoxContainer>
@@ -52,22 +57,24 @@
                         Text="{Loc 'st-hunter-profile-editor-equipment-header'}"
                         StyleClasses="LabelHeading"
                         Margin="5" />
-                    <TabContainer Name="EquipmentTabs" VerticalExpand="True">
-                        <BoxContainer Name="ArmorTab" Orientation="Vertical" HorizontalExpand="True"
-                                      VerticalExpand="True" Margin="5" />
-                        <BoxContainer Name="MaskTab" Orientation="Vertical" HorizontalExpand="True"
-                                      VerticalExpand="True" Margin="5" />
-                        <BoxContainer Name="AccessoryTab" Orientation="Vertical" HorizontalExpand="True"
-                                      VerticalExpand="True" Margin="5" />
-                        <BoxContainer Name="GreavesTab" Orientation="Vertical" HorizontalExpand="True"
-                                      VerticalExpand="True" Margin="5" />
-                        <BoxContainer Name="CapeTab" Orientation="Vertical" HorizontalExpand="True"
-                                      VerticalExpand="True" Margin="5" />
-                        <BoxContainer Name="CasterTab" Orientation="Vertical" HorizontalExpand="True"
-                                      VerticalExpand="True" Margin="5" />
-                        <BoxContainer Name="BracerTab" Orientation="Vertical" HorizontalExpand="True"
-                                      VerticalExpand="True" Margin="5" />
-                    </TabContainer>
+                    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="True" VScrollEnabled="True">
+                        <TabContainer Name="EquipmentTabs" VerticalExpand="True">
+                            <BoxContainer Name="ArmorTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="MaskTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="AccessoryTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="GreavesTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="CapeTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="CasterTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="BracerTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                        </TabContainer>
+                    </ScrollContainer>
                 </BoxContainer>
             </PanelContainer>
         </BoxContainer>

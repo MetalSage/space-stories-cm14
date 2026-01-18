@@ -1,3 +1,3 @@
-st-hunter-vision-no-bracer = Маска требует подключения к наручу для питания.
-st-hunter-vision-on = Улучшение зрения: ВКЛЮЧЕНО
-st-hunter-vision-off = Улучшение зрения: ОТКЛЮЧЕНО
+st-hunter-vision-on = Улучшение зрения активировано.
+st-hunter-vision-off = Улучшение зрения деактивировано.
+st-hunter-vision-no-bracer = Маске требуется работающее соединение с наручем.

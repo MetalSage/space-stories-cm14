@@ -128,7 +128,7 @@ public sealed class HunterMarkingSystem : SharedHunterMarkingSystem
             var options = new List<DialogOption>
             {
                 new(Loc.GetString("st-hunter-confirm-yes"), new ConfirmUnmarkPreyEvent()),
-                new(Loc.GetString("st-hunter-confirm-no")),
+                new(Loc.GetString("st-hunter-confirm-no"), new HunterMenuCancelEvent()),
             };
             _dialog.OpenOptions(
                 hunter.Owner,

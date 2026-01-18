@@ -9,37 +9,64 @@ namespace Content.Client._Stories.Hunter.Profiles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class SpritePickerButton : ContainerButton
 {
-    [Dependency]
-    private readonly IEntityManager _entityManager = default!;
-
-    [Dependency]
-    private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private EntityUid? _dummy;
+    public EntProtoId Prototype { get; }
+    public bool IsSponsorItem { get; }
+    public bool IsLocked { get; }
 
-    public SpritePickerButton(EntProtoId prototype)
+    public SpritePickerButton(EntProtoId prototype, bool isSponsorItem, bool isUnlocked)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
         Prototype = prototype;
+        IsSponsorItem = isSponsorItem;
+        IsLocked = isSponsorItem && !isUnlocked;
 
         ToggleMode = true;
 
-        OnToggled += _ => UpdateHighlight();
-
-        if (_prototypeManager.TryIndex(prototype, out var proto))
+        if (prototype == "Nothing")
+        {
+            ToolTip = Loc.GetString("st-hunter-gear-none");
+            NoneTexture.Visible = true;
+            // No sprite needed for "Nothing", the texture rect handles it
+        }
+        else if (_prototypeManager.TryIndex(prototype, out var proto))
         {
             ToolTip = proto.Name;
-
             _dummy = _entityManager.SpawnEntity(prototype, MapCoordinates.Nullspace);
             SpriteView.SetEntity(_dummy);
         }
 
+        if (IsSponsorItem)
+        {
+            SponsorHighlight.Visible = true;
+            ToolTip += "\n" + Loc.GetString("st-hunter-gear-sponsor-only");
+        }
+
+        if (IsLocked)
+        {
+            LockOverlay.Visible = true;
+            MouseFilter = MouseFilterMode.Stop; // Still allow hover for tooltip
+            ToolTip += "\n" + Loc.GetString("st-hunter-gear-locked");
+        }
+
+        OnToggled += args =>
+        {
+            if (IsLocked)
+            {
+                // Prevent toggling if locked
+                Pressed = false; 
+                return;
+            }
+            UpdateHighlight();
+        };
+
         UpdateHighlight();
     }
-
-    public EntProtoId Prototype { get; }
 
     public void UpdateHighlight()
     {

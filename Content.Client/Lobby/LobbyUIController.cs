@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client._RMC14.LinkAccount;
 using Content.Client._Stories.Hunter.Profiles.UI;
+using Content.Client._Stories.Sponsors;
 using Content.Client.Guidebook;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
@@ -42,6 +43,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
     [Dependency] private readonly LinkAccountManager _linkAccount = default!;
+    [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Stories-Sponsors
+
     [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
@@ -181,6 +184,11 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         {
             _hunterProfileEditor.SetProfile(_preferencesManager.HunterProfile);
             var isWhitelisted = _preferencesManager.Settings?.IsHunterWhitelisted ?? false;
+
+            if (!isWhitelisted && _sponsorsManager.TryGetInfo(out var sponsorInfo))
+            {
+                isWhitelisted = sponsorInfo.CanPlayHunter;
+            }
             
             profileEditor.SetTabVisible(profileEditor.GetHunterTabIndex(), isWhitelisted);
         }

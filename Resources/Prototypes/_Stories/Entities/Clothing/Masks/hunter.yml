@@ -10,9 +10,6 @@
     energyUsage: 3.0
     isActive: false
     toggleVisionActionId: STActionToggleHunterVision
-    zoomInSound: /Audio/_Stories/Effects/Hunter/pred_zoom_on.ogg
-    zoomOutSound: /Audio/_Stories/Effects/Hunter/pred_zoom_off.ogg
-    visorSwitchSound: /Audio/_Stories/Effects/Hunter/pred_vision.ogg
   - type: Item
     size: Small
   - type: Scope
@@ -1548,6 +1545,1511 @@
     - state: 20-icon
   - type: Clothing
     sprite: _Stories/Objects/Clothing/Mask/Hunter/bone.rsi
+    clothingVisuals:
+      mask:
+      - state: 20-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold1
+  suffix: Gold, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 1-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold2
+  suffix: Gold, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 2-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold3
+  suffix: Gold, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 3-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold4
+  suffix: Gold, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 4-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold5
+  suffix: Gold, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 5-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold6
+  suffix: Gold, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 6-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold7
+  suffix: Gold, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 7-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold8
+  suffix: Gold, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 8-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold9
+  suffix: Gold, 9
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 9-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 9-equipped-MASK
+
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold10
+  suffix: Gold, 10
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 10-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 10-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold11
+  suffix: Gold, 11
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 11-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 11-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold12
+  suffix: Gold, 12
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 12-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 12-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold13
+  suffix: Gold, 13
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 13-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 13-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold14
+  suffix: Gold, 14
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 14-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 14-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold15
+  suffix: Gold, 15
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 15-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold16
+  suffix: Gold, 16
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 16-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 16-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold17
+  suffix: Gold, 17
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 17-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 17-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold18
+  suffix: Gold, 18
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 18-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 18-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold19
+  suffix: Gold, 19
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 19-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 19-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterGold20
+  suffix: Gold, 20
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    layers:
+    - state: 20-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/gold.rsi
+    clothingVisuals:
+      mask:
+      - state: 20-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild1
+  suffix: Wild, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 1-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild2
+  suffix: Wild, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 2-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild3
+  suffix: Wild, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 3-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild4
+  suffix: Wild, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 4-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild5
+  suffix: Wild, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 5-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild6
+  suffix: Wild, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 6-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild7
+  suffix: Wild, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 7-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild8
+  suffix: Wild, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 8-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild9
+  suffix: Wild, 9
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 9-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 9-equipped-MASK
+
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild10
+  suffix: Wild, 10
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 10-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 10-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild11
+  suffix: Wild, 11
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 11-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 11-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild12
+  suffix: Wild, 12
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 12-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 12-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild13
+  suffix: Wild, 13
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 13-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 13-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild14
+  suffix: Wild, 14
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 14-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 14-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild15
+  suffix: Wild, 15
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 15-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild16
+  suffix: Wild, 16
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 16-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 16-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild17
+  suffix: Wild, 17
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 17-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 17-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild18
+  suffix: Wild, 18
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 18-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 18-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild19
+  suffix: Wild, 19
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 19-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 19-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterWild20
+  suffix: Wild, 20
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    layers:
+    - state: 20-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/wild.rsi
+    clothingVisuals:
+      mask:
+      - state: 20-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast1
+  suffix: Outcast, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 1-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast2
+  suffix: Outcast, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 2-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast3
+  suffix: Outcast, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 3-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast4
+  suffix: Outcast, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 4-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast5
+  suffix: Outcast, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 5-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast6
+  suffix: Outcast, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 6-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast7
+  suffix: Outcast, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 7-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast8
+  suffix: Outcast, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 8-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast9
+  suffix: Outcast, 9
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 9-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 9-equipped-MASK
+
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast10
+  suffix: Outcast, 10
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 10-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 10-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast11
+  suffix: Outcast, 11
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 11-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 11-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast12
+  suffix: Outcast, 12
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 12-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 12-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast13
+  suffix: Outcast, 13
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 13-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 13-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast14
+  suffix: Outcast, 14
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 14-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 14-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast15
+  suffix: Outcast, 15
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 15-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast16
+  suffix: Outcast, 16
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 16-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 16-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast17
+  suffix: Outcast, 17
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 17-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 17-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast18
+  suffix: Outcast, 18
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 18-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 18-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast19
+  suffix: Outcast, 19
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 19-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 19-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterOutcast20
+  suffix: Outcast, 20
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    layers:
+    - state: 20-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/outcast.rsi
+    clothingVisuals:
+      mask:
+      - state: 20-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader1
+  suffix: Leader, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 1-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader2
+  suffix: Leader, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 2-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader3
+  suffix: Leader, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 3-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader4
+  suffix: Leader, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 4-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader5
+  suffix: Leader, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 5-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader6
+  suffix: Leader, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 6-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader7
+  suffix: Leader, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 7-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader8
+  suffix: Leader, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 8-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader9
+  suffix: Leader, 9
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 9-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 9-equipped-MASK
+
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader10
+  suffix: Leader, 10
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 10-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 10-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader11
+  suffix: Leader, 11
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 11-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 11-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader12
+  suffix: Leader, 12
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 12-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 12-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader13
+  suffix: Leader, 13
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 13-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 13-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader14
+  suffix: Leader, 14
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 14-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 14-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader15
+  suffix: Leader, 15
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 15-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader16
+  suffix: Leader, 16
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 16-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 16-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader17
+  suffix: Leader, 17
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 17-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 17-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader18
+  suffix: Leader, 18
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 18-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 18-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader19
+  suffix: Leader, 19
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 19-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 19-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterLeader20
+  suffix: Leader, 20
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    layers:
+    - state: 20-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/leader.rsi
+    clothingVisuals:
+      mask:
+      - state: 20-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai1
+  suffix: Samurai, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 1-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai2
+  suffix: Samurai, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 2-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai3
+  suffix: Samurai, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 3-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai4
+  suffix: Samurai, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 4-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai5
+  suffix: Samurai, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 5-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai6
+  suffix: Samurai, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 6-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai7
+  suffix: Samurai, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 7-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai8
+  suffix: Samurai, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 8-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai9
+  suffix: Samurai, 9
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 9-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 9-equipped-MASK
+
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai10
+  suffix: Samurai, 10
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 10-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 10-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai11
+  suffix: Samurai, 11
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 11-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 11-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai12
+  suffix: Samurai, 12
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 12-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 12-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai13
+  suffix: Samurai, 13
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 13-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 13-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai14
+  suffix: Samurai, 14
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 14-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 14-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai15
+  suffix: Samurai, 15
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 15-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai16
+  suffix: Samurai, 16
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 16-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 16-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai17
+  suffix: Samurai, 17
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 17-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 17-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai18
+  suffix: Samurai, 18
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 18-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 18-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai19
+  suffix: Samurai, 19
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 19-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    clothingVisuals:
+      mask:
+      - state: 19-equipped-MASK
+
+- type: entity
+  parent: STMaskHunterBase
+  id: STMaskHunterSamurai20
+  suffix: Samurai, 20
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
+    layers:
+    - state: 20-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Mask/Hunter/samurai.rsi
     clothingVisuals:
       mask:
       - state: 20-equipped-MASK

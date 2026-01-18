@@ -59,7 +59,7 @@ public sealed class HunterTeleporterSystem : EntitySystem
 
         if (!_skills.HasSkill(user, new EntProtoId<SkillDefinitionComponent>(IllegalTechnologySkillId), 1))
         {
-            _popup.PopupClient(Loc.GetString("rmc-hunter-teleporter-no-tech"), user, user);
+            _popup.PopupClient(Loc.GetString("st-hunter-teleporter-no-tech"), user, user);
             return;
         }
 
@@ -69,13 +69,13 @@ public sealed class HunterTeleporterSystem : EntitySystem
 
             if (ent.Comp.TeleporterType == HunterTeleporterType.Normal && factions.Contains(HunterYoungFaction))
             {
-                _popup.PopupClient(Loc.GetString("rmc-hunter-teleporter-young-no-access"), user, user);
+                _popup.PopupClient(Loc.GetString("st-hunter-teleporter-young-no-access"), user, user);
                 return;
             }
 
             if (ent.Comp.TeleporterType == HunterTeleporterType.Youngblood && !factions.Contains(HunterYoungFaction))
             {
-                _popup.PopupClient(Loc.GetString("rmc-hunter-teleporter-elder-no-access"), user, user);
+                _popup.PopupClient(Loc.GetString("st-hunter-teleporter-elder-no-access"), user, user);
                 return;
             }
 
@@ -105,7 +105,7 @@ public sealed class HunterTeleporterSystem : EntitySystem
 
         if (destinations.Count == 0)
         {
-            _popup.PopupClient(Loc.GetString("rmc-hunter-teleporter-no-destinations"), user, user);
+            _popup.PopupClient(Loc.GetString("st-hunter-teleporter-no-destinations"), user, user);
             return;
         }
 
@@ -121,7 +121,7 @@ public sealed class HunterTeleporterSystem : EntitySystem
             ent.Comp.ActiveDestinations[i] = uid;
         }
 
-        _dialog.OpenOptions(user, user, Loc.GetString("rmc-hunter-teleporter-title"), options);
+        _dialog.OpenOptions(user, user, Loc.GetString("st-hunter-teleporter-title"), options);
     }
 
     private void OnDialogChosen(Entity<HunterTeleporterUserComponent> user, ref DialogChosenEvent args)
@@ -139,7 +139,7 @@ public sealed class HunterTeleporterSystem : EntitySystem
 
         if (!_transform.InRange(user.Owner, teleporterUid.Value, InteractionRange))
         {
-            _popup.PopupClient(Loc.GetString("rmc-hunter-teleporter-too-far"), user, user);
+            _popup.PopupClient(Loc.GetString("st-hunter-teleporter-too-far"), user, user);
             RemComp<HunterTeleporterUserComponent>(user);
             return;
         }

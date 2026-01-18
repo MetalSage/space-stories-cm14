@@ -124,3 +124,63 @@
     sprite: _Stories/Objects/Clothing/Hands/Bracer/crimson.rsi
   - type: HunterBracer
     bracerPowerAlert: STBracerPowerCrimson
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterGold
+  suffix: Gold
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/gold.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/gold.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerBronze
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterWild
+  suffix: Wild
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/wild.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/wild.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerBone
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterOutcast
+  suffix: Outcast
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/outcast.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/outcast.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerRetro
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterLeader
+  suffix: Leader
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/leader.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/leader.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerSilver
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterSamurai
+  suffix: Samurai
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/samurai.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/samurai.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerSilver

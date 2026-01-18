@@ -72,3 +72,54 @@
   - type: ContainerFill
     containers:
       caster-gun-slot: [ STWeaponPlasmaCasterBone ]
+
+# Partners
+- type: entity
+  parent: STBracerAttachmentPlasmaCasterBase
+  id: STBracerAttachmentPlasmaCasterGold
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_gold.rsi
+  - type: ContainerFill
+    containers:
+      caster-gun-slot: [ STWeaponPlasmaCasterGold ]
+
+- type: entity
+  parent: STBracerAttachmentPlasmaCasterBase
+  id: STBracerAttachmentPlasmaCasterWild
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_wild.rsi
+  - type: ContainerFill
+    containers:
+      caster-gun-slot: [ STWeaponPlasmaCasterWild ]
+
+- type: entity
+  parent: STBracerAttachmentPlasmaCasterBase
+  id: STBracerAttachmentPlasmaCasterOutcast
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_outcast.rsi
+  - type: ContainerFill
+    containers:
+      caster-gun-slot: [ STWeaponPlasmaCasterOutcast ]
+
+- type: entity
+  parent: STBracerAttachmentPlasmaCasterBase
+  id: STBracerAttachmentPlasmaCasterLeader
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_leader.rsi
+  - type: ContainerFill
+    containers:
+      caster-gun-slot: [ STWeaponPlasmaCasterLeader ]
+
+- type: entity
+  parent: STBracerAttachmentPlasmaCasterBase
+  id: STBracerAttachmentPlasmaCasterSamurai
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_samurai.rsi
+  - type: ContainerFill
+    containers:
+      caster-gun-slot: [ STWeaponPlasmaCasterSamurai ]

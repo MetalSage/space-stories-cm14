@@ -1,3 +1,3 @@
-st-hunter-projectile-immune = Цель невосприимчива к этому эффекту.
-st-hunter-projectile-stun-feedback = Цель нейтрализована.
-st-hunter-projectile-aoe-stun-feedback = Цели в области нейтрализованы.
+st-hunter-projectile-immune = Снаряд безвредно отскакивает.
+st-hunter-projectile-stun-feedback = В вас попал оглушающий болт!
+st-hunter-projectile-aoe-stun-feedback = Вы попали под взрыв плазменного иммобилайзера!

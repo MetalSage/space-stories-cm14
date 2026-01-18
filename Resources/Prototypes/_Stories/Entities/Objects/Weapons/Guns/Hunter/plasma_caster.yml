@@ -59,6 +59,47 @@
     sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_bone.rsi
     state: icon
 
+# Partners
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterGold
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_gold.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterWild
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_wild.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterOutcast
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_outcast.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterLeader
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_leader.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterSamurai
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_samurai.rsi
+    state: icon
+
 - type: entity
   id: STPlasmaBoltBaseProjectile
   parent: BaseBullet

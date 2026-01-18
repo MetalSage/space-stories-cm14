@@ -39,6 +39,9 @@ public sealed class SponsorInfo
     [DataField("canPlayHunter")]
     public bool CanPlayHunter { get; set; }
 
+    [DataField("canUseHunterCustomization")]
+    public bool CanUseHunterCustomization { get; set; }
+
     [DataField("maxHunterStatus")]
     public HunterStatus MaxHunterStatus { get; set; } = HunterStatus.Normal;
 }

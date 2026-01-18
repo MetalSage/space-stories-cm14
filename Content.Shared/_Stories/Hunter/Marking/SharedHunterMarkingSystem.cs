@@ -57,6 +57,9 @@ public sealed partial class RequestMarkForHuntEvent : InstantActionEvent
 public sealed class ConfirmUnmarkPreyEvent;
 
 [Serializable] [NetSerializable]
+public sealed class HunterMenuCancelEvent;
+
+[Serializable] [NetSerializable]
 public abstract class MarkActionEvent
 {
     protected MarkActionEvent(MarkAction action)

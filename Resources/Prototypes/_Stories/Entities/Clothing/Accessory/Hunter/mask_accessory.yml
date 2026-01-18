@@ -237,3 +237,233 @@
     rsi:
       sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Bone/pred_accessory3.rsi
       state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryGold1
+  suffix: Gold
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Gold/pred_accessory1.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Gold/pred_accessory1.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Gold/pred_accessory1.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryGold2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Gold/pred_accessory2.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Gold/pred_accessory2.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Gold/pred_accessory2.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryGold3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Gold/pred_accessory3.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Gold/pred_accessory3.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Gold/pred_accessory3.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryWild1
+  suffix: Wild
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Wild/pred_accessory1.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Wild/pred_accessory1.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Wild/pred_accessory1.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryWild2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Wild/pred_accessory2.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Wild/pred_accessory2.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Wild/pred_accessory2.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryWild3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Wild/pred_accessory3.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Wild/pred_accessory3.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Wild/pred_accessory3.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryOutcast1
+  suffix: Outcast
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Outcast/pred_accessory1.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Outcast/pred_accessory1.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Outcast/pred_accessory1.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryOutcast2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Outcast/pred_accessory2.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Outcast/pred_accessory2.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Outcast/pred_accessory2.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryOutcast3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Outcast/pred_accessory3.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Outcast/pred_accessory3.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Outcast/pred_accessory3.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryLeader1
+  suffix: Leader
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Leader/pred_accessory1.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Leader/pred_accessory1.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Leader/pred_accessory1.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryLeader2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Leader/pred_accessory2.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Leader/pred_accessory2.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Leader/pred_accessory2.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessoryLeader3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Leader/pred_accessory3.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Leader/pred_accessory3.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Leader/pred_accessory3.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessorySamurai1
+  suffix: Samurai
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Samurai/pred_accessory1.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Samurai/pred_accessory1.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Samurai/pred_accessory1.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessorySamurai2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Samurai/pred_accessory2.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Samurai/pred_accessory2.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Samurai/pred_accessory2.rsi
+      state: helmet
+
+- type: entity
+  parent: STHunterMaskAccessoryBase
+  id: STHunterMaskAccessorySamurai3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Samurai/pred_accessory3.rsi
+    state: icon
+  - type: Item
+    sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Samurai/pred_accessory3.rsi
+  - type: HelmetAccessory
+    offset: 0.0, 0.5
+    rsi:
+      sprite: _Stories/Objects/Clothing/HelmetGarb/Hunter/Samurai/pred_accessory3.rsi
+      state: helmet

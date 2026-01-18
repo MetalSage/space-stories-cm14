@@ -370,32 +370,34 @@ public sealed partial class HunterSystem : SharedHunterSystem
     private bool ValidateHunterStatus(ICommonSession session, HunterStatus status)
     {
         var userId = session.UserId;
+        var isWhitelisted = false;
 
         switch (status)
         {
             case HunterStatus.Normal:
-                if (!_whitelistManager.IsWhitelisted(userId, "STHunter"))
-                    return false;
+                if (_whitelistManager.IsWhitelisted(userId, "STHunter"))
+                    isWhitelisted = true;
                 break;
             case HunterStatus.Council:
-                if (!_whitelistManager.IsWhitelisted(userId, "STHunterCouncil"))
-                    return false;
+                if (_whitelistManager.IsWhitelisted(userId, "STHunterCouncil"))
+                    isWhitelisted = true;
                 break;
             case HunterStatus.Leader:
-                if (!_whitelistManager.IsWhitelisted(userId, "STHunterLeader"))
-                    return false;
+                if (_whitelistManager.IsWhitelisted(userId, "STHunterLeader"))
+                    isWhitelisted = true;
                 break;
-            default:
-                return false;
         }
+
+        if (isWhitelisted)
+            return true;
 
         if (_sponsorsManager.TryGetInfo(userId, out var info) && info.CanPlayHunter)
         {
-            if (status > info.MaxHunterStatus)
-                return false;
+            if (status <= info.MaxHunterStatus)
+                return true;
         }
 
-        return true;
+        return false;
     }
 
     private void JoinAsHunter(ICommonSession player, HunterProfile profile)

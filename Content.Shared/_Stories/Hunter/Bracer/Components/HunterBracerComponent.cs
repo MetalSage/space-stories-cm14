@@ -67,10 +67,16 @@ public sealed partial class HunterBracerComponent : Component
     public TimeSpan CloakForcedCooldown = TimeSpan.FromSeconds(5f);
 
     [DataField] [AutoNetworkedField]
-    public SoundSpecifier CloakOffSound = new SoundPathSpecifier("/Audio/_Stories/Effects/Hunter/pred_cloakoff.ogg");
+    public SoundSpecifier CloakOffSound = new SoundPathSpecifier(
+        "/Audio/_Stories/Effects/Hunter/pred_cloakoff.ogg",
+        AudioParams.Default.WithMaxDistance(5f)
+    );
 
     [DataField] [AutoNetworkedField]
-    public SoundSpecifier CloakOnSound = new SoundPathSpecifier("/Audio/_Stories/Effects/Hunter/pred_cloakon.ogg");
+    public SoundSpecifier CloakOnSound = new SoundPathSpecifier(
+        "/Audio/_Stories/Effects/Hunter/pred_cloakon.ogg",
+        AudioParams.Default.WithMaxDistance(5f)
+    );
 
     [DataField]
     public float CloakOpacity = 0.045f;

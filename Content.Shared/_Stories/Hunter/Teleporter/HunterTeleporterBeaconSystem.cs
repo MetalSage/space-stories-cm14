@@ -39,7 +39,8 @@ public sealed partial class HunterTeleporterBeaconSystem : EntitySystem
         SubscribeLocalEvent<HunterTeleporterBeaconComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<HunterTeleporterBeaconComponent, TeleporterDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<HunterTeleporterBeaconComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<BeaconUserComponent, DialogChosenEvent>(OnDialogChosen);
+
+        SubscribeLocalEvent<BeaconUserComponent, HunterBeaconDestinationChosenEvent>(OnBeaconDestinationChosen);
     }
 
     private void OnUseInHand(Entity<HunterTeleporterBeaconComponent> ent, ref UseInHandEvent args)
@@ -89,17 +90,20 @@ public sealed partial class HunterTeleporterBeaconSystem : EntitySystem
             destinationGroups.Add(dest.DestinationGroup);
         }
 
-        var options = destinationGroups.Select(group => new DialogOption(group)).ToList();
+        var options = destinationGroups
+            .Select(group => new DialogOption(group, new HunterBeaconDestinationChosenEvent(group)))
+            .ToList();
 
         var userComp = EnsureComp<BeaconUserComponent>(user);
         userComp.Beacon = ent;
-        userComp.AvailableGroups = destinationGroups.ToList();
+
+        userComp.AvailableGroups = null; 
 
         _dialog.OpenOptions(user, user, Loc.GetString("st-hunter-teleporter-beacon-title"), options);
         args.Handled = true;
     }
 
-    private void OnDialogChosen(Entity<BeaconUserComponent> user, ref DialogChosenEvent args)
+    private void OnBeaconDestinationChosen(Entity<BeaconUserComponent> user, ref HunterBeaconDestinationChosenEvent args)
     {
         if (!TryComp<HunterTeleporterBeaconComponent>(user.Comp.Beacon, out var beaconComp))
         {
@@ -107,13 +111,7 @@ public sealed partial class HunterTeleporterBeaconSystem : EntitySystem
             return;
         }
 
-        if (user.Comp.AvailableGroups == null || args.Index >= user.Comp.AvailableGroups.Count)
-        {
-            RemComp<BeaconUserComponent>(user);
-            return;
-        }
-
-        user.Comp.TargetGroup = user.Comp.AvailableGroups[args.Index];
+        user.Comp.TargetGroup = args.Group;
 
         _popup.PopupClient(Loc.GetString("st-hunter-teleporter-beacon-activating"), user, user);
         _audio.PlayPvs(beaconComp.ActivateSound, user);
@@ -201,5 +199,16 @@ public sealed partial class HunterTeleporterBeaconSystem : EntitySystem
     [Serializable] [NetSerializable]
     private sealed partial class TeleporterDoAfterEvent : SimpleDoAfterEvent
     {
+    }
+
+    [Serializable] [NetSerializable]
+    private sealed class HunterBeaconDestinationChosenEvent : EntityEventArgs
+    {
+        public string Group;
+
+        public HunterBeaconDestinationChosenEvent(string group)
+        {
+            Group = group;
+        }
     }
 }

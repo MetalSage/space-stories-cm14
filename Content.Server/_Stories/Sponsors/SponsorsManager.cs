@@ -116,6 +116,7 @@ public sealed class SponsorsManager
             SponsorPointsAlt = apiInfo.SponsorPointsAlt,
             XenoSkins = apiInfo.XenoSkins,
             CanPlayHunter = apiInfo.CanPlayHunter,
+            CanUseHunterCustomization = apiInfo.CanUseHunterCustomization,
             MaxHunterStatus = apiInfo.MaxHunterStatus,
         };
     }
@@ -155,7 +156,10 @@ public sealed class SponsorsManager
         [JsonPropertyName("canPlayHunter")]
         public bool CanPlayHunter { get; set; }
 
+        [JsonPropertyName("canUseHunterCustomization")]
+        public bool CanUseHunterCustomization { get; set; }
+
         [JsonPropertyName("maxHunterStatus")]
-        public HunterStatus MaxHunterStatus { get; set; }
+        public HunterStatus MaxHunterStatus { get; set; } = HunterStatus.Normal;
     }
 }
