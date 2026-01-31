@@ -1,2 +1,0 @@
-ent-CMEffectSelfStomp = { "" }
-    .desc = { "" }

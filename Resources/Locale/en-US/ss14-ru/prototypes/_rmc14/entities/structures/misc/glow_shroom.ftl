@@ -1,2 +1,0 @@
-ent-RMCGlowshroom = glowshroom
-    .desc = { "" }

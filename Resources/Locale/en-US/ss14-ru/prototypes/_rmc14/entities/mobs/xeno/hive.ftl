@@ -1,2 +1,0 @@
-ent-CMXenoHive = Default
-    .desc = { "" }

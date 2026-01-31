@@ -1,9 +1,0 @@
-ent-STAirlockHunterLocked = hunter airlock
-    .suffix = Hunter, Locked
-    .desc = { ent-STAirlockHunter.desc }
-ent-STAirlockHunterLockedElder = hunter airlock
-    .suffix = Hunter, Locked, Elder
-    .desc = { ent-STAirlockHunter.desc }
-ent-STAirlockHunterLockedAncient = hunter airlock
-    .suffix = Hunter, Locked, Ancient
-    .desc = { ent-STAirlockHunter.desc }
