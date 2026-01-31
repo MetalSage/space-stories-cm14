@@ -1,7 +1,6 @@
 # All spelling mistakes and broken english are intentional!
 # I hate saving paper contents in ftl files
 
-
 ## Headers and reusable elements
 
 -delivery-header-nanotrasen = [color=blue]

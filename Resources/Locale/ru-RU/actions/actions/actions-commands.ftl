@@ -1,6 +1,5 @@
 ## Actions Commands loc
 
-
 ## Upgradeaction command loc
 
 upgradeaction-command-help = Usage: upgradeaction <entityUid> [level]

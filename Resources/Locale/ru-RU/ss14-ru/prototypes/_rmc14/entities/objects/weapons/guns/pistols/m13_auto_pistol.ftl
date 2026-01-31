@@ -1,7 +1,11 @@
+
+
 ent-RMCMagazinePistolM13AP = магазин M13 ББ (10x20мм БПК)
     .desc = { ent-RMCMagazinePistolM13.desc }
+
 ent-RMCMagazinePistolM13ExtAP = удлинённый магазин M13 ББ (10x20мм БПК)
     .desc = { ent-CMBaseMagazinePistol.desc }
+
 ent-RMCMagazinePistolM13DrumAP = барабанный магазин M13 ББ (10x20мм БПК)
     .desc = { ent-CMBaseMagazinePistol.desc }
 ent-RMCCartridgeAutoPistol = патрон (10x20мм БПК)

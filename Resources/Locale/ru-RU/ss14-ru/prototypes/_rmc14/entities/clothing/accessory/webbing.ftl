@@ -1,9 +1,12 @@
+
+
 ent-RMCWebbingLegPouch = набедренная разгрузка
     .desc = Камуфлированная набедренная сумка, которую обычно носят охотники, военные и те, кто мечтает ими стать.
 ent-RMCWebbingLegPouchBlack = чёрная набедренная разгрузка
     .desc = Чёрная набедренная сумка, которую обычно носят охотники, военные и те, кто мечтает ими стать.
 ent-RMCWebbingBlackSmall = чёрная разгрузка
     .desc = { ent-CMWebbing.desc }
+
 ent-RMCWebbingHolsterBlack = чёрная плечевая кобура
     .desc = Чёрная кобура для пистолета с прикрепленным подсумком, позволяющая хранить два магазина или спидлоадера вместе с ним.
 ent-RMCWebbingDropPouch = подсумок-сбросник
@@ -13,11 +16,13 @@ ent-RMCShoulderHolsterMK80 = { ent-CMWebbingHolster }
     .desc = { ent-CMWebbingHolster.desc }
 ent-RMCWebbingDropPouchBlack = чёрный подсумок-сбросник
     .desc = Удобный подсумок для переноски различных мелочей.
+
 ent-RMCToolWebbing = инструментальная разгрузка
     .desc = Разгрузка из коричневого синтохлопка, по функциям похожая на гражданские фартуки для инструментов, но более прочная для полевого использования.
 ent-RMCToolWebbingFilled = { ent-RMCToolWebbing }
     .suffix = Заполнена
     .desc = { ent-RMCToolWebbing.desc }
+
 ent-RMCWebbingCLFMAR = { ent-CMWebbing }
     .suffix = Заполнена
     .desc = { ent-CMWebbing.desc }
@@ -27,15 +32,18 @@ ent-RMCWebbingCLFMAR50 = { ent-CMWebbingBrown }
 ent-RMCWebbingCLFBuckshot = { ent-CMWebbing }
     .suffix = Заполнена
     .desc = { ent-CMWebbing.desc }
+
 ent-RMCWebbingPMCWhiteout = { ent-CMWebbingBlack }
     .suffix = ЧВК, Вайт-аут, Заполнена
     .desc = { ent-CMWebbingBlack.desc }
+
 ent-RMCWebbingDropPouchRoyal = подсумок-сбросник
     .suffix = Наполнен, Royal
     .desc = Удобный подсумок для переноски различных мелочей.
 ent-RMCWebbingDropPouchRoyalTeamlead = { ent-RMCWebbingDropPouch }
     .suffix = Заполнен, Royal Team Leader
     .desc = { ent-RMCWebbingDropPouch.desc }
+
 ent-CMWebbingSurgicalGreen = хирургическая разгрузка
     .desc = Прочный разгрузочный жилет, специально разработанный для хранения полного набора хирургического оборудования. Обычно выдается полевым врачам или синтетическим персонажам.
     .suffix = Медицинский, Заполнена

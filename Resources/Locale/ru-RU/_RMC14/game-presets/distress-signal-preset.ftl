@@ -30,7 +30,6 @@ cm-distress-signal-discord-majorxenovictory = Крупная победа ксе
 cm-distress-signal-discord-minorxenovictory = Малая победа ксеноморфов
 cm-distress-signal-discord-alldied = Ничья
 st-distress-signal-nuked = [color=yellow]Колония была уничтожена ядерным взрывом.[/color]
-
 rmc-distress-signal-major-marine-victory-bioscan = Биосканирование завершено. Неизвестных форм жизни не обнаружено.
 rmc-distress-signal-major-marine-victory-report = Сохраняю оперативный отчет в архив.
 rmc-distress-signal-major-marine-victory-scan = Начало финальной проверки систем через 3 минуты.
