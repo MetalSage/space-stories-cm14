@@ -1,0 +1,9 @@
+ent-WeaponRifleM16 = M16 rifle
+    .desc = An old, reliable design first adopted by the U.N. military in the 1960s. Something like this belongs in a museum of war history. It is chambered in 5.56x45mm.
+    .suffix = Filled
+ent-RMCMagazineRifleM16 = M16 Magazine (5.56x45mm)
+    .desc = { ent-CMMagazineRifleBase.desc }
+ent-RMCCartridgeRifleM16 = Cartridge (5.56x45)
+    .desc = A 5.56x45 rifle cartridge
+ent-BulletRifle556x45mm = { ent-BulletRifle10x24mm }
+    .desc = { ent-BulletRifle10x24mm.desc }

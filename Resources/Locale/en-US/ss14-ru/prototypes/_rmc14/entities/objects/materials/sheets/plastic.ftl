@@ -1,0 +1,9 @@
+ent-RMCSheetPlastic = plastic
+    .desc = Plastic is a synthetic polymer, manufactured from organic and inorganic components into a malleable and light fabric. It can be used for a wide range of objects.
+    .suffix = Full
+ent-RMCSheetPlastic10 = { ent-RMCSheetPlastic }
+    .suffix = 10
+    .desc = { ent-RMCSheetPlastic.desc }
+ent-RMCSheetPlastic1 = { ent-RMCSheetPlastic }
+    .suffix = Single
+    .desc = { ent-RMCSheetPlastic.desc }

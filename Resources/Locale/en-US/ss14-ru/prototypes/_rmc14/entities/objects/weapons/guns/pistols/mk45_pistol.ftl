@@ -1,0 +1,9 @@
+ent-RMCWeaponPistolMK45 = MK-45 'high-power' automagnum
+    .desc = Originally designed as a replacement for the UNMC's M44 combat revolver, it was rejected at the last minute by a committee, citing its need to be cocked after every loaded magazine to be too cumbersome and antiquated.
+    .suffix = Filled
+ent-RMCMagazinePistolMK45 = MK-45 automagnum magazine (.45)
+    .desc = A pistol magazine.
+ent-CMCartridgePistolMK45 = Cartridge (.45 Automagnum)
+    .desc = { ent-CMCartridgePistolBase.desc }
+ent-CMBulletPistolMK45 = high-powered pistol bullet (.45)
+    .desc = { ent-CMBulletBase.desc }

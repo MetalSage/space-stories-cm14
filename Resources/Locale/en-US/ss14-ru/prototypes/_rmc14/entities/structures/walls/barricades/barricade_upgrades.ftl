@@ -1,0 +1,14 @@
+ent-RMCBarricadeUpgradeBase = { "" }
+    .desc = { "" }
+ent-RMCExplosiveUpgrade = composite upgrade (++Explosive, ++Projectile, ++Fire)
+    .desc = { ent-RMCBarricadeUpgradeBase.desc }
+ent-RMCBiohazardUpgrade = biohazard upgrade (+Burn)
+    .desc = { ent-RMCBarricadeUpgradeBase.desc }
+ent-RMCBruteUpgrade = reinforced upgrade (+Brute)
+    .desc = { ent-RMCBarricadeUpgradeBase.desc }
+ent-RMCExplosiveUpgradePlasteel = { ent-RMCExplosiveUpgrade }
+    .desc = { ent-RMCExplosiveUpgrade.desc }
+ent-RMCBiohazardUpgradePlasteel = { ent-RMCBiohazardUpgrade }
+    .desc = { ent-RMCBiohazardUpgrade.desc }
+ent-RMCBruteUpgradePlasteel = { ent-RMCBruteUpgrade }
+    .desc = { ent-RMCBruteUpgrade.desc }

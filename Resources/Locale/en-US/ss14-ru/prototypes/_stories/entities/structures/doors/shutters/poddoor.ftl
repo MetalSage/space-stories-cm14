@@ -1,0 +1,10 @@
+ent-STPodDoorHunter = { ent-RMCPodDoorHybrisaIndestructibleUltra }
+    .desc = { ent-RMCPodDoorHybrisaIndestructibleUltra.desc }
+ent-STPodDoorHunterOpen = { ent-STPodDoorHunter }
+    .suffix = Open
+    .desc = { ent-STPodDoorHunter.desc }
+ent-STShutterHunterWindow = { ent-RMCShutterHybrisaWindow }
+    .desc = { ent-RMCShutterHybrisaWindow.desc }
+ent-STShutterHunterWindowOpen = { ent-STShutterHunterWindow }
+    .suffix = Open
+    .desc = { ent-STShutterHunterWindow.desc }

@@ -1,0 +1,17 @@
+ent-STHunterTeleporter = hunter teleporter
+    .desc = { ent-MarkerBase.desc }
+ent-STHunterTeleporterYoungblood = { ent-STHunterTeleporter }
+    .suffix = Youngblood
+    .desc = { ent-STHunterTeleporter.desc }
+ent-STHunterTeleportDestination = hunter teleport destination
+    .suffix = Planet
+    .desc = { ent-MarkerBase.desc }
+ent-STHunterTeleportDestinationAlmayer = hunter teleport destination
+    .suffix = Human Ship
+    .desc = { ent-MarkerBase.desc }
+ent-STHunterTeleportDestinationMoon = hunter teleport destination
+    .suffix = Hunter Moon
+    .desc = { ent-MarkerBase.desc }
+ent-STHunterTeleportDestinationMoonYoungblood = hunter teleport destination
+    .suffix = Hunter Moon, Youngblood
+    .desc = { ent-MarkerBase.desc }

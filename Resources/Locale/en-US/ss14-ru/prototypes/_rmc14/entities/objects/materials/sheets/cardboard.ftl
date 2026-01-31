@@ -1,0 +1,15 @@
+ent-RMCSheetCardboard = cardboard
+    .suffix = Full, RMC
+    .desc = { ent-SheetOtherBase.desc }
+ent-RMCSheetCardboard30 = { ent-RMCSheetCardboard }
+    .suffix = 30, RMC
+    .desc = { ent-RMCSheetCardboard.desc }
+ent-RMCSheetCardboard25 = { ent-RMCSheetCardboard }
+    .suffix = 25, RMC
+    .desc = { ent-RMCSheetCardboard.desc }
+ent-RMCSheetCardboard10 = { ent-RMCSheetCardboard }
+    .suffix = 10, RMC
+    .desc = { ent-RMCSheetCardboard.desc }
+ent-RMCSheetCardboard1 = { ent-RMCSheetCardboard }
+    .suffix = Single, RMC
+    .desc = { ent-RMCSheetCardboard.desc }

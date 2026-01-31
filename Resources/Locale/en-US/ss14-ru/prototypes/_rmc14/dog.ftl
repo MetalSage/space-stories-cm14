@@ -1,0 +1,2 @@
+ent-RMCDogLizard = dog
+    .desc = { "" }

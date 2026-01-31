@@ -1,0 +1,15 @@
+ent-CMPaperBin = { ent-PaperBin }
+    .suffix = Empty
+    .desc = { ent-PaperBin.desc }
+ent-CMPaperBin5 = { ent-CMPaperBin }
+    .suffix = 5
+    .desc = { ent-CMPaperBin.desc }
+ent-CMPaperBin10 = { ent-CMPaperBin }
+    .suffix = 10
+    .desc = { ent-CMPaperBin.desc }
+ent-CMPaperBin20 = { ent-CMPaperBin }
+    .suffix = 20
+    .desc = { ent-CMPaperBin.desc }
+ent-CMPaperBin30 = { ent-CMPaperBin }
+    .suffix = 30
+    .desc = { ent-CMPaperBin.desc }

@@ -1,0 +1,11 @@
+ent-RMCPouchMedical = medical pouch
+    .desc = It can carry small medical supplies.
+ent-RMCPouchMedicalFill = { ent-RMCPouchMedical }
+    .suffix = Filled
+    .desc = { ent-RMCPouchMedical.desc }
+ent-RMCPouchMedicalPills = { ent-RMCPouchMedical }
+    .suffix = Pills
+    .desc = { ent-RMCPouchMedical.desc }
+ent-RMCPouchMedicalERT = { ent-RMCPouchMedical }
+    .suffix = ERT
+    .desc = { ent-RMCPouchMedical.desc }

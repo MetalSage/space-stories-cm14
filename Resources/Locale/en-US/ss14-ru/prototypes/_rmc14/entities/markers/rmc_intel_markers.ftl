@@ -1,0 +1,10 @@
+ent-RMCSpawnerIntelBase = intel spawner
+    .desc = { ent-MarkerBase.desc }
+ent-RMCSpawnerIntelClose = objective landmark close
+    .desc = { ent-RMCSpawnerIntelBase.desc }
+ent-RMCSpawnerIntelMedium = objective landmark medium
+    .desc = { ent-RMCSpawnerIntelBase.desc }
+ent-RMCSpawnerIntelFar = objective landmark far
+    .desc = { ent-RMCSpawnerIntelBase.desc }
+ent-RMCSpawnerIntelScience = objective landmark science
+    .desc = { ent-RMCSpawnerIntelBase.desc }

@@ -1,0 +1,12 @@
+ent-CMLockerFridge = fridge
+    .desc = { ent-CMLockerBase.desc }
+ent-RMCLockerFridgeGroceries = groceries
+    .desc = { ent-CMLockerFridge.desc }
+ent-RMCLockerFridgeOrganic = organic
+    .desc = { ent-CMLockerFridge.desc }
+ent-RMCLockerFridgeDry = dry
+    .desc = { ent-CMLockerFridge.desc }
+ent-RMCLockerFridgeMeat = meat
+    .desc = { ent-CMLockerFridge.desc }
+ent-RMCLockerFridgeFish = fish
+    .desc = { ent-CMLockerFridge.desc }

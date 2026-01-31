@@ -1,0 +1,16 @@
+ent-STHunterScrewdriver = alien screwdriver
+    .desc = Some hightech screwing abilities.
+ent-STHunterWirecutter = alien wirecutters
+    .desc = This cuts wires, also flesh. Made of some razorsharp animal teeth.
+ent-STHunterWrench = alien wrench
+    .desc = A wrench with many common uses. Made of some bizarre alien bones.
+ent-STHunterMultitool = alien multitool
+    .desc = Top notch alien tech for B&E through hacking.
+ent-STHunterCrowbar = hunter crowbar
+    .desc = Used to remove floors and to pry open doors, made of an unusual alloy.
+ent-STHunterWelder = alien chem welding tool
+    .desc = A complex chemical welding device, keep away from youngblood.
+ent-STHunterCleanerVial = cleaner gel vial
+    .desc = A small vial containing a powerful bio-acid capable of dissolving advanced alloys and organic matter instantly. Used to erase evidence of the Hunt.
+ent-STHunterDissolvingGel = dissolving gel
+    .desc = A powerful bio-chemical gel eating away at the material.

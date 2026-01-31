@@ -1,0 +1,10 @@
+ent-ColMarTechGuns = ColMarTech automated weapons rack
+    .desc = An automated weapon rack hooked up to a big storage of standard-issue weapons.
+ent-ColMarTechSurplus = ColMarTech surplus uniform vendor
+    .desc = An automated rack hooked up to a small storage of standard marine uniforms.
+ent-ColMarTechMunitions = ColMarTech automated munition squad vendor
+    .desc = An automated supply rack hooked up to a small storage of various ammunition types. Can be accessed by any Marine Rifleman.
+ent-ColMarTechUtilities = ColMarTech automated utilities squad vendor
+    .desc = An automated supply rack hooked up to a small storage of various utilities and tools. Can be accessed by any Marine Rifleman.
+ent-CMVendorAttachments = AEGIS Armaments squad attachments vendor
+    .desc = An automated supply rack hooked up to a small storage of weapons attachments. Can be accessed by any Marine Rifleman.

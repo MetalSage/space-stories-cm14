@@ -1,0 +1,17 @@
+ent-STHunterBridgeBorder = border
+    .desc = { "" }
+ent-STHunterBridgeBorderCorner = { ent-STHunterBridgeBorder }
+    .suffix = Corner
+    .desc = { ent-STHunterBridgeBorder.desc }
+ent-STHunterBridgeBorderEdge = { ent-STHunterBridgeBorder }
+    .suffix = Edge
+    .desc = { ent-STHunterBridgeBorder.desc }
+ent-STHunterBridgeBorderBrown = { ent-STHunterBridgeBorder }
+    .suffix = Brown
+    .desc = { ent-STHunterBridgeBorder.desc }
+ent-STHunterBridgeBorderBrownCorner = { ent-STHunterBridgeBorder }
+    .suffix = Brown, Corner
+    .desc = { ent-STHunterBridgeBorder.desc }
+ent-STHunterBridgeBorderBrownEdge = { ent-STHunterBridgeBorder }
+    .suffix = Brown, Edge
+    .desc = { ent-STHunterBridgeBorder.desc }

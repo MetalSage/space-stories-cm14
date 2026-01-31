@@ -1,0 +1,14 @@
+ent-CMSpawnPointWeaponsSpecialist = weapons specialist spawn point
+    .desc = { ent-CMSpawnPointJobBase.desc }
+ent-CMSpawnPointWeaponsSpecialistAlpha = { ent-CMSpawnPointWeaponsSpecialist }
+    .suffix = Alpha
+    .desc = { ent-CMSpawnPointWeaponsSpecialist.desc }
+ent-CMSpawnPointWeaponsSpecialistBravo = { ent-CMSpawnPointWeaponsSpecialist }
+    .suffix = Bravo
+    .desc = { ent-CMSpawnPointWeaponsSpecialist.desc }
+ent-CMSpawnPointWeaponsSpecialistCharlie = { ent-CMSpawnPointWeaponsSpecialist }
+    .suffix = Charlie
+    .desc = { ent-CMSpawnPointWeaponsSpecialist.desc }
+ent-CMSpawnPointWeaponsSpecialistDelta = { ent-CMSpawnPointWeaponsSpecialist }
+    .suffix = Delta
+    .desc = { ent-CMSpawnPointWeaponsSpecialist.desc }

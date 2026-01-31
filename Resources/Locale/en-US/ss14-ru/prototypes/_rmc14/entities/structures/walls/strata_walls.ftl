@@ -1,0 +1,15 @@
+ent-RMCWallStrata = bare outpost wall
+    .desc = A thick and chunky metal wall. The surface is barren and imposing.
+ent-RMCWallStrataReinforced = ribbed outpost wall
+    .desc = A thick and chunky metal wall covered in jagged ribs.
+ent-RMCWallStrataHull = heavy ribbed outpost wall
+    .desc = A thick and chunky metal wall that is, just by virtue of its placement and imposing presence, entirely indestructible.
+ent-RMCWallStrataIce = ice columns
+    .desc = An absolutely massive collection of columns made of ice. The longer you stare, the deeper the ice seems to go.
+ent-RMCWallStrataIceDirty = { ent-RMCWallStrataIce }
+    .desc = { ent-RMCWallStrataIce.desc }
+ent-RMCWallStrataRock = rock wall
+    .desc = A rough wall of hardened rock.
+ent-RMCWallStrataRockTimed = { ent-RMCWallStrataRock }
+    .suffix = Timed
+    .desc = { ent-RMCWallStrataRock.desc }

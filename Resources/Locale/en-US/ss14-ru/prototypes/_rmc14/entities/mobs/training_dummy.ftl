@@ -1,0 +1,17 @@
+ent-RMCTrainingDummy = training dummy
+    .desc = A training dummy used by the UNMC to simulate a humanoid body. Feels almost too lifelike.
+    .suffix = RMC14
+ent-SpawnRMCTrainingDummy = RMC Training Dummy Spawner
+    .desc = { ent-MarkerBase.desc }
+ent-RMCLockerTrainingDummy = training dummy cabinet
+    .desc = An ultrasafe cabinet containing a training dummy. Only accessible by Chief Medical Officers and Senior Enlisted Advisors.
+    .suffix = South, Empty
+ent-RMCLockerTrainingDummyFilled = { ent-RMCLockerTrainingDummy }
+    .suffix = South, Filled
+    .desc = { ent-RMCLockerTrainingDummy.desc }
+ent-RMCLockerTrainingDummyNorth = { ent-RMCLockerTrainingDummy }
+    .suffix = North, Empty
+    .desc = { ent-RMCLockerTrainingDummy.desc }
+ent-RMCLockerTrainingDummyNorthFilled = { ent-RMCLockerTrainingDummyNorth }
+    .suffix = North, Filled
+    .desc = { ent-RMCLockerTrainingDummyNorth.desc }

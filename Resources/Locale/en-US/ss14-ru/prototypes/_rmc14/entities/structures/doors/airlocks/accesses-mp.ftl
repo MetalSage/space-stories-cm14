@@ -1,0 +1,15 @@
+ent-CMAirlockBrigLocked = { ent-CMAirlockSecurity }
+    .suffix = Brig, Locked
+    .desc = { ent-CMAirlockSecurity.desc }
+ent-CMAirlockGlassBrigLocked = { ent-CMAirlockGlassSecurity }
+    .suffix = Brig, Locked, Glass
+    .desc = { ent-CMAirlockGlassSecurity.desc }
+ent-CMAirlockMaintBrigLocked = { ent-CMAirlockMaint }
+    .suffix = Brig, Locked, Maint
+    .desc = { ent-CMAirlockMaint.desc }
+ent-CMAirlockArmoryLocked = { ent-CMAirlockSecurity }
+    .suffix = Armory, Locked
+    .desc = { ent-CMAirlockSecurity.desc }
+ent-CMAirlockGlassArmoryLocked = { ent-CMAirlockGlassSecurity }
+    .suffix = Armory, Locked, Glass
+    .desc = { ent-CMAirlockGlassSecurity.desc }

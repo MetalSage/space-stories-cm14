@@ -1,0 +1,14 @@
+ent-CMFence = fence
+    .desc = A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it.
+ent-RMCFenceBroken = broken fence
+    .desc = A mess of broken wire strewn between two poles, it's not blocking anyone's way through.
+ent-RMCFenceHybrisa = { ent-CMFence }
+    .desc = { ent-CMFence.desc }
+ent-RMCFenceHybrisaBroken = { ent-RMCFenceBroken }
+    .desc = { ent-RMCFenceBroken.desc }
+ent-RMCFenceHybrisaElectric = { ent-CMFence }
+    .suffix = electric
+    .desc = { ent-CMFence.desc }
+ent-RMCFenceHybrisaElectricBroken = { ent-RMCFenceBroken }
+    .suffix = electric
+    .desc = { ent-RMCFenceBroken.desc }

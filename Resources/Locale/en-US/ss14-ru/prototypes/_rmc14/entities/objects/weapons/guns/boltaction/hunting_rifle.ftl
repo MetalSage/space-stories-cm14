@@ -1,0 +1,9 @@
+ent-RMCWeaponBoltActionRifle = Basira-Armstrong bolt-action hunting rifle
+    .desc = Named after its eccentric designers, the Basira-Armstrong is a cheap but reliable civilian bolt-action rifle frequently found in the outer colonies. Despite its legally-mandated limited magazine capacity, its light weight and legendary accuracy makes it popular among hunters and competitive shooters.
+    .suffix = Filled
+ent-RMCMagazineRifleHunting = Basira-Armstrong magazine (6.5mm)
+    .desc = { ent-CMMagazineRifleBase.desc }
+ent-RMCCartridgeBoltActionRifle = Cartridge (5.56x45)
+    .desc = A Cartridge for the Basira-Armstrong hunting rifle. Compliant with the 15-cartridge limit on civilian hunting rifles.
+ent-RMCBulletRifleHunting = { ent-BulletRifle10x24mm }
+    .desc = { ent-BulletRifle10x24mm.desc }

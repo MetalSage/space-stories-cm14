@@ -1,0 +1,10 @@
+ent-CMIDCardASO = auxiliary support officer ID card
+    .desc = { ent-CMIDCardSilver.desc }
+ent-CMIDCardPilotDropship = dropship pilot's ID card
+    .desc = { ent-CMIDCardBase.desc }
+ent-CMIDCardPilotGunship = gunship pilot's ID card
+    .desc = { ent-CMIDCardBase.desc }
+ent-CMIDCardDCC = dropship crew chief's ID card
+    .desc = { ent-CMIDCardBase.desc }
+ent-CMIDCardIntelOfficer = intel officer's ID card
+    .desc = { ent-CMIDCardSilver.desc }

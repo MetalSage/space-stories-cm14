@@ -1,0 +1,10 @@
+ent-CMJumpsuitProvost = provost uniform
+    .desc = The crisp uniform of a Provost Officer.
+ent-CMJumpsuitProvostCI = provost uniform
+    .desc = The crisp uniform of a Provost Officer.
+ent-CMJumpsuitProvostSenior = provost senior uniform
+    .desc = The crisp uniform of a senior member of the Provost Office.
+ent-CMJumpsuitProvostMarshal = provost marshal uniform
+    .desc = The crisp uniform of a Provost Marshal.
+ent-CMJumpsuitProvostAgent = special agent uniform
+    .desc = A modified Provost uniform, with its original insignia replaced by those of the Intelligence Service. Special Agents are often recruited from the upper echelons of law enforcement agencies in various armed forces. These recruits often take all their gear, uniform included with them and later modify them to include intelligence service insignia.

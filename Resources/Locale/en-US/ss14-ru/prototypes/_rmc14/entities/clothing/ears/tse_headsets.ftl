@@ -1,0 +1,10 @@
+ent-RMCEncryptionKeyTSE = TSE radio encryption key
+    .desc = { ent-CMEncryptionKey.desc }
+ent-RMCEncryptionKeyTSEPA = TSEPA radio encryption key
+    .desc = { ent-RMCEncryptionKeyTSE.desc }
+ent-RMCHeadsetTSEAbstract = { ent-RMCHeadsetIconsTSE }
+    .desc = { ent-RMCHeadsetIconsTSE.desc }
+ent-RMCHeadsetTSE = TSE headset
+    .desc = { ent-RMCHeadsetTSEAbstract.desc }
+ent-RMCHeadsetTSEPA = TSEPA headset
+    .desc = { ent-RMCHeadsetTSEAbstract.desc }

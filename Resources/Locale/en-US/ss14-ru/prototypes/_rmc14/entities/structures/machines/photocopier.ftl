@@ -1,0 +1,9 @@
+ent-RMCBasePhotocopier = Photocopier
+    .desc = A photocopier used for copying... you know, photos! Also useful for copying documents on paper. This specific model has been manufactured by AEGIS Armaments in a cheaper frame than most modern photocopiers. It uses more primitive copying technology resulting in more toner waste and less printing capabilities. Nonetheless, its cheap construction means cheaper costs, and for people that only need to print a paper or two most of the time, it becomes cost-effective.
+ent-RMCPhotocopier = Photocopier
+    .desc = { ent-RMCBasePhotocopier.desc }
+ent-RMCPhotocopierSmallHitbox = { ent-RMCPhotocopier }
+    .suffix = Smaller
+    .desc = { ent-RMCPhotocopier.desc }
+ent-RMCPhotocopierPro = We-Ya Photocopier
+    .desc = A photocopier used for copying... you know, photos! Also useful for copying documents on paper. This specific model has been manufactured by We-Ya in a more modern and robust frame than the average photocopiers you see from smaller companies. It uses some of the most advanced technologies in the area of paper-printing such as bigger toner economy and much higher printing capabilities. All that makes it the favorite among consumers that need to print high amounts of paperwork for their daily duties.

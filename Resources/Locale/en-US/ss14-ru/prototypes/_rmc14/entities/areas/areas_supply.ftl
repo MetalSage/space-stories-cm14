@@ -1,0 +1,10 @@
+ent-RMCAreaSupply = { ent-RMCAreaBase }
+    .desc = { ent-RMCAreaBase.desc }
+ent-RMCAreaSupplyStation = Supply Shuttle
+    .desc = { ent-RMCAreaSupply.desc }
+ent-RMCAreaSupplyDock = Supply Shuttle
+    .desc = { ent-RMCAreaSupply.desc }
+ent-RMCAreaSupplyStationVehicle = Vehicle ASRS
+    .desc = { ent-RMCAreaSupply.desc }
+ent-RMCAreaSupplyDockVehicle = Vehicle ASRS
+    .desc = { ent-RMCAreaSupply.desc }

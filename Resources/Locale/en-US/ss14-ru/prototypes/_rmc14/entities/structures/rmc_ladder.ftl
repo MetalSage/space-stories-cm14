@@ -1,0 +1,16 @@
+ent-RMCLadder = ladder
+    .desc = A sturdy metal ladder.
+ent-RMCLadderUp = { ent-RMCLadder }
+    .suffix = Up
+    .desc = { ent-RMCLadder.desc }
+ent-RMCLadderThrough = { ent-RMCLadder }
+    .suffix = Through
+    .desc = { ent-RMCLadder.desc }
+ent-RMCLadderHatch = { ent-RMCLadder }
+    .suffix = Hatch
+    .desc = { ent-RMCLadder.desc }
+ent-RMCLadderRope = rope
+    .desc = A sturdy rope.
+ent-RMCLadderRopeAltDrawdepth = { ent-RMCLadderRope }
+    .suffix = Layers over Platforms
+    .desc = { ent-RMCLadderRope.desc }

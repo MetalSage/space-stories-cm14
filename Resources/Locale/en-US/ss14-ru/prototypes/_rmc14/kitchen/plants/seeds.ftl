@@ -1,0 +1,12 @@
+ent-PlumpSeeds = packet of plump spores
+    .desc = { ent-SeedBase.desc }
+ent-GrassSeeds = packet of grass seeds
+    .desc = { ent-SeedBase.desc }
+ent-WhiteBeetSeeds = packet of white beet seeds
+    .desc = { ent-SeedBase.desc }
+ent-PeanutSeeds = packet of peanut seeds
+    .desc = { ent-SeedBase.desc }
+ent-SunflowerSeeds = packet of sunflower seeds
+    .desc = { ent-SeedBase.desc }
+ent-RMCMangoSeeds = packet of mango seeds
+    .desc = { ent-SeedBase.desc }

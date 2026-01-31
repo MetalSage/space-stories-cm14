@@ -1,0 +1,10 @@
+ent-RMCHiveBoonBase = hive boon
+    .desc = { "" }
+ent-RMCHiveBoonFireResistance = Boon of Fire Resistance
+    .desc = Makes all xenonids immune to fire for 5 minutes.
+ent-RMCHiveBoonLarvaSurge = Surge of Larva
+    .desc = Provides 5 larva instantly to the hive.
+ent-RMCHiveBoonKing = His Grace
+    .desc = A huge behemoth of a Xenonid which can tear its way through defences and flesh alike. Requires open space around the hive core to spawn.
+ent-RMCHiveCocoonKing = alien cocoon
+    .desc = A large pulsating cocoon.

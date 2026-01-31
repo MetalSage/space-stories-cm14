@@ -1,0 +1,10 @@
+ent-RMCWindowFramePrison = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowPrison = window
+    .desc = A glass window. It looks thin and flimsy. A few knocks with anything should shatter it.
+ent-RMCWindowPrisonCell = cell window
+    .desc = A glass window with a special rod matrix inside a wall frame.
+ent-RMCWindowPrisonReinforced = reinforced window
+    .desc = A glass window with a special rod matrix inside a wall frame. It looks rather strong. Might take a few good hits to shatter it.
+ent-RMCWindowPrisonHull = hull window
+    .desc = A glass window with a special rod matrix inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach.

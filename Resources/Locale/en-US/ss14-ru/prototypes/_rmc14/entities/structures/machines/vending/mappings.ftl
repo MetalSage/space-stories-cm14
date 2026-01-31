@@ -1,0 +1,10 @@
+ent-CMVendorHeadsetSquad = { "" }
+    .desc = { "" }
+ent-CMVendorHeadsetSquadLeader = { "" }
+    .desc = { "" }
+ent-CMVendorHeadsetSquadFTL = { "" }
+    .desc = { "" }
+ent-CMVendorHeadsetSquadComTech = { "" }
+    .desc = { "" }
+ent-CMVendorHeadsetSquadCorpsman = { "" }
+    .desc = { "" }

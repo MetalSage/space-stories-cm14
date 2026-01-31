@@ -1,0 +1,10 @@
+ent-RMCRollingPin = rolling pin
+    .desc = Used to knock out the Bartender.
+ent-RMCFork = fork
+    .desc = It's a fork. Sure is pointy.
+ent-RMCForkPlastic = plastic fork
+    .desc = Yay, no washing up to do.
+ent-RMCSpoon = spoon
+    .desc = It's a spoon. You can see your own upside-down face in it.
+ent-RMCSpoonPlastic = plastic spoon
+    .desc = It's a plastic spoon. How dull.

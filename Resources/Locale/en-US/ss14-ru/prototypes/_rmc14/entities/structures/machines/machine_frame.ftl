@@ -1,0 +1,12 @@
+ent-CMMachineFrameUnfinished = { ent-UnfinishedMachineFrame }
+    .suffix = RMC14, Unfinished
+    .desc = { ent-UnfinishedMachineFrame.desc }
+ent-CMMachineFrame = { ent-MachineFrame }
+    .suffix = RMC14, Ready
+    .desc = { ent-MachineFrame.desc }
+ent-CMMachineFrameDestroyed = { ent-MachineFrameDestroyed }
+    .suffix = RMC14
+    .desc = { ent-MachineFrameDestroyed.desc }
+ent-RMCComputerFrameUnfinished = computer frame
+    .suffix = RMC14, Unfinished
+    .desc = { ent-CMMachineFrameUnfinished.desc }

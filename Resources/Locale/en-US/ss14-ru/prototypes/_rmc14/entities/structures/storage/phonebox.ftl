@@ -1,0 +1,14 @@
+ent-RMCPhoneboxBase = phonebox
+    .desc = It's a phonebox, outdated but realiable technology. These are used to communicate throughout the colony and connected colonies without interference. As reliable as they are, it seems the line is down.
+ent-RMCPhoneboxBrokenBase = wrecked phonebox
+    .desc = It's a phonebox, outdated but realiable technology. These are used to communicate throughout the colony and connected colonies without interference. It seems it's completely wrecked, covered in blood and the glass is smashed. Hiding inside would be pointless.
+ent-RMCPhoneboxOff = { ent-RMCPhoneboxBase }
+    .suffix = Off
+    .desc = { ent-RMCPhoneboxBase.desc }
+ent-RMCPhoneboxOn = { ent-RMCPhoneboxBase }
+    .suffix = On
+    .desc = { ent-RMCPhoneboxBase.desc }
+ent-RMCPhoneboxBroken = { ent-RMCPhoneboxBrokenBase }
+    .desc = { ent-RMCPhoneboxBrokenBase.desc }
+ent-RMCPhoneboxBrokenBloody = { ent-RMCPhoneboxBrokenBase }
+    .desc = { ent-RMCPhoneboxBrokenBase.desc }

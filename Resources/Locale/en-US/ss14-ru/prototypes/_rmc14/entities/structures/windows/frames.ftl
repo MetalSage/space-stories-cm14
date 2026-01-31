@@ -1,0 +1,17 @@
+ent-RMCBaseWindowFrame = window frame
+    .desc = A big hole in the wall that used to sport a large window. Can be vaulted through.
+ent-RMCWindowFrameAlmayer = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowFrameWhite = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowFrameAI = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowFrameColony = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowFrameColonyReinforced = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowFrameHunterReinforced = { ent-RMCBaseWindowFrame }
+    .suffix = hunter
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowFrameWood = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }

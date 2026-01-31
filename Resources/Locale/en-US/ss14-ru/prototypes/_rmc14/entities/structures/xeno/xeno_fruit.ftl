@@ -1,0 +1,14 @@
+ent-XenoFruitBase = resin fruit
+    .desc = a fruit that shouldn't exist
+ent-XenoFruitLesser = lesser resin fruit
+    .desc = A strange green-ish fruit-looking thing.
+ent-XenoFruitGreater = greater resin fruit
+    .desc = { ent-XenoFruitLesser.desc }
+ent-XenoFruitUnstable = unstable resin fruit
+    .desc = A strange turquoise fruit-looking thing.
+ent-XenoFruitSpore = spore resin fruit
+    .desc = A strange mushroom-looking thing, with small orange glowing sacs, bobbing on the weird stalks.
+ent-XenoFruitSpeed = alacrit resin fruit
+    .desc = A strange purple-ish fruit-looking thing.
+ent-XenoFruitPlasma = cruor resin fruit
+    .desc = A strange blue-ish fruit-looking thing.

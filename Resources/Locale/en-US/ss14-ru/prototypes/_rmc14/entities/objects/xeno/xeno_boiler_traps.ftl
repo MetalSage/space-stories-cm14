@@ -1,0 +1,12 @@
+ent-BaseXenoBoilerTrap = resin hole
+    .desc = It looks like a trap for catching tallhosts.
+ent-XenoBoilerTrap = { ent-BaseXenoBoilerTrap }
+    .desc = { ent-BaseXenoBoilerTrap.desc }
+ent-EmpoweredXenoBoilerTrap = { ent-BaseXenoBoilerTrap }
+    .desc = { ent-BaseXenoBoilerTrap.desc }
+ent-BaseXenoAcidMine = ???
+    .desc = { "" }
+ent-XenoAcidMine = { ent-BaseXenoAcidMine }
+    .desc = { ent-BaseXenoAcidMine.desc }
+ent-EmpoweredXenoAcidMine = { ent-BaseXenoAcidMine }
+    .desc = { ent-BaseXenoAcidMine.desc }

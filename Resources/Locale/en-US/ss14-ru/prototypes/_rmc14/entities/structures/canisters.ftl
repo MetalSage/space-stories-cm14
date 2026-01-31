@@ -1,0 +1,16 @@
+ent-RMCCanisterBase = canister
+    .desc = A gas canister.
+ent-RMCCanisterGrey = canister (Air)
+    .desc = A gas canister.
+ent-RMCCanisterBlack = canister (CO2)
+    .desc = A gas canister.
+ent-RMCCanisterBlue = canister (O2)
+    .desc = A gas canister.
+ent-RMCCanisterRed = canister (N2)
+    .desc = A gas canister.
+ent-RMCCanisterOrange = canister (Phoron)
+    .desc = A gas canister.
+ent-RMCCanisterRedWhite = canister (N2O)
+    .desc = A gas canister.
+ent-RMCCanisterBrokenBase = broken canister
+    .desc = A broken gas canister. Completely useless.

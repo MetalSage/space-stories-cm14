@@ -1,0 +1,14 @@
+ent-RMCWeaponLauncherHJRA12 = HJRA-12 Handheld Anti-Tank Grenade Launcher
+    .desc = The HJRA-12 Handheld Anti-Tank Grenade Launcher is the standard Anti-Armor weapon of the SPP. It is designed to be easy to use and to take out or disable armored vehicles.
+ent-RMCRocketHJRA12AT = HJRA-12 Anti-Tank Rocket
+    .desc = A rocket for the SPP standard-issue HJRA-12 Handheld Anti-Tank Grenade Launcher. This one is a standard Anti-Tank rocket designed to disable or destroy hostile vehicles.
+ent-RMCRocketHJRA12HE = HJRA-12 High-Explosive Rocket
+    .desc = A rocket for the SPP standard-issue HJRA-12 Handheld Anti-Tank Grenade Launcher. This one is a standard high-explosive rocket for use against light vehicles or as an anti-personnel grenade.
+ent-RMCRocketHJRA12Incen = HJRA-12 Extreme-Intensity Incendiary Rocket
+    .desc = A rocket for the SPP standard-issue HJRA-12 Handheld Anti-Tank Grenade Launcher. This one is an extreme-intensity incendiary rocket.
+ent-RMCProjectileRocketHJRA12AT = HJRA-12 Anti-Tank Rocket
+    .desc = A rocket for the SPP standard-issue HJRA-12 Handheld Anti-Tank Grenade Launcher. This one is a standard Anti-Tank rocket designed to disable or destroy hostile vehicles.
+ent-RMCProjectileRocketHJRA12HE = HJRA-12 High-Explosive Rocket
+    .desc = A rocket for the SPP standard-issue HJRA-12 Handheld Anti-Tank Grenade Launcher. This one is a standard high-explosive rocket for use against light vehicles or as an anti-personnel grenade.
+ent-RMCProjectileRocketHJRA12Incen = HJRA-12 Extreme-Intensity Incendiary Rocket
+    .desc = A rocket for the SPP standard-issue HJRA-12 Handheld Anti-Tank Grenade Launcher. This one is an extreme-intensity incendiary rocket.

@@ -1,0 +1,9 @@
+ent-CMClosetToolFilled = { ent-CMClosetTool }
+    .suffix = Filled
+    .desc = { ent-CMClosetTool.desc }
+ent-CMClosetRadiationFilled = { ent-CMClosetRadiation }
+    .suffix = Filled
+    .desc = { ent-CMClosetRadiation.desc }
+ent-CMClosetRadiationFilledTycho = radiation suit closet
+    .desc = It's a storage unit for rad-protective suits.
+    .suffix = Filled, Tycho 4000 Suit

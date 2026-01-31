@@ -1,0 +1,13 @@
+ent-RMCCrateMedicalSurgery = surgery crate (tray,anesthetics,surgeon gear)
+    .desc = { ent-CMCrateSecureSurgery.desc }
+ent-RMCCrateMedicalBodyBag = body bag crate (x28)
+    .desc = { ent-RMCCrateMedical.desc }
+ent-RMCCrateMedicalStasisBag = stasis bag crate (x3)
+    .desc = { ent-RMCCrateMedical.desc }
+ent-RMCCrateMedicalFirstAid = first aid kit crate (x2 each)
+    .desc = { ent-RMCCrateMedical.desc }
+ent-RMCCrateMedicalFilled = medical crate
+    .suffix = Filled
+    .desc = { ent-RMCCrateMedical.desc }
+ent-RMCCrateMedicalPill = pill bottle crate (x2 each)
+    .desc = { ent-RMCCrateMedical.desc }

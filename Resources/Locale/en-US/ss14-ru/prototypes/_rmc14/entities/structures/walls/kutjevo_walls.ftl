@@ -1,0 +1,10 @@
+ent-RMCWallKutjevoRock = rock wall
+    .desc = Tall sandy rocks. Imposing. Impressive. Attention grabbing.
+ent-RMCWallKutjevoRockBorder = { ent-RMCWallKutjevoRock }
+    .desc = { ent-RMCWallKutjevoRock.desc }
+ent-RMCWallKutjevo = colony wall
+    .desc = Dusty worn down walls that were once built to last.
+ent-RMCWallKutjevoReinforced = reinforced colony wall
+    .desc = Dusty worn down walls that were once built to last. This one is reinforced
+ent-RMCWallKutjevoHull = heavy reinforced colony wall
+    .desc = Dusty worn down walls that were once built to last. This one is indestructible.

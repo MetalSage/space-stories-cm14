@@ -1,0 +1,14 @@
+ent-SponsorObserverTier1 = { ent-MobObserver }
+    .desc = { ent-MobObserver.desc }
+ent-SponsorObserverTier2 = { ent-MobObserver }
+    .desc = { ent-MobObserver.desc }
+ent-SponsorObserverTier3 = { ent-MobObserver }
+    .desc = { ent-MobObserver.desc }
+ent-SponsorObserverTier4 = { ent-MobObserver }
+    .desc = { ent-MobObserver.desc }
+ent-SponsorObserverTier5 = { ent-MobObserver }
+    .desc = { ent-MobObserver.desc }
+ent-SponsorObserverTier6 = { ent-MobObserver }
+    .desc = { ent-MobObserver.desc }
+ent-SponsorObserverTier7 = { ent-MobObserver }
+    .desc = { ent-MobObserver.desc }

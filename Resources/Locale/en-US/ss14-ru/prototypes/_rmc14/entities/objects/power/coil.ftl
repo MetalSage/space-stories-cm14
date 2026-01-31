@@ -1,0 +1,15 @@
+ent-RMCCableCoil = cable coil
+    .desc = A coil of power cable.
+    .suffix = Full
+ent-RMCCableCoil30 = { ent-RMCCableCoil }
+    .suffix = 30
+    .desc = { ent-RMCCableCoil.desc }
+ent-RMCCableCoil20 = { ent-RMCCableCoil }
+    .suffix = 20
+    .desc = { ent-RMCCableCoil.desc }
+ent-RMCCableCoil10 = { ent-RMCCableCoil }
+    .suffix = 10
+    .desc = { ent-RMCCableCoil.desc }
+ent-RMCCableCoil1 = { ent-RMCCableCoil }
+    .suffix = Single
+    .desc = { ent-RMCCableCoil.desc }

@@ -1,0 +1,10 @@
+ent-RMCShellShotgunHeavyBuckshot = handful of heavy buckshot shells
+    .desc = { ent-CMShellShotgunBase.desc }
+ent-RMCShellShotgunHeavySlugs = handful of heavy shotgun slugs
+    .desc = { ent-CMShellShotgunBase.desc }
+ent-RMCShellShotgunHeavyBeanbag = handful of heavy beanbag slugs
+    .desc = { ent-CMShellShotgunBase.desc }
+ent-RMCShellShotgunHeavyFlechette = handful of heavy flechette shells
+    .desc = { ent-CMShellShotgunBase.desc }
+ent-RMCShellShotgunIncendiaryHeavyBuckshot = handful of heavy dragonbreath buckshot shells
+    .desc = { ent-CMShellShotgunBuckshot.desc }

@@ -1,0 +1,10 @@
+ent-STPlatformHunter = raised metal platform
+    .desc = A raised level of metal, often used to elevate areas above others, or construct bridges. You could probably climb it.
+ent-STPlatformHunterBroken = { ent-CMPlatformBroken }
+    .desc = { ent-CMPlatformBroken.desc }
+ent-STPlatformHunterCornerSmall = raised metal platform
+    .desc = A raised level of metal, often used to elevate areas above others. You could probably climb it.
+ent-STPlatformHunterStair = raised metal platform
+    .desc = A raised level of metal, often used to elevate areas above others. You could probably climb it.
+ent-STPlatformHunterStairAlt = raised metal platform
+    .desc = A raised level of metal, often used to elevate areas above others. You could probably climb it.

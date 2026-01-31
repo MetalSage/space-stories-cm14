@@ -1,0 +1,14 @@
+ent-RMCAirScrubberPortable = portable air scrubber
+    .desc = It scrubs, portably!
+ent-RMCAirScrubberStationary = stationary air scrubber
+    .desc = It's large and securely attached.
+ent-RMCAirPumpPortable = portable air pump
+    .desc = A movable pump that can move air around.
+ent-RMCAirPumpStationary = stationary air pump
+    .desc = It's large and securely attached.
+ent-RMCRadiator = radiator
+    .desc = It's a radiator. It heats the room through convection with hot water.
+ent-RMCRadiatorRed = radiator
+    .desc = It's a radiator. It heats the room through convection with hot water. This one has a red handle.
+ent-RMCSpaceHeater = space heater
+    .desc = It's an electric space heater. It heats the room through radiation with electricity.

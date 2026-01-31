@@ -1,0 +1,12 @@
+ent-CMVendorTool = tool storage machine
+    .desc = A large storage machine containing various tools and devices for general repair.
+ent-CMVendorCircuits = circuit board vendor
+    .desc = A safe storage for pre-programmed circuit boards, it has an internal gyroscope to keep any external force from moving the boards, thick insulation and a custom 2.1mm UPS port for charging various We-Ya exclusive devices (sold separately).
+ent-CMVendorElectronics = electronics vendor
+    .desc = Spare tool vendor. What? Did you expect some witty description?
+ent-CMVendorComponent = component storage machine
+    .desc = A large storage machine containing various components.
+ent-CMVendorScience = We-Ya SciVend
+    .desc = Vendor containing basic equipment for your experiments.
+ent-CMVendorRobotics = Robotech Deluxe
+    .desc = All the tools you need to create your own robot army.

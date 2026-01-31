@@ -1,0 +1,16 @@
+ent-STHunterCapeBase = { ent-Clothing }
+    .desc = A battle-worn cape passed down by elder Hunter.
+ent-STHunterCapeFull = hunter cape
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeCeremonial = hunter ceremonial cape
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeThird = hunter third-cape
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeHalf = hunter half-cape
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeQuarter = hunter quarter-cape
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapePoncho = hunter poncho
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeDamaged = hunter damaged cape
+    .desc = { ent-STHunterCapeBase.desc }

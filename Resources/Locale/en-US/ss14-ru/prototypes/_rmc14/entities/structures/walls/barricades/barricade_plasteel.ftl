@@ -1,0 +1,13 @@
+ent-RMCBarricadePlasteel = plasteel barricade
+    .desc = A sturdy and easily assembled barricade made of reinforced plasteel plates, the pinnacle of strongpoints. Use a blowtorch to repair.
+ent-RMCBarricadeBurnPlasteel = { ent-RMCBarricadePlasteel }
+    .suffix = Biohazard
+    .desc = { ent-RMCBarricadePlasteel.desc }
+ent-RMCBarricadeBrutePlasteel = { ent-RMCBarricadePlasteel }
+    .suffix = Reinforced
+    .desc = { ent-RMCBarricadePlasteel.desc }
+ent-RMCBarricadeExplosivePlasteel = { ent-RMCBarricadePlasteel }
+    .suffix = Composite
+    .desc = { ent-RMCBarricadePlasteel.desc }
+ent-CMBarricadePlasteelDoor = folding plasteel barricade
+    .desc = A tough folding plasteel barricade stronger than its metal counterpart. Can be closed and opened at a moment's notice. Repair with a welder.

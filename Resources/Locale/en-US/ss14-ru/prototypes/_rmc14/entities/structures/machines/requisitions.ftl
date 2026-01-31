@@ -1,0 +1,16 @@
+ent-RMCASRSAccount = ASRS account
+    .desc = { "" }
+ent-CMASRSConsole = ASRS console
+    .desc = A console for the Automated Storage Retrieval System.
+    .suffix = Requisitions
+ent-CMASRSConsolePowered = { ent-CMASRSConsole }
+    .suffix = Powered
+    .desc = { ent-CMASRSConsole.desc }
+ent-CMCargoElevator = cargo elevator
+    .suffix = Lowered, Requisitions
+    .desc = { "" }
+ent-CMRailing = retractable railing
+    .desc = That looks like it doesn't open easily.
+    .suffix = Raised
+ent-CMGear = gear
+    .desc = { "" }

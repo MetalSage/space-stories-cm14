@@ -1,0 +1,14 @@
+ent-CMSpawnPointFireteamLeader = fireteam leader spawn point
+    .desc = { ent-CMSpawnPointJobBase.desc }
+ent-CMSpawnPointFireteamLeaderAlpha = { ent-CMSpawnPointFireteamLeader }
+    .suffix = Alpha
+    .desc = { ent-CMSpawnPointFireteamLeader.desc }
+ent-CMSpawnPointFireteamLeaderBravo = { ent-CMSpawnPointFireteamLeader }
+    .suffix = Bravo
+    .desc = { ent-CMSpawnPointFireteamLeader.desc }
+ent-CMSpawnPointFireteamLeaderCharlie = { ent-CMSpawnPointFireteamLeader }
+    .suffix = Charlie
+    .desc = { ent-CMSpawnPointFireteamLeader.desc }
+ent-CMSpawnPointFireteamLeaderDelta = { ent-CMSpawnPointFireteamLeader }
+    .suffix = Delta
+    .desc = { ent-CMSpawnPointFireteamLeader.desc }

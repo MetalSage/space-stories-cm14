@@ -1,0 +1,14 @@
+ent-CMMop = mop
+    .desc = The world of janitalia wouldn't be complete without a mop.
+ent-CMWetSign = wet floor sign
+    .desc = Caution! Wet Floor!
+ent-CMWarningCone = warning cone
+    .desc = This cone is trying to warn you of something!
+ent-RMCLightReplacer = light replacer
+    .desc = A device to automatically replace lights. Refill with working lightbulbs.
+ent-RMCLightReplacerEmpty = { ent-RMCLightReplacer }
+    .suffix = Empty
+    .desc = { ent-RMCLightReplacer.desc }
+ent-RMCSprayBottleSpaceCleaner = { ent-SprayBottleSpaceCleaner }
+    .suffix = RMC
+    .desc = { ent-SprayBottleSpaceCleaner.desc }

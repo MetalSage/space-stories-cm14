@@ -1,0 +1,8 @@
+ent-RMCMarshalCMBUniformSurvivorMarshal = { ent-RMCMarshalCMBUniform }
+    .suffix = Webbing
+    .desc = { ent-RMCMarshalCMBUniform.desc }
+ent-RMCWebbingSurvivorCMBMarshal = { ent-CMWebbingHolster }
+    .suffix = Marshal, Survivor, Filled
+    .desc = { ent-CMWebbingHolster.desc }
+ent-CMSpawnPointSolarisCMBMarshal = solaris cmb marshal spawn point
+    .desc = { ent-CMSpawnPointJobBase.desc }

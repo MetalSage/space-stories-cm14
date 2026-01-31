@@ -1,0 +1,11 @@
+ent-CMSyringe = { ent-Syringe }
+    .suffix = RMC14
+    .desc = { ent-Syringe.desc }
+ent-RMCPrefilledSyringe = { ent-CMSyringe }
+    .suffix = RMC14, Inject
+    .desc = { ent-CMSyringe.desc }
+ent-RMCSyringeLethal = lethal injection syringe
+    .desc = A syringe used for lethal injections.
+ent-RMCSyringeLethalPrefilled = { ent-RMCSyringeLethal }
+    .suffix = RMC14, Filled
+    .desc = { ent-RMCSyringeLethal.desc }

@@ -1,0 +1,10 @@
+ent-RMCPropBodybagPile = bodybag pile
+    .desc = A grim mound of body bags stacked haphazardly.
+ent-RMCPropBodybagPileFlipped = { ent-RMCPropBodybagPile }
+    .suffix = Flipped
+    .desc = { ent-RMCPropBodybagPile.desc }
+ent-RMCPropBodybagPileCharred = charred bodybag pile
+    .desc = A grim mound of body bags stacked haphazardly, their surfaces blackened and blistered from intense heat. The contents are partially burned.
+ent-RMCPropBodybagPileCharredFlipped = { ent-RMCPropBodybagPileCharred }
+    .suffix = Flipped
+    .desc = { ent-RMCPropBodybagPileCharred.desc }

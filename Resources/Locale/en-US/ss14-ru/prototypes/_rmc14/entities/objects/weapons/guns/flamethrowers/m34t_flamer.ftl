@@ -1,0 +1,12 @@
+ent-RMCWeaponFlamerSpec = M34-T incinerator unit
+    .desc = An improved version of the M34 incinerator unit, the M34-T model is capable of dispersing a larger variety of fuel types.
+ent-RMCTankFlamerLarge = M34 large incinerator tank
+    .desc = A large fuel tank for use in the M34-T incinerator unit. Handle with extreme caution.
+ent-RMCTankFlamerLargeB = M34 large incinerator tank (B)
+    .desc = A large fuel tank of Ultra Thick Napthal Fuel type B, a special variant of napalm that is easily extinguished, but disperses over a wide area while burning slowly.
+ent-RMCTankFlamerLargeX = M34 large incinerator tank (X)
+    .desc = A large fuel tank of Ultra Thick Napthal Fuel type X, a sticky combustible liquid chemical that burns extremely hot, for use in the M34-T incinerator unit. Handle with extreme caution.
+ent-RMCTankFlamerLargeEX = M34 large incinerator tank (EX)
+    .desc = A large fuel tank of Ultra Thick Napthal Fuel type EX, a sticky combustible liquid chemical that burns so hot it melts straight through most flame-resistant materials, for use in the M34-T incinerator unit. Handle with extreme caution.
+ent-RMCTankFlamerLargeCustom = M34 large custom incinerator tank
+    .desc = A large fuel tank for use in the M34-T incinerator unit.

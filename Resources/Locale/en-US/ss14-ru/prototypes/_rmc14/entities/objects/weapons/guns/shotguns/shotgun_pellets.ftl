@@ -1,0 +1,16 @@
+ent-CMPelletShotgunBase = { ent-CMBulletBase }
+    .desc = { ent-CMBulletBase.desc }
+ent-CMPelletShotgunBuckshot = buckshot
+    .desc = { ent-CMPelletShotgunBase.desc }
+ent-CMPelletShotgunSlug = slug
+    .desc = { ent-CMPelletShotgunBase.desc }
+ent-CMPelletShotgunIncendiary = incendiary slug
+    .desc = { ent-CMPelletShotgunSlug.desc }
+ent-CMPelletShotgunBeanbag = beanbag slug
+    .desc = { ent-CMPelletShotgunBase.desc }
+ent-CMPelletShotgunFlechette = flechette shell
+    .desc = { ent-CMPelletShotgunBase.desc }
+ent-CMPelletShotgunIncendiaryBuckshot = incendiary buckshot shell
+    .desc = { ent-CMPelletShotgunBuckshot.desc }
+ent-RMCPelletShotgunBreaching = light breaching shell
+    .desc = { ent-CMPelletShotgunBase.desc }
