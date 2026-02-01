@@ -29,7 +29,7 @@ public sealed partial class RotaryPhoneComponent : Component
     public SoundSpecifier? GrabSound = new SoundCollectionSpecifier("RMCRadioTelephoneGrab");
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier? VoicemailSound = new SoundPathSpecifier("/Audio/_RMC14/Machines/Phone/voicemail.ogg", AudioParams.Default.WithVolume(-3));
+    public SoundSpecifier? VoicemailSound = new SoundPathSpecifier("/Audio/_Stories/Items/abonent_ne_abonent.ogg", AudioParams.Default.WithVolume(-3));
 
     [DataField, AutoNetworkedField]
     public EntProtoId<RMCTelephoneComponent> PhoneId = "RMCTelephone";
