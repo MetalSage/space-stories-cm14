@@ -1,23 +1,23 @@
 - type: accent
   id: CMChatSanitize
   wordReplacements:
-    cm-chatsan-word-deltard: cm-chatsan-replacement-deltard
-    cm-chatsan-word-deltards: cm-chatsan-replacement-deltards
-    cm-chatsan-word-beno: cm-chatsan-replacement-beno
-    cm-chatsan-word-benos: cm-chatsan-replacement-benos
-    cm-chatsan-word-alphoid: cm-chatsan-replacement-alphoid
-    cm-chatsan-word-alphoids: cm-chatsan-replacement-alphoids
-    cm-chatsan-word-bravoid: cm-chatsan-replacement-bravoid
-    cm-chatsan-word-bravoids: cm-chatsan-replacement-bravoids
-    cm-chatsan-word-charloid: cm-chatsan-replacement-charloid
-    cm-chatsan-word-charloids: cm-chatsan-replacement-charloids
-    cm-chatsan-word-deltoid: cm-chatsan-replacement-deltoid
-    cm-chatsan-word-deltoids: cm-chatsan-replacement-deltoids
-    cm-chatsan-word-xenoid: cm-chatsan-replacement-xenoid
-    cm-chatsan-word-xenoids: cm-chatsan-replacement-xenoids
-    cm-chatsan-word-thru: cm-chatsan-replacement-thru
-    cm-chatsan-word-tho: cm-chatsan-replacement-tho
-    cm-chatsan-word-pb: cm-chatsan-word-pb
+    # cm-chatsan-word-deltard: cm-chatsan-replacement-deltard
+    # cm-chatsan-word-deltards: cm-chatsan-replacement-deltards
+    # cm-chatsan-word-beno: cm-chatsan-replacement-beno
+    # cm-chatsan-word-benos: cm-chatsan-replacement-benos
+    # cm-chatsan-word-alphoid: cm-chatsan-replacement-alphoid
+    # cm-chatsan-word-alphoids: cm-chatsan-replacement-alphoids
+    # cm-chatsan-word-bravoid: cm-chatsan-replacement-bravoid
+    # cm-chatsan-word-bravoids: cm-chatsan-replacement-bravoids
+    # cm-chatsan-word-charloid: cm-chatsan-replacement-charloid
+    # cm-chatsan-word-charloids: cm-chatsan-replacement-charloids
+    # cm-chatsan-word-deltoid: cm-chatsan-replacement-deltoid
+    # cm-chatsan-word-deltoids: cm-chatsan-replacement-deltoids
+    # cm-chatsan-word-xenoid: cm-chatsan-replacement-xenoid
+    # cm-chatsan-word-xenoids: cm-chatsan-replacement-xenoids
+    # # cm-chatsan-word-thru: cm-chatsan-replacement-thru
+    # cm-chatsan-word-tho: cm-chatsan-replacement-tho
+    # cm-chatsan-word-pb: cm-chatsan-word-pb
     cm-chatsan-word-clanker: cm-chatsan-replacement-clanker
 
 - type: accent
@@ -26,7 +26,7 @@
     cm-chatsan-word-admin-marine: cm-chatsan-replacement-admin-marine
     cm-chatsan-word-admins-marine: cm-chatsan-replacement-admins-marine
     cm-chatsan-word-eorg-marine: cm-chatsan-replacement-eorg-marine
-    cm-chatsan-word-slopcade: cm-chatsan-replacement-slopcade
+    # cm-chatsan-word-slopcade: cm-chatsan-replacement-slopcade
     cm-chatsan-word-surv: cm-chatsan-word-survivor
     cm-chatsan-word-survs: cm-chatsan-word-survivors
 
@@ -314,7 +314,7 @@
     cm-chatsan-word-evos: cm-chatsan-replacement-evos
     cm-chatsan-word-tax: cm-chatsan-replacement-tax
     cm-chatsan-word-taxes: cm-chatsan-replacement-taxes
-    cm-chatsan-word-taxing: cm-chatsan-replacement-taxing
+    # cm-chatsan-word-taxing: cm-chatsan-replacement-taxing
     cm-chatsan-word-taxed: cm-chatsan-replacement-taxed
     cm-chatsan-word-taxer: cm-chatsan-replacement-taxer
     cm-chatsan-word-xax: cm-chatsan-replacement-tax
