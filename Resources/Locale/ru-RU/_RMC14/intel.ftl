@@ -20,11 +20,11 @@ rmc-intel-survivor-read =
     Вам не нужно читать { $thing }.
     Сосредоточьтесь на том, чтобы сначала выбраться живым.
 rmc-intel-survivor-xeno-pull =
-    Trying to take the { $thing } with me will only slow me down.
-    I should focus on getting help first.
+    Попытка забрать с собой { $thing } только замедлит меня.
+    Мне следует сначала сосредоточиться на получении помощи.
 rmc-intel-survivor-corpse-pull =
-    I can't save { $thing }, they'll only slow me down.
-    I should focus on getting help first.
+    Я не могу сохранить { $thing }, это только замедлит меня.
+    Мне следует сначала сосредоточиться на получении помощи.
 rmc-ui-intel-title = Цели в технологическом древе морской пехоты
 rmc-ui-intel-header = [bold]Цели в технологическом древе морской пехоты[/bold]
 rmc-ui-intel-tech-points = [bold]Очки технологий[/bold]
@@ -53,7 +53,7 @@ rmc-ui-intel-colony-status =
 rmc-ui-tech-tier-header = [font size=14][bold]Уровень: { $tier }[/bold][/font]
 rmc-ui-tech-points-value = Очки технологий: { $value }
 rmc-ui-tech-repurchasable = Можно выкупить
-rmc-ui-tech-points = [font size=14][bold]Points: { $points }[/bold][/font]
+rmc-ui-tech-points = [font size=14][bold]Очки: { $points }[/bold][/font]
 rmc-ui-tech-incremental-price = Увеличивающаяся цена: +{ $increase } за покупку
 rmc-ui-tech-purchase-button = Купить
 rmc-ui-tech-information-header = [bold]Информация[/bold]

@@ -14,7 +14,7 @@ rmc-jelly-awarded = Желе выдано
 # Jelly Errors
 rmc-jelly-error-cant-give = Вы не можете наградить желе этого ксеноморфа.
 rmc-jelly-error-not-enough-playtime = У вас недостаточно времени на роли для награждения ({ $requiredHours } ч.)!
-rmc-jelly-error-limit-reached = You can't give out any more jellies ({ $given }/{ $limit })!
+rmc-jelly-error-limit-reached = Вы не можете наградить ксеноморфов большим количеством желе ({ $given }/{ $limit })!
 # Hive Management UI
 rmc-hivemanagement-deevolve = Дезэволюция (500)
 rmc-hivemanagement-reward = Награждение желе (500)

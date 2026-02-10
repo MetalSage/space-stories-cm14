@@ -1,2 +1,2 @@
-rmc-reagent-name-cyanide = Cyanide
-rmc-reagent-desc-cyanide = Cyanide is a naturally occurring toxic chemical, that has been used as a mean of killing for centuries because of its immediate effects. Symptoms include nausea, weakness, and difficulty breathing.
+rmc-reagent-name-cyanide = Цианид
+rmc-reagent-desc-cyanide = Цианид — это токсичное химическое вещество природного происхождения, которое веками использовалось для убийства из-за его мгновенного воздействия. Симптомы включают тошноту, слабость и затрудненное дыхание.

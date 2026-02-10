@@ -46,8 +46,8 @@ rmc-attachable-examine-ranged-recoil = [color={ $colour }]{ $sign }{ $recoil }[/
 rmc-attachable-examine-ranged-damage = [color={ $colour }]{ $sign }{ $damage }[/color] множитель урона от дальнего боя.
 rmc-attachable-examine-ranged-projectile-speed = [color={ $colour }]{ $sign }{ $projectileSpeed }[/color] скорость снаряда.
 rmc-attachable-examine-ranged-damage-falloff = [color={ $colour }]{ $sign }{ $falloff }[/color] множитель падения.
-rmc-attachable-examine-ranged-range = [color={ $colour }]{ $sign }{ $falloff }[/color] projectile range.
-rmc-attachable-examine-ranged-projectile-stun-duration = [color={ $colour }]{ $sign }{ $stunDurationMult }[/color] stun duration multiplier.
+rmc-attachable-examine-ranged-range = [color={ $colour }]{ $sign }{ $falloff }[/color] дальность полета снаряда.
+rmc-attachable-examine-ranged-projectile-stun-duration = [color={ $colour }]{ $sign }{ $stunDurationMult }[/color] множитель длительности оглушения.
 rmc-attachable-examine-melee-damage = [color={ $colour }]{ $sign }{ $damage }[/color] урон в ближнем бою.
 rmc-attachable-examine-size = [color={ $colour }]{ $sign }{ $size }[/color] размер элемента.
 rmc-attachable-examine-speed-walk = [color={ $colour }]{ $sign }{ TOSTRING($speed, "F2") }[/color] множитель скорости ходьбы.
