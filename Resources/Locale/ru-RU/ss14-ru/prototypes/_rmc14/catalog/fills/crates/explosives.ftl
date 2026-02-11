@@ -32,3 +32,5 @@ ent-RMCCrateGrenadesAirburstStarShell = ящик гранат звездопад
     .desc = { ent-RMCCrateExplosives.desc }
 ent-RMCCrateGrenadesBatonSlug = ящик пуль РПУВ (x6)
     .desc = { ent-RMCCrateExplosives.desc }
+ent-RMCCrateExplosiveClaymoreMine = ящик мин М20 Клеймор (x10)
+    .desc = { ent-RMCCrateExplosives.desc }

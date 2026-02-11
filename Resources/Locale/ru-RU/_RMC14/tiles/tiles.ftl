@@ -30,6 +30,7 @@ tiles-cm-grass = трава
 tiles-cm-dirt-grass = трава
 tiles-cm-rock = каменная плитка
 tiles-rmc-red-desert = красный песок
+tiles-rmc-planet-auto-sand = песок
 tiles-rmc-desert-water-shore = берег
 tiles-rmc-coagulation = коагуляция
 tiles-rmc-asphalt = асфальтовая плитка

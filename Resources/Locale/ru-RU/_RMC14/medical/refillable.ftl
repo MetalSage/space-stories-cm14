@@ -10,3 +10,4 @@ rmc-reagent-pouch-no-canister = В { $target } нет контейнера!
 rmc-reagent-pouch-unskilled = Вы не знаете, что в нём содержится.
 rmc-reagent-pouch-examine-contains = В { $target } содержится: { $reagents }
 rmc-reagent-pouch-examine-empty = В { $target } ничего не содержится
+rmc-smart-refill-not-enough = { CAPITALIZE(THE($tank)) } не содержит необходимых химических веществ.

@@ -4,3 +4,6 @@ ent-RMCIDCardTSEPASilverGold = серебряно-золотой значок И
     .desc = Серебряный значок с золотыми вставками, который означает, что владелец является старшим констеблем ИТСПД. Это символ справедливости, власти и защиты. Защиты тех, кто не может защитить себя сам. Этот значок представляет собой приверженность данной клятве, которую всегда следует держать.
 ent-RMCIDCardTSEPAGold = золотой значок ИТСПД
     .desc = Золотой значок, который означает, что владелец является инспектором ИТСПД. Это символ справедливости, власти и защиты. Защиты тех, кто не может защитить себя сам. Этот значок представляет собой приверженность данной клятве, которую всегда следует держать.
+ent-RMCIDCardTSEPASurvivor = TSEPA silver badge
+    .desc = The silver badge which represents that the wearer is a TSEPA Constable. It is a sign of justice, authority, and protection. Protecting those who can't. This badge represents a commitment to a sworn oath always kept.
+    .suffix = Survivor

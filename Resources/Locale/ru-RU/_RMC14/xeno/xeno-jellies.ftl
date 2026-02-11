@@ -4,6 +4,7 @@ rmc-jelly-2 = Королевское желе стойкости
 rmc-jelly-3 = Королевское желе саботажа
 rmc-jelly-4 = Королевское желе размножения
 rmc-jelly-5 = Королевское желе восстановления
+rmc-jelly-special-1 = Императорское желе превосходства
 # Jelly UI
 rmc-jelly-recipient = Награждаемый желе
 rmc-jelly-recipient-prompt = Кого вы хотите наградить желе?

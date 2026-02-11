@@ -15,13 +15,13 @@ rmc-dropship-weapons-weapon-selected-ammo =
     Боекомплект { $rounds } / { $maxRounds }
 rmc-dropship-weapons-target-strike =
     Приобретение цели
-    
+
     Ударный режим: { $mode }
-    
+
     Конфигурация удара { $weapon }
-    
+
     Цель выбрана: { $target }
-    
+
     Смещение { $xOffset },{ $yOffset }
 rmc-dropship-weapons-equip-weapon-ammo =
     { $weapon }
@@ -42,6 +42,9 @@ rmc-dropship-weapons-lock = ЗАХВАТ
 rmc-dropship-weapons-clear = СБРОС
 rmc-dropship-weapons-vector = ВЕКТОР
 rmc-dropship-weapons-offset-calibration-does-not-affect-direct-bombardment = Не влияет на прямую бомбардировку!
+rmc-dropship-weapons-deploy = ВЫЛЕТ
+rmc-dropship-weapons-retract = ВОЗВРАТ
+rmc-dropship-weapons-auto-deploy = АВТОМАТИЧЕСКИЙ ВЫЛЕТ
 rmc-dropship-weapons-night-vision-on = НВ-ВКЛ
 rmc-dropship-weapons-night-vision-off = НВ-ВЫКЛ
 rmc-dropship-weapons-weapon = ОРУЖ
@@ -84,3 +87,19 @@ rmc-dropship-weapons-enable = ВКЛЮЧИТЬ
 rmc-dropship-weapons-disable = ОТКЛЮЧИТЬ
 rmc-dropship-medevac-system-screen-text = Система медицинской эвакуации РМУ-4М
 rmc-dropship-fulton-system-screen-text = Система подъёма РМУ-19 Фултон
+rmc-dropship-locked = Эта птица теперь наша на { $minutes } минут.
+rmc-dropship-locked-out = Шаттл не отвечает, попробуйте еще раз через { $minutes } минут.
+rmc-dropship-locked-out-bypass = Вы частично обошли блокировку, попробуйте еще раз!
+rmc-dropship-locked-out-bypass-complete = Вы успешно сняли блокировку!
+rmc-dropship-equipment-deployer-text = { $deployName }
+rmc-dropship-equipment-deployer-health = Статус: { $status }
+rmc-dropship-equipment-deployer-ammo = Боезапас: { $ammoCount } / { $totalAmmoCount }
+rmc-dropship-equipment-deployer-status = Статус вылета: { $deployed }
+rmc-dropship-equipment-deployer-auto-deploy = Авто-вылет: { $autoDeploy }
+rmc-dropship-equipment-enabled = ВКЛЮЧЕНО
+rmc-dropship-equipment-disabled = ВЫКЛЮЧЕНО
+rmc-dropship-equipment-deployed = В ЗОНЕ ОПЕРАЦИИ
+rmc-dropship-equipment-undeployed = НЕ В ЗОНЕ ОПЕРАЦИИ
+rmc-dropship-equipment-operational = В СТРОЮ
+rmc-dropship-equipment-damaged = ПОВРЕЖДЕНО
+rmc-dropship-equipment-destroyed = УНИЧТОЖЕНО

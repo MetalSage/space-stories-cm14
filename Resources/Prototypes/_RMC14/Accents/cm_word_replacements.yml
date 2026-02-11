@@ -29,7 +29,7 @@
     cm-chatsan-word-eorg-marine: cm-chatsan-replacement-eorg-marine
     cm-chatsan-word-xx121-marine: cm-chatsan-replacement-xx121-marine
     cm-chatsan-word-xx-121-marine: cm-chatsan-replacement-xx-121-marine
-    
+
     cm-chatsan-word-slopcade: cm-chatsan-replacement-slopcade
     cm-chatsan-word-surv: cm-chatsan-word-survivor
     cm-chatsan-word-survs: cm-chatsan-word-survivors
@@ -70,7 +70,7 @@
     cm-chatsan-word-alamo: cm-chatsan-replacement-alamo
     cm-chatsan-word-normandy: cm-chatsan-replacement-normandy
     cm-chatsan-word-almayer: cm-chatsan-replacement-almayer
-    cm-chatsan-word-ob: cm-chatsan-replacement-ob
+    # cm-chatsan-word-ob: cm-chatsan-replacement-ob
     cm-chatsan-word-orbital: cm-chatsan-replacement-orbital
     cm-chatsan-word-orbital-bomb: cm-chatsan-replacement-orbital-bomb
     cm-chatsan-word-orbital-bombardment: cm-chatsan-replacement-orbital-bombardment
@@ -83,7 +83,7 @@
     cm-chatsan-word-doc: cm-chatsan-replacement-doc
     cm-chatsan-word-doctor: cm-chatsan-replacement-doctor
     cm-chatsan-word-squad-leader: cm-chatsan-replacement-squad-leader
-    cm-chatsan-word-sl: cm-chatsan-replacement-sl
+    # cm-chatsan-word-sl: cm-chatsan-replacement-sl
     cm-chatsan-word-commanding-officer: cm-chatsan-replacement-commanding-officer
     cm-chatsan-word-comm-officer: cm-chatsan-replacement-comm-officer
     cm-chatsan-word-co: cm-chatsan-replacement-co

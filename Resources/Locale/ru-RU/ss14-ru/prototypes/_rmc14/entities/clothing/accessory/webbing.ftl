@@ -7,6 +7,9 @@ ent-RMCWebbingLegPouchBlack = чёрная набедренная разгруз
 ent-RMCWebbingBlackSmall = чёрная разгрузка
     .desc = { ent-CMWebbing.desc }
 
+ent-RMCWebbingHolsterMK80 = { ent-CMWebbingHolster }
+    .suffix = ЧВК КНО, Выживший, Заполненный
+    .desc = { ent-CMWebbingHolster.desc }
 ent-RMCWebbingHolsterBlack = чёрная плечевая кобура
     .desc = Чёрная кобура для пистолета с прикрепленным подсумком, позволяющая хранить два магазина или спидлоадера вместе с ним.
 ent-RMCWebbingDropPouch = подсумок-сбросник
@@ -17,6 +20,9 @@ ent-RMCShoulderHolsterMK80 = { ent-CMWebbingHolster }
 ent-RMCWebbingDropPouchBlack = чёрный подсумок-сбросник
     .desc = Удобный подсумок для переноски различных мелочей.
 
+ent-RMCToolWebbingSmallFilledRCMPVEAssaultEngi = { ent-RMCToolWebbingSmall }
+    .suffix = Filled, RCM, PVE
+    .desc = { ent-RMCToolWebbingSmall.desc }
 ent-RMCToolWebbing = инструментальная разгрузка
     .desc = Разгрузка из коричневого синтохлопка, по функциям похожая на гражданские фартуки для инструментов, но более прочная для полевого использования.
 ent-RMCToolWebbingFilled = { ent-RMCToolWebbing }

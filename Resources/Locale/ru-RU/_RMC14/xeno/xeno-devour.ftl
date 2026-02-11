@@ -14,3 +14,4 @@ cm-xeno-devour-failed-stomach-full = У вас в животе уже что-т�
 cm-xeno-devour-failed-target-roting = Фу, { $target } уже начинает гнить.
 cm-xeno-devour-failed-target-buckled = { $target } пристегнут к { $strap }.
 cm-xeno-devour-failed-target-resisting = { $target } сопротивляется, перемолоть их!
+cm-xeno-devour-failed-target-not-grabbed = Нам нужно поудобнее взяться за { $target }, схватите его!

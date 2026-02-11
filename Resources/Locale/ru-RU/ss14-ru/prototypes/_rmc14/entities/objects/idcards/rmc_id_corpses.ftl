@@ -1,0 +1,17 @@
+ent-RMCIDCardPMCCorpse = { ent-RMCIDCardPMC }
+    .desc = { ent-RMCIDCardPMC.desc }
+ent-RMCIDCardPMCGoonCorpse = { ent-RMCIDCardPMC }
+    .desc = { ent-RMCIDCardPMC.desc }
+ent-RMCIDCardPMCGoonLeadCorpse = { ent-RMCIDCardPMC }
+    .desc = { ent-RMCIDCardPMC.desc }
+
+ent-RMCIDCardPrisonerCorpse = { ent-CMIDCardLanyard }
+    .desc = { ent-CMIDCardLanyard.desc }
+ent-RMCIDCardChefCorpse = { ent-CMIDCardLanyard }
+    .desc = { ent-CMIDCardLanyard.desc }
+ent-RMCIDCardMinerCorpse = { ent-CMIDCardLanyard }
+    .desc = { ent-CMIDCardLanyard.desc }
+ent-RMCIDCardRiotOfficerCorpse = { ent-CMIDCardSilver }
+    .desc = { ent-CMIDCardSilver.desc }
+ent-RMCIDCardConstableCorpse = { ent-RMCIDCardTSEPA }
+    .desc = { ent-RMCIDCardTSEPA.desc }

@@ -50,6 +50,12 @@ rmc-imidazoline-container-label-text = IM
 rmc-dermaline-container-label-text = DE
 rmc-iron-container-label-text = Fe
 rmc-epinephrine-container-label-text = ЭПИ
+# Set Icon Label Verb
+rmc-set-icon-label-verb = Установить значок этикетки
+rmc-set-icon-label-dialog-title = Установить значок этикетки
+rmc-set-icon-label-dialog-prompt = Текст на этикетке? (Максимум { $max } букв)
+rmc-set-icon-label-cleared = Вы стёрли текст на этикетке { THE($item) }.
+rmc-set-icon-label-set = Вы подписали { THE($item) } с помощью '{ $label }' крупными, печатными буквами.
 # Antidepressants
 reagent-name-rmcmethylphenidate = Метилфенидат
 reagent-desc-rmcmethylphenidate = Широко назначаемый психостимулятор, повышающий активность центральной нервной системы. Часто используется для лечения синдрома дефицита внимания и гиперактивности (СДВГ) и нарколепсии. Этот препарат улучшает производительность, в первую очередь, в исполнительной функции в префронтальной коре (рассуждение, подавление поведения, организация, решение проблем, планирование и т. д.).

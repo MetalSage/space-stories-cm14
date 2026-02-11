@@ -1,0 +1,2 @@
+ent-RMCSkillPresetCommander = Командир
+    .desc = { "" }

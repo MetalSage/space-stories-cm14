@@ -6,3 +6,5 @@ ent-RMCArmourM4TSEPA = легкая броня M4 ИТСПД
     .desc = Модифицированный вариант брони M4R, лишенный дополнительного противобунтарного обвеса для использования гражданскими офицерами. На грудной пластине нашит значок "ИТСПД".
 ent-RMCArmourM4TSEPAChief = инспекторская броня M4 ИТСПД
     .desc = Модифицированный вариант брони M4 ИТСПД, с возвращенным дополнительным противобунтарным обвесом и золотым знаком отличия на грудной пластине.
+ent-RMCJacketEIAFCombatJacket = EIAF combat jacket
+    .desc = A rugged, all-weather combat jacket issued to the Extrasolar Imperial Airborne Force. Designed for versatility, it serves as both a field garment and a lightweight layer of protection. Reinforced with ballistic fibers and treated for weather resistance, it offers limited defense against shrapnel and small arms fire while keeping paratroopers comfortable in harsh conditions. Its deep green color and durable fabric make it a staple for both active deployment and off-duty wear.

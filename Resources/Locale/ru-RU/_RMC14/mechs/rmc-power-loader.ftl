@@ -14,6 +14,7 @@ rmc-power-loader-wrong-weapon = Это не тот тип патронов!
 rmc-power-loader-wrong-ammo = Это разные типы патронов!
 rmc-power-loader-full-ammo = { CAPITALIZE($ammo) } заполнена!
 rmc-power-loader-ammo-no-weapon = Сначала нужно установить оружие!
+rmc-power-loader-occupied-deployer = Там уже установлено устройство для развертывания оборудования!
 rmc-power-loader-nothing-attached = Здесь нет ничего лишнего!
 rmc-power-loader-discard-empty = Вы выбрасываете пустые { $ammo }
 rmc-power-loader-occupied = Там уже что-то установлено!

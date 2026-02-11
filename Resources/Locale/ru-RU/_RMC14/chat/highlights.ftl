@@ -24,6 +24,7 @@ highlights-chief-medical-officer = Главный врач, "ГВ", Медици
 highlights-doctor = Доктор, "Док", Медицина, Медотсек, "Мед", Инфицированный, Хирургия, Химия, "Химия", Таблетка
 highlights-nurse = Интерн, Медсестра, Медицина, Медотсек, "Мед", Инфицированный, Хирургия, Химия, "Химия", Таблетка
 highlights-researcher = Исследователь, Исследование, Наука, "Наука", Химия, "Химия"
+highlights-provost-inspector = Provost Inspector, Inspector, @"PvI", "CMP", "MP", "MPs", "MW", "Alert", Brig, "Perma", Loose, Burst, Colonist, Survivor, "SOP", "Mlaw", Marine Law, Arrest, Detain, Appeal, Execution, Executed
 # Военная полиция
 highlights-chief-MP = Начальник военной полиции, "НВП", Военная полиция, "ВП", Тревога, Гауптвахта, "Пожизненно", Беглец, Колонист, Выживший, "СОП", Арест, Задержание, Апелляция, Командование
 highlights-military-warden = Военный надзиратель, "ВН", Надзиратель, Военная полиция, "ВП", Тревога, Гауптвахта, "Пожизненно", Беглец, Колонист, Выживший, "СОП", Арест, Задержание, Апелляция
