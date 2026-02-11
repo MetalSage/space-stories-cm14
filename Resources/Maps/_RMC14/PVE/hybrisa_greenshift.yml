@@ -181160,133 +181160,133 @@ entities:
   - uid: 19574
     components:
     - type: MetaData
-      name: ЗП-1
+      name: ЗП 1
     - type: Transform
       pos: -12.5,-17.5
       parent: 1
   - uid: 19575
     components:
     - type: MetaData
-      name: Грузовой Хаб КГКК
+      name: Межзвездный грузовой терминал КМКК
     - type: Transform
       pos: -18.5,-111.5
       parent: 1
   - uid: 19576
     components:
     - type: MetaData
-      name: ЗП-2
+      name: ЗП 2
     - type: Transform
       pos: -15.5,-147.5
       parent: 1
   - uid: 19577
     components:
     - type: MetaData
-      name: Вылеты КГКК
+      name: Зона отправления КМКК
     - type: Transform
       pos: -35.5,-162.5
       parent: 1
   - uid: 19578
     components:
     - type: MetaData
-      name: Аванпост КГКК (Юг)
+      name: Южный шахтерский аванпост КМКК
     - type: Transform
       pos: -28.5,-181.5
       parent: 1
   - uid: 19579
     components:
     - type: MetaData
-      name: Пещеры (Восток)
+      name: Восточные пещеры
     - type: Transform
       pos: -57.5,-168.5
       parent: 1
   - uid: 19580
     components:
     - type: MetaData
-      name: Аванпост КГКК (ЮВ)
+      name: Юго-восточный шахтерский аванпост КМКК
     - type: Transform
       pos: -28.5,-207.5
       parent: 1
   - uid: 19581
     components:
     - type: MetaData
-      name: Пещеры (ЮВ)
+      name: Юго-восточные пещеры
     - type: Transform
       pos: -42.5,-220.5
       parent: 1
   - uid: 19582
     components:
     - type: MetaData
-      name: Пещеры (Юг)
+      name: Южные пещеры
     - type: Transform
       pos: -71.5,-238.5
       parent: 1
   - uid: 19583
     components:
     - type: MetaData
-      name: Заброшенный Корабль
+      name: Заброшенный корабль
     - type: Transform
       pos: -84.5,-221.5
       parent: 1
   - uid: 19584
     components:
     - type: MetaData
-      name: Пещерное Плато
+      name: Пещерное плато
     - type: Transform
       pos: -109.5,-199.5
       parent: 1
   - uid: 19585
     components:
     - type: MetaData
-      name: Пещеры (Запад)
+      name: Западные пещеры
     - type: Transform
       pos: -161.5,-187.5
       parent: 1
   - uid: 19586
     components:
     - type: MetaData
-      name: Пещеры (Центр)
+      name: Центральные пещеры
     - type: Transform
       pos: -130.5,-150.5
       parent: 1
   - uid: 19587
     components:
     - type: MetaData
-      name: Пещеры (ЮЗ)
+      name: Юго-западные пещеры
     - type: Transform
       pos: -201.5,-225.5
       parent: 1
   - uid: 19588
     components:
     - type: MetaData
-      name: Биолаборатория «Ве-Я»
+      name: Передовая лаборатория биогеномных исследований Ве-Я
     - type: Transform
       pos: -190.5,-176.5
       parent: 1
   - uid: 19589
     components:
     - type: MetaData
-      name: Пещеры (СЗ)
+      name: Северо-западные пещеры
     - type: Transform
       pos: -203.5,-110.5
       parent: 1
   - uid: 19590
     components:
     - type: MetaData
-      name: Казино «Ночное Золото»
+      name: Казино «Ночное золото»
     - type: Transform
       pos: -172.5,-76.5
       parent: 1
   - uid: 19591
     components:
     - type: MetaData
-      name: Врата «Целестия»
+      name: Врата «Селестия» Ве-Я
     - type: Transform
       pos: -195.5,-30.5
       parent: 1
   - uid: 19592
     components:
     - type: MetaData
-      name: Офисы «Ве-Я»
+      name: Офисы Ве-Я
     - type: Transform
       pos: -151.5,-42.5
       parent: 1
@@ -181300,7 +181300,7 @@ entities:
   - uid: 19594
     components:
     - type: MetaData
-      name: Пещеры (Север)
+      name: Северные пещеры
     - type: Transform
       pos: -114.5,-7.5
       parent: 1
@@ -181321,28 +181321,28 @@ entities:
   - uid: 19597
     components:
     - type: MetaData
-      name: Медцентр «Нова Медика»
+      name: Нова Медика
     - type: Transform
       pos: -52.5,-35.5
       parent: 1
   - uid: 19598
     components:
     - type: MetaData
-      name: Дайнагрид Телеком
+      name: Узел связи «Дайнагрид»
     - type: Transform
       pos: -54.5,-73.5
       parent: 1
   - uid: 19599
     components:
     - type: MetaData
-      name: Ве-Я «Дайнагрид»
+      name: Дайнагрид Ве-Я
     - type: Transform
       pos: -82.5,-79.5
       parent: 1
   - uid: 19600
     components:
     - type: MetaData
-      name: Меридиан
+      name: Мидзутани
     - type: Transform
       pos: -105.5,-101.5
       parent: 1
@@ -181356,14 +181356,14 @@ entities:
   - uid: 19602
     components:
     - type: MetaData
-      name: Пост «Страж» (БКМ)
+      name: ТСЕПА - Сторожевой аванпост
     - type: Transform
       pos: -79.5,-117.5
       parent: 1
   - uid: 19603
     components:
     - type: MetaData
-      name: Узел Связи
+      name: Уличный узел связи
     - type: Transform
       pos: -45.5,-122.5
       parent: 1
@@ -209422,7 +209422,7 @@ entities:
   - uid: 8140
     components:
     - type: MetaData
-      name: Nova Medica ЗП Lockdown
+      name: Nova Medica LZ Lockdown
     - type: Transform
       pos: -27.774878,-9.610765
       parent: 1
@@ -221865,21 +221865,21 @@ entities:
   - uid: 25911
     components:
     - type: MetaData
-      name: Nova Medica ЗП Lockdown
+      name: Nova Medica LZ Lockdown
     - type: Transform
       pos: -24.5,-12.5
       parent: 1
   - uid: 25912
     components:
     - type: MetaData
-      name: Nova Medica ЗП Lockdown
+      name: Nova Medica LZ Lockdown
     - type: Transform
       pos: -23.5,-12.5
       parent: 1
   - uid: 25913
     components:
     - type: MetaData
-      name: Nova Medica ЗП Lockdown
+      name: Nova Medica LZ Lockdown
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -22.5,-9.5
@@ -221892,21 +221892,21 @@ entities:
   - uid: 25915
     components:
     - type: MetaData
-      name: Nova Medica ЗП Lockdown
+      name: Nova Medica LZ Lockdown
     - type: Transform
       pos: -27.5,-12.5
       parent: 1
   - uid: 25916
     components:
     - type: MetaData
-      name: Nova Medica ЗП Lockdown
+      name: Nova Medica LZ Lockdown
     - type: Transform
       pos: -28.5,-12.5
       parent: 1
   - uid: 25917
     components:
     - type: MetaData
-      name: Nova Medica ЗП Lockdown
+      name: Nova Medica LZ Lockdown
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -29.5,-10.5

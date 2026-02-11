@@ -25,11 +25,9 @@
         - SmallMobLayer
   - type: CollisionWake
     enabled: false
-  - type: Sprite
-    sprite: _RMC14/Structures/Xenos/hive_structures.rsi
+  - type: Sprite # Stories-Parity
+    sprite: _Stories/Structures/Xenos/hive_structures.rsi
     layers:
-     - sprite: _RMC14/Structures/Xenos/xeno_weeds.rsi
-       state: hive_weed0
      - state: core
   - type: Destructible
     thresholds:
@@ -82,9 +80,6 @@
       state: core
   - type: XenoConstructionAnnounce # Stories-XenoStructureAnnounce
     message: stories-xeno-construction-destroyed
-  - type: RMCAlternateSprite
-    normalSprite: _RMC14/Structures/Xenos/hive_structures.rsi
-    alternateSprite: _RMC14/Structures/Xenos/hive_structures_old.rsi
   - type: RMCTrackable
   - type: RMCMesonsNonviewable
     xenoVisible: true
@@ -98,7 +93,7 @@
   components:
   - type: Sprite
     color: '#FFFFFFAA'
-    sprite: _RMC14/Structures/Xenos/hive_structures.rsi
+    sprite: _Stories/Structures/Xenos/hive_structures.rsi # Stories-Parity
     layers:
     - state: core
     - sprite: _RMC14/Interface/xeno_hud.rsi
@@ -120,9 +115,6 @@
     id: HiveCoreXeno
   - type: WarpPoint
     location: hive core
-  - type: RMCAlternateSprite
-    normalSprite: _RMC14/Structures/Xenos/hive_structures.rsi
-    alternateSprite: _RMC14/Structures/Xenos/hive_structures_old.rsi
   - type: RMCMesonsNonviewable
     xenoVisible: true
 
@@ -133,7 +125,7 @@
   description: A towering spike of resin. Its base pulsates with large tendrils.
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Xenos/hive_structures.rsi
+    sprite: _Stories/Structures/Xenos/hive_structures.rsi # Stories-Parity
     layers:
      - sprite: _RMC14/Structures/Xenos/xeno_weeds.rsi
        state: hive_weed0
@@ -177,9 +169,6 @@
     id: HivePylonXeno
   - type: WarpPoint
     location: hive pylon
-  - type: RMCAlternateSprite
-    normalSprite: _RMC14/Structures/Xenos/hive_structures.rsi
-    alternateSprite: _RMC14/Structures/Xenos/hive_structures_old.rsi
   - type: XenoStructureMapTracked
   - type: TacticalMapTracked
   - type: TacticalMapIcon

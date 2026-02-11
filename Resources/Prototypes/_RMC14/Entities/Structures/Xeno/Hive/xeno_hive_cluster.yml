@@ -5,7 +5,7 @@
   description: A large clump of gooey mass. It rhythmically pulses, as if its pumping something into the weeds below...
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Xenos/hive_cluster.rsi
+    sprite: _Stories/Structures/Xenos/hive_cluster.rsi # Stories-Parity
     layers:
     - state: hive_cluster_idle
   - type: Destructible
@@ -41,9 +41,6 @@
     icon:
       sprite: /Textures/_RMC14/Interface/map_blips.rsi
       state: cluster
-  - type: RMCAlternateSprite
-    normalSprite: _RMC14/Structures/Xenos/hive_cluster.rsi
-    alternateSprite: _RMC14/Structures/Xenos/hive_cluster_old.rsi
 
 
 - type: entity
@@ -54,7 +51,7 @@
   components:
   - type: Sprite
     color: '#FFFFFFAA'
-    sprite: _RMC14/Structures/Xenos/hive_cluster.rsi
+    sprite: _Stories/Structures/Xenos/hive_cluster.rsi # Stories-Parity
     layers:
     - state: hive_cluster_idle
     - sprite: _RMC14/Interface/xeno_hud.rsi
@@ -78,6 +75,3 @@
     id: HiveClusterXeno
   - type: WarpPoint
     location: hive cluster
-  - type: RMCAlternateSprite
-    normalSprite: _RMC14/Structures/Xenos/hive_cluster.rsi
-    alternateSprite: _RMC14/Structures/Xenos/hive_cluster_old.rsi

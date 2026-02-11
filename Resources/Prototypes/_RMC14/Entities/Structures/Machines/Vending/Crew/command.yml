@@ -69,7 +69,7 @@
       - id: RMCM1984BeltFilled
         name: M1984 service pistol
         recommended: true
-      - id: CMM77BeltFilled
+      - id: RMCM77BeltFilled
         name: M77 pistol
         recommended: true
       - id: RMCM44BeltFilled
@@ -120,7 +120,6 @@
     - name: Combat Equipment
       takeAll: CMCombatEquipment
       entries:
-      - id: RMCArmorVestOfficer
       - id: RMCArmorM3SO
       - id: RMCArmorHelmetM10SO
       - id: CMBootsBlackFilled
@@ -174,8 +173,7 @@
       - id: RMCPouchMedical
       - id: RMCPouchMedkit
       - id: RMCPouchPistol
-      #- id: RMCPouchSling # TODO RMC14 Sling Pouch
-                           # This has a comment saying "implement this", going to leave it commented out.
+      - id: RMCPouchSling
       - id: RMCPouchToolsFill
     - name: Accessories
       choices: { CMAccessories: 1 }
@@ -464,7 +462,6 @@
     - name: Combat Equipment
       takeAll: CMCombatEquipment
       entries:
-      - id: RMCArmorVestCommandingOfficer
       - id: RMCArmorM3CO
       - id: CMArmorHelmetM11CCO
       - id: RMCHandsDeluxeMarine
@@ -774,7 +771,7 @@
         recommended: true
       - id: RMCM1984BeltFilled
         name: M1984 service pistol
-      - id: CMM77BeltFilled
+      - id: RMCM77BeltFilled
         name: M77 pistol
       - id: RMCM44BeltFilled
         name: M44 revolver
@@ -803,7 +800,6 @@
       - CMExecutiveOfficer
       takeAll: CMEquipment
       entries:
-      - id: RMCArmorVestSeniorOfficer
       - id: RMCArmorM3SO
       - id: RMCArmorHelmetM10SO
       - id: CMBootsBlackFilled
@@ -854,7 +850,7 @@
       - id: RMCPouchMedical
       - id: RMCPouchMedkit
       - id: RMCPouchPistol
-      #- id: RMCPouchSling # TODO RMC14 Sling Pouch
+      - id: RMCPouchSling
       - id: RMCPouchToolsFill
       - id: RMCPouchConstruction
       - id: RMCPouchElectronicsFill
@@ -915,7 +911,6 @@
       choices: { CMArmor: 1 }
       entries:
       - id: CMArmorM3WO
-      - id: RMCArmorVestMP
     - name: Hat
       jobs:
       - CMChiefMP
@@ -1118,6 +1113,7 @@
         name: flare pouch (Full)
       - id: RMCPouchFuelTank
       - id: RMCPouchEngineerKit
+      - id: RMCPouchSling
     - name: Personal Sidearms
       jobs:
       - CMChiefEngineer
@@ -1126,7 +1122,7 @@
       - id: RMCM1984BeltFilled
         name: M1984 service pistol
         recommended: true
-      - id: CMM77BeltFilled
+      - id: RMCM77BeltFilled
         name: M77 pistol
         recommended: true
       - id: RMCM44BeltFilled
@@ -1159,7 +1155,6 @@
       - CMChiefEngineer
       takeAll: CMStandard
       entries:
-      - id: RMCArmorVestOfficer
       - id: RMCArmorM3SO
       - id: CMBootsBlackFilled
       - id: RMCLaserDesignator
@@ -1229,7 +1224,7 @@
       - id: RMCM1984BeltFilled
         name: M1984 service pistol
         recommended: true
-      - id: CMM77BeltFilled
+      - id: RMCM77BeltFilled
         name: M77 pistol
         recommended: true
       - id: RMCM44BeltFilled
@@ -1240,7 +1235,6 @@
       - CMQuartermaster
       takeAll: CMStandard
       entries:
-      - id: RMCArmorVestOfficer
       - id: RMCArmorM3SO
       - id: RMCArmorHelmetM10SO
     - name: Patches
@@ -1376,7 +1370,7 @@
       entries:
       - id: RMCM1984BeltFilled
         name: M1984 service pistol
-      - id: CMM77BeltFilled
+      - id: RMCM77BeltFilled
         name: M77 pistol
       - id: RMCM44BeltFilled
         name: M44 revolver
@@ -1386,7 +1380,6 @@
       - CMCMO
       takeAll: CMStandard
       entries:
-      - id: RMCArmorVestOfficer
       - id: RMCArmorM3SO
       - id: RMCArmorHelmetM10SO
       - id: CMBootsBlackFilled
@@ -1513,7 +1506,7 @@
       - id: RMCM1984BeltFilled
         name: M1984 service pistol
         recommended: true
-      - id: CMM77BeltFilled
+      - id: RMCM77BeltFilled
         name: M77 pistol
         recommended: true
       - id: RMCM44BeltFilled
@@ -1537,7 +1530,6 @@
       - CMAuxiliarySupportOfficer
       takeAll: CMStandard
       entries:
-      - id: RMCArmorVestOfficer
       - id: RMCArmorM3SO
       - id: RMCArmorHelmetM10SO
       - id: CMBootsBlackFilled

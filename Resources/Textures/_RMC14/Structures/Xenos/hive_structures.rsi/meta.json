@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/e9ea97c1887d8b144e3e66d959a428c79f58c196/icons/mob/xenos/structures64x64.dmi, new sprites by Aleksh",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/e9ea97c1887d8b144e3e66d959a428c79f58c196/icons/mob/xenos/structures64x64.dmi, new sprites by Aleksh and recovery_plasma by Miyugi",
   "size": {
     "x": 64,
     "y": 64
@@ -58,12 +58,41 @@
       ]
     },
     {
+      "name": "eggmorph",
+      "delays": [
+        [
+          2,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
       "name": "evopod",
       "delays": [
         [
           0.6,
           0.6,
           0.6
+        ]
+      ]
+    },
+    {
+      "name": "pylon"
+    },
+    {
+      "name": "recovery"
+    },
+    {
+      "name": "recovery_plasma"
+    },
+    {
+      "name": "core",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
         ]
       ]
     },
@@ -81,49 +110,44 @@
       ]
     },
     {
-      "name": "eggmorph",
-      "delays": [
-        [
-          4,
-          4
-        ]
-      ]
-    },
-    {
-      "name": "pylon"
-    },
-    {
-      "name": "recovery",
-      "delays": [
-        [
-          0.8,
-          0.8,
-          0.8
-        ]
-      ]
-    },
-    {
-      "name": "core",
+      "name": "eggmorph_0",
       "delays": [
         [
           2,
           0.1,
-          0.2,
           0.1
         ]
       ]
     },
     {
-      "name": "eggmorph_0"
+      "name": "eggmorph_1",
+      "delays": [
+        [
+          2,
+          0.1,
+          0.1
+        ]
+      ]
     },
     {
-      "name": "eggmorph_1"
+      "name": "eggmorph_2",
+      "delays": [
+        [
+          2,
+          0.1,
+          0.1
+        ]
+      ]
     },
     {
-      "name": "eggmorph_2"
-    },
-    {
-      "name": "eggmorph_3"
+      "name": "eggmorph_3",
+      "delays": [
+        [
+          2,
+          0.1,
+          0.1
+        ]
+      ]
     }
   ]
 }

@@ -103,103 +103,103 @@
 # The below ranks are for the JAPANESE TSE marines. What does that mean? Why do they have two sets of ranks? Why does this exist? Why must we suffer like this?
 
 - type: rank
-  id: RMCRankIASFNitoRikushi
-  name: Нито Рикуши
-  prefix: Нт-Ши.
+  id: RMCRankEIAFNitoRikushi
+  name: Nito Rikushi
+  prefix: Nt-Shi.
   paygrade: E2
 
 - type: rank
-  id: RMCRankIASFIttoRikushi
-  name: Итто Рикуши
-  prefix: Ит-Ши.
+  id: RMCRankEIAFIttoRikushi
+  name: Itto Rikushi
+  prefix: It-Shi.
   paygrade: E3
 
 - type: rank
-  id: RMCRankIASFRikushicho
-  name: Рикушичо
-  prefix: Ши.
+  id: RMCRankEIAFRikushicho
+  name: Rikushicho
+  prefix: Shi.
   paygrade: E4
 
 - type: rank
-  id: RMCRankIASFSantoRikuso
-  name: Санто Рикузо
+  id: RMCRankEIAFSantoRikuso
+  name: Santo Rikuso
   prefix: St-Rik.
   paygrade: E5
 
 - type: rank
-  id: RMCRankIASFNitoRikuso
-  name: Нито Рикузо
-  prefix: Нт-Рик.
+  id: RMCRankEIAFNitoRikuso
+  name: Nito Rikuso
+  prefix: Nt-Rik.
   paygrade: E6
 
 - type: rank
-  id: RMCRankIASFIttoRikuso
-  name: Итто Рикузо
-  prefix: Ит-Рик.
+  id: RMCRankEIAFIttoRikuso
+  name: Itto Rikuso
+  prefix: It-Rik.
   paygrade: E7
 
 - type: rank
-  id: RMCRankIASFRikusocho
-  name: Рикузочо
-  prefix: Рик.
+  id: RMCRankEIAFRikusocho
+  name: Rikusocho
+  prefix: Rik.
   paygrade: E8
 
 - type: rank
-  id: RMCRankIASFSantoKaii
-  name: Санто Кай
-  prefix: Ст-Вэй.
+  id: RMCRankEIAFSantoKaii
+  name: Santo Kaii
+  prefix: St-Wei.
   paygrade: O1
 
 - type: rank
-  id: RMCRankIASFNitoKaii
-  name: Нито Кай
-  prefix: Нт-Вэй.
+  id: RMCRankEIAFNitoKaii
+  name: Nito Kaii
+  prefix: Nt-Wei.
   paygrade: O2
 
 - type: rank
-  id: RMCRankIASFIttoKaii
-  name: Итто Кай
-  prefix: Ит-Вэй.
+  id: RMCRankEIAFIttoKaii
+  name: Itto Kaii
+  prefix: It-Wei.
   paygrade: O3
 
 - type: rank
-  id: RMCRankIASFSantoKaisa
-  name: Санто Кайса
-  prefix: Ст-Са.
+  id: RMCRankEIAFSantoKaisa
+  name: Santo Kaisa
+  prefix: St-Sa.
   paygrade: O4
 
 - type: rank
-  id: RMCRankIASFNitoKaisa
-  name: Нито Кайса
-  prefix: Нт-Са.
+  id: RMCRankEIAFNitoKaisa
+  name: Nito Kaisa
+  prefix: Nt-Sa.
   paygrade: O5
 
 - type: rank
-  id: RMCRankIASFIttoKaisa
-  name: Итто Кайса
-  prefix: Ит-Са.
+  id: RMCRankEIAFIttoKaisa
+  name: Itto Kaisa
+  prefix: It-Sa.
   paygrade: O6
 
 - type: rank
-  id: RMCRankIASFKaishoHo
-  name: Кайшо-хо
-  prefix: Ит-Шо.
+  id: RMCRankEIAFKaishoHo
+  name: Kaisho-ho
+  prefix: It-Sho.
   paygrade: O7
 
 - type: rank
-  id: RMCRankIASFKaisho
-  name: Кайшо
-  prefix: Шо.
+  id: RMCRankEIAFKaisho
+  name: Kaisho
+  prefix: Sho.
   paygrade: O8
 
 - type: rank
-  id: RMCRankIASFBakuryochotarusho
-  name: Бакурёчо-тару-шо
-  prefix: Бт-Шо.
+  id: RMCRankEIAFBakuryochotarusho
+  name: Bakuryōchō-taru-shō
+  prefix: Bt-Sho.
   paygrade: O9
 
 - type: rank
   id: RMCRankTSEEmpress
-  name: Bakuryōchō
-  prefix: ХРМ.
+  name: Empress
+  prefix: HRM.
 # This needs to be changed to allow it to change dynamically for genders

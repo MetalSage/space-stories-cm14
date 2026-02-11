@@ -4,14 +4,12 @@
   name: egg morpher
   description: A disgusting biomass generator that reeks of rotting flesh. Capable of producing parasites on its own.
   components:
-  - type: Sprite
-    sprite: _RMC14/Structures/Xenos/hive_structures.rsi
+  - type: Sprite # Stories-Parity
+    sprite: _Stories/Structures/Xenos/hive_structures.rsi
     layers:
-      - state: eggmorph
-        map: ["enum.EggmorpherOverlayLayers.Base"]
-      - state: eggmorph_0
-        map: ["enum.EggmorpherOverlayLayers.Overlay"]
-        visible: false
+    - state: eggmorph
+    - state: eggmorph_underlay
+    - state: eggmorph_overlay
   - type: Fixtures
     fixtures:
       fix1:
@@ -63,9 +61,6 @@
       enum.XenoParasiteGhostUI.Key:
         type: XenoParasiteGhostBui
         requireInputValidation: false
-  - type: RMCAlternateSprite
-    normalSprite: _RMC14/Structures/Xenos/hive_structures.rsi
-    alternateSprite: _RMC14/Structures/Xenos/hive_structures_old.rsi
   - type: XenoStructureMapTracked
   - type: TacticalMapTracked
   - type: TacticalMapIcon
@@ -80,12 +75,10 @@
   description: A disgusting biomass generator that reeks of rotting flesh. Looks like a marker for something.
   suffix: Construction
   components:
-  - type: Sprite
-    sprite: _RMC14/Structures/Xenos/hive_structures.rsi
+  - type: Sprite # Stories-Parity
+    sprite: _Stories/Structures/Xenos/hive_structures.rsi
     layers:
-    - state: eggmorph
-      color: '#FFFFFFAA'
-    - state: eggmorph_3
+    - state: eggmorph_preview
       color: '#FFFFFFAA'
     - sprite: _RMC14/Interface/xeno_hud.rsi
       state: xeno_structure_node_indicator
@@ -109,6 +102,3 @@
     id: HiveEggMorpherXeno
   - type: WarpPoint
     location: egg morpher
-  - type: RMCAlternateSprite
-    normalSprite: _RMC14/Structures/Xenos/hive_structures.rsi
-    alternateSprite: _RMC14/Structures/Xenos/hive_structures_old.rsi

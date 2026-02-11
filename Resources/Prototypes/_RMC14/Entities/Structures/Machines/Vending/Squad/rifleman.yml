@@ -23,8 +23,6 @@
     - name: Броня
       choices: { CMArmour: 1 }
       entries:
-      - id: RMCArmorVestSquad
-        name: armor vest
       - id: RMCArmorM3LightVariants
         name: лёгкая броня
       - id: RMCArmorM3MediumVariants
@@ -125,8 +123,8 @@
         points: 10
       - id: RMCPacketGrenadeM74AGMSHornetFilled
         points: 15
-    #- id: CMM20MineBox4
-    #  points: 20
+      - id: RMCBoxClaymoreMineFilled
+        points: 20
     - name: Основные Боеприпасы
       entries:
       - id: CMMagazineRifleM4SPRAP
@@ -202,8 +200,8 @@
         points: 5
       - id: RMCWeldingGoggles
         points: 5
-    #- id: CMSlingPouch
-    #  points: 15
+      - id: RMCPouchSling
+        points: 15
       - id: RMCPouchGeneralLarge
         points: 15
     - name: Утилиты

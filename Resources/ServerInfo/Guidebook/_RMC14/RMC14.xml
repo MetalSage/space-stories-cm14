@@ -1,46 +1,64 @@
 ﻿<Document>
-  # Руководство SSMC
+  # RMC-14 Guidebook
 
-  Добро пожаловать в Space Stories Marine Corps.
+  Welcome to RMC-14.
 
-  Это МРП сервер, вдохновленный CM13, на новом движке SS14!
+  This is a MRP asymmetric game!
 
-  Руководство, дорожная карта и правила игры можно найти на экране лобби и в любой момент в меню по кнопке Escape.
+  The guidebook, roadmap and rules for the game can be found on the lobby screen, and at any point in the escape menu.
 
-  Нажмите на любую из вкладок слева, чтобы узнать о Space Stories Marine Corps и его уникальном контенте.
+  Click any of the tabs on the left to learn about RMC14, and it's unique content.
 
-  Обязательно прочитайте правила, если вы еще этого не сделали.
-  - [textlink="Правила" link="STOverview"]
+  Be sure to read the rules if you haven't already.
+  - [textlink="The rules" link="RMCOverview"]
 
-  Новичок в Space Stories Marine Corps, SS14 или нет опыта игры в CM13? Будьте осторожны! Многие механики и значения отличаются от этих игр.
-  - [textlink="Руководство для нового игрока!" link="RMCGuideNewPlayer"]
-  - [textlink="Твой первый день в роли стрелка!" link="RMCGuideRoleRifleman"]
-  - [textlink="Итак, ты только что родился в улье! Что дальше?" link="RMCGuideRoleDrone"]
+  New to RMC-14, or SS14-style games? Be careful! A lot of mechanics and values are not the same as these games.
+  - [textlink="New player guide!" link="RMCGuideNewPlayer"]
+  - [textlink="Your first day as a rifleman!" link="RMCGuideRoleRifleman"]
+  - [textlink="So you've just been born into the hive! Now what?" link="RMCGuideRoleDrone"]
 
-  ## Есть опыт? Ознакомьтесь с этими страницами руководства!
+  ## Have some experience? Check out these guidebook pages!
 
-  Любой желающий может добавить руководства на эту страницу через Discord.
+  Anyone is free to add guides to this page, either through the discord or GitHub.
 
-  ### Морпехи
+  Many of these guides are also accessible by examining the role or item they're related to!
 
-  [bold]Роли[/bold]
-  - [textlink="Медицина" link="RMCMedical"]
-  - [textlink="Запросы снабжения" link="RMCRequisitions"]
-  - [textlink="Боевой техник" link="RMCGuideRoleCombatTechnician"]
-  - [textlink="Техник по обслуживанию" link="RMCGuideRoleMaintenanceTechnician"]
-  - [textlink="Выживший" link="RMCSurvivor"]
-  - [textlink="Оператор Смартганна" link="RMCGuideRoleSGO"]
+  ### Marines and Related
 
-  [bold]Структуры[/bold]
-  - [textlink="Вышки связи и сенсорные вышки" link="RMCGuideCommunicationsTowers"]
+  [bold]Roles[/bold]
+  - [textlink="Survivor" link="RMCSurvivor"]
+  - [textlink="Medical" link="RMCMedical"]
+  - [textlink="Requisitions" link="RMCRequisitions"]
+  - [textlink="Intelligence Officer" link="RMCIntel"]
+  - [textlink="Military Police" link="RMCGuideRoleMilitaryPolice"]
+  - [textlink="Combat Technician" link="RMCGuideRoleCombatTechnician"]
+  - [textlink="Maintenance Technician" link="RMCGuideRoleMaintenanceTechnician"]
+  - [textlink="Smart Gun Operator" link="RMCGuideRoleSGO"]
+  - [textlink="Specialists" link="RMCGuideRoleSpec"]
+  - [textlink="Corporate Liaison" link="RMCGuideCorporateLiaison"]
+  - [textlink="Squad Leader" link="RMCGuideSquadLeader"]
 
-  ### Ксеноморфы
+  [bold]General[/bold]
+  - [textlink="Who is in Command?" link="RMCGuideCommandRoles"]
+  - [textlink="Dropships and CAS" link="RMCGuideRoleCAS"]
+  - [textlink="Marine Communications" link="RMCGuideMarineCommunications"]
+  - [textlink="Drink Recipes" link="RMCGuideDrinks"]
+  - [textlink="Cooking Recipes" link="RMCGuideFood"]
 
-  [bold]Роли[/bold]
-  - [textlink="Касты" link="RMCGuideXenonidRoles"]
+  [bold]Structures[/bold]
+  - [textlink="Communications towers and sensor towers" link="RMCGuideCommunicationsTowers"]
+  - [textlink="Mortar" link="RMCGuideRoleMortar"]
 
-  [bold]Структуры[/bold]
-  - [textlink="Ульевые Структуры" link="RMCGuideHiveStructures"]
-  - [textlink="Смоляные Отверстия" link="RMCGuideResinHoles"]
+  ### Xenonids
+
+  [bold]Roles[/bold]
+  - [textlink="Caste List" link="RMCGuideXenonidRoles"]
+
+  [bold]Structures[/bold]
+  - [textlink="Hive Structures" link="RMCGuideHiveStructures"]
+  - [textlink="Resin Holes" link="RMCGuideResinHoles"]
+
+  [bold]General[/bold]
+  - [textlink="Xenonid Map Icons" link="RMCGuideXenonidMap"]
 
 </Document>

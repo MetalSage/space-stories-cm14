@@ -45,20 +45,19 @@
     damage:
       types:
         Heat: 3
-  - type: Sprite
-    sprite: _RMC14/Structures/Xenos/xeno_resin_trap.rsi
+  - type: Sprite # Stories-Parity
+    sprite: _Stories/Structures/Xenos/xeno_resin_trap.rsi
     drawdepth: FloorObjects
     layers:
-    - state: trapbackground
-    - state: trap
+    - state: trap0
       map: [ "enum.XenoResinHoleLayers.Base" ]
   - type: GenericVisualizer
     visuals:
       enum.XenoResinHoleVisuals.Contained:
         enum.XenoResinHoleLayers.Base:
-          Empty: {state: trap}
-          Parasite: {state: trapparasite}
-          NeuroticGas: {state: trapgasn}
+          Empty: {state: trap0}
+          Parasite: {state: trap1}
+          NeuroticGas: {state: trapgas}
           AcidGas: {state: trapgas}
           Acid1: {state: trapacid1}
           Acid2: {state: trapacid2}
@@ -66,6 +65,7 @@
   - type: Appearance
   - type: RMCMesonsNonviewable
   - type: XenoResinHole
+  - type: XenoFriendly
   - type: XenoAnnounceStructureDestruction
     messageID: rmc-xeno-construction-resin-hole-destroyed
     structureName: empty

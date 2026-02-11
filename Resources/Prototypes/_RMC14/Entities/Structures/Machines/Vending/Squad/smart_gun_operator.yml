@@ -44,8 +44,8 @@
         points: 10
       - id: RMCPacketGrenadeM74AGMSHornetFilled
         points: 20
-    #- id: CMM20MineBox4
-    #  points: 20
+      - id: RMCBoxClaymoreMineFilled
+        points: 20
     - name: Боеприпасы К Вторичному Оружиюs
       entries:
       - id: RMCMagazinePistolM13Ext
@@ -170,7 +170,7 @@
       - id: RMCPouchPistol
       - id: RMCPouchMacheteFilled
         name: подсумок для мачете (полный)
-    #- id: CMSlingPouch
+      - id: RMCPouchSling
     - name: Аксессуары
       choices: { CMAccessories: 1 }
       entries:

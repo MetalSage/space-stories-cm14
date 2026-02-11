@@ -11,7 +11,7 @@
       scenarioProbability: 0.1
     - scenarioName: asset_protection
       scenarioProbability: 0.1
-    survivorJobInserts:
+    survivorJobVariants:
       CMSurvivor:
       - CMSurvivor: -1
       - CMSurvivorPriest: 1
@@ -29,7 +29,14 @@
       CMSurvivorScientist:
       - CMSurvivorLV624Archeologist: 2
     survivorJobScenarios:
-      asset_protection:
+      asset_protection: # Corporate Dome Goons, order of job priority for goons. Scientist is overriden into doctor.
+      - CMSurvivorCorporate: 1
+      - CMSurvivorEngineer: 1
+      - CMSurvivorDoctor: 1
+      - CMSurvivorSecurity: 1
+      - CMSurvivor: -1
+    survivorJobVariantScenarios:
+      asset_protection: # Corporate Dome Goons
         CMSurvivor:
         - CMSurvivorLV624CorporateDomeGoon: -1
         CMSurvivorCorporate:
@@ -42,6 +49,9 @@
         - CMSurvivorLV624CorporateDomeGoonLead: 1
         CMSurvivorScientist:
         - CMSurvivor: 0
+    survivorJobOverrideScenarios:
+      asset_protection: # Corporate Dome Goons
+        CMSurvivorScientist: CMSurvivorDoctor
 
 
 - type: entity
@@ -52,6 +62,8 @@
     map: /Maps/_RMC14/solaris.yml
     camouflage: Desert
     announcement: "Компания Вестон-Ямада потеряла связь с одним из своих хранилищ биологических образцов, 'Хребет Солярис', на планете LV-1413. Командование Вестон-Ямада запросило ВКСШ Алмайер для расследования причин потери связи." # Stories-Translate
+    specialFaxes:
+      Liaison: RMCPaperWeYaLiaisonBriefingSolaris
     nightmareScenarios:
     - scenarioName: clfmining
       scenarioProbability: 0.1
@@ -65,7 +77,7 @@
     - CMSurvivorEngineer: 4
     - CMSurvivorSecurity: 2
     - CMSurvivorScientist: 2
-    survivorJobInserts:
+    survivorJobVariants:
       RMCSurvivorCommandingOfficer:
       - CMSurvivorSolarisCMBMarshal: 1
       CMSurvivor:
@@ -85,46 +97,52 @@
       - CMSurvivorSolarisEngineer: -1
       CMSurvivorSecurity:
       - CMSurvivorSolarisCMBDeputy: -1
-      - CMSurvivorSolarisUNPeacekeeper: -1
+      - CMSurvivorSolarisILRCPeacekeeper: -1
       CMSurvivorScientist:
       - CMSurvivorSolarisScientist: -1
-#    survivorJobScenarios:
-#      clfmining:
-#        CMSurvivor:
-#        - : 1
-#        - : -1
-#        CMSurvivorCorporate:
-#        - : 1
-#        - : -1
-#        CMSurvivorDoctor:
-#        - : 1
-#        - : -1
-#        CMSurvivorEngineer:
-#        - : 1
-#        - : -1
-#        CMSurvivorSecurity:
-#        - : 1
-#        - : -1
-#        CMSurvivorScientist:
-#        - : -1
-#      crashlanding_offices:
-#        CMSurvivor:
-#        - : 1
-#        - : -1
-#        CMSurvivorCorporate:
-#        - : 1
-#        - : -1
-#        CMSurvivorDoctor:
-#        - : 1
-#        - : -1
-#        CMSurvivorEngineer:
-#        - : 1
-#        - : -1
-#        CMSurvivorSecurity:
-#        - : 1
-#        - : -1
-#        CMSurvivorScientist:
-#        - : -1
+    survivorJobScenarios:
+      crashlanding_offices: # PMC, order of job priority for PMCs. Scientist is overriden into doctor.
+      - RMCSurvivorCommandingOfficer: 1
+      - CMSurvivorEngineer: 1
+      - CMSurvivorDoctor: 1
+      - CMSurvivorSecurity: 1
+      - CMSurvivorCorporate: 1
+      - CMSurvivor: -1
+    survivorJobVariantScenarios:
+      crashlanding_offices: # PMC
+        RMCSurvivorCommandingOfficer:
+        - RMCSurvivorSolarisPMCCommander: 1
+        CMSurvivorSecurity:
+        - RMCSurvivorSolarisPMCLeader: 1
+        CMSurvivorDoctor:
+        - RMCSurvivorSolarisPMCMedic: 1
+        CMSurvivorCorporate:
+        - RMCSurvivorSolarisCorporateSupervisor: 1
+        CMSurvivorEngineer:
+        - RMCSurvivorSolarisPMCEngineer: 1
+        CMSurvivor:
+        - RMCSurvivorSolarisPMCStandard: -1
+      # clfmining:
+      #   CMSurvivor:
+      #   - : 1
+      #   - : -1
+      #   CMSurvivorCorporate:
+      #   - : 1
+      #   - : -1
+      #   CMSurvivorDoctor:
+      #   - : 1
+      #   - : -1
+      #   CMSurvivorEngineer:
+      #   - : 1
+      #   - : -1
+      #   CMSurvivorSecurity:
+      #   - : 1
+      #   - : -1
+      #   CMSurvivorScientist:
+      #   - : -1
+    survivorJobOverrideScenarios:
+      crashlanding_offices: # PMC
+        CMSurvivorScientist: CMSurvivorDoctor
 
 
 - type: entity
@@ -135,7 +153,7 @@
     map: /Maps/_RMC14/shiva.yml
     camouflage: Snow
     announcement: "Получен автоматический сигнал бедствия с археологической площадки 'Снежный шар Шивы', на пограничном ледяном мире 'Ифрит'. Группа реагирования с борта ВКСШ Алмайер будет отправлена в ближайшее время для расследования." # Stories-Translate
-    survivorJobInserts: # Civ survivor is default one
+    survivorJobVariants: # Civ survivor is default one
       CMSurvivorCorporate:
       - RMCSurvivorShivasCorporateLiaison: -1
       CMSurvivorDoctor:
@@ -144,7 +162,7 @@
       - RMCSurvivorShivasEngineer: -1
       CMSurvivorSecurity:
       - RMCSurvivorShivasCMBDeputy: -1
-      - RMCSurvivorShivasUNPeacekeeper: -1
+      - RMCSurvivorShivasILRCPeacekeeper: -1
       CMSurvivorScientist:
       - RMCSurvivorShivasResearcher: -1
 
@@ -157,7 +175,7 @@
     camouflage: Classic
     minPlayers: 130
     announcement: "Получен автоматический сигнал бедствия из тюрьмы максимальной безопасности 'Орбитальная тюрьма Фиорина'. Группа реагирования с борта ВКСШ Алмайер будет отправлена в ближайшее время для расследования." # Stories-Translate
-    survivorJobInserts:
+    survivorJobVariants:
       CMSurvivor:
       - CMSurvivor: -1
       - CMSurvivorISR: -1
@@ -184,7 +202,7 @@
     camouflage: Desert
     minPlayers: 130
     announcement: "Мы потеряли связь с внесолнечной колонией компании Вестон-Ямада, 'Дамба Триджент', на планете 'Райдзин'. ВКСШ Алмайер отправлен для оказания помощи."
-    survivorJobInserts:
+    survivorJobVariants:
       CMSurvivor:
       - CMSurvivor: -1
       - CMSurvivorMiner: -1
@@ -205,7 +223,7 @@
       - CMSurvivorCMBDeputy: 1
       CMSurvivorScientist:
       - CMSurvivorTrijentResearcher: 2
-#    survivorJobScenarios:
+#    survivorJobVariantScenarios:
 #      clf_pods:
 #        CMSurvivor:
 #        - : -1
@@ -223,7 +241,7 @@
 #        - : -1
 #        CMSurvivorScientist:
 #        - : -1
-#    survivorJobScenarios:
+#    survivorJobVariantScenarios:
 #      spp_bar:
 #        CMSurvivor:
 #        - : -1
@@ -267,7 +285,7 @@
     - CMSurvivorEngineer: 4
     - CMSurvivorSecurity: 2
     - CMSurvivorScientist: 2
-    survivorJobInserts:
+    survivorJobVariants:
       RMCSurvivorCommandingOfficer:
       - RMCSurvivorCommanderNewVaradero: 1
       CMSurvivor:
@@ -282,7 +300,7 @@
       - CMSurvivorTechnician: 2
       - CMSurvivorCargoTechnician: 2
       CMSurvivorSecurity:
-      - CMSurvivorUNPeacekeeper: 2
+      - CMSurvivorILRCPeacekeeper: 2
       CMSurvivorScientist:
       - RMCSurvivorNewVaraderoResearcher: 2
 
@@ -294,7 +312,9 @@
     map: /Maps/_RMC14/kutjevo.yml
     camouflage: Desert
     announcement: "Получен автоматический сигнал бедствия с колонии Вестон-Ямада 'Перерабатывающий Завод Кутьево', известного ботаническими исследованиями, экспортом и переработкой и очисткой сырья. ВКСШ Алмайер отправлен для расследования." # Stories-Translate
-    survivorJobInserts:
+    specialFaxes:
+      Liaison: RMCPaperWeYaLiaisonBriefingKutjevo
+    survivorJobVariants:
       CMSurvivor:
       - CMSurvivor: -1
       - RMCSurvivorKutjevoChaplain: 1
@@ -319,15 +339,15 @@
     map: /Maps/_RMC14/chances.yml
     camouflage: Classic
     announcement: "Пан-пан. Говорит командующий офицер ВКСШ Ханьют, КМП США ФОРКОН. В настоящее время мы находимся на планете LV-522 в непосредственной близости от 'Претензии Шанса'. Мы не можем связаться с 'Ханьют', и наши десантные корабли не могут взлететь в данный момент. Мы запрашиваем помощь у любых находящихся поблизости судов; эта трансляция будет повторяться каждые 24 часа." # Stories-Translate
-    selectRandomSurvivorInsert: false
+    selectRandomSurvivorVariant: false
     survivorJobs:
     - RMCSurvivorCommandingOfficer: 1
-    - RMCSurvivorForeconBase: 7
-    survivorJobInserts:
+    - RMCSurvivorForeconSupportTech: 1
+    - RMCSurvivorForeconBase: 6 # todo 7 when eight survs
+    survivorJobVariants:
       RMCSurvivorCommandingOfficer:
       - RMCSurvivorForeconCommander: 1
       RMCSurvivorForeconBase:
-      - RMCSurvivorForeconSupportTech: 1
       - RMCSurvivorForeconSquadLeader: 1
       - RMCSurvivorForeconSniper: 1
       - RMCSurvivorForeconSmartgunOperator: 1
@@ -336,8 +356,8 @@
     survivorJobOverrides:
       CMSurvivor: RMCSurvivorForeconBase
       CMSurvivorCorporate: RMCSurvivorForeconBase
-      CMSurvivorDoctor: RMCSurvivorForeconBase
-      CMSurvivorEngineer: RMCSurvivorForeconBase
+      CMSurvivorDoctor: RMCSurvivorForeconSupportTech
+      CMSurvivorEngineer: RMCSurvivorForeconSupportTech
       CMSurvivorSecurity: RMCSurvivorForeconBase
       CMSurvivorScientist: RMCSurvivorForeconBase
 
@@ -350,7 +370,7 @@
     camouflage: Urban
     announcement: "Получен автоматический сигнал бедствия с колонии Вестон-Ямада, Гибриса Проспера - огромного, похожего на город поселения, известного своим огромным богатством, обширными горнодобывающими операциями и процветающей торговлей. Недавно полностью выкупленная у ИТС, эта бывшая колония теперь является ключевым активом Вестон-Ямады, с разросшимся городским центром, в котором проживают тысячи жителей, и множеством небольших внешних колоний под ее контролем. ВКСШ Алмайер отправлен для расследования ситуации." # Stories-Translate
     minPlayers: 130
-    survivorJobInserts:
+    survivorJobVariants:
       CMSurvivor:
       - RMCSurvivorHybrisaCivilian: -1
       - RMCSurvivorHybrisaTMCCMiner: -1
@@ -386,7 +406,7 @@
     camouflage: Jungle
     minPlayers: 130
     announcement: "An automated distress signal has been recieved from a mining colony on border world LV-976, \"Sorokyne Outpost\". A response team from the UNS Almayer will be dispatched shortly to investigate."
-    survivorJobInserts:
+    survivorJobVariants:
       CMSurvivor:
       - CMJobSurvivorSoroCivilian: -1
       - CMJobSurvivorSoroMiner: -1
@@ -403,7 +423,7 @@
       - CMJobSurvivorArmyReservist: 2
       CMSurvivorScientist:
       - CMJobSurvivorCECResearcher: 2
-#    survivorJobScenarios:
+#    survivorJobVariantScenarios:
 #      clfcamp:
 #        CMSurvivor:
 #        - : -1

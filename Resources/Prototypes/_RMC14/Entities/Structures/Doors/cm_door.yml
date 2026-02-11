@@ -169,7 +169,7 @@
   id: CMBaseDoorConstructible
   components:
   - type: Construction
-    graph: Airlock
+    graph: CMAirlock
     node: airlock
     containers:
     - board

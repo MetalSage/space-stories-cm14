@@ -114,6 +114,10 @@
     inherentStunDuration: 3
   - type: ZombieImmune
   - type: Unparalyzable # Stories-Hunter
+  - type: ParalyzeImmuneFrom
+    whitelist:
+      tags:
+      - RMCSynthGrabbable
 
 - type: entity
   id: RMCSynthRemoveComponents

@@ -8,5 +8,5 @@ namespace Content.Shared._RMC14.Intel;
 public sealed partial class IntelRecoverCorpseObjectiveComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public FixedPoint2 Value = FixedPoint2.New(0.1);
+    public FixedPoint2 Value = FixedPoint2.New(0.15); // Stories-SurvivorTempRemove
 }
