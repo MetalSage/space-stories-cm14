@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Stories.AntiGrief.Cadet;
 using Content.Shared._RMC14.Atmos;
+using Content.Shared._RMC14.Attachable.Components;
 using Content.Shared._RMC14.Chemistry.Reagent;
 using Content.Shared._RMC14.Fluids;
 using Content.Shared._RMC14.Line;
@@ -247,6 +248,13 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
 
     private void OnIgniterToggle(Entity<RMCIgniterComponent> ent, ref IsHotEvent args)
     {
+        if (TryComp<AttachableHolderComponent>(ent, out var holder) &&
+            holder.SupercedingAttachable != null)
+        {
+            args.IsHot = false;
+            return;
+        }
+
         args.IsHot = ent.Comp.Enabled;
     }
 

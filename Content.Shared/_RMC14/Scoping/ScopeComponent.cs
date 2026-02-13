@@ -60,6 +60,9 @@ public sealed partial class ScopeComponent : Component
 
     [DataField, AutoNetworkedField]
     public string? UnScopePopup = "cm-action-popup-scoping-stopping-user";
+
+    [DataField, AutoNetworkedField]
+    public bool CanUseNightVision;
 }
 
 [DataRecord, Serializable, NetSerializable]
