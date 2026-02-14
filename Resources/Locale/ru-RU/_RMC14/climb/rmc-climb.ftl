@@ -1,1 +1,1 @@
-rmc-climb-prevented-by-obstacles = По этой тропе нельзя пройти!
+rmc-climb-prevented-by-obstacles = Вы не можете туда попасть!

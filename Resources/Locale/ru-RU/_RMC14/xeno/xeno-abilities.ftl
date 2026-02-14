@@ -13,8 +13,8 @@ rmc-xeno-fury-increase-user = Нас одолевает ярость!
 rmc-xeno-not-enough-acid = У вас недостаточно кислоты!
 rmc-xeno-acid-increase-user = Вы чувствуете, как увеличивается запас кислоты!
 # Shards
-rmc-xeno-not-enough-shards = We don't have enough shards!
-rmc-xeno-shards-increase-user = We grow more shards!
+rmc-xeno-not-enough-shards = У нас недостаточно осколков!
+rmc-xeno-shards-increase-user = Мы создаём всё больше осколков!
 # Construction
 cm-xeno-choose-resin-structure = Выберите структуру смолы
 cm-xeno-order-construction = Построить структуру

@@ -22,4 +22,4 @@ rmc-job-prefix-novamed-doctor = НМ ВРАЧ
 rmc-job-name-hybrisa-civilian = Колонист "Гибриса Проспера"
 rmc-job-description-hybrisa-civilian = Проживите свою жизнь в "Гибриса Проспера".
 rmc-job-name-corp-synthetic = Корпоративный синтетик
-rmc-job-description-corp-synthetic = Оказывайте поддержку интересам и персоналу компании Weston-Yamada везде, где это необходимо.
+rmc-job-description-corp-synthetic = Оказывайте поддержку интересам и персоналу компании Вестон-Ямада везде, где это необходимо.

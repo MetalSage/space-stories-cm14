@@ -14,8 +14,8 @@ rmc-distress-signal-next-map-tie = Ничья при голосовании за
 rmc-distress-signal-next-map-win = { $winner } выиграла голосование за карту!
 rmc-distress-signal-next-map-header = Результаты голосования за карту
 rmc-distress-signal-next-map-votes = { $map }: { $votes } голосов
-rmc-distress-signal-next-map-votes-new = { $map }: { $votes } голосов ({ $newVotes } new)
-rmc-distress-signal-next-map-tiebreaker = Vote tied between:
+rmc-distress-signal-next-map-votes-new = { $map }: { $votes } голосов ({ $newVotes } новых)
+rmc-distress-signal-next-map-tiebreaker = Голосование закончилось ничьей:
 rmc-distress-signal-fallen =
     В память о наших павших солдатах:
     { $fallen }
