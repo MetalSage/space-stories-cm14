@@ -13,5 +13,5 @@ ent-RMCML66DMountAssembled = станковый пулемет M56D
 ent-RMCML66DMountWeaponAssembledLoaded = { ent-RMCML66DMountAssembled }
     .suffix = Folded, Assembled, Loaded
     .desc = { ent-RMCML66DMountAssembled.desc }
-ent-RMCM2CMount = тренога M2C
+ent-RMCM2CMount = станковый пулемет M2C
     .desc = Разобранный крупнокалиберный пулемет M2C со сложенными телескопическими штативами, неспособный вести огонь.

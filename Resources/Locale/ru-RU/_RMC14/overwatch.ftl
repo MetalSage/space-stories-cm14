@@ -43,7 +43,7 @@ rmc-overwatch-console-state-conscious = В сознании
 rmc-overwatch-console-ssd = (ССД)
 rmc-overwatch-console-na = N/A
 rmc-overwatch-console-dead = МЕРТВ
-rmc-overwatch-console-alive = ЖИВО
+rmc-overwatch-console-alive = ЖИВ
 rmc-overwatch-console-none = НЕТ
 rmc-overwatch-console-deployed = ВЫСАЖЕНО
 rmc-overwatch-console-total-living = ВСЕГО/ЖИВО
@@ -57,10 +57,10 @@ rmc-overwatch-console-longitude-short = ДОЛГ.
 rmc-overwatch-console-latitude-short = ШИР.
 rmc-overwatch-console-comment = Комментарий
 rmc-overwatch-console-save-comment = Сохранить комментарий
-rmc-overwatch-console-no-crate-loaded = [color=red][bold][ ЯЩИК НЕ ЗАГРУЖЕН ][/bold][/color]
-rmc-overwatch-console-crate-loaded = [color=green][bold][ ЯЩИК ЗАГРУЖЕН ][/bold][/color]
-rmc-overwatch-console-ready = [color=green][bold][ ГОТОВО ][/bold][/color]
-rmc-overwatch-console-not-ready = [color=red][bold][ НЕ ГОТОВО ][/bold][/color]
+rmc-overwatch-console-no-crate-loaded = [color=red][bold] \[ ЯЩИК НЕ ЗАГРУЖЕН \][/bold][/color]
+rmc-overwatch-console-crate-loaded = [color=green][bold] \[ ЯЩИК ЗАГРУЖЕН \][/bold][/color]
+rmc-overwatch-console-ready = [color=green][bold] \[ ГОТОВО \][/bold][/color]
+rmc-overwatch-console-not-ready = [color=red][bold] \[ НЕ ГОТОВО \][/bold][/color]
 rmc-overwatch-console-cooldown = [color=#D3B400][bold][ ПЕРЕЗАРЯДКА - { $seconds } СЕКУНД ][/bold][/color]
 rmc-overwatch-console-no-warhead-loaded = [color=red][bold]БОЕГОЛОВКА НЕ ЗАРЯЖЕНА[/bold][/color]
 # Transfer messages
