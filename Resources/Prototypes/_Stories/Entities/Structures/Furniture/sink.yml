@@ -1,0 +1,6 @@
+- type: entity
+  parent: CMSink
+  id: STSinkHunter
+  components:
+  - type: Sprite
+    color: "#C1A384"

@@ -1,0 +1,64 @@
+- type: entity
+  parent: CMPlatform
+  id: STPlatformHunter
+  name: raised metal platform
+  description: A raised level of metal, often used to elevate areas above others, or construct bridges. You could probably climb it.
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    sprite: _Stories/Structures/platforms.rsi
+    state: hunter_platform
+  - type: Construction
+    graph: STPlatformHunterDestructible
+    node: start
+
+- type: entity
+  parent: CMPlatformBroken  
+  id: STPlatformHunterBroken
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    sprite: _Stories/Structures/platforms.rsi
+    state: hunter_platform_broken
+  - type: Construction
+    graph: STPlatformHunterDestructible
+    node: platformBroken
+
+- type: entity
+  parent: RMCPlatformCornerSmall
+  id: STPlatformHunterCornerSmall
+  name: raised metal platform
+  description: A raised level of metal, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    sprite: _Stories/Structures/platforms.rsi
+    state: hunter_platform_corner
+    drawdepth: SmallObjects
+
+- type: entity
+  parent: CMPlatform
+  id: STPlatformHunterStair
+  name: raised metal platform
+  description: A raised level of metal, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    sprite: _Stories/Structures/platforms.rsi
+    state: hunter_platform_stair
+
+- type: entity
+  parent: CMPlatform
+  id: STPlatformHunterStairAlt
+  name: raised metal platform
+  description: A raised level of metal, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    sprite: _Stories/Structures/platforms.rsi
+    state: hunter_platform_stair_alt

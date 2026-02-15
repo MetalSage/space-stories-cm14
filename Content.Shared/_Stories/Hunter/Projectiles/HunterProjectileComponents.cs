@@ -1,0 +1,29 @@
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+
+namespace Content.Shared._Stories.Hunter.Projectiles;
+
+[RegisterComponent] [NetworkedComponent]
+public sealed partial class HunterStunBoltComponent : Component
+{
+    [DataField]
+    public TimeSpan StunTime = TimeSpan.FromSeconds(4);
+}
+
+[RegisterComponent] [NetworkedComponent]
+public sealed partial class HunterAreaStunOnHitComponent : Component
+{
+    public bool Detonated = false;
+
+    [DataField]
+    public EntProtoId Effect = "STEffectPlasmaImmobilizer";
+
+    [DataField]
+    public TimeSpan HunterReductionTime = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public float Radius = 7f;
+
+    [DataField]
+    public TimeSpan StunTime = TimeSpan.FromSeconds(6);
+}

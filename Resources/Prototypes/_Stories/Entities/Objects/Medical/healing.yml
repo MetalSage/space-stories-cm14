@@ -1,0 +1,123 @@
+- type: entity
+  parent: CMBaseHealingItem
+  abstract: true
+  id: STHunterTraumaKit
+  name: mending herbs
+  description: A poultice made of soft leaves that is rubbed on bruises.
+  suffix: Ten
+  components:
+  - type: Stack
+    stackType: STHunterTraumaKit
+    count: 10
+  - type: StackPrice
+    price: 10
+  - type: Sprite
+    state: brute_herbs
+    sprite: _Stories/Objects/Medical/medical.rsi
+  - type: Item
+    sprite: _Stories/Objects/Medical/medical.rsi
+  - type: WoundTreater
+    wound: Brute
+    treats: true
+    group: Brute
+    consumable: true
+    damage: -15
+    canUseUnskilled: true
+    skills:
+      RMCSkillMedical: 2
+    treatBeginSound:
+      path: "/Audio/_RMC14/Medical/bandage.ogg"
+    treatEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+    userPopup: cm-trauma-kit-user-popup
+    targetPopup: cm-trauma-kit-target-popup
+    othersPopup: cm-trauma-kit-others-popup
+    noneSelfPopup: cm-trauma-kit-none-self-popup
+    noneOtherPopup: cm-trauma-kit-none-other-popup
+    noWoundsOnUserPopup: cm-wounds-already-treated-self-popup
+    noWoundsOnTargetPopup: cm-wounds-already-treated-target-popup
+
+- type: entity
+  id: STHunterTraumaKit1
+  parent: STHunterTraumaKit
+  suffix: One
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  id: STHunterTraumaKit10
+  parent: STHunterTraumaKit
+  suffix: Ten
+  components:
+  - type: Stack
+    count: 10
+
+- type: stack
+  id: STHunterTraumaKit
+  name: advanced trauma kit
+  icon: { sprite: "/Textures/_Stories/Objects/Medical/medical.rsi", state: brute_herbs }
+  spawn: STHunterTraumaKit1
+  maxCount: 10
+
+- type: entity
+  parent: CMBaseHealingItem
+  abstract: true
+  id: STHunterBurnKit
+  name: soothing herbs
+  description: A poultice made of cold, blue petals that is rubbed on burns.
+  suffix: Ten
+  components:
+  - type: Stack
+    stackType: STHunterBurnKit
+    count: 10
+  - type: StackPrice
+    price: 10
+  - type: Sprite
+    state: burn_herbs
+    sprite: _Stories/Objects/Medical/medical.rsi
+  - type: Item
+    sprite: _Stories/Objects/Medical/medical.rsi
+  - type: WoundTreater
+    wound: Burn
+    treats: true
+    group: Burn
+    consumable: true
+    damage: -15
+    canUseUnskilled: true
+    skills:
+      RMCSkillMedical: 2
+    treatBeginSound:
+      path: "/Audio/_RMC14/Medical/bandage.ogg"
+    treatEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+    userPopup: cm-burn-kit-user-popup
+    targetPopup: cm-burn-kit-target-popup
+    othersPopup: cm-burn-kit-others-popup
+    noneSelfPopup: cm-burn-kit-none-self-popup
+    noneOtherPopup: cm-burn-kit-none-other-popup
+    noWoundsOnUserPopup: cm-burns-already-treated-self-popup
+    noWoundsOnTargetPopup: cm-burns-already-treated-target-popup
+
+- type: entity
+  id: STHunterBurnKit1
+  parent: STHunterBurnKit
+  suffix: One
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  id: STHunterBurnKit10
+  parent: STHunterBurnKit
+  suffix: Ten
+  components:
+  - type: Stack
+    count: 10
+
+- type: stack
+  id: STHunterBurnKit
+  name: advanced burn kit
+  icon: { sprite: "/Textures/_Stories/Objects/Medical/medical.rsi", state: burn_herbs }
+  spawn: STHunterBurnKit1
+  maxCount: 10

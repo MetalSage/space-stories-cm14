@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/789a362bc55d2d6331bc89699bb4f9f792695853/icons/obj/structures/props/platforms.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "border_stairs",
+      "directions": 4
+    },
+    {
+      "name": "border_stair_cut",
+      "directions": 4
+    },
+    {
+      "name": "border_stairs_rune",
+      "directions": 4
+    },
+    {
+      "name": "border_stair_rune_cut",
+      "directions": 4
+    },
+    {
+      "name": "hunter_platform",
+      "directions": 4
+    },
+    {
+      "name": "hunter_platform_corner",
+      "directions": 4
+    },
+    {
+      "name": "hunter_platform_stair",
+      "directions": 4
+    },
+    {
+      "name": "hunter_platform_stair_alt",
+      "directions": 4
+    },
+    {
+      "name": "hunter_platform_broken",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+- type: entity
+  id: STUnlitTorch
+  name: unlit torch
+  description: It's a torch, but it's not lit. Use something hot to ignite it, like a welding tool.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: false
+  - type: Clickable
+  - type: Sprite
+    noRot: true
+    sprite: _Stories/Structures/bonfire.rsi
+    layers:
+    - state: torch
+  - type: RMCMesonsNonviewable
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#FFC90C"
+  - type: AmbientSound
+    volume: -15
+    range: 2
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: AlwaysHot

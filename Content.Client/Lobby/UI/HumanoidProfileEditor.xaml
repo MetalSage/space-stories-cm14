@@ -187,6 +187,8 @@
                     <!-- Named Items -->
                     <namedItems:NamedItemsPicker Name="NamedItems" />
                 </BoxContainer>
+                <!-- Stories-Hunter -->
+                <BoxContainer Name="HunterTab" Access="Public" Orientation="Vertical" Visible="False" />
             </TabContainer>
         </BoxContainer>
         <!-- Right side -->

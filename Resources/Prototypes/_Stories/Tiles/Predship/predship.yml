@@ -1,0 +1,439 @@
+- type: tile
+  abstract: true
+  parent: CMTileBase
+  id: STFloorPredShipBase
+  name: tiles-st-predship
+
+- type: tile
+  parent: STFloorPredShipBase
+  id: STFloorPredShip
+  sprite: /Textures/_Stories/Tiles/hunter/floor.png
+
+- type: tile
+  abstract: true
+  parent: STFloorPredShipBase
+  id: STFloorPredShipCatwalkBase
+  name: tiles-st-predship-catwalk
+
+- type: tile
+  parent: STFloorPredShipCatwalkBase
+  id: STFloorPredShipCatwalk
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_catwalk.png
+
+- type: tile
+  parent: STFloorPredShipCatwalkBase
+  id: STFloorPredShipCatwalkAlt
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_catwalk_alt.png
+
+- type: tile
+  parent: STFloorPredShipCatwalkBase
+  id: STFloorPredShipCatwalkNew
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_catwalk_new.png
+
+- type: tile
+  parent: STFloorPredShipCatwalkBase
+  id: STFloorPredShipHunterGrate0
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_grate_0.png
+
+- type: tile
+  parent: STFloorPredShipHunterGrate0
+  id: STFloorPredShipHunterGrate1
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_grate_1.png
+
+- type: tile
+  parent: STFloorPredShipHunterGrate0
+  id: STFloorPredShipHunterGrate2
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_grate_2.png
+
+- type: tile
+  parent: STFloorPredShipHunterGrate0
+  id: STFloorPredShipHunterGrate3
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_grate_3.png
+
+- type: tile
+  parent: STFloorPredShipCatwalkBase
+  id: STFloorPredShipHunterGrateUpper0
+  sprite: /Textures/_Stories/Tiles/hunter/11_5_0.png
+
+- type: tile
+  parent: STFloorPredShipHunterGrateUpper0
+  id: STFloorPredShipHunterGrateUpper1
+  sprite: /Textures/_Stories/Tiles/hunter/11_5_1.png
+
+- type: tile
+  parent: STFloorPredShipHunterGrateUpper0
+  id: STFloorPredShipHunterGrateUpper2
+  sprite: /Textures/_Stories/Tiles/hunter/11_5_2.png
+
+- type: tile
+  parent: STFloorPredShipHunterGrateUpper0
+  id: STFloorPredShipHunterGrateUpper3
+  sprite: /Textures/_Stories/Tiles/hunter/11_5_3.png
+
+- type: tile
+  parent: STFloorPredShipCatwalkBase
+  id: STFloorPredShipHunterGrateAlpha0
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_grate_alpha_0.png
+
+- type: tile
+  parent: STFloorPredShipHunterGrateAlpha0
+  id: STFloorPredShipHunterGrateAlpha1
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_grate_alpha_1.png
+
+- type: tile
+  parent: STFloorPredShipHunterGrateAlpha0
+  id: STFloorPredShipHunterGrateAlpha2
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_grate_alpha_2.png
+
+- type: tile
+  parent: STFloorPredShipHunterGrateAlpha0
+  id: STFloorPredShipHunterGrateAlpha3
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_grate_alpha_3.png
+
+- type: tile
+  parent: STFloorPredShipCatwalkBase
+  id: STFloorPredShipHunterGrille
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_grille.png
+
+- type: tile
+  abstract: true
+  parent: STFloorPredShipBase
+  id: STFloorPredShipMainFloorBase
+  name: tiles-st-predship-main-floor
+
+- type: tile
+  parent: STFloorPredShipMainFloorBase
+  id: STFloorPredShipMainFloorCorner0
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_20_3_0.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorCorner0
+  id: STFloorPredShipMainFloorCorner1
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_20_3_1.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorCorner0
+  id: STFloorPredShipMainFloorCorner2
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_20_3_2.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorCorner0
+  id: STFloorPredShipMainFloorCorner3
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_20_3_3.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorBase
+  id: STFloorPredShipMainFloorDirection1_0
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_3_2_0.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection1_0
+  id: STFloorPredShipMainFloorDirection1_1
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_3_2_1.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection1_0
+  id: STFloorPredShipMainFloorDirection1_2
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_3_2_2.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection1_0
+  id: STFloorPredShipMainFloorDirection1_3
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_3_2_3.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorBase
+  id: STFloorPredShipMainFloorDirection2_0
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_20_4_0.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection2_0
+  id: STFloorPredShipMainFloorDirection2_1
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_20_4_1.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection2_0
+  id: STFloorPredShipMainFloorDirection2_2
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_20_4_2.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection2_0
+  id: STFloorPredShipMainFloorDirection2_3
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_20_4_3.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorBase
+  id: STFloorPredShipMainFloorDirection3_0
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_21_4_0.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection3_0
+  id: STFloorPredShipMainFloorDirection3_1
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_21_4_1.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection3_0
+  id: STFloorPredShipMainFloorDirection3_2
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_21_4_2.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection3_0
+  id: STFloorPredShipMainFloorDirection3_3
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_21_4_3.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorBase
+  id: STFloorPredShipMainFloorDirection4_0
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_21_6_0.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection4_0
+  id: STFloorPredShipMainFloorDirection4_1
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_21_6_1.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection4_0
+  id: STFloorPredShipMainFloorDirection4_2
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_21_6_2.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorDirection4_0
+  id: STFloorPredShipMainFloorDirection4_3
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_21_6_3.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorBase
+  id: STFloorPredShipMainFloorEdge0
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_2_2_0.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorEdge0
+  id: STFloorPredShipMainFloorEdge1
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_2_2_1.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorEdge0
+  id: STFloorPredShipMainFloorEdge2
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_2_2_2.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorEdge0
+  id: STFloorPredShipMainFloorEdge3
+  sprite: /Textures/_Stories/Tiles/hunter/mainfloor_2_2_3.png
+
+- type: tile
+  parent: STFloorPredShipMainFloorBase
+  id: STFloorPredShipMainFloorPlain
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_bridge.png
+
+- type: tile
+  parent: STFloorPredShipBase
+  id: STFloorPredShipRedGlow
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_glow.png
+
+- type: tile
+  abstract: true
+  parent: STFloorPredShipBase
+  id: STFloorPredShipTileBase
+  name: tiles-st-predship-tile
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTile1_0
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_1_0.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile1_0
+  id: STFloorPredShipHunterTile1_1
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_1_1.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile1_0
+  id: STFloorPredShipHunterTile1_2
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_1_2.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile1_0
+  id: STFloorPredShipHunterTile1_3
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_1_3.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTile2_0
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_2_0.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile2_0
+  id: STFloorPredShipHunterTile2_1
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_2_1.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile2_0
+  id: STFloorPredShipHunterTile2_2
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_2_2.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile2_0
+  id: STFloorPredShipHunterTile2_3
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_2_3.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTile3_0
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_3_0.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile3_0
+  id: STFloorPredShipHunterTile3_1
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_3_1.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile3_0
+  id: STFloorPredShipHunterTile3_2
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_3_2.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile3_0
+  id: STFloorPredShipHunterTile3_3
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_3_3.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTile4_0
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_4_0.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile4_0
+  id: STFloorPredShipHunterTile4_1
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_4_1.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile4_0
+  id: STFloorPredShipHunterTile4_2
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_4_2.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile4_0
+  id: STFloorPredShipHunterTile4_3
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_4_3.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTile5_0
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_5_0.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile5_0
+  id: STFloorPredShipHunterTile5_1
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_5_1.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile5_0
+  id: STFloorPredShipHunterTile5_2
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_5_2.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile5_0
+  id: STFloorPredShipHunterTile5_3
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_5_3.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTile6_0
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_6_0.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile6_0
+  id: STFloorPredShipHunterTile6_1
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_6_1.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile6_0
+  id: STFloorPredShipHunterTile6_2
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_6_2.png
+
+- type: tile
+  parent: STFloorPredShipHunterTile6_0
+  id: STFloorPredShipHunterTile6_3
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_tile_6_3.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTileRed
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_red.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTileRed2
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_red_2.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTileRed3
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_red_3.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTileRed4
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_red_4.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTileRed5
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_red_5.png
+
+- type: tile
+  parent: STFloorPredShipTileBase
+  id: STFloorPredShipHunterTileRed6
+  sprite: /Textures/_Stories/Tiles/hunter/hunter_red_6.png
+
+- type: tile
+  abstract: true
+  parent: STFloorPredShipBase
+  id: STFloorPredShipHullBase
+  name: tiles-st-predship-hull
+
+- type: tile
+  parent: STFloorPredShipHullBase
+  id: STFloorPredShipHull
+  sprite: /Textures/_Stories/Tiles/hunter/outerhull.png
+
+- type: tile
+  parent: STFloorPredShipHullBase
+  id: STFloorPredShipHull0
+  sprite: /Textures/_Stories/Tiles/hunter/outerhull_dir_0.png
+
+- type: tile
+  parent: STFloorPredShipHull
+  id: STFloorPredShipHull1
+  sprite: /Textures/_Stories/Tiles/hunter/outerhull_dir_1.png
+
+- type: tile
+  parent: STFloorPredShipHull
+  id: STFloorPredShipHull2
+  sprite: /Textures/_Stories/Tiles/hunter/outerhull_dir_2.png
+
+- type: tile
+  parent: STFloorPredShipHull
+  id: STFloorPredShipHull3
+  sprite: /Textures/_Stories/Tiles/hunter/outerhull_dir_3.png
+
+- type: tile
+  parent: STFloorPredShipHull
+  id: STFloorPredShipHull4
+  sprite: /Textures/_Stories/Tiles/hunter/outerhull_dir_4.png
+
+- type: tile
+  parent: STFloorPredShipHull
+  id: STFloorPredShipHull5
+  sprite: /Textures/_Stories/Tiles/hunter/outerhull_dir_5.png
+
+- type: tile
+  parent: STFloorPredShipHull
+  id: STFloorPredShipHull6
+  sprite: /Textures/_Stories/Tiles/hunter/outerhull_dir_6.png
+
+- type: tile
+  parent: STFloorPredShipHull
+  id: STFloorPredShipHull7
+  sprite: /Textures/_Stories/Tiles/hunter/outerhull_dir_7.png

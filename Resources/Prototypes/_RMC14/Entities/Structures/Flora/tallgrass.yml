@@ -54,7 +54,7 @@
   id: RMCGrassTallDesert
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Flora/tallgrass_desert.rsi 
+    sprite: _RMC14/Structures/Flora/tallgrass_desert.rsi #different sprite instead of color: "desert" because parity
 
 - type: entity
   parent: RMCGrassTallSidesBase
@@ -76,21 +76,21 @@
   id: RMCGrassTallIce
   components:
   - type: Sprite
-    color: "#DFF7FA"
+    color: "#C7EDDE"
 
 - type: entity
   parent: RMCGrassTallSidesBase
   id: RMCGrassTallSidesIce
   components:
   - type: Sprite
-    color: "#DFF7FA"
+    color: "#C7EDDE"
 
 - type: entity
   parent: RMCGrassTallCornerBase
   id: RMCGrassTallCornerIce
   components:
   - type: Sprite
-    color: "#DFF7FA"
+    color: "#C7EDDE"
 
 # Jungle
 - type: entity
@@ -98,21 +98,21 @@
   id: RMCGrassTallJungle
   components:
   - type: Sprite
-    color: "#8FB6AB"
+    color: "#64AA6E"
 
 - type: entity
   parent: RMCGrassTallSidesBase
   id: RMCGrassTallSidesJungle
   components:
   - type: Sprite
-    color: "#8FB6AB"
+    color: "#64AA6E"
 
 - type: entity
   parent: RMCGrassTallCornerBase
   id: RMCGrassTallCornerJungle
   components:
   - type: Sprite
-    color: "#8FB6AB"
+    color: "#64AA6E"
 
 # Strata
 - type: entity
@@ -120,18 +120,18 @@
   id: RMCGrassTallStrata
   components:
   - type: Sprite
-    color: "#A9D1C5"
+    color: "#99d178"
 
 - type: entity
   parent: RMCGrassTallSidesBase
   id: RMCGrassTallSidesStrata
   components:
   - type: Sprite
-    color: "#A9D1C5"
+    color: "#99d178"
 
 - type: entity
   parent: RMCGrassTallCornerBase
   id: RMCGrassTallCornerStrata
   components:
   - type: Sprite
-    color: "#A9D1C5"
+    color: "#99d178"

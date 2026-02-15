@@ -1,0 +1,73 @@
+- type: entity
+  parent: Clothing
+  abstract: true
+  id: STHunterCapeBase
+  description: A battle-worn cape passed down by elder Hunter.
+  components:
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Sprite
+    layers:
+    - state: icon
+  - type: Appearance
+  - type: HunterCapeVisuals
+
+- type: entity
+  parent: STHunterCapeBase
+  id: STHunterCapeFull
+  name: hunter cape
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Hunter/full.rsi
+
+- type: entity
+  parent: STHunterCapeBase
+  id: STHunterCapeCeremonial
+  name: hunter ceremonial cape
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Hunter/ceremonial.rsi
+
+- type: entity
+  parent: STHunterCapeBase
+  id: STHunterCapeThird
+  name: hunter third-cape
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Hunter/third.rsi
+
+- type: entity
+  parent: STHunterCapeBase
+  id: STHunterCapeHalf
+  name: hunter half-cape
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Hunter/half.rsi
+
+- type: entity
+  parent: STHunterCapeBase
+  id: STHunterCapeQuarter
+  name: hunter quarter-cape
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Hunter/quarter.rsi
+
+- type: entity
+  parent: STHunterCapeBase
+  id: STHunterCapePoncho
+  name: hunter poncho
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Hunter/councilor_poncho.rsi
+
+- type: entity
+  parent: STHunterCapeBase
+  id: STHunterCapeDamaged
+  name: hunter damaged cape
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Hunter/damaged.rsi

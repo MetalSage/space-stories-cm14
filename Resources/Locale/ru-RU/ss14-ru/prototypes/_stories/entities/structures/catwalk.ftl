@@ -1,0 +1,10 @@
+ent-STCatwalkHunter = { ent-CMCatwalk }
+    .desc = { ent-CMCatwalk.desc }
+ent-STCatwalkHunterAlt = { ent-CMCatwalk }
+    .desc = { ent-CMCatwalk.desc }
+ent-STCatwalkHunterGrate = { ent-CMCatwalk }
+    .desc = { ent-CMCatwalk.desc }
+ent-STCatwalkHunterGrille = { ent-CMCatwalk }
+    .desc = { ent-CMCatwalk.desc }
+ent-STCatwalkHunterNew = { ent-CMCatwalk }
+    .desc = { ent-CMCatwalk.desc }

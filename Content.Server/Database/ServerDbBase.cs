@@ -11,6 +11,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.IP;
 using Content.Shared._RMC14.NamedItems;
+using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
@@ -25,6 +26,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using SharedHunterProfile = Content.Shared._Stories.Hunter.Profiles.HunterProfile;
 
 namespace Content.Server.Database
 {
@@ -415,6 +417,56 @@ namespace Content.Server.Database
             profile.XenoPostfix = humanoid.XenoPostfix;
 
             return profile;
+        }
+        #endregion
+
+        #region Hunter Customization
+        public abstract Task<SharedHunterProfile?> GetHunterProfileAsync(NetUserId userId, CancellationToken cancel = default);
+        public abstract Task SaveHunterProfileAsync(NetUserId userId, SharedHunterProfile profile, CancellationToken cancel = default);
+
+        protected static SharedHunterProfile ConvertToSharedHunterProfile(Database.HunterProfile dbProfile)
+        {
+            return new SharedHunterProfile
+            {
+                Name = dbProfile.CharacterName,
+                Gender = Enum.Parse<Gender>(dbProfile.Gender),
+                Age = dbProfile.Age,
+                FlavorText = dbProfile.FlavorText,
+                Status = Enum.Parse<HunterStatus>(dbProfile.Status),
+                SkinColor = Color.FromHex(dbProfile.SkinColor),
+                QuillMarkingId = new ProtoId<MarkingPrototype>(dbProfile.QuillMarkingId),
+                ArmorPrototype = new EntProtoId(dbProfile.ArmorPrototype),
+                MaskPrototype = new EntProtoId(dbProfile.MaskPrototype),
+                GreavesPrototype = new EntProtoId(dbProfile.GreavesPrototype),
+                CasterPrototype = new EntProtoId(dbProfile.CasterPrototype),
+                Voice = dbProfile.Voice,
+                HeadAccessory = new EntProtoId(dbProfile.HeadAccessory),
+                TranslatorSound = Enum.Parse<HunterSoundStyle>(dbProfile.TranslatorSound),
+                CloakSound = Enum.Parse<HunterSoundStyle>(dbProfile.CloakSound),
+                CapeColor = Color.FromHex(dbProfile.CapeColor),
+                BracerPrototype = new EntProtoId(dbProfile.BracerPrototype),
+            };
+        }
+
+        protected static void ConvertFromSharedHunterProfile(SharedHunterProfile profile, Database.HunterProfile dbProfile)
+        {
+            dbProfile.CharacterName = profile.Name;
+            dbProfile.Gender = profile.Gender.ToString();
+            dbProfile.Age = profile.Age;
+            dbProfile.FlavorText = profile.FlavorText;
+            dbProfile.Status = profile.Status.ToString();
+            dbProfile.SkinColor = profile.SkinColor.ToHex();
+            dbProfile.QuillMarkingId = profile.QuillMarkingId.Id;
+            dbProfile.ArmorPrototype = profile.ArmorPrototype.Id;
+            dbProfile.MaskPrototype = profile.MaskPrototype.Id;
+            dbProfile.GreavesPrototype = profile.GreavesPrototype.Id;
+            dbProfile.CasterPrototype = profile.CasterPrototype.Id;
+            dbProfile.Voice = profile.Voice;
+            dbProfile.HeadAccessory = string.IsNullOrEmpty(profile.HeadAccessory.Id) ? "Nothing" : profile.HeadAccessory.Id;
+            dbProfile.TranslatorSound = profile.TranslatorSound.ToString();
+            dbProfile.CloakSound = profile.CloakSound.ToString();
+            dbProfile.CapeColor = profile.CapeColor.ToHex();
+            dbProfile.BracerPrototype = profile.BracerPrototype.Id;
         }
         #endregion
 
@@ -2005,8 +2057,9 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             if (messages.Count == 0)
                 return null;
 
-            var random = messages[Random.Shared.Next(messages.Count)];
-            return (random.Message, random.LastSeenUserName);
+            var random = Random.Shared.Next(messages.Count);
+            var msg = messages[random];
+            return (msg.Message, msg.LastSeenUserName);
         }
 
         public async Task<(RoundEndShoutout? Marine, RoundEndShoutout? Xeno)> GetRandomShoutout()
@@ -2104,20 +2157,184 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await db.DbContext.SaveChangesAsync();
         }
 
-        public async Task<List<RMCCommendation>> GetCommendationsReceived(Guid player)
+        public async Task<List<RMCCommendation>> GetCommendationsReceived(Guid player, CommendationType? filterType = null, bool includePlayers = false)
         {
             await using var db = await GetDb();
-            return await db.DbContext.RMCCommendations
+            var query = db.DbContext.RMCCommendations
+                .Where(c => !c.Deleted)
+                .AsQueryable();
+
+            if (includePlayers)
+            {
+                query = query
+                    .Include(c => c.Giver)
+                    .Include(c => c.Receiver);
+            }
+
+            if (filterType.HasValue)
+                query = query.Where(c => c.Type == filterType.Value);
+
+            return await query
                 .Where(c => c.ReceiverId == player)
                 .ToListAsync();
         }
 
-        public async Task<List<RMCCommendation>> GetCommendationsGiven(Guid player)
+        public async Task<List<RMCCommendation>> GetCommendationsGiven(Guid player, CommendationType? filterType = null, bool includePlayers = false)
         {
             await using var db = await GetDb();
-            return await db.DbContext.RMCCommendations
+            var query = db.DbContext.RMCCommendations
+                .Where(c => !c.Deleted)
+                .AsQueryable();
+
+            if (includePlayers)
+            {
+                query = query
+                    .Include(c => c.Giver)
+                    .Include(c => c.Receiver);
+            }
+
+            if (filterType.HasValue)
+                query = query.Where(c => c.Type == filterType.Value);
+
+            return await query
                 .Where(c => c.GiverId == player)
                 .ToListAsync();
+        }
+
+        public async Task<List<RMCCommendation>> GetLastCommendations(int count, CommendationType? filterType = null, bool includePlayers = false)
+        {
+            await using var db = await GetDb();
+            var query = db.DbContext.RMCCommendations
+                .Where(c => !c.Deleted)
+                .AsQueryable();
+
+            if (includePlayers)
+            {
+                query = query
+                    .Include(c => c.Giver)
+                    .Include(c => c.Receiver);
+            }
+
+            if (filterType.HasValue)
+                query = query.Where(c => c.Type == filterType.Value);
+
+            return await query
+                .OrderByDescending(c => c.Id)
+                .Take(count)
+                .ToListAsync();
+        }
+
+        public async Task<RMCCommendation?> GetCommendationById(int commendationId, bool includePlayers = false)
+        {
+            await using var db = await GetDb();
+            var query = db.DbContext.RMCCommendations
+                .Where(c => !c.Deleted)
+                .AsQueryable();
+
+            if (includePlayers)
+            {
+                query = query
+                    .Include(c => c.Giver)
+                    .Include(c => c.Receiver);
+            }
+
+            return await query
+                .FirstOrDefaultAsync(c => c.Id == commendationId);
+        }
+
+        public async Task<List<RMCCommendation>> GetCommendationsByRound(int roundId, CommendationType? filterType = null, bool includePlayers = false)
+        {
+            await using var db = await GetDb();
+            var query = db.DbContext.RMCCommendations
+                .Where(c => !c.Deleted)
+                .AsQueryable();
+
+            if (includePlayers)
+            {
+                query = query
+                    .Include(c => c.Giver)
+                    .Include(c => c.Receiver);
+            }
+
+            if (filterType.HasValue)
+                query = query.Where(c => c.Type == filterType.Value);
+
+            return await query
+                .Where(c => c.RoundId == roundId)
+                .ToListAsync();
+        }
+
+        public async Task<RMCCommendation?> DeleteCommendationById(int commendationId, Guid deletedBy, DateTimeOffset deletedAt, bool includePlayers = false)
+        {
+            await using var db = await GetDb();
+            var query = db.DbContext.RMCCommendations
+                .Where(c => !c.Deleted)
+                .AsQueryable();
+
+            if (includePlayers)
+            {
+                query = query
+                    .Include(c => c.Giver)
+                    .Include(c => c.Receiver);
+            }
+
+            var commendation = await query
+                .FirstOrDefaultAsync(c => c.Id == commendationId);
+
+            if (commendation == null)
+                return null;
+
+            commendation.Deleted = true;
+            commendation.DeletedById = deletedBy;
+            commendation.DeletedAt = deletedAt.UtcDateTime;
+
+            await db.DbContext.SaveChangesAsync();
+            return commendation;
+        }
+
+        public async Task<List<RMCCommendation>> DeleteCommendationsByRound(
+            int roundId,
+            CommendationType type,
+            Guid deletedBy,
+            DateTimeOffset deletedAt,
+            Guid? giverId = null,
+            Guid? receiverId = null,
+            bool includePlayers = false)
+        {
+            await using var db = await GetDb();
+            var query = db.DbContext.RMCCommendations
+                .Where(c => !c.Deleted)
+                .AsQueryable();
+
+            if (includePlayers)
+            {
+                query = query
+                    .Include(c => c.Giver)
+                    .Include(c => c.Receiver);
+            }
+
+            query = query.Where(c => c.RoundId == roundId && c.Type == type);
+
+            if (giverId.HasValue)
+                query = query.Where(c => c.GiverId == giverId.Value);
+
+            if (receiverId.HasValue)
+                query = query.Where(c => c.ReceiverId == receiverId.Value);
+
+            var commendations = await query.ToListAsync();
+
+            if (commendations.Count == 0)
+                return commendations;
+
+            foreach (var commendation in commendations)
+            {
+                commendation.Deleted = true;
+                commendation.DeletedById = deletedBy;
+                commendation.DeletedAt = deletedAt.UtcDateTime;
+            }
+
+            await db.DbContext.SaveChangesAsync();
+            return commendations;
         }
 
         public async Task IncreaseInfects(Guid player)

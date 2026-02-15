@@ -294,16 +294,16 @@
 
 # Hunter
 - type: entity
-  parent: CMTable
+  parent: RMCTablePrison
   id: RMCTableHunter
   name: table
   description: A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip.
   suffix: Hunter
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Furniture/Tables/hunter.rsi
+    color: "#6B675EFF"
   - type: Icon
-    sprite: _RMC14/Structures/Furniture/Tables/hunter.rsi
+    color: "#6B675EFF"
 
 # Bar
 - type: entity

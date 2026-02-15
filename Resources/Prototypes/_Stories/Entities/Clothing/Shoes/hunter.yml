@@ -1,0 +1,626 @@
+- type: entity
+  parent: [STHunterBaseItem, CMBootsBlack]
+  id: STGreavesHunterBase
+  abstract: true
+  name: clan greaves
+  description: A pair of armored, perfectly balanced boots. Perfect for running through the jungle.
+  components:
+  - type: ItemSlots
+    slots:
+      item:
+        name: cm-knife
+        insertSound: /Audio/_RMC14/Weapons/Guns/Reload/m42a2.ogg
+        ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/m42a2.ogg
+        whitelist:
+          tags:
+          - Knife
+          - Holdout
+          - Screwdriver
+          - RMCScalpel
+          - ThrowingKnife
+        startingItem: STCeremonialDagger
+  # - type: CMArmor # TODO LIMB DAMAGE
+  #   melee: 25
+  #   bullet: 30
+  #   bio: 25
+  #   explosionArmor: 30
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterEbony1
+  suffix: Ebony, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/ebony.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/ebony.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterEbony2
+  suffix: Ebony, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/ebony.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/ebony.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterEbony3
+  suffix: Ebony, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/ebony.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/ebony.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterEbony4
+  suffix: Ebony, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/ebony.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/ebony.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterBronze1
+  suffix: Bronze, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bronze.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bronze.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterBronze2
+  suffix: Bronze, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bronze.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bronze.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterBronze3
+  suffix: Bronze, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bronze.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bronze.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterBronze4
+  suffix: Bronze, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bronze.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bronze.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterSilver1
+  suffix: Silver, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/silver.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/silver.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterSilver2
+  suffix: Silver, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/silver.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/silver.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterSilver3
+  suffix: Silver, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/silver.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/silver.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterSilver4
+  suffix: Silver, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/silver.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/silver.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterBone1
+  suffix: Bone, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bone.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bone.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterBone2
+  suffix: Bone, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bone.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bone.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterBone3
+  suffix: Bone, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bone.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bone.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterBone4
+  suffix: Bone, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bone.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/bone.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterCrimson1
+  suffix: Crimson, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/crimson.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/crimson.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterCrimson2
+  suffix: Crimson, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/crimson.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/crimson.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterCrimson3
+  suffix: Crimson, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/crimson.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/crimson.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterCrimson4
+  suffix: Crimson, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/crimson.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/crimson.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterGold1
+  suffix: Gold, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/gold.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/gold.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterGold2
+  suffix: Gold, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/gold.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/gold.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterGold3
+  suffix: Gold, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/gold.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/gold.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterGold4
+  suffix: Gold, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/gold.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/gold.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterWild1
+  suffix: Wild, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/wild.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/wild.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterWild2
+  suffix: Wild, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/wild.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/wild.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterWild3
+  suffix: Wild, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/wild.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/wild.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterWild4
+  suffix: Wild, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/wild.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/wild.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterOutcast1
+  suffix: Outcast, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/outcast.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/outcast.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterOutcast2
+  suffix: Outcast, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/outcast.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/outcast.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterOutcast3
+  suffix: Outcast, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/outcast.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/outcast.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterOutcast4
+  suffix: Outcast, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/outcast.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/outcast.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterLeader1
+  suffix: Leader, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/leader.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/leader.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterLeader2
+  suffix: Leader, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/leader.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/leader.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterLeader3
+  suffix: Leader, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/leader.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/leader.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterLeader4
+  suffix: Leader, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/leader.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/leader.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterSamurai1
+  suffix: Samurai, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/samurai.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/samurai.rsi
+    clothingVisuals:
+      shoes:
+      - state: 1-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterSamurai2
+  suffix: Samurai, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/samurai.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/samurai.rsi
+    clothingVisuals:
+      shoes:
+      - state: 2-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterSamurai3
+  suffix: Samurai, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/samurai.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/samurai.rsi
+    clothingVisuals:
+      shoes:
+      - state: 3-equipped-FEET
+
+- type: entity
+  parent: STGreavesHunterBase
+  id: STBootsHunterSamurai4
+  suffix: Samurai, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/samurai.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Shoes/Boots/Hunter/samurai.rsi
+    clothingVisuals:
+      shoes:
+      - state: 4-equipped-FEET

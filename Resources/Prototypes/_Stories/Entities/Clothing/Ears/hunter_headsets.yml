@@ -1,0 +1,25 @@
+- type: entity
+  parent: [STHunterBaseItem, CMHeadset]
+  id: STHeadsetHunter
+  name: communicator
+  description: A strange Hunter device used for projecting the Hunters voice to the others in its pack. Similar in function to a standard human radio.
+  components:
+  - type: Sprite
+    state: communicator
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - STEncryptionKeyHunter
+
+- type: entity
+  parent: [STHunterBaseItem, CMHeadset]
+  id: STHeadsetHunterOverseer
+  name: overseer communicator
+  description: A strange Hunter device used for projecting the Hunters voice to the others in its pack. Similar in function to a standard human radio.
+  components:
+  - type: Sprite
+    state: communicator
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - STEncryptionKeyHunterOverseer

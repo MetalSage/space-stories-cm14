@@ -1,0 +1,151 @@
+- type: entity
+  parent: RMCPropBase
+  id: STHunterTrophyLeft
+  name: hunter trophy display rack
+  desc: A trophy rack for hunters displaying their prizes.
+  suffix: Left
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        layer:
+        - MobMask
+  - type: Sprite
+    sprite: _Stories/Structures/Machines/VendingMachines/hunter_vendor.rsi
+    offset: 0,0.5
+    state: hunter_trophy_vendor_left
+
+- type: entity
+  parent: STHunterTrophyLeft
+  id: STHunterTrophyCentre
+  suffix: Centre
+  components:
+  - type: Sprite
+    state: hunter_trophy_vendor_centre
+
+- type: entity
+  parent: STHunterTrophyLeft
+  id: STHunterTrophyRight
+  suffix: Right
+  components:
+  - type: Sprite
+    state: hunter_trophy_vendor_right
+
+- type: entity
+  parent: RMCPropBase
+  id: STHunterArmorProp
+  name: ancient yautja armor
+  desc: An ancient suit of armor. It looks incredibly old, yet most likely still functional, although it's fixed to the wall, and purely used as a ceremonial adornment.
+  suffix: 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Hunter/decor.rsi
+    state: hunter_armor_prop
+
+- type: entity
+  parent: STHunterArmorProp
+  id: STHunterArmorProp2
+  suffix: 2
+  components:
+  - type: Sprite
+    state: hunter_armor_prop_2
+
+- type: entity
+  parent: STHunterArmorProp
+  id: STHunterArmorProp3
+  suffix: 3
+  components:
+  - type: Sprite
+    state: hunter_armor_prop_3
+
+- type: entity
+  parent: STHunterArmorProp
+  id: STHunterArmorProp4
+  suffix: 4
+  components:
+  - type: Sprite
+    state: hunter_armor_prop_4
+
+- type: entity
+  parent: RMCPropBase
+  id: STHunterThroneTop
+  name: throne of the eternal hunt
+  desc: A grotesquely magnificent seat, carved from the remains of the most formidable prey. Twisted spines, shattered skulls, and serrated bones form a testament to the ancient hunter’s unchallenged supremacy. The throne whispers of countless battles, its macabre elegance a reminder that only the strongest may sit upon it.
+  suffix: 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Hunter/decor.rsi
+    state: bone_throne_top
+
+- type: entity
+  parent: [STHunterThroneTop, CMSeatBase]
+  id: STHunterThrone
+  components:
+  - type: Sprite
+    state: bone_throne
+
+- type: entity
+  parent: RMCPropBase
+  id: STHunterMachinesBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi
+
+- type: entity
+  parent: STHunterMachinesBase
+  id: STHunterConsoleBase
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+
+- type: entity
+  parent: STHunterConsoleBase
+  id: STHunterConsoleCrew
+  name: hunter health monitor
+  desc: Used to monitor active health sensors of all Yautja in the system. You can see that the console highlights the human's ship areas with BLUE and the hunting locations with RED.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi
+    state: crew
+
+- type: entity
+  parent: STHunterConsoleBase
+  id: STHunterConsoleTerminal
+  name: control console
+  desc: A console used by the Hunters.
+  components:
+  - type: Sprite
+    state: terminal
+
+- type: entity
+  parent: STHunterConsoleBase
+  id: STHunterConsoleOverwatch
+  name: ship defenses console
+  desc: A console used for monitoring the ships defences systems.
+  components:
+  - type: Sprite
+    state: overwatch
+
+- type: entity
+  parent: STHunterConsoleBase
+  id: STHunterConsoleSmallMonitor
+  name: monitor
+  components:
+  - type: Sprite
+    state: smallmonitor
+
+- type: entity
+  parent: STHunterMachinesBase
+  id: STHunterGlobe
+  name: hunter globe
+  desc: A globe designed by the hunters to show them the location of prey across the hunting grounds.
+  components:
+  - type: Sprite
+    state: globe

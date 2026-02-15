@@ -34,8 +34,6 @@
       path: /Audio/_RMC14/Weapons/Guns/Cock/m5_ammo.ogg
   - type: Corrodible
     isCorrodible: false
-  - type: ExplosionResistance
-    damageCoefficient: 0
   - type: Wieldable
   - type: GunRequiresWield
   - type: RMCNameItemOnVend

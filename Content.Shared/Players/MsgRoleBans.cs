@@ -1,3 +1,4 @@
+using System;
 using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -7,6 +8,7 @@ namespace Content.Shared.Players;
 /// <summary>
 /// Sent server -> client to inform the client of their role bans.
 /// </summary>
+[Serializable, NetSerializable]
 public sealed class MsgRoleBans : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.EntityEvent;

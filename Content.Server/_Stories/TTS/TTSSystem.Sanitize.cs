@@ -7,7 +7,7 @@ namespace Content.Server._Stories.TTS;
 // ReSharper disable once InconsistentNaming
 public sealed partial class TTSSystem
 {
-    private void OnTransformSpeech(TransformSpeechEvent args)
+    private void OnTransformSpeech(ref TransformSpeechEvent args)
     {
         if (!_isEnabled) return;
         args.Message = args.Message.Replace("+", "");

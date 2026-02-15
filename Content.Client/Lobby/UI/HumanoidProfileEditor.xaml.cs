@@ -558,6 +558,36 @@ namespace Content.Client.Lobby.UI
             IsDirty = false;
         }
 
+        // Stories-Hunter-Start
+        public void AddTab(Control control, string title)
+        {
+            TabContainer.AddChild(control);
+            TabContainer.SetTabTitle(TabContainer.ChildCount - 1, title);
+        }
+
+        public int GetHunterTabIndex()
+        {
+            var i = 0;
+            foreach (var child in TabContainer.Children)
+            {
+                if (child == HunterTab)
+                    return i;
+                i++;
+            }
+            return -1;
+        }
+
+        public void SetTabVisible(int tab, bool visible)
+        {
+            TabContainer.SetTabVisible(tab, visible);
+        }
+
+        public void SetTabTitle(int tab, string title)
+        {
+            TabContainer.SetTabTitle(tab, title);
+        }
+        // Stories-Hunter-End
+
         /// <summary>
         /// Refreshes the flavor text editor status.
         /// </summary>

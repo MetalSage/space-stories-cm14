@@ -1,0 +1,12 @@
+- type: job
+  abstract: true
+  parent: CMJobBase
+  id: STJobHunterBase
+  description: null
+  joinNotifyCrew: false
+  icon: "CMJobIconEmpty"
+  supervisors: cm-job-supervisors-nobody
+  accessGroups:
+  - STAccessHunterSecure
+  hasIcon: false
+  hidden: false

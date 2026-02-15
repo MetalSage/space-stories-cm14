@@ -1,0 +1,5 @@
+- type: entity
+  parent: RMCSkillBase
+  id: STSkillIllegalTechnology
+  name: Illegal Technology
+  categories: [ HideSpawnMenu ]

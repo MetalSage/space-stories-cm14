@@ -1,0 +1,46 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Title="{Loc 'ui-lobby-join-game-title'}"
+               MinSize="400 450"
+               Resizable="False">
+    <controls:StripeBack>
+        <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="15">
+            <Label Text="{Loc 'ui-lobby-join-game-header'}" 
+                   StyleClasses="LabelHeadingBigger" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,5,0,10"/>
+            <PanelContainer StyleClasses="AngleRect" VerticalExpand="False">
+                <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="5">
+                    <Label Text="{Loc 'ui-lobby-join-section-marines'}" StyleClasses="LabelHeading" FontColorOverride="#5E7C8B"/>
+                    <Button Name="JoinMarineButton"
+                            Access="Public"
+                            Text="{Loc 'ui-lobby-join-marine'}"
+                            StyleClasses="ButtonBig"
+                            MinHeight="50"/>
+                </BoxContainer>
+            </PanelContainer>
+            <PanelContainer StyleClasses="AngleRect" VerticalExpand="False">
+                <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="5">
+                    <Label Text="{Loc 'ui-lobby-join-section-xeno'}" StyleClasses="LabelHeading" FontColorOverride="#7B5E8B"/>
+                    <Button Name="JoinXenoButton"
+                            Access="Public"
+                            Text="{Loc 'ui-lobby-join-xeno'}"
+                            StyleClasses="ButtonBig"
+                            MinHeight="50"/>
+                </BoxContainer>
+            </PanelContainer>
+            <PanelContainer Name="HunterPanel" StyleClasses="AngleRect" VerticalExpand="False" Visible="False">
+                <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="5">
+                    <Label Text="{Loc 'ui-lobby-join-section-hunter'}" StyleClasses="LabelHeading" FontColorOverride="#8B5E5E"/>
+                    <Button Name="JoinHunterButton"
+                            Access="Public"
+                            Text="{Loc 'ui-lobby-join-hunter'}"
+                            StyleClasses="ButtonBig"
+                            MinHeight="50"/>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </controls:StripeBack>
+</DefaultWindow>

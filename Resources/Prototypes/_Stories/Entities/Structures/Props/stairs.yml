@@ -1,0 +1,53 @@
+- type: entity
+  id: STStairsHunter
+  parent: RMCStairs
+  suffix: Small
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/hunter.rsi
+    state: small_stair
+
+- type: entity
+  id: STStairsHunterLarge
+  parent: RMCStairs
+  suffix: Large
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/hunter.rsi
+    state: large_stair
+
+- type: entity
+  id: STStairsHunterLeft
+  parent: RMCStairs
+  suffix: Left
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/hunter.rsi
+    state: stair_left
+
+- type: entity
+  id: STStairsHunterRight
+  parent: RMCStairs
+  suffix: Right
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/hunter.rsi
+    state: stair_right
+
+- type: entity
+  id: STStairsHunterBrownLeft
+  parent: RMCStairs
+  suffix: Left, Brown
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/hunter.rsi
+    state: stair_brown_left
+
+- type: entity
+  id: STStairsHunterBrownRight
+  parent: RMCStairs
+  suffix: Right, Brown
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/hunter.rsi
+    state: stair_brown_right

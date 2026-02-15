@@ -1,0 +1,8 @@
+- type: speechSounds
+  id: STHunter
+  saySound:
+    path: /Audio/_Stories/Voice/Hunter/pred_click1.ogg
+  askSound:
+    path: /Audio/_Stories/Voice/Hunter/pred_click2.ogg
+  exclaimSound:
+    path: /Audio/_Stories/Voice/Hunter/pred_click2.ogg

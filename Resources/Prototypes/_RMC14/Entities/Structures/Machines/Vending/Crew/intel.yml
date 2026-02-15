@@ -139,7 +139,6 @@
       entries:
       - id: RMCArmorXM4
       - id: RMCArmorM3LightVariants
-      - id: RMCArmorVestIntel
     - name: Jacket
       choices: { CMCoat: 1 }
       entries:
@@ -204,7 +203,7 @@
       - id: RMCPouchToolsFill
         name: tools pouch (Full)
         recommended: true
-      #- id: RMCPouchSling # TODO RMC14 Sling Pouch
+      - id: RMCPouchSling
     - name: Accessories
       choices: { CMAccessories: 1 }
       entries:

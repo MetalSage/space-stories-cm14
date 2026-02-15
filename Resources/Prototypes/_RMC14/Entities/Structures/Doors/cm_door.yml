@@ -23,8 +23,6 @@
     - state: spark
       shader: unshaded
       map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
-    - state: panel_open
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AnimationPlayer
   - type: Physics
   - type: Fixtures
@@ -144,7 +142,8 @@
           "/Audio/Weapons/smash.ogg"
   - type: AirlockReceiverXenoClaws
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralMarine
+    damageModifierSet: StructuralMarine
   - type: Destructible
     thresholds:
     - trigger:
@@ -171,7 +170,7 @@
   id: CMBaseDoorConstructible
   components:
   - type: Construction
-    graph: Airlock
+    graph: CMAirlock
     node: airlock
     containers:
     - board

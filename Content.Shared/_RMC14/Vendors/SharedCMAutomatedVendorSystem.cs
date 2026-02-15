@@ -191,8 +191,7 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
                 AmountUpdated(ent, entry);
         }
 
-        if (_boxEntries.Count > 0)
-            Dirty(ent);
+        Dirty(ent);
     }
 
     private void OnExamined(Entity<CMAutomatedVendorComponent> ent, ref ExaminedEvent args)
@@ -523,13 +522,11 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
 
         if (section.SharedSpecLimit is { } globalLimit && !HasComp<IgnoreSpecLimitsComponent>(actor))
         {
-            if (HasComp<RMCVendorSpecialistComponent>(vendor))
+            if (TryComp<RMCVendorSpecialistComponent>(vendor, out var thisSpecVendor))
             {
-                var thisSpecVendor = Comp<RMCVendorSpecialistComponent>(vendor);
-
                 // If the vendor's own value is at or above the capacity, immediately return.
                 if (thisSpecVendor.GlobalSharedVends.TryGetValue(args.Entry, out var vendCount) &&
-                    vendCount >= section.SharedSpecLimit)
+                    vendCount >= globalLimit)
                 {
                     // FIXME
                     ResetChoices();
@@ -539,51 +536,31 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
 
                 // Get every RMCVendorSpec
                 var specVendors = EntityQueryEnumerator<RMCVendorSpecialistComponent>();
-                // Used to verify newer vendors
-                var maxAmongVendors = 0;
+                var allVendorsTotal = 0;
 
-                if (thisSpecVendor.GlobalSharedVends.TryGetValue(args.Entry, out vendCount))
-                    // So it doesn't matter what order the vendors are checked in
-                    maxAmongVendors = vendCount;
-
-                // Goes through each RMCVendorSpec and gets the largest value for this kit type.
-                while (specVendors.MoveNext(out var vendorId, out _))
+                // Goes through each RMCVendorSpec and gets the value for this kit type.
+                while (specVendors.MoveNext(out _, out var specVendorComponent))
                 {
-                    var specVendorComponent = EnsureComp<RMCVendorSpecialistComponent>(vendorId);
                     foreach (var linkedEntry in args.LinkedEntries)
                     {
                         specVendorComponent.GlobalSharedVends.TryGetValue(linkedEntry, out var linkedCount);
-                        maxAmongVendors += linkedCount;
+                        allVendorsTotal += linkedCount;
                     }
-
                     if (specVendorComponent.GlobalSharedVends.TryGetValue(args.Entry, out vendCount))
                     {
-                        if (vendCount > maxAmongVendors)
-                        {
-                            maxAmongVendors = specVendorComponent.GlobalSharedVends[args.Entry];
-                        }
-                        else
-                        {
-                            specVendorComponent.GlobalSharedVends[args.Entry] = maxAmongVendors;
-                        }
+                        allVendorsTotal += vendCount;
                     }
-                    else // Does not exist on the currently checked vendor
-                        specVendorComponent.GlobalSharedVends.Add(args.Entry, maxAmongVendors);
-
-                    Dirty(vendorId, specVendorComponent);
                 }
 
-                thisSpecVendor.GlobalSharedVends[args.Entry] = maxAmongVendors;
-
-                if (!HasComp<BypassSpecLimitComponent>(actor) && // Stories-FoxtrotSpec-Limit-Bypass
-                    thisSpecVendor.GlobalSharedVends[args.Entry] >= section.SharedSpecLimit)
+                if (allVendorsTotal >= globalLimit)
                 {
                     ResetChoices();
                     _popup.PopupEntity(Loc.GetString("cm-vending-machine-specialist-max"), vendor.Owner, actor);
                     return;
                 }
 
-                thisSpecVendor.GlobalSharedVends[args.Entry] += 1;
+                var old = thisSpecVendor.GlobalSharedVends.GetValueOrDefault(args.Entry, 0);
+                thisSpecVendor.GlobalSharedVends[args.Entry] = old + 1;
                 Dirty(vendor, thisSpecVendor);
 
                 AddComp(actor, new RMCSpecCryoRefundComponent
@@ -681,21 +658,30 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
             Dirty(actor, jobPrefix);
         }
 
+        // Stories-Hunter-Start
+        var itemsToVend = new List<EntProtoId>();
+        if (_prototypes.Index(entry.Id).TryGetComponent(out CMVendorBundleComponent? bundle, _compFactory))
+        {
+            itemsToVend.AddRange(bundle.Bundle);
+        }
+        else
+        {
+            itemsToVend.Add(entry.Id);
+        }
+
+        var ev = new BeforeItemsVendedEvent(actor, entry.Id, itemsToVend);
+        RaiseLocalEvent(vendor.Owner, ref ev);
+        itemsToVend = ev.Items;
+        // Stories-Hunter-End
+
         var min = comp.MinOffset;
         var max = comp.MaxOffset;
         for (var i = 0; i < entry.Spawn; i++)
         {
             var offset = _random.NextVector2Box(min.X, min.Y, max.X, max.Y);
-            if (entity.TryGetComponent(out CMVendorBundleComponent? bundle, _compFactory))
+            foreach (var toVend in itemsToVend) // Stories-Hunter
             {
-                foreach (var bundled in bundle.Bundle)
-                {
-                    Vend(vendor, actor, bundled, offset, entry.ReplaceSlot);
-                }
-            }
-            else
-            {
-                Vend(vendor, actor, entry.Id, offset, entry.ReplaceSlot);
+                Vend(vendor, actor, toVend, offset, entry.ReplaceSlot);
             }
         }
 
@@ -735,11 +721,22 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
             var finalPlacementCoordinates = requisitionsChair.Owner.ToCoordinates().Offset(itemPlacementOffset);
             var spawn = SpawnAtPosition(toVend, finalPlacementCoordinates);
 
+            // Stories-Hunter-Start
+            var vendedEv = new AfterItemVendedEvent(player, spawn);
+            RaiseLocalEvent(vendor, ref vendedEv);
+            // Stories-Hunter-End
+
             AfterVend(spawn, player, vendor, offset, true, replaceSlot);
         }
         else
         {
             var spawn = SpawnNextToOrDrop(toVend, vendor);
+
+            // Stories-Hunter-Start
+            var vendedEv = new AfterItemVendedEvent(player, spawn);
+            RaiseLocalEvent(vendor, ref vendedEv);
+            // Stories-Hunter-End
+
             AfterVend(spawn, player, vendor, offset, replaceSlot: replaceSlot);
         }
     }

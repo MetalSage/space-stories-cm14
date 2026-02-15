@@ -1,9 +1,9 @@
 ui-options-header-rmc = RMC14
-ui-options-function-rmc-activate-attachable-barrel = Активируйте ствол
-ui-options-function-rmc-activate-attachable-rail = Активируйте рельс
-ui-options-function-rmc-activate-attachable-stock = Активировать приклад
-ui-options-function-rmc-activate-attachable-underbarrel = Активируйте подствольное
-ui-options-function-rmc-field-strip-held-item = Полевая лента, удерживаемая элементом
+ui-options-function-rmc-activate-attachable-barrel = Активировать обвес ствола
+ui-options-function-rmc-activate-attachable-rail = Активировать обвес рельсы
+ui-options-function-rmc-activate-attachable-stock = Активировать обвес приклада
+ui-options-function-rmc-activate-attachable-underbarrel = Активируйте обвес подствольный
+ui-options-function-rmc-field-strip-held-item = Окно обвесов текущего оружия в руке
 ui-options-function-rmc-cycle-fire-mode = Цикл режима огня
 ui-options-header-cm = Колониальные Морпехи 14
 ui-options-function-cm-activate-attachable-barrel = Активировать крепление ствола

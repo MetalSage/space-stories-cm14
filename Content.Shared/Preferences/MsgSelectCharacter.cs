@@ -1,4 +1,5 @@
-﻿using Lidgren.Network;
+﻿using System;
+using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -7,6 +8,7 @@ namespace Content.Shared.Preferences
     /// <summary>
     /// The client sends this to select a character slot.
     /// </summary>
+    [Serializable, NetSerializable] // Stories-Hunter
     public sealed class MsgSelectCharacter : NetMessage
     {
         public override MsgGroups MsgGroup => MsgGroups.Command;

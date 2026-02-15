@@ -2,7 +2,7 @@
 
 namespace Content.Shared._Stories.TTS;
 
-[Serializable, NetSerializable]
+[Serializable] [NetSerializable]
 // ReSharper disable once InconsistentNaming
 public sealed class PlayTTSEvent : EntityEventArgs
 {

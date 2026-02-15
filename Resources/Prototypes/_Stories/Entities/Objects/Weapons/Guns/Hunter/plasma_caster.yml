@@ -1,0 +1,214 @@
+- type: entity
+  parent: STHunterBaseItem
+  id: STWeaponPlasmaCaster
+  abstract: true
+  name: plasma caster
+  description: A powerful, shoulder-mounted energy weapon. Requires a linked bracer to function.
+  components:
+  - type: Tag
+    tags:
+    - STPredatorGear
+  - type: Item
+    size: Large
+  - type: Gun
+    fireRate: 1.67
+    soundGunshot: /Audio/_Stories/Weapons/pred_plasmacaster_fire.ogg
+  - type: BasicEntityAmmoProvider
+    proto: STPlasmaBoltStunProjectile
+    capacity: 1
+    count: 1
+  - type: PlasmaCaster
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterEbony
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_ebony.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterBronze
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_bronze.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterSilver
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_silver.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterCrimson
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_crimson.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterBone
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_bone.rsi
+    state: icon
+
+# Partners
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterGold
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_gold.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterWild
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_wild.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterOutcast
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_outcast.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterLeader
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_leader.rsi
+    state: icon
+
+- type: entity
+  parent: STWeaponPlasmaCaster
+  id: STWeaponPlasmaCasterSamurai
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/plasma_samurai.rsi
+    state: icon
+
+- type: entity
+  id: STPlasmaBoltBaseProjectile
+  parent: BaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Ammunition/Projectiles/ion_projectiles.rsi
+    layers:
+    - state: bullet
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+        restitution: 0.0
+        density: 20
+  - type: Projectile
+    damage:
+      types:
+        Heat: 0
+  - type: Ammo
+
+- type: entity
+  parent: STPlasmaBoltBaseProjectile
+  id: STPlasmaBoltStunProjectile
+  name: stun bolt
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 5
+  - type: HunterStunBolt
+    stunTime: 4
+
+- type: entity
+  parent: STPlasmaBoltBaseProjectile
+  id: STPlasmaBoltImmobilizerProjectile
+  name: plasma immobilizer
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Ammunition/Projectiles/bluespace_projectiles.rsi
+    layers:
+    - state: bullet
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+    lifespan: 1.0
+  - type: HunterAreaStunOnHit
+    radius: 7
+    stunTime: 6
+    hunterReductionTime: 2
+  - type: TriggerOnCollide
+    fixtureID: projectile
+
+- type: entity
+  parent: STPlasmaBoltBaseProjectile
+  id: STPlasmaBoltLethalProjectile
+  name: plasma bolt
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Ammunition/Projectiles/pulse_projectiles.rsi
+    layers:
+    - state: bullet
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Projectile
+    damage:
+      types:
+        Heat: 75
+  - type: ExplodeOnTrigger
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: Explosive
+    explosionType: RMC
+    totalIntensity: 60
+    intensitySlope: 20
+    maxIntensity: 40
+  - type: CMExplosionEffect
+  - type: RMCScorchEffect
+
+- type: entity
+  parent: STPlasmaBoltBaseProjectile
+  id: STPlasmaBoltOverchargeProjectile
+  name: plasma eradicator
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Ammunition/Projectiles/bluespace_projectiles.rsi
+    layers:
+    - state: bullet
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Projectile
+    damage:
+      types:
+        Heat: 55
+        Structural: 100
+  - type: ExplodeOnTrigger
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: Explosive
+    explosionType: RMC
+    totalIntensity: 800
+    intensitySlope: 40
+    maxIntensity: 170
+  - type: CMExplosionEffect
+  - type: RMCScorchEffect

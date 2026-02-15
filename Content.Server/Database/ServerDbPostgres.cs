@@ -8,17 +8,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.IP;
+using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
+using SharedHunterProfile = Content.Shared._Stories.Hunter.Profiles.HunterProfile;
 
 namespace Content.Server.Database
 {
     public sealed partial class ServerDbPostgres : ServerDbBase
     {
+        // ... (constructor fields etc - omitted for brevity if unchanged, but provided full file content is safer)
         private readonly DbContextOptions<PostgresServerDbContext> _options;
         private readonly ISawmill _notifyLog;
         private readonly SemaphoreSlim _prefsSemaphore;
@@ -55,6 +58,30 @@ namespace Content.Server.Database
             cfg.OnValueChanged(CCVars.DatabasePgFakeLag, v => _msLag = v, true);
 
             InitNotificationListener(connectionString);
+        }
+
+        public override async Task<SharedHunterProfile?> GetHunterProfileAsync(NetUserId userId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDbImpl(cancel);
+            var profile = await db.PgDbContext.HunterProfile.AsNoTracking().SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
+            return profile == null ? null : ConvertToSharedHunterProfile(profile);
+        }
+
+        public override async Task SaveHunterProfileAsync(NetUserId userId, SharedHunterProfile profile, CancellationToken cancel = default)
+        {
+            await using var db = await GetDbImpl(cancel);
+            var dbProfile = await db.PgDbContext.HunterProfile.SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
+
+            if (dbProfile == null)
+            {
+                // Just create a new entry bound to the user.
+                // The data will be filled by ConvertFromSharedHunterProfile below using the 'profile' argument.
+                dbProfile = new Database.HunterProfile { UserId = userId.UserId };
+                db.PgDbContext.HunterProfile.Add(dbProfile);
+            }
+
+            ConvertFromSharedHunterProfile(profile, dbProfile);
+            await db.PgDbContext.SaveChangesAsync(cancel);
         }
 
         #region Ban

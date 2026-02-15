@@ -105,6 +105,8 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-sigh"]
@@ -130,6 +132,8 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-whistle"]
@@ -151,6 +155,8 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-crying"]

@@ -1,0 +1,53 @@
+- type: entity
+  id: STHunterBridgeBorder
+  name: border
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    sprite: _Stories/Structures/Props/hunter.rsi
+    state: bridge_border
+    drawdepth: FloorTiles
+
+- type: entity
+  parent: STHunterBridgeBorder
+  id: STHunterBridgeBorderCorner
+  suffix: Corner
+  components:
+  - type: Sprite
+    state: bridge_border_corner
+
+- type: entity
+  parent: STHunterBridgeBorder
+  id: STHunterBridgeBorderEdge
+  suffix: Edge
+  components:
+  - type: Sprite
+    state: bridge_border_edge
+
+- type: entity
+  parent: STHunterBridgeBorder
+  id: STHunterBridgeBorderBrown
+  suffix: Brown
+  components:
+  - type: Sprite
+    state: bridge_brown_border
+
+- type: entity
+  parent: STHunterBridgeBorder
+  id: STHunterBridgeBorderBrownCorner
+  suffix: Brown, Corner
+  components:
+  - type: Sprite
+    state: bridge_border_brown_corner
+
+- type: entity
+  parent: STHunterBridgeBorder
+  id: STHunterBridgeBorderBrownEdge
+  suffix: Brown, Edge
+  components:
+  - type: Sprite
+    state: bridge_border_brown_edge

@@ -1,0 +1,29 @@
+- type: entity
+  parent: RMCPodDoorHybrisaIndestructibleUltra
+  id: STPodDoorHunter
+  components:
+  - type: Sprite
+    color: "#F0EBD3"
+
+- type: entity
+  parent: STPodDoorHunter
+  id: STPodDoorHunterOpen
+  suffix: Open
+  components:
+  - type: Door
+    state: Open
+
+- type: entity
+  parent: RMCShutterHybrisaWindow
+  id: STShutterHunterWindow
+  components:
+  - type: Sprite
+    color: "#FBEBE2"
+
+- type: entity
+  parent: STShutterHunterWindow
+  id: STShutterHunterWindowOpen
+  suffix: Open
+  components:
+  - type: Door
+    state: Open

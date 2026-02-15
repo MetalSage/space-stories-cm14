@@ -2,9 +2,12 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared._Stories.SCCVars;
 using Content.Shared._Stories.Sponsors;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
@@ -13,23 +16,22 @@ namespace Content.Server._Stories.Sponsors;
 
 public sealed class SponsorsManager
 {
-    [Dependency] private readonly IServerNetManager _netMgr = default!;
+    private readonly Dictionary<NetUserId, SponsorInfo> _cachedSponsors = new();
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private readonly HttpClient _httpClient = new();
-
-    private ISawmill _sawmill = default!;
+    [Dependency] private readonly IServerNetManager _netMgr = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     private string _apiUrl = string.Empty;
 
-    private readonly Dictionary<NetUserId, SponsorInfo> _cachedSponsors = new();
+    private ISawmill _sawmill = default!;
 
     public void Initialize()
     {
         _sawmill = Logger.GetSawmill("sponsors");
         _cfg.OnValueChanged(SCCVars.SponsorsApiUrl, s => _apiUrl = s, true);
-        
-        _netMgr.RegisterNetMessage<MsgSponsorInfo>();
-        
+
         _netMgr.Connecting += OnConnecting;
         _netMgr.Connected += OnConnected;
         _netMgr.Disconnect += OnDisconnect;
@@ -45,7 +47,7 @@ public sealed class SponsorsManager
         var info = await LoadSponsorInfo(e.UserId);
         if (info?.Tier == null)
         {
-            _cachedSponsors.Remove(e.UserId); // Remove from cache if sponsor expired
+            _cachedSponsors.Remove(e.UserId);
             return;
         }
 
@@ -53,14 +55,14 @@ public sealed class SponsorsManager
 
         _cachedSponsors[e.UserId] = info;
     }
-    
+
     private void OnConnected(object? sender, NetChannelArgs e)
     {
         var info = _cachedSponsors.TryGetValue(e.Channel.UserId, out var sponsor) ? sponsor : null;
-        var msg = new MsgSponsorInfo() { Info = info };
-        _netMgr.ServerSendMessage(msg, e.Channel);
+        var ev = new SponsorInfoUpdatedEvent { Info = info };
+        _entityManager.EntityNetManager.SendSystemNetworkMessage(ev, e.Channel);
     }
-    
+
     private void OnDisconnect(object? sender, NetDisconnectedArgs e)
     {
         _cachedSponsors.Remove(e.Channel.UserId);
@@ -72,7 +74,18 @@ public sealed class SponsorsManager
             return null;
 
         var url = $"{_apiUrl}/{userId.ToString()}";
-        var response = await _httpClient.GetAsync(url);
+        HttpResponseMessage response;
+        try
+        {
+            response = await _httpClient.GetAsync(url);
+        }
+        catch (HttpRequestException e)
+        {
+            _sawmill.Error($"Failed to connect to sponsors API: {e.Message}");
+            return null;
+        }
+
+
         if (response.StatusCode == HttpStatusCode.NotFound)
             return null;
 
@@ -80,12 +93,73 @@ public sealed class SponsorsManager
         {
             var errorText = await response.Content.ReadAsStringAsync();
             _sawmill.Error(
-                "Failed to get player sponsor OOC color from API: [{StatusCode}] {Response}",
+                "Failed to get player sponsor info from API: [{StatusCode}] {Response}",
                 response.StatusCode,
                 errorText);
             return null;
         }
 
-        return await response.Content.ReadFromJsonAsync<SponsorInfo>();
+        var apiInfo = await response.Content.ReadFromJsonAsync<ApiSponsorInfo>();
+        if (apiInfo == null)
+            return null;
+
+        return new SponsorInfo
+        {
+            Tier = apiInfo.Tier,
+            OOCColor = apiInfo.OOCColor,
+            HavePriorityJoin = apiInfo.HavePriorityJoin,
+            AllowedMarkings = apiInfo.AllowedMarkings,
+            RoleTimeBypass = apiInfo.RoleTimeBypass,
+            WhitelistRoleTimeBypass = apiInfo.WhitelistRoleTimeBypass,
+            GhostSkin = apiInfo.GhostSkin,
+            SponsorPoints = apiInfo.SponsorPoints,
+            SponsorPointsAlt = apiInfo.SponsorPointsAlt,
+            XenoSkins = apiInfo.XenoSkins,
+            CanPlayHunter = apiInfo.CanPlayHunter,
+            CanUseHunterCustomization = apiInfo.CanUseHunterCustomization,
+            MaxHunterStatus = apiInfo.MaxHunterStatus,
+        };
+    }
+
+    private sealed record ApiSponsorInfo
+    {
+        [JsonPropertyName("tier")]
+        public int? Tier { get; set; }
+
+        [JsonPropertyName("oocColor")]
+        public string? OOCColor { get; set; }
+
+        [JsonPropertyName("priorityJoin")]
+        public bool HavePriorityJoin { get; set; }
+
+        [JsonPropertyName("allowedMarkings")]
+        public string[] AllowedMarkings { get; set; } = Array.Empty<string>();
+
+        [JsonPropertyName("roleTimeBypass")]
+        public bool RoleTimeBypass { get; set; }
+
+        [JsonPropertyName("whitelistRoleTimeBypass")]
+        public bool WhitelistRoleTimeBypass { get; set; }
+
+        [JsonPropertyName("ghostSkin")]
+        public string GhostSkin { get; set; } = "MobObserver";
+
+        [JsonPropertyName("sponsorPoints")]
+        public int SponsorPoints { get; set; }
+
+        [JsonPropertyName("sponsorPointsAlt")]
+        public int SponsorPointsAlt { get; set; }
+
+        [JsonPropertyName("xenoSkins")]
+        public string[] XenoSkins { get; set; } = Array.Empty<string>();
+
+        [JsonPropertyName("canPlayHunter")]
+        public bool CanPlayHunter { get; set; }
+
+        [JsonPropertyName("canUseHunterCustomization")]
+        public bool CanUseHunterCustomization { get; set; }
+
+        [JsonPropertyName("maxHunterStatus")]
+        public HunterStatus MaxHunterStatus { get; set; } = HunterStatus.Normal;
     }
 }

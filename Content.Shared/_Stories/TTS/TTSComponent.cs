@@ -6,7 +6,7 @@ namespace Content.Shared._Stories.TTS;
 /// <summary>
 /// Apply TTS for entity chat say messages
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent] [NetworkedComponent]
 // ReSharper disable once InconsistentNaming
 public sealed partial class TTSComponent : Component
 {

@@ -1,3 +1,4 @@
+using System;
 using Content.Shared.Construction.Prototypes;
 using Lidgren.Network;
 using Robust.Shared.Network;
@@ -9,6 +10,7 @@ namespace Content.Shared.Preferences;
 /// <summary>
 /// The client sends this to update their construction favorites.
 /// </summary>
+[Serializable, NetSerializable] // Stories-Hunter
 public sealed class MsgUpdateConstructionFavorites : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.Command;

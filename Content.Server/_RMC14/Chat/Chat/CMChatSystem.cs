@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Speech.EntitySystems;
@@ -6,6 +7,9 @@ using Content.Server.Speech.Prototypes;
 using Content.Shared._RMC14.Chat;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._Stories.Hunter.Bracer.Components;
+using Content.Shared._Stories.Hunter.Bracer;
+using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared.Chat;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
@@ -25,11 +29,12 @@ public sealed class CMChatSystem : SharedCMChatSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
+    [Dependency] private readonly BracerSystem _bracer = default!; // Stories-Hunter
 
     private static readonly ProtoId<ReplacementAccentPrototype> ChatSanitize = "CMChatSanitize";
     private static readonly ProtoId<ReplacementAccentPrototype> MarineChatSanitize = "CMChatSanitizeMarine";
     private static readonly ProtoId<ReplacementAccentPrototype> XenoChatSanitize = "CMChatSanitizeXeno";
-    private static readonly Regex PrefixesRegex = new(@"^:(\w)+");
+    private static readonly Regex MultiBroadcastRegex = new(@"^[:.]([^ ]+)\s+(.*)"); // Stories-Hunter
 
     private readonly List<ICommonSession> _toRemove = new();
 
@@ -38,6 +43,7 @@ public sealed class CMChatSystem : SharedCMChatSystem
         base.Initialize();
         SubscribeLocalEvent<MarineComponent, ChatMessageAfterGetRecipients>(OnMarineAfterGetRecipients);
         SubscribeLocalEvent<XenoComponent, ChatMessageAfterGetRecipients>(OnXenoAfterGetRecipients);
+        SubscribeLocalEvent<HunterComponent, ChatMessageAfterGetRecipients>(OnHunterAfterGetRecipients); // Stories-Hunter
     }
 
     private void OnMarineAfterGetRecipients(Entity<MarineComponent> ent, ref ChatMessageAfterGetRecipients args)
@@ -48,6 +54,11 @@ public sealed class CMChatSystem : SharedCMChatSystem
         {
             if (data.Observer)
                 continue;
+
+            // Stories-Hunter-Start
+            if (HasComp<HunterComponent>(session.AttachedEntity))
+                continue;
+            // Stories-Hunter-End
 
             if (HasComp<XenoComponent>(session.AttachedEntity))
                 _toRemove.Add(session);
@@ -68,8 +79,16 @@ public sealed class CMChatSystem : SharedCMChatSystem
             if (data.Observer)
                 continue;
 
-            if (!HasComp<XenoComponent>(session.AttachedEntity))
+            // Stories-Hunter-Start
+            if (HasComp<HunterComponent>(session.AttachedEntity))
+                continue;
+            // Stories-Hunter-End
+
+            if (HasComp<MarineComponent>(session.AttachedEntity))
+            {
                 _toRemove.Add(session);
+                continue;
+            }
         }
 
         foreach (var session in _toRemove)
@@ -77,6 +96,44 @@ public sealed class CMChatSystem : SharedCMChatSystem
             args.Recipients.Remove(session);
         }
     }
+
+    // Stories-Hunter-Start
+    private void OnHunterAfterGetRecipients(Entity<HunterComponent> ent, ref ChatMessageAfterGetRecipients args)
+    {
+        var isTranslated = false;
+        if (_bracer.IsHunterWithBracer(ent, out var bracer))
+        {
+            isTranslated = bracer.Value.Comp.TranslatorActive;
+        }
+
+        if (isTranslated)
+            return;
+
+        _toRemove.Clear();
+
+        foreach (var (session, data) in args.Recipients)
+        {
+            if (data.Observer)
+                continue;
+
+            if (session.AttachedEntity is not { } listener)
+            {
+                _toRemove.Add(session);
+                continue;
+            }
+
+            if (!HasComp<HunterComponent>(listener))
+            {
+                _toRemove.Add(session);
+            }
+        }
+
+        foreach (var session in _toRemove)
+        {
+            args.Recipients.Remove(session);
+        }
+    }
+    // Stories-Hunter-End
 
     public override string SanitizeMessageReplaceWords(EntityUid source, string msg)
     {
@@ -170,23 +227,36 @@ public sealed class CMChatSystem : SharedCMChatSystem
 
     public List<string>? TryMultiBroadcast(EntityUid source, string message)
     {
-        if (!message.StartsWith(SharedChatSystem.RadioChannelPrefix))
+        // Stories-Hunter-Start
+        var match = MultiBroadcastRegex.Match(message);
+        if (!match.Success)
             return null;
 
-        if (message.Length < 3)
+        var keysPart = match.Groups[1].Value;
+        var messagePart = match.Groups[2].Value;
+
+        if (!keysPart.Contains(','))
             return null;
 
-        if (!_chatSystem._keyCodes.ContainsKey(char.ToLowerInvariant(message[1])) ||
-            !_chatSystem._keyCodes.ContainsKey(char.ToLowerInvariant(message[2])))
+        var keys = keysPart.Split(',')
+            .Select(k => k.Trim().ToLowerInvariant())
+            .Where(k => !string.IsNullOrEmpty(k))
+            .ToList();
+
+        if (keys.Count < 2)
+            return null;
+
+        foreach (var key in keys)
         {
-            return null;
+            if (!_chatSystem._keyCodes.ContainsKey(key))
+            {
+                _popup.PopupEntity($"Неверный ключ канала для мультитрансляции: '{key}'", source, source);
+                return null;
+            }
         }
+        // Stories-Hunter-End
 
         if (!HasComp<InventoryComponent>(source))
-            return null;
-
-        var matches = PrefixesRegex.Matches(message);
-        if (matches.Count == 0)
             return null;
 
         var time = _timing.CurTime;
@@ -207,50 +277,35 @@ public sealed class CMChatSystem : SharedCMChatSystem
         if (headset == null)
             return null;
 
-        var messages = new List<string>();
-        var replace = new List<string>();
-        var captures = matches[0].Groups[1].Captures;
-        var count = Math.Min(captures.Count, headset.Value.Comp.Maximum);
-        for (var i = 0; i < count; i++)
+        // Stories-Hunter-Start
+        if (keys.Count > headset.Value.Comp.Maximum)
         {
-            replace.Add(captures[i].Value);
-        }
-
-        for (var i = 0; i < replace.Count; i++)
-        {
-            var subMsg = message;
-            for (var j = 0; j < replace.Count; j++)
-            {
-                if (i == j)
-                    continue;
-
-                subMsg = subMsg.Remove(subMsg.IndexOf(replace[j], StringComparison.Ordinal), 1);
-            }
-
-            messages.Add(subMsg);
-        }
-
-        if (messages.Count < 2)
+            _popup.PopupEntity($"Вы не можете транслировать более чем в {headset.Value.Comp.Maximum} каналов одновременно.", source, source);
             return null;
+        }
 
         var timeLeft = headset.Value.Comp.Last + headset.Value.Comp.Cooldown - time;
-        if (headset.Value.Comp.Last != null &&
-            timeLeft != null &&
-            timeLeft.Value > TimeSpan.Zero)
+        if (headset.Value.Comp.Last != TimeSpan.Zero && timeLeft > TimeSpan.Zero)
         {
             _popup.PopupEntity(
-                $"You've used the multi-broadcast system too recently, wait {timeLeft.Value.TotalSeconds:F0} more seconds.",
+                $"Вы использовали систему мультитрансляции слишком часто. Подождите еще {timeLeft.Value.TotalSeconds:F0} секунд.",
                 source,
                 source,
                 PopupType.MediumCaution
             );
+            return null;
+        }
 
-            messages.Clear();
-            return messages;
+        var generatedMessages = new List<string>();
+        foreach (var key in keys)
+        {
+            generatedMessages.Add($":{key} {messagePart}");
         }
 
         headset.Value.Comp.Last = time;
         Dirty(headset.Value);
-        return messages;
+
+        return generatedMessages;
+        // Stories-Hunter-End
     }
 }

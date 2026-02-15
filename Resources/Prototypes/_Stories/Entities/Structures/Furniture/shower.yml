@@ -1,0 +1,6 @@
+- type: entity
+  parent: CMShower
+  id: STShowerHunter
+  components:
+  - type: Sprite
+    color: "#C1A384"

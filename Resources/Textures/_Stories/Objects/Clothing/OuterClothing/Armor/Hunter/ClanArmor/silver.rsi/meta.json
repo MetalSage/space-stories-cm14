@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/05eaa3484b1a35aa759300bcfc8f0119f009daae/icons/obj/items/clothing/cm_suits.dmi, https://github.com/cmss13-devs/cmss13/blob/05eaa3484b1a35aa759300bcfc8f0119f009daae/icons/mob/humans/onmob/suit_1.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "1-icon"
+    },
+    {
+      "name": "2-icon"
+    },
+    {
+      "name": "3-icon"
+    },
+    {
+      "name": "4-icon"
+    },
+    {
+      "name": "5-icon"
+    },
+    {
+      "name": "6-icon"
+    },
+    {
+      "name": "7-icon"
+    },
+    {
+      "name": "8-icon"
+    },
+    {
+      "name": "full-icon"
+    },
+    {
+      "name": "1-equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "2-equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "3-equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "4-equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "5-equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "6-equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "7-equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "8-equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "full-equipped-OUTERCLOTHING",
+      "directions": 4
+    }
+  ]
+}

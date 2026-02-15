@@ -1,0 +1,14 @@
+st-hunter-teleporter-beacon-title = Выбрать пункт назначения
+st-hunter-teleporter-beacon-activating = Маяк активирован. Телепортация неизбежна.
+st-hunter-teleporter-beacon-disappears = Маяк исчезает во вспышке света.
+st-hunter-teleporter-beacon-on-cooldown = Маяк перезаряжается. Доступен через { $seconds } сек.
+st-hunter-teleporter-beacon-no-skill = Вы не понимаете, как управлять этим устройством.
+st-hunter-teleporter-beacon-youngblood = Вам пока не разрешено использовать это устройство.
+st-hunter-teleporter-beacon-examine-cooldown = Время перезарядки: { $seconds } сек.
+st-hunter-teleporter-beacon-no-destinations-in-group = Не найдено подходящих пунктов назначения для группы { $group }.
+st-hunter-teleporter-title = Выбрать пункт назначения
+st-hunter-teleporter-no-tech = Вы не понимаете, как управлять этим устройством.
+st-hunter-teleporter-young-no-access = Доступ запрещён. Недостаточный ранг.
+st-hunter-teleporter-elder-no-access = Доступ запрещён. Только для Неокроплённых.
+st-hunter-teleporter-no-destinations = Нет активных пунктов назначения.
+st-hunter-teleporter-too-far = Вы отошли слишком далеко от телепорта.

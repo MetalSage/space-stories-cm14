@@ -1,0 +1,26 @@
+- type: entity
+  parent: STAirlockHunter
+  id: STAirlockHunterLocked
+  name: hunter airlock
+  suffix: Hunter, Locked
+  components:
+  - type: AccessReader
+    access: [["STAccessHunterSecure"]]
+
+- type: entity
+  parent: STAirlockHunter
+  id: STAirlockHunterLockedElder
+  name: hunter airlock
+  suffix: Hunter, Locked, Elder
+  components:
+  - type: AccessReader
+    access: [["STAccessHunterElder"], ["STAccessHunterAncient"]]
+
+- type: entity
+  parent: STAirlockHunter
+  id: STAirlockHunterLockedAncient
+  name: hunter airlock
+  suffix: Hunter, Locked, Ancient
+  components:
+  - type: AccessReader
+    access: [["STAccessHunterAncient"]]

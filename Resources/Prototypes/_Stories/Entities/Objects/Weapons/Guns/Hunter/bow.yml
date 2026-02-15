@@ -1,0 +1,192 @@
+- type: entity
+  parent: [STHunterBaseItem, BaseBow]
+  id: STWeaponBowHunter
+  name: hunting bow
+  description: An abnormal-sized weapon with an exceptionally tight string. Requires extraordinary strength to draw.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Hunter/bow.rsi
+    layers:
+    - state: unwielded
+      map: [ base ]
+    - state: unwielded-arrow
+      map: [ arrow ]
+      visible: false
+    - state: unwielded-explosive
+      map: [ explosive ]
+      visible: false
+  - type: Appearance
+  - type: ItemMapper
+    spriteLayers:
+    - arrow
+    - explosive
+    mapLayers:
+      arrow:
+        whitelist:
+          tags:
+          - STHunterArrow
+      explosive:
+        whitelist:
+          tags:
+          - STHunterArrowExplosive
+  - type: GenericVisualizer
+    visuals:
+      enum.WieldableVisuals.Wielded:
+        arrow:
+          True: { state: wielded-arrow }
+          False: { state: unwielded-arrow }
+        explosive:
+          True: { state: wielded-explosive }
+          False: { state: unwielded-explosive }
+        base:
+          True: { state: wielded }
+          False: { state: unwielded }
+  - type: ItemSlots
+    slots:
+      projectiles:
+        name: Projectiles
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
+        whitelist:
+          tags:
+          - STHunterArrow
+          - STHunterArrowExplosive
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STHunterMelee
+    - STPredatorBow
+
+- type: entity
+  parent: BaseArrow
+  id: STArrowHunter
+  name: arrow
+  description: A sharp hunter arrow.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Hunter/arrows.rsi
+    state: arrow
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STHunterArrow
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 110
+  - type: CMArmorPiercing
+    amount: 20
+  - type: CauseEmoteOnProjectileHit
+    emote: Hiss
+    rareEmote: XenoRoar
+    whitelist:
+      components:
+      - Xeno
+
+- type: entity
+  parent: BaseArrow
+  id: STArrowHunterExplosive
+  name: explosive arrow
+  description: A sharp hunter arrow.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Hunter/arrows.rsi
+    state: arrow_explosive
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STHunterArrowExplosive
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+        restitution: 0.0
+        density: 20
+  - type: Projectile
+    deleteOnCollide: true
+    onlyCollideWhenShot: false
+    damage:
+      types:
+        Piercing: 30
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: RMC
+    maxIntensity: 30
+    intensitySlope: 10
+    totalIntensity: 290
+    maxTileBreak: 0
+  - type: CMExplosionEffect
+  - type: RMCScorchEffect
+  - type: IgnorePredictionHide
+
+- type: entity
+  parent: [CMBeltBaseStorage, STHunterBaseItem]
+  id: STQuiverHunter
+  name: quiver strap
+  description: A strap that can hold a bow with a quiver for arrows.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Belt/Hunter/quiver.rsi
+    layers:
+    - state: bow
+      map: [ "enum.CMHolsterLayers.Fill" ]
+      offset: 0.35, 0
+      visible: false
+    - state: icon
+  - type: Clothing
+    slots:
+    - belt
+    - suitStorage
+    sprite: _Stories/Objects/Clothing/Belt/Hunter/quiver.rsi
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,13,1
+    whitelist:
+      tags:
+      - STHunterArrow
+      - STHunterArrowExplosive
+      - STPredatorBow
+  - type: FixedItemSizeStorage
+  - type: CMHolster
+    whitelist:
+      tags:
+      - STPredatorBow
+  - type: LimitedStorage
+    limits:
+    - popup: rmc-storage-limit-one-gun
+      whitelist:
+        tags:
+        - STPredatorBow
+    - popup: rmc-storage-limit-max-mags
+      count: 6
+      whitelist:
+        tags:
+        - STHunterArrow
+        - STHunterArrowExplosive
+  - type: CMStorageVisualizer
+    storageClosed: null
+    storageOpen: null
+  - type: Tag
+    tags:
+    - STHunterQuiver
+
+- type: entity
+  parent: STQuiverHunter
+  id: STQuiverHunterFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: STArrowHunter
+      amount: 6
+    - id: STWeaponBowHunter
+      amount: 1

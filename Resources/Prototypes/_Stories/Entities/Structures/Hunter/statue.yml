@@ -1,0 +1,31 @@
+- type: entity
+  parent: RMCPropBase
+  id: STHunterStatueSandstone
+  name: alien warrior statue
+  description: A statue of some armored alien humanoid.
+  suffix: Sandstone
+  components:
+  - type: Transform
+    anchored: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        layer:
+        - MobMask
+  - type: Sprite
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi
+    state: statue_sandstone
+
+- type: entity
+  parent: STHunterStatueSandstone
+  id: STHunterStatueGrey
+  name: alien warrior statue
+  description: A statue of some armored alien humanoid.
+  suffix: Grey
+  components:
+  - type: Sprite
+    state: statue_grey

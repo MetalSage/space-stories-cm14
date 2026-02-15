@@ -10,7 +10,7 @@
       state: sniperscope
     useDelay: 0.25
   - type: InstantAction
-    event: !type:ToggleActionEvent
+    event: !type:ToggleScopeEvent
 
 - type: entity
   parent: ActionMarineBase
@@ -218,3 +218,17 @@
   - type: Action
   - type: InstantAction
     event: !type:RMCBroilerActionEvent
+
+- type: entity
+  parent: ActionMarineBase
+  id: RMCActionDismount
+  name: Dismount
+  description: Stop using the weapon
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _RMC14/Actions/marine_emplacement_actions.rsi
+      state: cancel_view
+  - type: InstantAction
+    event: !type:DismountActionEvent

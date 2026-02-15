@@ -1,0 +1,27 @@
+- type: entity
+  parent: [STHunterBaseItem, Clothing, RMCBaseUniformAccessoryItemJumpsuit]
+  id: STMeshHunter
+  name: body mesh
+  description: A set of very fine chainlink in a meshwork for comfort and utility.
+  components:
+  - type: Clothing
+    slots: [innerclothing]
+    equipSound:
+      path: /Audio/_RMC14/Handling/clothing_on.ogg
+    unequipSound:
+      path: /Audio/_RMC14/Handling/clothing_off.ogg
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+  - type: Sprite
+    state: null
+    sprite: _Stories/Objects/Clothing/Uniforms/hunter.rsi
+    layers:
+    - state: icon
+    - map: [ "enum.WebbingVisualLayers.Base" ]
+  - type: CMArmor
+    melee: 5
+    bullet: 15
+    bio: 0
+    explosionArmor: 25

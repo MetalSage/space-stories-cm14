@@ -1,0 +1,16 @@
+ui-lobby-join-game-header = Выбор фракции
+ui-lobby-join-section-marines = СИЛЫ КМП США
+ui-lobby-join-section-xeno = УЛЕЙ КСЕНОМОРФОВ
+ui-lobby-join-section-hunter = ОХОТА
+ui-lobby-join-game-button = Присоединиться к игре
+ui-lobby-join-game-title = Присоединиться к игре
+ui-lobby-join-marine = Присоединиться к КМП США
+ui-lobby-join-xeno = Присоединиться к Улью
+ui-lobby-join-hunter = Присоединиться к охоте
+st-hunter-join-tooltip-available = Присоединиться к охоте в роли Охотника.
+st-hunter-not-hunting-ground = Этот раунд не является охотой.
+st-hunter-not-hunting-ground-tooltip = Духи охоты молчат. Присутствие охотников не обнаружено.
+st-hunter-slots-full = Все слоты охотников заняты.
+st-bracer-plasma-caster-slot = Слот плазмалива
+st-bracer-left-attachment-slot = Слот оружия (Левый)
+st-bracer-right-attachment-slot = Слот оружия (Правый)

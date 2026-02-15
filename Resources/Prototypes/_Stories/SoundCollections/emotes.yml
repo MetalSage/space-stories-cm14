@@ -1,0 +1,34 @@
+- type: soundCollection
+  id: STHunterRoar
+  files:
+    - /Audio/_Stories/Voice/Hunter/pred_roar1.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_roar2.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_roar3.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_roar4.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_roar5.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_roar6.ogg
+
+- type: soundCollection
+  id: STHunterLaugh
+  files:
+    - /Audio/_Stories/Voice/Hunter/pred_laugh1.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_laugh2.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_laugh3.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_laugh4.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_laugh5.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_laugh6.ogg
+
+- type: soundCollection
+  id: STHunterClick
+  files:
+    - /Audio/_Stories/Voice/Hunter/pred_click1.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_click2.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_click3.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_click4.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_click5.ogg
+
+- type: soundCollection
+  id: STHunterDeathGasp
+  files:
+    - /Audio/_Stories/Voice/Hunter/pred_death1.ogg
+    - /Audio/_Stories/Voice/Hunter/pred_death2.ogg

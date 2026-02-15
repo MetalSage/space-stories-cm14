@@ -168,7 +168,7 @@ public sealed class SharedXenoFruitSystem : EntitySystem
         if (_actions.GetAction(xeno.Owner) is { } action &&
             _prototype.TryIndex(args.Choice, out var fruit))
         {
-            _actions.SetIcon(action.AsNullable(), new SpriteSpecifier.Rsi(new ResPath("_RMC14/Structures/Xenos/xeno_fruit.rsi"), GetFruitSprite(fruit)));
+            _actions.SetIcon(action.AsNullable(), new SpriteSpecifier.Rsi(new ResPath("_Stories/Structures/Xenos/xeno_fruit.rsi"), GetFruitSprite(fruit))); // Stories-Parity
         }
 
         _popup.PopupClient(Loc.GetString("rmc-xeno-fruit-choose", ("fruit", args.Choice)), xeno, xeno);

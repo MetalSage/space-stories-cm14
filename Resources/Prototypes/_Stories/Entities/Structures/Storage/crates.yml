@@ -1,0 +1,44 @@
+- type: entity
+  parent: RMCCrateBase
+  id: STCrateHunter
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#6B675E"
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed
+      color: "#6B675E"
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: invoice
+      sprite: _RMC14/Structures/Storage/Crates/labels.rsi
+      visible: false
+      map: ["enum.PaperLabelVisuals.Layer"]
+
+- type: entity
+  parent: RMCCrateSecure
+  id: STCrateSecureHunter
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#6B675E"
+    - state: closed
+      color: "#6B675E"
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+      visible: false
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: invoice
+      sprite: _RMC14/Structures/Storage/Crates/labels.rsi
+      offset: "-0.03125,0.0"
+      visible: false
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: AccessReader
+    access: [["STAccessHunterElder"]]

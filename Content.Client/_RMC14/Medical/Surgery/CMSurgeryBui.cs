@@ -370,6 +370,26 @@ public sealed class CMSurgeryBui : BoundUserInterface
             return;
         }
 
+        // Stories-Hunter-Start
+        if (State is CMSurgeryBuiState s)
+        {
+            foreach (var surgeryList in s.Choices.Values)
+            {
+                foreach (var surgeryId in surgeryList)
+                {
+                    if (_system.GetSingleton(surgeryId) is { } surgeryEnt &&
+                        _entities.TryGetComponent<CMSurgeryComponent>(surgeryEnt, out var comp) &&
+                        comp.SelfOperable)
+                    {
+                        _window.DisabledPanel.Visible = false;
+                        _window.DisabledPanel.MouseFilter = MouseFilterMode.Ignore;
+                        return;
+                    }
+                }
+            }
+        }
+        // Stories-Hunter-End
+
         _window.DisabledPanel.Visible = true;
 
         var text = new FormattedMessage();

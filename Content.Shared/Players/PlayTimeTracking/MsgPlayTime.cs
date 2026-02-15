@@ -1,4 +1,5 @@
-﻿using Lidgren.Network;
+﻿using System;
+using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -7,6 +8,7 @@ namespace Content.Shared.Players.PlayTimeTracking;
 /// <summary>
 /// Sent server -> client to inform the client of their play times.
 /// </summary>
+[Serializable, NetSerializable]
 public sealed class MsgPlayTime : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.EntityEvent;

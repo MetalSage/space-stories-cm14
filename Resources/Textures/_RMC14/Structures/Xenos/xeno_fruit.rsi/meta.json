@@ -11,8 +11,10 @@
       "name": "fruit_lesser_immature",
       "delays": [
         [
-          1,
-          0.4
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
       ]
     },
@@ -20,10 +22,11 @@
       "name": "fruit_lesser",
       "delays": [
         [
-          1,
-          0.2,
-          0.2,
-          0.3
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
         ]
       ]
     },
@@ -31,10 +34,11 @@
       "name": "fruit_lesser_item",
       "delays": [
         [
-          1,
-          0.2,
-          0.2,
-          0.3
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
         ]
       ]
     },
@@ -42,11 +46,12 @@
       "name": "fruit_greater",
       "delays": [
         [
-          1,
-          0.4,
           0.2,
-          0.1,
-          0.4
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
         ]
       ]
     },
@@ -54,11 +59,12 @@
       "name": "fruit_greater_item",
       "delays": [
         [
-          1,
-          0.4,
           0.2,
-          0.1,
-          0.4
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
         ]
       ]
     },
@@ -66,19 +72,17 @@
       "name": "fruit_greater_immature",
       "delays": [
         [
-          1,
-          0.4
+          0.3,
+          0.3,
+          0.3
         ]
       ]
-    },
-    {
-      "name": "fruit_spent_2"
     },
     {
       "name": "fruit_spore",
       "delays": [
         [
-          1,
+          0.1,
           0.1,
           0.1
         ]
@@ -88,21 +92,26 @@
       "name": "fruit_spore_item",
       "delays": [
         [
-          1,
+          0.1,
           0.1,
           0.1
         ]
       ]
     },
     {
-      "name": "fruit_spore_immature"
+      "name": "fruit_spore_immature",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
     },
     {
       "name": "fruit_unstable",
       "delays": [
         [
-          1,
-          0.1,
           0.1,
           0.1,
           0.1,
@@ -114,8 +123,6 @@
       "name": "fruit_unstable_item",
       "delays": [
         [
-          1,
-          0.1,
           0.1,
           0.1,
           0.1,
@@ -127,30 +134,55 @@
       "name": "fruit_unstable_immature",
       "delays": [
         [
-          1,
-          0.4
+          0.3,
+          0.3,
+          0.3
         ]
       ]
     },
     {
-      "name": "fruit_speed"
+      "name": "fruit_speed",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     },
     {
-      "name": "fruit_speed_item"
+      "name": "fruit_speed_item",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     },
     {
-      "name": "fruit_speed_immature"
+      "name": "fruit_speed_immature",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
     },
     {
       "name": "fruit_plasma",
       "delays": [
         [
-          1,
           0.2,
           0.2,
           0.2,
-          0.2,
-          0.5
+          0.2
         ]
       ]
     },
@@ -158,12 +190,10 @@
       "name": "fruit_plasma_item",
       "delays": [
         [
-          1,
           0.2,
           0.2,
           0.2,
-          0.2,
-          0.5
+          0.2
         ]
       ]
     },
@@ -171,12 +201,10 @@
       "name": "fruit_plasma_immature",
       "delays": [
         [
-          1,
-          0.2,
-          0.2,
-          0.2,
-          0.2,
-          0.5
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
       ]
     },

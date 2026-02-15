@@ -1,0 +1,139 @@
+- type: entity
+  save: false
+  parent: RMCBaseMobSpeciesOrganic
+  id: STMobHunter
+  name: Urist McHunter
+  components:
+  - type: HumanoidAppearance
+    species: STHunter
+  - type: Unparalyzable
+  - type: Vocal
+    sounds:
+      Male: STHunter
+      Unsexed: STHunter
+      Female: STHunter
+  - type: Speech
+    speechVerb: STHunter
+    speechSounds: STHunter
+  - type: TTS
+  - type: TypingIndicator
+    proto: pred
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#20d450"
+  - type: Bloodstream
+    bloodReagent: STHunterBlood
+    bloodMaxVolume: 560
+    maxBleedAmount: 50
+    bleedReductionAmount: 0
+    bloodRefreshAmount: 0.15
+    bloodlossDamage:
+      types:
+        Bloodloss: 0.2
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -0.5
+    damageBleedModifiers: CMBloodlossHuman
+  - type: FootstepModifier
+  - type: Body
+    prototype: STHunter
+  - type: Damageable
+    damageModifierSet: HunterResistances
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      175: Critical
+      225: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      105: 0.7
+      140: 0.5
+  - type: RMCSpeciesSlowdownModifier
+    slowModifier: 0.75
+    superSlowModifier: 1.5
+    durationMultiplier: 0.666
+  - type: NoStunOnExit
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 0
+    animation: WeaponArcFist
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 15
+  - type: Temperature
+    heatDamageThreshold: 500
+    coldDamageThreshold: 260
+    currentTemperature: 310.15
+  - type: NoSlip
+  - type: EyeProtection
+  - type: Insulated
+  - type: RMCLeapProtection
+    inherentStunDuration: 3
+  - type: UserInterface
+    interfaces:
+      enum.VoiceMaskUIKey.Key:
+        type: VoiceMaskBoundUserInterface
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.CMSurgeryUIKey.Key:
+        type: CMSurgeryBui
+      enum.CMMobStateActionsUI.Key:
+        type: CMGhostActionBui
+        requireInputValidation: false
+      enum.TacticalMapUserUi.Key:
+        type: TacticalMapUserBui
+      enum.DialogUiKey.Key:
+        type: DialogBui
+  - type: RMCFireArmorDebuffModifier
+    debuffModifier: 1.2
+  - type: RMCImmuneToFireTileDamage
+  - type: TacticalMapUser
+    xenos: false
+    marines: false
+  - type: ParalyzeOnPullAttemptImmune
+  - type: RMCRevivable
+    unrevivableDelay: 0
+  - type: Hunter
+    removeComponents:
+    - type: RMCStamina
+    - type: Marine
+    - type: MarineMapTracked
+    - type: TacticalMapTracked
+    - type: Infectable
+    - type: Perishable
+    - type: ThermalRegulator
+    - type: Stamina
+    - type: DamageForceSay
+    - type: Dna
+    - type: InjectableSolution
+    - type: HiddenAppearance
+    - type: SlowOnPull
+    - type: RMCNightVisionVisible
+    - type: AffectableByWeeds
+  - type: NpcFactionMember
+    factions:
+    - STHunter
+  - type: Skills
+    skills:
+      RMCSkillCqc: 5
+      RMCSkillMeleeWeapons: 2
+      RMCSkillEndurance: 3
+      RMCSkillEngineer: 2
+      RMCSkillConstruction: 2
+      RMCSkillMedical: 2
+      RMCSkillSurgery: 3
+      RMCSkillPolice: 2
+      RMCSkillFireman: 5
+      STSkillIllegalTechnology: 2
+      RMCSkillFirearms: 1
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: STMobHunterDummy
+  categories: [ HideSpawnMenu ]

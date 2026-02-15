@@ -1,0 +1,2896 @@
+# Armor
+
+# Ebony
+- type: hunterGear
+  id: GearArmorEbony1
+  name: "Ebony Armor 1"
+  category: Armor
+  material: Ebony
+  entityProto: STHalfArmorClanHunterEbony1
+  isDefault: true
+
+- type: hunterGear
+  id: GearArmorEbony2
+  name: "Ebony Armor 2"
+  category: Armor
+  material: Ebony
+  entityProto: STHalfArmorClanHunterEbony2
+
+- type: hunterGear
+  id: GearArmorEbony3
+  name: "Ebony Armor 3"
+  category: Armor
+  material: Ebony
+  entityProto: STHalfArmorClanHunterEbony3
+
+- type: hunterGear
+  id: GearArmorEbony4
+  name: "Ebony Armor 4"
+  category: Armor
+  material: Ebony
+  entityProto: STHalfArmorClanHunterEbony4
+
+- type: hunterGear
+  id: GearArmorEbony5
+  name: "Ebony Armor 5"
+  category: Armor
+  material: Ebony
+  entityProto: STHalfArmorClanHunterEbony5
+
+- type: hunterGear
+  id: GearArmorEbony6
+  name: "Ebony Armor 6"
+  category: Armor
+  material: Ebony
+  entityProto: STHalfArmorClanHunterEbony6
+
+- type: hunterGear
+  id: GearArmorEbony7
+  name: "Ebony Armor 7"
+  category: Armor
+  material: Ebony
+  entityProto: STHalfArmorClanHunterEbony7
+
+- type: hunterGear
+  id: GearArmorEbony8
+  name: "Ebony Armor 8"
+  category: Armor
+  material: Ebony
+  entityProto: STHalfArmorClanHunterEbony8
+
+# Bronze
+- type: hunterGear
+  id: GearArmorBronze1
+  name: "Bronze Armor 1"
+  category: Armor
+  material: Bronze
+  entityProto: STHalfArmorClanHunterBronze1
+
+- type: hunterGear
+  id: GearArmorBronze2
+  name: "Bronze Armor 2"
+  category: Armor
+  material: Bronze
+  entityProto: STHalfArmorClanHunterBronze2
+
+- type: hunterGear
+  id: GearArmorBronze3
+  name: "Bronze Armor 3"
+  category: Armor
+  material: Bronze
+  entityProto: STHalfArmorClanHunterBronze3
+
+- type: hunterGear
+  id: GearArmorBronze4
+  name: "Bronze Armor 4"
+  category: Armor
+  material: Bronze
+  entityProto: STHalfArmorClanHunterBronze4
+
+- type: hunterGear
+  id: GearArmorBronze5
+  name: "Bronze Armor 5"
+  category: Armor
+  material: Bronze
+  entityProto: STHalfArmorClanHunterBronze5
+
+- type: hunterGear
+  id: GearArmorBronze6
+  name: "Bronze Armor 6"
+  category: Armor
+  material: Bronze
+  entityProto: STHalfArmorClanHunterBronze6
+
+- type: hunterGear
+  id: GearArmorBronze7
+  name: "Bronze Armor 7"
+  category: Armor
+  material: Bronze
+  entityProto: STHalfArmorClanHunterBronze7
+
+- type: hunterGear
+  id: GearArmorBronze8
+  name: "Bronze Armor 8"
+  category: Armor
+  material: Bronze
+  entityProto: STHalfArmorClanHunterBronze8
+
+# Silver
+- type: hunterGear
+  id: GearArmorSilver1
+  name: "Silver Armor 1"
+  category: Armor
+  material: Silver
+  entityProto: STHalfArmorClanHunterSilver1
+
+- type: hunterGear
+  id: GearArmorSilver2
+  name: "Silver Armor 2"
+  category: Armor
+  material: Silver
+  entityProto: STHalfArmorClanHunterSilver2
+
+- type: hunterGear
+  id: GearArmorSilver3
+  name: "Silver Armor 3"
+  category: Armor
+  material: Silver
+  entityProto: STHalfArmorClanHunterSilver3
+
+- type: hunterGear
+  id: GearArmorSilver4
+  name: "Silver Armor 4"
+  category: Armor
+  material: Silver
+  entityProto: STHalfArmorClanHunterSilver4
+
+- type: hunterGear
+  id: GearArmorSilver5
+  name: "Silver Armor 5"
+  category: Armor
+  material: Silver
+  entityProto: STHalfArmorClanHunterSilver5
+
+- type: hunterGear
+  id: GearArmorSilver6
+  name: "Silver Armor 6"
+  category: Armor
+  material: Silver
+  entityProto: STHalfArmorClanHunterSilver6
+
+- type: hunterGear
+  id: GearArmorSilver7
+  name: "Silver Armor 7"
+  category: Armor
+  material: Silver
+  entityProto: STHalfArmorClanHunterSilver7
+
+- type: hunterGear
+  id: GearArmorSilver8
+  name: "Silver Armor 8"
+  category: Armor
+  material: Silver
+  entityProto: STHalfArmorClanHunterSilver8
+
+# Crimson
+- type: hunterGear
+  id: GearArmorCrimson1
+  name: "Crimson Armor 1"
+  category: Armor
+  material: Crimson
+  entityProto: STHalfArmorClanHunterCrimson1
+
+- type: hunterGear
+  id: GearArmorCrimson2
+  name: "Crimson Armor 2"
+  category: Armor
+  material: Crimson
+  entityProto: STHalfArmorClanHunterCrimson2
+
+- type: hunterGear
+  id: GearArmorCrimson3
+  name: "Crimson Armor 3"
+  category: Armor
+  material: Crimson
+  entityProto: STHalfArmorClanHunterCrimson3
+
+- type: hunterGear
+  id: GearArmorCrimson4
+  name: "Crimson Armor 4"
+  category: Armor
+  material: Crimson
+  entityProto: STHalfArmorClanHunterCrimson4
+
+- type: hunterGear
+  id: GearArmorCrimson5
+  name: "Crimson Armor 5"
+  category: Armor
+  material: Crimson
+  entityProto: STHalfArmorClanHunterCrimson5
+
+- type: hunterGear
+  id: GearArmorCrimson6
+  name: "Crimson Armor 6"
+  category: Armor
+  material: Crimson
+  entityProto: STHalfArmorClanHunterCrimson6
+
+- type: hunterGear
+  id: GearArmorCrimson7
+  name: "Crimson Armor 7"
+  category: Armor
+  material: Crimson
+  entityProto: STHalfArmorClanHunterCrimson7
+
+- type: hunterGear
+  id: GearArmorCrimson8
+  name: "Crimson Armor 8"
+  category: Armor
+  material: Crimson
+  entityProto: STHalfArmorClanHunterCrimson8
+
+# Bone
+- type: hunterGear
+  id: GearArmorBone1
+  name: "Bone Armor 1"
+  category: Armor
+  material: Bone
+  entityProto: STHalfArmorClanHunterBone1
+
+- type: hunterGear
+  id: GearArmorBone2
+  name: "Bone Armor 2"
+  category: Armor
+  material: Bone
+  entityProto: STHalfArmorClanHunterBone2
+
+- type: hunterGear
+  id: GearArmorBone3
+  name: "Bone Armor 3"
+  category: Armor
+  material: Bone
+  entityProto: STHalfArmorClanHunterBone3
+
+- type: hunterGear
+  id: GearArmorBone4
+  name: "Bone Armor 4"
+  category: Armor
+  material: Bone
+  entityProto: STHalfArmorClanHunterBone4
+
+- type: hunterGear
+  id: GearArmorBone5
+  name: "Bone Armor 5"
+  category: Armor
+  material: Bone
+  entityProto: STHalfArmorClanHunterBone5
+
+- type: hunterGear
+  id: GearArmorBone6
+  name: "Bone Armor 6"
+  category: Armor
+  material: Bone
+  entityProto: STHalfArmorClanHunterBone6
+
+- type: hunterGear
+  id: GearArmorBone7
+  name: "Bone Armor 7"
+  category: Armor
+  material: Bone
+  entityProto: STHalfArmorClanHunterBone7
+
+- type: hunterGear
+  id: GearArmorBone8
+  name: "Bone Armor 8"
+  category: Armor
+  material: Bone
+  entityProto: STHalfArmorClanHunterBone8
+
+# Gold
+- type: hunterGear
+  id: GearArmorGold1
+  name: "Gold Armor 1"
+  category: Armor
+  material: Gold
+  entityProto: STHalfArmorClanHunterGold1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorGold2
+  name: "Gold Armor 2"
+  category: Armor
+  material: Gold
+  entityProto: STHalfArmorClanHunterGold2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorGold3
+  name: "Gold Armor 3"
+  category: Armor
+  material: Gold
+  entityProto: STHalfArmorClanHunterGold3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorGold4
+  name: "Gold Armor 4"
+  category: Armor
+  material: Gold
+  entityProto: STHalfArmorClanHunterGold4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorGold5
+  name: "Gold Armor 5"
+  category: Armor
+  material: Gold
+  entityProto: STHalfArmorClanHunterGold5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorGold6
+  name: "Gold Armor 6"
+  category: Armor
+  material: Gold
+  entityProto: STHalfArmorClanHunterGold6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorGold7
+  name: "Gold Armor 7"
+  category: Armor
+  material: Gold
+  entityProto: STHalfArmorClanHunterGold7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorGold8
+  name: "Gold Armor 8"
+  category: Armor
+  material: Gold
+  entityProto: STHalfArmorClanHunterGold8
+  sponsorOnly: true
+
+# Wild
+- type: hunterGear
+  id: GearArmorWild1
+  name: "Wild Armor 1"
+  category: Armor
+  material: Wild
+  entityProto: STHalfArmorClanHunterWild1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorWild2
+  name: "Wild Armor 2"
+  category: Armor
+  material: Wild
+  entityProto: STHalfArmorClanHunterWild2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorWild3
+  name: "Wild Armor 3"
+  category: Armor
+  material: Wild
+  entityProto: STHalfArmorClanHunterWild3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorWild4
+  name: "Wild Armor 4"
+  category: Armor
+  material: Wild
+  entityProto: STHalfArmorClanHunterWild4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorWild5
+  name: "Wild Armor 5"
+  category: Armor
+  material: Wild
+  entityProto: STHalfArmorClanHunterWild5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorWild6
+  name: "Wild Armor 6"
+  category: Armor
+  material: Wild
+  entityProto: STHalfArmorClanHunterWild6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorWild7
+  name: "Wild Armor 7"
+  category: Armor
+  material: Wild
+  entityProto: STHalfArmorClanHunterWild7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorWild8
+  name: "Wild Armor 8"
+  category: Armor
+  material: Wild
+  entityProto: STHalfArmorClanHunterWild8
+  sponsorOnly: true
+
+# Outcast
+- type: hunterGear
+  id: GearArmorOutcast1
+  name: "Outcast Armor 1"
+  category: Armor
+  material: Outcast
+  entityProto: STHalfArmorClanHunterOutcast1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorOutcast2
+  name: "Outcast Armor 2"
+  category: Armor
+  material: Outcast
+  entityProto: STHalfArmorClanHunterOutcast2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorOutcast3
+  name: "Outcast Armor 3"
+  category: Armor
+  material: Outcast
+  entityProto: STHalfArmorClanHunterOutcast3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorOutcast4
+  name: "Outcast Armor 4"
+  category: Armor
+  material: Outcast
+  entityProto: STHalfArmorClanHunterOutcast4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorOutcast5
+  name: "Outcast Armor 5"
+  category: Armor
+  material: Outcast
+  entityProto: STHalfArmorClanHunterOutcast5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorOutcast6
+  name: "Outcast Armor 6"
+  category: Armor
+  material: Outcast
+  entityProto: STHalfArmorClanHunterOutcast6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorOutcast7
+  name: "Outcast Armor 7"
+  category: Armor
+  material: Outcast
+  entityProto: STHalfArmorClanHunterOutcast7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorOutcast8
+  name: "Outcast Armor 8"
+  category: Armor
+  material: Outcast
+  entityProto: STHalfArmorClanHunterOutcast8
+  sponsorOnly: true
+
+# Leader
+- type: hunterGear
+  id: GearArmorLeader1
+  name: "Leader Armor 1"
+  category: Armor
+  material: Leader
+  entityProto: STHalfArmorClanHunterLeader1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorLeader2
+  name: "Leader Armor 2"
+  category: Armor
+  material: Leader
+  entityProto: STHalfArmorClanHunterLeader2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorLeader3
+  name: "Leader Armor 3"
+  category: Armor
+  material: Leader
+  entityProto: STHalfArmorClanHunterLeader3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorLeader4
+  name: "Leader Armor 4"
+  category: Armor
+  material: Leader
+  entityProto: STHalfArmorClanHunterLeader4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorLeader5
+  name: "Leader Armor 5"
+  category: Armor
+  material: Leader
+  entityProto: STHalfArmorClanHunterLeader5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorLeader6
+  name: "Leader Armor 6"
+  category: Armor
+  material: Leader
+  entityProto: STHalfArmorClanHunterLeader6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorLeader7
+  name: "Leader Armor 7"
+  category: Armor
+  material: Leader
+  entityProto: STHalfArmorClanHunterLeader7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorLeader8
+  name: "Leader Armor 8"
+  category: Armor
+  material: Leader
+  entityProto: STHalfArmorClanHunterLeader8
+  sponsorOnly: true
+
+# Samurai
+- type: hunterGear
+  id: GearArmorSamurai1
+  name: "Samurai Armor 1"
+  category: Armor
+  material: Samurai
+  entityProto: STHalfArmorClanHunterSamurai1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorSamurai2
+  name: "Samurai Armor 2"
+  category: Armor
+  material: Samurai
+  entityProto: STHalfArmorClanHunterSamurai2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorSamurai3
+  name: "Samurai Armor 3"
+  category: Armor
+  material: Samurai
+  entityProto: STHalfArmorClanHunterSamurai3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorSamurai4
+  name: "Samurai Armor 4"
+  category: Armor
+  material: Samurai
+  entityProto: STHalfArmorClanHunterSamurai4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorSamurai5
+  name: "Samurai Armor 5"
+  category: Armor
+  material: Samurai
+  entityProto: STHalfArmorClanHunterSamurai5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorSamurai6
+  name: "Samurai Armor 6"
+  category: Armor
+  material: Samurai
+  entityProto: STHalfArmorClanHunterSamurai6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorSamurai7
+  name: "Samurai Armor 7"
+  category: Armor
+  material: Samurai
+  entityProto: STHalfArmorClanHunterSamurai7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearArmorSamurai8
+  name: "Samurai Armor 8"
+  category: Armor
+  material: Samurai
+  entityProto: STHalfArmorClanHunterSamurai8
+  sponsorOnly: true
+
+# Masks
+
+# Ebony
+- type: hunterGear
+  id: GearMaskEbony1
+  name: "Ebony Mask 1"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony1
+  isDefault: true
+
+- type: hunterGear
+  id: GearMaskEbony2
+  name: "Ebony Mask 2"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony2
+
+- type: hunterGear
+  id: GearMaskEbony3
+  name: "Ebony Mask 3"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony3
+
+- type: hunterGear
+  id: GearMaskEbony4
+  name: "Ebony Mask 4"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony4
+
+- type: hunterGear
+  id: GearMaskEbony5
+  name: "Ebony Mask 5"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony5
+
+- type: hunterGear
+  id: GearMaskEbony6
+  name: "Ebony Mask 6"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony6
+
+- type: hunterGear
+  id: GearMaskEbony7
+  name: "Ebony Mask 7"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony7
+
+- type: hunterGear
+  id: GearMaskEbony8
+  name: "Ebony Mask 8"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony8
+
+- type: hunterGear
+  id: GearMaskEbony9
+  name: "Ebony Mask 9"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony9
+
+- type: hunterGear
+  id: GearMaskEbony10
+  name: "Ebony Mask 10"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony10
+
+- type: hunterGear
+  id: GearMaskEbony11
+  name: "Ebony Mask 11"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony11
+
+- type: hunterGear
+  id: GearMaskEbony12
+  name: "Ebony Mask 12"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony12
+
+- type: hunterGear
+  id: GearMaskEbony13
+  name: "Ebony Mask 13"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony13
+
+- type: hunterGear
+  id: GearMaskEbony14
+  name: "Ebony Mask 14"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony14
+
+- type: hunterGear
+  id: GearMaskEbony15
+  name: "Ebony Mask 15"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony15
+
+- type: hunterGear
+  id: GearMaskEbony16
+  name: "Ebony Mask 16"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony16
+
+- type: hunterGear
+  id: GearMaskEbony17
+  name: "Ebony Mask 17"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony17
+
+- type: hunterGear
+  id: GearMaskEbony18
+  name: "Ebony Mask 18"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony18
+
+- type: hunterGear
+  id: GearMaskEbony19
+  name: "Ebony Mask 19"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony19
+
+- type: hunterGear
+  id: GearMaskEbony20
+  name: "Ebony Mask 20"
+  category: Mask
+  material: Ebony
+  entityProto: STMaskHunterEbony20
+
+# Bronze
+- type: hunterGear
+  id: GearMaskBronze1
+  name: "Bronze Mask 1"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze1
+
+- type: hunterGear
+  id: GearMaskBronze2
+  name: "Bronze Mask 2"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze2
+
+- type: hunterGear
+  id: GearMaskBronze3
+  name: "Bronze Mask 3"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze3
+
+- type: hunterGear
+  id: GearMaskBronze4
+  name: "Bronze Mask 4"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze4
+
+- type: hunterGear
+  id: GearMaskBronze5
+  name: "Bronze Mask 5"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze5
+
+- type: hunterGear
+  id: GearMaskBronze6
+  name: "Bronze Mask 6"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze6
+
+- type: hunterGear
+  id: GearMaskBronze7
+  name: "Bronze Mask 7"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze7
+
+- type: hunterGear
+  id: GearMaskBronze8
+  name: "Bronze Mask 8"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze8
+
+- type: hunterGear
+  id: GearMaskBronze9
+  name: "Bronze Mask 9"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze9
+
+- type: hunterGear
+  id: GearMaskBronze10
+  name: "Bronze Mask 10"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze10
+
+- type: hunterGear
+  id: GearMaskBronze11
+  name: "Bronze Mask 11"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze11
+
+- type: hunterGear
+  id: GearMaskBronze12
+  name: "Bronze Mask 12"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze12
+
+- type: hunterGear
+  id: GearMaskBronze13
+  name: "Bronze Mask 13"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze13
+
+- type: hunterGear
+  id: GearMaskBronze14
+  name: "Bronze Mask 14"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze14
+
+- type: hunterGear
+  id: GearMaskBronze15
+  name: "Bronze Mask 15"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze15
+
+- type: hunterGear
+  id: GearMaskBronze16
+  name: "Bronze Mask 16"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze16
+
+- type: hunterGear
+  id: GearMaskBronze17
+  name: "Bronze Mask 17"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze17
+
+- type: hunterGear
+  id: GearMaskBronze18
+  name: "Bronze Mask 18"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze18
+
+- type: hunterGear
+  id: GearMaskBronze19
+  name: "Bronze Mask 19"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze19
+
+- type: hunterGear
+  id: GearMaskBronze20
+  name: "Bronze Mask 20"
+  category: Mask
+  material: Bronze
+  entityProto: STMaskHunterBronze20
+
+# Silver
+- type: hunterGear
+  id: GearMaskSilver1
+  name: "Silver Mask 1"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver1
+
+- type: hunterGear
+  id: GearMaskSilver2
+  name: "Silver Mask 2"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver2
+
+- type: hunterGear
+  id: GearMaskSilver3
+  name: "Silver Mask 3"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver3
+
+- type: hunterGear
+  id: GearMaskSilver4
+  name: "Silver Mask 4"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver4
+
+- type: hunterGear
+  id: GearMaskSilver5
+  name: "Silver Mask 5"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver5
+
+- type: hunterGear
+  id: GearMaskSilver6
+  name: "Silver Mask 6"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver6
+
+- type: hunterGear
+  id: GearMaskSilver7
+  name: "Silver Mask 7"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver7
+
+- type: hunterGear
+  id: GearMaskSilver8
+  name: "Silver Mask 8"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver8
+
+- type: hunterGear
+  id: GearMaskSilver9
+  name: "Silver Mask 9"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver9
+
+- type: hunterGear
+  id: GearMaskSilver10
+  name: "Silver Mask 10"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver10
+
+- type: hunterGear
+  id: GearMaskSilver11
+  name: "Silver Mask 11"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver11
+
+- type: hunterGear
+  id: GearMaskSilver12
+  name: "Silver Mask 12"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver12
+
+- type: hunterGear
+  id: GearMaskSilver13
+  name: "Silver Mask 13"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver13
+
+- type: hunterGear
+  id: GearMaskSilver14
+  name: "Silver Mask 14"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver14
+
+- type: hunterGear
+  id: GearMaskSilver15
+  name: "Silver Mask 15"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver15
+
+- type: hunterGear
+  id: GearMaskSilver16
+  name: "Silver Mask 16"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver16
+
+- type: hunterGear
+  id: GearMaskSilver17
+  name: "Silver Mask 17"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver17
+
+- type: hunterGear
+  id: GearMaskSilver18
+  name: "Silver Mask 18"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver18
+
+- type: hunterGear
+  id: GearMaskSilver19
+  name: "Silver Mask 19"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver19
+
+- type: hunterGear
+  id: GearMaskSilver20
+  name: "Silver Mask 20"
+  category: Mask
+  material: Silver
+  entityProto: STMaskHunterSilver20
+
+# Crimson
+- type: hunterGear
+  id: GearMaskCrimson1
+  name: "Crimson Mask 1"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson1
+
+- type: hunterGear
+  id: GearMaskCrimson2
+  name: "Crimson Mask 2"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson2
+
+- type: hunterGear
+  id: GearMaskCrimson3
+  name: "Crimson Mask 3"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson3
+
+- type: hunterGear
+  id: GearMaskCrimson4
+  name: "Crimson Mask 4"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson4
+
+- type: hunterGear
+  id: GearMaskCrimson5
+  name: "Crimson Mask 5"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson5
+
+- type: hunterGear
+  id: GearMaskCrimson6
+  name: "Crimson Mask 6"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson6
+
+- type: hunterGear
+  id: GearMaskCrimson7
+  name: "Crimson Mask 7"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson7
+
+- type: hunterGear
+  id: GearMaskCrimson8
+  name: "Crimson Mask 8"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson8
+
+- type: hunterGear
+  id: GearMaskCrimson9
+  name: "Crimson Mask 9"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson9
+
+- type: hunterGear
+  id: GearMaskCrimson10
+  name: "Crimson Mask 10"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson10
+
+- type: hunterGear
+  id: GearMaskCrimson11
+  name: "Crimson Mask 11"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson11
+
+- type: hunterGear
+  id: GearMaskCrimson12
+  name: "Crimson Mask 12"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson12
+
+- type: hunterGear
+  id: GearMaskCrimson13
+  name: "Crimson Mask 13"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson13
+
+- type: hunterGear
+  id: GearMaskCrimson14
+  name: "Crimson Mask 14"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson14
+
+- type: hunterGear
+  id: GearMaskCrimson15
+  name: "Crimson Mask 15"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson15
+
+- type: hunterGear
+  id: GearMaskCrimson16
+  name: "Crimson Mask 16"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson16
+
+- type: hunterGear
+  id: GearMaskCrimson17
+  name: "Crimson Mask 17"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson17
+
+- type: hunterGear
+  id: GearMaskCrimson18
+  name: "Crimson Mask 18"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson18
+
+- type: hunterGear
+  id: GearMaskCrimson19
+  name: "Crimson Mask 19"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson19
+
+- type: hunterGear
+  id: GearMaskCrimson20
+  name: "Crimson Mask 20"
+  category: Mask
+  material: Crimson
+  entityProto: STMaskHunterCrimson20
+
+# Bone
+- type: hunterGear
+  id: GearMaskBone1
+  name: "Bone Mask 1"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone1
+
+- type: hunterGear
+  id: GearMaskBone2
+  name: "Bone Mask 2"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone2
+
+- type: hunterGear
+  id: GearMaskBone3
+  name: "Bone Mask 3"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone3
+
+- type: hunterGear
+  id: GearMaskBone4
+  name: "Bone Mask 4"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone4
+
+- type: hunterGear
+  id: GearMaskBone5
+  name: "Bone Mask 5"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone5
+
+- type: hunterGear
+  id: GearMaskBone6
+  name: "Bone Mask 6"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone6
+
+- type: hunterGear
+  id: GearMaskBone7
+  name: "Bone Mask 7"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone7
+
+- type: hunterGear
+  id: GearMaskBone8
+  name: "Bone Mask 8"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone8
+
+- type: hunterGear
+  id: GearMaskBone9
+  name: "Bone Mask 9"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone9
+
+- type: hunterGear
+  id: GearMaskBone10
+  name: "Bone Mask 10"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone10
+
+- type: hunterGear
+  id: GearMaskBone11
+  name: "Bone Mask 11"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone11
+
+- type: hunterGear
+  id: GearMaskBone12
+  name: "Bone Mask 12"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone12
+
+- type: hunterGear
+  id: GearMaskBone13
+  name: "Bone Mask 13"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone13
+
+- type: hunterGear
+  id: GearMaskBone14
+  name: "Bone Mask 14"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone14
+
+- type: hunterGear
+  id: GearMaskBone15
+  name: "Bone Mask 15"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone15
+
+- type: hunterGear
+  id: GearMaskBone16
+  name: "Bone Mask 16"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone16
+
+- type: hunterGear
+  id: GearMaskBone17
+  name: "Bone Mask 17"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone17
+
+- type: hunterGear
+  id: GearMaskBone18
+  name: "Bone Mask 18"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone18
+
+- type: hunterGear
+  id: GearMaskBone19
+  name: "Bone Mask 19"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone19
+
+- type: hunterGear
+  id: GearMaskBone20
+  name: "Bone Mask 20"
+  category: Mask
+  material: Bone
+  entityProto: STMaskHunterBone20
+
+# Gold
+- type: hunterGear
+  id: GearMaskGold1
+  name: "Gold Mask 1"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold2
+  name: "Gold Mask 2"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold3
+  name: "Gold Mask 3"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold4
+  name: "Gold Mask 4"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold5
+  name: "Gold Mask 5"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold6
+  name: "Gold Mask 6"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold7
+  name: "Gold Mask 7"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold8
+  name: "Gold Mask 8"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold8
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold9
+  name: "Gold Mask 9"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold9
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold10
+  name: "Gold Mask 10"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold10
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold11
+  name: "Gold Mask 11"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold11
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold12
+  name: "Gold Mask 12"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold12
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold13
+  name: "Gold Mask 13"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold13
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold14
+  name: "Gold Mask 14"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold14
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold15
+  name: "Gold Mask 15"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold15
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold16
+  name: "Gold Mask 16"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold16
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold17
+  name: "Gold Mask 17"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold17
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold18
+  name: "Gold Mask 18"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold18
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold19
+  name: "Gold Mask 19"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold19
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskGold20
+  name: "Gold Mask 20"
+  category: Mask
+  material: Gold
+  entityProto: STMaskHunterGold20
+  sponsorOnly: true
+
+# Wild
+- type: hunterGear
+  id: GearMaskWild1
+  name: "Wild Mask 1"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild2
+  name: "Wild Mask 2"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild3
+  name: "Wild Mask 3"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild4
+  name: "Wild Mask 4"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild5
+  name: "Wild Mask 5"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild6
+  name: "Wild Mask 6"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild7
+  name: "Wild Mask 7"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild8
+  name: "Wild Mask 8"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild8
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild9
+  name: "Wild Mask 9"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild9
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild10
+  name: "Wild Mask 10"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild10
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild11
+  name: "Wild Mask 11"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild11
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild12
+  name: "Wild Mask 12"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild12
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild13
+  name: "Wild Mask 13"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild13
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild14
+  name: "Wild Mask 14"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild14
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild15
+  name: "Wild Mask 15"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild15
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild16
+  name: "Wild Mask 16"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild16
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild17
+  name: "Wild Mask 17"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild17
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild18
+  name: "Wild Mask 18"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild18
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild19
+  name: "Wild Mask 19"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild19
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskWild20
+  name: "Wild Mask 20"
+  category: Mask
+  material: Wild
+  entityProto: STMaskHunterWild20
+  sponsorOnly: true
+
+# Outcast
+- type: hunterGear
+  id: GearMaskOutcast1
+  name: "Outcast Mask 1"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast2
+  name: "Outcast Mask 2"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast3
+  name: "Outcast Mask 3"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast4
+  name: "Outcast Mask 4"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast5
+  name: "Outcast Mask 5"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast6
+  name: "Outcast Mask 6"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast7
+  name: "Outcast Mask 7"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast8
+  name: "Outcast Mask 8"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast8
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast9
+  name: "Outcast Mask 9"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast9
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast10
+  name: "Outcast Mask 10"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast10
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast11
+  name: "Outcast Mask 11"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast11
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast12
+  name: "Outcast Mask 12"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast12
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast13
+  name: "Outcast Mask 13"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast13
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast14
+  name: "Outcast Mask 14"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast14
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast15
+  name: "Outcast Mask 15"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast15
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast16
+  name: "Outcast Mask 16"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast16
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast17
+  name: "Outcast Mask 17"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast17
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast18
+  name: "Outcast Mask 18"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast18
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast19
+  name: "Outcast Mask 19"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast19
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskOutcast20
+  name: "Outcast Mask 20"
+  category: Mask
+  material: Outcast
+  entityProto: STMaskHunterOutcast20
+  sponsorOnly: true
+
+# Leader
+- type: hunterGear
+  id: GearMaskLeader1
+  name: "Leader Mask 1"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader2
+  name: "Leader Mask 2"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader3
+  name: "Leader Mask 3"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader4
+  name: "Leader Mask 4"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader5
+  name: "Leader Mask 5"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader6
+  name: "Leader Mask 6"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader7
+  name: "Leader Mask 7"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader8
+  name: "Leader Mask 8"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader8
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader9
+  name: "Leader Mask 9"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader9
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader10
+  name: "Leader Mask 10"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader10
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader11
+  name: "Leader Mask 11"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader11
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader12
+  name: "Leader Mask 12"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader12
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader13
+  name: "Leader Mask 13"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader13
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader14
+  name: "Leader Mask 14"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader14
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader15
+  name: "Leader Mask 15"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader15
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader16
+  name: "Leader Mask 16"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader16
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader17
+  name: "Leader Mask 17"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader17
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader18
+  name: "Leader Mask 18"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader18
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader19
+  name: "Leader Mask 19"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader19
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskLeader20
+  name: "Leader Mask 20"
+  category: Mask
+  material: Leader
+  entityProto: STMaskHunterLeader20
+  sponsorOnly: true
+
+# Samurai
+- type: hunterGear
+  id: GearMaskSamurai1
+  name: "Samurai Mask 1"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai2
+  name: "Samurai Mask 2"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai3
+  name: "Samurai Mask 3"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai4
+  name: "Samurai Mask 4"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai4
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai5
+  name: "Samurai Mask 5"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai5
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai6
+  name: "Samurai Mask 6"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai6
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai7
+  name: "Samurai Mask 7"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai7
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai8
+  name: "Samurai Mask 8"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai8
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai9
+  name: "Samurai Mask 9"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai9
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai10
+  name: "Samurai Mask 10"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai10
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai11
+  name: "Samurai Mask 11"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai11
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai12
+  name: "Samurai Mask 12"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai12
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai13
+  name: "Samurai Mask 13"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai13
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai14
+  name: "Samurai Mask 14"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai14
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai15
+  name: "Samurai Mask 15"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai15
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai16
+  name: "Samurai Mask 16"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai16
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai17
+  name: "Samurai Mask 17"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai17
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai18
+  name: "Samurai Mask 18"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai18
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai19
+  name: "Samurai Mask 19"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai19
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearMaskSamurai20
+  name: "Samurai Mask 20"
+  category: Mask
+  material: Samurai
+  entityProto: STMaskHunterSamurai20
+  sponsorOnly: true
+
+# Greaves
+
+# Ebony
+- type: hunterGear
+  id: GearGreavesEbony1
+  name: "Ebony Greaves 1"
+  category: Greaves
+  material: Ebony
+  entityProto: STBootsHunterEbony1
+  isDefault: true
+
+- type: hunterGear
+  id: GearGreavesEbony2
+  name: "Ebony Greaves 2"
+  category: Greaves
+  material: Ebony
+  entityProto: STBootsHunterEbony2
+
+- type: hunterGear
+  id: GearGreavesEbony3
+  name: "Ebony Greaves 3"
+  category: Greaves
+  material: Ebony
+  entityProto: STBootsHunterEbony3
+
+- type: hunterGear
+  id: GearGreavesEbony4
+  name: "Ebony Greaves 4"
+  category: Greaves
+  material: Ebony
+  entityProto: STBootsHunterEbony4
+
+# Bronze
+- type: hunterGear
+  id: GearGreavesBronze1
+  name: "Bronze Greaves 1"
+  category: Greaves
+  material: Bronze
+  entityProto: STBootsHunterBronze1
+
+- type: hunterGear
+  id: GearGreavesBronze2
+  name: "Bronze Greaves 2"
+  category: Greaves
+  material: Bronze
+  entityProto: STBootsHunterBronze2
+
+- type: hunterGear
+  id: GearGreavesBronze3
+  name: "Bronze Greaves 3"
+  category: Greaves
+  material: Bronze
+  entityProto: STBootsHunterBronze3
+
+- type: hunterGear
+  id: GearGreavesBronze4
+  name: "Bronze Greaves 4"
+  category: Greaves
+  material: Bronze
+  entityProto: STBootsHunterBronze4
+
+# Silver
+- type: hunterGear
+  id: GearGreavesSilver1
+  name: "Silver Greaves 1"
+  category: Greaves
+  material: Silver
+  entityProto: STBootsHunterSilver1
+
+- type: hunterGear
+  id: GearGreavesSilver2
+  name: "Silver Greaves 2"
+  category: Greaves
+  material: Silver
+  entityProto: STBootsHunterSilver2
+
+- type: hunterGear
+  id: GearGreavesSilver3
+  name: "Silver Greaves 3"
+  category: Greaves
+  material: Silver
+  entityProto: STBootsHunterSilver3
+
+- type: hunterGear
+  id: GearGreavesSilver4
+  name: "Silver Greaves 4"
+  category: Greaves
+  material: Silver
+  entityProto: STBootsHunterSilver4
+
+# Crimson
+- type: hunterGear
+  id: GearGreavesCrimson1
+  name: "Crimson Greaves 1"
+  category: Greaves
+  material: Crimson
+  entityProto: STBootsHunterCrimson1
+
+- type: hunterGear
+  id: GearGreavesCrimson2
+  name: "Crimson Greaves 2"
+  category: Greaves
+  material: Crimson
+  entityProto: STBootsHunterCrimson2
+
+- type: hunterGear
+  id: GearGreavesCrimson3
+  name: "Crimson Greaves 3"
+  category: Greaves
+  material: Crimson
+  entityProto: STBootsHunterCrimson3
+
+- type: hunterGear
+  id: GearGreavesCrimson4
+  name: "Crimson Greaves 4"
+  category: Greaves
+  material: Crimson
+  entityProto: STBootsHunterCrimson4
+
+# Bone
+- type: hunterGear
+  id: GearGreavesBone1
+  name: "Bone Greaves 1"
+  category: Greaves
+  material: Bone
+  entityProto: STBootsHunterBone1
+
+- type: hunterGear
+  id: GearGreavesBone2
+  name: "Bone Greaves 2"
+  category: Greaves
+  material: Bone
+  entityProto: STBootsHunterBone2
+
+- type: hunterGear
+  id: GearGreavesBone3
+  name: "Bone Greaves 3"
+  category: Greaves
+  material: Bone
+  entityProto: STBootsHunterBone3
+
+- type: hunterGear
+  id: GearGreavesBone4
+  name: "Bone Greaves 4"
+  category: Greaves
+  material: Bone
+  entityProto: STBootsHunterBone4
+
+# Gold
+- type: hunterGear
+  id: GearGreavesGold1
+  name: "Gold Greaves 1"
+  category: Greaves
+  material: Gold
+  entityProto: STBootsHunterGold1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesGold2
+  name: "Gold Greaves 2"
+  category: Greaves
+  material: Gold
+  entityProto: STBootsHunterGold2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesGold3
+  name: "Gold Greaves 3"
+  category: Greaves
+  material: Gold
+  entityProto: STBootsHunterGold3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesGold4
+  name: "Gold Greaves 4"
+  category: Greaves
+  material: Gold
+  entityProto: STBootsHunterGold4
+  sponsorOnly: true
+
+# Wild
+- type: hunterGear
+  id: GearGreavesWild1
+  name: "Wild Greaves 1"
+  category: Greaves
+  material: Wild
+  entityProto: STBootsHunterWild1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesWild2
+  name: "Wild Greaves 2"
+  category: Greaves
+  material: Wild
+  entityProto: STBootsHunterWild2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesWild3
+  name: "Wild Greaves 3"
+  category: Greaves
+  material: Wild
+  entityProto: STBootsHunterWild3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesWild4
+  name: "Wild Greaves 4"
+  category: Greaves
+  material: Wild
+  entityProto: STBootsHunterWild4
+  sponsorOnly: true
+
+# Outcast
+- type: hunterGear
+  id: GearGreavesOutcast1
+  name: "Outcast Greaves 1"
+  category: Greaves
+  material: Outcast
+  entityProto: STBootsHunterOutcast1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesOutcast2
+  name: "Outcast Greaves 2"
+  category: Greaves
+  material: Outcast
+  entityProto: STBootsHunterOutcast2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesOutcast3
+  name: "Outcast Greaves 3"
+  category: Greaves
+  material: Outcast
+  entityProto: STBootsHunterOutcast3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesOutcast4
+  name: "Outcast Greaves 4"
+  category: Greaves
+  material: Outcast
+  entityProto: STBootsHunterOutcast4
+  sponsorOnly: true
+
+# Leader
+- type: hunterGear
+  id: GearGreavesLeader1
+  name: "Leader Greaves 1"
+  category: Greaves
+  material: Leader
+  entityProto: STBootsHunterLeader1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesLeader2
+  name: "Leader Greaves 2"
+  category: Greaves
+  material: Leader
+  entityProto: STBootsHunterLeader2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesLeader3
+  name: "Leader Greaves 3"
+  category: Greaves
+  material: Leader
+  entityProto: STBootsHunterLeader3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesLeader4
+  name: "Leader Greaves 4"
+  category: Greaves
+  material: Leader
+  entityProto: STBootsHunterLeader4
+  sponsorOnly: true
+
+# Samurai
+- type: hunterGear
+  id: GearGreavesSamurai1
+  name: "Samurai Greaves 1"
+  category: Greaves
+  material: Samurai
+  entityProto: STBootsHunterSamurai1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesSamurai2
+  name: "Samurai Greaves 2"
+  category: Greaves
+  material: Samurai
+  entityProto: STBootsHunterSamurai2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesSamurai3
+  name: "Samurai Greaves 3"
+  category: Greaves
+  material: Samurai
+  entityProto: STBootsHunterSamurai3
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearGreavesSamurai4
+  name: "Samurai Greaves 4"
+  category: Greaves
+  material: Samurai
+  entityProto: STBootsHunterSamurai4
+  sponsorOnly: true
+
+# Casters
+- type: hunterGear
+  id: GearCasterEbony
+  name: "Ebony Caster"
+  category: Caster
+  material: Ebony
+  entityProto: STBracerAttachmentPlasmaCasterEbony
+  isDefault: true
+
+- type: hunterGear
+  id: GearCasterBronze
+  name: "Bronze Caster"
+  category: Caster
+  material: Bronze
+  entityProto: STBracerAttachmentPlasmaCasterBronze
+
+- type: hunterGear
+  id: GearCasterSilver
+  name: "Silver Caster"
+  category: Caster
+  material: Silver
+  entityProto: STBracerAttachmentPlasmaCasterSilver
+
+- type: hunterGear
+  id: GearCasterCrimson
+  name: "Crimson Caster"
+  category: Caster
+  material: Crimson
+  entityProto: STBracerAttachmentPlasmaCasterCrimson
+
+- type: hunterGear
+  id: GearCasterBone
+  name: "Bone Caster"
+  category: Caster
+  material: Bone
+  entityProto: STBracerAttachmentPlasmaCasterBone
+
+- type: hunterGear
+  id: GearCasterGold
+  name: "Gold Caster"
+  category: Caster
+  material: Gold
+  entityProto: STBracerAttachmentPlasmaCasterGold
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearCasterWild
+  name: "Wild Caster"
+  category: Caster
+  material: Wild
+  entityProto: STBracerAttachmentPlasmaCasterWild
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearCasterOutcast
+  name: "Outcast Caster"
+  category: Caster
+  material: Outcast
+  entityProto: STBracerAttachmentPlasmaCasterOutcast
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearCasterLeader
+  name: "Leader Caster"
+  category: Caster
+  material: Leader
+  entityProto: STBracerAttachmentPlasmaCasterLeader
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearCasterSamurai
+  name: "Samurai Caster"
+  category: Caster
+  material: Samurai
+  entityProto: STBracerAttachmentPlasmaCasterSamurai
+  sponsorOnly: true
+
+# Bracers
+- type: hunterGear
+  id: GearBracerBase
+  name: "Standard Bracer"
+  category: Bracer
+  material: Standard
+  entityProto: STBracerHunter
+  isDefault: true
+
+- type: hunterGear
+  id: GearBracerRetro
+  name: "Retro Bracer"
+  category: Bracer
+  material: Retro
+  entityProto: STBracerHunterRetro
+
+- type: hunterGear
+  id: GearBracerEbony
+  name: "Ebony Bracer"
+  category: Bracer
+  material: Ebony
+  entityProto: STBracerHunterEbony
+
+- type: hunterGear
+  id: GearBracerBronze
+  name: "Bronze Bracer"
+  category: Bracer
+  material: Bronze
+  entityProto: STBracerHunterBronze
+
+- type: hunterGear
+  id: GearBracerSilver
+  name: "Silver Bracer"
+  category: Bracer
+  material: Silver
+  entityProto: STBracerHunterSilver
+
+- type: hunterGear
+  id: GearBracerCrimson
+  name: "Crimson Bracer"
+  category: Bracer
+  material: Crimson
+  entityProto: STBracerHunterCrimson
+
+- type: hunterGear
+  id: GearBracerBone
+  name: "Bone Bracer"
+  category: Bracer
+  material: Bone
+  entityProto: STBracerHunterBone
+
+- type: hunterGear
+  id: GearBracerGold
+  name: "Gold Bracer"
+  category: Bracer
+  material: Gold
+  entityProto: STBracerHunterGold
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearBracerWild
+  name: "Wild Bracer"
+  category: Bracer
+  material: Wild
+  entityProto: STBracerHunterWild
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearBracerOutcast
+  name: "Outcast Bracer"
+  category: Bracer
+  material: Outcast
+  entityProto: STBracerHunterOutcast
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearBracerLeader
+  name: "Leader Bracer"
+  category: Bracer
+  material: Leader
+  entityProto: STBracerHunterLeader
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearBracerSamurai
+  name: "Samurai Bracer"
+  category: Bracer
+  material: Samurai
+  entityProto: STBracerHunterSamurai
+  sponsorOnly: true
+
+# Accessories
+
+# Ebony
+- type: hunterGear
+  id: GearAccessoryEbony1
+  name: "Ebony Accessory 1"
+  category: Accessory
+  material: Ebony
+  entityProto: STHunterMaskAccessoryEbony1
+  isDefault: true
+
+- type: hunterGear
+  id: GearAccessoryEbony2
+  name: "Ebony Accessory 2"
+  category: Accessory
+  material: Ebony
+  entityProto: STHunterMaskAccessoryEbony2
+
+- type: hunterGear
+  id: GearAccessoryEbony3
+  name: "Ebony Accessory 3"
+  category: Accessory
+  material: Ebony
+  entityProto: STHunterMaskAccessoryEbony3
+
+# Bronze
+- type: hunterGear
+  id: GearAccessoryBronze1
+  name: "Bronze Accessory 1"
+  category: Accessory
+  material: Bronze
+  entityProto: STHunterMaskAccessoryBronze1
+
+- type: hunterGear
+  id: GearAccessoryBronze2
+  name: "Bronze Accessory 2"
+  category: Accessory
+  material: Bronze
+  entityProto: STHunterMaskAccessoryBronze2
+
+- type: hunterGear
+  id: GearAccessoryBronze3
+  name: "Bronze Accessory 3"
+  category: Accessory
+  material: Bronze
+  entityProto: STHunterMaskAccessoryBronze3
+
+# Silver
+- type: hunterGear
+  id: GearAccessorySilver1
+  name: "Silver Accessory 1"
+  category: Accessory
+  material: Silver
+  entityProto: STHunterMaskAccessorySilver1
+
+- type: hunterGear
+  id: GearAccessorySilver2
+  name: "Silver Accessory 2"
+  category: Accessory
+  material: Silver
+  entityProto: STHunterMaskAccessorySilver2
+
+- type: hunterGear
+  id: GearAccessorySilver3
+  name: "Silver Accessory 3"
+  category: Accessory
+  material: Silver
+  entityProto: STHunterMaskAccessorySilver3
+
+# Crimson
+- type: hunterGear
+  id: GearAccessoryCrimson1
+  name: "Crimson Accessory 1"
+  category: Accessory
+  material: Crimson
+  entityProto: STHunterMaskAccessoryCrimson1
+
+- type: hunterGear
+  id: GearAccessoryCrimson2
+  name: "Crimson Accessory 2"
+  category: Accessory
+  material: Crimson
+  entityProto: STHunterMaskAccessoryCrimson2
+
+- type: hunterGear
+  id: GearAccessoryCrimson3
+  name: "Crimson Accessory 3"
+  category: Accessory
+  material: Crimson
+  entityProto: STHunterMaskAccessoryCrimson3
+
+# Bone
+- type: hunterGear
+  id: GearAccessoryBone1
+  name: "Bone Accessory 1"
+  category: Accessory
+  material: Bone
+  entityProto: STHunterMaskAccessoryBone1
+
+- type: hunterGear
+  id: GearAccessoryBone2
+  name: "Bone Accessory 2"
+  category: Accessory
+  material: Bone
+  entityProto: STHunterMaskAccessoryBone2
+
+- type: hunterGear
+  id: GearAccessoryBone3
+  name: "Bone Accessory 3"
+  category: Accessory
+  material: Bone
+  entityProto: STHunterMaskAccessoryBone3
+
+# Gold
+- type: hunterGear
+  id: GearAccessoryGold1
+  name: "Gold Accessory 1"
+  category: Accessory
+  material: Gold
+  entityProto: STHunterMaskAccessoryGold1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessoryGold2
+  name: "Gold Accessory 2"
+  category: Accessory
+  material: Gold
+  entityProto: STHunterMaskAccessoryGold2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessoryGold3
+  name: "Gold Accessory 3"
+  category: Accessory
+  material: Gold
+  entityProto: STHunterMaskAccessoryGold3
+  sponsorOnly: true
+
+# Wild
+- type: hunterGear
+  id: GearAccessoryWild1
+  name: "Wild Accessory 1"
+  category: Accessory
+  material: Wild
+  entityProto: STHunterMaskAccessoryWild1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessoryWild2
+  name: "Wild Accessory 2"
+  category: Accessory
+  material: Wild
+  entityProto: STHunterMaskAccessoryWild2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessoryWild3
+  name: "Wild Accessory 3"
+  category: Accessory
+  material: Wild
+  entityProto: STHunterMaskAccessoryWild3
+  sponsorOnly: true
+
+# Outcast
+- type: hunterGear
+  id: GearAccessoryOutcast1
+  name: "Outcast Accessory 1"
+  category: Accessory
+  material: Outcast
+  entityProto: STHunterMaskAccessoryOutcast1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessoryOutcast2
+  name: "Outcast Accessory 2"
+  category: Accessory
+  material: Outcast
+  entityProto: STHunterMaskAccessoryOutcast2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessoryOutcast3
+  name: "Outcast Accessory 3"
+  category: Accessory
+  material: Outcast
+  entityProto: STHunterMaskAccessoryOutcast3
+  sponsorOnly: true
+
+# Leader
+- type: hunterGear
+  id: GearAccessoryLeader1
+  name: "Leader Accessory 1"
+  category: Accessory
+  material: Leader
+  entityProto: STHunterMaskAccessoryLeader1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessoryLeader2
+  name: "Leader Accessory 2"
+  category: Accessory
+  material: Leader
+  entityProto: STHunterMaskAccessoryLeader2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessoryLeader3
+  name: "Leader Accessory 3"
+  category: Accessory
+  material: Leader
+  entityProto: STHunterMaskAccessoryLeader3
+  sponsorOnly: true
+
+# Samurai
+- type: hunterGear
+  id: GearAccessorySamurai1
+  name: "Samurai Accessory 1"
+  category: Accessory
+  material: Samurai
+  entityProto: STHunterMaskAccessorySamurai1
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessorySamurai2
+  name: "Samurai Accessory 2"
+  category: Accessory
+  material: Samurai
+  entityProto: STHunterMaskAccessorySamurai2
+  sponsorOnly: true
+
+- type: hunterGear
+  id: GearAccessorySamurai3
+  name: "Samurai Accessory 3"
+  category: Accessory
+  material: Samurai
+  entityProto: STHunterMaskAccessorySamurai3
+  sponsorOnly: true
+
+# Capes
+
+- type: hunterGear
+  id: GearCapeFull
+  name: "Full Cape"
+  category: Cape
+  material: Standard
+  entityProto: STHunterCapeFull
+  isDefault: true
+
+- type: hunterGear
+  id: GearCapeHalf
+  name: "Half Cape"
+  category: Cape
+  material: Standard
+  entityProto: STHunterCapeHalf
+
+- type: hunterGear
+  id: GearCapeQuarter
+  name: "Quarter Cape"
+  category: Cape
+  material: Standard
+  entityProto: STHunterCapeQuarter
+
+- type: hunterGear
+  id: GearCapeThird
+  name: "Third Cape"
+  category: Cape
+  material: Standard
+  entityProto: STHunterCapeThird
+
+- type: hunterGear
+  id: GearCapePoncho
+  name: "Poncho"
+  category: Cape
+  material: Standard
+  entityProto: STHunterCapePoncho
+
+- type: hunterGear
+  id: GearCapeCeremonial
+  name: "Ceremonial Cape"
+  category: Cape
+  material: Standard
+  entityProto: STHunterCapeCeremonial
+
+- type: hunterGear
+  id: GearCapeDamaged
+  name: "Damaged Cape"
+  category: Cape
+  material: Standard
+  entityProto: STHunterCapeDamaged

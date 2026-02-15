@@ -15,12 +15,14 @@
     jobs:
     - CMNurse
     - CMDoctor
+    - RMCFieldDoctor
     - CMResearcher
     - CMCMO
     sections:
     - name: Медицинский Набор (Обязательный)
       jobs:
       - CMDoctor
+      - RMCFieldDoctor
       - CMResearcher
       - CMCMO
       takeAll: CMMedicalSet
@@ -129,7 +131,7 @@
       - id: RMCPouchReagentCanister
         recommended: true
         name: канистра реагентов (пустая)
-      #- id: CMSlingPouch
+      - id: RMCPouchSling
     - name: Аксессуары
       choices: { CMAccessories: 1 }
       entries:

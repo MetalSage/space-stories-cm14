@@ -1,0 +1,49 @@
+- type: body
+  id: STHunter
+  name: "hunter"
+  root: torso
+  slots:
+    head:
+      part: STHeadHunter
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: STTorsoHunter
+      connections:
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+      organs:
+        heart: OrganHumanHeart
+        lungs: OrganHumanLungs
+        stomach: OrganHumanStomach
+        liver: OrganHumanLiver
+        kidneys: OrganHumanKidneys
+    right_arm:
+      part: STRightArmHunter
+      connections:
+      - right_hand
+    left_arm:
+      part: STLeftArmHunter
+      connections:
+      - left_hand
+    right_hand:
+      part: STRightHandHunter
+    left_hand:
+      part: STLeftHandHunter
+    right_leg:
+      part: STRightLegHunter
+      connections:
+      - right_foot
+    left_leg:
+      part: STLeftLegHunter
+      connections:
+      - left_foot
+    right_foot:
+      part: STRightFootHunter
+    left_foot:
+      part: STLeftFootHunter

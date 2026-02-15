@@ -1,0 +1,1381 @@
+- type: entity
+  parent: [STHunterBaseItem, RMCBaseArmor]
+  id: STArmorClanHunterBase
+  abstract: true
+  name: clan armor
+  description: A suit of armor with light padding. It looks old, yet functional.
+  components:
+  - type: CMArmor
+    melee: 10
+    bullet: 15
+    bio: 0
+    explosionArmor: 25
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+
+- type: entity
+  parent: [STHunterBaseItem, RMCBaseArmor]
+  id: STArmorClanHunterHeavyBase
+  abstract: true
+  name: heavy clan armor
+  description: A suit of armor with heavy padding. It looks old, yet functional.
+  components:
+  - type: CMArmor
+    melee: 25
+    bullet: 20
+    bio: 0
+    explosionArmor: 30
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterEbony1
+  suffix: Ebony, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterEbony2
+  suffix: Ebony, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterEbony3
+  suffix: Ebony, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterEbony4
+  suffix: Ebony, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterEbony5
+  suffix: Ebony, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterEbony6
+  suffix: Ebony, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterEbony7
+  suffix: Ebony, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterEbony8
+  suffix: Ebony, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterEbony
+  suffix: Ebony, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/ebony.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBronze1
+  suffix: Bronze, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBronze2
+  suffix: Bronze, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBronze3
+  suffix: Bronze, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBronze4
+  suffix: Bronze, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBronze5
+  suffix: Bronze, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBronze6
+  suffix: Bronze, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBronze7
+  suffix: Bronze, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBronze8
+  suffix: Bronze, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterBronze
+  suffix: Bronze, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bronze.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSilver1
+  suffix: Silver, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSilver2
+  suffix: Silver, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSilver3
+  suffix: Silver, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSilver4
+  suffix: Silver, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSilver5
+  suffix: Silver, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSilver6
+  suffix: Silver, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSilver7
+  suffix: Silver, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSilver8
+  suffix: Silver, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterSilver
+  suffix: Silver, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/silver.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterCrimson1
+  suffix: Crimson, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterCrimson2
+  suffix: Crimson, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterCrimson3
+  suffix: Crimson, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterCrimson4
+  suffix: Crimson, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterCrimson5
+  suffix: Crimson, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterCrimson6
+  suffix: Crimson, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterCrimson7
+  suffix: Crimson, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterCrimson8
+  suffix: Crimson, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterCrimson
+  suffix: Crimson, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/crimson.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBone1
+  suffix: Bone, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBone2
+  suffix: Bone, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBone3
+  suffix: Bone, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBone4
+  suffix: Bone, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBone5
+  suffix: Bone, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBone6
+  suffix: Bone, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBone7
+  suffix: Bone, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterBone8
+  suffix: Bone, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterBone
+  suffix: Bone, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/bone.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterGold1
+  suffix: Gold, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterGold2
+  suffix: Gold, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterGold3
+  suffix: Gold, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterGold4
+  suffix: Gold, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterGold5
+  suffix: Gold, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterGold6
+  suffix: Gold, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterGold7
+  suffix: Gold, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterGold8
+  suffix: Gold, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterGold
+  suffix: Gold, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/gold.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterWild1
+  suffix: Wild, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterWild2
+  suffix: Wild, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterWild3
+  suffix: Wild, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterWild4
+  suffix: Wild, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterWild5
+  suffix: Wild, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterWild6
+  suffix: Wild, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterWild7
+  suffix: Wild, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterWild8
+  suffix: Wild, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterWild
+  suffix: Wild, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/wild.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterOutcast1
+  suffix: Outcast, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterOutcast2
+  suffix: Outcast, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterOutcast3
+  suffix: Outcast, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterOutcast4
+  suffix: Outcast, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterOutcast5
+  suffix: Outcast, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterOutcast6
+  suffix: Outcast, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterOutcast7
+  suffix: Outcast, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterOutcast8
+  suffix: Outcast, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterOutcast
+  suffix: Outcast, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/outcast.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterLeader1
+  suffix: Leader, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterLeader2
+  suffix: Leader, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterLeader3
+  suffix: Leader, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterLeader4
+  suffix: Leader, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterLeader5
+  suffix: Leader, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterLeader6
+  suffix: Leader, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterLeader7
+  suffix: Leader, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterLeader8
+  suffix: Leader, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterLeader
+  suffix: Leader, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/leader.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSamurai1
+  suffix: Samurai, 1
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    layers:
+    - state: 1-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 1-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSamurai2
+  suffix: Samurai, 2
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    layers:
+    - state: 2-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 2-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSamurai3
+  suffix: Samurai, 3
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    layers:
+    - state: 3-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 3-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSamurai4
+  suffix: Samurai, 4
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    layers:
+    - state: 4-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 4-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSamurai5
+  suffix: Samurai, 5
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    layers:
+    - state: 5-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 5-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSamurai6
+  suffix: Samurai, 6
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    layers:
+    - state: 6-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 6-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSamurai7
+  suffix: Samurai, 7
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    layers:
+    - state: 7-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 7-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterBase
+  id: STHalfArmorClanHunterSamurai8
+  suffix: Samurai, 8
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    layers:
+    - state: 8-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: 8-equipped-OUTERCLOTHING
+
+- type: entity
+  parent: STArmorClanHunterHeavyBase
+  id: STFullArmorClanHunterSamurai
+  suffix: Samurai, Full
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    layers:
+    - state: full-icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Hunter/ClanArmor/samurai.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: full-equipped-OUTERCLOTHING

@@ -203,6 +203,7 @@
         whitelist:
           tags:
           - PressurizedCanister
+          - RMCMiniTank
   - type: Sprite
     sprite: _RMC14/Structures/Machines/Science/chem_master.rsi
     layers:

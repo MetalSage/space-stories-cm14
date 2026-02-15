@@ -1,28 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Content.Server.Chat.Systems;
+using Content.Server.Radio.EntitySystems;
+using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.Xenonids;
+using Content.Shared._Stories.Hunter.Bracer;
+using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared._Stories.SCCVars;
 using Content.Shared._Stories.TTS;
 using Content.Shared.GameTicking;
-using Content.Shared._RMC14.Xenonids;
-using Content.Shared._RMC14.Marines;
+using Content.Shared.Ghost;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Chat;
-using Content.Server.Radio.EntitySystems;
-using Robust.Shared.Map;
 
 namespace Content.Server._Stories.TTS;
 
 public sealed partial class TTSSystem : EntitySystem
 {
+    private const int MaxMessageChars = 100 * 2;
+    [Dependency] private readonly BracerSystem _bracer = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly TTSManager _ttsManager = default!;
-    [Dependency] private readonly SharedTransformSystem _xforms = default!;
     [Dependency] private readonly IRobustRandom _rng = default!;
 
     private readonly List<string> _sampleText =
@@ -30,31 +32,20 @@ public sealed partial class TTSSystem : EntitySystem
         {
             "Внимание, морпехи, заряжайте оружие и готовьтесь к бою. Обнаружена активность ксеноморфов.",
             "Коммандир, у нас тут настоящая бойня! Запрашиваем срочную эвакуацию с Алмаера!",
-            "Инженер, срочно установите турели на этом перекрестке. Они прорываются!",
-            "Медик! У нас тут раненый! Срочно нужна помощь, его всего исцарапали!",
-            "Всем отрядам, королева ксеноморфов замечена в центральном улье. Приготовиться к штурму!",
-            "Черт, патроны почти на исходе! Кто-нибудь, прикройте, я перезаряжаюсь!",
-            "Датчики движения показывают что-то большое и очень быстрое. Всем быть начеку!",
-            "Смотрите в оба, эти твари могут прятаться в вентиляции. Не хочу, чтобы одна из них упала мне на голову.",
             "Ш-ш-ш... Чужие... близко... Я чувствую их запах.",
-            "Мои когти жаждут плоти этих ходячих мешков с мясом.",
-            "Королева... зовет... Мы должны защитить улей любой ценой.",
-            "Их фонарики... такие яркие... Разбить! Уничтожить!",
-            "Плевок кислотой готов. Кто будет моей следующей целью?",
-            "Прячьтесь в тени, сестры. Пусть они подойдут поближе, а потом мы нанесем удар.",
-            "Я слышу их крики... сладкая музыка для моих ушей.",
-            "Этот металл... он не остановит нас. Мы прорвемся."
         };
 
-    private const int MaxMessageChars = 100 * 2;
-    private bool _isEnabled = false;
+    [Dependency] private readonly TtsAudioProcessingSystem _ttsAudio = default!;
+    [Dependency] private readonly TTSManager _ttsManager = default!;
+    [Dependency] private readonly SharedTransformSystem _xforms = default!;
+    private bool _isEnabled;
 
     public override void Initialize()
     {
         _cfg.OnValueChanged(SCCVars.TTSEnabled, v => _isEnabled = v, true);
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
-        SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke, before: new []{ typeof(HeadsetSystem) });
+        SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke, new[] { typeof(HeadsetSystem) });
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
@@ -76,24 +67,22 @@ public sealed partial class TTSSystem : EntitySystem
         if (soundData is null)
             return;
 
+        if (ev.IsHunter)
+            soundData = await _ttsAudio.ApplyHunterEffect(soundData);
+
         RaiseNetworkEvent(new PlayTTSEvent(soundData), Filter.SinglePlayer(args.SenderSession));
     }
 
     private bool GetVoicePrototype(string voiceId, [NotNullWhen(true)] out TTSVoicePrototype? voicePrototype)
     {
         if (!_prototypeManager.TryIndex(voiceId, out voicePrototype))
-        {
             return _prototypeManager.TryIndex("father_grigori", out voicePrototype);
-        }
 
         return true;
     }
 
     private void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
     {
-        if (args.Channel != null)
-            return;
-
         var voiceId = component.VoicePrototypeId;
         if (args.Message.Length > MaxMessageChars || voiceId == null)
             return;
@@ -105,13 +94,19 @@ public sealed partial class TTSSystem : EntitySystem
         if (!GetVoicePrototype(voiceId, out var protoVoice))
             return;
 
+        var messageToUse = args.Message;
+
+        if (HasComp<HunterComponent>(uid) && _bracer.IsHunterWithBracer(uid, out var bracer) &&
+            bracer.Value.Comp.TranslatorActive)
+            messageToUse = args.OriginalMessage;
+
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, args.Message, protoVoice.Speaker);
+            HandleWhisper(uid, messageToUse, protoVoice.Speaker);
             return;
         }
 
-        HandleSay(uid, args.Message, protoVoice.Speaker);
+        HandleSay(uid, messageToUse, protoVoice.Speaker);
     }
 
     private async void HandleSay(EntityUid uid, string message, string speaker)
@@ -119,6 +114,8 @@ public sealed partial class TTSSystem : EntitySystem
         var soundData = await GenerateTTS(message, speaker);
         if (soundData is null)
             return;
+
+        soundData = await ProcessSpecificVoices(uid, soundData);
 
         var ttsEvent = new PlayTTSEvent(soundData, GetNetEntity(uid));
         FilterAndSend(uid, ttsEvent, ChatSystem.VoiceRange);
@@ -130,8 +127,21 @@ public sealed partial class TTSSystem : EntitySystem
         if (fullSoundData is null)
             return;
 
+        fullSoundData = await ProcessSpecificVoices(uid, fullSoundData);
+
         var fullTtsEvent = new PlayTTSEvent(fullSoundData, GetNetEntity(uid), true);
         FilterAndSend(uid, fullTtsEvent, ChatSystem.WhisperClearRange);
+    }
+
+    private async Task<byte[]> ProcessSpecificVoices(EntityUid uid, byte[] data)
+    {
+        if (HasComp<HunterComponent>(uid))
+            return await _ttsAudio.ApplyHunterEffect(data);
+
+        if (HasComp<XenoComponent>(uid))
+            return await _ttsAudio.ApplyXenoHivemindEffect(data);
+
+        return data;
     }
 
     private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range)
@@ -139,31 +149,65 @@ public sealed partial class TTSSystem : EntitySystem
         var xformQuery = GetEntityQuery<TransformComponent>();
         var sourceXform = xformQuery.GetComponent(source);
         var sourceCoords = sourceXform.Coordinates;
+        var sourceMapId = sourceXform.MapID;
 
-        var isMarineSpeaker = HasComp<MarineComponent>(source);
-        var isXenoSpeaker = HasComp<XenoComponent>(source);
-        var speakerHasFaction = isMarineSpeaker || isXenoSpeaker;
+        var isHunter = HasComp<HunterComponent>(source);
+        var isMarine = HasComp<MarineComponent>(source);
+        var isXeno = HasComp<XenoComponent>(source);
+
+        var isTranslated = false;
+        if (isHunter && _bracer.IsHunterWithBracer(source, out var bracer))
+            isTranslated = bracer.Value.Comp.TranslatorActive;
 
         var recipients = new List<ICommonSession>();
-        foreach (var player in Filter.Pvs(source).Recipients)
+        foreach (var player in _playerManager.Sessions)
         {
             if (player.AttachedEntity is not { } listener)
                 continue;
 
             var listenerXform = xformQuery.GetComponent(listener);
+            if (listenerXform.MapID != sourceMapId)
+                continue;
+
             if (!listenerXform.Coordinates.InRange(EntityManager, sourceCoords, range))
                 continue;
 
-            if (speakerHasFaction)
+            if (HasComp<GhostComponent>(listener))
             {
-                if ((isMarineSpeaker && HasComp<XenoComponent>(listener)) ||
-                    (isXenoSpeaker && HasComp<MarineComponent>(listener)))
-                {
-                    continue;
-                }
+                recipients.Add(player);
+                continue;
             }
 
-            recipients.Add(player);
+            if (isXeno)
+            {
+                if (HasComp<XenoComponent>(listener))
+                {
+                    recipients.Add(player);
+                    continue;
+                }
+
+                if (HasComp<HunterComponent>(listener))
+                    recipients.Add(player);
+            }
+            else if (isMarine)
+            {
+                if (HasComp<XenoComponent>(listener))
+                    continue;
+
+                recipients.Add(player);
+            }
+            else if (isHunter)
+            {
+                if (isTranslated)
+                    recipients.Add(player);
+                else
+                {
+                    if (HasComp<HunterComponent>(listener))
+                        recipients.Add(player);
+                }
+            }
+            else
+                recipients.Add(player);
         }
 
         if (recipients.Count > 0)
@@ -176,7 +220,8 @@ public sealed partial class TTSSystem : EntitySystem
             return null;
 
         var textSanitized = Sanitize(text);
-        if (textSanitized == "") return null;
+        if (textSanitized == "")
+            return null;
         if (char.IsLetter(textSanitized[^1]))
             textSanitized += ".";
 

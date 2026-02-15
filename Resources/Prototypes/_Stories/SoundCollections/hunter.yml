@@ -1,0 +1,10 @@
+- type: soundCollection
+  id: STHunterGauntlets
+  files:
+    - /Audio/_Stories/Weapons/punch1.ogg
+    - /Audio/_Stories/Weapons/punch2.ogg
+    - /Audio/_Stories/Weapons/punch3.ogg
+    - /Audio/_Stories/Weapons/punch4.ogg
+    - /Audio/_Stories/Weapons/chain_whip.ogg
+    - /Audio/_Stories/Effects/hit_punch.ogg
+    - /Audio/_Stories/Effects/hit_kick.ogg

@@ -1,4 +1,4 @@
-ent-RMCPlanetLV624 = LV-624
+ent-RMCPlanetLV624 = LV-624 Пристань Лазаря
     .desc = { "" }
 ent-RMCPlanetSolaris = Солярис Ридж
     .desc = { "" }
@@ -10,7 +10,7 @@ ent-RMCPlanetTrijent = Дамба Триджент
     .desc = { "" }
 ent-RMCPlanetVaradero = Новый Варадеро
     .desc = { "" }
-ent-RMCPlanetKutjevo = НПЗ Кутьево
+ent-RMCPlanetKutjevo = ПЗ Кутьево
     .desc = { "" }
 ent-RMCPlanetChances = LV-522 Претензия Шанса
     .desc = { "" }
