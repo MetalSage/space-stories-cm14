@@ -1,4 +1,4 @@
-ent-RMCCrateMedicalSurgery = ящик хирургический (анестезия, одежда хирурга, хирургический набор)
+ent-RMCCrateMedicalSurgery = ящик хирургического снаряжения (анестезия, одежда хирурга, хирургический набор)
     .desc = { ent-RMCCrateSecureSurgery.desc }
 ent-RMCCrateFieldDoctor = ящик полевого доктора (содержит снаряжение полевого доктора)
     .desc = { ent-CMCrateSecureSurgery.desc }
