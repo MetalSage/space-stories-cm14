@@ -48,29 +48,29 @@ public sealed class RMCApcBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
             return;
 
         var lockedMsg = apc.Locked
-            ? "[italic]Swipe an ID card or dogtags to unlock this interface.[/italic]"
-            : "[italic]Swipe an ID card or dogtags to lock this interface.[/italic]";
+            ? Loc.GetString("ssmc-apc-unlock-id")
+            : Loc.GetString("ssmc-apc-lock-id");
         _window.LockedLabel.SetMarkupPermissive(lockedMsg);
 
-        _window.PowerStatusLabel.SetMarkupPermissive(Header("Power Status"));
-        _window.PowerChannelsLabel.SetMarkupPermissive(Header("Power Channels"));
-        _window.MiscLabel.SetMarkupPermissive(Header("Misc"));
+        _window.PowerStatusLabel.SetMarkupPermissive(Header(Loc.GetString("ssmc-apc-power-status")));
+        _window.PowerChannelsLabel.SetMarkupPermissive(Header(Loc.GetString("ssmc-apc-power-channels")));
+        _window.MiscLabel.SetMarkupPermissive(Header(Loc.GetString("ssmc-apc-misc")));
 
-        _window.MainBreakerButton.Text = apc.MainBreakerButton ? "On" : "Off";
+        _window.MainBreakerButton.Text = apc.MainBreakerButton ? Loc.GetString("ssmc-apc-on") : Loc.GetString("ssmc-apc-off");
         if (apc.MainBreakerButton)
         {
-            _window.MainBreakerButton.Text = "On";
+            _window.MainBreakerButton.Text = Loc.GetString("ssmc-apc-on");
             _window.MainBreakerButton.Pressed = true;
         }
         else
         {
-            _window.MainBreakerButton.Text = "Off";
+            _window.MainBreakerButton.Text = Loc.GetString("ssmc-apc-off");
             _window.MainBreakerButton.Pressed = false;
         }
 
         _window.MainBreakerStatus.SetMarkupPermissive(apc.ExternalPower
-            ? Green("[ External Power ]")
-            : Red("[ No External Power ]")
+            ? Green(Loc.GetString("ssmc-apc-external-power"))
+            : Red(Loc.GetString("ssmc-apc-no-external-power"))
         );
 
         _window.PowerBar.MinValue = 0;
@@ -80,14 +80,14 @@ public sealed class RMCApcBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
 
         var chargeMode = apc.ChargeStatus switch
         {
-            RMCApcChargeStatus.NotCharging => Red("[ Not Charging ]"),
-            RMCApcChargeStatus.Charging => Orange("[ Charging ]"),
-            RMCApcChargeStatus.FullCharge => Green("[ Fully Charged ]"),
+            RMCApcChargeStatus.NotCharging => Red(Loc.GetString("ssmc-apc-not-charging")),
+            RMCApcChargeStatus.Charging => Orange(Loc.GetString("ssmc-apc-charging")),
+            RMCApcChargeStatus.FullCharge => Green(Loc.GetString("ssmc-apc-fully-charged")),
             _ => throw new ArgumentOutOfRangeException(),
         };
 
         _window.ChargeMode.SetMarkupPermissive(chargeMode);
-        _window.ChargeModeButton.Text = apc.ChargeModeButton ? "Auto" : "Off";
+        _window.ChargeModeButton.Text = apc.ChargeModeButton ? Loc.GetString("ssmc-apc-auto") : Loc.GetString("ssmc-apc-off");
 
         foreach (int channel in Enum.GetValues<RMCPowerChannel>())
         {
@@ -102,7 +102,7 @@ public sealed class RMCApcBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
         var totalWatts = apc.Channels.Sum(c => c.Watts);
         _window.TotalLoadWatts.SetMarkupPermissive($"[bold]{totalWatts / multiplier} W[/bold]");
 
-        _window.CoverButton.Text = apc.CoverLockedButton ? "Engaged" : "Disengaged";
+        _window.CoverButton.Text = apc.CoverLockedButton ? Loc.GetString("ssmc-apc-cover-lock-engaged") : Loc.GetString("ssmc-apc-cover-lock-disengaged");
         _window.CoverButton.Disabled = apc.Locked;
     }
 
@@ -134,6 +134,6 @@ public sealed class RMCApcBui(EntityUid owner, Enum uiKey) : BoundUserInterface(
         row.On.Visible = false; // TODO RMC14
         row.Off.Pressed = channel.Button == RMCApcButtonState.Off;
         row.Watts.SetMarkupPermissive($"{channel.Watts / multiplier} W");
-        row.Status.SetMarkupPermissive(channel.On ? $"{Green("On")}" : $"{Red("Off")}");
+        row.Status.SetMarkupPermissive(channel.On ? $"{Green(Loc.GetString("ssmc-apc-on"))}" : $"{Red(Loc.GetString("ssmc-apc-off"))}");
     }
 }

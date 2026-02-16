@@ -11,19 +11,19 @@
                   MinHeight="26" />
         <BoxContainer Orientation="Horizontal">
             <Button Name="OkButton" Access="Public"
-                    Text="OK"
+                    Text="{Loc ssmc-overwath-ok-button}"
                     HorizontalExpand="True"
                     Margin="0 0 4 0"
                     MinHeight="24"
                     MinWidth="50" />
             <Button Name="CancelButton" Access="Public"
-                    Text="Cancel"
+                    Text="{Loc ssmc-overwath-cancel-button}"
                     HorizontalExpand="True"
                     Margin="0 0 4 0"
                     MinHeight="24"
                     MinWidth="60" />
             <Button Name="DeleteButton" Access="Public"
-                    Text="Delete"
+                    Text="{Loc ssmc-tac-map-delete}"
                     HorizontalExpand="True"
                     Visible="False"
                     MinHeight="24"

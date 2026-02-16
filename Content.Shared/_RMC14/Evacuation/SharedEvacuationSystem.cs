@@ -173,7 +173,7 @@ public abstract class SharedEvacuationSystem : EntitySystem
         {
             using (args.PushGroup(nameof(EvacuationComputerComponent)))
             {
-                args.PushMarkup($"[color=red]This pod is only rated for a maximum of {maxMobs} occupants! Any more may cause it to crash and burn.[/color]");
+                args.PushMarkup(Loc.GetString("ssmc-evac-pod-max-count", ("maxmobs", maxMobs)));
             }
         }
     }
@@ -187,10 +187,10 @@ public abstract class SharedEvacuationSystem : EntitySystem
 
         var msg = ent.Comp.Mode switch
         {
-            EvacuationComputerMode.Disabled => "Evacuation has not started.",
+            EvacuationComputerMode.Disabled => Loc.GetString("ssmc-evac-has-not-started"),
             EvacuationComputerMode.Ready => "",
-            EvacuationComputerMode.Travelling => "The escape pod has already been launched!",
-            EvacuationComputerMode.Crashed => "This escape pod has crashed!",
+            EvacuationComputerMode.Travelling => Loc.GetString("ssmc-evac-pod-has-already-launched"),
+            EvacuationComputerMode.Crashed => Loc.GetString("ssmc-evac-pod-has-crashed"),
             _ => throw new ArgumentOutOfRangeException(),
         };
 

@@ -209,7 +209,7 @@ public sealed class HealthScannerBui : BoundUserInterface
         _window.ChemicalContentsSeparator.Visible = anyChemicals;
         _window.ChemicalsContainer.Visible = anyChemicals;
 
-        _window.BloodTypeLabel.Text = "Blood:";
+        _window.BloodTypeLabel.Text = Loc.GetString("ssmc-medical-scanner-ui-bleed");
         var bloodMsg = new FormattedMessage();
         bloodMsg.PushColor(Color.FromHex("#25B732"));
 
@@ -220,7 +220,7 @@ public sealed class HealthScannerBui : BoundUserInterface
         _window.BloodAmountLabel.SetMessage(bloodMsg);
 
         if (uiState.Bleeding)
-            _window.Bleeding.SetMarkup(" [bold][color=#DF3E3E]\\[Bleeding\\][/color][/bold]");
+            _window.Bleeding.SetMarkup(Loc.GetString("ssmc-medical-scanner-ui-bleeding"));
         else
             _window.Bleeding.SetMessage(string.Empty);
 

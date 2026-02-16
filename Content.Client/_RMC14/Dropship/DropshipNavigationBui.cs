@@ -263,7 +263,7 @@ public sealed class DropshipNavigationBui : BoundUserInterface
         if (_window == null)
             return;
 
-        _window.RemoteControlButton.Text = status ? "Enabled" : "Disabled";
+        _window.RemoteControlButton.Text = status ? Loc.GetString("rmc-dropship-equipment-enabled") : Loc.GetString("rmc-dropship-equipment-disabled") ;
     }
 
     private void ResetDestinationButtons()
@@ -301,10 +301,10 @@ public sealed class DropshipNavigationBui : BoundUserInterface
         dooorLockStatus.TryGetValue(DoorLocation.Starboard, out var starboardStatus);
         var lockdownStatus = aftStatus && portStatus && starboardStatus;
 
-        _window.LockdownButton.Text = lockdownStatus ? "Lift Lockdown" : "Lockdown";
-        _window.LockdownButtonAft.Text = aftStatus ? "Unlock Aft" : "Lock Aft";
-        _window.LockdownButtonPort.Text = portStatus ? "Unlock Port" : "Lock Port";
-        _window.LockdownButtonStarboard.Text = starboardStatus ? "Unlock Starboard" : "Lock Starboard";
+        _window.LockdownButton.Text = lockdownStatus ? Loc.GetString("ssmc-dropship-lift-lockdown") : Loc.GetString("ssmc-dropship-lockdown");
+        _window.LockdownButtonAft.Text = aftStatus ? Loc.GetString("ssmc-dropship-unlock-aft") : Loc.GetString("ssmc-dropship-lock-aft");
+        _window.LockdownButtonPort.Text = portStatus ? Loc.GetString("ssmc-dropship-unlock-port") : Loc.GetString("ssmc-dropship-lock-port");
+        _window.LockdownButtonStarboard.Text = starboardStatus ? Loc.GetString("ssmc-dropship-unlock-starboard") : Loc.GetString("ssmc-dropship-lock-starboard");
     }
 
     public void Update()
