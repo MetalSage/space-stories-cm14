@@ -4,5 +4,5 @@ ent-RMCJumpsuitTSEPA = униформа TSEPA
 ent-RMCJumpsuitMarineRoyalDropPouch = { ent-RMCJumpsuitMarineRoyal }
     .suffix = Filled, Royal, Drop Pouch
     .desc = { ent-RMCJumpsuitMarineRoyal.desc }
-ent-RMCJumpsuitMarineEIAFNo8 = EIAF No.8 combat uniform
-    .desc = Standard issue No.8 Pattern BDU used by the Extrasolar Imperial Airborne Force. Identical in cut and protection to the Royal Crown Marine variant, but issued in woodland camouflage. Lightweight Kevlar mesh offers limited protection against shrapnel and close-quarters threats.
+ent-RMCJumpsuitMarineEIAFNo8 = ВИВДС №8 боевая униформа
+    .desc = Стандартная форма № 8 образца BDU, используемая внесолнечными имперскими воздушно-десантными войсками. Идентична по крою и защитным свойствам варианту Королевской морской пехоты, но выпускается в лесном камуфляже. Легкая кевларовая сетка обеспечивает ограниченную защиту от осколков и угроз в ближнем бою.

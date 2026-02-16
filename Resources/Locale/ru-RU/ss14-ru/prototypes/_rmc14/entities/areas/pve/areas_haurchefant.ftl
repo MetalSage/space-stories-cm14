@@ -1,5 +1,3 @@
-
-
 ent-RMCAreaHFOffice = Офис
     .desc = { ent-RMCAreaHF.desc }
 ent-RMCAreaHFEngineering = Инженерный отсек

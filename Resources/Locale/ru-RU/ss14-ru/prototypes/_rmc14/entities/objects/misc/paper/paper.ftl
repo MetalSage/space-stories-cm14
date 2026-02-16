@@ -1,5 +1,3 @@
-
-
 ent-RMCPaperWeYa = weston-yamada official document
     .desc = { ent-CMPaper.desc }
 ent-RMCPaperWeYaLiaison = weston-yamada document
