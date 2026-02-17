@@ -30841,7 +30841,7 @@ entities:
     - type: AccessReader
       access:
       - - CMAccessCMO
-      - - CMAccessChemistry
+      - - RMCAccessSeniorCommand
 - proto: CMAirlockCMOLocked
   entities:
   - uid: 133
