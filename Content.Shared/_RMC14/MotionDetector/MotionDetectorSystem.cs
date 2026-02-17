@@ -154,11 +154,21 @@ public sealed class MotionDetectorSystem : EntitySystem
         if (!ent.Comp.DeactivateOnDrop)
             return;
 
-        ent.Comp.Enabled = false;
-        Dirty(ent);
-        UpdateAppearance(ent);
-        MotionDetectorUpdated(ent);
-    }
+        Timer.Spawn(TimeSpan.Zero, () =>
+        {
+            if (Deleted(ent.Owner) || Terminating(ent.Owner))
+                return;
+
+            if (_rmcInventory.TryGetUserHoldingOrStoringItem(ent.Owner, out _))
+                return;
+
+            ent.Comp.Enabled = false;
+            Dirty(ent);
+            UpdateAppearance(ent);
+            MotionDetectorUpdated(ent);
+        });
+}
+
 
     private void OnMotionDetectorDevoured(ref XenoDevouredEvent ent)
     {
