@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.2
   forkId: ""
   forkVersion: ""
-  time: 02/18/2026 17:09:54
-  entityCount: 27772
+  time: 02/18/2026 17:17:58
+  entityCount: 27774
 maps:
 - 1
 grids:
@@ -58095,7 +58095,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -124278.99
+      secondsUntilStateChange: -124469.695
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -58119,7 +58119,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -124278.99
+      secondsUntilStateChange: -124469.695
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -75741,12 +75741,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 45.5,94.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
   - uid: 24707
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 47.5,89.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
 - proto: CMVentScrubber
   entities:
   - uid: 8279
@@ -141175,7 +141179,7 @@ entities:
       pos: 71.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270866.56
+      secondsUntilStateChange: -271057.25
       state: Opening
   - uid: 20283
     components:
@@ -141183,7 +141187,7 @@ entities:
       pos: 72.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270866.12
+      secondsUntilStateChange: -271056.8
       state: Opening
   - uid: 20284
     components:
@@ -141191,7 +141195,7 @@ entities:
       pos: 73.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270865.72
+      secondsUntilStateChange: -271056.4
       state: Opening
   - uid: 20285
     components:
@@ -141199,7 +141203,7 @@ entities:
       pos: 71.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270860.2
+      secondsUntilStateChange: -271050.88
       state: Opening
   - uid: 20286
     components:
@@ -141207,7 +141211,7 @@ entities:
       pos: 72.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270860.6
+      secondsUntilStateChange: -271051.28
       state: Opening
   - uid: 20287
     components:
@@ -141215,7 +141219,7 @@ entities:
       pos: 73.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270861
+      secondsUntilStateChange: -271051.7
       state: Opening
   - uid: 27728
     components:
@@ -141225,7 +141229,7 @@ entities:
       pos: 11.5,91.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3406.7764
+      secondsUntilStateChange: -3597.4778
       state: Opening
   - uid: 27729
     components:
@@ -144463,6 +144467,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 45.5,89.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
 - proto: RMCGasPipeFourway
   entities:
   - uid: 7640
@@ -144470,6 +144476,8 @@ entities:
     - type: Transform
       pos: 45.5,93.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
   - uid: 20713
     components:
     - type: Transform
@@ -144520,18 +144528,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 46.5,89.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
   - uid: 7639
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 45.5,91.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
   - uid: 18367
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 45.5,90.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
   - uid: 20719
     components:
     - type: Transform
@@ -158424,6 +158438,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 45.5,92.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
   - uid: 22513
     components:
     - type: Transform
@@ -173513,6 +173529,18 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -91.5,9.5
+      parent: 1
+  - uid: 27773
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 44.5,89.5
+      parent: 1
+  - uid: 27774
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 50.5,89.5
       parent: 1
 - proto: RMCLightFixtureBlueDouble
   entities:
