@@ -4,7 +4,7 @@ meta:
   engineVersion: 264.0.2
   forkId: ""
   forkVersion: ""
-  time: 02/17/2026 20:20:12
+  time: 02/18/2026 17:09:54
   entityCount: 27772
 maps:
 - 1
@@ -56534,13 +56534,13 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -65.5,7.75
+      pos: -65.5,7.5
       parent: 1
   - uid: 27642
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -61.5,7.25
+      pos: -61.5,7.5
       parent: 1
 - proto: CMCrematorium
   entities:
@@ -58095,7 +58095,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -124239.73
+      secondsUntilStateChange: -124278.99
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -58119,7 +58119,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -124239.73
+      secondsUntilStateChange: -124278.99
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -58513,14 +58513,6 @@ entities:
       parent: 1
     - type: FaxMachine
       name: Камеры Брига
-  - uid: 5239
-    components:
-    - type: Transform
-      pos: -2.5,88.5
-      parent: 1
-    - type: FaxMachine
-      name: Корпоративный Связной
-      destinationAddress: Корпоративный связной
   - uid: 5240
     components:
     - type: Transform
@@ -58540,7 +58532,7 @@ entities:
   - uid: 5242
     components:
     - type: Transform
-      pos: 44.5,89.9
+      pos: 44.5,89.5
       parent: 1
     - type: FaxMachine
       name: Корреспондент
@@ -115078,7 +115070,7 @@ entities:
   - uid: 15797
     components:
     - type: Transform
-      pos: 49.5,90.9
+      pos: 49.5,90.5
       parent: 1
 - proto: ColMarTechCrewMaintTech
   entities:
@@ -132518,13 +132510,13 @@ entities:
   - uid: 27730
     components:
     - type: Transform
-      pos: 12.5,90.9
+      pos: 12.5,90.5
       parent: 1
   - uid: 27731
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 13.5,90.9
+      pos: 13.5,90.5
       parent: 1
 - proto: RMCCouchMid
   entities:
@@ -141183,7 +141175,7 @@ entities:
       pos: 71.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270827.28
+      secondsUntilStateChange: -270866.56
       state: Opening
   - uid: 20283
     components:
@@ -141191,7 +141183,7 @@ entities:
       pos: 72.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270826.84
+      secondsUntilStateChange: -270866.12
       state: Opening
   - uid: 20284
     components:
@@ -141199,7 +141191,7 @@ entities:
       pos: 73.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270826.44
+      secondsUntilStateChange: -270865.72
       state: Opening
   - uid: 20285
     components:
@@ -141207,7 +141199,7 @@ entities:
       pos: 71.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270820.9
+      secondsUntilStateChange: -270860.2
       state: Opening
   - uid: 20286
     components:
@@ -141215,7 +141207,7 @@ entities:
       pos: 72.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270821.3
+      secondsUntilStateChange: -270860.6
       state: Opening
   - uid: 20287
     components:
@@ -141223,7 +141215,7 @@ entities:
       pos: 73.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -270821.72
+      secondsUntilStateChange: -270861
       state: Opening
   - uid: 27728
     components:
@@ -141233,7 +141225,7 @@ entities:
       pos: 11.5,91.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3367.5095
+      secondsUntilStateChange: -3406.7764
       state: Opening
   - uid: 27729
     components:
@@ -141797,6 +141789,15 @@ entities:
     - type: Transform
       pos: 29.5,-27.5
       parent: 1
+- proto: RMCFaxLiaison
+  entities:
+  - uid: 5239
+    components:
+    - type: Transform
+      pos: -2.5,88.5
+      parent: 1
+    - type: FaxMachine
+      name: Корпоративный Связной
 - proto: RMCFireAxeCabinetFilled
   entities:
   - uid: 20328
