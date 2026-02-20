@@ -11,9 +11,9 @@ highlights-executive-officer = Исполнительный офицер, "ИО"
 highlights-staff-officer = Офицер штаба, "ОШ", Центр информационного контроля, "ЦИК", Командование, Наблюдение, "НБ", Прикрытие, "ПК", Запрос, Королева, "ОБ", Координаты, Снабжение, Разрозненные, Очередь, Вспышка, "ФОБ", Связь, Тактическая карта, Карта, Телефон, "ТЕХНИЧЕСКИЙ ОТЧЕТ", "КОМ", "КОМА", Командир
 # Requisitions
 highlights-logistics-officer = Logistics Officer, "LO", Requisitions, "Req", Command, Supply, "Drop", Crate, Budget, Ammo
-highlights-requisitions-technician = Requisitions Technician, Req Technician, Requisitions Tech, Req Tech, "RT", Requisitions, "Req", Supply, "Drop", Crate, Budget, Ammo
+highlights-requisitions-technician = Техник по грузам, Грузчик, Грузовой техник, "ГТ", Поставки, "Реквизиции", Снабжение, Сброс, Ящик, Бюджет, Боеприпасы
 # Снабжение
-highlights-quartermaster = "КМ", Поставки, "Реквизиции", Командование, Снабжение, Сброс, Ящик, Бюджет, Боеприпасы
+highlights-quartermaster = "КМ", Поставки, "карго", Командование, Снабжение, Сброс, Ящик, Бюджет, Боеприпасы
 highlights-cargo-technician = Техник по грузам, Грузчик, Грузовой техник, "ГТ", Поставки, "Реквизиции", Снабжение, Сброс, Ящик, Бюджет, Боеприпасы
 # Инженерия
 highlights-chief-engineer = Главный инженер, "ГИ", Инженерия, Инженер, "Инженер", Командование, "ОБ", "ОТ"
@@ -24,6 +24,7 @@ highlights-chief-medical-officer = Главный врач, "ГВ", Медици
 highlights-doctor = Доктор, "Док", Медицина, Медотсек, "Мед", Инфицированный, Хирургия, Химия, "Химия", Таблетка
 highlights-nurse = Интерн, Медсестра, Медицина, Медотсек, "Мед", Инфицированный, Хирургия, Химия, "Химия", Таблетка
 highlights-researcher = Исследователь, Исследование, Наука, "Наука", Химия, "Химия"
+highlights-provost-inspector = Provost Inspector, Inspector, @"PvI", "CMP", "MP", "MPs", "MW", "Alert", Brig, "Perma", Loose, Burst, Colonist, Survivor, "SOP", "Mlaw", Marine Law, Arrest, Detain, Appeal, Execution, Executed
 # Военная полиция
 highlights-chief-MP = Начальник военной полиции, "НВП", Военная полиция, "ВП", Тревога, Гауптвахта, "Пожизненно", Беглец, Колонист, Выживший, "СОП", Арест, Задержание, Апелляция, Командование
 highlights-military-warden = Военный надзиратель, "ВН", Надзиратель, Военная полиция, "ВП", Тревога, Гауптвахта, "Пожизненно", Беглец, Колонист, Выживший, "СОП", Арест, Задержание, Апелляция

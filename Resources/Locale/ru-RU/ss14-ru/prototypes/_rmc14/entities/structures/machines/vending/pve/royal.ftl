@@ -1,0 +1,14 @@
+ent-RMCRoyalAssaultEngineerVendor = We-Ya section engineering equipment rack
+    .desc = An automated rack hooked up to a colossal storage of assault engineer standard-issue equipment.
+    .suffix = PVE, RCM
+ent-RMCRoyalMedicalAssistantVendor = We-Ya section medical equipment rack
+    .desc = An automated rack hooked up to a colossal storage of medical assistant standard-issue equipment.
+    .suffix = PVE, RCM
+ent-RMCRoyalBombSpecVendor = We-Ya Section Fire Support Gear Rack
+    .desc = An automated rack hooked up to a colossal storage of bombardment specialist standard-issue equipment.
+ent-RMCColMarTechSurplusRCMPVE = We-Ya Surplus Uniform Vendor
+    .desc = An automated rack hooked up to a small storage of Royal Crown Marines uniforms.
+    .suffix = PVE, RCM
+ent-RMCColMarTechUtilitiesRCMPVE = We-Ya Automated Utilities Section Vendor
+    .desc = An automated supply rack hooked up to a small storage of various utilities, tools, and medical supplies. Can be accessed by any Royal marine.
+    .suffix = PVE, RCM

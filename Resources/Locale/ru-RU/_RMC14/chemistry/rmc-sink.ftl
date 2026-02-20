@@ -1,2 +1,2 @@
-rmc-sink-container-full = { THE($container) } is already full.
-rmc-sink-fill-container = { $user } fills { THE($container) } using { THE($sink) }.
+rmc-sink-container-full = { THE($container) } уже заполнен(-а).
+rmc-sink-fill-container = { $user } наполняет { THE($container) } с помощью { THE($sink) }.

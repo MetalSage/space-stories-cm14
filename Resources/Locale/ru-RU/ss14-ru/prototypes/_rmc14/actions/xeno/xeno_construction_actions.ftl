@@ -38,3 +38,7 @@ ent-RMCGuidebookActionXenoPlantWeeds = { ent-CMGuidebookActionXenoBase }
     .desc = { ent-CMGuidebookActionXenoBase.desc }
 ent-ActionXenoExpandWeeds = Расширить Сорняки (50)
     .desc = Расширить существующие сорняки или превратить плитку сорняков в узел.
+ent-ActionXenoDesignerSelectedDesign = Выбранный дизайн
+    .desc = Переключатель, позволяющий выбирать, будут ли вновь размещенные узлы дизайна узлами стен или дверей.
+ent-ActionXenoDesignerGreaterResinSurge = Усиленный всплеск смолы (250)
+    .desc = Использует расположенные рядом узлы проектирования для создания временных толстых стенок из смолы.

@@ -22,7 +22,7 @@ public sealed class RMCCalendarSystem : EntitySystem
     {
         var owner = ent.Owner;
         var worldDate = EntityQuery<GlobalTimeManagerComponent>().FirstOrDefault()?.DateOffset ?? DateTime.Today.AddYears(100);
-        var time = worldDate.ToString("dd MMMM, yyyy");
+        var time = worldDate.ToString("dd MMMM, 2182"); // Stories-Parity
 
         var todayHolidays = _customHolidaySystem.GetCustomHolidays()
             .Where(h => h.BeginDay == worldDate.Day && h.BeginMonth.Equals(worldDate.ToString("MMMM"), StringComparison.OrdinalIgnoreCase))

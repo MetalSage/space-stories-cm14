@@ -13,6 +13,7 @@ rmc-storage-limit-accessories = В шлем больше не помещаетс
 rmc-storage-limit-grenades = Вы не можете больше поместить гранаты!
 rmc-storage-limit-not-ziptie-box = Этот слот зарезервирован для коробки с стяжками!
 rmc-storage-nothing-left = { CAPITALIZE($storage) } пустой. Запечатлеть нечего.
+rmc-storage-limit-generic = Это не вместит больше подобных предметов!
 rmc-holster-verb = Развернуть
 rmc-storage-webbing-remove-verb = Снять разгрузку
 rmc-storage-medal-remove-verb = Снять медаль

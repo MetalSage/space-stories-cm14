@@ -13,8 +13,8 @@ rmc-xeno-fury-increase-user = Нас одолевает ярость!
 rmc-xeno-not-enough-acid = У вас недостаточно кислоты!
 rmc-xeno-acid-increase-user = Вы чувствуете, как увеличивается запас кислоты!
 # Shards
-rmc-xeno-not-enough-shards = We don't have enough shards!
-rmc-xeno-shards-increase-user = We grow more shards!
+rmc-xeno-not-enough-shards = У нас недостаточно осколков!
+rmc-xeno-shards-increase-user = Мы создаём всё больше осколков!
 # Construction
 cm-xeno-choose-resin-structure = Выберите структуру смолы
 cm-xeno-order-construction = Построить структуру
@@ -82,11 +82,11 @@ cm-xeno-crippling-strike-hit = Мы значительно усиливаем н
 # Pheromones
 rmc-xeno-pheromones-help =
     Феромоны ежесекундно дают бафф всем ксеносам в радиусе действия за счет некоторого количества запасенной плазмы, как показано ниже:
-    
+
     Безумие (красный) - увеличивает скорость бега, урон и шанс сбить маски охотников за головами.
-    
+
     Защита (зеленый) - в критическом состоянии увеличивается максимальное отрицательное здоровье и замедляется отток травы.
-    
+
     Восстановление (синий) - увеличение регенерации плазмы и здоровья.
 # Pheromones
 cm-xeno-choose-pheromones = Выберите феромоны
@@ -326,7 +326,11 @@ rmc-xeno-eviscerate-windup-small = { $xeno } готовится к удару!
 rmc-xeno-fling-too-big = { CAPITALIZE(THE($target)) } слишком велик, чтобы мы могли его метнуть!
 # Gut
 rmc-gut-start-self = Мы вонзаем когти в тело этого жалкого носителя, начиная разрывать его пополам!
+rmc-gut-start-xenos = { $user } вонзает когти в тело несчастного и начинает разрывать его пополам!
+rmc-gut-start-marines = Королева вонзает когти в тело { $target }, начиная разрывать его пополам!
 rmc-gut-start-others = { $user } вонзает когти в тело { $target }, начиная разрывать его пополам!
+rmc-gut-finish-xenos = { $user } разорвал несчастного пополам!!
+rmc-gut-finish-marines = Королева разорвала тело { $target } пополам!!
 rmc-gut-finish-self = Мы разрываем этого жалкого носителя пополам!!
 rmc-gut-finish-others = { $user } разрывает { $target } пополам!!
 # Shed Spikes

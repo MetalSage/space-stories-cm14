@@ -4,5 +4,7 @@ ent-RMCSpawnerRandomToolbox = случайный спавнер ящика с и
     .desc = Это случайный набор инструментов.
 ent-RMCSpawnerRandomPowercell = случайный спавнер батареек
     .desc = Это случайный элемент питания.
+ent-RMCSpawnerBombSupply = случайная бомба
+    .desc = Это случайная бомба
 ent-RMCSpawnerRandomTechSupply = случайный спавнер технических средств
     .desc = Это случайная часть технологических принадлежностей.

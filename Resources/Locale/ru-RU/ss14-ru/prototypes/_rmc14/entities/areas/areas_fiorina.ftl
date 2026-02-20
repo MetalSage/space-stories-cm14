@@ -95,3 +95,5 @@ ent-RMCAreaFiorinaStationTelecommLz2North = Фиорина - Ретрансля�
     .desc = { ent-RMCAreaFiorinaStationTelecomm.desc }
 ent-RMCAreaFiorinaStationTelecommLz2Maint = Фиорина - Резервный ретранслятор связи
     .desc = { ent-RMCAreaFiorinaStationTelecomm.desc }
+ent-RMCAreaFiorinaStationRocinante = Грузовой корабль Росинанте
+    .desc = { ent-RMCAreaFiorinaMaintenance.desc }

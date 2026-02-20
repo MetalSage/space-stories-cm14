@@ -1,9 +1,12 @@
-ent-FactionSPP = { "" }
-    .desc = { "" }
+
 ent-FactionHalcyon = { "" }
     .desc = { "" }
 ent-RMCIDSPP = { ent-CMIDCardStandardDogtag }
     .desc = Солдатский жетон.
+ent-RMCIDSPPRifleman = { ent-RMCIDSPP }
+    .desc = { ent-RMCIDSPP.desc }
+ent-RMCIDSPPRiflemanHidden = { ent-RMCIDCardStandardDogtagHidden }
+    .desc = { ent-RMCIDCardStandardDogtagHidden.desc }
 ent-RMCIDSPPHidden = { ent-RMCIDCardStandardDogtagHidden }
     .desc = { ent-RMCIDCardStandardDogtagHidden.desc }
 ent-RMCIDCardPaP = идентификационный голо-значок НВП
