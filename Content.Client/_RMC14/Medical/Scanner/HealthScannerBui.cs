@@ -194,7 +194,7 @@ public sealed class HealthScannerBui : BoundUserInterface
 
                 var text = $"{reagent.Quantity.Float():F1} {prototype.LocalizedName}";
                 if (prototype.Overdose != null && reagent.Quantity > prototype.Overdose)
-                    text = $"[bold][color=red]{FormattedMessage.EscapeText(text)} OD[/color][/bold]";
+                    text = Loc.GetString("ssmc-medical-scanner-ui-peredoz", ("reagent", FormattedMessage.EscapeText(text)));
 
                 var label = new RichTextLabel();
                 label.SetMarkupPermissive(text);
@@ -233,7 +233,7 @@ public sealed class HealthScannerBui : BoundUserInterface
         }
         else
         {
-            temperatureMsg.AddText("None");
+            temperatureMsg.AddText(Loc.GetString("ssmc-medical-scanner-ui-no-temp"));
         }
 
         _window.BodyTemperatureLabel.SetMessage(temperatureMsg);

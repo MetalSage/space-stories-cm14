@@ -18,3 +18,15 @@ ssmc-apc-power-cell = [color=#5B88B0]Элемент питания:[/color]
 ssmc-apc-charge-mode = [color=#5B88B0]Режим зарядки:[/color]
 ssmc-apc-total-load = [color=#5B88B0]Общая нагрузка:[/color]
 ssmc-apc-cover-lock = [color=#5B88B0]Блокировка крышки:[/color]
+ssmc-apc-skill-issue = Вы не знаете, как использовать интерфейс { $name }.
+ssmc-apc-cover-lock-try = Крышка заблокирована и не может быть открыта.
+
+ssmc-apc-screw-crowbar = Используйте [color=cyan]отвертку[/color] для доступа к проводам, или [color=cyan]лом[/color], чтобы открыть крышку!
+ssmc-apc-hand-crowbar = Используйте [color=cyan]пустую руку[/color], чтобы извлечь батарею, или [color=cyan]лом[/color], чтобы закрыть крышку!
+ssmc-apc-battery-slot = Используйте [color=cyan]батарейку[/color], чтобы вставить батарейку!
+
+ssmc-apc-use-repair-wrench = [color=cyan]Гаечный ключ[/color]
+ssmc-apc-use-repair-wirecutters = [color=cyan]Кусачки[/color]
+ssmc-apc-use-repair-welder = [color=cyan]Сварку[/color]
+ssmc-apc-use-repair-tool = Используйте { $tool } для ремонта!
+ssmc-apc-need-battery = Требуется [color=cyan]батарейка[/color]!

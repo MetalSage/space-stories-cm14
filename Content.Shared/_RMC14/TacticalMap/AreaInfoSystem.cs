@@ -135,70 +135,70 @@ public sealed class AreaInfoSystem : EntitySystem
         var restrictedActions = new List<string>();
 
         if (_area.CanOrbitalBombard(coordinates, out _))
-            allowedActions.Add("Orbital Strike");
+            allowedActions.Add(Loc.GetString("ssmc-area-ob"));
         else
-            restrictedActions.Add("Orbital Strike");
+            restrictedActions.Add(Loc.GetString("ssmc-area-ob"));
 
         if (_area.CanCAS(coordinates))
-            allowedActions.Add("Close Air Support");
+            allowedActions.Add(Loc.GetString("ssmc-area-cas"));
         else
-            restrictedActions.Add("Close Air Support");
+            restrictedActions.Add(Loc.GetString("ssmc-area-cas"));
 
         if (_area.CanSupplyDrop(coordinates.ToMap(_entityManager, _transform)))
-            allowedActions.Add("Supply Drops");
+            allowedActions.Add(Loc.GetString("ssmc-area-supply-drop"));
         else
-            restrictedActions.Add("Supply Drops");
+            restrictedActions.Add(Loc.GetString("ssmc-area-supply-drop"));
 
         if (_area.CanMortarFire(coordinates))
-            allowedActions.Add("Mortar Fire");
+            allowedActions.Add(Loc.GetString("ssmc-area-mortar"));
         else
-            restrictedActions.Add("Mortar Fire");
+            restrictedActions.Add(Loc.GetString("ssmc-area-mortar"));
 
         if (_area.CanMortarPlacement(coordinates))
-            allowedActions.Add("Mortar Placement");
+            allowedActions.Add(Loc.GetString("ssmc-area-mortar-placement"));
         else
-            restrictedActions.Add("Mortar Placement");
+            restrictedActions.Add(Loc.GetString("ssmc-area-mortar-placement"));
 
         if (_area.CanLase(coordinates))
-            allowedActions.Add("Laser Designation");
+            allowedActions.Add(Loc.GetString("ssmc-area-laser-designation"));
         else
-            restrictedActions.Add("Laser Designation");
+            restrictedActions.Add(Loc.GetString("ssmc-area-laser-designation"));
 
         if (area.Value.Comp.Medevac)
-            allowedActions.Add("Casualty Evacuation");
+            allowedActions.Add(Loc.GetString("ssmc-area-medevac"));
         else
-            restrictedActions.Add("Casualty Evacuation");
+            restrictedActions.Add(Loc.GetString("ssmc-area-medevac"));
 
         if (area.Value.Comp.Paradropping)
-            allowedActions.Add("Paradropping");
+            allowedActions.Add(Loc.GetString("ssmc-area-paradrop"));
         else
-            restrictedActions.Add("Paradropping");
+            restrictedActions.Add(Loc.GetString("ssmc-area-paradrop"));
 
         // Add special restrictions
         if (area.Value.Comp.NoTunnel)
-            restrictedActions.Add("Tunneling");
+            restrictedActions.Add(Loc.GetString("ssmc-area-xeno-tunnel"));
         if (area.Value.Comp.Unweedable)
-            restrictedActions.Add("Weed Placement");
+            restrictedActions.Add(Loc.GetString("ssmc-area-xeno-weed"));
         else if (!area.Value.Comp.ResinAllowed)
-            restrictedActions.Add("Resin Structures");
+            restrictedActions.Add(Loc.GetString("ssmc-area-resin-structures"));
 
         var protectionSource = "";
         if (hasHiveCoreProtection)
-            protectionSource = "\nProtection: Hive Core";
+            protectionSource = $"\n{Loc.GetString("ssmc-area-xeno-core-protect")}";
         else if (hasPylonProtection)
-            protectionSource = "\nProtection: Hive Pylon";
+            protectionSource = $"\n{Loc.GetString("ssmc-area-xeno-pylon-protect")}";
 
-        var restrictionsStr = $"\nCeiling level: {ceilingLevel}{protectionSource}";
+        var restrictionsStr = $"\n{Loc.GetString("ssmc-area-ceiling-level")} {ceilingLevel}{protectionSource}";
 
         if (allowedActions.Count > 0)
         {
-            restrictionsStr += "\n\nAllowed:";
+            restrictionsStr += $"\n\n{Loc.GetString("ssmc-area-allowed")}";
             restrictionsStr += "\n• " + string.Join("\n• ", allowedActions);
         }
 
         if (restrictedActions.Count > 0)
         {
-            restrictionsStr += "\n\nBlocked:";
+            restrictionsStr += $"\n\n{Loc.GetString("ssmc-area-blocked")}";
             restrictionsStr += "\n• " + string.Join("\n• ", restrictedActions);
         }
 

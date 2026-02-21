@@ -4,14 +4,16 @@ ssmc-command-comp-give-medal = Наградить медалью
 ssmc-command-comp-designate-echo = Задействовать отряд «Эхо»
 ssmc-command-comp-primary-lz = Выбрать основную ЗП
 ssmc-command-comp-send = Отправить
-ssmc-command-comp-send = Подтвердить?
+ssmc-command-comp-evac-send = Подтвердить?
 ssmc-command-comp-cancel-evac = Отменить эвакуацию
 ssmc-command-comp-initiate-evac = Начать эвакуацию
-
+ssmc-command-comp-designate-echo-confirm = Подтверждение задействования
+ssmc-command-comp-designate-echo-confirm-reason = Задействовать отряд «Эхо» для { $args }
+ssmc-command-comp-designate-echo-reason = Какая цель задействования отряда «Эхо»?
 ssmc-command-comp-ship-control = [bold]Управление кораблем[/bold]
 ssmc-command-comp-ship-control-make-announce = Сделать внутрикорабельное объявление
 ssmc-command-comp-ship-control-emergency = [bold]Чрезвычайные меры[/bold]
-
+ssmc-command-comp-overwatch-skill-issue = Вы не обучены использовать консоль наблюдения!
 ssmc-tac-map-delete = Удалить
 
 ssmc-xeno-command-send-to-hive = Отправить улью

@@ -83,10 +83,10 @@ public sealed class JoinXenoSystem : EntitySystem
             if (hive.BurrowedLarva <= 0)
                 continue;
 
-            options.Add(new DialogOption("Burrowed Larva", new JoinXenoBurrowedLarvaEvent(GetNetEntity(hiveId))));
+            options.Add(new DialogOption(Loc.GetString("ssmc-xeno-join-burrowed-larva"), new JoinXenoBurrowedLarvaEvent(GetNetEntity(hiveId))));
         }
 
-        _dialog.OpenOptions(ent, "Join as Xeno", options, "Available Xenonids");
+        _dialog.OpenOptions(ent, Loc.GetString("ssmc-xeno-join"), options, Loc.GetString("ssmc-xeno-join-list"));
     }
 
     public bool CanJoinXeno(EntityUid user)

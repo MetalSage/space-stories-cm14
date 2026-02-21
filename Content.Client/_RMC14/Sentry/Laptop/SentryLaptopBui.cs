@@ -329,7 +329,7 @@ public sealed class SentryLaptopBui : BoundUserInterface
             var sentryCount = state.Sentries.Count;
             var maxSentries = laptop.MaxLinkedSentries;
 
-            _window!.LaptopHeader.SetMarkupPermissive($"[color=#88C7FA][font size=16][bold]SENTRY NETWORK - {sentryCount}/{maxSentries} LINKED[/bold][/font][/color]");
+            _window!.LaptopHeader.SetMarkupPermissive(Loc.GetString("ssmc-sentry-info", ("count", sentryCount), ("max", maxSentries)));
         }
     }
 

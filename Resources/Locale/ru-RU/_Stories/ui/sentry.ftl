@@ -10,9 +10,10 @@ ssmc-sentry-mode2-on = [color=#229132]Активна[/color]
 ssmc-sentry-mode2-off = [color=#CED22B]Ожидает[/color]
 ssmc-sentry-mode2-off2 = [color=#A42625]Упакована[/color]
 ssmc-sentry-target-none = [color=#B0B0B0]Нет[/color]
+ssmc-sentry-network = [color=#88C7FA][font size=16][bold]СЕТЬ ТУРЕЛЕЙ - { $count }/{ $max } СВЯЗАНО[/bold][/font][/color]
 ssmc-sentry-info = [color=#88C7FA][bold]КАМЕРА: { $name } (Радиус: { $radius } плиток, Поле зрения: { $fov })[/bold][/color]
 ssmc-sentry-name-unknown = Неизвестно
-ssmc-sentry-standart-name = [color=#88C7FA][bold]UN 571-C Sentry Gun[/bold][/color]
+ssmc-sentry-standart-name = [color=#88C7FA][bold]Турель UN 571-C[/bold][/color]
 ssmc-sentry-name-header = НАЗВАНИЕ:
 ssmc-sentry-name-enter = Введите желаемое название...
 ssmc-sentry-healthbar = ПРОЧНОСТЬ
@@ -37,3 +38,7 @@ ssmc-sentry-power-all-on = ВКЛ. ВСЕ
 ssmc-sentry-power-all-off = ВЫКЛ. ВСЕ
 ssmc-sentry-camera-view-header = [color=#88C7FA][bold]ПРОСМОТР КАМЕРЫ[/bold][/color]
 ssmc-sentry-camera-view-close = ЗАКРЫТЬ
+ssmc-sentry-place-laptop-first = Сначала разместите ноутбук на столе!
+ssmc-sentry-open-laptop-first = Для начала откройте ноутбук!
+ssmc-sentry-max-controled-turrets = Ноутбук может контролировать до { $max } турелей!
+ssmc-sentry-successfull-linked = { $sentry } успешно подключена к ноутбуку.

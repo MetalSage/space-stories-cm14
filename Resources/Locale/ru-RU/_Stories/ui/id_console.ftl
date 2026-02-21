@@ -22,3 +22,13 @@ ssmc-id-console-jobs-dish-disc = Разжаловать
 ssmc-id-console-jobs-dish-disc-confrim = Вы уверены? Это действие будет невозможно отменить
 ssmc-id-console-squads-list = Список отрядов
 ssmc-id-console-squads-unassign = Сбросить отряд
+ssmc-id-console-missing-access = Эта карта не имеет доступа "{ $access }"
+ssmc-id-console-id-has-been-unassigned = { $id } был исключён из отряда.
+ssmc-id-console-you-has-been-unassigned = Вы были исключены из отряда.
+ssmc-id-console-rank-civilian = Гражданский
+ssmc-id-console-error-assigning-squad = Произошла ошибка при назначении { $marine } в отряд.
+ssmc-id-console-no-another-jobs-in-squad = { $squad } не может иметь больше { $job }.
+ssmc-id-console-no-civilians-in-squad = Вы не можете назначать неподготовленных гражданских лиц в отряды!
+ssmc-id-console-smb-has-been-assigned = { $name } был назначен в отряд { $squadName }.
+
+ssmc-overwatch-with-optics = Вы не можете сосредоточиться на консоли, используя оптику.

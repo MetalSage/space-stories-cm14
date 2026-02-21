@@ -154,7 +154,7 @@ public abstract partial class SharedCMSurgerySystem
                     args.Invalid = StepInvalidReason.MissingTool;
 
                     if (reg.Component is ICMSurgeryToolComponent tool)
-                        args.Popup = $"You need {tool.ToolName} to perform this step!";
+                        args.Popup = Loc.GetString("ssmc-medical-surgery-you-need-tool", ("tool", tool.ToolName));
 
                     return;
                 }
@@ -232,7 +232,7 @@ public abstract partial class SharedCMSurgerySystem
             return null;
 
         if (requirements.Contains(surgery))
-            throw new ArgumentException($"Surgery {surgery} has a requirement loop: {string.Join(", ", requirements)}");
+            throw new ArgumentException(Loc.GetString("ssmc-medical-surgery-has-requirement-loop", ("surgery", surgery), ("requirements", string.Join(", ", requirements))));
 
         requirements.Add(surgery);
 
