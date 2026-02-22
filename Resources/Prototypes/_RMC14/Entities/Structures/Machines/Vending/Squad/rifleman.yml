@@ -47,7 +47,7 @@
       - id: CMBeltMarine
         recommended: true
       - id: CMBeltKnifeFilled
-        name: пояс M276 для ножей (заполненный)
+        name: пояс M276 для ножей (полный)
       - id: RMCBeltHolsterPistol
       - id: RMCBeltHolsterRevolver
       - id: RMCBeltHolsterSMG
@@ -61,7 +61,7 @@
       choices: { RMCPouch: 2 }
       entries:
       - id: RMCPouchBayonetFill
-        name: ножны для штыка (заполненный)
+        name: ножны для штыка (полный)
       - id: RMCPouchFirstAidInjectors
         name: подсумок первой помощи (многоразовые инъекторы)
         recommended: true
@@ -188,7 +188,7 @@
       - id: RMCWebbingHolsterBlack
         points: 15
       - id: RMCScabbardMacheteFilled
-        name: ножны для мачете (заполненные)
+        name: ножны для мачете (полные)
         points: 15
       - id: RMCPouchMacheteFilled
         name: подсумок для мачете (полный)
@@ -232,7 +232,7 @@
         points: 15
       - id: RMCVisorWelding
         points: 5
-    - name: Памфлеты
+    - name: Брошюры
       entries:
       - id: CMPamphletJTAC
         points: 15

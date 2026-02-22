@@ -9,7 +9,7 @@
   - type: CMAutomatedVendor
     sections:
     # Auxiliary
-    - name: Auxiliary Support Officer
+    - name: Офицер вспомогательной поддержки
       takeAll: RMCDresser
       jobs:
       - CMAuxiliarySupportOfficer
@@ -28,33 +28,33 @@
       - id: RMCHeadCapASO
       - id: RMCHeadBeretASO
       - id: CMHeadBeretTan
-    - name: Intelligence Officer
+    - name: Офицер разведки
       takeAll: RMCDresser
       jobs:
       - CMIntelOfficer
       entries:
       - id: RMCUniformIntel
-    - name: Pilot
+    - name: Пилот
       takeAll: RMCDresser
       jobs:
       - CMPilotDropship
       - CMPilotGunship
       entries:
       - id: CMJumpsuitPilot
-    - name: Dropship Crew Chief
+    - name: Командир экипажа транспортера
       takeAll: RMCDresser
       jobs:
       - CMDropshipCrewChief
       entries:
       - id: CMJumpsuitDCC
-    - name: Senior Enlisted Advisor
+    - name: Старший сержантский советник
       takeAll: RMCDresser
       jobs:
       - CMSeniorEnlistedAdvisor
       entries:
       - id: CMHeadCapDrill
     # Command
-    - name: Officer
+    - name: Офицер
       takeAll: RMCDresser
       ranks:
       - RMCRankWarrantOfficer
@@ -72,7 +72,7 @@
       - id: CMHeadCapPeakedService
       - id: CMHeadCapOfficer
       - id: RMCHeadBeret
-    - name: Commanding Officer
+    - name: Командующий офицер
       takeAll: RMCDresser
       jobs:
       - CMCommandingOfficer
@@ -91,7 +91,7 @@
       - id: CMHeadBeretCOWhite
       - id: RMCHandsDeluxeMarine
       - id: CMShoesLaceupCommander
-    - name: Commanding Officer (Lieutenant colonel)
+    - name: Командующий офицер (подполковник)
       takeAll: RMCDresser
       jobs:
       - CMCommandingOfficer
@@ -100,7 +100,7 @@
       - RMCRankColonel
       entries:
       - id: CMHeadBeretCOLtCol
-    - name: Commanding Officer (Colonel)
+    - name: Командующий офицер (полковник)
       takeAll: RMCDresser
       jobs:
       - CMCommandingOfficer
@@ -108,14 +108,14 @@
       - RMCRankColonel
       entries:
       - id: CMHeadBeretCOCol
-    - name: Ceremonial Weapon
+    - name: Церемониальное оружие
       choices: { CMCeremonial: 1 }
       jobs:
       - CMCommandingOfficer
       entries:
       - id: RMCScabbardCeremonialFilled
-        name: Commander's Ceremonial Sabre
-    - name: Executive Officer
+        name: командирская церемониальная сабля
+    - name: Исполнительный офицер
       takeAll: RMCDresser
       jobs:
       - CMCommandingOfficer
@@ -125,7 +125,7 @@
       - id: CMCoatXOFormal
       - id: CMHeadCapPeakedFormal
       - id: RMCSunglassesBig
-    - name: Squad Colors
+    - name: Цвета отряда
       jobs:
       - CMCommandingOfficer
       - CMExecutiveOfficer
@@ -161,7 +161,7 @@
       - id: CMHeadBandIntel
       # - id: No RMCMaskScarfIntel
     # Engineering
-    - name: Engineering
+    - name: Инженерный отдел
       takeAll: RMCDresser
       jobs:
       - CMChiefEngineer
@@ -181,26 +181,26 @@
       - id: RMCHardhatBlue
       # </Hats>
       - id: RMCEngiArmband
-    - name: Chief Engineer
+    - name: Главный инженер
       takeAll: RMCDresser
       jobs:
       - CMChiefEngineer
       entries:
       - id: CMJumpsuitChiefEngineer
-    - name: Maintenance Technician
+    - name: Техник по обслуживанию
       takeAll: RMCDresser
       jobs:
       - CMMaintTech
       entries:
       - id: CMJumpsuitMaintTech
-    - name: Ordnance Technician
+    - name: Оружейный техник
       takeAll: RMCDresser
       jobs:
       - CMOrdnanceTech
       entries:
       - id: CMJumpsuitOrdnanceTech
     # Medical
-    - name: Medical
+    - name: Медицинский отдел
       takeAll: RMCDresser
       jobs:
       - CMCMO
@@ -224,7 +224,7 @@
       # </Caps>
       - id: RMCShoesWhite
       - id: RMCMedArmband
-    - name: Chief Medical Officer
+    - name: Главный врач
       takeAll: RMCDresser
       jobs:
       - CMCMO
@@ -232,20 +232,20 @@
       - id: CMJumpsuitCMO
       - id: RMCLabcoatCMO
       - id: CMHeadCapCMO
-    - name: Doctor
+    - name: Доктор
       takeAll: RMCDresser
       jobs:
       - CMDoctor
       entries:
       - id: RMCJumpsuitDoctor
       - id: RMCLabcoat
-    - name: Nurse
+    - name: Интерн
       takeAll: RMCDresser
       jobs:
       - CMNurse
       entries:
       - id: RMCNurseArmband
-    - name: Researcher
+    - name: Исследователь
       takeAll: RMCDresser
       jobs:
       - CMResearcher
@@ -254,7 +254,7 @@
       - id: RMCLabcoatScience
       - id: RMCScienceArmband
     # Military Police
-    - name: Military Police
+    - name: Военная полиция
       takeAll: RMCDresser
       jobs:
       - CMChiefMP
@@ -262,7 +262,7 @@
       - CMMilitaryPolice
       entries:
       - id: RMCMPArmband
-    - name: Chief MP
+    - name: Начальник ВП
       takeAll: RMCDresser
       jobs:
       - CMChiefMP
@@ -271,7 +271,7 @@
       - id: CMCoatChiefMP
       - id: RMCHeadCapPeakedCMP
       - id: CMHeadBeretCMP
-    - name: Military Warden
+    - name: Военный надзиратель
       takeAll: RMCDresser
       jobs:
       - CMMilitaryWarden
@@ -279,7 +279,7 @@
       - id: CMJumpsuitWarden
       - id: CMCoatWarden
       - id: CMHeadCapWarden
-    - name: Military Police Officer
+    - name: Офицер ВП
       takeAll: RMCDresser
       jobs:
       - CMMilitaryPolice
@@ -287,7 +287,7 @@
       - id: CMJumpsuitMP
       - id: CMCoatMP
     # Requisitions
-    - name: Requisitions
+    - name: Отдел поставок
       takeAll: RMCDresser
       jobs:
       - CMQuartermaster
@@ -295,7 +295,7 @@
       - CMMessTech
       entries:
       - id: RMCCargoArmband
-    - name: Logistics Officer
+    - name: Квартирмейстер
       takeAll: RMCDresser
       jobs:
       - CMQuartermaster
@@ -304,7 +304,7 @@
       - id: RMCQuartermasterJacket
       - id: RMCHeadCapQuartermaster
       - id: RMCHeadBeretQuartermaster
-    - name: Requisitions Technician
+    - name: Грузовой техник
       takeAll: RMCDresser
       jobs:
       - CMCargoTech
@@ -312,7 +312,7 @@
       - id: CMJumpsuitCargoTech
       - id: CMHeadCapCargo
       - id: RMCHeadBeanieCargo
-    - name: Mess Technician
+    - name: Сервисный работник
       takeAll: RMCDresser
       jobs:
       - CMMessTech
@@ -321,7 +321,7 @@
       - id: CMCoatMessTech
       - id: ClothingHeadHatChef
     # Gloves
-    - name: Standard Gloves
+    - name: Стандартные перчатки
       entries:
       - id: CMHandsLatex
       - id: RMCHandsLatexMarine
@@ -331,7 +331,7 @@
       - id: CMHandsInsulated
       - id: CMHandsBlackInsulated
     # Glasses
-    - name: Standard Glasses
+    - name: Стандартные очки
       entries:
       - id: RMCEyepatch
       - id: RMCSunglasses
@@ -354,7 +354,7 @@
       - id: RMCGlassesTriMaxBronzeFake
       - id: RMCGlassesTriMaxBlackFake
     # Goggles
-    - name: Standard Goggles
+    - name: Стандартные очки
       entries:
       - id: RMCGogglesBallistic
       - id: RMCGogglesPrescriptionBallistic
@@ -370,7 +370,7 @@
       - id: RMCGogglesBallisticPolarizedOrange
       - id: RMCGogglesM1A1BallisticBlue
     # Masks and scarfs
-    - name: Standard Masks and Scarfs
+    - name: Стандартные маски и шарфы
       entries:
       - id: RMCMaskBalaclava
       - id: RMCMaskBalaclavaGreen
@@ -408,7 +408,7 @@
       - id: RMCMaskBalaclavaSkullBlue
       - id: RMCMaskBalaclavaSkullBlack
     # Squad
-    - name: Squad Themed Apparel
+    - name: Тематическая одежда отряда
       jobs:
       - CMIntelOfficer
       - CMSquadLeader
@@ -425,7 +425,7 @@
       - id: RMCHeadBandSquad
       - id: RMCMaskScarfSquad
     # Service
-    - name: Service Uniform
+    - name: Повседневная униформа
       takeAll: RMCDresser
       ranks:
       - RMCRankRecruit
@@ -455,7 +455,7 @@
       - id: RMCHeadCapPatrol
       - id: RMCHeadBeretGreen
     # Full Dress
-    - name: Enlisted Dress Uniform
+    - name: Парадная униформа
       takeAll: RMCDresser
       ranks:
       - RMCRankRecruit
@@ -464,7 +464,7 @@
       - RMCRankLanceCorporal
       entries:
       - id: RMCUniformCaseDressEnlisted
-    - name: NCO Dress Uniform
+    - name: кейс с парадной униформой младшего состава
       takeAll: RMCDresser
       ranks:
       - RMCRankCorporal
@@ -477,7 +477,7 @@
       - RMCRankSergeantMajor
       entries:
       - id: RMCUniformCaseDressNCO
-    - name: Officer Dress Uniform
+    - name: кейс с парадной униформой командования
       takeAll: RMCDresser
       ranks:
       - RMCRankWarrantOfficer

@@ -22,11 +22,11 @@
       #   amount: 8
       - id: CMTricordrazineAutoInjectorNoSkill
         amount: 8
-    - name: Devices
+    - name: Устройства
       entries:
       - id: CMHealthAnalyzer
         amount: 8
-    - name: Field Supplies
+    - name: Полевые припасы
       entries:
       - id: CMBurnKit10
         amount: 8
@@ -53,13 +53,13 @@
   - type: CMAutomatedVendor
     hackable: false
     sections:
-    - name: Food and beverage
+    - name: Еда и напитки
       entries:
        - id: CMMRE
          amount: 25
        - id: CMDrinkWEYAWaterBottle30
          amount: 25
-    - name: Utility
+    - name: Утилиты
       entries:
       - id: CMPackFlare
         amount: 5
@@ -69,7 +69,7 @@
         amount: 5
 #      - id: # deck of playing cards
 #        amount: 5
-    - name: Clothing
+    - name: Одежда
       entries:
       - id: CMMaskGas
         amount: 15
