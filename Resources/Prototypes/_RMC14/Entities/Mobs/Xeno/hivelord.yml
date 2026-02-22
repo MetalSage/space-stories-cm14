@@ -288,6 +288,11 @@
     pheroSuffix: strong
   - type: Tackle
     max: 4
+    # Stories-start
+    # chance: 0.45
+    # stunMin: 5
+    # stunMax: 6
+    # Stories-end
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.15
     baseSprintSpeed: 3.9
