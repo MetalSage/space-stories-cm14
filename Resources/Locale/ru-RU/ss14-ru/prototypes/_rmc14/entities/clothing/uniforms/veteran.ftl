@@ -1,6 +1,6 @@
 ent-RMCVeteranUniformBase = { ent-RMCArmoredUniformBase }
     .desc = { ent-RMCArmoredUniformBase.desc }
-ent-RMCJumpsuitVeteranPMCNoWebbing = Форменная одежда ЧВК
+ent-RMCJumpsuitVeteranPMCNoWebbing = форменная одежда ЧВК
     .desc = Белый комплект обмундирования, предназначенный для частных охранников. На нём изображен символ корпорации «Вестон-Ямада».
 ent-RMCJumpsuitVeteranPMCNoWebbingPatch = { ent-RMCJumpsuitVeteranPMCNoWebbing }
     .suffix = WY patch

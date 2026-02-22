@@ -1,12 +1,12 @@
 ent-CMMRESideComponentBase = { ent-CMMREComponentBase }
     .desc = Компонент гарнира ИРП. Содержит гарнир, который можно есть вместе с основным блюдом.
-ent-CMMREComponentCracker = Компонент ИРП (крекер)
+ent-CMMREComponentCracker = компонент ИРП (крекер)
     .desc = Компонент гарнира ИРП. Содержит гарнир, который можно есть вместе с основным блюдом. Это крекер.
-ent-CMMREComponentRiceOnigiri = Компонент ИРП (рисовые онигири)
+ent-CMMREComponentRiceOnigiri = компонент ИРП (рисовые онигири)
     .desc = Компонент гарнира ИРП. Содержит гарнир, который можно есть вместе с основным блюдом. Это рисовые онигири.
-ent-CMMREComponentMashedPotatoes = Компонент ИРП (картофельное пюре)
+ent-CMMREComponentMashedPotatoes = компонент ИРП (картофельное пюре)
     .desc = Компонент гарнира ИРП. Содержит гарнир, который можно есть вместе с основным блюдом. Это картофельное пюре.
-ent-CMMREComponentRisotto = Компонент ИРП (ризотто)
+ent-CMMREComponentRisotto = компонент ИРП (ризотто)
     .desc = Компонент гарнира ИРП. Содержит гарнир, который можно есть вместе с основным блюдом. Это ризотто.
 ent-CMMREFoodSide = { ent-CMMREFoodBase }
     .desc = { ent-CMMREFoodBase.desc }

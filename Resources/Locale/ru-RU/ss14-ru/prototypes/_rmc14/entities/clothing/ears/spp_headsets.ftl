@@ -24,5 +24,5 @@ ent-RMCHeadsetDistressSPP = гарнитура колонии СПН
     .desc = { ent-RMCHeadsetIconsSPP.desc }
 ent-RMCHeadsetSPPPaP = гарнитура СПН-ОХР
     .desc = Специальная гарнитура, используемая Народной вооруженной милицией СПН.
-ent-RMCHeadsetDistressHalcyon = Корпоративная гарнитура Halcyon
+ent-RMCHeadsetDistressHalcyon = корпоративная гарнитура Halcyon
     .desc = Гарнитура, которую обычно носит корпоративный персонал Halcyon Dynamics.

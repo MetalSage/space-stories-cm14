@@ -1,6 +1,6 @@
 ent-CMMREMainComponentBase = { ent-CMMREComponentBase }
     .desc = Компонент питания ИРП. Содержит основное блюдо для питательных веществ.
-ent-CMMREComponentBonelessPorkRibs = Компонент ИРП (свиные ребрышки без костей)
+ent-CMMREComponentBonelessPorkRibs = компонент ИРП (свиные ребрышки без костей)
     .desc = Компонент блюда ИРП. Содержит основное питательное вещество. Это свиные ребрышки без костей.
 ent-CMMREComponentGrilledChicken = компонент ИРП (курица-гриль)
     .desc = Компонент блюда ИРП. Содержит основное питательное блюдо. Это курица-гриль.

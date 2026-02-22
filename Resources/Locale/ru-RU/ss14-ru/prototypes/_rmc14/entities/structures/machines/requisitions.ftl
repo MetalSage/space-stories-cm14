@@ -1,4 +1,4 @@
-ent-RMCASRSAccount = Счет АСПХ
+ent-RMCASRSAccount = счет АСПХ
     .desc = { "" }
 ent-CMASRSConsole = консоль АСПХ
     .desc = Консоль автоматизированной системы поиска в хранилище.

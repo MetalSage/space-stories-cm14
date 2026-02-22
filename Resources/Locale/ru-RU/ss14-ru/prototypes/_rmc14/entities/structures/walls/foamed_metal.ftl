@@ -1,4 +1,4 @@
-ent-RMCBaseFoamedMetal = Базовый вспененный металл RMC
+ent-RMCBaseFoamedMetal = базовый вспененный металл RMC
     .desc = { "" }
 ent-RMCAluminiumMetalFoamEffect = вспененный алюминий
     .desc = { ent-MetalFoam.desc }

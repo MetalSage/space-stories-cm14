@@ -1,6 +1,6 @@
 ent-CMComputerDropship = { ent-CMBaseStructure }
     .desc = { ent-CMBaseStructure.desc }
-ent-CMComputerDropshipNavigation = Навигационный компьютер для дропшипа
+ent-CMComputerDropshipNavigation = навигационный компьютер для дропшипа
     .desc = Бортовой компьютер, который может использоваться для автопилотирования или дальних полетов.
 ent-CMComputerDropshipNavigationERT = транспортный шаттл
     .desc = Полетный компьютер транспортного шаттла.

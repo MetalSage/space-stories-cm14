@@ -9,6 +9,6 @@ ent-RMCMonitorCameraAlamo = { ent-RMCSurveillanceCameraAlmayer }
 ent-RMCMonitorCameraNormandy = { ent-RMCSurveillanceCameraAlmayer }
     .desc = Используется для наблюдения за десантным кораблем.
     .suffix = Нормандия
-ent-RMCMonitorCameraLandingZone = Камера зоны высадки
+ent-RMCMonitorCameraLandingZone = камера зоны высадки
     .suffix = Зона высадки
     .desc = { ent-MarkerBase.desc }

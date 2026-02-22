@@ -137,6 +137,6 @@ ent-RMCPodDoorButtonWeYaOfficeQuarterWindows = ставни на четверт�
 ent-RMCPodDoorButtonSPP = кнопка
     .desc = { ent-RMCPodDoorButton.desc }
     .suffix = Закрытый, СПН
-ent-RMCPodDoorButtonHybrisaCavesLockdown = Блокировка пещер
+ent-RMCPodDoorButtonHybrisaCavesLockdown = блокировка пещер
     .desc = { ent-RMCPodDoorButton.desc }
     .suffix = Гибриса
