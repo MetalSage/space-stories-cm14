@@ -50,6 +50,22 @@
                 "Client"
             ],
             "preLaunchTask": "build"
+        },
+        {
+            "name": "Release - Server/Client",
+            "configurations": [
+                "Server",
+                "Client"
+            ],
+            "preLaunchTask": "build-release"
+        },
+        {
+            "name": "Tools - Server/Client",
+            "configurations": [
+                "Server",
+                "Client"
+            ],
+            "preLaunchTask": "build-tools"
         }
     ]
 }
