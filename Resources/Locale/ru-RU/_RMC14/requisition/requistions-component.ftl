@@ -11,14 +11,14 @@ requisition-paper-print-manifest =
     Серийный номер: { $serialNumber }[/head]
 requisition-paper-print-content = - { $count } { $item }
 # Консоль вызова припасов
-ui-supply-drop-consle-name = Консоль вызова припасов
-ui-supply-drop-console-name-bolded =  [bold]ВЫЗОВ ПРИПАСОВ[/bold]
+ui-supply-drop-consle-name = Консоль отправки припасов
+ui-supply-drop-console-name-bolded =  [bold]ОТПРАВКА ПРИПАСОВ[/bold]
 ui-supply-drop-console-longitude = Долгота:
 ui-supply-drop-console-latitude = Широта:
 ui-supply-drop-pad-status =  [bold]Состояние площадки снабжения[/bold]
 ui-supply-drop-console-update = Обновить
 ui-supply-drop-console-ready = Готово к запуску!
-ui-supply-drop-console-launch = ЗАПУСТИТЬ ВЫЗОВ ПРИПАСОВ
+ui-supply-drop-console-launch = ЗАПУСТИТЬ ЯЩИК С ПРИПАСАМИ
 ui-supply-drop-console-launch-confirmation = Вы уверены, что хотите отправить ящик?
 ui-supply-drop-console-cooldown = { $time } секунд до следующего запуска
 ui-supply-drop-crate-status =

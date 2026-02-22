@@ -1,2 +1,2 @@
-ent-RMCSpawnPointSurvivorSolarisCorporateLiaison = survivor solaris coporate liaison spawn point
+ent-RMCSpawnPointSurvivorSolarisCorporateLiaison = точка появления выжившего корпоративного колониста солярис
     .desc = { ent-CMSpawnPointJobBase.desc }

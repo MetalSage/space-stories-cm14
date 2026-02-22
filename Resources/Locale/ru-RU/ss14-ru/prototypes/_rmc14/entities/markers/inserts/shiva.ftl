@@ -1,7 +1,7 @@
 ent-RMCMapInsertShivaSouthCaves = Южные Пещеры ЗП2
     .suffix = Вставка Шива
     .desc = { ent-RMCMapInsertBase.desc }
-ent-RMCMapInsertShivaPanicRoomHold = Panic Room Hold
+ent-RMCMapInsertShivaPanicRoomHold = Комната паники
     .suffix = Insert Shiva
     .desc = { ent-RMCMapInsertBase.desc }
 ent-RMCMapInsertShivaCLFRaid = КОФ

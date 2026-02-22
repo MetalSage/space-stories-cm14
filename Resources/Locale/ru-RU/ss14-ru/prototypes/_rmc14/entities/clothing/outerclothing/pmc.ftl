@@ -1,5 +1,5 @@
-ent-RMCArmorM4PMCNoLight = M4 pattern PMC armor
-    .desc = A modification of the standard M3 armor. Designed for high-profile security operators and corporate mercenaries in mind.
+ent-RMCArmorM4PMCNoLight = броня ЧВК образца M4
+    .desc = Модификация стандартной брони M3. Разработана с учетом потребностей сотрудников служб безопасности высокого профиля и корпоративных наемников.
     .suffix = No Suitlamp
 ent-CMArmorM4PMC = Броня M4 образца ЧВК
     .desc = Модификация стандартной брони M3. Разработана для высокопоставленных операторов безопасности и корпоративных наемников.

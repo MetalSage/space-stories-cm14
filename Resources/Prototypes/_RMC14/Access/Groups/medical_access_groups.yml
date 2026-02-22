@@ -1,7 +1,7 @@
 ﻿- type: accessGroup
   id: CMCMO
   parent: RMCBaseMedicalJob
-  name: Chief Medical Officer
+  name: Главный врач
   tags:
   - CMAccessCMO
   - CMAccessMedical
@@ -15,7 +15,7 @@
 - type: accessGroup
   id: CMMedbay
   parent: RMCBaseMedicalJob
-  name: Doctor
+  name: Доктор
   tags:
   - CMAccessMedical
   - RMCAccessMorgue
@@ -25,7 +25,7 @@
 - type: accessGroup
   id: Nurse
   parent: RMCBaseMedicalJob
-  name: Nurse
+  name: Интерн
   tags:
   - CMAccessMedical
   - RMCAccessMorgue
@@ -35,7 +35,7 @@
 - type: accessGroup
   id: Researcher
   parent: RMCBaseMedicalJob
-  name: Researcher
+  name: Исследователь
   tags:
   - CMAccessMedical
   - CMAccessResearch

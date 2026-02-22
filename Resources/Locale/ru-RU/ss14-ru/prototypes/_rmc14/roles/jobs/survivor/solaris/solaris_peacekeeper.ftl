@@ -1,2 +1,2 @@
-ent-RMCSpawnPointSurvivorSolarisILRCPeacekeeper = survivor solaris ILRC peacekeeper spawn point
+ent-RMCSpawnPointSurvivorSolarisILRCPeacekeeper = точка появления выжившего миротворца ILRC солярис
     .desc = { ent-CMSpawnPointJobBase.desc }

@@ -1,4 +1,4 @@
-ent-RMCSpawnPointSurvivorKutjevoChaplain = survivor kutjevo chaplain spawn point
+ent-RMCSpawnPointSurvivorKutjevoChaplain = точка появления выжившего священника кутьево
     .desc = { ent-CMSpawnPointJobBase.desc }
-ent-RMCGearSurvivorPresetKutjevoChaplain = kutjevo chaplain preset
+ent-RMCGearSurvivorPresetKutjevoChaplain = пресет выжившего священника кутьево
     .desc = { ent-RMCSurvivorPresetCivilianRareItem.desc }

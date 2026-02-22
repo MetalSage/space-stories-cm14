@@ -23,7 +23,7 @@
 - type: accessLevel
   id: CMAccessMarinePrep
   parent: RMCBaseMarineAccess
-  name: Marine Prep
+  name: Казармы
 
 - type: accessLevel
   id: CMAccessMedPrep

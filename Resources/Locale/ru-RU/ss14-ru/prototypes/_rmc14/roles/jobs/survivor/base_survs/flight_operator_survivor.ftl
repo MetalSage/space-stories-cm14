@@ -1,6 +1,6 @@
-ent-RMCSpawnPointSurvivorFlightOperator = survivor flight operator spawn point
+ent-RMCSpawnPointSurvivorFlightOperator = точка появления выжившего летчика
     .desc = { ent-CMSpawnPointJobBase.desc }
-ent-RMCRandomHumanoidSurvivorFlightOperator = flight operator colonist ghost role
+ent-RMCRandomHumanoidSurvivorFlightOperator = гостроль выжившего летчика
     .desc = { ent-MarkerBase.desc }
-ent-RMCGearSurvivorPresetFlightOperator = flight operator colonist preset
+ent-RMCGearSurvivorPresetFlightOperator = пресет выжившего летчика
     .desc = { ent-RMCSurvivorPresetCivilianRareItem.desc }

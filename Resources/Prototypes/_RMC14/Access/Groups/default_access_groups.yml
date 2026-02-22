@@ -15,7 +15,7 @@
   id: RMCBaseCommandJob
   name: protobaseaccess UNMC Command
   faction: FactionMarine
-  accessGroup: UNMC Command
+  accessGroup: Командование
   tags:
   - RMCMarineDefaultAccess
 
@@ -23,7 +23,7 @@
   id: RMCBaseAuxiliaryJob
   name: protobaseaccess UNMC Auxiliary
   faction: FactionMarine
-  accessGroup: UNMC Auxiliary
+  accessGroup: Вспомогательная поддержка
   tags:
   - RMCMarineDefaultAccess
 
@@ -31,7 +31,7 @@
   id: RMCBaseMiscellaneousJob
   name: protobaseaccess UNMC Miscellaneous
   faction: FactionMarine
-  accessGroup: UNMC Miscellaneous
+  accessGroup: Прочее
   tags:
   - RMCMarineDefaultAccess
 
@@ -39,7 +39,7 @@
   id: RMCBaseMPJob
   name: protobaseaccess UNMC Military Police
   faction: FactionMarine
-  accessGroup: UNMC Military Police
+  accessGroup: Военная полиция
   tags:
   - RMCMarineDefaultAccess
 
@@ -47,7 +47,7 @@
   id: RMCBaseEngineeringJob
   name: protobaseaccess UNMC Engineering
   faction: FactionMarine
-  accessGroup: UNMC Engineering
+  accessGroup: Инженерный отдел
   tags:
   - RMCMarineDefaultAccess
 
@@ -55,7 +55,7 @@
   id: RMCBaseRequisitionsJob
   name: protobaseaccess UNMC Requisitions
   faction: FactionMarine
-  accessGroup: UNMC Requisitions
+  accessGroup: Отдел поставок
   tags:
   - RMCMarineDefaultAccess
 
@@ -63,7 +63,7 @@
   id: RMCBaseMedicalJob
   name: protobaseaccess UNMC Medical
   faction: FactionMarine
-  accessGroup: UNMC Medical
+  accessGroup: Медицинский отдел
   tags:
   - RMCMarineDefaultAccess
 
@@ -71,6 +71,6 @@
   id: RMCBaseMarinesJob
   name: protobaseaccess UNMC Marines
   faction: FactionMarine
-  accessGroup: UNMC Marines
+  accessGroup: Морская пехота
   tags:
   - RMCMarineDefaultAccess

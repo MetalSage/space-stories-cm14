@@ -1,5 +1,5 @@
-ent-RMCOrbitalCannonDerelict = derelict orbital cannon
-    .desc = The UNMC Orbital Cannon System. Used for shooting large targets on the planet that is orbited. This one appears inoperable.
+ent-RMCOrbitalCannonDerelict = заброшенная орбитальная пушка
+    .desc = Орбитальная пушечная система КМП США. Используется для стрельбы по крупным целям на планете, вокруг которой вращается. Эта система, по-видимому, неисправна.
 ent-RMCOrbitalCannon = орбитальная пушка
     .desc = Орбитальная пушечная система КМП США. Используется для стрельбы по крупным целям на планете, находящейся на орбите. Она ускоряет полезную нагрузку с помощью твердого топлива, что обеспечивает разрушительные результаты при столкновении.
 ent-RMCOrbitalCannonFuel = твёрдое топливо

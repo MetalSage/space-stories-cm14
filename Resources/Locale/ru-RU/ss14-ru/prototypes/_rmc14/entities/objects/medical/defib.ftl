@@ -13,5 +13,5 @@ ent-RMCDefibrillatorCompact = компактный дефибриллятор
     .desc = Этот дефибриллятор имеет вдвое меньшую емкость заряда по сравнению со стандартным аварийным дефибриллятором, но при этом может поместиться в кармане.
 ent-RMCSynthResetKey = ключ перезагрузки синтетических устройств Ве-Я
     .desc = Это устройство может исправить основные сбои или ошибки программирования синтетических устройств, а также перезапустить синтетическое устройство, которое потерпело критическую неудачу. Его можно использовать только один раз до перезагрузки.
-ent-RMCSynthResetKeySMART = SMART WeYa synthetic reset key
-    .desc = This device can fix major glitches or programming errors of synthetic units, as well as being able to restart a synthetic that has suffered critical failure. It can only be used once before being reset. This one has a microfunction AI and can be operated by anyone.
+ent-RMCSynthResetKeySMART = умный синтетический ключ сброса Ве-Я
+    .desc = Это устройство может устранять серьезные сбои или ошибки программирования синтетических единиц, а также перезапускать синтетические единицы, которые потерпели критическую аварию. Его можно использовать только один раз, после чего оно сбрасывается. Это устройство имеет микрофункциональный ИИ и может управляться любым человеком.

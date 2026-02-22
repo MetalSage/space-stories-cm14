@@ -17,34 +17,34 @@
   id: RMCBaseCommandAccess
   name: protobaseaccess UNMC Command
   faction: FactionMarine
-  accessGroup: UNMC Command
+  accessGroup: Командование
 
 - type: accessLevel
   id: RMCBaseMPAccess
   name: protobaseaccess UNMC Military Police
   faction: FactionMarine
-  accessGroup: UNMC Military Police
+  accessGroup: Военная полиция
 
 - type: accessLevel
   id: RMCBaseMedicalAccess
   name: protobaseaccess UNMC Medical
   faction: FactionMarine
-  accessGroup: UNMC Medical
+  accessGroup: Медицинский отдел
 
 - type: accessLevel
   id: RMCBaseEngineeringAccess
   name: protobaseaccess UNMC Engineering
   faction: FactionMarine
-  accessGroup: UNMC Engineering
+  accessGroup: Инженерный отдел
 
 - type: accessLevel
   id: RMCBaseMarineAccess
   name: protobaseaccess UNMC Marine
   faction: FactionMarine
-  accessGroup: UNMC Marine Access
+  accessGroup: Морская пехоты
 
 - type: accessLevel
   id: RMCBaseSquadAccess
   name: protobaseaccess UNMC Squad
   faction: FactionMarine
-  accessGroup: UNMC Squad
+  accessGroup: Отряд

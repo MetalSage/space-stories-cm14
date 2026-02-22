@@ -1,4 +1,4 @@
-ent-RMCSheetCardboard = cardboard
+ent-RMCSheetCardboard = картон
     .suffix = Full, RMC
     .desc = { ent-SheetOtherBase.desc }
 ent-RMCSheetCardboard30 = { ent-RMCSheetCardboard }

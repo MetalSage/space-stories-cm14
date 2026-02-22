@@ -1,6 +1,6 @@
 ent-RMCResearchThingies = Исследовательские штуковины
     .desc = { "" }
-ent-RMCBaseAlienTank = cryo tank
+ent-RMCBaseAlienTank = криогенный резервуар
     .desc = { ent-RMCResearchThingies.desc }
 ent-RMCAlienTank = криогенный резервуар
     .desc = Внутри что-то большое...

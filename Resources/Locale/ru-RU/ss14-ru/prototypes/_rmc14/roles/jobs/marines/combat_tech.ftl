@@ -12,5 +12,5 @@ ent-CMSpawnPointCombatTechCharlie = { ent-CMSpawnPointCombatTech }
 ent-CMSpawnPointCombatTechDelta = { ent-CMSpawnPointCombatTech }
     .suffix = Дельта
     .desc = { ent-CMSpawnPointCombatTech.desc }
-ent-RMCGuidebookRoleCT = Combat Technician
-    .desc = Combat Technician
+ent-RMCGuidebookRoleCT = Боевой техник
+    .desc = Боевой техник

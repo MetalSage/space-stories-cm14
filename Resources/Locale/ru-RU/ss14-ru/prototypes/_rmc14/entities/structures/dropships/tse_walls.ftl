@@ -1,4 +1,4 @@
-ent-RMCBaseTSEDropshipWall = UD4-UK wall
+ent-RMCBaseTSEDropshipWall = стена UD4-UK
     .desc = { ent-CMBaseWallInvincible.desc }
 ent-RMCTSEDropshipWall1 = { ent-RMCBaseTSEDropshipWall }
     .desc = { ent-RMCBaseTSEDropshipWall.desc }

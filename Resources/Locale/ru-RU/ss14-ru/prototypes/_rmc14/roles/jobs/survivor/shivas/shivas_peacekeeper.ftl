@@ -1,2 +1,2 @@
-ent-RMCSpawnPointSurvivorShivasILRCPeacekeeper = survivor shivas ILRC peacekeeper spawn point
+ent-RMCSpawnPointSurvivorShivasILRCPeacekeeper = точка появления выжившего миротворца ILRC шивы
     .desc = { ent-CMSpawnPointJobBase.desc }

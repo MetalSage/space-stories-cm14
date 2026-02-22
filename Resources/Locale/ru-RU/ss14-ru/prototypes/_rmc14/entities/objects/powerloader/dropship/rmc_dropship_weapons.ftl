@@ -1,8 +1,8 @@
 ent-RMCDropshipAttachmentWeapon = { ent-RMCDropshipAttachmentBase }
     .desc = { ent-RMCDropshipAttachmentBase.desc }
-ent-RMCDropshipAttachmentGau21Cannon = 30-мм пушка АПС-21
+ent-RMCDropshipAttachmentGau21Cannon = 30-мм пушка (АПС-21)
     .desc = Демонтированная 30-мм роторная пушка АПС-21 "Гремучая пушка". Похоже, у нее отсутствуют тяги подачи и оголены соединительные провода. Скорострельность 5200 выстрелов в минуту, многие боялись ее из-за ее мощи. Получила прозвище "Гремучая пушка" из-за вибраций, которые она вызывала у дропшипов во время своего первоначального выпуска. Принимает ящики с боеприпасами PGU-100/PGU-105.
-ent-RMCDropshipAttachmentGuidedMissileLauncher = РПУ-444 ракетная установка
+ent-RMCDropshipAttachmentGuidedMissileLauncher = ракетная установка (АПУ-444)
     .desc = Оружейная система в виде ракетной капсулы, способная запускать одну ракету с лазерным наведением. Для ее перемещения потребуется какой-либо подъемник. Принимает ракеты AGM, AIM, BLU и GBU.
-ent-RMCDropshipAttachmentRocketPod = РПУ-229 ракетный блок
+ent-RMCDropshipAttachmentRocketPod = ракетный блок (АПУ-229)
     .desc = Ракетная установка, способная запускать шесть мини-ракет с лазерным наведением. Для ее перемещения потребуется какой-либо подъемник. Принимает мини-ракеты серии AGR-59.

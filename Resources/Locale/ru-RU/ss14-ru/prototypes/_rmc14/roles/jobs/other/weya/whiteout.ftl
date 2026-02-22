@@ -1,3 +1,3 @@
-ent-RMCRandomHumanoidPMCWhiteout = DEATHSQUAD pmc ghost role whiteout
+ent-RMCRandomHumanoidPMCWhiteout = DEATHSQUAD гостроль чвк белая мгла
     .suffix = Spawner, Player
     .desc = { "" }

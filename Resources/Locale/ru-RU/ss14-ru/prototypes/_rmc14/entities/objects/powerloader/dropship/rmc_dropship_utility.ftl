@@ -1,12 +1,12 @@
 ent-RMCDropshipAttachmentUtility = { ent-RMCDropshipAttachmentBase }
     .desc = { ent-RMCDropshipAttachmentBase.desc }
-ent-RMCDropshipAttachmentMedevac = система эвакуации ЭМУ-4М
+ent-RMCDropshipAttachmentMedevac = система эвакуации (ЭМУ-4М)
     .desc = Лебедка для подъема раненых пехотинцев на медицинских носилках на дропшип. Крепится к точке крепления, обслуживаемой экипажем, в задней части дропшипа.
-ent-RMCDropshipAttachmentFulton = система подъема фултона ЭМУ-19
+ent-RMCDropshipAttachmentFulton = система подъема фултона (ЭМУ-19)
     .desc = Лебедочная система для сбора любых фултонных шаров на большой высоте. Обязательно включите ее!
-ent-RMCDropshipAttachmentParaDrop = система десантирования с парашютом ППУ-1
+ent-RMCDropshipAttachmentParaDrop = система десантирования с парашютом (ППУ-1)
     .desc = { ent-RMCDropshipAttachmentUtility.desc }
-ent-RMCDropshipAttachmentDoorGun = Система крепления вооружения MTU-4B Door Gunner
+ent-RMCDropshipAttachmentDoorGun = система крепления вооружения (MTU-4B)
     .desc = Коробка для установки оснащённого экипажем крупнокалиберного пулемёта M56D с оптическим прицелом. Подходит как для внешних креплений оружия, так и для креплений в отсеках экипажа десантных кораблей.
-ent-RMCDropshipAttachmentSentryDefenseSystem = Система противовоздушной обороны A/A-32-P Sentry
+ent-RMCDropshipAttachmentSentryDefenseSystem = оборонительная система с турелью (A/A-32-P)
     .desc = Коробка, позволяющая развернуть сторожевую турель. Подходит как для крепления внешнего оружия, так и для крепления в отсеке экипажа десантных кораблей.

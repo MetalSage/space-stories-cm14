@@ -1,7 +1,7 @@
 ﻿- type: accessGroup
   id: CMCE
   parent: RMCBaseEngineeringJob
-  name: Chief Engineer
+  name: Гланый инженер
   tags:
   - CMAccessCE
   - CMAccessEngineering
@@ -16,7 +16,7 @@
 - type: accessGroup
   id: OT
   parent: RMCBaseEngineeringJob
-  name: Ordnance Technician
+  name: Оружейный техник
   tags:
   - CMAccessEngineering
   - CMAccessColonyEngineering
@@ -26,7 +26,7 @@
 - type: accessGroup
   id: MaintTech
   parent: RMCBaseEngineeringJob
-  name: Maintenance Technician
+  name: Техник по обслуживанию
   tags:
   - CMAccessEngineering
   - CMAccessColonyEngineering
