@@ -62,7 +62,7 @@ public sealed class XenoChooseStructureBui : BoundUserInterface
                 else
                 {
                     if (_xenoConstruction.GetStructurePlasmaCost(structureId) is { } cost)
-                        displayName += Loc.GetString("ssmc-xeno-cunstruct-plasma-", ("cost", cost));
+                        displayName += Loc.GetString("ssmc-xeno-cunstruct-plasma-cost", ("cost", cost));
                 }
 
                 control.Set(displayName, _sprite.Frame0(_prototype.Index(displayId)));

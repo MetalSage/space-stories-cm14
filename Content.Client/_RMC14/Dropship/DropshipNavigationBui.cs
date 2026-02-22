@@ -53,9 +53,9 @@ public sealed class DropshipNavigationBui : BoundUserInterface
 
         _window = this.CreateWindow<DropshipNavigationWindow>();
         _window.OnClose += OnClose;
-        SetFlightHeader("Flight Controls");
-        SetDoorHeader("Door Controls");
-        SetRemoteControlHeader("Remote Control:");
+        SetFlightHeader(Loc.GetString("ssmc-dropship-flight-controls"));
+        SetDoorHeader(Loc.GetString("ssmc-dropship-door-controls"));
+        SetRemoteControlHeader(Loc.GetString("ssmc-dropship-remote-control-header"));
 
         if (_entities.TryGetComponent(Owner, out TransformComponent? transform) &&
             _entities.TryGetComponent(transform.ParentUid, out MetaDataComponent? metaData))
@@ -101,7 +101,7 @@ public sealed class DropshipNavigationBui : BoundUserInterface
         if (_window == null)
             return;
 
-        SetFlightHeader("Flight Controls");
+        SetFlightHeader(Loc.GetString("ssmc-dropship-flight-controls"));
 
         _window.DestinationsContainer.Visible = true;
         _window.ProgressBarContainer.Visible = false;
@@ -134,7 +134,7 @@ public sealed class DropshipNavigationBui : BoundUserInterface
         _destinations.Clear();
         if (destinations.FlyBy is { } flyBy)
         {
-            var flyByName = "Flyby";
+            var flyByName = Loc.GetString("ssmc-dropship-flyby");
             var flyByButton = DestinationButton(flyByName, false, () => _selected = flyBy);
             _destinations[flyByButton] = flyByName;
             _window.DestinationsContainer.AddChild(flyByButton);
@@ -144,7 +144,7 @@ public sealed class DropshipNavigationBui : BoundUserInterface
         {
             var name = destination.Name;
             if (destination.Primary)
-                name += " (Primary)";
+                name += $" {Loc.GetString("ssmc-dropship-primary-lz")}";
 
             var button = DestinationButton(name, destination.Occupied, () => _selected = destination.Id);
 
@@ -181,25 +181,25 @@ public sealed class DropshipNavigationBui : BoundUserInterface
         switch (travelling.State)
         {
             case FTLState.Starting:
-                SetFlightHeader("Launch in progress");
-                _window.ProgressBarHeader.SetMarkup(Msg($"Launching in T-{time}s to {destination}"));
+                SetFlightHeader(Loc.GetString("ssmc-drophip-launch-in-progress"));
+                _window.ProgressBarHeader.SetMarkup(Msg(Loc.GetString("ssmc-dropship-launch-to-lz-time", ("time", time), ("destination", destination))));
                 SetLockDownDisabled(false);
                 break;
             case FTLState.Travelling:
-                SetFlightHeader($"In flight: {destination}");
-                _window.ProgressBarHeader.SetMarkup(Msg($"Time until destination: T-{time}s"));
+                SetFlightHeader(Loc.GetString("ssmc-dropship-in-flight-to", ("destination", destination)));
+                _window.ProgressBarHeader.SetMarkup(Msg(Loc.GetString("ssmc-dropship-in-flight-time", ("time", time))));
                 SetLockDownDisabled(true);
                 SetCancelDisabled(false);
                 break;
             case FTLState.Arriving:
-                SetFlightHeader($"Final Approach: {destination}");
-                _window.ProgressBarHeader.SetMarkup(Msg($"Time until landing: T-{time}s"));
+                SetFlightHeader(Loc.GetString("ssmc-dropship-final-approach-to", ("destination", destination)));
+                _window.ProgressBarHeader.SetMarkup(Msg(Loc.GetString("ssmc-dropship-final-approach-time", ("time", time))));
                 SetLockDownDisabled(true);
                 SetCancelDisabled(true);
                 break;
             case FTLState.Cooldown:
-                SetFlightHeader("Refueling in progress");
-                _window.ProgressBarHeader.SetMarkup(Msg($"Ready to launch in T-{time}s"));
+                SetFlightHeader(Loc.GetString("ssmc-dropship-fuel-progress"));
+                _window.ProgressBarHeader.SetMarkup(Msg(Loc.GetString("ssmc-dropship-fuel-progress-time", ("time", time))));
                 SetLockDownDisabled(false);
                 SetCancelDisabled(true);
                 break;

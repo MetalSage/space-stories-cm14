@@ -28,3 +28,18 @@ ssmc-dropship-fly-launch = Запустить
 ssmc-dropship-remote-control = Вызвать
 ssmc-dropship-remote-control-no-enabled = У этого транспортного корабля отключена эта функция!
 ssmc-dropship-remote-control-busy = Этот транспортный корабль в настоящее время занят. Повторите попытку позже.
+
+ssmc-dropship-flight-controls = Управление полетом
+ssmc-dropship-door-controls = Управление шлюзами
+ssmc-dropship-remote-control-header = Удаленный доступ:
+ssmc-dropship-flyby = СвобПол
+ssmc-dropship-primary-lz = (Основное)
+
+ssmc-drophip-launch-in-progress = Осуществляется взлёт
+ssmc-dropship-launch-to-lz-time = Взлёт через { $time } с. к { $destination }
+ssmc-dropship-in-flight-to = В полёте к: { $destination }
+ssmc-dropship-in-flight-time = До цели: { $time } с.
+ssmc-dropship-final-approach-to = Посадка на { $destination }
+ssmc-dropship-final-approach-time = До посадки: { $time } с.
+ssmc-dropship-fuel-progress = Осуществляется дозаправка
+ssmc-dropship-fuel-progress-time = Готов к вылету через { $time } с.
