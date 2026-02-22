@@ -97,6 +97,11 @@
       components:
       - Ladder
     range: 15
+  # Stories-start
+  - type: Stripping
+    onlySee: true
+    forceSee: true
+  # Stories-end
 
 # proto for player ghosts specifically
 - type: entity
