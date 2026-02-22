@@ -10,3 +10,6 @@ ent-RMCSmartGunPMCPVE = ML79A heavy support gun
 ent-RMCAttachmentSmartgunHarness = Упряжь для тяжелой орудийной поддержки M56B
     .desc = Специальная упряжь для тяжелой орудийной поддержки M56B, помогающая контролировать отдачу и обеспечивать стабильность, а также позволяющая легко маневрировать оружием и даже подвешивать его без рукоятки.
     .suffix = PVE, НЕ КАРТОГРАФИРОВАТЬ ДЛЯ PVP.
+ent-RMCSmartGunRCMPVE = ML66C general purpose machine gun
+    .desc = A heavy, mobile machinegun used by the Royal Crown Marines. Heavily modified from the UN's ML66A platform, it fires 10x30mm holotargeting rounds.
+    .suffix = PVE, RCM

@@ -12,10 +12,10 @@ cm-distress-signal-marine = { $player }
 rmc-distress-signal-next-map-title = Карта следующей планеты
 rmc-distress-signal-next-map-tie = Ничья при голосовании за карту! Выбираем... { $picked }
 rmc-distress-signal-next-map-win = { $winner } выиграла голосование за карту!
-rmc-distress-signal-next-map-header = Map Vote Results
-rmc-distress-signal-next-map-votes = { $map }: { $votes } votes
-rmc-distress-signal-next-map-votes-new = { $map }: { $votes } votes ({ $newVotes } new)
-rmc-distress-signal-next-map-tiebreaker = Vote tied between:
+rmc-distress-signal-next-map-header = Результаты голосования за карту
+rmc-distress-signal-next-map-votes = { $map }: { $votes } голосов
+rmc-distress-signal-next-map-votes-new = { $map }: { $votes } голосов ({ $newVotes } новых)
+rmc-distress-signal-next-map-tiebreaker = Голосование закончилось ничьей:
 rmc-distress-signal-fallen =
     В память о наших павших солдатах:
     { $fallen }
@@ -30,7 +30,6 @@ cm-distress-signal-discord-majorxenovictory = Крупная победа ксе
 cm-distress-signal-discord-minorxenovictory = Малая победа ксеноморфов
 cm-distress-signal-discord-alldied = Ничья
 st-distress-signal-nuked = [color=yellow]Колония была уничтожена ядерным взрывом.[/color]
-
 rmc-distress-signal-major-marine-victory-bioscan = Биосканирование завершено. Неизвестных форм жизни не обнаружено.
 rmc-distress-signal-major-marine-victory-report = Сохраняю оперативный отчет в архив.
 rmc-distress-signal-major-marine-victory-scan = Начало финальной проверки систем через 3 минуты.

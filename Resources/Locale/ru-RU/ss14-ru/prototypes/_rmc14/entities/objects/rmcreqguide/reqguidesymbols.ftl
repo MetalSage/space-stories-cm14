@@ -1,6 +1,15 @@
+ent-RMCLogisticsofficerGuideBook = logistics Officers symbol
+    .desc = The Logistics Officers sumbol
+    .suffix = (GuideBookEntity)
 ent-RMClogisticsofficerGuideBook = logistics Officers symbol
     .desc = The Logistics Officers sumbol
     .suffix = (GuideBookEntity)
+ent-RMCGuidebookPaperRequisitionsWritten = { ent-RMCPaperRequisitionInvoice }
+    .suffix = (GuideBookEntity)
+    .desc = { ent-RMCPaperRequisitionInvoice.desc }
+ent-RMCGuidebookPaperRequisitionsStamped = { ent-RMCPaperRequisitionInvoice }
+    .suffix = (GuideBookEntity)
+    .desc = { ent-RMCPaperRequisitionInvoice.desc }
 ent-RMCCargotechGuideBook = Cargo Technicians symbol
     .desc = The Cargo Technicians symbol
     .suffix = (GuideBookEntity)

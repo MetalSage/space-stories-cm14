@@ -64,3 +64,7 @@ ent-RMCCrateBoxMagazinePistolM13Ext = коробка магазинов (M10, 14
     .desc = { ent-RMCCrateAmmo.desc }
 ent-RMCCrateBoxMagazinePistolM13Drum = коробка магазинов (M10, 12x, Барабанные)
     .desc = { ent-RMCCrateAmmo.desc }
+ent-RMCCrateMagazineML66DDrum = ящик магазинов M56D (x1)
+    .desc = { ent-RMCCrateAmmo.desc }
+ent-RMCCrateMagazineM2C = ящик магазинов M2C (x2)
+    .desc = { ent-RMCCrateAmmo.desc }

@@ -31,8 +31,8 @@ rmc-job-prefix-clf-responder = ИНФО
 rmc-job-name-spp-responder = Офицер связи СПН
 rmc-job-description-spp-responder = "Вы действуете от имени Регионального командования СПН, чтобы отвечать на факсы, отправленные в Командование СПН."
 #TSE fax responder
-rmc-job-name-tse-responder = Офицер связи TSE
-rmc-job-description-tse-responder = "Вы действуете от имени Регионального командования TSE, чтобы отвечать на факсы, отправленные в Командование TSE."
+rmc-job-name-tse-responder = Офицер связи ИТС
+rmc-job-description-tse-responder = "Вы действуете от имени Регионального командования ИТС, чтобы отвечать на факсы, отправленные в Командование ИТС."
 #CMB fax responder
 rmc-job-name-cmb-responder = Офицер связи БКМ
 rmc-job-description-cmb-responder = "Вы диспетчер местного отделения БКМ. Отвечайте на факсы соответствующим образом."

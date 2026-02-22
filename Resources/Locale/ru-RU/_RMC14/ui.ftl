@@ -1,6 +1,7 @@
 cm-ui-rmc14 = RMC14
 rmc-ui-options-cassettes-volume = Громкость кассет:
 rmc-ui-options-hijack-song-volume = Громкость песен захвата:
+rmc-ui-options-xeno-ability-previews = Показать предварительный просмотр способностей ксеноморфов
 rmc-ui-voicelines = Голосовые реплики
 rmc-ui-options-tab-voicelines = Голосовые реплики
 rmc-ui-audio-voicelines-yourself = Проигрывать свои голосовые реплики
@@ -85,6 +86,12 @@ rmc-ui-figurine-in-preferences =
 rmc-ui-ghost-color = Цвет призрака
 rmc-ui-ghost-color-clear = Очистить
 rmc-ui-ghost-color-save = Сохранить
+rmc-ui-show-new-player-icons = Отображайте значки новых игроков в качестве ролей наставника или руководителя отдела.
+rmc-ui-xeno-night-vision-default = Ночное видение ксеноморфов по умолчанию
+rmc-ui-xeno-night-vision-default-off = Выключено
+rmc-ui-xeno-night-vision-default-half = Полумрак
+rmc-ui-xeno-night-vision-default-full = Включено
+rmc-night-vision-mode-verb = Установить ночное зрение: { $mode }
 rmc-area-info = { $area }{ $restrictions }
 rmc-tacmap-alert-ceiling-level-0 = [color=green]✓[/color] Все действия разрешены
 rmc-tacmap-alert-ceiling-level-1 = [color=red]✗[/color] Размещение миномётов, целеуказание лазером, медэвак
@@ -96,6 +103,9 @@ rmc-tacmap-alert-restricted-actions = [color=red]✗[/color] { $actions }
 rmc-ui-shoutout-marine = [bold]Операция финансируется [color=green]{ $name }[/color]![/bold]
 rmc-ui-shoutout-xeno = [bold]Улей, основаный [color=purple]{ $name }[/color]![/bold]
 rmc-ui-discord = Дискорд
+# Dialog input
+rmc-dialog-input-placeholder-default = Введите текст
+rmc-dialog-input-placeholder-smart-check = Более 3 последовательных пробелов будут удалены.
 rmc-ui-patreon = Boosty
 rmc-other-credits-tab = Другое
 rmc-ui-auto-punctuate = Автоматически расставляйте знаки препинания в символьных сообщениях

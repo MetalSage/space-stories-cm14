@@ -15,13 +15,13 @@ rmc-dropship-weapons-weapon-selected-ammo =
     Боекомплект { $rounds } / { $maxRounds }
 rmc-dropship-weapons-target-strike =
     Приобретение цели
-    
+
     Ударный режим: { $mode }
-    
+
     Конфигурация удара { $weapon }
-    
+
     Цель выбрана: { $target }
-    
+
     Смещение { $xOffset },{ $yOffset }
 rmc-dropship-weapons-equip-weapon-ammo =
     { $weapon }
@@ -42,10 +42,13 @@ rmc-dropship-weapons-lock = ЗАХВАТ
 rmc-dropship-weapons-clear = СБРОС
 rmc-dropship-weapons-vector = ВЕКТОР
 rmc-dropship-weapons-offset-calibration-does-not-affect-direct-bombardment = Не влияет на прямую бомбардировку!
+rmc-dropship-weapons-deploy = РАЗВЕРТ
+rmc-dropship-weapons-retract = СОБРАТЬ
+rmc-dropship-weapons-auto-deploy = АВТО РАЗВЕРТ.
 rmc-dropship-weapons-night-vision-on = НВ-ВКЛ
 rmc-dropship-weapons-night-vision-off = НВ-ВЫКЛ
 rmc-dropship-weapons-weapon = ОРУЖ
-rmc-dropship-weapons-previous =  ^
+rmc-dropship-weapons-previous = ^
 rmc-dropship-weapons-next = v
 rmc-dropship-weapons-fire-no-weapon = Оружие не выбрано.
 rmc-dropship-weapons-fire-not-flying = Шаттлы могут вести огонь только в полете.
@@ -63,8 +66,8 @@ rmc-dropship-utility-activate-not-flying = Утилитарные системы
 rmc-dropship-utility-not-flyby = { $utility } можно использовать только во время полета.
 rmc-dropship-utility-not-skilled = У вас нет подготовки, чтобы использовать эту систему!
 rmc-dropship-utility-cooldown = { $utility } была только что использована, вам нужно немного подождать, прежде чем использовать ее снова.
-rmc-dropship-fabricator-equipment =  [bold]Снаряжение[/bold]
-rmc-dropship-fabricator-ammo =  [bold]Патроны[/bold]
+rmc-dropship-fabricator-equipment = [bold]Снаряжение[/bold]
+rmc-dropship-fabricator-ammo = [bold]Патроны[/bold]
 rmc-dropship-fabricator-fabricate = Изготовить ({ $cost })
 rmc-dropship-fabricator-busy = Изготовитель деталей для дропшиппинга занят. Пожалуйста, подождите завершения предыдущей операции.
 rmc-dropship-firemission-warning = Десантный корабль ведет огонь в направлении { $direction }.
@@ -83,4 +86,20 @@ rmc-dropship-paradrop-lock-target-not-flying = Модуль десантиров
 rmc-dropship-weapons-enable = ВКЛЮЧИТЬ
 rmc-dropship-weapons-disable = ОТКЛЮЧИТЬ
 rmc-dropship-medevac-system-screen-text = Система медицинской эвакуации РМУ-4М
-rmc-dropship-fulton-system-screen-text = Система восстановления РМУ-19 Фултон
+rmc-dropship-fulton-system-screen-text = Система подъёма РМУ-19 Фултон
+rmc-dropship-locked = Эта птица теперь наша на { $minutes } минут.
+rmc-dropship-locked-out = Шаттл не отвечает, попробуйте еще раз через { $minutes } минут.
+rmc-dropship-locked-out-bypass = Вы частично обошли блокировку, попробуйте еще раз!
+rmc-dropship-locked-out-bypass-complete = Вы успешно сняли блокировку!
+rmc-dropship-equipment-deployer-text = { $deployName }
+rmc-dropship-equipment-deployer-health = Статус: { $status }
+rmc-dropship-equipment-deployer-ammo = Боезапас: { $ammoCount } / { $totalAmmoCount }
+rmc-dropship-equipment-deployer-status = Состояние: { $deployed }
+rmc-dropship-equipment-deployer-auto-deploy = Автомат. разверт.: { $autoDeploy }
+rmc-dropship-equipment-enabled = ВКЛЮЧЕНО
+rmc-dropship-equipment-disabled = ВЫКЛЮЧЕНО
+rmc-dropship-equipment-deployed = РАЗВЕРНУТО
+rmc-dropship-equipment-undeployed = НЕ РАЗВЕРНУТО
+rmc-dropship-equipment-operational = В СТРОЮ
+rmc-dropship-equipment-damaged = ПОВРЕЖДЕНО
+rmc-dropship-equipment-destroyed = УНИЧТОЖЕНО

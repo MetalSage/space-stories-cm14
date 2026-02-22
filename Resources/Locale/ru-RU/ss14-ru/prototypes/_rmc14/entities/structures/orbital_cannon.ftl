@@ -40,3 +40,6 @@ ent-RMCExplosionEffectClusterOB = { "" }
     .desc = { "" }
 ent-RMCExplosionEffectClusterOBShockWave = { "" }
     .desc = { "" }
+ent-RMCOrbitalCannonTray = загрузочный лоток
+    .desc = Загрузочный лоток орбитальной пушки.
+    .suffix = Cannon spawns with one that's linked to it.

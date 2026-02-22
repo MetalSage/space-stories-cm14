@@ -26,3 +26,7 @@ ent-RMCPaperP701 = P-701 brigging checklist
     .desc = { ent-CMPaper.desc }
 ent-RMCPaperP702 = P-702 processing checklist
     .desc = { ent-CMPaper.desc }
+ent-RMCPaperCLFVaradero = SOS!
+    .desc = { ent-CMPaper.desc }
+ent-RMCPaperCLFRocinante = Captain's Log
+    .desc = { ent-CMPaper.desc }

@@ -16,3 +16,6 @@ ent-CMLockerStaffRifleFilled = { ent-CMLockerStaff }
 ent-RMCLockerSecureSafeLiaisonFilled = { ent-RMCLockerSecureSafeLiaison }
     .suffix = Corporate Liaison, Filled
     .desc = { ent-RMCLockerSecureSafeLiaison.desc }
+ent-RMCLockerFieldDoctor = { ent-CMLockerBase }
+    .suffix = Заполненный, Полевой доктор
+    .desc = { ent-CMLockerBase.desc }

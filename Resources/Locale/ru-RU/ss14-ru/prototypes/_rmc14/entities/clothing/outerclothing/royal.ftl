@@ -26,3 +26,7 @@ ent-RMCArmorRoyalPaddedFilled = { ent-RMCArmorRoyalPadded }
 ent-RMCArmorRoyalPaddedFilledCO = { ent-RMCArmorRoyalPadded }
     .suffix = Filled, Major
     .desc = { ent-RMCArmorRoyalPadded.desc }
+ent-RMCArmorRoyalHarnessNoBackpack = kestrel GPMG harness
+    .desc = { ent-RMCArmorRoyalHarness.desc }
+ent-RMCArmorEIAFVest = goshawk airborne vest
+    .desc = A lightweight, high-mobility flak vest designed for the Extrasolar Imperial Airborne Force’s troops. Developed by Weston-Yamada, the Goshawk offers crucial protection while ensuring paratroopers retain full freedom of movement during high-risk insertions. Advanced composite plating and reinforced webbing make it effective against shrapnel and small-arms fire, striking the perfect balance between defense and agility for those who strike fast and strike hard.

@@ -1,6 +1,9 @@
 ent-CMPlushieBase = обычная игрушка
     .desc = совершенно обычный
     .suffix = RMC
+ent-RMCPlushieBaseAdmin = { ent-CMPlushieBase }
+    .suffix = RMC, DO NOT MAP.
+    .desc = { ent-CMPlushieBase.desc }
 ent-RMCPlushieMoth = { ent-PlushieMoth }
     .desc = { ent-PlushieMoth.desc }
     .suffix = RMC

@@ -13,3 +13,7 @@ ent-RMCSpawnerCommunicationsTowerTwo = { ent-RMCSpawnerCommunicationsTowerBase }
     .desc = { ent-RMCSpawnerCommunicationsTowerBase.desc }
 ent-RMCCommunicationsTowerProp = разрушенная вышка связи
     .desc = Старая корпоративная вышка связи, использовавшаяся для передачи сообщений между подпространственными телами. Похоже, она повидала лучшие дни.
+ent-RMCCommunicationsTowerPropAlt0 = { ent-RMCCommunicationsTowerProp }
+    .desc = { ent-RMCCommunicationsTowerProp.desc }
+ent-RMCCommunicationsTowerPropAlt1 = { ent-RMCCommunicationsTowerProp }
+    .desc = { ent-RMCCommunicationsTowerProp.desc }

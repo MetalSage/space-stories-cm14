@@ -78,7 +78,7 @@ rmc-xeno-resin-whisperer-description =
     Вы теряете едкую кислоту, способность выделять густую смолу, способность усиливать выделения смолы, жертвуете способностью сажать узлы сорняков за пределами сорняков, а также жертвуете пятой частью резерва плазмы, чтобы улучшить зрение и обрести более прочную связь со смолой. Теперь вы можете дистанционно размещать выделения смолы, включая узлы сорняков, на расстоянии до двенадцати шагов!
     Вы получаете способность:
     - Выделять смолу и сорняки на расстоянии
-rmc-xeno-resin-whisperer-popup = We let the resin guide us. It whispers, so listen closely.
+rmc-xeno-resin-whisperer-popup = Мы позволяем смоле вести нас. Она шепчет, поэтому прислушайтесь внимательно.
 rmc-xeno-acider-name = Окислитель
 rmc-xeno-acider-description =
     Вы обмениваете прыжок, костяные обломки, дальний прицел и небольшую скорость на большее количество здоровья, немного брони и новый орган, который со временем наполняется летучей кислотой.
@@ -133,7 +133,7 @@ rmc-xeno-charger-description =
     - Ваше влияние под феромонами безумия.
     - Ваш топот больше не сбивает с ног крупных целей.
     - Вашу способность фиксировать направление.
-    
+
     Вы получаете:
     - Значительное количество здоровья.
     - Небольшую скорость.
@@ -143,22 +143,40 @@ rmc-xeno-charger-description =
     - Вы получаете способность перекатываться, чтобы проходить сквозь врагов.
     - Вы получаете способность силой сдвигать врагов, врезаясь в них.
 rmc-xeno-charger-popup = Ничто не остановит этот улей. Этот станет одновременно и неподвижным объектом, и неостановимой силой.
-rmc-xeno-hedgehog-name = Hedgehog
+rmc-xeno-hedgehog-name = Ёж
 # TODO RMC14 limb damage shrapnel and causing damage when they move
 rmc-xeno-hedgehog-description =
-    You lose:
-    - Your empower, charge, and scissor cut abilities.
-    - Some movement speed and attack speed.
-    - Your plasma system is replaced with bone shards (max 300).
-    You gain:
-    - Increased health and armor that scales with shard count (+2.5 armor per 50 shards).
-    - Fire Spikes: Launch 8 spikes that embed in targets, slowing them. (75 shards, 10s cooldown).
-    - Spike Shield: Temporary shield that damages nearby enemies when hit (150 shards, 2s duration, 11s cooldown).
-    - Spike Shed: Launch all shards in all directions for massive damage, gain speed boost but lose shard generation for 30s (min 50 shards, 30s cooldown).
-rmc-xeno-hedgehog-popup = This one's hide bristles with deadly spines. Let them come and be pierced by your defenses.
-rmc-xeno-watcher-name = Watcher
-rmc-xeno-watcher-description = You lose your ability to hide, but gain enhanced vision. You can toggle between normal enhanced vision and greatly enhanced vision.
-rmc-xeno-watcher-popup = You are now a Watcher. You have enhanced vision but cannot hide.
+    Вы теряете:
+    - Ваши способности усиления, зарядки и резки ножницами.
+    - Часть скорости передвижения и скорости атаки.
+    - Ваша плазменная система заменяется костяными осколками (максимум 300).
+    Вы получаете:
+    - Увеличение здоровья и брони, зависящее от количества осколков (+2,5 брони за каждые 50 осколков).
+    - Огненные шипы: Выпускают 8 шипов, которые впиваются в цели, замедляя их. (75 осколков, перезарядка 10 с).
+    - Шиповый щит: Временный щит, наносящий урон ближайшим врагам при попадании (150 осколков, длительность 2 с, перезарядка 11 с).
+    - Шиповый щит: Выпускает все осколки во всех направлениях, нанося огромный урон, увеличивает скорость, но снижает генерацию осколков на 30 с (минимум 50 осколков, перезарядка 30 с).
+rmc-xeno-hedgehog-popup = Шкура этого разрушителя ощетинилась смертоносными шипами. Пусть они придут и будут пронзены вашей защитой.
+rmc-xeno-watcher-name = Наблюдатель
+rmc-xeno-watcher-description = Вы теряете способность прятаться, но приобретаете улучшенное зрение. Вы можете переключаться между обычным улучшенным зрением и значительно улучшенным зрением.
+rmc-xeno-watcher-popup = Теперь вы — Наблюдатель. У вас улучшенное зрение, но вы не можете спрятаться.
+rmc-xeno-designer-name = Дизайнер
+rmc-xeno-designer-description =
+    Вы теряете:
+    - Прямое строительство из смолы
+    - Часть плазмы и здоровья
+    Вы получаете:
+    - Немного скорости и более сильные феромоны
+    - Более дальний обзор
+    - Возможность разместить до 36 дизайнерских узлов:
+        - Оптимизированные узлы увеличивают скорость строительства на 50%
+        - Гибкие узлы снижают стоимость плазмы на 50%
+        - Узлы строительства позволяют любому жертвовать плазму для строительства заросших смолой стен или дверей
+        - Эволюции дронов создают толстые заросшие смолой варианты
+    - Возможность помечать узлы как стены или двери
+    - Дистанционное улучшение смолы
+    - Усиленный всплеск смолы превращает узлы проектирования в более слабые отражающие стены
+    - Немного более мощная атака
+rmc-xeno-designer-popup = Вы — дизайнер улья, так что идите и расширьте улей за его нынешние пределы.
 rmc-xeno-steelcrest-name = Стальной гребень
 rmc-xeno-steelcrest-description =
     Вы обмениваете размах хвоста и небольшой урон от слэша на увеличенный урон от удара головой и усиленную мобильность, чтобы стать подвижным танком.

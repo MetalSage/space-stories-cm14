@@ -1,6 +1,9 @@
 ent-RMCMapInsertFiorinaBase = { ent-RMCMapInsertBase }
     .suffix = Insert Fiorina
     .desc = { ent-RMCMapInsertBase.desc }
-ent-RMCMapInsertFiorinaPodholder = Podholder
+ent-RMCMapInsertFiorinaPodholder = Капсулы
+    .suffix = Insert Fiorina
+    .desc = { ent-RMCMapInsertFiorinaBase.desc }
+ent-RMCMapInsertFiorinaRocinanteCLF = Росинанте - КОФ
     .suffix = Insert Fiorina
     .desc = { ent-RMCMapInsertFiorinaBase.desc }

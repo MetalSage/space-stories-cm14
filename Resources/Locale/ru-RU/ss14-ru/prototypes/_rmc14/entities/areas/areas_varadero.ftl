@@ -120,3 +120,5 @@ ent-RMCAreaVaraderoInteriorProtectedMaintenanceSouth = Новый Варадер
     .desc = { ent-RMCAreaVaraderoInteriorProtectedMaintenance.desc }
 ent-RMCAreaVaraderoInteriorProtectedVessel = Новый Варадеро - Неизвестное судно
     .desc = { ent-RMCAreaVaraderoInteriorProtected.desc }
+ent-RMCAreaVaraderoInteriorUnregisteredShuttle = Новый Варадеро - Неизвестный шаттл
+    .desc = { ent-RMCAreaVaraderoInterior.desc }
