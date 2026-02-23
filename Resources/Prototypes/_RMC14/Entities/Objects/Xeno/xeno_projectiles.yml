@@ -145,12 +145,12 @@
       shader: unshaded
   - type: XenoSlowingSpitProjectile
     slow: 0
-    paralyze: 1
+    paralyze: 2 # Stories
     armorResistsKnockdown: false
   - type: XenoProjectile
     deleteOnFriendlyXeno: true
   - type: ProjectileMaxRange
-    max: 4
+    max: 6.5 # Stories
 
 - type: entity
   id: XenoAcidShotgunProjectile

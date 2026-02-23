@@ -70,6 +70,7 @@
   - type: XenoParalyzingSlash
   - type: XenoSlowingSpit
   - type: XenoScatteredSpit
+    maxDeviation: 60 # Stories
   - type: MeleeWeapon
     damage:
       groups:
