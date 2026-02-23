@@ -1,7 +1,7 @@
 ent-RMCLightBulbBase = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-RMCLightBulb = лампочка
-    .desc =  Сколько нужно техников, чтобы заменить лампочку?
+    .desc = Сколько нужно техников, чтобы заменить лампочку?
     .suffix = Warm
 ent-CMLightBulbBase = { ent-BaseLightbulb }
     .desc = { ent-BaseLightbulb.desc }

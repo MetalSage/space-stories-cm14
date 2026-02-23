@@ -12,6 +12,7 @@ ent-RMCMapInsertSolarisPlinkingSpotNorthLZ = Место для пострелу�
     .desc = { ent-RMCMapInsertBase.desc }
 ent-RMCMapInsertKutjevoCLFSmugglers = Контрабандисты КОНФ
     .desc = { ent-RMCMapInsertBase.desc }
+    .suffix = Insert Kutjevo
 ent-RMCMapInsertKutjevoLZ1Alternative = ЗП1 Альт.
     .suffix = Insert Kutjevo
     .desc = { ent-RMCMapInsertBase.desc }

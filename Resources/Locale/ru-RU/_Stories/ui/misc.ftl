@@ -176,7 +176,7 @@ ssmc-telephone-snap-back = возвращается к
 
 ssmc-visor-remove-inserted = Вы снимаете установленные визоры
 ssmc-visor-remove-no-one = Не осталось ни одного визора, который можно было бы снять!
-ssmc-visor=connect-to = Вы присоединяете { $visor } к { $target }
+ssmc-visor-connect-to = Вы присоединяете { $visor } к { $target }
 ssmc-visor-no-more-slots = { $helmet } больше не имеет свободных креплений для визоров.
 
 ssmc-weapons-unique-action = Уникальное действие

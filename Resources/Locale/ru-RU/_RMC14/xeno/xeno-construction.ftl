@@ -89,6 +89,7 @@ rmc-xeno-designer-thicken-cooldown = Нам нужно подождать, пр�
 rmc-xeno-designer-thicken-success = Мы загущаем смолу.
 rmc-xeno-designer-greater-surge-cooldown = Нам нужно подождать, прежде чем снова использовать усиленный всплеск смолы
 rmc-xeno-designer-greater-surge-none = Поблизости нет узлов дизайнера.
+rmc-xeno-designer-infuse-node = Вы заполняете узел плазмой.
 rmc-xeno-designer-greater-surge-success = Мы преобразовали { $count } узлов дизайнера в толстые стенки из смолы.
 rmc-xeno-construction-tunnel-fill = Вы начинаете разрушать туннель!
 rmc-xeno-construction-tunnel-fill-xeno-drop = Туннель внезапно обрушивается, вынуждая вас выбраться наружу!

@@ -30,3 +30,5 @@ ent-RMCActionAimedShot = Прицельный выстрел
     .desc = { ent-ActionMarineToggleable.desc }
 ent-RMCActionBroiler = Сменить баллон
     .desc = Переключиться на другой топливный баллон.
+ent-RMCActionDismount = Покинуть
+    .desc = Прекратить использование оружия.

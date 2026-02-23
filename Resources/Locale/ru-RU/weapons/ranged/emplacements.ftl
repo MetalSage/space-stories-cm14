@@ -5,7 +5,8 @@ emplacement-mount-weapon-secured-examine = Используйте [color={ $colo
 emplacement-mount-too-close = Это слишком близко к расположенному рядом { $mount }.
 emplacement-mount-deploy-broken = Вы не можете установить { $mount }, он полностью сломан!
 emplacement-mounted-weapon-overheated = { $weapon } поврежден из-за перегрева!
-emplacement-mount-broken-examine = [color=red]Оружие нельзя использовать в его текущем сломанном состоянии, используйте [/color] [color=cyan]сварочный аппарат[/color][color=red], чтобы начать его ремонт.[/color]
+emplacement-mount-broken-examine =  [color=red]Оружие нельзя использовать в его текущем сломанном состоянии, используйте [/color] [color=cyan]сварочный аппарат[/color][color=red], чтобы начать его ремонт.[/color]
+emplacement-mount-need-hands-free = Вам нужны обе руки, чтобы взяться за ручки!
 mountable-weapon-no-free-hands = Вам нужны обе руки свободными для работы с оружием.
 emplacement-mount-RMCSmartGunMounted-name = тренога M56D
 emplacement-mount-RMCSmartGunMounted-description = Складное крепление для M56D обеспечивает устойчивость устройства.

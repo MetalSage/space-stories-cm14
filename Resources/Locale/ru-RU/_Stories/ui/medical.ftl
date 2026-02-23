@@ -9,7 +9,7 @@ ssmc-chem-disp-energy2 = { $energy } энергии
 ssmc-chem-disp-reagent-quantity = { $reagentquantity } юнитов { $reagentname }
 ssmc-chem-disp-count-vs-max = { $units }/{ $maxunits } юнитов
 ssmc-chem-nothing = Ничего.
-ssmc-chem-total-volume = Всего: { $units }/{ $max}.
+ssmc-chem-total-volume = Всего: { $units }/{ $max }.
 ssmc-chem-transfer-mode-drawing = Режим: наполнение резервура
 ssmc-chem-transfer-mode-dispersing = Режим: распределение из резервуара
 ssmc-chem-transfer-mode-enable-drawing = Включить наполнение резервуара
@@ -42,5 +42,3 @@ ssmc-medical-surgery-missing-tool = [color=red](Инструмент не в р�
 ssmc-medical-surgery-need-to-be-lying-down = [color=red][font size=16]Они должны лежать![/font][/color]
 ssmc-medical-surgery-you-need-tool = Для выполнения этого шага вам понадобится { $tool }
 ssmc-medical-surgery-has-requirement-loop = Операция { $surgery } требует { $requirements }
-
-ssmc-medical-chemistry-effect-brute-desc = Наносит [color=red]{PotencyPerSecond}[/color] единиц урона ушибами.

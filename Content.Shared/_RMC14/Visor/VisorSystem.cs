@@ -392,7 +392,7 @@ public sealed class VisorSystem : EntitySystem
             var container = _container.EnsureContainer<ContainerSlot>(cycleable, id);
             if (_container.Insert(visor.Owner, container))
             {
-                msg = Loc.GetString("ssmc-visor=connect-to", ("visor", Name(visor)), ("target", Name(cycleable)));
+                msg = Loc.GetString("ssmc-visor-connect-to", ("visor", Name(visor)), ("target", Name(cycleable)));
                 _popup.PopupClient(msg, cycleable, user);
                 return true;
             }

@@ -36,6 +36,7 @@ ent-RMCGunRackType71FilledPVE = { ent-RMCGunRackType71Empty }
     .desc = { ent-RMCGunRackType71Empty.desc }
 ent-RMCGunRackL90A1Empty = оружейная стойка L90A1
     .desc = Большая, прочная стойка, предназначенная для хранения винтовок L90A1 — запертых, заряженных, готовых к стрельбе в любой момент. Официально законодательство не рекомендует такую ​​практику, но это не мешает многим оружейным складам хранить свои винтовки в таком состоянии.
+    .suffix = L90A1, Empty
 ent-RMCGunRackL90A1Filled = { ent-RMCGunRackL90A1Empty }
     .suffix = L90A1, Filled
     .desc = { ent-RMCGunRackL90A1Empty.desc }
