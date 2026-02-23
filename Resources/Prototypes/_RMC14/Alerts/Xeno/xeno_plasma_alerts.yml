@@ -40,7 +40,7 @@
     state: power_display_0
   - sprite: /Textures/_RMC14/Interface/Alerts/xeno_plasma.rsi
     state: power_display_empty
-  name: Plasma
-  description: Your stored plasma. Used by different abilities.
+  name: Плазма
+  description: Ваша накопленная плазма. Используется различными способностями.
   minSeverity: 0
   maxSeverity: 18

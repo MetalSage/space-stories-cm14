@@ -275,8 +275,8 @@
       - id: RMCPouchFirstResponder
       - id: RMCPouchReagentCanisterBicaridine
         name: канистра реагентов (бикаридин)
-      - id: RMCPouchReagentCanisterKelotane
         recommended: true
+      - id: RMCPouchReagentCanisterKelotane
         name: канистра реагентов (келотан)
         recommended: true
       - id: RMCPouchReagentCanisterTricordrazine
