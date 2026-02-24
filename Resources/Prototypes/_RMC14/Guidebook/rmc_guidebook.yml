@@ -8,7 +8,7 @@
   id: RMC14
   name: rmc-guide-entry-rmc
   priority: 1
-  text: "/ServerInfo/Guidebook/_RMC14/RMC14.xml"
+  text: "/ServerInfo/Guidebook/_Stories/RMC14.xml"
   children:
   - RMCGuideNewPlayer
   - RMCGuideMarineRoles
@@ -23,9 +23,9 @@
 - type: guideEntry
   parent: RMC
   id: RMCGuideNewPlayer
-  name: "New Player Guide"
+  name: "Руководство для новичков"
   priority: 1
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideNewPlayer.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideNewPlayer.xml"
   children:
   - RMCGuideRoleRifleman
   - RMCGuideRoleDrone
@@ -34,23 +34,23 @@
   parent: RMC
   id: RMCGuideRoleRifleman
   priority: 1
-  name: "Rifleman Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleRifleman.xml"
+  name: "Руководство для стрелков"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleRifleman.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleDrone
   priority: 2
-  name: "Drone Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleDrone.xml"
+  name: "Руководство для дронов"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleDrone.xml"
 
 # Humanoid Roles
 - type: guideEntry
   parent: RMC
   id: RMCGuideMarineRoles
-  name: "Humanoid Roles"
+  name: "Человеческие роли"
   priority: 2
-  text: "/ServerInfo/Guidebook/_RMC14/RMC14.xml"
+  text: "/ServerInfo/Guidebook/_Stories/RMC14.xml"
   children:
   - RMCSurvivor
   - RMCMedical
@@ -71,72 +71,72 @@
   parent: RMC
   id: RMCSurvivor
   priority: 1
-  name: "Survivor"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCSurvivor.xml"
+  name: "Выжившие"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCSurvivor.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCMedical
   priority: 2
-  name: "Medical"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCMedical.xml"
+  name: "Медицина"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCMedical.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCRequisitions
   priority: 3
-  name: "Requisitions"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCRequisitions.xml"
+  name: "Поставки"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCRequisitions.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCIntel
   priority: 4
-  name: "Intel"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCIntel.xml"
+  name: "Разведка"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCIntel.xml"
 
 - type: guideEntry  # made by WithinElysium
   parent: RMC
   id: RMCGuideRoleMilitaryPolice
   priority: 5
-  name: "Military Police"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleMilitaryPolice.xml"
+  name: "Военная полиция"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleMilitaryPolice.xml"
 
 - type: guideEntry # by Kynthos on Discord
   parent: RMC
   id: RMCGuideRoleCombatTechnician
   priority: 6
-  name: "Combat Technician"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleCombatTechnician.xml"
+  name: "Боевой техник"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleCombatTechnician.xml"
 
 - type: guideEntry # by Kynthos on Discord
   parent: RMC
   id: RMCGuideRoleMaintenanceTechnician
   priority: 7
-  name: "Maintenance Technician"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleMaintenanceTechnician.xml"
+  name: "Техник по обслуживанию"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleMaintenanceTechnician.xml"
 
 - type: guideEntry # made by GoodShowOldChap
   parent: RMC
   id: RMCGuideRoleSGO
   priority: 8
-  name: "Smart Gun Operator"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleSGO.xml"
+  name: "Оператор смартгана"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleSGO.xml"
 
 - type: guideEntry # made by teatotaltemplar
   parent: RMC
   id: RMCGuideCommandRoles
   priority: 9
-  name: "Who is in Command?"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideCommandRoles.xml"
+  name: "Командование"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideCommandRoles.xml"
 
 # Humanoid Roles - Specialists
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleSpec
   priority: 10
-  name: "Specialists"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleSpec.xml"
+  name: "Специалисты по вооружению"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleSpec.xml"
   children:
   - RMCGuideRoleSpecDemo
   - RMCGuideRoleSpecGrenadier
@@ -147,64 +147,64 @@
   parent: RMC
   id: RMCGuideRoleSpecDemo
   priority: 1
-  name: "Demolitionist Specialist"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleSpecDemo.xml"
+  name: "Подрывник"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleSpecDemo.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleSpecGrenadier
   priority: 2
-  name: "Heavy Grenadier Specialist"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleSpecGrenadier.xml"
+  name: "Тяжелый гранатометчик"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleSpecGrenadier.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleSpecScout
   priority: 3
-  name: "Scout Specialist"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleSpecScout.xml"
+  name: "Разведчик (скаут)"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleSpecScout.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleSpecSniper
   priority: 4
-  name: "Sniper / AMR Specialist"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleSpecSniper.xml"
+  name: "Снайпер / ПТ снайпер"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleSpecSniper.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleCAS
   priority: 11
-  name: "Dropships and CAS"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleCAS.xml"
+  name: "Шаттлы и КАС"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleCAS.xml"
 
 - type: guideEntry # made by Gabrote42
   parent: RMC
   id: RMCGuideMarineCommunications
   priority: 12
-  name: "Marine Communications"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideMarineCommunications.xml"
+  name: "Коммуникация морпехов"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideMarineCommunications.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideCorporateLiaison
-  name: "Corporate Liaison"
+  name: "Корпоративный связной"
   priority: 13
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideCorporateLiaison.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideCorporateLiaison.xml"
 
 - type: guideEntry # made by UnicornOnLSD (GitHub)
   parent: RMC
   id: RMCGuideSquadLeader
-  name: "Squad Leader"
+  name: "Руководство для командира отряда"
   priority: 14
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideSquadLeader.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideSquadLeader.xml"
 
 # Marine Structures
 - type: guideEntry
   parent: RMC
   id: RMCGuideMarineStructures
-  name: "Marine Structures"
-  text: "/ServerInfo/Guidebook/_RMC14/RMC14.xml"
+  name: "Структуры морпехов"
+  text: "/ServerInfo/Guidebook/_Stories/RMC14.xml"
   priority: 3
   children:
   - RMCGuideCommunicationsTowers
@@ -214,23 +214,23 @@
   parent: RMC
   id: RMCGuideCommunicationsTowers
   priority: 1
-  name: "Comms and Sensors"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideCommunicationsTowers.xml"
+  name: "Телекоммуникации и биосенсоры"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideCommunicationsTowers.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleMortar
   priority: 2
-  name: "Mortar"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideRoleMortar.xml"
+  name: "Миномёт"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideRoleMortar.xml"
 
 # Xenonid roles
 - type: guideEntry
   parent: RMC
   id: RMCGuideXenonidRoles
-  name: "Xenonid Castes"
+  name: "Касты ксеноморфов"
   priority: 4
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideXenonidRoles.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideXenonidRoles.xml"
   children:
   - RMCGuideXenonidT1
   - RMCGuideXenonidT2
@@ -242,9 +242,9 @@
 - type: guideEntry
   parent: RMC
   id: RMCGuideXenonidT1
-  name: "Tier 1 Xenonids"
+  name: "Т1 ксеноморфы"
   priority: 1
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideXenonidRoles.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideXenonidRoles.xml"
   children:
   - RMCGuideRoleDefender
   - RMCGuideRoleSentinel
@@ -254,30 +254,30 @@
   parent: RMC
   id: RMCGuideRoleDefender
   priority: 1
-  name: "Defender Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleDefender.xml"
+  name: "Руководство для защитников"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleDefender.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleSentinel
   priority: 2
-  name: "Sentinel Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleSentinel.xml"
+  name: "Руководство для стражей"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleSentinel.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleRunner
   priority: 3
-  name: "Runner Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleRunner.xml"
+  name: "Руководство для бегунов"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleRunner.xml"
 
 # Xenonid roles - T2
 - type: guideEntry
   parent: RMC
   id: RMCGuideXenonidT2
-  name: "Tier 2 Xenonids"
+  name: "Т2 ксеноморфы"
   priority: 2
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideXenonidRoles.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideXenonidRoles.xml"
   children:
   - RMCGuideRoleWarrior
   - RMCGuideRoleSpitter
@@ -290,22 +290,22 @@
   parent: RMC
   id: RMCGuideRoleWarrior
   priority: 1
-  name: "Warrior Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleWarrior.xml"
+  name: "Руководство для защитников"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleWarrior.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleSpitter
   priority: 2
-  name: "Spitter Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleSpitter.xml"
+  name: "Руководство для плевателей"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleSpitter.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleLurker
   priority: 3
-  name: "Lurker Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleLurker.xml"
+  name: "Руководство для охотников"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleLurker.xml"
   children:
   - RMCGuideRoleVampire
 
@@ -314,15 +314,15 @@
   parent: RMC
   id: RMCGuideRoleVampire
   priority: 1
-  name: "Vampire Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleVampire.xml"
+  name: "Руководство для охотников-вампиров"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleVampire.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleHivelord
   priority: 4
-  name: "Hivelord Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleHivelord.xml"
+  name: "Руководство для лордов улья"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleHivelord.xml"
   children:
   - RMCGuideRoleDesigner
 
@@ -330,22 +330,22 @@
   parent: RMC
   id: RMCGuideRoleDesigner
   priority: 1
-  name: "Designer Hivelord Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideDesignerHivelord.xml"
+  name: "Руководство для лордов улья - дизайнеров"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideDesignerHivelord.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleBurrower
   priority: 5
-  name: "Burrower Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleBurrower.xml"
+  name: "Руководство для бурильщиков"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleBurrower.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleCarrier
   priority: 6
-  name: "Carrier Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleCarrier.xml"
+  name: "Руководство для носителей"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleCarrier.xml"
   children:
   - RMCGuideRoleEggsac
 
@@ -354,16 +354,16 @@
   parent: RMC
   id: RMCGuideRoleEggsac
   priority: 1
-  name: "Eggsac Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleEggsac.xml"
+  name: "Руководство для носителей-яйценосцев"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleEggsac.xml"
 
 # Xenonid roles - T3
 - type: guideEntry
   parent: RMC
   id: RMCGuideXenonidT3
-  name: "Tier 3 Xenonids"
+  name: "Т3 ксеноморфы"
   priority: 3
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideXenonidRoles.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideXenonidRoles.xml"
   children:
   - RMCGuideRoleCrusher
   - RMCGuideRolePraetorian
@@ -374,15 +374,15 @@
   parent: RMC
   id: RMCGuideRoleCrusher
   priority: 1
-  name: "Crusher Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleCrusher.xml"
+  name: "Руководство для крушителей"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleCrusher.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRolePraetorian
   priority: 2
-  name: "Praetorian Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRolePraetorian.xml"
+  name: "Руководство для преторианцев"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRolePraetorian.xml"
   children:
   - RMCGuideRoleValkyrie
   - RMCGuideRoleOppressor
@@ -393,57 +393,57 @@
   parent: RMC
   id: RMCGuideRoleValkyrie
   priority: 1
-  name: "Valkyrie Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleValkyrie.xml"
+  name: "Руководство для преторианцев-валькирий"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleValkyrie.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleOppressor
   priority: 2
-  name: "Oppressor Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleOppressor.xml"
+  name: "Руководство для преторианцев-угнетателей"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleOppressor.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleVanguard
   priority: 3
-  name: "Vanguard Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleVanguard.xml"
+  name: "Руководство для преторианцев-авангард"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleVanguard.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleRavager
   priority: 3
-  name: "Ravager Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleRavager.xml"
+  name: "Руководство для разрушителей"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleRavager.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleBoiler
   priority: 4
-  name: "Boiler Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleBoiler.xml"
+  name: "Руководство для бойлеров"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleBoiler.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleQueen
   priority: 4
-  name: "Queen Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleQueen.xml"
+  name: "Руководство для королев"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleQueen.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideRoleParasite
   priority: 5
-  name: "Parasite Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideRoleParasite.xml"
+  name: 'Руководство для лицехватов'
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideRoleParasite.xml"
 
 # Xenonid structures
 - type: guideEntry
   parent: RMC
   id: RMCGuideXenonidStructures
-  name: "Xenonid Structures"
-  text: "/ServerInfo/Guidebook/_RMC14/RMC14.xml"
+  name: "Структуры ксеноморфов"
+  text: "/ServerInfo/Guidebook/_Stories/RMC14.xml"
   priority: 5
   children:
   - RMCGuideHiveStructures
@@ -453,31 +453,31 @@
   parent: RMC
   id: RMCGuideHiveStructures
   priority: 1
-  name: "Hive Structures Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideHiveStructures.xml"
+  name: "Руководство по структурам улья"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideHiveStructures.xml"
 
 - type: guideEntry
   parent: RMC
   id: RMCGuideResinHoles
   priority: 2
-  name: "Resin Holes Guide"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideResinHoles.xml"
+  name: "Руководство по смоляным норам"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideResinHoles.xml"
 
 # Xenonid map icons
 - type: guideEntry
   parent: RMC
   id: RMCGuideXenonidMap
   priority: 6
-  name: "Xenonid Map Icons"
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/Xenonid/RMCGuideXenonidMapIcons.xml"
+  name: "Иконки ксеноморфов"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/Xenonid/RMCGuideXenonidMapIcons.xml"
 
 # Cooking
 - type: guideEntry
   parent: RMC
   id: RMCGuideFood
-  name: "Cooking Recipes"
+  name: "Кулинария"
   priority: 7
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideFood.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideFood.xml"
   children:
   - RMCGuideDrinks
   filterEnabled: True
@@ -485,9 +485,9 @@
 - type: guideEntry
   parent: RMC
   id: RMCGuideDrinks
-  name: "Drink Recipes"
+  name: "Напитки"
   priority: 1
-  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideDrinks.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Guides/RMCGuideDrinks.xml"
   filterEnabled: True
 
 # Chemistry stuff
@@ -495,7 +495,7 @@
   parent: RMC
   id: RMCChemicals
   name: guide-entry-chemicals
-  text: "/ServerInfo/Guidebook/_RMC14/Chemicals/RMCChemicals.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Chemicals/RMCChemicals.xml"
   priority: 8
   children:
   #  - RMCElements
@@ -515,7 +515,7 @@
   id: RMCMedicine
   name: guide-entry-medicine
   priority: 1
-  text: "/ServerInfo/Guidebook/_RMC14/Chemicals/Medicine.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Chemicals/Medicine.xml"
   filterEnabled: True
 
 - type: guideEntry
@@ -523,5 +523,5 @@
   id: RMCOrdinanceChemicals
   name: "OT Chemicals"
   priority: 2
-  text: "/ServerInfo/Guidebook/_RMC14/Chemicals/OT.xml"
+  text: "/ServerInfo/Guidebook/_Stories/Chemicals/OT.xml"
   filterEnabled: True
