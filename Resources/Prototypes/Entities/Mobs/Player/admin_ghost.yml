@@ -128,7 +128,12 @@
     marines: true
     xenos: true
     liveUpdate: true
-  
+  # Stories-start
+  - type: Stripping
+    onlySee: false
+    forceSee: false
+  # Stories-end
+
 
 - type: entity
   abstract: true
