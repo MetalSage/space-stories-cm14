@@ -252,6 +252,7 @@ public abstract class SharedOverwatchConsoleSystem : EntitySystem
         var selfMsg = Loc.GetString("rmc-overwatch-console-marine-transferred", ("marineName", Name(marineId.Value)), ("oldSquad", Name(currentSquad)), ("newSquad", Name(newSquadEnt.Value)));
         _marineAnnounce.AnnounceSingle(selfMsg, actor);
         _popup.PopupCursor(selfMsg, actor, PopupType.Large);
+        _adminLog.Add(LogType.RMCMarineAnnounce, $"{ToPrettyString(args.Actor)} transferred {Name(marineId.Value)} from  {Name(currentSquad)} squad to {Name(newSquadEnt.Value)} squad");
 
         var targetMsg = Loc.GetString("rmc-overwatch-console-you-transferred", ("squadName", Name(newSquadEnt.Value)));
         _marineAnnounce.AnnounceSingle(targetMsg, marineId.Value);
