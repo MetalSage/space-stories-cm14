@@ -45,7 +45,7 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/SHARP_P9.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Sharp/SHARP_P9.rsi
     layers:
     - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
@@ -54,7 +54,7 @@
     size: Huge
 
   - type: Clothing
-    sprite: _Stories/Sharp/SHARP_P9.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Sharp/SHARP_P9.rsi
     slots:
     - suitStorage
     - Back
@@ -147,7 +147,7 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/MAGAZINE_P9/explosive.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/Sharp/explosive.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -178,7 +178,7 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/MAGAZINE_P9/incendiary.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/Sharp/incendiary.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -209,7 +209,7 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/MAGAZINE_P9/flechette.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/Sharp/flechette.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -247,7 +247,7 @@
     - Cartridge
     - SharpCartridgeExplosive
   - type: Sprite
-    sprite: _Stories/Sharp/SHARP_MINE/explosive.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
     state: disarmed
   - type: CartridgeAmmo
     proto: BulletSharpStickyExplosive
@@ -263,7 +263,7 @@
     - Cartridge
     - SharpCartridgeIncendiary
   - type: Sprite
-    sprite: _Stories/Sharp/SHARP_MINE/incendiary.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
     state: disarmed
   - type: CartridgeAmmo
     proto: BulletSharpStickyIncendiary
@@ -279,7 +279,7 @@
     - Cartridge
     - SharpCartridgeFlechette
   - type: Sprite
-    sprite: _Stories/Sharp/SHARP_MINE/explosive.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
     state: disarmed
   - type: CartridgeAmmo
     proto: BulletSharpFlechette
@@ -295,7 +295,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/AMMO_P9/explosive.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/explosive.rsi
     drawdepth: Overlays
     layers: [ { state: explosive_dart } ]
 
@@ -355,7 +355,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/AMMO_P9/incendiary.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/incendiary.rsi
     drawdepth: Overlays
     layers: [ { state: incendiary_dart } ]
 
@@ -384,7 +384,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/AMMO_P9/flechette.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/flechette.rsi
     drawdepth: Overlays
     layers: [ { state: flechette_dart } ]
 
@@ -424,7 +424,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/AMMO_P9/flechette.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/flechette.rsi
     drawdepth: Overlays
     layers: [ { state: flechette_dart } ]
   - type: IgnoreArc
@@ -564,7 +564,7 @@
   parent: SharpMineBase
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/SHARP_MINE/explosive.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
     drawdepth: Overlays
     layers:
     - state: phase1
@@ -628,7 +628,7 @@
   parent: SharpMineBase
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/SHARP_MINE/incendiary.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
     drawdepth: Overlays
     layers:
     - state: phase1
@@ -725,9 +725,9 @@
   description: A specialist belt rig configured to carry SHARP magazines.
   components:
   - type: Sprite
-    sprite: _Stories/Sharp/SHARP_MAGAZINE_BELT.rsi
+    sprite: _Stories/Objects/Clothing/Belts/SHARP_MAGAZINE_BELT.rsi
   - type: Clothing
-    sprite: _Stories/Sharp/SHARP_MAGAZINE_BELT.rsi
+    sprite: _Stories/Objects/Clothing/Belts/SHARP_MAGAZINE_BELT.rsi
   - type: Item
     size: Large
   - type: Storage
@@ -782,3 +782,4 @@
     contents:
     - id: MagazineSharpRifleFlechette
       amount: 3
+
