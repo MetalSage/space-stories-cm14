@@ -3,6 +3,7 @@
   abstract: true
   id: RMCVendorWeaponsSpecialistGearBase
   components:
+  - type: SharpSpecialistVendor
   - type: CMAutomatedVendor
     jobs:
     - CMWeaponsSpecialist
@@ -34,6 +35,15 @@
         giveMapBlip:
           sprite: /Textures/_RMC14/Interface/map_blips.rsi
           state: spec_grenadier
+      - id: RMCSharpSpecEquipmentCase
+        giveSquadRoleName: rmc-job-name-weapons-specialist-sharp
+        isAppendSquadRoleName: false
+        giveIcon:
+          sprite: _Stories/Interface/cm_job_icons.rsi
+          state: hudsquad_spec_sharp
+        giveMapBlip:
+          sprite: /Textures/_RMC14/Interface/map_blips.rsi
+          state: spec
       - id: RMCPyroSpecEquipmentCase
         giveSquadRoleName: rmc-job-name-weapons-specialist-pyro
         isAppendSquadRoleName: false
@@ -100,6 +110,14 @@
       - id: RMCRocket84mmAntiArmor
         points: 40
       - id: RMCRocket84mm
+        points: 40
+    - name: SHARP magazines
+      entries:
+      - id: MagazineSharpRifleExplosive
+        points: 40
+      - id: MagazineSharpRifleIncendiary
+        points: 40
+      - id: MagazineSharpRifleFlechette
         points: 40
     #- id: 84mmWhitePhosphorusRocket
     #  points: 40
@@ -212,6 +230,7 @@
       - id: RMCBeltHolsterSMGPouch
       - id: RMCM82FHolster
       - id: RMCM276ShotgunShellLoadingRig
+      - id: STBeltSharpMagazine
     - name: Подсумки
       choices: { RMCPouch: 2 }
       entries:

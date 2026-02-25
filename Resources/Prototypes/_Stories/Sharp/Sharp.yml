@@ -1,0 +1,784 @@
+# =========================
+# TAGS
+# =========================
+- type: Tag
+  id: SharpRifleMagazine
+
+- type: Tag
+  id: SharpCartridgeExplosive
+
+- type: Tag
+  id: SharpCartridgeIncendiary
+
+- type: Tag
+  id: SharpCartridgeFlechette
+
+# =========================
+# ACTION
+# =========================
+- type: entity
+  id: ActionSharpToggleFuse
+  parent: ActionMarineToggleable
+  name: Toggle dart fuse
+  description: Switches sticky dart detonation delay between 5s and 2.5s.
+  noSpawn: true
+  components:
+  - type: Action
+    icon:
+      sprite: _RMC14/Actions/marine_smart_gun_actions.rsi
+      state: ammo_swap_normal
+    iconOn:
+      sprite: _RMC14/Actions/marine_smart_gun_actions.rsi
+      state: ammo_swap_ap
+    itemIconStyle: NoItem
+    useDelay: 0.1
+  - type: InstantAction
+    event: !type:SharpToggleFuseEvent
+
+# =========================
+# WEAPON
+# =========================
+- type: entity
+  id: WeaponSharpRifle
+  name: SHARP rifle
+  description: An experimental harpoon launcher rifle with an inbuilt magnetic harness manufactured by Armat Systems.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/SHARP_P9.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+
+  - type: Item
+    size: Huge
+
+  - type: Clothing
+    sprite: _Stories/Sharp/SHARP_P9.rsi
+    slots:
+    - suitStorage
+    - Back
+
+  - type: ShootAtFixedPoint
+    shootArcProj: false
+    maxFixedRange: 8
+
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes: [ SemiAuto ]
+    projectileSpeed: 20
+    resetOnHandSelected: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+  - type: AltFireMelee
+
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      collection: GenericHit
+
+  - type: Wieldable
+  - type: WieldDelay
+    baseDelay: 0.8
+  - type: WieldableSpeedModifiers
+    base: 0.5
+    light: 0.69
+    medium: 0.75
+    heavy: 0.806
+
+  - type: UniqueAction
+
+  - type: RMCSelectiveFire
+    baseFireModes: [ SemiAuto ]
+    baseFireRate: 0.3125
+    recoilWielded: 0.1
+    scatterWielded: 0.1
+    burstScatterMult: 4
+
+  - type: GunRequiresSkills
+    skills:
+      RMCSkillSpecialistWeapons: 1
+
+  - type: GunRequiresWield
+
+  - type: GunIgnorePrediction
+
+  - type: MagazineAmmoProvider
+
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineSharpRifleExplosive
+        priority: 2
+        whitelist:
+          tags:
+          - SharpRifleMagazine
+
+  - type: AmmoCounter
+
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-rail:
+        startingAttachable: RMCAttachmentMagneticHarness
+        whitelist:
+          tags:
+          - RMCAttachmentMagneticHarness
+
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-rail: 0.0, 0.18
+
+  # Компонент для хранения режима (2.5 или 5 сек)
+  - type: SharpFuseMode
+    longMode: false
+
+  # Выдача кнопки переключения
+# =========================
+# MAGAZINES
+# =========================
+- type: entity
+  id: MagazineSharpRifleExplosive
+  name: 9X-E sticky explosive dart magazine
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/MAGAZINE_P9/explosive.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-1
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    size: Small
+  - type: Tag
+    tags: [ SharpRifleMagazine ]
+  - type: BallisticAmmoProvider
+    proto: CartridgeSharpExplosive
+    capacity: 10
+    mayTransfer: true
+    cycleable: true
+    whitelist:
+      tags:
+      - SharpCartridgeExplosive
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+    zeroOnlyOnEmpty: true
+  - type: Appearance
+
+- type: entity
+  id: MagazineSharpRifleIncendiary
+  name: 9X-T sticky incendiary dart magazine
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/MAGAZINE_P9/incendiary.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-1
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    size: Small
+  - type: Tag
+    tags: [ SharpRifleMagazine ]
+  - type: BallisticAmmoProvider
+    proto: CartridgeSharpIncendiary
+    capacity: 10
+    mayTransfer: true
+    cycleable: true
+    whitelist:
+      tags:
+      - SharpCartridgeIncendiary
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+    zeroOnlyOnEmpty: true
+  - type: Appearance
+
+- type: entity
+  id: MagazineSharpRifleFlechette
+  name: 9X-F flechette dart magazine
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/MAGAZINE_P9/flechette.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-1
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    size: Small
+  - type: Tag
+    tags: [ SharpRifleMagazine ]
+  - type: BallisticAmmoProvider
+    proto: CartridgeSharpFlechette
+    capacity: 10
+    mayTransfer: true
+    cycleable: true
+    whitelist:
+      tags:
+      - SharpCartridgeFlechette
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+    zeroOnlyOnEmpty: true
+  - type: Appearance
+
+# =========================
+# CARTRIDGES
+# =========================
+- type: entity
+  id: CartridgeSharpExplosive
+  parent: BaseCartridge
+  name: deactivated SHARP mine (explosive)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - SharpCartridgeExplosive
+  - type: Sprite
+    sprite: _Stories/Sharp/SHARP_MINE/explosive.rsi
+    state: disarmed
+  - type: CartridgeAmmo
+    proto: BulletSharpStickyExplosive
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeSharpIncendiary
+  parent: BaseCartridge
+  name: deactivated SHARP mine (incendiary)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - SharpCartridgeIncendiary
+  - type: Sprite
+    sprite: _Stories/Sharp/SHARP_MINE/incendiary.rsi
+    state: disarmed
+  - type: CartridgeAmmo
+    proto: BulletSharpStickyIncendiary
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeSharpFlechette
+  parent: BaseCartridge
+  name: deactivated SHARP mine (flechette)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - SharpCartridgeFlechette
+  - type: Sprite
+    sprite: _Stories/Sharp/SHARP_MINE/explosive.rsi
+    state: disarmed
+  - type: CartridgeAmmo
+    proto: BulletSharpFlechette
+    deleteOnSpawn: true
+
+# =========================
+# STICKY DARTS
+# =========================
+- type: entity
+  id: BulletSharpStickyExplosive
+  parent: BaseBullet
+  name: sticky explosive dart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/AMMO_P9/explosive.rsi
+    drawdepth: Overlays
+    layers: [ { state: explosive_dart } ]
+
+  - type: IgnoreArc
+
+  # Логика прилипания к мобам
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/pop.ogg
+    embedOnThrow: false
+    deleteOnRemove: false
+    removalTime: null
+    whitelist:
+     components:
+     - MobState
+
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    maxFixedRange: 8
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 35
+  - type: IgnorePredictionHide
+
+  # Логика при попадании в стену (спавн мины)
+
+  # Логика таймера на мобах (взрыв через 2.5/5 сек)
+  - type: SharpStickyDart
+    mineProto: SharpMineExplosiveL1
+    iffDropProto: CartridgeSharpExplosive
+    shortDelay: 2.5
+    longDelay: 5.0
+
+  # Сам взрыв
+  - type: Explosive
+    explosionType: RMC
+    maxIntensity: 20
+    intensitySlope: 6
+    totalIntensity: 200
+    canCreateVacuum: false
+
+  - type: Fixtures
+    fixtures:
+      projectile:
+        hard: false
+        shape: !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        mask:
+        - Impassable
+        - BulletImpassable
+
+- type: entity
+  id: BulletSharpStickyIncendiary
+  parent: BulletSharpStickyExplosive
+  name: sticky incendiary dart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/AMMO_P9/incendiary.rsi
+    drawdepth: Overlays
+    layers: [ { state: incendiary_dart } ]
+
+
+  - type: SharpStickyDart
+    mineProto: SharpMineIncendiaryL1
+    iffDropProto: CartridgeSharpIncendiary
+    shortDelay: 2.5
+    longDelay: 5.0
+
+  - type: TileFireOnTrigger
+    spawn: SharpTileFireL1
+    range: 3
+    intensity: 15
+    duration: 12
+    sound:
+      path: /Audio/_RMC14/Weapons/Guns/Flamer/gun_flamethrower2.ogg
+
+# =========================
+# FLECHETTE
+# =========================
+- type: entity
+  id: BulletSharpFlechette
+  parent: BaseBullet
+  name: flechette dart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/AMMO_P9/flechette.rsi
+    drawdepth: Overlays
+    layers: [ { state: flechette_dart } ]
+
+  - type: IgnoreArc
+
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    maxFixedRange: 8
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 0
+  - type: IgnorePredictionHide
+  - type: SharpFlechetteSpread
+    projectileProto: CMPelletShotgunFlechette
+    count: 6
+    spreadAngle: 60
+    evenSpread: true
+    projectileSpeed: 20
+    minVelocity: 0.5
+    maxVelocity: 1.5
+  - type: Fixtures
+    fixtures:
+      projectile:
+        hard: false
+        shape: !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        mask:
+        - Impassable
+        - BulletImpassable
+
+- type: entity
+  id: BulletSharpFlechetteShard
+  parent: BaseBullet
+  name: flechette shard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/AMMO_P9/flechette.rsi
+    drawdepth: Overlays
+    layers: [ { state: flechette_dart } ]
+  - type: IgnoreArc
+  - type: Projectile
+    deleteOnCollide: true
+    onlyCollideWhenShot: true
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 18
+  - type: Fixtures
+    fixtures:
+      projectile:
+        hard: false
+        shape: !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        mask:
+        - Impassable
+        - BulletImpassable
+
+# =========================
+# MINES
+# =========================
+- type: entity
+  id: SharpTileFireL1
+  parent: RMCTileFire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RMCIgniteOnCollide
+    intensity: 15
+    duration: 12
+    maxStacks: 20
+  - type: TileFire
+    id: SharpTileFireL1
+    duration: 12
+    extinguishInstantly: true
+    patExtinguishMultiplier: 1
+    sprayExtinguishMultiplier: 1
+
+- type: entity
+  id: SharpTileFireGreen
+  parent: RMCTileFireGreen
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageOnCollide
+    damage:
+      types:
+        Heat: 55
+  - type: RMCIgniteOnCollide
+    intensity: 22
+    duration: 24
+    maxStacks: 25
+  - type: TileFire
+    id: SharpTileFireGreen
+    duration: 24
+    extinguishInstantly: false
+    patExtinguishMultiplier: 0.9
+    sprayExtinguishMultiplier: 0.9
+
+- type: entity
+  id: SharpTileFireNapalmL3
+  parent: RMCTileFireNapalm
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RMCIgniteOnCollide
+    intensity: 30
+    duration: 35
+    maxStacks: 65
+  - type: TileFire
+    id: SharpTileFireNapalmL3
+    duration: 35
+    extinguishInstantly: false
+    patExtinguishMultiplier: 0.75
+    sprayExtinguishMultiplier: 0.8
+
+- type: entity
+  id: SharpTileFireNapalmL4
+  parent: SharpTileFireNapalmL3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RMCIgniteOnCollide
+    intensity: 35
+    duration: 45
+    maxStacks: 80
+  - type: TileFire
+    id: SharpTileFireNapalmL4
+    duration: 45
+    patExtinguishMultiplier: 0.6
+    sprayExtinguishMultiplier: 0.7
+
+- type: entity
+  id: SharpMineBase
+  abstract: true
+  name: SHARP mine
+  description: A rapidly-deploying SHARP mine.
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Static
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - BulletImpassable
+        - XenoProjectileImpassable
+        layer:
+        - BulletImpassable
+        - XenoProjectileImpassable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: icon }
+  # Логика поведения мины (проксимити, левелинг)
+  - type: SharpMine
+    ignoreAnyIff: true
+    triggerRadius: 1.0
+    levelUpInterval: 75
+    maxLifespan: 300
+    level: 1
+
+# ======= EXPLOSIVE MINES =======
+- type: entity
+  id: SharpMineExplosiveL1
+  name: SHARP mine (explosive)
+  parent: SharpMineBase
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/SHARP_MINE/explosive.rsi
+    drawdepth: Overlays
+    layers:
+    - state: phase1
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Explosive
+    explosionType: RMC
+    maxIntensity: 20
+    intensitySlope: 6
+    totalIntensity: 200
+    canCreateVacuum: false
+  - type: CMExplosionEffect
+  - type: CMVocalizeTrigger
+  - type: RMCScorchEffect
+
+- type: entity
+  id: SharpMineExplosiveL2
+  parent: SharpMineExplosiveL1
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    layers:
+    - state: phase2
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Explosive
+    totalIntensity: 320
+    maxIntensity: 28
+    intensitySlope: 7
+
+- type: entity
+  id: SharpMineExplosiveL3
+  parent: SharpMineExplosiveL1
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    layers:
+    - state: phase3
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Explosive
+    totalIntensity: 460
+    maxIntensity: 36
+    intensitySlope: 8
+
+- type: entity
+  id: SharpMineExplosiveL4
+  parent: SharpMineExplosiveL1
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    layers:
+    - state: phase4
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Explosive
+    totalIntensity: 620
+    maxIntensity: 46
+    intensitySlope: 9
+
+# ======= INCENDIARY MINES =======
+- type: entity
+  id: SharpMineIncendiaryL1
+  name: SHARP mine (incendiary)
+  parent: SharpMineBase
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/SHARP_MINE/incendiary.rsi
+    drawdepth: Overlays
+    layers:
+    - state: phase1
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: TileFireOnTrigger
+    spawn: SharpTileFireL1
+    range: 3
+    intensity: 15
+    duration: 12
+    sound:
+      path: /Audio/_RMC14/Weapons/Guns/Flamer/gun_flamethrower2.ogg
+
+- type: entity
+  id: SharpMineIncendiaryL2
+  parent: SharpMineIncendiaryL1
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    layers:
+    - state: phase2
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: TileFireOnTrigger
+    spawn: SharpTileFireGreen
+    range: 3
+    intensity: 22
+    duration: 24
+
+- type: entity
+  id: SharpMineIncendiaryL3
+  parent: SharpMineIncendiaryL1
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    layers:
+    - state: phase3
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: TileFireOnTrigger
+    spawn: SharpTileFireNapalmL3
+    range: 3
+    intensity: 30
+    duration: 35
+
+- type: entity
+  id: SharpMineIncendiaryL4
+  parent: SharpMineIncendiaryL1
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    layers:
+    - state: phase4
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: TileFireOnTrigger
+    spawn: SharpTileFireNapalmL4
+    range: 3
+    intensity: 35
+    duration: 45
+
+# =========================
+# SHARP LOADOUT
+# =========================
+- type: entity
+  parent: RMCBaseEquipmentCase
+  id: RMCSharpSpecEquipmentCase
+  name: SHARP operator equipment case
+  description: "A large case containing SHARP anti-personnel launcher equipment, magazines and specialist support gear.\n\nNOTE: You cannot put items back inside this case."
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: [ base ]
+    - state: sharp
+      map: [ label ]
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,21,1
+  - type: StorageFill
+    contents:
+    - id: WeaponSharpRifle
+    - id: MagazineSharpRifleExplosive
+    - id: MagazineSharpRifleIncendiary
+    - id: MagazineSharpRifleFlechette
+    - id: RMCHandsM3G4
+    - id: RMCArmorM3G4
+    - id: RMCArmorHelmetM3G4
+    - id: RMCMK80
+    - id: CMMagazinePistolMK80
+      amount: 2
+    - id: RMCBinoculars
+- type: entity
+  parent: [STHunterBaseItem, RMCBeltBaseStorageNoVisuals]
+  id: STBeltSharpMagazine
+  name: SHARP magazine belt
+  description: A specialist belt rig configured to carry SHARP magazines.
+  components:
+  - type: Sprite
+    sprite: _Stories/Sharp/SHARP_MAGAZINE_BELT.rsi
+  - type: Clothing
+    sprite: _Stories/Sharp/SHARP_MAGAZINE_BELT.rsi
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,15,1
+    whitelist:
+      tags:
+      - SharpRifleMagazine
+  - type: FixedItemSizeStorage
+
+- type: entity
+  parent: STBeltSharpMagazine
+  id: STBeltSharpMagazineFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineSharpRifleExplosive
+    - id: MagazineSharpRifleIncendiary
+    - id: MagazineSharpRifleFlechette
+
+# =========================
+# SHARP REQUISITIONS
+# =========================
+- type: entity
+  parent: RMCCrateAmmo
+  id: RMCCrateMagazineSharpExplosive
+  name: SHARP explosive dart magazine crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineSharpRifleExplosive
+      amount: 3
+
+- type: entity
+  parent: RMCCrateAmmo
+  id: RMCCrateMagazineSharpIncendiary
+  name: SHARP incendiary dart magazine crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineSharpRifleIncendiary
+      amount: 3
+
+- type: entity
+  parent: RMCCrateAmmo
+  id: RMCCrateMagazineSharpFlechette
+  name: SHARP flechette dart magazine crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineSharpRifleFlechette
+      amount: 3

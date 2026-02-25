@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "icon" },
+    { "name": "disarmed" },
+
+    { "name": "phase1", "delays": [[0.4, 0.4]] },
+    { "name": "phase2", "delays": [[0.3, 0.3]] },
+    { "name": "phase3", "delays": [[0.2, 0.2]] },
+    { "name": "phase4", "delays": [[0.1, 0.1]] }
+  ]
+}

@@ -9,3 +9,6 @@ rmc-toggleable-autofire-requires-wielding = You need to wield {THE($gun)} to ena
 
 rmc-toggleable-motion-detector-on = You enable {THE($gun)}'s motion detector.
 rmc-toggleable-motion-detector-off = You disable {THE($gun)}'s motion detector.
+
+sharp-toggleable-fuse-firing-short = SHARP fuse set to 2.5 seconds.
+sharp-toggleable-fuse-firing-long = SHARP fuse set to 5 seconds.
