@@ -133,11 +133,9 @@
     offsets:
       rmc-aslot-rail: 0.0, 0.18
 
-  # Компонент для хранения режима (2.5 или 5 сек)
   - type: SharpFuseMode
     longMode: false
 
-  # Выдача кнопки переключения
 # =========================
 # MAGAZINES
 # =========================
@@ -162,6 +160,8 @@
     capacity: 10
     mayTransfer: true
     cycleable: true
+    soundInsert:
+      path: /Audio/_RMC14/Weapons/Guns/Reload/grenade_insert.ogg
     whitelist:
       tags:
       - SharpCartridgeExplosive
@@ -193,6 +193,8 @@
     capacity: 10
     mayTransfer: true
     cycleable: true
+    soundInsert:
+      path: /Audio/_RMC14/Weapons/Guns/Reload/grenade_insert.ogg
     whitelist:
       tags:
       - SharpCartridgeIncendiary
@@ -224,6 +226,8 @@
     capacity: 10
     mayTransfer: true
     cycleable: true
+    soundInsert:
+      path: /Audio/_RMC14/Weapons/Guns/Reload/grenade_insert.ogg
     whitelist:
       tags:
       - SharpCartridgeFlechette
@@ -301,7 +305,6 @@
 
   - type: IgnoreArc
 
-  # Логика прилипания к мобам
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/pop.ogg
     embedOnThrow: false
@@ -321,16 +324,12 @@
         Piercing: 35
   - type: IgnorePredictionHide
 
-  # Логика при попадании в стену (спавн мины)
-
-  # Логика таймера на мобах (взрыв через 2.5/5 сек)
   - type: SharpStickyDart
     mineProto: SharpMineExplosiveL1
     iffDropProto: CartridgeSharpExplosive
     shortDelay: 2.5
     longDelay: 5.0
 
-  # Сам взрыв
   - type: Explosive
     explosionType: RMC
     maxIntensity: 20
@@ -549,7 +548,6 @@
         enum.ConstructionVisuals.Layer:
           Primed: { state: primed }
           Unprimed: { state: icon }
-  # Логика поведения мины (проксимити, левелинг)
   - type: SharpMine
     ignoreAnyIff: true
     triggerRadius: 1.0

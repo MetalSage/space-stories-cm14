@@ -17,13 +17,6 @@ using Robust.Shared.Timing;
 using Content.Shared._RMC14.Weapons.Ranged;
 namespace Content.Server._Stories.Sharp;
 
-/// <summary>
-/// SERVER ONLY.
-/// Key points for "no phantom":
-/// - Never delete on client; server always deletes.
-/// - Do NOT detach to nullspace before delete (can drop out of PVS before the delete replicates).
-/// - Before spawning mine / deleting, ensure the dart is attached to grid/map.
-/// </summary>
 public sealed class SharpStickyDartSystem : EntitySystem
 {
     private const float SharpExplosionRadius = 3f;
@@ -45,11 +38,9 @@ public sealed class SharpStickyDartSystem : EntitySystem
         if (TerminatingOrDeleted(uid))
             return;
 
-        // Hit a mob -> embedding happens; timer handled in Update().
         if (HasComp<MobStateComponent>(args.Target))
             return;
 
-        // Hit wall/floor -> replace with mine and delete dart (server).
         SpawnMineAndDelete(uid, comp);
     }
 
@@ -58,13 +49,11 @@ public sealed class SharpStickyDartSystem : EntitySystem
         if (TerminatingOrDeleted(uid))
             return;
 
-        // Already embedded into a mob -> ignore.
         if (TryComp<EmbeddableProjectileComponent>(uid, out var emb) && emb.EmbeddedIntoUid != null)
             return;
 
         SnapToPlannedStop(uid);
 
-        // Reached max distance -> replace with mine and delete dart (server).
         SpawnMineAndDelete(uid, comp);
     }
 
@@ -78,7 +67,6 @@ public sealed class SharpStickyDartSystem : EntitySystem
 
         var mineCoords = _transform.GetMapCoordinates(uid);
 
-        // IMPORTANT: keep it in the world so delete replicates to clients.
         _transform.AttachToGridOrMap(uid);
 
         Spawn(comp.MineProto, mineCoords);
@@ -96,7 +84,6 @@ public sealed class SharpStickyDartSystem : EntitySystem
 
         var coords = _transform.GetMapCoordinates(uid);
 
-        // Keep it in-world so delete is replicated.
         _transform.AttachToGridOrMap(uid);
 
         if (comp.IffDropProto is { } dropProto)
@@ -199,15 +186,12 @@ public sealed class SharpStickyDartSystem : EntitySystem
             {
                 if (HasIff(target))
                 {
-                    // Target has IFF: after fuse time, drop recoverable dart entity and remove projectile.
                     DropIffRecoveryAndDelete(uid, sticky);
                 }
                 else
                 {
-                    // Ensure stable coords before trigger/explosion.
                     _transform.AttachToGridOrMap(uid);
 
-                    // Target has no IFF: optional fire trigger then explode (delete: true).
                     if (HasComp<TileFireOnTriggerComponent>(uid))
                     {
                         var fireEv = new RMCTriggerEvent();
@@ -216,7 +200,6 @@ public sealed class SharpStickyDartSystem : EntitySystem
 
                     if (TryComp<ExplosiveComponent>(uid, out var explosive))
                     {
-                        // delete:true guarantees server-side deletion
                         _explosion.TriggerExplosive(uid, explosive, delete: true, radius: SharpExplosionRadius, user: proj.Shooter);
                     }
                     else

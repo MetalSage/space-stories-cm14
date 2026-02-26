@@ -9,14 +9,10 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Stories.Sharp;
 
-/// <summary>
-/// SHARP flechette dart payload fan-out.
-/// Server-authoritative and triggered on hit or fixed-distance stop.
-/// </summary>
 public sealed class SharpFlechetteSpreadSystem : EntitySystem
 {
     private const string SharpFlechetteSourceProto = "BulletSharpFlechette";
-    private const float SharpFlechetteDamageMultiplier = 1f / 1.75f;
+    private const float SharpFlechetteDamageMultiplier = 1f / 1.5f;
 
     [Dependency] private readonly GunSystem _gun = default!;
     [Dependency] private readonly IRobustRandom _random = default!;

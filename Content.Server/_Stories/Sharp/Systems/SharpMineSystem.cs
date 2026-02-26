@@ -130,7 +130,6 @@ public sealed class SharpMineSystem : EntitySystem
                 continue;
             }
 
-            // Левелинг
             var desiredLevel = 1 + (int)(age / mine.LevelUpInterval);
             if (desiredLevel > 4) desiredLevel = 4;
 
@@ -147,7 +146,6 @@ public sealed class SharpMineSystem : EntitySystem
                 Dirty(uid, mine);
             }
 
-            // Проксимити поиск
             _nearby.Clear();
             _lookup.GetEntitiesInRange(xform.Coordinates, mine.TriggerRadius, _nearby);
 
