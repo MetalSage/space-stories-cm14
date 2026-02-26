@@ -12,6 +12,7 @@
     - state: closed
       map: [ base ]
     - state: sharp
+      sprite: _Stories/Objects/loadout_kits.rsi
       map: [ label ]
   - type: Storage
     maxItemSize: Huge
@@ -94,4 +95,3 @@
     contents:
     - id: MagazineSharpRifleFlechette
       amount: 3
-
