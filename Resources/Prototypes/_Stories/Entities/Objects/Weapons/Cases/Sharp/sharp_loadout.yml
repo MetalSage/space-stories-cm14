@@ -1,0 +1,97 @@
+# =========================
+# SHARP LOADOUT
+# =========================
+- type: entity
+  parent: RMCBaseEquipmentCase
+  id: RMCSharpSpecEquipmentCase
+  name: SHARP operator equipment case
+  description: "A large case containing SHARP anti-personnel launcher equipment, magazines and specialist support gear.\n\nNOTE: You cannot put items back inside this case."
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: [ base ]
+    - state: sharp
+      map: [ label ]
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,21,1
+  - type: StorageFill
+    contents:
+    - id: WeaponSharpRifle
+    - id: MagazineSharpRifleExplosive
+    - id: MagazineSharpRifleIncendiary
+    - id: MagazineSharpRifleFlechette
+    - id: RMCHandsM3G4
+    - id: RMCArmorM3G4
+    - id: RMCArmorHelmetM3G4
+    - id: RMCMK80
+    - id: CMMagazinePistolMK80
+      amount: 2
+    - id: RMCBinoculars
+- type: entity
+  parent: [STHunterBaseItem, RMCBeltBaseStorageNoVisuals]
+  id: STBeltSharpMagazine
+  name: SHARP magazine belt
+  description: A specialist belt rig configured to carry SHARP magazines.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Belts/SHARP_MAGAZINE_BELT.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Belts/SHARP_MAGAZINE_BELT.rsi
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,15,1
+    whitelist:
+      tags:
+      - SharpRifleMagazine
+  - type: FixedItemSizeStorage
+
+- type: entity
+  parent: STBeltSharpMagazine
+  id: STBeltSharpMagazineFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineSharpRifleExplosive
+    - id: MagazineSharpRifleIncendiary
+    - id: MagazineSharpRifleFlechette
+
+# =========================
+# SHARP REQUISITIONS
+# =========================
+- type: entity
+  parent: RMCCrateAmmo
+  id: RMCCrateMagazineSharpExplosive
+  name: SHARP explosive dart magazine crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineSharpRifleExplosive
+      amount: 3
+
+- type: entity
+  parent: RMCCrateAmmo
+  id: RMCCrateMagazineSharpIncendiary
+  name: SHARP incendiary dart magazine crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineSharpRifleIncendiary
+      amount: 3
+
+- type: entity
+  parent: RMCCrateAmmo
+  id: RMCCrateMagazineSharpFlechette
+  name: SHARP flechette dart magazine crate (x3)
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineSharpRifleFlechette
+      amount: 3
+

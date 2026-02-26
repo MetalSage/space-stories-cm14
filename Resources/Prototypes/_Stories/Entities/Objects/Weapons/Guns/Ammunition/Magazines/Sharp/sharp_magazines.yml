@@ -1,0 +1,153 @@
+# =========================
+# MAGAZINES
+# =========================
+- type: entity
+  id: MagazineSharpRifleExplosive
+  name: 9X-E sticky explosive dart magazine
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/Sharp/explosive.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-1
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    size: Small
+  - type: Tag
+    tags: [ SharpRifleMagazine ]
+  - type: BallisticAmmoProvider
+    proto: CartridgeSharpExplosive
+    capacity: 10
+    mayTransfer: true
+    cycleable: true
+    soundInsert:
+      path: /Audio/_RMC14/Weapons/Guns/Reload/grenade_insert.ogg
+    whitelist:
+      tags:
+      - SharpCartridgeExplosive
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+    zeroOnlyOnEmpty: true
+  - type: Appearance
+
+- type: entity
+  id: MagazineSharpRifleIncendiary
+  name: 9X-T sticky incendiary dart magazine
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/Sharp/incendiary.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-1
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    size: Small
+  - type: Tag
+    tags: [ SharpRifleMagazine ]
+  - type: BallisticAmmoProvider
+    proto: CartridgeSharpIncendiary
+    capacity: 10
+    mayTransfer: true
+    cycleable: true
+    soundInsert:
+      path: /Audio/_RMC14/Weapons/Guns/Reload/grenade_insert.ogg
+    whitelist:
+      tags:
+      - SharpCartridgeIncendiary
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+    zeroOnlyOnEmpty: true
+  - type: Appearance
+
+- type: entity
+  id: MagazineSharpRifleFlechette
+  name: 9X-F flechette dart magazine
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/Sharp/flechette.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-1
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    size: Small
+  - type: Tag
+    tags: [ SharpRifleMagazine ]
+  - type: BallisticAmmoProvider
+    proto: CartridgeSharpFlechette
+    capacity: 10
+    mayTransfer: true
+    cycleable: true
+    soundInsert:
+      path: /Audio/_RMC14/Weapons/Guns/Reload/grenade_insert.ogg
+    whitelist:
+      tags:
+      - SharpCartridgeFlechette
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+    zeroOnlyOnEmpty: true
+  - type: Appearance
+
+# =========================
+# CARTRIDGES
+# =========================
+- type: entity
+  id: CartridgeSharpExplosive
+  parent: BaseCartridge
+  name: deactivated SHARP mine (explosive)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - SharpCartridgeExplosive
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
+    state: disarmed
+  - type: CartridgeAmmo
+    proto: BulletSharpStickyExplosive
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeSharpIncendiary
+  parent: BaseCartridge
+  name: deactivated SHARP mine (incendiary)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - SharpCartridgeIncendiary
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
+    state: disarmed
+  - type: CartridgeAmmo
+    proto: BulletSharpStickyIncendiary
+    deleteOnSpawn: true
+
+- type: entity
+  id: CartridgeSharpFlechette
+  parent: BaseCartridge
+  name: deactivated SHARP mine (flechette)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - SharpCartridgeFlechette
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
+    state: disarmed
+  - type: CartridgeAmmo
+    proto: BulletSharpFlechette
+    deleteOnSpawn: true
+
