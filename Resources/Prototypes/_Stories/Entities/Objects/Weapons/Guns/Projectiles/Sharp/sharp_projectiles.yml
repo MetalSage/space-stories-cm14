@@ -58,7 +58,7 @@
 
 - type: entity
   id: BulletSharpStickyIncendiary
-  parent: BulletSharpStickyExplosive
+  parent: BaseBullet
   name: sticky incendiary dart
   categories: [ HideSpawnMenu ]
   components:
@@ -67,6 +67,26 @@
     drawdepth: Overlays
     layers: [ { state: incendiary_dart } ]
 
+  - type: IgnoreArc
+
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/pop.ogg
+    embedOnThrow: false
+    deleteOnRemove: false
+    removalTime: null
+    whitelist:
+     components:
+     - MobState
+
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    maxFixedRange: 8
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 35
+  - type: IgnorePredictionHide
 
   - type: SharpStickyDart
     mineProto: SharpMineIncendiaryL1
@@ -81,6 +101,16 @@
     duration: 12
     sound:
       path: /Audio/_RMC14/Weapons/Guns/Flamer/gun_flamethrower2.ogg
+
+  - type: Fixtures
+    fixtures:
+      projectile:
+        hard: false
+        shape: !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        mask:
+        - Impassable
+        - BulletImpassable
 
 # =========================
 # FLECHETTE
