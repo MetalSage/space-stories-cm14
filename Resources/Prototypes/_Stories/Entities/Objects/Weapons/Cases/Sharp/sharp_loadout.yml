@@ -3,7 +3,7 @@
 # =========================
 - type: entity
   parent: RMCBaseEquipmentCase
-  id: RMCSharpSpecEquipmentCase
+  id: STSharpSpecEquipmentCase
   name: SHARP operator equipment case
   description: "A large case containing SHARP anti-personnel launcher equipment, magazines and specialist support gear.\n\nNOTE: You cannot put items back inside this case."
   components:
@@ -68,7 +68,7 @@
 # =========================
 - type: entity
   parent: RMCCrateAmmo
-  id: RMCCrateMagazineSharpExplosive
+  id: STCrateMagazineSharpExplosive
   name: SHARP explosive dart magazine crate (x3)
   components:
   - type: StorageFill
@@ -78,7 +78,7 @@
 
 - type: entity
   parent: RMCCrateAmmo
-  id: RMCCrateMagazineSharpIncendiary
+  id: STCrateMagazineSharpIncendiary
   name: SHARP incendiary dart magazine crate (x3)
   components:
   - type: StorageFill
@@ -88,7 +88,7 @@
 
 - type: entity
   parent: RMCCrateAmmo
-  id: RMCCrateMagazineSharpFlechette
+  id: STCrateMagazineSharpFlechette
   name: SHARP flechette dart magazine crate (x3)
   components:
   - type: StorageFill

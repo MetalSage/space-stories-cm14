@@ -6,6 +6,3 @@ rmc-toggleable-recoil-compensation-off = Вы отключаете { POSS-ADJ($g
 rmc-toggleable-autofire-requires-wielding = Чтобы включить автоматическую стрельбу, нужно использовать { $gun }.
 rmc-toggleable-motion-detector-on = Вы включаете детектор движения { $gun }.
 rmc-toggleable-motion-detector-off = Вы отключили детектор движения { $gun }.
-
-sharp-toggleable-fuse-firing-short = Взрыватель SHARP установлен на 2.5 секунды.
-sharp-toggleable-fuse-firing-long = Взрыватель SHARP установлен на 5 секунд.

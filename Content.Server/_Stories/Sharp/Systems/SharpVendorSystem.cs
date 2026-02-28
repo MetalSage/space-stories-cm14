@@ -8,10 +8,6 @@ namespace Content.Server._Stories.Sharp;
 
 public sealed class SharpVendorSystem : EntitySystem
 {
-    private const string SharpEquipmentCaseId = "RMCSharpSpecEquipmentCase";
-    private const string SharpSpecialistRoleLoc = "rmc-job-name-weapons-specialist-sharp";
-    private const string SharpSpecialistPrefixLoc = "rmc-job-prefix-weapons-specialist-sharp";
-
     [Dependency] private readonly SharedIdCardSystem _idCard = default!;
 
     public override void Initialize()
@@ -22,16 +18,18 @@ public sealed class SharpVendorSystem : EntitySystem
 
     private void OnAfterItemVended(Entity<SharpSpecialistVendorComponent> ent, ref AfterItemVendedEvent args)
     {
-        if (MetaData(args.Item).EntityPrototype?.ID != SharpEquipmentCaseId)
+        var prototypeId = MetaData(args.Item).EntityPrototype?.ID;
+        if (prototypeId == null || prototypeId != ent.Comp.EquipmentCase)
             return;
 
         if (!_idCard.TryGetIdCard(args.User, out var idCard))
             return;
 
-        _idCard.TryChangeJobTitle(idCard.Owner, Loc.GetString(SharpSpecialistRoleLoc), idCard.Comp, args.User);
+        _idCard.TryChangeJobTitle(idCard.Owner, Loc.GetString(ent.Comp.SpecialistRole), idCard.Comp, args.User);
 
-        if (TryComp<JobPrefixComponent>(args.User, out var prefix) &&
-            prefix.AdditionalPrefix == SharpSpecialistPrefixLoc)
+        if (ent.Comp.SpecialistPrefix != null &&
+            TryComp<JobPrefixComponent>(args.User, out var prefix) &&
+            prefix.AdditionalPrefix == ent.Comp.SpecialistPrefix)
         {
             prefix.AdditionalPrefix = null;
             Dirty(args.User, prefix);

@@ -134,5 +134,6 @@
       rmc-aslot-rail: 0.0, 0.18
 
   - type: SharpFuseMode
+    actionId: ActionSharpToggleFuse
     longMode: false
 

@@ -107,6 +107,10 @@
     triggerRadius: 1.0
     levelUpInterval: 75
     maxLifespan: 300
+    explosionRadius: 3
+    detonateOnDamage:
+      types:
+        Heat: 1
     level: 1
 
 # ======= EXPLOSIVE MINES =======

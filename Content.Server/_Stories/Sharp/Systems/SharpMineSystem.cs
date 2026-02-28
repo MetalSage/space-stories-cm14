@@ -21,9 +21,6 @@ namespace Content.Server._Stories.Sharp;
 
 public sealed class SharpMineSystem : EntitySystem
 {
-    private const float SharpExplosionRadius = 3f;
-    private const string HeatDamageType = "Heat";
-
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -91,8 +88,12 @@ public sealed class SharpMineSystem : EntitySystem
         if (!TryComp<DamageOnCollideComponent>(args.OtherEntity, out var damageOnCollide))
             return;
 
-        if (damageOnCollide.Acidic || damageOnCollide.Fire || HasHeatDamage(damageOnCollide.Damage))
+        if (damageOnCollide.Acidic ||
+            damageOnCollide.Fire ||
+            HasTriggerDamage(damageOnCollide.Damage, mine.Comp.DetonateOnDamage))
+        {
             Detonate(mine.Owner);
+        }
     }
 
     private void OnMineAttacked(Entity<SharpMineComponent> mine, ref AttackedEvent args)
@@ -116,7 +117,7 @@ public sealed class SharpMineSystem : EntitySystem
         {
             if (TerminatingOrDeleted(uid)) continue;
 
-            if (IsTouchingAcidOrFire(uid))
+            if (IsTouchingAcidOrFire(uid, mine))
             {
                 _toDetonate.Add(uid);
                 continue;
@@ -195,6 +196,10 @@ public sealed class SharpMineSystem : EntitySystem
         if (TerminatingOrDeleted(uid))
             return;
 
+        var explosionRadius = TryComp(uid, out SharpMineComponent? mine)
+            ? mine.ExplosionRadius
+            : 0f;
+
         if (HasComp<Content.Shared._RMC14.Atmos.TileFireOnTriggerComponent>(uid))
         {
             var fireEv = new Content.Shared._RMC14.Explosion.RMCTriggerEvent();
@@ -202,25 +207,31 @@ public sealed class SharpMineSystem : EntitySystem
         }
 
         if (TryComp<ExplosiveComponent>(uid, out var explosive))
-            _explosion.TriggerExplosive(uid, explosive, delete: true, radius: SharpExplosionRadius);
+            _explosion.TriggerExplosive(uid, explosive, delete: true, radius: explosionRadius);
         else
             QueueDel(uid);
     }
 
     private bool TerminatingOrDeleted(EntityUid uid)
     {
-        if (Deleted(uid)) return true;
-        if (TryComp<MetaDataComponent>(uid, out var meta))
-            return meta.EntityLifeStage >= EntityLifeStage.Terminating;
+        return Deleted(uid) || MetaData(uid).EntityLifeStage >= EntityLifeStage.Terminating;
+    }
+
+    private static bool HasTriggerDamage(DamageSpecifier damage, DamageSpecifier triggerDamage)
+    {
+        foreach (var (damageType, amount) in triggerDamage.DamageDict)
+        {
+            if (amount <= 0)
+                continue;
+
+            if (damage.DamageDict.TryGetValue(damageType, out var actual) && actual > 0)
+                return true;
+        }
+
         return false;
     }
 
-    private static bool HasHeatDamage(DamageSpecifier damage)
-    {
-        return damage.DamageDict.TryGetValue(HeatDamageType, out var heat) && heat > 0;
-    }
-
-    private bool IsTouchingAcidOrFire(EntityUid uid)
+    private bool IsTouchingAcidOrFire(EntityUid uid, SharpMineComponent mine)
     {
         foreach (var other in _physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.AllMask))
         {
@@ -233,8 +244,12 @@ public sealed class SharpMineSystem : EntitySystem
             if (!TryComp<DamageOnCollideComponent>(other, out var damageOnCollide))
                 continue;
 
-            if (damageOnCollide.Acidic || damageOnCollide.Fire || HasHeatDamage(damageOnCollide.Damage))
+            if (damageOnCollide.Acidic ||
+                damageOnCollide.Fire ||
+                HasTriggerDamage(damageOnCollide.Damage, mine.DetonateOnDamage))
+            {
                 return true;
+            }
         }
 
         return false;

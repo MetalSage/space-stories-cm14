@@ -19,8 +19,6 @@ namespace Content.Server._Stories.Sharp;
 
 public sealed class SharpStickyDartSystem : EntitySystem
 {
-    private const float SharpExplosionRadius = 3f;
-
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -200,7 +198,11 @@ public sealed class SharpStickyDartSystem : EntitySystem
 
                     if (TryComp<ExplosiveComponent>(uid, out var explosive))
                     {
-                        _explosion.TriggerExplosive(uid, explosive, delete: true, radius: SharpExplosionRadius, user: proj.Shooter);
+                        _explosion.TriggerExplosive(uid,
+                            explosive,
+                            delete: true,
+                            radius: sticky.ExplosionRadius,
+                            user: proj.Shooter);
                     }
                     else
                     {
@@ -220,12 +222,6 @@ public sealed class SharpStickyDartSystem : EntitySystem
 
     private bool TerminatingOrDeleted(EntityUid uid)
     {
-        if (Deleted(uid))
-            return true;
-
-        if (TryComp<MetaDataComponent>(uid, out var meta))
-            return meta.EntityLifeStage >= EntityLifeStage.Terminating;
-
-        return false;
+        return Deleted(uid) || MetaData(uid).EntityLifeStage >= EntityLifeStage.Terminating;
     }
 }

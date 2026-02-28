@@ -8,8 +8,6 @@ namespace Content.Server._Stories.Sharp;
 
 public sealed class SharpFuseModeSystem : EntitySystem
 {
-    private const string SharpFuseActionId = "ActionSharpToggleFuse";
-
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
@@ -23,7 +21,7 @@ public sealed class SharpFuseModeSystem : EntitySystem
 
     private void OnGetItemActions(Entity<SharpFuseModeComponent> ent, ref GetItemActionsEvent args)
     {
-        args.AddAction(ref ent.Comp.Action, SharpFuseActionId);
+        args.AddAction(ref ent.Comp.Action, ent.Comp.ActionId);
         SyncActionState(ent.Comp);
         Dirty(ent);
     }

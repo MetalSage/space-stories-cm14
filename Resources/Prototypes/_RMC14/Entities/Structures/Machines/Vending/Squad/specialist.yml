@@ -3,7 +3,12 @@
   abstract: true
   id: RMCVendorWeaponsSpecialistGearBase
   components:
+  # Stories-Start
   - type: SharpSpecialistVendor
+    equipmentCase: STSharpSpecEquipmentCase
+    specialistRole: stories-job-name-weapons-specialist-sharp
+    specialistPrefix: stories-job-prefix-weapons-specialist-sharp
+  # Stories-End
   - type: CMAutomatedVendor
     jobs:
     - CMWeaponsSpecialist
@@ -35,8 +40,9 @@
         giveMapBlip:
           sprite: /Textures/_RMC14/Interface/map_blips.rsi
           state: spec_grenadier
-      - id: RMCSharpSpecEquipmentCase
-        giveSquadRoleName: rmc-job-name-weapons-specialist-sharp
+      # Stories-Start
+      - id: STSharpSpecEquipmentCase
+        giveSquadRoleName: stories-job-name-weapons-specialist-sharp
         isAppendSquadRoleName: false
         giveIcon:
           sprite: _Stories/Interface/cm_job_icons.rsi
@@ -44,6 +50,7 @@
         giveMapBlip:
           sprite: /Textures/_RMC14/Interface/map_blips.rsi
           state: spec
+      # Stories-End
       - id: RMCPyroSpecEquipmentCase
         giveSquadRoleName: rmc-job-name-weapons-specialist-pyro
         isAppendSquadRoleName: false

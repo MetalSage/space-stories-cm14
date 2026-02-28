@@ -10,6 +10,12 @@ public sealed partial class SharpFlechetteSpreadComponent : Component
     public EntProtoId ProjectileProto = default!;
 
     [DataField]
+    public EntProtoId? SourceProjectileProto;
+
+    [DataField]
+    public float ProjectileDamageMultiplier = 1f;
+
+    [DataField]
     public int Count = 6;
 
     [DataField]

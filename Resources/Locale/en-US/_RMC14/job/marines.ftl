@@ -61,9 +61,6 @@ rmc-job-prefix-weapons-specialist-scout = SCT
 rmc-job-name-weapons-specialist-pyro = Pyrotechnical Specialist
 rmc-job-prefix-weapons-specialist-pyro = PYRO
 
-rmc-job-name-weapons-specialist-sharp = Sharp Specialist
-rmc-job-prefix-weapons-specialist-sharp = SHRP
-
 rmc-job-name-forecon-spotter = Recon Spotter
 
 rmc-job-name-recruit = Recruit

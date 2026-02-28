@@ -11,9 +11,6 @@ namespace Content.Server._Stories.Sharp;
 
 public sealed class SharpFlechetteSpreadSystem : EntitySystem
 {
-    private const string SharpFlechetteSourceProto = "BulletSharpFlechette";
-    private const float SharpFlechetteDamageMultiplier = 1f / 1.5f;
-
     [Dependency] private readonly GunSystem _gun = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -60,7 +57,8 @@ public sealed class SharpFlechetteSpreadSystem : EntitySystem
         var direction = GetDirection(uid);
         var count = Math.Max(1, comp.Count);
         var halfSpread = comp.SpreadAngle / 2f;
-        var applySharpDamageNerf = MetaData(uid).EntityPrototype?.ID == SharpFlechetteSourceProto;
+        var applyDamageMultiplier = comp.SourceProjectileProto != null &&
+                                    MetaData(uid).EntityPrototype?.ID == comp.SourceProjectileProto;
 
         for (var i = 0; i < count; i++)
         {
@@ -81,8 +79,8 @@ public sealed class SharpFlechetteSpreadSystem : EntitySystem
 
             var firedDirection = Angle.FromDegrees(offset).RotateVec(direction).Normalized();
             var payload = Spawn(comp.ProjectileProto, sourceCoords);
-            if (applySharpDamageNerf && TryComp(payload, out ProjectileComponent? payloadProjectile))
-                payloadProjectile.Damage *= SharpFlechetteDamageMultiplier;
+            if (applyDamageMultiplier && TryComp(payload, out ProjectileComponent? payloadProjectile))
+                payloadProjectile.Damage *= comp.ProjectileDamageMultiplier;
 
             var extraVelocity = _random.NextVector2(comp.MinVelocity, comp.MaxVelocity);
             _gun.ShootProjectile(payload,

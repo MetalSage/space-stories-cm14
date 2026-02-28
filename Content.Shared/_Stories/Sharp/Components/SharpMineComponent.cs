@@ -1,3 +1,4 @@
+using Content.Shared.Damage;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Stories.Sharp;
@@ -13,6 +14,12 @@ public sealed partial class SharpMineComponent : Component
 
     [DataField, AutoNetworkedField]
     public float MaxLifespan = 300f;
+
+    [DataField]
+    public DamageSpecifier DetonateOnDamage = new();
+
+    [DataField]
+    public float ExplosionRadius;
 
     [DataField, AutoNetworkedField]
     public int Level = 1;

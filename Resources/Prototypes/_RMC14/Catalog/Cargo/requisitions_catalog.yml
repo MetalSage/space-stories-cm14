@@ -374,12 +374,14 @@
         crate: RMCCratePyroTankTypeB
       - cost: 4000
         crate: RMCCratePyroTankTypeX
+      # Stories-Start
       - cost: 3000
-        crate: RMCCrateMagazineSharpExplosive
+        crate: STCrateMagazineSharpExplosive
       - cost: 3000
-        crate: RMCCrateMagazineSharpIncendiary
+        crate: STCrateMagazineSharpIncendiary
       - cost: 3000
-        crate: RMCCrateMagazineSharpFlechette
+        crate: STCrateMagazineSharpFlechette
+      # Stories-End
 
 
 

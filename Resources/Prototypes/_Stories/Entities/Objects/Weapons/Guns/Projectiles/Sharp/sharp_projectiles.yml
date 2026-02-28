@@ -38,6 +38,7 @@
     iffDropProto: CartridgeSharpExplosive
     shortDelay: 2.5
     longDelay: 5.0
+    explosionRadius: 3
 
   - type: Explosive
     explosionType: RMC
@@ -93,6 +94,7 @@
     iffDropProto: CartridgeSharpIncendiary
     shortDelay: 2.5
     longDelay: 5.0
+    explosionRadius: 3
 
   - type: TileFireOnTrigger
     spawn: SharpTileFireL1
@@ -139,6 +141,8 @@
   - type: IgnorePredictionHide
   - type: SharpFlechetteSpread
     projectileProto: CMPelletShotgunFlechette
+    sourceProjectileProto: BulletSharpFlechette
+    projectileDamageMultiplier: 0.6666667
     count: 6
     spreadAngle: 60
     evenSpread: true

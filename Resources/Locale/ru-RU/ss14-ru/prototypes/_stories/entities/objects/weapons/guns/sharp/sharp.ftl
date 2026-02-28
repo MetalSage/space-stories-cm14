@@ -22,7 +22,7 @@ ent-SharpMineBase = мина SHARP
 ent-SharpMineExplosiveL1 = мина SHARP (взрывная)
 ent-SharpMineIncendiaryL1 = мина SHARP (зажигательная)
 
-ent-RMCSharpSpecEquipmentCase = кейс с экипировкой оператора SHARP
+ent-STSharpSpecEquipmentCase = кейс с экипировкой оператора SHARP
     .desc = Большой кейс с установкой SHARP, магазинами и вспомогательным снаряжением специалиста. Предметы обратно в кейс положить нельзя.
 
 ent-STBeltSharpMagazine = подсумок для магазинов SHARP
@@ -31,6 +31,6 @@ ent-STBeltSharpMagazineFilled = { ent-STBeltSharpMagazine }
     .suffix = Заполненный
     .desc = { ent-STBeltSharpMagazine.desc }
 
-ent-RMCCrateMagazineSharpExplosive = ящик магазинов SHARP с взрывными дротиками (x3)
-ent-RMCCrateMagazineSharpIncendiary = ящик магазинов SHARP с зажигательными дротиками (x3)
-ent-RMCCrateMagazineSharpFlechette = ящик магазинов SHARP с флешетт-дротиками (x3)
+ent-STCrateMagazineSharpExplosive = ящик магазинов SHARP с взрывными дротиками (x3)
+ent-STCrateMagazineSharpIncendiary = ящик магазинов SHARP с зажигательными дротиками (x3)
+ent-STCrateMagazineSharpFlechette = ящик магазинов SHARP с флешетт-дротиками (x3)
