@@ -12,7 +12,6 @@ rmc-intel-clue-progress-report = Отчет о проделанной работ
 rmc-intel-clue-folder = { $intel } в { $area }.
 rmc-intel-clue-technical-manual = { $intel } в { $area }.
 rmc-intel-clue-experimental-device = Получить { $intel } в { $area }.
-rmc-intel-not-intel-jumpsuit = Вы не можете носить это, не надев форму офицера морской разведки.
 rmc-intel-survivor-pickup =
     Вам не нужна эта { $thing }.
     Сначала сосредоточьтесь на том, чтобы выбраться живым.
@@ -25,6 +24,9 @@ rmc-intel-survivor-xeno-pull =
 rmc-intel-survivor-corpse-pull =
     Я не могу сохранить { $thing }, это только замедлит меня.
     Мне следует сначала сосредоточиться на получении помощи.
+
+
+## Intel Objectives Window
 rmc-ui-intel-title = Цели в технологическом древе морской пехоты
 rmc-ui-intel-header = [bold]Цели в технологическом древе морской пехоты[/bold]
 rmc-ui-intel-tech-points = [bold]Очки технологий[/bold]
@@ -50,12 +52,15 @@ rmc-ui-intel-colony-status =
         [true] Онлайн.
        *[false] Офлайн.
     }
+
+## Tech Control Console
 rmc-ui-tech-tier-header = [font size=14][bold]Уровень: { $tier }[/bold][/font]
+rmc-ui-tech-points = [font size=14][bold]Очки: { $points }[/bold][/font]
 rmc-ui-tech-points-value = Очки технологий: { $value }
 rmc-ui-tech-repurchasable = Можно выкупить
-rmc-ui-tech-points = [font size=14][bold]Очки: { $points }[/bold][/font]
 rmc-ui-tech-incremental-price = Увеличивающаяся цена: +{ $increase } за покупку
 rmc-ui-tech-purchase-button = Купить
+
 rmc-ui-tech-information-header = [bold]Информация[/bold]
 rmc-ui-tech-name-label = [color=#5B88B0]Название:[/color]
 rmc-ui-tech-description-label = [color=#5B88B0]Описание:[/color]

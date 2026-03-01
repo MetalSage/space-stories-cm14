@@ -1,13 +1,17 @@
-# Типы медалей
-rmc-medal-1 = Медаль за выдающиеся заслуги
-rmc-medal-2 = Медаль бронзовое сердце
-rmc-medal-3 = Медаль за доблесть
-rmc-medal-4 = Медаль за исключительный героизм
-# Интерфейс медалей
+# Medal UI
 rmc-medal-recipient = Получатель медали
 rmc-medal-recipient-prompt = Кому вы хотите вручить медаль?
+
 rmc-medal-type = Тип медали
 rmc-medal-type-prompt = Какой тип медали вы хотите вручить?
+
+rmc-medal-citation-prompt = Каким должен быть текст наградного листа?
+rmc-medal-awarded = Медаль вручена
+
+# Medal Errors
+rmc-medal-error-self-award = Вы не можете наградить себя!
+rmc-medal-error-officer-only = Только старший офицер может вручать медали!
+
 # Medal Recommendations
 rmc-award-recommendation-verb = Рекомендовать к награждению
 rmc-award-recommendation-verb-message = Рекомендовать человека к награждению за особые заслуги.
@@ -23,6 +27,7 @@ rmc-award-recommendation-out = Вы достигли лимита рекомен
 rmc-award-recommendation-no-authority = Вы не имеете права рекомендовать присуждение награды.
 rmc-award-recommendation-too-early = Пока еще слишком рано подавать рекомендации для награждения.. Подождите { $minutes } минут.
 rmc-award-recommendation-rank-unknown = Неизвестное звание
+
 # Medal Recommendation Display
 rmc-medal-panel = Панель награждения
 rmc-medal-panel-give-new-medal = Вручить новую медаль
@@ -36,21 +41,19 @@ rmc-medal-panel-reason-label = [color=#5B88B0]Причина:[/color]
 rmc-medal-panel-print-medal = Распечатать медаль
 rmc-medal-panel-medal-printed = Медаль распечатана
 rmc-medal-panel-cant-print = Печать не поддерживается.
+
 # Commendation Types
 rmc-commendation-type-medal = Медали
 rmc-commendation-type-jelly = Желе
+
 # Commendation Display
 rmc-commendation-window = Награждения
 rmc-commendation-title = [bold]Раунд { $round } - { $name }[/bold]
 rmc-commendation-description =
     Выдано [bold]{ $receiver }[/bold] от [bold]{ $giver }[/bold] за:
     { $text }
+
 rmc-commendation-examine-title = Надпись
 rmc-commendation-examine-1 = Надпись на этой награде гласит:
 rmc-commendation-examine-2 = [italic]Выдано [bolditalic]{ $receiver }[/bolditalic] от [bolditalic]{ $giver }[/bolditalic] за: { $text }[/italic]
 rmc-commendation-examine-hover = Ознакомьтесь с полной надписью на этой награде.
-rmc-medal-citation-prompt = Каким должен быть текст наградного листа?
-rmc-medal-awarded = Медаль вручена
-# Ошибки при награждении
-rmc-medal-error-self-award = Вы не можете наградить себя!
-rmc-medal-error-officer-only = Только старший офицер может вручать медали!
