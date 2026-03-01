@@ -9,6 +9,7 @@ rmc-examine-armor-xeno-frontal = - [color=lightblue]{ $armor }[/color] [color=ye
 rmc-examine-armor-xeno-side = - [color=lightblue]{ $armor }[/color] [color=yellow]бортовая броня[/color]
 rmc-examine-armor-xeno-explosion = - [color=lightblue]{ $armor }[/color] [color=yellow]противоосколочная броня[/color]
 rmc-examine-armor-piercing-immune = [color=cyan]Это обладает иммунитетом к бронебойным патронам.![/color]
+
 rmc-adjustable-armor-set = Отрегулируйте значения брони.
 rmc-adjustable-armor-examine = Оно имеет:
 rmc-adjustable-armor-examine-bullet = - [color=lightblue]{ $armor }[/color] [color=yellow]защиты от пуль[/color]

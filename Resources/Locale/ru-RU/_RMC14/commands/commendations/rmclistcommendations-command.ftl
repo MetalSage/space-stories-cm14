@@ -32,6 +32,7 @@ cmd-rmclistcommendations-help =
       rmclistcommendations id 128
       rmclistcommendations player giver PlayerName 10
       rmclistcommendations player receiver PlayerName 5 jelly
+
 # Errors
 cmd-rmclistcommendations-invalid-arguments = Неверные аргументы!
 cmd-rmclistcommendations-invalid-round-id = Неверный ID раунда!
@@ -41,14 +42,17 @@ cmd-rmclistcommendations-invalid-player-mode = Неверный тип игро�
 cmd-rmclistcommendations-invalid-count = Неверное количество! Должно быть положительное число.
 cmd-rmclistcommendations-player-not-found = Игрок '{ $player }' не найден.
 cmd-rmclistcommendations-no-results = Наград не найдено.
+
 # Headers
 cmd-rmclistcommendations-last-header = Отображено { $count } последних выданных наград (запрошено: { $total }):
 cmd-rmclistcommendations-round-header = Награды за раунд { $round } ({ $count } всего):
 cmd-rmclistcommendations-id-header = Награда { $id }:
 cmd-rmclistcommendations-giver-header = Отображено { $count } последних выданных наград (запрошено: { $total }):
 cmd-rmclistcommendations-receiver-header = Отображено { $count } последних полученных наград (запрошено: { $total }):
+
 # Format
 cmd-rmclistcommendations-format = id [{ $id }] { $type }: { $name } - { $giverUserName } ({ $giver }) → { $receiverUserName } ({ $receiver }) Раунд { $round }: { $text }
+
 # Completion hints
 cmd-rmclistcommendations-hint-mode = Тип (последних, раунд, ID медали или CKey игрока)
 cmd-rmclistcommendations-hint-mode-last = Список N последних выданных наград

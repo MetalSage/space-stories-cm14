@@ -1,4 +1,5 @@
 rmc-ghost-role-information-responder-description = Ваша задача — соответствующим образом отвечать на факсы, в зависимости от вашей фракции. Вы действуете от имени персонала RMC.
+
 rmc-ghost-role-information-responder-rules =
     Вы являетесь [color=red][bold]Ответственным за факсы[/bold][/color]. Ваши фракционные отношения зависят от вашей фракции.
     Вы не помните ничего из своей прошлой жизни и ничего, что узнали, будучи призраком.
@@ -11,28 +12,38 @@ rmc-ghost-role-information-responder-rules =
     НИ при каких обстоятельствах НЕ используйте рацию для передачи. Она предназначена только для прослушивания, а не для связи.
     НЕ используйте консоль Overwatch для вмешательства в дела отрядов или отправки сообщений. Она предназначена исключительно для наблюдения.
     НЕ злоупотребляйте полномочиями этой роли. Неправильное использование ваших полномочий или несоответствие ожиданиям приведет к снятию роли или хуже.
+
+
 #UNMC fax responder
 rmc-job-name-unmc-responder = Офицер связи КМП США
 rmc-job-description-unmc-responder = "Вы действуете от имени Регионального командования КМП США, чтобы отвечать на факсы, отправленные в Верховное Командование КМП США."
+
 #We-Ya fax responder
 rmc-job-name-weya-responder = Руководитель по связи Ве-Я
 rmc-job-description-weya-responder = "Вы действуете от имени регионального отдела специальных служб Ве-Я, чтобы отвечать на факсы."
+
 #Provost fax responder
 rmc-job-name-provost-responder = Офицер связи Провост
 rmc-job-description-provost-responder = "Вы действуете от имени Регионального управления маршала Провост, чтобы отвечать на факсы, отправленные в Управление маршала Провост."
+
 #Free Press fax responder
 rmc-job-name-free-press-responder = Свободная пресса
 rmc-job-description-free-press-responder = "Вы известный региональный редактор, член Свободной прессы."
+
 #CLF fax responder
 rmc-job-name-clf-responder = Информационный корреспондент КОФ
 rmc-job-description-clf-responder = "Вы член региональной ячейки КОФ. Информируйте местные ячейки и получайте от них информацию."
 rmc-job-prefix-clf-responder = ИНФО
+
 #SPP fax responder
 rmc-job-name-spp-responder = Офицер связи СПН
 rmc-job-description-spp-responder = "Вы действуете от имени Регионального командования СПН, чтобы отвечать на факсы, отправленные в Командование СПН."
+
 #TSE fax responder
 rmc-job-name-tse-responder = Офицер связи ИТС
 rmc-job-description-tse-responder = "Вы действуете от имени Регионального командования ИТС, чтобы отвечать на факсы, отправленные в Командование ИТС."
+
 #CMB fax responder
 rmc-job-name-cmb-responder = Офицер связи БКМ
 rmc-job-description-cmb-responder = "Вы диспетчер местного отделения БКМ. Отвечайте на факсы соответствующим образом."
+

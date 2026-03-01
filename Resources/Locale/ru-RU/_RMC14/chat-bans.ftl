@@ -13,13 +13,16 @@ rmc-chat-bans-dead = мертвых
 rmc-chat-bans-looc = LOOC
 rmc-chat-bans-ooc = OOC
 rmc-chat-bans-unban = Разблокировать
+
 rmc-chat-bans-list = Список банов чата
 rmc-chat-bans-list-type = Чат
 rmc-chat-bans-list-banned-at = Заблокирован в
 rmc-chat-bans-list-expires-at = Истекает в
 rmc-chat-bans-list-reason = Причина
 rmc-chat-bans-list-permanent = Перманентный
+
 cmd-rmcadminchatban-desc = Открывает окно для выдачи банов чата
 cmd-rmcadminchatban-help = Использоване: rmcadminchatban
+
 cmd-rmcadminchatbanlist-desc = Открывает окно с действующими банами чатов
 cmd-rmcadminchatbanlist-help = Использование: rmcadminchatbanlist

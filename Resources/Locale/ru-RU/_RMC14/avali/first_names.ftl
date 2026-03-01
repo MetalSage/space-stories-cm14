@@ -22,3 +22,4 @@ rmc-name-avali-first-21 = Rha
 rmc-name-avali-first-22 = Ru
 rmc-name-avali-first-23 = Ta
 rmc-name-avali-first-24 = Te
+

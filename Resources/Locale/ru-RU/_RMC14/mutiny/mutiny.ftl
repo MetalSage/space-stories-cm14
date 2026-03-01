@@ -5,10 +5,12 @@ command-description-mutiny-makemutineer = Делает сущность мяте
 command-description-mutiny-removemutineer = Заставляет сущность перестать быть мятежником.
 command-description-mutiny-makemutineerleader = Превращает сущность в лидера мятежа.
 command-description-mutiny-removemutineerleader = Заставляет сущность перестать быть лидером мятежников.
+
 mutineer-status-added = Вы были объявлены мятежником администратором игры. Теперь вы можете участвовать в продолжающемся мятеже.
 mutineer-status-removed = Вы больше не являетесь мятежником и не должны участвовать в мятежных действиях.
 mutineer-leader-status-added = Вы стали лидером мятежа.
 mutineer-leader-status-removed = Вы больше не являетесь лидером мятежа.
+
 mutineer-invite-title = Приглашение присоединиться к мятежу
 mutineer-invite-accept = Присоединиться
 mutineer-invite-deny = Отказаться

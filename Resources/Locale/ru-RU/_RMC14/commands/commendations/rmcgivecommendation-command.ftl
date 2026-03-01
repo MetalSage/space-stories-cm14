@@ -15,15 +15,18 @@ cmd-rmcgivecommendation-help =
       rmcgivecommendation "UNMC High Command" PlayerName "John Doe" medal 1 "For exceptional bravery"
       rmcgivecommendation "The Queen Mother" XenoPlayer "XX-Alpha" jelly 2 "For defending the hive"
       rmcgivecommendation "UNMC High Command" PlayerName "John Doe" medal 1 "For exceptional bravery" 42
+
 # Errors
 cmd-rmcgivecommendation-invalid-arguments = Неверное количество аргументов!
 cmd-rmcgivecommendation-invalid-type = Неизвестный тип! Должен быть 'medal' или 'jelly'.
 cmd-rmcgivecommendation-invalid-award-type = Неверный вид награды '{ $type }' type! Должен быть 1-{ $max }.
 cmd-rmcgivecommendation-empty-citation = Должна быть причина!
 cmd-rmcgivecommendation-player-not-found = Игрок '{ $player }' не найден.
+
 # Success
 cmd-rmcgivecommendation-success = { $award } выдана { $player }!
 cmd-rmcgivecommendation-admin-announcement = { $admin } выдал { $type } "{ $award }"  { $receiver } (Имя: { $character }) for Round { $round }
+
 # Completion hints
 cmd-rmcgivecommendation-hint-giver = Имя персонажа выдающего (будьте внимательны при вводе)
 cmd-rmcgivecommendation-hint-giver-highcommand = Стандартный награждающий для морпехов
