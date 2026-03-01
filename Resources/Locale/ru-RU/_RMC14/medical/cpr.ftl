@@ -5,6 +5,7 @@ cm-cpr-self-perform = Вы делаете искусственное дыхан�
 cm-cpr-other-perform = { $performer } выполняет искусственное дыхание на { $target }
 cm-cpr-self-perform-fail-received-too-recently = Вам не удалось выполнить искусственное дыхание на { $target }. Неправильный ритм. Выполняйте медленнее.
 cm-cpr-other-perform-fail = { $performer } не удалось сделать искусственное дыхание на { $target }
+
 rmc-cpr-dummy-verb-pickup = Поднять
 rmc-cpr-dummy-verb-reset = Сбросить счетчик сердечно-легочной реанимации
 rmc-cpr-dummy-deploy-self = Вы подготовили манекен для проведения сердечно-легочной реанимации к использованию.
@@ -17,4 +18,3 @@ rmc-cpr-dummy-examine-successful = [color=green]Успешно выполнен�
 rmc-cpr-dummy-examine-failed = [color=red]Провалено СЛР: { $count }.[/color]
 rmc-cpr-dummy-reset-denied = Сброс счетчика возможен только для: { $jobs }
 rmc-cpr-dummy-reset-success = Вы обнулили счетчик на манекене для проведения сердечно-легочной реанимации.
-cm-cpr-take-off-mask = Сначала снимите маску { POSS-ADJ($target) }!
