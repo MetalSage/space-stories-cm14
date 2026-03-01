@@ -12,20 +12,23 @@ rmc-loadout-group-weapons = Оружие
 rmc-loadout-group-canned-drinks = Консервированные напитки
 rmc-loadout-group-flasks = Фляги
 rmc-loadout-group-smokables = Табачные изделия
+rmc-loadout-group-miscellaneous = Разное
 rmc-loadout-group-foods-sweets = Еда (сладости)
 rmc-loadout-group-foods-packaged = Еда (в упаковке)
 rmc-loadout-group-foods-healthy = Еда (здоровая)
 rmc-loadout-group-role-specific = Для определённых ролей
 rmc-loadout-group-pins = Значки
 rmc-loadout-group-civilian = Только для гражданских (ограничено)
+
+
 rmc-loadout-group-role-specific-ID = Удостоверение командного состава
-rmc-loadout-group-synthetic-uniform = Униформа синтетиков
 rmc-loadout-group-role-specific-weapon = Командир (Личное оружие)
 rmc-loadout-group-provost-role-specific-outerwear = Провост-инспектор (Снаряженная верхняя одежда)
+rmc-loadout-group-synthetic-uniform = Униформа синтетиков
 rmc-loadout-group-synthetic-accessories = Аксессуары для униформы синтетиков
 rmc-loadout-group-synthetic-glasses = Очки синтетиков
 rmc-loadout-group-synthetic-shoes = Обувь синтетиков
 rmc-loadout-group-synthetic-headwear = Головные уборы синтетиков
 rmc-loadout-group-synthetic-suits = Костюмы синтетиков
+
 loadout-group-points-insufficient = Недостаточно очков!
-rmc-loadout-group-miscellaneous = Разное

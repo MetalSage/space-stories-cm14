@@ -15,8 +15,9 @@ rmc-squad-info-unassigned = [font size=16][bold]Не распределен[/bol
 rmc-squad-info-fireteam = [font size=16][bold]Боевая группа { $fireteam }[/bold][/font]
 rmc-squad-info-tracking-selection = Выбор цели для отслеживания
 rmc-squad-info-tracking-choose = Выберите новую цель для отслеживания.
-rmc-squad-info-squad-leader = Командир отряда
+rmc-squad-info-change-tracker = Изменить отслеживание
 rmc-squad-info-none = Нет
+
 rmc-squad-info-CommandingOfficer = Командующий офицер
 rmc-squad-info-ExecutiveOfficer = Исполнительный офицер
 rmc-squad-info-AuxiliarySupportOfficer = Офицер вспомогательной поддержки
@@ -31,33 +32,41 @@ rmc-squad-info-PVESquadLeader = Squad Leader
 rmc-squad-info-SquadLeader = Командир отряда
 rmc-squad-info-FireteamLeader = Командир огневой группы
 rmc-squad-info-Rifleman = Стрелок
+
 rmc-squad-info-DirectorPmc = Директор
 rmc-squad-info-LeaderPmcPVE = Force Leader
 rmc-squad-info-TeamLeaderPmcPVE = Team Leader
 rmc-squad-info-LeaderPmc = Командир группы
 rmc-squad-info-CorporateLiaison = Связной с корпорацией
+
 rmc-squad-info-SupervisorWeYa = Юрисконсульт
 rmc-squad-info-LawyerWeYa = Юрист
 rmc-squad-info-LeaderGoon = Начальник охраны
+
 rmc-squad-info-SupervisorWeYaExecutive = Исполнительный директор
 rmc-squad-info-SupervisorWeYaSpecialist = Руководитель-специалист
+
 rmc-squad-info-ProvostMarshal = Начальник военной полиции
 rmc-squad-info-ProvostDeputyMarshal = Заместитель начальника военной полиции
 rmc-squad-info-ProvostChiefInspector = Главный инспектор военной полиции
 rmc-squad-info-ProvostInspector = Инспектор военной полиции
 rmc-squad-info-ProvostTeamLeader = Командир группы военной полиции
 rmc-squad-info-ProvostAdvisor = Советник военной полиции
+
 rmc-squad-info-LeaderSpp = Лидер
 rmc-squad-info-LeaderFreelancer = Лидер
+
 rmc-squad-info-FORECONCommandingOfficer = Командующий офицер
+
 rmc-squad-info-InspectorTSEPA = Инспектор ИТСПД
 rmc-squad-info-SeniorConstableTSEPA = Старший констебль ИТСПД
+
 rmc-squad-info-PrimaryLandingZone = Основная зона высадки
+
 rmc-squad-info-RCMPVESectionLead = Section Leader
 rmc-squad-info-RCMPVETeamLead = Team Leader
 rmc-squad-info-RCMPVETroopSergeant = Troop Sergeant
 rmc-squad-info-RCMPVETroopCommander = Troop Commander
+
 rmc-squad-info-RCMTeamLead = Командир группы
 rmc-squad-info-RCMLieutenant = Лейтенант
-rmc-squad-info-fireteam-leader = Командир огневой группы
-rmc-squad-info-change-tracker = Изменить отслеживание
