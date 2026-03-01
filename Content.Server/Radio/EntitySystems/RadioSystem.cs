@@ -44,9 +44,9 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!; 
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly TTSSystem _tts = default!; 
+    [Dependency] private readonly TTSSystem _tts = default!;
     [Dependency] private readonly TtsAudioProcessingSystem _ttsProcessing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -62,7 +62,7 @@ public sealed class RadioSystem : EntitySystem
             Variation = 0.1f,
             MaxDistance = 3.75f,
         },
-    }; 
+    };
 
     public override void Initialize()
     {
@@ -153,7 +153,7 @@ public sealed class RadioSystem : EntitySystem
             {
                 if (TryComp(messageSource, out FireteamMemberComponent? fireteamMember) && fireteamMember.Fireteam >= 0)
                 {
-                    prefixText += $" FT{fireteamMember.Fireteam + 1}" + (TryComp(messageSource, out FireteamLeaderComponent? fireteamLeader) ? " TL" : "");
+                    prefixText += $" БГ{fireteamMember.Fireteam + 1}" + (TryComp(messageSource, out FireteamLeaderComponent? fireteamLeader) ? " КБГ" : "");
                 }
                 name = $"({prefixText}) {name}";
             }
@@ -188,7 +188,7 @@ public sealed class RadioSystem : EntitySystem
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
             ("fontType", speech.FontId),
-            ("fontSize", radioFontSize), 
+            ("fontSize", radioFontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", name),
@@ -214,7 +214,7 @@ public sealed class RadioSystem : EntitySystem
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
         var recipientUids = new List<EntityUid>();
-        
+
         // Stories-Fix: Используем HashSet для отслеживания отправленных клиентов, чтобы избежать дублей (призрак + обычный)
         var sentClients = new HashSet<INetChannel>();
 
@@ -264,11 +264,11 @@ public sealed class RadioSystem : EntitySystem
             foreach (var session in _playerManager.Sessions)
             {
                 if (session.AttachedEntity is not { } ent) continue;
-                
+
                 // Если это призрак и он еще не получил сообщение (например, через вселение в тело с радио)
                 if (HasComp<GhostComponent>(ent))
                 {
-                    if (sentClients.Contains(session.Channel)) 
+                    if (sentClients.Contains(session.Channel))
                         continue;
 
                     _netMan.ServerSendMessage(chatMsg, session.Channel);
@@ -281,7 +281,7 @@ public sealed class RadioSystem : EntitySystem
         if (canSend && (recipientUids.Count > 0 || ghostSessions.Count > 0))
         {
             var sessions = new List<ICommonSession>();
-            
+
             // Добавляем обычных получателей
             var actorQuery = GetEntityQuery<ActorComponent>();
             foreach (var uid in recipientUids)

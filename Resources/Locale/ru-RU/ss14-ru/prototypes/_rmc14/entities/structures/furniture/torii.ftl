@@ -1,2 +1,2 @@
-ent-RMCTorii = torii arch
-    .desc = A traditional Japanese archway, made out of wood, and adorned with lanterns.
+ent-RMCTorii = арка тории
+    .desc = Традиционная японская арка, сделанная из дерева и украшенная фонарями.

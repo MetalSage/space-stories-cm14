@@ -1,2 +1,2 @@
-ent-RMCSpawnPointSurvivorSolarisCorporateSupervisor = special survivor crashlanding offices coporate supervisor spawn point
+ent-RMCSpawnPointSurvivorSolarisCorporateSupervisor = точка появления специальный выживший аварийная посадка офисы корпоративный супервайзер
     .desc = { ent-CMSpawnPointJobBase.desc }

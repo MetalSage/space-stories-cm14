@@ -19,7 +19,7 @@
       takeAll: CMSmartGunSet
       entries:
       - id: CMSmartGunOperatorEquipmentCase
-    - name: Обвесы
+    - name: Навесное оборудование
       choices: { CMGunAttachments: 1 }
       entries:
       - id: RMCAttachmentLaserSight
@@ -46,7 +46,7 @@
         points: 20
       - id: RMCBoxClaymoreMineFilled
         points: 20
-    - name: Боеприпасы К Вторичному Оружиюs
+    - name: Боеприпасы К Вторичному Оружию
       entries:
       - id: RMCMagazinePistolM13Ext
         points: 6

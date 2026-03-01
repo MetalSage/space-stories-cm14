@@ -167,7 +167,7 @@
       - id: RMCJacketWindbreakerExpedition
         amount: 1
       - id: RMCCoatSnowLiaison
-        name: liaison's winter coat
+        name: зимнее пальто связного
         amount: 1
       - id: RMCLabcoat
         amount: 1
@@ -179,7 +179,7 @@
         amount: 1
       - id: RMCVestTan
         amount: 1
-    - name: Hats
+    - name: Головные уборы
       entries:
       - id: RMCHeadCapWestonYamadaDark
         amount: 1

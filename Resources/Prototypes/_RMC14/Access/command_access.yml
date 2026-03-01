@@ -31,7 +31,7 @@
 - type: accessLevel
   id: CMAccessCE
   parent: RMCBaseEngineeringAccess
-  name: Chief Engineer
+  name: Главный инженер
 
 - type: accessLevel
   id: CMAccessASO
@@ -46,12 +46,12 @@
 - type: accessLevel
   id: RMCAccessDatabase
   parent: RMCBaseCommandAccess
-  name: Database
+  name: База данных
 
 - type: accessLevel
   id: RMCAccessSeniorCommand
   parent: RMCBaseCommandAccess
-  name: Senior Command
+  name: Старший офицерский состав
 
 # Admin only.
 - type: accessLevel

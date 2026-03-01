@@ -1,4 +1,4 @@
-ent-RMCSpawnPointSurvivorKutjevoDoctor = survivor kurjevo doctor spawn point
+ent-RMCSpawnPointSurvivorKutjevoDoctor = точка появления выжившего доктора кутьево
     .desc = { ent-CMSpawnPointJobBase.desc }
-ent-RMCGearSurvivorPresetKutjevoDoctor = kutjevo doctor colonist preset
+ent-RMCGearSurvivorPresetKutjevoDoctor = пресет выжившего доктора кутьево
     .desc = { ent-RMCSurvivorPresetDoctor.desc }

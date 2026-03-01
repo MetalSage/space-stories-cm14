@@ -1,2 +1,2 @@
-ent-RMCAncientObelisk = ancient obelisk
-    .desc = A strange basalt obelisk, coated in strange red symbols which hurt your eyes. You don't know if you should cry, scream, laugh, worship, or run away.
+ent-RMCAncientObelisk = древний обелиск
+    .desc = Странный базальтовый обелиск, покрытый странными красными символами, которые режут глаза. Вы не знаете, плакать ли, кричать, смеяться, поклоняться или бежать прочь.

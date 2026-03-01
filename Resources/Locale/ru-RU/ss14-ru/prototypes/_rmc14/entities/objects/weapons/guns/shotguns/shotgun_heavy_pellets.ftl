@@ -1,6 +1,6 @@
 ent-RMCPelletHeavyShotgunBuckshot = тяжелая картечь
     .desc = { ent-CMPelletShotgunBase.desc }
-ent-RMCPelletHeavyShotgunSlug = Тяжелая пуля
+ent-RMCPelletHeavyShotgunSlug = тяжелая пуля
     .desc = { ent-CMPelletShotgunBase.desc }
 ent-RMCPelletHeavyShotgunBeanbag = тяжелая пуля-мешок
     .desc = { ent-CMPelletShotgunBase.desc }

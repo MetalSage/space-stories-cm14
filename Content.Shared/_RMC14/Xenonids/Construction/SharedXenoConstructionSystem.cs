@@ -348,7 +348,7 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
 
             if (adjacent == default)
             {
-                _popup.PopupClient("You can only plant weeds if there is a nearby node.",
+                _popup.PopupClient(Loc.GetString("ssmc-xeno-plant-weeds"),
                     args.Target,
                     xeno,
                     PopupType.MediumCaution);
@@ -470,8 +470,8 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
                 return;
 
             var msg = hasBoost
-                ? "We regurgitate some resin and thicken the " + Name(upgradeable) + " effortlessly."
-                : $"We regurgitate some resin and thicken the {Name(upgradeable)}, using {cost} plasma.";
+                ? Loc.GetString("ssmc-xeno-construct-update-free", ("structure", Name(upgradeable)))
+                : Loc.GetString("ssmc-xeno-construct-update-free", ("structure", Name(upgradeable)), ("cost", cost));
             _popup.PopupClient(msg, upgradeable, xeno);
 
             if (_net.IsClient)
@@ -1426,7 +1426,7 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
                 if (popup)
                 {
                     _popup.PopupClient(
-                        "We've already built the maximum possible structures we can!",
+                        Loc.GetString("ssmc-xeno-construct-limit-max"),
                         target,
                         xeno,
                         PopupType.MediumCaution
@@ -1939,8 +1939,8 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
         _actions.SetToggled(args.Action.AsNullable(), ent.Comp.BuildDoorNodes);
 
         var msg = ent.Comp.BuildDoorNodes
-            ? "We will now place door markers."
-            : "We will now place wall markers.";
+            ? Loc.GetString("ssmc-xeno-construct-design-door-markers")
+            : Loc.GetString("ssmc-xeno-construct-design-wall-markers");
         _popup.PopupClient(msg, ent, ent, PopupType.Small);
 
         Dirty(ent);

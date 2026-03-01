@@ -1,2 +1,2 @@
-ent-RMCSurvivorPresetHybrisaSynthTSEPA = survivor synth hybrisa tsepa colonist preset
+ent-RMCSurvivorPresetHybrisaSynthTSEPA = пресет выжившего синтетика ИТСПД гибриса
     .desc = { "" }

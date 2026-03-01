@@ -13,14 +13,14 @@
     jobs:
     - RMCJobSynthetic
     sections:
-    - name: Standard Equipment
+    - name: Стандартное снаряжение
       takeAll: CMStandard
       entries:
       # /obj/item/coin/marine/synth
       # /obj/item/device/defibrillator/synthetic
       - id: RMCSynthResetKey
       - id: RMCHeadsetSynth
-    - name: Uniform
+    - name: Униформа
       choices: { CMUniform: 1 }
       entries:
       - id: RMCJumpsuitSynthetic
@@ -28,7 +28,7 @@
         # /obj/item/clothing/under/rank/synthetic/old
       - id: JumpsuitMarine
       - id: CMJumpsuitMarineMedic
-    - name: Webbing
+    - name: Разгрузка
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown
@@ -42,20 +42,20 @@
       - id: RMCWebbingBlackSmall
       - id: CMWebbingHolster
       - id: RMCWebbingHolsterBlack
-    - name: Shoes
+    - name: Ботинки
       choices: { RMCShoes: 1 }
       entries:
       - id: RMCShoesWhite
         recommended: true
       - id: CMBootsBlackFilled
-    - name: Helmet
+    - name: Шлем
       choices: { CMHelmet: 1 }
       entries:
       - id: RMCHardhatOrange
-        name: orange hard hat
+        name: оранжевая каска
       - id: RMCHelmetWelding
       - id: CMHeadFlapCap
-    - name: Suit # Parity Vendor Fill has one for the map's camo, then still lets the synth choose from any of the options. Hence why this has so many options.
+    - name: Костюм # Parity Vendor Fill has one for the map's camo, then still lets the synth choose from any of the options. Hence why this has so many options.
       choices: { CMSuit: 1 }
       entries:
       - id: CMArmorM3VLSynth
@@ -65,7 +65,7 @@
       - id: CMArmorM3VLSynthSnow
       - id: CMArmorM3VLSynthClassic
       - id: CMArmorM3VLSynthUrban
-    - name: Gloves
+    - name: Перчатки
       choices: { CMGloves: 1 }
       entries:
       - id: CMHandsInsulated
@@ -74,78 +74,78 @@
         recommended: true
       - id: CMHandsBlackMarine
       - id: CMHandsLatex
-    - name: Backpack
+    - name: Рюкзак
       choices: { CMBackpack: 1 }
       entries:
       - id: RMCSmartpack
-        name: S-V42 smartpack, blue
+        name: рюкзак S-V42, синий
         recommended: true
       - id: RMCSmartpackBlack
-        name: S-V42 smartpack, black
+        name: рюкзак S-V42, черный
       - id: RMCSmartpackGreen
-        name: S-V42 smartpack, green
+        name: рюкзак S-V42, зеленый
       - id: RMCSmartpackTan
-        name: S-V42 smartpack, tan
+        name: рюкзак S-V42, коричневый
       - id: RMCSmartpackWhite
-        name: S-V42 smartpack, white
+        name: рюкзак S-V42, белый
       - id: RMCSmartpackA1
-        name: S-V42A1 smartpack, blue
+        name: рюкзак S-V42A1, синий
       - id: RMCSmartpackA1Black
-        name: S-V42A1 smartpack, black
+        name: рюкзак S-V42A1, черный
       - id: RMCSmartpackA1Green
-        name: S-V42A1 smartpack, green
+        name: рюкзак S-V42A1, зеленый
       - id: RMCSmartpackA1Tan
-        name: S-V42A1 smartpack, tan
+        name: рюкзак S-V42A1, коричневый
       - id: RMCSmartpackA1White
-        name: S-V42A1 smartpack, white
-    - name: Belt
+        name: рюкзак S-V42A1, белый
+    - name: Пояс
       choices: { CMBelt: 1 }
       entries:
       - id: RMCBeltUtilityGeneral
       - id: CMBeltMedicBagFilled
-        name: M276 pattern lifesaver bag (Full)
+        name: медицинский пояс M276 (полный)
       - id: CMBeltMedicalFilled
-        name: M276 medical storage rig (Full)
+        name: медицинский пояс M276 (полный)
       - id: CMBeltUtilityFilled
-        name: M276 Toolbelt Rig (Full)
-    - name: Pouches
+        name: пояс для инструментов M276 (полный)
+    - name: Подсумки
       choices: { CMPouch: 2 }
       entries:
       - id: RMCPouchAutoinjector
       - id: RMCPouchConstruction
       - id: RMCPouchDocument
       - id: RMCPouchElectronicsFill
-        name: electronics pouch (Full)
+        name: подсумок электроники (полный)
       - id: RMCPouchFirstAidInjectors
-        name: first-aid pouch (refillable injectors)
+        name: подсумок первой помощи (инъекторы)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
+        name: подсумок первой помощи (бинт, мазь) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: first-aid pouch (pills)
+        name: подсумок первой помощи (таблетки)
       - id: RMCPouchFlareFilled
-        name: Flare pouch (Full)
+        name: подсумок фаеров (полный)
       - id: RMCPouchGeneralLarge
       - id: RMCPouchSling
       - id: RMCPouchMedical
       - id: RMCPouchMedkit
       - id: RMCPouchReagentCanisterTricordrazineRevival
-        name: Pressurized Reagent Canister Pouch\n(Revival Mix - Tricordrazine)
+        name: канистра реагентов (возрождающая смесь - трикордразин)
 #     - id: CMPressurizedReagentCanisterPouchPeridaxonRevivalMix
 #       name: Pressurized Reagent Canister Pouch\n(Revival Mix - Peridaxon)
 #        recommended: true
       - id: RMCPouchReagentCanisterBicaridine
-        name: Pressurized Reagent Canister Pouch\n(Bicaridine)
+        name: канистра реагентов (бикаридин)
       - id: RMCPouchReagentCanisterKelotane
-        name: Pressurized Reagent Canister Pouch\n(Kelotane)
+        name: канистра реагентов (келотан)
       - id: RMCPouchReagentCanisterTricordrazine
-        name: Pressurized Reagent Canister Pouch\n(Tricordrazine)
+        name: канистра реагентов (трикордразин)
       - id: RMCPouchReagentCanister
-        name: Pressurized Reagent Canister Pouch\n(EMPTY)
+        name: канистра реагентов (пустая)
       - id: RMCPouchToolsFill
-        name: tools pouch (Full)
+        name: подсумок для инструментов (полный)
       - id: RMCPouchMacheteFilled
-        name: machete pouch (Full)
-    - name: Pouches
+        name: подсумок мачете (полный)
+    - name: Маска
       choices: { CMMask: 1 }
       entries:
       - id: CMMaskSterile
@@ -175,7 +175,7 @@
     jobs:
     - RMCJobSynthetic
     sections:
-    - name: Engineer Supplies
+    - name: Инженерные мелочи
       entries:
       # /obj/item/circuitboard/airlock - 2 Points
       - id: CMAPCElectronics
@@ -187,15 +187,15 @@
       - id: RMCLightReplacer
         points: 2
       - id: CMSheetMetal10
-        name: metal x10
+        name: металл x10
         points: 5
       - id: CMMultitool
         points: 4
       - id: CMSheetPlasteel10
-        name: plasteel x10
+        name: пласталь x10
         points: 7
       - id: CMSandbagEmpty25
-        name: sandbags x25
+        name: мешки с песком x25
         points: 7
       - id: RMCExplosivePlastic
         points: 3
@@ -204,7 +204,7 @@
         points: 1
       - id: RMCTacticalPrybar
         points: 5
-    - name: Firstaid Kits
+    - name: аптечки первой помощи
       entries:
       - id: CMAdvFirstAidKitFilled
         points: 12
@@ -218,7 +218,7 @@
         points: 6
       - id: RMCRadiationAidKit
         points: 6
-    - name: Medical Supplies
+    - name: Медицинские мелочи
       entries:
       - id: CMBurnKit1
         points: 2
@@ -274,7 +274,7 @@
         points: 4
       - id: CMSynthGraft
         points: 4
-    - name: Other Supplies
+    - name: Прочее
       entries:
       - id: RMCBinoculars
         points: 5
@@ -297,7 +297,7 @@
       - id: RMCWhistle
         points: 5
       - id: RMCScabbardMacheteFilled
-        name: machete scabbard (Full)
+        name: ножны для мачете (полные)
         points: 2
       - id: RMCStethoscope
         points: 2
@@ -321,7 +321,7 @@
     - RMCJobSynthetic
     pointsType: ExperimentalTools
     sections:
-    - name: Experimental Tools
+    - name: Экспериментальные инструменты
       entries:
       - id: RMCSynthBreachingHammer
         points: 15

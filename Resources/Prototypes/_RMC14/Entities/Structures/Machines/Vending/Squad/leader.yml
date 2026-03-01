@@ -15,11 +15,11 @@
     jobs:
     - CMSquadLeader
     sections:
-    - name: Squad Leader Kit
+    - name: набор командира отряда
       takeAll: CMStandard
       entries:
       - id: RMCVendorBundleCrewLeader
-    - name: Squad Kit (for yourself or your squad)
+    - name: набор командира отряда (для вас или отряда)
       choices: { RMCKitBase: 1 }
       entries:
       - id: RMCKitEngineering
@@ -32,19 +32,19 @@
       - id: RMCM85A1Case
       - id: RMCMOU53Case
       - id: RMCCaseXM88
-    - name: Clothing Items
+    - name: Одежда
       entries:
       - id: RMCBackpackRTO
         points: 5
       - id: RMCScabbardMacheteFilled
-        name: machete scabbard (Full)
+        name: ножны мачете (полные)
         points: 4
       - id: RMCPouchMacheteFilled
-        name: machete pouch (Full)
+        name: подсумок мачете (полный)
         points: 4
       - id: CMBeltUtilityCombat
         points: 15
-    - name: Utilities
+    - name: Утилиты
       entries:
       - id: RMCWhistle
         points: 3
@@ -54,13 +54,13 @@
         points: 5
       - id: RMCFulton20
         points: 5
-    - name: Binoculars
+    - name: Бинокли
       entries:
       - id: RMCRangefinder
         points: 3
       - id: RMCLaserDesignator
         points: 5
-    - name: Helmet Optics
+    - name: Визоры для шлема
       entries:
       - id: RMCVisorWelding
         points: 5
@@ -70,18 +70,18 @@
       - id: RMCVisorNightVision
         points: 25
         recommended: true
-    - name: Engineering Supplies
+    - name: Инженерные припасы
       entries:
       - id: CMHandsInsulated
         points: 3
       - id: CMHandsBlackInsulated
         points: 3
       - id: CMSheetMetal10
-        name: metal x10
+        name: металл x10
         points: 5
         recommended: true
       - id: CMSheetPlasteel10
-        name: plasteel x10
+        name: пласталь x10
         points: 7
         recommended: true
       - id: RMCExplosivePlastic
@@ -91,7 +91,7 @@
         points: 7
         recommended: true
       - id: CMSandbagEmpty25
-        name: sandbags x25
+        name: мешки с песком x25
         points: 10
         recommended: true
       - id: RMCPackFlareCAS
@@ -100,7 +100,7 @@
         points: 5
       - id: RMCWeldingGoggles
         points: 5
-    - name: Explosives
+    - name: Взрывчатка
       entries:
       - id: CMPacketGrenadeHighExplosiveFilled
         points: 18
@@ -124,7 +124,7 @@
     #   points: 5
     # - id: RMCElectroshockGrenadex3
     #   points: 16
-    - name: Medical Supplies
+    - name: Медицинские припасы
       entries:
       - id: CMBurnKit10
         points: 2
@@ -152,7 +152,7 @@
         points: 4
       - id: CMRollerBedSpawnFolded
         points: 2
-    - name: Primary Ammunition
+    - name: Боеприпасы для основного оружия
       entries:
       - id: CMMagazineRifleM4SPRAP
         points: 6
@@ -170,7 +170,7 @@
         points: 6
       - id: CMMagazineRifleM54CExt
         points: 6
-    - name: Sidearm Ammunition
+    - name: Боеприпасы для вторичного оружия
       entries:
       - id: RMCMagazinePistolM13Ext
         points: 6
@@ -186,15 +186,15 @@
         points: 3
       - id: RMCMagazinePistolSU6
         points: 6
-    - name: Special Ammunition
+    - name: Специальные боеприпасы
       entries:
       - id: RMCTankFlamer
         points: 3
-        name: incinerator tank (UT-Napthal)
+        name: топливный бак (UT-Нафталь)
       - id: RMCTankFlamerBGel
         points: 3
-        name: incinerator tank (B-Gel)
-    - name: Restricted Firearms
+        name: топливный так (Б-Гель)
+    - name: Ограниченное оружие
       entries:
       - id: RMCCaseFlamer
         points: 18
@@ -204,7 +204,7 @@
         points: 12
       - id: RMCM85A1Case
         points: 18
-    - name: Radio Keys
+    - name: Ключи шифрования
       entries:
       - id: CMEncryptionKeyEngineer
         points: 3
@@ -232,7 +232,7 @@
     jobs:
     - CMSquadLeader
     sections:
-    - name: Standard Equipment
+    - name: Стандартное снаряжение
       takeAll: CMStandard
       entries:
       - id: CMVendorBundleSquadLeaderApparel
@@ -240,22 +240,22 @@
         replaceSlot: back
       - id: CMMRE
       #- id: CMMap # TODO: Make a map
-    - name: Armor
+    - name: Броня
       choices: { CMArmour: 1 }
       entries:
       - id: RMCArmorB12Zipties
-        name: leader B12 pattern marine armor (zipties)
+        # name: leader B12 pattern marine armor (zipties)
         recommended: true
       - id: RMCArmorM4Zipties
-        name: leader M4 pattern marine armor (zipties)
-    - name: Backpack
+        # name: leader M4 pattern marine armor (zipties)
+    - name: Рюкзак
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpackMarine
       - id: RMCScabbardMacheteFilled
       - id: CMSatchelMarine
         recommended: true
-    - name: Belt
+    - name: Пояс
       choices: { CMBelt: 1 }
       entries:
       - id: RMCBeltUtilityGeneral
@@ -271,22 +271,22 @@
       - id: RMCM82FHolster
       - id: RMCM276ShotgunShellLoadingRig
       - id: CMBeltUtilityFilled
-        name: M276 pattern toolbelt rig (Full)
+        name: пояс для боеприпасов M276 (полный)
       - id: RMCBeltGrenade
-    - name: Pouches
+    - name: Подсумки
       choices: { RMCPouch: 2 }
       entries:
       - id: RMCPouchAutoinjectorFill
         recommended: true
       - id: RMCPouchFirstAidInjectors
-        name: first-aid pouch (refillable injectors)
+        name: подсумок первой помощи (инъекторы)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
+        name: подсумок первой помощи (бинт, мазь) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: first-aid pouch (pills)
+        name: подсумок первой помощи (таблетки)
         recommended: true
       - id: RMCPouchFlareFilled
-        name: Flare pouch (Full)
+        name: подсумок фаеров (полный)
       - id: RMCPouchFuelTank
       - id: RMCPouchGeneralLarge
         recommended: true
@@ -295,7 +295,7 @@
       - id: RMCPouchShotgunLarge
       - id: RMCPouchMagazinePistolLarge
       - id: RMCPouchPistol
-    - name: Accessories
+    - name: Разгрузка
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBlack
@@ -309,7 +309,7 @@
       - id: RMCWebbingDropPouchBlack
       - id: CMWebbingHolster
       - id: RMCWebbingHolsterBlack
-    - name: Mask
+    - name: Маска
       choices: { CMMask: 1 }
       entries:
       - id: CMMaskGas

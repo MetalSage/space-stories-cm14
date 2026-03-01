@@ -279,7 +279,7 @@
     - name: Предметы Одежды
       entries:
       - id: RMCScabbardMacheteFilled
-        name: ножны для мачете (заполненные)
+        name: ножны для мачете (полные)
         points: 6
       - id: RMCPouchMacheteFilled
         name: подсумок для мачете (полный)

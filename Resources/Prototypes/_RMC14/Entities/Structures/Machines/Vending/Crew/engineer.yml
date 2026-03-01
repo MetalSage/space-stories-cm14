@@ -13,23 +13,23 @@
     jobs:
     - CMMaintTech
     sections:
-    - name: Maintenance Set (Mandatory)
+    - name: Необходимый набор для техобслуживания
       takeAll: CMMaintenanceSet
       entries:
       - id: CMVendorBundleCrewMaintenanceEssentials
-    - name: Standard Equipment
+    - name: Стандартное снаряжение
       takeAll: CMStandard
       entries:
       - id: CMHeadsetEngineer
       - id: CMMRE
-        name: MRE
+        name: ИРП
       # map
-    - name: Gloves
+    - name: Перчатки
       choices: { CMHands: 1 }
       entries:
       - id: CMHandsInsulated
       - id: CMHandsBlackInsulated
-    - name: Helmet
+    - name: Шлем
       choices: { CMHelmet: 1 }
       entries:
       - id: CMHeadBeretEngineer
@@ -37,14 +37,14 @@
       - id: RMCHardhatOrange
       - id: RMCHardhatBlue
       - id: RMCHelmetWelding
-    - name: Suit
+    - name: Жилет
       choices: { CMSuit: 1 }
       entries:
       - id: RMCHazardVestBlack
       - id: RMCHazardVestBlue
       - id: RMCHazardVest
       - id: RMCHazardVestYellow
-    - name: Backpack
+    - name: Рюкзак
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpackMarineTech
@@ -58,41 +58,41 @@
         recommended: true
       - id: RMCSatchelWelderChestrig
         replaceSlot: back
-    - name: Belt
+    - name: Пояс
       choices: { CMBelt: 1 }
       entries:
       - id: RMCBeltUtilityGeneral
       - id: CMBeltUtilityFilled
-        name: M276 Toolbelt Rig (Full)
+        name: пояс для инструментов M276 (полный)
         recommended: true
-    - name: Pouches
+    - name: Подсумки
       choices: { RMCPouch: 2 }
       entries:
       - id: RMCPouchGeneralMedium
       - id: RMCPouchFirstAidInjectors
-        name: first-aid pouch (refillable injectors)
+        name: подсумок первой помощи (автоинъекторы)
         recommended: true
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
+        name: подсумок первой помощи (бинт, мазь) # TODO RMC14 splints comma
         recommended: true
       - id: RMCPouchFirstAidPills
-        name: first-aid pouch (pill packets)
+        name: подсумок первой помощи (таблетки)
         recommended: true
       - id: RMCPouchConstruction
         recommended: true
       - id: RMCPouchElectronicsFill
-        name: Electronics Pouch (Full)
+        name: подсумок для электроники (полный)
       - id: RMCPouchToolsFill
-        name: Tools pouch (Filled)
+        name: подсумок для инструментов (полный)
       - id: RMCPouchFlareFilled
-        name: Flare pouch (Full)
-    - name: Mask
+        name: подсумок для фаеров (полный)
+    - name: Маска
       choices: { CMMask: 1 }
       entries:
       - id: CMMaskGas
       - id: CMMaskCoif
       - id: RMCMaskRebreather
-    - name: Accessories
+    - name: Разгрузка
       choices: { CMAccessory: 1 }
       entries:
       - id: CMWebbingBrown
@@ -102,7 +102,7 @@
       - id: RMCWebbingLegPouchBlack
       - id: CMWebbing
       - id: RMCWebbingBlackSmall
-    - name: Spare Gear
+    - name: Утилиты
       entries:
       - id: RMCSynthResetKey
         points: 20

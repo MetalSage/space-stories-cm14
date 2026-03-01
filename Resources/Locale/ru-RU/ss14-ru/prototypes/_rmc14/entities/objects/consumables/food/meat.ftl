@@ -1,8 +1,8 @@
-ent-RMCFoodMeatFish = raw fish fillet
-    .desc = Some sort of fish, probably dredged from some ocean somewhere, or grown in a vat.
-ent-RMCFoodMeatFishGrilled = grilled fish fillet
-    .desc = Some sort of fish, probably dredged from some ocean somewhere, or grown in a vat.
-ent-RMCFoodMeatFishAndChips = fish & chips
-    .desc = A Three-Sun Empire staple, featuring a slab of beer-battered fish and french fries.
-ent-RMCFoodMeatFishSushi = fish sushi roll
-    .desc = A piece of indeterminate fish, contained in rice and wrapped in seaweed. A classic dish in the Three-Sun Empire.
+ent-RMCFoodMeatFish = сырое филе рыбы
+    .desc = Какая-то рыба, вероятно, выловленная где-то в океане или выращенная в чане.
+ent-RMCFoodMeatFishGrilled = жареное филе рыбы
+    .desc = Какая-то рыба, вероятно, выловленная где-то в океане или выращенная в чане.
+ent-RMCFoodMeatFishAndChips = рыба с картошкой фри
+    .desc = Основное блюдо Империи Трех Солнц, представляющее собой кусок рыбы в пивном кляре с картофелем фри.
+ent-RMCFoodMeatFishSushi = ролл с рыбным суши
+    .desc = Кусочек неизвестной рыбы в рисе, завернутый в водоросли. Классическое блюдо в Империи Трех Солнц.

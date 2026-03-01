@@ -1,5 +1,5 @@
-ent-RMCBoxDonutEmpty = Yum! donuts
-    .desc = A box of mouth-watering "Yum!" brand donuts
+ent-RMCBoxDonutEmpty = Вкуснятина! Пончики
+    .desc = Коробка аппетитных пончиков марки "Yum!
     .suffix = Empty
 ent-RMCBoxDonut = Вкуснятина! Пончики
     .desc = Коробка аппетитных пончиков марки "Yum!

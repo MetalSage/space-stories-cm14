@@ -1,0 +1,54 @@
+﻿<Document>
+
+  #Вы только что родились в улье!
+  #Что теперь?
+
+  Радуйтесь! Мы только что присоединились к нашему улью в качестве личинки. Сейчас мы мало что можем сделать, но наш потенциал безграничен!
+  <Box>
+    <GuideEntityEmbed Entity="CMXenoLarva"/>
+  </Box>
+  Пора приниматься за работу! Как можно скорее мы должны попытаться эволюционировать. Однако для этого нам потребуется немного подрасти, подождав.
+  Новичкам рекомендуется стать трутнем. Трутни отвечают за строительство защиты улья.
+
+  <Box>
+    <GuideEntityEmbed Entity="RMCGuidebookActionXenoEvolve"/>
+    <GuideEntityEmbed Entity="CMXenoDrone"/>
+  </Box>
+
+  Вот несколько вещей, которые мы можем построить!
+
+  <Box>
+    <GuideEntityEmbed Entity="WallXenoResin"/>
+    <GuideEntityEmbed Entity="WallXenoMembrane"/>
+    <GuideEntityEmbed Entity="DoorXenoResin"/>
+  </Box>
+
+  Еще одна важная задача трутня — сажать сорняки.
+  Сорняки позволяют нам отдыхать, чтобы восстановить здоровье и энергию!
+  Мы также можем строить улей только на сорняках.
+  <GuideEntityEmbed Entity="RMCGuidebookActionXenoRest"/>
+  <Box>
+    <GuideEntityEmbed Entity="XenoWeeds"/>
+    <GuideEntityEmbed Entity="XenoWeedsSource"/>
+    <GuideEntityEmbed Entity="XenoWeeds"/>
+  </Box>
+
+  Наша конечная цель — защитить королеву и посадить ее яйца, чтобы наш улей мог расти!
+  Яйца можно размещать на сорняках, и они содержат паразитов.
+  Паразитов можно извлечь из яиц, но имейте в виду, что у паразитов короткая продолжительность жизни вне сорняков!
+
+  <Box>
+    <GuideEntityEmbed Entity="CMXenoQueen"/>
+    <GuideEntityEmbed Entity="XenoEgg"/>
+    <GuideEntityEmbed Entity="XenoWeeds"/>
+    <GuideEntityEmbed Entity="CMXenoParasite"/>
+  </Box>
+
+  Когда паразит помещается в живого носителя, рождается новая личинка! Радуйтесь!
+  Носители, которые содержат растущую личинку, очень ценны, и их следует как можно скорее прикрепить к смоляной стене.
+  <Box>
+    <GuideEntityEmbed Entity="RMCGuidebookCorpseColonistBurst"/>
+    <GuideEntityEmbed Entity="CMXenoLarva"/>
+  </Box>
+
+</Document>

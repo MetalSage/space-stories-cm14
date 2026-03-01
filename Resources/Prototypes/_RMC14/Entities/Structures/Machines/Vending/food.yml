@@ -77,7 +77,7 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Prepared Meals
+    - name: Готовые блюда
       entries:
       - id: RMCMRETSE
         amount: 15
@@ -95,12 +95,12 @@
         amount: 15
       - id: RMCMarineRCMSnackBar
         amount: 50
-    - name: Flasks
+    - name: Фляги
       entries:
       - id: CMCanteen
         amount: 15
       - id: CMMetalFlask
-        name: metal flask (empty)
+        name: металлическая фляжка (пустая)
         amount: 15
       - id: CMWEYAFlask
         amount: 10
@@ -117,7 +117,7 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Prepared Meals
+    - name: Готовые блюда
       entries:
       - id: RMCMRESPP
         name: SPP Combat Ration
@@ -141,15 +141,15 @@
       - id: RMCMarinePreparedMealSPPWursts
         amount: 15
       - id: RMCSurvivalRationSPP
-        name: SPP Survival Ration
+        name: рацион для выживания СПН
         amount: 15
-    - name: Flasks
+    - name: Фляги
       entries:
       - id: RMCDrinkWaterSPP
-        name: Water
+        name: Вода
         amount: 10
       - id: RMCDrinkTeaSPP
-        name: Tea
+        name: Чай
         amount: 10
 
 - type: entity
@@ -162,10 +162,10 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Prepared Meals
+    - name: Готовые блюда
       entries:
       - id: RMCMREWeYa
-        name: PMC Combat Ration
+        name: боевой рацион ЧВК
         amount: 15
       - id: RMCMarinePreparedMealPMCIkanBakar
         amount: 15
@@ -181,12 +181,12 @@
         amount: 15
       - id: RMCMarinePreparedMealPMCBobotie
         amount: 15
-    - name: Flasks
+    - name: Фляги
       entries:
       - id: CMCanteen
         amount: 10
       - id: CMMetalFlask
-        name: metal flask (empty)
+        name: металлическая фляжка (пустая)
         amount: 10
       - id: CMWEYAFlask
         amount: 10
@@ -218,13 +218,13 @@
     - name: Алкоголь
       entries:
       - id: CMDrinkCanAle
-        name: ale
+        name: але
         amount: 6
       - id: CMDrinkCanBeerLite
-        name: beer
+        name: пиво
         amount: 6
       - id: RMCDrinkCanSequoiaBeer
-        name: sequoia beer
+        name: пиво «Секвойя»
         amount: 6
       - id: RMCDrinkAlcoholGrenadine
         amount: 5
@@ -254,9 +254,9 @@
         amount: 5
       - id: RMCDrinkAlcoholWhiskey
         amount: 5
-    - name: Craft Beers
+    - name: крафтовое пиво
       entries: []
-    - name: Не Алкоголь
+    - name: Безалкоголь
       entries:
       - id: CMDrinkCanFruitBeer
         amount: 8
@@ -272,7 +272,7 @@
         amount: 4
       - id: CMDrinkCanTonic
         amount: 8
-    - name: Контейнер
+    - name: Фляги
       entries:
       - id: CMMetalFlask
         name: металлическая фляга (пустая)

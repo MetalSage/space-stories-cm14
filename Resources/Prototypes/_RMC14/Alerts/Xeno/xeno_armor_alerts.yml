@@ -26,7 +26,7 @@
     state: armor_10
   - sprite: /Textures/_RMC14/Interface/Alerts/xeno_armor.rsi
     state: armor_00
-  name: Armor
-  description: Your armor. It reduces damage taken.
+  name: Броня
+  description: Ваша броня. Она уменьшает получаемый урон.
   minSeverity: 0
   maxSeverity: 11

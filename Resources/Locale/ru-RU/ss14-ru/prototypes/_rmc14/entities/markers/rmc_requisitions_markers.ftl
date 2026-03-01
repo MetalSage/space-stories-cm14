@@ -1,4 +1,4 @@
-ent-RMCRequisitionsChairMarker = requisitions chair marker
+ent-RMCRequisitionsChairMarker = поставки маркер для стульев
     .suffix = RMC14
     .desc = { ent-MarkerBase.desc }
 ent-RMCRequisitionsChairMarkerNorth = { ent-RMCRequisitionsChairMarker }

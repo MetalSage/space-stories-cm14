@@ -1,10 +1,10 @@
 ent-RMCTrainingDummy = тренировочный манекен
     .desc = Тренировочный манекен, используемый КМП США для имитации человеческого тела. Кажется почти слишком реалистичным.
     .suffix = RMC14
-ent-SpawnRMCTrainingDummy = Генератор тренировочных манекенов RMC
+ent-SpawnRMCTrainingDummy = генератор тренировочных манекенов RMC
     .desc = { ent-MarkerBase.desc }
-ent-RMCLockerTrainingDummy = training dummy cabinet
-    .desc = An ultrasafe cabinet containing a training dummy. Only accessible by Chief Medical Officers and Senior Enlisted Advisors.
+ent-RMCLockerTrainingDummy = шкаф с тренировочным манекеном
+    .desc = Сверхбезопасный шкаф, содержащий учебный манекен. Доступ к нему имеют только главный врач и старший сержантский советник.
     .suffix = South, Empty
 ent-RMCLockerTrainingDummyFilled = { ent-RMCLockerTrainingDummy }
     .suffix = South, Filled

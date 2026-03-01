@@ -13,7 +13,7 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Cassettes
+    - name: Кассеты
       entries:
       - id: RMCCassettePlayer
         amount: 50
@@ -37,9 +37,9 @@
         amount: 10
       - id: RMCCassetteTapeCustom
         amount: 20
-    - name: Cards
+    - name: Карты
       entries: []
-    - name: Magazines
+    - name: Журналы
       entries:
       - id: RMCMagazineBootsN160
         amount: 10
@@ -85,7 +85,7 @@
         amount: 10
       - id: RMCMagazineWeYaOrreryN258
         amount: 10
-    - name: Pins
+    - name: Пины
       entries:
       - id: RMCClothingNeckLGBTPin
         amount: 15
@@ -113,7 +113,7 @@
         amount: 15
       - id: RMCClothingNeckGoldAutismPin
         amount: 15
-    - name: Other
+    - name: Прочее
       entries:
       - id: CMPaper
         amount: 15

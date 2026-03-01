@@ -1,4 +1,4 @@
-ent-RMCPaperWeYa = weston-yamada official document
+ent-RMCPaperWeYa = официальный документ Вестон-Ямада
     .desc = { ent-CMPaper.desc }
-ent-RMCPaperWeYaLiaison = weston-yamada document
+ent-RMCPaperWeYaLiaison = документ Вестон-Ямада
     .desc = { ent-RMCPaperWeYa.desc }

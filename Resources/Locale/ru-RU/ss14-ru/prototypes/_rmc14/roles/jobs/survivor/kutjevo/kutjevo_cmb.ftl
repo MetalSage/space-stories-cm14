@@ -1,4 +1,4 @@
-ent-RMCSpawnPointSurvivorKutjevoCMBDeputy = kutjevo cmb deputy spawn point
+ent-RMCSpawnPointSurvivorKutjevoCMBDeputy = точка появления заместителя БКМ кутьево
     .desc = { ent-CMSpawnPointJobBase.desc }
-ent-RMCGearSurvivorPresetKutjevoCMBDeputy = kutjevo goon colonist preset
+ent-RMCGearSurvivorPresetKutjevoCMBDeputy = пресет гун колониста кутьево
     .desc = { ent-RMCSurvivorPresetSecurity.desc }

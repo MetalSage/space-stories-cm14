@@ -20,5 +20,5 @@ ent-RMCIdentificationComputer = компьютер идентификации
     .desc = { ent-RMCPropComputerBase.desc }
 ent-RMCStationAlertComputer = компьютер оповещения станции
     .desc = { ent-RMCPropComputerBase.desc }
-ent-RMCSystemsComputer = systems computer
+ent-RMCSystemsComputer = системный компьютер
     .desc = { ent-RMCPropComputerBase.desc }

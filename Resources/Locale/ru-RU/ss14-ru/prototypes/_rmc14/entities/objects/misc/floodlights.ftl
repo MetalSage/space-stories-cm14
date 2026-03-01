@@ -1,12 +1,12 @@
 ent-RMCSmallFloodlight = небольшой прожектор
     .desc = Маленький кусочек света во тьме.
-ent-RMCSmallFloodlightUnanchored = small floodlight
-    .desc = A small bit of light in the darkness.
+ent-RMCSmallFloodlightUnanchored = небольшой прожектор
+    .desc = Маленький кусочек света во тьме.
 ent-RMCTallFloodlight = высокий прожектор
     .desc = Столб света во тьме.
 ent-RMCFloodlightBroken = высокий разбитый прожектор
     .desc = В наклеенной записке говорится: "Чтобы починить, открутите панель, выньте ломом поврежденный узел, заварите его, добавьте 2 кабеля, затем закройте панель".
-ent-RMCLZFloodlight = Прожектор ЗП
+ent-RMCLZFloodlight = прожектор ЗП
     .desc = Неразрушимая частица света во тьме. Кажется, что энергия никогда не иссякнет.
 ent-LandingZoneLightBase = посадочные огни
     .desc = Если посадочный огонь мигает, держитесь подальше!

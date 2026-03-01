@@ -19,11 +19,11 @@
       takeAll: CMStandard
       entries:
       - id: RMCVendorBundleCrewCombatCorrespondent
-        name: Essential Reporter's Set
+        name: необходимый набор репортера
       - id: CMSatchel
-        name: Leather Satchel
+        name: rожаная сумка
       - id: RMCCameraBroadcasting
-        name: Press Broadcasting Camera
+        name: камера для телевизионной съемки
         recommended: true
     #- name: Civilian Equipment TODO - Some way to ensure only the civilian correspondent can buy this
     #  takeAll: CMStandard
@@ -31,40 +31,40 @@
     #  - id: PortableFaxMachine
     #    name: Portable Press Fax Machine
     #    recommended: true
-    - name: Uniform
+    - name: Униформа
       choices: { CMUniform: 1 }
       entries:
       - id: RMCJumpsuitCorrespondentBlack
-        name: Black Uniform
+        name: чёрная униформа
       - id: RMCJumpsuitCorrespondentOrange
-        name: Orange Uniform
+        name: оранжевая униформа
       - id: RMCJumpsuitCorrespondentRed
-        name: Red Uniform
-    - name: Armor
+        name: красная униформа
+    - name: Броня
       choices: { CMArmor: 1 }
       entries:
       - id: CMArmorPress
-        name: Combat Correspondent's Armor
+        name: броня военного корреспондента
         recommended: true
       - id: RMCCoatCorrespondentBlue
-        name: Blue Vest
+        name: синий жилет
       - id: RMCHazardVestBlack
-        name: Black Vest
+        name: чёрный жилет
       - id: RMCCoatCorrespondentBlack
-        name: Black Coat
+        name: чёрная куртка
       - id: RMCCoatCorrespondentGreen
-        name: Green Coat
-    - name: Helmet
+        name: зеленая куртка
+    - name: Шлем
       choices: { CMHelmet: 1 }
       entries:
       - id: CMArmorHelmetPress
-        name: Combat Correspondent's Helmet
+        name: шлем военного корреспондента
         recommended: true
       - id: RMCHeadCapCorrespondent
-        name: Combat Correspondent's Cap
+        name: кепка военного корреспондента
       - id: RMCHeadCapFedoraGrey
-        name: Fedora
-    - name: Refills
+        name: федора
+    - name: Расходники
       entries:
       #- id: /obj/item/device/camera
       #  name: Camera
@@ -79,7 +79,7 @@
       #  name: Regulation Tapes
       #  points: 15
       - id: CMPaperBin30
-        name: Paper Bin
+        name: корзина для бумаги
         points: 10
 
 - type: entity

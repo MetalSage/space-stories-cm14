@@ -1,3 +1,3 @@
-ent-RMCRandomHumanoidSPPCommandoLeader = DEATHSQUAD spp ghost role commando leader
+ent-RMCRandomHumanoidSPPCommandoLeader = DEATHSQUAD спн гостроль коммандо лидер
     .suffix = Spawner, Player
     .desc = { "" }

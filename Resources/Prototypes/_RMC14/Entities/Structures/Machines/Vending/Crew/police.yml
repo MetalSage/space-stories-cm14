@@ -27,19 +27,19 @@
       - id: CMBootsBlackFilled
       - id: CMGlassesSecurity
       - id: CMBeltSecurityMPFilled
-    - name: Helmet
+    - name: Шлем
       choices: { CMHelmet: 1 }
       entries:
       - id: CMArmorHelmetM10MP
-    - name: Armor
+    - name: Броня
       choices: { CMArmor: 1 }
       entries:
       - id: CMArmorM2MP
-    - name: Hat
+    - name: Головной убор
       choices: { CMHat: 1 }
       entries:
       - id: CMHeadBeretRed
-    - name: Кейс Для Пистолета
+    - name: Пистолет
       choices: { CMGunCase: 1 }
       entries:
       - id: RMCGunCasePistolM77
@@ -60,9 +60,9 @@
       entries:
       - id: RMCPouchGeneralMedium
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: подсумок первой помощи (инъекторы)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 add 'splints,'
+        name: подсумок первой помощи (бинт, мазь) # TODO RMC14 add 'splints,'
       - id: RMCPouchFirstAidPills
         name: подсумок первой помощи (таблетки)
       - id: RMCPouchMagazinePistol
@@ -73,7 +73,7 @@
       - id: CMMaskGas
       - id: CMMaskCoif
       - id: RMCMaskRebreather
-    - name: Аксессуары
+    - name: Разгрузка
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown
@@ -84,7 +84,7 @@
       - id: RMCWebbingHolsterBlack
       - id: CMWebbing
       - id: RMCWebbingBlackSmall
-    - name: Books
+    - name: Книги
       entries:
       - id: RMCGuidebookLawMarine
         amount: 10

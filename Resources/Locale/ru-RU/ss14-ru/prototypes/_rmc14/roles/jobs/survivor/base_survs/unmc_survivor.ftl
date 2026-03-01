@@ -1,2 +1,2 @@
-ent-RMCSpawnPointSurvivorUNMC = survivor unmc spawn point
+ent-RMCSpawnPointSurvivorUNMC = точка появления выжившего КМП США
     .desc = { ent-CMSpawnPointJobBase.desc }

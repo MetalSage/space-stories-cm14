@@ -83,9 +83,9 @@
       choices: { CMBelt: 1 }
       entries:
       - id: CMBeltMedicBagFilled
-        name: пояс M276 медицинский (полный)
+        name: медицинский пояс M276 (полный)
       - id: CMBeltMedicalFilled
-        name: пояс M276 медицинский (полный)
+        name: медицинский пояс M276 (полный)
     - name: Рюкзак
       choices: { CMBackpack: 1 }
       entries:
@@ -104,9 +104,9 @@
       entries:
       - id: RMCPouchAutoinjector
       - id: RMCPouchFirstAidInjectors
-        name: подсумок первой помощи (многоразовые инъекторы)
+        name: подсумок первой помощи (инъекторы)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
+        name: подсумок первой помощи (бинт, мазь) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
         name: подсумок первой помощи (таблетки)
       - id: RMCPouchFirstResponder

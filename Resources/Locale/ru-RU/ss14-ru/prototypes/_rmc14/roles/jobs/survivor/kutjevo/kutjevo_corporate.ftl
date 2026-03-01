@@ -1,4 +1,4 @@
-ent-RMCSpawnPointSurvivorKutjevoCorporate = survivor kutjevo liaison spawn point
+ent-RMCSpawnPointSurvivorKutjevoCorporate = точка появления корпоративного связного кутьево
     .desc = { ent-CMSpawnPointJobBase.desc }
-ent-RMCGearSurvivorPresetKutjevoCorporate = kutjevo liaison preset
+ent-RMCGearSurvivorPresetKutjevoCorporate = пресет корпоративного связного кутьево
     .desc = { ent-RMCSurvivorPresetCorporate.desc }
