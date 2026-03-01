@@ -3,70 +3,95 @@ cm-job-name-rifleman = Стрелок
 cm-job-description-rifleman = Выполняйте приказы старших по званию. Делайте свою работу и стреляйте, когда это необходимо. Не умирайте при этом.
 cm-job-prefix-rifleman = СТР
 CMJobRifleman = Стрелок
+
 cm-job-name-squad-leader = Командир отряда
 cm-job-description-squad-leader = Возглавляет один из отрядов морской пехоты. Ставьте задачи своему отряду и огневым группам, а также выполняйте приказы командования. Сохраните свой отряд в целости.
 cm-job-prefix-squad-leader = КО
 CMJobSquadLeader = Командир отряда
+
 cm-job-name-fireteam-leader = Командир огневой группы
 cm-job-description-fireteam-leader = Выполняйте приказы командира отряда и командуйте своей огневой группой. Координируйте действия с подразделениями БАП и огневой поддержки.
 cm-job-prefix-fireteam-leader = КОГ
 CMJobFireteamLeader = Командир огневой группы
+
 cm-job-name-weapons-specialist = Специалист по вооружению
 cm-job-description-weapons-specialist = Получите доступ к более тяжелому, мощному вооружению и снаряжению. Профессионал боевых действий, при необходимости руководит отрядом.
 cm-job-prefix-weapons-specialist = СПВ
 CMJobWeaponsSpecialist = Специалист по вооружению
+
 cm-job-name-smart-gun-operator = Оператор смартгана
 cm-job-description-smart-gun-operator = Поддерживайте свой отряд тяжелым вооружением и ведите подавляющий огонь по врагу.
 cm-job-prefix-gun-operator = ОС
 CMJobSmartGunOperator = Оператор смартгана
+
 cm-job-name-hospital-corpsman = Санитар госпиталя
 cm-job-description-hospital-corpsman = Поддерживайте морпехов в боеспособном состоянии или насколько это возможно. Проводите медицинскую эвакуацию тех, кого нужно отправить в медблок для лечения.
 cm-job-prefix-hospital-corpsman = СГ
 CMJobHospitalCorpsman = Санитар госпиталя
+
 cm-job-name-combat-tech = Боевой техник
 cm-job-description-combat-tech = Стройте и разрушайте укрепления. Создавайте и поддерживайте ПОП и энергоснабжение. Обеспечивайте доступ к заблокированным территориям.
 cm-job-prefix-combat-tech = БТ
 CMJobCombatTech = Боевой техник
+
 rmc-job-name-mortar-operator = Оператор миномёта
 rmc-job-prefix-mortar-operator = ОМ
+
 rmc-job-name-loader = Заряжающий
 rmc-job-prefix-loader = ЗР
+
 rmc-job-name-spotter = Наблюдатель/Корректировщик
 rmc-job-prefix-spotter = КР
+
 rmc-job-name-weapons-specialist-demo = Специалист по взрывным работам
 rmc-job-prefix-weapons-specialist-demo = СВР
+
 rmc-job-name-weapons-specialist-grenadier = Специалист-гранатомётчик
 rmc-job-prefix-weapons-specialist-grenadier = СГР
+
 rmc-job-name-weapons-specialist-sniper = Специалист-снайпер
 rmc-job-prefix-weapons-specialist-sniper = СНП
+
 rmc-job-name-weapons-specialist-anti-materiel-sniper = Специалист по противотанковым винтовкам
 rmc-job-prefix-weapons-specialist-anti-materiel-sniper = СПТВ
+
 rmc-job-name-weapons-specialist-scout = Специалист-разведчик
 rmc-job-prefix-weapons-specialist-scout = СПР
+
 rmc-job-name-weapons-specialist-pyro = Специалист-пиротехник
 rmc-job-prefix-weapons-specialist-pyro = ПИРО
+
 rmc-job-name-forecon-spotter = Разведчик-наблюдатель
+
 rmc-job-name-recruit = Новобранец
 rmc-job-description-recruit = Следуй приказам и учись у старших. Получай нагоняй от инструктора. Стань морским пехотинцем.
 rmc-job-prefix-recruit = НБР
+
 cm-job-name-section-sergeant = Сержант отделения
 cm-job-description-section-sergeant = Возглавляет одно из отделений взвода. Ставьте задачи своему отделению и группам, а также следуйте приказам командира взвода. Сохраните своё отделение в целости.
 cm-job-prefix-section-sergeant = СтрСгт
 CMPVESectionSergeant = Сержант отделения
+
 cm-job-name-platoon-commander = Командир взвода
 cm-job-description-platoon-commander = Осуществляйте надзор и руководите своим взводом. Подчиняйтесь приказам командования роты.
 cm-job-prefix-platoon-commander = КомВз
 CMPVEPlatoonCommander = Командир взвода
+
 rmc-job-name-pve-forecon-rifleman = Стрелок
 rmc-job-prefix-pve-forecon-rifleman = СТР
+
 rmc-job-name-pve-forecon-smartgunner = Оператор смартгана
 rmc-job-prefix-pve-forecon-smartgunner = ОСГ
+
 rmc-job-name-pve-forecon-corpsman = Санитар
 rmc-job-prefix-pve-forecon-corpsman = СН
+
 rmc-job-name-pve-forecon-rto = Радиотелефонист
 rmc-job-description-pve-forecon-rto = Вы — радиотелефонист. Обеспечьте поддержание надёжной связи между вашим отрядом и командованием роты.
 rmc-job-prefix-pve-forecon-rto = РТБ
+
 rmc-job-name-pve-forecon-assistant-lead = Помощник командира группы
 rmc-job-prefix-pve-forecon-assistant-lead = ПКГ
+
 rmc-job-name-pve-forecon-squad-lead = Командир группы
 rmc-job-prefix-pve-forecon-squad-lead = КГ

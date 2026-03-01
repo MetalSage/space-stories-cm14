@@ -4,4 +4,3 @@ rmc-pamphlets-already-know = Вы уже знаете это!
 rmc-pamphlets-reading = Вы перечитываете брошюру несколько раз, осваивая новый навык.
 rmc-pamphlets-rifleman-warning = Его могут использовать только стрелки отряда.
 rmc-pamphlets-mp-warning = Только военная полиция может использовать это.
-rmc-pamhplets-rifleman-warning = Только стрелки могут использовать это.

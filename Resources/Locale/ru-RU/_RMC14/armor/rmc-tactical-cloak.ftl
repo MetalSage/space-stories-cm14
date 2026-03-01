@@ -4,5 +4,7 @@ rmc-cloak-deactivate-self = Камуфляж вашего плаща деакт�
 rmc-cloak-deactivate-others = { $user } мерцает!
 rmc-cloak-forced-deactivate-self = Ваш плащ исчезает!
 rmc-cloak-forced-deactivate-others = Плащ { $user } развеивается!
+
 rmc-cloak-attempt-shoot = Ваш плащ не позволяет вам стрелять!
 rmc-cloak-attempt-prime = Ваш плащ не позволяет вам зарядить гранату!
+rmc-cloak-attempt-mount-weapon = Ваш плащ не позволяет вам встать за это орудие!

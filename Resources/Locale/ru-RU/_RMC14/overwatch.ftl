@@ -63,6 +63,7 @@ rmc-overwatch-console-ready = [color=green][bold] \[ ГОТОВО \][/bold][/col
 rmc-overwatch-console-not-ready = [color=red][bold] \[ НЕ ГОТОВО \][/bold][/color]
 rmc-overwatch-console-cooldown = [color=#D3B400][bold][ ПЕРЕЗАРЯДКА - { $seconds } СЕКУНД ][/bold][/color]
 rmc-overwatch-console-no-warhead-loaded = [color=red][bold]БОЕГОЛОВКА НЕ ЗАРЯЖЕНА[/bold][/color]
+
 # Transfer messages
 rmc-overwatch-console-squad-selection = Выберите отряд
 rmc-overwatch-console-choose-marine-squad = Выберите новый отряд для морпеха
@@ -76,17 +77,21 @@ rmc-overwatch-console-marine-transferred = { $marineName } был перевед
 rmc-overwatch-console-you-transferred = Вы были переведены в отряд { $squadName }!
 rmc-overwatch-console-transfer-marine-title = Перевести морпеха
 rmc-overwatch-console-choose-marine-transfer = Выберите морпеха для перевода
+
 # Console messages
 rmc-overwatch-console-pain-kicked-out = Боль вытолкнула тебя из консоли!
+
 # Squad message announcements
 rmc-overwatch-console-announce-message = [color=#3C70FF][bold]Наблюдение:[/bold] { $operatorName } передает: [font size=16][bold]{ $message }[/bold][/font][/color]
 rmc-overwatch-console-squad-message-sent = [bold][color=#6685F5]'{ $squadName }' получил сообщение от наблюдателя: '{ $message }'.[/color][/bold]
+
 # Squad leader promotion messages
 rmc-overwatch-console-marine-unfit-to-lead = { $marineName } не пригоден для руководства!
 rmc-overwatch-console-marine-is-kia-exclamation = { $marineName } мёртв!
 rmc-overwatch-console-promoted-to-leader = Наблюдение: Вы были назначены командиром отряда { $squadStr }. Ваша гарнитура теперь имеет частоту командования (:в).
 rmc-overwatch-console-new-squad-leader-announce = Внимание: Назначен новый командир отряда: { $leaderName }
 rmc-overwatch-console-new-squad-leader-popup = { $leaderName } теперь командир отряда { $squadName }!
+
 # Squad objectives
 rmc-overwatch-console-objective-primary = [bold]Основная задача[/bold]
 rmc-overwatch-console-objective-secondary = [bold]Дополнительная задача[/bold]

@@ -2,8 +2,10 @@
 
 marking-SlimeBonechest = Floating Ribcage
 marking-SlimeBonechest-bone = Floating Ribcage
+
 marking-SlimeCore = Core
 marking-SlimeCore-core = Core
+
 marking-SlimeLungs = Lungs
 marking-SlimeLungs-lungs = Lungs
 
@@ -11,10 +13,13 @@ marking-SlimeLungs-lungs = Lungs
 
 marking-SlimeBonehead = Floating Skull
 marking-SlimeBonehead-bone = Floating Skull
+
 marking-SlimeNose = Nose (Profile)
 marking-SlimeNose-nose = Nose (Profile)
+
 marking-SlimeMouth = Mouth
 marking-SlimeMouth-mouth = Mouth
+
 marking-SlimeBrain = Brain
 marking-SlimeBrain-brain = Brain
 
@@ -24,8 +29,10 @@ marking-SlimeBrain-brain = Brain
 
 marking-SlimeEyesDefault = Eyes
 marking-SlimeEyesDefault-eyes = Eyes (Default)
+
 marking-SlimeEyesDroopy = Droopy Eyes
 marking-SlimeEyesDroopy-droopy = Droopy Eyes
+
 marking-SlimeEyesCyclops = Cyclops Eye
 marking-SlimeEyesCyclops-cyclops = Cyclops Eye
 
@@ -84,4 +91,3 @@ marking-SlimeBonehandright-bone = Floating Bones (Right Hand)
 # Tail
 
 # RArmExtension
-
