@@ -1,4 +1,5 @@
 species-name-skrell = Skrell
+
 marking-RMCHairSkrellLong = Long Skrell Hair
 marking-RMCHairSkrellShort = Short Skrell Hair
 marking-RMCHairSkrellLonger = Longer Skrell Hair
@@ -16,12 +17,15 @@ marking-RMCHairSkrellShortTuux = Folded Skrell Hair
 marking-RMCHairSkrellLongTuux = Wavy Skrell Hair
 marking-RMCHairSkrellStraightTuux = Straight Skrell Hair
 marking-RMCHairSkrellStraightTuuxLong = Straight Skrell Hair (Long)
+
 marking-RMCSpotsSkrellBodyLeft = Skrell Spots
 marking-RMCSpotsSkrellBodyRight = Skrell Spots
 marking-RMCSpotsSkrellHairLeft = Skrell Spots
 marking-RMCSpotsSkrellHairRight = Skrell Spots
 marking-RMCSpotsSkrellHairTiny = Skrell Tiny Spots
+
 marking-RMCEyesSkrellAxiori = Axiori Skrell Eyes
+
 marking-RMCHeaddressSkrellFestive = Festive Headdress (Colorable)
 marking-RMCHeaddressSkrellGold = Headdress (Colorable)
 marking-RMCHeaddressSkrellGoldDiamond = Gold Diamond Headdress (Colorable)
@@ -32,6 +36,7 @@ marking-RMCHeaddressSkrellSilverDiamond = Silver Diamond Headdress (Colorable)
 marking-RMCHeaddressSkrellSilverTanDiamond = Desert Diamond Headdress (alt)
 marking-RMCHeaddressSkrellSilverGreenDiamond = Jungle Diamond Headdress (alt)
 marking-RMCHeaddressSkrellSilverBlackDiamond = Urban Diamond Headdress (alt)
+
 marking-RMCTailSkrell = Skrell Tail
 marking-RMCTailSkrellExtraLong = Extra Long Skrell Tail
 marking-RMCTailSkrellLong = Long Skrell Tail
@@ -40,6 +45,7 @@ marking-RMCTailSkrellFringe = Fringed Skrell Tail
 marking-TailSkrellFringeExtraLong = Extra Long Fringed Skrell Tail
 marking-RMCTailSkrellFringeLong = Long Fringed Skrell Tail
 marking-RMCTailSkrellFringeShort = Short Fringed Skrell Tail
+
 # and now, locale that goes above the slider for markings
 marking-RMCHairSkrellLong-skrell_hair_f_s = Primary
 marking-RMCHairSkrellLong-skrell_hair_f_s_tips = Tip
@@ -62,16 +68,20 @@ marking-RMCHairSkrellShortTuux-skrell_short_tuux = Primary
 marking-RMCHairSkrellLongTuux-skrell_long_tuux = Primary
 marking-RMCHairSkrellStraightTuux-skrell_straight_tuux = Primary
 marking-RMCHairSkrellStraightTuuxLong-skrell_straight_tuux_long = Primary
+
 marking-RMCSpotsSkrellBodyLeft-spots-left = Spots
 marking-RMCSpotsSkrellBodyRight-spots-right = Spots
 marking-RMCSpotsSkrellHairLeft-spots-hair-left = Spots
 marking-RMCSpotsSkrellHairRight-spots-hair-right = Spots
 marking-RMCSpotsSkrellHairTiny-spots-hair-tiny = Spots
+
 marking-RMCEyesSkrellAxiori-skr-axiori-eyes = Eye
+
 marking-RMCHeaddressSkrellGoldDiamond-skrell_golddia_s = Headdress
 marking-RMCHeaddressSkrellGoldDiamond-skrell_golddia_gem_s = Gem
 marking-RMCHeaddressSkrellSilverDiamond-skrell_silvdia_s = Headdress
 marking-RMCHeaddressSkrellSilverDiamond-skrell_silvdia_gem_s = Gem
+
 marking-RMCTailSkrell-skrell_tail = Skrell Tail
 marking-RMCTailSkrellExtraLong-skrell_tail_xlong = Extra Long Skrell Tail
 marking-RMCTailSkrellLong-skrell_tail_long = Long Skrell Tail
