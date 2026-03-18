@@ -6,7 +6,6 @@ using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
-using Content.Shared._RMC14.Rules;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Prototypes;
 using Content.Server.Voting.Managers;
@@ -616,22 +615,12 @@ namespace Content.Server.GameTicking
                 if (_webhookIdentifier == null)
                     return;
 
-                // Stories-Discord-Start
-                string result = "Неизвестно";
-                var query = EntityQueryEnumerator<CMDistressSignalRuleComponent>();
-                while (query.MoveNext(out var uid, out var component))
-                {
-                    result = Loc.GetString($"cm-distress-signal-discord-{component.Result?.ToString().ToLower()}");
-                }
-                // Stories-Discord-End
-
                 var duration = RoundDuration();
                 var content = Loc.GetString("discord-round-notifications-end",
                     ("id", RoundId),
                     ("hours", Math.Truncate(duration.TotalHours)),
                     ("minutes", duration.Minutes),
-                    ("seconds", duration.Seconds),
-                    ("result", result)); // Stories-Discord
+                    ("seconds", duration.Seconds));
 
                 if (_distressSignal.SelectedPlanetMapName is { } planet &&
                     _distressSignal.OperationName is { } operation)
@@ -645,8 +634,7 @@ namespace Content.Server.GameTicking
                         ("ship", mapName),
                         ("hours", Math.Truncate(duration.TotalHours)),
                         ("minutes", duration.Minutes),
-                        ("seconds", duration.Seconds),
-                        ("result", result)); // Stories-Discord
+                        ("seconds", duration.Seconds));
                 }
 
                 var payload = new WebhookPayload { Content = content };

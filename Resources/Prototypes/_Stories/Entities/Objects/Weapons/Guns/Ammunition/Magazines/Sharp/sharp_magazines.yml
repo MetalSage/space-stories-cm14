@@ -1,8 +1,5 @@
-# =========================
-# MAGAZINES
-# =========================
 - type: entity
-  id: MagazineSharpRifleExplosive
+  id: STMagazineSharpRifleExplosive
   name: 9X-E sticky explosive dart magazine
   parent: BaseItem
   components:
@@ -16,9 +13,10 @@
   - type: Item
     size: Small
   - type: Tag
-    tags: [ SharpRifleMagazine ]
+    tags:
+    - STSharpRifleMagazine
   - type: BallisticAmmoProvider
-    proto: CartridgeSharpExplosive
+    proto: STCartridgeSharpExplosive
     capacity: 10
     mayTransfer: true
     cycleable: true
@@ -26,7 +24,7 @@
       path: /Audio/_RMC14/Weapons/Guns/Reload/grenade_insert.ogg
     whitelist:
       tags:
-      - SharpCartridgeExplosive
+      - STSharpCartridgeExplosive
   - type: MagazineVisuals
     magState: mag
     steps: 2
@@ -35,7 +33,7 @@
   - type: Appearance
 
 - type: entity
-  id: MagazineSharpRifleIncendiary
+  id: STMagazineSharpRifleIncendiary
   name: 9X-T sticky incendiary dart magazine
   parent: BaseItem
   components:
@@ -49,9 +47,10 @@
   - type: Item
     size: Small
   - type: Tag
-    tags: [ SharpRifleMagazine ]
+    tags:
+    - STSharpRifleMagazine
   - type: BallisticAmmoProvider
-    proto: CartridgeSharpIncendiary
+    proto: STCartridgeSharpIncendiary
     capacity: 10
     mayTransfer: true
     cycleable: true
@@ -59,7 +58,7 @@
       path: /Audio/_RMC14/Weapons/Guns/Reload/grenade_insert.ogg
     whitelist:
       tags:
-      - SharpCartridgeIncendiary
+      - STSharpCartridgeIncendiary
   - type: MagazineVisuals
     magState: mag
     steps: 2
@@ -68,7 +67,7 @@
   - type: Appearance
 
 - type: entity
-  id: MagazineSharpRifleFlechette
+  id: STMagazineSharpRifleFlechette
   name: 9X-F flechette dart magazine
   parent: BaseItem
   components:
@@ -82,9 +81,10 @@
   - type: Item
     size: Small
   - type: Tag
-    tags: [ SharpRifleMagazine ]
+    tags:
+    - STSharpRifleMagazine
   - type: BallisticAmmoProvider
-    proto: CartridgeSharpFlechette
+    proto: STCartridgeSharpFlechette
     capacity: 10
     mayTransfer: true
     cycleable: true
@@ -92,7 +92,7 @@
       path: /Audio/_RMC14/Weapons/Guns/Reload/grenade_insert.ogg
     whitelist:
       tags:
-      - SharpCartridgeFlechette
+      - STSharpCartridgeFlechette
   - type: MagazineVisuals
     magState: mag
     steps: 2
@@ -100,54 +100,51 @@
     zeroOnlyOnEmpty: true
   - type: Appearance
 
-# =========================
-# CARTRIDGES
-# =========================
 - type: entity
-  id: CartridgeSharpExplosive
+  id: STCartridgeSharpExplosive
   parent: BaseCartridge
   name: deactivated SHARP mine (explosive)
   components:
   - type: Tag
     tags:
     - Cartridge
-    - SharpCartridgeExplosive
+    - STSharpCartridgeExplosive
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
     state: disarmed
   - type: CartridgeAmmo
-    proto: BulletSharpStickyExplosive
+    proto: STBulletSharpStickyExplosive
     deleteOnSpawn: true
 
 - type: entity
-  id: CartridgeSharpIncendiary
+  id: STCartridgeSharpIncendiary
   parent: BaseCartridge
   name: deactivated SHARP mine (incendiary)
   components:
   - type: Tag
     tags:
     - Cartridge
-    - SharpCartridgeIncendiary
+    - STSharpCartridgeIncendiary
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
     state: disarmed
   - type: CartridgeAmmo
-    proto: BulletSharpStickyIncendiary
+    proto: STBulletSharpStickyIncendiary
     deleteOnSpawn: true
 
 - type: entity
-  id: CartridgeSharpFlechette
+  id: STCartridgeSharpFlechette
   parent: BaseCartridge
   name: deactivated SHARP mine (flechette)
   components:
   - type: Tag
     tags:
     - Cartridge
-    - SharpCartridgeFlechette
+    - STSharpCartridgeFlechette
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
     state: disarmed
   - type: CartridgeAmmo
-    proto: BulletSharpFlechette
+    proto: STBulletSharpFlechette
     deleteOnSpawn: true
 

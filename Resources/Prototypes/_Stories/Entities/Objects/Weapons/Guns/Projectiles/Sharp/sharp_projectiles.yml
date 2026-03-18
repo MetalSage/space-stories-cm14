@@ -1,8 +1,5 @@
-# =========================
-# STICKY DARTS
-# =========================
 - type: entity
-  id: BulletSharpStickyExplosive
+  id: STBulletSharpStickyExplosive
   parent: BaseBullet
   name: sticky explosive dart
   categories: [ HideSpawnMenu ]
@@ -34,8 +31,8 @@
   - type: IgnorePredictionHide
 
   - type: SharpStickyDart
-    mineProto: SharpMineExplosiveL1
-    iffDropProto: CartridgeSharpExplosive
+    mineProto: STSharpMineExplosiveL1
+    iffDropProto: STCartridgeSharpExplosive
     shortDelay: 2.5
     longDelay: 5.0
     explosionRadius: 3
@@ -58,7 +55,7 @@
         - BulletImpassable
 
 - type: entity
-  id: BulletSharpStickyIncendiary
+  id: STBulletSharpStickyIncendiary
   parent: BaseBullet
   name: sticky incendiary dart
   categories: [ HideSpawnMenu ]
@@ -90,14 +87,14 @@
   - type: IgnorePredictionHide
 
   - type: SharpStickyDart
-    mineProto: SharpMineIncendiaryL1
-    iffDropProto: CartridgeSharpIncendiary
+    mineProto: STSharpMineIncendiaryL1
+    iffDropProto: STCartridgeSharpIncendiary
     shortDelay: 2.5
     longDelay: 5.0
     explosionRadius: 3
 
   - type: TileFireOnTrigger
-    spawn: SharpTileFireL1
+    spawn: STSharpTileFireL1
     range: 3
     intensity: 15
     duration: 12
@@ -114,11 +111,8 @@
         - Impassable
         - BulletImpassable
 
-# =========================
-# FLECHETTE
-# =========================
 - type: entity
-  id: BulletSharpFlechette
+  id: STBulletSharpFlechette
   parent: BaseBullet
   name: flechette dart
   categories: [ HideSpawnMenu ]
@@ -141,7 +135,7 @@
   - type: IgnorePredictionHide
   - type: SharpFlechetteSpread
     projectileProto: CMPelletShotgunFlechette
-    sourceProjectileProto: BulletSharpFlechette
+    sourceProjectileProto: STBulletSharpFlechette
     projectileDamageMultiplier: 0.6666667
     count: 6
     spreadAngle: 60
@@ -160,7 +154,7 @@
         - BulletImpassable
 
 - type: entity
-  id: BulletSharpFlechetteShard
+  id: STBulletSharpFlechetteShard
   parent: BaseBullet
   name: flechette shard
   categories: [ HideSpawnMenu ]

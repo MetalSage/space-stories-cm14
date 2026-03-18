@@ -49,8 +49,8 @@ public sealed class SharpFuseModeSystem : EntitySystem
         Dirty(ent);
 
         var popup = Loc.GetString(ent.Comp.LongMode
-            ? "sharp-toggleable-fuse-firing-long"
-            : "sharp-toggleable-fuse-firing-short");
+            ? "stories-sharp-toggleable-fuse-firing-long"
+            : "stories-sharp-toggleable-fuse-firing-short");
         _popup.PopupClient(popup, user, user, PopupType.Large);
     }
 

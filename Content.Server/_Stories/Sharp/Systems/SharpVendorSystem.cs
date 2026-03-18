@@ -18,8 +18,7 @@ public sealed class SharpVendorSystem : EntitySystem
 
     private void OnAfterItemVended(Entity<SharpSpecialistVendorComponent> ent, ref AfterItemVendedEvent args)
     {
-        var prototypeId = MetaData(args.Item).EntityPrototype?.ID;
-        if (prototypeId == null || prototypeId != ent.Comp.EquipmentCase)
+        if (MetaData(args.Item).EntityPrototype?.ID != ent.Comp.EquipmentCase.Id)
             return;
 
         if (!_idCard.TryGetIdCard(args.User, out var idCard))
@@ -27,12 +26,14 @@ public sealed class SharpVendorSystem : EntitySystem
 
         _idCard.TryChangeJobTitle(idCard.Owner, Loc.GetString(ent.Comp.SpecialistRole), idCard.Comp, args.User);
 
-        if (ent.Comp.SpecialistPrefix != null &&
-            TryComp<JobPrefixComponent>(args.User, out var prefix) &&
-            prefix.AdditionalPrefix == ent.Comp.SpecialistPrefix)
+        if (ent.Comp.SpecialistPrefix is { } specialistPrefix)
         {
-            prefix.AdditionalPrefix = null;
-            Dirty(args.User, prefix);
+            var prefix = EnsureComp<JobPrefixComponent>(args.User);
+            if (prefix.AdditionalPrefix != specialistPrefix)
+            {
+                prefix.AdditionalPrefix = specialistPrefix;
+                Dirty(args.User, prefix);
+            }
         }
     }
 }

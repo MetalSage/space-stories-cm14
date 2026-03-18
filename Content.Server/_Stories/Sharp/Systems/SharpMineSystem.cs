@@ -61,8 +61,9 @@ public sealed class SharpMineSystem : EntitySystem
             return;
 
         if (TryComp<SharpStickyDartComponent>(projectile.Owner, out _) &&
-            (!TryComp<SharpMineRuntimeComponent>(args.Target, out var rt) ||
-             (_timing.CurTime - rt.SpawnTime).TotalSeconds < 0.25))
+            (!TryComp<SharpMineComponent>(args.Target, out var targetMine) ||
+             !TryComp<SharpMineRuntimeComponent>(args.Target, out var rt) ||
+             (_timing.CurTime - rt.SpawnTime).TotalSeconds < targetMine.StickyDartGracePeriod))
         {
             return;
         }
@@ -132,7 +133,8 @@ public sealed class SharpMineSystem : EntitySystem
             }
 
             var desiredLevel = 1 + (int)(age / mine.LevelUpInterval);
-            if (desiredLevel > 4) desiredLevel = 4;
+            if (desiredLevel > mine.MaxLevel)
+                desiredLevel = mine.MaxLevel;
 
             if (desiredLevel != mine.Level)
             {

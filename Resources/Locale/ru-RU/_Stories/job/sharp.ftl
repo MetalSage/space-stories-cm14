@@ -1,2 +1,2 @@
-stories-job-name-weapons-specialist-sharp = SHARP специалист
-stories-job-prefix-weapons-specialist-sharp = SHRP
+stories-job-name-weapons-specialist-sharp = Специалист-ШАРП
+stories-job-prefix-weapons-specialist-sharp = ШАРП

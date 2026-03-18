@@ -1,23 +1,17 @@
-# =========================
-# TAGS
-# =========================
 - type: Tag
-  id: SharpRifleMagazine
+  id: STSharpRifleMagazine
 
 - type: Tag
-  id: SharpCartridgeExplosive
+  id: STSharpCartridgeExplosive
 
 - type: Tag
-  id: SharpCartridgeIncendiary
+  id: STSharpCartridgeIncendiary
 
 - type: Tag
-  id: SharpCartridgeFlechette
+  id: STSharpCartridgeFlechette
 
-# =========================
-# ACTION
-# =========================
 - type: entity
-  id: ActionSharpToggleFuse
+  id: STActionSharpToggleFuse
   parent: ActionMarineToggleable
   name: Toggle dart fuse
   description: Switches sticky dart detonation delay between 5s and 2.5s.
@@ -35,11 +29,8 @@
   - type: InstantAction
     event: !type:SharpToggleFuseEvent
 
-# =========================
-# WEAPON
-# =========================
 - type: entity
-  id: WeaponSharpRifle
+  id: STWeaponSharpRifle
   name: SHARP rifle
   description: An experimental harpoon launcher rifle with an inbuilt magnetic harness manufactured by Armat Systems.
   parent: BaseItem
@@ -113,11 +104,11 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineSharpRifleExplosive
+        startingItem: STMagazineSharpRifleExplosive
         priority: 2
         whitelist:
           tags:
-          - SharpRifleMagazine
+          - STSharpRifleMagazine
 
   - type: AmmoCounter
 
@@ -134,6 +125,6 @@
       rmc-aslot-rail: 0.0, 0.18
 
   - type: SharpFuseMode
-    actionId: ActionSharpToggleFuse
+    actionId: STActionSharpToggleFuse
     longMode: false
 

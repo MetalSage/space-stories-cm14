@@ -15,6 +15,9 @@ public sealed partial class SharpMineComponent : Component
     [DataField, AutoNetworkedField]
     public float MaxLifespan = 300f;
 
+    [DataField, AutoNetworkedField]
+    public float StickyDartGracePeriod = 0.25f;
+
     [DataField]
     public DamageSpecifier DetonateOnDamage = new();
 
@@ -23,6 +26,9 @@ public sealed partial class SharpMineComponent : Component
 
     [DataField, AutoNetworkedField]
     public int Level = 1;
+
+    [DataField, AutoNetworkedField]
+    public int MaxLevel = 4;
 
     [DataField, AutoNetworkedField]
     public bool IgnoreAnyIff = true;

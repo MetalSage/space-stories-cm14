@@ -23,13 +23,6 @@ cm-distress-signal-medals = Награждёные медалями:
 cm-distress-signal-jellies = Награждёные королевским желе:
 rmc-distress-signal-got-medal = { $receiver } награжден { $award }: '{ $awardDescription }'
 rmc-distress-signal-got-jelly = { $receiver } награжден { $award }: '{ $awardDescription }' от { $giver }
-cm-distress-signal-discord-none = Раунд был завершён досрочно
-cm-distress-signal-discord-majormarinevictory = Крупная победа морпехов
-cm-distress-signal-discord-minormarinevictory = Малая победа морпехов
-cm-distress-signal-discord-majorxenovictory = Крупная победа ксеноморфов
-cm-distress-signal-discord-minorxenovictory = Малая победа ксеноморфов
-cm-distress-signal-discord-alldied = Ничья
-st-distress-signal-nuked = [color=yellow]Колония была уничтожена ядерным взрывом.[/color]
 rmc-distress-signal-major-marine-victory-bioscan = Биосканирование завершено. Неизвестных форм жизни не обнаружено.
 rmc-distress-signal-major-marine-victory-report = Сохраняю оперативный отчет в архив.
 rmc-distress-signal-major-marine-victory-scan = Начало финальной проверки систем через 3 минуты.
