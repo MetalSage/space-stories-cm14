@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Numerics;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
+using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Sharp;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Inventory;
@@ -13,6 +15,8 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Physics.Events;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared._RMC14.Weapons.Ranged;
 namespace Content.Server._Stories.Sharp;
@@ -21,24 +25,44 @@ public sealed class SharpStickyDartSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
+    [Dependency] private readonly GunIFFSystem _gunIFF = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+
+    private readonly HashSet<EntProtoId<IFFFactionComponent>> _iffBuffer = new();
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SharpStickyDartComponent, ProjectileHitEvent>(OnHit);
+        SubscribeLocalEvent<SharpStickyDartComponent, PreventCollideEvent>(OnPreventCollide);
+        SubscribeLocalEvent<SharpStickyDartComponent, ProjectileHitEvent>(OnHit, before: new[] { typeof(SharedProjectileSystem) });
         SubscribeLocalEvent<SharpStickyDartComponent, ProjectileFixedDistanceStopEvent>(OnFixedStop);
         SubscribeLocalEvent<SharpFuseModeComponent, AmmoShotEvent>(OnSharpAmmoShot);
     }
 
+    private void OnPreventCollide(EntityUid uid, SharpStickyDartComponent comp, ref PreventCollideEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (ShouldPassThroughTarget(uid, args.OtherEntity))
+            args.Cancelled = true;
+    }
+
     private void OnHit(EntityUid uid, SharpStickyDartComponent comp, ref ProjectileHitEvent args)
     {
-        if (TerminatingOrDeleted(uid))
+        if (args.Handled || TerminatingOrDeleted(uid))
             return;
 
-        if (HasComp<MobStateComponent>(args.Target))
+        if (ShouldPassThroughTarget(uid, args.Target))
+        {
+            args.Handled = true;
+            return;
+        }
+
+        if (CanStickToTarget(args.Target))
             return;
 
+        args.Handled = true;
         SpawnMineAndDelete(uid, comp);
     }
 
@@ -182,7 +206,7 @@ public sealed class SharpStickyDartSystem : EntitySystem
             }
             else if (_timing.CurTime >= rt.DetonateAt)
             {
-                if (HasIff(target))
+                if (IsFriendlyTarget(uid, target))
                 {
                     DropIffRecoveryAndDelete(uid, sticky);
                 }
@@ -213,11 +237,54 @@ public sealed class SharpStickyDartSystem : EntitySystem
         }
     }
 
-    private bool HasIff(EntityUid target)
+    private bool IsFriendlyTarget(EntityUid projectileUid, EntityUid target)
     {
-        var targetEv = new GetIFFFactionEvent(SlotFlags.IDCARD, new());
-        RaiseLocalEvent(target, ref targetEv);
-        return targetEv.Factions.Count > 0;
+        if (!TryGetProjectileFactions(projectileUid))
+            return false;
+
+        foreach (var faction in _iffBuffer)
+        {
+            if (_gunIFF.IsInFaction(target, faction))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetProjectileFactions(EntityUid projectileUid)
+    {
+        _iffBuffer.Clear();
+
+        if (TryComp<ProjectileIFFComponent>(projectileUid, out var projectileIff) &&
+            projectileIff.Factions.Count > 0)
+        {
+            _iffBuffer.UnionWith(projectileIff.Factions);
+            return true;
+        }
+
+        if (!TryComp(projectileUid, out ProjectileComponent? projectile) ||
+            projectile.Shooter is not { } shooter)
+        {
+            return false;
+        }
+
+        return _gunIFF.TryGetFactions((shooter, CompOrNull<UserIFFComponent>(shooter)), _iffBuffer, SlotFlags.IDCARD);
+    }
+
+    private bool ShouldPassThroughTarget(EntityUid projectileUid, EntityUid target)
+    {
+        if (HasComp<SharpMineComponent>(target))
+            return true;
+
+        if (IsFriendlyTarget(projectileUid, target))
+            return true;
+
+        return HasComp<MobStateComponent>(target) && !CanStickToTarget(target);
+    }
+
+    private bool CanStickToTarget(EntityUid target)
+    {
+        return HasComp<MobStateComponent>(target) && HasComp<XenoComponent>(target);
     }
 
     private bool TerminatingOrDeleted(EntityUid uid)

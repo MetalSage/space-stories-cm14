@@ -1,5 +1,6 @@
 using Content.Shared.Damage;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.Sharp;
 
@@ -32,4 +33,7 @@ public sealed partial class SharpMineComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool IgnoreAnyIff = true;
+
+    [DataField]
+    public EntProtoId? DisarmSpawnProto;
 }
