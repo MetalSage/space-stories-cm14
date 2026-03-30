@@ -57,6 +57,10 @@
     resetOnHandSelected: false
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: GunIFF
+    enabled: true
+  - type: Corrodible
+    isCorrodible: false
   - type: AltFireMelee
   - type: MeleeWeapon
     attackRate: 1

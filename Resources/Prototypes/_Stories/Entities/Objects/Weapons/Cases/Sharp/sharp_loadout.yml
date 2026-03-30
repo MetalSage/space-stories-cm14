@@ -2,7 +2,7 @@
   parent: RMCBaseEquipmentCase
   id: STSharpSpecEquipmentCase
   name: SHARP operator equipment case
-  description: "A large case containing SHARP anti-personnel launcher equipment, magazines and specialist support gear./n/nNOTE: You cannot put items back inside this case."
+  description: "A large case containing SHARP anti-personnel launcher equipment, magazines and specialist support gear.\n\nNOTE: You cannot put items back inside this case."
   components:
   - type: Sprite
     layers:
