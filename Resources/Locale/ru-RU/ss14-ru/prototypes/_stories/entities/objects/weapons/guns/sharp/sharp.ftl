@@ -21,6 +21,8 @@ ent-STSharpMineBase = мина SHARP
     .desc = Быстроразвертываемая мина SHARP.
 ent-STSharpMineExplosiveL1 = мина SHARP (взрывная)
 ent-STSharpMineIncendiaryL1 = мина SHARP (зажигательная)
+ent-STSharpMineDisarmedExplosive = обезвреженный дротик SHARP (взрывной)
+ent-STSharpMineDisarmedIncendiary = обезвреженный дротик SHARP (зажигательный)
 
 ent-STSharpSpecEquipmentCase = кейс минометного снаряжения
     .desc = Большой кейс с установкой SHARP, магазинами и вспомогательным снаряжением специалиста минометчика. Предметы обратно в кейс положить нельзя.

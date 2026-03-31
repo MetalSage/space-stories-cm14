@@ -84,6 +84,10 @@
     recoilWielded: 0.1
     scatterWielded: 0.1
     burstScatterMult: 4
+  - type: GunUserWhitelist
+    whitelist:
+      components:
+      - SharpWhitelist
   - type: GunRequiresSkills
     skills:
       RMCSkillSpecialistWeapons: 1

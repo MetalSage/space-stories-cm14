@@ -32,6 +32,9 @@
       amount: 2
     - id: RMCBinoculars
     - id: CMMultitool
+  - type: CMChangeUserOnVend
+    addComponents:
+    - type: SharpWhitelist
 
 - type: entity
   parent: RMCBeltBaseStorageNoVisuals

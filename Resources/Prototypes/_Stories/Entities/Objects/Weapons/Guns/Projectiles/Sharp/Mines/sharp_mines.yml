@@ -66,6 +66,28 @@
     sprayExtinguishMultiplier: 0.7
 
 - type: entity
+  id: STSharpMineDisarmedExplosive
+  parent: BaseItem
+  name: disarmed SHARP dart (explosive)
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
+    state: disarmed
+  - type: Item
+    size: Small
+
+- type: entity
+  id: STSharpMineDisarmedIncendiary
+  parent: BaseItem
+  name: disarmed SHARP dart (incendiary)
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
+    state: disarmed
+  - type: Item
+    size: Small
+
+- type: entity
   id: STSharpMineBase
   abstract: true
   name: SHARP mine
@@ -108,7 +130,7 @@
   - type: SharpMine
     ignoreAnyIff: true
     triggerRadius: 1.0
-    levelUpInterval: 75
+    levelUpInterval: 30
     maxLifespan: 300
     stickyDartGracePeriod: 0.25
     explosionRadius: 3
@@ -124,7 +146,7 @@
   parent: STSharpMineBase
   components:
   - type: SharpMine
-    disarmSpawnProto: STCartridgeSharpExplosive
+    disarmSpawnProto: STSharpMineDisarmedExplosive
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
     drawdepth: Overlays
@@ -189,7 +211,7 @@
   parent: STSharpMineBase
   components:
   - type: SharpMine
-    disarmSpawnProto: STCartridgeSharpIncendiary
+    disarmSpawnProto: STSharpMineDisarmedIncendiary
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
     drawdepth: Overlays

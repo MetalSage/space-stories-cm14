@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Content.Server.Explosion.EntitySystems;
-using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.OnCollide;
@@ -15,9 +14,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Popups;
 using Content.Shared.Projectiles;
-using Content.Shared.Tools.Systems;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.GameObjects;
 using Content.Shared.Physics;
@@ -29,20 +26,16 @@ namespace Content.Server._Stories.Sharp;
 
 public sealed class SharpMineSystem : EntitySystem
 {
-    private const string SharpSpecialistPrefix = "stories-job-prefix-weapons-specialist-sharp";
-
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedToolSystem _tool = default!;
 
     private readonly HashSet<EntityUid> _nearby = new();
     private readonly List<EntityUid> _toDetonate = new();
-    private readonly List<EntityUid> _toDelete = new();
+    private readonly List<EntityUid> _toDisarm = new();
     private readonly List<(EntityUid OldMine, string NewProto)> _toReplace = new();
 
     public override void Initialize()
@@ -121,15 +114,6 @@ public sealed class SharpMineSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!IsSharpSpecialist(args.User))
-        {
-            _popup.PopupClient(Loc.GetString("stories-sharp-mine-disarm-unauthorized"), mine, args.User, PopupType.SmallCaution);
-            return;
-        }
-
-        if (!_tool.HasQuality(args.Used, SharedToolSystem.PulseQuality))
-            return;
-
         var doAfter = new DoAfterArgs(EntityManager,
             args.User,
             TimeSpan.FromSeconds(3),
@@ -152,10 +136,7 @@ public sealed class SharpMineSystem : EntitySystem
         if (args.Cancelled || args.Handled || TerminatingOrDeleted(mine.Owner))
             return;
 
-        if (args.Used is not { } used ||
-            !HasComp<MultitoolComponent>(used) ||
-            !_tool.HasQuality(used, SharedToolSystem.PulseQuality) ||
-            !IsSharpSpecialist(args.User))
+        if (args.Used is not { } used || !HasComp<MultitoolComponent>(used))
         {
             return;
         }
@@ -169,7 +150,7 @@ public sealed class SharpMineSystem : EntitySystem
         base.Update(frameTime);
 
         _toDetonate.Clear();
-        _toDelete.Clear();
+        _toDisarm.Clear();
         _toReplace.Clear();
 
         var query = EntityQueryEnumerator<SharpMineComponent, TransformComponent, SharpMineRuntimeComponent>();
@@ -187,7 +168,7 @@ public sealed class SharpMineSystem : EntitySystem
 
             if (age >= mine.MaxLifespan)
             {
-                _toDelete.Add(uid);
+                _toDisarm.Add(uid);
                 continue;
             }
 
@@ -239,9 +220,13 @@ public sealed class SharpMineSystem : EntitySystem
             if (!TerminatingOrDeleted(uid)) Detonate(uid);
         }
 
-        foreach (var uid in _toDelete)
+        foreach (var uid in _toDisarm)
         {
-            if (!TerminatingOrDeleted(uid)) QueueDel(uid);
+            if (!TerminatingOrDeleted(uid) &&
+                TryComp(uid, out SharpMineComponent? mine))
+            {
+                DisarmMine((uid, mine));
+            }
         }
     }
 
@@ -331,11 +316,5 @@ public sealed class SharpMineSystem : EntitySystem
         var ev = new GetIFFFactionEvent(SlotFlags.IDCARD, new());
         RaiseLocalEvent(target, ref ev);
         return ev.Factions.Count == 0;
-    }
-
-    private bool IsSharpSpecialist(EntityUid user)
-    {
-        return TryComp<JobPrefixComponent>(user, out var prefix) &&
-               prefix.AdditionalPrefix == SharpSpecialistPrefix;
     }
 }

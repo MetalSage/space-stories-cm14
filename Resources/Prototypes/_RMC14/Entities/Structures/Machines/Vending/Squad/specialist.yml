@@ -40,6 +40,8 @@
         giveMapBlip:
           sprite: /Textures/_RMC14/Interface/map_blips.rsi
           state: spec_grenadier
+        linkedEntries:
+        - STSharpSpecEquipmentCase
       # Stories-SHARP-Start
       - id: STSharpSpecEquipmentCase
         giveSquadRoleName: stories-job-name-weapons-specialist-sharp
@@ -52,6 +54,8 @@
         giveMapBlip:
           sprite: /Textures/_RMC14/Interface/map_blips.rsi
           state: spec
+        linkedEntries:
+        - RMCGrenadeSpecEquipmentCase
       # Stories-SHARP-End
       - id: RMCPyroSpecEquipmentCase
         giveSquadRoleName: rmc-job-name-weapons-specialist-pyro
