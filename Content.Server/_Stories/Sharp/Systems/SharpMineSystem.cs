@@ -2,20 +2,21 @@ using System;
 using System.Collections.Generic;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared._RMC14.Atmos;
+using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.OnCollide;
 using Content.Shared._RMC14.Tools;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._Stories.Sharp;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Projectiles;
-using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Toggleable;
 using Robust.Shared.GameObjects;
 using Content.Shared.Physics;
 using Robust.Shared.Physics.Events;
@@ -32,6 +33,7 @@ public sealed class SharpMineSystem : EntitySystem
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     private readonly HashSet<EntityUid> _nearby = new();
     private readonly List<EntityUid> _toDetonate = new();
@@ -42,17 +44,19 @@ public sealed class SharpMineSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<SharpMineComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<SharpMineComponent, DamageChangedEvent>(OnMineDamageChanged);
         SubscribeLocalEvent<SharpMineComponent, ExplosionReceivedEvent>(OnExplosionReceived);
         SubscribeLocalEvent<SharpMineComponent, StartCollideEvent>(OnMineStartCollide);
-        SubscribeLocalEvent<SharpMineComponent, AttackedEvent>(OnMineAttacked);
         SubscribeLocalEvent<SharpMineComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<SharpMineComponent, SharpMineDisarmDoAfterEvent>(OnMineDisarmDoAfter);
-        SubscribeLocalEvent<ProjectileComponent, ProjectileHitEvent>(OnProjectileHitMine);
     }
 
     private void OnMapInit(EntityUid uid, SharpMineComponent comp, ref MapInitEvent args)
     {
-        EnsureComp<SharpMineRuntimeComponent>(uid).SpawnTime = _timing.CurTime;
+        var runtime = EnsureComp<SharpMineRuntimeComponent>(uid);
+        runtime.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(comp.ActivationDelay);
+        runtime.Activated = false;
+        UpdateMineAppearance(uid, false);
     }
 
     private void OnExplosionReceived(Entity<SharpMineComponent> mine, ref ExplosionReceivedEvent args)
@@ -63,21 +67,16 @@ public sealed class SharpMineSystem : EntitySystem
         Detonate(mine.Owner);
     }
 
-    private void OnProjectileHitMine(Entity<ProjectileComponent> projectile, ref ProjectileHitEvent args)
+    private void OnMineDamageChanged(Entity<SharpMineComponent> mine, ref DamageChangedEvent args)
     {
-        if (args.Handled || TerminatingOrDeleted(args.Target))
+        if (!args.DamageIncreased || TerminatingOrDeleted(mine.Owner))
             return;
 
-        if (TryComp<SharpStickyDartComponent>(projectile.Owner, out _) &&
-            (!TryComp<SharpMineComponent>(args.Target, out var targetMine) ||
-             !TryComp<SharpMineRuntimeComponent>(args.Target, out var rt) ||
-             (_timing.CurTime - rt.SpawnTime).TotalSeconds < targetMine.StickyDartGracePeriod))
-        {
+        if (!TryComp<MaxDamageComponent>(mine.Owner, out var maxDamage) ||
+            args.Damageable.TotalDamage < maxDamage.Max)
             return;
-        }
 
-        if (HasComp<SharpMineComponent>(args.Target))
-            Detonate(args.Target);
+        Detonate(mine.Owner);
     }
 
     private void OnMineStartCollide(Entity<SharpMineComponent> mine, ref StartCollideEvent args)
@@ -97,14 +96,6 @@ public sealed class SharpMineSystem : EntitySystem
         {
             Detonate(mine.Owner);
         }
-    }
-
-    private void OnMineAttacked(Entity<SharpMineComponent> mine, ref AttackedEvent args)
-    {
-        if (TerminatingOrDeleted(mine.Owner))
-            return;
-
-        Detonate(mine.Owner);
     }
 
     private void OnInteractUsing(Entity<SharpMineComponent> mine, ref InteractUsingEvent args)
@@ -164,7 +155,17 @@ public sealed class SharpMineSystem : EntitySystem
                 continue;
             }
 
-            var age = (_timing.CurTime - rt.SpawnTime).TotalSeconds;
+            if (!rt.Activated && _timing.CurTime >= rt.ActivateAt)
+            {
+                rt.Activated = true;
+                UpdateMineAppearance(uid, true);
+            }
+
+            // The mine only arms after a short delay; its 300s lifespan starts then.
+            if (_timing.CurTime < rt.ActivateAt)
+                continue;
+
+            var age = (_timing.CurTime - rt.ActivateAt).TotalSeconds;
 
             if (age >= mine.MaxLifespan)
             {
@@ -211,7 +212,13 @@ public sealed class SharpMineSystem : EntitySystem
             var coords = Transform(oldMine).Coordinates;
             var oldRt = CompOrNull<SharpMineRuntimeComponent>(oldMine);
             var newMine = Spawn(newProto, coords);
-            if (oldRt != null) EnsureComp<SharpMineRuntimeComponent>(newMine).SpawnTime = oldRt.SpawnTime;
+            if (oldRt != null)
+            {
+                var newRt = EnsureComp<SharpMineRuntimeComponent>(newMine);
+                newRt.ActivateAt = oldRt.ActivateAt;
+                newRt.Activated = oldRt.Activated;
+                UpdateMineAppearance(newMine, oldRt.Activated);
+            }
             QueueDel(oldMine);
         }
 
@@ -257,6 +264,12 @@ public sealed class SharpMineSystem : EntitySystem
             Spawn(spawnProto, Transform(mine).Coordinates);
 
         QueueDel(mine);
+    }
+
+    private void UpdateMineAppearance(EntityUid uid, bool activated)
+    {
+        if (TryComp(uid, out AppearanceComponent? appearance))
+            _appearance.SetData(uid, ToggleableVisuals.Enabled, activated, appearance);
     }
 
     private bool TerminatingOrDeleted(EntityUid uid)

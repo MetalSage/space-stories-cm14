@@ -6,5 +6,6 @@ namespace Content.Server._Stories.Sharp;
 [RegisterComponent]
 public sealed partial class SharpMineRuntimeComponent : Component
 {
-    public TimeSpan SpawnTime;
+    public TimeSpan ActivateAt;
+    public bool Activated;
 }

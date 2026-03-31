@@ -120,16 +120,14 @@
         - XenoProjectileImpassable
   - type: Damageable
     damageContainer: Inorganic
+  - type: MaxDamage
+    max: 50
   - type: RequireProjectileTarget
-  - type: GenericVisualizer
-    visuals:
-      enum.Trigger.TriggerVisuals.VisualState:
-        enum.ConstructionVisuals.Layer:
-          Primed: { state: primed }
-          Unprimed: { state: icon }
+  - type: Appearance
   - type: SharpMine
     ignoreAnyIff: true
     triggerRadius: 1.0
+    activationDelay: 3
     levelUpInterval: 30
     maxLifespan: 300
     stickyDartGracePeriod: 0.25
@@ -151,8 +149,14 @@
     sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
     drawdepth: Overlays
     layers:
-    - state: phase1
+    - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: phase1 }
+          False: { state: phase0 }
   - type: Explosive
     explosionType: RMC
     maxIntensity: 20
@@ -170,8 +174,14 @@
   - type: Sprite
     drawdepth: Overlays
     layers:
-    - state: phase2
+    - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: phase2 }
+          False: { state: phase0 }
   - type: Explosive
     totalIntensity: 320
     maxIntensity: 28
@@ -184,8 +194,14 @@
   - type: Sprite
     drawdepth: Overlays
     layers:
-    - state: phase3
+    - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: phase3 }
+          False: { state: phase0 }
   - type: Explosive
     totalIntensity: 460
     maxIntensity: 36
@@ -198,8 +214,14 @@
   - type: Sprite
     drawdepth: Overlays
     layers:
-    - state: phase4
+    - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: phase4 }
+          False: { state: phase0 }
   - type: Explosive
     totalIntensity: 620
     maxIntensity: 46
@@ -216,8 +238,14 @@
     sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
     drawdepth: Overlays
     layers:
-    - state: phase1
+    - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: phase1 }
+          False: { state: phase0 }
   - type: TileFireOnTrigger
     spawn: STSharpTileFireL1
     range: 3
@@ -233,8 +261,14 @@
   - type: Sprite
     drawdepth: Overlays
     layers:
-    - state: phase2
+    - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: phase2 }
+          False: { state: phase0 }
   - type: TileFireOnTrigger
     spawn: STSharpTileFireGreen
     range: 3
@@ -248,8 +282,14 @@
   - type: Sprite
     drawdepth: Overlays
     layers:
-    - state: phase3
+    - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: phase3 }
+          False: { state: phase0 }
   - type: TileFireOnTrigger
     spawn: STSharpTileFireNapalmL3
     range: 3
@@ -263,11 +303,17 @@
   - type: Sprite
     drawdepth: Overlays
     layers:
-    - state: phase4
+    - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: phase4 }
+          False: { state: phase0 }
   - type: TileFireOnTrigger
     spawn: STSharpTileFireNapalmL4
-    range: 3
+    range: 4
     intensity: 35
     duration: 45
 
