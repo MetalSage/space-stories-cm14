@@ -53,6 +53,9 @@
     tier: 3
     hudOffset: 0,0.35
     unlockAt: 900 # 15 minutes
+  # Stories-Start
+  - type: BoilerAcidAnimation
+  # Stories-End
   - type: XenoHeavy
   - type: XenoDevolve
     devolvesTo:
