@@ -290,6 +290,11 @@
   parent: RMCXenoQueenBase
   id: CMXenoQueen
   components:
+  # Stories-Start
+  - type: XenoAcidAnimation
+    spitRsi: /Textures/_Stories/Mobs/Xenos/Queen/queen_spit.rsi
+    offset: 0,0.875
+  # Stories-End
   - type: RMCActionOrder
     id: CMXenoQueen
   # - type: XenoEvolution #can be enabled for events like april fools.

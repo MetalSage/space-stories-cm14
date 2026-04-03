@@ -4,9 +4,13 @@ using Content.Client.UserInterface.Systems.Actions;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Acid;
 using Content.Shared._RMC14.Xenonids.Bombard;
+using Content.Shared._RMC14.Xenonids.Projectile.Spit.Ball;
+using Content.Shared._RMC14.Xenonids.Projectile.Spit.Charge;
 using Content.Shared._RMC14.Xenonids.Projectile.Spit.Scattered;
+using Content.Shared._RMC14.Xenonids.Projectile.Spit.Slowing;
+using Content.Shared._RMC14.Xenonids.Projectile.Spit.Standard;
 using Content.Shared._RMC14.Xenonids.Spray;
-using Content.Shared._Stories.Xenonids.Boiler;
+using Content.Shared._Stories.Xenonids.AcidAnimation;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -15,17 +19,18 @@ using Robust.Client.Utility;
 using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Maths;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
-namespace Content.Client._Stories.Xenonids.Boiler;
+namespace Content.Client._Stories.Xenonids.AcidAnimation;
 
-public sealed class BoilerAcidAnimationSystem : EntitySystem
+public sealed class XenoAcidAnimationSystem : EntitySystem
 {
-    private const string SpitLayerKey = "stBoilerSpit";
-    private static readonly RSI.StateId SpitState = new("spit");
+    private const string SpitLayerKey = "xenoAcidSpit";
 
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
+    [Dependency] private readonly IOverlayManager _overlays = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -33,11 +38,22 @@ public sealed class BoilerAcidAnimationSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly Dictionary<EntityUid, TimeSpan> _animationStarts = new();
-    private readonly HashSet<EntityUid> _currentBoilers = new();
-    private readonly List<EntityUid> _boilersToStop = new();
+    private readonly HashSet<EntityUid> _currentXenos = new();
+    private readonly List<EntityUid> _xenosToStop = new();
 
-    private EntityUid? _predictedBoiler;
+    private EntityUid? _predictedXeno;
     private bool _predictedActive;
+
+    public override void Initialize()
+    {
+        if (!_overlays.HasOverlay<XenoAcidAnimationOverlay>())
+            _overlays.AddOverlay(new XenoAcidAnimationOverlay());
+    }
+
+    public override void Shutdown()
+    {
+        _overlays.RemoveOverlay<XenoAcidAnimationOverlay>();
+    }
 
     public override void FrameUpdate(float frameTime)
     {
@@ -49,34 +65,34 @@ public sealed class BoilerAcidAnimationSystem : EntitySystem
 
     private void UpdatePredictedState()
     {
-        EntityUid? boiler = null;
+        EntityUid? xeno = null;
         var active = false;
 
         if (_player.LocalEntity is { } local &&
-            HasComp<BoilerAcidAnimationComponent>(local))
+            HasComp<XenoAcidAnimationComponent>(local))
         {
-            boiler = local;
-            active = HasSelectedBoilerAction(local);
+            xeno = local;
+            active = HasSelectedAcidAction(local);
         }
 
-        if (_predictedBoiler != boiler)
+        if (_predictedXeno != xeno)
         {
-            if (_predictedBoiler != null && _predictedActive)
-                RaiseNetworkEvent(new BoilerAcidAnimationToggleEvent(GetNetEntity(_predictedBoiler.Value), false));
+            if (_predictedXeno != null && _predictedActive)
+                RaiseNetworkEvent(new XenoAcidAnimationToggleEvent(GetNetEntity(_predictedXeno.Value), false));
 
-            if (boiler != null && active)
-                RaiseNetworkEvent(new BoilerAcidAnimationToggleEvent(GetNetEntity(boiler.Value), true));
+            if (xeno != null && active)
+                RaiseNetworkEvent(new XenoAcidAnimationToggleEvent(GetNetEntity(xeno.Value), true));
         }
-        else if (boiler != null && _predictedActive != active)
+        else if (xeno != null && _predictedActive != active)
         {
-            RaiseNetworkEvent(new BoilerAcidAnimationToggleEvent(GetNetEntity(boiler.Value), active));
+            RaiseNetworkEvent(new XenoAcidAnimationToggleEvent(GetNetEntity(xeno.Value), active));
         }
 
-        _predictedBoiler = boiler;
+        _predictedXeno = xeno;
         _predictedActive = active;
     }
 
-    private bool HasSelectedBoilerAction(EntityUid uid)
+    private bool HasSelectedAcidAction(EntityUid uid)
     {
         var selected = _ui.GetUIController<ActionUIController>().SelectingTargetFor;
         if (selected is not { } actionUid)
@@ -89,9 +105,12 @@ public sealed class BoilerAcidAnimationSystem : EntitySystem
 
             if (_actions.GetEvent(action) is
                 XenoCorrosiveAcidEvent or
+                XenoSpitActionEvent or
+                XenoSlowingSpitActionEvent or
                 XenoSprayAcidActionEvent or
                 XenoBombardActionEvent or
-                XenoScatteredSpitActionEvent)
+                XenoScatteredSpitActionEvent or
+                XenoAcidBallActionEvent)
             {
                 return true;
             }
@@ -102,58 +121,32 @@ public sealed class BoilerAcidAnimationSystem : EntitySystem
 
     private void RefreshAnimations()
     {
-        _currentBoilers.Clear();
+        _currentXenos.Clear();
 
-        var query = EntityQueryEnumerator<BoilerAcidAnimationComponent, SpriteComponent>();
+        var query = EntityQueryEnumerator<XenoAcidAnimationComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var comp, out var sprite))
         {
-            if (sprite.BaseRSI is not { } rsi ||
-                !rsi.TryGetState(SpitState, out _))
-            {
-                HideSpitLayer((uid, sprite));
-                continue;
-            }
+            HideSpitLayer((uid, sprite));
 
-            if (!ShouldAnimate(uid, comp, sprite))
-            {
-                HideSpitLayer((uid, sprite));
+            if (!ShouldAnimate(uid, comp, sprite, out var dir))
                 continue;
-            }
 
-            _currentBoilers.Add(uid);
+            _currentXenos.Add(uid);
             if (!_animationStarts.ContainsKey(uid))
                 _animationStarts[uid] = _timing.CurTime;
-
-            var layer = EnsureSpitLayer((uid, sprite), rsi);
-            var animationTime = (float) (_timing.CurTime - _animationStarts[uid]).TotalSeconds;
-            _sprite.LayerSetAnimationTime((uid, sprite), layer, animationTime);
-            _sprite.LayerSetVisible((uid, sprite), layer, true);
         }
 
-        _boilersToStop.Clear();
+        _xenosToStop.Clear();
         foreach (var uid in _animationStarts.Keys)
         {
-            if (!_currentBoilers.Contains(uid))
-                _boilersToStop.Add(uid);
+            if (!_currentXenos.Contains(uid))
+                _xenosToStop.Add(uid);
         }
 
-        foreach (var uid in _boilersToStop)
+        foreach (var uid in _xenosToStop)
         {
             _animationStarts.Remove(uid);
-
-            if (TryComp<SpriteComponent>(uid, out var sprite))
-                HideSpitLayer((uid, sprite));
         }
-    }
-
-    private int EnsureSpitLayer(Entity<SpriteComponent> ent, RSI rsi)
-    {
-        Entity<SpriteComponent?> spriteEnt = (ent.Owner, ent.Comp);
-        var layer = _sprite.LayerMapReserve(spriteEnt, SpitLayerKey);
-        _sprite.LayerSetRsi(spriteEnt, layer, rsi, SpitState);
-        _sprite.LayerSetOffset(spriteEnt, layer, Vector2.Zero);
-        _sprite.LayerSetAutoAnimated(spriteEnt, layer, false);
-        return layer;
     }
 
     private void HideSpitLayer(Entity<SpriteComponent> ent)
@@ -163,22 +156,21 @@ public sealed class BoilerAcidAnimationSystem : EntitySystem
             _sprite.LayerSetVisible(spriteEnt, layer, false);
     }
 
-    private bool ShouldAnimate(EntityUid uid, BoilerAcidAnimationComponent comp, SpriteComponent sprite)
+    public Vector2 GetOffset(XenoAcidAnimationComponent comp)
     {
-        var localEntity = _player.LocalEntity;
-        var isLocalBoiler = localEntity == uid;
-        if (isLocalBoiler)
-        {
-            if (_predictedBoiler != uid || !_predictedActive)
-                return false;
-        }
-        else if (!comp.Active)
-        {
-            return false;
-        }
+        return comp.Offset;
+    }
 
-        if (sprite.BaseRSI is not { } rsi ||
-            !rsi.TryGetState("spit", out _))
+    public bool ShouldAnimate(EntityUid uid, XenoAcidAnimationComponent comp, SpriteComponent sprite, out RsiDirection dir)
+    {
+        dir = RsiDirection.South;
+        var localEntity = _player.LocalEntity;
+        var active = comp.Active || HasComp<XenoActiveChargingSpitComponent>(uid);
+
+        if (localEntity == uid && _predictedXeno == uid && _predictedActive)
+            active = true;
+
+        if (!active)
         {
             return false;
         }
@@ -192,12 +184,27 @@ public sealed class BoilerAcidAnimationSystem : EntitySystem
         if (_appearance.TryGetData(uid, RMCXenoStateVisuals.Resting, out bool resting) && resting)
             return false;
 
+        dir = GetRenderDirection(uid, sprite);
+
+        return !comp.HideNorth || dir != RsiDirection.North;
+    }
+
+    public TimeSpan GetAnimationTime(EntityUid uid, TimeSpan curTime)
+    {
+        if (!_animationStarts.TryGetValue(uid, out var started))
+            return TimeSpan.Zero;
+
+        return curTime - started;
+    }
+
+    private RsiDirection GetRenderDirection(EntityUid uid, SpriteComponent sprite)
+    {
         var angle = (_transform.GetWorldRotation(uid) + _eye.CurrentEye.Rotation).Reduced().FlipPositive();
         var dir = SpriteComponent.Layer.GetDirection(RsiDirectionType.Dir4, angle);
 
         if (sprite.EnableDirectionOverride)
             dir = sprite.DirectionOverride.Convert(RsiDirectionType.Dir4);
 
-        return dir != RsiDirection.North;
+        return dir;
     }
 }

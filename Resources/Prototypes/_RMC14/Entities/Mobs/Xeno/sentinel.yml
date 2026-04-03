@@ -18,6 +18,11 @@
     name: cm-job-name-xeno-sentinel
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Sentinel/sentinel.rsi
+  # Stories-Start
+  - type: XenoAcidAnimation
+    spitRsi: /Textures/_Stories/Mobs/Xenos/Sentinel/sentinel_spit.rsi
+    offset: 0,0.1875
+  # Stories-End
   - type: MobState
     allowedStates:
     - Alive

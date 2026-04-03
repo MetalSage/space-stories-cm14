@@ -125,6 +125,11 @@
   parent: CMXenoPraetorianBase
   id: CMXenoPraetorian
   components:
+  # Stories-Start
+  - type: XenoAcidAnimation
+    spitRsi: /Textures/_Stories/Mobs/Xenos/Praetorian/praetorian_spit.rsi
+    offset: 0,0.125
+  # Stories-End
   - type: GuideHelp
     guides:
     - RMCGuideRolePraetorian

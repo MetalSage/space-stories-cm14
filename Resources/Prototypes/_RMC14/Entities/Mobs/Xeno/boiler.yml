@@ -53,9 +53,6 @@
     tier: 3
     hudOffset: 0,0.35
     unlockAt: 900 # 15 minutes
-  # Stories-Start
-  - type: BoilerAcidAnimation
-  # Stories-End
   - type: XenoHeavy
   - type: XenoDevolve
     devolvesTo:
@@ -154,6 +151,11 @@
   parent: RMCXenoBoilerBase
   id: CMXenoBoiler
   components:
+  # Stories-Start
+  - type: XenoAcidAnimation
+    spitRsi: /Textures/_Stories/Mobs/Xenos/Boiler/boiler.rsi
+    offset: 0,0.28125
+  # Stories-End
   - type: XenoBombard
   - type: XenoAcidShroud
   - type: XenoGasToggle
@@ -185,6 +187,11 @@
   id: RMCXenoBoilerTrapper
   suffix: Trapper
   components:
+  # Stories-Start
+  - type: XenoAcidAnimation
+    spitRsi: /Textures/_Stories/Mobs/Xenos/Boiler/trapper_boiler.rsi
+    offset: 0,0.25
+  # Stories-End
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Boiler/trapper_boiler.rsi
   - type: Xeno
