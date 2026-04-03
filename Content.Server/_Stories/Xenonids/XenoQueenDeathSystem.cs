@@ -5,7 +5,7 @@ using Content.Shared.Jittering;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 
-namespace Content.Server._RMC14.Xenonids;
+namespace Content.Server._Stories.Xenonids;
 
 public sealed class XenoQueenDeathSystem : EntitySystem
 {
