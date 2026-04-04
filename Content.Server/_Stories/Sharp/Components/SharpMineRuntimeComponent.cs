@@ -8,4 +8,5 @@ public sealed partial class SharpMineRuntimeComponent : Component
 {
     public TimeSpan ActivateAt;
     public bool Activated;
+    public bool? AppearanceEnabled;
 }

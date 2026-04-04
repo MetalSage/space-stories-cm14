@@ -14,6 +14,9 @@ public sealed partial class SharpMineComponent : Component
     public float ActivationDelay = 3f;
 
     [DataField, AutoNetworkedField]
+    public float ArmingBlinkInterval = 0.25f;
+
+    [DataField, AutoNetworkedField]
     public float LevelUpInterval = 75f;
 
     [DataField, AutoNetworkedField]

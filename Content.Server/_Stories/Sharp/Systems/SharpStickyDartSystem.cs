@@ -44,7 +44,7 @@ public sealed class SharpStickyDartSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (ShouldPassThroughTarget(uid, args.OtherEntity))
+        if (ShouldPassThroughTarget(args.OtherEntity))
             args.Cancelled = true;
     }
 
@@ -53,7 +53,14 @@ public sealed class SharpStickyDartSystem : EntitySystem
         if (args.Handled || TerminatingOrDeleted(uid))
             return;
 
-        if (ShouldPassThroughTarget(uid, args.Target))
+        if (IsFriendlyTarget(uid, args.Target))
+        {
+            args.Handled = true;
+            DropIffRecoveryAndDelete(uid, comp);
+            return;
+        }
+
+        if (ShouldPassThroughTarget(args.Target))
         {
             args.Handled = true;
             return;
@@ -271,12 +278,9 @@ public sealed class SharpStickyDartSystem : EntitySystem
         return _gunIFF.TryGetFactions((shooter, CompOrNull<UserIFFComponent>(shooter)), _iffBuffer, SlotFlags.IDCARD);
     }
 
-    private bool ShouldPassThroughTarget(EntityUid projectileUid, EntityUid target)
+    private bool ShouldPassThroughTarget(EntityUid target)
     {
         if (HasComp<SharpMineComponent>(target))
-            return true;
-
-        if (IsFriendlyTarget(projectileUid, target))
             return true;
 
         return HasComp<MobStateComponent>(target) && !CanStickToTarget(target);

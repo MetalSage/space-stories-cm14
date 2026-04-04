@@ -56,7 +56,7 @@ public sealed class SharpMineSystem : EntitySystem
         var runtime = EnsureComp<SharpMineRuntimeComponent>(uid);
         runtime.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(comp.ActivationDelay);
         runtime.Activated = false;
-        UpdateMineAppearance(uid, false);
+        UpdateMineAppearance(uid, runtime, false);
     }
 
     private void OnExplosionReceived(Entity<SharpMineComponent> mine, ref ExplosionReceivedEvent args)
@@ -158,7 +158,19 @@ public sealed class SharpMineSystem : EntitySystem
             if (!rt.Activated && _timing.CurTime >= rt.ActivateAt)
             {
                 rt.Activated = true;
-                UpdateMineAppearance(uid, true);
+                UpdateMineAppearance(uid, rt, true);
+            }
+            else if (!rt.Activated)
+            {
+                var blinkInterval = mine.ArmingBlinkInterval;
+                if (blinkInterval <= 0f)
+                {
+                    UpdateMineAppearance(uid, rt, true);
+                    continue;
+                }
+
+                var armedVisual = (int) (_timing.CurTime.TotalSeconds / blinkInterval) % 2 == 0;
+                UpdateMineAppearance(uid, rt, armedVisual);
             }
 
             // The mine only arms after a short delay; its 300s lifespan starts then.
@@ -217,7 +229,7 @@ public sealed class SharpMineSystem : EntitySystem
                 var newRt = EnsureComp<SharpMineRuntimeComponent>(newMine);
                 newRt.ActivateAt = oldRt.ActivateAt;
                 newRt.Activated = oldRt.Activated;
-                UpdateMineAppearance(newMine, oldRt.Activated);
+                UpdateMineAppearance(newMine, newRt, oldRt.AppearanceEnabled ?? oldRt.Activated);
             }
             QueueDel(oldMine);
         }
@@ -266,8 +278,13 @@ public sealed class SharpMineSystem : EntitySystem
         QueueDel(mine);
     }
 
-    private void UpdateMineAppearance(EntityUid uid, bool activated)
+    private void UpdateMineAppearance(EntityUid uid, SharpMineRuntimeComponent runtime, bool activated)
     {
+        if (runtime.AppearanceEnabled is { } appearanceEnabled && appearanceEnabled == activated)
+            return;
+
+        runtime.AppearanceEnabled = activated;
+
         if (TryComp(uid, out AppearanceComponent? appearance))
             _appearance.SetData(uid, ToggleableVisuals.Enabled, activated, appearance);
     }

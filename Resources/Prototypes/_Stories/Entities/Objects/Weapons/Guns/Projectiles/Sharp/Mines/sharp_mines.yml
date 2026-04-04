@@ -128,6 +128,7 @@
     ignoreAnyIff: true
     triggerRadius: 1.0
     activationDelay: 3
+    armingBlinkInterval: 0.25
     levelUpInterval: 30
     maxLifespan: 300
     stickyDartGracePeriod: 0.25
