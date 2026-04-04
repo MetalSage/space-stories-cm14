@@ -12,11 +12,66 @@ namespace Content.Shared._RMC14.Rules;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 public sealed partial class CMDistressSignalRuleComponent : Component
 {
+    /// <summary>
+    /// Squads available for normal round start and late join squad assignment.
+    /// This list can be replaced at round start by the low population configuration below.
+    /// </summary>
     [DataField]
     public List<EntProtoId> SquadIds = new() { "SquadAlpha", "SquadBravo", "SquadCharlie", "SquadDelta" };
 
     [DataField]
     public List<EntProtoId> ExtraSquadIds = new() { "SquadIntel", "SquadFORECON" };
+
+    /// <summary>
+    /// If the round starts at or below this many players, only <see cref="LowPopSquadIds"/> are used.
+    /// Adjust this value if command wants a different low population threshold.
+    /// </summary>
+    [DataField]
+    public int LowPopSquadThreshold = 50;
+
+    /// <summary>
+    /// Squads used when the round starts at low population.
+    /// </summary>
+    [DataField]
+    public List<EntProtoId> LowPopSquadIds = new() { "SquadAlpha", "SquadBravo" };
+
+    /// <summary>
+    /// When enabled, low population rounds clamp the global Squad Leader job slots separately
+    /// from the usual squad role scaling. This is useful when only a subset of squads is active.
+    /// </summary>
+    [DataField]
+    public bool LimitSquadLeadersOnLowPop = true;
+
+    /// <summary>
+    /// Global Squad Leader slot cap applied on low population rounds.
+    /// </summary>
+    [DataField]
+    public int LowPopMaxSquadLeaders = 2;
+
+    /// <summary>
+    /// Job id affected by <see cref="LimitSquadLeadersOnLowPop"/>.
+    /// Exposed so balance can be adjusted without changing system logic.
+    /// </summary>
+    [DataField]
+    public ProtoId<JobPrototype> LowPopSquadLeaderJob = "CMSquadLeader";
+
+    /// <summary>
+    /// Per-squad role caps applied to active low population squads after they are spawned.
+    /// This lets command keep key squad roles available on Alpha/Bravo without touching normal rounds.
+    /// </summary>
+    [DataField]
+    public Dictionary<ProtoId<JobPrototype>, int> LowPopSquadRoleOverrides = new()
+    {
+        { "CMSquadLeader", 1 },
+        { "CMFireteamLeader", 4 },
+        { "CMWeaponsSpecialist", 2 },
+        { "CMSmartGunOperator", 2 },
+        { "CMCombatTech", 6 },
+        { "CMHospitalCorpsman", 8 },
+    };
+
+    [DataField]
+    public bool LowPopSquadsActive;
 
     [DataField]
     public Dictionary<EntProtoId, EntityUid> Squads = new();
