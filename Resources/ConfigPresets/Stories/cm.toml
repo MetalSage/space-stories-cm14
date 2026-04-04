@@ -50,7 +50,7 @@ map_pool = "STDefaultMapPool"
 panic_bunker.enabled = false
 round_end_pvs_overrides = false
 round_restart_time = 180
-lobbyduration = 180
+lobbyduration = 300
 
 [gateway]
 generator_enabled = false
