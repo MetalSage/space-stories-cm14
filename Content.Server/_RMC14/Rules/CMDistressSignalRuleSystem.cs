@@ -312,7 +312,7 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                 UnpowerFaxes(_transform.GetMapId(comp.XenoMap.Value));
 
             SetCamoType();
-            ApplyRoundStartSquadConfiguration((uid, comp), ev.PlayerPool.Count);
+            ApplyRoundStartOverrides((uid, comp));
 
             SpawnSquads((uid, comp));
             SpawnAdminAreas(comp);
@@ -666,23 +666,13 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                                 }
                             }
 
-                            if (comp.LowPopSquadsActive &&
-                                comp.LimitSquadLeadersOnLowPop &&
-                                job == comp.LowPopSquadLeaderJob)
-                            {
-                                // Keep low population command simple: two active squads, two squad leaders total.
-                                slots = comp.LowPopMaxSquadLeaders;
-                            }
-                            else if (comp.LowPopSquadsActive &&
-                                     comp.LowPopSquadRoleOverrides.TryGetValue(job, out var overrideAmount))
-                            {
-                                // Match the total available slots to the configured low population per-squad caps.
-                                slots = overrideAmount * comp.SquadIds.Count;
-                            }
-                            else
-                            {
-                                slots *= 4;
-                            }
+                            slots *= 4;
+                        }
+
+                        if (comp.JobSlotOverrides.TryGetValue(job, out var overrideSlots))
+                        {
+                            // Presets can replace the final round-wide slot total without duplicating the scaling logic.
+                            slots = overrideSlots;
                         }
 
                         Log.Info($"Setting {job} to {slots} slots.");
@@ -700,7 +690,7 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                 }
             }
 
-            ApplyLowPopSquadRoleOverrides((uid, comp));
+            ApplySquadRoleOverrides((uid, comp));
 
             var priorities = Enum.GetValues<JobPriority>().Length;
             var xenoCandidates = new List<NetUserId>[priorities];
@@ -997,20 +987,22 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
         }
     }
 
-    private void ApplyRoundStartSquadConfiguration(Entity<CMDistressSignalRuleComponent> rule, int playerCount)
+    private void ApplyRoundStartOverrides(Entity<CMDistressSignalRuleComponent> rule)
     {
-        rule.Comp.LowPopSquadsActive = playerCount <= rule.Comp.LowPopSquadThreshold;
-        if (!rule.Comp.LowPopSquadsActive)
+        if (rule.Comp.RoundStartSquadIdsOverride == null)
+        {
             return;
+        }
 
-        // Keep low population squad selection data-driven so balance tweaks stay in the component.
-        rule.Comp.SquadIds = new List<EntProtoId>(rule.Comp.LowPopSquadIds);
+        rule.Comp.SquadIds = new List<EntProtoId>(rule.Comp.RoundStartSquadIdsOverride);
     }
 
-    private void ApplyLowPopSquadRoleOverrides(Entity<CMDistressSignalRuleComponent> rule)
+    private void ApplySquadRoleOverrides(Entity<CMDistressSignalRuleComponent> rule)
     {
-        if (!rule.Comp.LowPopSquadsActive)
+        if (rule.Comp.SquadRoleOverrides.Count == 0)
+        {
             return;
+        }
 
         foreach (var squadId in rule.Comp.SquadIds)
         {
@@ -1020,7 +1012,7 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                 continue;
             }
 
-            foreach (var (job, amount) in rule.Comp.LowPopSquadRoleOverrides)
+            foreach (var (job, amount) in rule.Comp.SquadRoleOverrides)
             {
                 _squad.SetSquadMaxRole((squad, squadTeam), job, amount);
             }

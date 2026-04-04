@@ -186,13 +186,55 @@ public sealed partial class GameTicker
         if (DummyTicker || Preset == null)
             return false;
 
-        CurrentPreset = Preset;
-        foreach (var rule in Preset.Rules)
+        var preset = ResolveRoundStartPreset(Preset);
+        CurrentPreset = preset;
+        foreach (var rule in preset.Rules)
         {
             AddGameRule(rule);
         }
 
         return true;
+    }
+
+    private GamePresetPrototype ResolveRoundStartPreset(GamePresetPrototype preset)
+    {
+        if (preset.RoundStartResolvePresets.Count == 0)
+            return preset;
+
+        var playerCount = ReadyPlayerCount();
+        // Resolve a preset family (for example normal + low population variants) at the moment the round starts,
+        // so the selected variant matches the current ready player count rather than the previous round.
+        var candidates = new List<GamePresetPrototype>();
+        foreach (var candidateId in preset.RoundStartResolvePresets)
+        {
+            if (_prototypeManager.TryIndex(candidateId, out GamePresetPrototype? candidate))
+            {
+                candidates.Add(candidate);
+                continue;
+            }
+
+            _sawmill.Error($"Invalid roundStartResolvePresets entry '{candidateId}' on preset {preset.ID}.");
+        }
+
+        if (candidates.Count == 0)
+            return preset;
+
+        var selectable = candidates
+            .Where(candidate => !ShouldIgnorePresetOnFirstRoundAfterRestart(candidate))
+            .Where(candidate => (candidate.MinPlayers == null || playerCount >= candidate.MinPlayers) &&
+                                (candidate.MaxPlayers == null || playerCount <= candidate.MaxPlayers))
+            .ToList();
+
+        if (selectable.Count > 0)
+            return selectable[0];
+
+        var fallback = candidates.FirstOrDefault(candidate => !ShouldIgnorePresetOnFirstRoundAfterRestart(candidate));
+        return fallback ?? preset;
+    }
+
+    private bool ShouldIgnorePresetOnFirstRoundAfterRestart(GamePresetPrototype preset)
+    {
+        return RoundId == 0 && preset.IgnoreOnFirstRoundAfterRestart;
     }
 
     private void TryResetPreset()

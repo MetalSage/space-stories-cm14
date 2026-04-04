@@ -33,6 +33,19 @@ namespace Content.Server.GameTicking.Presets
         [DataField("maxPlayers")]
         public int? MaxPlayers;
 
+        /// <summary>
+        /// If set, this preset resolves to one of the listed presets each time a round is about to start.
+        /// The first preset whose player requirements match is selected.
+        /// </summary>
+        [DataField("roundStartResolvePresets", customTypeSerializer: typeof(PrototypeIdListSerializer<GamePresetPrototype>))]
+        public IReadOnlyList<string> RoundStartResolvePresets { get; private set; } = Array.Empty<string>();
+
+        /// <summary>
+        /// Excludes this preset from round start auto-selection during the first lobby after a server restart.
+        /// </summary>
+        [DataField("ignoreOnFirstRoundAfterRestart")]
+        public bool IgnoreOnFirstRoundAfterRestart;
+
         [DataField("rules", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
         public IReadOnlyList<string> Rules { get; private set; } = Array.Empty<string>();
 
