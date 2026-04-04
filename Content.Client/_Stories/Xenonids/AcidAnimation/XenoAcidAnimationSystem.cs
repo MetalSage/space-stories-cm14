@@ -2,14 +2,8 @@ using System.Numerics;
 using Content.Client.Actions;
 using Content.Client.UserInterface.Systems.Actions;
 using Content.Shared._RMC14.Xenonids;
-using Content.Shared._RMC14.Xenonids.Acid;
-using Content.Shared._RMC14.Xenonids.Bombard;
 using Content.Shared._RMC14.Xenonids.Projectile.Spit.Ball;
 using Content.Shared._RMC14.Xenonids.Projectile.Spit.Charge;
-using Content.Shared._RMC14.Xenonids.Projectile.Spit.Scattered;
-using Content.Shared._RMC14.Xenonids.Projectile.Spit.Slowing;
-using Content.Shared._RMC14.Xenonids.Projectile.Spit.Standard;
-using Content.Shared._RMC14.Xenonids.Spray;
 using Content.Shared._Stories.Xenonids.AcidAnimation;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -69,10 +63,10 @@ public sealed class XenoAcidAnimationSystem : EntitySystem
         var active = false;
 
         if (_player.LocalEntity is { } local &&
-            HasComp<XenoAcidAnimationComponent>(local))
+            TryComp<XenoAcidAnimationComponent>(local, out var acidAnimation))
         {
             xeno = local;
-            active = HasSelectedAcidAction(local);
+            active = HasSelectedAcidAction(local, acidAnimation);
         }
 
         if (_predictedXeno != xeno)
@@ -92,7 +86,7 @@ public sealed class XenoAcidAnimationSystem : EntitySystem
         _predictedActive = active;
     }
 
-    private bool HasSelectedAcidAction(EntityUid uid)
+    private bool HasSelectedAcidAction(EntityUid uid, XenoAcidAnimationComponent comp)
     {
         var selected = _ui.GetUIController<ActionUIController>().SelectingTargetFor;
         if (selected is not { } actionUid)
@@ -103,17 +97,8 @@ public sealed class XenoAcidAnimationSystem : EntitySystem
             if (action.Owner != actionUid)
                 continue;
 
-            if (_actions.GetEvent(action) is
-                XenoCorrosiveAcidEvent or
-                XenoSpitActionEvent or
-                XenoSlowingSpitActionEvent or
-                XenoSprayAcidActionEvent or
-                XenoBombardActionEvent or
-                XenoScatteredSpitActionEvent or
-                XenoAcidBallActionEvent)
-            {
-                return true;
-            }
+            var protoId = MetaData(action).EntityPrototype?.ID;
+            return protoId != null && comp.ActionIds.Contains(protoId);
         }
 
         return false;

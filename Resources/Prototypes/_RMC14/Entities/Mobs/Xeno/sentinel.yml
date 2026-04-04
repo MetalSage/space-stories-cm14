@@ -22,6 +22,10 @@
   - type: XenoAcidAnimation
     spitRsi: /Textures/_Stories/Mobs/Xenos/Sentinel/sentinel_spit.rsi
     offset: 0,0.1875
+    actionIds:
+    - ActionXenoAcidWeak
+    - ActionXenoSlowingSpit
+    - ActionXenoScatteredSpit
   # Stories-End
   - type: MobState
     allowedStates:

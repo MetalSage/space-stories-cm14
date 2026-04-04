@@ -294,6 +294,9 @@
   - type: XenoAcidAnimation
     spitRsi: /Textures/_Stories/Mobs/Xenos/Queen/queen_spit.rsi
     offset: 0,0.875
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpitQueen
   # Stories-End
   - type: RMCActionOrder
     id: CMXenoQueen

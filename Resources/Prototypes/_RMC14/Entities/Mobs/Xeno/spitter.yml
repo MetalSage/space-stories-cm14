@@ -22,6 +22,10 @@
   - type: XenoAcidAnimation
     spitRsi: /Textures/_Stories/Mobs/Xenos/Spitter/spitter_spit.rsi
     offset: 0,0.1875
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpit
+    - ActionXenoSprayAcid
   # Stories-End
   - type: MobState
     allowedStates:

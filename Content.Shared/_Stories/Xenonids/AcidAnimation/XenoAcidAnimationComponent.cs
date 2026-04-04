@@ -1,4 +1,5 @@
 using System.Numerics;
+using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
 
@@ -18,4 +19,7 @@ public sealed partial class XenoAcidAnimationComponent : Component
 
     [DataField]
     public bool HideNorth = true;
+
+    [DataField]
+    public List<EntProtoId> ActionIds = new();
 }

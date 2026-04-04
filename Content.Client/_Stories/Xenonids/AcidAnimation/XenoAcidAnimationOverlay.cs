@@ -65,14 +65,6 @@ public sealed class XenoAcidAnimationOverlay : Overlay
             if (!_acidAnimation.ShouldAnimate(uid, comp, sprite, out var dir))
                 continue;
 
-            var bounds = GetBaseBounds((uid, sprite));
-            var worldPos = _transform.GetWorldPosition(xform, _xformQuery);
-            if (!bounds.Translated(worldPos).Intersects(args.WorldAABB))
-                continue;
-
-            var worldMatrix = Matrix3x2.CreateTranslation(worldPos);
-            handle.SetTransform(Matrix3x2.Multiply(rotationMatrix, worldMatrix));
-
             if (!_resources.TryGetResource<RSIResource>(comp.SpitRsi, out var rsiResource) ||
                 !rsiResource.RSI.TryGetState(SpitState, out var state))
             {
@@ -81,6 +73,13 @@ public sealed class XenoAcidAnimationOverlay : Overlay
 
             var texture = GetAnimatedFrame(state, dir, _acidAnimation.GetAnimationTime(uid, _timing.CurTime));
             var position = -(Vector2) texture.Size / EyeManager.PixelsPerMeter / 2f + _acidAnimation.GetOffset(comp);
+            var bounds = GetDrawBounds((uid, sprite), position, texture);
+            var worldPos = _transform.GetWorldPosition(xform, _xformQuery);
+            if (!bounds.Translated(worldPos).Intersects(args.WorldAABB))
+                continue;
+
+            var worldMatrix = Matrix3x2.CreateTranslation(worldPos);
+            handle.SetTransform(Matrix3x2.Multiply(rotationMatrix, worldMatrix));
             handle.DrawTexture(texture, position);
         }
 
@@ -94,6 +93,13 @@ public sealed class XenoAcidAnimationOverlay : Overlay
             return _sprite.GetLocalBounds(ent);
 
         return _sprite.GetLocalBounds(layer).Scale(ent.Comp.Scale);
+    }
+
+    private Box2 GetDrawBounds(Entity<SpriteComponent> ent, Vector2 position, Texture texture)
+    {
+        var spitSize = (Vector2) texture.Size / EyeManager.PixelsPerMeter;
+        var spitBounds = Box2.FromDimensions(position, spitSize);
+        return GetBaseBounds(ent).Union(spitBounds);
     }
 
     private static Texture GetAnimatedFrame(RSI.State state, RsiDirection dir, TimeSpan elapsed)

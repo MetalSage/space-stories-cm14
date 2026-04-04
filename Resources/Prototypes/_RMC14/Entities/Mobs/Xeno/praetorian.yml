@@ -129,6 +129,11 @@
   - type: XenoAcidAnimation
     spitRsi: /Textures/_Stories/Mobs/Xenos/Praetorian/praetorian_spit.rsi
     offset: 0,0.125
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpitPraetorian
+    - ActionXenoAcidBall
+    - ActionXenoSprayAcidPraetorian
   # Stories-End
   - type: GuideHelp
     guides:

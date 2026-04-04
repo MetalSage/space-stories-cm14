@@ -155,6 +155,10 @@
   - type: XenoAcidAnimation
     spitRsi: /Textures/_Stories/Mobs/Xenos/Boiler/boiler.rsi
     offset: 0,0.28125
+    actionIds:
+    - ActionXenoAcidStrong
+    - ActionXenoBombard
+    - ActionXenoSprayAcidBoiler
   # Stories-End
   - type: XenoBombard
   - type: XenoAcidShroud
@@ -191,6 +195,9 @@
   - type: XenoAcidAnimation
     spitRsi: /Textures/_Stories/Mobs/Xenos/Boiler/trapper_boiler.rsi
     offset: 0,0.25
+    actionIds:
+    - ActionXenoAcidStrong
+    - ActionXenoAcidShotgun
   # Stories-End
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Boiler/trapper_boiler.rsi
