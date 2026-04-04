@@ -12,7 +12,7 @@
   - type: IgnoreArc
 
   - type: EmbeddableProjectile
-    sound: /Audio/Weapons/pop.ogg
+    sound: /Audio/_Stories/Weapons/spike_hit.ogg
     embedOnThrow: false
     deleteOnRemove: false
     removalTime: null
@@ -68,7 +68,7 @@
   - type: IgnoreArc
 
   - type: EmbeddableProjectile
-    sound: /Audio/Weapons/pop.ogg
+    sound: /Audio/_Stories/Weapons/spike_hit.ogg
     embedOnThrow: false
     deleteOnRemove: false
     removalTime: null

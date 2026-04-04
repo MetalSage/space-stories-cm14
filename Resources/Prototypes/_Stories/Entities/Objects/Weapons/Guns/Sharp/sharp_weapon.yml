@@ -56,7 +56,7 @@
     projectileSpeed: 20
     resetOnHandSelected: false
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+      path: /Audio/_Stories/Weapons/Guns/Gunshots/gun_sharp.ogg
   - type: GunIFF
     enabled: true
   - type: Corrodible
