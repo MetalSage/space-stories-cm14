@@ -186,7 +186,11 @@ public sealed partial class GameTicker
         if (DummyTicker || Preset == null)
             return false;
 
+        // Stories-LowPop-Start
+        // Stories uses a preset family here so the lobby can always point at one stable preset ID
+        // while the concrete round variant is chosen at the moment the round actually starts.
         var preset = ResolveRoundStartPreset(Preset);
+        // Stories-LowPop-End
         CurrentPreset = preset;
         foreach (var rule in preset.Rules)
         {
@@ -201,6 +205,7 @@ public sealed partial class GameTicker
         if (preset.RoundStartResolvePresets.Count == 0)
             return preset;
 
+        // Stories-LowPop-Start
         var playerCount = ReadyPlayerCount();
         // Resolve a preset family (for example normal + low population variants) at the moment the round starts,
         // so the selected variant matches the current ready player count rather than the previous round.
@@ -219,6 +224,8 @@ public sealed partial class GameTicker
         if (candidates.Count == 0)
             return preset;
 
+        // Preserve declaration order from the prototype so content can define an explicit priority
+        // between normal and special-case variants.
         var selectable = candidates
             .Where(candidate => !ShouldIgnorePresetOnFirstRoundAfterRestart(candidate))
             .Where(candidate => (candidate.MinPlayers == null || playerCount >= candidate.MinPlayers) &&
@@ -228,12 +235,14 @@ public sealed partial class GameTicker
         if (selectable.Count > 0)
             return selectable[0];
 
+        // Stories-LowPop-End
         var fallback = candidates.FirstOrDefault(candidate => !ShouldIgnorePresetOnFirstRoundAfterRestart(candidate));
         return fallback ?? preset;
     }
 
     private bool ShouldIgnorePresetOnFirstRoundAfterRestart(GamePresetPrototype preset)
     {
+        // Stories-LowPop: RoundId == 0 means the first lobby after a server restart.
         return RoundId == 0 && preset.IgnoreOnFirstRoundAfterRestart;
     }
 

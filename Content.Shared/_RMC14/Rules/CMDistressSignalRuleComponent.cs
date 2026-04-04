@@ -18,24 +18,29 @@ public sealed partial class CMDistressSignalRuleComponent : Component
     [DataField]
     public List<EntProtoId> ExtraSquadIds = new() { "SquadIntel", "SquadFORECON" };
 
+    // Stories-LowPop-Start
     /// <summary>
     /// Optional round start squad override used by special presets such as low population variants.
+    /// This keeps preset-specific squad layout in prototype data instead of hardcoding it into the system.
     /// </summary>
     [DataField]
     public List<EntProtoId>? RoundStartSquadIdsOverride;
 
     /// <summary>
-    /// Total station job slot overrides applied after normal scaling.
+        /// Total station job slot overrides applied after normal scaling.
     /// Values are global round totals, not per-squad limits.
+    /// Presets can use this to keep lobby-visible slot counts aligned with special round variants.
     /// </summary>
     [DataField]
     public Dictionary<ProtoId<JobPrototype>, int> JobSlotOverrides = new();
 
     /// <summary>
     /// Per-squad role caps applied to every active squad after the usual squad scaling.
+    /// This is intended for preset-specific squad layouts where the default RMC scaling is not enough.
     /// </summary>
     [DataField]
     public Dictionary<ProtoId<JobPrototype>, int> SquadRoleOverrides = new();
+    // Stories-LowPop-End
 
     [DataField]
     public Dictionary<EntProtoId, EntityUid> Squads = new();

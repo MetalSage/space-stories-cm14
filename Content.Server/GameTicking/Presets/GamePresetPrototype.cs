@@ -33,8 +33,10 @@ namespace Content.Server.GameTicking.Presets
         [DataField("maxPlayers")]
         public int? MaxPlayers;
 
+        // Stories-LowPop-Start
         /// <summary>
-        /// If set, this preset resolves to one of the listed presets each time a round is about to start.
+        /// If set, this preset acts as a round-start preset family.
+        /// The server resolves it into one of the listed concrete presets right before the round starts.
         /// The first preset whose player requirements match is selected.
         /// </summary>
         [DataField("roundStartResolvePresets", customTypeSerializer: typeof(PrototypeIdListSerializer<GamePresetPrototype>))]
@@ -42,9 +44,12 @@ namespace Content.Server.GameTicking.Presets
 
         /// <summary>
         /// Excludes this preset from round start auto-selection during the first lobby after a server restart.
+        /// This is used by special variants, such as low population presets, that should not be auto-picked
+        /// before the lobby has had time to refill after the server comes back online.
         /// </summary>
         [DataField("ignoreOnFirstRoundAfterRestart")]
         public bool IgnoreOnFirstRoundAfterRestart;
+        // Stories-LowPop-End
 
         [DataField("rules", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
         public IReadOnlyList<string> Rules { get; private set; } = Array.Empty<string>();
