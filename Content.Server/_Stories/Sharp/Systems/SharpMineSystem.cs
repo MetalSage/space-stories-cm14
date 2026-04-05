@@ -19,6 +19,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Toggleable;
 using Robust.Shared.GameObjects;
 using Content.Shared.Physics;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
@@ -34,11 +35,12 @@ public sealed class SharpMineSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-
     private readonly HashSet<EntityUid> _nearby = new();
     private readonly List<EntityUid> _toDetonate = new();
     private readonly List<EntityUid> _toDisarm = new();
     private readonly List<(EntityUid OldMine, string NewProto)> _toReplace = new();
+    private readonly HashSet<EntProtoId<IFFFactionComponent>> _mineFactions = new();
+    private readonly HashSet<EntProtoId<IFFFactionComponent>> _targetFactions = new();
 
     public override void Initialize()
     {
@@ -103,8 +105,6 @@ public sealed class SharpMineSystem : EntitySystem
         if (args.Handled || TerminatingOrDeleted(mine.Owner) || !HasComp<MultitoolComponent>(args.Used))
             return;
 
-        args.Handled = true;
-
         var doAfter = new DoAfterArgs(EntityManager,
             args.User,
             TimeSpan.FromSeconds(3),
@@ -119,7 +119,7 @@ public sealed class SharpMineSystem : EntitySystem
             BreakOnHandChange = true,
         };
 
-        _doAfter.TryStartDoAfter(doAfter);
+        args.Handled = _doAfter.TryStartDoAfter(doAfter);
     }
 
     private void OnMineDisarmDoAfter(Entity<SharpMineComponent> mine, ref SharpMineDisarmDoAfterEvent args)
@@ -128,9 +128,7 @@ public sealed class SharpMineSystem : EntitySystem
             return;
 
         if (args.Used is not { } used || !HasComp<MultitoolComponent>(used))
-        {
             return;
-        }
 
         args.Handled = true;
         DisarmMine(mine);
@@ -229,6 +227,7 @@ public sealed class SharpMineSystem : EntitySystem
                 var newRt = EnsureComp<SharpMineRuntimeComponent>(newMine);
                 newRt.ActivateAt = oldRt.ActivateAt;
                 newRt.Activated = oldRt.Activated;
+                newRt.IffFactions.UnionWith(oldRt.IffFactions);
                 UpdateMineAppearance(newMine, newRt, oldRt.AppearanceEnabled ?? oldRt.Activated);
             }
             QueueDel(oldMine);
@@ -340,11 +339,30 @@ public sealed class SharpMineSystem : EntitySystem
         if (!HasComp<MobStateComponent>(target) || _mobState.IsDead(target))
             return false;
 
-        if (!mine.Comp.IgnoreAnyIff)
+        if (!mine.Comp.IgnoreAnyIff || !TryGetMineFactions(mine.Owner, _mineFactions))
             return true;
 
-        var ev = new GetIFFFactionEvent(SlotFlags.IDCARD, new());
+        var ev = new GetIFFFactionEvent(SlotFlags.IDCARD, _targetFactions);
+        _targetFactions.Clear();
         RaiseLocalEvent(target, ref ev);
-        return ev.Factions.Count == 0;
+
+        foreach (var faction in _mineFactions)
+        {
+            if (ev.Factions.Contains(faction))
+                return false;
+        }
+
+        return true;
+    }
+
+    private bool TryGetMineFactions(EntityUid mine, HashSet<EntProtoId<IFFFactionComponent>> factions)
+    {
+        factions.Clear();
+
+        if (!TryComp<SharpMineRuntimeComponent>(mine, out var runtime) || runtime.IffFactions.Count == 0)
+            return false;
+
+        factions.UnionWith(runtime.IffFactions);
+        return true;
     }
 }

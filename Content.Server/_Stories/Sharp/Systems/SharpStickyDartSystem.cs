@@ -5,7 +5,6 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
-using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Sharp;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Inventory;
@@ -98,7 +97,8 @@ public sealed class SharpStickyDartSystem : EntitySystem
 
         _transform.AttachToGridOrMap(uid);
 
-        Spawn(comp.MineProto, mineCoords);
+        var mine = Spawn(comp.MineProto, mineCoords);
+        TransferMineFactions(uid, mine);
 
         QueueDel(uid);
     }
@@ -263,11 +263,15 @@ public sealed class SharpStickyDartSystem : EntitySystem
         _iffBuffer.Clear();
 
         if (TryComp<ProjectileIFFComponent>(projectileUid, out var projectileIff) &&
+            projectileIff.Enabled &&
             projectileIff.Factions.Count > 0)
         {
             _iffBuffer.UnionWith(projectileIff.Factions);
             return true;
         }
+
+        if (projectileIff != null)
+            return false;
 
         if (!TryComp(projectileUid, out ProjectileComponent? projectile) ||
             projectile.Shooter is not { } shooter)
@@ -278,17 +282,28 @@ public sealed class SharpStickyDartSystem : EntitySystem
         return _gunIFF.TryGetFactions((shooter, CompOrNull<UserIFFComponent>(shooter)), _iffBuffer, SlotFlags.IDCARD);
     }
 
+    private void TransferMineFactions(EntityUid projectileUid, EntityUid mineUid)
+    {
+        if (!TryGetProjectileFactions(projectileUid))
+            return;
+
+        var runtime = EnsureComp<SharpMineRuntimeComponent>(mineUid);
+        runtime.IffFactions.Clear();
+
+        foreach (var faction in _iffBuffer)
+        {
+            runtime.IffFactions.Add(faction);
+        }
+    }
+
     private bool ShouldPassThroughTarget(EntityUid target)
     {
-        if (HasComp<SharpMineComponent>(target))
-            return true;
-
-        return HasComp<MobStateComponent>(target) && !CanStickToTarget(target);
+        return HasComp<SharpMineComponent>(target);
     }
 
     private bool CanStickToTarget(EntityUid target)
     {
-        return HasComp<MobStateComponent>(target) && HasComp<XenoComponent>(target);
+        return HasComp<MobStateComponent>(target);
     }
 
     private bool TerminatingOrDeleted(EntityUid uid)
