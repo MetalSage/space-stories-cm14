@@ -7,9 +7,7 @@
   description: rmc-distress-signal-description
   showInVote: false
   minPlayers: 51
-  # Stories-start
   supportedMaps: STDefaultMapPool
-  # Stories-end
   rules:
   - CMDistressSignal
 
@@ -23,8 +21,6 @@
   description: rmc-distress-signal-description
   showInVote: false
   maxPlayers: 50
-  # Stories-start
   supportedMaps: STLowPopMapPool
-  # Stories-end
   rules:
   - STDistressSignalLowPop

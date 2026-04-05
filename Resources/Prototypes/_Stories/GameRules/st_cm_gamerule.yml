@@ -4,10 +4,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: CMDistressSignalRule
-    # Stories-start
     squadIds:
     - SquadAlpha
     - SquadBravo
     extraSquadIds: []
     doJobSlotScaling: false
-    # Stories-end
