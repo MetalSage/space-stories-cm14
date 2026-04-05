@@ -32,6 +32,7 @@ public sealed class SharpMineSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -221,6 +222,7 @@ public sealed class SharpMineSystem : EntitySystem
             if (TerminatingOrDeleted(oldMine)) continue;
             var coords = Transform(oldMine).Coordinates;
             var oldRt = CompOrNull<SharpMineRuntimeComponent>(oldMine);
+            var oldDamageable = CompOrNull<DamageableComponent>(oldMine);
             var newMine = Spawn(newProto, coords);
             if (oldRt != null)
             {
@@ -230,6 +232,14 @@ public sealed class SharpMineSystem : EntitySystem
                 newRt.IffFactions.UnionWith(oldRt.IffFactions);
                 UpdateMineAppearance(newMine, newRt, oldRt.AppearanceEnabled ?? oldRt.Activated);
             }
+
+            if (oldDamageable != null &&
+                oldDamageable.TotalDamage > 0 &&
+                TryComp<DamageableComponent>(newMine, out var newDamageable))
+            {
+                _damageable.SetDamage(newMine, newDamageable, new DamageSpecifier(oldDamageable.Damage));
+            }
+
             QueueDel(oldMine);
         }
 
