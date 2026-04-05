@@ -324,6 +324,9 @@ public sealed class SharpMineSystem : EntitySystem
             if (other == uid || TerminatingOrDeleted(other))
                 continue;
 
+            if (IsBoilerGas(other))
+                return true;
+
             if (HasComp<RMCIgniteOnCollideComponent>(other))
                 return true;
 
@@ -339,6 +342,16 @@ public sealed class SharpMineSystem : EntitySystem
         }
 
         return false;
+    }
+
+    private bool IsBoilerGas(EntityUid uid)
+    {
+        var protoId = MetaData(uid).EntityPrototype?.ID;
+        if (protoId == null)
+            return false;
+
+        return protoId.StartsWith("RMCSmokeAcid", StringComparison.Ordinal) ||
+               protoId.StartsWith("RMCSmokeNeurotoxin", StringComparison.Ordinal);
     }
 
     private bool CanTriggerMine(Entity<SharpMineComponent> mine, EntityUid target)

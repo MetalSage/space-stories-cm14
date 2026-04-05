@@ -80,7 +80,7 @@
   - type: UniqueAction
   - type: RMCSelectiveFire
     baseFireModes: [ SemiAuto ]
-    baseFireRate: 0.3125
+    baseFireRate: 0.3425
     recoilWielded: 0.1
     scatterWielded: 0.1
     burstScatterMult: 4
