@@ -312,9 +312,6 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                 UnpowerFaxes(_transform.GetMapId(comp.XenoMap.Value));
 
             SetCamoType();
-            // Stories-LowPop-Start
-            ApplyRoundStartOverrides((uid, comp));
-            // Stories-LowPop-End
 
             SpawnSquads((uid, comp));
             SpawnAdminAreas(comp);
@@ -671,15 +668,6 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                             slots *= 4;
                         }
 
-                        // Stories-LowPop-Start
-                        if (comp.JobSlotOverrides.TryGetValue(job, out var overrideSlots))
-                        {
-                            // Presets can replace the final round-wide slot total without duplicating the scaling logic.
-                            // Stories low pop uses this to keep total job slots in sync with its custom squad layout.
-                            slots = overrideSlots;
-                        }
-                        // Stories-LowPop-End
-
                         Log.Info($"Setting {job} to {slots} slots.");
                         var jobs = stationJobs.SetupAvailableJobs;
                         if (jobs.TryGetValue(job, out var available))
@@ -694,10 +682,6 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
                     }
                 }
             }
-
-            // Stories-LowPop-Start
-            ApplySquadRoleOverrides((uid, comp));
-            // Stories-LowPop-End
 
             var priorities = Enum.GetValues<JobPriority>().Length;
             var xenoCandidates = new List<NetUserId>[priorities];
@@ -993,43 +977,6 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
             return;
         }
     }
-
-    // Stories-LowPop-Start
-    private void ApplyRoundStartOverrides(Entity<CMDistressSignalRuleComponent> rule)
-    {
-        if (rule.Comp.RoundStartSquadIdsOverride == null)
-        {
-            return;
-        }
-
-        // Apply preset-provided squad layout before squads are spawned so the rest of the round
-        // naturally uses the overridden set of active squads.
-        rule.Comp.SquadIds = new List<EntProtoId>(rule.Comp.RoundStartSquadIdsOverride);
-    }
-
-    private void ApplySquadRoleOverrides(Entity<CMDistressSignalRuleComponent> rule)
-    {
-        if (rule.Comp.SquadRoleOverrides.Count == 0)
-        {
-            return;
-        }
-
-        // Apply preset-specific per-squad caps after the default squad scaling has finished.
-        foreach (var squadId in rule.Comp.SquadIds)
-        {
-            if (!rule.Comp.Squads.TryGetValue(squadId, out var squad) ||
-                !TryComp(squad, out SquadTeamComponent? squadTeam))
-            {
-                continue;
-            }
-
-            foreach (var (job, amount) in rule.Comp.SquadRoleOverrides)
-            {
-                _squad.SetSquadMaxRole((squad, squadTeam), job, amount);
-            }
-        }
-    }
-    // Stories-LowPop-End
 
     private void OnRoundEndMessage(RoundEndMessageEvent ev)
     {

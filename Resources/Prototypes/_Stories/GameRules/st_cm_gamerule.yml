@@ -4,23 +4,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: CMDistressSignalRule
-    # Only Alpha and Bravo should be available when the low population preset is selected.
-    roundStartSquadIdsOverride:
+    # Stories-start
+    squadIds:
     - SquadAlpha
     - SquadBravo
-    # Global round-wide job slots for the low population variant.
-    jobSlotOverrides:
-      CMSquadLeader: 2
-      CMFireteamLeader: 8
-      CMWeaponsSpecialist: 4
-      CMSmartGunOperator: 4
-      CMCombatTech: 12
-      CMHospitalCorpsman: 16
-    # Per-squad caps applied to each active squad in the low population variant.
-    squadRoleOverrides:
-      CMSquadLeader: 1
-      CMFireteamLeader: 4
-      CMWeaponsSpecialist: 2
-      CMSmartGunOperator: 2
-      CMCombatTech: 6
-      CMHospitalCorpsman: 8
+    extraSquadIds: []
+    doJobSlotScaling: false
+    # Stories-end

@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
@@ -100,6 +99,15 @@ public sealed partial class GameTicker
         if (DummyTicker)
             return;
 
+        // Stories-start
+        if (RoundId == 0 &&
+            preset?.ID == "STDistressSignalLowPop" &&
+            FindGamePreset("STDistressSignal") is { } normalPreset)
+        {
+            preset = normalPreset;
+        }
+        // Stories-end
+
         if (resetDelay is not null)
         {
             ResetCountdown = resetDelay.Value;
@@ -186,64 +194,13 @@ public sealed partial class GameTicker
         if (DummyTicker || Preset == null)
             return false;
 
-        // Stories-LowPop-Start
-        // Stories uses a preset family here so the lobby can always point at one stable preset ID
-        // while the concrete round variant is chosen at the moment the round actually starts.
-        var preset = ResolveRoundStartPreset(Preset);
-        // Stories-LowPop-End
-        CurrentPreset = preset;
-        foreach (var rule in preset.Rules)
+        CurrentPreset = Preset;
+        foreach (var rule in Preset.Rules)
         {
             AddGameRule(rule);
         }
 
         return true;
-    }
-
-    private GamePresetPrototype ResolveRoundStartPreset(GamePresetPrototype preset)
-    {
-        if (preset.RoundStartResolvePresets.Count == 0)
-            return preset;
-
-        // Stories-LowPop-Start
-        var playerCount = ReadyPlayerCount();
-        // Resolve a preset family (for example normal + low population variants) at the moment the round starts,
-        // so the selected variant matches the current ready player count rather than the previous round.
-        var candidates = new List<GamePresetPrototype>();
-        foreach (var candidateId in preset.RoundStartResolvePresets)
-        {
-            if (_prototypeManager.TryIndex(candidateId, out GamePresetPrototype? candidate))
-            {
-                candidates.Add(candidate);
-                continue;
-            }
-
-            _sawmill.Error($"Invalid roundStartResolvePresets entry '{candidateId}' on preset {preset.ID}.");
-        }
-
-        if (candidates.Count == 0)
-            return preset;
-
-        // Preserve declaration order from the prototype so content can define an explicit priority
-        // between normal and special-case variants.
-        var selectable = candidates
-            .Where(candidate => !ShouldIgnorePresetOnFirstRoundAfterRestart(candidate))
-            .Where(candidate => (candidate.MinPlayers == null || playerCount >= candidate.MinPlayers) &&
-                                (candidate.MaxPlayers == null || playerCount <= candidate.MaxPlayers))
-            .ToList();
-
-        if (selectable.Count > 0)
-            return selectable[0];
-
-        // Stories-LowPop-End
-        var fallback = candidates.FirstOrDefault(candidate => !ShouldIgnorePresetOnFirstRoundAfterRestart(candidate));
-        return fallback ?? preset;
-    }
-
-    private bool ShouldIgnorePresetOnFirstRoundAfterRestart(GamePresetPrototype preset)
-    {
-        // Stories-LowPop: RoundId == 0 means the first lobby after a server restart.
-        return RoundId == 0 && preset.IgnoreOnFirstRoundAfterRestart;
     }
 
     private void TryResetPreset()

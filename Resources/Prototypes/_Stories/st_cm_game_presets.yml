@@ -7,10 +7,9 @@
   description: rmc-distress-signal-description
   showInVote: false
   minPlayers: 51
-  # The first preset whose player requirements match is selected when the round starts.
-  roundStartResolvePresets:
-  - STDistressSignal
-  - STDistressSignalLowPop
+  # Stories-start
+  supportedMaps: STDefaultMapPool
+  # Stories-end
   rules:
   - CMDistressSignal
 
@@ -24,7 +23,8 @@
   description: rmc-distress-signal-description
   showInVote: false
   maxPlayers: 50
-  # Do not auto-pick the low pop variant in the first lobby after a server restart.
-  ignoreOnFirstRoundAfterRestart: true
+  # Stories-start
+  supportedMaps: STLowPopMapPool
+  # Stories-end
   rules:
   - STDistressSignalLowPop
