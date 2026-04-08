@@ -206,7 +206,7 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
     private readonly Queue<EntProtoId<RMCPlanetMapPrototypeComponent>> _lastPlanetMaps = new();
 
     [ViewVariables]
-    private RMCPlanet? SelectedPlanetMap { get; set; }
+    public RMCPlanet? SelectedPlanetMap { get; private set; } // Stories-Survivor
 
     [ViewVariables]
     public string? SelectedPlanetMapName => SelectedPlanetMap?.Proto.Name;
@@ -1474,6 +1474,34 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
         _mapSystem.InitializeMap((map, map));
 
         //Process map inserts
+        // Stories-Survivor-Start
+        if (planet.Comp.Replacements != null && planet.Comp.Replacements.Count > 0)
+        {
+            var mapId = _transform.GetMapId(map.Owner);
+            var query = AllEntityQuery<MetaDataComponent, TransformComponent>();
+            var toReplace = new List<(EntityUid Uid, EntityCoordinates Coords, EntProtoId? Proto)>();
+
+            while (query.MoveNext(out var uid, out var meta, out var xform))
+            {
+                if (xform.MapID != mapId || meta.EntityPrototype == null)
+                    continue;
+
+                if (planet.Comp.Replacements.TryGetValue((EntProtoId)meta.EntityPrototype.ID, out var replacementProto))
+                {
+                    toReplace.Add((uid, xform.Coordinates, replacementProto));
+                }
+            }
+
+            foreach (var (uid, coords, proto) in toReplace)
+            {
+                if (proto != null)
+                    Spawn(proto.Value, coords);
+
+                QueueDel(uid);
+            }
+        }
+        // Stories-Survivor-End
+
         ActiveNightmareScenario = string.Empty;
         if (SelectedPlanetMap != null && SelectedPlanetMap.Value.Comp.NightmareScenarios != null)
         {

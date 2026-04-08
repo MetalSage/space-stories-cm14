@@ -86,7 +86,7 @@
   doAfterTime: 5
   materialCost: 2
   skill: RMCSkillConstruction
-  requiredSkillLevel: 2
+  requiredSkillLevel: 3
 
 - type: rmcConstruction
   id: RMCWindowFrameBuild
@@ -96,7 +96,7 @@
   doAfterTime: 5
   materialCost: 5
   skill: RMCSkillConstruction
-  requiredSkillLevel: 2
+  requiredSkillLevel: 3
 
 # Bed
 - type: rmcConstruction

@@ -3,25 +3,12 @@
 
   The rules in this section and the in-game guide are primary and take priority over all other sources, including Discord and the Wiki.
 
-  ## Recent Changes (05.04.2026)
-  - [textlink="Rule 10: Military Law and Mutinies" link="STMilitaryLawMutinies"] fixed the text regarding evacuation mutinies.
+  ## Recent Changes 04.09.2026
+  - [textlink="Rule 10: Military Law and Mutinies" link="STENGMilitaryLawMutinies"] fixed the text regarding evacuation mutinies.
 
-  ## Recent Changes (07.01.2025)
-  - [textlink="Rule 5: Bug Abuse and Unfair Play" link="STBuggingFoulPlay"] examples list has been updated.
-
-  ## Recent Changes (06.12.2025)
-  - [textlink="(Equipment SOP)" link="STMarineSOPEquipment"] All shipside personnel who can vend M3-XL vest from their vendor are allowed to wear it during Code Green.
-  - [textlink="(Non-mod command SOP)" link="STMarineSOPNONModCommand"] Commander is allowed to deputize personnel as Military Police under certain conditions.
-
-  ## Recent Changes (28.10.2025)
-  - [textlink="Rule 2: Roleplay" link="STRolePlay"] has been reworked and expanded — new sections added about IC communication, toxicity, awards, and Xenomorph behavior. This rule now establishes overall roleplay standards for all players on the server.
-  - [textlink="Rule 3: Metagaming and Metacommunication" link="STMetagamingMetacommunication"] completely rewritten, with new violation examples and clarified faction knowledge, Xenomorph behavior, and voice-chat teaching allowances.
-  - [textlink="Rule 4: ERP" link="STERP"] clarified that punishment depends on context and intent; minor IC profanity is not a violation.
-  - [textlink="Rule 5: Bug Abuse and Unfair Play" link="STBuggingFoulPlay"] expanded violation list — now includes intentional glitching and visual bug abuse even “just for fun,” with clarified allowed exceptions.
-  - [textlink="Rule 7: Play Your Role" link="STPlayYourRole"] fully reworked — role responsibility tiers and proper exit procedures added. This rule now defines core behavioral expectations and duty obligations within character roles.
-  - [textlink="Rule 8: Character Names" link="STCharacterNames"] clarified naming requirements, with new restrictions on copying characters and CAPS-style nicknames.
-
-  The remaining rules have not been changed.
+  ## Recent Changes 04.05.2026
+  - [textlink="Rule 2: Role-Playing" link="STENGRolePlay"] and [textlink="Rule 7: Play Your Role" link="STENGPlayYourRole"] have been updated: detailed requirements for portraying different types of survivors have been added.
+  - [textlink="RU (Non-Modifiable Third-Party Provisions)" link="STMarineSOPNONModThirdparty"] has been completely revised.
 
   ## Administrative decisions are final.
   - Rules are applied according to their intent. It is impossible to list every violation example; therefore enforcement depends on administrative interpretation of the rule’s meaning.
@@ -36,15 +23,15 @@
 
   ## Core Rules
   These are the primary Space Stories - Marine Corps rules. Click on them for detailed information.
-  - [textlink="Rule 0: Community Expectations" link="STCommunityExpectations"]
-  - [textlink="Rule 1: Grief" link="STGrief"]
-  - [textlink="Rule 2: Roleplay" link="STRolePlay"]
-  - [textlink="Rule 3: Metagaming and Metacommunication" link="STMetagamingMetacommunication"]
-  - [textlink="Rule 4: ERP" link="STERP"]
-  - [textlink="Rule 5: Bug Abuse and Unfair Play" link="STBuggingFoulPlay"]
-  - [textlink="Rule 6: Ban Evasion and Multi-Accounts" link="STBypassBlockingMultiAccounts"]
-  - [textlink="Rule 7: Play Your Role" link="STPlayYourRole"]
-  - [textlink="Rule 8: Character Names" link="STCharacterNames"]
-  - [textlink="Rule 9: Use of Lethal Force" link="STUseOfLethalForce"]
-  - [textlink="Rule 10: Military Law and Mutinies" link="STMilitaryLawMutinies"]
+  - [textlink="Rule 0: Community Expectations" link="STENGCommunityExpectations"]
+  - [textlink="Rule 1: Grief" link="STENGGrief"]
+  - [textlink="Rule 2: Roleplay" link="STENGRolePlay"]
+  - [textlink="Rule 3: Metagaming and Metacommunication" link="STENGMetagamingMetacommunication"]
+  - [textlink="Rule 4: ERP" link="STENGERP"]
+  - [textlink="Rule 5: Bug Abuse and Unfair Play" link="STENGBuggingFoulPlay"]
+  - [textlink="Rule 6: Ban Evasion and Multi-Accounts" link="STENGBypassBlockingMultiAccounts"]
+  - [textlink="Rule 7: Play Your Role" link="STENGPlayYourRole"]
+  - [textlink="Rule 8: Character Names" link="STENGCharacterNames"]
+  - [textlink="Rule 9: Use of Lethal Force" link="STENGUseOfLethalForce"]
+  - [textlink="Rule 10: Military Law and Mutinies" link="STENGMilitaryLawMutinies"]
 </Document>

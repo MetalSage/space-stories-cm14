@@ -52,6 +52,16 @@
     survivorJobOverrideScenarios:
       asset_protection: # Corporate Dome Goons
         CMSurvivorScientist: CMSurvivorDoctor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 
 - type: entity
@@ -151,6 +161,16 @@
     survivorJobOverrideScenarios:
       crashlanding_offices: # PMC
         CMSurvivorScientist: CMSurvivorDoctor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCBoxShotgunBuckshot
+      RMCBoxShotgunIncendiary: RMCBoxShotgunBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 
 - type: entity
@@ -198,6 +218,16 @@
         - RMCSurvivorShivasPanicRoomResearcher: 2
         CMSurvivor:
         - RMCSurvivorShivasPanicRoomCivilian: 2
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetFiorina
@@ -244,6 +274,16 @@
         CMSurvivorEngineer: CMSurvivor
         CMSurvivorDoctor: CMSurvivor
         CMSurvivorScientist: CMSurvivor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetTrijent
@@ -320,6 +360,16 @@
 #        - : -1
 #        CMSurvivorScientist:
 #        - : -1
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 
 - type: entity
@@ -364,6 +414,16 @@
       - CMSurvivorILRCPeacekeeper: 2
       CMSurvivorScientist:
       - RMCSurvivorNewVaraderoResearcher: 2
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetKutjevo
@@ -391,6 +451,16 @@
       - RMCSurvivorKutjevoGoon: 1
       CMSurvivorScientist:
       - RMCSurvivorKutjevoResearcher: 2
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetChances
@@ -421,6 +491,16 @@
       CMSurvivorEngineer: RMCSurvivorForeconSupportTech
       CMSurvivorSecurity: RMCSurvivorForeconBase
       CMSurvivorScientist: RMCSurvivorForeconBase
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetHybrisa
@@ -487,6 +567,16 @@
       tse_airbase: # RCM Paramarines
         CMSurvivorScientist: CMSurvivorDoctor
         CMSurvivorCorporate: CMSurvivor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 
 - type: entity
@@ -557,6 +647,16 @@
       spp_sof :
         CMSurvivorScientist: CMSurvivorDoctor
         CMSurvivorCorporate: CMSurvivor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 # PVE Maps Below
 - type: entity
