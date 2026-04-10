@@ -178,6 +178,7 @@
   - type: StoriesBarricadeDoorDamageVisuals
     closedPrefix: folding_plasteel
     openPrefix: folding_plasteel_closed
+    thresholds: [200, 400, 600]
   # Stories-end
   - type: RMCRepairable
     heal: 200

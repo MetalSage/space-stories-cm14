@@ -415,6 +415,7 @@
   - type: StoriesBarricadeDoorDamageVisuals
     closedPrefix: folding_metal
     openPrefix: folding_metal_closed
+    thresholds: [100, 200, 300]
   # Stories-end
   - type: RMCRepairable
     heal: 200
