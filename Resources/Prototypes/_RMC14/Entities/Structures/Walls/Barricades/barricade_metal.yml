@@ -405,12 +405,17 @@
         path:
           "/Audio/_RMC14/Structures/metalhit.ogg"
   - type: Sprite
-    sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi
+    sprite: _Stories/Structures/Walls/Barricades/barricade_damageable.rsi
     layers:
-    - state: folding_metal
+    - state: folding_metal_0
       map: ["enum.DoorVisualLayers.Base"]
     - map: [ "acided" ]
     drawdepth: WallTops
+  # Stories-start
+  - type: StoriesBarricadeDoorDamageVisuals
+    closedPrefix: folding_metal
+    openPrefix: folding_metal_closed
+  # Stories-end
   - type: RMCRepairable
     heal: 200
     skill: RMCSkillConstruction
@@ -442,9 +447,9 @@
     visuals:
       enum.BarbedWireVisualLayers.Wire:
         barbWired:
-          UnWired: { state: folding_metal_closed_wire, visible: false }
-          WiredClosed: { state: folding_metal_wire, visible: true }
-          WiredOpen: { state: folding_metal_closed_wire, visible: true }
+          UnWired: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_metal_closed_wire, visible: false }
+          WiredClosed: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_metal_wire, visible: true }
+          WiredOpen: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_metal_closed_wire, visible: true }
       enum.SprayAcidedVisuals.Acided:
         acided:
           True:
@@ -455,8 +460,8 @@
             visible: false
   - type: InteractionOutline
   - type: Door
-    openSpriteState: folding_metal_closed
-    closedSpriteState: folding_metal
+    openSpriteState: folding_metal_closed_0
+    closedSpriteState: folding_metal_0
     canPry: false
     occludes: false
     changeAirtight: false

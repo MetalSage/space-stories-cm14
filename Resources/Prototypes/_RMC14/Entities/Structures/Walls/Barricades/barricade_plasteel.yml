@@ -168,12 +168,17 @@
   description: A tough folding plasteel barricade stronger than its metal counterpart. Can be closed and opened at a moment's notice. Repair with a welder.
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi
+    sprite: _Stories/Structures/Walls/Barricades/barricade_damageable.rsi
     layers:
-    - state: folding_plasteel
+    - state: folding_plasteel_0
       map: ["enum.DoorVisualLayers.Base"]
     - map: [ "acided" ]
     drawdepth: WallTops
+  # Stories-start
+  - type: StoriesBarricadeDoorDamageVisuals
+    closedPrefix: folding_plasteel
+    openPrefix: folding_plasteel_closed
+  # Stories-end
   - type: RMCRepairable
     heal: 200
     skill: RMCSkillConstruction
@@ -203,9 +208,9 @@
     visuals:
       enum.BarbedWireVisualLayers.Wire:
         barbWired:
-          UnWired: { state: folding_plasteel_closed_wire, visible: false }
-          WiredClosed: { state: folding_plasteel_wire, visible: true }
-          WiredOpen: { state: folding_plasteel_closed_wire, visible: true }
+          UnWired: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_plasteel_closed_wire, visible: false }
+          WiredClosed: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_plasteel_wire, visible: true }
+          WiredOpen: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_plasteel_closed_wire, visible: true }
       enum.SprayAcidedVisuals.Acided:
         acided:
           True:
@@ -215,8 +220,8 @@
           False:
             visible: false
   - type: Door
-    openSpriteState: folding_plasteel_closed
-    closedSpriteState: folding_plasteel
+    openSpriteState: folding_plasteel_closed_0
+    closedSpriteState: folding_plasteel_0
     canPry: false
     occludes: false
     changeAirtight: false

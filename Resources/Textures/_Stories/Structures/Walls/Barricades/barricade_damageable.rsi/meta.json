@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from user-supplied C:\\Sprites baricades\\sprites.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "folding_metal_0",
+      "directions": 4
+    },
+    {
+      "name": "folding_metal_1",
+      "directions": 4
+    },
+    {
+      "name": "folding_metal_2",
+      "directions": 4
+    },
+    {
+      "name": "folding_metal_3",
+      "directions": 4
+    },
+    {
+      "name": "folding_metal_closed_0",
+      "directions": 4
+    },
+    {
+      "name": "folding_metal_closed_1",
+      "directions": 4
+    },
+    {
+      "name": "folding_metal_closed_2",
+      "directions": 4
+    },
+    {
+      "name": "folding_metal_closed_3",
+      "directions": 4
+    },
+    {
+      "name": "folding_plasteel_0",
+      "directions": 4
+    },
+    {
+      "name": "folding_plasteel_1",
+      "directions": 4
+    },
+    {
+      "name": "folding_plasteel_2",
+      "directions": 4
+    },
+    {
+      "name": "folding_plasteel_3",
+      "directions": 4
+    },
+    {
+      "name": "folding_plasteel_closed_0",
+      "directions": 4
+    },
+    {
+      "name": "folding_plasteel_closed_1",
+      "directions": 4
+    },
+    {
+      "name": "folding_plasteel_closed_2",
+      "directions": 4
+    },
+    {
+      "name": "folding_plasteel_closed_3",
+      "directions": 4
+    }
+  ]
+}
