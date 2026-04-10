@@ -23,6 +23,8 @@
         - MachineMask
         layer:
         - MachineLayer
+        - HighImpassable
+        - BulletImpassable
   - type: Tag
     tags:
     - Structure

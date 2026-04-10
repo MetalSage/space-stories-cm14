@@ -329,6 +329,10 @@
         - MachineMask
         layer:
         - MachineLayer
+        # Stories-start
+        - HighImpassable
+        - BulletImpassable
+        # Stories-end
         density: 200
   - type: Sprite
     sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/marine_medical.rsi

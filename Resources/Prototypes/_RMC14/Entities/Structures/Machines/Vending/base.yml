@@ -25,6 +25,10 @@
         - MachineMask
         layer:
         - MachineLayer
+        # Stories-start
+        - HighImpassable
+        - BulletImpassable
+        # Stories-end
   - type: Tag
     tags:
     - Structure
@@ -92,4 +96,7 @@
         - MachineMask
         layer:
         - MachineLayer
+        # Stories-start
+        - HighImpassable
+        # Stories-end
         - BulletImpassable

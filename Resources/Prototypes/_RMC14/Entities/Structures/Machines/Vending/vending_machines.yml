@@ -27,6 +27,9 @@
         - MachineMask
         layer:
         - MachineLayer
+        # Stories-start
+        - HighImpassable
+        # Stories-end
         - BulletImpassable #TODO Remove this after vendor tipping is added
         density: 200
   - type: Repairable
