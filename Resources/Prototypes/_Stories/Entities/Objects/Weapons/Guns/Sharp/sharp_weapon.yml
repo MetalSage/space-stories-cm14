@@ -1,0 +1,105 @@
+- type: Tag
+  id: STSharpRifleMagazine
+
+- type: Tag
+  id: STSharpCartridgeExplosive
+
+- type: Tag
+  id: STSharpCartridgeIncendiary
+
+- type: Tag
+  id: STSharpCartridgeFlechette
+
+- type: entity
+  id: STActionSharpToggleFuse
+  parent: ActionMarineToggleable
+  name: Toggle dart fuse
+  description: Switches sticky dart detonation delay between 5s and 2.5s.
+  noSpawn: true
+  components:
+  - type: Action
+    icon:
+      sprite: _RMC14/Actions/marine_smart_gun_actions.rsi
+      state: ammo_swap_normal
+    iconOn:
+      sprite: _RMC14/Actions/marine_smart_gun_actions.rsi
+      state: ammo_swap_ap
+    itemIconStyle: NoItem
+    useDelay: 0.1
+  - type: InstantAction
+    event: !type:SharpToggleFuseEvent
+
+- type: entity
+  id: STWeaponSharpRifle
+  name: SHARP rifle
+  description: An experimental harpoon launcher rifle with an inbuilt magnetic harness manufactured by Armat Systems.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Sharp/SHARP_P9.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Stories/Objects/Weapons/Guns/Sharp/SHARP_P9.rsi
+    slots:
+    - suitStorage
+    - Back
+  - type: ShootAtFixedPoint
+    shootArcProj: false
+    maxFixedRange: 8
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes: [ SemiAuto ]
+    projectileSpeed: 20
+    resetOnHandSelected: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: AltFireMelee
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      collection: GenericHit
+  - type: Wieldable
+  - type: WieldDelay
+    baseDelay: 0.8
+  - type: WieldableSpeedModifiers
+    base: 0.5
+    light: 0.69
+    medium: 0.75
+    heavy: 0.806
+  - type: UniqueAction
+  - type: RMCSelectiveFire
+    baseFireModes: [ SemiAuto ]
+    baseFireRate: 0.3125
+    recoilWielded: 0.1
+    scatterWielded: 0.1
+    burstScatterMult: 4
+  - type: GunRequiresSkills
+    skills:
+      RMCSkillSpecialistWeapons: 1
+  - type: GunRequiresWield
+  - type: GunIgnorePrediction
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: STMagazineSharpRifleExplosive
+        priority: 2
+        whitelist:
+          tags:
+          - STSharpRifleMagazine
+  - type: AmmoCounter
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-rail: 0.0, 0.18
+  - type: SharpFuseMode
+    actionId: STActionSharpToggleFuse
+    longMode: false
+  - type: RMCMagneticItem

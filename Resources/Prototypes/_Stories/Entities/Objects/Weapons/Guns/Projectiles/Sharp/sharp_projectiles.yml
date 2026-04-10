@@ -1,0 +1,183 @@
+- type: entity
+  id: STBulletSharpStickyExplosive
+  parent: BaseBullet
+  name: sticky explosive dart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/explosive.rsi
+    drawdepth: Overlays
+    layers: [ { state: explosive_dart } ]
+
+  - type: IgnoreArc
+
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/pop.ogg
+    embedOnThrow: false
+    deleteOnRemove: false
+    removalTime: null
+    whitelist:
+     components:
+     - MobState
+
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    maxFixedRange: 8
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 35
+  - type: IgnorePredictionHide
+
+  - type: SharpStickyDart
+    mineProto: STSharpMineExplosiveL1
+    iffDropProto: STCartridgeSharpExplosive
+    shortDelay: 2.5
+    longDelay: 5.0
+    explosionRadius: 3
+
+  - type: Explosive
+    explosionType: RMC
+    maxIntensity: 20
+    intensitySlope: 6
+    totalIntensity: 200
+    canCreateVacuum: false
+
+  - type: Fixtures
+    fixtures:
+      projectile:
+        hard: false
+        shape: !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        mask:
+        - Impassable
+        - BulletImpassable
+
+- type: entity
+  id: STBulletSharpStickyIncendiary
+  parent: BaseBullet
+  name: sticky incendiary dart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/incendiary.rsi
+    drawdepth: Overlays
+    layers: [ { state: incendiary_dart } ]
+
+  - type: IgnoreArc
+
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/pop.ogg
+    embedOnThrow: false
+    deleteOnRemove: false
+    removalTime: null
+    whitelist:
+     components:
+     - MobState
+
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    maxFixedRange: 8
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 35
+  - type: IgnorePredictionHide
+
+  - type: SharpStickyDart
+    mineProto: STSharpMineIncendiaryL1
+    iffDropProto: STCartridgeSharpIncendiary
+    shortDelay: 2.5
+    longDelay: 5.0
+    explosionRadius: 3
+
+  - type: TileFireOnTrigger
+    spawn: STSharpTileFireL1
+    range: 3
+    intensity: 15
+    duration: 12
+    sound:
+      path: /Audio/_RMC14/Weapons/Guns/Flamer/gun_flamethrower2.ogg
+
+  - type: Fixtures
+    fixtures:
+      projectile:
+        hard: false
+        shape: !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        mask:
+        - Impassable
+        - BulletImpassable
+
+- type: entity
+  id: STBulletSharpFlechette
+  parent: BaseBullet
+  name: flechette dart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/flechette.rsi
+    drawdepth: Overlays
+    layers: [ { state: flechette_dart } ]
+
+  - type: IgnoreArc
+
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    maxFixedRange: 8
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 0
+  - type: IgnorePredictionHide
+  - type: SharpFlechetteSpread
+    projectileProto: CMPelletShotgunFlechette
+    sourceProjectileProto: STBulletSharpFlechette
+    projectileDamageMultiplier: 0.6666667
+    count: 6
+    spreadAngle: 60
+    evenSpread: true
+    projectileSpeed: 20
+    minVelocity: 0.5
+    maxVelocity: 1.5
+  - type: Fixtures
+    fixtures:
+      projectile:
+        hard: false
+        shape: !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        mask:
+        - Impassable
+        - BulletImpassable
+
+- type: entity
+  id: STBulletSharpFlechetteShard
+  parent: BaseBullet
+  name: flechette shard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/flechette.rsi
+    drawdepth: Overlays
+    layers: [ { state: flechette_dart } ]
+  - type: IgnoreArc
+  - type: Projectile
+    deleteOnCollide: true
+    onlyCollideWhenShot: true
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 18
+  - type: Fixtures
+    fixtures:
+      projectile:
+        hard: false
+        shape: !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        mask:
+        - Impassable
+        - BulletImpassable
+

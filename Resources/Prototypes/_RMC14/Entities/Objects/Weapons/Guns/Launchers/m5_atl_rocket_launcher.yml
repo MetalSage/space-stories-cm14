@@ -52,6 +52,10 @@
   - type: WieldDelay
     baseDelay: 1.2
     preventFiring: true
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 15
   - type: IgnorePredictionHide
   - type: GunIgnorePrediction
   - type: AssistedReloadWeapon
@@ -149,6 +153,7 @@
       types:
         Blunt: 15
     maxFixedRange: 6 # 7 tiles
+    queueDeletion: true
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Projectiles/m5spec_projectiles.rsi
     layers:

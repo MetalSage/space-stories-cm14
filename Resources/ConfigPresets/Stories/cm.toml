@@ -120,8 +120,3 @@ restart_ghost_percentage = 75
 
 [viewport]
 maximum_width = 26
-
-[rmc] # Stories-SurvivorTempRemove
-marines_per_survivor = 9999
-survivors_minimum = 0
-survivors_maximum = 0

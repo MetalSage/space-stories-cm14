@@ -252,7 +252,9 @@ public abstract class SharedWeaponMountSystem : EntitySystem
             return;
         }
 
-        var delay = ent.Comp.DisassembleDelay * _skills.GetSkillDelayMultiplier(args.User, ent.Comp.DisassembleSkill);
+        var delay = ent.Comp.DisassembleDelay;
+        if (ent.Comp.DisassembleSkill != null)
+            delay *= _skills.GetSkillDelayMultiplier(args.User, ent.Comp.DisassembleSkill.Value);
 
         if (ent.Comp.MountedEntity != null)
         {
@@ -328,6 +330,8 @@ public abstract class SharedWeaponMountSystem : EntitySystem
             return;
 
         ent.Comp.IsWeaponSecured = true;
+        DirtyField(ent.Owner, ent.Comp, nameof(WeaponMountComponent.IsWeaponSecured));
+
         _buckle.StrapSetEnabled(ent, true);
 
         if (TryComp(ent.Comp.MountedEntity, out MetaDataComponent? mountedMeta) && mountedMeta.EntityPrototype != null)
@@ -443,6 +447,8 @@ public abstract class SharedWeaponMountSystem : EntitySystem
             _metaData.SetEntityDescription(ent, Loc.GetString("emplacement-mount-" + mountedMeta.EntityPrototype.ID + "-description"));
 
         ent.Comp.IsWeaponSecured = false;
+        DirtyField(ent.Owner, ent.Comp, nameof(WeaponMountComponent.IsWeaponSecured));
+
         _transform.Unanchor(ent);
 
         var fixture = ent.Comp.DeployFixture is { } fixtureId && TryComp(ent, out FixturesComponent? fixtures)
@@ -567,6 +573,8 @@ public abstract class SharedWeaponMountSystem : EntitySystem
     private void OnStrapped(Entity<WeaponMountComponent> ent, ref StrappedEvent args)
     {
         ent.Comp.User = args.Buckle;
+        DirtyField(ent.Owner, ent.Comp, nameof(WeaponMountComponent.User));
+
         if (ent.Comp.MountedEntity is not { } weapon)
             return;
 
@@ -584,6 +592,7 @@ public abstract class SharedWeaponMountSystem : EntitySystem
     private void OnUnStrapped(Entity<WeaponMountComponent> ent, ref UnstrappedEvent args)
     {
         ent.Comp.User = null;
+        DirtyField(ent.Owner, ent.Comp, nameof(WeaponMountComponent.User));
         RemComp<WeaponControllerComponent>(args.Buckle);
 
         if (TryComp(ent.Comp.MountedEntity, out ScopeComponent? scope))
@@ -719,6 +728,9 @@ public abstract class SharedWeaponMountSystem : EntitySystem
 
     private void OnChargeCollide(Entity<WeaponMountComponent> ent, ref XenoToggleChargingCollideEvent args)
     {
+        if (args.Charger.Comp.Stage <= 0)
+            return;
+
         UndeployMount(ent);
     }
 
@@ -904,7 +916,9 @@ public abstract class SharedWeaponMountSystem : EntitySystem
 
     private bool TryUndeployMount(Entity<WeaponMountComponent> ent, EntityUid user, EntityUid? used = null)
     {
-        var delay = ent.Comp.DisassembleDelay * _skills.GetSkillDelayMultiplier(user, ent.Comp.DisassembleSkill);
+        var delay = ent.Comp.DisassembleDelay;
+        if (ent.Comp.DisassembleSkill != null)
+            delay *= _skills.GetSkillDelayMultiplier(user, ent.Comp.DisassembleSkill.Value);
 
         var undeployDoAfterArgs = new DoAfterArgs(EntityManager,
             user,

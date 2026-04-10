@@ -26,7 +26,7 @@
   doAfterTime: 4
   materialCost: 5
   skill: RMCSkillConstruction
-  requiredSkillLevel: 2
+  requiredSkillLevel: 3
 
 - type: rmcConstruction
   id: RMCPlasteelRodBuild

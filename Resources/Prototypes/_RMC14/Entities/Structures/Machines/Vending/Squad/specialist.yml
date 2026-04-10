@@ -3,6 +3,12 @@
   abstract: true
   id: RMCVendorWeaponsSpecialistGearBase
   components:
+  # Stories-SHARP-Start
+  - type: SharpSpecialistVendor
+    equipmentCase: STSharpSpecEquipmentCase
+    specialistRole: stories-job-name-weapons-specialist-sharp
+    specialistPrefix: stories-job-prefix-weapons-specialist-sharp
+  # Stories-SHARP-End
   - type: CMAutomatedVendor
     jobs:
     - CMWeaponsSpecialist
@@ -34,6 +40,19 @@
         giveMapBlip:
           sprite: /Textures/_RMC14/Interface/map_blips.rsi
           state: spec_grenadier
+      # Stories-SHARP-Start
+      - id: STSharpSpecEquipmentCase
+        giveSquadRoleName: stories-job-name-weapons-specialist-sharp
+        isAppendSquadRoleName: false
+        givePrefix: stories-job-prefix-weapons-specialist-sharp
+        isAppendPrefix: true
+        giveIcon:
+          sprite: _Stories/Interface/cm_job_icons.rsi
+          state: hudsquad_spec_sharp
+        giveMapBlip:
+          sprite: /Textures/_RMC14/Interface/map_blips.rsi
+          state: spec
+      # Stories-SHARP-End
       - id: RMCPyroSpecEquipmentCase
         giveSquadRoleName: rmc-job-name-weapons-specialist-pyro
         isAppendSquadRoleName: false
@@ -101,6 +120,16 @@
         points: 40
       - id: RMCRocket84mm
         points: 40
+    # Stories-SHARP-Start
+    - name: Магазины SHARP
+      entries:
+      - id: STMagazineSharpRifleExplosive
+        points: 40
+      - id: STMagazineSharpRifleIncendiary
+        points: 40
+      - id: STMagazineSharpRifleFlechette
+        points: 40
+    # Stories-SHARP-End
     #- id: 84mmWhitePhosphorusRocket
     #  points: 40
     - name: Дополнительные Гранаты
@@ -212,6 +241,9 @@
       - id: RMCBeltHolsterSMGPouch
       - id: RMCM82FHolster
       - id: RMCM276ShotgunShellLoadingRig
+      # Stories-SHARP-Start
+      - id: STBeltSharpMagazine
+      # Stories-SHARP-End
     - name: Подсумки
       choices: { RMCPouch: 2 }
       entries:

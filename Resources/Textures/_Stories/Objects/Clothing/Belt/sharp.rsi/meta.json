@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "tankbelt/icon/equipped-BELT taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/4fb669560740f1ebbc1b12f2a6ce057026f6a5ec/icons/obj/items/clothing/belts/belts.dmi and https://github.com/cmss13-devs/cmss13/blob/4fb669560740f1ebbc1b12f2a6ce057026f6a5ec/icons/mob/humans/onmob/clothing/belts/belts.dmi; inhand-left/inhand-right based on utility (_RMC14/Objects/Clothing/Belt/utility.rsi), originally from https://github.com/cmss13-devs/cmss13/blob/4047c473d4d2f3e58e68efdec5aa95d0676bf4d1/icons/mob/humans/onmob/items_lefthand_1.dmi and https://github.com/cmss13-devs/cmss13/blob/4047c473d4d2f3e58e68efdec5aa95d0676bf4d1/icons/mob/humans/onmob/items_righthand_1.dmi, modified for Space Stories.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "tankbelt"
+    },
+    {
+      "name": "equipped-BELT",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    }
+  ]
+}

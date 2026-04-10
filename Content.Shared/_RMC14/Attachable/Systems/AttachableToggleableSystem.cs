@@ -776,6 +776,8 @@ public sealed class AttachableToggleableSystem : EntitySystem
 
         _actionsSystem.GrantContainedAction(user, ent.Owner, actionId);
 
+        _actionsSystem.SetToggled(actionId, ent.Comp.Active);
+
         if (exists)
             return;
 

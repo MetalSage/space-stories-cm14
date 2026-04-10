@@ -52,6 +52,16 @@
     survivorJobOverrideScenarios:
       asset_protection: # Corporate Dome Goons
         CMSurvivorScientist: CMSurvivorDoctor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 
 - type: entity
@@ -65,10 +75,18 @@
     specialFaxes:
       Liaison: RMCPaperWeYaLiaisonBriefingSolaris
     nightmareScenarios:
-    - scenarioName: clfmining
-      scenarioProbability: 0.1
     - scenarioName: crashlanding_offices
       scenarioProbability: 0.2
+    - scenarioName: solaris_surv_spawn_admin # 80% chance of regular surv. Reduce to 70% (0.14 each) once CLF survs are in.
+      scenarioProbability: 0.16
+    - scenarioName: solaris_surv_spawn_bar
+      scenarioProbability: 0.16
+    - scenarioName: solaris_surv_spawn_office
+      scenarioProbability: 0.16
+    - scenarioName: solaris_surv_spawn_south_marshals
+      scenarioProbability: 0.16
+    - scenarioName: solaris_surv_spawn_storage
+      scenarioProbability: 0.16
     survivorJobs:
     - RMCSurvivorCommandingOfficer: 1
     - CMSurvivor: -1
@@ -143,6 +161,16 @@
     survivorJobOverrideScenarios:
       crashlanding_offices: # PMC
         CMSurvivorScientist: CMSurvivorDoctor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCBoxShotgunBuckshot
+      RMCBoxShotgunIncendiary: RMCBoxShotgunBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 
 - type: entity
@@ -153,6 +181,9 @@
     map: /Maps/_RMC14/shiva.yml
     camouflage: Snow
     announcement: "Получен автоматический сигнал бедствия с археологической площадки 'Снежный шар Шивы', на пограничном ледяном мире 'Ифрит'. Группа реагирования с борта ВКСШ Алмайер будет отправлена в ближайшее время для расследования." # Stories-Translate
+    nightmareScenarios:
+    - scenarioName: panic_room_hold
+      scenarioProbability: 0.1
     survivorJobVariants: # Civ survivor is default one
       CMSurvivorCorporate:
       - RMCSurvivorShivasCorporateLiaison: -1
@@ -165,6 +196,38 @@
       - RMCSurvivorShivasILRCPeacekeeper: -1
       CMSurvivorScientist:
       - RMCSurvivorShivasResearcher: -1
+    survivorJobScenarios:
+      panic_room_hold:
+      - CMSurvivorSecurity: 1
+      - CMSurvivor: 2
+      - CMSurvivorCorporate: 1
+      - CMSurvivorDoctor: 2
+      - CMSurvivorEngineer: 2
+      - CMSurvivorScientist: 2
+    survivorJobVariantScenarios:
+      panic_room_hold:
+        CMSurvivorSecurity:
+        - RMCSurvivorPMCCommandoShivas: 1
+        CMSurvivorCorporate:
+        - RMCSurvivorAssistantManager: 1
+        CMSurvivorDoctor:
+        - RMCSurvivorShivasPanicRoomDoctor: 2
+        CMSurvivorEngineer:
+        - RMCSurvivorShivasPanicRoomEngineer: 2
+        CMSurvivorScientist:
+        - RMCSurvivorShivasPanicRoomResearcher: 2
+        CMSurvivor:
+        - RMCSurvivorShivasPanicRoomCivilian: 2
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetFiorina
@@ -175,6 +238,9 @@
     camouflage: Classic
     minPlayers: 130
     announcement: "Получен автоматический сигнал бедствия из тюрьмы максимальной безопасности 'Орбитальная тюрьма Фиорина'. Группа реагирования с борта ВКСШ Алмайер будет отправлена в ближайшее время для расследования." # Stories-Translate
+    nightmareScenarios:
+    - scenarioName: riot_in_progress
+      scenarioProbability: 0.15
     survivorJobVariants:
       CMSurvivor:
       - CMSurvivor: -1
@@ -192,6 +258,32 @@
       - CMSurvivorFiorinaRiotOfficer: 2
       CMSurvivorScientist:
       - CMSurvivorFiorinaResearcher: 2
+    survivorJobScenarios:
+      riot_in_progress: # Riot In Progress CMB Team. One as the main CMB RCTL, the rest as supporting officers.
+        - CMSurvivorSecurity: 1
+        - CMSurvivor: -1
+    survivorJobVariantScenarios:
+      riot_in_progress: # Riot In Progress Riot Control team
+        CMSurvivorSecurity:
+        - RMCSurvivorFiorinaRiotInProgressCMBRiotControlTeamLeader: 1
+        CMSurvivor:
+        - RMCSurvivorFiorinaRiotInProgressCMBRiotControlOfficer: -1
+    survivorJobOverrideScenarios:
+      riot_in_progress: # Riot In Progress job overrides.
+        CMSurvivorCorporate: CMSurvivor
+        CMSurvivorEngineer: CMSurvivor
+        CMSurvivorDoctor: CMSurvivor
+        CMSurvivorScientist: CMSurvivor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetTrijent
@@ -202,6 +294,15 @@
     camouflage: Desert
     minPlayers: 130
     announcement: "Мы потеряли связь с внесолнечной колонией компании Вестон-Ямада, 'Дамба Триджент', на планете 'Райдзин'. ВКСШ Алмайер отправлен для оказания помощи."
+    nightmareScenarios:
+    - scenarioName: trijent_surv_spawn_bar # Reduce this once CLF/SPP survivors are in
+      scenarioProbability: 0.25
+    - scenarioName: trijent_surv_spawn_hospital
+      scenarioProbability: 0.25
+    - scenarioName: trijent_surv_spawn_dam
+      scenarioProbability: 0.25
+    - scenarioName: trijent_surv_spawn_tunneldorm
+      scenarioProbability: 0.25
     survivorJobVariants:
       CMSurvivor:
       - CMSurvivor: -1
@@ -259,6 +360,16 @@
 #        - : -1
 #        CMSurvivorScientist:
 #        - : -1
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 
 - type: entity
@@ -303,6 +414,16 @@
       - CMSurvivorILRCPeacekeeper: 2
       CMSurvivorScientist:
       - RMCSurvivorNewVaraderoResearcher: 2
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetKutjevo
@@ -330,6 +451,16 @@
       - RMCSurvivorKutjevoGoon: 1
       CMSurvivorScientist:
       - RMCSurvivorKutjevoResearcher: 2
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetChances
@@ -360,6 +491,16 @@
       CMSurvivorEngineer: RMCSurvivorForeconSupportTech
       CMSurvivorSecurity: RMCSurvivorForeconBase
       CMSurvivorScientist: RMCSurvivorForeconBase
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 - type: entity
   id: RMCPlanetHybrisa
@@ -369,6 +510,9 @@
     map: /Maps/_RMC14/hybrisa.yml
     camouflage: Urban
     announcement: "Получен автоматический сигнал бедствия с колонии Вестон-Ямада, Гибриса Проспера - огромного, похожего на город поселения, известного своим огромным богатством, обширными горнодобывающими операциями и процветающей торговлей. Недавно полностью выкупленная у ИТС, эта бывшая колония теперь является ключевым активом Вестон-Ямады, с разросшимся городским центром, в котором проживают тысячи жителей, и множеством небольших внешних колоний под ее контролем. ВКСШ Алмайер отправлен для расследования ситуации." # Stories-Translate
+    nightmareScenarios:
+    - scenarioName: tse_airbase
+      scenarioProbability: 0.3
     minPlayers: 130
     survivorJobVariants:
       CMSurvivor:
@@ -396,6 +540,44 @@
       CMSurvivorScientist:
       - RMCSurvivorHybrisaXenoarchaeologist: 2
       - RMCSurvivorHybrisaXenobiologist: 2
+    survivorJobScenarios:
+      tse_airbase: # Order of job priority for paramarines. Scientist is overriden into doctor, Corporate into survivor
+      - RMCSurvivorCommandingOfficer: 1
+      - RMCJobSyntheticColony: 1
+      - CMSurvivorDoctor: 1
+      - CMSurvivorEngineer: 1
+      - CMSurvivorSecurity: 2
+      - CMSurvivor: -1
+    survivorJobVariantScenarios:
+      tse_airbase: # RCM Paramarines
+        RMCSurvivorCommandingOfficer:
+        - RMCSurvivorParaCommander: 1
+        RMCJobSyntheticColony:
+        - RMCSurvivorParaSupportSynthetic: 1
+        CMSurvivorDoctor:
+        - RMCSurvivorParaMedicalTechnician: 1
+        CMSurvivorEngineer:
+        - RMCSurvivorParaAssaultEngineer: 1
+        CMSurvivorSecurity:
+        - RMCSurvivorParaTeamLeader: 1
+        - RMCSurvivorParaPilot: 1
+        CMSurvivor:
+        - RMCSurvivorParamarine: -1
+    survivorJobOverrideScenarios:
+      tse_airbase: # RCM Paramarines
+        CMSurvivorScientist: CMSurvivorDoctor
+        CMSurvivorCorporate: CMSurvivor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
+
 
 - type: entity
   id: RMCPlanetSorokyne
@@ -406,6 +588,9 @@
     camouflage: Jungle
     minPlayers: 130
     announcement: "An automated distress signal has been recieved from a mining colony on border world LV-976, \"Sorokyne Outpost\". A response team from the UNS Almayer will be dispatched shortly to investigate."
+    nightmareScenarios:
+    - scenarioName: spp_sof
+      scenarioProbability: 0.4
     survivorJobVariants:
       CMSurvivor:
       - CMJobSurvivorSoroCivilian: -1
@@ -422,7 +607,7 @@
       - CMJobSurvivorArmedPoliceOfficer: 2
       - CMJobSurvivorArmyReservist: 2
       CMSurvivorScientist:
-      - CMJobSurvivorCECResearcher: 2
+      - CMJobSurvivorMSCResearcher: 2
 #    survivorJobVariantScenarios:
 #      clfcamp:
 #        CMSurvivor:
@@ -441,6 +626,37 @@
 #        - : -1
 #        CMSurvivorScientist:
 #        - : -1
+    survivorJobScenarios:
+      spp_sof:
+      - CMSurvivorEngineer: 1
+      - CMSurvivorDoctor: 1
+      - CMSurvivorSecurity: 2
+      - CMSurvivor: -1
+    survivorJobVariantScenarios:
+      spp_sof:
+        CMSurvivorSecurity:
+        - RMCSurvivorSPPSOFSpec: 1
+        - RMCSurvivorSPPSOFSL: 1
+        CMSurvivorDoctor:
+        - RMCSurvivorSPPSOFMedic: 1
+        CMSurvivorEngineer:
+        - RMCSurvivorSPPSOFSapper: 1
+        CMSurvivor:
+        - RMCSurvivorSPPSOFSoldier: -1
+    survivorJobOverrideScenarios: # Scientist rolls for SOF medic
+      spp_sof :
+        CMSurvivorScientist: CMSurvivorDoctor
+        CMSurvivorCorporate: CMSurvivor
+    replacements: # Stories-Survivor
+      RMCWeaponMar50LMG: RMCSpawnerRandomGunRifleMed
+      RMCMagazineMar50LMG: null
+      RMCBoxShotgunIncendiaryBuckshot: RMCItemPoolBuckshot
+      RMCBoxShotgunIncendiary: RMCItemPoolBuckshot
+      CMShellShotgunIncendiaryBuckshot: CMShellShotgunBuckshot
+      CMShellShotgunIncendiary: CMShellShotgunBuckshot
+      CMPaperBin30: CMPaperBin5
+      CMPaperBin20: CMPaperBin5
+      CMPaperBin10: CMPaperBin5
 
 # PVE Maps Below
 - type: entity
