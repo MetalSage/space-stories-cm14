@@ -49,6 +49,7 @@ public sealed class SharpMineSystem : EntitySystem
         SubscribeLocalEvent<SharpMineComponent, DamageChangedEvent>(OnMineDamageChanged);
         SubscribeLocalEvent<SharpMineComponent, ExplosionReceivedEvent>(OnExplosionReceived);
         SubscribeLocalEvent<SharpMineComponent, StartCollideEvent>(OnMineStartCollide);
+        SubscribeLocalEvent<SharpMineComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<SharpMineComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<SharpMineComponent, SharpMineDisarmDoAfterEvent>(OnMineDisarmDoAfter);
     }
@@ -105,13 +106,26 @@ public sealed class SharpMineSystem : EntitySystem
         if (args.Handled || TerminatingOrDeleted(mine.Owner))
             return;
 
+        args.Handled = TryStartMineDisarm(mine, args.User, args.Used);
+    }
+
+    private void OnInteractHand(Entity<SharpMineComponent> mine, ref InteractHandEvent args)
+    {
+        if (args.Handled || TerminatingOrDeleted(mine.Owner))
+            return;
+
+        args.Handled = TryStartMineDisarm(mine, args.User, null);
+    }
+
+    private bool TryStartMineDisarm(Entity<SharpMineComponent> mine, EntityUid user, EntityUid? used)
+    {
         var doAfter = new DoAfterArgs(EntityManager,
-            args.User,
+            user,
             TimeSpan.FromSeconds(3),
             new SharpMineDisarmDoAfterEvent(),
             mine,
             target: mine,
-            used: args.Used)
+            used: used)
         {
             NeedHand = true,
             BreakOnMove = true,
@@ -119,15 +133,12 @@ public sealed class SharpMineSystem : EntitySystem
             BreakOnHandChange = true,
         };
 
-        args.Handled = _doAfter.TryStartDoAfter(doAfter);
+        return _doAfter.TryStartDoAfter(doAfter);
     }
 
     private void OnMineDisarmDoAfter(Entity<SharpMineComponent> mine, ref SharpMineDisarmDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || TerminatingOrDeleted(mine.Owner))
-            return;
-
-        if (args.Used is null)
             return;
 
         args.Handled = true;
