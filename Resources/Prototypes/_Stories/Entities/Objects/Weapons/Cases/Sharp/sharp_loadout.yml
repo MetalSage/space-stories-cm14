@@ -31,7 +31,6 @@
     - id: CMMagazinePistolMK80
       amount: 2
     - id: RMCBinoculars
-    - id: CMMultitool
   - type: CMChangeUserOnVend
     addComponents:
     - type: SharpWhitelist
