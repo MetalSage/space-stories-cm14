@@ -5,7 +5,6 @@ using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.OnCollide;
-using Content.Shared._RMC14.Tools;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._Stories.Sharp;
 using Content.Shared.Damage;
@@ -103,7 +102,7 @@ public sealed class SharpMineSystem : EntitySystem
 
     private void OnInteractUsing(Entity<SharpMineComponent> mine, ref InteractUsingEvent args)
     {
-        if (args.Handled || TerminatingOrDeleted(mine.Owner) || !HasComp<MultitoolComponent>(args.Used))
+        if (args.Handled || TerminatingOrDeleted(mine.Owner))
             return;
 
         var doAfter = new DoAfterArgs(EntityManager,
@@ -128,7 +127,7 @@ public sealed class SharpMineSystem : EntitySystem
         if (args.Cancelled || args.Handled || TerminatingOrDeleted(mine.Owner))
             return;
 
-        if (args.Used is not { } used || !HasComp<MultitoolComponent>(used))
+        if (args.Used is null)
             return;
 
         args.Handled = true;
