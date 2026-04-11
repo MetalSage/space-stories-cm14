@@ -407,6 +407,11 @@ namespace Content.Server.GameTicking
 
             DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
 
+            // Stories-start
+            if (!force && Preset?.ID is "CMDistressSignal" or "STDistressSignal" or "STDistressSignalLowPop")
+                SetGamePreset(_playerManager.PlayerCount <= 50 ? "STDistressSignalLowPop" : "STDistressSignal");
+            // Stories-end
+
             // Just in case it hasn't been loaded previously we'll try loading it.
             LoadMaps();
 

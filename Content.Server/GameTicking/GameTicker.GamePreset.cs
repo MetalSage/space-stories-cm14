@@ -100,15 +100,6 @@ public sealed partial class GameTicker
         if (DummyTicker)
             return;
 
-        // Stories-start
-        if (RoundId == 0 &&
-            preset?.ID == "STDistressSignalLowPop" &&
-            FindGamePreset("STDistressSignal") is { } normalPreset)
-        {
-            preset = normalPreset;
-        }
-        // Stories-end
-
         if (resetDelay is not null)
         {
             ResetCountdown = resetDelay.Value;

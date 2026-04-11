@@ -24,3 +24,20 @@
   supportedMaps: STLowPopMapPool
   rules:
   - STDistressSignalLowPop
+
+- type: entity
+  id: STDistressSignalLowPop
+  parent: CMDistressSignal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CMDistressSignalRule
+    squadIds:
+    - SquadAlpha
+    - SquadBravo
+    extraSquadIds: []
+    doJobSlotScaling: false
+
+- type: gameMapPool
+  id: STLowPopMapPool
+  maps:
+  - STAlmayerLowPop

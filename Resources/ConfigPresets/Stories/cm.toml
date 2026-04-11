@@ -41,9 +41,9 @@ rate_limit_announce_admins_delay = 10
 max_message_length = 500
 
 [game]
-defaultpreset = "STDistressSignal"
+defaultpreset = "CMDistressSignal"
 fallbackenabled = false
-fallbackpreset = "STDistressSignal"
+fallbackpreset = "CMDistressSignal"
 round_end_sound_collection = "CMRoundEnd"
 contraband_examine = false
 map_pool = "STDefaultMapPool"

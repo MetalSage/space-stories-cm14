@@ -51,11 +51,11 @@
 
           #Marines
           CMSquadLeader: [2, 2]
-          CMFireteamLeader: [8, 8]
-          CMSmartGunOperator: [4, 4]
-          CMWeaponsSpecialist: [4, 4]
-          CMCombatTech: [12, 12]
-          CMHospitalCorpsman: [16, 16]
+          CMFireteamLeader: [4, 4]
+          CMSmartGunOperator: [2, 2]
+          CMWeaponsSpecialist: [2, 2]
+          CMCombatTech: [6, 6]
+          CMHospitalCorpsman: [8, 8]
           CMRifleman: [ -1, -1 ]
 
           #Civilians
