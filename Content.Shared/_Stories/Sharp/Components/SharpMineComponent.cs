@@ -17,13 +17,13 @@ public sealed partial class SharpMineComponent : Component
     public float ArmingBlinkInterval = 0.25f;
 
     [DataField, AutoNetworkedField]
-    public float LevelUpInterval = 75f;
+    public float LevelUpInterval = 30f;
 
     [DataField, AutoNetworkedField]
     public float MaxLifespan = 300f;
 
     [DataField, AutoNetworkedField]
-    public float StickyDartGracePeriod = 0.25f;
+    public float DisarmDuration = 3f;
 
     [DataField]
     public DamageSpecifier DetonateOnDamage = new();

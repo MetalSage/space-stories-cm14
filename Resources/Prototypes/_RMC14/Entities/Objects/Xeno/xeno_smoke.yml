@@ -3,6 +3,7 @@
   name: acid gas
   categories: [ HideSpawnMenu ]
   components:
+  - type: SharpMineTriggerGas # Stories-SHARP
   - type: Transform
     anchored: true
   - type: Physics
@@ -58,6 +59,7 @@
   name: neurotoxin gas
   categories: [ HideSpawnMenu ]
   components:
+  - type: SharpMineTriggerGas # Stories-SHARP
   - type: Transform
     anchored: true
   - type: Physics

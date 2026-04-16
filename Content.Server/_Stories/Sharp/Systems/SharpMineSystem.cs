@@ -121,7 +121,7 @@ public sealed class SharpMineSystem : EntitySystem
     {
         var doAfter = new DoAfterArgs(EntityManager,
             user,
-            TimeSpan.FromSeconds(3),
+            TimeSpan.FromSeconds(mine.Comp.DisarmDuration),
             new SharpMineDisarmDoAfterEvent(),
             mine,
             target: mine,
@@ -356,12 +356,7 @@ public sealed class SharpMineSystem : EntitySystem
 
     private bool IsBoilerGas(EntityUid uid)
     {
-        var protoId = MetaData(uid).EntityPrototype?.ID;
-        if (protoId == null)
-            return false;
-
-        return protoId.StartsWith("RMCSmokeAcid", StringComparison.Ordinal) ||
-               protoId.StartsWith("RMCSmokeNeurotoxin", StringComparison.Ordinal);
+        return HasComp<SharpMineTriggerGasComponent>(uid);
     }
 
     private bool CanTriggerMine(Entity<SharpMineComponent> mine, EntityUid target)
