@@ -1,6 +1,6 @@
-using Content.Shared.Doors.Components;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Stories.Barricade;
 
@@ -8,22 +8,29 @@ namespace Content.Shared._Stories.Barricade;
 public sealed partial class StoriesBarricadeDoorDamageVisualsComponent : Component
 {
     [DataField(required: true)]
-    public string ClosedPrefix = string.Empty;
+    public string ClosedDamageSprite = string.Empty;
 
     [DataField(required: true)]
-    public string OpenPrefix = string.Empty;
+    public string OpenDamageSprite = string.Empty;
 
     [DataField]
-    public DoorVisualLayers Layer = DoorVisualLayers.Base;
+    public StoriesBarricadeDoorDamageVisualLayers Layer = StoriesBarricadeDoorDamageVisualLayers.Damage;
 
-    [DataField]
-    public List<FixedPoint2> Thresholds = new()
-    {
-        100,
-        200,
-        300,
-    };
+    [DataField(required: true)]
+    public List<FixedPoint2> Thresholds = new();
 
-    [ViewVariables]
-    public bool Valid = true;
+    [DataField(required: true)]
+    public List<string> States = new();
+}
+
+[Serializable, NetSerializable]
+public enum StoriesBarricadeDoorDamageVisuals
+{
+    Damage,
+}
+
+[Serializable, NetSerializable]
+public enum StoriesBarricadeDoorDamageVisualLayers
+{
+    Damage,
 }

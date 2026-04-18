@@ -405,17 +405,22 @@
         path:
           "/Audio/_RMC14/Structures/metalhit.ogg"
   - type: Sprite
-    sprite: _Stories/Structures/Walls/Barricades/barricade_damageable.rsi
+    sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi
     layers:
-    - state: folding_metal_0
+    - state: folding_metal
       map: ["enum.DoorVisualLayers.Base"]
+    - sprite: _RMC14/Structures/Walls/Barricades/folding_metal_cracks.rsi
+      state: DamageOverlay_4
+      map: ["enum.StoriesBarricadeDoorDamageVisualLayers.Damage"]
+      visible: false
     - map: [ "acided" ]
     drawdepth: WallTops
   # Stories-start
   - type: StoriesBarricadeDoorDamageVisuals
-    closedPrefix: folding_metal
-    openPrefix: folding_metal_closed
+    closedDamageSprite: _RMC14/Structures/Walls/Barricades/folding_metal_cracks.rsi
+    openDamageSprite: _RMC14/Structures/Walls/Barricades/folding_metal_closed_cracks.rsi
     thresholds: [100, 200, 300]
+    states: [DamageOverlay_4, DamageOverlay_8, DamageOverlay_12]
   # Stories-end
   - type: RMCRepairable
     heal: 200
@@ -461,8 +466,8 @@
             visible: false
   - type: InteractionOutline
   - type: Door
-    openSpriteState: folding_metal_closed_0
-    closedSpriteState: folding_metal_0
+    openSpriteState: folding_metal_closed
+    closedSpriteState: folding_metal
     canPry: false
     occludes: false
     changeAirtight: false

@@ -168,17 +168,22 @@
   description: A tough folding plasteel barricade stronger than its metal counterpart. Can be closed and opened at a moment's notice. Repair with a welder.
   components:
   - type: Sprite
-    sprite: _Stories/Structures/Walls/Barricades/barricade_damageable.rsi
+    sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi
     layers:
-    - state: folding_plasteel_0
+    - state: folding_plasteel
       map: ["enum.DoorVisualLayers.Base"]
+    - sprite: _RMC14/Structures/Walls/Barricades/folding_plasteel_cracks.rsi
+      state: DamageOverlay_4
+      map: ["enum.StoriesBarricadeDoorDamageVisualLayers.Damage"]
+      visible: false
     - map: [ "acided" ]
     drawdepth: WallTops
   # Stories-start
   - type: StoriesBarricadeDoorDamageVisuals
-    closedPrefix: folding_plasteel
-    openPrefix: folding_plasteel_closed
+    closedDamageSprite: _RMC14/Structures/Walls/Barricades/folding_plasteel_cracks.rsi
+    openDamageSprite: _RMC14/Structures/Walls/Barricades/folding_plasteel_closed_cracks.rsi
     thresholds: [200, 400, 600]
+    states: [DamageOverlay_4, DamageOverlay_8, DamageOverlay_12]
   # Stories-end
   - type: RMCRepairable
     heal: 200
@@ -221,8 +226,8 @@
           False:
             visible: false
   - type: Door
-    openSpriteState: folding_plasteel_closed_0
-    closedSpriteState: folding_plasteel_0
+    openSpriteState: folding_plasteel_closed
+    closedSpriteState: folding_plasteel
     canPry: false
     occludes: false
     changeAirtight: false
