@@ -23,4 +23,10 @@ public sealed partial class SharpStickyDartComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool MineSpawned;
+
+    [AutoNetworkedField]
+    public bool Armed;
+
+    [AutoNetworkedField]
+    public TimeSpan DetonateAt;
 }

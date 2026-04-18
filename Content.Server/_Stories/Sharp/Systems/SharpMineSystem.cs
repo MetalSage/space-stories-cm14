@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.Damage;
@@ -7,18 +5,15 @@ using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.OnCollide;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._Stories.Sharp;
+using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
-using Content.Shared.Explosion.Components;
-using Content.Shared.Inventory;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Toggleable;
-using Robust.Shared.GameObjects;
 using Content.Shared.Physics;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
@@ -29,18 +24,20 @@ public sealed class SharpMineSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly GunIFFSystem _gunIFF = default!;
+    [Dependency] private readonly IMapManager _map = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedRMCFlammableSystem _flammable = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+
     private readonly HashSet<EntityUid> _nearby = new();
     private readonly List<EntityUid> _toDetonate = new();
     private readonly List<EntityUid> _toDisarm = new();
-    private readonly List<(EntityUid OldMine, string NewProto)> _toReplace = new();
-    private readonly HashSet<EntProtoId<IFFFactionComponent>> _mineFactions = new();
-    private readonly HashSet<EntProtoId<IFFFactionComponent>> _targetFactions = new();
 
     public override void Initialize()
     {
@@ -54,12 +51,14 @@ public sealed class SharpMineSystem : EntitySystem
         SubscribeLocalEvent<SharpMineComponent, SharpMineDisarmDoAfterEvent>(OnMineDisarmDoAfter);
     }
 
-    private void OnMapInit(EntityUid uid, SharpMineComponent comp, ref MapInitEvent args)
+    private void OnMapInit(Entity<SharpMineComponent> mine, ref MapInitEvent args)
     {
-        var runtime = EnsureComp<SharpMineRuntimeComponent>(uid);
-        runtime.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(comp.ActivationDelay);
-        runtime.Activated = false;
-        UpdateMineAppearance(uid, runtime, false);
+        mine.Comp.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(mine.Comp.ActivationDelay);
+        mine.Comp.Activated = false;
+        mine.Comp.Detonated = false;
+
+        ClampConfiguredLevel(mine);
+        SetVisualState(mine, SharpMineState.Arming);
     }
 
     private void OnExplosionReceived(Entity<SharpMineComponent> mine, ref ExplosionReceivedEvent args)
@@ -67,7 +66,7 @@ public sealed class SharpMineSystem : EntitySystem
         if (args.Damage.GetTotal() <= 0 || TerminatingOrDeleted(mine.Owner))
             return;
 
-        Detonate(mine.Owner);
+        Detonate(mine);
     }
 
     private void OnMineDamageChanged(Entity<SharpMineComponent> mine, ref DamageChangedEvent args)
@@ -75,11 +74,11 @@ public sealed class SharpMineSystem : EntitySystem
         if (!args.DamageIncreased || TerminatingOrDeleted(mine.Owner))
             return;
 
-        if (!TryComp<MaxDamageComponent>(mine.Owner, out var maxDamage) ||
+        if (!TryComp<MaxDamageComponent>(mine, out var maxDamage) ||
             args.Damageable.TotalDamage < maxDamage.Max)
             return;
 
-        Detonate(mine.Owner);
+        Detonate(mine);
     }
 
     private void OnMineStartCollide(Entity<SharpMineComponent> mine, ref StartCollideEvent args)
@@ -87,18 +86,8 @@ public sealed class SharpMineSystem : EntitySystem
         if (TerminatingOrDeleted(mine.Owner))
             return;
 
-        if (TryComp<SharpStickyDartComponent>(args.OtherEntity, out _))
-            return;
-
-        if (!TryComp<DamageOnCollideComponent>(args.OtherEntity, out var damageOnCollide))
-            return;
-
-        if (damageOnCollide.Acidic ||
-            damageOnCollide.Fire ||
-            HasTriggerDamage(damageOnCollide.Damage, mine.Comp.DetonateOnDamage))
-        {
-            Detonate(mine.Owner);
-        }
+        if (IsHazard(mine.Comp, args.OtherEntity))
+            Detonate(mine);
     }
 
     private void OnInteractUsing(Entity<SharpMineComponent> mine, ref InteractUsingEvent args)
@@ -151,42 +140,29 @@ public sealed class SharpMineSystem : EntitySystem
 
         _toDetonate.Clear();
         _toDisarm.Clear();
-        _toReplace.Clear();
 
-        var query = EntityQueryEnumerator<SharpMineComponent, TransformComponent, SharpMineRuntimeComponent>();
-        while (query.MoveNext(out var uid, out var mine, out var xform, out var rt))
+        var query = EntityQueryEnumerator<SharpMineComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var mine, out var xform))
         {
-            if (TerminatingOrDeleted(uid)) continue;
+            if (TerminatingOrDeleted(uid))
+                continue;
 
-            if (IsTouchingAcidOrFire(uid, mine))
+            if (IsTouchingHazard((uid, mine)))
             {
                 _toDetonate.Add(uid);
                 continue;
             }
 
-            if (!rt.Activated && _timing.CurTime >= rt.ActivateAt)
+            if (!mine.Activated)
             {
-                rt.Activated = true;
-                UpdateMineAppearance(uid, rt, true);
-            }
-            else if (!rt.Activated)
-            {
-                var blinkInterval = mine.ArmingBlinkInterval;
-                if (blinkInterval <= 0f)
-                {
-                    UpdateMineAppearance(uid, rt, true);
+                if (_timing.CurTime < mine.ActivateAt)
                     continue;
-                }
 
-                var armedVisual = (int) (_timing.CurTime.TotalSeconds / blinkInterval) % 2 == 0;
-                UpdateMineAppearance(uid, rt, armedVisual);
+                mine.Activated = true;
+                SetVisualState((uid, mine), LevelToState(mine.Level));
             }
 
-            // The mine only arms after a short delay; its 300s lifespan starts then.
-            if (_timing.CurTime < rt.ActivateAt)
-                continue;
-
-            var age = (_timing.CurTime - rt.ActivateAt).TotalSeconds;
+            var age = (_timing.CurTime - mine.ActivateAt).TotalSeconds;
 
             if (age >= mine.MaxLifespan)
             {
@@ -194,99 +170,103 @@ public sealed class SharpMineSystem : EntitySystem
                 continue;
             }
 
-            var desiredLevel = 1 + (int)(age / mine.LevelUpInterval);
-            if (desiredLevel > mine.MaxLevel)
-                desiredLevel = mine.MaxLevel;
-
+            var desiredLevel = GetDesiredLevel((uid, mine), age);
             if (desiredLevel != mine.Level)
             {
-                var protoId = MetaData(uid).EntityPrototype?.ID;
-                if (protoId != null && protoId.EndsWith(mine.Level.ToString()))
-                {
-                    var newProto = protoId.Substring(0, protoId.Length - 1) + desiredLevel.ToString();
-                    _toReplace.Add((uid, newProto));
-                    continue;
-                }
                 mine.Level = desiredLevel;
                 Dirty(uid, mine);
+                SetVisualState((uid, mine), LevelToState(desiredLevel));
             }
 
             _nearby.Clear();
             _lookup.GetEntitiesInRange(xform.Coordinates, mine.TriggerRadius, _nearby);
 
-            var enemyFound = false;
             foreach (var other in _nearby)
             {
                 if (!CanTriggerMine((uid, mine), other))
                     continue;
 
-                enemyFound = true;
+                _toDetonate.Add(uid);
                 break;
             }
-
-            if (enemyFound) _toDetonate.Add(uid);
-        }
-
-        foreach (var (oldMine, newProto) in _toReplace)
-        {
-            if (TerminatingOrDeleted(oldMine)) continue;
-            var coords = Transform(oldMine).Coordinates;
-            var oldRt = CompOrNull<SharpMineRuntimeComponent>(oldMine);
-            var oldDamageable = CompOrNull<DamageableComponent>(oldMine);
-            var newMine = Spawn(newProto, coords);
-            if (oldRt != null)
-            {
-                var newRt = EnsureComp<SharpMineRuntimeComponent>(newMine);
-                newRt.ActivateAt = oldRt.ActivateAt;
-                newRt.Activated = oldRt.Activated;
-                newRt.IffFactions.UnionWith(oldRt.IffFactions);
-                UpdateMineAppearance(newMine, newRt, oldRt.AppearanceEnabled ?? oldRt.Activated);
-            }
-
-            if (oldDamageable != null &&
-                oldDamageable.TotalDamage > 0 &&
-                TryComp<DamageableComponent>(newMine, out var newDamageable))
-            {
-                _damageable.SetDamage(newMine, newDamageable, new DamageSpecifier(oldDamageable.Damage));
-            }
-
-            QueueDel(oldMine);
         }
 
         foreach (var uid in _toDetonate)
         {
-            if (!TerminatingOrDeleted(uid)) Detonate(uid);
+            if (!TerminatingOrDeleted(uid) && TryComp(uid, out SharpMineComponent? mine))
+                Detonate((uid, mine));
         }
 
         foreach (var uid in _toDisarm)
         {
-            if (!TerminatingOrDeleted(uid) &&
-                TryComp(uid, out SharpMineComponent? mine))
-            {
+            if (!TerminatingOrDeleted(uid) && TryComp(uid, out SharpMineComponent? mine))
                 DisarmMine((uid, mine));
-            }
         }
     }
 
-    private void Detonate(EntityUid uid)
+    private void Detonate(Entity<SharpMineComponent> mine)
     {
-        if (TerminatingOrDeleted(uid))
+        if (mine.Comp.Detonated || TerminatingOrDeleted(mine.Owner))
             return;
 
-        var explosionRadius = TryComp(uid, out SharpMineComponent? mine)
-            ? mine.ExplosionRadius
-            : 0f;
+        mine.Comp.Detonated = true;
 
-        if (HasComp<Content.Shared._RMC14.Atmos.TileFireOnTriggerComponent>(uid))
+        if (TryGetLevelEntry(mine, out var levels, out var entry))
         {
-            var fireEv = new Content.Shared._RMC14.Explosion.RMCTriggerEvent();
-            RaiseLocalEvent(uid, ref fireEv);
+            TriggerFireLevel(mine.Owner, levels, entry);
+            TriggerExplosionLevel(mine, levels, entry);
         }
 
-        if (TryComp<ExplosiveComponent>(uid, out var explosive))
-            _explosion.TriggerExplosive(uid, explosive, delete: true, radius: explosionRadius);
-        else
-            QueueDel(uid);
+        QueueDel(mine.Owner);
+    }
+
+    private void TriggerFireLevel(EntityUid uid, SharpMineLevelsComponent levels, SharpMineLevel entry)
+    {
+        if (entry.TileFireSpawn is not { } spawn)
+            return;
+
+        if (entry.TileFireRange is not { } range)
+        {
+            Log.Warning($"SHARP mine {ToPrettyString(uid)} has tile fire level without range.");
+            return;
+        }
+
+        var coords = _transform.GetMoverCoordinates(uid);
+        _audio.PlayPvs(levels.TileFireSound, coords);
+
+        var tile = coords.SnapToGrid(EntityManager, _map);
+        _flammable.SpawnFireDiamond(spawn, tile, range, entry.TileFireIntensity, entry.TileFireDuration);
+    }
+
+    private void TriggerExplosionLevel(Entity<SharpMineComponent> mine, SharpMineLevelsComponent levels, SharpMineLevel entry)
+    {
+        if (levels.ExplosionType is not { } type)
+            return;
+
+        if (entry.ExplosiveMaxIntensity is not { } maxIntensity ||
+            entry.ExplosiveIntensitySlope is not { } slope)
+        {
+            Log.Warning($"SHARP mine {ToPrettyString(mine.Owner)} has explosion level without max intensity or slope.");
+            return;
+        }
+
+        if (entry.ExplosiveTotalIntensity is not { } totalIntensity || totalIntensity <= 0f)
+        {
+            Log.Warning($"SHARP mine {ToPrettyString(mine.Owner)} has explosion level without total intensity.");
+            return;
+        }
+
+        _explosion.QueueExplosion(mine.Owner,
+            type,
+            totalIntensity,
+            slope,
+            maxIntensity,
+            levels.ExplosionTileBreakScale,
+            levels.ExplosionMaxTileBreak,
+            levels.ExplosionCanCreateVacuum);
+
+        var ev = new CMExplosiveTriggeredEvent();
+        RaiseLocalEvent(mine.Owner, ref ev);
     }
 
     private void DisarmMine(Entity<SharpMineComponent> mine)
@@ -294,24 +274,114 @@ public sealed class SharpMineSystem : EntitySystem
         if (mine.Comp.DisarmSpawnProto is { } spawnProto)
             Spawn(spawnProto, Transform(mine).Coordinates);
 
-        QueueDel(mine);
+        QueueDel(mine.Owner);
     }
 
-    private void UpdateMineAppearance(EntityUid uid, SharpMineRuntimeComponent runtime, bool activated)
+    private void ClampConfiguredLevel(Entity<SharpMineComponent> mine)
     {
-        if (runtime.AppearanceEnabled is { } appearanceEnabled && appearanceEnabled == activated)
+        var maxLevel = GetConfiguredMaxLevel(mine);
+        var level = Math.Clamp(mine.Comp.Level, 1, maxLevel);
+
+        if (level == mine.Comp.Level)
             return;
 
-        runtime.AppearanceEnabled = activated;
-
-        if (TryComp(uid, out AppearanceComponent? appearance))
-            _appearance.SetData(uid, ToggleableVisuals.Enabled, activated, appearance);
+        Log.Warning($"Clamped SHARP mine {ToPrettyString(mine.Owner)} level from {mine.Comp.Level} to {level}.");
+        mine.Comp.Level = level;
+        Dirty(mine);
     }
 
-    private bool TerminatingOrDeleted(EntityUid uid)
+    private int GetDesiredLevel(Entity<SharpMineComponent> mine, double age)
     {
-        return Deleted(uid) || MetaData(uid).EntityLifeStage >= EntityLifeStage.Terminating;
+        var maxLevel = GetConfiguredMaxLevel(mine);
+        if (maxLevel <= 1)
+            return 1;
+
+        if (mine.Comp.LevelUpInterval <= 0f)
+            return maxLevel;
+
+        return Math.Min(1 + (int)(age / mine.Comp.LevelUpInterval), maxLevel);
     }
+
+    private int GetConfiguredMaxLevel(Entity<SharpMineComponent> mine)
+    {
+        if (!TryComp<SharpMineLevelsComponent>(mine, out var levels))
+            return 1;
+
+        return Math.Max(1, Math.Min(mine.Comp.MaxLevel, levels.Levels.Count));
+    }
+
+    private bool TryGetLevelEntry(
+        Entity<SharpMineComponent> mine,
+        out SharpMineLevelsComponent levels,
+        out SharpMineLevel entry)
+    {
+        levels = default!;
+        entry = default!;
+
+        if (!TryComp<SharpMineLevelsComponent>(mine, out var levelsComp))
+        {
+            Log.Warning($"SHARP mine {ToPrettyString(mine.Owner)} has no level configuration.");
+            return false;
+        }
+
+        if (levelsComp.Levels.Count == 0)
+        {
+            Log.Warning($"SHARP mine {ToPrettyString(mine.Owner)} has empty level configuration.");
+            return false;
+        }
+
+        levels = levelsComp;
+        var level = Math.Clamp(mine.Comp.Level, 1, levels.Levels.Count);
+        entry = levels.Levels[level - 1];
+        return true;
+    }
+
+    private bool IsTouchingHazard(Entity<SharpMineComponent> mine)
+    {
+        foreach (var other in _physics.GetEntitiesIntersectingBody(mine.Owner, (int)CollisionGroup.AllMask))
+        {
+            if (other == mine.Owner || TerminatingOrDeleted(other))
+                continue;
+
+            if (IsHazard(mine.Comp, other))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool IsHazard(SharpMineComponent mine, EntityUid other)
+    {
+        if (HasComp<SharpStickyDartComponent>(other))
+            return false;
+
+        if (HasComp<SharpMineTriggerGasComponent>(other) || HasComp<RMCIgniteOnCollideComponent>(other))
+            return true;
+
+        if (!TryComp<DamageOnCollideComponent>(other, out var damageOnCollide))
+            return false;
+
+        return damageOnCollide.Acidic ||
+            damageOnCollide.Fire ||
+            HasTriggerDamage(damageOnCollide.Damage, mine.DetonateOnDamage);
+    }
+
+    private void SetVisualState(Entity<SharpMineComponent> mine, SharpMineState state)
+    {
+        if (mine.Comp.AppearanceState == state)
+            return;
+
+        mine.Comp.AppearanceState = state;
+        _appearance.SetData(mine, SharpMineVisuals.State, state);
+    }
+
+    private static SharpMineState LevelToState(int level) => level switch
+    {
+        <= 1 => SharpMineState.Level1,
+        2 => SharpMineState.Level2,
+        3 => SharpMineState.Level3,
+        _ => SharpMineState.Level4,
+    };
 
     private static bool HasTriggerDamage(DamageSpecifier damage, DamageSpecifier triggerDamage)
     {
@@ -327,38 +397,6 @@ public sealed class SharpMineSystem : EntitySystem
         return false;
     }
 
-    private bool IsTouchingAcidOrFire(EntityUid uid, SharpMineComponent mine)
-    {
-        foreach (var other in _physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.AllMask))
-        {
-            if (other == uid || TerminatingOrDeleted(other))
-                continue;
-
-            if (IsBoilerGas(other))
-                return true;
-
-            if (HasComp<RMCIgniteOnCollideComponent>(other))
-                return true;
-
-            if (!TryComp<DamageOnCollideComponent>(other, out var damageOnCollide))
-                continue;
-
-            if (damageOnCollide.Acidic ||
-                damageOnCollide.Fire ||
-                HasTriggerDamage(damageOnCollide.Damage, mine.DetonateOnDamage))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private bool IsBoilerGas(EntityUid uid)
-    {
-        return HasComp<SharpMineTriggerGasComponent>(uid);
-    }
-
     private bool CanTriggerMine(Entity<SharpMineComponent> mine, EntityUid target)
     {
         if (target == mine.Owner || TerminatingOrDeleted(target))
@@ -367,30 +405,15 @@ public sealed class SharpMineSystem : EntitySystem
         if (!HasComp<MobStateComponent>(target) || _mobState.IsDead(target))
             return false;
 
-        if (!mine.Comp.IgnoreAnyIff || !TryGetMineFactions(mine.Owner, _mineFactions))
+        if (!mine.Comp.BlockFriendlyFire || mine.Comp.IffFactions.Count == 0)
             return true;
 
-        var ev = new GetIFFFactionEvent(SlotFlags.IDCARD, _targetFactions);
-        _targetFactions.Clear();
-        RaiseLocalEvent(target, ref ev);
-
-        foreach (var faction in _mineFactions)
+        foreach (var faction in mine.Comp.IffFactions)
         {
-            if (ev.Factions.Contains(faction))
+            if (_gunIFF.IsInFaction(target, faction))
                 return false;
         }
 
-        return true;
-    }
-
-    private bool TryGetMineFactions(EntityUid mine, HashSet<EntProtoId<IFFFactionComponent>> factions)
-    {
-        factions.Clear();
-
-        if (!TryComp<SharpMineRuntimeComponent>(mine, out var runtime) || runtime.IffFactions.Count == 0)
-            return false;
-
-        factions.UnionWith(runtime.IffFactions);
         return true;
     }
 }

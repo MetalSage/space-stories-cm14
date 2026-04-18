@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Numerics;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.Explosion;
+using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._Stories.Sharp;
 using Content.Shared.Explosion.Components;
@@ -12,12 +11,11 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared._RMC14.Weapons.Ranged;
+
 namespace Content.Server._Stories.Sharp;
 
 public sealed class SharpStickyDartSystem : EntitySystem
@@ -199,19 +197,19 @@ public sealed class SharpStickyDartSystem : EntitySystem
                 continue;
 
             var target = emb.EmbeddedIntoUid.Value;
-            var rt = EnsureComp<SharpStickyDartRuntimeComponent>(uid);
 
-            if (!rt.Armed)
+            if (!sticky.Armed)
             {
-                rt.Armed = true;
+                sticky.Armed = true;
 
                 var delay = sticky.LongDelay;
                 if (proj.Weapon != null && TryComp<SharpFuseModeComponent>(proj.Weapon.Value, out var mode))
                     delay = mode.LongMode ? sticky.LongDelay : sticky.ShortDelay;
 
-                rt.DetonateAt = _timing.CurTime + TimeSpan.FromSeconds(delay);
+                sticky.DetonateAt = _timing.CurTime + TimeSpan.FromSeconds(delay);
+                Dirty(uid, sticky);
             }
-            else if (_timing.CurTime >= rt.DetonateAt)
+            else if (_timing.CurTime >= sticky.DetonateAt)
             {
                 if (IsFriendlyTarget(uid, target))
                 {
@@ -287,12 +285,14 @@ public sealed class SharpStickyDartSystem : EntitySystem
         if (!TryGetProjectileFactions(projectileUid))
             return;
 
-        var runtime = EnsureComp<SharpMineRuntimeComponent>(mineUid);
-        runtime.IffFactions.Clear();
+        if (!TryComp<SharpMineComponent>(mineUid, out var mine))
+            return;
+
+        mine.IffFactions.Clear();
 
         foreach (var faction in _iffBuffer)
         {
-            runtime.IffFactions.Add(faction);
+            mine.IffFactions.Add(faction);
         }
     }
 
@@ -304,10 +304,5 @@ public sealed class SharpStickyDartSystem : EntitySystem
     private bool CanStickToTarget(EntityUid target)
     {
         return HasComp<MobStateComponent>(target);
-    }
-
-    private bool TerminatingOrDeleted(EntityUid uid)
-    {
-        return Deleted(uid) || MetaData(uid).EntityLifeStage >= EntityLifeStage.Terminating;
     }
 }

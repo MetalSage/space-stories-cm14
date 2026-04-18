@@ -110,6 +110,8 @@
         layer:
         - BulletImpassable
         - XenoProjectileImpassable
+        mask:
+        - MidImpassable
       hitbox:
         shape:
           !type:PhysShapeAabb
@@ -125,13 +127,11 @@
   - type: RequireProjectileTarget
   - type: Appearance
   - type: SharpMine
-    ignoreAnyIff: true
+    blockFriendlyFire: true
     triggerRadius: 1.0
     activationDelay: 3
-    armingBlinkInterval: 0.25
     levelUpInterval: 30
     maxLifespan: 300
-    explosionRadius: 3
     detonateOnDamage:
       types:
         Heat: 1
@@ -139,7 +139,7 @@
     maxLevel: 4
 
 - type: entity
-  id: STSharpMineExplosiveL1
+  id: STSharpMineExplosive
   name: SHARP mine (explosive)
   parent: STSharpMineBase
   components:
@@ -149,86 +149,39 @@
     sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
     drawdepth: Overlays
     layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
+    - state: phase0
+      map: [ "enum.SharpMineVisuals.Layer" ]
   - type: GenericVisualizer
     visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: { state: phase1 }
-          False: { state: phase0 }
-  - type: Explosive
+      enum.SharpMineVisuals.State:
+        enum.SharpMineVisuals.Layer:
+          Inactive: { state: phase0 }
+          Arming: { state: phase0 }
+          Level1: { state: phase1 }
+          Level2: { state: phase2 }
+          Level3: { state: phase3 }
+          Level4: { state: phase4 }
+  - type: SharpMineLevels
     explosionType: RMC
-    maxIntensity: 20
-    intensitySlope: 6
-    totalIntensity: 200
-    canCreateVacuum: false
+    explosionCanCreateVacuum: false
+    levels:
+    - explosiveMaxIntensity: 20
+      explosiveIntensitySlope: 6
+      explosiveTotalIntensity: 200
+    - explosiveMaxIntensity: 28
+      explosiveIntensitySlope: 7
+      explosiveTotalIntensity: 320
+    - explosiveMaxIntensity: 36
+      explosiveIntensitySlope: 8
+      explosiveTotalIntensity: 460
+    - explosiveMaxIntensity: 46
+      explosiveIntensitySlope: 9
+      explosiveTotalIntensity: 620
   - type: CMExplosionEffect
-  - type: CMVocalizeTrigger
   - type: RMCScorchEffect
 
 - type: entity
-  id: STSharpMineExplosiveL2
-  parent: STSharpMineExplosiveL1
-  components:
-  - type: Sprite
-    drawdepth: Overlays
-    layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: { state: phase2 }
-          False: { state: phase0 }
-  - type: Explosive
-    totalIntensity: 320
-    maxIntensity: 28
-    intensitySlope: 7
-
-- type: entity
-  id: STSharpMineExplosiveL3
-  parent: STSharpMineExplosiveL1
-  components:
-  - type: Sprite
-    drawdepth: Overlays
-    layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: { state: phase3 }
-          False: { state: phase0 }
-  - type: Explosive
-    totalIntensity: 460
-    maxIntensity: 36
-    intensitySlope: 8
-
-- type: entity
-  id: STSharpMineExplosiveL4
-  parent: STSharpMineExplosiveL1
-  components:
-  - type: Sprite
-    drawdepth: Overlays
-    layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: { state: phase4 }
-          False: { state: phase0 }
-  - type: Explosive
-    totalIntensity: 620
-    maxIntensity: 46
-    intensitySlope: 9
-
-- type: entity
-  id: STSharpMineIncendiaryL1
+  id: STSharpMineIncendiary
   name: SHARP mine (incendiary)
   parent: STSharpMineBase
   components:
@@ -238,82 +191,36 @@
     sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
     drawdepth: Overlays
     layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
+    - state: phase0
+      map: [ "enum.SharpMineVisuals.Layer" ]
   - type: GenericVisualizer
     visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: { state: phase1 }
-          False: { state: phase0 }
-  - type: TileFireOnTrigger
-    spawn: STSharpTileFireL1
-    range: 3
-    intensity: 15
-    duration: 12
-    sound:
+      enum.SharpMineVisuals.State:
+        enum.SharpMineVisuals.Layer:
+          Inactive: { state: phase0 }
+          Arming: { state: phase0 }
+          Level1: { state: phase1 }
+          Level2: { state: phase2 }
+          Level3: { state: phase3 }
+          Level4: { state: phase4 }
+  - type: SharpMineLevels
+    tileFireSound:
       path: /Audio/_RMC14/Weapons/Guns/Flamer/gun_flamethrower2.ogg
-
-- type: entity
-  id: STSharpMineIncendiaryL2
-  parent: STSharpMineIncendiaryL1
-  components:
-  - type: Sprite
-    drawdepth: Overlays
-    layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: { state: phase2 }
-          False: { state: phase0 }
-  - type: TileFireOnTrigger
-    spawn: STSharpTileFireGreen
-    range: 3
-    intensity: 22
-    duration: 24
-
-- type: entity
-  id: STSharpMineIncendiaryL3
-  parent: STSharpMineIncendiaryL1
-  components:
-  - type: Sprite
-    drawdepth: Overlays
-    layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: { state: phase3 }
-          False: { state: phase0 }
-  - type: TileFireOnTrigger
-    spawn: STSharpTileFireNapalmL3
-    range: 3
-    intensity: 30
-    duration: 35
-
-- type: entity
-  id: STSharpMineIncendiaryL4
-  parent: STSharpMineIncendiaryL1
-  components:
-  - type: Sprite
-    drawdepth: Overlays
-    layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: { state: phase4 }
-          False: { state: phase0 }
-  - type: TileFireOnTrigger
-    spawn: STSharpTileFireNapalmL4
-    range: 4
-    intensity: 35
-    duration: 45
+    levels:
+    - tileFireSpawn: STSharpTileFireL1
+      tileFireRange: 3
+      tileFireIntensity: 15
+      tileFireDuration: 12
+    - tileFireSpawn: STSharpTileFireGreen
+      tileFireRange: 3
+      tileFireIntensity: 22
+      tileFireDuration: 24
+    - tileFireSpawn: STSharpTileFireNapalmL3
+      tileFireRange: 3
+      tileFireIntensity: 30
+      tileFireDuration: 35
+    - tileFireSpawn: STSharpTileFireNapalmL4
+      tileFireRange: 4
+      tileFireIntensity: 35
+      tileFireDuration: 45
 

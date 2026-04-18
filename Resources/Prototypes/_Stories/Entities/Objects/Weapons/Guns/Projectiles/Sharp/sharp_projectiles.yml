@@ -31,7 +31,7 @@
   - type: IgnorePredictionHide
 
   - type: SharpStickyDart
-    mineProto: STSharpMineExplosiveL1
+    mineProto: STSharpMineExplosive
     iffDropProto: STCartridgeSharpExplosive
     shortDelay: 2.5
     longDelay: 5.0
@@ -87,7 +87,7 @@
   - type: IgnorePredictionHide
 
   - type: SharpStickyDart
-    mineProto: STSharpMineIncendiaryL1
+    mineProto: STSharpMineIncendiary
     iffDropProto: STCartridgeSharpIncendiary
     shortDelay: 2.5
     longDelay: 5.0
