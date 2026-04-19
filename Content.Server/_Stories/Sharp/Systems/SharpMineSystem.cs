@@ -14,8 +14,8 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Stories.Sharp;
@@ -31,11 +31,14 @@ public sealed class SharpMineSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly GunIFFSystem _gunIFF = default!;
     [Dependency] private readonly IMapManager _map = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedRMCFlammableSystem _flammable = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
+    private const CollisionGroup HazardCollisionMask =
+        CollisionGroup.BulletImpassable | CollisionGroup.MidImpassable | CollisionGroup.Impassable;
+
     private readonly HashSet<EntityUid> _nearby = new();
+    private readonly HashSet<EntityUid> _touching = new();
     private readonly List<EntityUid> _toDetonate = new();
     private readonly List<EntityUid> _toDisarm = new();
 
@@ -153,13 +156,15 @@ public sealed class SharpMineSystem : EntitySystem
                 continue;
             }
 
+            var visualDirty = false;
+
             if (!mine.Activated)
             {
                 if (_timing.CurTime < mine.ActivateAt)
                     continue;
 
                 mine.Activated = true;
-                SetVisualState((uid, mine), LevelToState(mine.Level));
+                visualDirty = true;
             }
 
             var age = (_timing.CurTime - mine.ActivateAt).TotalSeconds;
@@ -175,8 +180,11 @@ public sealed class SharpMineSystem : EntitySystem
             {
                 mine.Level = desiredLevel;
                 Dirty(uid, mine);
-                SetVisualState((uid, mine), LevelToState(desiredLevel));
+                visualDirty = true;
             }
+
+            if (visualDirty)
+                SetVisualState((uid, mine), LevelToState(mine.Level));
 
             _nearby.Clear();
             _lookup.GetEntitiesInRange(xform.Coordinates, mine.TriggerRadius, _nearby);
@@ -338,12 +346,32 @@ public sealed class SharpMineSystem : EntitySystem
 
     private bool IsTouchingHazard(Entity<SharpMineComponent> mine)
     {
-        foreach (var other in _physics.GetEntitiesIntersectingBody(mine.Owner, (int)CollisionGroup.AllMask))
+        _touching.Clear();
+        _lookup.GetEntitiesIntersecting(mine.Owner, _touching, LookupFlags.Dynamic | LookupFlags.Static | LookupFlags.Sensors);
+
+        foreach (var other in _touching)
         {
             if (other == mine.Owner || TerminatingOrDeleted(other))
                 continue;
 
+            if (!HasHazardCollisionLayer(other))
+                continue;
+
             if (IsHazard(mine.Comp, other))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool HasHazardCollisionLayer(EntityUid uid)
+    {
+        if (!TryComp<FixturesComponent>(uid, out var fixtures))
+            return false;
+
+        foreach (var fixture in fixtures.Fixtures.Values)
+        {
+            if (((CollisionGroup) fixture.CollisionLayer & HazardCollisionMask) != 0)
                 return true;
         }
 

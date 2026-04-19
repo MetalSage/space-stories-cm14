@@ -142,8 +142,8 @@
     - Cartridge
     - STSharpCartridgeFlechette
   - type: Sprite
-    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
-    state: disarmed
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/flechette.rsi
+    state: flechette_dart
   - type: CartridgeAmmo
     proto: STBulletSharpFlechette
     deleteOnSpawn: true

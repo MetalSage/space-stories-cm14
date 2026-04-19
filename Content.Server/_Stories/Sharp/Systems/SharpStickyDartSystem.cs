@@ -121,26 +121,41 @@ public sealed class SharpStickyDartSystem : EntitySystem
 
     private void OnSharpAmmoShot(EntityUid uid, SharpFuseModeComponent comp, ref AmmoShotEvent args)
     {
-        if (!TryComp(uid, out GunComponent? gun) ||
-            gun.ShootCoordinates is not { } targetCoords ||
-            !TryComp(uid, out ShootAtFixedPointComponent? fixedPoint))
-        {
-            return;
-        }
-
-        var targetMap = _transform.ToMapCoordinates(targetCoords);
+        var hasPlannedStop = TryGetShotTarget(uid, out var targetMap, out var fixedPoint);
 
         foreach (var projectile in args.FiredProjectiles)
         {
-            if (TerminatingOrDeleted(projectile) || !HasComp<SharpStickyDartComponent>(projectile))
+            if (TerminatingOrDeleted(projectile) || !TryComp<SharpStickyDartComponent>(projectile, out var sticky))
                 continue;
 
-            if (!TryGetPlannedStop(projectile, targetMap, fixedPoint, out var stopMap))
+            sticky.SelectedDelay = comp.LongMode ? sticky.LongDelay : sticky.ShortDelay;
+
+            if (!hasPlannedStop || !TryGetPlannedStop(projectile, targetMap, fixedPoint, out var stopMap))
                 continue;
 
             var stopComp = EnsureComp<SharpStickyDartStopPointComponent>(projectile);
             stopComp.Coordinates = stopMap;
         }
+    }
+
+    private bool TryGetShotTarget(
+        EntityUid uid,
+        out MapCoordinates targetMap,
+        out ShootAtFixedPointComponent fixedPoint)
+    {
+        targetMap = default;
+        fixedPoint = default!;
+
+        if (!TryComp(uid, out GunComponent? gun) ||
+            gun.ShootCoordinates is not { } targetCoords ||
+            !TryComp<ShootAtFixedPointComponent>(uid, out var fixedPointComp))
+        {
+            return false;
+        }
+
+        fixedPoint = fixedPointComp!;
+        targetMap = _transform.ToMapCoordinates(targetCoords);
+        return true;
     }
 
     private bool TryGetPlannedStop(
@@ -202,10 +217,7 @@ public sealed class SharpStickyDartSystem : EntitySystem
             {
                 sticky.Armed = true;
 
-                var delay = sticky.LongDelay;
-                if (proj.Weapon != null && TryComp<SharpFuseModeComponent>(proj.Weapon.Value, out var mode))
-                    delay = mode.LongMode ? sticky.LongDelay : sticky.ShortDelay;
-
+                var delay = sticky.SelectedDelay ?? sticky.LongDelay;
                 sticky.DetonateAt = _timing.CurTime + TimeSpan.FromSeconds(delay);
                 Dirty(uid, sticky);
             }
@@ -244,7 +256,7 @@ public sealed class SharpStickyDartSystem : EntitySystem
 
     private bool IsFriendlyTarget(EntityUid projectileUid, EntityUid target)
     {
-        if (!TryGetProjectileFactions(projectileUid))
+        if (!TryGetProjectileFactions(projectileUid, _iffBuffer))
             return false;
 
         foreach (var faction in _iffBuffer)
@@ -256,15 +268,17 @@ public sealed class SharpStickyDartSystem : EntitySystem
         return false;
     }
 
-    private bool TryGetProjectileFactions(EntityUid projectileUid)
+    private bool TryGetProjectileFactions(
+        EntityUid projectileUid,
+        HashSet<EntProtoId<IFFFactionComponent>> factions)
     {
-        _iffBuffer.Clear();
+        factions.Clear();
 
         if (TryComp<ProjectileIFFComponent>(projectileUid, out var projectileIff) &&
             projectileIff.Enabled &&
             projectileIff.Factions.Count > 0)
         {
-            _iffBuffer.UnionWith(projectileIff.Factions);
+            factions.UnionWith(projectileIff.Factions);
             return true;
         }
 
@@ -277,12 +291,12 @@ public sealed class SharpStickyDartSystem : EntitySystem
             return false;
         }
 
-        return _gunIFF.TryGetFactions((shooter, CompOrNull<UserIFFComponent>(shooter)), _iffBuffer, SlotFlags.IDCARD);
+        return _gunIFF.TryGetFactions((shooter, CompOrNull<UserIFFComponent>(shooter)), factions, SlotFlags.IDCARD);
     }
 
     private void TransferMineFactions(EntityUid projectileUid, EntityUid mineUid)
     {
-        if (!TryGetProjectileFactions(projectileUid))
+        if (!TryGetProjectileFactions(projectileUid, _iffBuffer))
             return;
 
         if (!TryComp<SharpMineComponent>(mineUid, out var mine))

@@ -19,8 +19,8 @@ ent-STBulletSharpFlechetteShard = флешеттный осколок
 
 ent-STSharpMineBase = мина SHARP
     .desc = Быстроразвертываемая мина SHARP.
-ent-STSharpMineExplosiveL1 = мина SHARP (взрывная)
-ent-STSharpMineIncendiaryL1 = мина SHARP (зажигательная)
+ent-STSharpMineExplosive = мина SHARP (взрывная)
+ent-STSharpMineIncendiary = мина SHARP (зажигательная)
 ent-STSharpMineDisarmedExplosive = обезвреженный дротик SHARP (взрывной)
 ent-STSharpMineDisarmedIncendiary = обезвреженный дротик SHARP (зажигательный)
 

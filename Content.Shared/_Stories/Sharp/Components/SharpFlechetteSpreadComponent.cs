@@ -1,9 +1,8 @@
-using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.Sharp;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 public sealed partial class SharpFlechetteSpreadComponent : Component
 {
     [DataField(required: true)]
@@ -32,4 +31,6 @@ public sealed partial class SharpFlechetteSpreadComponent : Component
 
     [DataField]
     public float MaxVelocity = 1.5f;
+
+    public bool Fired;
 }

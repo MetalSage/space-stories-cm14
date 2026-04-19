@@ -41,11 +41,10 @@ public sealed class SharpFlechetteSpreadSystem : EntitySystem
         if (TerminatingOrDeleted(uid))
             return false;
 
-        var runtime = EnsureComp<SharpFlechetteSpreadRuntimeComponent>(uid);
-        if (runtime.Fired)
+        if (comp.Fired)
             return false;
 
-        runtime.Fired = true;
+        comp.Fired = true;
 
         if (!TryComp(uid, out ProjectileComponent? sourceProjectile))
         {

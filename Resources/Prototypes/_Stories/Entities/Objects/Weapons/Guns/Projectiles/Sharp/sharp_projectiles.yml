@@ -23,7 +23,6 @@
   - type: Projectile
     deleteOnCollide: false
     onlyCollideWhenShot: true
-    maxFixedRange: 8
     impactEffect: BulletImpactEffect
     damage:
       types:
@@ -79,7 +78,6 @@
   - type: Projectile
     deleteOnCollide: false
     onlyCollideWhenShot: true
-    maxFixedRange: 8
     impactEffect: BulletImpactEffect
     damage:
       types:
@@ -127,7 +125,6 @@
   - type: Projectile
     deleteOnCollide: false
     onlyCollideWhenShot: true
-    maxFixedRange: 8
     impactEffect: BulletImpactEffect
     damage:
       types:
