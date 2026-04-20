@@ -92,6 +92,10 @@
       - id: RMCFlashlight
         points: 1
         recommended: true
+      # Stories-start
+      - id: CMFlash
+        points: 5
+      # Stories-end
       - id: RMCMotionDetector
         points: 5
         recommended: true
