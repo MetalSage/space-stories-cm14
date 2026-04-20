@@ -18,15 +18,23 @@
     name: cm-job-name-xeno-spitter
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Spitter/spitter.rsi
-  # Stories-Start
-  - type: XenoAcidAnimation
-    spitRsi: /Textures/_Stories/Mobs/Xenos/Spitter/spitter_spit.rsi
-    offset: 0,0.1875
-    actionIds:
-    - ActionXenoAcidNormal
-    - ActionXenoSpit
-    - ActionXenoSprayAcid
-  # Stories-End
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.XenoVisualLayers.Spit" ]
+      sprite: _Stories/Mobs/Xenos/Spitter/spitter_spit.rsi
+      state: spit
+      offset: 0,0.1875
+      visible: false
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
   - type: MobState
     allowedStates:
     - Alive
@@ -56,6 +64,14 @@
     tier: 2
     hudOffset: 0,0.16
     unlockAt: 540 # 9 minutes
+  # Stories-Start
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpit
+    - ActionXenoChargeSpit
+    - ActionXenoSprayAcid
+  # Stories-End
   - type: XenoHeavy
   - type: XenoDevolve
     devolvesTo:

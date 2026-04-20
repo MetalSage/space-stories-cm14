@@ -1,11 +1,15 @@
 using Content.Shared._Stories.Xenonids.AcidAnimation;
+using Content.Shared.Actions.Components;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Stories.Xenonids.AcidAnimation;
 
-public sealed class XenoAcidAnimationSystem : EntitySystem
+public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
 {
+    [Dependency] private readonly IGameTiming _timing = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -32,13 +36,36 @@ public sealed class XenoAcidAnimationSystem : EntitySystem
             return;
 
         var xeno = GetEntity(ev.Xeno);
-        if (xeno != user)
+        if (xeno != user || !TryComp<XenoAcidAnimationComponent>(xeno, out var comp))
             return;
 
-        if (!TryComp<XenoAcidAnimationComponent>(xeno, out var comp))
+        if (comp.Active == ev.Active)
+            return;
+
+        if (!CanToggle((xeno, comp), ev.Action, ev.Active))
             return;
 
         SetActive((xeno, comp), ev.Active);
+    }
+
+    private bool CanToggle(Entity<XenoAcidAnimationComponent> xeno, NetEntity netAction, bool active)
+    {
+        if (!active)
+            return true;
+
+        if (_timing.CurTime < xeno.Comp.NextToggleAt)
+            return false;
+
+        var action = GetEntity(netAction);
+        if (!TryComp<ActionComponent>(action, out var actionComp) ||
+            actionComp.AttachedEntity != xeno.Owner ||
+            !IsAcidAnimationAction(action, xeno.Comp))
+        {
+            return false;
+        }
+
+        xeno.Comp.NextToggleAt = _timing.CurTime + TimeSpan.FromSeconds(xeno.Comp.ToggleRateLimit);
+        return true;
     }
 
     private void SetActive(Entity<XenoAcidAnimationComponent> ent, bool active)

@@ -18,15 +18,23 @@
     name: cm-job-name-xeno-sentinel
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Sentinel/sentinel.rsi
-  # Stories-Start
-  - type: XenoAcidAnimation
-    spitRsi: /Textures/_Stories/Mobs/Xenos/Sentinel/sentinel_spit.rsi
-    offset: 0,0.1875
-    actionIds:
-    - ActionXenoAcidWeak
-    - ActionXenoSlowingSpit
-    - ActionXenoScatteredSpit
-  # Stories-End
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.XenoVisualLayers.Spit" ]
+      sprite: _Stories/Mobs/Xenos/Sentinel/sentinel_spit.rsi
+      state: spit
+      offset: 0,0.1875
+      visible: false
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
   - type: MobState
     allowedStates:
     - Alive
@@ -56,6 +64,13 @@
     tier: 1
     hudOffset: 0,0.157
     unlockAt: 300 # 5 minutes
+  # Stories-Start
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidWeak
+    - ActionXenoSlowingSpit
+    - ActionXenoScatteredSpit
+  # Stories-End
   - type: XenoLight
   - type: XenoDevolve
     devolvesTo:

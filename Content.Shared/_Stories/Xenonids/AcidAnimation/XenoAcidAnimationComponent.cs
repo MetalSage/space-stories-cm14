@@ -1,7 +1,5 @@
-using System.Numerics;
-using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
-using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.Xenonids.AcidAnimation;
 
@@ -11,15 +9,11 @@ public sealed partial class XenoAcidAnimationComponent : Component
     [DataField, AutoNetworkedField]
     public bool Active;
 
-    [DataField(required: true)]
-    public ResPath SpitRsi = default!;
-
-    [DataField]
-    public Vector2 Offset = Vector2.Zero;
-
-    [DataField]
-    public bool HideNorth = true;
-
     [DataField]
     public List<EntProtoId> ActionIds = new();
+
+    [DataField]
+    public float ToggleRateLimit = 0.25f;
+
+    public TimeSpan NextToggleAt;
 }

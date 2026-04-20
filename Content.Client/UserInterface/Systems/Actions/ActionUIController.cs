@@ -69,6 +69,8 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     /// </summary>
     public EntityUid? SelectingTargetFor { get; private set; }
 
+    public event Action<EntityUid?, EntityUid?>? SelectingTargetForChanged;
+
     public ActionUIController()
     {
         _menuDragHelper = new DragDropHelper<ActionButton>(OnMenuBeginDrag, OnMenuContinueDrag, OnMenuEndDrag);
@@ -802,7 +804,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         // If we were targeting something else we should stop
         StopTargeting();
 
-        SelectingTargetFor = uid;
+        SetSelectingTargetFor(uid);
         // TODO inform the server
         _actionsSystem?.SetToggled(uid, true);
 
@@ -865,7 +867,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         // TODO inform the server
         _actionsSystem?.SetToggled(oldAction, false);
 
-        SelectingTargetFor = null;
+        SetSelectingTargetFor(null);
 
         _targetOutline?.Disable();
         _interactionOutline?.SetEnabled(true);
@@ -884,5 +886,15 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         handOverlay.IconOverride = null;
         handOverlay.EntityOverride = null;
+    }
+
+    private void SetSelectingTargetFor(EntityUid? action)
+    {
+        if (SelectingTargetFor == action)
+            return;
+
+        var oldAction = SelectingTargetFor;
+        SelectingTargetFor = action;
+        SelectingTargetForChanged?.Invoke(oldAction, action);
     }
 }

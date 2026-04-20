@@ -1,195 +1,238 @@
-using System.Numerics;
 using Content.Client.Actions;
 using Content.Client.UserInterface.Systems.Actions;
 using Content.Shared._RMC14.Xenonids;
-using Content.Shared._RMC14.Xenonids.Projectile.Spit.Ball;
-using Content.Shared._RMC14.Xenonids.Projectile.Spit.Charge;
 using Content.Shared._Stories.Xenonids.AcidAnimation;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
-using Robust.Client.Utility;
-using Robust.Shared.Graphics.RSI;
-using Robust.Shared.Maths;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Client._Stories.Xenonids.AcidAnimation;
 
-public sealed class XenoAcidAnimationSystem : EntitySystem
+public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
 {
-    private const string SpitLayerKey = "xenoAcidSpit";
+    private static readonly RSI.StateId SpitState = new("spit");
 
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IEyeManager _eye = default!;
-    [Dependency] private readonly IOverlayManager _overlays = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
-    private readonly Dictionary<EntityUid, TimeSpan> _animationStarts = new();
-    private readonly HashSet<EntityUid> _currentXenos = new();
-    private readonly List<EntityUid> _xenosToStop = new();
-
+    private readonly HashSet<EntityUid> _visible = new();
     private EntityUid? _predictedXeno;
+    private EntityUid? _predictedAction;
     private bool _predictedActive;
 
     public override void Initialize()
     {
-        if (!_overlays.HasOverlay<XenoAcidAnimationOverlay>())
-            _overlays.AddOverlay(new XenoAcidAnimationOverlay());
+        base.Initialize();
+
+        SubscribeLocalEvent<XenoAcidAnimationComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<XenoAcidAnimationComponent, ComponentShutdown>(OnComponentShutdown);
+        SubscribeLocalEvent<XenoAcidAnimationComponent, AfterAutoHandleStateEvent>(OnAfterHandleState);
+        SubscribeLocalEvent<XenoAcidAnimationComponent, AppearanceChangeEvent>(OnAppearanceChange);
+
+        _ui.GetUIController<ActionUIController>().SelectingTargetForChanged += OnSelectingTargetForChanged;
+        _actions.OnActionAdded += OnActionChanged;
+        _actions.OnActionRemoved += OnActionChanged;
+        _actions.ActionsUpdated += RefreshLocalPrediction;
     }
 
     public override void Shutdown()
     {
-        _overlays.RemoveOverlay<XenoAcidAnimationOverlay>();
+        base.Shutdown();
+
+        _ui.GetUIController<ActionUIController>().SelectingTargetForChanged -= OnSelectingTargetForChanged;
+        _actions.OnActionAdded -= OnActionChanged;
+        _actions.OnActionRemoved -= OnActionChanged;
+        _actions.ActionsUpdated -= RefreshLocalPrediction;
     }
 
-    public override void FrameUpdate(float frameTime)
+    private void OnSelectingTargetForChanged(EntityUid? oldAction, EntityUid? newAction)
     {
-        base.FrameUpdate(frameTime);
-
-        UpdatePredictedState();
-        RefreshAnimations();
+        RefreshLocalPrediction();
     }
 
-    private void UpdatePredictedState()
+    private void OnActionChanged(EntityUid _)
     {
+        RefreshLocalPrediction();
+    }
+
+    private void OnComponentStartup(Entity<XenoAcidAnimationComponent> ent, ref ComponentStartup args)
+    {
+        RefreshVisuals(ent);
+        RefreshLocalPrediction();
+    }
+
+    private void OnComponentShutdown(Entity<XenoAcidAnimationComponent> ent, ref ComponentShutdown args)
+    {
+        if (TryComp<SpriteComponent>(ent, out var sprite))
+            SetSpitVisible((ent.Owner, sprite), false);
+
+        _visible.Remove(ent);
+
+        if (_predictedXeno == ent.Owner)
+        {
+            _predictedXeno = null;
+            _predictedAction = null;
+            _predictedActive = false;
+        }
+    }
+
+    private void OnAfterHandleState(Entity<XenoAcidAnimationComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        RefreshVisuals(ent);
+    }
+
+    private void OnAppearanceChange(Entity<XenoAcidAnimationComponent> ent, ref AppearanceChangeEvent args)
+    {
+        RefreshVisuals(ent);
+    }
+
+    private void RefreshLocalPrediction()
+    {
+        var oldXeno = _predictedXeno;
+        var oldAction = _predictedAction;
+        var oldActive = _predictedActive;
+
         EntityUid? xeno = null;
+        EntityUid? action = null;
         var active = false;
 
         if (_player.LocalEntity is { } local &&
-            TryComp<XenoAcidAnimationComponent>(local, out var acidAnimation))
+            TryComp<XenoAcidAnimationComponent>(local, out var acidAnimation) &&
+            TryGetSelectedAcidAction((local, acidAnimation), out var selected))
         {
             xeno = local;
-            active = HasSelectedAcidAction(local, acidAnimation);
+            action = selected;
+            active = true;
         }
 
-        if (_predictedXeno != xeno)
+        if (oldXeno == xeno &&
+            oldAction == action &&
+            oldActive == active)
         {
-            if (_predictedXeno != null && _predictedActive)
-                RaiseNetworkEvent(new XenoAcidAnimationToggleEvent(GetNetEntity(_predictedXeno.Value), false));
+            return;
+        }
 
-            if (xeno != null && active)
-                RaiseNetworkEvent(new XenoAcidAnimationToggleEvent(GetNetEntity(xeno.Value), true));
-        }
-        else if (xeno != null && _predictedActive != active)
-        {
-            RaiseNetworkEvent(new XenoAcidAnimationToggleEvent(GetNetEntity(xeno.Value), active));
-        }
+        if (oldXeno != xeno && oldXeno is { } previousXeno && oldActive)
+            RaiseNetworkEvent(new XenoAcidAnimationToggleEvent(GetNetEntity(previousXeno), NetEntity.Invalid, false));
 
         _predictedXeno = xeno;
+        _predictedAction = action;
         _predictedActive = active;
+
+        if (xeno is { } currentXeno &&
+            action is { } currentAction &&
+            active &&
+            (oldXeno != xeno || !oldActive))
+        {
+            RaiseNetworkEvent(new XenoAcidAnimationToggleEvent(GetNetEntity(currentXeno), GetNetEntity(currentAction), true));
+        }
+        else if (xeno is { } inactiveXeno &&
+                 oldXeno == xeno &&
+                 oldActive &&
+                 !active)
+        {
+            RaiseNetworkEvent(new XenoAcidAnimationToggleEvent(GetNetEntity(inactiveXeno), NetEntity.Invalid, false));
+        }
+
+        if (oldXeno is { } visualOldXeno &&
+            TryComp<XenoAcidAnimationComponent>(visualOldXeno, out var previousComp))
+        {
+            RefreshVisuals((visualOldXeno, previousComp));
+        }
+
+        if (xeno is { } visualCurrentXeno &&
+            visualCurrentXeno != oldXeno &&
+            TryComp<XenoAcidAnimationComponent>(visualCurrentXeno, out var comp))
+        {
+            RefreshVisuals((visualCurrentXeno, comp));
+        }
     }
 
-    private bool HasSelectedAcidAction(EntityUid uid, XenoAcidAnimationComponent comp)
+    private bool TryGetSelectedAcidAction(Entity<XenoAcidAnimationComponent> xeno, out EntityUid actionUid)
     {
+        actionUid = default;
+
         var selected = _ui.GetUIController<ActionUIController>().SelectingTargetFor;
-        if (selected is not { } actionUid)
+        if (selected is not { } selectedAction)
             return false;
 
-        foreach (var action in _actions.GetActions(uid))
+        if (_actions.GetAction(selectedAction) is not { } action ||
+            action.Comp.AttachedEntity != xeno.Owner ||
+            !IsAcidAnimationAction(action.Owner, xeno.Comp))
         {
-            if (action.Owner != actionUid)
-                continue;
-
-            var protoId = MetaData(action).EntityPrototype?.ID;
-            return protoId != null && comp.ActionIds.Contains(protoId);
+            return false;
         }
 
-        return false;
+        actionUid = action.Owner;
+        return true;
     }
 
-    private void RefreshAnimations()
+    private void RefreshVisuals(Entity<XenoAcidAnimationComponent> ent)
     {
-        _currentXenos.Clear();
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
+            return;
 
-        var query = EntityQueryEnumerator<XenoAcidAnimationComponent, SpriteComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var sprite))
-        {
-            HideSpitLayer((uid, sprite));
+        var shouldShow = ShouldShow(ent);
+        if (_visible.Contains(ent.Owner) == shouldShow)
+            return;
 
-            if (!ShouldAnimate(uid, comp, sprite, out var dir))
-                continue;
-
-            _currentXenos.Add(uid);
-            if (!_animationStarts.ContainsKey(uid))
-                _animationStarts[uid] = _timing.CurTime;
-        }
-
-        _xenosToStop.Clear();
-        foreach (var uid in _animationStarts.Keys)
-        {
-            if (!_currentXenos.Contains(uid))
-                _xenosToStop.Add(uid);
-        }
-
-        foreach (var uid in _xenosToStop)
-        {
-            _animationStarts.Remove(uid);
-        }
+        SetSpitVisible((ent.Owner, sprite), shouldShow);
     }
 
-    private void HideSpitLayer(Entity<SpriteComponent> ent)
+    private bool ShouldShow(Entity<XenoAcidAnimationComponent> ent)
     {
-        Entity<SpriteComponent?> spriteEnt = (ent.Owner, ent.Comp);
-        if (_sprite.LayerMapTryGet(spriteEnt, SpitLayerKey, out var layer, false))
-            _sprite.LayerSetVisible(spriteEnt, layer, false);
-    }
-
-    public Vector2 GetOffset(XenoAcidAnimationComponent comp)
-    {
-        return comp.Offset;
-    }
-
-    public bool ShouldAnimate(EntityUid uid, XenoAcidAnimationComponent comp, SpriteComponent sprite, out RsiDirection dir)
-    {
-        dir = RsiDirection.South;
-        var localEntity = _player.LocalEntity;
-        var active = comp.Active || HasComp<XenoActiveChargingSpitComponent>(uid);
-
-        if (localEntity == uid && _predictedXeno == uid && _predictedActive)
-            active = true;
+        var active = _player.LocalEntity == ent.Owner
+            ? _predictedXeno == ent.Owner && _predictedActive
+            : ent.Comp.Active;
 
         if (!active)
-        {
             return false;
+
+        if (_appearance.TryGetData(ent, RMCXenoStateVisuals.Dead, out bool dead) && dead)
+            return false;
+
+        if (_appearance.TryGetData(ent, RMCXenoStateVisuals.Downed, out bool downed) && downed)
+            return false;
+
+        if (_appearance.TryGetData(ent, RMCXenoStateVisuals.Resting, out bool resting) && resting)
+            return false;
+
+        return true;
+    }
+
+    private void SetSpitVisible(Entity<SpriteComponent> ent, bool visible)
+    {
+        Entity<SpriteComponent?> spriteEnt = (ent.Owner, ent.Comp);
+        var layerExists = _sprite.LayerMapTryGet(spriteEnt, XenoVisualLayers.Spit, out var layer, false);
+
+        if (!layerExists)
+        {
+            if (ent.Comp.BaseRSI is not { } rsi ||
+                !rsi.TryGetState(SpitState, out _))
+            {
+                _visible.Remove(ent);
+                return;
+            }
+
+            layer = _sprite.LayerMapReserve(spriteEnt, XenoVisualLayers.Spit);
+            _sprite.LayerSetRsi(spriteEnt, layer, rsi, SpitState);
+        }
+        else
+        {
+            _sprite.LayerSetRsiState(spriteEnt, layer, SpitState);
         }
 
-        if (_appearance.TryGetData(uid, RMCXenoStateVisuals.Dead, out bool dead) && dead)
-            return false;
+        _sprite.LayerSetAutoAnimated(spriteEnt, layer, true);
 
-        if (_appearance.TryGetData(uid, RMCXenoStateVisuals.Downed, out bool downed) && downed)
-            return false;
+        if (visible && _visible.Add(ent))
+            _sprite.LayerSetAnimationTime(spriteEnt, layer, 0f);
+        else if (!visible)
+            _visible.Remove(ent);
 
-        if (_appearance.TryGetData(uid, RMCXenoStateVisuals.Resting, out bool resting) && resting)
-            return false;
-
-        dir = GetRenderDirection(uid, sprite);
-
-        return !comp.HideNorth || dir != RsiDirection.North;
-    }
-
-    public TimeSpan GetAnimationTime(EntityUid uid, TimeSpan curTime)
-    {
-        if (!_animationStarts.TryGetValue(uid, out var started))
-            return TimeSpan.Zero;
-
-        return curTime - started;
-    }
-
-    private RsiDirection GetRenderDirection(EntityUid uid, SpriteComponent sprite)
-    {
-        var angle = (_transform.GetWorldRotation(uid) + _eye.CurrentEye.Rotation).Reduced().FlipPositive();
-        var dir = SpriteComponent.Layer.GetDirection(RsiDirectionType.Dir4, angle);
-
-        if (sprite.EnableDirectionOverride)
-            dir = sprite.DirectionOverride.Convert(RsiDirectionType.Dir4);
-
-        return dir;
+        _sprite.LayerSetVisible(spriteEnt, layer, visible);
     }
 }

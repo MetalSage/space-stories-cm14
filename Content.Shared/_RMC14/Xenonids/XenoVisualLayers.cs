@@ -10,5 +10,6 @@ public enum XenoVisualLayers : byte
     Crest,
     Fortify,
     Ovipositor,
-    Burrow
+    Burrow,
+    Spit
 }

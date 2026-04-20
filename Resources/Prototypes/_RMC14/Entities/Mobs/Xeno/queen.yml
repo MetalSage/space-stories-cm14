@@ -23,6 +23,11 @@
       state: alive
     - map: [ "enum.XenoVisualLayers.Ovipositor" ]
       sprite: _Stories/Mobs/Xenos/Queen/ovipositor.rsi
+    - map: [ "enum.XenoVisualLayers.Spit" ]
+      sprite: _Stories/Mobs/Xenos/Queen/queen_spit.rsi
+      state: spit
+      offset: 0,0.875
+      visible: false
     - map: [ "enum.RMCDamageVisualLayers.Base" ]
       visible: false
     - map: [ "enum.XenoInhandVisualLayers.Left" ]
@@ -71,6 +76,12 @@
     tier: 0
     bypassTierCount: true
     unlockAt: 0
+  # Stories-Start
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpitQueen
+  # Stories-End
   - type: XenoHeavy
   - type: XenoAcid
   - type: XenoConstruction
@@ -290,14 +301,6 @@
   parent: RMCXenoQueenBase
   id: CMXenoQueen
   components:
-  # Stories-Start
-  - type: XenoAcidAnimation
-    spitRsi: /Textures/_Stories/Mobs/Xenos/Queen/queen_spit.rsi
-    offset: 0,0.875
-    actionIds:
-    - ActionXenoAcidNormal
-    - ActionXenoSpitQueen
-  # Stories-End
   - type: RMCActionOrder
     id: CMXenoQueen
   # - type: XenoEvolution #can be enabled for events like april fools.

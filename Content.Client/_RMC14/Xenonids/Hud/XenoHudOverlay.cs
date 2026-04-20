@@ -161,7 +161,7 @@ public sealed class XenoHudOverlay : Overlay
             if (_container.IsEntityOrParentInContainer(uid, xform: xform))
                 continue;
 
-            var bounds = sprite.Bounds;
+            var bounds = GetXenoHudBounds(uid, sprite);
             var worldPos = _transform.GetWorldPosition(xform, _xformQuery);
 
             if (!bounds.Translated(worldPos).Intersects(args.WorldAABB))
@@ -554,7 +554,7 @@ public sealed class XenoHudOverlay : Overlay
 
         var texture = _sprite.GetFrame(icon, _timing.CurTime);
 
-        var bounds = sprite.Bounds;
+        var bounds = GetXenoHudBounds(uid, sprite);
         var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float) texture.Height / EyeManager.PixelsPerMeter * bounds.Height + xeno.HudOffset.Y;
         var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float) texture.Width / EyeManager.PixelsPerMeter * bounds.Width + xeno.HudOffset.X;
 
@@ -579,7 +579,7 @@ public sealed class XenoHudOverlay : Overlay
         var icon = new Rsi(new ResPath("/Textures/_RMC14/Interface/xeno_hud.rsi"), state);
         var texture = _sprite.GetFrame(icon, _timing.CurTime);
 
-        var bounds = sprite.Bounds;
+        var bounds = GetXenoHudBounds(uid, sprite);
         var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float) texture.Height / EyeManager.PixelsPerMeter * bounds.Height + xeno.HudOffset.Y;
         var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float) texture.Width / EyeManager.PixelsPerMeter * bounds.Width + xeno.HudOffset.X;
 
@@ -617,7 +617,7 @@ public sealed class XenoHudOverlay : Overlay
         var icon = new Rsi(new ResPath("/Textures/_RMC14/Interface/xeno_hud.rsi"), state);
         var texture = _sprite.GetFrame(icon, _timing.CurTime);
 
-        var bounds = sprite.Bounds;
+        var bounds = GetXenoHudBounds(uid, sprite);
         var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)texture.Height / EyeManager.PixelsPerMeter * bounds.Height + xeno.HudOffset.Y;
         var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)texture.Width / EyeManager.PixelsPerMeter * bounds.Width + xeno.HudOffset.X;
 
@@ -645,7 +645,7 @@ public sealed class XenoHudOverlay : Overlay
         var icon = new Rsi(new ResPath("/Textures/_RMC14/Interface/xeno_hud.rsi"), state);
         var texture = _sprite.GetFrame(icon, _timing.CurTime);
 
-        var bounds = sprite.Bounds;
+        var bounds = GetXenoHudBounds(ent.Owner, sprite);
         var yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float) texture.Height / EyeManager.PixelsPerMeter * bounds.Height + xeno.HudOffset.Y;
         var xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float) texture.Width / EyeManager.PixelsPerMeter * bounds.Width + xeno.HudOffset.X;
 
@@ -661,5 +661,13 @@ public sealed class XenoHudOverlay : Overlay
             var texture2 = _sprite.GetFrame(icon2, _timing.CurTime);
             handle.DrawTexture(texture2, position);
         }
+    }
+
+    private Box2 GetXenoHudBounds(EntityUid uid, SpriteComponent sprite)
+    {
+        Entity<SpriteComponent?> spriteEnt = (uid, sprite);
+        return _sprite.TryGetLayer(spriteEnt, XenoVisualLayers.Base, out var baseLayer, false)
+            ? _sprite.GetLocalBounds(baseLayer).Scale(sprite.Scale)
+            : sprite.Bounds;
     }
 }
