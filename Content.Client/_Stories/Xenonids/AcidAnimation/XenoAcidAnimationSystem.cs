@@ -6,20 +6,23 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._Stories.Xenonids.AcidAnimation;
 
 public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
 {
+    private static readonly EntProtoId VisualPrototype = "StoriesXenoAcidAnimationVisual";
     private static readonly RSI.StateId SpitState = new("spit");
 
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
 
-    private readonly HashSet<EntityUid> _visible = new();
+    private readonly Dictionary<EntityUid, EntityUid> _visuals = new();
     private EntityUid? _predictedXeno;
     private EntityUid? _predictedAction;
     private bool _predictedActive;
@@ -33,7 +36,6 @@ public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
         SubscribeLocalEvent<XenoAcidAnimationComponent, AfterAutoHandleStateEvent>(OnAfterHandleState);
         SubscribeLocalEvent<XenoAcidAnimationComponent, AppearanceChangeEvent>(OnAppearanceChange);
 
-        _ui.GetUIController<ActionUIController>().SelectingTargetForChanged += OnSelectingTargetForChanged;
         _actions.OnActionAdded += OnActionChanged;
         _actions.OnActionRemoved += OnActionChanged;
         _actions.ActionsUpdated += RefreshLocalPrediction;
@@ -43,15 +45,9 @@ public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
     {
         base.Shutdown();
 
-        _ui.GetUIController<ActionUIController>().SelectingTargetForChanged -= OnSelectingTargetForChanged;
         _actions.OnActionAdded -= OnActionChanged;
         _actions.OnActionRemoved -= OnActionChanged;
         _actions.ActionsUpdated -= RefreshLocalPrediction;
-    }
-
-    private void OnSelectingTargetForChanged(EntityUid? oldAction, EntityUid? newAction)
-    {
-        RefreshLocalPrediction();
     }
 
     private void OnActionChanged(EntityUid _)
@@ -67,10 +63,7 @@ public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
 
     private void OnComponentShutdown(Entity<XenoAcidAnimationComponent> ent, ref ComponentShutdown args)
     {
-        if (TryComp<SpriteComponent>(ent, out var sprite))
-            SetSpitVisible((ent.Owner, sprite), false);
-
-        _visible.Remove(ent);
+        HideSpit(ent);
 
         if (_predictedXeno == ent.Owner)
         {
@@ -162,6 +155,7 @@ public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
 
         if (_actions.GetAction(selectedAction) is not { } action ||
             action.Comp.AttachedEntity != xeno.Owner ||
+            !action.Comp.Toggled ||
             !IsAcidAnimationAction(action.Owner, xeno.Comp))
         {
             return false;
@@ -173,14 +167,10 @@ public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
 
     private void RefreshVisuals(Entity<XenoAcidAnimationComponent> ent)
     {
-        if (!TryComp<SpriteComponent>(ent, out var sprite))
-            return;
-
-        var shouldShow = ShouldShow(ent);
-        if (_visible.Contains(ent.Owner) == shouldShow)
-            return;
-
-        SetSpitVisible((ent.Owner, sprite), shouldShow);
+        if (ShouldShow(ent))
+            ShowSpit(ent);
+        else
+            HideSpit(ent);
     }
 
     private bool ShouldShow(Entity<XenoAcidAnimationComponent> ent)
@@ -204,35 +194,55 @@ public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
         return true;
     }
 
-    private void SetSpitVisible(Entity<SpriteComponent> ent, bool visible)
+    private void ShowSpit(Entity<XenoAcidAnimationComponent> ent)
     {
-        Entity<SpriteComponent?> spriteEnt = (ent.Owner, ent.Comp);
-        var layerExists = _sprite.LayerMapTryGet(spriteEnt, XenoVisualLayers.Spit, out var layer, false);
-
-        if (!layerExists)
+        if (ent.Comp.SpitRsi is not { } rsi)
         {
-            if (ent.Comp.BaseRSI is not { } rsi ||
-                !rsi.TryGetState(SpitState, out _))
-            {
-                _visible.Remove(ent);
-                return;
-            }
-
-            layer = _sprite.LayerMapReserve(spriteEnt, XenoVisualLayers.Spit);
-            _sprite.LayerSetRsi(spriteEnt, layer, rsi, SpitState);
-        }
-        else
-        {
-            _sprite.LayerSetRsiState(spriteEnt, layer, SpitState);
+            HideSpit(ent);
+            return;
         }
 
-        _sprite.LayerSetAutoAnimated(spriteEnt, layer, true);
+        var visual = EnsureSpit(ent, out var created);
+        if (!TryComp<SpriteComponent>(visual, out var sprite))
+            return;
 
-        if (visible && _visible.Add(ent))
-            _sprite.LayerSetAnimationTime(spriteEnt, layer, 0f);
-        else if (!visible)
-            _visible.Remove(ent);
+        Entity<SpriteComponent?> spriteEnt = (visual, sprite);
+        _sprite.LayerSetRsi(spriteEnt, 0, rsi, SpitState);
+        _sprite.LayerSetAutoAnimated(spriteEnt, 0, true);
+        _sprite.LayerSetVisible(spriteEnt, 0, true);
+        if (created)
+            _sprite.LayerSetAnimationTime(spriteEnt, 0, 0f);
 
-        _sprite.LayerSetVisible(spriteEnt, layer, visible);
+        if (TryComp<SpriteComponent>(ent, out var xenoSprite))
+        {
+            sprite.NoRotation = xenoSprite.NoRotation;
+            sprite.EnableDirectionOverride = xenoSprite.EnableDirectionOverride;
+            sprite.DirectionOverride = xenoSprite.DirectionOverride;
+        }
+
+        _sprite.SetOffset(spriteEnt, ent.Comp.Offset);
+    }
+
+    private EntityUid EnsureSpit(Entity<XenoAcidAnimationComponent> ent, out bool created)
+    {
+        if (_visuals.TryGetValue(ent.Owner, out var visual) && !Deleted(visual))
+        {
+            created = false;
+            return visual;
+        }
+
+        visual = Spawn(VisualPrototype, Transform(ent).Coordinates);
+        _transform.SetParent(visual, ent.Owner);
+        _visuals[ent.Owner] = visual;
+        created = true;
+        return visual;
+    }
+
+    private void HideSpit(Entity<XenoAcidAnimationComponent> ent)
+    {
+        if (!_visuals.Remove(ent.Owner, out var visual) || Deleted(visual))
+            return;
+
+        QueueDel(visual);
     }
 }

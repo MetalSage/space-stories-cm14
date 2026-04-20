@@ -15,23 +15,6 @@
     name: cm-job-name-xeno-praetorian
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Praetorian/praetorian.rsi
-    layers:
-    - map: [ "enum.XenoVisualLayers.Base" ]
-      state: alive
-    - map: [ "enum.XenoVisualLayers.Spit" ]
-      sprite: _Stories/Mobs/Xenos/Praetorian/praetorian_spit.rsi
-      state: spit
-      offset: 0,0.125
-      visible: false
-    - map: [ "enum.RMCDamageVisualLayers.Base" ]
-      visible: false
-    - map: [ "enum.XenoInhandVisualLayers.Left" ]
-      visible: false
-    - map: [ "enum.XenoInhandVisualLayers.Right" ]
-      visible: false
-    - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _Stories/Effects/xeno_shields.rsi
-      visible: false
   - type: MobState
     allowedStates:
     - Alive
@@ -58,14 +41,6 @@
     tier: 3
     hudOffset: 0,0.16
     unlockAt: 900 # 15 minutes
-  # Stories-Start
-  - type: XenoAcidAnimation
-    actionIds:
-    - ActionXenoAcidNormal
-    - ActionXenoSpitPraetorian
-    - ActionXenoAcidBall
-    - ActionXenoSprayAcidPraetorian
-  # Stories-End
   - type: XenoHeavy
   - type: XenoDevolve
     devolvesTo:
