@@ -18,6 +18,22 @@
     name: cm-job-name-xeno-boiler
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Boiler/boiler.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      state: spit
+      visible: false
+      offset: 0, 0.28125
   - type: Fixtures
     fixtures:
       fix1:
@@ -176,6 +192,11 @@
     strains:
     - RMCXenoBoilerTrapper
   - type: AcidTrap
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidStrong
+    - ActionXenoBombard
+    - ActionXenoSprayAcidBoiler
 
 - type: entity
   parent: RMCXenoBoilerBase
@@ -184,6 +205,22 @@
   components:
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Boiler/trapper_boiler.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      state: spit
+      visible: false
+      offset: 0, 0.25
   - type: Xeno
     actionIds:
     - ActionXenoRest
@@ -232,3 +269,7 @@
   - type: RMCXenoAcidInsight
   - type: RMCXenoBoostOnHit
   - type: XenoDevour
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidStrong
+    - ActionXenoAcidShotgun

@@ -18,6 +18,23 @@
     name: cm-job-name-xeno-sentinel
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Sentinel/sentinel.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Sentinel/sentinel_spit.rsi
+      state: spit
+      visible: false
+      offset: 0, 0.1875
   - type: MobState
     allowedStates:
     - Alive
@@ -104,3 +121,8 @@
     ventCrawlIcon: sentinel
   - type: RMCActionOrder
     id: CMXenoSentinel
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidWeak
+    - ActionXenoSlowingSpit
+    - ActionXenoScatteredSpit

@@ -18,6 +18,23 @@
     name: cm-job-name-xeno-spitter
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Spitter/spitter.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Spitter/spitter_spit.rsi
+      state: spit
+      visible: false
+      offset: 0, 0.1875
   - type: MobState
     allowedStates:
     - Alive
@@ -122,3 +139,8 @@
     ventCrawlIcon: spitter
   - type: RMCActionOrder
     id: CMXenoSpitter
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpit
+    - ActionXenoSprayAcid

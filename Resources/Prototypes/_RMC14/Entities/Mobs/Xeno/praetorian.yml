@@ -15,6 +15,23 @@
     name: cm-job-name-xeno-praetorian
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Praetorian/praetorian.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Praetorian/praetorian_spit.rsi
+      state: spit
+      visible: false
+      offset: 0, 0.125
   - type: MobState
     allowedStates:
     - Alive
@@ -152,6 +169,12 @@
   - type: AcidTrap
   - type: RMCActionOrder
     id: CMXenoPraetorian
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpitPraetorian
+    - ActionXenoAcidBall
+    - ActionXenoSprayAcidPraetorian
 
 - type: entity
   parent: CMXenoPraetorianBase

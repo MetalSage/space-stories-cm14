@@ -32,6 +32,11 @@
     - map: [ "enum.RMCShieldVisuals.Base" ]
       sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Queen/queen_spit.rsi
+      state: spit
+      visible: false
+      offset: 0, 0.875
   - type: MobState
     allowedStates:
     - Alive
@@ -292,6 +297,10 @@
   components:
   - type: RMCActionOrder
     id: CMXenoQueen
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpitQueen
   # - type: XenoEvolution #can be enabled for events like april fools.
   #   strains:
   #   - RMCXenoQueenMaid
