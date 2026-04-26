@@ -7,7 +7,6 @@ using Content.Shared._RMC14.BlurredVision;
 using Content.Shared._RMC14.CameraShake;
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Marines.Skills;
-using Content.Shared._RMC14.OnCollide;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Ranged;
@@ -47,6 +46,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -64,6 +65,7 @@ public sealed class CombatMechSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
@@ -802,7 +804,7 @@ public sealed class CombatMechSystem : EntitySystem
         if (Deleted(ent.Comp.Vehicle))
             return;
 
-        if (args.Damage.GetTotal() > FixedPoint2.Zero && ShouldRedirectDamageToVehicle(args))
+        if (args.Damage.GetTotal() > FixedPoint2.Zero)
             _damageable.TryChangeDamage(ent.Comp.Vehicle, args.Damage, origin: args.Origin, tool: args.Source);
 
         args.Cancelled = true;
@@ -1130,6 +1132,7 @@ public sealed class CombatMechSystem : EntitySystem
             pilot.Comp.AddedUnparalyzable = true;
         }
 
+        DisablePilotCollision(pilot);
         ClearProtectedOngoingEffects(pilot);
         ClearProtectedStatuses(pilot);
         ClearProtectedSlowOrStatus(pilot);
@@ -1150,6 +1153,7 @@ public sealed class CombatMechSystem : EntitySystem
         if (pilot.Comp.AddedUnparalyzable)
             RemComp<UnparalyzableComponent>(pilot);
 
+        RestorePilotCollision(pilot);
         pilot.Comp.RemovedInfectable = false;
         pilot.Comp.RemovedAffectableByWeeds = false;
         pilot.Comp.AddedUnparalyzable = false;
@@ -1211,16 +1215,57 @@ public sealed class CombatMechSystem : EntitySystem
         if (HasComp<NeurotoxinComponent>(pilot))
             RemCompDeferred<NeurotoxinComponent>(pilot);
 
+        if (HasComp<UserDamageOverTimeComponent>(pilot))
+            RemCompDeferred<UserDamageOverTimeComponent>(pilot);
+
         if (HasComp<RMCCameraShakingComponent>(pilot))
             RemCompDeferred<RMCCameraShakingComponent>(pilot);
     }
 
-    private bool ShouldRedirectDamageToVehicle(BeforeDamageChangedEvent args)
+    private void DisablePilotCollision(Entity<InsideCombatVehicleComponent> pilot)
     {
-        if (args.Source is not { } source)
-            return true;
+        if (pilot.Comp.CollisionDisabled)
+            return;
 
-        return !HasComp<DamageOnCollideComponent>(source) && !HasComp<DamageOverTimeComponent>(source);
+        if (!TryComp(pilot, out FixturesComponent? fixtures))
+            return;
+
+        foreach (var (id, fixture) in fixtures.Fixtures)
+        {
+            pilot.Comp.FixtureMasks[id] = fixture.CollisionMask;
+            pilot.Comp.FixtureLayers[id] = fixture.CollisionLayer;
+            _physics.SetCollisionMask(pilot, id, fixture, 0, fixtures);
+            _physics.SetCollisionLayer(pilot, id, fixture, 0, fixtures);
+        }
+
+        pilot.Comp.CollisionDisabled = true;
+        Dirty(pilot);
+    }
+
+    private void RestorePilotCollision(Entity<InsideCombatVehicleComponent> pilot)
+    {
+        if (!pilot.Comp.CollisionDisabled)
+            return;
+
+        if (TryComp(pilot, out FixturesComponent? fixtures))
+        {
+            foreach (var (id, mask) in pilot.Comp.FixtureMasks)
+            {
+                if (fixtures.Fixtures.TryGetValue(id, out var fixture))
+                    _physics.SetCollisionMask(pilot, id, fixture, mask, fixtures);
+            }
+
+            foreach (var (id, layer) in pilot.Comp.FixtureLayers)
+            {
+                if (fixtures.Fixtures.TryGetValue(id, out var fixture))
+                    _physics.SetCollisionLayer(pilot, id, fixture, layer, fixtures);
+            }
+        }
+
+        pilot.Comp.FixtureMasks.Clear();
+        pilot.Comp.FixtureLayers.Clear();
+        pilot.Comp.CollisionDisabled = false;
+        Dirty(pilot);
     }
 
     private void ClearProtectedSlowOrStatus(

@@ -98,6 +98,15 @@ public sealed partial class InsideCombatVehicleComponent : Component
 
     [ViewVariables]
     public bool RemovedAffectableByWeeds;
+
+    [ViewVariables]
+    public bool CollisionDisabled;
+
+    [ViewVariables]
+    public readonly Dictionary<string, int> FixtureMasks = new();
+
+    [ViewVariables]
+    public readonly Dictionary<string, int> FixtureLayers = new();
 }
 
 [Serializable, NetSerializable]
