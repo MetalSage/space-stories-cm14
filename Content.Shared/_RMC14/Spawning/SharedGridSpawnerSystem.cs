@@ -40,6 +40,9 @@ public abstract class SharedGridSpawnerSystem : EntitySystem
     {
         Log.Info($"GridSpawner MapInit triggered for entity: {ToPrettyString(ent)}");
 
+        if (!ent.Comp.SpawnOnMapInit)
+            return;
+
         if (ent.Comp.Spawn is not { } spawn)
             return;
 
