@@ -665,40 +665,30 @@ public sealed class CombatMechSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        var mech = ent.Comp.LinkedMech;
-        if ((mech == null || Deleted(mech.Value)) &&
-            TryComp(args.User, out InsideCombatVehicleComponent? inside))
+        if (!TryResolveWeaponMech(ent, args.User, out var mech))
         {
-            mech = inside.Vehicle;
-            if (TryComp(mech.Value, out CombatMechComponent? candidate) &&
-                IsMountedWeapon((mech.Value, candidate), ent.Owner))
+            if (_net.IsClient &&
+                TryComp(args.User, out InsideCombatVehicleComponent? inside) &&
+                !Deleted(inside.Vehicle))
             {
-                ent.Comp.LinkedMech = mech;
-                Dirty(ent);
+                return;
             }
-        }
 
-        if (mech is not { } mechUid ||
-            Deleted(mechUid) ||
-            !TryComp(mechUid, out CombatMechComponent? mechComp) ||
-            !IsMountedWeapon((mechUid, mechComp), ent.Owner))
-        {
-            ent.Comp.LinkedMech = null;
-            Dirty(ent);
+            ClearWeaponMechLink(ent);
             args.Cancelled = true;
             args.Message = Loc.GetString("stories-rx47-weapon-not-linked");
             return;
         }
 
-        if (args.User != mechUid &&
-            (!TryComp(args.User, out InsideCombatVehicleComponent? pilot) || pilot.Vehicle != mechUid))
+        if (args.User != mech.Owner &&
+            (!TryComp(args.User, out InsideCombatVehicleComponent? pilot) || pilot.Vehicle != mech.Owner))
         {
             args.Cancelled = true;
             args.Message = Loc.GetString("stories-rx47-weapon-not-linked");
             return;
         }
 
-        if (!InFiringArc(mechUid, ent.Comp.FiringArc, args.ToCoordinates))
+        if (!InFiringArc(mech.Owner, ent.Comp.FiringArc, args.ToCoordinates))
         {
             args.Cancelled = true;
             args.Message = Loc.GetString("stories-rx47-weapon-out-of-arc");
@@ -829,6 +819,8 @@ public sealed class CombatMechSystem : EntitySystem
         else
             mech.Comp.SecondaryWeaponState = $"weapon_{state}_right";
 
+        Dirty(mech);
+
         if (!TryComp(mech, out HandsComponent? hands))
             return;
 
@@ -874,6 +866,65 @@ public sealed class CombatMechSystem : EntitySystem
     private bool IsMountedWeapon(Entity<CombatMechComponent> mech, EntityUid weapon)
     {
         return GetWeapon(mech, true) == weapon || GetWeapon(mech, false) == weapon;
+    }
+
+    private bool TryResolveWeaponMech(
+        Entity<CombatMechWeaponComponent> weapon,
+        EntityUid user,
+        out Entity<CombatMechComponent> mech)
+    {
+        if (weapon.Comp.LinkedMech is { } linked &&
+            !Deleted(linked) &&
+            TryComp(linked, out CombatMechComponent? linkedComp) &&
+            IsMountedWeapon((linked, linkedComp), weapon.Owner))
+        {
+            mech = (linked, linkedComp);
+            return true;
+        }
+
+        if (TryComp(user, out InsideCombatVehicleComponent? inside) &&
+            !Deleted(inside.Vehicle) &&
+            TryComp(inside.Vehicle, out CombatMechComponent? insideComp))
+        {
+            if (IsMountedWeapon((inside.Vehicle, insideComp), weapon.Owner))
+            {
+                LinkWeaponToMech(weapon, (inside.Vehicle, insideComp));
+                mech = (inside.Vehicle, insideComp);
+                return true;
+            }
+
+            if (_net.IsClient && IsHolding(user, weapon.Owner))
+            {
+                mech = (inside.Vehicle, insideComp);
+                return true;
+            }
+        }
+
+        mech = default;
+        return false;
+    }
+
+    private void ClearWeaponMechLink(Entity<CombatMechWeaponComponent> weapon)
+    {
+        if (weapon.Comp.LinkedMech == null)
+            return;
+
+        weapon.Comp.LinkedMech = null;
+        Dirty(weapon);
+    }
+
+    private bool IsHolding(EntityUid user, EntityUid item)
+    {
+        if (!TryComp(user, out HandsComponent? hands))
+            return false;
+
+        foreach (var held in _hands.EnumerateHeld((user, hands)))
+        {
+            if (held == item)
+                return true;
+        }
+
+        return false;
     }
 
     private void SetWeapon(Entity<CombatMechComponent> mech, bool primary, EntityUid? weapon)
