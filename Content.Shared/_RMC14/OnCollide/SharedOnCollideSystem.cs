@@ -72,22 +72,30 @@ public abstract class SharedOnCollideSystem : EntitySystem
         Dirty(ent);
 
         var didEmote = false;
+        var didDamage = false;
         if (ent.Comp.Chain == null || AddToChain(ent.Comp.Chain.Value, other))
         {
             var damage = ent.Comp.Damage;
             if (ent.Comp.Acidic)
                 damage = _xeno.TryApplyXenoAcidDamageMultiplier(other, damage);
-            _damageable.TryChangeDamage(other, damage, ent.Comp.IgnoreResistances);
-            DoEmote(ent, other);
-            didEmote = true;
+            didDamage = _damageable.TryChangeDamage(other, damage, ent.Comp.IgnoreResistances, tool: ent) != null;
+
+            if (didDamage)
+            {
+                DoEmote(ent, other);
+                didEmote = true;
+            }
         }
         else
         {
             var damage = ent.Comp.ChainDamage;
             if (ent.Comp.Acidic)
                 damage = _xeno.TryApplyXenoAcidDamageMultiplier(other, damage);
-            _damageable.TryChangeDamage(other, damage, ent.Comp.IgnoreResistances);
+            didDamage = _damageable.TryChangeDamage(other, damage, ent.Comp.IgnoreResistances, tool: ent) != null;
         }
+
+        if (!didDamage)
+            return;
 
         _xenoSpit.SetAcidCombo(other, ent.Comp.AcidComboDuration, ent.Comp.AcidComboDamage, ent.Comp.AcidComboParalyze, ent.Comp.AcidComboResists);
 

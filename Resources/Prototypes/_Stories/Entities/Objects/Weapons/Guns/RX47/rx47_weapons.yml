@@ -33,7 +33,7 @@
   components:
   - type: CombatMechWeapon
     armState: chaingun
-    firingArc: 150
+    firingArc: 160
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
     layers:
@@ -69,6 +69,7 @@
     slots:
       gun_magazine:
         name: Magazine
+        locked: true
         startingItem: StoriesMagazineRX47Chaingun
         priority: 2
         whitelist:
@@ -83,7 +84,7 @@
   components:
   - type: CombatMechWeapon
     armState: cannon
-    firingArc: 150
+    firingArc: 90
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
     layers:
@@ -102,6 +103,7 @@
     slots:
       gun_magazine:
         name: Magazine
+        locked: true
         startingItem: StoriesMagazineRX47Siegebreaker
         priority: 2
         whitelist:
@@ -116,7 +118,7 @@
   components:
   - type: CombatMechWeapon
     armState: cupola
-    firingArc: 150
+    firingArc: 160
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
     layers:
@@ -148,6 +150,7 @@
     slots:
       gun_magazine:
         name: Magazine
+        locked: true
         startingItem: StoriesMagazineRX47Cupola
         priority: 2
         whitelist:
@@ -170,7 +173,7 @@
   components:
   - type: CombatMechWeapon
     armState: shotgun
-    firingArc: 150
+    firingArc: 160
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
     layers:
@@ -196,6 +199,7 @@
     slots:
       gun_magazine:
         name: Magazine
+        locked: true
         startingItem: StoriesMagazineRX47Scattergun
         priority: 2
         whitelist:
@@ -218,7 +222,7 @@
   components:
   - type: CombatMechWeapon
     armState: shotgun
-    firingArc: 150
+    firingArc: 160
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
     layers:
@@ -238,6 +242,7 @@
     slots:
       gun_magazine:
         name: Tank
+        locked: true
         startingItem: RMCTankFlamer
         priority: 2
         whitelist:
@@ -276,7 +281,7 @@
       tags:
       - StoriesCartridgeRX47Siegebreaker
     proto: StoriesCartridgeRX47Siegebreaker
-    capacity: 60
+    capacity: 500
 
 - type: entity
   parent: CMMagazineRifleBase
@@ -310,7 +315,7 @@
       tags:
       - StoriesCartridgeRX47Scattergun
     proto: StoriesCartridgeRX47Scattergun
-    capacity: 500
+    capacity: 1000
 
 - type: entity
   parent: CMBaseCartridgeRifle

@@ -72,6 +72,7 @@
       components:
       - Marine
       - Xeno
+      - CombatMech
   - type: UncloakOnHit
   - type: ExtinguishFire
   - type: IgnorePredictionHit

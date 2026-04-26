@@ -473,7 +473,7 @@ public abstract class SharedRMCDamageableSystem : EntitySystem
         return true;
     }
 
-    private void DoDamage(Entity<DamageOverTimeComponent> damageEnt, EntityUid target, DamageSpecifier damage, bool ignoreResistances = false, bool acidic = false)
+    private bool DoDamage(Entity<DamageOverTimeComponent> damageEnt, EntityUid target, DamageSpecifier damage, bool ignoreResistances = false, bool acidic = false)
     {
         var damageBase = damage;
 
@@ -486,13 +486,12 @@ public abstract class SharedRMCDamageableSystem : EntitySystem
             {
                 if (_entityWhitelist.IsWhitelistPass(multiplier.Whitelist, target))
                 {
-                    _damageable.TryChangeDamage(target, damageBase * multiplier.Multiplier, ignoreResistances);
-                    return;
+                    return _damageable.TryChangeDamage(target, damageBase * multiplier.Multiplier, ignoreResistances, tool: damageEnt) != null;
                 }
             }
         }
 
-        _damageable.TryChangeDamage(target, damageBase, ignoreResistances);
+        return _damageable.TryChangeDamage(target, damageBase, ignoreResistances, tool: damageEnt) != null;
     }
 
     public virtual bool TryGetDestroyedAt(EntityUid destructible, [NotNullWhen(true)] out FixedPoint2? destroyed)
@@ -652,11 +651,23 @@ public abstract class SharedRMCDamageableSystem : EntitySystem
 
                 userDamage.NextDamageAt = time + userDamage.DamageEvery;
 
+                var hasDamage = false;
+                var damaged = false;
+
                 if (damage.Damage != null)
-                    DoDamage((contact, damage), user, damage.Damage);
+                {
+                    hasDamage = true;
+                    damaged |= DoDamage((contact, damage), user, damage.Damage);
+                }
 
                 if (damage.ArmorPiercingDamage != null)
-                    DoDamage((contact, damage), user, damage.ArmorPiercingDamage, true, acidic: damage.Acidic);
+                {
+                    hasDamage = true;
+                    damaged |= DoDamage((contact, damage), user, damage.ArmorPiercingDamage, true, acidic: damage.Acidic);
+                }
+
+                if (hasDamage && !damaged)
+                    break;
 
                 if (damage.Emotes is { Count: > 0 } emotes)
                 {

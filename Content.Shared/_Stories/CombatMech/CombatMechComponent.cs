@@ -38,6 +38,15 @@ public sealed partial class CombatMechComponent : Component
     public TimeSpan ForceEjectDelay = TimeSpan.FromSeconds(8);
 
     [DataField]
+    public float BaseMoveDelay = 7f;
+
+    [DataField]
+    public float MinimumMoveDelay = 3f;
+
+    [DataField]
+    public float MoveDelayReductionPerSkill = 2f;
+
+    [DataField]
     public EntProtoId<SkillDefinitionComponent> WeaponSkill = "RMCSkillPowerLoader";
 
     [DataField]

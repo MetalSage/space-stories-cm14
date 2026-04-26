@@ -10,6 +10,10 @@
     sprite: _Stories/Objects/Vehicles/RX47/combat_mech.rsi
     layers:
     - state: wymech_wreck
+  - type: RemoveComponents
+    components:
+    - type: Strap
+    - type: InputMover
 
 - type: entity
   parent: RMCMechBase
@@ -21,9 +25,14 @@
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47Chaingun
     secondaryWeapon: StoriesWeaponRX47Scattergun
+    weaponInstallDelay: 2
+    weaponDetachDelay: 2
+    forceEjectDelay: 3
   - type: RMCAllowStrapMovement
   - type: RMCImmuneToFireTileDamage
   - type: RMCImmuneToIgnition
+  - type: Corrodible
+    isCorrodible: false
   - type: Hands
   - type: GiveHands
     hands:
@@ -34,8 +43,20 @@
   - type: IgnoreInteractionRange
     range: 6
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.1
-    baseSprintSpeed: 1.1
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - MobMask
+        - FullTileMask
+        layer:
+        - MobLayer
+        - FullTileLayer
   - type: PointLight
     enabled: true
     radius: 8
@@ -83,10 +104,8 @@
   - type: Damageable
     damageContainer: StoriesRX47CombatMech
   - type: RMCRepairable
-    heal: 75
-    skill: RMCSkillPowerLoader
-    skillRequired: 3
-    delay: 6
+    heal: 100
+    delay: 2
     repairableDamageLimit: 3000
   - type: XenoToggleChargingDamage
     stop: true

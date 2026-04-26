@@ -1,9 +1,13 @@
 using System.Numerics;
+using Content.Shared._RMC14.Hands;
 using Content.Shared._RMC14.Attachable.Components;
 using Content.Shared._RMC14.Attachable.Events;
 using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.BlurredVision;
+using Content.Shared._RMC14.CameraShake;
+using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._RMC14.OnCollide;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Ranged;
@@ -17,15 +21,19 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Containers;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Explosion;
 using Content.Shared.FixedPoint;
+using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Item;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -47,18 +55,20 @@ public sealed class CombatMechSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedRMCFlammableSystem _flammable = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedXenoAcidSystem _xenoAcid = default!;
 
     public override void Initialize()
     {
@@ -67,20 +77,27 @@ public sealed class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, UnstrapAttemptEvent>(OnUnstrapAttempt);
         SubscribeLocalEvent<CombatMechComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<CombatMechComponent, UnstrappedEvent>(OnUnstrapped);
+        SubscribeLocalEvent<CombatMechComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
         SubscribeLocalEvent<CombatMechComponent, GetIFFGunUserEvent>(OnGetIFFGunUser);
         SubscribeLocalEvent<CombatMechComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<CombatMechComponent, BeforeDamageChangedEvent>(OnMechBeforeDamage);
         SubscribeLocalEvent<CombatMechComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<CombatMechComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<CombatMechComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
         SubscribeLocalEvent<CombatMechComponent, GetIgnitionImmunityEvent>(OnMechIgnitionImmunity);
         SubscribeLocalEvent<CombatMechComponent, RMCGetFireImmunityEvent>(OnMechFireImmunity);
+        SubscribeLocalEvent<CombatMechComponent, CorrodingEvent>(OnMechCorroding);
         SubscribeLocalEvent<CombatMechComponent, CombatMechInstallWeaponDoAfterEvent>(OnInstallWeaponDoAfter);
         SubscribeLocalEvent<CombatMechComponent, CombatMechDetachWeaponDoAfterEvent>(OnDetachWeaponDoAfter);
         SubscribeLocalEvent<CombatMechComponent, CombatMechForceEjectDoAfterEvent>(OnForceEjectDoAfter);
 
         SubscribeLocalEvent<CombatMechWeaponComponent, AttemptShootEvent>(OnWeaponAttemptShoot);
+        SubscribeLocalEvent<CombatMechWeaponComponent, ContainerIsRemovingAttemptEvent>(OnWeaponContainerRemoveAttempt);
+        SubscribeLocalEvent<CombatMechWeaponComponent, InteractUsingEvent>(OnWeaponInteractUsing);
+        SubscribeLocalEvent<CombatMechWeaponComponent, ItemSlotEjectAttemptEvent>(OnWeaponItemSlotEjectAttempt);
+        SubscribeLocalEvent<CombatMechWeaponComponent, RMCTryAmmoEjectEvent>(OnWeaponTryAmmoEject);
+        SubscribeLocalEvent<CombatMechWeaponComponent, UseInHandEvent>(OnWeaponUseInHand);
         SubscribeLocalEvent<CombatMechWeaponComponent, GetVerbsEvent<AlternativeVerb>>(OnWeaponGetAlternativeVerbs);
+        SubscribeLocalEvent<RMCCameraShakingComponent, ComponentStartup>(OnCameraShakeStartup);
         SubscribeLocalEvent<InsideCombatVehicleComponent, BeforeAttemptShootEvent>(OnInsideVehicleBeforeAttemptShoot);
         SubscribeLocalEvent<InsideCombatVehicleComponent, BeforeDamageChangedEvent>(OnInsideVehicleBeforeDamage);
         SubscribeLocalEvent<InsideCombatVehicleComponent, BeforeStatusEffectAddedEvent>(OnInsideVehicleBeforeStatusEffectAdded);
@@ -93,6 +110,8 @@ public sealed class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<InsideCombatVehicleComponent, GetIgnitionImmunityEvent>(OnInsideVehicleIgnitionImmunity);
         SubscribeLocalEvent<InsideCombatVehicleComponent, RMCGetFireImmunityEvent>(OnInsideVehicleFireImmunity);
         SubscribeLocalEvent<InsideCombatVehicleComponent, GetExplosionResistanceEvent>(OnInsideVehicleExplosionResistance);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, DropAttemptEvent>(OnInsideVehicleDropAttempt);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, PickupAttemptEvent>(OnInsideVehiclePickupAttempt);
     }
 
     public override void Update(float frameTime)
@@ -103,6 +122,13 @@ public sealed class CombatMechSystem : EntitySystem
         var query = EntityQueryEnumerator<InsideCombatVehicleComponent>();
         while (query.MoveNext(out var uid, out var inside))
         {
+            if (Deleted(inside.Vehicle))
+            {
+                RestorePilotProtection((uid, inside));
+                RemCompDeferred<InsideCombatVehicleComponent>(uid);
+                continue;
+            }
+
             if (!IsProtectedPilot((uid, inside)))
                 continue;
 
@@ -116,6 +142,9 @@ public sealed class CombatMechSystem : EntitySystem
         {
             if (HasComp<FlammableComponent>(uid))
                 _flammable.Extinguish(uid);
+
+            if (_xenoAcid.IsMelted(uid))
+                _xenoAcid.RemoveAcid(uid);
         }
     }
 
@@ -143,6 +172,22 @@ public sealed class CombatMechSystem : EntitySystem
         {
             if (args.Popup)
                 _popup.PopupClient(Loc.GetString("stories-rx47-not-trained-pilot"), ent, user, PopupType.MediumCaution);
+            args.Cancelled = true;
+            return;
+        }
+
+        if (GetWeapon(ent, true) == null || GetWeapon(ent, false) == null)
+        {
+            if (args.Popup)
+                _popup.PopupClient(Loc.GetString("stories-rx47-missing-weapons"), ent, user, PopupType.MediumCaution);
+            args.Cancelled = true;
+            return;
+        }
+
+        if (!TryComp(user, out HandsComponent? hands) || _hands.CountFreeHands((user, hands)) < 2)
+        {
+            if (args.Popup)
+                _popup.PopupClient(Loc.GetString("stories-rx47-need-both-hands"), ent, user, PopupType.MediumCaution);
             args.Cancelled = true;
         }
     }
@@ -175,6 +220,7 @@ public sealed class CombatMechSystem : EntitySystem
         _interaction.SetRelay(pilot, ent, relay);
 
         _audio.PlayPredicted(ent.Comp.EnterSound, ent, pilot);
+        _movementSpeed.RefreshMovementSpeedModifiers(ent);
 
         if (_net.IsServer)
         {
@@ -196,6 +242,7 @@ public sealed class CombatMechSystem : EntitySystem
         RemComp<RelayInputMoverComponent>(pilot);
         RemComp<MovementRelayTargetComponent>(ent);
         RemCompDeferred<InteractionRelayComponent>(pilot);
+        _movementSpeed.RefreshMovementSpeedModifiers(ent);
 
         if (_net.IsServer)
         {
@@ -307,18 +354,6 @@ public sealed class CombatMechSystem : EntitySystem
             _audio.PlayPredicted(ent.Comp.DamageAlertSound, ent, pilot.Value);
             _popup.PopupClient(Loc.GetString("stories-rx47-alert-damaged"), ent, pilot.Value, PopupType.MediumCaution);
         }
-    }
-
-    private void OnMechBeforeDamage(Entity<CombatMechComponent> ent, ref BeforeDamageChangedEvent args)
-    {
-        if (args.Cancelled || ent.Comp.HelmetClosed || args.Damage.GetTotal() <= FixedPoint2.Zero)
-            return;
-
-        if (GetPilot(ent) is not { } pilot)
-            return;
-
-        _damageable.TryChangeDamage(pilot, args.Damage, origin: args.Origin, tool: args.Source);
-        args.Cancelled = true;
     }
 
     private void OnInteractUsing(Entity<CombatMechComponent> ent, ref InteractUsingEvent args)
@@ -695,6 +730,59 @@ public sealed class CombatMechSystem : EntitySystem
         }
     }
 
+    private void OnWeaponContainerRemoveAttempt(Entity<CombatMechWeaponComponent> ent, ref ContainerIsRemovingAttemptEvent args)
+    {
+        if (args.Container.ID != "gun_magazine" && args.Container.ID != "gun_chamber")
+            return;
+
+        if (ent.Comp.LinkedMech == null || Deleted(ent.Comp.LinkedMech.Value))
+            return;
+
+        args.Cancel();
+    }
+
+    private void OnWeaponInteractUsing(Entity<CombatMechWeaponComponent> ent, ref InteractUsingEvent args)
+    {
+        if (args.Handled || !IsMountedWeaponForPilot(args.User, ent))
+            return;
+
+        args.Handled = true;
+        _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
+    }
+
+    private void OnWeaponItemSlotEjectAttempt(Entity<CombatMechWeaponComponent> ent, ref ItemSlotEjectAttemptEvent args)
+    {
+        if (args.User is not { } user || !IsMountedWeaponForPilot(user, ent))
+            return;
+
+        args.Cancelled = true;
+        _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, user, PopupType.MediumCaution);
+    }
+
+    private void OnWeaponTryAmmoEject(Entity<CombatMechWeaponComponent> ent, ref RMCTryAmmoEjectEvent args)
+    {
+        if (!IsMountedWeaponForPilot(args.User, ent))
+            return;
+
+        args.Cancelled = true;
+        _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
+    }
+
+    private void OnWeaponUseInHand(Entity<CombatMechWeaponComponent> ent, ref UseInHandEvent args)
+    {
+        if (args.Handled || !IsMountedWeaponForPilot(args.User, ent))
+            return;
+
+        args.Handled = true;
+        _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
+    }
+
+    private void OnCameraShakeStartup(Entity<RMCCameraShakingComponent> ent, ref ComponentStartup args)
+    {
+        if (TryComp(ent.Owner, out InsideCombatVehicleComponent? inside) && IsProtectedPilot((ent.Owner, inside)))
+            RemCompDeferred<RMCCameraShakingComponent>(ent);
+    }
+
     private void OnInsideVehicleBeforeAttemptShoot(Entity<InsideCombatVehicleComponent> ent, ref BeforeAttemptShootEvent args)
     {
         if (Deleted(ent.Comp.Vehicle))
@@ -708,13 +796,28 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnInsideVehicleBeforeDamage(Entity<InsideCombatVehicleComponent> ent, ref BeforeDamageChangedEvent args)
     {
+        if (args.Cancelled)
+            return;
+
         if (Deleted(ent.Comp.Vehicle))
             return;
 
-        if (TryComp(ent.Comp.Vehicle, out CombatMechComponent? mech) && !mech.HelmetClosed)
-            return;
+        if (args.Damage.GetTotal() > FixedPoint2.Zero && ShouldRedirectDamageToVehicle(args))
+            _damageable.TryChangeDamage(ent.Comp.Vehicle, args.Damage, origin: args.Origin, tool: args.Source);
 
         args.Cancelled = true;
+    }
+
+    private void OnInsideVehiclePickupAttempt(Entity<InsideCombatVehicleComponent> ent, ref PickupAttemptEvent args)
+    {
+        if (IsProtectedPilot(ent))
+            args.Cancel();
+    }
+
+    private void OnInsideVehicleDropAttempt(Entity<InsideCombatVehicleComponent> ent, ref DropAttemptEvent args)
+    {
+        if (IsProtectedPilot(ent))
+            args.Cancel();
     }
 
     private void OnInsideVehicleNeurotoxinInjectAttempt(Entity<InsideCombatVehicleComponent> ent, ref NeurotoxinInjectAttemptEvent args)
@@ -727,6 +830,11 @@ public sealed class CombatMechSystem : EntitySystem
     {
         if (IsProtectedPilot(ent))
             args.Cancelled = true;
+    }
+
+    private void OnMechCorroding(Entity<CombatMechComponent> ent, ref CorrodingEvent args)
+    {
+        args.Cancelled = true;
     }
 
     private void OnInsideVehicleBeforeStatusEffectAdded(Entity<InsideCombatVehicleComponent> ent, ref BeforeStatusEffectAddedEvent args)
@@ -866,6 +974,18 @@ public sealed class CombatMechSystem : EntitySystem
     private bool IsMountedWeapon(Entity<CombatMechComponent> mech, EntityUid weapon)
     {
         return GetWeapon(mech, true) == weapon || GetWeapon(mech, false) == weapon;
+    }
+
+    private bool IsMountedWeaponForPilot(EntityUid user, Entity<CombatMechWeaponComponent> weapon)
+    {
+        if (!TryComp(user, out InsideCombatVehicleComponent? inside) ||
+            Deleted(inside.Vehicle) ||
+            !TryComp(inside.Vehicle, out CombatMechComponent? mech))
+        {
+            return false;
+        }
+
+        return IsMountedWeapon((inside.Vehicle, mech), weapon);
     }
 
     private bool TryResolveWeaponMech(
@@ -1041,7 +1161,31 @@ public sealed class CombatMechSystem : EntitySystem
         if (Deleted(pilot.Comp.Vehicle))
             return false;
 
-        return !TryComp(pilot.Comp.Vehicle, out CombatMechComponent? mech) || mech.HelmetClosed;
+        return true;
+    }
+
+    private void OnRefreshSpeed(Entity<CombatMechComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
+    {
+        if (!TryComp(ent, out StrapComponent? strap))
+            return;
+
+        var highestSkill = 0;
+        foreach (var buckled in strap.BuckledEntities)
+        {
+            var skill = _skills.GetSkill(buckled, ent.Comp.WeaponSkill);
+            if (skill > highestSkill)
+                highestSkill = skill;
+        }
+
+        if (highestSkill <= 0)
+            return;
+
+        var delay = Math.Max(
+            ent.Comp.MinimumMoveDelay,
+            ent.Comp.BaseMoveDelay - ent.Comp.MoveDelayReductionPerSkill * highestSkill);
+
+        var speed = ent.Comp.BaseMoveDelay / delay;
+        args.ModifySpeed(speed, speed);
     }
 
     private void ClearProtectedStatuses(Entity<InsideCombatVehicleComponent> pilot)
@@ -1066,6 +1210,17 @@ public sealed class CombatMechSystem : EntitySystem
 
         if (HasComp<NeurotoxinComponent>(pilot))
             RemCompDeferred<NeurotoxinComponent>(pilot);
+
+        if (HasComp<RMCCameraShakingComponent>(pilot))
+            RemCompDeferred<RMCCameraShakingComponent>(pilot);
+    }
+
+    private bool ShouldRedirectDamageToVehicle(BeforeDamageChangedEvent args)
+    {
+        if (args.Source is not { } source)
+            return true;
+
+        return !HasComp<DamageOnCollideComponent>(source) && !HasComp<DamageOverTimeComponent>(source);
     }
 
     private void ClearProtectedSlowOrStatus(
