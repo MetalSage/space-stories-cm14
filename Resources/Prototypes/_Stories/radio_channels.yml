@@ -9,6 +9,16 @@
   tower: false
 
 - type: radioChannel
+  id: StoriesMech
+  name: stories-chat-radio-mech
+  keycode: "1"
+  frequency: 1207
+  color: "#9BB7C8"
+  longRange: true
+  planet: true
+  tower: true
+
+- type: radioChannel
   id: STOverseer
   name: stories-chat-radio-overseer
   keycode: "хо"

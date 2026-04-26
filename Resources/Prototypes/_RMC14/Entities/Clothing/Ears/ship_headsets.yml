@@ -67,6 +67,7 @@
       key_slots:
       - CMEncryptionKeyCommon
       - CMEncryptionKeyCE
+      - StoriesEncryptionKeyMech
   - type: RMCRadioFilter
     disabledChannels:
     - MarineAlpha
@@ -124,6 +125,7 @@
       key_slots:
       - CMEncryptionKeyCommon
       - CMEncryptionKeyEngineer
+      - StoriesEncryptionKeyMech
   - type: GrantSquadLeaderTracker
     defaultMode: ChiefEngineer
     trackerModes:
@@ -322,6 +324,7 @@
       key_slots:
       - CMEncryptionKeyCommon
       - RMCEncryptionKeyMarineCommand
+      - StoriesEncryptionKeyMech
   - type: HeadsetMultiBroadcast
     cooldown: 60
   - type: RMCHeadset
@@ -349,6 +352,7 @@
       key_slots:
       - CMEncryptionKeyCommon
       - CMEncryptionKeyPilot
+      - StoriesEncryptionKeyMech
   - type: HeadsetMultiBroadcast
     cooldown: 60
   - type: RMCHeadset

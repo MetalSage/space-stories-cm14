@@ -1,0 +1,13 @@
+- type: entity
+  parent: CMEncryptionKey
+  id: StoriesEncryptionKeyMech
+  name: mech operations encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - MarineCommon
+    - MarineEngineer
+    - StoriesMech
+    defaultChannel: StoriesMech
+  - type: Sprite
+    state: cypherkey

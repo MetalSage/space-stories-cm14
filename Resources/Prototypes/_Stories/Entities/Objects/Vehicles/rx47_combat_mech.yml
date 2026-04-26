@@ -1,0 +1,155 @@
+- type: entity
+  parent: RMCMechPowerLoaderWreckage
+  id: StoriesRX47CombatMechWreckage
+  name: RX47 combat mechsuit wreckage
+  description: The torn remains of an RX47 combat mechsuit.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Stories/Objects/Vehicles/RX47/combat_mech.rsi
+    layers:
+    - state: wymech_wreck
+
+- type: entity
+  parent: RMCMechBase
+  id: StoriesRX47CombatMechBase
+  name: RX47 combat mechsuit
+  description: A Weston-Yamada RX47 combat mechsuit. This unit is reserved for event and administrative use.
+  abstract: true
+  components:
+  - type: CombatMech
+    primaryWeapon: StoriesWeaponRX47Chaingun
+    secondaryWeapon: StoriesWeaponRX47Scattergun
+  - type: RMCAllowStrapMovement
+  - type: RMCImmuneToFireTileDamage
+  - type: RMCImmuneToIgnition
+  - type: Hands
+  - type: GiveHands
+    hands:
+    - name: Right Hand
+      location: Right
+    - name: Left Hand
+      location: Left
+  - type: IgnoreInteractionRange
+    range: 6
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.1
+    baseSprintSpeed: 1.1
+  - type: PointLight
+    enabled: true
+    radius: 8
+    color: "#d8f2ff"
+    energy: 1.6
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Stories/Objects/Vehicles/RX47/combat_mech.rsi
+    layers:
+    - state: wymech_legs
+      map: [ "enum.CombatMechVisualLayers.Legs" ]
+    - state: wymech_body
+      map: [ "enum.CombatMechVisualLayers.Body" ]
+    - state: wymech_body_overlay
+      shader: unshaded
+    - state: wymech_helmet_open
+      map: [ "enum.CombatMechVisualLayers.Helmet" ]
+    - state: wymech_arms
+      map: [ "enum.CombatMechVisualLayers.Arms" ]
+    - state: weapon_chaingun_left
+      map: [ "enum.CombatMechVisualLayers.PrimaryWeapon" ]
+    - state: weapon_shotgun_right
+      map: [ "enum.CombatMechVisualLayers.SecondaryWeapon" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombatMechVisuals.HelmetClosed:
+        enum.CombatMechVisualLayers.Helmet:
+          True: { state: wymech_helmet_closed }
+          False: { state: wymech_helmet_open }
+      enum.CombatMechVisuals.PrimaryWeapon:
+        enum.CombatMechVisualLayers.PrimaryWeapon:
+          "": { state: empty }
+          "weapon_chaingun_left": { state: weapon_chaingun_left }
+          "weapon_cannon_left": { state: weapon_cannon_left }
+          "weapon_cupola_left": { state: weapon_cupola_left }
+          "weapon_shotgun_left": { state: weapon_shotgun_left }
+      enum.CombatMechVisuals.SecondaryWeapon:
+        enum.CombatMechVisualLayers.SecondaryWeapon:
+          "": { state: empty }
+          "weapon_chaingun_right": { state: weapon_chaingun_right }
+          "weapon_cannon_right": { state: weapon_cannon_right }
+          "weapon_cupola_right": { state: weapon_cupola_right }
+          "weapon_shotgun_right": { state: weapon_shotgun_right }
+  - type: Damageable
+    damageContainer: StoriesRX47CombatMech
+  - type: RMCRepairable
+    heal: 75
+    skill: RMCSkillPowerLoader
+    skillRequired: 3
+    delay: 6
+    repairableDamageLimit: 3000
+  - type: XenoToggleChargingDamage
+    stop: true
+    damage:
+      types:
+        Blunt: 25
+    armorPiercingDamage:
+      types:
+        Blunt: 75
+    armorPiercing: 30
+    stageMultipliers:
+      8: 8
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 3000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          RMCPowerCellAPC:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SpawnOnTerminate
+    spawn: StoriesRX47CombatMechWreckage
+
+- type: entity
+  parent: StoriesRX47CombatMechBase
+  id: StoriesRX47CombatMechChaingun
+  suffix: Chaingun
+  components:
+  - type: CombatMech
+    primaryWeapon: StoriesWeaponRX47Chaingun
+    secondaryWeapon: StoriesWeaponRX47Scattergun
+
+- type: entity
+  parent: StoriesRX47CombatMechBase
+  id: StoriesRX47CombatMechSiegebreaker
+  suffix: Siegebreaker
+  components:
+  - type: CombatMech
+    primaryWeapon: StoriesWeaponRX47Siegebreaker
+    secondaryWeapon: StoriesWeaponRX47CupolaSmartgun
+
+- type: entity
+  parent: StoriesRX47CombatMechBase
+  id: StoriesRX47CombatMechExterminator
+  suffix: Exterminator
+  components:
+  - type: CombatMech
+    primaryWeapon: StoriesWeaponRX47Siegebreaker
+    secondaryWeapon: StoriesWeaponRX47Chaingun
+
+- type: entity
+  parent: StoriesRX47CombatMechBase
+  id: StoriesRX47CombatMechRecon
+  suffix: Recon
+  components:
+  - type: CombatMech
+    primaryWeapon: StoriesWeaponRX47CupolaSmartgun
+    secondaryWeapon: StoriesWeaponRX47Scattergun
