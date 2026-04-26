@@ -84,9 +84,11 @@ public sealed class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<CombatMechComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<CombatMechComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<CombatMechComponent, DropAttemptEvent>(OnMechDropAttempt);
         SubscribeLocalEvent<CombatMechComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
         SubscribeLocalEvent<CombatMechComponent, GetIgnitionImmunityEvent>(OnMechIgnitionImmunity);
         SubscribeLocalEvent<CombatMechComponent, RMCGetFireImmunityEvent>(OnMechFireImmunity);
+        SubscribeLocalEvent<CombatMechComponent, PickupAttemptEvent>(OnMechPickupAttempt);
         SubscribeLocalEvent<CombatMechComponent, CorrodingEvent>(OnMechCorroding);
         SubscribeLocalEvent<CombatMechComponent, CombatMechInstallWeaponDoAfterEvent>(OnInstallWeaponDoAfter);
         SubscribeLocalEvent<CombatMechComponent, CombatMechDetachWeaponDoAfterEvent>(OnDetachWeaponDoAfter);
@@ -384,6 +386,18 @@ public sealed class CombatMechSystem : EntitySystem
         }
 
         _popup.PopupClient(Loc.GetString("stories-rx47-weapon-slots-full"), ent, args.User, PopupType.MediumCaution);
+    }
+
+    private void OnMechPickupAttempt(Entity<CombatMechComponent> ent, ref PickupAttemptEvent args)
+    {
+        if (GetPilot(ent) != null)
+            args.Cancel();
+    }
+
+    private void OnMechDropAttempt(Entity<CombatMechComponent> ent, ref DropAttemptEvent args)
+    {
+        if (GetPilot(ent) != null)
+            args.Cancel();
     }
 
     private void OnGetAlternativeVerbs(Entity<CombatMechComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)

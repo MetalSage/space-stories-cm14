@@ -45,9 +45,19 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1
+  - type: MobState
+  - type: MobCollision
+    minimumSpeedModifier: 0.1
+    strength: 80
+  - type: RMCMobCollision
+    fixtureShape: !type:PhysShapeCircle
+      radius: 0.55
+  - type: RMCMobCollisionMass
+    mass: 1000
   - type: Fixtures
     fixtures:
       fix1:
+        hard: true
         shape: !type:PhysShapeCircle
           radius: 0.45
         density: 1000
