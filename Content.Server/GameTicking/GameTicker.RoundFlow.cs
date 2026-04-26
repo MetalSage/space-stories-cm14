@@ -408,7 +408,7 @@ namespace Content.Server.GameTicking
             DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
 
             // Stories-start
-            if (!force && Preset?.ID is "CMDistressSignal" or "STDistressSignal" or "STDistressSignalLowPop")
+            if (!force && !_map.MapExists(DefaultMap) && Preset?.ID is ("STDistressSignal" or "STDistressSignalLowPop"))
             {
                 var lowPopThreshold = _prototypeManager.TryIndex<GamePresetPrototype>("STDistressSignalLowPop", out var lowPopPreset)
                     ? lowPopPreset.MaxPlayers ?? int.MaxValue
@@ -820,6 +820,16 @@ namespace Content.Server.GameTicking
             // Preload maps so we can start faster
             else if (_roundStartTime - RoundPreloadTime < _gameTiming.CurTime)
             {
+                // Stories-start
+                if (!_map.MapExists(DefaultMap) && Preset?.ID is ("STDistressSignal" or "STDistressSignalLowPop"))
+                {
+                    var lowPopThreshold = _prototypeManager.TryIndex<GamePresetPrototype>("STDistressSignalLowPop", out var lowPopPreset)
+                        ? lowPopPreset.MaxPlayers ?? int.MaxValue
+                        : int.MaxValue;
+                    SetGamePreset(_playerManager.PlayerCount <= lowPopThreshold ? "STDistressSignalLowPop" : "STDistressSignal");
+                }
+                // Stories-end
+
                 LoadMaps();
             }
         }
