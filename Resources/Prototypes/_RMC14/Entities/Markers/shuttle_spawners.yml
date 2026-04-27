@@ -163,5 +163,10 @@
 
 - type: entity
   parent: RMCERTShuttleStartPad
+  id: RMCERTShuttleStartPadFreelancers
+  suffix: ERT, Freelancers
+
+- type: entity
+  parent: RMCERTShuttleStartPad
   id: RMCERTShuttleStartPadReserve
   suffix: ERT, Reserve
