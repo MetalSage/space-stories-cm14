@@ -13,7 +13,7 @@ using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Stun;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids.Acid;
@@ -41,12 +41,16 @@ using Content.Shared.Item;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
-using Content.Shared.Tag;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Melee;
+using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -55,7 +59,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Stories.CombatMech;
@@ -64,8 +67,6 @@ public sealed class CombatMechSystem : EntitySystem
 {
     private const string UnderbarrelSlot = "rmc-aslot-underbarrel";
     private const float ProtectionCleanupInterval = 0.25f;
-    private static readonly TimeSpan CollisionKnockdownTime = TimeSpan.FromSeconds(1);
-    private static readonly ProtoId<TagPrototype> PlasteelBarricadeTag = "RMCPlasteelBarricade";
 
     private static readonly HashSet<string> ProtectedStatusEffects = new()
     {
@@ -79,6 +80,8 @@ public sealed class CombatMechSystem : EntitySystem
     };
 
     private float _protectionCleanupAccumulator;
+    private readonly HashSet<EntityUid> _contacts = new();
+    private readonly List<EntityUid> _staleDictionaryKeys = new();
 
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -86,18 +89,21 @@ public sealed class CombatMechSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedRMCFlammableSystem _flammable = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
+    [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
@@ -118,6 +124,8 @@ public sealed class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, RMCGetFireImmunityEvent>(OnMechFireImmunity);
         SubscribeLocalEvent<CombatMechComponent, PickupAttemptEvent>(OnMechPickupAttempt);
         SubscribeLocalEvent<CombatMechComponent, StartCollideEvent>(OnMechStartCollide);
+        SubscribeLocalEvent<CombatMechComponent, GetSpeedModifierContactCapEvent>(OnMechGetSpeedModifierContactCap);
+        SubscribeLocalEvent<CombatMechComponent, TileFrictionEvent>(OnMechTileFriction);
         SubscribeLocalEvent<CombatMechComponent, CombatMechInstallWeaponDoAfterEvent>(OnInstallWeaponDoAfter);
         SubscribeLocalEvent<CombatMechComponent, CombatMechDetachWeaponDoAfterEvent>(OnDetachWeaponDoAfter);
         SubscribeLocalEvent<CombatMechComponent, CombatMechForceEjectDoAfterEvent>(OnForceEjectDoAfter);
@@ -129,6 +137,7 @@ public sealed class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechWeaponComponent, RMCTryAmmoEjectEvent>(OnWeaponTryAmmoEject);
         SubscribeLocalEvent<CombatMechWeaponComponent, UseInHandEvent>(OnWeaponUseInHand);
         SubscribeLocalEvent<CombatMechWeaponComponent, GetVerbsEvent<AlternativeVerb>>(OnWeaponGetAlternativeVerbs);
+        SubscribeLocalEvent<CombatMechWeaponComponent, MeleeHitEvent>(OnWeaponMeleeHit);
         SubscribeLocalEvent<RMCCameraShakingComponent, ComponentStartup>(OnCameraShakeStartup);
         SubscribeLocalEvent<InsideCombatVehicleComponent, BeforeAttemptShootEvent>(OnInsideVehicleBeforeAttemptShoot);
         SubscribeLocalEvent<InsideCombatVehicleComponent, BeforeDamageChangedEvent>(OnInsideVehicleBeforeDamage);
@@ -144,8 +153,8 @@ public sealed class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<InsideCombatVehicleComponent, GetExplosionResistanceEvent>(OnInsideVehicleExplosionResistance);
         SubscribeLocalEvent<InsideCombatVehicleComponent, DropAttemptEvent>(OnInsideVehicleDropAttempt);
         SubscribeLocalEvent<InsideCombatVehicleComponent, PickupAttemptEvent>(OnInsideVehiclePickupAttempt);
-
-        SubscribeLocalEvent<StatusEffectsComponent, AttemptMobTargetCollideEvent>(OnStatusEffectsAttemptMobTargetCollide);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, GetMeleeWeaponEvent>(OnInsideVehicleGetMeleeWeapon);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, MeleeAttackAttemptEvent>(OnInsideVehicleMeleeAttackAttempt);
     }
 
     public override void Update(float frameTime)
@@ -158,6 +167,13 @@ public sealed class CombatMechSystem : EntitySystem
         if (cleanupProtection)
             _protectionCleanupAccumulator = 0f;
 
+        if (cleanupProtection)
+        {
+            ProcessBarricadeBumpers();
+            ProcessMarineStepStuns();
+            ProcessOpenFaceplateDamageOverTime();
+        }
+
         var query = EntityQueryEnumerator<InsideCombatVehicleComponent>();
         while (query.MoveNext(out var uid, out var inside))
         {
@@ -168,7 +184,7 @@ public sealed class CombatMechSystem : EntitySystem
                 continue;
             }
 
-            if (!cleanupProtection || !HasLiveVehicle((uid, inside)))
+            if (!cleanupProtection || !IsPilotSealed((uid, inside)))
                 continue;
 
             // Most effects are blocked by events; this slower pass catches late-added components without ticking every frame.
@@ -234,11 +250,8 @@ public sealed class CombatMechSystem : EntitySystem
         if (args.Cancelled || !ent.Comp.HelmetClosed)
             return;
 
-        if (args.User != args.Buckle.Owner)
-            return;
-
         if (args.Popup)
-            _popup.PopupClient(Loc.GetString("stories-rx47-faceplate-blocks-exit"), ent, args.Buckle.Owner, PopupType.MediumCaution);
+            _popup.PopupClient(Loc.GetString("stories-rx47-faceplate-blocks-exit"), ent, args.User, PopupType.MediumCaution);
 
         args.Cancelled = true;
     }
@@ -310,6 +323,9 @@ public sealed class CombatMechSystem : EntitySystem
         LinkWeaponToMech(weapon, ent);
 
         RemComp<UnremoveableComponent>(weapon);
+        if (_hands.IsHolding(ent.Owner, weapon))
+            _hands.TryDrop(ent.Owner, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false);
+
         if (!_hands.TryPickup(pilot, weapon, hand, checkActionBlocker: false, animate: false, handsComp: pilotHands))
         {
             TransferWeaponToMech(ent, pilot, primary);
@@ -341,6 +357,9 @@ public sealed class CombatMechSystem : EntitySystem
             EnsureComp<UnremoveableComponent>(weapon);
             return;
         }
+
+        if (_hands.IsHolding(pilot, weapon))
+            _hands.TryDrop(pilot, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false);
 
         if (!_hands.TryPickup(ent.Owner, weapon, hand, checkActionBlocker: false, animate: false, handsComp: mechHands))
         {
@@ -478,18 +497,11 @@ public sealed class CombatMechSystem : EntitySystem
         if (_net.IsClient || args.OtherEntity == ent.Owner)
             return;
 
-        if (!TryComp<BarricadeComponent>(args.OtherEntity, out _) ||
-            !_tags.HasTag(args.OtherEntity, PlasteelBarricadeTag))
-        {
+        if (GetPilot(ent) == null)
             return;
-        }
 
-        _damageable.TryChangeDamage(
-            args.OtherEntity,
-            CreatePlasteelBarricadeCollisionDamage(),
-            ignoreResistances: true,
-            origin: ent,
-            tool: ent);
+        TryKnockdownCollisionTarget(ent, args.OtherEntity);
+        TryDamageBarricade(ent, args.OtherEntity);
     }
 
     private void OnGetAlternativeVerbs(Entity<CombatMechComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
@@ -512,12 +524,7 @@ public sealed class CombatMechSystem : EntitySystem
                     if (_net.IsClient)
                         return;
 
-                    ent.Comp.HelmetClosed = !ent.Comp.HelmetClosed;
-                    Dirty(ent);
-                    UpdateAppearance(ent);
-                    if (TryComp(user, out InsideCombatVehicleComponent? inside))
-                        UpdatePilotProtection((user, inside));
-
+                    SetFaceplate(ent, !ent.Comp.HelmetClosed);
                     var msg = ent.Comp.HelmetClosed
                         ? "stories-rx47-faceplate-closed"
                         : "stories-rx47-faceplate-opened";
@@ -603,6 +610,7 @@ public sealed class CombatMechSystem : EntitySystem
         if (GetPilot(ent) is not { } pilot || !TryComp(pilot, out BuckleComponent? buckle))
             return;
 
+        SetFaceplate(ent, false);
         _buckle.TryUnbuckle(pilot, args.User, buckle, popup: false);
     }
 
@@ -890,9 +898,45 @@ public sealed class CombatMechSystem : EntitySystem
         _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
     }
 
+    private void OnWeaponMeleeHit(Entity<CombatMechWeaponComponent> ent, ref MeleeHitEvent args)
+    {
+        if (args.Handled ||
+            !args.IsHit ||
+            args.HitEntities.Count == 0 ||
+            ent.Comp.LinkedMech is not { } mech ||
+            Deleted(mech))
+        {
+            return;
+        }
+
+        var damage = DamageSpecifier.ApplyModifierSets(args.BaseDamage + args.BonusDamage, args.ModifiersList);
+        if (damage.GetTotal() <= FixedPoint2.Zero)
+            return;
+
+        var applied = false;
+        foreach (var target in args.HitEntities)
+        {
+            if (target == args.User ||
+                target == mech ||
+                HasComp<InsideCombatVehicleComponent>(target) ||
+                !HasComp<DamageableComponent>(target))
+            {
+                continue;
+            }
+
+            var attacked = new AttackedEvent(ent.Owner, args.User, Transform(target).Coordinates);
+            RaiseLocalEvent(target, attacked);
+            _damageable.TryChangeDamage(target, damage + attacked.BonusDamage, origin: mech, tool: ent.Owner);
+            applied = true;
+        }
+
+        if (applied)
+            args.Handled = true;
+    }
+
     private void OnCameraShakeStartup(Entity<RMCCameraShakingComponent> ent, ref ComponentStartup args)
     {
-        if (TryComp(ent.Owner, out InsideCombatVehicleComponent? inside) && HasLiveVehicle((ent.Owner, inside)))
+        if (TryComp(ent.Owner, out InsideCombatVehicleComponent? inside) && IsPilotSealed((ent.Owner, inside)))
             RemCompDeferred<RMCCameraShakingComponent>(ent);
     }
 
@@ -912,11 +956,14 @@ public sealed class CombatMechSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (Deleted(ent.Comp.Vehicle))
+        if (!IsPilotSealed(ent))
             return;
 
         if (args.Damage.GetTotal() > FixedPoint2.Zero)
+        {
+            // The mech only accepts its own damage container types; biological damage forwarded here intentionally drops off.
             _damageable.TryChangeDamage(ent.Comp.Vehicle, args.Damage, origin: args.Origin, tool: args.Source);
+        }
 
         args.Cancelled = true;
     }
@@ -927,19 +974,46 @@ public sealed class CombatMechSystem : EntitySystem
             args.Cancel();
     }
 
-    private void OnStatusEffectsAttemptMobTargetCollide(Entity<StatusEffectsComponent> ent, ref AttemptMobTargetCollideEvent args)
+    private void OnInsideVehicleGetMeleeWeapon(Entity<InsideCombatVehicleComponent> ent, ref GetMeleeWeaponEvent args)
     {
-        if (_net.IsClient ||
-            ent.Owner == args.Entity ||
-            HasComp<InsideCombatVehicleComponent>(ent) ||
-            HasComp<CombatMechComponent>(ent) ||
-            !HasComp<CombatMechComponent>(args.Entity) ||
-            (!HasComp<MarineComponent>(ent) && !HasComp<SynthComponent>(ent)))
+        if (args.Handled ||
+            !HasLiveVehicle(ent) ||
+            !TryComp(ent.Comp.Vehicle, out CombatMechComponent? mech))
         {
             return;
         }
 
-        _stun.TryKnockdown(ent, CollisionKnockdownTime, true, ent.Comp);
+        var vehicle = (ent.Comp.Vehicle, mech);
+        if (TryComp(ent.Owner, out HandsComponent? hands) &&
+            _hands.TryGetActiveItem(ent.Owner, out var held) &&
+            IsMountedWeapon(vehicle, held.Value) &&
+            HasComp<MeleeWeaponComponent>(held.Value))
+        {
+            args.Weapon = held.Value;
+            args.Handled = true;
+            return;
+        }
+
+        var weapon = mech.PrimaryWeaponEntity ?? mech.SecondaryWeaponEntity;
+        if (weapon != null && HasComp<MeleeWeaponComponent>(weapon.Value))
+        {
+            args.Weapon = weapon.Value;
+            args.Handled = true;
+        }
+    }
+
+    private void OnInsideVehicleMeleeAttackAttempt(Entity<InsideCombatVehicleComponent> ent, ref MeleeAttackAttemptEvent args)
+    {
+        if (!HasLiveVehicle(ent) ||
+            !TryComp(ent.Comp.Vehicle, out CombatMechComponent? mech) ||
+            !TryGetEntity(args.Weapon, out var weapon) ||
+            !IsMountedWeapon((ent.Comp.Vehicle, mech), weapon.Value))
+        {
+            return;
+        }
+
+        if (args.Attack is DisarmAttackEvent disarm)
+            args.Attack = new LightAttackEvent(disarm.Target, args.Weapon, disarm.Coordinates);
     }
 
     private void OnInsideVehicleDropAttempt(Entity<InsideCombatVehicleComponent> ent, ref DropAttemptEvent args)
@@ -950,7 +1024,7 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnInsideVehicleNeurotoxinInjectAttempt(Entity<InsideCombatVehicleComponent> ent, ref NeurotoxinInjectAttemptEvent args)
     {
-        if (HasLiveVehicle(ent))
+        if (IsPilotSealed(ent))
             args.Cancelled = true;
     }
 
@@ -962,7 +1036,7 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnInsideVehicleBeforeStatusEffectAdded(Entity<InsideCombatVehicleComponent> ent, ref BeforeStatusEffectAddedEvent args)
     {
-        if (!HasLiveVehicle(ent))
+        if (!IsPilotSealed(ent))
             return;
 
         if (IsProtectedStatus(args.Effect.Id))
@@ -971,23 +1045,37 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnInsideVehicleStunned(Entity<InsideCombatVehicleComponent> ent, ref StunnedEvent args)
     {
-        ClearProtectedStatuses(ent);
+        if (IsPilotSealed(ent))
+            ClearProtectedStatuses(ent);
     }
 
     private void OnInsideVehicleKnockedDown(Entity<InsideCombatVehicleComponent> ent, ref KnockedDownEvent args)
     {
-        ClearProtectedStatuses(ent);
+        if (IsPilotSealed(ent))
+            ClearProtectedStatuses(ent);
     }
 
     private void OnInsideVehicleDazed(Entity<InsideCombatVehicleComponent> ent, ref DazedEvent args)
     {
-        ClearProtectedStatuses(ent);
+        if (IsPilotSealed(ent))
+            ClearProtectedStatuses(ent);
     }
 
     private void OnInsideVehicleGetSpeedModifierContactCap(Entity<InsideCombatVehicleComponent> ent, ref GetSpeedModifierContactCapEvent args)
     {
         if (HasLiveVehicle(ent))
             args.SetIfMax(1f, 1f);
+    }
+
+    private void OnMechGetSpeedModifierContactCap(Entity<CombatMechComponent> ent, ref GetSpeedModifierContactCapEvent args)
+    {
+        args.SetIfMax(1f, 1f);
+    }
+
+    private void OnMechTileFriction(Entity<CombatMechComponent> ent, ref TileFrictionEvent args)
+    {
+        if (args.Modifier < 1f)
+            args.Modifier = 1f;
     }
 
     private void OnMechIgnitionImmunity(Entity<CombatMechComponent> ent, ref GetIgnitionImmunityEvent args)
@@ -1018,7 +1106,7 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnInsideVehicleExplosionResistance(Entity<InsideCombatVehicleComponent> ent, ref GetExplosionResistanceEvent args)
     {
-        if (HasLiveVehicle(ent))
+        if (IsPilotSealed(ent))
             args.DamageCoefficient = 0f;
     }
 
@@ -1225,6 +1313,19 @@ public sealed class CombatMechSystem : EntitySystem
         _appearance.SetData(ent, CombatMechVisuals.HasTowLauncher, ent.Comp.HasTowLauncher);
     }
 
+    private void SetFaceplate(Entity<CombatMechComponent> ent, bool closed)
+    {
+        if (ent.Comp.HelmetClosed == closed)
+            return;
+
+        ent.Comp.HelmetClosed = closed;
+        Dirty(ent);
+        UpdateAppearance(ent);
+
+        if (GetPilot(ent) is { } pilot && TryComp(pilot, out InsideCombatVehicleComponent? inside))
+            UpdatePilotProtection((pilot, inside));
+    }
+
     private void UpdatePilotProtection(Entity<InsideCombatVehicleComponent> pilot)
     {
         if (_net.IsClient)
@@ -1248,18 +1349,6 @@ public sealed class CombatMechSystem : EntitySystem
             pilot.Comp.RemovedAffectableByWeeds = true;
         }
 
-        if (!HasComp<UnparalyzableComponent>(pilot))
-        {
-            EnsureComp<UnparalyzableComponent>(pilot);
-            pilot.Comp.AddedUnparalyzable = true;
-        }
-
-        if (HasComp<StunOnExplosionReceivedComponent>(pilot))
-        {
-            RemComp<StunOnExplosionReceivedComponent>(pilot);
-            pilot.Comp.RemovedExplosionStun = true;
-        }
-
         if (!HasComp<EntityTurnInvisibleComponent>(pilot))
         {
             var turnInvisible = EnsureComp<EntityTurnInvisibleComponent>(pilot);
@@ -1277,9 +1366,18 @@ public sealed class CombatMechSystem : EntitySystem
         }
 
         DisablePilotCollision(pilot);
-        ClearProtectedOngoingEffects(pilot);
-        ClearProtectedStatuses(pilot);
-        ClearProtectedMovementDebuffs(pilot);
+        if (IsPilotSealed(pilot))
+        {
+            ClearProtectedOngoingEffects(pilot);
+            ApplySealedPilotProtection(pilot);
+            ClearProtectedStatuses(pilot);
+            ClearProtectedMovementDebuffs(pilot);
+        }
+        else
+        {
+            RestoreSealedPilotProtection(pilot);
+        }
+
         Dirty(pilot);
     }
 
@@ -1294,11 +1392,7 @@ public sealed class CombatMechSystem : EntitySystem
         if (pilot.Comp.RemovedAffectableByWeeds && !HasComp<AffectableByWeedsComponent>(pilot))
             EnsureComp<AffectableByWeedsComponent>(pilot);
 
-        if (pilot.Comp.AddedUnparalyzable)
-            RemComp<UnparalyzableComponent>(pilot);
-
-        if (pilot.Comp.RemovedExplosionStun && !HasComp<StunOnExplosionReceivedComponent>(pilot))
-            EnsureComp<StunOnExplosionReceivedComponent>(pilot);
+        RestoreSealedPilotProtection(pilot);
 
         if (pilot.Comp.AddedActiveInvisible)
             RemComp<EntityActiveInvisibleComponent>(pilot);
@@ -1316,9 +1410,43 @@ public sealed class CombatMechSystem : EntitySystem
         Dirty(pilot);
     }
 
+    private void ApplySealedPilotProtection(Entity<InsideCombatVehicleComponent> pilot)
+    {
+        if (!HasComp<UnparalyzableComponent>(pilot))
+        {
+            EnsureComp<UnparalyzableComponent>(pilot);
+            pilot.Comp.AddedUnparalyzable = true;
+        }
+
+        if (HasComp<StunOnExplosionReceivedComponent>(pilot))
+        {
+            RemComp<StunOnExplosionReceivedComponent>(pilot);
+            pilot.Comp.RemovedExplosionStun = true;
+        }
+    }
+
+    private void RestoreSealedPilotProtection(Entity<InsideCombatVehicleComponent> pilot)
+    {
+        if (pilot.Comp.AddedUnparalyzable)
+            RemComp<UnparalyzableComponent>(pilot);
+
+        if (pilot.Comp.RemovedExplosionStun && !HasComp<StunOnExplosionReceivedComponent>(pilot))
+            EnsureComp<StunOnExplosionReceivedComponent>(pilot);
+
+        pilot.Comp.AddedUnparalyzable = false;
+        pilot.Comp.RemovedExplosionStun = false;
+    }
+
     private bool HasLiveVehicle(Entity<InsideCombatVehicleComponent> pilot)
     {
         return !Deleted(pilot.Comp.Vehicle);
+    }
+
+    private bool IsPilotSealed(Entity<InsideCombatVehicleComponent> pilot)
+    {
+        return HasLiveVehicle(pilot) &&
+               TryComp(pilot.Comp.Vehicle, out CombatMechComponent? mech) &&
+               mech.HelmetClosed;
     }
 
     private void OnRefreshSpeed(Entity<CombatMechComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
@@ -1347,7 +1475,7 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void ClearProtectedStatuses(Entity<InsideCombatVehicleComponent> pilot)
     {
-        if (!HasLiveVehicle(pilot))
+        if (!IsPilotSealed(pilot))
             return;
 
         foreach (var status in ProtectedStatusEffects)
@@ -1422,7 +1550,7 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void ClearProtectedMovementDebuffs(Entity<InsideCombatVehicleComponent> pilot)
     {
-        if (!HasLiveVehicle(pilot))
+        if (!IsPilotSealed(pilot))
             return;
 
         if (HasComp<RMCSlowdownComponent>(pilot))
@@ -1455,11 +1583,200 @@ public sealed class CombatMechSystem : EntitySystem
         return true;
     }
 
-    private static DamageSpecifier CreatePlasteelBarricadeCollisionDamage()
+    private void TryKnockdownCollisionTarget(Entity<CombatMechComponent> mech, EntityUid target)
+    {
+        if (HasComp<InsideCombatVehicleComponent>(target) ||
+            HasComp<CombatMechComponent>(target) ||
+            !HasComp<MarineComponent>(target) ||
+            !TryComp(target, out StatusEffectsComponent? status))
+        {
+            return;
+        }
+
+        _stun.TryParalyze(target, mech.Comp.StepStunDuration, true, status, force: true);
+        mech.Comp.NextStepStunAt[target] = _timing.CurTime + mech.Comp.StepStunCooldown;
+    }
+
+    private void ProcessBarricadeBumpers()
+    {
+        var query = EntityQueryEnumerator<CombatMechComponent, InputMoverComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var mech, out var mover, out var xform))
+        {
+            if (GetPilot((uid, mech)) == null || _timing.CurTime < mech.NextBarricadeBumpAt)
+                continue;
+
+            var direction = mover.WishDir;
+            if (direction.LengthSquared() <= 0.001f)
+                direction = _mover.DirVecForButtons(mover.HeldMoveButtons);
+
+            if (direction.LengthSquared() <= 0.001f)
+                continue;
+
+            direction = direction.Normalized();
+            var coords = _transform.GetMapCoordinates(uid, xform);
+            var check = new MapCoordinates(coords.Position + direction * mech.BarricadeBumperRange, coords.MapId);
+
+            foreach (var barricade in _lookup.GetEntitiesInRange<BarricadeComponent>(check, 0.5f, LookupFlags.Uncontained))
+            {
+                var barricadePos = _transform.GetMapCoordinates(barricade.Owner).Position;
+                if (Vector2.Dot((barricadePos - coords.Position).Normalized(), direction) < 0.35f)
+                    continue;
+
+                if (!TryDamageBarricade((uid, mech), barricade.Owner))
+                    continue;
+
+                mech.NextBarricadeBumpAt = _timing.CurTime + mech.BarricadeBumperCooldown;
+                Dirty(uid, mech);
+                break;
+            }
+        }
+    }
+
+    private void ProcessMarineStepStuns()
+    {
+        var time = _timing.CurTime;
+        var query = EntityQueryEnumerator<CombatMechComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var mech, out var xform))
+        {
+            if (GetPilot((uid, mech)) == null)
+                continue;
+
+            PruneEntityTimeDictionary(mech.NextStepStunAt, time, removeExpired: true);
+
+            _contacts.Clear();
+            _physics.GetContactingEntities(uid, _contacts);
+            if (_contacts.Count == 0)
+                continue;
+
+            var ev = new AttemptMobCollideEvent();
+            RaiseLocalEvent(uid, ref ev);
+            if (ev.Cancelled)
+                continue;
+
+            var ourAabb = _lookup.GetAABBNoContainer(uid, xform.LocalPosition, xform.LocalRotation);
+            foreach (var target in _contacts)
+            {
+                if (!CanStepStunMarine(target) ||
+                    mech.NextStepStunAt.TryGetValue(target, out var nextStepStun) && time < nextStepStun)
+                {
+                    continue;
+                }
+
+                var targetXform = Transform(target);
+                var targetAabb = _lookup.GetAABBNoContainer(target, targetXform.LocalPosition, targetXform.LocalRotation);
+                if (!ourAabb.Intersects(targetAabb))
+                    continue;
+
+                var intersect = Box2.Area(targetAabb.Intersect(ourAabb));
+                var ratio = Math.Max(intersect / Box2.Area(targetAabb), intersect / Box2.Area(ourAabb));
+                if (ratio < mech.StepStunOverlapRatio)
+                    continue;
+
+                var targetEv = new AttemptMobTargetCollideEvent();
+                RaiseLocalEvent(target, ref targetEv);
+                if (targetEv.Cancelled || !TryComp(target, out StatusEffectsComponent? status))
+                    continue;
+
+                mech.NextStepStunAt[target] = time + mech.StepStunCooldown;
+                _stun.TryParalyze(target, mech.StepStunDuration, true, status, force: true);
+            }
+        }
+    }
+
+    private bool CanStepStunMarine(EntityUid target)
+    {
+        return HasComp<MarineComponent>(target) &&
+               !HasComp<InsideCombatVehicleComponent>(target) &&
+               !HasComp<CombatMechComponent>(target) &&
+               !_mobState.IsDead(target) &&
+               !_standingState.IsDown(target) &&
+               HasComp<MobCollisionComponent>(target);
+    }
+
+    private void ProcessOpenFaceplateDamageOverTime()
+    {
+        var time = _timing.CurTime;
+        var query = EntityQueryEnumerator<InsideCombatVehicleComponent>();
+        while (query.MoveNext(out var pilotUid, out var inside))
+        {
+            var pilot = (pilotUid, inside);
+            if (!HasLiveVehicle(pilot))
+                continue;
+
+            PruneEntityTimeDictionary(inside.OpenFaceplateDamageAt, time, removeExpired: true);
+
+            if (IsPilotSealed(pilot) ||
+                _mobState.IsDead(pilotUid) ||
+                _mobState.IsCritical(pilotUid))
+            {
+                continue;
+            }
+
+            foreach (var contact in _physics.GetEntitiesIntersectingBody(inside.Vehicle, (int) CollisionGroup.AllMask))
+            {
+                if (!TryComp(contact, out DamageOverTimeComponent? damage) ||
+                    !damage.AffectsCrit && _mobState.IsCritical(pilotUid) ||
+                    !damage.AffectsDead && _mobState.IsDead(pilotUid))
+                {
+                    continue;
+                }
+
+                if (inside.OpenFaceplateDamageAt.TryGetValue(contact, out var next) && time < next)
+                    continue;
+
+                inside.OpenFaceplateDamageAt[contact] = time + damage.DamageEvery;
+
+                if (damage.Damage != null)
+                    _damageable.TryChangeDamage(pilotUid, damage.Damage, origin: contact, tool: contact);
+
+                if (damage.ArmorPiercingDamage != null)
+                    _damageable.TryChangeDamage(pilotUid, damage.ArmorPiercingDamage, ignoreResistances: true, origin: contact, tool: contact);
+
+                break;
+            }
+        }
+    }
+
+    private void PruneEntityTimeDictionary(Dictionary<EntityUid, TimeSpan> dictionary, TimeSpan time, bool removeExpired)
+    {
+        if (dictionary.Count == 0)
+            return;
+
+        _staleDictionaryKeys.Clear();
+        foreach (var (uid, until) in dictionary)
+        {
+            if (Deleted(uid) || removeExpired && time >= until)
+                _staleDictionaryKeys.Add(uid);
+        }
+
+        foreach (var uid in _staleDictionaryKeys)
+        {
+            dictionary.Remove(uid);
+        }
+
+        _staleDictionaryKeys.Clear();
+    }
+
+    private bool TryDamageBarricade(Entity<CombatMechComponent> mech, EntityUid target)
+    {
+        if (!TryComp<BarricadeComponent>(target, out _))
+            return false;
+
+        _damageable.TryChangeDamage(
+            target,
+            CreateBarricadeCollisionDamage(mech.Comp.BarricadeCollisionDamage),
+            ignoreResistances: true,
+            origin: mech,
+            tool: mech);
+
+        return true;
+    }
+
+    private static DamageSpecifier CreateBarricadeCollisionDamage(float amount)
     {
         return new DamageSpecifier
         {
-            DamageDict = { ["Blunt"] = 900 },
+            DamageDict = { ["Blunt"] = FixedPoint2.New(amount) },
         };
     }
 

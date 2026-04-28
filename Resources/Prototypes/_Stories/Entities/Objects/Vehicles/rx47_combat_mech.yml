@@ -30,9 +30,16 @@
     weaponInstallDelay: 2
     weaponDetachDelay: 2
     forceEjectDelay: 3
+    stepStunDuration: 3
+    stepStunCooldown: 1
+    stepStunOverlapRatio: 0.2
+    barricadeCollisionDamage: 900
+    barricadeBumperRange: 0.5
+    barricadeBumperCooldown: 0.25
   - type: RMCAllowStrapMovement
   - type: RMCImmuneToFireTileDamage
   - type: RMCImmuneToIgnition
+  - type: NoSlip
   - type: Corrodible
     isCorrodible: false
   - type: Hands

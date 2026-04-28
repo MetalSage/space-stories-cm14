@@ -47,7 +47,7 @@
     - state: chaingun
   - type: Gun
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.55
+    shootOriginOffset: 0, -0.65
     fireRate: 8.33
     selectedMode: FullAuto
     availableModes:
@@ -103,7 +103,7 @@
     - state: siegebreaker
   - type: Gun
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.55
+    shootOriginOffset: 0, -0.65
     fireRate: 0.4
     selectedMode: SemiAuto
     availableModes:
@@ -142,7 +142,7 @@
     - state: cupola
   - type: Gun
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.55
+    shootOriginOffset: 0, -0.65
     fireRate: 7
     selectedMode: FullAuto
     availableModes:
@@ -203,7 +203,7 @@
   - type: Gun
     cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.55
+    shootOriginOffset: 0, -0.65
     fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
@@ -258,7 +258,7 @@
   - type: Gun
     cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.55
+    shootOriginOffset: 0, -0.65
     fireRate: 0.6
     selectedMode: SemiAuto
     availableModes:

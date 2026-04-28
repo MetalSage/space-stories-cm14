@@ -56,6 +56,24 @@ public sealed partial class CombatMechComponent : Component
     public float MoveDelayReductionPerSkill = 2f;
 
     [DataField]
+    public TimeSpan StepStunDuration = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public TimeSpan StepStunCooldown = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float StepStunOverlapRatio = 0.2f;
+
+    [DataField]
+    public float BarricadeCollisionDamage = 900f;
+
+    [DataField]
+    public float BarricadeBumperRange = 0.9f;
+
+    [DataField]
+    public TimeSpan BarricadeBumperCooldown = TimeSpan.FromSeconds(0.25);
+
+    [DataField]
     public EntProtoId<SkillDefinitionComponent> WeaponSkill = "RMCSkillPowerLoader";
 
     [DataField]
@@ -78,6 +96,12 @@ public sealed partial class CombatMechComponent : Component
 
     [ViewVariables]
     public bool DamageAlert10;
+
+    [ViewVariables]
+    public TimeSpan NextBarricadeBumpAt;
+
+    [ViewVariables]
+    public Dictionary<EntityUid, TimeSpan> NextStepStunAt = new();
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -119,6 +143,9 @@ public sealed partial class InsideCombatVehicleComponent : Component
 
     [ViewVariables]
     public bool CollisionDisabled;
+
+    [ViewVariables]
+    public Dictionary<EntityUid, TimeSpan> OpenFaceplateDamageAt = new();
 
     [ViewVariables]
     public readonly Dictionary<string, int> FixtureMasks = new();
