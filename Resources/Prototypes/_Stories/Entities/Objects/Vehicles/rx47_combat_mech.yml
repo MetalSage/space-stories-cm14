@@ -25,6 +25,8 @@
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47Chaingun
     secondaryWeapon: StoriesWeaponRX47Scattergun
+    markingsColorState: markings_c_
+    markingsSpecialtyState: markings_s_wy
     weaponInstallDelay: 2
     weaponDetachDelay: 2
     forceEjectDelay: 3
@@ -91,6 +93,12 @@
       map: [ "enum.CombatMechVisualLayers.PrimaryWeapon" ]
     - state: weapon_shotgun_right
       map: [ "enum.CombatMechVisualLayers.SecondaryWeapon" ]
+    - state: markings_c_
+      map: [ "enum.CombatMechVisualLayers.MarkingsColor" ]
+    - state: markings_s_wy
+      map: [ "enum.CombatMechVisualLayers.MarkingsSpecialty" ]
+    - state: empty
+      map: [ "enum.CombatMechVisualLayers.TowLauncher" ]
   - type: GenericVisualizer
     visuals:
       enum.CombatMechVisuals.HelmetClosed:
@@ -111,6 +119,27 @@
           "weapon_cannon_right": { state: weapon_cannon_right }
           "weapon_cupola_right": { state: weapon_cupola_right }
           "weapon_shotgun_right": { state: weapon_shotgun_right }
+      enum.CombatMechVisuals.MarkingsColor:
+        enum.CombatMechVisualLayers.MarkingsColor:
+          "": { state: empty }
+          "markings_c_": { state: markings_c_ }
+          "markings_c_red": { state: markings_c_red }
+          "markings_c_yellow": { state: markings_c_yellow }
+          "markings_c_pink": { state: markings_c_pink }
+          "markings_c_blue": { state: markings_c_blue }
+          "markings_c_green": { state: markings_c_green }
+      enum.CombatMechVisuals.MarkingsSpecialty:
+        enum.CombatMechVisualLayers.MarkingsSpecialty:
+          "": { state: empty }
+          "markings_s_wy": { state: markings_s_wy }
+          "markings_s_clf": { state: markings_s_clf }
+          "markings_s_upp": { state: markings_s_upp }
+          "markings_s_uscm": { state: markings_s_uscm }
+          "markings_s_uscm_flag": { state: markings_s_uscm_flag }
+      enum.CombatMechVisuals.HasTowLauncher:
+        enum.CombatMechVisualLayers.TowLauncher:
+          True: { state: weapon_tow }
+          False: { state: empty }
   - type: Damageable
     damageContainer: StoriesRX47CombatMech
   - type: RMCRepairable
@@ -164,6 +193,7 @@
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47Siegebreaker
     secondaryWeapon: StoriesWeaponRX47CupolaSmartgun
+    hasTowLauncher: true
 
 - type: entity
   parent: StoriesRX47CombatMechBase
@@ -173,6 +203,8 @@
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47Siegebreaker
     secondaryWeapon: StoriesWeaponRX47Chaingun
+    markingsColorState: markings_c_red
+    hasTowLauncher: true
 
 - type: entity
   parent: StoriesRX47CombatMechBase
@@ -182,3 +214,4 @@
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47CupolaSmartgun
     secondaryWeapon: StoriesWeaponRX47Scattergun
+    markingsColorState: markings_c_green

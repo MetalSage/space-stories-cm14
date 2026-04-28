@@ -25,6 +25,15 @@ public sealed partial class CombatMechComponent : Component
     [DataField, AutoNetworkedField]
     public bool HelmetClosed;
 
+    [DataField, AutoNetworkedField]
+    public string MarkingsColorState = string.Empty;
+
+    [DataField, AutoNetworkedField]
+    public string MarkingsSpecialtyState = string.Empty;
+
+    [DataField, AutoNetworkedField]
+    public bool HasTowLauncher;
+
     [DataField]
     public float MaxHealth = 3000f;
 
@@ -97,6 +106,15 @@ public sealed partial class InsideCombatVehicleComponent : Component
     public bool AddedUnparalyzable;
 
     [ViewVariables]
+    public bool RemovedExplosionStun;
+
+    [ViewVariables]
+    public bool AddedTurnInvisible;
+
+    [ViewVariables]
+    public bool AddedActiveInvisible;
+
+    [ViewVariables]
     public bool RemovedAffectableByWeeds;
 
     [ViewVariables]
@@ -115,6 +133,9 @@ public enum CombatMechVisuals : byte
     HelmetClosed,
     PrimaryWeapon,
     SecondaryWeapon,
+    MarkingsColor,
+    MarkingsSpecialty,
+    HasTowLauncher,
 }
 
 [Serializable, NetSerializable]
@@ -126,6 +147,9 @@ public enum CombatMechVisualLayers : byte
     Arms,
     PrimaryWeapon,
     SecondaryWeapon,
+    MarkingsColor,
+    MarkingsSpecialty,
+    TowLauncher,
 }
 
 [Serializable, NetSerializable]

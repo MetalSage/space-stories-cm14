@@ -6,9 +6,14 @@ using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.BlurredVision;
 using Content.Shared._RMC14.CameraShake;
 using Content.Shared._RMC14.Damage;
+using Content.Shared._RMC14.Entrenching;
+using Content.Shared._RMC14.Explosion;
+using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Slow;
+using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Stun;
+using Content.Shared._RMC14.Synth;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids.Acid;
@@ -40,6 +45,7 @@ using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
+using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
@@ -47,12 +53,33 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
+using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Stories.CombatMech;
 
 public sealed class CombatMechSystem : EntitySystem
 {
+    private const string UnderbarrelSlot = "rmc-aslot-underbarrel";
+    private const float ProtectionCleanupInterval = 0.25f;
+    private static readonly TimeSpan CollisionKnockdownTime = TimeSpan.FromSeconds(1);
+    private static readonly ProtoId<TagPrototype> PlasteelBarricadeTag = "RMCPlasteelBarricade";
+
+    private static readonly HashSet<string> ProtectedStatusEffects = new()
+    {
+        "Blinded",
+        "Dazed",
+        "Drunk",
+        "Flashed",
+        "KnockedDown",
+        "SlowedDown",
+        "Stun",
+    };
+
+    private float _protectionCleanupAccumulator;
+
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
@@ -68,9 +95,10 @@ public sealed class CombatMechSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedXenoAcidSystem _xenoAcid = default!;
 
     public override void Initialize()
     {
@@ -89,7 +117,7 @@ public sealed class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, GetIgnitionImmunityEvent>(OnMechIgnitionImmunity);
         SubscribeLocalEvent<CombatMechComponent, RMCGetFireImmunityEvent>(OnMechFireImmunity);
         SubscribeLocalEvent<CombatMechComponent, PickupAttemptEvent>(OnMechPickupAttempt);
-        SubscribeLocalEvent<CombatMechComponent, CorrodingEvent>(OnMechCorroding);
+        SubscribeLocalEvent<CombatMechComponent, StartCollideEvent>(OnMechStartCollide);
         SubscribeLocalEvent<CombatMechComponent, CombatMechInstallWeaponDoAfterEvent>(OnInstallWeaponDoAfter);
         SubscribeLocalEvent<CombatMechComponent, CombatMechDetachWeaponDoAfterEvent>(OnDetachWeaponDoAfter);
         SubscribeLocalEvent<CombatMechComponent, CombatMechForceEjectDoAfterEvent>(OnForceEjectDoAfter);
@@ -116,12 +144,19 @@ public sealed class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<InsideCombatVehicleComponent, GetExplosionResistanceEvent>(OnInsideVehicleExplosionResistance);
         SubscribeLocalEvent<InsideCombatVehicleComponent, DropAttemptEvent>(OnInsideVehicleDropAttempt);
         SubscribeLocalEvent<InsideCombatVehicleComponent, PickupAttemptEvent>(OnInsideVehiclePickupAttempt);
+
+        SubscribeLocalEvent<StatusEffectsComponent, AttemptMobTargetCollideEvent>(OnStatusEffectsAttemptMobTargetCollide);
     }
 
     public override void Update(float frameTime)
     {
         if (_net.IsClient)
             return;
+
+        _protectionCleanupAccumulator += frameTime;
+        var cleanupProtection = _protectionCleanupAccumulator >= ProtectionCleanupInterval;
+        if (cleanupProtection)
+            _protectionCleanupAccumulator = 0f;
 
         var query = EntityQueryEnumerator<InsideCombatVehicleComponent>();
         while (query.MoveNext(out var uid, out var inside))
@@ -133,22 +168,13 @@ public sealed class CombatMechSystem : EntitySystem
                 continue;
             }
 
-            if (!IsProtectedPilot((uid, inside)))
+            if (!cleanupProtection || !HasLiveVehicle((uid, inside)))
                 continue;
 
+            // Most effects are blocked by events; this slower pass catches late-added components without ticking every frame.
             ClearProtectedStatuses((uid, inside));
-            ClearProtectedSlowOrStatus(uid);
+            ClearProtectedMovementDebuffs((uid, inside));
             ClearProtectedOngoingEffects((uid, inside));
-        }
-
-        var mechQuery = EntityQueryEnumerator<CombatMechComponent>();
-        while (mechQuery.MoveNext(out var uid, out _))
-        {
-            if (HasComp<FlammableComponent>(uid))
-                _flammable.Extinguish(uid);
-
-            if (_xenoAcid.IsMelted(uid))
-                _xenoAcid.RemoveAcid(uid);
         }
     }
 
@@ -159,9 +185,16 @@ public sealed class CombatMechSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        EnsureWeapon(ent, true);
-        EnsureWeapon(ent, false);
-        UpdateAppearance(ent);
+        // GiveHands finishes after MapInit; defer one tick so the mech hand containers exist before mounting weapons.
+        Timer.Spawn(0, () =>
+        {
+            if (Deleted(ent.Owner) || !TryComp(ent.Owner, out CombatMechComponent? mech))
+                return;
+
+            EnsureWeapon((ent.Owner, mech), true);
+            EnsureWeapon((ent.Owner, mech), false);
+            UpdateAppearance((ent.Owner, mech));
+        });
     }
 
     private void OnStrapAttempt(Entity<CombatMechComponent> ent, ref StrapAttemptEvent args)
@@ -228,8 +261,12 @@ public sealed class CombatMechSystem : EntitySystem
 
         if (_net.IsServer)
         {
-            TransferWeaponToPilot(ent, pilot, true);
-            TransferWeaponToPilot(ent, pilot, false);
+            if (!TransferWeaponToPilot(ent, pilot, true) ||
+                !TransferWeaponToPilot(ent, pilot, false))
+            {
+                EjectPilotAfterWeaponTransferFailure(ent, pilot);
+                return;
+            }
         }
 
         UpdateAppearance(ent);
@@ -258,26 +295,29 @@ public sealed class CombatMechSystem : EntitySystem
         UpdateAppearance(ent);
     }
 
-    private void TransferWeaponToPilot(Entity<CombatMechComponent> ent, EntityUid pilot, bool primary)
+    private bool TransferWeaponToPilot(Entity<CombatMechComponent> ent, EntityUid pilot, bool primary)
     {
         if (GetWeapon(ent, primary) is not { } weapon)
-            return;
+            return false;
 
         if (!TryComp(pilot, out HandsComponent? pilotHands))
-            return;
+            return false;
 
         var hand = FindHand(pilot, pilotHands, primary ? HandLocation.Left : HandLocation.Right);
         if (hand == null)
-            return;
-
-        if (_hands.IsHolding(ent.Owner, weapon))
-            _hands.TryDrop(ent.Owner, weapon, Transform(pilot).Coordinates, checkActionBlocker: false, doDropInteraction: false);
+            return false;
 
         LinkWeaponToMech(weapon, ent);
 
         RemComp<UnremoveableComponent>(weapon);
-        if (_hands.TryPickup(pilot, weapon, hand, checkActionBlocker: false, animate: false, handsComp: pilotHands))
-            EnsureComp<UnremoveableComponent>(weapon);
+        if (!_hands.TryPickup(pilot, weapon, hand, checkActionBlocker: false, animate: false, handsComp: pilotHands))
+        {
+            TransferWeaponToMech(ent, pilot, primary);
+            return false;
+        }
+
+        EnsureComp<UnremoveableComponent>(weapon);
+        return true;
     }
 
     private void TransferWeaponToMech(Entity<CombatMechComponent> ent, EntityUid pilot, bool primary)
@@ -286,9 +326,6 @@ public sealed class CombatMechSystem : EntitySystem
             return;
 
         RemComp<UnremoveableComponent>(weapon);
-
-        if (_hands.IsHolding(pilot, weapon))
-            _hands.TryDrop(pilot, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false);
 
         if (!TryComp(ent.Owner, out HandsComponent? mechHands))
             return;
@@ -299,8 +336,30 @@ public sealed class CombatMechSystem : EntitySystem
 
         LinkWeaponToMech(weapon, ent);
 
-        if (_hands.TryPickup(ent.Owner, weapon, hand, checkActionBlocker: false, animate: false, handsComp: mechHands))
+        if (_hands.IsHolding(ent.Owner, weapon))
+        {
             EnsureComp<UnremoveableComponent>(weapon);
+            return;
+        }
+
+        if (!_hands.TryPickup(ent.Owner, weapon, hand, checkActionBlocker: false, animate: false, handsComp: mechHands))
+        {
+            _transform.SetCoordinates(weapon, Transform(ent).Coordinates);
+            Log.Warning($"RX47 failed to return {ToPrettyString(weapon)} to {ToPrettyString(ent.Owner)} hand {hand}.");
+            return;
+        }
+
+        EnsureComp<UnremoveableComponent>(weapon);
+    }
+
+    private void EjectPilotAfterWeaponTransferFailure(Entity<CombatMechComponent> mech, EntityUid pilot)
+    {
+        Log.Warning($"RX47 ejected {ToPrettyString(pilot)} from {ToPrettyString(mech.Owner)} after weapon transfer failed.");
+
+        if (TryComp(pilot, out BuckleComponent? buckle))
+            _buckle.TryUnbuckle(pilot, pilot, buckle, popup: false);
+
+        UpdateAppearance(mech);
     }
 
     private void LinkWeaponToMech(EntityUid weapon, Entity<CombatMechComponent> mech)
@@ -333,11 +392,25 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnDamageChanged(Entity<CombatMechComponent> ent, ref DamageChangedEvent args)
     {
+        var max = ent.Comp.MaxHealth;
+        var health = Math.Clamp(100f - args.Damageable.TotalDamage.Float() / max * 100f, 0f, 100f);
+
+        // Repair events are not damage increases, but they still need to re-arm the threshold alerts.
+        if (health > 25f && ent.Comp.DamageAlert25)
+        {
+            ent.Comp.DamageAlert25 = false;
+            Dirty(ent);
+        }
+
+        if (health > 10f && ent.Comp.DamageAlert10)
+        {
+            ent.Comp.DamageAlert10 = false;
+            Dirty(ent);
+        }
+
         if (!args.DamageIncreased || args.Damageable.TotalDamage <= 0)
             return;
 
-        var max = ent.Comp.MaxHealth;
-        var health = Math.Clamp(100f - args.Damageable.TotalDamage.Float() / max * 100f, 0f, 100f);
         var pilot = GetPilot(ent);
         if (pilot == null)
             return;
@@ -398,6 +471,25 @@ public sealed class CombatMechSystem : EntitySystem
     {
         if (GetPilot(ent) != null)
             args.Cancel();
+    }
+
+    private void OnMechStartCollide(Entity<CombatMechComponent> ent, ref StartCollideEvent args)
+    {
+        if (_net.IsClient || args.OtherEntity == ent.Owner)
+            return;
+
+        if (!TryComp<BarricadeComponent>(args.OtherEntity, out _) ||
+            !_tags.HasTag(args.OtherEntity, PlasteelBarricadeTag))
+        {
+            return;
+        }
+
+        _damageable.TryChangeDamage(
+            args.OtherEntity,
+            CreatePlasteelBarricadeCollisionDamage(),
+            ignoreResistances: true,
+            origin: ent,
+            tool: ent);
     }
 
     private void OnGetAlternativeVerbs(Entity<CombatMechComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
@@ -683,9 +775,8 @@ public sealed class CombatMechSystem : EntitySystem
             return;
         }
 
-        const string underbarrel = "rmc-aslot-underbarrel";
         if (!HasComp<AttachableHolderComponent>(ent.Owner) ||
-            !_container.TryGetContainer(ent.Owner, underbarrel, out var container))
+            !_container.TryGetContainer(ent.Owner, UnderbarrelSlot, out var container))
         {
             return;
         }
@@ -701,7 +792,7 @@ public sealed class CombatMechSystem : EntitySystem
                 IconEntity = GetNetEntity(attachable),
                 Act = () =>
                 {
-                    var ev = new AttachableToggleStartedEvent(ent.Owner, user, underbarrel);
+                    var ev = new AttachableToggleStartedEvent(ent.Owner, user, UnderbarrelSlot);
                     RaiseLocalEvent(attachable, ref ev);
                 },
                 Priority = 90,
@@ -789,13 +880,19 @@ public sealed class CombatMechSystem : EntitySystem
         if (args.Handled || !IsMountedWeaponForPilot(args.User, ent))
             return;
 
+        if (TryToggleMountedAttachable(ent.Owner, args.User))
+        {
+            args.Handled = true;
+            return;
+        }
+
         args.Handled = true;
         _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
     }
 
     private void OnCameraShakeStartup(Entity<RMCCameraShakingComponent> ent, ref ComponentStartup args)
     {
-        if (TryComp(ent.Owner, out InsideCombatVehicleComponent? inside) && IsProtectedPilot((ent.Owner, inside)))
+        if (TryComp(ent.Owner, out InsideCombatVehicleComponent? inside) && HasLiveVehicle((ent.Owner, inside)))
             RemCompDeferred<RMCCameraShakingComponent>(ent);
     }
 
@@ -826,48 +923,50 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnInsideVehiclePickupAttempt(Entity<InsideCombatVehicleComponent> ent, ref PickupAttemptEvent args)
     {
-        if (IsProtectedPilot(ent))
+        if (HasLiveVehicle(ent))
             args.Cancel();
+    }
+
+    private void OnStatusEffectsAttemptMobTargetCollide(Entity<StatusEffectsComponent> ent, ref AttemptMobTargetCollideEvent args)
+    {
+        if (_net.IsClient ||
+            ent.Owner == args.Entity ||
+            HasComp<InsideCombatVehicleComponent>(ent) ||
+            HasComp<CombatMechComponent>(ent) ||
+            !HasComp<CombatMechComponent>(args.Entity) ||
+            (!HasComp<MarineComponent>(ent) && !HasComp<SynthComponent>(ent)))
+        {
+            return;
+        }
+
+        _stun.TryKnockdown(ent, CollisionKnockdownTime, true, ent.Comp);
     }
 
     private void OnInsideVehicleDropAttempt(Entity<InsideCombatVehicleComponent> ent, ref DropAttemptEvent args)
     {
-        if (IsProtectedPilot(ent))
+        if (HasLiveVehicle(ent))
             args.Cancel();
     }
 
     private void OnInsideVehicleNeurotoxinInjectAttempt(Entity<InsideCombatVehicleComponent> ent, ref NeurotoxinInjectAttemptEvent args)
     {
-        if (IsProtectedPilot(ent))
+        if (HasLiveVehicle(ent))
             args.Cancelled = true;
     }
 
     private void OnInsideVehicleCorroding(Entity<InsideCombatVehicleComponent> ent, ref CorrodingEvent args)
     {
-        if (IsProtectedPilot(ent))
+        if (HasLiveVehicle(ent))
             args.Cancelled = true;
-    }
-
-    private void OnMechCorroding(Entity<CombatMechComponent> ent, ref CorrodingEvent args)
-    {
-        args.Cancelled = true;
     }
 
     private void OnInsideVehicleBeforeStatusEffectAdded(Entity<InsideCombatVehicleComponent> ent, ref BeforeStatusEffectAddedEvent args)
     {
-        if (!IsProtectedPilot(ent))
+        if (!HasLiveVehicle(ent))
             return;
 
-        switch (args.Effect.Id)
-        {
-            case "Blinded":
-            case "Dazed":
-            case "KnockedDown":
-            case "SlowedDown":
-            case "Stun":
-                args.Cancelled = true;
-                break;
-        }
+        if (IsProtectedStatus(args.Effect.Id))
+            args.Cancelled = true;
     }
 
     private void OnInsideVehicleStunned(Entity<InsideCombatVehicleComponent> ent, ref StunnedEvent args)
@@ -887,7 +986,7 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnInsideVehicleGetSpeedModifierContactCap(Entity<InsideCombatVehicleComponent> ent, ref GetSpeedModifierContactCapEvent args)
     {
-        if (IsProtectedPilot(ent))
+        if (HasLiveVehicle(ent))
             args.SetIfMax(1f, 1f);
     }
 
@@ -904,13 +1003,13 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnInsideVehicleIgnitionImmunity(Entity<InsideCombatVehicleComponent> ent, ref GetIgnitionImmunityEvent args)
     {
-        if (IsProtectedPilot(ent))
+        if (HasLiveVehicle(ent))
             args.Ignite = false;
     }
 
     private void OnInsideVehicleFireImmunity(Entity<InsideCombatVehicleComponent> ent, ref RMCGetFireImmunityEvent args)
     {
-        if (!IsProtectedPilot(ent))
+        if (!HasLiveVehicle(ent))
             return;
 
         args.Ignite = false;
@@ -919,38 +1018,44 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void OnInsideVehicleExplosionResistance(Entity<InsideCombatVehicleComponent> ent, ref GetExplosionResistanceEvent args)
     {
-        if (IsProtectedPilot(ent))
+        if (HasLiveVehicle(ent))
             args.DamageCoefficient = 0f;
     }
 
     private void EnsureWeapon(Entity<CombatMechComponent> mech, bool primary)
     {
-        ref var weapon = ref (primary ? ref mech.Comp.PrimaryWeaponEntity : ref mech.Comp.SecondaryWeaponEntity);
-        if (weapon != null && !Deleted(weapon.Value))
+        if (GetWeapon(mech, primary) is { })
             return;
+
+        if (!TryComp(mech, out HandsComponent? hands))
+        {
+            Log.Warning($"RX47 {ToPrettyString(mech.Owner)} could not spawn default weapon: no hands component.");
+            return;
+        }
+
+        var hand = FindHand(mech, hands, primary ? HandLocation.Left : HandLocation.Right);
+        if (hand == null)
+        {
+            Log.Warning($"RX47 {ToPrettyString(mech.Owner)} could not spawn default weapon: missing {(primary ? "left" : "right")} hand.");
+            return;
+        }
 
         var proto = primary ? mech.Comp.PrimaryWeapon : mech.Comp.SecondaryWeapon;
         var spawned = Spawn(proto, Transform(mech).Coordinates);
-        weapon = spawned;
+
+        if (!_hands.TryPickup(mech, spawned, hand, checkActionBlocker: false, animate: false, handsComp: hands))
+        {
+            Log.Warning($"RX47 {ToPrettyString(mech.Owner)} could not pick up spawned default weapon {ToPrettyString(spawned)}.");
+            QueueDel(spawned);
+            return;
+        }
+
+        SetWeapon(mech, primary, spawned);
 
         var weaponComp = EnsureComp<CombatMechWeaponComponent>(spawned);
         weaponComp.LinkedMech = mech;
         Dirty(spawned, weaponComp);
-
-        var state = weaponComp.ArmState;
-        if (primary)
-            mech.Comp.PrimaryWeaponState = $"weapon_{state}_left";
-        else
-            mech.Comp.SecondaryWeaponState = $"weapon_{state}_right";
-
-        Dirty(mech);
-
-        if (!TryComp(mech, out HandsComponent? hands))
-            return;
-
-        var hand = FindHand(mech, hands, primary ? HandLocation.Left : HandLocation.Right);
-        if (hand != null && _hands.TryPickup(mech, spawned, hand, checkActionBlocker: false, animate: false, handsComp: hands))
-            EnsureComp<UnremoveableComponent>(spawned);
+        EnsureComp<UnremoveableComponent>(spawned);
     }
 
     private string? FindHand(EntityUid uid, HandsComponent hands, HandLocation location)
@@ -1115,6 +1220,9 @@ public sealed class CombatMechSystem : EntitySystem
         _appearance.SetData(ent, CombatMechVisuals.HelmetClosed, ent.Comp.HelmetClosed);
         _appearance.SetData(ent, CombatMechVisuals.PrimaryWeapon, ent.Comp.PrimaryWeaponState);
         _appearance.SetData(ent, CombatMechVisuals.SecondaryWeapon, ent.Comp.SecondaryWeaponState);
+        _appearance.SetData(ent, CombatMechVisuals.MarkingsColor, ent.Comp.MarkingsColorState);
+        _appearance.SetData(ent, CombatMechVisuals.MarkingsSpecialty, ent.Comp.MarkingsSpecialtyState);
+        _appearance.SetData(ent, CombatMechVisuals.HasTowLauncher, ent.Comp.HasTowLauncher);
     }
 
     private void UpdatePilotProtection(Entity<InsideCombatVehicleComponent> pilot)
@@ -1122,7 +1230,7 @@ public sealed class CombatMechSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        if (!IsProtectedPilot(pilot))
+        if (!HasLiveVehicle(pilot))
         {
             RestorePilotProtection(pilot);
             return;
@@ -1146,10 +1254,32 @@ public sealed class CombatMechSystem : EntitySystem
             pilot.Comp.AddedUnparalyzable = true;
         }
 
+        if (HasComp<StunOnExplosionReceivedComponent>(pilot))
+        {
+            RemComp<StunOnExplosionReceivedComponent>(pilot);
+            pilot.Comp.RemovedExplosionStun = true;
+        }
+
+        if (!HasComp<EntityTurnInvisibleComponent>(pilot))
+        {
+            var turnInvisible = EnsureComp<EntityTurnInvisibleComponent>(pilot);
+            turnInvisible.Enabled = true;
+            Dirty(pilot, turnInvisible);
+            pilot.Comp.AddedTurnInvisible = true;
+        }
+
+        if (!HasComp<EntityActiveInvisibleComponent>(pilot))
+        {
+            var activeInvisible = EnsureComp<EntityActiveInvisibleComponent>(pilot);
+            activeInvisible.Opacity = 0f;
+            Dirty(pilot, activeInvisible);
+            pilot.Comp.AddedActiveInvisible = true;
+        }
+
         DisablePilotCollision(pilot);
         ClearProtectedOngoingEffects(pilot);
         ClearProtectedStatuses(pilot);
-        ClearProtectedSlowOrStatus(pilot);
+        ClearProtectedMovementDebuffs(pilot);
         Dirty(pilot);
     }
 
@@ -1167,19 +1297,28 @@ public sealed class CombatMechSystem : EntitySystem
         if (pilot.Comp.AddedUnparalyzable)
             RemComp<UnparalyzableComponent>(pilot);
 
+        if (pilot.Comp.RemovedExplosionStun && !HasComp<StunOnExplosionReceivedComponent>(pilot))
+            EnsureComp<StunOnExplosionReceivedComponent>(pilot);
+
+        if (pilot.Comp.AddedActiveInvisible)
+            RemComp<EntityActiveInvisibleComponent>(pilot);
+
+        if (pilot.Comp.AddedTurnInvisible)
+            RemComp<EntityTurnInvisibleComponent>(pilot);
+
         RestorePilotCollision(pilot);
         pilot.Comp.RemovedInfectable = false;
         pilot.Comp.RemovedAffectableByWeeds = false;
         pilot.Comp.AddedUnparalyzable = false;
+        pilot.Comp.RemovedExplosionStun = false;
+        pilot.Comp.AddedTurnInvisible = false;
+        pilot.Comp.AddedActiveInvisible = false;
         Dirty(pilot);
     }
 
-    private bool IsProtectedPilot(Entity<InsideCombatVehicleComponent> pilot)
+    private bool HasLiveVehicle(Entity<InsideCombatVehicleComponent> pilot)
     {
-        if (Deleted(pilot.Comp.Vehicle))
-            return false;
-
-        return true;
+        return !Deleted(pilot.Comp.Vehicle);
     }
 
     private void OnRefreshSpeed(Entity<CombatMechComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
@@ -1208,19 +1347,18 @@ public sealed class CombatMechSystem : EntitySystem
 
     private void ClearProtectedStatuses(Entity<InsideCombatVehicleComponent> pilot)
     {
-        if (!IsProtectedPilot(pilot))
+        if (!HasLiveVehicle(pilot))
             return;
 
-        _statusEffects.TryRemoveStatusEffect(pilot, "Blinded");
-        _statusEffects.TryRemoveStatusEffect(pilot, "Dazed");
-        _statusEffects.TryRemoveStatusEffect(pilot, "KnockedDown");
-        _statusEffects.TryRemoveStatusEffect(pilot, "SlowedDown");
-        _statusEffects.TryRemoveStatusEffect(pilot, "Stun");
+        foreach (var status in ProtectedStatusEffects)
+        {
+            _statusEffects.TryRemoveStatusEffect(pilot, status);
+        }
     }
 
     private void ClearProtectedOngoingEffects(Entity<InsideCombatVehicleComponent> pilot)
     {
-        if (!IsProtectedPilot(pilot))
+        if (!HasLiveVehicle(pilot))
             return;
 
         if (HasComp<FlammableComponent>(pilot))
@@ -1282,27 +1420,47 @@ public sealed class CombatMechSystem : EntitySystem
         Dirty(pilot);
     }
 
-    private void ClearProtectedSlowOrStatus(
-        EntityUid uid,
-        string? status = null,
-        bool removeSlow = false,
-        bool removeSuperSlow = false,
-        bool removeRoot = false)
+    private void ClearProtectedMovementDebuffs(Entity<InsideCombatVehicleComponent> pilot)
     {
-        if (!TryComp(uid, out InsideCombatVehicleComponent? inside) || !IsProtectedPilot((uid, inside)))
+        if (!HasLiveVehicle(pilot))
             return;
 
-        if (status != null)
-            _statusEffects.TryRemoveStatusEffect(uid, status);
+        if (HasComp<RMCSlowdownComponent>(pilot))
+            RemCompDeferred<RMCSlowdownComponent>(pilot);
 
-        if (removeSlow || HasComp<RMCSlowdownComponent>(uid))
-            RemCompDeferred<RMCSlowdownComponent>(uid);
+        if (HasComp<RMCSuperSlowdownComponent>(pilot))
+            RemCompDeferred<RMCSuperSlowdownComponent>(pilot);
 
-        if (removeSuperSlow || HasComp<RMCSuperSlowdownComponent>(uid))
-            RemCompDeferred<RMCSuperSlowdownComponent>(uid);
+        if (HasComp<RMCRootedComponent>(pilot))
+            RemCompDeferred<RMCRootedComponent>(pilot);
+    }
 
-        if (removeRoot || HasComp<RMCRootedComponent>(uid))
-            RemCompDeferred<RMCRootedComponent>(uid);
+    private bool IsProtectedStatus(string status)
+    {
+        return ProtectedStatusEffects.Contains(status);
+    }
+
+    private bool TryToggleMountedAttachable(EntityUid weapon, EntityUid user)
+    {
+        if (!_container.TryGetContainer(weapon, UnderbarrelSlot, out var container) || container.Count <= 0)
+            return false;
+
+        // RX47 underbarrel slots are locked single-slot containers, so the first entity is the active module.
+        var attachable = container.ContainedEntities[0];
+        if (!HasComp<AttachableToggleableComponent>(attachable))
+            return false;
+
+        var ev = new AttachableToggleStartedEvent(weapon, user, UnderbarrelSlot);
+        RaiseLocalEvent(attachable, ref ev);
+        return true;
+    }
+
+    private static DamageSpecifier CreatePlasteelBarricadeCollisionDamage()
+    {
+        return new DamageSpecifier
+        {
+            DamageDict = { ["Blunt"] = 900 },
+        };
     }
 
     private bool InFiringArc(EntityUid mech, float arc, EntityCoordinates? target)

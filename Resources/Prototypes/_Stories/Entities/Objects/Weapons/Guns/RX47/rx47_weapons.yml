@@ -24,6 +24,13 @@
     mustBeWielded: false
     skills:
       RMCSkillFirearms: 0
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 80
+    soundHit:
+      collection: MetalThud
 
 - type: entity
   parent: StoriesWeaponRX47Base
@@ -39,8 +46,9 @@
     layers:
     - state: chaingun
   - type: Gun
-    shootOriginOffset: 0, -1
-    fireRate: 12
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.55
+    fireRate: 8.33
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -50,6 +58,10 @@
         volume: -2
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/lmg_mouse.rsi
+      state: all
   - type: RMCSelectiveFire
     baseFireModes:
     - FullAuto
@@ -57,7 +69,7 @@
     recoilUnwielded: 0
     scatterWielded: 8
     scatterUnwielded: 8
-    baseFireRate: 12
+    baseFireRate: 8.33
     modifiers:
       FullAuto:
         fireDelay: 0
@@ -90,8 +102,9 @@
     layers:
     - state: siegebreaker
   - type: Gun
-    shootOriginOffset: 0, -1
-    fireRate: 0.6
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.55
+    fireRate: 0.4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -99,6 +112,10 @@
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_sniper.ogg
       params:
         volume: 2
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/explosive_mouse.rsi
+      state: all
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -124,13 +141,18 @@
     layers:
     - state: cupola
   - type: Gun
-    shootOriginOffset: 0, -1
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.55
     fireRate: 7
     selectedMode: FullAuto
     availableModes:
     - FullAuto
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_ml66a.ogg
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/smartgun_mouse.rsi
+      state: all
   - type: RMCSelectiveFire
     baseFireModes:
     - FullAuto
@@ -180,13 +202,18 @@
     - state: shotgun
   - type: Gun
     cameraRecoilScalar: 0
-    shootOriginOffset: 0, -1
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.55
     fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_shotgun.ogg
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/shotgun_mouse.rsi
+      state: all
   - type: RMCSelectiveFire
     baseFireModes:
     - SemiAuto
@@ -219,6 +246,7 @@
   id: StoriesWeaponRX47AuxiliaryFlamer
   name: RX47 auxiliary flamer
   description: A standalone RX47 auxiliary flamer module for event refits.
+  categories: [ HideSpawnMenu ]
   components:
   - type: CombatMechWeapon
     armState: shotgun
@@ -229,13 +257,18 @@
     - state: aux_fire
   - type: Gun
     cameraRecoilScalar: 0
-    shootOriginOffset: 0, -1
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.55
     fireRate: 0.6
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
       collection: RMCFlamerShoot
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/flamer_mouse.rsi
+      state: all
   - type: RMCFlamerAmmoProvider
   - type: RMCIgniter
   - type: ItemSlots
@@ -345,6 +378,7 @@
   parent: CMCartridgeSmartGun10x30mm
   id: StoriesCartridgeRX47Cupola
   name: cartridge (10x30mm)
+  # Uses the existing RMC smartgun cartridge path for IFF behavior, despite the DM source using 15x102mm.
   categories: [ HideSpawnMenu ]
   components:
   - type: Tag
@@ -386,6 +420,7 @@
   parent: RMCProjectileRocket84mm
   id: StoriesBulletRX47Siegebreaker
   name: 50mm siegebreaker shell
+  # Reuses the RMC rocket projectile base for explosive behavior; the RX47 round remains balanced as 50mm data below.
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
@@ -393,7 +428,7 @@
       types:
         Blunt: 45
         Structural: 90
-    maxFixedRange: 9
+    maxFixedRange: 12
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Projectiles/m5spec_projectiles.rsi
     layers:
