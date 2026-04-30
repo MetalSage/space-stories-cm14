@@ -61,38 +61,36 @@
   equipment:
     jumpsuit: CMJumpsuitPilot
     shoes: CMBootsBlackFilled
-    head: CMArmorHelmetM10Tech
+    head: RMCHeadBeretGreen
+    eyes: RMCWeldingGogglesSuperior
+    gloves: RMCHandsLeatherBlack
     id: StoriesIDCardMechOperator
     ears: StoriesHeadsetMech
-    suitstorage: WeaponSMGM63
     back: RMCSatchelWelder
     belt: CMBeltMarine
     pocket1: RMCPouchGeneralLarge
     pocket2: RMCPouchToolsSoc
   storage:
     back:
-    - CMMagazineSMGM63
-    - CMMagazineSMGM63
-    - CMMagazineSMGM63
+    - CMWelder
 
 - type: startingGear
   id: StoriesGearLeadMechOperator
   equipment:
     jumpsuit: CMJumpsuitPilot
     shoes: CMBootsBlackFilled
-    head: CMArmorHelmetM10Tech
+    head: RMCHeadBeretGreen
+    eyes: RMCWeldingGogglesSuperior
+    gloves: RMCHandsLeatherBlack
     id: StoriesIDCardLeadMechOperator
     ears: StoriesHeadsetMech
-    suitstorage: WeaponSMGM63
     back: RMCSatchelWelder
     belt: CMBeltMarine
     pocket1: RMCPouchGeneralLarge
     pocket2: RMCPouchToolsSoc
   storage:
     back:
-    - CMMagazineSMGM63
-    - CMMagazineSMGM63
-    - CMMagazineSMGM63
+    - CMWelder
 
 - type: entity
   parent: CMIDCardGold

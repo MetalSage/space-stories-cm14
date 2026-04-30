@@ -82,6 +82,8 @@ public sealed partial class CombatMechSystem : EntitySystem
 
     private float _protectionCleanupAccumulator;
     private readonly HashSet<EntityUid> _contacts = new();
+    private readonly HashSet<Entity<BarricadeComponent>> _barricades = new();
+    private readonly HashSet<EntityUid> _forceEjectingPilots = new();
     private readonly List<EntityUid> _staleDictionaryKeys = new();
 
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;

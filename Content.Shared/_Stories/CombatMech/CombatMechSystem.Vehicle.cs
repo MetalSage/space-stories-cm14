@@ -132,6 +132,7 @@ public sealed partial class CombatMechSystem
 
         if (GetPilot(ent) != null)
         {
+            args.Handled = true;
             _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
             return;
         }
@@ -283,17 +284,34 @@ public sealed partial class CombatMechSystem
         if (GetPilot(ent) is not { } pilot || !TryComp(pilot, out BuckleComponent? buckle))
             return;
 
+        if (!_interaction.InRangeUnobstructed(args.User, ent.Owner))
+            return;
+
+        _forceEjectingPilots.Add(pilot);
+        try
+        {
+            if (!_buckle.TryUnbuckle(pilot, args.User, buckle, popup: false))
+                return;
+        }
+        finally
+        {
+            _forceEjectingPilots.Remove(pilot);
+        }
+
         SetFaceplate(ent, false);
-        _buckle.TryUnbuckle(pilot, args.User, buckle, popup: false);
     }
 
     private void StartForceEject(Entity<CombatMechComponent> mech, EntityUid user)
     {
+        if (!_interaction.InRangeUnobstructed(user, mech.Owner, popup: true))
+            return;
+
         var ev = new CombatMechForceEjectDoAfterEvent();
         var doAfter = new DoAfterArgs(EntityManager, user, mech.Comp.ForceEjectDelay, ev, mech, mech)
         {
             NeedHand = true,
             BreakOnMove = true,
+            DistanceThreshold = SharedInteractionSystem.InteractionRange,
             BlockDuplicate = true,
             DuplicateCondition = DuplicateConditions.SameTarget | DuplicateConditions.SameEvent,
         };
@@ -406,11 +424,17 @@ public sealed partial class CombatMechSystem
             var coords = _transform.GetMapCoordinates(uid, xform);
             var check = new MapCoordinates(coords.Position + direction * mech.BarricadeBumperRange, coords.MapId);
 
-            foreach (var barricade in _lookup.GetEntitiesInRange<BarricadeComponent>(check, 0.5f, LookupFlags.Uncontained))
+            _barricades.Clear();
+            _lookup.GetEntitiesInRange(check, 0.5f, _barricades, LookupFlags.Uncontained);
+            foreach (var barricade in _barricades)
             {
                 var barricadePos = _transform.GetMapCoordinates(barricade.Owner).Position;
-                if (Vector2.Dot((barricadePos - coords.Position).Normalized(), direction) < 0.35f)
+                var delta = barricadePos - coords.Position;
+                if (delta.LengthSquared() > 0.0001f &&
+                    Vector2.Dot(delta.Normalized(), direction) < 0.35f)
+                {
                     continue;
+                }
 
                 if (!TryDamageBarricade((uid, mech), barricade.Owner))
                     continue;
@@ -447,6 +471,10 @@ public sealed partial class CombatMechSystem
                 continue;
 
             var ourAabb = _lookup.GetAABBNoContainer(uid, xform.LocalPosition, xform.LocalRotation);
+            var ourArea = Box2.Area(ourAabb);
+            if (ourArea <= 0)
+                continue;
+
             foreach (var target in _contacts)
             {
                 if (!CanStepStunMarine(target) ||
@@ -461,7 +489,7 @@ public sealed partial class CombatMechSystem
                     continue;
 
                 var intersect = Box2.Area(targetAabb.Intersect(ourAabb));
-                var ratio = Math.Max(intersect / Box2.Area(targetAabb), intersect / Box2.Area(ourAabb));
+                var ratio = Math.Max(intersect / Box2.Area(targetAabb), intersect / ourArea);
                 if (ratio < mech.StepStunOverlapRatio)
                     continue;
 
@@ -511,7 +539,9 @@ public sealed partial class CombatMechSystem
                 continue;
             }
 
-            foreach (var contact in _physics.GetEntitiesIntersectingBody(inside.Vehicle, (int) CollisionGroup.AllMask))
+            foreach (var contact in _physics.GetEntitiesIntersectingBody(
+                         inside.Vehicle,
+                         (int) (CollisionGroup.MobLayer | CollisionGroup.MobMask)))
             {
                 if (!TryComp(contact, out DamageOverTimeComponent? damage) ||
                     !damage.AffectsCrit && _mobState.IsCritical(pilotUid) ||

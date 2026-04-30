@@ -97,8 +97,12 @@ public sealed partial class CombatMechSystem
 
     private void OnUnstrapAttempt(Entity<CombatMechComponent> ent, ref UnstrapAttemptEvent args)
     {
-        if (args.Cancelled || !ent.Comp.HelmetClosed)
+        if (args.Cancelled ||
+            !ent.Comp.HelmetClosed ||
+            _forceEjectingPilots.Contains(args.Buckle.Owner))
+        {
             return;
+        }
 
         if (args.Popup)
             _popup.PopupClient(Loc.GetString("stories-rx47-faceplate-blocks-exit"), ent, args.User, PopupType.MediumCaution);
@@ -175,8 +179,14 @@ public sealed partial class CombatMechSystem
         LinkWeaponToMech(weapon, ent);
 
         RemComp<UnremoveableComponent>(weapon);
-        if (_hands.IsHolding(ent.Owner, weapon))
-            _hands.TryDrop(ent.Owner, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false);
+        if (_hands.IsHolding(ent.Owner, weapon) &&
+            !_hands.TryDrop(ent.Owner, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false))
+        {
+            EnsureWeaponUnremoveable(weapon);
+            return false;
+        }
+
+        EnsureWeaponUnremoveable(weapon);
 
         if (!_hands.TryPickup(pilot, weapon, hand, checkActionBlocker: false, animate: false, handsComp: pilotHands))
         {
@@ -184,7 +194,6 @@ public sealed partial class CombatMechSystem
             return false;
         }
 
-        EnsureComp<UnremoveableComponent>(weapon);
         return true;
     }
 
@@ -192,8 +201,6 @@ public sealed partial class CombatMechSystem
     {
         if (GetWeapon(ent, primary) is not { } weapon)
             return;
-
-        RemComp<UnremoveableComponent>(weapon);
 
         if (!TryComp(ent.Owner, out HandsComponent? mechHands))
             return;
@@ -206,12 +213,19 @@ public sealed partial class CombatMechSystem
 
         if (_hands.IsHolding(ent.Owner, weapon))
         {
-            EnsureComp<UnremoveableComponent>(weapon);
+            EnsureWeaponUnremoveable(weapon);
             return;
         }
 
-        if (_hands.IsHolding(pilot, weapon))
-            _hands.TryDrop(pilot, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false);
+        RemComp<UnremoveableComponent>(weapon);
+        if (_hands.IsHolding(pilot, weapon) &&
+            !_hands.TryDrop(pilot, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false))
+        {
+            EnsureWeaponUnremoveable(weapon);
+            return;
+        }
+
+        EnsureWeaponUnremoveable(weapon);
 
         if (!_hands.TryPickup(ent.Owner, weapon, hand, checkActionBlocker: false, animate: false, handsComp: mechHands))
         {
@@ -220,7 +234,6 @@ public sealed partial class CombatMechSystem
             return;
         }
 
-        EnsureComp<UnremoveableComponent>(weapon);
     }
 
     private void EjectPilotAfterWeaponTransferFailure(Entity<CombatMechComponent> mech, EntityUid pilot)

@@ -76,6 +76,16 @@ public sealed partial class CombatMechSystem
         Dirty(weapon, weaponComp);
     }
 
+    private void EnsureWeaponUnremoveable(EntityUid weapon)
+    {
+        var unremoveable = EnsureComp<UnremoveableComponent>(weapon);
+        if (!unremoveable.DeleteOnDrop)
+            return;
+
+        unremoveable.DeleteOnDrop = false;
+        Dirty(weapon, unremoveable);
+    }
+
     private void OnInstallWeaponDoAfter(Entity<CombatMechComponent> ent, ref CombatMechInstallWeaponDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || args.Used == null)
@@ -185,7 +195,7 @@ public sealed partial class CombatMechSystem
         {
             var hand = FindHand(mech, hands, primary ? HandLocation.Left : HandLocation.Right);
             if (hand != null && _hands.TryPickup(mech, weapon, hand, checkActionBlocker: false, animate: false, handsComp: hands))
-                EnsureComp<UnremoveableComponent>(weapon);
+                EnsureWeaponUnremoveable(weapon);
         }
 
         UpdateAppearance(mech);
@@ -317,9 +327,26 @@ public sealed partial class CombatMechSystem
         if (!TryGetMountedUnderbarrel(pilot, weapon, false, out var attachable, out var gun))
             return;
 
+        ResetMountedUnderbarrelShotCounter(attachable, gun);
+        if (_timing.CurTime < gun.NextFire)
+            return;
+
+        var coordinates = GetCoordinates(msg.Coordinates);
+        var mapCoordinates = _transform.ToMapCoordinates(coordinates);
+        var weaponMap = Transform(weapon).MapID;
+        if (mapCoordinates.MapId != weaponMap)
+            return;
+
+        var target = GetEntity(msg.Target);
+        if (target is { } targetUid &&
+            (Deleted(targetUid) || Transform(targetUid).MapID != weaponMap))
+        {
+            return;
+        }
+
 #pragma warning disable RA0002
-        gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
-        gun.Target = GetEntity(msg.Target);
+        gun.ShootCoordinates = coordinates;
+        gun.Target = target;
 
         if (TryComp(attachable, out CombatMechWeaponFlamerTankComponent? flamerTank))
             SyncWeaponTankToMountedFlamer((attachable, flamerTank), weapon);
@@ -328,8 +355,19 @@ public sealed partial class CombatMechSystem
 
         // The input system never sends a stop-shoot event, so SemiAuto would latch after the first shot.
         // Reset ShotCounter so the next predictive event can fire again (rate-limited by NextFire).
+        ResetMountedUnderbarrelShotCounter(attachable, gun);
+#pragma warning restore RA0002
+    }
+
+    private void ResetMountedUnderbarrelShotCounter(EntityUid attachable, GunComponent gun)
+    {
+        if (gun.ShotCounter == 0)
+            return;
+
+#pragma warning disable RA0002
         gun.ShotCounter = 0;
-        EntityManager.DirtyField(attachable, gun, nameof(GunComponent.ShotCounter));
+        if (_net.IsServer)
+            EntityManager.DirtyField(attachable, gun, nameof(GunComponent.ShotCounter));
 #pragma warning restore RA0002
     }
 
@@ -422,7 +460,7 @@ public sealed partial class CombatMechSystem
         var weaponComp = EnsureComp<CombatMechWeaponComponent>(spawned);
         weaponComp.LinkedMech = mech;
         Dirty(spawned, weaponComp);
-        EnsureComp<UnremoveableComponent>(spawned);
+        EnsureWeaponUnremoveable(spawned);
     }
 
     private string? FindHand(EntityUid uid, HandsComponent hands, HandLocation location)
@@ -490,11 +528,6 @@ public sealed partial class CombatMechSystem
                 return true;
             }
 
-            if (_net.IsClient && IsHolding(user, weapon.Owner))
-            {
-                mech = (inside.Vehicle, insideComp);
-                return true;
-            }
         }
 
         mech = default;

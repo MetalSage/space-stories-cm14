@@ -151,7 +151,7 @@
     damageContainer: StoriesRX47CombatMech
   - type: RMCRepairable
     heal: 100
-    delay: 2
+    delay: 10
     repairableDamageLimit: 3000
   - type: XenoToggleChargingDamage
     stop: true
