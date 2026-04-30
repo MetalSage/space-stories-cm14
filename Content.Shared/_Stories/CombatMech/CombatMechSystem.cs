@@ -10,10 +10,12 @@ using Content.Shared._RMC14.Entrenching;
 using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Ranged;
+using Content.Shared._RMC14.Weapons.Ranged.Flamer;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids.Acid;
 using Content.Shared._RMC14.Xenonids.Neurotoxin;
@@ -23,6 +25,7 @@ using Content.Shared._RMC14.Xenonids.Weeds;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
@@ -48,6 +51,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -97,7 +101,9 @@ public sealed partial class CombatMechSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
 #pragma warning disable CS0618 // Existing status protection still uses the legacy status effect system.
@@ -124,6 +130,8 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, RMCGetFireImmunityEvent>(OnMechFireImmunity);
         SubscribeLocalEvent<CombatMechComponent, PickupAttemptEvent>(OnMechPickupAttempt);
         SubscribeLocalEvent<CombatMechComponent, StartCollideEvent>(OnMechStartCollide);
+        SubscribeLocalEvent<CombatMechComponent, MoveEvent>(OnMechMove);
+        SubscribeLocalEvent<CombatMechComponent, AttemptMobTargetCollideEvent>(OnMechAttemptMobTargetCollide);
         SubscribeLocalEvent<CombatMechComponent, GetSpeedModifierContactCapEvent>(OnMechGetSpeedModifierContactCap);
         SubscribeLocalEvent<CombatMechComponent, TileFrictionEvent>(OnMechTileFriction);
         SubscribeLocalEvent<CombatMechComponent, CombatMechInstallWeaponDoAfterEvent>(OnInstallWeaponDoAfter);
@@ -131,7 +139,7 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, CombatMechForceEjectDoAfterEvent>(OnForceEjectDoAfter);
         SubscribeAllEvent<CombatMechUnderbarrelShootEvent>(OnCombatMechUnderbarrelShoot);
 
-        SubscribeLocalEvent<CombatMechWeaponComponent, AttemptShootEvent>(OnWeaponAttemptShoot);
+        SubscribeLocalEvent<CombatMechWeaponComponent, AttemptShootEvent>(OnWeaponAttemptShoot, before: [typeof(SharedRMCFlamerSystem)]);
         SubscribeLocalEvent<CombatMechWeaponComponent, GetIFFGunUserEvent>(OnWeaponGetIFFGunUser);
         SubscribeLocalEvent<CombatMechWeaponComponent, ContainerIsRemovingAttemptEvent>(OnWeaponContainerRemoveAttempt);
         SubscribeLocalEvent<CombatMechWeaponComponent, InteractUsingEvent>(OnWeaponInteractUsing);
@@ -139,7 +147,10 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechWeaponComponent, RMCTryAmmoEjectEvent>(OnWeaponTryAmmoEject);
         SubscribeLocalEvent<CombatMechWeaponComponent, UseInHandEvent>(OnWeaponUseInHand);
         SubscribeLocalEvent<CombatMechWeaponComponent, GetVerbsEvent<AlternativeVerb>>(OnWeaponGetAlternativeVerbs);
-        SubscribeLocalEvent<CombatMechUnderbarrelComponent, AttemptShootEvent>(OnMountedAttachableAttemptShoot);
+        SubscribeLocalEvent<CombatMechUnderbarrelComponent, AttemptShootEvent>(OnMountedAttachableAttemptShoot, before: [typeof(SharedRMCFlamerSystem)]);
+        SubscribeLocalEvent<CombatMechWeaponFlamerTankComponent, AttemptShootEvent>(OnWeaponFlamerAttemptShoot, before: [typeof(SharedRMCFlamerSystem)]);
+        SubscribeLocalEvent<CombatMechWeaponFlamerTankComponent, GetAmmoCountEvent>(OnWeaponFlamerGetAmmoCount, before: [typeof(SharedRMCFlamerSystem)]);
+        SubscribeLocalEvent<CombatMechWeaponFlamerTankComponent, GunShotEvent>(OnWeaponFlamerGunShot);
         SubscribeLocalEvent<RMCCameraShakingComponent, ComponentStartup>(OnCameraShakeStartup);
         SubscribeLocalEvent<InsideCombatVehicleComponent, AttackAttemptEvent>(OnInsideVehicleAttackAttempt);
         SubscribeLocalEvent<InsideCombatVehicleComponent, BeforeAttemptShootEvent>(OnInsideVehicleBeforeAttemptShoot);

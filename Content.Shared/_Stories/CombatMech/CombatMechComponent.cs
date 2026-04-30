@@ -11,6 +11,8 @@ namespace Content.Shared._Stories.CombatMech;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class CombatMechComponent : Component
 {
+    public const string EmptyWeaponState = "empty";
+
     [DataField(required: true)]
     public EntProtoId PrimaryWeapon;
 
@@ -18,10 +20,10 @@ public sealed partial class CombatMechComponent : Component
     public EntProtoId SecondaryWeapon;
 
     [DataField, AutoNetworkedField]
-    public string PrimaryWeaponState = string.Empty;
+    public string PrimaryWeaponState = EmptyWeaponState;
 
     [DataField, AutoNetworkedField]
-    public string SecondaryWeaponState = string.Empty;
+    public string SecondaryWeaponState = EmptyWeaponState;
 
     [DataField, AutoNetworkedField]
     public bool HelmetClosed;
@@ -63,7 +65,13 @@ public sealed partial class CombatMechComponent : Component
     public TimeSpan StepStunCooldown = TimeSpan.FromSeconds(1);
 
     [DataField]
+    public float StepDamage = 90f;
+
+    [DataField]
     public float StepStunOverlapRatio = 0.2f;
+
+    [DataField]
+    public TimeSpan StepActiveDuration = TimeSpan.FromSeconds(0.4);
 
     [DataField]
     public float BarricadeCollisionDamage = 900f;
@@ -103,6 +111,9 @@ public sealed partial class CombatMechComponent : Component
 
     [ViewVariables]
     public Dictionary<EntityUid, TimeSpan> NextStepStunAt = new();
+
+    [ViewVariables]
+    public TimeSpan LastStepMoveAt;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -120,6 +131,16 @@ public sealed partial class CombatMechWeaponComponent : Component
 
 [RegisterComponent]
 public sealed partial class CombatMechUnderbarrelComponent : Component;
+
+[RegisterComponent]
+public sealed partial class CombatMechWeaponFlamerTankComponent : Component
+{
+    [DataField]
+    public string WeaponTankContainerId = "rx47_flamer_tank";
+
+    [DataField]
+    public string LocalTankContainerId = "gun_magazine";
+}
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class InsideCombatVehicleComponent : Component

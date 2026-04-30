@@ -25,8 +25,6 @@
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47Chaingun
     secondaryWeapon: StoriesWeaponRX47Scattergun
-    markingsColorState: markings_c_
-    markingsSpecialtyState: markings_s_wy
     weaponInstallDelay: 2
     weaponDetachDelay: 2
     forceEjectDelay: 3
@@ -100,9 +98,9 @@
       map: [ "enum.CombatMechVisualLayers.PrimaryWeapon" ]
     - state: weapon_shotgun_right
       map: [ "enum.CombatMechVisualLayers.SecondaryWeapon" ]
-    - state: markings_c_
+    - state: empty
       map: [ "enum.CombatMechVisualLayers.MarkingsColor" ]
-    - state: markings_s_wy
+    - state: empty
       map: [ "enum.CombatMechVisualLayers.MarkingsSpecialty" ]
     - state: empty
       map: [ "enum.CombatMechVisualLayers.TowLauncher" ]
@@ -115,6 +113,7 @@
       enum.CombatMechVisuals.PrimaryWeapon:
         enum.CombatMechVisualLayers.PrimaryWeapon:
           "": { state: empty }
+          empty: { state: empty }
           "weapon_chaingun_left": { state: weapon_chaingun_left }
           "weapon_cannon_left": { state: weapon_cannon_left }
           "weapon_cupola_left": { state: weapon_cupola_left }
@@ -122,6 +121,7 @@
       enum.CombatMechVisuals.SecondaryWeapon:
         enum.CombatMechVisualLayers.SecondaryWeapon:
           "": { state: empty }
+          empty: { state: empty }
           "weapon_chaingun_right": { state: weapon_chaingun_right }
           "weapon_cannon_right": { state: weapon_cannon_right }
           "weapon_cupola_right": { state: weapon_cupola_right }
@@ -186,39 +186,53 @@
 - type: entity
   parent: StoriesRX47CombatMechBase
   id: StoriesRX47CombatMechChaingun
+  name: RX47 combat mechsuit
+  description: A Weston-Yamada RX47 combat mechsuit fitted with a chaingun and scattergun.
   suffix: Chaingun
   components:
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47Chaingun
     secondaryWeapon: StoriesWeaponRX47Scattergun
+    markingsColorState: markings_c_
+    markingsSpecialtyState: markings_s_wy
 
 - type: entity
   parent: StoriesRX47CombatMechBase
   id: StoriesRX47CombatMechSiegebreaker
+  name: RX47-SB combat mechsuit
+  description: A Weston-Yamada RX47-SB "Siegebreaker" combat mechsuit fitted with a siege cannon and cupola smartgun.
   suffix: Siegebreaker
   components:
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47Siegebreaker
     secondaryWeapon: StoriesWeaponRX47CupolaSmartgun
+    markingsColorState: markings_c_yellow
+    markingsSpecialtyState: markings_s_uscm
     hasTowLauncher: true
 
 - type: entity
   parent: StoriesRX47CombatMechBase
   id: StoriesRX47CombatMechExterminator
+  name: RX47-EX combat mechsuit
+  description: A Weston-Yamada RX47-EX "Exterminator" combat mechsuit fitted with a siege cannon and chaingun.
   suffix: Exterminator
   components:
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47Siegebreaker
     secondaryWeapon: StoriesWeaponRX47Chaingun
     markingsColorState: markings_c_red
+    markingsSpecialtyState: markings_s_wy
     hasTowLauncher: true
 
 - type: entity
   parent: StoriesRX47CombatMechBase
   id: StoriesRX47CombatMechRecon
+  name: RX47-RC combat mechsuit
+  description: A Weston-Yamada RX47-RC "Recon" combat mechsuit fitted with a cupola smartgun and scattergun.
   suffix: Recon
   components:
   - type: CombatMech
     primaryWeapon: StoriesWeaponRX47CupolaSmartgun
     secondaryWeapon: StoriesWeaponRX47Scattergun
     markingsColorState: markings_c_green
+    markingsSpecialtyState: markings_s_uscm_flag

@@ -4,7 +4,19 @@
   name: RX47 mini flamethrower
   description: An RX47-mounted refillable flamethrower attachment.
   components:
+  - type: SolutionContainerManager
+    solutions:
+      rmc_flamer_tank:
+        maxVol: 750
+        reagents: []
+  - type: RMCFlamerTank
+    maxIntensity: 10
+    maxDuration: 10
+    reagentWhitelist:
+    - RMCNapalmUT
+    - WeldingFuel
   - type: CombatMechUnderbarrel
+  - type: CombatMechWeaponFlamerTank
   - type: AttachableToggleable
     userOnly: true
     attachedOnly: true

@@ -15,6 +15,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      rx47_flamer_tank: !type:ContainerSlot
   - type: MagazineAmmoProvider
     autoEject: false
   - type: RMCAmmoEject
@@ -39,6 +40,7 @@
     layers:
     - state: chaingun
   - type: Gun
+    cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
     shootOriginOffset: 0, -0.65
     fireRate: 8.33
@@ -95,6 +97,7 @@
     layers:
     - state: siegebreaker
   - type: Gun
+    cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
     shootOriginOffset: 0, -0.65
     fireRate: 0.4
@@ -134,6 +137,7 @@
     layers:
     - state: cupola
   - type: Gun
+    cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
     shootOriginOffset: 0, -0.65
     fireRate: 7
@@ -171,6 +175,13 @@
         whitelist:
           tags:
           - StoriesMagazineRX47Cupola
+      rx47_flamer_tank:
+        name: Flamer tank
+        startingItem: StoriesRX47FlamerTank
+        priority: 3
+        whitelist:
+          tags:
+          - StoriesRX47FlamerTank
   - type: AttachableHolder
     slots:
       rmc-aslot-underbarrel:
@@ -225,6 +236,13 @@
         whitelist:
           tags:
           - StoriesMagazineRX47Scattergun
+      rx47_flamer_tank:
+        name: Flamer tank
+        startingItem: StoriesRX47FlamerTank
+        priority: 3
+        whitelist:
+          tags:
+          - StoriesRX47FlamerTank
   - type: AttachableHolder
     slots:
       rmc-aslot-underbarrel:
@@ -342,6 +360,31 @@
       - StoriesCartridgeRX47Scattergun
     proto: StoriesCartridgeRX47Scattergun
     capacity: 1000
+
+- type: entity
+  parent: RMCTankFlamer
+  id: StoriesRX47FlamerTank
+  name: RX47 flamer fuel tank
+  description: A high-capacity fuel tank for RX47-mounted flamethrower systems.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - StoriesRX47FlamerTank
+    - RMCTankFlamer
+  - type: SolutionContainerManager
+    solutions:
+      rmc_flamer_tank:
+        maxVol: 750
+        reagents:
+        - ReagentId: RMCNapalmUT
+          Quantity: 750
+  - type: RMCFlamerTank
+    maxIntensity: 10
+    maxDuration: 10
+    reagentWhitelist:
+    - RMCNapalmUT
+    - WeldingFuel
 
 - type: entity
   parent: CMBaseCartridgeRifle
@@ -505,3 +548,6 @@
 
 - type: Tag
   id: StoriesCartridgeRX47Scattergun
+
+- type: Tag
+  id: StoriesRX47FlamerTank

@@ -13,6 +13,7 @@ using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Stun;
+using Content.Shared._RMC14.Weapons.Ranged.Flamer;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids.Acid;
@@ -23,6 +24,7 @@ using Content.Shared._RMC14.Xenonids.Weeds;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
@@ -49,6 +51,7 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -307,13 +310,19 @@ public sealed partial class CombatMechSystem
         if (args.SenderSession.AttachedEntity is not { } pilot)
             return;
 
-        if (msg.Weapon is not { } netWeapon ||
-            !TryGetMountedUnderbarrel(pilot, GetEntity(netWeapon), false, out var attachable, out var gun))
+        if (msg.Weapon is not { } netWeapon)
+            return;
+
+        var weapon = GetEntity(netWeapon);
+        if (!TryGetMountedUnderbarrel(pilot, weapon, false, out var attachable, out var gun))
             return;
 
 #pragma warning disable RA0002
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
         gun.Target = GetEntity(msg.Target);
+
+        if (TryComp(attachable, out CombatMechWeaponFlamerTankComponent? flamerTank))
+            SyncWeaponTankToMountedFlamer((attachable, flamerTank), weapon);
 
         _gun.AttemptShoot(pilot, attachable, gun, userSession: args.SenderSession);
 
@@ -520,6 +529,141 @@ public sealed partial class CombatMechSystem
         }
     }
 
+    private void OnWeaponFlamerAttemptShoot(Entity<CombatMechWeaponFlamerTankComponent> ent, ref AttemptShootEvent args)
+    {
+        SyncWeaponTankToMountedFlamer(ent);
+    }
+
+    private void OnWeaponFlamerGetAmmoCount(Entity<CombatMechWeaponFlamerTankComponent> ent, ref GetAmmoCountEvent args)
+    {
+        SyncWeaponTankToMountedFlamer(ent);
+    }
+
+    private void OnWeaponFlamerGunShot(Entity<CombatMechWeaponFlamerTankComponent> ent, ref GunShotEvent args)
+    {
+        if (!TryGetMountedFlamerLocalTank(ent, out var localSolution) ||
+            !TryGetMountedWeaponFlamerTank(ent, out var weaponSolution))
+        {
+            return;
+        }
+
+        CopySolution(localSolution, weaponSolution);
+    }
+
+    private void SyncWeaponTankToMountedFlamer(Entity<CombatMechWeaponFlamerTankComponent> ent, EntityUid? weapon = null)
+    {
+        if (!TryGetMountedFlamerLocalTank(ent, out var localSolution))
+            return;
+
+        if (!TryGetMountedWeaponFlamerTank(ent, out var weaponSolution, weapon))
+        {
+            ClearSolution(localSolution);
+            return;
+        }
+
+        CopySolution(weaponSolution, localSolution);
+    }
+
+    private bool TryGetMountedWeaponFlamerTank(
+        Entity<CombatMechWeaponFlamerTankComponent> ent,
+        out Entity<SolutionComponent> solution,
+        EntityUid? weapon = null)
+    {
+        solution = default;
+
+        if (weapon is { } directWeapon &&
+            HasComp<CombatMechWeaponComponent>(directWeapon))
+        {
+            return TryGetWeaponFlamerTank(directWeapon, ent.Comp.WeaponTankContainerId, out solution);
+        }
+
+        if (!TryGetContainingCombatMechWeapon(ent.Owner, out var holder))
+            return false;
+
+        return TryGetWeaponFlamerTank(holder, ent.Comp.WeaponTankContainerId, out solution);
+    }
+
+    private bool TryGetContainingCombatMechWeapon(EntityUid uid, out EntityUid weapon)
+    {
+        weapon = default;
+
+        var current = uid;
+        while (_container.TryGetContainingContainer((current, null), out var container))
+        {
+            current = container.Owner;
+            if (!HasComp<CombatMechWeaponComponent>(current))
+                continue;
+
+            weapon = current;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetWeaponFlamerTank(EntityUid weapon, string containerId, out Entity<SolutionComponent> solution)
+    {
+        solution = default;
+
+        if (!_container.TryGetContainer(weapon, containerId, out var tankContainer) ||
+            tankContainer.ContainedEntities.Count == 0)
+        {
+            return false;
+        }
+
+        var tankId = tankContainer.ContainedEntities[0];
+        if (!TryComp(tankId, out RMCFlamerTankComponent? tank) ||
+            !_solution.TryGetSolution(tankId, tank.SolutionId, out var solutionEnt))
+        {
+            return false;
+        }
+
+        solution = solutionEnt.Value;
+        return true;
+    }
+
+    private bool TryGetMountedFlamerLocalTank(
+        Entity<CombatMechWeaponFlamerTankComponent> ent,
+        out Entity<SolutionComponent> solution)
+    {
+        solution = default;
+
+        if (TryComp(ent.Owner, out RMCFlamerTankComponent? selfTank) &&
+            _solution.TryGetSolution(ent.Owner, selfTank.SolutionId, out var selfSolutionEnt))
+        {
+            solution = selfSolutionEnt.Value;
+            return true;
+        }
+
+        if (!_container.TryGetContainer(ent.Owner, ent.Comp.LocalTankContainerId, out var tankContainer) ||
+            tankContainer.ContainedEntities.Count == 0)
+        {
+            return false;
+        }
+
+        var tankId = tankContainer.ContainedEntities[0];
+        if (!TryComp(tankId, out RMCFlamerTankComponent? tank) ||
+            !_solution.TryGetSolution(tankId, tank.SolutionId, out var solutionEnt))
+        {
+            return false;
+        }
+
+        solution = solutionEnt.Value;
+        return true;
+    }
+
+    private void CopySolution(Entity<SolutionComponent> source, Entity<SolutionComponent> target)
+    {
+        ClearSolution(target);
+        if (source.Comp.Solution.Volume > 0)
+            _solution.ForceAddSolution(target, source.Comp.Solution.Clone());
+    }
+
+    private void ClearSolution(Entity<SolutionComponent> solution)
+    {
+        _solution.RemoveAllSolution(solution);
+    }
+
     private bool TryResolveMountedAttachable(
         EntityUid attachable,
         EntityUid user,
@@ -615,7 +759,7 @@ public sealed partial class CombatMechSystem
         else
             mech.Comp.SecondaryWeaponEntity = weapon;
 
-        var state = string.Empty;
+        var state = CombatMechComponent.EmptyWeaponState;
         if (weapon != null && TryComp(weapon.Value, out CombatMechWeaponComponent? weaponComp))
             state = $"weapon_{weaponComp.ArmState}_{(primary ? "left" : "right")}";
 

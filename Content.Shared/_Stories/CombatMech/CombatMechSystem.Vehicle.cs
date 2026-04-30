@@ -173,8 +173,26 @@ public sealed partial class CombatMechSystem
         if (GetPilot(ent) == null)
             return;
 
-        TryKnockdownCollisionTarget(ent, args.OtherEntity);
         TryDamageBarricade(ent, args.OtherEntity);
+    }
+
+    private void OnMechMove(Entity<CombatMechComponent> ent, ref MoveEvent args)
+    {
+        if (_net.IsClient || GetPilot(ent) == null)
+            return;
+
+        if (!args.ParentChanged && (args.OldPosition.Position - args.NewPosition.Position).LengthSquared() < 0.0001f)
+            return;
+
+        ent.Comp.LastStepMoveAt = _timing.CurTime;
+    }
+
+    private void OnMechAttemptMobTargetCollide(Entity<CombatMechComponent> ent, ref AttemptMobTargetCollideEvent args)
+    {
+        if (!HasComp<MobCollisionComponent>(args.Entity) || HasComp<CombatMechComponent>(args.Entity))
+            return;
+
+        args.Cancelled = true;
     }
 
     private void OnGetAlternativeVerbs(Entity<CombatMechComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
@@ -369,20 +387,6 @@ public sealed partial class CombatMechSystem
         args.ModifySpeed(speed, speed);
     }
 
-    private void TryKnockdownCollisionTarget(Entity<CombatMechComponent> mech, EntityUid target)
-    {
-        if (HasComp<InsideCombatVehicleComponent>(target) ||
-            HasComp<CombatMechComponent>(target) ||
-            !HasComp<MarineComponent>(target) ||
-            !TryComp(target, out StatusEffectsComponent? status))
-        {
-            return;
-        }
-
-        _stun.TryParalyze(target, mech.Comp.StepStunDuration, true, status, force: true);
-        mech.Comp.NextStepStunAt[target] = _timing.CurTime + mech.Comp.StepStunCooldown;
-    }
-
     private void ProcessBarricadeBumpers()
     {
         var query = EntityQueryEnumerator<CombatMechComponent, InputMoverComponent, TransformComponent>();
@@ -429,6 +433,9 @@ public sealed partial class CombatMechSystem
 
             PruneEntityTimeDictionary(mech.NextStepStunAt, time, removeExpired: true);
 
+            if (time > mech.LastStepMoveAt + mech.StepActiveDuration)
+                continue;
+
             _contacts.Clear();
             _physics.GetContactingEntities(uid, _contacts);
             if (_contacts.Count == 0)
@@ -464,6 +471,12 @@ public sealed partial class CombatMechSystem
                     continue;
 
                 mech.NextStepStunAt[target] = time + mech.StepStunCooldown;
+                _damageable.TryChangeDamage(
+                    target,
+                    CreateBluntDamage(mech.StepDamage),
+                    ignoreResistances: true,
+                    origin: uid,
+                    tool: uid);
                 _stun.TryParalyze(target, mech.StepStunDuration, true, status, force: true);
             }
         }
@@ -550,7 +563,7 @@ public sealed partial class CombatMechSystem
 
         _damageable.TryChangeDamage(
             target,
-            CreateBarricadeCollisionDamage(mech.Comp.BarricadeCollisionDamage),
+            CreateBluntDamage(mech.Comp.BarricadeCollisionDamage),
             ignoreResistances: true,
             origin: mech,
             tool: mech);
@@ -558,7 +571,7 @@ public sealed partial class CombatMechSystem
         return true;
     }
 
-    private static DamageSpecifier CreateBarricadeCollisionDamage(float amount)
+    private static DamageSpecifier CreateBluntDamage(float amount)
     {
         return new DamageSpecifier
         {

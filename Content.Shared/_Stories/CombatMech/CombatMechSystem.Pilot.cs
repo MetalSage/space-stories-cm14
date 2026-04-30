@@ -124,6 +124,8 @@ public sealed partial class CombatMechSystem
 
         if (_net.IsServer)
         {
+            _rmcPulling.TryStopAllPullsFromAndOn(pilot);
+
             if (!TransferWeaponToPilot(ent, pilot, true) ||
                 !TransferWeaponToPilot(ent, pilot, false))
             {
