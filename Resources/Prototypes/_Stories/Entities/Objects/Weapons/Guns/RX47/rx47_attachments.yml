@@ -4,10 +4,11 @@
   name: RX47 mini flamethrower
   description: An RX47-mounted refillable flamethrower attachment.
   components:
+  - type: CombatMechUnderbarrel
   - type: AttachableToggleable
     userOnly: true
     attachedOnly: true
-    supercedeHolder: true
+    supercedeHolder: false
     wieldedUseOnly: false
     activatePopupText: attachable-popup-switch-to-generic
     deactivatePopupText: attachable-popup-switch-from-generic

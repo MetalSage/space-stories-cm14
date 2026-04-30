@@ -24,13 +24,6 @@
     mustBeWielded: false
     skills:
       RMCSkillFirearms: 0
-  - type: MeleeWeapon
-    attackRate: 1
-    damage:
-      types:
-        Blunt: 80
-    soundHit:
-      collection: MetalThud
 
 - type: entity
   parent: StoriesWeaponRX47Base

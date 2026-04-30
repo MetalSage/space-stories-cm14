@@ -1,5 +1,6 @@
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared.DoAfter;
+using Robust.Shared.Map;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -117,6 +118,9 @@ public sealed partial class CombatMechWeaponComponent : Component
     public EntityUid? LinkedMech;
 }
 
+[RegisterComponent]
+public sealed partial class CombatMechUnderbarrelComponent : Component;
+
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class InsideCombatVehicleComponent : Component
 {
@@ -199,3 +203,22 @@ public sealed partial class CombatMechDetachWeaponDoAfterEvent : SimpleDoAfterEv
 
 [Serializable, NetSerializable]
 public sealed partial class CombatMechForceEjectDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed class CombatMechUnderbarrelShootEvent : EntityEventArgs
+{
+    public NetCoordinates Coordinates;
+    public NetEntity? Weapon;
+    public NetEntity? Target;
+
+    public CombatMechUnderbarrelShootEvent()
+    {
+    }
+
+    public CombatMechUnderbarrelShootEvent(NetCoordinates coordinates, NetEntity? weapon, NetEntity? target)
+    {
+        Coordinates = coordinates;
+        Weapon = weapon;
+        Target = target;
+    }
+}
