@@ -1,62 +1,31 @@
 using System.Numerics;
-using Content.Shared._RMC14.Hands;
-using Content.Shared._RMC14.Attachable.Components;
-using Content.Shared._RMC14.Attachable.Events;
 using Content.Shared._RMC14.Atmos;
-using Content.Shared._RMC14.BlurredVision;
 using Content.Shared._RMC14.CameraShake;
 using Content.Shared._RMC14.Damage;
-using Content.Shared._RMC14.Entrenching;
 using Content.Shared._RMC14.Explosion;
-using Content.Shared._RMC14.Marines;
-using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Ranged;
-using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids.Acid;
 using Content.Shared._RMC14.Xenonids.Neurotoxin;
 using Content.Shared._RMC14.Xenonids.Paralyzing;
 using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._RMC14.Xenonids.Weeds;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Buckle;
-using Content.Shared.Buckle.Components;
-using Content.Shared.Containers;
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
-using Content.Shared.DoAfter;
-using Content.Shared.Examine;
 using Content.Shared.Explosion;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
-using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Physics;
-using Content.Shared.Popups;
-using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
-using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.Map;
-using Robust.Shared.Network;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -76,6 +45,13 @@ public sealed partial class CombatMechSystem
         if (args.Cancelled || Deleted(ent.Comp.Vehicle))
             return;
 
+        if (args.Weapon is { } weapon &&
+            TryComp(weapon, out CombatMechWeaponComponent? weaponComp) &&
+            IsMountedWeaponForPilot(args.Uid, (weapon, weaponComp)))
+        {
+            return;
+        }
+
         // Gun shots call CanAttack(user) without a melee weapon/target context before AttemptShoot.
         if (args.Weapon == null && args.Target == null && !args.Disarm)
             return;
@@ -85,7 +61,7 @@ public sealed partial class CombatMechSystem
 
     private void OnInsideVehicleBeforeAttemptShoot(Entity<InsideCombatVehicleComponent> ent, ref BeforeAttemptShootEvent args)
     {
-        if (Deleted(ent.Comp.Vehicle))
+        if (args.Handled || Deleted(ent.Comp.Vehicle))
             return;
 
         var rotation = _transform.GetWorldRotation(ent.Comp.Vehicle);
@@ -102,10 +78,9 @@ public sealed partial class CombatMechSystem
         if (!IsPilotSealed(ent))
             return;
 
-        if (args.Damage.GetTotal() > FixedPoint2.Zero)
+        if (TryGetForwardedDamage(args.Damage, ent.Comp.Vehicle, out var forwardedDamage))
         {
-            // The mech only accepts its own damage container types; biological damage forwarded here intentionally drops off.
-            _damageable.TryChangeDamage(ent.Comp.Vehicle, args.Damage, origin: args.Origin, tool: args.Source);
+            _damageable.TryChangeDamage(ent.Comp.Vehicle, forwardedDamage, origin: args.Origin, tool: args.Source);
         }
 
         args.Cancelled = true;
@@ -140,7 +115,7 @@ public sealed partial class CombatMechSystem
         if (!IsPilotSealed(ent))
             return;
 
-        if (IsProtectedStatus(args.Effect.Id))
+        if (IsProtectedStatus(ent, args.Effect.Id))
             args.Cancelled = true;
     }
 
@@ -317,7 +292,10 @@ public sealed partial class CombatMechSystem
         if (!IsPilotSealed(pilot))
             return;
 
-        foreach (var status in ProtectedStatusEffects)
+        if (!TryComp(pilot.Comp.Vehicle, out CombatMechComponent? mech))
+            return;
+
+        foreach (var status in mech.ProtectedStatusEffects)
         {
 #pragma warning disable CS0618 // Existing protection cleanup still uses legacy status ids.
             _statusEffects.TryRemoveStatusEffect(pilot, status);
@@ -404,8 +382,25 @@ public sealed partial class CombatMechSystem
             RemCompDeferred<RMCRootedComponent>(pilot);
     }
 
-    private bool IsProtectedStatus(string status)
+    private bool IsProtectedStatus(Entity<InsideCombatVehicleComponent> pilot, string status)
     {
-        return ProtectedStatusEffects.Contains(status);
+        return TryComp(pilot.Comp.Vehicle, out CombatMechComponent? mech) &&
+               mech.ProtectedStatusEffects.Contains(status);
+    }
+
+    private bool TryGetForwardedDamage(DamageSpecifier damage, EntityUid vehicle, out DamageSpecifier forwarded)
+    {
+        forwarded = new DamageSpecifier();
+
+        if (!TryComp(vehicle, out CombatMechComponent? mech))
+            return false;
+
+        foreach (var type in mech.ForwardedDamageTypes)
+        {
+            if (damage.DamageDict.TryGetValue(type, out var amount) && amount > FixedPoint2.Zero)
+                forwarded.DamageDict[type] = amount;
+        }
+
+        return forwarded.GetTotal() > FixedPoint2.Zero;
     }
 }

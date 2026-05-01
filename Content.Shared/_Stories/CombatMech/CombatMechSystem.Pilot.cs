@@ -1,62 +1,12 @@
-using System.Numerics;
-using Content.Shared._RMC14.Hands;
-using Content.Shared._RMC14.Attachable.Components;
-using Content.Shared._RMC14.Attachable.Events;
-using Content.Shared._RMC14.Atmos;
-using Content.Shared._RMC14.BlurredVision;
-using Content.Shared._RMC14.CameraShake;
-using Content.Shared._RMC14.Damage;
-using Content.Shared._RMC14.Entrenching;
-using Content.Shared._RMC14.Explosion;
-using Content.Shared._RMC14.Marines;
-using Content.Shared._RMC14.Marines.Skills;
-using Content.Shared._RMC14.Slow;
-using Content.Shared._RMC14.Stealth;
-using Content.Shared._RMC14.Stun;
-using Content.Shared._RMC14.Weapons.Ranged;
-using Content.Shared._RMC14.Weapons.Ranged.IFF;
-using Content.Shared._RMC14.Xenonids.Acid;
-using Content.Shared._RMC14.Xenonids.Neurotoxin;
-using Content.Shared._RMC14.Xenonids.Paralyzing;
-using Content.Shared._RMC14.Xenonids.Parasite;
-using Content.Shared._RMC14.Xenonids.Weeds;
-using Content.Shared.Atmos.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Containers;
-using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Damage;
-using Content.Shared.DoAfter;
-using Content.Shared.Examine;
-using Content.Shared.Explosion;
-using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Physics;
 using Content.Shared.Popups;
-using Content.Shared.Standing;
-using Content.Shared.StatusEffect;
-using Content.Shared.StatusEffectNew;
-using Content.Shared.Stunnable;
-using Content.Shared.Verbs;
-using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Network;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -150,6 +100,7 @@ public sealed partial class CombatMechSystem
 
         RemCompDeferred<InsideCombatVehicleComponent>(pilot);
         RemComp<RelayInputMoverComponent>(pilot);
+        // SetRelay puts the relay target on the mech, not the pilot.
         RemComp<MovementRelayTargetComponent>(ent);
         RemCompDeferred<InteractionRelayComponent>(pilot);
         _movementSpeed.RefreshMovementSpeedModifiers(ent);
@@ -229,8 +180,12 @@ public sealed partial class CombatMechSystem
 
         if (!_hands.TryPickup(ent.Owner, weapon, hand, checkActionBlocker: false, animate: false, handsComp: mechHands))
         {
+            RemComp<UnremoveableComponent>(weapon);
+            if (TryComp(weapon, out CombatMechWeaponComponent? weaponComp))
+                ClearWeaponMechLink((weapon, weaponComp));
+            SetWeapon(ent, primary, null);
             _transform.SetCoordinates(weapon, Transform(ent).Coordinates);
-            Log.Warning($"RX47 failed to return {ToPrettyString(weapon)} to {ToPrettyString(ent.Owner)} hand {hand}.");
+            Log.Warning($"RX47 failed to return {ToPrettyString(weapon)} to {ToPrettyString(ent.Owner)} hand {hand} ({(primary ? "primary" : "secondary")}).");
             return;
         }
 
@@ -240,9 +195,27 @@ public sealed partial class CombatMechSystem
     {
         Log.Warning($"RX47 ejected {ToPrettyString(pilot)} from {ToPrettyString(mech.Owner)} after weapon transfer failed.");
 
-        if (TryComp(pilot, out BuckleComponent? buckle))
-            _buckle.TryUnbuckle(pilot, pilot, buckle, popup: false);
+        if (TryComp(pilot, out BuckleComponent? buckle) &&
+            _buckle.TryUnbuckle(pilot, pilot, buckle, popup: false))
+        {
+            UpdateAppearance(mech);
+            return;
+        }
+
+        CleanupFailedPilotStrap(mech, pilot);
 
         UpdateAppearance(mech);
+    }
+
+    private void CleanupFailedPilotStrap(Entity<CombatMechComponent> mech, EntityUid pilot)
+    {
+        if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
+            RestorePilotProtection((pilot, inside));
+
+        RemCompDeferred<InsideCombatVehicleComponent>(pilot);
+        RemComp<RelayInputMoverComponent>(pilot);
+        RemComp<MovementRelayTargetComponent>(mech);
+        RemCompDeferred<InteractionRelayComponent>(pilot);
+        _movementSpeed.RefreshMovementSpeedModifiers(mech);
     }
 }

@@ -72,7 +72,7 @@
       components:
       - Marine
       - Xeno
-      - CombatMech
+      - CombatMech #Stories-Parity
   - type: UncloakOnHit
   - type: ExtinguishFire
   - type: IgnorePredictionHit

@@ -3,6 +3,7 @@ using Content.Client.CombatMode;
 using Content.Client.Gameplay;
 using Content.Shared._Stories.CombatMech;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Weapons.Ranged.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -17,7 +18,7 @@ namespace Content.Client._Stories.CombatMech;
 
 public sealed class CombatMechFlamerInputSystem : EntitySystem
 {
-    private const string UnderbarrelSlot = "rmc-aslot-underbarrel";
+    private TimeSpan _nextUnderbarrelShootAt;
 
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly IInputManager _input = default!;
@@ -39,10 +40,14 @@ public sealed class CombatMechFlamerInputSystem : EntitySystem
             Deleted(inside.Vehicle) ||
             !_combatMode.IsInCombatMode(pilot) ||
             _inputSystem.CmdStates.GetState(EngineKeyFunctions.UseSecondary) != BoundKeyState.Down ||
-            !TryGetActiveMountedUnderbarrel(pilot, out var weapon))
+            !TryGetActiveMountedUnderbarrel(pilot, out var weapon, out var gun))
         {
             return;
         }
+
+        var time = _timing.CurTime;
+        if (time < _nextUnderbarrelShootAt || time < gun.NextFire)
+            return;
 
         var mousePos = _eye.PixelToMap(_input.MouseScreenPosition);
         if (mousePos.MapId == MapId.Nullspace)
@@ -62,15 +67,21 @@ public sealed class CombatMechFlamerInputSystem : EntitySystem
             GetNetCoordinates(coordinates),
             GetNetEntity(weapon),
             target));
+
+        var fireRate = Math.Max(gun.FireRateModified, gun.FireRate);
+        _nextUnderbarrelShootAt = gun.NextFire > time
+            ? gun.NextFire
+            : time + TimeSpan.FromSeconds(1 / Math.Max(fireRate, 0.1f));
     }
 
-    private bool TryGetActiveMountedUnderbarrel(EntityUid pilot, out EntityUid weapon)
+    private bool TryGetActiveMountedUnderbarrel(EntityUid pilot, out EntityUid weapon, out GunComponent gun)
     {
         weapon = default;
+        gun = default!;
 
         if (!_hands.TryGetActiveItem(pilot, out var active) ||
             !HasComp<CombatMechWeaponComponent>(active.Value) ||
-            !_container.TryGetContainer(active.Value, UnderbarrelSlot, out var container) ||
+            !_container.TryGetContainer(active.Value, CombatMechComponent.UnderbarrelSlot, out var container) ||
             container.Count <= 0)
         {
             return false;
@@ -78,10 +89,14 @@ public sealed class CombatMechFlamerInputSystem : EntitySystem
 
         foreach (var attachable in container.ContainedEntities)
         {
-            if (!HasComp<CombatMechUnderbarrelComponent>(attachable))
+            if (!HasComp<CombatMechUnderbarrelComponent>(attachable) ||
+                !TryComp(attachable, out GunComponent? gunComp))
+            {
                 continue;
+            }
 
             weapon = active.Value;
+            gun = gunComp;
             return true;
         }
 

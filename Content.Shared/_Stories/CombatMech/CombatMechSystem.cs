@@ -1,14 +1,11 @@
-using System.Numerics;
 using Content.Shared._RMC14.Hands;
 using Content.Shared._RMC14.Attachable.Components;
 using Content.Shared._RMC14.Attachable.Events;
 using Content.Shared._RMC14.Atmos;
-using Content.Shared._RMC14.BlurredVision;
 using Content.Shared._RMC14.CameraShake;
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Entrenching;
 using Content.Shared._RMC14.Explosion;
-using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Slow;
@@ -57,7 +54,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
-using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
@@ -66,22 +62,17 @@ namespace Content.Shared._Stories.CombatMech;
 
 public sealed partial class CombatMechSystem : EntitySystem
 {
-    private const string UnderbarrelSlot = "rmc-aslot-underbarrel";
     private const float ProtectionCleanupInterval = 0.25f;
-
-    private static readonly HashSet<string> ProtectedStatusEffects = new()
-    {
-        "Blinded",
-        "Dazed",
-        "Drunk",
-        "Flashed",
-        "KnockedDown",
-        "SlowedDown",
-        "Stun",
-    };
+    private const float BarricadeBumperProbeRadius = 0.5f;
+    private const float PositionMoveEpsilon = 0.0001f;
+    private const float DirectionEpsilon = 0.001f;
+    private const float FiringTargetEpsilon = 0.01f;
+    private const float BarricadeForwardDotMinimum = 0.35f;
 
     private float _protectionCleanupAccumulator;
+    // Scratch buffers used only inside Update's sequential server pass.
     private readonly HashSet<EntityUid> _contacts = new();
+    private readonly HashSet<Entity<DamageOverTimeComponent>> _damageContacts = new();
     private readonly HashSet<Entity<BarricadeComponent>> _barricades = new();
     private readonly HashSet<EntityUid> _forceEjectingPilots = new();
     private readonly List<EntityUid> _staleDictionaryKeys = new();
@@ -215,12 +206,18 @@ public sealed partial class CombatMechSystem : EntitySystem
         if (_net.IsClient)
             return;
 
+        if (ent.Comp.DefaultWeaponEnsureQueued)
+            return;
+
+        ent.Comp.DefaultWeaponEnsureQueued = true;
+
         // GiveHands finishes after MapInit; defer one tick so the mech hand containers exist before mounting weapons.
         Timer.Spawn(0, () =>
         {
             if (Deleted(ent.Owner) || !TryComp(ent.Owner, out CombatMechComponent? mech))
                 return;
 
+            mech.DefaultWeaponEnsureQueued = false;
             EnsureWeapon((ent.Owner, mech), true);
             EnsureWeapon((ent.Owner, mech), false);
             UpdateAppearance((ent.Owner, mech));

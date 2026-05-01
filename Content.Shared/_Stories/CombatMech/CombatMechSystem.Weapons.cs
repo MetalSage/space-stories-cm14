@@ -1,66 +1,28 @@
-using System.Numerics;
-using Content.Shared._RMC14.Hands;
 using Content.Shared._RMC14.Attachable.Components;
 using Content.Shared._RMC14.Attachable.Events;
-using Content.Shared._RMC14.Atmos;
-using Content.Shared._RMC14.BlurredVision;
-using Content.Shared._RMC14.CameraShake;
-using Content.Shared._RMC14.Damage;
-using Content.Shared._RMC14.Entrenching;
-using Content.Shared._RMC14.Explosion;
-using Content.Shared._RMC14.Marines;
-using Content.Shared._RMC14.Marines.Skills;
-using Content.Shared._RMC14.Slow;
-using Content.Shared._RMC14.Stealth;
-using Content.Shared._RMC14.Stun;
+using Content.Shared._RMC14.Hands;
 using Content.Shared._RMC14.Weapons.Ranged.Flamer;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
-using Content.Shared._RMC14.Xenonids.Acid;
-using Content.Shared._RMC14.Xenonids.Neurotoxin;
-using Content.Shared._RMC14.Xenonids.Paralyzing;
-using Content.Shared._RMC14.Xenonids.Parasite;
-using Content.Shared._RMC14.Xenonids.Weeds;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Buckle;
-using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Damage;
 using Content.Shared.DoAfter;
-using Content.Shared.Examine;
-using Content.Shared.Explosion;
-using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Physics;
 using Content.Shared.Popups;
-using Content.Shared.Standing;
-using Content.Shared.StatusEffect;
-using Content.Shared.StatusEffectNew;
-using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -181,21 +143,38 @@ public sealed partial class CombatMechSystem
             return false;
         }
 
-        DetachWeapon(mech, user, primary, false);
+        if (GetWeapon(mech, primary) != null && !DetachWeapon(mech, user, primary, false))
+            return false;
 
-        if (_hands.IsHolding(user, weapon))
-            _hands.TryDrop(user, weapon, Transform(mech).Coordinates, checkActionBlocker: false, doDropInteraction: false);
+        var mechCoordinates = Transform(mech).Coordinates;
+        if (_hands.IsHolding(user, weapon) &&
+            !_hands.TryDrop(user, weapon, mechCoordinates, checkActionBlocker: false, doDropInteraction: false))
+        {
+            return false;
+        }
 
         SetWeapon(mech, primary, weapon);
 
         weaponComp.LinkedMech = mech;
         Dirty(weapon, weaponComp);
 
+        var mounted = false;
         if (TryComp(mech, out HandsComponent? hands))
         {
             var hand = FindHand(mech, hands, primary ? HandLocation.Left : HandLocation.Right);
             if (hand != null && _hands.TryPickup(mech, weapon, hand, checkActionBlocker: false, animate: false, handsComp: hands))
+            {
                 EnsureWeaponUnremoveable(weapon);
+                mounted = true;
+            }
+        }
+
+        if (!mounted)
+        {
+            ClearWeaponMechLink((weapon, weaponComp));
+            SetWeapon(mech, primary, null);
+            _transform.SetCoordinates(weapon, mechCoordinates);
+            return false;
         }
 
         UpdateAppearance(mech);
@@ -210,6 +189,14 @@ public sealed partial class CombatMechSystem
         if (GetWeapon(mech, primary) is not { } weapon)
             return false;
 
+        var coordinates = Transform(mech).Coordinates;
+        var heldByMech = _hands.IsHolding(mech.Owner, weapon);
+        if (heldByMech &&
+            !_hands.TryDrop(mech.Owner, weapon, coordinates, checkActionBlocker: false, doDropInteraction: false))
+        {
+            return false;
+        }
+
         RemComp<UnremoveableComponent>(weapon);
 
         if (TryComp(weapon, out CombatMechWeaponComponent? weaponComp))
@@ -218,10 +205,8 @@ public sealed partial class CombatMechSystem
             Dirty(weapon, weaponComp);
         }
 
-        if (_hands.IsHolding(mech.Owner, weapon))
-            _hands.TryDrop(mech.Owner, weapon, Transform(mech).Coordinates, checkActionBlocker: false, doDropInteraction: false);
-        else
-            _transform.SetCoordinates(weapon, Transform(mech).Coordinates);
+        if (!heldByMech)
+            _transform.SetCoordinates(weapon, coordinates);
 
         SetWeapon(mech, primary, null);
 
@@ -254,7 +239,7 @@ public sealed partial class CombatMechSystem
         }
 
         if (!HasComp<AttachableHolderComponent>(ent.Owner) ||
-            !_container.TryGetContainer(ent.Owner, UnderbarrelSlot, out var container))
+            !_container.TryGetContainer(ent.Owner, CombatMechComponent.UnderbarrelSlot, out var container))
         {
             return;
         }
@@ -270,7 +255,7 @@ public sealed partial class CombatMechSystem
                 IconEntity = GetNetEntity(attachable),
                 Act = () =>
                 {
-                    var ev = new AttachableToggleStartedEvent(ent.Owner, user, UnderbarrelSlot);
+                    var ev = new AttachableToggleStartedEvent(ent.Owner, user, CombatMechComponent.UnderbarrelSlot);
                     RaiseLocalEvent(attachable, ref ev);
                 },
                 Priority = 90,
@@ -337,6 +322,14 @@ public sealed partial class CombatMechSystem
         if (mapCoordinates.MapId != weaponMap)
             return;
 
+        if (TryComp(attachable, out RMCFlamerTankComponent? tank))
+        {
+            var weaponCoordinates = _transform.GetMapCoordinates(weapon);
+            var maxRange = tank.MaxRange;
+            if ((mapCoordinates.Position - weaponCoordinates.Position).LengthSquared() > maxRange * maxRange)
+                return;
+        }
+
         var target = GetEntity(msg.Target);
         if (target is { } targetUid &&
             (Deleted(targetUid) || Transform(targetUid).MapID != weaponMap))
@@ -348,14 +341,22 @@ public sealed partial class CombatMechSystem
         gun.ShootCoordinates = coordinates;
         gun.Target = target;
 
-        if (TryComp(attachable, out CombatMechWeaponFlamerTankComponent? flamerTank))
-            SyncWeaponTankToMountedFlamer((attachable, flamerTank), weapon);
+        try
+        {
+            if (TryComp(attachable, out CombatMechWeaponFlamerTankComponent? flamerTank))
+                SyncWeaponTankToMountedFlamer((attachable, flamerTank), weapon);
 
-        _gun.AttemptShoot(pilot, attachable, gun, userSession: args.SenderSession);
+            _gun.AttemptShoot(pilot, attachable, gun, userSession: args.SenderSession);
+        }
+        finally
+        {
+            gun.ShootCoordinates = null;
+            gun.Target = null;
 
-        // The input system never sends a stop-shoot event, so SemiAuto would latch after the first shot.
-        // Reset ShotCounter so the next predictive event can fire again (rate-limited by NextFire).
-        ResetMountedUnderbarrelShotCounter(attachable, gun);
+            // The input system never sends a stop-shoot event, so SemiAuto would latch after the first shot.
+            // Reset ShotCounter so the next predictive event can fire again (rate-limited by NextFire).
+            ResetMountedUnderbarrelShotCounter(attachable, gun);
+        }
 #pragma warning restore RA0002
     }
 
@@ -373,7 +374,8 @@ public sealed partial class CombatMechSystem
 
     private void OnWeaponContainerRemoveAttempt(Entity<CombatMechWeaponComponent> ent, ref ContainerIsRemovingAttemptEvent args)
     {
-        if (args.Container.ID != "gun_magazine" && args.Container.ID != "gun_chamber")
+        if (args.Container.ID != CombatMechComponent.GunMagazineContainerId &&
+            args.Container.ID != CombatMechComponent.GunChamberContainerId)
             return;
 
         if (ent.Comp.LinkedMech == null || Deleted(ent.Comp.LinkedMech.Value))
@@ -448,6 +450,13 @@ public sealed partial class CombatMechSystem
 
         var spawned = Spawn(proto, Transform(mech).Coordinates);
 
+        if (!TryComp(spawned, out CombatMechWeaponComponent? weaponComp))
+        {
+            Log.Error($"RX47 {ToPrettyString(mech.Owner)} default weapon prototype {proto} lacks CombatMechWeaponComponent.");
+            QueueDel(spawned);
+            return;
+        }
+
         if (!_hands.TryPickup(mech, spawned, hand, checkActionBlocker: false, animate: false, handsComp: hands))
         {
             Log.Warning($"RX47 {ToPrettyString(mech.Owner)} could not pick up spawned default weapon {ToPrettyString(spawned)}.");
@@ -457,7 +466,6 @@ public sealed partial class CombatMechSystem
 
         SetWeapon(mech, primary, spawned);
 
-        var weaponComp = EnsureComp<CombatMechWeaponComponent>(spawned);
         weaponComp.LinkedMech = mech;
         Dirty(spawned, weaponComp);
         EnsureWeaponUnremoveable(spawned);
@@ -738,7 +746,7 @@ public sealed partial class CombatMechSystem
 
         if (!TryComp(weapon, out CombatMechWeaponComponent? weaponComp) ||
             !IsMountedWeaponForPilot(user, (weapon, weaponComp)) ||
-            !_container.TryGetContainer(weapon, UnderbarrelSlot, out var container) ||
+            !_container.TryGetContainer(weapon, CombatMechComponent.UnderbarrelSlot, out var container) ||
             container.Count <= 0)
         {
             return false;
@@ -769,20 +777,6 @@ public sealed partial class CombatMechSystem
 
         weapon.Comp.LinkedMech = null;
         Dirty(weapon);
-    }
-
-    private bool IsHolding(EntityUid user, EntityUid item)
-    {
-        if (!TryComp(user, out HandsComponent? hands))
-            return false;
-
-        foreach (var held in _hands.EnumerateHeld((user, hands)))
-        {
-            if (held == item)
-                return true;
-        }
-
-        return false;
     }
 
     private void SetWeapon(Entity<CombatMechComponent> mech, bool primary, EntityUid? weapon)
@@ -834,7 +828,7 @@ public sealed partial class CombatMechSystem
 
     private bool TryToggleMountedAttachable(EntityUid weapon, EntityUid user)
     {
-        if (!_container.TryGetContainer(weapon, UnderbarrelSlot, out var container) || container.Count <= 0)
+        if (!_container.TryGetContainer(weapon, CombatMechComponent.UnderbarrelSlot, out var container) || container.Count <= 0)
             return false;
 
         // RX47 underbarrel slots are locked single-slot containers, so the first entity is the active module.
@@ -842,7 +836,7 @@ public sealed partial class CombatMechSystem
         if (!HasComp<AttachableToggleableComponent>(attachable))
             return false;
 
-        var ev = new AttachableToggleStartedEvent(weapon, user, UnderbarrelSlot);
+        var ev = new AttachableToggleStartedEvent(weapon, user, CombatMechComponent.UnderbarrelSlot);
         RaiseLocalEvent(attachable, ref ev);
         return true;
     }
@@ -855,7 +849,7 @@ public sealed partial class CombatMechSystem
         var from = _transform.GetMapCoordinates(mech);
         var to = _transform.ToMapCoordinates(target.Value).Position;
         var diff = to - from.Position;
-        if (diff.LengthSquared() < 0.01f)
+        if (diff.LengthSquared() < FiringTargetEpsilon)
             return false;
 
         var facing = _transform.GetWorldRotation(mech);

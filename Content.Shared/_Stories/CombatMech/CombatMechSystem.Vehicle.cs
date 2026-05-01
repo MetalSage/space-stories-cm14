@@ -1,40 +1,18 @@
 using System.Numerics;
-using Content.Shared._RMC14.Hands;
-using Content.Shared._RMC14.Attachable.Components;
-using Content.Shared._RMC14.Attachable.Events;
 using Content.Shared._RMC14.Atmos;
-using Content.Shared._RMC14.BlurredVision;
-using Content.Shared._RMC14.CameraShake;
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Entrenching;
-using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.Marines;
-using Content.Shared._RMC14.Marines.Skills;
-using Content.Shared._RMC14.Slow;
-using Content.Shared._RMC14.Stealth;
-using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
-using Content.Shared._RMC14.Xenonids.Acid;
-using Content.Shared._RMC14.Xenonids.Neurotoxin;
-using Content.Shared._RMC14.Xenonids.Paralyzing;
-using Content.Shared._RMC14.Xenonids.Parasite;
-using Content.Shared._RMC14.Xenonids.Weeds;
-using Content.Shared.Atmos.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Containers;
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
-using Content.Shared.Explosion;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
-using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Movement.Components;
@@ -45,18 +23,12 @@ using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
-using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
-using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -75,8 +47,11 @@ public sealed partial class CombatMechSystem
 
         var total = damageable.TotalDamage.Float();
         var max = ent.Comp.MaxHealth;
+        if (max <= 0)
+            return;
+
         var health = Math.Clamp(100f - total / max * 100f, 0f, 100f);
-        args.PushMarkup(Loc.GetString("stories-rx47-examine-health", ("health", (int) health)));
+        args.PushMarkup(Loc.GetString("stories-rx47-examine-health", ("health", (int)health)));
 
         if (GetPilot(ent) is { } pilot)
             args.PushMarkup(Loc.GetString("stories-rx47-examine-pilot", ("pilot", pilot)));
@@ -84,21 +59,21 @@ public sealed partial class CombatMechSystem
 
     private void OnDamageChanged(Entity<CombatMechComponent> ent, ref DamageChangedEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         var max = ent.Comp.MaxHealth;
+        if (max <= 0)
+            return;
+
         var health = Math.Clamp(100f - args.Damageable.TotalDamage.Float() / max * 100f, 0f, 100f);
 
         // Repair events are not damage increases, but they still need to re-arm the threshold alerts.
-        if (health > 25f && ent.Comp.DamageAlert25)
-        {
+        if (health > ent.Comp.DamagedAlertThreshold && ent.Comp.DamageAlert25)
             ent.Comp.DamageAlert25 = false;
-            Dirty(ent);
-        }
 
-        if (health > 10f && ent.Comp.DamageAlert10)
-        {
+        if (health > ent.Comp.CriticalAlertThreshold && ent.Comp.DamageAlert10)
             ent.Comp.DamageAlert10 = false;
-            Dirty(ent);
-        }
 
         if (!args.DamageIncreased || args.Damageable.TotalDamage <= 0)
             return;
@@ -107,19 +82,17 @@ public sealed partial class CombatMechSystem
         if (pilot == null)
             return;
 
-        if (health <= 10f && !ent.Comp.DamageAlert10)
+        if (health <= ent.Comp.CriticalAlertThreshold && !ent.Comp.DamageAlert10)
         {
             ent.Comp.DamageAlert10 = true;
-            Dirty(ent);
             _audio.PlayPredicted(ent.Comp.DamageAlertSound, ent, pilot.Value);
             _popup.PopupClient(Loc.GetString("stories-rx47-alert-critical"), ent, pilot.Value, PopupType.LargeCaution);
             return;
         }
 
-        if (health <= 25f && !ent.Comp.DamageAlert25)
+        if (health <= ent.Comp.DamagedAlertThreshold && !ent.Comp.DamageAlert25)
         {
             ent.Comp.DamageAlert25 = true;
-            Dirty(ent);
             _audio.PlayPredicted(ent.Comp.DamageAlertSound, ent, pilot.Value);
             _popup.PopupClient(Loc.GetString("stories-rx47-alert-damaged"), ent, pilot.Value, PopupType.MediumCaution);
         }
@@ -174,7 +147,13 @@ public sealed partial class CombatMechSystem
         if (GetPilot(ent) == null)
             return;
 
-        TryDamageBarricade(ent, args.OtherEntity);
+        if (_timing.CurTime < ent.Comp.NextBarricadeBumpAt ||
+            !TryDamageBarricade(ent, args.OtherEntity))
+        {
+            return;
+        }
+
+        ent.Comp.NextBarricadeBumpAt = _timing.CurTime + ent.Comp.BarricadeBumperCooldown;
     }
 
     private void OnMechMove(Entity<CombatMechComponent> ent, ref MoveEvent args)
@@ -182,7 +161,7 @@ public sealed partial class CombatMechSystem
         if (_net.IsClient || GetPilot(ent) == null)
             return;
 
-        if (!args.ParentChanged && (args.OldPosition.Position - args.NewPosition.Position).LengthSquared() < 0.0001f)
+        if (!args.ParentChanged && (args.OldPosition.Position - args.NewPosition.Position).LengthSquared() < PositionMoveEpsilon)
             return;
 
         ent.Comp.LastStepMoveAt = _timing.CurTime;
@@ -352,6 +331,7 @@ public sealed partial class CombatMechSystem
         if (!TryComp(ent, out StrapComponent? strap))
             return null;
 
+        // RX47 is designed for one pilot; if StrapComponent ever contains more, use its current first entry.
         foreach (var buckled in strap.BuckledEntities)
             return buckled;
 
@@ -414,10 +394,10 @@ public sealed partial class CombatMechSystem
                 continue;
 
             var direction = mover.WishDir;
-            if (direction.LengthSquared() <= 0.001f)
+            if (direction.LengthSquared() <= DirectionEpsilon)
                 direction = _mover.DirVecForButtons(mover.HeldMoveButtons);
 
-            if (direction.LengthSquared() <= 0.001f)
+            if (direction.LengthSquared() <= DirectionEpsilon)
                 continue;
 
             direction = direction.Normalized();
@@ -425,13 +405,13 @@ public sealed partial class CombatMechSystem
             var check = new MapCoordinates(coords.Position + direction * mech.BarricadeBumperRange, coords.MapId);
 
             _barricades.Clear();
-            _lookup.GetEntitiesInRange(check, 0.5f, _barricades, LookupFlags.Uncontained);
+            _lookup.GetEntitiesInRange(check, BarricadeBumperProbeRadius, _barricades, LookupFlags.Uncontained);
             foreach (var barricade in _barricades)
             {
                 var barricadePos = _transform.GetMapCoordinates(barricade.Owner).Position;
                 var delta = barricadePos - coords.Position;
-                if (delta.LengthSquared() > 0.0001f &&
-                    Vector2.Dot(delta.Normalized(), direction) < 0.35f)
+                if (delta.LengthSquared() > PositionMoveEpsilon &&
+                    Vector2.Dot(delta.Normalized(), direction) < BarricadeForwardDotMinimum)
                 {
                     continue;
                 }
@@ -440,7 +420,6 @@ public sealed partial class CombatMechSystem
                     continue;
 
                 mech.NextBarricadeBumpAt = _timing.CurTime + mech.BarricadeBumperCooldown;
-                Dirty(uid, mech);
                 break;
             }
         }
@@ -455,7 +434,7 @@ public sealed partial class CombatMechSystem
             if (GetPilot((uid, mech)) == null)
                 continue;
 
-            PruneEntityTimeDictionary(mech.NextStepStunAt, time, removeExpired: true);
+            PruneEntityTimeDictionary(mech.NextStepStunAt, time);
 
             if (time > mech.LastStepMoveAt + mech.StepActiveDuration)
                 continue;
@@ -530,7 +509,7 @@ public sealed partial class CombatMechSystem
             if (!HasLiveVehicle(pilot))
                 continue;
 
-            PruneEntityTimeDictionary(inside.OpenFaceplateDamageAt, time, removeExpired: true);
+            PruneEntityTimeDictionary(inside.OpenFaceplateDamageAt, time);
 
             if (IsPilotSealed(pilot) ||
                 _mobState.IsDead(pilotUid) ||
@@ -539,34 +518,52 @@ public sealed partial class CombatMechSystem
                 continue;
             }
 
-            foreach (var contact in _physics.GetEntitiesIntersectingBody(
-                         inside.Vehicle,
-                         (int) (CollisionGroup.MobLayer | CollisionGroup.MobMask)))
+            var vehicleXform = Transform(inside.Vehicle);
+            var (worldPosition, worldRotation) = _transform.GetWorldPositionRotation(vehicleXform);
+            var bounds = _lookup.GetAABBNoContainer(inside.Vehicle, worldPosition, worldRotation);
+
+            _damageContacts.Clear();
+            _lookup.GetEntitiesIntersecting(vehicleXform.MapID, bounds, _damageContacts, LookupFlags.Uncontained | LookupFlags.Sensors);
+            foreach (var contact in _damageContacts)
             {
-                if (!TryComp(contact, out DamageOverTimeComponent? damage) ||
-                    !damage.AffectsCrit && _mobState.IsCritical(pilotUid) ||
-                    !damage.AffectsDead && _mobState.IsDead(pilotUid))
+                // DamageOverTime sources choose their own collision mask; acid smoke is MidImpassable via MobMask.
+                if (!HasCollisionLayer(contact, contact.Comp.Collision) ||
+                    !contact.Comp.AffectsCrit && _mobState.IsCritical(pilotUid) ||
+                    !contact.Comp.AffectsDead && _mobState.IsDead(pilotUid))
                 {
                     continue;
                 }
 
-                if (inside.OpenFaceplateDamageAt.TryGetValue(contact, out var next) && time < next)
+                if (inside.OpenFaceplateDamageAt.TryGetValue(contact.Owner, out var next) && time < next)
                     continue;
 
-                inside.OpenFaceplateDamageAt[contact] = time + damage.DamageEvery;
+                inside.OpenFaceplateDamageAt[contact.Owner] = time + contact.Comp.DamageEvery;
 
-                if (damage.Damage != null)
-                    _damageable.TryChangeDamage(pilotUid, damage.Damage, origin: contact, tool: contact);
+                if (contact.Comp.Damage != null)
+                    _damageable.TryChangeDamage(pilotUid, contact.Comp.Damage, origin: contact.Owner, tool: contact.Owner);
 
-                if (damage.ArmorPiercingDamage != null)
-                    _damageable.TryChangeDamage(pilotUid, damage.ArmorPiercingDamage, ignoreResistances: true, origin: contact, tool: contact);
-
-                break;
+                if (contact.Comp.ArmorPiercingDamage != null)
+                    _damageable.TryChangeDamage(pilotUid, contact.Comp.ArmorPiercingDamage, ignoreResistances: true, origin: contact.Owner, tool: contact.Owner);
             }
         }
     }
 
-    private void PruneEntityTimeDictionary(Dictionary<EntityUid, TimeSpan> dictionary, TimeSpan time, bool removeExpired)
+    private bool HasCollisionLayer(EntityUid uid, CollisionGroup layer)
+    {
+        if (!TryComp(uid, out FixturesComponent? fixtures))
+            return false;
+
+        var layerMask = (int)layer;
+        foreach (var fixture in fixtures.Fixtures.Values)
+        {
+            if ((fixture.CollisionLayer & layerMask) != 0)
+                return true;
+        }
+
+        return false;
+    }
+
+    private void PruneEntityTimeDictionary(Dictionary<EntityUid, TimeSpan> dictionary, TimeSpan time)
     {
         if (dictionary.Count == 0)
             return;
@@ -574,7 +571,7 @@ public sealed partial class CombatMechSystem
         _staleDictionaryKeys.Clear();
         foreach (var (uid, until) in dictionary)
         {
-            if (Deleted(uid) || removeExpired && time >= until)
+            if (Deleted(uid) || time >= until)
                 _staleDictionaryKeys.Add(uid);
         }
 

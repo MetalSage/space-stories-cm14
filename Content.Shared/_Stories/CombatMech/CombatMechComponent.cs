@@ -1,4 +1,5 @@
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Robust.Shared.Map;
 using Robust.Shared.Audio;
@@ -12,6 +13,10 @@ namespace Content.Shared._Stories.CombatMech;
 public sealed partial class CombatMechComponent : Component
 {
     public const string EmptyWeaponState = "empty";
+    public const string UnderbarrelSlot = "rmc-aslot-underbarrel";
+    public const string GunMagazineContainerId = "gun_magazine";
+    public const string GunChamberContainerId = "gun_chamber";
+    public const string WeaponTankContainerId = "rx47_flamer_tank";
 
     [DataField(required: true)]
     public EntProtoId PrimaryWeapon;
@@ -39,6 +44,12 @@ public sealed partial class CombatMechComponent : Component
 
     [DataField]
     public float MaxHealth = 3000f;
+
+    [DataField]
+    public float DamagedAlertThreshold = 25f;
+
+    [DataField]
+    public float CriticalAlertThreshold = 10f;
 
     [DataField]
     public TimeSpan WeaponInstallDelay = TimeSpan.FromSeconds(5);
@@ -83,6 +94,29 @@ public sealed partial class CombatMechComponent : Component
     public TimeSpan BarricadeBumperCooldown = TimeSpan.FromSeconds(0.25);
 
     [DataField]
+    public List<ProtoId<DamageTypePrototype>> ForwardedDamageTypes = new()
+    {
+        "Blunt",
+        "Slash",
+        "Piercing",
+        "Heat",
+        "Shock",
+        "Caustic",
+    };
+
+    [DataField]
+    public HashSet<string> ProtectedStatusEffects = new()
+    {
+        "Blinded",
+        "Dazed",
+        "Drunk",
+        "Flashed",
+        "KnockedDown",
+        "SlowedDown",
+        "Stun",
+    };
+
+    [DataField]
     public EntProtoId<SkillDefinitionComponent> WeaponSkill = "RMCSkillPowerLoader";
 
     [DataField]
@@ -114,6 +148,9 @@ public sealed partial class CombatMechComponent : Component
 
     [ViewVariables]
     public TimeSpan LastStepMoveAt;
+
+    [ViewVariables]
+    public bool DefaultWeaponEnsureQueued;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -122,6 +159,9 @@ public sealed partial class CombatMechWeaponComponent : Component
     [DataField]
     public float FiringArc = 150f;
 
+    /// <summary>
+    /// Must match weapon_{armState}_{left/right} states in the RX47 visualizer.
+    /// </summary>
     [DataField(required: true)]
     public string ArmState = string.Empty;
 
@@ -136,10 +176,10 @@ public sealed partial class CombatMechUnderbarrelComponent : Component;
 public sealed partial class CombatMechWeaponFlamerTankComponent : Component
 {
     [DataField]
-    public string WeaponTankContainerId = "rx47_flamer_tank";
+    public string WeaponTankContainerId = CombatMechComponent.WeaponTankContainerId;
 
     [DataField]
-    public string LocalTankContainerId = "gun_magazine";
+    public string LocalTankContainerId = CombatMechComponent.GunMagazineContainerId;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -148,35 +188,44 @@ public sealed partial class InsideCombatVehicleComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid Vehicle;
 
+    [DataField]
     [ViewVariables]
     public bool RemovedInfectable;
 
+    [DataField]
     [ViewVariables]
     public bool AddedUnparalyzable;
 
+    [DataField]
     [ViewVariables]
     public bool RemovedExplosionStun;
 
+    [DataField]
     [ViewVariables]
     public bool AddedTurnInvisible;
 
+    [DataField]
     [ViewVariables]
     public bool AddedActiveInvisible;
 
+    [DataField]
     [ViewVariables]
     public bool RemovedAffectableByWeeds;
 
+    [DataField]
     [ViewVariables]
     public bool CollisionDisabled;
 
     [ViewVariables]
     public Dictionary<EntityUid, TimeSpan> OpenFaceplateDamageAt = new();
 
+    [DataField]
     [ViewVariables]
-    public readonly Dictionary<string, int> FixtureMasks = new();
+    public Dictionary<string, int> FixtureMasks = new();
 
+    [DataField]
     [ViewVariables]
-    public readonly Dictionary<string, int> FixtureLayers = new();
+    public Dictionary<string, int> FixtureLayers = new();
 }
 
 [Serializable, NetSerializable]
@@ -228,9 +277,9 @@ public sealed partial class CombatMechForceEjectDoAfterEvent : SimpleDoAfterEven
 [Serializable, NetSerializable]
 public sealed class CombatMechUnderbarrelShootEvent : EntityEventArgs
 {
-    public NetCoordinates Coordinates;
-    public NetEntity? Weapon;
-    public NetEntity? Target;
+    public NetCoordinates Coordinates { get; init; }
+    public NetEntity? Weapon { get; init; }
+    public NetEntity? Target { get; init; }
 
     public CombatMechUnderbarrelShootEvent()
     {
