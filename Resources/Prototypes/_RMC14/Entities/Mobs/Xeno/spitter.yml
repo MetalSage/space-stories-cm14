@@ -34,7 +34,6 @@
       sprite: _Stories/Mobs/Xenos/Spitter/spitter_spit.rsi
       state: spit
       visible: false
-      offset: 0, 0.1875
   - type: MobState
     allowedStates:
     - Alive

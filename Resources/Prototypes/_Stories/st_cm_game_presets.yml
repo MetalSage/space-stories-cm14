@@ -35,6 +35,7 @@
     - SquadAlpha
     - SquadBravo
     extraSquadIds:
+    - SquadIntel
     - SquadFORECON
     doJobSlotScaling: false
 

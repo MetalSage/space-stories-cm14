@@ -36,7 +36,6 @@
       sprite: _Stories/Mobs/Xenos/Queen/queen_spit.rsi
       state: spit
       visible: false
-      offset: 0, 0.875
   - type: MobState
     allowedStates:
     - Alive
@@ -76,7 +75,7 @@
     tier: 0
     bypassTierCount: true
     unlockAt: 0
-    hudOffset: 0.375, 0.605
+    hudOffset: 0, 0
   - type: XenoHeavy
   - type: XenoAcid
   - type: XenoConstruction

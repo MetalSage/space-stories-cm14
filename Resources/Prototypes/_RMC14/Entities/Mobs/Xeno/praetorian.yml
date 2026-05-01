@@ -31,7 +31,6 @@
       sprite: _Stories/Mobs/Xenos/Praetorian/praetorian_spit.rsi
       state: spit
       visible: false
-      offset: 0, 0.125
   - type: MobState
     allowedStates:
     - Alive

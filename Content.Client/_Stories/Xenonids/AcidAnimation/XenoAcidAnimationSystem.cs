@@ -209,6 +209,6 @@ public sealed class XenoAcidAnimationSystem : SharedXenoAcidAnimationSystem
 
         _sprite.LayerSetAutoAnimated((ent.Owner, ent.Comp), layer, visible);
         _sprite.LayerSetColor((ent.Owner, ent.Comp), layer, Color.White.WithAlpha(visible ? 1f : 0f));
-        ent.Comp.LayerSetVisible(layer, true);
+        ent.Comp.LayerSetVisible(layer, visible);
     }
 }
