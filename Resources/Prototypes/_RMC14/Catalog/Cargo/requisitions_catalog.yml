@@ -319,8 +319,34 @@
         crate: RMCCrateSupplyJanitor
       - cost: 2000
         crate: RMCCrateSuppliesCrayons
-#    - name: Боеприпасы для техники # Stories-Translate
-#      entries: []
+    - name: Боеприпасы для техники # Stories-Translate
+      entries:
+      - cost: 3000
+        crate: RMCCrateVehicleAmmoLTBCannon
+      - cost: 3000
+        crate: RMCCrateVehicleAmmoLTAAAP
+      - cost: 3000
+        crate: RMCCrateVehicleAmmoAceAutocannon
+      - cost: 3000
+        crate: RMCCrateVehicleAmmoDragonFlamer
+      - cost: 3000
+        crate: RMCCrateVehicleAmmoBoyarsDualCannon
+      - cost: 2000
+        crate: RMCCrateVehicleAmmoGrenadeLauncher
+      - cost: 2000
+        crate: RMCCrateVehicleAmmoSmokeLauncher
+      - cost: 3000
+        crate: RMCCrateVehicleAmmoTowLauncher
+      - cost: 2000
+        crate: RMCCrateVehicleAmmoCupola
+      - cost: 2000
+        crate: RMCCrateVehicleAmmoLZRNFlamer
+      - cost: 2000
+        crate: RMCCrateVehicleAmmoFrontalCannon
+      - cost: 2000
+        crate: RMCCrateVehicleAmmoFlareLauncher
+      - cost: 2000
+        crate: RMCCrateVehicleAmmoRotaryCannon
     - name: Оружие # Stories-Translate
       entries:
       - cost: 4000
