@@ -8,6 +8,7 @@ using Content.Shared._Stories.Sharp;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
+using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -111,6 +112,9 @@ public sealed class SharpMineSystem : EntitySystem
 
     private bool TryStartMineDisarm(Entity<SharpMineComponent> mine, EntityUid user, EntityUid? used)
     {
+        if (!HasComp<HumanoidAppearanceComponent>(user))
+            return false;
+
         var doAfter = new DoAfterArgs(EntityManager,
             user,
             TimeSpan.FromSeconds(mine.Comp.DisarmDuration),

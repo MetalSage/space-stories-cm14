@@ -34,7 +34,8 @@
     squadIds:
     - SquadAlpha
     - SquadBravo
-    extraSquadIds: []
+    extraSquadIds:
+    - SquadFORECON
     doJobSlotScaling: false
 
 - type: gameMapPool
