@@ -169,6 +169,10 @@ public sealed partial class CombatMechSystem
 
     private void OnMechAttemptMobTargetCollide(Entity<CombatMechComponent> ent, ref AttemptMobTargetCollideEvent args)
     {
+        // Only suppress incoming mob-collision when a pilot is present and actively driving the mech.
+        if (GetPilot(ent) == null)
+            return;
+
         if (!HasComp<MobCollisionComponent>(args.Entity) || HasComp<CombatMechComponent>(args.Entity))
             return;
 
@@ -328,12 +332,13 @@ public sealed partial class CombatMechSystem
 
     private EntityUid? GetPilot(Entity<CombatMechComponent> ent)
     {
-        if (!TryComp(ent, out StrapComponent? strap))
-            return null;
-
-        // RX47 is designed for one pilot; if StrapComponent ever contains more, use its current first entry.
-        foreach (var buckled in strap.BuckledEntities)
-            return buckled;
+        if (ent.Comp.PilotEntity is { } pilot &&
+            !Deleted(pilot) &&
+            TryComp(pilot, out InsideCombatVehicleComponent? inside) &&
+            inside.Vehicle == ent.Owner)
+        {
+            return pilot;
+        }
 
         return null;
     }
@@ -363,16 +368,10 @@ public sealed partial class CombatMechSystem
 
     private void OnRefreshSpeed(Entity<CombatMechComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (!TryComp(ent, out StrapComponent? strap))
+        if (GetPilot(ent) is not { } pilot)
             return;
 
-        var highestSkill = 0;
-        foreach (var buckled in strap.BuckledEntities)
-        {
-            var skill = _skills.GetSkill(buckled, ent.Comp.WeaponSkill);
-            if (skill > highestSkill)
-                highestSkill = skill;
-        }
+        var highestSkill = _skills.GetSkill(pilot, ent.Comp.WeaponSkill);
 
         if (highestSkill <= 0)
             return;

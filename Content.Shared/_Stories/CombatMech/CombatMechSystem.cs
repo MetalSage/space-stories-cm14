@@ -43,6 +43,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.CombatMode;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
 using Content.Shared.StatusEffectNew;
@@ -56,6 +57,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Stories.CombatMech;
@@ -76,7 +78,11 @@ public sealed partial class CombatMechSystem : EntitySystem
     private readonly HashSet<Entity<BarricadeComponent>> _barricades = new();
     private readonly HashSet<EntityUid> _forceEjectingPilots = new();
     private readonly List<EntityUid> _staleDictionaryKeys = new();
+    // Entities that need default weapons spawned on the next tick (deferred past MapInit so hand containers exist).
+    private readonly Queue<EntityUid> _pendingDefaultWeapons = new();
 
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
@@ -167,6 +173,17 @@ public sealed partial class CombatMechSystem : EntitySystem
         if (_net.IsClient)
             return;
 
+        while (_pendingDefaultWeapons.TryDequeue(out var pending))
+        {
+            if (Deleted(pending) || !TryComp(pending, out CombatMechComponent? mech))
+                continue;
+
+            mech.DefaultWeaponEnsureQueued = false;
+            EnsureWeapon((pending, mech), true);
+            EnsureWeapon((pending, mech), false);
+            UpdateAppearance((pending, mech));
+        }
+
         _protectionCleanupAccumulator += frameTime;
         var cleanupProtection = _protectionCleanupAccumulator >= ProtectionCleanupInterval;
         if (cleanupProtection)
@@ -209,19 +226,9 @@ public sealed partial class CombatMechSystem : EntitySystem
         if (ent.Comp.DefaultWeaponEnsureQueued)
             return;
 
-        ent.Comp.DefaultWeaponEnsureQueued = true;
-
         // GiveHands finishes after MapInit; defer one tick so the mech hand containers exist before mounting weapons.
-        Timer.Spawn(0, () =>
-        {
-            if (Deleted(ent.Owner) || !TryComp(ent.Owner, out CombatMechComponent? mech))
-                return;
-
-            mech.DefaultWeaponEnsureQueued = false;
-            EnsureWeapon((ent.Owner, mech), true);
-            EnsureWeapon((ent.Owner, mech), false);
-            UpdateAppearance((ent.Owner, mech));
-        });
+        ent.Comp.DefaultWeaponEnsureQueued = true;
+        _pendingDefaultWeapons.Enqueue(ent.Owner);
     }
 
 }

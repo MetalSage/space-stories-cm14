@@ -64,6 +64,9 @@ public sealed partial class CombatMechSystem
     {
         var pilot = args.Buckle.Owner;
 
+        ent.Comp.PilotEntity = pilot;
+        Dirty(ent);
+
         var inside = EnsureComp<InsideCombatVehicleComponent>(pilot);
         inside.Vehicle = ent;
         Dirty(pilot, inside);
@@ -94,6 +97,9 @@ public sealed partial class CombatMechSystem
     private void OnUnstrapped(Entity<CombatMechComponent> ent, ref UnstrappedEvent args)
     {
         var pilot = args.Buckle.Owner;
+
+        ent.Comp.PilotEntity = null;
+        Dirty(ent);
 
         if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
             RestorePilotProtection((pilot, inside));
@@ -209,6 +215,9 @@ public sealed partial class CombatMechSystem
 
     private void CleanupFailedPilotStrap(Entity<CombatMechComponent> mech, EntityUid pilot)
     {
+        mech.Comp.PilotEntity = null;
+        Dirty(mech);
+
         if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
             RestorePilotProtection((pilot, inside));
 

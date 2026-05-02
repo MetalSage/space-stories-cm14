@@ -23,6 +23,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -88,7 +89,7 @@ public sealed partial class CombatMechSystem
 
         if (_doAfter.TryStartDoAfter(doAfter))
         {
-            var slot = Loc.GetString(primary ? "stories-rx47-left-slot" : "stories-rx47-right-slot");
+            var slot = GetSlotName(primary);
             _popup.PopupPredicted(Loc.GetString("stories-rx47-weapon-install-start-self", ("slot", slot)),
                 Loc.GetString("stories-rx47-weapon-install-start-others", ("user", user), ("slot", slot)),
                 user,
@@ -124,7 +125,7 @@ public sealed partial class CombatMechSystem
 
         if (_doAfter.TryStartDoAfter(doAfter))
         {
-            var slot = Loc.GetString(primary ? "stories-rx47-left-slot" : "stories-rx47-right-slot");
+            var slot = GetSlotName(primary);
             _popup.PopupPredicted(Loc.GetString("stories-rx47-weapon-detach-start-self", ("slot", slot)),
                 Loc.GetString("stories-rx47-weapon-detach-start-others", ("user", user), ("slot", slot)),
                 user,
@@ -179,7 +180,7 @@ public sealed partial class CombatMechSystem
 
         UpdateAppearance(mech);
 
-        var slot = Loc.GetString(primary ? "stories-rx47-left-slot" : "stories-rx47-right-slot");
+        var slot = GetSlotName(primary);
         _popup.PopupEntity(Loc.GetString("stories-rx47-weapon-installed", ("weapon", weapon), ("slot", slot)), mech, user);
         return true;
     }
@@ -217,7 +218,7 @@ public sealed partial class CombatMechSystem
 
         if (pickup)
         {
-            var slot = Loc.GetString(primary ? "stories-rx47-left-slot" : "stories-rx47-right-slot");
+            var slot = GetSlotName(primary);
             _popup.PopupEntity(Loc.GetString("stories-rx47-weapon-detached", ("weapon", weapon), ("slot", slot)), mech, user);
         }
 
@@ -270,7 +271,7 @@ public sealed partial class CombatMechSystem
         if (args.Cancelled)
             return;
 
-        if (!TryResolveWeaponMech(ent, args.User, out var mech))
+        if (!TryResolveAndLinkWeaponMech(ent, args.User, out var mech))
         {
             if (_net.IsClient &&
                 TryComp(args.User, out InsideCombatVehicleComponent? inside) &&
@@ -303,6 +304,9 @@ public sealed partial class CombatMechSystem
     private void OnCombatMechUnderbarrelShoot(CombatMechUnderbarrelShootEvent msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not { } pilot)
+            return;
+
+        if (_net.IsServer && !_combatMode.IsInCombatMode(pilot))
             return;
 
         if (msg.Weapon is not { } netWeapon)
@@ -340,7 +344,9 @@ public sealed partial class CombatMechSystem
 #pragma warning disable RA0002
         gun.ShootCoordinates = coordinates;
         gun.Target = target;
-
+        // ShootCoordinates and Target are transient: set immediately before AttemptShoot and cleared in the
+        // finally block within the same tick, so they never persist across a network snapshot. DirtyField is
+        // called only for the fields that outlive the tick (ShotCounter).
         try
         {
             if (TryComp(attachable, out CombatMechWeaponFlamerTankComponent? flamerTank))
@@ -448,6 +454,12 @@ public sealed partial class CombatMechSystem
         if (string.IsNullOrEmpty(proto))
             return;
 
+        if (!_proto.HasIndex<EntityPrototype>(proto))
+        {
+            Log.Error($"RX47 {ToPrettyString(mech.Owner)} default weapon prototype '{proto}' does not exist.");
+            return;
+        }
+
         var spawned = Spawn(proto, Transform(mech).Coordinates);
 
         if (!TryComp(spawned, out CombatMechWeaponComponent? weaponComp))
@@ -511,7 +523,7 @@ public sealed partial class CombatMechSystem
         return IsMountedWeapon((inside.Vehicle, mech), weapon);
     }
 
-    private bool TryResolveWeaponMech(
+    private bool TryResolveAndLinkWeaponMech(
         Entity<CombatMechWeaponComponent> weapon,
         EntityUid user,
         out Entity<CombatMechComponent> mech)
@@ -721,7 +733,7 @@ public sealed partial class CombatMechSystem
         }
 
         var weaponEnt = (container.Owner, weaponComp);
-        if (!TryResolveWeaponMech(weaponEnt, user, out mech))
+        if (!TryResolveAndLinkWeaponMech(weaponEnt, user, out mech))
             return false;
 
         if (user != mech.Owner &&
@@ -788,7 +800,7 @@ public sealed partial class CombatMechSystem
 
         var state = CombatMechComponent.EmptyWeaponState;
         if (weapon != null && TryComp(weapon.Value, out CombatMechWeaponComponent? weaponComp))
-            state = $"weapon_{weaponComp.ArmState}_{(primary ? "left" : "right")}";
+            state = BuildWeaponState(weaponComp.ArmState, primary);
 
         if (primary)
             mech.Comp.PrimaryWeaponState = state;
@@ -797,6 +809,12 @@ public sealed partial class CombatMechSystem
 
         Dirty(mech);
     }
+
+    private string GetSlotName(bool primary) =>
+        Loc.GetString(primary ? "stories-rx47-left-slot" : "stories-rx47-right-slot");
+
+    private static string BuildWeaponState(string armState, bool primary) =>
+        $"weapon_{armState}_{(primary ? "left" : "right")}";
 
     private bool CanModifyWeapons(Entity<CombatMechComponent> mech, EntityUid user)
     {

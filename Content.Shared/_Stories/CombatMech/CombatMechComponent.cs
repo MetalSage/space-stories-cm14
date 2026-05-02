@@ -42,7 +42,7 @@ public sealed partial class CombatMechComponent : Component
     [DataField, AutoNetworkedField]
     public bool HasTowLauncher;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float MaxHealth = 3000f;
 
     [DataField]
@@ -134,6 +134,9 @@ public sealed partial class CombatMechComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? SecondaryWeaponEntity;
 
+    [DataField, AutoNetworkedField]
+    public EntityUid? PilotEntity;
+
     [ViewVariables]
     public bool DamageAlert25;
 
@@ -219,11 +222,9 @@ public sealed partial class InsideCombatVehicleComponent : Component
     [ViewVariables]
     public Dictionary<EntityUid, TimeSpan> OpenFaceplateDamageAt = new();
 
-    [DataField]
     [ViewVariables]
     public Dictionary<string, int> FixtureMasks = new();
 
-    [DataField]
     [ViewVariables]
     public Dictionary<string, int> FixtureLayers = new();
 }
