@@ -28,14 +28,14 @@
     key: enum.VehicleSupplyUIKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
-    access: [ [ "CMAccessRequisitions" ] ]
+    access: [ [ "STAccessTankCrew" ] ] # Stories-Vehicle
   - type: UserInterface
     interfaces:
       enum.VehicleSupplyUIKey.Key:
         type: VehicleSupplyBui
   - type: VehicleSupplyConsole
     vehicles:
-    - name: humvee
+    - name: Хамви
       vehicle: VehicleHumvee
       unlock: VehicleHumvee
       hardpoints:
@@ -46,7 +46,7 @@
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: humvee (medical)
+    - name: Хамви (Медицинский)
       vehicle: VehicleHumveeMedical
       unlock: VehicleHumveeMedical
       hardpoints:
@@ -54,7 +54,7 @@
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: humvee (transport)
+    - name: Хамви (Транспортный)
       vehicle: VehicleHumveeTransport
       unlock: VehicleHumveeTransport
       hardpoints:
@@ -62,7 +62,7 @@
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: apc
+    - name: БТР
       vehicle: VehicleAPC
       unlock: VehicleAPC
       hardpoints:
@@ -72,7 +72,7 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: apc (medical)
+    - name: БТР (Медицинский)
       vehicle: VehicleAPCMed
       unlock: VehicleAPCMed
       hardpoints:
@@ -82,7 +82,7 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: apc (command)
+    - name: БТР (Командный)
       vehicle: VehicleAPCCommand
       unlock: VehicleAPCCommand
       hardpoints:
@@ -92,7 +92,7 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: tank
+    - name: Танк
       vehicle: VehicleTank
       unlock: VehicleTank
       hardpoints:
@@ -116,7 +116,7 @@
       - VehicleTankArtilleryModule
       - VehicleTankReinforcedTreads
       - VehicleTankTreads
-    - name: humvee (arc)
+    - name: Хамви (Разведовательный)
       vehicle: VehicleHumveeARC
       unlock: VehicleHumveeARC
       hardpoints:
@@ -182,6 +182,7 @@
         - ItemMask
         density: 1000
         hard: false
+  - type: Chasm
   - type: StepTrigger
     requiredTriggeredSpeed: 0
     intersectRatio: 1

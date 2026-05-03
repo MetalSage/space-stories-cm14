@@ -64,6 +64,9 @@ public sealed partial class VehicleSupplyLiftComponent : Component
 
     public object? RaisingAnimation;
 
+    [DataField, AutoNetworkedField]
+    public bool HasDispensedArmor;
+
     [NonSerialized]
     public string PendingVehicle = string.Empty;
 

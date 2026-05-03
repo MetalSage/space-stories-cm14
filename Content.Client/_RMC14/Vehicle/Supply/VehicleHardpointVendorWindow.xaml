@@ -5,16 +5,16 @@
     <BoxContainer Orientation="Vertical" SeparationOverride="4">
         <BoxContainer Orientation="Horizontal" SeparationOverride="6" VerticalExpand="True">
             <BoxContainer Orientation="Vertical" SizeFlagsStretchRatio="1" VerticalExpand="True">
-                <Label Text="Vehicles" />
+                <Label Text="{Loc 'rmc-vehicle-vendor-vehicles'}" />
                 <ItemList Name="VehicleList" Access="Public" VerticalExpand="True" />
             </BoxContainer>
             <BoxContainer Orientation="Vertical" SizeFlagsStretchRatio="1" VerticalExpand="True">
-                <Label Text="Hardpoints" />
+                <Label Text="{Loc 'rmc-vehicle-vendor-hardpoints'}" />
                 <ItemList Name="HardpointList" Access="Public" VerticalExpand="True" />
             </BoxContainer>
         </BoxContainer>
         <BoxContainer Orientation="Horizontal" SeparationOverride="6">
-            <Button Name="PrintButton" Access="Public" Text="Print" />
+            <Button Name="PrintButton" Access="Public" Text="{Loc 'rmc-vehicle-vendor-print'}" />
         </BoxContainer>
     </BoxContainer>
 </controls:VehicleHardpointVendorWindow>

@@ -18,6 +18,7 @@ rmc-shoot-use-delay = Вам нужно подождать { $seconds } секу
 
 rmc-shoot-harness-required = Требуется разгрузка
 rmc-wear-smart-gun-required = Чтобы надеть это, вы должны быть оснащены умным оружием.
+rmc-gun-arc-blocked = Стрельба за пределами зоны обстрела оружия запрещена.
 
 rmc-shoot-id-lock-unauthorized = Спуск заблокирован. Неавторизованный пользователь.
 rmc-id-lock-unauthorized = Действие отклонено. Неавторизованный пользователь.

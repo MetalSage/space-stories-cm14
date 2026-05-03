@@ -3,6 +3,7 @@ using Content.Shared.Administration;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Syntax;
+using Robust.Shared.Localization;
 
 namespace Content.Server._RMC14.Vehicle;
 
@@ -17,7 +18,9 @@ public sealed class VehicleSupplyCommand : ToolshedCommand
         var system = Sys<VehicleSupplySystem>();
         if (!system.TryGetAnyLift(out var lift))
         {
-            ctx.WriteLine("No vehicle lift found.");
+            // Stories-Start
+            ctx.WriteLine(Robust.Shared.Localization.Loc.GetString("rmc-vehicle-supply-cmd-no-lift"));
+            // Stories-End
             return;
         }
 
@@ -43,11 +46,15 @@ public sealed class VehicleSupplyCommand : ToolshedCommand
         if (system.DebugAddVehicleToStorage(liftUid, vehicleId, true, out var reason))
         {
             system.DebugEnsureVehicleInConsoles(liftUid, vehicleId);
-            ctx.WriteLine($"Added '{vehicleId}' to lift storage.");
+            // Stories-Start
+            ctx.WriteLine(Robust.Shared.Localization.Loc.GetString("rmc-vehicle-supply-cmd-success", ("vehicle", vehicleId)));
+            // Stories-End
         }
         else
         {
-            ctx.WriteLine(reason ?? "Failed to add vehicle to lift storage.");
+            // Stories-Start
+            ctx.WriteLine(reason ?? Robust.Shared.Localization.Loc.GetString("rmc-vehicle-supply-cmd-fail"));
+            // Stories-End
         }
     }
 }

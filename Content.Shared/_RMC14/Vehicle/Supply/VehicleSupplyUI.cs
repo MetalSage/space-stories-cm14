@@ -18,12 +18,16 @@ public sealed class VehicleSupplyEntryState
     public string Id;
     public string Name;
     public int Count;
+    public bool LockedByPop;
+    public bool IsPurchasable; // Stories-Vehicle
 
-    public VehicleSupplyEntryState(string id, string name, int count)
+    public VehicleSupplyEntryState(string id, string name, int count, bool lockedByPop = false, bool isPurchasable = false) // Stories-Vehicle
     {
         Id = id;
         Name = name;
         Count = count;
+        LockedByPop = lockedByPop;
+        IsPurchasable = isPurchasable; // Stories-Vehicle
     }
 }
 
@@ -135,5 +139,16 @@ public sealed class VehicleSupplyLiftMsg : BoundUserInterfaceMessage
     public VehicleSupplyLiftMsg(bool raise)
     {
         Raise = raise;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class VehicleSupplyPurchaseMsg : BoundUserInterfaceMessage
+{
+    public string VehicleId;
+
+    public VehicleSupplyPurchaseMsg(string vehicleId)
+    {
+        VehicleId = vehicleId;
     }
 }

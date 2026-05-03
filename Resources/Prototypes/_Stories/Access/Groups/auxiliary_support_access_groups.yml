@@ -1,0 +1,10 @@
+- type: accessGroup
+  id: STTankCrew
+  parent: RMCBaseAuxiliaryJob
+  name: Tank Crew
+  tags:
+  - RMCAccessCommand
+  - CMAccessDropship
+  - CMAccessMedical
+  - CMAccessCrewman
+  - STAccessTankCrew

@@ -97,3 +97,6 @@ command-description-stairwellprojector = Устанавливает иденти
 command-description-getusername = Получает имя пользователя, прикрепленное к сущности.
 
 command-description-mobstate = Фильтруйте объекты по их MobState.
+
+command-description-vehiclesupply-addstorage = Добавляет прототип транспортного средства на ближайший складской подъемник для транспортных средств.
+command-description-vehiclesupply-addstoragelift = Добавляет прототип транспортного средства на конкретный складской подъемник для транспортных средств.

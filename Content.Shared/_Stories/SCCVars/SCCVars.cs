@@ -186,4 +186,20 @@ public sealed class SCCVars
     /// </summary>
     public static readonly CVarDef<int> HunterSponsorExtraSlots =
         CVarDef.Create("stories.hunter_sponsor_extra_slots", 2, CVar.SERVERONLY);
+
+    /*
+     * RMC Vehicles
+     */
+
+    /// <summary>
+    /// Minimum player count required to spawn an APC.
+    /// </summary>
+    public static readonly CVarDef<int> RMCLowPopVehicle =
+        CVarDef.Create("rmc.vehicle.low_pop", 50, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Minimum player count required to spawn a Tank.
+    /// </summary>
+    public static readonly CVarDef<int> RMCHighPopVehicle =
+        CVarDef.Create("rmc.vehicle.high_pop", 200, CVar.SERVERONLY);
 }

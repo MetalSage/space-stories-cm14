@@ -52,6 +52,11 @@ public sealed partial class VehicleHardpointVendorComponent : Component
     [DataField]
     public float ConsoleSearchRange = 20f;
 
+    // Stories-Vehicle-Start
+    [NonSerialized]
+    public string SelectedVehicle = string.Empty;
+    // Stories-Vehicle-End
+
     [NonSerialized]
     public readonly Dictionary<string, int> LastVehicleCounts = new();
 

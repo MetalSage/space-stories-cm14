@@ -24,3 +24,24 @@
     sprite: _Stories/Objects/Clothing/Belt/Hunter/utility.rsi
   - type: Clothing
     sprite: _Stories/Objects/Clothing/Belt/Hunter/utility.rsi
+
+- type: entity
+  parent: CMBeltUtility
+  id: STBeltTank
+  name: M103 pattern vehicle ammo rig
+  description: The M103 is a limited-issue mark of USCM load-bearing equipment, made specially for crewmen to carry their vehicle's ammunition.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Clothing/Belt/tankbelt.rsi
+  - type: Clothing
+    sprite: _RMC14/Objects/Clothing/Belt/tankbelt.rsi
+  - type: Storage
+    grid:
+    - 0,0,3,1 # 2 slots
+    whitelist:
+      tags:
+      - RMCAmmoBox
+  - type: IgnoreContentsSize
+    items:
+      tags:
+      - RMCAmmoBox

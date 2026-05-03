@@ -131,6 +131,26 @@
         whitelist:
           components:
           - VehiclePortGun
+      primary: # Stories-Vehicle
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
+      secondary: # Stories-Vehicle
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
+      support: # Stories-Vehicle
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
+      wheel-1: # Stories-Vehicle
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
   - type: HardpointSlots
     vehicleFamily: APC
     slots:

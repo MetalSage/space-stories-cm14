@@ -24,8 +24,8 @@
   id: RMCLTBCannon
   damagePerIntensity:
     types:
-      Blunt: 40
-      Heat: 40
+      Blunt: 10 # Stories-Vehicle
+      Heat: 10 # Stories-Vehicle
       Structural: 1000
   tileBreakChance: [0, 0.5, 1]
   tileBreakIntensity: [0, 8, 20]

@@ -17,6 +17,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.Client.GameObjects;
 using Robust.Shared.Graphics.RSI;
+using Robust.Shared.Localization;
 
 namespace Content.Client._RMC14.Vehicle.Supply;
 
@@ -69,7 +70,7 @@ public sealed partial class VehicleSupplyWindow : FancyWindow
     {
         if (preview == null || string.IsNullOrWhiteSpace(preview.VehicleId))
         {
-            PreviewTitle.Text = "Vehicle Preview";
+            PreviewTitle.Text = Loc.GetString("rmc-vehicle-supply-preview-selected");
             VehiclePreview.SetPrototype(null);
             _previewLayers.Clear();
             _previewDirty = false;
@@ -81,7 +82,7 @@ public sealed partial class VehicleSupplyWindow : FancyWindow
             return;
         }
 
-        PreviewTitle.Text = preview.VehicleId;
+        PreviewTitle.Text = Loc.GetString("rmc-vehicle-supply-preview-selected");
         VehiclePreview.SetPrototype(preview.VehicleId);
         VehiclePreview.OverrideDirection = Direction.South;
 

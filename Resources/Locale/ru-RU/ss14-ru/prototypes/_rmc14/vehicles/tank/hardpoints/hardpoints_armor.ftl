@@ -1,0 +1,10 @@
+ent-VehicleTankArmorBallistic = баллистические бронепластины
+    .desc = Баллистическая броня для танка.
+ent-VehicleTankArmorConcussive = ударные бронепластины
+    .desc = Броня для защиты от контузионного/ударного урона для танка.
+ent-VehicleTankArmorCaustic = каустические бронепластины
+    .desc = Химически стойкая броня для танка.
+ent-VehicleTankArmorPaladin = бронепластины "Паладин"
+    .desc = Бронирование типа "Паладин" для танка.
+ent-VehicleTankSnowplow = танковый отвал
+    .desc = Усиленный отвал для танка.

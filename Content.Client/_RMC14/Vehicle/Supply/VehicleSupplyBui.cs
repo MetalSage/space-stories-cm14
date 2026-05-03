@@ -7,6 +7,8 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
+using Robust.Shared.Localization;
+using System.Collections.Generic;
 
 namespace Content.Client._RMC14.Vehicle.Supply;
 
@@ -15,8 +17,11 @@ public sealed class VehicleSupplyBui : BoundUserInterface
     private VehicleSupplyWindow? _window;
     private string? _selectedVehicleId;
     private bool _suppressEvents;
+    private bool _lastBusy;
     private readonly List<string> _availableVehicleIds = new();
     private readonly Dictionary<string, int> _availableCounts = new();
+    private readonly Dictionary<string, bool> _lockedByPop = new();
+    private readonly Dictionary<string, bool> _purchasable = new(); // Stories-Vehicle
     private readonly Dictionary<string, int> _selectedCopyIndices = new();
     private readonly Dictionary<string, HardpointButton> _selectButtons = new();
     private readonly Dictionary<string, HardpointButton> _copyToggleButtons = new();
@@ -39,6 +44,11 @@ public sealed class VehicleSupplyBui : BoundUserInterface
         _window.Title = string.Empty;
         _window.RaiseButton.OnPressed += _ => SendMessage(new VehicleSupplyLiftMsg(true));
         _window.LowerButton.OnPressed += _ => SendMessage(new VehicleSupplyLiftMsg(false));
+        _window.PurchaseButton.OnPressed += _ =>
+        {
+            if (!string.IsNullOrWhiteSpace(_selectedVehicleId))
+                SendMessage(new VehicleSupplyPurchaseMsg(_selectedVehicleId));
+        };
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -48,11 +58,14 @@ public sealed class VehicleSupplyBui : BoundUserInterface
         if (state is not VehicleSupplyBuiState uiState || _window == null)
             return;
 
+        _lastBusy = uiState.Busy;
         _suppressEvents = true;
         UpdateStatus(uiState);
         UpdateLists(uiState);
         _window.SetPreview(uiState.Preview);
         _suppressEvents = false;
+
+        UpdateSelectionVisuals();
     }
 
     private void UpdateStatus(VehicleSupplyBuiState state)
@@ -60,11 +73,20 @@ public sealed class VehicleSupplyBui : BoundUserInterface
         if (_window == null)
             return;
 
-        var modeText = state.LiftMode?.ToString() ?? "No lift";
-        var activeText = string.IsNullOrWhiteSpace(state.ActiveVehicleId) ? "none" : state.ActiveVehicleId;
-        var busyText = state.Busy ? "busy" : "idle";
+        var modeText = state.LiftMode switch
+        {
+            VehicleSupplyLiftMode.Lowered => Loc.GetString("rmc-vehicle-supply-mode-lowered"),
+            VehicleSupplyLiftMode.Raised => Loc.GetString("rmc-vehicle-supply-mode-raised"),
+            VehicleSupplyLiftMode.Lowering => Loc.GetString("rmc-vehicle-supply-mode-lowering"),
+            VehicleSupplyLiftMode.Raising => Loc.GetString("rmc-vehicle-supply-mode-raising"),
+            VehicleSupplyLiftMode.Preparing => Loc.GetString("rmc-vehicle-supply-mode-preparing"),
+            _ => Loc.GetString("rmc-vehicle-supply-mode-no-lift")
+        };
 
-        _window.StatusLabel.Text = $"Lift: {modeText} | Status: {busyText} | Active: {activeText}";
+        var activeText = string.IsNullOrWhiteSpace(state.ActiveVehicleId) ? Loc.GetString("rmc-vehicle-supply-status-none") : state.ActiveVehicleId;
+        var busyText = state.Busy ? Loc.GetString("rmc-vehicle-supply-status-busy") : Loc.GetString("rmc-vehicle-supply-status-idle");
+
+        _window.StatusLabel.Text = Loc.GetString("rmc-vehicle-supply-status-lift", ("mode", modeText), ("status", busyText), ("active", activeText));
 
         var raising = state.LiftMode == VehicleSupplyLiftMode.Raising;
         var lowering = state.LiftMode == VehicleSupplyLiftMode.Lowering;
@@ -80,6 +102,8 @@ public sealed class VehicleSupplyBui : BoundUserInterface
 
         _availableVehicleIds.Clear();
         _availableCounts.Clear();
+        _lockedByPop.Clear();
+        _purchasable.Clear(); // Stories-Vehicle
         _window.AvailableRows.DisposeAllChildren();
         _selectButtons.Clear();
         _copyToggleButtons.Clear();
@@ -114,6 +138,8 @@ public sealed class VehicleSupplyBui : BoundUserInterface
             var label = entry.Count > 1 ? $"{entry.Name} x{entry.Count}" : entry.Name;
             _availableVehicleIds.Add(entry.Id);
             _availableCounts[entry.Id] = entry.Count;
+            _lockedByPop[entry.Id] = entry.LockedByPop;
+            _purchasable[entry.Id] = entry.IsPurchasable; // Stories-Vehicle
 
             var row = new BoxContainer
             {
@@ -146,7 +172,7 @@ public sealed class VehicleSupplyBui : BoundUserInterface
             {
                 var copyToggle = new HardpointButton
                 {
-                    LabelText = _copyExpanded.Contains(vehicleId) ? "Copies v" : "Copies >",
+                    LabelText = _copyExpanded.Contains(vehicleId) ? Loc.GetString("rmc-vehicle-supply-copies-expanded") : Loc.GetString("rmc-vehicle-supply-copies-collapsed"),
                     MinSize = new Vector2(110, 0)
                 };
 
@@ -255,6 +281,40 @@ public sealed class VehicleSupplyBui : BoundUserInterface
         {
             ApplySelectionStyle(button, id == _selectedVehicleId);
         }
+
+        if (_window != null && !string.IsNullOrWhiteSpace(_selectedVehicleId))
+        {
+            if (_purchasable.GetValueOrDefault(_selectedVehicleId)) // Stories-Vehicle
+            {
+                _window.PurchaseButton.Visible = true;
+                _window.RaiseButton.Visible = false;
+                // Stories-Start
+                _window.LowerButton.Visible = false;
+                // Stories-End
+
+                var isLocked = _lockedByPop.GetValueOrDefault(_selectedVehicleId);
+                _window.PurchaseButton.Disabled = isLocked || _lastBusy;
+                _window.PurchaseButton.LabelText = isLocked
+                    ? Loc.GetString("rmc-vehicle-supply-locked-pop")
+                    : Loc.GetString("rmc-vehicle-supply-purchase");
+            }
+            else
+            {
+                _window.PurchaseButton.Visible = false;
+                _window.RaiseButton.Visible = true;
+                // Stories-Start
+                _window.LowerButton.Visible = true;
+                // Stories-End
+            }
+        }
+        else if (_window != null)
+        {
+            _window.PurchaseButton.Visible = false;
+            _window.RaiseButton.Visible = true;
+            // Stories-Start
+            _window.LowerButton.Visible = true;
+            // Stories-End
+        }
     }
 
     private void UpdateCopySelection(string vehicleId)
@@ -281,7 +341,7 @@ public sealed class VehicleSupplyBui : BoundUserInterface
 
         var expanded = _copyExpanded.Contains(vehicleId);
         container.Visible = expanded;
-        toggle.LabelText = expanded ? "Copies v" : "Copies >";
+        toggle.LabelText = expanded ? Loc.GetString("rmc-vehicle-supply-copies-expanded") : Loc.GetString("rmc-vehicle-supply-copies-collapsed");
     }
 
     private static void ApplySelectionStyle(HardpointButton button, bool selected)

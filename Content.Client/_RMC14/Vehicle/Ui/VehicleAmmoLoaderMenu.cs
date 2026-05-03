@@ -17,6 +17,7 @@ using Robust.Shared.Maths;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.IoC;
 
 namespace Content.Client._RMC14.Vehicle.Ui;
 
@@ -39,6 +40,22 @@ public sealed partial class VehicleAmmoLoaderMenu : FancyWindow
     {
         RobustXamlLoader.Load(this);
         SetSize = new Vector2(MinWindowWidth, 240);
+    }
+
+    private static string GetLocalizedSlotId(string slotId)
+    {
+        var key = $"rmc-hardpoint-slot-{slotId.ToLowerInvariant()}";
+        if (Loc.TryGetString(key, out var localized))
+            return localized;
+        return slotId;
+    }
+
+    private static string GetLocalizedSlotPath(VehicleSlotPath path)
+    {
+        var root = GetLocalizedSlotId(path.Root);
+        if (path.IsNested)
+            return $"{root} / {GetLocalizedSlotId(path.Child!)}";
+        return root;
     }
 
     public void Update(
@@ -118,10 +135,11 @@ public sealed partial class VehicleAmmoLoaderMenu : FancyWindow
                 HorizontalExpand = true
             };
 
+            var typeLoc = Loc.GetString($"rmc-hardpoint-type-{hardpoint.HardpointType.ToLowerInvariant()}");
             var header = Loc.GetString(
                 "rmc-vehicle-ammo-loader-ui-slot",
-                ("slot", hardpoint.SlotPath.ToCompositeId()),
-                ("type", hardpoint.HardpointType));
+                ("slot", GetLocalizedSlotPath(hardpoint.SlotPath)),
+                ("type", typeLoc));
 
             var nameText = hardpoint.InstalledName ?? header;
 
@@ -168,7 +186,7 @@ public sealed partial class VehicleAmmoLoaderMenu : FancyWindow
         int pulseDirection)
     {
         var ratio = ammoSlot.Capacity > 0
-            ? Math.Clamp(ammoSlot.Rounds / (float) ammoSlot.Capacity, 0f, 1f)
+            ? Math.Clamp(ammoSlot.Rounds / (float)ammoSlot.Capacity, 0f, 1f)
             : 0f;
 
         var canInteract = ammoSlot.CanLoad || ammoSlot.CanUnload;

@@ -43,6 +43,7 @@
   - RMCAccessTSEPA # tsepa
   - RMCAccessDatabase
   - RMCAccessSeniorCommand
+  - STAccessTankCrew # Stories-Vehicle
 
 - type: accessGroup
   id: CO
@@ -89,6 +90,7 @@
   - RMCAccessTSEPA # tsepa
   - RMCAccessDatabase
   - RMCAccessSeniorCommand
+  - STAccessTankCrew # Stories-Vehicle
 
 # all ship-side access that is not CO
 # SEA uses this.
@@ -134,6 +136,7 @@
   - CMAccessMarineRifleman
   - RMCAccessDatabase
   - RMCAccessSeniorCommand
+  - STAccessTankCrew # Stories-Vehicle
 
 - type: accessGroup
   id: SEA
@@ -176,6 +179,7 @@
   - CMAccessMarineRifleman
   - RMCAccessDatabase
   - RMCAccessSeniorCommand
+  - STAccessTankCrew # Stories-Vehicle
 
 - type: accessGroup
   id: SO

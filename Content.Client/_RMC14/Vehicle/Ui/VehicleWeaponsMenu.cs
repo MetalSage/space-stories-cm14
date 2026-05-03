@@ -14,6 +14,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Localization;
 using Robust.Shared.Maths;
 using Robust.Shared.Timing;
+using Robust.Shared.IoC;
 
 namespace Content.Client._RMC14.Vehicle.Ui;
 
@@ -126,6 +127,14 @@ public sealed partial class VehicleWeaponsMenu : FancyWindow
         }
 
         _selectedMountedEntity = null;
+    }
+
+    private static string GetLocalizedSlotId(string slotId)
+    {
+        var key = $"rmc-hardpoint-slot-{slotId.ToLowerInvariant()}";
+        if (Loc.TryGetString(key, out var localized))
+            return localized;
+        return slotId;
     }
 
     private void RebuildHardpointButtons()
@@ -289,7 +298,7 @@ public sealed partial class VehicleWeaponsMenu : FancyWindow
             return;
         }
 
-        var elapsed = (float) (_timing.CurTime - _selectedCooldownSampleTime).TotalSeconds;
+        var elapsed = (float)(_timing.CurTime - _selectedCooldownSampleTime).TotalSeconds;
         var remaining = Math.Max(0f, _selectedCooldownRemaining - Math.Max(0f, elapsed));
         var total = Math.Max(0.001f, _selectedCooldownTotal);
         var ratio = Math.Clamp(1f - remaining / total, 0f, 1f);
@@ -347,10 +356,10 @@ public sealed partial class VehicleWeaponsMenu : FancyWindow
         if (selected.HasAmmo)
         {
             var max = selected.MagazineSize > 0 ? selected.MagazineSize : selected.AmmoCapacity;
-            parts.Add($"Ammo: {selected.AmmoCount}/{max}");
+            parts.Add(Loc.GetString("rmc-vehicle-weapons-ui-chambered", ("current", selected.AmmoCount), ("max", max)));
         }
         if (selected.HasMagazineData && selected.MaxStoredMagazines > 0)
-            parts.Add($"Stored: {selected.StoredMagazines}/{selected.MaxStoredMagazines}");
+            parts.Add(Loc.GetString("rmc-vehicle-weapons-ui-stored", ("current", selected.StoredMagazines), ("max", selected.MaxStoredMagazines)));
 
         return string.Join(" | ", parts);
     }
@@ -391,9 +400,9 @@ public sealed partial class VehicleWeaponsMenu : FancyWindow
             return hardpoint.InstalledName;
 
         if (VehicleTurretSlotIds.TryParse(hardpoint.SlotId, out var parentSlot, out var childSlot))
-            return $"{parentSlot}/{childSlot}";
+            return $"{GetLocalizedSlotId(parentSlot)} / {GetLocalizedSlotId(childSlot)}";
 
-        return hardpoint.SlotId;
+        return GetLocalizedSlotId(hardpoint.SlotId);
     }
 
     private static Color GetHardpointColor(VehicleWeaponsUiEntry hardpoint)
