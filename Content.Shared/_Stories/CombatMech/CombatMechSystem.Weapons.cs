@@ -35,8 +35,11 @@ public sealed partial class CombatMechSystem
         if (!TryComp(weapon, out CombatMechWeaponComponent? weaponComp))
             return;
 
+        if (weaponComp.LinkedMech == mech.Owner)
+            return;
+
         weaponComp.LinkedMech = mech;
-        Dirty(weapon, weaponComp);
+        DirtyField(weapon, weaponComp, nameof(CombatMechWeaponComponent.LinkedMech));
     }
 
     private void EnsureWeaponUnremoveable(EntityUid weapon)
@@ -155,9 +158,7 @@ public sealed partial class CombatMechSystem
         }
 
         SetWeapon(mech, primary, weapon);
-
-        weaponComp.LinkedMech = mech;
-        Dirty(weapon, weaponComp);
+        LinkWeaponToMech(weapon, mech);
 
         var mounted = false;
         if (TryComp(mech, out HandsComponent? hands))
@@ -201,10 +202,7 @@ public sealed partial class CombatMechSystem
         RemComp<UnremoveableComponent>(weapon);
 
         if (TryComp(weapon, out CombatMechWeaponComponent? weaponComp))
-        {
-            weaponComp.LinkedMech = null;
-            Dirty(weapon, weaponComp);
-        }
+            ClearWeaponMechLink((weapon, weaponComp));
 
         if (!heldByMech)
             _transform.SetCoordinates(weapon, coordinates);
@@ -306,7 +304,7 @@ public sealed partial class CombatMechSystem
         if (args.SenderSession.AttachedEntity is not { } pilot)
             return;
 
-        if (_net.IsServer && !_combatMode.IsInCombatMode(pilot))
+        if (!_combatMode.IsInCombatMode(pilot))
             return;
 
         if (msg.Weapon is not { } netWeapon)
@@ -477,9 +475,7 @@ public sealed partial class CombatMechSystem
         }
 
         SetWeapon(mech, primary, spawned);
-
-        weaponComp.LinkedMech = mech;
-        Dirty(spawned, weaponComp);
+        LinkWeaponToMech(spawned, mech);
         EnsureWeaponUnremoveable(spawned);
     }
 
@@ -788,26 +784,29 @@ public sealed partial class CombatMechSystem
             return;
 
         weapon.Comp.LinkedMech = null;
-        Dirty(weapon);
+        DirtyField(weapon.Owner, weapon.Comp, nameof(CombatMechWeaponComponent.LinkedMech));
     }
 
     private void SetWeapon(Entity<CombatMechComponent> mech, bool primary, EntityUid? weapon)
     {
-        if (primary)
-            mech.Comp.PrimaryWeaponEntity = weapon;
-        else
-            mech.Comp.SecondaryWeaponEntity = weapon;
-
         var state = CombatMechComponent.EmptyWeaponState;
         if (weapon != null && TryComp(weapon.Value, out CombatMechWeaponComponent? weaponComp))
             state = BuildWeaponState(weaponComp.ArmState, primary);
 
         if (primary)
+        {
+            mech.Comp.PrimaryWeaponEntity = weapon;
             mech.Comp.PrimaryWeaponState = state;
+            DirtyField(mech.Owner, mech.Comp, nameof(CombatMechComponent.PrimaryWeaponEntity));
+            DirtyField(mech.Owner, mech.Comp, nameof(CombatMechComponent.PrimaryWeaponState));
+        }
         else
+        {
+            mech.Comp.SecondaryWeaponEntity = weapon;
             mech.Comp.SecondaryWeaponState = state;
-
-        Dirty(mech);
+            DirtyField(mech.Owner, mech.Comp, nameof(CombatMechComponent.SecondaryWeaponEntity));
+            DirtyField(mech.Owner, mech.Comp, nameof(CombatMechComponent.SecondaryWeaponState));
+        }
     }
 
     private string GetSlotName(bool primary) =>

@@ -311,14 +311,9 @@ public sealed partial class CombatMechSystem
         if (HasComp<FlammableComponent>(pilot))
             _flammable.Extinguish(pilot.Owner);
 
-        if (HasComp<NeurotoxinComponent>(pilot))
-            RemCompDeferred<NeurotoxinComponent>(pilot);
-
-        if (HasComp<UserDamageOverTimeComponent>(pilot))
-            RemCompDeferred<UserDamageOverTimeComponent>(pilot);
-
-        if (HasComp<RMCCameraShakingComponent>(pilot))
-            RemCompDeferred<RMCCameraShakingComponent>(pilot);
+        RemCompDeferred<NeurotoxinComponent>(pilot);
+        RemCompDeferred<UserDamageOverTimeComponent>(pilot);
+        RemCompDeferred<RMCCameraShakingComponent>(pilot);
     }
 
     private void DisablePilotCollision(Entity<InsideCombatVehicleComponent> pilot)
@@ -372,14 +367,9 @@ public sealed partial class CombatMechSystem
         if (!IsPilotSealed(pilot))
             return;
 
-        if (HasComp<RMCSlowdownComponent>(pilot))
-            RemCompDeferred<RMCSlowdownComponent>(pilot);
-
-        if (HasComp<RMCSuperSlowdownComponent>(pilot))
-            RemCompDeferred<RMCSuperSlowdownComponent>(pilot);
-
-        if (HasComp<RMCRootedComponent>(pilot))
-            RemCompDeferred<RMCRootedComponent>(pilot);
+        RemCompDeferred<RMCSlowdownComponent>(pilot);
+        RemCompDeferred<RMCSuperSlowdownComponent>(pilot);
+        RemCompDeferred<RMCRootedComponent>(pilot);
     }
 
     private bool IsProtectedStatus(Entity<InsideCombatVehicleComponent> pilot, string status)

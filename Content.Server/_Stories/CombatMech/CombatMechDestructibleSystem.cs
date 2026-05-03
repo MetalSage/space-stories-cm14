@@ -23,6 +23,6 @@ public sealed class CombatMechDestructibleSystem : EntitySystem
         }
 
         ent.Comp.MaxHealth = destroyedAt.Value.Float();
-        Dirty(ent);
+        DirtyField(ent.Owner, ent.Comp, nameof(CombatMechComponent.MaxHealth));
     }
 }

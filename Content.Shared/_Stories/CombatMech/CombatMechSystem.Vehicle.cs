@@ -359,7 +359,7 @@ public sealed partial class CombatMechSystem
             return;
 
         ent.Comp.HelmetClosed = closed;
-        Dirty(ent);
+        DirtyField(ent.Owner, ent.Comp, nameof(CombatMechComponent.HelmetClosed));
         UpdateAppearance(ent);
 
         if (GetPilot(ent) is { } pilot && TryComp(pilot, out InsideCombatVehicleComponent? inside))

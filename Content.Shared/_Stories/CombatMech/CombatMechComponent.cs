@@ -1,6 +1,7 @@
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
+using Content.Shared.StatusEffect;
 using Robust.Shared.Map;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -9,7 +10,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Stories.CombatMech;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class CombatMechComponent : Component
 {
     public const string EmptyWeaponState = "empty";
@@ -105,7 +106,7 @@ public sealed partial class CombatMechComponent : Component
     };
 
     [DataField]
-    public HashSet<string> ProtectedStatusEffects = new()
+    public HashSet<ProtoId<StatusEffectPrototype>> ProtectedStatusEffects = new()
     {
         "Blinded",
         "Dazed",
@@ -156,7 +157,7 @@ public sealed partial class CombatMechComponent : Component
     public bool DefaultWeaponEnsureQueued;
 }
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class CombatMechWeaponComponent : Component
 {
     [DataField]
@@ -185,7 +186,7 @@ public sealed partial class CombatMechWeaponFlamerTankComponent : Component
     public string LocalTankContainerId = CombatMechComponent.GunMagazineContainerId;
 }
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class InsideCombatVehicleComponent : Component
 {
     [DataField, AutoNetworkedField]

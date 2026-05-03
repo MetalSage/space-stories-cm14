@@ -65,11 +65,11 @@ public sealed partial class CombatMechSystem
         var pilot = args.Buckle.Owner;
 
         ent.Comp.PilotEntity = pilot;
-        Dirty(ent);
+        DirtyField(ent.Owner, ent.Comp, nameof(CombatMechComponent.PilotEntity));
 
         var inside = EnsureComp<InsideCombatVehicleComponent>(pilot);
         inside.Vehicle = ent;
-        Dirty(pilot, inside);
+        DirtyField(pilot, inside, nameof(InsideCombatVehicleComponent.Vehicle));
         UpdatePilotProtection((pilot, inside));
 
         _mover.SetRelay(pilot, ent);
@@ -99,7 +99,7 @@ public sealed partial class CombatMechSystem
         var pilot = args.Buckle.Owner;
 
         ent.Comp.PilotEntity = null;
-        Dirty(ent);
+        DirtyField(ent.Owner, ent.Comp, nameof(CombatMechComponent.PilotEntity));
 
         if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
             RestorePilotProtection((pilot, inside));
@@ -216,7 +216,7 @@ public sealed partial class CombatMechSystem
     private void CleanupFailedPilotStrap(Entity<CombatMechComponent> mech, EntityUid pilot)
     {
         mech.Comp.PilotEntity = null;
-        Dirty(mech);
+        DirtyField(mech.Owner, mech.Comp, nameof(CombatMechComponent.PilotEntity));
 
         if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
             RestorePilotProtection((pilot, inside));
