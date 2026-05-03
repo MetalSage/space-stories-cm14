@@ -61,12 +61,12 @@ public sealed partial class CombatMechSystem
 
     private void OnInsideVehicleBeforeAttemptShoot(Entity<InsideCombatVehicleComponent> ent, ref BeforeAttemptShootEvent args)
     {
-        if (args.Handled || Deleted(ent.Comp.Vehicle))
+        if (args.Handled || !TryComp(ent.Comp.Vehicle, out TransformComponent? vehicleXform))
             return;
 
-        var rotation = _transform.GetWorldRotation(ent.Comp.Vehicle);
+        var rotation = _transform.GetWorldRotation(vehicleXform);
         var rotatedOffset = rotation.RotateVec(args.Offset);
-        args.Origin = Transform(ent.Comp.Vehicle).Coordinates.Offset(rotatedOffset);
+        args.Origin = vehicleXform.Coordinates.Offset(rotatedOffset);
         args.Handled = true;
     }
 
@@ -215,8 +215,6 @@ public sealed partial class CombatMechSystem
         {
             RestoreSealedPilotProtection(pilot);
         }
-
-        Dirty(pilot);
     }
 
     private void RestorePilotProtection(Entity<InsideCombatVehicleComponent> pilot)
@@ -245,7 +243,6 @@ public sealed partial class CombatMechSystem
         pilot.Comp.RemovedExplosionStun = false;
         pilot.Comp.AddedTurnInvisible = false;
         pilot.Comp.AddedActiveInvisible = false;
-        Dirty(pilot);
     }
 
     private void ApplySealedPilotProtection(Entity<InsideCombatVehicleComponent> pilot)
@@ -333,7 +330,6 @@ public sealed partial class CombatMechSystem
         }
 
         pilot.Comp.CollisionDisabled = true;
-        Dirty(pilot);
     }
 
     private void RestorePilotCollision(Entity<InsideCombatVehicleComponent> pilot)
@@ -359,7 +355,6 @@ public sealed partial class CombatMechSystem
         pilot.Comp.FixtureMasks.Clear();
         pilot.Comp.FixtureLayers.Clear();
         pilot.Comp.CollisionDisabled = false;
-        Dirty(pilot);
     }
 
     private void ClearProtectedMovementDebuffs(Entity<InsideCombatVehicleComponent> pilot)
