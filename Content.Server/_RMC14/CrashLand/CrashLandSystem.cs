@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._RMC14.CrashLand;
@@ -30,7 +31,7 @@ public sealed class CrashLandSystem : SharedCrashLandSystem
         if (!args.ShouldDamage)
             return;
 
-        foreach (var entity in ent.Comp.Contents.ContainedEntities)
+        foreach (var entity in ent.Comp.Contents.ContainedEntities.ToArray())
         {
             ApplyFallingDamage(entity);
         }

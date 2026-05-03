@@ -100,8 +100,22 @@ public abstract class SharedSupplyDropSystem : EntitySystem
             _entityLookup.GetEntitiesInRange(ent, 0.33f, _intersecting);
             foreach (var intersecting in _intersecting)
             {
-                if (_container.TryGetContainingContainer(intersecting, out var container) && (container.Owner == ent.Owner || HasComp<ParaDroppingComponent>(container.Owner) || HasComp<CrashLandingComponent>(container.Owner)))
-                        continue;
+                var isInside = false;
+                var parent = Transform(intersecting).ParentUid;
+
+                while (parent.IsValid())
+                {
+                    if (parent == ent.Owner || HasComp<ParaDroppingComponent>(parent) || HasComp<CrashLandingComponent>(parent))
+                    {
+                        isInside = true;
+                        break;
+                    }
+
+                    parent = Transform(parent).ParentUid;
+                }
+
+                if (isInside)
+                    continue;
 
                 _damageable.TryChangeDamage(intersecting, landingDamage, true);
             }
@@ -253,8 +267,8 @@ public abstract class SharedSupplyDropSystem : EntitySystem
             return false;
         }
 
-        var skyFallDuration = (float) crate.Comp.ArrivingSoundDelay.TotalSeconds;
-        var dropDuration = (float) crate.Comp.DropDuration.TotalSeconds;
+        var skyFallDuration = (float)crate.Comp.ArrivingSoundDelay.TotalSeconds;
+        var dropDuration = (float)crate.Comp.DropDuration.TotalSeconds;
         var dropCoordinates = mapCoordinates.Offset(new Vector2(0.5f, 0.5f));
         var crateCoordinates = _transform.GetMoverCoordinates(crate);
         var openAt = crate.Comp.ArrivingSoundDelay + crate.Comp.DropDuration + crate.Comp.OpenDelay;
