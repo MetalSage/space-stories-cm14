@@ -72,12 +72,3 @@ public sealed partial class DropshipDestinationComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? ArrivalSoundEntity;
 }
-
-/// <summary>
-/// Marks a docking connector on the shuttle as the preferred port for restricted RMC destination routing.
-/// Vanilla docking doors remain a fallback for older/event shuttle maps.
-/// </summary>
-[RegisterComponent]
-public sealed partial class RMCShuttleMobileDockComponent : Component
-{
-}
