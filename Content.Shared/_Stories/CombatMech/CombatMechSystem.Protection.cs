@@ -177,12 +177,17 @@ public sealed partial class CombatMechSystem
 
         if (TryComp(pilot, out InfectableComponent? infectable) && !infectable.BeingInfected)
         {
+            pilot.Comp.InfectableSound = new(infectable.Sound);
             RemComp<InfectableComponent>(pilot);
             pilot.Comp.RemovedInfectable = true;
         }
 
-        if (HasComp<AffectableByWeedsComponent>(pilot))
+        if (TryComp(pilot, out AffectableByWeedsComponent? weeds))
         {
+            pilot.Comp.OnXenoWeeds = weeds.OnXenoWeeds;
+            pilot.Comp.OnFriendlyWeeds = weeds.OnFriendlyWeeds;
+            pilot.Comp.OnXenoSlowResin = weeds.OnXenoSlowResin;
+            pilot.Comp.OnXenoFastResin = weeds.OnXenoFastResin;
             RemComp<AffectableByWeedsComponent>(pilot);
             pilot.Comp.RemovedAffectableByWeeds = true;
         }
@@ -223,10 +228,24 @@ public sealed partial class CombatMechSystem
             return;
 
         if (pilot.Comp.RemovedInfectable && !HasComp<InfectableComponent>(pilot))
-            EnsureComp<InfectableComponent>(pilot);
+        {
+            var infectable = EnsureComp<InfectableComponent>(pilot);
+            if (pilot.Comp.InfectableSound != null)
+                infectable.Sound = new(pilot.Comp.InfectableSound);
+            Dirty(pilot, infectable);
+        }
 
         if (pilot.Comp.RemovedAffectableByWeeds && !HasComp<AffectableByWeedsComponent>(pilot))
-            EnsureComp<AffectableByWeedsComponent>(pilot);
+        {
+            var weeds = EnsureComp<AffectableByWeedsComponent>(pilot);
+#pragma warning disable RA0002
+            weeds.OnXenoWeeds = pilot.Comp.OnXenoWeeds;
+            weeds.OnFriendlyWeeds = pilot.Comp.OnFriendlyWeeds;
+            weeds.OnXenoSlowResin = pilot.Comp.OnXenoSlowResin;
+            weeds.OnXenoFastResin = pilot.Comp.OnXenoFastResin;
+#pragma warning restore RA0002
+            Dirty(pilot, weeds);
+        }
 
         RestoreSealedPilotProtection(pilot);
 
@@ -238,9 +257,17 @@ public sealed partial class CombatMechSystem
 
         RestorePilotCollision(pilot);
         pilot.Comp.RemovedInfectable = false;
+        pilot.Comp.InfectableSound = null;
         pilot.Comp.RemovedAffectableByWeeds = false;
+        pilot.Comp.OnXenoWeeds = false;
+        pilot.Comp.OnFriendlyWeeds = false;
+        pilot.Comp.OnXenoSlowResin = false;
+        pilot.Comp.OnXenoFastResin = false;
         pilot.Comp.AddedUnparalyzable = false;
         pilot.Comp.RemovedExplosionStun = false;
+        pilot.Comp.ExplosionStunWeak = false;
+        pilot.Comp.ExplosionStunBlindTime = default;
+        pilot.Comp.ExplosionStunBlurTime = default;
         pilot.Comp.AddedTurnInvisible = false;
         pilot.Comp.AddedActiveInvisible = false;
     }
@@ -253,8 +280,11 @@ public sealed partial class CombatMechSystem
             pilot.Comp.AddedUnparalyzable = true;
         }
 
-        if (HasComp<StunOnExplosionReceivedComponent>(pilot))
+        if (TryComp(pilot, out StunOnExplosionReceivedComponent? explosionStun))
         {
+            pilot.Comp.ExplosionStunWeak = explosionStun.Weak;
+            pilot.Comp.ExplosionStunBlindTime = explosionStun.BlindTime;
+            pilot.Comp.ExplosionStunBlurTime = explosionStun.BlurTime;
             RemComp<StunOnExplosionReceivedComponent>(pilot);
             pilot.Comp.RemovedExplosionStun = true;
         }
@@ -266,10 +296,21 @@ public sealed partial class CombatMechSystem
             RemComp<UnparalyzableComponent>(pilot);
 
         if (pilot.Comp.RemovedExplosionStun && !HasComp<StunOnExplosionReceivedComponent>(pilot))
-            EnsureComp<StunOnExplosionReceivedComponent>(pilot);
+        {
+            var explosionStun = EnsureComp<StunOnExplosionReceivedComponent>(pilot);
+#pragma warning disable RA0002
+            explosionStun.Weak = pilot.Comp.ExplosionStunWeak;
+            explosionStun.BlindTime = pilot.Comp.ExplosionStunBlindTime;
+            explosionStun.BlurTime = pilot.Comp.ExplosionStunBlurTime;
+#pragma warning restore RA0002
+            Dirty(pilot, explosionStun);
+        }
 
         pilot.Comp.AddedUnparalyzable = false;
         pilot.Comp.RemovedExplosionStun = false;
+        pilot.Comp.ExplosionStunWeak = false;
+        pilot.Comp.ExplosionStunBlindTime = default;
+        pilot.Comp.ExplosionStunBlurTime = default;
     }
 
     private bool HasLiveVehicle(Entity<InsideCombatVehicleComponent> pilot)

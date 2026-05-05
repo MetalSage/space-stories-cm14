@@ -193,13 +193,17 @@ public sealed partial class CombatMechSystem
 
         var coordinates = Transform(mech).Coordinates;
         var heldByMech = _hands.IsHolding(mech.Owner, weapon);
+
+        // UnremoveableComponent cancels ContainerGettingRemovedAttemptEvent which is raised by
+        // TryDrop's CanRemove check. Must remove the component before attempting the drop.
+        RemComp<UnremoveableComponent>(weapon);
+
         if (heldByMech &&
             !_hands.TryDrop(mech.Owner, weapon, coordinates, checkActionBlocker: false, doDropInteraction: false))
         {
+            EnsureWeaponUnremoveable(weapon);
             return false;
         }
-
-        RemComp<UnremoveableComponent>(weapon);
 
         if (TryComp(weapon, out CombatMechWeaponComponent? weaponComp))
             ClearWeaponMechLink((weapon, weaponComp));
@@ -304,6 +308,8 @@ public sealed partial class CombatMechSystem
         if (args.SenderSession.AttachedEntity is not { } pilot)
             return;
 
+        // Server-side combat-mode guard mirrors the client check in CombatMechFlamerInputSystem
+        // to reject spoofed network events from a modified client.
         if (!_combatMode.IsInCombatMode(pilot))
             return;
 
@@ -311,7 +317,7 @@ public sealed partial class CombatMechSystem
             return;
 
         var weapon = GetEntity(netWeapon);
-        if (!TryGetMountedUnderbarrel(pilot, weapon, false, out var attachable, out var gun))
+        if (!TryGetMountedUnderbarrel(pilot, weapon, true, out var attachable, out var gun))
             return;
 
         ResetMountedUnderbarrelShotCounter(attachable, gun);
@@ -339,29 +345,19 @@ public sealed partial class CombatMechSystem
             return;
         }
 
-#pragma warning disable RA0002
-        gun.ShootCoordinates = coordinates;
-        gun.Target = target;
-        // ShootCoordinates and Target are transient: set immediately before AttemptShoot and cleared in the
-        // finally block within the same tick, so they never persist across a network snapshot. DirtyField is
-        // called only for the fields that outlive the tick (ShotCounter).
         try
         {
             if (TryComp(attachable, out CombatMechWeaponFlamerTankComponent? flamerTank))
                 SyncWeaponTankToMountedFlamer((attachable, flamerTank), weapon);
 
-            _gun.AttemptShoot(pilot, attachable, gun, userSession: args.SenderSession);
+            _gun.AttemptShootAt(pilot, attachable, gun, coordinates, target, userSession: args.SenderSession);
         }
         finally
         {
-            gun.ShootCoordinates = null;
-            gun.Target = null;
-
             // The input system never sends a stop-shoot event, so SemiAuto would latch after the first shot.
             // Reset ShotCounter so the next predictive event can fire again (rate-limited by NextFire).
             ResetMountedUnderbarrelShotCounter(attachable, gun);
         }
-#pragma warning restore RA0002
     }
 
     private void ResetMountedUnderbarrelShotCounter(EntityUid attachable, GunComponent gun)
@@ -369,6 +365,8 @@ public sealed partial class CombatMechSystem
         if (gun.ShotCounter == 0)
             return;
 
+        // SemiAuto latches ShotCounter after the first round; resetting it here lets the
+        // next predictive input fire again (rate-limited by NextFire).
 #pragma warning disable RA0002
         gun.ShotCounter = 0;
         if (_net.IsServer)
@@ -460,7 +458,7 @@ public sealed partial class CombatMechSystem
 
         var spawned = Spawn(proto, Transform(mech).Coordinates);
 
-        if (!TryComp(spawned, out CombatMechWeaponComponent? weaponComp))
+        if (!HasComp<CombatMechWeaponComponent>(spawned))
         {
             Log.Error($"RX47 {ToPrettyString(mech.Owner)} default weapon prototype {proto} lacks CombatMechWeaponComponent.");
             QueueDel(spawned);

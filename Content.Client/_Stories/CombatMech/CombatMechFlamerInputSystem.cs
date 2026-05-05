@@ -1,7 +1,9 @@
 using Content.Client._RMC14.Movement;
 using Content.Client.CombatMode;
 using Content.Client.Gameplay;
+using Content.Shared._RMC14.Attachable.Components;
 using Content.Shared._Stories.CombatMech;
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Client.GameObjects;
@@ -34,6 +36,7 @@ public sealed class CombatMechFlamerInputSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
+        // Combat mode checked here (client) and mirrored on the server in OnCombatMechUnderbarrelShoot.
         if (!_timing.IsFirstTimePredicted ||
             _player.LocalEntity is not { } pilot ||
             !TryComp(pilot, out InsideCombatVehicleComponent? inside) ||
@@ -79,9 +82,31 @@ public sealed class CombatMechFlamerInputSystem : EntitySystem
         weapon = default;
         gun = default!;
 
-        if (!_hands.TryGetActiveItem(pilot, out var active) ||
-            !HasComp<CombatMechWeaponComponent>(active.Value) ||
-            !_container.TryGetContainer(active.Value, CombatMechComponent.UnderbarrelSlot, out var container) ||
+        if (!TryComp(pilot, out HandsComponent? hands))
+        {
+            return false;
+        }
+
+        foreach (var held in _hands.EnumerateHeld((pilot, hands)))
+        {
+            if (!HasComp<CombatMechWeaponComponent>(held) ||
+                !TryGetActiveUnderbarrelOnWeapon(held, out gun))
+            {
+                continue;
+            }
+
+            weapon = held;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetActiveUnderbarrelOnWeapon(EntityUid weapon, out GunComponent gun)
+    {
+        gun = default!;
+
+        if (!_container.TryGetContainer(weapon, CombatMechComponent.UnderbarrelSlot, out var container) ||
             container.Count <= 0)
         {
             return false;
@@ -90,12 +115,13 @@ public sealed class CombatMechFlamerInputSystem : EntitySystem
         foreach (var attachable in container.ContainedEntities)
         {
             if (!HasComp<CombatMechUnderbarrelComponent>(attachable) ||
+                !TryComp(attachable, out AttachableToggleableComponent? toggleable) ||
+                !toggleable.Active ||
                 !TryComp(attachable, out GunComponent? gunComp))
             {
                 continue;
             }
 
-            weapon = active.Value;
             gun = gunComp;
             return true;
         }

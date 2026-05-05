@@ -83,11 +83,25 @@
           - StoriesMagazineRX47Chaingun
 
 - type: entity
-  parent: StoriesWeaponRX47Base
+  parent: [ CMBaseWeaponGun, BaseItem, RMCBaseAttachableHolder ]
   id: StoriesWeaponRX47Siegebreaker
   name: RX47 siegebreaker cannon
   description: A 50mm mechsuit cannon with a narrow firing arc and explosive impact.
   components:
+  - type: Item
+    size: Huge
+  - type: Clothing
+    slots: NONE
+  - type: AmmoCounter
+  - type: GunIFF
+    enabled: true
+  - type: GunPointBlank
+  - type: Appearance
+  - type: GunSkilledRecoil
+    setRecoil: 0
+    mustBeWielded: false
+    skills:
+      RMCSkillFirearms: 0
   - type: CombatMechWeapon
     armState: cannon
     firingArc: 90
@@ -107,20 +121,20 @@
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_sniper.ogg
       params:
         volume: 2
+  - type: ShootAtFixedPoint
+    shootArcProj: false
+  - type: OnShootTriggerAmmoTimer
+    delay: 0.2
+  - type: GunIgnorePrediction
   - type: WieldedCrosshair
     rsi:
       sprite: _RMC14/Interface/MousePointer/explosive_mouse.rsi
       state: all
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        locked: true
-        startingItem: StoriesMagazineRX47Siegebreaker
-        priority: 2
-        whitelist:
-          tags:
-          - StoriesMagazineRX47Siegebreaker
+  - type: BallisticAmmoProvider
+    cycleable: false
+    mayTransfer: false
+    proto: StoriesCartridgeRX47Siegebreaker
+    capacity: 500
 
 - type: entity
   parent: StoriesWeaponRX47Base
@@ -164,6 +178,8 @@
         useBurstScatterMult: true
         unwieldedScatterMultiplier: 1
         shotsToMaxScatter: 30
+  # Cupola has no flamer attachment; the mech keeps a single flamer total via the scattergun's
+  # underbarrel. Otherwise the Recon variant (cupola + scattergun) would ship with two flamers.
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -174,21 +190,6 @@
         whitelist:
           tags:
           - StoriesMagazineRX47Cupola
-      rx47_flamer_tank:
-        name: Flamer tank
-        startingItem: StoriesRX47FlamerTank
-        priority: 3
-        whitelist:
-          tags:
-          - StoriesRX47FlamerTank
-  - type: AttachableHolder
-    slots:
-      rmc-aslot-underbarrel:
-        locked: true
-        startingAttachable: StoriesRX47AttachmentMiniFlamethrower
-        whitelist:
-          tags:
-          - RMCAttachmentFlamer
 
 - type: entity
   parent: StoriesWeaponRX47Base
@@ -269,7 +270,7 @@
     cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
     shootOriginOffset: 0, -0.65
-    fireRate: 0.6
+    fireRate: 0.333
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -292,6 +293,8 @@
           tags:
           - RMCTankFlamer
 
+# Magazines use mayTransfer: false and locked slots so pilots cannot manually reload mid-combat.
+# Capacities are sized for event-scale gameplay and are intentionally large.
 - type: entity
   parent: CMMagazineRifleBase
   id: StoriesMagazineRX47Chaingun
@@ -308,23 +311,6 @@
       - StoriesCartridgeRX47Chaingun
     proto: StoriesCartridgeRX47Chaingun
     capacity: 5000
-
-- type: entity
-  parent: CMMagazineRifleBase
-  id: StoriesMagazineRX47Siegebreaker
-  name: RX47 siegebreaker magazine (50mm)
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Tag
-    tags:
-    - StoriesMagazineRX47Siegebreaker
-  - type: BallisticAmmoProvider
-    mayTransfer: false
-    whitelist:
-      tags:
-      - StoriesCartridgeRX47Siegebreaker
-    proto: StoriesCartridgeRX47Siegebreaker
-    capacity: 500
 
 - type: entity
   parent: CMMagazineRifleBase
@@ -463,7 +449,7 @@
       types:
         Blunt: 45
         Structural: 90
-    maxFixedRange: 12
+    maxFixedRange: 6 # 7 tiles
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Projectiles/m5spec_projectiles.rsi
     layers:
@@ -526,9 +512,6 @@
 
 - type: Tag
   id: StoriesMagazineRX47Chaingun
-
-- type: Tag
-  id: StoriesMagazineRX47Siegebreaker
 
 - type: Tag
   id: StoriesMagazineRX47Cupola

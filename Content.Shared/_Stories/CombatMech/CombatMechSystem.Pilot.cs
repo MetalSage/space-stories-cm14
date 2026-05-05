@@ -70,6 +70,7 @@ public sealed partial class CombatMechSystem
         var inside = EnsureComp<InsideCombatVehicleComponent>(pilot);
         inside.Vehicle = ent;
         DirtyField(pilot, inside, nameof(InsideCombatVehicleComponent.Vehicle));
+        _pilotsInCombatMechs.Add(pilot);
         UpdatePilotProtection((pilot, inside));
 
         _mover.SetRelay(pilot, ent);
@@ -104,6 +105,7 @@ public sealed partial class CombatMechSystem
         if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
             RestorePilotProtection((pilot, inside));
 
+        _pilotsInCombatMechs.Remove(pilot);
         RemCompDeferred<InsideCombatVehicleComponent>(pilot);
         RemComp<RelayInputMoverComponent>(pilot);
         // SetRelay puts the relay target on the mech, not the pilot.
@@ -135,15 +137,15 @@ public sealed partial class CombatMechSystem
 
         LinkWeaponToMech(weapon, ent);
 
-        RemComp<UnremoveableComponent>(weapon);
-        if (_hands.IsHolding(ent.Owner, weapon) &&
-            !_hands.TryDrop(ent.Owner, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false))
+        // Only toggle UnremoveableComponent if we actually need to drop the weapon out of mech's hand.
+        if (_hands.IsHolding(ent.Owner, weapon))
         {
+            RemComp<UnremoveableComponent>(weapon);
+            var dropped = _hands.TryDrop(ent.Owner, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false);
             EnsureWeaponUnremoveable(weapon);
-            return false;
+            if (!dropped)
+                return false;
         }
-
-        EnsureWeaponUnremoveable(weapon);
 
         if (!_hands.TryPickup(pilot, weapon, hand, checkActionBlocker: false, animate: false, handsComp: pilotHands))
         {
@@ -151,6 +153,7 @@ public sealed partial class CombatMechSystem
             return false;
         }
 
+        EnsureWeaponUnremoveable(weapon);
         return true;
     }
 
@@ -174,15 +177,15 @@ public sealed partial class CombatMechSystem
             return;
         }
 
-        RemComp<UnremoveableComponent>(weapon);
-        if (_hands.IsHolding(pilot, weapon) &&
-            !_hands.TryDrop(pilot, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false))
+        // Only toggle UnremoveableComponent if we actually need to drop the weapon out of pilot's hand.
+        if (_hands.IsHolding(pilot, weapon))
         {
+            RemComp<UnremoveableComponent>(weapon);
+            var dropped = _hands.TryDrop(pilot, weapon, Transform(ent).Coordinates, checkActionBlocker: false, doDropInteraction: false);
             EnsureWeaponUnremoveable(weapon);
-            return;
+            if (!dropped)
+                return;
         }
-
-        EnsureWeaponUnremoveable(weapon);
 
         if (!_hands.TryPickup(ent.Owner, weapon, hand, checkActionBlocker: false, animate: false, handsComp: mechHands))
         {
@@ -195,32 +198,52 @@ public sealed partial class CombatMechSystem
             return;
         }
 
+        EnsureWeaponUnremoveable(weapon);
     }
 
     private void EjectPilotAfterWeaponTransferFailure(Entity<CombatMechComponent> mech, EntityUid pilot)
     {
         Log.Warning($"RX47 ejected {ToPrettyString(pilot)} from {ToPrettyString(mech.Owner)} after weapon transfer failed.");
 
-        if (TryComp(pilot, out BuckleComponent? buckle) &&
-            _buckle.TryUnbuckle(pilot, pilot, buckle, popup: false))
+        if (TryComp(pilot, out BuckleComponent? buckle))
         {
-            UpdateAppearance(mech);
-            return;
+            if (_buckle.TryUnbuckle(pilot, pilot, buckle, popup: false))
+            {
+                UpdateAppearance(mech);
+                return;
+            }
+
+            // TryUnbuckle was blocked by an event; force-release through the no-check Unbuckle.
+            // It still raises UnstrappedEvent so OnUnstrapped runs the normal weapon-return path.
+            _buckle.Unbuckle((pilot, buckle), null);
         }
 
-        CleanupFailedPilotStrap(mech, pilot);
+        // Last-resort cleanup if buckle is missing or Unbuckle did not propagate to OnUnstrapped.
+        if (mech.Comp.PilotEntity == pilot)
+            CleanupFailedPilotStrap(mech, pilot);
 
         UpdateAppearance(mech);
     }
 
     private void CleanupFailedPilotStrap(Entity<CombatMechComponent> mech, EntityUid pilot)
     {
+        // TryUnbuckle failed; pilot is still physically buckled.
+        // Return any weapons that were partially transferred before the failure so the
+        // mech slot is not permanently empty and the pilot is not stuck with an
+        // unremoveable weapon they cannot drop.
+        if (_net.IsServer)
+        {
+            TransferWeaponToMech(mech, pilot, true);
+            TransferWeaponToMech(mech, pilot, false);
+        }
+
         mech.Comp.PilotEntity = null;
         DirtyField(mech.Owner, mech.Comp, nameof(CombatMechComponent.PilotEntity));
 
         if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
             RestorePilotProtection((pilot, inside));
 
+        _pilotsInCombatMechs.Remove(pilot);
         RemCompDeferred<InsideCombatVehicleComponent>(pilot);
         RemComp<RelayInputMoverComponent>(pilot);
         RemComp<MovementRelayTargetComponent>(mech);

@@ -51,6 +51,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -77,8 +78,11 @@ public sealed partial class CombatMechSystem : EntitySystem
     private readonly HashSet<Entity<DamageOverTimeComponent>> _damageContacts = new();
     private readonly HashSet<Entity<BarricadeComponent>> _barricades = new();
     private readonly HashSet<EntityUid> _forceEjectingPilots = new();
+    private readonly HashSet<EntityUid> _pilotsInCombatMechs = new();
     private readonly List<EntityUid> _staleDictionaryKeys = new();
+    private readonly List<EntityUid> _stalePilots = new();
     // Entities that need default weapons spawned on the next tick (deferred past MapInit so hand containers exist).
+    // Bounded by mech spawns per tick; the full queue is drained each Update pass.
     private readonly Queue<EntityUid> _pendingDefaultWeapons = new();
 
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -110,6 +114,7 @@ public sealed partial class CombatMechSystem : EntitySystem
 #pragma warning restore CS0618
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     public override void Initialize()
     {
@@ -129,6 +134,7 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, RMCGetFireImmunityEvent>(OnMechFireImmunity);
         SubscribeLocalEvent<CombatMechComponent, PickupAttemptEvent>(OnMechPickupAttempt);
         SubscribeLocalEvent<CombatMechComponent, StartCollideEvent>(OnMechStartCollide);
+        SubscribeLocalEvent<CombatMechComponent, PreventCollideEvent>(OnMechPreventCollide);
         SubscribeLocalEvent<CombatMechComponent, MoveEvent>(OnMechMove);
         SubscribeLocalEvent<CombatMechComponent, AttemptMobTargetCollideEvent>(OnMechAttemptMobTargetCollide);
         SubscribeLocalEvent<CombatMechComponent, GetSpeedModifierContactCapEvent>(OnMechGetSpeedModifierContactCap);
@@ -136,6 +142,7 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, CombatMechInstallWeaponDoAfterEvent>(OnInstallWeaponDoAfter);
         SubscribeLocalEvent<CombatMechComponent, CombatMechDetachWeaponDoAfterEvent>(OnDetachWeaponDoAfter);
         SubscribeLocalEvent<CombatMechComponent, CombatMechForceEjectDoAfterEvent>(OnForceEjectDoAfter);
+        SubscribeLocalEvent<CombatMechComponent, EntityTerminatingEvent>(OnMechTerminating);
         SubscribeAllEvent<CombatMechUnderbarrelShootEvent>(OnCombatMechUnderbarrelShoot);
 
         SubscribeLocalEvent<CombatMechWeaponComponent, AttemptShootEvent>(OnWeaponAttemptShoot, before: [typeof(SharedRMCFlamerSystem)]);
@@ -196,23 +203,36 @@ public sealed partial class CombatMechSystem : EntitySystem
             ProcessOpenFaceplateDamageOverTime();
         }
 
-        var query = EntityQueryEnumerator<InsideCombatVehicleComponent>();
-        while (query.MoveNext(out var uid, out var inside))
+        if (!cleanupProtection)
+            return;
+
+        _stalePilots.Clear();
+        foreach (var uid in _pilotsInCombatMechs)
         {
-            if (Deleted(inside.Vehicle))
+            if (!TryComp(uid, out InsideCombatVehicleComponent? inside) ||
+                Deleted(inside.Vehicle))
             {
-                RestorePilotProtection((uid, inside));
-                RemCompDeferred<InsideCombatVehicleComponent>(uid);
+                _stalePilots.Add(uid);
                 continue;
             }
 
-            if (!cleanupProtection || !IsPilotSealed((uid, inside)))
+            if (!IsPilotSealed((uid, inside)))
                 continue;
 
             // Most effects are blocked by events; this slower pass catches late-added components without ticking every frame.
             ClearProtectedStatuses((uid, inside));
             ClearProtectedMovementDebuffs((uid, inside));
             ClearProtectedOngoingEffects((uid, inside));
+        }
+
+        foreach (var uid in _stalePilots)
+        {
+            _pilotsInCombatMechs.Remove(uid);
+            if (!TryComp(uid, out InsideCombatVehicleComponent? inside))
+                continue;
+
+            RestorePilotProtection((uid, inside));
+            RemCompDeferred<InsideCombatVehicleComponent>(uid);
         }
     }
 

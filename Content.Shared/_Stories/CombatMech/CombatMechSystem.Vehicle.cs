@@ -82,10 +82,12 @@ public sealed partial class CombatMechSystem
         if (pilot == null)
             return;
 
+        // PlayEntity (not PlayPredicted) because OnDamageChanged runs server-only here - the
+        // pilot has nothing to predict, so PlayPredicted would skip them as the supposed predictor.
         if (health <= ent.Comp.CriticalAlertThreshold && !ent.Comp.DamageAlert10)
         {
             ent.Comp.DamageAlert10 = true;
-            _audio.PlayPredicted(ent.Comp.DamageAlertSound, ent, pilot.Value);
+            _audio.PlayEntity(ent.Comp.DamageAlertSound, pilot.Value, ent);
             _popup.PopupClient(Loc.GetString("stories-rx47-alert-critical"), ent, pilot.Value, PopupType.LargeCaution);
             return;
         }
@@ -93,7 +95,7 @@ public sealed partial class CombatMechSystem
         if (health <= ent.Comp.DamagedAlertThreshold && !ent.Comp.DamageAlert25)
         {
             ent.Comp.DamageAlert25 = true;
-            _audio.PlayPredicted(ent.Comp.DamageAlertSound, ent, pilot.Value);
+            _audio.PlayEntity(ent.Comp.DamageAlertSound, pilot.Value, ent);
             _popup.PopupClient(Loc.GetString("stories-rx47-alert-damaged"), ent, pilot.Value, PopupType.MediumCaution);
         }
     }
@@ -156,11 +158,22 @@ public sealed partial class CombatMechSystem
         ent.Comp.NextBarricadeBumpAt = _timing.CurTime + ent.Comp.BarricadeBumperCooldown;
     }
 
+    private void OnMechPreventCollide(Entity<CombatMechComponent> ent, ref PreventCollideEvent args)
+    {
+        if (GetPilot(ent) == null)
+            return;
+
+        if (HasComp<ItemComponent>(args.OtherEntity))
+            args.Cancelled = true;
+    }
+
     private void OnMechMove(Entity<CombatMechComponent> ent, ref MoveEvent args)
     {
         if (_net.IsClient || GetPilot(ent) == null)
             return;
 
+        // On parent change the position delta spans mixed coordinate spaces; always mark the
+        // step as active instead of computing a potentially meaningless distance.
         if (!args.ParentChanged && (args.OldPosition.Position - args.NewPosition.Position).LengthSquared() < PositionMoveEpsilon)
             return;
 
@@ -246,7 +259,7 @@ public sealed partial class CombatMechSystem
             });
         }
 
-        if (pilot != null && pilot != user)
+        if (pilot != null && pilot != user && CanForceEject(ent, user))
         {
             args.Verbs.Add(new AlternativeVerb
             {
@@ -270,6 +283,9 @@ public sealed partial class CombatMechSystem
         if (!_interaction.InRangeUnobstructed(args.User, ent.Owner))
             return;
 
+        if (!CanForceEject(ent, args.User))
+            return;
+
         _forceEjectingPilots.Add(pilot);
         try
         {
@@ -286,7 +302,12 @@ public sealed partial class CombatMechSystem
 
     private void StartForceEject(Entity<CombatMechComponent> mech, EntityUid user)
     {
+        // Pre-check prevents starting a doafter that would immediately cancel on completion.
+        // OnForceEjectDoAfter re-checks because the user may have moved during the delay.
         if (!_interaction.InRangeUnobstructed(user, mech.Owner, popup: true))
+            return;
+
+        if (!CanForceEject(mech, user))
             return;
 
         var ev = new CombatMechForceEjectDoAfterEvent();
@@ -306,6 +327,25 @@ public sealed partial class CombatMechSystem
                 user,
                 user);
         }
+    }
+
+    private bool CanForceEject(Entity<CombatMechComponent> mech, EntityUid user)
+    {
+        return _skills.HasSkill(user, mech.Comp.ForceEjectSkill, mech.Comp.ForceEjectSkillRequired);
+    }
+
+    private void OnMechTerminating(Entity<CombatMechComponent> ent, ref EntityTerminatingEvent args)
+    {
+        if (ent.Comp.PilotEntity is not { } pilot ||
+            !TryComp(pilot, out InsideCombatVehicleComponent? inside) ||
+            inside.Vehicle != ent.Owner)
+        {
+            return;
+        }
+
+        RestorePilotProtection((pilot, inside));
+        _pilotsInCombatMechs.Remove(pilot);
+        RemCompDeferred<InsideCombatVehicleComponent>(pilot);
     }
 
     private void OnMechGetSpeedModifierContactCap(Entity<CombatMechComponent> ent, ref GetSpeedModifierContactCapEvent args)
@@ -528,7 +568,8 @@ public sealed partial class CombatMechSystem
                 // DamageOverTime sources choose their own collision mask; acid smoke is MidImpassable via MobMask.
                 if (!HasCollisionLayer(contact, contact.Comp.Collision) ||
                     !contact.Comp.AffectsCrit && _mobState.IsCritical(pilotUid) ||
-                    !contact.Comp.AffectsDead && _mobState.IsDead(pilotUid))
+                    !contact.Comp.AffectsDead && _mobState.IsDead(pilotUid) ||
+                    !_whitelist.IsWhitelistPassOrNull(contact.Comp.Whitelist, pilotUid))
                 {
                     continue;
                 }
@@ -587,6 +628,7 @@ public sealed partial class CombatMechSystem
         if (!TryComp<BarricadeComponent>(target, out _))
             return false;
 
+        // ignoreResistances: mech mass shoves aside barricades regardless of material/reinforcement.
         _damageable.TryChangeDamage(
             target,
             CreateBluntDamage(mech.Comp.BarricadeCollisionDamage),

@@ -255,6 +255,28 @@ public abstract partial class SharedGunSystem : EntitySystem
         DirtyField(gunUid, gun, nameof(GunComponent.ShotCounter));
     }
 
+    public List<EntityUid>? AttemptShootAt(
+        EntityUid user,
+        EntityUid gunUid,
+        GunComponent gun,
+        EntityCoordinates toCoordinates,
+        EntityUid? target = null,
+        List<int>? predictedProjectiles = null,
+        ICommonSession? userSession = null)
+    {
+        gun.ShootCoordinates = toCoordinates;
+        gun.Target = target;
+        try
+        {
+            return AttemptShoot(user, gunUid, gun, predictedProjectiles, userSession);
+        }
+        finally
+        {
+            gun.ShootCoordinates = null;
+            gun.Target = null;
+        }
+    }
+
     /// <summary>
     /// Shoots by assuming the gun is the user at default coordinates.
     /// </summary>

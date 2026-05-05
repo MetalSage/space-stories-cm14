@@ -1,6 +1,7 @@
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
+using Content.Shared.Humanoid;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Map;
 using Robust.Shared.Audio;
@@ -88,6 +89,7 @@ public sealed partial class CombatMechComponent : Component
     [DataField]
     public float BarricadeCollisionDamage = 900f;
 
+    // YAML prototypes override this to 0.5; the 0.9 default is a wider fallback.
     [DataField]
     public float BarricadeBumperRange = 0.9f;
 
@@ -122,6 +124,12 @@ public sealed partial class CombatMechComponent : Component
 
     [DataField]
     public int WeaponSkillRequired = 3;
+
+    [DataField]
+    public EntProtoId<SkillDefinitionComponent> ForceEjectSkill = "RMCSkillFireman";
+
+    [DataField]
+    public int ForceEjectSkillRequired = 1;
 
     [DataField]
     public SoundSpecifier? EnterSound = new SoundPathSpecifier("/Audio/Mecha/sound_mecha_powerloader_step.ogg");
@@ -169,13 +177,16 @@ public sealed partial class CombatMechWeaponComponent : Component
     [DataField(required: true)]
     public string ArmState = string.Empty;
 
-    [DataField, AutoNetworkedField]
+    // Valid only within a single round; not safe across save/restart.
+    [AutoNetworkedField]
     public EntityUid? LinkedMech;
 }
 
 [RegisterComponent]
 public sealed partial class CombatMechUnderbarrelComponent : Component;
 
+// Not [NetworkedComponent]: fields are static container-ID strings; actual fuel state is
+// tracked through SolutionContainerManager (which is networked) on the tank entity.
 [RegisterComponent]
 public sealed partial class CombatMechWeaponFlamerTankComponent : Component
 {
@@ -192,31 +203,50 @@ public sealed partial class InsideCombatVehicleComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid Vehicle;
 
-    [DataField]
+    // Runtime delta flags - not DataField: prototyping or save/restore with these
+    // set would produce incorrect RestorePilotProtection behaviour.
     [ViewVariables]
     public bool RemovedInfectable;
 
-    [DataField]
+    [ViewVariables]
+    public Dictionary<Sex, SoundSpecifier>? InfectableSound;
+
     [ViewVariables]
     public bool AddedUnparalyzable;
 
-    [DataField]
     [ViewVariables]
     public bool RemovedExplosionStun;
 
-    [DataField]
+    [ViewVariables]
+    public bool ExplosionStunWeak;
+
+    [ViewVariables]
+    public TimeSpan ExplosionStunBlindTime;
+
+    [ViewVariables]
+    public TimeSpan ExplosionStunBlurTime;
+
     [ViewVariables]
     public bool AddedTurnInvisible;
 
-    [DataField]
     [ViewVariables]
     public bool AddedActiveInvisible;
 
-    [DataField]
     [ViewVariables]
     public bool RemovedAffectableByWeeds;
 
-    [DataField]
+    [ViewVariables]
+    public bool OnXenoWeeds;
+
+    [ViewVariables]
+    public bool OnFriendlyWeeds;
+
+    [ViewVariables]
+    public bool OnXenoSlowResin;
+
+    [ViewVariables]
+    public bool OnXenoFastResin;
+
     [ViewVariables]
     public bool CollisionDisabled;
 
