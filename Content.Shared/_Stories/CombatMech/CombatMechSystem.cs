@@ -135,6 +135,7 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, UnstrapAttemptEvent>(OnUnstrapAttempt);
         SubscribeLocalEvent<CombatMechComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<CombatMechComponent, UnstrappedEvent>(OnUnstrapped);
+        SubscribeLocalEvent<CombatMechComponent, AfterAutoHandleStateEvent>(OnMechState);
         SubscribeLocalEvent<CombatMechComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
         SubscribeLocalEvent<CombatMechComponent, GetIFFGunUserEvent>(OnGetIFFGunUser);
         SubscribeLocalEvent<CombatMechComponent, ExaminedEvent>(OnExamined);
@@ -304,7 +305,7 @@ public sealed partial class CombatMechSystem : EntitySystem
         _transform.SetParent(overlay, ent.Owner);
         ent.Comp.BodyOverlayEntity = overlay;
         DirtyField(ent.Owner, ent.Comp, nameof(CombatMechComponent.BodyOverlayEntity));
-        UpdateBodyOverlayAppearance(ent);
+        UpdateVisualStack(ent);
     }
 
 }

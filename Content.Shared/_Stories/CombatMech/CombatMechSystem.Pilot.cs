@@ -291,6 +291,14 @@ public sealed partial class CombatMechSystem
 
     private void OnInsideVehicleShutdown(Entity<InsideCombatVehicleComponent> ent, ref ComponentShutdown args)
     {
+        if (_net.IsClient &&
+            TryComp(ent.Comp.Vehicle, out CombatMechComponent? mech) &&
+            mech.PilotEntity == ent.Owner)
+        {
+            ApplyPilotVisuals(ent.Owner, (ent.Comp.Vehicle, mech));
+            return;
+        }
+
         RestorePilotVisuals(ent);
     }
 
@@ -318,9 +326,14 @@ public sealed partial class CombatMechSystem
             return;
         }
 
-        UpdatePilotVisualOffset(pilot);
-        _rmcSprite.SetRenderOrder(pilot.Owner, mech.PilotRenderOrder);
-        _rmcSprite.UpdateDrawDepth(pilot.Owner);
+        ApplyPilotVisuals(pilot.Owner, (pilot.Comp.Vehicle, mech));
+    }
+
+    private void ApplyPilotVisuals(EntityUid pilot, Entity<CombatMechComponent> mech)
+    {
+        UpdatePilotVisualOffset(pilot, mech);
+        _rmcSprite.SetRenderOrder(pilot, mech.Comp.PilotRenderOrder);
+        _rmcSprite.UpdateDrawDepth(pilot);
     }
 
     private void UpdatePilotVisualOffset(Entity<InsideCombatVehicleComponent> pilot)
@@ -332,16 +345,21 @@ public sealed partial class CombatMechSystem
             return;
         }
 
-        var direction = Transform(pilot.Owner).LocalRotation.GetCardinalDir();
+        UpdatePilotVisualOffset(pilot.Owner, (pilot.Comp.Vehicle, mech));
+    }
+
+    private void UpdatePilotVisualOffset(EntityUid pilot, Entity<CombatMechComponent> mech)
+    {
+        var direction = Transform(pilot).LocalRotation.GetCardinalDir();
         var offset = direction switch
         {
-            Direction.North => mech.PilotVisualOffsetNorth,
-            Direction.South => mech.PilotVisualOffsetSouth,
-            Direction.East or Direction.West => mech.PilotVisualOffsetEastWest,
-            _ => mech.PilotVisualOffsetEastWest,
+            Direction.North => mech.Comp.PilotVisualOffsetNorth,
+            Direction.South => mech.Comp.PilotVisualOffsetSouth,
+            Direction.East or Direction.West => mech.Comp.PilotVisualOffsetEastWest,
+            _ => mech.Comp.PilotVisualOffsetEastWest,
         };
 
-        _rmcSprite.SetOffset(pilot.Owner, offset);
+        _rmcSprite.SetOffset(pilot, offset);
     }
 
     private void RestorePilotVisualOffset(EntityUid pilot)

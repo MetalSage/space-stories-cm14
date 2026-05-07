@@ -26,6 +26,7 @@ using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
+using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
@@ -410,6 +411,11 @@ public sealed partial class CombatMechSystem
         args.Immune = true;
     }
 
+    private void OnMechState(Entity<CombatMechComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        UpdateVisualStack(ent);
+    }
+
     private EntityUid? GetPilot(Entity<CombatMechComponent> ent)
     {
         if (ent.Comp.PilotEntity is { } pilot &&
@@ -430,7 +436,35 @@ public sealed partial class CombatMechSystem
         _appearance.SetData(ent, CombatMechVisuals.MarkingsColor, ent.Comp.MarkingsColorState);
         _appearance.SetData(ent, CombatMechVisuals.MarkingsSpecialty, ent.Comp.MarkingsSpecialtyState);
         _appearance.SetData(ent, CombatMechVisuals.HasTowLauncher, ent.Comp.HasTowLauncher);
+
+        if (_net.IsServer)
+            EnsureBodyOverlay(ent);
+
+        UpdateVisualStack(ent);
+    }
+
+    private void UpdateVisualStack(Entity<CombatMechComponent> ent)
+    {
         UpdateBodyOverlayAppearance(ent);
+
+        if (ent.Comp.BodyOverlayEntity is { } overlay && !Deleted(overlay))
+            _rmcSprite.SetRenderOrder(overlay, ent.Comp.BodyOverlayRenderOrder);
+
+        if (GetVisualPilot(ent) is not { } pilot)
+            return;
+
+        ApplyPilotVisuals(pilot, ent);
+    }
+
+    private EntityUid? GetVisualPilot(Entity<CombatMechComponent> ent)
+    {
+        if (ent.Comp.PilotEntity is not { } pilot || Deleted(pilot))
+            return null;
+
+        if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
+            return inside.Vehicle == ent.Owner ? pilot : null;
+
+        return _net.IsClient ? pilot : null;
     }
 
     private void UpdateBodyOverlayAppearance(Entity<CombatMechComponent> ent)

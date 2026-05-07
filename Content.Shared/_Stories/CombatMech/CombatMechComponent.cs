@@ -178,6 +178,9 @@ public sealed partial class CombatMechComponent : Component
     [DataField]
     public int PilotRenderOrder = 1;
 
+    [DataField]
+    public int BodyOverlayRenderOrder = 2;
+
     [ViewVariables]
     public bool DamageAlert25;
 
