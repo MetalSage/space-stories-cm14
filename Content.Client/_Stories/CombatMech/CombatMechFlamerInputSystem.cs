@@ -56,7 +56,7 @@ public sealed class CombatMechFlamerInputSystem : EntitySystem
         if (mousePos.MapId == MapId.Nullspace)
             return;
 
-        var coordinates = _transform.ToCoordinates(pilot, mousePos);
+        var coordinates = _transform.ToCoordinates(mousePos);
 
         NetEntity? target = null;
         if (_state.CurrentState is GameplayStateBase screen)

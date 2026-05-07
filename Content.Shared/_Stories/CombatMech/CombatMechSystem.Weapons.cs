@@ -23,6 +23,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.CombatMech;
@@ -54,6 +55,8 @@ public sealed partial class CombatMechSystem
 
     private void OnInstallWeaponDoAfter(Entity<CombatMechComponent> ent, ref CombatMechInstallWeaponDoAfterEvent args)
     {
+        SetWeaponInstallQueued(ent.Comp, args.Primary, false);
+
         if (args.Cancelled || args.Handled || args.Used == null)
             return;
 
@@ -63,6 +66,8 @@ public sealed partial class CombatMechSystem
 
     private void OnDetachWeaponDoAfter(Entity<CombatMechComponent> ent, ref CombatMechDetachWeaponDoAfterEvent args)
     {
+        SetWeaponDetachQueued(ent.Comp, args.Primary, false);
+
         if (args.Cancelled || args.Handled)
             return;
 
@@ -81,6 +86,9 @@ public sealed partial class CombatMechSystem
             return;
         }
 
+        if (IsWeaponInstallQueued(mech.Comp, primary))
+            return;
+
         var ev = new CombatMechInstallWeaponDoAfterEvent { Primary = primary };
         var doAfter = new DoAfterArgs(EntityManager, user, mech.Comp.WeaponInstallDelay, ev, mech, mech, used: weapon)
         {
@@ -90,6 +98,7 @@ public sealed partial class CombatMechSystem
             DuplicateCondition = DuplicateConditions.SameTarget | DuplicateConditions.SameTool | DuplicateConditions.SameEvent,
         };
 
+        SetWeaponInstallQueued(mech.Comp, primary, true);
         if (_doAfter.TryStartDoAfter(doAfter))
         {
             var slot = GetSlotName(primary);
@@ -97,6 +106,10 @@ public sealed partial class CombatMechSystem
                 Loc.GetString("stories-rx47-weapon-install-start-others", ("user", user), ("slot", slot)),
                 user,
                 user);
+        }
+        else
+        {
+            SetWeaponInstallQueued(mech.Comp, primary, false);
         }
     }
 
@@ -117,6 +130,9 @@ public sealed partial class CombatMechSystem
             return;
         }
 
+        if (IsWeaponDetachQueued(mech.Comp, primary))
+            return;
+
         var ev = new CombatMechDetachWeaponDoAfterEvent { Primary = primary };
         var doAfter = new DoAfterArgs(EntityManager, user, mech.Comp.WeaponDetachDelay, ev, mech, mech)
         {
@@ -126,6 +142,7 @@ public sealed partial class CombatMechSystem
             DuplicateCondition = DuplicateConditions.SameTarget | DuplicateConditions.SameEvent,
         };
 
+        SetWeaponDetachQueued(mech.Comp, primary, true);
         if (_doAfter.TryStartDoAfter(doAfter))
         {
             var slot = GetSlotName(primary);
@@ -134,12 +151,19 @@ public sealed partial class CombatMechSystem
                 user,
                 user);
         }
+        else
+        {
+            SetWeaponDetachQueued(mech.Comp, primary, false);
+        }
     }
 
     private bool InstallWeapon(Entity<CombatMechComponent> mech, EntityUid user, EntityUid weapon, bool primary)
     {
         if (!CanModifyWeapons(mech, user) || !TryComp(weapon, out CombatMechWeaponComponent? weaponComp))
             return false;
+
+        if (GetWeapon(mech, primary) == weapon && weaponComp.LinkedMech == mech.Owner)
+            return true;
 
         if (weaponComp.LinkedMech != null && !Deleted(weaponComp.LinkedMech.Value))
         {
@@ -317,8 +341,13 @@ public sealed partial class CombatMechSystem
             return;
 
         var weapon = GetEntity(netWeapon);
-        if (!TryGetMountedUnderbarrel(pilot, weapon, true, out var attachable, out var gun))
+        if (!TryGetMountedUnderbarrel(pilot, weapon, true, out var attachable, out var gun) ||
+            !TryComp(weapon, out CombatMechWeaponComponent? weaponComp) ||
+            !TryComp(pilot, out InsideCombatVehicleComponent? inside) ||
+            Deleted(inside.Vehicle))
+        {
             return;
+        }
 
         ResetMountedUnderbarrelShotCounter(attachable, gun);
         if (_timing.CurTime < gun.NextFire)
@@ -330,19 +359,26 @@ public sealed partial class CombatMechSystem
         if (mapCoordinates.MapId != weaponMap)
             return;
 
-        if (TryComp(attachable, out RMCFlamerTankComponent? tank))
-        {
-            var weaponCoordinates = _transform.GetMapCoordinates(weapon);
-            var maxRange = tank.MaxRange;
-            if ((mapCoordinates.Position - weaponCoordinates.Position).LengthSquared() > maxRange * maxRange)
-                return;
-        }
+        if (!InFiringArc(inside.Vehicle, weaponComp.FiringArc, coordinates))
+            return;
+
+        var weaponCoordinates = _transform.GetMapCoordinates(weapon);
+        var hasMaxRange = TryGetUnderbarrelMaxRange(attachable, out var maxRange);
+        if (hasMaxRange && !InWeaponRange(weaponCoordinates, mapCoordinates, maxRange))
+            return;
 
         var target = GetEntity(msg.Target);
-        if (target is { } targetUid &&
-            (Deleted(targetUid) || Transform(targetUid).MapID != weaponMap))
+        if (target is { } targetUid)
         {
-            return;
+            if (Deleted(targetUid))
+                return;
+
+            var targetCoordinates = _transform.GetMapCoordinates(targetUid);
+            if (targetCoordinates.MapId != weaponMap ||
+                hasMaxRange && !InWeaponRange(weaponCoordinates, targetCoordinates, maxRange))
+            {
+                return;
+            }
         }
 
         try
@@ -350,7 +386,7 @@ public sealed partial class CombatMechSystem
             if (TryComp(attachable, out CombatMechWeaponFlamerTankComponent? flamerTank))
                 SyncWeaponTankToMountedFlamer((attachable, flamerTank), weapon);
 
-            _gun.AttemptShootAt(pilot, attachable, gun, coordinates, target, userSession: args.SenderSession);
+            AttemptShootAtNested(pilot, attachable, gun, coordinates, target, userSession: args.SenderSession);
         }
         finally
         {
@@ -358,6 +394,60 @@ public sealed partial class CombatMechSystem
             // Reset ShotCounter so the next predictive event can fire again (rate-limited by NextFire).
             ResetMountedUnderbarrelShotCounter(attachable, gun);
         }
+    }
+
+    private List<EntityUid>? AttemptShootAtNested(
+        EntityUid user,
+        EntityUid gunUid,
+        GunComponent gun,
+        EntityCoordinates toCoordinates,
+        EntityUid? target = null,
+        ICommonSession? userSession = null)
+    {
+#pragma warning disable RA0002
+        var oldCoordinates = gun.ShootCoordinates;
+        var oldTarget = gun.Target;
+#pragma warning restore RA0002
+
+        try
+        {
+            return _gun.AttemptShootAt(user, gunUid, gun, toCoordinates, target, userSession: userSession);
+        }
+        finally
+        {
+#pragma warning disable RA0002
+            gun.ShootCoordinates = oldCoordinates;
+            gun.Target = oldTarget;
+#pragma warning restore RA0002
+        }
+    }
+
+    private bool TryGetUnderbarrelMaxRange(EntityUid attachable, out float range)
+    {
+        float? maxRange = null;
+
+        if (TryComp(attachable, out RMCFlamerTankComponent? tank))
+            maxRange = tank.MaxRange;
+
+        if (TryComp(attachable, out ShootAtFixedPointComponent? fixedPoint) &&
+            fixedPoint.MaxFixedRange is { } fixedRange)
+        {
+            // ShootAtFixedPoint MaxFixedRange is authored one tile below the intended click radius.
+            var authoredRange = fixedRange + 1f;
+            maxRange = maxRange == null ? authoredRange : Math.Min(maxRange.Value, authoredRange);
+        }
+
+        range = maxRange ?? 0f;
+        return maxRange != null;
+    }
+
+    private static bool InWeaponRange(MapCoordinates from, MapCoordinates to, float range)
+    {
+        if (from.MapId != to.MapId)
+            return false;
+
+        var checkedRange = range + UnderbarrelRangeEpsilon;
+        return (to.Position - from.Position).LengthSquared() <= checkedRange * checkedRange;
     }
 
     private void ResetMountedUnderbarrelShotCounter(EntityUid attachable, GunComponent gun)
@@ -392,7 +482,7 @@ public sealed partial class CombatMechSystem
             return;
 
         args.Handled = true;
-        _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
+        PopupCannotModifyPiloted(ent, args.User);
     }
 
     private void OnWeaponItemSlotEjectAttempt(Entity<CombatMechWeaponComponent> ent, ref ItemSlotEjectAttemptEvent args)
@@ -401,7 +491,7 @@ public sealed partial class CombatMechSystem
             return;
 
         args.Cancelled = true;
-        _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, user, PopupType.MediumCaution);
+        PopupCannotModifyPiloted(ent, user);
     }
 
     private void OnWeaponTryAmmoEject(Entity<CombatMechWeaponComponent> ent, ref RMCTryAmmoEjectEvent args)
@@ -410,7 +500,7 @@ public sealed partial class CombatMechSystem
             return;
 
         args.Cancelled = true;
-        _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
+        PopupCannotModifyPiloted(ent, args.User);
     }
 
     private void OnWeaponUseInHand(Entity<CombatMechWeaponComponent> ent, ref UseInHandEvent args)
@@ -425,35 +515,35 @@ public sealed partial class CombatMechSystem
         }
 
         args.Handled = true;
-        _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
+        PopupCannotModifyPiloted(ent, args.User);
     }
 
-    private void EnsureWeapon(Entity<CombatMechComponent> mech, bool primary)
+    private bool EnsureWeapon(Entity<CombatMechComponent> mech, bool primary)
     {
         if (GetWeapon(mech, primary) is { })
-            return;
+            return true;
 
         if (!TryComp(mech, out HandsComponent? hands))
         {
             Log.Warning($"RX47 {ToPrettyString(mech.Owner)} could not spawn default weapon: no hands component.");
-            return;
+            return false;
         }
 
         var hand = FindHand(mech, hands, primary ? HandLocation.Left : HandLocation.Right);
         if (hand == null)
         {
             Log.Warning($"RX47 {ToPrettyString(mech.Owner)} could not spawn default weapon: missing {(primary ? "left" : "right")} hand.");
-            return;
+            return false;
         }
 
         var proto = primary ? mech.Comp.PrimaryWeapon : mech.Comp.SecondaryWeapon;
         if (string.IsNullOrEmpty(proto))
-            return;
+            return true;
 
         if (!_proto.HasIndex<EntityPrototype>(proto))
         {
             Log.Error($"RX47 {ToPrettyString(mech.Owner)} default weapon prototype '{proto}' does not exist.");
-            return;
+            return false;
         }
 
         var spawned = Spawn(proto, Transform(mech).Coordinates);
@@ -462,19 +552,25 @@ public sealed partial class CombatMechSystem
         {
             Log.Error($"RX47 {ToPrettyString(mech.Owner)} default weapon prototype {proto} lacks CombatMechWeaponComponent.");
             QueueDel(spawned);
-            return;
+            return false;
         }
 
         if (!_hands.TryPickup(mech, spawned, hand, checkActionBlocker: false, animate: false, handsComp: hands))
         {
             Log.Warning($"RX47 {ToPrettyString(mech.Owner)} could not pick up spawned default weapon {ToPrettyString(spawned)}.");
             QueueDel(spawned);
-            return;
+            return false;
         }
 
         SetWeapon(mech, primary, spawned);
         LinkWeaponToMech(spawned, mech);
         EnsureWeaponUnremoveable(spawned);
+        return true;
+    }
+
+    private void PopupCannotModifyPiloted(EntityUid target, EntityUid user)
+    {
+        _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), target, user, PopupType.MediumCaution);
     }
 
     private string? FindHand(EntityUid uid, HandsComponent hands, HandLocation location)
@@ -783,6 +879,32 @@ public sealed partial class CombatMechSystem
 
         weapon.Comp.LinkedMech = null;
         DirtyField(weapon.Owner, weapon.Comp, nameof(CombatMechWeaponComponent.LinkedMech));
+    }
+
+    private static bool IsWeaponInstallQueued(CombatMechComponent mech, bool primary)
+    {
+        return primary ? mech.PrimaryWeaponInstallQueued : mech.SecondaryWeaponInstallQueued;
+    }
+
+    private static void SetWeaponInstallQueued(CombatMechComponent mech, bool primary, bool queued)
+    {
+        if (primary)
+            mech.PrimaryWeaponInstallQueued = queued;
+        else
+            mech.SecondaryWeaponInstallQueued = queued;
+    }
+
+    private static bool IsWeaponDetachQueued(CombatMechComponent mech, bool primary)
+    {
+        return primary ? mech.PrimaryWeaponDetachQueued : mech.SecondaryWeaponDetachQueued;
+    }
+
+    private static void SetWeaponDetachQueued(CombatMechComponent mech, bool primary, bool queued)
+    {
+        if (primary)
+            mech.PrimaryWeaponDetachQueued = queued;
+        else
+            mech.SecondaryWeaponDetachQueued = queued;
     }
 
     private void SetWeapon(Entity<CombatMechComponent> mech, bool primary, EntityUid? weapon)

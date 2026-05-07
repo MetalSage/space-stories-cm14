@@ -63,6 +63,8 @@
     damage:
       groups:
         Brute: 50
+  - type: CombatMechMeleeDamageMultiplier
+    multiplier: 2
   - type: XenoTailStab
     tailDamage:
       groups:

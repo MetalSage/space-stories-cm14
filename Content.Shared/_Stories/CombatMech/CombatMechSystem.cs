@@ -11,6 +11,8 @@ using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Stun;
+using Content.Shared._RMC14.Suicide;
+using Content.Shared._RMC14.Sprite;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.Flamer;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
@@ -22,6 +24,7 @@ using Content.Shared._RMC14.Xenonids.Weeds;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Camera;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
@@ -29,6 +32,7 @@ using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Explosion;
+using Content.Shared.Effects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -49,16 +53,19 @@ using Content.Shared.StatusEffect;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Stories.CombatMech;
@@ -71,12 +78,14 @@ public sealed partial class CombatMechSystem : EntitySystem
     private const float DirectionEpsilon = 0.001f;
     private const float FiringTargetEpsilon = 0.01f;
     private const float BarricadeForwardDotMinimum = 0.35f;
+    private const float UnderbarrelRangeEpsilon = 0.1f;
+    private const string BluntDamageType = "Blunt";
 
     private float _protectionCleanupAccumulator;
     // Scratch buffers used only inside Update's sequential server pass.
     private readonly HashSet<EntityUid> _contacts = new();
     private readonly HashSet<Entity<DamageOverTimeComponent>> _damageContacts = new();
-    private readonly HashSet<Entity<BarricadeComponent>> _barricades = new();
+    private readonly HashSet<EntityUid> _bumpDamageTargets = new();
     private readonly HashSet<EntityUid> _forceEjectingPilots = new();
     private readonly HashSet<EntityUid> _pilotsInCombatMechs = new();
     private readonly List<EntityUid> _staleDictionaryKeys = new();
@@ -92,6 +101,7 @@ public sealed partial class CombatMechSystem : EntitySystem
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedColorFlashEffectSystem _colorFlash = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedRMCFlammableSystem _flammable = default!;
@@ -105,11 +115,13 @@ public sealed partial class CombatMechSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
+    [Dependency] private readonly SharedRMCSpriteSystem _rmcSprite = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-#pragma warning disable CS0618 // Existing status protection still uses the legacy status effect system.
+    [Dependency] private readonly SharedStatusEffectsSystem _newStatusEffects = default!;
+#pragma warning disable CS0618 // TODO RX47: migrate cleanup once RMC protected statuses move fully to StatusEffectNew.
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 #pragma warning restore CS0618
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -136,6 +148,7 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, StartCollideEvent>(OnMechStartCollide);
         SubscribeLocalEvent<CombatMechComponent, PreventCollideEvent>(OnMechPreventCollide);
         SubscribeLocalEvent<CombatMechComponent, MoveEvent>(OnMechMove);
+        SubscribeLocalEvent<CombatMechComponent, AttemptMobCollideEvent>(OnMechAttemptMobCollide);
         SubscribeLocalEvent<CombatMechComponent, AttemptMobTargetCollideEvent>(OnMechAttemptMobTargetCollide);
         SubscribeLocalEvent<CombatMechComponent, GetSpeedModifierContactCapEvent>(OnMechGetSpeedModifierContactCap);
         SubscribeLocalEvent<CombatMechComponent, TileFrictionEvent>(OnMechTileFriction);
@@ -173,6 +186,13 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<InsideCombatVehicleComponent, GetExplosionResistanceEvent>(OnInsideVehicleExplosionResistance);
         SubscribeLocalEvent<InsideCombatVehicleComponent, DropAttemptEvent>(OnInsideVehicleDropAttempt);
         SubscribeLocalEvent<InsideCombatVehicleComponent, PickupAttemptEvent>(OnInsideVehiclePickupAttempt);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, ComponentStartup>(OnInsideVehicleStartup);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, AfterAutoHandleStateEvent>(OnInsideVehicleState);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, ComponentShutdown>(OnInsideVehicleShutdown);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, MoveEvent>(OnInsideVehicleMove);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, GetEyeOffsetAttemptEvent>(OnInsideVehicleGetEyeOffsetAttempt);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, GetVerbsEvent<Verb>>(OnInsideVehicleGetVerbs, after: [typeof(RMCSuicideSystem)]);
+        SubscribeLocalEvent<CombatMechMeleeDamageMultiplierComponent, MeleeHitEvent>(OnCombatMechMeleeHit);
     }
 
     public override void Update(float frameTime)
@@ -186,8 +206,26 @@ public sealed partial class CombatMechSystem : EntitySystem
                 continue;
 
             mech.DefaultWeaponEnsureQueued = false;
-            EnsureWeapon((pending, mech), true);
-            EnsureWeapon((pending, mech), false);
+            mech.DefaultWeaponEnsureAttempts++;
+            var primaryReady = EnsureWeapon((pending, mech), true);
+            var secondaryReady = EnsureWeapon((pending, mech), false);
+            if (!primaryReady || !secondaryReady)
+            {
+                if (mech.DefaultWeaponEnsureAttempts < mech.DefaultWeaponEnsureMaxAttempts)
+                {
+                    mech.DefaultWeaponEnsureQueued = true;
+                    _pendingDefaultWeapons.Enqueue(pending);
+                }
+                else
+                {
+                    Log.Warning($"RX47 {ToPrettyString(pending)} failed to spawn default weapons after {mech.DefaultWeaponEnsureAttempts} attempts.");
+                }
+            }
+            else
+            {
+                mech.DefaultWeaponEnsureAttempts = 0;
+            }
+
             UpdateAppearance((pending, mech));
         }
 
@@ -232,6 +270,7 @@ public sealed partial class CombatMechSystem : EntitySystem
                 continue;
 
             RestorePilotProtection((uid, inside));
+            RestorePilotVisuals((uid, inside));
             RemCompDeferred<InsideCombatVehicleComponent>(uid);
         }
     }
@@ -243,12 +282,29 @@ public sealed partial class CombatMechSystem : EntitySystem
         if (_net.IsClient)
             return;
 
+        EnsureBodyOverlay(ent);
+
         if (ent.Comp.DefaultWeaponEnsureQueued)
             return;
 
         // GiveHands finishes after MapInit; defer one tick so the mech hand containers exist before mounting weapons.
         ent.Comp.DefaultWeaponEnsureQueued = true;
         _pendingDefaultWeapons.Enqueue(ent.Owner);
+    }
+
+    private void EnsureBodyOverlay(Entity<CombatMechComponent> ent)
+    {
+        if (ent.Comp.BodyOverlayPrototype is not { } proto)
+            return;
+
+        if (ent.Comp.BodyOverlayEntity is { } existing && !Deleted(existing))
+            return;
+
+        var overlay = Spawn(proto, Transform(ent).Coordinates);
+        _transform.SetParent(overlay, ent.Owner);
+        ent.Comp.BodyOverlayEntity = overlay;
+        DirtyField(ent.Owner, ent.Comp, nameof(CombatMechComponent.BodyOverlayEntity));
+        UpdateBodyOverlayAppearance(ent);
     }
 
 }

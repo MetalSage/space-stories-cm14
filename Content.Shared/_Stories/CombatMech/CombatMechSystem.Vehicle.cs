@@ -9,6 +9,7 @@ using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
+using Content.Shared.Effects;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
@@ -29,6 +30,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -46,12 +48,11 @@ public sealed partial class CombatMechSystem
             return;
 
         var total = damageable.TotalDamage.Float();
-        var max = ent.Comp.MaxHealth;
-        if (max <= 0)
+        var health = GetHealthPercent(ent.Comp, total);
+        if (health == null)
             return;
 
-        var health = Math.Clamp(100f - total / max * 100f, 0f, 100f);
-        args.PushMarkup(Loc.GetString("stories-rx47-examine-health", ("health", (int)health)));
+        args.PushMarkup(Loc.GetString("stories-rx47-examine-health", ("health", (int) health.Value)));
 
         if (GetPilot(ent) is { } pilot)
             args.PushMarkup(Loc.GetString("stories-rx47-examine-pilot", ("pilot", pilot)));
@@ -62,21 +63,22 @@ public sealed partial class CombatMechSystem
         if (_net.IsClient)
             return;
 
-        var max = ent.Comp.MaxHealth;
-        if (max <= 0)
+        var health = GetHealthPercent(ent.Comp, args.Damageable.TotalDamage.Float());
+        if (health == null)
             return;
-
-        var health = Math.Clamp(100f - args.Damageable.TotalDamage.Float() / max * 100f, 0f, 100f);
+        var healthPercent = health.Value;
 
         // Repair events are not damage increases, but they still need to re-arm the threshold alerts.
-        if (health > ent.Comp.DamagedAlertThreshold && ent.Comp.DamageAlert25)
+        if (healthPercent > ent.Comp.DamagedAlertThreshold && ent.Comp.DamageAlert25)
             ent.Comp.DamageAlert25 = false;
 
-        if (health > ent.Comp.CriticalAlertThreshold && ent.Comp.DamageAlert10)
+        if (healthPercent > ent.Comp.CriticalAlertThreshold && ent.Comp.DamageAlert10)
             ent.Comp.DamageAlert10 = false;
 
         if (!args.DamageIncreased || args.Damageable.TotalDamage <= 0)
             return;
+
+        FlashMechDamage(ent);
 
         var pilot = GetPilot(ent);
         if (pilot == null)
@@ -84,7 +86,7 @@ public sealed partial class CombatMechSystem
 
         // PlayEntity (not PlayPredicted) because OnDamageChanged runs server-only here - the
         // pilot has nothing to predict, so PlayPredicted would skip them as the supposed predictor.
-        if (health <= ent.Comp.CriticalAlertThreshold && !ent.Comp.DamageAlert10)
+        if (healthPercent <= ent.Comp.CriticalAlertThreshold && !ent.Comp.DamageAlert10)
         {
             ent.Comp.DamageAlert10 = true;
             _audio.PlayEntity(ent.Comp.DamageAlertSound, pilot.Value, ent);
@@ -92,7 +94,7 @@ public sealed partial class CombatMechSystem
             return;
         }
 
-        if (health <= ent.Comp.DamagedAlertThreshold && !ent.Comp.DamageAlert25)
+        if (healthPercent <= ent.Comp.DamagedAlertThreshold && !ent.Comp.DamageAlert25)
         {
             ent.Comp.DamageAlert25 = true;
             _audio.PlayEntity(ent.Comp.DamageAlertSound, pilot.Value, ent);
@@ -108,7 +110,7 @@ public sealed partial class CombatMechSystem
         if (GetPilot(ent) != null)
         {
             args.Handled = true;
-            _popup.PopupClient(Loc.GetString("stories-rx47-cannot-modify-piloted"), ent, args.User, PopupType.MediumCaution);
+            PopupCannotModifyPiloted(ent, args.User);
             return;
         }
 
@@ -149,8 +151,10 @@ public sealed partial class CombatMechSystem
         if (GetPilot(ent) == null)
             return;
 
+        TryStepStunContact(ent, args.OtherEntity, Transform(ent.Owner), _timing.CurTime);
+
         if (_timing.CurTime < ent.Comp.NextBarricadeBumpAt ||
-            !TryDamageBarricade(ent, args.OtherEntity))
+            !TryDamageBumperTarget(ent, args.OtherEntity))
         {
             return;
         }
@@ -177,15 +181,46 @@ public sealed partial class CombatMechSystem
         if (!args.ParentChanged && (args.OldPosition.Position - args.NewPosition.Position).LengthSquared() < PositionMoveEpsilon)
             return;
 
+        // Only count pilot-driven motion as a "step". Marines bumping the mech can nudge its
+        // KinematicController position by physics resolution; without this gate those nudges
+        // would replay the step-stun on idle bystanders.
+        if (!TryComp(ent, out InputMoverComponent? mover) || !TryGetMovementDirection(mover, out _))
+            return;
+
         ent.Comp.LastStepMoveAt = _timing.CurTime;
+        TryProcessMarineStepStuns(ent, Transform(ent.Owner), _timing.CurTime);
+    }
+
+    private bool HasMovementInput(InputMoverComponent mover)
+    {
+        return TryGetMovementDirection(mover, out _);
+    }
+
+    private bool TryGetMovementDirection(InputMoverComponent mover, out Vector2 direction)
+    {
+        direction = mover.WishDir;
+        if (direction.LengthSquared() <= DirectionEpsilon)
+            direction = _mover.DirVecForButtons(mover.HeldMoveButtons);
+
+        if (direction.LengthSquared() <= DirectionEpsilon)
+        {
+            direction = Vector2.Zero;
+            return false;
+        }
+
+        direction = direction.Normalized();
+        return true;
+    }
+
+    private void OnMechAttemptMobCollide(Entity<CombatMechComponent> ent, ref AttemptMobCollideEvent args)
+    {
+        // The RX47 applies its own step-stun/damage from actual movement. Letting the generic
+        // mob-push resolver run on the kinematic mech allows idle marines to shove the mech body.
+        args.Cancelled = true;
     }
 
     private void OnMechAttemptMobTargetCollide(Entity<CombatMechComponent> ent, ref AttemptMobTargetCollideEvent args)
     {
-        // Only suppress incoming mob-collision when a pilot is present and actively driving the mech.
-        if (GetPilot(ent) == null)
-            return;
-
         if (!HasComp<MobCollisionComponent>(args.Entity) || HasComp<CombatMechComponent>(args.Entity))
             return;
 
@@ -331,11 +366,15 @@ public sealed partial class CombatMechSystem
 
     private bool CanForceEject(Entity<CombatMechComponent> mech, EntityUid user)
     {
+        // Event/admin rescue rule: any trained fireman can force a sealed pilot out.
         return _skills.HasSkill(user, mech.Comp.ForceEjectSkill, mech.Comp.ForceEjectSkillRequired);
     }
 
     private void OnMechTerminating(Entity<CombatMechComponent> ent, ref EntityTerminatingEvent args)
     {
+        if (ent.Comp.BodyOverlayEntity is { } overlay && !Deleted(overlay))
+            QueueDel(overlay);
+
         if (ent.Comp.PilotEntity is not { } pilot ||
             !TryComp(pilot, out InsideCombatVehicleComponent? inside) ||
             inside.Vehicle != ent.Owner)
@@ -344,6 +383,7 @@ public sealed partial class CombatMechSystem
         }
 
         RestorePilotProtection((pilot, inside));
+        RestorePilotVisuals((pilot, inside));
         _pilotsInCombatMechs.Remove(pilot);
         RemCompDeferred<InsideCombatVehicleComponent>(pilot);
     }
@@ -385,12 +425,29 @@ public sealed partial class CombatMechSystem
 
     private void UpdateAppearance(Entity<CombatMechComponent> ent)
     {
-        _appearance.SetData(ent, CombatMechVisuals.HelmetClosed, ent.Comp.HelmetClosed);
         _appearance.SetData(ent, CombatMechVisuals.PrimaryWeapon, ent.Comp.PrimaryWeaponState);
         _appearance.SetData(ent, CombatMechVisuals.SecondaryWeapon, ent.Comp.SecondaryWeaponState);
         _appearance.SetData(ent, CombatMechVisuals.MarkingsColor, ent.Comp.MarkingsColorState);
         _appearance.SetData(ent, CombatMechVisuals.MarkingsSpecialty, ent.Comp.MarkingsSpecialtyState);
         _appearance.SetData(ent, CombatMechVisuals.HasTowLauncher, ent.Comp.HasTowLauncher);
+        UpdateBodyOverlayAppearance(ent);
+    }
+
+    private void UpdateBodyOverlayAppearance(Entity<CombatMechComponent> ent)
+    {
+        if (ent.Comp.BodyOverlayEntity is not { } overlay || Deleted(overlay))
+            return;
+
+        _appearance.SetData(overlay, CombatMechVisuals.HelmetClosed, ent.Comp.HelmetClosed);
+    }
+
+    private void FlashMechDamage(Entity<CombatMechComponent> ent)
+    {
+        var targets = new List<EntityUid> { ent.Owner };
+        if (ent.Comp.BodyOverlayEntity is { } overlay && !Deleted(overlay))
+            targets.Add(overlay);
+
+        _colorFlash.RaiseEffect(Color.Red, targets, Filter.Pvs(ent.Owner, entityManager: EntityManager));
     }
 
     private void SetFaceplate(Entity<CombatMechComponent> ent, bool closed)
@@ -443,19 +500,22 @@ public sealed partial class CombatMechSystem
             var coords = _transform.GetMapCoordinates(uid, xform);
             var check = new MapCoordinates(coords.Position + direction * mech.BarricadeBumperRange, coords.MapId);
 
-            _barricades.Clear();
-            _lookup.GetEntitiesInRange(check, BarricadeBumperProbeRadius, _barricades, LookupFlags.Uncontained);
-            foreach (var barricade in _barricades)
+            _bumpDamageTargets.Clear();
+            _lookup.GetEntitiesInRange(check.MapId, check.Position, BarricadeBumperProbeRadius, _bumpDamageTargets, LookupFlags.Uncontained);
+            foreach (var target in _bumpDamageTargets)
             {
-                var barricadePos = _transform.GetMapCoordinates(barricade.Owner).Position;
-                var delta = barricadePos - coords.Position;
+                if (!CanBumperDamageTarget(target))
+                    continue;
+
+                var targetPos = _transform.GetMapCoordinates(target).Position;
+                var delta = targetPos - coords.Position;
                 if (delta.LengthSquared() > PositionMoveEpsilon &&
                     Vector2.Dot(delta.Normalized(), direction) < BarricadeForwardDotMinimum)
                 {
                     continue;
                 }
 
-                if (!TryDamageBarricade((uid, mech), barricade.Owner))
+                if (!TryDamageBumperTarget((uid, mech), target))
                     continue;
 
                 mech.NextBarricadeBumpAt = _timing.CurTime + mech.BarricadeBumperCooldown;
@@ -478,59 +538,85 @@ public sealed partial class CombatMechSystem
             if (time > mech.LastStepMoveAt + mech.StepActiveDuration)
                 continue;
 
-            _contacts.Clear();
-            _physics.GetContactingEntities(uid, _contacts);
-            if (_contacts.Count == 0)
-                continue;
-
-            var ev = new AttemptMobCollideEvent();
-            RaiseLocalEvent(uid, ref ev);
-            if (ev.Cancelled)
-                continue;
-
-            var ourAabb = _lookup.GetAABBNoContainer(uid, xform.LocalPosition, xform.LocalRotation);
-            var ourArea = Box2.Area(ourAabb);
-            if (ourArea <= 0)
-                continue;
-
-            foreach (var target in _contacts)
-            {
-                if (!CanStepStunMarine(target) ||
-                    mech.NextStepStunAt.TryGetValue(target, out var nextStepStun) && time < nextStepStun)
-                {
-                    continue;
-                }
-
-                var targetXform = Transform(target);
-                var targetAabb = _lookup.GetAABBNoContainer(target, targetXform.LocalPosition, targetXform.LocalRotation);
-                if (!ourAabb.Intersects(targetAabb))
-                    continue;
-
-                var intersect = Box2.Area(targetAabb.Intersect(ourAabb));
-                var ratio = Math.Max(intersect / Box2.Area(targetAabb), intersect / ourArea);
-                if (ratio < mech.StepStunOverlapRatio)
-                    continue;
-
-                var targetEv = new AttemptMobTargetCollideEvent();
-                RaiseLocalEvent(target, ref targetEv);
-                if (targetEv.Cancelled || !TryComp(target, out StatusEffectsComponent? status))
-                    continue;
-
-                mech.NextStepStunAt[target] = time + mech.StepStunCooldown;
-                _damageable.TryChangeDamage(
-                    target,
-                    CreateBluntDamage(mech.StepDamage),
-                    ignoreResistances: true,
-                    origin: uid,
-                    tool: uid);
-                _stun.TryParalyze(target, mech.StepStunDuration, true, status, force: true);
-            }
+            TryProcessMarineStepStuns((uid, mech), xform, time);
         }
     }
 
-    private bool CanStepStunMarine(EntityUid target)
+    private void TryProcessMarineStepStuns(Entity<CombatMechComponent> mech, TransformComponent xform, TimeSpan time)
     {
-        return HasComp<MarineComponent>(target) &&
+        PruneEntityTimeDictionary(mech.Comp.NextStepStunAt, time);
+
+        _contacts.Clear();
+        _physics.GetContactingEntities(mech.Owner, _contacts);
+        if (_contacts.Count == 0)
+            return;
+
+        var ourAabb = _lookup.GetAABBNoContainer(mech.Owner, xform.LocalPosition, xform.LocalRotation);
+        var ourArea = Box2.Area(ourAabb);
+        if (ourArea <= 0)
+            return;
+
+        foreach (var target in _contacts)
+        {
+            TryStepStunTarget(mech, target, ourAabb, ourArea, time);
+        }
+    }
+
+    private bool TryStepStunContact(Entity<CombatMechComponent> mech, EntityUid target, TransformComponent xform, TimeSpan time)
+    {
+        if (time > mech.Comp.LastStepMoveAt + mech.Comp.StepActiveDuration)
+            return false;
+
+        var ourAabb = _lookup.GetAABBNoContainer(mech.Owner, xform.LocalPosition, xform.LocalRotation);
+        var ourArea = Box2.Area(ourAabb);
+        if (ourArea <= 0)
+            return false;
+
+        return TryStepStunTarget(mech, target, ourAabb, ourArea, time);
+    }
+
+    private bool TryStepStunTarget(
+        Entity<CombatMechComponent> mech,
+        EntityUid target,
+        Box2 ourAabb,
+        float ourArea,
+        TimeSpan time)
+    {
+        if (!CanStepStunTarget(mech, target) ||
+            mech.Comp.NextStepStunAt.TryGetValue(target, out var nextStepStun) && time < nextStepStun)
+        {
+            return false;
+        }
+
+        var targetXform = Transform(target);
+        var targetAabb = _lookup.GetAABBNoContainer(target, targetXform.LocalPosition, targetXform.LocalRotation);
+        if (!ourAabb.Intersects(targetAabb))
+            return false;
+
+        var intersect = Box2.Area(targetAabb.Intersect(ourAabb));
+        var ratio = Math.Max(intersect / Box2.Area(targetAabb), intersect / ourArea);
+        if (ratio < mech.Comp.StepStunOverlapRatio)
+            return false;
+
+        var targetEv = new AttemptMobTargetCollideEvent(mech.Owner);
+        RaiseLocalEvent(target, ref targetEv);
+        if (targetEv.Cancelled || !TryComp(target, out StatusEffectsComponent? status))
+            return false;
+
+        mech.Comp.NextStepStunAt[target] = time + mech.Comp.StepStunCooldown;
+        _damageable.TryChangeDamage(
+            target,
+            CreateBluntDamage(mech.Comp.StepDamage),
+            ignoreResistances: true,
+            origin: mech.Owner,
+            tool: mech.Owner);
+        _stun.TryParalyze(target, mech.Comp.StepStunDuration, true, status, force: true);
+        return true;
+    }
+
+    private bool CanStepStunTarget(Entity<CombatMechComponent> mech, EntityUid target)
+    {
+        return _whitelist.IsWhitelistPass(mech.Comp.StepTargetWhitelist, target) &&
                !HasComp<InsideCombatVehicleComponent>(target) &&
                !HasComp<CombatMechComponent>(target) &&
                !_mobState.IsDead(target) &&
@@ -566,7 +652,7 @@ public sealed partial class CombatMechSystem
             foreach (var contact in _damageContacts)
             {
                 // DamageOverTime sources choose their own collision mask; acid smoke is MidImpassable via MobMask.
-                if (!HasCollisionLayer(contact, contact.Comp.Collision) ||
+                if (!HasCollisionLayer(inside.Vehicle, contact.Comp.Collision) ||
                     !contact.Comp.AffectsCrit && _mobState.IsCritical(pilotUid) ||
                     !contact.Comp.AffectsDead && _mobState.IsDead(pilotUid) ||
                     !_whitelist.IsWhitelistPassOrNull(contact.Comp.Whitelist, pilotUid))
@@ -623,9 +709,9 @@ public sealed partial class CombatMechSystem
         _staleDictionaryKeys.Clear();
     }
 
-    private bool TryDamageBarricade(Entity<CombatMechComponent> mech, EntityUid target)
+    private bool TryDamageBumperTarget(Entity<CombatMechComponent> mech, EntityUid target)
     {
-        if (!TryComp<BarricadeComponent>(target, out _))
+        if (!CanBumperDamageTarget(target))
             return false;
 
         // ignoreResistances: mech mass shoves aside barricades regardless of material/reinforcement.
@@ -639,11 +725,25 @@ public sealed partial class CombatMechSystem
         return true;
     }
 
+    private bool CanBumperDamageTarget(EntityUid target)
+    {
+        return HasComp<BarricadeComponent>(target) ||
+               HasComp<CombatMechBumpDamageableComponent>(target);
+    }
+
     private static DamageSpecifier CreateBluntDamage(float amount)
     {
         return new DamageSpecifier
         {
-            DamageDict = { ["Blunt"] = FixedPoint2.New(amount) },
+            DamageDict = { [BluntDamageType] = FixedPoint2.New(amount) },
         };
+    }
+
+    private static float? GetHealthPercent(CombatMechComponent mech, float totalDamage)
+    {
+        if (mech.MaxHealth <= 0)
+            return null;
+
+        return Math.Clamp(100f - totalDamage / mech.MaxHealth * 100f, 0f, 100f);
     }
 }

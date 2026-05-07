@@ -41,13 +41,13 @@
   - type: Gun
     cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.65
+    shootOriginOffset: 0, -0.85
     fireRate: 8.33
     selectedMode: FullAuto
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m60.ogg
+      path: /Audio/_Stories/Weapons/Guns/Gunshots/gun_minigun.ogg
       params:
         volume: -2
     soundEmpty:
@@ -61,16 +61,16 @@
     - FullAuto
     recoilWielded: 0
     recoilUnwielded: 0
-    scatterWielded: 8
-    scatterUnwielded: 8
+    scatterWielded: 3
+    scatterUnwielded: 3
     baseFireRate: 8.33
     modifiers:
       FullAuto:
         fireDelay: 0
-        maxScatterModifier: 6
+        maxScatterModifier: 2
         useBurstScatterMult: true
         unwieldedScatterMultiplier: 1
-        shotsToMaxScatter: 20
+        shotsToMaxScatter: 30
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -112,7 +112,7 @@
   - type: Gun
     cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.65
+    shootOriginOffset: 0, -0.85
     fireRate: 0.4
     selectedMode: SemiAuto
     availableModes:
@@ -152,7 +152,7 @@
   - type: Gun
     cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.65
+    shootOriginOffset: 0, -0.85
     fireRate: 7
     selectedMode: FullAuto
     availableModes:
@@ -168,18 +168,16 @@
     - FullAuto
     recoilWielded: 0
     recoilUnwielded: 0
-    scatterWielded: 5
-    scatterUnwielded: 5
+    scatterWielded: 3
+    scatterUnwielded: 3
     baseFireRate: 7
     modifiers:
       FullAuto:
         fireDelay: 0
-        maxScatterModifier: 4
+        maxScatterModifier: 3
         useBurstScatterMult: true
         unwieldedScatterMultiplier: 1
         shotsToMaxScatter: 30
-  # Cupola has no flamer attachment; the mech keeps a single flamer total via the scattergun's
-  # underbarrel. Otherwise the Recon variant (cupola + scattergun) would ship with two flamers.
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -190,6 +188,21 @@
         whitelist:
           tags:
           - StoriesMagazineRX47Cupola
+      rx47_flamer_tank:
+        name: Flamer tank
+        startingItem: StoriesRX47FlamerTank
+        priority: 3
+        whitelist:
+          tags:
+          - StoriesRX47FlamerTank
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-underbarrel:
+        locked: true
+        startingAttachable: StoriesRX47AttachmentMiniFlamethrower
+        whitelist:
+          tags:
+          - RMCAttachmentFlamer
 
 - type: entity
   parent: StoriesWeaponRX47Base
@@ -200,6 +213,8 @@
   - type: CombatMechWeapon
     armState: shotgun
     firingArc: 160
+  - type: GunIFF
+    enabled: false
   - type: Sprite
     sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
     layers:
@@ -207,7 +222,7 @@
   - type: Gun
     cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.65
+    shootOriginOffset: 0, -0.85
     fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
@@ -269,7 +284,7 @@
   - type: Gun
     cameraRecoilScalar: 0
     # Tuned to fire from the RX47 shoulder instead of above the sprite.
-    shootOriginOffset: 0, -0.65
+    shootOriginOffset: 0, -0.85
     fireRate: 0.333
     selectedMode: SemiAuto
     availableModes:
@@ -447,8 +462,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 45
-        Structural: 90
+        Blunt: 22.5
+        Structural: 45
     maxFixedRange: 6 # 7 tiles
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Projectiles/m5spec_projectiles.rsi
@@ -456,9 +471,9 @@
     - state: m5_84mm_he
   - type: Explosive
     explosionType: RMC
-    maxIntensity: 40
+    maxIntensity: 20
     intensitySlope: 20
-    totalIntensity: 100
+    totalIntensity: 50
     maxTileBreak: 0
   - type: CMArmorPiercing
     amount: 100

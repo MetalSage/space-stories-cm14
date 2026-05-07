@@ -1,0 +1,24 @@
+- type: entity
+  parent: RMCVisorWeldingIntegrated
+  id: StoriesVisorTankerWeldingIntegrated
+  suffix: Integrated, Tanker
+  components:
+  - type: Visor
+    toggledSprite:
+      sprite: _RMC14/Objects/Clothing/Head/Helmets/huds.rsi
+      state: tanker_weld_visor
+
+- type: entity
+  parent: CMArmorHelmetM10Tech
+  id: StoriesArmorHelmetM10Tanker
+  name: M10 tanker helmet
+  description: A tanker variant of the M10 technician helmet with an integrated welding visor and a marine IFF HUD.
+  components:
+  - type: IntegratedVisors
+    startToggled: true
+    visorsToAdd:
+    - RMCVisorSquadIntegrated
+    - StoriesVisorTankerWeldingIntegrated
+  # IFF stays on regardless of which integrated visor the operator is cycled to.
+  - type: GrantMarineIcons
+    slots: HEAD

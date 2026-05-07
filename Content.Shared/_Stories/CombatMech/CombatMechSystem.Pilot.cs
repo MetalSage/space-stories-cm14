@@ -1,12 +1,18 @@
+using System.Numerics;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Camera;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Item;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
+using Content.Shared.Verbs;
+using Robust.Shared.Maths;
 using Robust.Shared.Network;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -72,6 +78,7 @@ public sealed partial class CombatMechSystem
         DirtyField(pilot, inside, nameof(InsideCombatVehicleComponent.Vehicle));
         _pilotsInCombatMechs.Add(pilot);
         UpdatePilotProtection((pilot, inside));
+        ApplyPilotVisuals((pilot, inside));
 
         _mover.SetRelay(pilot, ent);
         var relay = EnsureComp<InteractionRelayComponent>(pilot);
@@ -103,7 +110,15 @@ public sealed partial class CombatMechSystem
         DirtyField(ent.Owner, ent.Comp, nameof(CombatMechComponent.PilotEntity));
 
         if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
+        {
             RestorePilotProtection((pilot, inside));
+            RestorePilotVisuals((pilot, inside));
+        }
+        else
+        {
+            RestorePilotVisualOffset(pilot);
+            _rmcSprite.SetRenderOrder(pilot, 0);
+        }
 
         _pilotsInCombatMechs.Remove(pilot);
         RemCompDeferred<InsideCombatVehicleComponent>(pilot);
@@ -241,7 +256,15 @@ public sealed partial class CombatMechSystem
         DirtyField(mech.Owner, mech.Comp, nameof(CombatMechComponent.PilotEntity));
 
         if (TryComp(pilot, out InsideCombatVehicleComponent? inside))
+        {
             RestorePilotProtection((pilot, inside));
+            RestorePilotVisuals((pilot, inside));
+        }
+        else
+        {
+            RestorePilotVisualOffset(pilot);
+            _rmcSprite.SetRenderOrder(pilot, 0);
+        }
 
         _pilotsInCombatMechs.Remove(pilot);
         RemCompDeferred<InsideCombatVehicleComponent>(pilot);
@@ -249,5 +272,86 @@ public sealed partial class CombatMechSystem
         RemComp<MovementRelayTargetComponent>(mech);
         RemCompDeferred<InteractionRelayComponent>(pilot);
         _movementSpeed.RefreshMovementSpeedModifiers(mech);
+    }
+
+    private void OnInsideVehicleMove(Entity<InsideCombatVehicleComponent> ent, ref MoveEvent args)
+    {
+        UpdatePilotVisualOffset(ent);
+    }
+
+    private void OnInsideVehicleStartup(Entity<InsideCombatVehicleComponent> ent, ref ComponentStartup args)
+    {
+        ApplyPilotVisuals(ent);
+    }
+
+    private void OnInsideVehicleState(Entity<InsideCombatVehicleComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        ApplyPilotVisuals(ent);
+    }
+
+    private void OnInsideVehicleShutdown(Entity<InsideCombatVehicleComponent> ent, ref ComponentShutdown args)
+    {
+        RestorePilotVisuals(ent);
+    }
+
+    private void OnInsideVehicleGetEyeOffsetAttempt(Entity<InsideCombatVehicleComponent> ent, ref GetEyeOffsetAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
+
+    private void OnInsideVehicleGetVerbs(Entity<InsideCombatVehicleComponent> ent, ref GetVerbsEvent<Verb> args)
+    {
+        if (args.User != ent.Owner || !HasLiveVehicle(ent))
+            return;
+
+        // RMCSuicideSystem adds its verb without a stable id, so the localized title is the only handle we have.
+        var suicide = Loc.GetString("rmc-suicide");
+        args.Verbs.RemoveWhere(v => v.Text == suicide);
+    }
+
+    private void ApplyPilotVisuals(Entity<InsideCombatVehicleComponent> pilot)
+    {
+        if (!HasLiveVehicle(pilot) ||
+            !TryComp(pilot.Comp.Vehicle, out CombatMechComponent? mech))
+        {
+            RestorePilotVisuals(pilot);
+            return;
+        }
+
+        UpdatePilotVisualOffset(pilot);
+        _rmcSprite.SetRenderOrder(pilot.Owner, mech.PilotRenderOrder);
+        _rmcSprite.UpdateDrawDepth(pilot.Owner);
+    }
+
+    private void UpdatePilotVisualOffset(Entity<InsideCombatVehicleComponent> pilot)
+    {
+        if (!HasLiveVehicle(pilot) ||
+            !TryComp(pilot.Comp.Vehicle, out CombatMechComponent? mech))
+        {
+            RestorePilotVisualOffset(pilot.Owner);
+            return;
+        }
+
+        var direction = Transform(pilot.Owner).LocalRotation.GetCardinalDir();
+        var offset = direction switch
+        {
+            Direction.North => mech.PilotVisualOffsetNorth,
+            Direction.South => mech.PilotVisualOffsetSouth,
+            Direction.East or Direction.West => mech.PilotVisualOffsetEastWest,
+            _ => mech.PilotVisualOffsetEastWest,
+        };
+
+        _rmcSprite.SetOffset(pilot.Owner, offset);
+    }
+
+    private void RestorePilotVisualOffset(EntityUid pilot)
+    {
+        _rmcSprite.SetOffset(pilot, Vector2.Zero);
+    }
+
+    private void RestorePilotVisuals(Entity<InsideCombatVehicleComponent> pilot)
+    {
+        RestorePilotVisualOffset(pilot.Owner);
+        _rmcSprite.SetRenderOrder(pilot.Owner, 0);
     }
 }

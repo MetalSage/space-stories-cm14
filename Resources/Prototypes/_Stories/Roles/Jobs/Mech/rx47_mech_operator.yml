@@ -7,7 +7,7 @@
   ranks:
     RMCRankSergeant: []
   startingGear: StoriesGearMechOperator
-  icon: "CMJobIconEmpty"
+  icon: "StoriesJobIconMechOperator"
   joinNotifyCrew: false
   supervisors: cm-job-supervisors-staff
   accessGroups:
@@ -28,7 +28,7 @@
         RMCSkillMedical: 1
         RMCSkillPowerLoader: 3
         RMCSkillVehicles: 2
-  hasIcon: false
+  hasIcon: true
 
 - type: job
   parent: StoriesMechOperator
@@ -39,6 +39,7 @@
   ranks:
     RMCRankStaffSergeant: []
   startingGear: StoriesGearLeadMechOperator
+  icon: "StoriesJobIconLeadMechOperator"
   special:
   - !type:AddComponentSpecial
     components:
@@ -59,38 +60,44 @@
 - type: startingGear
   id: StoriesGearMechOperator
   equipment:
-    jumpsuit: CMJumpsuitPilot
+    jumpsuit: CMJumpsuitMarineTanker
     shoes: CMBootsBlackFilled
-    head: RMCHeadBeretGreen
-    eyes: RMCWeldingGogglesSuperior
-    gloves: RMCHandsLeatherBlack
+    head: StoriesArmorHelmetM10Tanker
+    gloves: CMHandsBlackInsulated
     id: StoriesIDCardMechOperator
     ears: StoriesHeadsetMech
     back: RMCSatchelWelder
-    belt: CMBeltMarine
+    belt: RMCHolsterSMGPouchFilledExtended
     pocket1: RMCPouchGeneralLarge
-    pocket2: RMCPouchToolsSoc
-  storage:
-    back:
-    - CMWelder
+    pocket2: RMCPouchToolsSocFilledSOF
 
 - type: startingGear
   id: StoriesGearLeadMechOperator
   equipment:
-    jumpsuit: CMJumpsuitPilot
+    jumpsuit: CMJumpsuitMarineTanker
     shoes: CMBootsBlackFilled
-    head: RMCHeadBeretGreen
-    eyes: RMCWeldingGogglesSuperior
-    gloves: RMCHandsLeatherBlack
+    head: StoriesArmorHelmetM10Tanker
+    gloves: CMHandsBlackInsulated
     id: StoriesIDCardLeadMechOperator
     ears: StoriesHeadsetMech
     back: RMCSatchelWelder
-    belt: CMBeltMarine
+    belt: RMCHolsterSMGPouchFilledExtended
     pocket1: RMCPouchGeneralLarge
-    pocket2: RMCPouchToolsSoc
-  storage:
-    back:
-    - CMWelder
+    pocket2: RMCPouchToolsSocFilledSOF
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: StoriesJobIconMechOperator
+  icon:
+    sprite: _RMC14/Interface/cm_job_icons.rsi
+    state: hudsquad_mech
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: StoriesJobIconLeadMechOperator
+  icon:
+    sprite: _RMC14/Interface/cm_job_icons.rsi
+    state: hudsquad_mech_lead
 
 - type: entity
   parent: CMIDCardGold

@@ -16,6 +16,31 @@
     - type: InputMover
 
 - type: entity
+  id: StoriesRX47CombatMechBodyOverlay
+  name: RX47 body overlay
+  description: Visual overlay layer for the RX47 mech cockpit. Drawn above the pilot without changing global draw depth.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Appearance
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Stories/Objects/Vehicles/RX47/combat_mech.rsi
+    layers:
+    - state: wymech_body_overlay
+      shader: unshaded
+    - state: wymech_helmet_open
+      map: [ "enum.CombatMechVisualLayers.Helmet" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombatMechVisuals.HelmetClosed:
+        enum.CombatMechVisualLayers.Helmet:
+          True: { state: wymech_helmet_closed }
+          False: { state: wymech_helmet_open }
+  - type: SpriteSetRenderOrder
+    renderOrder: 2
+
+- type: entity
   parent: RMCMechBase
   id: StoriesRX47CombatMechBase
   name: RX47 combat mechsuit
@@ -35,6 +60,10 @@
     barricadeBumperRange: 0.5
     barricadeBumperCooldown: 0.25
   - type: RMCAllowStrapMovement
+  - type: Strap
+    blacklist:
+      components:
+      - Xeno
   - type: RMCImmuneToFireTileDamage
   - type: RMCImmuneToIgnition
   - type: NoSlip
@@ -88,10 +117,6 @@
       map: [ "enum.CombatMechVisualLayers.Legs" ]
     - state: wymech_body
       map: [ "enum.CombatMechVisualLayers.Body" ]
-    - state: wymech_body_overlay
-      shader: unshaded
-    - state: wymech_helmet_open
-      map: [ "enum.CombatMechVisualLayers.Helmet" ]
     - state: wymech_arms
       map: [ "enum.CombatMechVisualLayers.Arms" ]
     - state: weapon_chaingun_left
@@ -106,10 +131,6 @@
       map: [ "enum.CombatMechVisualLayers.TowLauncher" ]
   - type: GenericVisualizer
     visuals:
-      enum.CombatMechVisuals.HelmetClosed:
-        enum.CombatMechVisualLayers.Helmet:
-          True: { state: wymech_helmet_closed }
-          False: { state: wymech_helmet_open }
       enum.CombatMechVisuals.PrimaryWeapon:
         enum.CombatMechVisualLayers.PrimaryWeapon:
           "": { state: empty }
@@ -153,17 +174,19 @@
     heal: 100
     delay: 10
     repairableDamageLimit: 3000
+  - type: XenoCrusherChargable
+    setDamage:
+      types:
+        Blunt: 300
   - type: XenoToggleChargingDamage
     stop: true
     damage:
       types:
-        Blunt: 25
+        Blunt: 17
     armorPiercingDamage:
       types:
-        Blunt: 75
+        Blunt: 50
     armorPiercing: 30
-    stageMultipliers:
-      8: 8
   - type: Destructible
     thresholds:
     - trigger:

@@ -26,6 +26,7 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Physics;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -64,7 +65,8 @@ public sealed partial class CombatMechSystem
         if (args.Handled || !TryComp(ent.Comp.Vehicle, out TransformComponent? vehicleXform))
             return;
 
-        var rotation = _transform.GetWorldRotation(vehicleXform);
+        // Origin is expressed in the vehicle's parent coordinate space, so rotate the local offset in that space too.
+        var rotation = vehicleXform.LocalRotation;
         var rotatedOffset = rotation.RotateVec(args.Offset);
         args.Origin = vehicleXform.Coordinates.Offset(rotatedOffset);
         args.Handled = true;
@@ -78,12 +80,17 @@ public sealed partial class CombatMechSystem
         if (!IsPilotSealed(ent))
             return;
 
-        if (TryGetForwardedDamage(args.Damage, ent.Comp.Vehicle, out var forwardedDamage))
+        SplitForwardedDamage(args.Damage, ent.Comp.Vehicle, out var forwardedDamage, out var remainingDamage);
+        if (!forwardedDamage.Empty && !Deleted(ent.Comp.Vehicle) && !_mobState.IsDead(ent.Comp.Vehicle))
         {
             _damageable.TryChangeDamage(ent.Comp.Vehicle, forwardedDamage, origin: args.Origin, tool: args.Source);
         }
 
-        args.Cancelled = true;
+        remainingDamage.TrimZeros();
+        if (remainingDamage.Empty)
+            args.Cancelled = true;
+        else
+            args.Damage = remainingDamage;
     }
 
     private void OnInsideVehiclePickupAttempt(Entity<InsideCombatVehicleComponent> ent, ref PickupAttemptEvent args)
@@ -115,7 +122,7 @@ public sealed partial class CombatMechSystem
         if (!IsPilotSealed(ent))
             return;
 
-        if (IsProtectedStatus(ent, args.Effect.Id))
+        if (IsProtectedStatus(ent, args.Effect))
             args.Cancelled = true;
     }
 
@@ -190,22 +197,6 @@ public sealed partial class CombatMechSystem
             pilot.Comp.OnXenoFastResin = weeds.OnXenoFastResin;
             RemComp<AffectableByWeedsComponent>(pilot);
             pilot.Comp.RemovedAffectableByWeeds = true;
-        }
-
-        if (!HasComp<EntityTurnInvisibleComponent>(pilot))
-        {
-            var turnInvisible = EnsureComp<EntityTurnInvisibleComponent>(pilot);
-            turnInvisible.Enabled = true;
-            Dirty(pilot, turnInvisible);
-            pilot.Comp.AddedTurnInvisible = true;
-        }
-
-        if (!HasComp<EntityActiveInvisibleComponent>(pilot))
-        {
-            var activeInvisible = EnsureComp<EntityActiveInvisibleComponent>(pilot);
-            activeInvisible.Opacity = 0f;
-            Dirty(pilot, activeInvisible);
-            pilot.Comp.AddedActiveInvisible = true;
         }
 
         DisablePilotCollision(pilot);
@@ -315,7 +306,7 @@ public sealed partial class CombatMechSystem
 
     private bool HasLiveVehicle(Entity<InsideCombatVehicleComponent> pilot)
     {
-        return !Deleted(pilot.Comp.Vehicle);
+        return !Deleted(pilot.Comp.Vehicle) && !_mobState.IsDead(pilot.Comp.Vehicle);
     }
 
     private bool IsPilotSealed(Entity<InsideCombatVehicleComponent> pilot)
@@ -338,6 +329,11 @@ public sealed partial class CombatMechSystem
 #pragma warning disable CS0618 // Existing protection cleanup still uses legacy status ids.
             _statusEffects.TryRemoveStatusEffect(pilot, status);
 #pragma warning restore CS0618
+        }
+
+        foreach (var status in mech.ProtectedStatusEffectEntities)
+        {
+            _newStatusEffects.TryRemoveStatusEffect(pilot, status);
         }
     }
 
@@ -364,8 +360,7 @@ public sealed partial class CombatMechSystem
 
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
-            pilot.Comp.FixtureMasks[id] = fixture.CollisionMask;
-            pilot.Comp.FixtureLayers[id] = fixture.CollisionLayer;
+            pilot.Comp.Fixtures[id] = (fixture.CollisionMask, fixture.CollisionLayer);
             _physics.SetCollisionMask(pilot, id, fixture, 0, fixtures);
             _physics.SetCollisionLayer(pilot, id, fixture, 0, fixtures);
         }
@@ -380,21 +375,17 @@ public sealed partial class CombatMechSystem
 
         if (TryComp(pilot, out FixturesComponent? fixtures))
         {
-            foreach (var (id, mask) in pilot.Comp.FixtureMasks)
+            foreach (var (id, fixtureState) in pilot.Comp.Fixtures)
             {
                 if (fixtures.Fixtures.TryGetValue(id, out var fixture))
-                    _physics.SetCollisionMask(pilot, id, fixture, mask, fixtures);
-            }
-
-            foreach (var (id, layer) in pilot.Comp.FixtureLayers)
-            {
-                if (fixtures.Fixtures.TryGetValue(id, out var fixture))
-                    _physics.SetCollisionLayer(pilot, id, fixture, layer, fixtures);
+                {
+                    _physics.SetCollisionMask(pilot, id, fixture, fixtureState.Mask, fixtures);
+                    _physics.SetCollisionLayer(pilot, id, fixture, fixtureState.Layer, fixtures);
+                }
             }
         }
 
-        pilot.Comp.FixtureMasks.Clear();
-        pilot.Comp.FixtureLayers.Clear();
+        pilot.Comp.Fixtures.Clear();
         pilot.Comp.CollisionDisabled = false;
     }
 
@@ -408,25 +399,37 @@ public sealed partial class CombatMechSystem
         RemCompDeferred<RMCRootedComponent>(pilot);
     }
 
-    private bool IsProtectedStatus(Entity<InsideCombatVehicleComponent> pilot, string status)
+    private bool IsProtectedStatus(Entity<InsideCombatVehicleComponent> pilot, EntProtoId status)
     {
         return TryComp(pilot.Comp.Vehicle, out CombatMechComponent? mech) &&
-               mech.ProtectedStatusEffects.Contains(status);
+               (mech.ProtectedStatusEffects.Contains(status.Id) ||
+                mech.ProtectedStatusEffectEntities.Contains(status));
     }
 
-    private bool TryGetForwardedDamage(DamageSpecifier damage, EntityUid vehicle, out DamageSpecifier forwarded)
+    private void SplitForwardedDamage(
+        DamageSpecifier damage,
+        EntityUid vehicle,
+        out DamageSpecifier forwarded,
+        out DamageSpecifier remaining)
     {
         forwarded = new DamageSpecifier();
+        remaining = new DamageSpecifier();
 
         if (!TryComp(vehicle, out CombatMechComponent? mech))
-            return false;
-
-        foreach (var type in mech.ForwardedDamageTypes)
         {
-            if (damage.DamageDict.TryGetValue(type, out var amount) && amount > FixedPoint2.Zero)
-                forwarded.DamageDict[type] = amount;
+            remaining = new DamageSpecifier(damage);
+            return;
         }
 
-        return forwarded.GetTotal() > FixedPoint2.Zero;
+        foreach (var (type, amount) in damage.DamageDict)
+        {
+            if (amount == FixedPoint2.Zero)
+                continue;
+
+            if (mech.ForwardedDamageTypes.Contains(type))
+                forwarded.DamageDict[type] = amount;
+            else
+                remaining.DamageDict[type] = amount;
+        }
     }
 }

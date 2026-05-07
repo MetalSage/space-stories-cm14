@@ -1,8 +1,10 @@
+using System.Numerics;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.StatusEffect;
+using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -63,6 +65,9 @@ public sealed partial class CombatMechComponent : Component
     public TimeSpan ForceEjectDelay = TimeSpan.FromSeconds(8);
 
     [DataField]
+    public int DefaultWeaponEnsureMaxAttempts = 3;
+
+    [DataField]
     public float BaseMoveDelay = 7f;
 
     [DataField]
@@ -81,6 +86,12 @@ public sealed partial class CombatMechComponent : Component
     public float StepDamage = 90f;
 
     [DataField]
+    public EntityWhitelist StepTargetWhitelist = new()
+    {
+        Components = ["Marine"],
+    };
+
+    [DataField]
     public float StepStunOverlapRatio = 0.2f;
 
     [DataField]
@@ -95,6 +106,15 @@ public sealed partial class CombatMechComponent : Component
 
     [DataField]
     public TimeSpan BarricadeBumperCooldown = TimeSpan.FromSeconds(0.25);
+
+    [DataField]
+    public Vector2 PilotVisualOffsetNorth = new(0f, 0.45f);
+
+    [DataField]
+    public Vector2 PilotVisualOffsetSouth = new(0f, 0.12f);
+
+    [DataField]
+    public Vector2 PilotVisualOffsetEastWest = new(0f, 0.28f);
 
     [DataField]
     public List<ProtoId<DamageTypePrototype>> ForwardedDamageTypes = new()
@@ -118,6 +138,9 @@ public sealed partial class CombatMechComponent : Component
         "SlowedDown",
         "Stun",
     };
+
+    [DataField]
+    public HashSet<EntProtoId> ProtectedStatusEffectEntities = [];
 
     [DataField]
     public EntProtoId<SkillDefinitionComponent> WeaponSkill = "RMCSkillPowerLoader";
@@ -146,6 +169,15 @@ public sealed partial class CombatMechComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? PilotEntity;
 
+    [DataField]
+    public EntProtoId? BodyOverlayPrototype = "StoriesRX47CombatMechBodyOverlay";
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? BodyOverlayEntity;
+
+    [DataField]
+    public int PilotRenderOrder = 1;
+
     [ViewVariables]
     public bool DamageAlert25;
 
@@ -163,6 +195,21 @@ public sealed partial class CombatMechComponent : Component
 
     [ViewVariables]
     public bool DefaultWeaponEnsureQueued;
+
+    [ViewVariables]
+    public int DefaultWeaponEnsureAttempts;
+
+    [ViewVariables]
+    public bool PrimaryWeaponInstallQueued;
+
+    [ViewVariables]
+    public bool SecondaryWeaponInstallQueued;
+
+    [ViewVariables]
+    public bool PrimaryWeaponDetachQueued;
+
+    [ViewVariables]
+    public bool SecondaryWeaponDetachQueued;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
@@ -184,6 +231,16 @@ public sealed partial class CombatMechWeaponComponent : Component
 
 [RegisterComponent]
 public sealed partial class CombatMechUnderbarrelComponent : Component;
+
+[RegisterComponent]
+public sealed partial class CombatMechMeleeDamageMultiplierComponent : Component
+{
+    [DataField(required: true)]
+    public float Multiplier = 1f;
+}
+
+[RegisterComponent]
+public sealed partial class CombatMechBumpDamageableComponent : Component;
 
 // Not [NetworkedComponent]: fields are static container-ID strings; actual fuel state is
 // tracked through SolutionContainerManager (which is networked) on the tank entity.
@@ -254,10 +311,8 @@ public sealed partial class InsideCombatVehicleComponent : Component
     public Dictionary<EntityUid, TimeSpan> OpenFaceplateDamageAt = new();
 
     [ViewVariables]
-    public Dictionary<string, int> FixtureMasks = new();
+    public Dictionary<string, (int Mask, int Layer)> Fixtures = new();
 
-    [ViewVariables]
-    public Dictionary<string, int> FixtureLayers = new();
 }
 
 [Serializable, NetSerializable]
