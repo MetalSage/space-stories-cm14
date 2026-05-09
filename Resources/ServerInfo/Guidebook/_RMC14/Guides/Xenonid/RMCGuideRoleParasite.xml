@@ -1,9 +1,9 @@
 <Document>
-  #Parasite
+  #Лицехват
   <GuideEntityEmbed Entity="CMXenoParasite" Caption="Child / Parasite"/>
-  ##How to play as a Parasite
-  Parasites are unique from regular Xenonid gameplay, they are expendable and help infect captured hosts, or can attempt to hide under objects to catch unsuspecting victims.
-
+  ##Как играть за лицехвата
+  Лицехваты отличаются от обычных ксенонидов тем, что являются расходным материалом и помогают заражать захваченных носителей или могут пытаться прятаться под предметами, чтобы поймать ничего не подозревающих жертв.
+  
   Чтобы стать Лицехватом, вы можете использовать способность «Найти Лицехвата» в качестве призрака или щелкнуть по яйцу. Если вы недавно умерли, вам придётся подождать, чтобы стать им.
 
   Как только вы станете Лицехватом, вы можете пройти на передовую и ждать, пока ваши сёстры приведут захваченного. Чтобы заразить кого-либо на земле, вы должны использовать [color=yellow][bold][keybind="Use"][/bold][/color] на них и дождаться завершения действия.

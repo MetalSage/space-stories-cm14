@@ -1,199 +1,199 @@
 <Document>
-#Marine Communications
+#Коммуникация морпехов
 
-##Introduction
-
-
-RMC is a team game that involves military coordination in real time.
-Many jobs have communication with their superiors or subordinates as a primary or secondary function.
-
-These roles are Fireteam Leader, Squad Leader, Pilots, Dropship Crew Chief, Logistics Officer, Staff Officer, Auxiliary Support Officer, Executive Officer and Commanding Officer.
-
-This guide is intended for people who have unlocked one of these roles, and it will teach you the basics of communicating quickly and effectively to minimize downtime spent thinking about what to say, and who to say it to.
-
-It will also cover how to perform the main duties of said roles by using the communications systems on the Marine side.
-
-Feel free to skip to the relevant section if you understand these systems.
-
-One principle that applies to all the methods about to be discussed, is that the shorter and clearer the message, the better.
-The less your teammates have to read, the more information they can receive each second, and the more it fits on the screen.
-Given how mobile Xenonids are, and how hard it is to read and reposition at the same time, each second counts for transmitting lifesaving information.
-This goes double for phone calls and Command Announcements.
-
-This guide  will not talk about why someone makes a choice, but how to best make that choice be known to their teammates.
+##Вступление
 
 
-##The Tools of the Trade.
+RMC - это командная игра, которая предполагает военную координацию в режиме реального времени.
+На многих должностях общение с начальством или подчиненными является основной или второстепенной функцией.
+
+К этим ролям относятся: командир огневой группы, командир отряда, пилоты, командир экипажа десантного корабля, квартирмейстер, офицер штаба, офицер вспомогательной поддержки, исполнительный и командующий офицер.
+
+Это руководство предназначено для людей, которые выбрали одну из этих ролей, и оно научит вас основам быстрого и эффективного общения, чтобы свести к минимуму время простоя, затрачиваемое на обдумывание того, что сказать и кому это сказать.
+
+В нем также будет рассказано о том, как выполнять основные обязанности, связанные с указанными ролями, используя системы связи на стороне морпехов.
+
+Если вы разбираетесь в этих системах, смело пропускайте этот раздел.
+
+Один из принципов, применимых ко всем методам, которые мы собираемся обсудить, заключается в том, что чем короче и понятнее сообщение, тем лучше.
+Чем меньше вашим товарищам по команде приходится читать, тем больше информации они могут получать каждую секунду и тем больше её помещается на экране.
+Учитывая, насколько ксеноморфы мобильны и как трудно одновременно читать их и двигаться, для передачи жизненно важной информации важна каждая секунда.
+Это вдвойне важно для телефонных звонков и оповещений командования.
+
+В этом руководстве речь пойдет не о том, почему кто-то делает тот или иной выбор, а о том, как наилучшим образом донести этот выбор до своих товарищей по команде.
 
 
-The UNMC has two main types of communication tools that every leadership role has access to. These are the radio system and the telephone system.
-
-<Box>
-  <GuideEntityEmbed Entity="CMHeadsetAlphaTeamLeader" Caption="Alpha Headset"/>
-  <GuideEntityEmbed Entity="RMCBackpackRTO" Caption="Radio Backpack"/>
-</Box>
-
-###The Radio System
+##Инструменты
 
 
-The radio functions as the quickest means of bilateral communication available to Marines. It creates additional chat channels that Marines can talk in.
-To speak in a radio channel, focus your chat window by using [color=#ffff00][bold][keybind="FocusChatInputWindow"][/bold][/color] and then prefix your message with a "." or a ":" and the corresponding letter for that channel, followed by a space.
-Any Marine with the appropiate Encryption Key will be able to listen to your message.
-Leadership and Command roles have their radio messages displayed in a bigger font size.
-The tools used in the Radio Systems are the following:
+В КМП США есть два основных типа средств связи, к которым имеют доступ все руководители. Это система радиосвязи и телефонная система.
+
+
+###Система радиосвязи
+
+
+Радио является самым быстрым средством двусторонней связи, доступным морским пехотинцам. Оно создает дополнительные каналы общения, по которым морские пехотинцы могут общаться.
+Чтобы говорить по радиоканалу, выделите окно чата с помощью [color=#ffff00][bold][keybind="FocusChatInputWindow"][/bold][/color], а затем добавьте к своему сообщению префикс "." или ":" и соответствующую букву для этого канала, за ним следует пробел.
+Любой морской пехотинец, у которого есть соответствующий ключ шифрования, сможет услышать ваше сообщение.
+Радиосообщения руководителей и командного состава отображаются более крупным шрифтом.
+В радиосистемах используются следующие инструменты:
 
 <Box>
 	<GuideEntityEmbed Entity="CMHeadsetAlphaTeamLeader" Caption="Alpha Headset"/> <GuideEntityEmbed Entity="CMHeadsetSeniorCommand" Caption="Senior Command Headset"/> <GuideEntityEmbed Entity="CMEncryptionKeyJTAC" Caption="Encryption Key"/>
 </Box>
 
-Marine Headsets are given to most roles in their loadout vendors along with their basic uniforms, and command roles obtain them upon spawning.
-Encryption Keys may be purchased for points or obtained at Requisitions. You can examine your headset with [color=#ffff00][bold][keybind="ExamineEntity"][/bold][/color] while mousing over it to see what channels it can access and what letter they correspond to.
+Гарнитура морской пехоты выдается большинству ролей в вендоре вместе с их основной униформой, а командные роли получают их при появлении.
+Ключи шифрования можно приобрести за очки или получить в отделе поставок. Вы можете проверить свою гарнитуру с помощью [color=#ffff00][bold][keybind="ExamineEntity"][/bold][/color], наведя на нее курсор мыши, чтобы увидеть, к каким каналам она может обращаться и какой букве они соответствуют.
 
-You can copy your message to additional channels by putting more letters before the space. For example [bold]":abcd The Queen is on Charlie!!"[/bold].
-This has a cooldown depending on the role.
-[textlink="Remember that" link="RMCLanguage"] [textlink="the rules " link="RMCLanguage"][textlink="demand that you only speak English on the Radio." link="RMCLanguage"]
+Вы можете скопировать свое сообщение на другие каналы, поставив дополнительные буквы перед пробелом. Например, [bold] ":абчд Королева на Чарли!"[/bold].
+Время восстановления зависит от роли.
+[textlink="Помните о" link="RMCLanguage"] [textlink="правилах " link="RMCLanguage"][textlink="что вы должны использовать понятный язык в Радио" link="RMCLanguage"]
 
-While this is the most ergonomic communications system, it only works on the Almayer and Dropships, unless [textlink="the communications tower has " link="RMCGuideCommunicationsTowers"] [textlink="been repaired groundside." link="RMCGuideCommunicationsTowers"]
+Несмотря на то, что это наиболее эргономичная система связи, она работает только на "Алмаере" и десантных кораблях, если только [textlink="вышка связи " link="RMCGuideCommunicationsTowers"] [textlink="не была починена на планете." link="RMCGuideCommunicationsTowers"]
 
-To make sure your message went through, check that it appeared both in the channel color, and in the [color=#808080][italic]whisper color.[/italic][/color]
-Keep in mind that if you hold down a movement key before focusing the chat window, you'll keep moving in that direction as long as you don't release it.
+Чтобы убедиться, что ваше сообщение прошло, убедитесь, что оно выделено как цветом канала, так и цветом шепота [color=#808080][italic].[/italic][/color]
+Имейте в виду, что если вы удерживаете нажатой клавишу перемещения перед тем, как сфокусировать окно чата, вы будете продолжать двигаться в этом направлении до тех пор, пока не отпустите ее.
 
-Listening to every channel can get overwhelming if you are in a command position. For your first game, you may consider using [color=#ffff00][bold][keybind="UIRightClick"][/bold][/color] on your headset and selecting [bold][italic]Tune Radio[/italic][/bold]. This will allow you to mute channels individually. Try to listen to more channels each round as you get the hang of reading quickly.
+Прослушивание каждого канала может оказаться утомительным, если вы занимаете командную позицию. Для своей первой игры вы можете использовать [color=#ffff00][bold][keybind="UIRightClick"][/bold][/color] на гарнитуре и выбрать [bold][italic] для настройки радио[/italic][/bold]. Это позволит вам отключать отдельные каналы. Старайтесь прослушивать больше каналов в каждом раунде, так как вы быстро освоитесь.
+
+###Система телефонов
 
 
-###The Telephone System
-
-
-What is a marine to do when there is no radio coverage at the colony? That's where the second major communications system comes into play.
-The telephone system works by connecting two telephones together and allowing the people on each side to talk to each other as if they were in the same room.
-It can be accessed using the following item and structures:
+Что должен делать морской пехотинец, когда в колонии нет радиосвязи? Вот тут-то и вступает в действие вторая важная система связи.
+Телефонная система работает, соединяя два телефона вместе и позволяя людям с каждой стороны разговаривать друг с другом, как если бы они находились в одной комнате.
+К нему можно получить доступ, используя следующие элементы и структуры:
 
 <Box>
 	<GuideEntityEmbed Entity="RMCBackpackRTO" Caption="Radio Backpack"/> <GuideEntityEmbed Entity="RMCRotaryPhone" Caption="Rotary Phone"/> <GuideEntityEmbed Entity="RMCRotaryPhoneWallmount" Caption="Wall-mounted Phone"/>
 </Box>
 
-[bold]Rotary Phones[/bold] and [bold]Wall-mounted Phones[/bold] are each named at the start of the round for their location. To use them, mouse over them and hit [color=#ffff00][bold][keybind="ActivateItemInWorld"][/bold][/color]. That will bring up the Telephone window.
-The window is subdivided into tabs. When a tab is selected, you can click on any of the buttons corresponding to a telephone to call that phone.
-Bear in mind that you may need to expand the window to the right to see all the tabs. Once clicked, you will receive a telephone hand item.
+[bold]Стационарные телефоны [/bold] и [bold]Настенные телефоны[/bold] имеют название в начале раунда в зависимости от их местоположения. Чтобы воспользоваться ими, наведите на них курсор мыши и нажмите [color=#ffff00][bold][keybind="ActivateItemInWorld"][/bold][/color]. Откроется окно "Телефон".
+Окно разделено на вкладки. Когда выбрана вкладка, вы можете нажать на любую из кнопок, соответствующих названию телефона, чтобы позвонить по этому телефону.
+Имейте в виду, что вам может потребоваться развернуть окно, чтобы просмотреть все вкладки. Как только вы нажмете на кнопку, вы получите предмет "телефон" в руку.
 <Box>
 	<GuideEntityEmbed Entity="RMCTelephone" Caption="Telephone"/>
 </Box>
 
-The receiving phone will emit a loud noise for a time and, most importantly, will emit an emote reading [italic]"The telephone starts ringing vigorously"[/italic]. The other player can then [color=#ffff00][bold][keybind="Use"][/bold][/color] the phone to pick it up.
-While both of you hold the item, speaking in local will show your message to them in [color=#9066ff]purple[/color], and a mumbling sound will play, but they will not see your name.
-This only works if both players actively hold the phone.
-Advice on this will be covered in the "Phone-Specific Advice" section.
-To hang up, hit [color=#ffff00][bold][keybind="Use"][/bold][/color] on the telephone structure. Walking too far away while holding the item will automatically hang up.
+Принимающий телефон некоторое время будет издавать громкий звук и, что самое важное, будет выдавать эмоцию, гласящую [italic]"The telephone starts ringing vigorously"[/italic]. Затем другой игрок может нажать на [color=#ffff00][bold][keybind="Use"][/bold][/color] телефон чтобы ответить.
+Когда вы оба будете держать телефон в руках, сообщения в локальный чат будут отображаться фиолетовым цветом.
+Это работает только в том случае, если оба игрока держат телефон.
+Рекомендации по этому поводу будут приведены в разделе "Рекомендации по телефону".
+Чтобы положить трубку, нажмите [color=#ffff00][bold][keybind="Use"][/bold][/color] на телефон (радиорюкзак). Если вы отойдете слишком далеко, удерживая телефонную трубку, она автоматически повесится.
 
 
-The [bold]Radio Telephone Pack[/bold] works the same way, but also doubles as a marine satchel.
-It can be found on most squad vendors and on the surplus vendor.
-When worn, it will add an ability to the hotbar. To use it, hit the keybind assigned to that ability to bring up the Telephone Window. This also lets you pick up the phone.
-Radio Telephone Backpacks are listed under the [bold]"Marine"[/bold] tab, where they are identified by the role, name and squad of the person wearing it.
-By default, [bold]all Squad Leaders and Fireteam Leaders are expected by the community to wear one at all times.[/bold]
+[bold]Радиорюкзак[/bold] работает по тому же принципу, но еще и является сумкой морпеха.
+Его можно найти в вендорах отряда или вендорах дополнительного снаряжения.
+При ношении он добавит способность в хотбар. Чтобы использовать его, нажмите хоткей, назначенный для этой способности, чтобы открыть окно телефона. Это также позволяет вам поднять трубку телефона.
+Радиорюкзаки перечислены на вкладке [bold]"Морпехи"[/bold], где они обозначены по должности, имени и отряду человека, который его носит.
+По умолчанию [bold]командование ожидает, что все командиры отрядов и командиры огневых групп будут носить его постоянно.[/bold]
 
-##Non-bilateral communication
+##Двусторонняя коммуникация
 
 
-In addition to the ways of talking back and forth with marines, there are additional communication methods that only work one way, or work asynchronously. We will only cover three of them here. The command consoles, and the tactical map.
+Помимо способов общения с морскими пехотинцами, существуют дополнительные способы связи, которые работают только в одну сторону или асинхронно. Здесь мы рассмотрим только три из них. Командные консоли и тактическая карта.
 
 <Box>
 	<GuideEntityEmbed Entity="RMCOverwatchConsole" Caption="Overwatch Console"/> <GuideEntityEmbed Entity="RMCGroundsideOperationsConsole" Caption="Ground Ops Console"/> <GuideEntityEmbed Entity="RMCTacticalMapTable" Caption="Map Table"/>
 </Box>
 
-Each of these consoles are accessible to Staff, Auxiliary Support, Executive and Commanding Officers, along with most non-[bold]Doctor[/bold] Officers.
-They are able to access the tactical map, and make announcements that work regardless of radio coverage.
+Каждая из этих консолей доступна персоналу ЦИКа, вспомогательной поддержке, исполнительному и командующему офицеру, а также большинству офицеров, не являющихся [bold]врачами[/bold].
+Они могут просматривать тактическую карту и делать объявления, которые работают независимо от радиосвязи.
 
-Overwatch Consoles open a status window, enabling you to make announcements to their specific squad by clicking the [bold]Message Squad[/bold] button, and read the status of all marines in that squad. This message is displayed in [color=#3399ff][bold]Blue[/bold][/color] and plays a morse code sound. This message has no cooldown.
-It is intended to remind marines to stick to their assigned leaders, and to communicate important information like Queen or Tier 3 locations, or the locations of other squads.
-It also allows Overwatch to see through the eyes of any squad member with a camera (but not read any messages they send or receive), allowing for unidirectional communication in the other direction.
+Консоли Overwatch открывают окно статуса, позволяющее вам делать объявления для своего конкретного отряда, нажав кнопку [bold]Message Squad[/bold], и видеть статус всех морских пехотинцев в этом отряде. Это сообщение отображается [color=#3399ff][bold]синим цветом[/bold][/color] и воспроизводит звук азбуки Морзе. У этого сообщения нет времени восстановления.
+Это сообщение предназначено для того, чтобы напоминать морским пехотинцам о необходимости придерживаться назначенных им командиров и сообщать важную информацию, например, о местоположении королевы или уровня 3, а также о местоположении других отрядов.
+Это также позволяет Overwatch видеть глазами любого члена отряда с камерой (но не читать никаких сообщений, которые они отправляют или получают), обеспечивая однонаправленную связь.
 
-The Groundside Operations Console makes announcements (consisting of a loud, booming sound and the message, colored [color=#ff0000][bold]RED[/bold][/color] and signed by your name) that are heard by the whole faction, including non-combat personnel and FORECON (but not Survivors). This is generally done by the [color=#009900][bold]Commander[/bold][/color] or [color=#99ff66][bold]Duty Officer[/bold][/color]. This operates on a short cooldown.
+Консоль наземных операций издает объявления (состоящие из громкого, раскатистого звука и сообщения, выделенного [color=#ff0000][bold] КРАСНЫМ[/bold][/color] цветом и подписанного вашим именем), которые слышит вся фракция, включая небоевой персонал и ФОРКОН (но не выжившие). Обычно это делает [color=#009900][bold] Командующий офицер[/bold][/color] или [color=#99ff66][bold]дежурный офицер[/bold][/color]. Эти сообщения имеют небольшое время восстановления.
 
-The Commander may retrieve a Command Tablet from a wall locker next to the CIC Armory Door. It operates on a separate cooldown and can be used to look at the updating Map while walking, but is otherwise identical to the G.O.C.
-
-
-The Tactical Map can be accessed at any console or map table, where it updates in real time.
-All marines will see a static representation of said map by hitting their Tactical Map button on their UI.
-To update it, any command member may access a map table or console, click on the Canvas tab, and draw a plan on it. When submitted, all marines will receive a snapshot of the map, including all marine and human faction locations, and the orders drawn on it. The update then enters a long cooldown shared amongst all map consoles and tables.
+Командир может взять командный планшет из настенного шкафчика рядом с оружейной ЦИК. Он имеет отдельное время восстановления и может использоваться для просмотра обновляющейся карты во время ходьбы, но в остальном идентичен консоли наземных операций.
 
 
-##Why good communication matters.
+К тактической карте можно получить доступ с любой консоли или картографического стола, где она обновляется в режиме реального времени.
+
+Все морские пехотинцы увидят статичное представление указанной карты, нажав на кнопку "Тактическая карта" в своем пользовательском интерфейсе.
+Чтобы обновить ее, любой член командного состава может открыть ее на картографическом столе или консоли, щелкнув на вкладку "Холст" и нарисовать на ней план. После обновления все морские пехотинцы получат снимок карты, включая расположение всех морских пехотинцев и человеческих фракций, а также приказы, нанесенные на нее. Затем обновление переходит в режим длительного восстановления, общий для всех картографических столов и консолей.
 
 
-Xenonids are very good at moving around the map at great speeds, picking off lone opponents, and encircling unsuspecting enemies undetected.
-
-On the other hand, Marines are as slow as their slowest squad member as long as they are trying to mantain cohesion and are very reliant on numbers to survive.
-
-Therefore it is important that every second they spend moving, they move in the right direction. Because of that, it is imperative that every marine knows where to go, when they'll receive supplies, and where the biggest threats are at any given time.
-A proper flow of information will let frontline squads take a lot of ground while the Queen is bothering a different squad, will prevent ambushes and wipes, and otherwise reduce xenonid numbers with few casualties.
-
-Communication also makes use of the normal Local channel, and good leaders will know to order nearby marines by using their unaided voice to direct them.
-Note that [bold]Squad Leader[/bold] and [color=#009900][bold]Commander[/bold][/color] floating text boxes are bigger for this exact purpose.
-To make your message Bold, attach "!!" to the end of it, and give clear and simple orders like [bold]"PUSH WEST!!"[/bold] to make sure they are heard.
+##Почему хорошие коммуникации важны.
 
 
-###How to communicate as a Fireteam or Squad Leader
+Ксеноморфы очень хороши в перемещении по карте на огромной скорости, уничтожении одиноких целей и незаметном окружении ничего не подозревающих врагов.
+
+С другой стороны, морские пехотинцы так же медлительны, как и их самый медлительный член отряда, пока они пытаются поддерживать сплоченность и очень полагаются на численность, чтобы выжить.
+
+Поэтому важно, чтобы каждую секунду, которую они проводят в движении, они двигались в правильном направлении. Поэтому крайне важно, чтобы каждый морской пехотинец знал, куда идти, когда он получит припасы и где в данный момент находятся самые серьезные угрозы.
+Правильный поток информации позволит передовым отрядам захватить большую территорию, пока "Королева" будет беспокоить другой отряд, предотвратит засады и зачистки, а также сократит численность ксеноморфов с минимальными потерями.
+
+Для связи также используется обычный локальный чат, и хорошие лидеры будут знать, как отдавать приказы находящимся поблизости морским пехотинцам, используя для этого свой голос без посторонней помощи.
+Обратите внимание, что сообщения [bold][Командира отряда] и [color=#009900]Командующего[/bold][/color] увеличены именно для этой цели.
+Чтобы сделать ваше сообщение более жирным, добавьте "!!" в конце и отдавайте четкие и простые приказы, например [bold] "ДВИГАЙТЕСЬ НА ЗАПАД!!" [/bold], чтобы убедиться, что они будут услышаны.
 
 
-A third of the Squad Leader's job is to communicate with the Combat Information Center, and Fireteam Leaders are in  charge of asking for supplies and coordinating their delivery.
-You are the decision-maker on the ground, but you are issued telephones and Laser Designators for relaying data to CIC. They give you information that you are too close to the ground, and too busy getting swarmed, to see.
-You should listen to them when possible. Your time is valuable on the ground, so use telephones only to call people who are always near those phones, like CIC, Requisitions, Medical Bay or the Gunship.
+###Как общаться в качестве командира огневой группы или командира отряда.
 
-In addition to that, when calling anyone, try to start typing your message on local before they pick up the phone, that way you can send it as soon as you hear their greeting and thus achieve your objectives faster.
-At the start of the operation, it's a good idea to inform CIC of the type of opposition you face to allow them to make better decisions.
+
+Третья часть работы командира отряда заключается в поддержании связи с ЦИК, а командиры огневых групп отвечают за запрос поставок и координацию их доставки.
+
+Вы принимаете решения в поле, но вам выдают телефоны и лазерные целеуказатели для передачи данных в ЦИК. Они дают вам информацию, которую вы не видите, находясь на планете и будучи слишком занятыми, когда вас окружают толпы людей.
+Вам следует прислушиваться к ним, когда это возможно. Ваше время на земле ценно, поэтому используйте телефоны только для того, чтобы звонить людям, которые всегда находятся рядом с этими телефонами, например, в ЦИК, в отдел поставок, в медицинский отсек или на шаттл.
+
+Кроме того, когда вы звоните кому-либо, постарайтесь начать набирать свое сообщение в локальный чат до того, как собеседник поднимет трубку, так вы сможете отправить его, как только услышите приветствие, и таким образом быстрее достичь своих целей.
+В начале операции рекомендуется проинформировать ЦИК о типе угрозы, с которой вы сталкиваетесь, чтобы они могли принимать более взвешенные решения.
 
 <Box>
 	<GuideEntityEmbed Entity="RMCLaserDesignator" Caption="Laser Designator"/>
 </Box>
 
-The rest of the Leaders' communications duties consist of acting as a liason with the support departments.
-
-Use your laser designator in rangefinder mode, by hitting [color=#ffff00][bold][keybind="AltActivateItemInHand"][/bold][/color] or [color=#ffff00][bold][keybind="AltActivateItemInWorld"][/bold][/color] on it, to obtain coordinates for supply drops.
-Send those to your squad Overwatch, and relay any item requests from your squad to Requisitions using the Req channel ([color=#b17324]:u[/color]), or the Requisitions phone under the Almayer tab.
-
-Make sure to speak on JTAC ([color=#ad3b98]:j[/color]) when using your laser designator or throwing flares in order to tell the pilot that you need their attention.
-You may also use the radio to ask Pilots to look at flares for scouting purposes. If using the Designator, attach your CAS ID, which is the first letter of your squad coupled with the LD number (which is found by Examining the LD with [color=#ffff00][bold][keybind="ExamineEntity"][/bold][/color]).
+Остальные обязанности коммуникации командиров заключаются в поддержании связи со вспомогательными подразделениями.
 
 
-###How to communicate as Flight Crew
+Используйте лазерный целеуказатель в режиме дальномера, нажав [color=#ffff00][bold][keybind="AltActivateItemInHand"][/bold][/color] или [color=#ffff00][bold][keybind="AltActivateItemInWorld"][/bold][/color] чтобы получить координаты для сброса припасов.
+Отправьте их своему Overwatch и передайте любые запросы от вашего отряда в отдел поставок, используя канал поставок ([color=#b17324]:п[/color]) или по телефону отдела поставок на вкладке Алмаер.
+
+Обязательно говорите в канал СКАТ ([color=#ad3b98]:т[/color]), когда используете лазерный целеуказатель или запускаете сигнальные фаера, чтобы сообщить пилоту, что вам необходимо привлечь его внимание.
+Вы также можете использовать радио, чтобы попросить пилотов обратить внимание на сигнальные фаера в разведывательных целях. Если вы используете наведение, приложите свой идентификатор CAS, который представляет собой первую букву вашего отряда в сочетании с номером Лазерного целеуказателя (который можно найти, изучив Лазерный целеуказатель с помощью [color=#ffff00][bold][keybind="ExamineEntity"][/bold][/color]).
 
 
-Close Air Support requires communication to work effectively. Speak over JTAC and Command, calling out the locations of tier 3s and the Queen, should you spot them. Ask Leaders to redesignate if the target vanishes before you can fire.
-Use your phone for anything you are being ignored for if the radio tower is up, but keep the line clear in case someone needs urgent CAS.
-Use the radio to call out when you are taking off or landing, and mention medevacs or intel is coming up on their respective channels ([color=#009771]:m[/color] and [color=#059705]:t[/color]).
-
-In evacuation scenarios, if you are the Dropship Pilot, call CIC and stay on the line for evac orders.
-
-###How to communicate as CIC Personnel.
+###Как общаться будучи экипажем шаттла.
 
 
-CIC stands for Combat [italic]Information[/italic] Center.
-Relaying information is your primary role.
+Для эффективной работы при непосредственной поддержке с воздуха необходима связь. Говорите по каналу связи СКАТ и Командования, сообщая местонахождение 3-го уровня и Королевы, если вы их заметите. Попросите наводчиков изменить наводку, если цель исчезнет до того, как вы сможете открыть огонь.
 
-It is important that you grow used to listening to all the radio channels you have access to. If someone says something important on one channel, consider repeating that message on other channels.
-For instance, [color=#FF0000]"Queen on Alpha"[/color] should be called out in Command ([color=#5b96d4]:v[/color]) so all Leaders and CIC Personnel can react to it.
-Use the Overwatch Consoles to urge marines to stay on the Squad Leader. To mantain cohesion, issue orders by calling the SL on their phone, so lower ranked marines do not spread out when trying to fulfill them.
-Answer any questions enlisted may have on the radio.
+Если  не работает радиовышка используйте свой телефон, если вас игнорируют, но держите линию свободной на случай, если кому-то понадобится срочная помощь.
+При взлете или посадке используйте радио, чтобы сообщить о прибытии медэваков или разведданных по соответствующим каналам ([color=#009771]:м[/color] и [color=#059705]:й[/color]).
 
-Using the Groundside Operations Console operates on similar principles. Try to make announcements that all the squads will benefit from hearing. Due to its size, the upper bound of readable text is around 2 or 3 sentences. Since it has a short cooldown and it's very attention-grabbing, you should be judicious with it. Consider whether a Radio message to a specific squad will answer whatever question (spoken or not) you're replying to.
+В случае эвакуации, если вы являетесь пилотом десантного корабля, позвоните в ЦИК и оставайтесь на линии до получения распоряжений об эвакуации.
 
-Always give a heading (in the form of a cardinal direction) when calling down enemy positions or mentioning a location. It cannot be overstated how much that helps new players with low map knowledge.
-Your Overwatch Console has the unfortunate side effect of muting your audio.
-To make sure you don't miss a telephone call, make sure to look at the chat box for any sudden flashes of white, as those are often telephone notifications or priority messages from your superiors.
+###Как общаться будучи персоналом ЦИК.
 
-To make sure your superior pays attention to you, speak in the Local channel.
-The reason this works is that Local has the same color as the Telephone notifications, which experienced CIC Personnel is always on the lookout for.
-Back out of your consoles and maps once every one or three minutes to make sure you haven't missed anything.
 
-###Phone-specific advice
+ЦИК расшифровывается как [italic]Центр информационного контроля[/italic].
+Передача информации - это ваша основная роль.
 
-- Telephones do not emit messages when on the ground, therefore passing the phone should aways use the strip menu (click and drag into your sprite) to put it into someone's hand, as this prevents message loss.
-- When calling, start typing as soon as the dialing sound starts, as staying still with a phone in your hand can be dangerous or burdensome for the person you are speaking to.
-- Keep messages clear and short for the same reason, and end them with "over" to ask for a reply, or "out" to terminate them. They cannot see if you plan to stop typing.
-- Phones are good for making departments like Medical or Requisitions unable to ignore your message.
-- Use it judiciously. If you are blocking the line when someone needs to pass important information, it can result on the death of Marines. Always have a reason to call.
+Важно, чтобы вы привыкли слушать все доступные вам радиоканалы. Если кто-то говорит что-то важное на одном канале, подумайте о том, чтобы повторить это сообщение на других каналах.
 
-###Guide made by Gabrote42
+Например, [color=#FF0000]"Королева на альфе"[/color] должна быть продублирована в командный канал ([color=#5b96d4]:в[/color]), чтобы все командиры отрядов и персонал ЦИК могли отреагировать на это.
+Используйте консоли Overwatch, чтобы убедить морских пехотинцев оставаться на связи с командиром отряда. Для поддержания сплоченности отдавайте приказы, вызывая Командира отряда по телефону, чтобы морские пехотинцы более низкого ранга не разбегались, пытаясь их выполнить.
+Отвечайте по радио на любые вопросы.
+
+Использование консоли наземных операций основано на аналогичных принципах. Старайтесь делать объявления, которые было бы полезно услышать всем подразделениям. Из-за размера, верхняя граница читаемого текста составляет около 2-3 предложений. Поскольку время восстановления у него короткое и оно привлекает к себе внимание, вам следует быть осторожным с ним. Подумайте, будет ли радиосообщение конкретному подразделению ответом на любой вопрос (устный или нет), на который вы отвечаете.
+
+Всегда указывайте направление (в виде сторон света), когда указываете позиции противника или указываете местоположение. Трудно оценить, насколько это помогает новичкам, плохо знающим карту.
+У вашей консоли Overwatch есть неприятный побочный эффект - отключение звука.
+Чтобы не пропустить телефонный звонок, обязательно проверяйте окно чата на наличие внезапных белых вспышек, поскольку часто это телефонные уведомления или срочные сообщения от вашего начальства.
+
+Чтобы убедиться, что ваш начальник обращает на вас внимание, обратите внимание на локальный чат.
+Причина, по которой это работает, заключается в том, что локальный чат имеет тот же цвет, что и телефонные уведомления, на что опытный персонал ЦИК всегда обращает внимание.
+Каждые одну-три минуты отключайтесь от своих консолей и карт, чтобы убедиться, что вы ничего не пропустили.
+
+###Советы по работе с телефоном
+
+- Телефоны не передают сообщения, когда лежат на земле, поэтому, передавая кому-то телефон всегда следует использовать меню экипировки (нажмите и перетащите в свой спрайт), чтобы вложить его в чью-либо руку, так как это предотвращает потерю сообщения.
+- При звонке начинайте печатать, как только раздастся звуковой сигнал набора номера, так как неподвижное положение с телефоном в руке может быть опасным или обременительным для собеседника.
+- По той же причине оставляйте сообщения четкими и короткими и завершайте их при помощи "конец связи". Они не могут увидеть, планируете ли вы прекратить печатать.
+- Телефоны хороши для того, чтобы такие отделы, как медицинский или отдел поставок, не могли проигнорировать ваше сообщение.
+- Используйте его разумно. Если вы блокируете линию, когда кому-то нужно передать важную информацию, это может привести к гибели морских пехотинцев. Всегда есть повод позвонить.
+
+###Руководство Gabrote42, переведно Cryosed
 
 </Document>

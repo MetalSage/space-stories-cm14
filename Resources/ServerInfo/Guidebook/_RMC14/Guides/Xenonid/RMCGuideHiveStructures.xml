@@ -1,7 +1,7 @@
 <Document>
-  #Hive Structures
-  Xenonids thrive by constructing a range of specialized structures, these have to be made by a member of the drone caste line using the Order Construction ability on top of hive weeds then filled with plasma.
-  <Box>
+  # Структуры Улья
+  Ксенониды процветают, создавая ряд специализированных структур. Они должны быть созданы представителем касты трутней с помощью способности «Приказ на строительство» поверх ульевых сорняков, а затем заполнены плазмой.
+   <Box>
     <GuideEntityEmbed Entity="XenoHiveWeeds"/>
     <GuideEntityEmbed Entity="RMCGuidebookActionXenoOrderConstruction"/>
   </Box>
@@ -17,38 +17,36 @@
   </Box>
   <Box>
     <GuideEntityEmbed Entity="HiveAcidPillarXeno"/>
-  </Box>
-  ##Each have limits!
-  - 1 Hive Core
-  - 6 Egg Morphers
-  - 6 Recovery nodes
-  - 3 Plasma Trees
-  - 8 Hive Clusters
-  - 2 Hive Pylons
-  - 1 Acid Pillar per Hivelord or Queen
+  </box>
+  ## У каждой постройки есть свои лимиты!
+  - 1 Ядро Улья
+  - 6 Яйцеморферов
+  - 6 Узлов Восстановления
+  - 3 Плазменных дерева
+  - 8 Ульевых Кластеров
+  - 2 Ульевых Пилона
+  - 1 Кислотное дерево за каждого лорда улья и королеву
 
-  ## What do they do?
+  ## Что они делают?
 
-  [bold]Egg Morphers[/bold]: Egg morphers act as a large egg that launch parasites upon any host that enters its vicinity. Gradually produces up to 6 parasites and stores 12 which can be retrieved by Xenonids.
+  [bold]Яйцеморферы[/bold]: Яйцеморферы действуют как большое яйцо, которое выпускает паразитов на любого носителя, оказавшегося поблизости. Постепенно производит до 6 паразитов и хранит 12, которых могут забрать Ксенониды.
 
-  [bold]Hive Core[/bold]: This is constructed at the start of the match usually by the Queen to designate where the hive will be located and allows other hive structures to be built. Once constructed it will provide bonus evolution point gain rate, energy to produce Lesser Drones, hive weeds, and roofing protection from skyfire (orbital bombardment) and skyspit (close air support). If a dead larva is taken to the hivecore it will grant a burrowed larva so a new sister can be born! If the hivecore is destroyed then a 5 minute penalty will be incurred before another hivecore can be made, so be sure to protect it!
+  [bold]Ядро Улья[/bold]: Обычно строится Королевой в начале матча, чтобы обозначить местоположение улья и позволяет строить другие структуры улья. После постройки оно обеспечивает бонус к скорости получения очков эволюции, энергию для производства Малых Трутней, ульевые сорняки, и защиту сверху от небесного огня (орбитальная бомбардировка) и небесного плевка (ближняя воздушная поддержка). Если ядро улья уничтожено, будет наложен 5-минутный штраф, прежде чем можно будет создать новое ядро улья, так что обязательно защищайте его!
 
-  [bold]Hive Pylon[/bold]: These are created by planting a hive cluster near a signal tower and then filling it, once it reaches the tower with its weeds it will convert to a Pylon. These generate lesser drones and have roofing protection from skyspit.
+  [bold]Ульевой Пилон[/bold]: Создаются путем размещения ульевого кластера рядом с сигнальной башней и последующего его заполнения. Как только его сорняки достигнут башни, он преобразуется в Пилон. Они генерируют малых трутней и имеют защиту сверху от небесного плевка.
 
-  [bold]Hive Cluster[/bold]: Hive Clusters emit hive weeds which allow other hive structures to be built around them, it also can be repaired with plasma if it loses any weeds or health.
+  [bold]Ульевой Кластер[/bold]: Ульевые Кластеры испускают ульевые сорняки, которые позволяют строить другие структуры улья вокруг них. Его также можно отремонтировать плазмой, если он теряет сорняки или здоровье.
 
-  [bold]Recovery Node[/bold]: Recovery Node allows for Xenonids resting near it to be healed. Only one Xenonid can be healed at a time.
+  [bold]Узел Восстановления[/bold]: Узел Восстановления позволяет Ксенонидам, отдыхающим рядом с ним, исцеляться. Одновременно может исцеляться только один Ксенонид.
+ 
+  [bold]Плазменное дерево[/bold]: Плазменные деревья как узлы восстановления, восстанавливают плазму вместо лечения. Одновременно восстанавливать плазму может только один Ксенонид.
 
-  [bold]Plasma Tree[/bold]: Plasma Trees are just like Recovery Nodes but give plasma instead of healing to Xenonids.
+  [bold]Кислотное дерево[/bold]: Тушит огонь поблизости.
+  
+  ## Где размещать!
+  Поскольку их количество ограничено, всегда лучше всего согласовывать с вашим ульем, когда вы размещаете одну из них.
 
-  [bold]Acid Pillar[/bold]: Extinguishes nearby fires.
+  Ульевые кластеры можно использовать на передовой, чтобы задерживать наступление носителей, или в тылу для создания мест гнездования, обычно сопровождаемых туннелем; в этих местах гнездования также будет 2 или более яйцеморфера.
 
-  ## Where to place!
-  Since they are limited it is always best to communicate with your hive when you are placing one.
-
-  Hive clusters can be used at the frontline to stall host pushes or at the backline for nesting spots, usually accompanied by a tunnel, these nesting spots will also have 2 or more egg morphers.
-
-  Recovery nodes should be put at the frontline near a hive cluster to help sisters fight extended battles.
-
-  Plasma trees can be used both at frontline (for healers and frontline builders) and at backline (for backline builders).
+  Узлы восстановления следует размещать на передовой рядом с ульевым кластером, чтобы помочь сёстрам вести затяжные бои.
 </Document>

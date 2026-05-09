@@ -1,67 +1,65 @@
 ﻿<Document>
-  [bold]WESTON-YAMADA CORPORATION[/bold]
+  [bold]Корпорация Вестон-Ямада[/bold]
   [color=#FFFFFF]░░░░░░░░[/color][color=#d16d1f]█[/color][color=#eb7a23]▌[color=#FFFFFF]░░░░[/color]▄███▌[color=#25b266]▌▄[/color][color=#1c8a4e]█▀[/color]▄██████████[/color]
   [color=#FFFFFF]░░░░░░░░[/color][color=#d16d1f]█[/color][color=#eb7a23]▌[color=#FFFFFF]░░[/color]▄██[color=#d16d1f]██[/color]█▌[color=#1c8a4e]█▀[/color]▄██[color=#d16d1f]█▀[/color][/color]
   [color=#FFFFFF]░░░░░░░░[/color][color=#d16d1f]█[/color][color=#eb7a23]▌▄██[color=#d16d1f]█▀[/color][color=#1c8a4e]▄[/color][color=#d16d1f]▐[/color]█▌▄██[color=#d16d1f]█▀[/color][color=#EEEE]▄[/color]▐████████[/color]
   [color=#FFFFFF]░░░░░░░░[/color][color=#d16d1f]█[/color][color=#eb7a23]██[color=#d16d1f]█▀[/color][color=#25b266]▄█[/color][color=#1c8a4e]█[/color][color=#d16d1f]▐[/color]███[color=#d16d1f]█▀[/color][color=#EEEEEE]▄█[/color][color=#DDDDDD]█[/color][/color]
   [color=#FFFFFF]░░░░░░░░[/color][color=#d16d1f]██▀[/color][color=#25b266]▄█[/color][color=#1c8a4e]█▀[/color][color=#FFFFFF]░[/color][color=#d16d1f]▐██▀[/color][color=#EEEEEE]▄█[/color][color=#DDDDDD]█▀▐[/color][color=#eb7a23]▐████████[/color]
-  [bolditalic]"THE FUTURE IS NOW"[/bolditalic]
+  [bolditalic]"Будущее уже наступило"[/bolditalic]
   [color=#383838]▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄[/color]
   [color=#eb7a23]▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀[/color]
 
-  # Corporate Liaison Guide
-  [italic] By SharkSnake98 on GitHub[italic]
+  # Руководство по корпоративному связному
+  
+  [italic]Составлен [bold]SharkSnake98[/bold], переведено [bold]Cryosed[/bold].[/italic]
 
-  ## Introduction and Information
+  ## Вступление и информация
   <Box>
     <GuideEntityEmbed Entity="CMGuidebookRoleLiaisonYou"/>
   </Box>
 
-  Welcome to the [bold][color=#eb7a23]Weston[/color]-[color= #25b266]Yamada[/color] Corporation[/bold]! You have chosen to become a member of the Special Services Division as a Liaison; our representatives, sent afar to make sure that our interests are maintained and protected. However, that can feel vague and confusing, especially to Jr. Executives who aren’t yet acclimatized to the expectations and duties of the role. This guide is intended to fix that, by developing a set of Do’s and Don’ts, as well as establishing expectations and highlighting the resources you have access to.
+  Добро пожаловать в [bold]корпорацию [color=#eb7a23]Вестон[/color]-[color=#25b266]Ямада[/color][/bold]! Вы выбрали стать членом отдела специальных служб в качестве связного; наших представителей, отправленных далеко, чтобы обеспечить сохранность и защиту наших интересов. Это может показаться расплывчатым и запутанным, особенно для младших руководителей, которые ещё не привыкли к ожиданиям и обязанностям этой роли. Это руководство призвано исправить это, разработав набор правил и запретов, а также определив ожидания и доступные ресурсы.
 
+  ## Не стоит
+  В этом разделе представлены различные действия, которых обычно следует избегать при работе корпоративным связным, так как они либо недобросовестны, либо не рекомендуются, либо в целом незаконны, либо всё это вышеперечисленное!
 
-  ## Don’ts
-  This section comprises various actions you generally should try to avoid while working as a Corporate Liaison, as they are either bad form, not advised, generally illegal, or all of the above!
+  ### Не стоит: Быть антагонистом
+  Ваша задача как [bold]Корпоративного связного[/bold] не только обеспечить прибыль [bold][color=#eb7a23]Ве[/color]-[color=#25b266]Я[/color][/bold], но и поддерживать наши отношения с [color=#1b67a5][bold]США[/bold][/color] и быть как минимум дружественным к ним. Хоть вы всегда и должны стараться следовать нашим интересам, не стоит пытаться создавать значительные помехи во время операции КМП США; хотя и не обязательно быть дружелюбным к ним, никогда не стоит быть явно враждебным, если только [color=#FF0000][bold]Админ[/bold][/color] не указал иное.
+  [bold][color=#eb7a23]Ве[/color]-[color=#25b266]Я[/color][/bold] и [color=#1b67a5][bold]США[/bold][/color] союзники, и их успех во время операции почти всегда положителен для компании. Кроме того, если возникнут какие-то проблемы, вы всегда можете отправить нам факс.
 
-  ### Don’t: Be Antagonistic
-  Your job as a [bold]Corporate Liaison[/bold] is not only to make sure WeYa reaps a profit, but also to ensure that our relations between us and the [color=#1b67a5][bold]UN[/bold][/color] are maintained, and kept amicable, at the very least. While you should always try to ensure our interests are maintained, you shouldn’t try to cause significant interference during a UNMC operation; although you don’t necessarily need to be friendly to them, you should never be overtly antagonistic, unless specified otherwise by an Admin.
-
-  [bold][color=#eb7a23]We[/color][color=#25b266]Ya[/color][/bold] and the [color=#1b67a5][bold]UN[/bold][/color] are allies, and their success during an operation is almost always a positive for the Company. Besides, if there’s any issues, you can always send us a fax.
-
-  ### Don’t: Engage in Frontline Combat
-  To put it bluntly, you are not a combat role; you struggle to aim a firearm larger than a pistol, and you cannot wear most armor except for emergency gear. Your job usually consists of filing paperwork, liaising with the marines, and generally engaging in roleplay. While you are free to head down planetside, it’s advisable you stay in the [bold]FOB[/bold] at most times. After all, the Company needs its Liaisons alive to protect our interests.
-
-  ### Don’t: Drink Yourself to Death
+  ### Не стоит: Вступать в бой на передовой
+  Говоря прямо, вы не боевая роль; Вам тяжело стрелять с огнестрельного оружия больше пистолета, и вы не можете носить большую часть брони, кроме аварийного снаряжения. Ваша работа обычно состоит из оформления документов, взаимодействия с морскими пехотинцами и вообще ролевой игры. Хоть вы и можете спускаться на планету, рекомендуем оставаться на [bold]ФОБ[/bold] в большинстве случаев. В конце концов, компании нужны живые связные для защиты наших интересов.
+  ### Не стоит: Напиваться до смерти
   <Box>
     <GuideEntityEmbed Entity="RMCDrinkAlcoholSake" Caption="Drink"/>  <GuideEntityEmbed Entity="CMDrinkCanBeerLite" Caption="in"/> <GuideEntityEmbed Entity="CMDrinkCanAle" Caption="moderation!"/>
   </Box>
-  As the Almayer’s [bold]Corporate Liaison[/bold], you have access to a collection of different alcoholic and non-alcoholic drinks inside your closet. Though it may be tempting to overindulge, this is [bold]NEVER[/bold] a good idea. Not only do you risk suffering from alcohol poisoning if you drink too much, diverting medical assets away from the operation, but it could result in your imprisonment, and is terrible for PR.
+  Как [bold]корпоративный связной[/bold] УДКТ 'Алмаер', вы имеете доступ к коллекции различных алкогольных и безалкогольных напитков, хранящихся в вашей подсобке. Хотя соблазн переборщить и может возникнуть, это [bold]НЕ[/bold] лучшая идея. Вы не только рискуете получить алкогольное отравление выпив слишком много, отвлекая медицинский отдел от работы, но это также может привести к вашему тюремному заключению и негативно сказаться на репутации компании.
 
-  A [bold][color=#eb7a23]Weston[/color]-[color= #25b266]Yamada[/color][/bold] representative vomiting their guts out isn’t something that looks good for us, truth be told. Though you can treat yourself once in a while, make sure to keep your drinking in moderation.
+  По правде говоря, представитель [bold][color=#eb7a23]Вестон[/color]-[color=#25b266]Ямада[/color][/bold] выблевывающий содержимое своих кишок выглядит не очень солидно для компании. Вы можете время от времени побаловать себя, но следите за тем, чтобы потребление алкоголя было умеренным.
 
 
 
-  ## Do’s
-  This section comprises of tips and tricks of the trade, which can help you on your duties.
+  ## Что делать
+  Этот раздел содержит профессиональные советы и хитрости, которые могут помочь вам в выполнении ваших обязанностей.
 
-  ### Do: Be Creative!
-  Although it might make logical sense to try and contact [bold][color=#eb7a23]Weston[/color]-[color= #25b266]Yamada[/color][/bold] HQ for directives, the unfortunate fact of the matter is that fax responses are somewhat uncommon, and objectives even less so. This means that [bold]Corporate Liaison[/bold] is in essence somewhat akin to a choose-your-own adventure role; unlike the Ground Pounders in the Corp, you don’t really have a set objective, meaning that you can do almost anything.
+  ### Будьте креативны!
+  Было бы логично связаться с секториальным офисом [bold][color=#eb7a23]Вестон[/color]-[color=#25b266]Ямада[/color][/bold] для получения инструкций, но к сожалению ответы на факс приходят редко, а цели ещё реже. Это означает, что [bold]Корпоративный связной[/bold] в большинстве случаев предоставлен сам себе; у вас на самом деле нет определенной цели, в отличие от штурмовиков в Корпорации, а это значит, что вы можете делать практически все, что угодно.
 
-  Of course, there’s some things you probably shouldn’t do (See above), and you should keep in mind that you’re representing [bold][color=#eb7a23]We[/color][color=#25b266]Ya[/color][/bold], thus you’d realistically get in trouble for selling meth to the marines. Furthermore, although you shouldn’t expect a response, it’s always good to forward any signed forms to the Company.
+  Конечно, есть некоторые вещи, которые вам, вероятно, не следует делать (см. выше), и вам следует помнить, что вы представляете [bold][color=#eb7a23]Ве[/color]-[color=#25b266]Я[/color][/bold], таким образом, у вас могут возникнуть серьезные проблемы если вы попадетесь на продаже метамфетамина морским пехотинцам. К тому же, даже если вы не дождетесь ответа, всегда полезно переслать любые подписанные формы в Компанию.
 
-  [bold]Some ideas include:[/bold]
-  - Getting the CIC to sign Confidentiality and Asset Protection Agreements
-  - Making a deal with the Correspondent(s) to publish or edit their work
-  - Speaking with recovered Survivors, getting their stories, and getting NDA’s signed
-  - Running PR events
-  - Recording damage to the colony
-  - Sending reports to WeYa
-  - Getting feedback on the performance of Company tech
+  [bold]Некоторые идеи включают в себя:[/bold]
+  - Заставить ЦИК подписать соглашения о конфиденциальности и защите активов
+  - Заключить сделку с корреспондентами на публикацию или редактирование их работ
+  - Поговорить с выжившими колонии, узнать их истории и подписать соглашение о неразглашении информации.
+  - Проведение мероприятий для повышения репутации компании
+  - Фиксация ущерба, нанесенного колонии
+  - Отправка отчетов в [bold][color=#eb7a23]Ве[/color]-[color=#25b266]Я[/color][/bold]
+  - Получение отзывов о имуществе, вооружении и активов Компании
 
-  And much, much more!
-  Truthfully, the sky is the limit for CL. However, coming up with a plan for what to do during a round is only one part of the story. The other, of course, is roleplay.
+  И так далее!
+  По правде, это потолок работы [bold]Корпоративного Связного[/bold]. И хотя разработка плана на раунд лежит на вас, это всего-лишь часть истории. Всё таки это ролевая игра!
 
-  ### Do: Stretch Those Social Muscles, Engage with Others!
+  ### Напрягайте свое серое вещество, общайтесь с людьми!
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookRoleXO"/>
     <GuideEntityEmbed Entity="CMGuidebookRoleCorrespondent"/>
@@ -69,40 +67,39 @@
     <GuideEntityEmbed Entity="CMGuidebookRoleDoctor" />
   </Box>
 
-  Liaison does actually have one objective presented by the game, and that’s to roleplay with the other players. Although this may initially seem daunting, as most of the marines deploy planetside, and CIC is usually planning and enacting an operation, many other shipside departments, such as the MPs, Engis, Medical, and Requisitions often do have a measure of free time, which makes them key candidates for interactions.
-
-  Furthermore, Correspondents are in the same boat of being mainly roleplay-based, and Survivors can offer fun and interesting roleplay; after all, many of them are [bold][color=#eb7a23]We[/color][color=#25b266]Ya[/color][/bold] employees. Besides just the more work-oriented roleplay, it can always be enjoyable to spend time building rapport and having interpersonal interactions with others, putting aside the Corporate expectations to just have a chat with others.
-
-  ### Do: Use Your Resources
-  Due to the importance of your work, you have been supplied with a collection of various items that will help you complete your work. Each one has a specific purpose, and both are very useful.
+  У Связного на самом деле есть одна цель, представленная в игре, - это ролевая игра с другими игроками. Хотя поначалу это может показаться пугающим, поскольку большинство морских пехотинцев дислоцируются на планете, а ЦИК обычно планирует и проводит операцию, у многих других корабельных отделов, таких как военная полиция, инженерного, медицинского отдела и отдела поставок часто есть свободное время, что делает их ключевыми кандидатами для взаимодействия.
+  
+  Кроме того, корреспонденты находятся с вами в одной лодке, поскольку их работа основана на ролевой игре, а выжившие могут предложить забавную и интересную ролевую игру; в конце концов, многие из них сотрудники [bold][color=#eb7a23] Ве[/color]-[color=#25b266]Я[/color][/bold]. Помимо более ориентированных на ролевую составляющую раунда, всегда может быть приятно провести время, налаживая взаимопонимание и вступая в межличностные отношения с другими людьми, отбросив корпоративные ожидания, чтобы просто поболтать с другими людьми.
+  
+  ### Используйте свои ресурсы
+  Учитывая важность вашей работы, мы снабдили вас набором различных предметов, которые помогут вам завершить работу. Каждый из них имеет определенное назначение, и  они могут быть очень полезны.
   <Box>
     <GuideEntityEmbed Entity="RMCPortableVendorCorporate"/>
   </Box>
-  The Automated storage briefcase is a briefcase which allows you to purchase a wide collection of items and resources, each one having their own purpose to you (or others). From beer and smokes to communication keys and cash, it holds almost anything an aspiring Liaison needs. However, each item comes with a set “points cost”, which will limit the amount of items you can buy at a time. Don’t worry though: Your vendor's points slowly regenerate back to max.
-
+  Кейс для автоматического хранения - это кейс, который позволяет вам приобрести широкий ассортимент предметов и ресурсов, каждый из которых имеет свое назначение для вас (или других людей). От пива и сигарет, до ключей шифрования связи и наличных - в нем есть практически все, что нужно начинающему связному. Однако за каждый товар взимается определенная “стоимость в очках”, которая ограничивает количество товаров, которые вы можете купить за один раз. Но не волнуйтесь: количество очков вашего кейса постепенно восстанавливаются до максимального значения.
+  
   <Box>
     <GuideEntityEmbed Entity="CMFax" Caption="The ever reliable fax machine"/>
   </Box>
-  The Hallmark of any self-respecting Corporate Employee. Multipurpose and extremely useful, you’ll find that you can get significant mileage out of a fax machine. These devices are capable of copying inserted pieces of paper, printing out files, and sending messages to any other receiving fax machines. It is also your primary method of contacting [bold][color=#eb7a23]Weston[/color]-[color= #25b266]Yamada[/color][/bold].
+  Отличительная черта любого уважающего себя корпоративного сотрудника это факсы. Многофункциональность и исключительная полезность факса позволяют значительно сэкономить время. Эти устройства способны копировать вставленные листы бумаги, распечатывать файлы и отправлять сообщения на любые другие принимающие факсы. Это также ваш основной способ связаться с корпорацией [bold][color=#eb7a23]Вестон[/color]-[color=#25b266]Ямада[/color][/bold].
 
   <Box>
     <GuideEntityEmbed Entity="CMPaper"/>
     <GuideEntityEmbed Entity="CMPaperAlmayerStorage" Caption="A filled-out form"/>
   </Box>
-  As the chief bureaucrat aboard the Almayer, you can often get good mileage out of forms and fliers. From getting agreements signed and recorded, to collecting feedback, to collating reports, and even creating and distributing advertisements, paper will become a part of your core gameplay loop. Useful, reliable, and efficient.
-
+  Как главный бюрократ на борту УДКТ 'Алмаер', вы часто можете извлечь выгоду из форм и рекламных листовок. От подписания и регистрации соглашений до сбора отзывов, составления отчетов и даже создания и распространения рекламы, бумажная работа станет частью вашего основного игрового процесса. Бумаги полезны, надежны и эффективны.
+  
   <Box>
     <GuideEntityEmbed Entity="CMPenClicky"/>
     <GuideEntityEmbed Entity="CMPenFountain"/>
   </Box>
-  Whoever mocks the phrase [italic]”The pen is mightier than the sword”[/italic] has clearly never been on the receiving end of a particularly nasty lawsuit. Pens are able to write, edit, and sign documents, making them a key part of the Liaison’s toolset. Without it, you wouldn’t be able to make forms.
+  Тот, кто высмеивает фразу [italic]”Перо сильнее меча”[/italic], явно никогда не сталкивался с особо неприятным судебным процессом. С помощью ручки можно писать, редактировать и подписывать документы, что делает их (ручку и бумагу) ключевыми инструментами Связного. Без них вы не смогли бы создавать бланки.
+  
+  ## Заключение
+  Поначалу роль [bold]Корпоративного связного[/bold] может быть пугающей и сбивающей с толку, особенно для новичков. Однако она также может быть веселой, увлекательной и может создавать уникальные истории. Мы надеемся, что это руководство было полезным, и надеемся услышать хорошие отзывы при следующей оценке компании.
+  С уважением,
 
-  ## Conclusion
-  [bold]Corporate Liaison[/bold] can initially be an intimidating and confusing role, especially for newer players. However, it can also be fun, engaging, and create one-of-a-kind stories. We hope that this guide has been of help, and we hope to hear good things in the next Company Evaluation.
-
-  Best Regards,
-
-  [italic]The [color=#eb7a23]Weston[/color]-[color= #25b266]Yamada[/color] Corporation[/italic]
+  [italic]Корпорация [color=#eb7a23]Вестон[/color]-[color=#25b266]Ямада[/color][/italic]
   [color=#383838]▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄[/color]
   [color=#eb7a23]▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀[/color]
 </Document>
