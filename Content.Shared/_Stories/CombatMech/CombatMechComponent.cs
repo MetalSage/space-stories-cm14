@@ -56,13 +56,13 @@ public sealed partial class CombatMechComponent : Component
     public float CriticalAlertThreshold = 10f;
 
     [DataField]
-    public TimeSpan WeaponInstallDelay = TimeSpan.FromSeconds(5);
+    public TimeSpan WeaponInstallDelay = TimeSpan.FromSeconds(2);
 
     [DataField]
-    public TimeSpan WeaponDetachDelay = TimeSpan.FromSeconds(4);
+    public TimeSpan WeaponDetachDelay = TimeSpan.FromSeconds(2);
 
     [DataField]
-    public TimeSpan ForceEjectDelay = TimeSpan.FromSeconds(8);
+    public TimeSpan ForceEjectDelay = TimeSpan.FromSeconds(3);
 
     [DataField]
     public int DefaultWeaponEnsureMaxAttempts = 3;
@@ -100,9 +100,8 @@ public sealed partial class CombatMechComponent : Component
     [DataField]
     public float BarricadeCollisionDamage = 900f;
 
-    // YAML prototypes override this to 0.5; the 0.9 default is a wider fallback.
     [DataField]
-    public float BarricadeBumperRange = 0.9f;
+    public float BarricadeBumperRange = 0.5f;
 
     [DataField]
     public TimeSpan BarricadeBumperCooldown = TimeSpan.FromSeconds(0.25);
@@ -169,17 +168,14 @@ public sealed partial class CombatMechComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? PilotEntity;
 
-    [DataField]
-    public EntProtoId? BodyOverlayPrototype = "StoriesRX47CombatMechBodyOverlay";
+    [DataField(required: true)]
+    public EntProtoId? BodyOverlayPrototype;
 
     [DataField, AutoNetworkedField]
     public EntityUid? BodyOverlayEntity;
 
     [DataField]
     public int PilotRenderOrder = 1;
-
-    [DataField]
-    public int BodyOverlayRenderOrder = 2;
 
     [ViewVariables]
     public bool DamageAlert25;
@@ -201,18 +197,6 @@ public sealed partial class CombatMechComponent : Component
 
     [ViewVariables]
     public int DefaultWeaponEnsureAttempts;
-
-    [ViewVariables]
-    public bool PrimaryWeaponInstallQueued;
-
-    [ViewVariables]
-    public bool SecondaryWeaponInstallQueued;
-
-    [ViewVariables]
-    public bool PrimaryWeaponDetachQueued;
-
-    [ViewVariables]
-    public bool SecondaryWeaponDetachQueued;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
@@ -253,6 +237,8 @@ public sealed partial class CombatMechWeaponFlamerTankComponent : Component
     [DataField]
     public string WeaponTankContainerId = CombatMechComponent.WeaponTankContainerId;
 
+    // Most RX47 flamers keep the local RMCFlamerTank directly on the attachable; this is only
+    // a fallback for attachables that store their local tank in a container.
     [DataField]
     public string LocalTankContainerId = CombatMechComponent.GunMagazineContainerId;
 }
@@ -287,12 +273,6 @@ public sealed partial class InsideCombatVehicleComponent : Component
     public TimeSpan ExplosionStunBlurTime;
 
     [ViewVariables]
-    public bool AddedTurnInvisible;
-
-    [ViewVariables]
-    public bool AddedActiveInvisible;
-
-    [ViewVariables]
     public bool RemovedAffectableByWeeds;
 
     [ViewVariables]
@@ -307,15 +287,33 @@ public sealed partial class InsideCombatVehicleComponent : Component
     [ViewVariables]
     public bool OnXenoFastResin;
 
+    [DataField]
     [ViewVariables]
     public bool CollisionDisabled;
 
     [ViewVariables]
     public Dictionary<EntityUid, TimeSpan> OpenFaceplateDamageAt = new();
 
+    [DataField]
     [ViewVariables]
-    public Dictionary<string, (int Mask, int Layer)> Fixtures = new();
+    public Dictionary<string, CombatMechFixtureCollisionState> Fixtures = new();
 
+}
+
+[DataDefinition, Serializable, NetSerializable]
+public readonly partial record struct CombatMechFixtureCollisionState
+{
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int Mask { get; init; }
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int Layer { get; init; }
+
+    public CombatMechFixtureCollisionState(int mask, int layer)
+    {
+        Mask = mask;
+        Layer = layer;
+    }
 }
 
 [Serializable, NetSerializable]

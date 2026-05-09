@@ -48,6 +48,7 @@
   abstract: true
   components:
   - type: CombatMech
+    bodyOverlayPrototype: StoriesRX47CombatMechBodyOverlay
     primaryWeapon: StoriesWeaponRX47Chaingun
     secondaryWeapon: StoriesWeaponRX47Scattergun
     weaponInstallDelay: 2
@@ -59,11 +60,16 @@
     barricadeCollisionDamage: 900
     barricadeBumperRange: 0.5
     barricadeBumperCooldown: 0.25
+  - type: RemoveComponents
+    components:
+    - type: MeleeWeapon
+      damage: { }
   - type: RMCAllowStrapMovement
-  - type: Strap
-    blacklist:
-      components:
-      - Xeno
+  - type: SpriteSetRenderOrder
+    renderOrder: 0
+  - type: Tag
+    tags:
+    - FootstepSound
   - type: RMCImmuneToFireTileDamage
   - type: RMCImmuneToIgnition
   - type: NoSlip
@@ -133,7 +139,6 @@
     visuals:
       enum.CombatMechVisuals.PrimaryWeapon:
         enum.CombatMechVisualLayers.PrimaryWeapon:
-          "": { state: empty }
           empty: { state: empty }
           "weapon_chaingun_left": { state: weapon_chaingun_left }
           "weapon_cannon_left": { state: weapon_cannon_left }
@@ -141,7 +146,6 @@
           "weapon_shotgun_left": { state: weapon_shotgun_left }
       enum.CombatMechVisuals.SecondaryWeapon:
         enum.CombatMechVisualLayers.SecondaryWeapon:
-          "": { state: empty }
           empty: { state: empty }
           "weapon_chaingun_right": { state: weapon_chaingun_right }
           "weapon_cannon_right": { state: weapon_cannon_right }

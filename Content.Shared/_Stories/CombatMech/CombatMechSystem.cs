@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared._RMC14.Hands;
 using Content.Shared._RMC14.Attachable.Components;
 using Content.Shared._RMC14.Attachable.Events;
@@ -29,6 +30,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Explosion;
@@ -79,7 +81,7 @@ public sealed partial class CombatMechSystem : EntitySystem
     private const float FiringTargetEpsilon = 0.01f;
     private const float BarricadeForwardDotMinimum = 0.35f;
     private const float UnderbarrelRangeEpsilon = 0.1f;
-    private const string BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
 
     private float _protectionCleanupAccumulator;
     // Scratch buffers used only inside Update's sequential server pass.
@@ -88,6 +90,7 @@ public sealed partial class CombatMechSystem : EntitySystem
     private readonly HashSet<EntityUid> _bumpDamageTargets = new();
     private readonly HashSet<EntityUid> _forceEjectingPilots = new();
     private readonly HashSet<EntityUid> _pilotsInCombatMechs = new();
+    private readonly List<EntityUid> _flashTargets = new(4);
     private readonly List<EntityUid> _staleDictionaryKeys = new();
     private readonly List<EntityUid> _stalePilots = new();
     // Entities that need default weapons spawned on the next tick (deferred past MapInit so hand containers exist).
@@ -143,8 +146,6 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<CombatMechComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<CombatMechComponent, DropAttemptEvent>(OnMechDropAttempt);
         SubscribeLocalEvent<CombatMechComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
-        SubscribeLocalEvent<CombatMechComponent, GetIgnitionImmunityEvent>(OnMechIgnitionImmunity);
-        SubscribeLocalEvent<CombatMechComponent, RMCGetFireImmunityEvent>(OnMechFireImmunity);
         SubscribeLocalEvent<CombatMechComponent, PickupAttemptEvent>(OnMechPickupAttempt);
         SubscribeLocalEvent<CombatMechComponent, StartCollideEvent>(OnMechStartCollide);
         SubscribeLocalEvent<CombatMechComponent, PreventCollideEvent>(OnMechPreventCollide);
@@ -187,12 +188,13 @@ public sealed partial class CombatMechSystem : EntitySystem
         SubscribeLocalEvent<InsideCombatVehicleComponent, GetExplosionResistanceEvent>(OnInsideVehicleExplosionResistance);
         SubscribeLocalEvent<InsideCombatVehicleComponent, DropAttemptEvent>(OnInsideVehicleDropAttempt);
         SubscribeLocalEvent<InsideCombatVehicleComponent, PickupAttemptEvent>(OnInsideVehiclePickupAttempt);
-        SubscribeLocalEvent<InsideCombatVehicleComponent, ComponentStartup>(OnInsideVehicleStartup);
         SubscribeLocalEvent<InsideCombatVehicleComponent, AfterAutoHandleStateEvent>(OnInsideVehicleState);
         SubscribeLocalEvent<InsideCombatVehicleComponent, ComponentShutdown>(OnInsideVehicleShutdown);
         SubscribeLocalEvent<InsideCombatVehicleComponent, MoveEvent>(OnInsideVehicleMove);
         SubscribeLocalEvent<InsideCombatVehicleComponent, GetEyeOffsetAttemptEvent>(OnInsideVehicleGetEyeOffsetAttempt);
-        SubscribeLocalEvent<InsideCombatVehicleComponent, GetVerbsEvent<Verb>>(OnInsideVehicleGetVerbs, after: [typeof(RMCSuicideSystem)]);
+        SubscribeLocalEvent<InsideCombatVehicleComponent, GetVerbsEvent<Verb>>(
+            OnInsideVehicleGetVerbs,
+            after: [typeof(RMCSuicideSystem)]);
         SubscribeLocalEvent<CombatMechMeleeDamageMultiplierComponent, MeleeHitEvent>(OnCombatMechMeleeHit);
     }
 
@@ -220,6 +222,8 @@ public sealed partial class CombatMechSystem : EntitySystem
                 else
                 {
                     Log.Warning($"RX47 {ToPrettyString(pending)} failed to spawn default weapons after {mech.DefaultWeaponEnsureAttempts} attempts.");
+                    mech.DefaultWeaponEnsureAttempts = 0;
+                    mech.DefaultWeaponEnsureQueued = false;
                 }
             }
             else
@@ -233,7 +237,7 @@ public sealed partial class CombatMechSystem : EntitySystem
         _protectionCleanupAccumulator += frameTime;
         var cleanupProtection = _protectionCleanupAccumulator >= ProtectionCleanupInterval;
         if (cleanupProtection)
-            _protectionCleanupAccumulator = 0f;
+            _protectionCleanupAccumulator -= ProtectionCleanupInterval;
 
         if (cleanupProtection)
         {
@@ -301,8 +305,7 @@ public sealed partial class CombatMechSystem : EntitySystem
         if (ent.Comp.BodyOverlayEntity is { } existing && !Deleted(existing))
             return;
 
-        var overlay = Spawn(proto, Transform(ent).Coordinates);
-        _transform.SetParent(overlay, ent.Owner);
+        var overlay = Spawn(proto, new EntityCoordinates(ent.Owner, Vector2.Zero));
         ent.Comp.BodyOverlayEntity = overlay;
         DirtyField(ent.Owner, ent.Comp, nameof(CombatMechComponent.BodyOverlayEntity));
         UpdateVisualStack(ent);

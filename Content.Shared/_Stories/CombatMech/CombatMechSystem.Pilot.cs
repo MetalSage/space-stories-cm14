@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Camera;
-using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Item;
@@ -11,8 +10,6 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Maths;
-using Robust.Shared.Network;
-using Robust.Shared.GameStates;
 
 namespace Content.Shared._Stories.CombatMech;
 
@@ -76,7 +73,8 @@ public sealed partial class CombatMechSystem
         var inside = EnsureComp<InsideCombatVehicleComponent>(pilot);
         inside.Vehicle = ent;
         DirtyField(pilot, inside, nameof(InsideCombatVehicleComponent.Vehicle));
-        _pilotsInCombatMechs.Add(pilot);
+        if (_net.IsServer)
+            _pilotsInCombatMechs.Add(pilot);
         UpdatePilotProtection((pilot, inside));
         ApplyPilotVisuals((pilot, inside));
 
@@ -116,11 +114,15 @@ public sealed partial class CombatMechSystem
         }
         else
         {
-            RestorePilotVisualOffset(pilot);
-            _rmcSprite.SetRenderOrder(pilot, 0);
+            if (_net.IsServer)
+            {
+                RestorePilotVisualOffset(pilot);
+                _rmcSprite.SetRenderOrder(pilot, 0);
+            }
         }
 
-        _pilotsInCombatMechs.Remove(pilot);
+        if (_net.IsServer)
+            _pilotsInCombatMechs.Remove(pilot);
         RemCompDeferred<InsideCombatVehicleComponent>(pilot);
         RemComp<RelayInputMoverComponent>(pilot);
         // SetRelay puts the relay target on the mech, not the pilot.
@@ -262,11 +264,15 @@ public sealed partial class CombatMechSystem
         }
         else
         {
-            RestorePilotVisualOffset(pilot);
-            _rmcSprite.SetRenderOrder(pilot, 0);
+            if (_net.IsServer)
+            {
+                RestorePilotVisualOffset(pilot);
+                _rmcSprite.SetRenderOrder(pilot, 0);
+            }
         }
 
-        _pilotsInCombatMechs.Remove(pilot);
+        if (_net.IsServer)
+            _pilotsInCombatMechs.Remove(pilot);
         RemCompDeferred<InsideCombatVehicleComponent>(pilot);
         RemComp<RelayInputMoverComponent>(pilot);
         RemComp<MovementRelayTargetComponent>(mech);
@@ -279,11 +285,6 @@ public sealed partial class CombatMechSystem
         UpdatePilotVisualOffset(ent);
     }
 
-    private void OnInsideVehicleStartup(Entity<InsideCombatVehicleComponent> ent, ref ComponentStartup args)
-    {
-        ApplyPilotVisuals(ent);
-    }
-
     private void OnInsideVehicleState(Entity<InsideCombatVehicleComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         ApplyPilotVisuals(ent);
@@ -291,19 +292,12 @@ public sealed partial class CombatMechSystem
 
     private void OnInsideVehicleShutdown(Entity<InsideCombatVehicleComponent> ent, ref ComponentShutdown args)
     {
-        if (_net.IsClient &&
-            TryComp(ent.Comp.Vehicle, out CombatMechComponent? mech) &&
-            mech.PilotEntity == ent.Owner)
-        {
-            ApplyPilotVisuals(ent.Owner, (ent.Comp.Vehicle, mech));
-            return;
-        }
-
         RestorePilotVisuals(ent);
     }
 
     private void OnInsideVehicleGetEyeOffsetAttempt(Entity<InsideCombatVehicleComponent> ent, ref GetEyeOffsetAttemptEvent args)
     {
+        // Keep the pilot camera anchored to the mech instead of applying the mob's own visual offset.
         args.Cancelled = true;
     }
 
@@ -331,8 +325,12 @@ public sealed partial class CombatMechSystem
 
     private void ApplyPilotVisuals(EntityUid pilot, Entity<CombatMechComponent> mech)
     {
-        UpdatePilotVisualOffset(pilot, mech);
-        _rmcSprite.SetRenderOrder(pilot, mech.Comp.PilotRenderOrder);
+        if (_net.IsServer)
+        {
+            UpdatePilotVisualOffset(pilot, mech);
+            _rmcSprite.SetRenderOrder(pilot, mech.Comp.PilotRenderOrder);
+        }
+
         _rmcSprite.UpdateDrawDepth(pilot);
     }
 
@@ -350,6 +348,9 @@ public sealed partial class CombatMechSystem
 
     private void UpdatePilotVisualOffset(EntityUid pilot, Entity<CombatMechComponent> mech)
     {
+        if (_net.IsClient)
+            return;
+
         var direction = Transform(pilot).LocalRotation.GetCardinalDir();
         var offset = direction switch
         {
@@ -364,12 +365,20 @@ public sealed partial class CombatMechSystem
 
     private void RestorePilotVisualOffset(EntityUid pilot)
     {
+        if (_net.IsClient)
+            return;
+
         _rmcSprite.SetOffset(pilot, Vector2.Zero);
     }
 
     private void RestorePilotVisuals(Entity<InsideCombatVehicleComponent> pilot)
     {
-        RestorePilotVisualOffset(pilot.Owner);
-        _rmcSprite.SetRenderOrder(pilot.Owner, 0);
+        if (_net.IsServer)
+        {
+            RestorePilotVisualOffset(pilot.Owner);
+            _rmcSprite.SetRenderOrder(pilot.Owner, 0);
+        }
+
+        _rmcSprite.UpdateDrawDepth(pilot.Owner);
     }
 }

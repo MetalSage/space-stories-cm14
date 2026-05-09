@@ -211,6 +211,7 @@
   description: A breaching scattergun tuned for structures and close-range suppression.
   components:
   - type: CombatMechWeapon
+    # Hidden/admin-only refit; reuses scattergun arm art until dedicated RX47 flamer arm states exist.
     armState: shotgun
     firingArc: 160
   - type: GunIFF

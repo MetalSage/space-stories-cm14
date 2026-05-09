@@ -118,7 +118,8 @@ public sealed class RMCSpriteSystem : SharedRMCSpriteSystem
                 !HasComp<ParaDroppingComponent>(player) &&
                 !HasComp<CrashLandingComponent>(player))
             {
-                _sprite.SetDrawDepth((player, playerSprite), (int) Shared.DrawDepth.DrawDepth.BelowMobs);
+                var drawDepth = GetDrawDepth(player, Shared.DrawDepth.DrawDepth.BelowMobs);
+                _sprite.SetDrawDepth((player, playerSprite), (int) drawDepth);
             }
         }
         catch (Exception e)

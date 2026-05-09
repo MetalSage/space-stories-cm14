@@ -35,6 +35,9 @@ public sealed partial class CombatMechSystem
 {
     private void OnCameraShakeStartup(Entity<RMCCameraShakingComponent> ent, ref ComponentStartup args)
     {
+        if (_net.IsClient)
+            return;
+
         if (TryComp(ent.Owner, out InsideCombatVehicleComponent? inside) && IsPilotSealed((ent.Owner, inside)))
             RemCompDeferred<RMCCameraShakingComponent>(ent);
     }
@@ -113,7 +116,7 @@ public sealed partial class CombatMechSystem
 
     private void OnInsideVehicleCorroding(Entity<InsideCombatVehicleComponent> ent, ref CorrodingEvent args)
     {
-        if (HasLiveVehicle(ent))
+        if (IsPilotSealed(ent))
             args.Cancelled = true;
     }
 
@@ -128,18 +131,21 @@ public sealed partial class CombatMechSystem
 
     private void OnInsideVehicleStunned(Entity<InsideCombatVehicleComponent> ent, ref StunnedEvent args)
     {
+        // Legacy stun sources can bypass BeforeStatusEffectAddedEvent; clear them after application too.
         if (IsPilotSealed(ent))
             ClearProtectedStatuses(ent);
     }
 
     private void OnInsideVehicleKnockedDown(Entity<InsideCombatVehicleComponent> ent, ref KnockedDownEvent args)
     {
+        // Legacy knockdown sources can bypass BeforeStatusEffectAddedEvent; clear them after application too.
         if (IsPilotSealed(ent))
             ClearProtectedStatuses(ent);
     }
 
     private void OnInsideVehicleDazed(Entity<InsideCombatVehicleComponent> ent, ref DazedEvent args)
     {
+        // Legacy daze sources can bypass BeforeStatusEffectAddedEvent; clear them after application too.
         if (IsPilotSealed(ent))
             ClearProtectedStatuses(ent);
     }
@@ -152,13 +158,13 @@ public sealed partial class CombatMechSystem
 
     private void OnInsideVehicleIgnitionImmunity(Entity<InsideCombatVehicleComponent> ent, ref GetIgnitionImmunityEvent args)
     {
-        if (HasLiveVehicle(ent))
+        if (IsPilotSealed(ent))
             args.Ignite = false;
     }
 
     private void OnInsideVehicleFireImmunity(Entity<InsideCombatVehicleComponent> ent, ref RMCGetFireImmunityEvent args)
     {
-        if (!HasLiveVehicle(ent))
+        if (!IsPilotSealed(ent))
             return;
 
         args.Ignite = false;
@@ -240,12 +246,6 @@ public sealed partial class CombatMechSystem
 
         RestoreSealedPilotProtection(pilot);
 
-        if (pilot.Comp.AddedActiveInvisible)
-            RemComp<EntityActiveInvisibleComponent>(pilot);
-
-        if (pilot.Comp.AddedTurnInvisible)
-            RemComp<EntityTurnInvisibleComponent>(pilot);
-
         RestorePilotCollision(pilot);
         pilot.Comp.RemovedInfectable = false;
         pilot.Comp.InfectableSound = null;
@@ -254,13 +254,6 @@ public sealed partial class CombatMechSystem
         pilot.Comp.OnFriendlyWeeds = false;
         pilot.Comp.OnXenoSlowResin = false;
         pilot.Comp.OnXenoFastResin = false;
-        pilot.Comp.AddedUnparalyzable = false;
-        pilot.Comp.RemovedExplosionStun = false;
-        pilot.Comp.ExplosionStunWeak = false;
-        pilot.Comp.ExplosionStunBlindTime = default;
-        pilot.Comp.ExplosionStunBlurTime = default;
-        pilot.Comp.AddedTurnInvisible = false;
-        pilot.Comp.AddedActiveInvisible = false;
     }
 
     private void ApplySealedPilotProtection(Entity<InsideCombatVehicleComponent> pilot)
@@ -360,7 +353,7 @@ public sealed partial class CombatMechSystem
 
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
-            pilot.Comp.Fixtures[id] = (fixture.CollisionMask, fixture.CollisionLayer);
+            pilot.Comp.Fixtures[id] = new CombatMechFixtureCollisionState(fixture.CollisionMask, fixture.CollisionLayer);
             _physics.SetCollisionMask(pilot, id, fixture, 0, fixtures);
             _physics.SetCollisionLayer(pilot, id, fixture, 0, fixtures);
         }

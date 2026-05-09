@@ -21,6 +21,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Player;
@@ -55,8 +56,6 @@ public sealed partial class CombatMechSystem
 
     private void OnInstallWeaponDoAfter(Entity<CombatMechComponent> ent, ref CombatMechInstallWeaponDoAfterEvent args)
     {
-        SetWeaponInstallQueued(ent.Comp, args.Primary, false);
-
         if (args.Cancelled || args.Handled || args.Used == null)
             return;
 
@@ -66,8 +65,6 @@ public sealed partial class CombatMechSystem
 
     private void OnDetachWeaponDoAfter(Entity<CombatMechComponent> ent, ref CombatMechDetachWeaponDoAfterEvent args)
     {
-        SetWeaponDetachQueued(ent.Comp, args.Primary, false);
-
         if (args.Cancelled || args.Handled)
             return;
 
@@ -86,9 +83,6 @@ public sealed partial class CombatMechSystem
             return;
         }
 
-        if (IsWeaponInstallQueued(mech.Comp, primary))
-            return;
-
         var ev = new CombatMechInstallWeaponDoAfterEvent { Primary = primary };
         var doAfter = new DoAfterArgs(EntityManager, user, mech.Comp.WeaponInstallDelay, ev, mech, mech, used: weapon)
         {
@@ -96,9 +90,9 @@ public sealed partial class CombatMechSystem
             BreakOnMove = true,
             BlockDuplicate = true,
             DuplicateCondition = DuplicateConditions.SameTarget | DuplicateConditions.SameTool | DuplicateConditions.SameEvent,
+            DistanceThreshold = SharedInteractionSystem.InteractionRange,
         };
 
-        SetWeaponInstallQueued(mech.Comp, primary, true);
         if (_doAfter.TryStartDoAfter(doAfter))
         {
             var slot = GetSlotName(primary);
@@ -106,10 +100,6 @@ public sealed partial class CombatMechSystem
                 Loc.GetString("stories-rx47-weapon-install-start-others", ("user", user), ("slot", slot)),
                 user,
                 user);
-        }
-        else
-        {
-            SetWeaponInstallQueued(mech.Comp, primary, false);
         }
     }
 
@@ -130,9 +120,6 @@ public sealed partial class CombatMechSystem
             return;
         }
 
-        if (IsWeaponDetachQueued(mech.Comp, primary))
-            return;
-
         var ev = new CombatMechDetachWeaponDoAfterEvent { Primary = primary };
         var doAfter = new DoAfterArgs(EntityManager, user, mech.Comp.WeaponDetachDelay, ev, mech, mech)
         {
@@ -140,9 +127,9 @@ public sealed partial class CombatMechSystem
             BreakOnMove = true,
             BlockDuplicate = true,
             DuplicateCondition = DuplicateConditions.SameTarget | DuplicateConditions.SameEvent,
+            DistanceThreshold = SharedInteractionSystem.InteractionRange,
         };
 
-        SetWeaponDetachQueued(mech.Comp, primary, true);
         if (_doAfter.TryStartDoAfter(doAfter))
         {
             var slot = GetSlotName(primary);
@@ -150,10 +137,6 @@ public sealed partial class CombatMechSystem
                 Loc.GetString("stories-rx47-weapon-detach-start-others", ("user", user), ("slot", slot)),
                 user,
                 user);
-        }
-        else
-        {
-            SetWeaponDetachQueued(mech.Comp, primary, false);
         }
     }
 
@@ -165,10 +148,16 @@ public sealed partial class CombatMechSystem
         if (GetWeapon(mech, primary) == weapon && weaponComp.LinkedMech == mech.Owner)
             return true;
 
-        if (weaponComp.LinkedMech != null && !Deleted(weaponComp.LinkedMech.Value))
+        if (weaponComp.LinkedMech is { } linkedMech && !Deleted(linkedMech))
         {
-            _popup.PopupClient(Loc.GetString("stories-rx47-weapon-already-linked"), mech, user, PopupType.MediumCaution);
-            return false;
+            if (TryComp(linkedMech, out CombatMechComponent? linkedComp) &&
+                IsMountedWeapon((linkedMech, linkedComp), weapon))
+            {
+                _popup.PopupClient(Loc.GetString("stories-rx47-weapon-already-linked"), mech, user, PopupType.MediumCaution);
+                return false;
+            }
+
+            ClearWeaponMechLink((weapon, weaponComp));
         }
 
         if (GetWeapon(mech, primary) != null && !DetachWeapon(mech, user, primary, false))
@@ -362,7 +351,7 @@ public sealed partial class CombatMechSystem
         if (!InFiringArc(inside.Vehicle, weaponComp.FiringArc, coordinates))
             return;
 
-        var weaponCoordinates = _transform.GetMapCoordinates(weapon);
+        var weaponCoordinates = _transform.ToMapCoordinates(GetMountedGunOrigin(inside.Vehicle, gun));
         var hasMaxRange = TryGetUnderbarrelMaxRange(attachable, out var maxRange);
         if (hasMaxRange && !InWeaponRange(weaponCoordinates, mapCoordinates, maxRange))
             return;
@@ -383,10 +372,7 @@ public sealed partial class CombatMechSystem
 
         try
         {
-            if (TryComp(attachable, out CombatMechWeaponFlamerTankComponent? flamerTank))
-                SyncWeaponTankToMountedFlamer((attachable, flamerTank), weapon);
-
-            AttemptShootAtNested(pilot, attachable, gun, coordinates, target, userSession: args.SenderSession);
+            AttemptShootAtMounted(pilot, attachable, gun, coordinates, target, userSession: args.SenderSession);
         }
         finally
         {
@@ -396,7 +382,13 @@ public sealed partial class CombatMechSystem
         }
     }
 
-    private List<EntityUid>? AttemptShootAtNested(
+    private EntityCoordinates GetMountedGunOrigin(EntityUid mech, GunComponent gun)
+    {
+        var xform = Transform(mech);
+        return xform.Coordinates.Offset(xform.LocalRotation.RotateVec(gun.ShootOriginOffset));
+    }
+
+    private List<EntityUid>? AttemptShootAtMounted(
         EntityUid user,
         EntityUid gunUid,
         GunComponent gun,
@@ -405,19 +397,19 @@ public sealed partial class CombatMechSystem
         ICommonSession? userSession = null)
     {
 #pragma warning disable RA0002
-        var oldCoordinates = gun.ShootCoordinates;
-        var oldTarget = gun.Target;
+        gun.ShootCoordinates = toCoordinates;
+        gun.Target = target;
 #pragma warning restore RA0002
 
         try
         {
-            return _gun.AttemptShootAt(user, gunUid, gun, toCoordinates, target, userSession: userSession);
+            return _gun.AttemptShoot(user, gunUid, gun, userSession: userSession);
         }
         finally
         {
 #pragma warning disable RA0002
-            gun.ShootCoordinates = oldCoordinates;
-            gun.Target = oldTarget;
+            gun.ShootCoordinates = null;
+            gun.Target = null;
 #pragma warning restore RA0002
         }
     }
@@ -674,6 +666,9 @@ public sealed partial class CombatMechSystem
 
     private void OnWeaponFlamerAttemptShoot(Entity<CombatMechWeaponFlamerTankComponent> ent, ref AttemptShootEvent args)
     {
+        if (args.Cancelled)
+            return;
+
         SyncWeaponTankToMountedFlamer(ent);
     }
 
@@ -879,32 +874,6 @@ public sealed partial class CombatMechSystem
 
         weapon.Comp.LinkedMech = null;
         DirtyField(weapon.Owner, weapon.Comp, nameof(CombatMechWeaponComponent.LinkedMech));
-    }
-
-    private static bool IsWeaponInstallQueued(CombatMechComponent mech, bool primary)
-    {
-        return primary ? mech.PrimaryWeaponInstallQueued : mech.SecondaryWeaponInstallQueued;
-    }
-
-    private static void SetWeaponInstallQueued(CombatMechComponent mech, bool primary, bool queued)
-    {
-        if (primary)
-            mech.PrimaryWeaponInstallQueued = queued;
-        else
-            mech.SecondaryWeaponInstallQueued = queued;
-    }
-
-    private static bool IsWeaponDetachQueued(CombatMechComponent mech, bool primary)
-    {
-        return primary ? mech.PrimaryWeaponDetachQueued : mech.SecondaryWeaponDetachQueued;
-    }
-
-    private static void SetWeaponDetachQueued(CombatMechComponent mech, bool primary, bool queued)
-    {
-        if (primary)
-            mech.PrimaryWeaponDetachQueued = queued;
-        else
-            mech.SecondaryWeaponDetachQueued = queued;
     }
 
     private void SetWeapon(Entity<CombatMechComponent> mech, bool primary, EntityUid? weapon)

@@ -17,6 +17,9 @@
     - WeldingFuel
   - type: CombatMechUnderbarrel
   - type: CombatMechWeaponFlamerTank
+  - type: Gun
+    # The parent attachment has no origin offset; RX47 fires it from the mech shoulder.
+    shootOriginOffset: 0, -0.85
   - type: AttachableToggleable
     userOnly: true
     attachedOnly: true

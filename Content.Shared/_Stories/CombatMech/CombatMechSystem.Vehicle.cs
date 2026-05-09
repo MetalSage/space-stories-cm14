@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Entrenching;
 using Content.Shared._RMC14.Marines;
@@ -14,6 +13,7 @@ using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Movement.Components;
@@ -108,6 +108,12 @@ public sealed partial class CombatMechSystem
         if (args.Handled || !HasComp<CombatMechWeaponComponent>(args.Used))
             return;
 
+        if (_mobState.IsDead(ent))
+        {
+            args.Handled = true;
+            return;
+        }
+
         if (GetPilot(ent) != null)
         {
             args.Handled = true;
@@ -117,13 +123,13 @@ public sealed partial class CombatMechSystem
 
         args.Handled = true;
 
-        if (ent.Comp.PrimaryWeaponEntity == null || Deleted(ent.Comp.PrimaryWeaponEntity.Value))
+        if (GetWeapon(ent, true) == null)
         {
             StartInstallWeapon(ent, args.User, args.Used, true);
             return;
         }
 
-        if (ent.Comp.SecondaryWeaponEntity == null || Deleted(ent.Comp.SecondaryWeaponEntity.Value))
+        if (GetWeapon(ent, false) == null)
         {
             StartInstallWeapon(ent, args.User, args.Used, false);
             return;
@@ -177,9 +183,10 @@ public sealed partial class CombatMechSystem
         if (_net.IsClient || GetPilot(ent) == null)
             return;
 
-        // On parent change the position delta spans mixed coordinate spaces; always mark the
-        // step as active instead of computing a potentially meaningless distance.
-        if (!args.ParentChanged && (args.OldPosition.Position - args.NewPosition.Position).LengthSquared() < PositionMoveEpsilon)
+        if (args.ParentChanged)
+            return;
+
+        if ((args.OldPosition.Position - args.NewPosition.Position).LengthSquared() < PositionMoveEpsilon)
             return;
 
         // Only count pilot-driven motion as a "step". Marines bumping the mech can nudge its
@@ -233,6 +240,9 @@ public sealed partial class CombatMechSystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
+        if (_mobState.IsDead(ent))
+            return;
+
         var user = args.User;
         var pilot = GetPilot(ent);
 
@@ -279,7 +289,7 @@ public sealed partial class CombatMechSystem
         {
             args.Verbs.Add(new AlternativeVerb
             {
-                Text = Loc.GetString("stories-rx47-verb-detach-left-weapon", ("weapon", primary)),
+                Text = Loc.GetString("stories-rx47-verb-detach-left-weapon", ("weapon", Name(primary))),
                 Act = () => StartDetachWeapon(ent, user, true),
                 Priority = 60,
             });
@@ -289,7 +299,7 @@ public sealed partial class CombatMechSystem
         {
             args.Verbs.Add(new AlternativeVerb
             {
-                Text = Loc.GetString("stories-rx47-verb-detach-right-weapon", ("weapon", secondary)),
+                Text = Loc.GetString("stories-rx47-verb-detach-right-weapon", ("weapon", Name(secondary))),
                 Act = () => StartDetachWeapon(ent, user, false),
                 Priority = 59,
             });
@@ -368,13 +378,17 @@ public sealed partial class CombatMechSystem
     private bool CanForceEject(Entity<CombatMechComponent> mech, EntityUid user)
     {
         // Event/admin rescue rule: any trained fireman can force a sealed pilot out.
-        return _skills.HasSkill(user, mech.Comp.ForceEjectSkill, mech.Comp.ForceEjectSkillRequired);
+        return mech.Comp.HelmetClosed &&
+               _skills.HasSkill(user, mech.Comp.ForceEjectSkill, mech.Comp.ForceEjectSkillRequired);
     }
 
     private void OnMechTerminating(Entity<CombatMechComponent> ent, ref EntityTerminatingEvent args)
     {
         if (ent.Comp.BodyOverlayEntity is { } overlay && !Deleted(overlay))
             QueueDel(overlay);
+
+        if (_net.IsServer)
+            QueueDeleteMountedWeapons(ent);
 
         if (ent.Comp.PilotEntity is not { } pilot ||
             !TryComp(pilot, out InsideCombatVehicleComponent? inside) ||
@@ -385,8 +399,29 @@ public sealed partial class CombatMechSystem
 
         RestorePilotProtection((pilot, inside));
         RestorePilotVisuals((pilot, inside));
-        _pilotsInCombatMechs.Remove(pilot);
+        if (_net.IsServer)
+            _pilotsInCombatMechs.Remove(pilot);
         RemCompDeferred<InsideCombatVehicleComponent>(pilot);
+        RemComp<RelayInputMoverComponent>(pilot);
+        RemCompDeferred<InteractionRelayComponent>(pilot);
+    }
+
+    private void QueueDeleteMountedWeapons(Entity<CombatMechComponent> ent)
+    {
+        var primary = ent.Comp.PrimaryWeaponEntity;
+        var secondary = ent.Comp.SecondaryWeaponEntity;
+
+        QueueDeleteMountedWeapon(primary);
+        if (secondary != primary)
+            QueueDeleteMountedWeapon(secondary);
+    }
+
+    private void QueueDeleteMountedWeapon(EntityUid? weapon)
+    {
+        if (weapon is not { } weaponUid || Deleted(weaponUid))
+            return;
+
+        QueueDel(weaponUid);
     }
 
     private void OnMechGetSpeedModifierContactCap(Entity<CombatMechComponent> ent, ref GetSpeedModifierContactCapEvent args)
@@ -398,17 +433,6 @@ public sealed partial class CombatMechSystem
     {
         if (args.Modifier < 1f)
             args.Modifier = 1f;
-    }
-
-    private void OnMechIgnitionImmunity(Entity<CombatMechComponent> ent, ref GetIgnitionImmunityEvent args)
-    {
-        args.Ignite = false;
-    }
-
-    private void OnMechFireImmunity(Entity<CombatMechComponent> ent, ref RMCGetFireImmunityEvent args)
-    {
-        args.Ignite = false;
-        args.Immune = true;
     }
 
     private void OnMechState(Entity<CombatMechComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -447,9 +471,6 @@ public sealed partial class CombatMechSystem
     {
         UpdateBodyOverlayAppearance(ent);
 
-        if (ent.Comp.BodyOverlayEntity is { } overlay && !Deleted(overlay))
-            _rmcSprite.SetRenderOrder(overlay, ent.Comp.BodyOverlayRenderOrder);
-
         if (GetVisualPilot(ent) is not { } pilot)
             return;
 
@@ -477,11 +498,20 @@ public sealed partial class CombatMechSystem
 
     private void FlashMechDamage(Entity<CombatMechComponent> ent)
     {
-        var targets = new List<EntityUid> { ent.Owner };
-        if (ent.Comp.BodyOverlayEntity is { } overlay && !Deleted(overlay))
-            targets.Add(overlay);
+        _flashTargets.Clear();
+        _flashTargets.Add(ent.Owner);
 
-        _colorFlash.RaiseEffect(Color.Red, targets, Filter.Pvs(ent.Owner, entityManager: EntityManager));
+        if (ent.Comp.BodyOverlayEntity is { } overlay && !Deleted(overlay))
+            _flashTargets.Add(overlay);
+
+        if (GetWeapon(ent, true) is { } primary)
+            _flashTargets.Add(primary);
+
+        var secondary = GetWeapon(ent, false);
+        if (secondary is { } secondaryUid && secondaryUid != ent.Comp.PrimaryWeaponEntity)
+            _flashTargets.Add(secondaryUid);
+
+        _colorFlash.RaiseEffect(Color.Red, _flashTargets, Filter.Pvs(ent.Owner, entityManager: EntityManager));
     }
 
     private void SetFaceplate(Entity<CombatMechComponent> ent, bool closed)
@@ -585,7 +615,8 @@ public sealed partial class CombatMechSystem
         if (_contacts.Count == 0)
             return;
 
-        var ourAabb = _lookup.GetAABBNoContainer(mech.Owner, xform.LocalPosition, xform.LocalRotation);
+        var (worldPosition, worldRotation) = _transform.GetWorldPositionRotation(xform);
+        var ourAabb = _lookup.GetAABBNoContainer(mech.Owner, worldPosition, worldRotation);
         var ourArea = Box2.Area(ourAabb);
         if (ourArea <= 0)
             return;
@@ -601,7 +632,8 @@ public sealed partial class CombatMechSystem
         if (time > mech.Comp.LastStepMoveAt + mech.Comp.StepActiveDuration)
             return false;
 
-        var ourAabb = _lookup.GetAABBNoContainer(mech.Owner, xform.LocalPosition, xform.LocalRotation);
+        var (worldPosition, worldRotation) = _transform.GetWorldPositionRotation(xform);
+        var ourAabb = _lookup.GetAABBNoContainer(mech.Owner, worldPosition, worldRotation);
         var ourArea = Box2.Area(ourAabb);
         if (ourArea <= 0)
             return false;
@@ -623,7 +655,8 @@ public sealed partial class CombatMechSystem
         }
 
         var targetXform = Transform(target);
-        var targetAabb = _lookup.GetAABBNoContainer(target, targetXform.LocalPosition, targetXform.LocalRotation);
+        var (targetWorldPosition, targetWorldRotation) = _transform.GetWorldPositionRotation(targetXform);
+        var targetAabb = _lookup.GetAABBNoContainer(target, targetWorldPosition, targetWorldRotation);
         if (!ourAabb.Intersects(targetAabb))
             return false;
 
