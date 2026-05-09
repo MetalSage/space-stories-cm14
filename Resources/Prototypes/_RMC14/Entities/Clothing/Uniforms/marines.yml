@@ -75,6 +75,12 @@
       Snow: _RMC14/Objects/Clothing/Uniforms/Marine/medic/snow.rsi
       Classic: _RMC14/Objects/Clothing/Uniforms/Marine/medic/classic.rsi
       Urban: _RMC14/Objects/Clothing/Uniforms/Marine/medic/urban.rsi
+# Stories add for M3XL armor Vest Start
+  - type: Tag 
+    tags:
+    - STUniformCorpsman
+    - RMCUniformMarine
+# Stories add for M3XL armor Vest End
 
 - type: entity
   parent: [CMJumpsuitMarineMedic, RMCJumpsuitMarinePatchBase]

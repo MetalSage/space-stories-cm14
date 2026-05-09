@@ -34,6 +34,7 @@
     - name: Armor
       choices: { CMArmor: 1 }
       entries:
+      - id: STArmorVestMP # Space Stories add extra light armor
       - id: CMArmorM2MP
     - name: Hat
       choices: { CMHat: 1 }

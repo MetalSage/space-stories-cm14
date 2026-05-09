@@ -18,3 +18,124 @@
       Snow: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/tanker/snow.rsi
       Classic: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/tanker/classic.rsi
       Urban: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/tanker/urban.rsi
+
+# M3-XL Space Stories
+- type: entity
+  parent: [ClothingOuterBase, BaseStorageItem, RMCBaseUniformAccessoryItemOuterClothing]
+  id: STArmorVestXLBase
+  abstract: true
+  name: M3-XL pattern armor vest
+  description: A type of body armor designed for protection against internal threats. It absorbs the impact of firearm projectiles, while retaining ease of movement. Does not protect against cuts, explosions or bio-threats. Not recommended for direct combat.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/jungle.rsi
+  - type: CMArmor
+    melee: 0
+    bullet: 5
+    bio: 0
+    explosionArmor: 0
+  - type: Item
+    size: Huge
+  - type: RMCDefibrillatorBlocked
+    popup: cm-defib-take-off-armor
+    showOnExamine: false
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RMCEquipArmor
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RMCEquipArmor
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      collection: RMCEquipArmor
+      params:
+        volume: -4
+  - type: Clothing
+    equipSound:
+      path: /Audio/_RMC14/Machines/armor_equip.ogg
+  - type: StoreAfterFailedInteract
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,1 # 2 slots
+  - type: FixedItemSizeStorage
+  - type: RMCStorageEjectHand
+  - type: IgnoreContentsSize
+    items:
+      tags:
+      - MRE
+      - PillPacket
+      - PillCanister
+      - CMSurgicalCase
+      - RMCSyringeCase
+      - RMCBoxZipties
+  - type: RMCNameItemOnVend
+    item: Armor
+  - type: ExplosionResistance
+    damageCoefficient: 0
+    worn: false
+  - type: Appearance
+
+# M3-XL MP 
+- type: entity
+  parent: STArmorVestXLBase
+  id: STArmorVestMP
+  name: M3-XL pattern MP armor vest
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/mp.rsi
+  - type: ClothingRequireEquipped
+    autoUnequip: true
+    denyReason: rmc-armor-not-mp-jumpsuit
+    whitelist:
+      tags:
+      - RMCUniformMP
+
+# M3-XL Intel
+- type: entity
+  parent: STArmorVestXLBase
+  id: STArmorVestIntel
+  name: M3-XL pattern intel armor vest
+  components:
+  - type: ItemCamouflage
+    camouflageVariations:
+      Jungle: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/jungle.rsi
+      Desert: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/desert.rsi
+      Snow: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/snow.rsi
+      Classic: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/classic.rsi
+      Urban: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/urban.rsi
+  - type: ClothingRequireEquipped
+    autoUnequip: true
+    denyReason: st-armor-not-intel-jumpsuit
+    whitelist:
+      tags:
+      - RMCUniformIntel
+
+
+# M3-XL Corpsmen
+- type: entity
+  parent: STArmorVestXLBase
+  id: STArmorVestCorpsmen
+  name: M3-XL pattern corpsmen armor vest
+  components:
+  - type: ItemCamouflage
+    camouflageVariations:
+      Jungle: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/jungle.rsi
+      Desert: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/desert.rsi
+      Snow: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/snow.rsi
+      Classic: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/classic.rsi
+      Urban: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/extra-light/standard/urban.rsi
+  - type: ClothingRequireEquipped
+    autoUnequip: true
+    denyReason: st-armor-not-cp-jumpsuit
+    whitelist:
+      tags:
+      - STUniformCorpsman
