@@ -4,5 +4,5 @@ ent-STArmorVestMP = { ent-RMCArmorVestMP }
    .desc = { ent-RMCArmorVestXLBase.desc }
 ent-STArmorVestIntel = { ent-RMCArmorVestIntel }
    .desc = { ent-RMCArmorVestXLBase.desc }
-ent-STArmorVestCorpsmen = сверхлёгкий санитарский бронежилет M3-XL
+ent-STArmorVestCorpsmen = сверхлёгкий бронежилет санитара M3-XL
    .desc = { ent-RMCArmorVestXLBase.desc }
