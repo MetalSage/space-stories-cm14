@@ -95395,14 +95395,14 @@ entities:
   - uid: 4565
     components:
     - type: MetaData
-      name: ЗП1: Зона Посадки
+      name: 'ЗП1: Зона Посадки'
     - type: Transform
       pos: -12.5,-17.5
       parent: 1
   - uid: 4566
     components:
     - type: MetaData
-      name: ЗП2: Зона Посадки
+      name: 'ЗП2: Зона Посадки'
     - type: Transform
       pos: -15.5,-147.5
       parent: 1
