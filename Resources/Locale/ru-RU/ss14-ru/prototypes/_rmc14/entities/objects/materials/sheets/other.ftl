@@ -1,5 +1,5 @@
 ent-CMSheetPhoron = форон
-    .desc = Phoron is an extremely rare mineral with exotic properties, often used in cutting-edge research. Just getting it into a stable, solid form is already difficult enough, considering it can be quite toxic and flammable.
+    .desc = Форон - чрезвычайно редкий минерал с экзотическими свойствами, часто используемый в передовых исследованиях. Просто придать ему стабильную твердую форму уже достаточно сложно, учитывая, что он может быть довольно токсичным и легко воспламеняющимся.
     .suffix = Полный
 ent-CMSheetPhoron15 = { ent-CMSheetPhoron }
     .desc = { ent-CMSheetPhoron.desc }

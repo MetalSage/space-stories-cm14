@@ -1,7 +1,7 @@
 ent-CMMRE = ИРП КМ США
     .desc = Еда, готовая к употреблению. Боевой рацион из одной порции, предназначенный для обеспечения солдата питательными веществами в течение дня напряженной работы. Его срок годности по крайней мере на 20 лет превышает продолжительность вашей боевой жизни.
-ent-RMCMRESPP = SPP IRP ration pack
-    .desc = An Individual Meal Ration, mainly composed of a selection of canned food, despite being heavier, it has proven to be a lot more reliable.
+ent-RMCMRESPP = ИРП СПН
+    .desc = Индивидуальный рацион питания, состоящий в основном из различных консервов. Несмотря на то, что он тяжелее аналогов, кажется более надежным.
 ent-RMCMREWeYa = PMC CFR ration
     .desc = A Combat Field Ration. Uses similar to UNMC MRE format, but utilizes expensive preserving materials and methods and not less expensive foods, not much different from going to a restaurant. Eating better worlds.
 ent-RMCMREWeYaPMC = PMC CFR ration
