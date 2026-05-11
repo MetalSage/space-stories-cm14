@@ -1,0 +1,4 @@
+- type: emote
+  id: HelmetTap
+  name: стучит магазином по шлему
+  chatMessages: ["стучит магазином по шлему"]

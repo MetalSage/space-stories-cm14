@@ -227,3 +227,4 @@
     - HeadSide
     unfoldedHideLayers: [ ]
   - type: HideLayerClothing
+  - type: HelmetTap
