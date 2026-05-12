@@ -201,5 +201,5 @@ public sealed class SCCVars
     /// Minimum player count required to spawn a Tank.
     /// </summary>
     public static readonly CVarDef<int> RMCHighPopVehicle =
-        CVarDef.Create("rmc.vehicle.high_pop", 190, CVar.SERVERONLY);
+        CVarDef.Create("rmc.vehicle.high_pop", 200, CVar.SERVERONLY);
 }
