@@ -267,6 +267,7 @@ __pycache__/
 !.vscode/extensions.json
 !.vscode/launch.json
 !.vscode/tasks.json
+*.csproj.lscache
 
 # Release package files go here:
 release/
