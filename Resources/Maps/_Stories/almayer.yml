@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.2
   forkId: ""
   forkVersion: ""
-  time: 05/04/2026 21:05:05
-  entityCount: 28000
+  time: 05/15/2026 04:20:09
+  entityCount: 28002
 maps:
 - 1
 grids:
@@ -30791,6 +30791,8 @@ entities:
     - type: Transform
       pos: -24.5,4.5
       parent: 1
+    - type: DeviceLinkSink
+      invokeCounter: 1
   - uid: 132
     components:
     - type: Transform
@@ -57558,6 +57560,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -14.5,-10.5
       parent: 1
+    - type: DeviceLinkSink
+      invokeCounter: 1
   - uid: 5070
     components:
     - type: Transform
@@ -57808,7 +57812,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -128820.98
+      secondsUntilStateChange: -132012.17
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -57832,7 +57836,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -128820.98
+      secondsUntilStateChange: -132012.17
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -57884,6 +57888,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -10.5,96.5
       parent: 1
+    - type: DeviceLinkSink
+      invokeCounter: 1
   - uid: 5121
     components:
     - type: Transform
@@ -59867,18 +59873,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -76.5,88.5
-      parent: 1
-  - uid: 5449
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -106.5,108.5
-      parent: 1
-  - uid: 5450
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -106.5,106.5
       parent: 1
   - uid: 5451
     components:
@@ -130753,6 +130747,12 @@ entities:
       parent: 1
 - proto: RMCBodyScanner
   entities:
+  - uid: 5450
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -106.5,108.5
+      parent: 1
   - uid: 18465
     components:
     - type: Transform
@@ -132164,6 +132164,40 @@ entities:
     components:
     - type: Transform
       pos: -96.25,-15.5
+      parent: 1
+- proto: RMCCoffeeCupFilled
+  entities:
+  - uid: 25259
+    components:
+    - type: Transform
+      pos: -9.956609,4.609081
+      parent: 1
+  - uid: 25652
+    components:
+    - type: Transform
+      pos: -10.003518,4.374706
+      parent: 1
+  - uid: 26739
+    components:
+    - type: Transform
+      pos: -10.472617,4.515331
+      parent: 1
+  - uid: 28001
+    components:
+    - type: Transform
+      pos: -10.691529,4.343456
+      parent: 1
+  - uid: 28002
+    components:
+    - type: Transform
+      pos: -10.253705,4.327831
+      parent: 1
+- proto: RMCCoffeeMachine
+  entities:
+  - uid: 25655
+    components:
+    - type: Transform
+      pos: -9.5,4.5
       parent: 1
 - proto: RMCComputerIntel
   entities:
@@ -141187,6 +141221,9 @@ entities:
     - type: Transform
       pos: -27.5,2.5
       parent: 1
+    - type: Door
+      secondsUntilStateChange: -484.579
+      state: Opening
   - uid: 20410
     components:
     - type: Transform
@@ -141259,7 +141296,7 @@ entities:
       pos: 71.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -275408.53
+      secondsUntilStateChange: -278599.7
       state: Opening
   - uid: 20422
     components:
@@ -141267,7 +141304,7 @@ entities:
       pos: 72.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -275408.1
+      secondsUntilStateChange: -278599.25
       state: Opening
   - uid: 20423
     components:
@@ -141275,7 +141312,7 @@ entities:
       pos: 73.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -275407.7
+      secondsUntilStateChange: -278598.84
       state: Opening
   - uid: 20424
     components:
@@ -141283,7 +141320,7 @@ entities:
       pos: 71.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -275402.16
+      secondsUntilStateChange: -278593.3
       state: Opening
   - uid: 20425
     components:
@@ -141291,7 +141328,7 @@ entities:
       pos: 72.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -275402.56
+      secondsUntilStateChange: -278593.72
       state: Opening
   - uid: 20426
     components:
@@ -141299,7 +141336,7 @@ entities:
       pos: 73.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -275402.97
+      secondsUntilStateChange: -278594.12
       state: Opening
   - uid: 20427
     components:
@@ -141309,7 +141346,7 @@ entities:
       pos: 11.5,91.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7948.7573
+      secondsUntilStateChange: -11139.948
       state: Opening
   - uid: 20428
     components:
@@ -179836,6 +179873,15 @@ entities:
     - type: Transform
       pos: -48.9,97.8
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        159:
+        - - Status
+          - Toggle
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25635
@@ -179843,6 +179889,11 @@ entities:
     - type: Transform
       pos: -68.75,113.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: bot_uniforms
     - type: Fixtures
@@ -179852,6 +179903,11 @@ entities:
     - type: Transform
       pos: -46.25,111.2
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: asooffice
     - type: Fixtures
@@ -179861,6 +179917,15 @@ entities:
     - type: Transform
       pos: 58.65,-4.5
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        425:
+        - - Status
+          - Toggle
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25638
@@ -179868,6 +179933,11 @@ entities:
     - type: Transform
       pos: -77.75,17.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: safe_inner
     - type: Fixtures
@@ -179884,6 +179954,11 @@ entities:
     - type: Transform
       pos: -78.25,14.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: safe_shutters
     - type: Fixtures
@@ -179900,6 +179975,11 @@ entities:
     - type: Transform
       pos: -78.25,14.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: safe_inner
     - type: Fixtures
@@ -179916,6 +179996,11 @@ entities:
     - type: Transform
       pos: -74.25,17.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: safe_maint
     - type: Fixtures
@@ -179932,6 +180017,11 @@ entities:
     - type: Transform
       pos: -64.25,13.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: DeployWorkR
     - type: Fixtures
@@ -179949,6 +180039,11 @@ entities:
     - type: Transform
       pos: -74.75,17.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: safe_maint
     - type: Fixtures
@@ -179962,11 +180057,18 @@ entities:
       denyTags: []
   - uid: 25644
     components:
+    - type: MetaData
+      name: изоляция ангара
     - type: Transform
       pos: -78.25,14.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
-      id: Hangar Lockdown
+      id: Hangar_Lockdown
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -179981,6 +180083,11 @@ entities:
     - type: Transform
       pos: -69.3,14.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: DeployWorkR
     - type: Fixtures
@@ -179998,6 +180105,11 @@ entities:
     - type: Transform
       pos: -80.25,16.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: safe_office_inner
     - type: Fixtures
@@ -180014,6 +180126,11 @@ entities:
     - type: Transform
       pos: -77.25,13.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: safe_shutters
     - type: Fixtures
@@ -180030,6 +180147,11 @@ entities:
     - type: Transform
       pos: -78.75,16.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: safe_office_inner
     - type: Fixtures
@@ -180046,6 +180168,11 @@ entities:
     - type: Transform
       pos: -80.75,16.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: safe_armory
     - type: Fixtures
@@ -180062,6 +180189,11 @@ entities:
     - type: Transform
       pos: -42.25,7.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: ChemistryShu
     - type: Fixtures
@@ -180075,11 +180207,20 @@ entities:
       denyTags: []
   - uid: 25651
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -25.35,-5.75
       parent: 1
-    - type: RMCDoorButton
-      id: or03
+    - type: DeviceLinkSource
+      linkedPorts:
+        133:
+        - - Status
+          - Toggle
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -180087,25 +180228,22 @@ entities:
       accessKeys: []
       access: []
       denyTags: []
-  - uid: 25652
-    components:
-    - type: Transform
-      pos: -31.25,-2.75
-      parent: 1
-    - type: Fixtures
-      fixtures: {}
-    - type: AccessReader
-      accessLog: []
-      accessKeys: []
-      access:
-      - - CMAccessMedical
-      - - RMCAccessCommand
-      denyTags: []
   - uid: 25653
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -30.75,-5.25
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        5072:
+        - - Status
+          - Toggle
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -180115,9 +180253,16 @@ entities:
       denyTags: []
   - uid: 25654
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -25.65,-5.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or3entshutter
     - type: Fixtures
@@ -180129,18 +180274,18 @@ entities:
       - - CMAccessChemistry
       - - RMCAccessCommand
       denyTags: []
-  - uid: 25655
-    components:
-    - type: Transform
-      pos: -31.25,1.75
-      parent: 1
-    - type: Fixtures
-      fixtures: {}
   - uid: 25656
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -12.5,-10.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: southtreatcenter2
     - type: Fixtures
@@ -180157,6 +180302,11 @@ entities:
     - type: Transform
       pos: -37.5,9.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: hangarentrancenorth
     - type: Fixtures
@@ -180171,9 +180321,16 @@ entities:
       denyTags: []
   - uid: 25658
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -23.5,4.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or1entshutter
     - type: Fixtures
@@ -180190,6 +180347,11 @@ entities:
     - type: Transform
       pos: -42.25,-5.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: MedicalDistriShu
     - type: Fixtures
@@ -180203,11 +180365,22 @@ entities:
       denyTags: []
   - uid: 25660
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -15.25,-9.65
       parent: 1
-    - type: RMCDoorButton
-      id: souexit2
+    - type: DeviceLinkSource
+      linkedPorts:
+        5069:
+        - - Status
+          - Toggle
+      lastSignals:
+        Status: False
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -180217,11 +180390,20 @@ entities:
       denyTags: []
   - uid: 25661
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -17.65,-5.75
       parent: 1
-    - type: RMCDoorButton
-      id: or04
+    - type: DeviceLinkSource
+      linkedPorts:
+        132:
+        - - Status
+          - Toggle
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -180231,9 +180413,16 @@ entities:
       denyTags: []
   - uid: 25662
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -17.35,-5.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or4entshutter
     - type: Fixtures
@@ -180247,9 +180436,20 @@ entities:
       denyTags: []
   - uid: 25663
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -30.75,4.25
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        5071:
+        - - Status
+          - Toggle
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -180259,9 +180459,16 @@ entities:
       denyTags: []
   - uid: 25664
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -19.5,-5.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or4entshutter
     - type: Fixtures
@@ -180275,9 +180482,16 @@ entities:
       denyTags: []
   - uid: 25665
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -25.65,4.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or1entshutter
     - type: Fixtures
@@ -180294,6 +180508,11 @@ entities:
     - type: Transform
       pos: -18.5,-10.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or2privacyshutter
     - type: Fixtures
@@ -180310,6 +180529,11 @@ entities:
     - type: Transform
       pos: -39.5,-10.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: hangarentrancesouth
     - type: Fixtures
@@ -180327,6 +180551,11 @@ entities:
     - type: Transform
       pos: -37.5,-10.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: hangarentrancesouth
     - type: Fixtures
@@ -180341,9 +180570,16 @@ entities:
       denyTags: []
   - uid: 25669
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -23.5,-5.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or3entshutter
     - type: Fixtures
@@ -180360,6 +180596,11 @@ entities:
     - type: Transform
       pos: -24.5,9.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or3privacyshutter
     - type: Fixtures
@@ -180376,6 +180617,11 @@ entities:
     - type: Transform
       pos: -24.5,-10.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or1privacyshutter
     - type: Fixtures
@@ -180389,11 +180635,22 @@ entities:
       denyTags: []
   - uid: 25672
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -25.35,4.75
       parent: 1
-    - type: RMCDoorButton
-      id: or01
+    - type: DeviceLinkSource
+      linkedPorts:
+        131:
+        - - Status
+          - Toggle
+      lastSignals:
+        Status: False
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -180403,11 +180660,20 @@ entities:
       denyTags: []
   - uid: 25673
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -17.65,4.75
       parent: 1
-    - type: RMCDoorButton
-      id: or02
+    - type: DeviceLinkSource
+      linkedPorts:
+        130:
+        - - Status
+          - Toggle
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -180417,9 +180683,16 @@ entities:
       denyTags: []
   - uid: 25674
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -19.5,4.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or2entshutter
     - type: Fixtures
@@ -180433,9 +180706,16 @@ entities:
       denyTags: []
   - uid: 25675
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -17.35,4.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or2entshutter
     - type: Fixtures
@@ -180452,6 +180732,11 @@ entities:
     - type: Transform
       pos: -18.5,9.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: or4privacyshutter
     - type: Fixtures
@@ -180468,6 +180753,11 @@ entities:
     - type: Transform
       pos: -39.5,9.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: hangarentrancenorth
     - type: Fixtures
@@ -180482,9 +180772,18 @@ entities:
       denyTags: []
   - uid: 25678
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -15.25,-9.35
       parent: 1
+    - type: DeviceLinkSource
+      lastSignals:
+        Status: False
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: southtreatcenter2
     - type: Fixtures
@@ -180498,9 +180797,16 @@ entities:
       denyTags: []
   - uid: 25679
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -15.25,8.35
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: northtreatcenter2
     - type: Fixtures
@@ -180517,6 +180823,11 @@ entities:
     - type: Transform
       pos: -12.75,8.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: fieldmedequipment
     - type: Fixtures
@@ -180530,9 +180841,16 @@ entities:
       denyTags: []
   - uid: 25681
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -12.5,9.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: northtreatcenter2
     - type: Fixtures
@@ -180546,11 +180864,20 @@ entities:
       denyTags: []
   - uid: 25682
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -15.25,8.65
       parent: 1
-    - type: RMCDoorButton
-      id: nortexit2
+    - type: DeviceLinkSource
+      linkedPorts:
+        5062:
+        - - Status
+          - Toggle
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -180563,6 +180890,11 @@ entities:
     - type: Transform
       pos: -31.25,0.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -180578,6 +180910,11 @@ entities:
     - type: Transform
       pos: 22.5,-29.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder South East
     - type: Fixtures
@@ -180594,6 +180931,11 @@ entities:
     - type: Transform
       pos: -110.06233,87.44377
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Courtyard Window
     - type: Fixtures
@@ -180609,6 +180951,11 @@ entities:
     - type: Transform
       pos: -20.244175,105.356735
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CMO Shutters
     - type: Fixtures
@@ -180618,6 +180965,11 @@ entities:
     - type: Transform
       pos: -24.3,110.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CMO Shutters
     - type: Fixtures
@@ -180629,6 +180981,11 @@ entities:
     - type: Transform
       pos: -123.84131,106.37571
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: PermaCell1
     - type: Fixtures
@@ -180646,6 +181003,11 @@ entities:
     - type: Transform
       pos: -123.09131,106.37571
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: PermaCell2
     - type: Fixtures
@@ -180663,6 +181025,11 @@ entities:
     - type: Transform
       pos: -111.99081,102.73475
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Brig Lockdown Shutters
     - type: Fixtures
@@ -180680,6 +181047,11 @@ entities:
     - type: Transform
       pos: -62.5,6.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Hangar_Lockdown
     - type: Fixtures
@@ -180697,6 +181069,11 @@ entities:
     - type: Transform
       pos: 26.7,100.8
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25693
@@ -180704,6 +181081,11 @@ entities:
     - type: Transform
       pos: 25.2,104.2
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25694
@@ -180711,6 +181093,11 @@ entities:
     - type: Transform
       pos: 25.2,105.2
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25695
@@ -180718,6 +181105,11 @@ entities:
     - type: Transform
       pos: 0.5,6.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: BriefingRoomNorth2
     - type: Fixtures
@@ -180735,6 +181127,11 @@ entities:
     - type: Transform
       pos: -0.5,8.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: BriefingRoomNorth1
     - type: Fixtures
@@ -180752,6 +181149,11 @@ entities:
     - type: Transform
       pos: 0.5,-7.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: BriefingRoomSouth2
     - type: Fixtures
@@ -180769,6 +181171,11 @@ entities:
     - type: Transform
       pos: 20.5,-29.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder South East
     - type: Fixtures
@@ -180783,6 +181190,11 @@ entities:
     - type: Transform
       pos: -0.5,-9.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: BriefingRoomSouth1
     - type: Fixtures
@@ -180800,6 +181212,11 @@ entities:
     - type: Transform
       pos: -15.75,-19.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder South West
     - type: Fixtures
@@ -180817,6 +181234,11 @@ entities:
     - type: Transform
       pos: -15.75,-15.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder South West
     - type: Fixtures
@@ -180834,6 +181256,11 @@ entities:
     - type: Transform
       pos: -15.75,-17.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder South West
     - type: Fixtures
@@ -180851,6 +181278,11 @@ entities:
     - type: Transform
       pos: -15.25,-17.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Kitchen
     - type: Fixtures
@@ -180865,6 +181297,11 @@ entities:
     - type: Transform
       pos: -15.5,-14.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder South West
     - type: Fixtures
@@ -180882,6 +181319,11 @@ entities:
     - type: Transform
       pos: -11.25,-22.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Kitchen2
     - type: Fixtures
@@ -180896,6 +181338,11 @@ entities:
     - type: Transform
       pos: 22.5,28.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder North East
     - type: Fixtures
@@ -180910,6 +181357,11 @@ entities:
     - type: Transform
       pos: 20.5,28.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder North East
     - type: Fixtures
@@ -180924,6 +181376,11 @@ entities:
     - type: Transform
       pos: -15.5,13.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder North West
     - type: Fixtures
@@ -180941,6 +181398,11 @@ entities:
     - type: Transform
       pos: -15.75,14.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder North West
     - type: Fixtures
@@ -180958,6 +181420,11 @@ entities:
     - type: Transform
       pos: -15.75,18.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder North West
     - type: Fixtures
@@ -180975,6 +181442,11 @@ entities:
     - type: Transform
       pos: -15.75,16.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Ladder North West
     - type: Fixtures
@@ -180992,6 +181464,11 @@ entities:
     - type: Transform
       pos: -100.5,-4.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: VehicleHangar
     - type: Fixtures
@@ -181008,6 +181485,11 @@ entities:
     - type: Transform
       pos: 32.75,4.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CargoNorth2
     - type: Fixtures
@@ -181024,6 +181506,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 36.5,-4.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CargoSouth2
     - type: Fixtures
@@ -181039,6 +181526,11 @@ entities:
     - type: Transform
       pos: 68.653,6.7919636
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Tier1
     - type: Fixtures
@@ -181048,6 +181540,11 @@ entities:
     - type: Transform
       pos: 68.637375,-7.2085395
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Tier2
     - type: Fixtures
@@ -181057,6 +181554,11 @@ entities:
     - type: Transform
       pos: 0.4933715,104.40664
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: containmentlockdown_S
     - type: Fixtures
@@ -181072,6 +181574,11 @@ entities:
     - type: Transform
       pos: 5.3058715,106.42437
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: ResearchLockdown1
     - type: Fixtures
@@ -181088,6 +181595,11 @@ entities:
     - type: Transform
       pos: 9.905609,102.750496
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: ResearchLockdown2
     - type: Fixtures
@@ -181104,6 +181616,11 @@ entities:
     - type: Transform
       pos: 9.905609,102.3473
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: ResearchLockdown3
     - type: Fixtures
@@ -181120,6 +181637,11 @@ entities:
     - type: Transform
       pos: 5.2989855,98.401474
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: ResearchLockdown4
     - type: Fixtures
@@ -181136,6 +181658,11 @@ entities:
     - type: Transform
       pos: -2.7069688,104.513245
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: containmentlockdown_S
     - type: Fixtures
@@ -181153,6 +181680,11 @@ entities:
     - type: Transform
       pos: -99.75,90.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Courtyard Window
     - type: Fixtures
@@ -181170,6 +181702,11 @@ entities:
     - type: Transform
       pos: -99.4,90.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Cell Privacy Shutters
     - type: Fixtures
@@ -181187,6 +181724,11 @@ entities:
     - type: Transform
       pos: -99.75,90.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Brig Lockdown Shutters
     - type: Fixtures
@@ -181204,6 +181746,11 @@ entities:
     - type: Transform
       pos: -99.4,90.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Сourtyard Сells
     - type: Fixtures
@@ -181221,6 +181768,11 @@ entities:
     - type: Transform
       pos: -120.6,102.9
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Perma Lockdown
     - type: Fixtures
@@ -181238,6 +181790,11 @@ entities:
     - type: Transform
       pos: -112.52588,112.21373
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Armory
     - type: Fixtures
@@ -181255,6 +181812,11 @@ entities:
     - type: Transform
       pos: -120.62535,115.44053
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Interrogation
     - type: Fixtures
@@ -181272,6 +181834,11 @@ entities:
     - type: Transform
       pos: -111.99081,102.46595
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Сourtyard Сells
     - type: Fixtures
@@ -181289,6 +181856,11 @@ entities:
     - type: Transform
       pos: -92.35,91
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Brig Lockdown Shutters
     - type: Fixtures
@@ -181300,6 +181872,11 @@ entities:
     - type: Transform
       pos: -92.65,91
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CMPOffice
     - type: Fixtures
@@ -181319,6 +181896,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -111.51626,103.53837
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Cell3
     - type: Fixtures
@@ -181331,6 +181913,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -111.51626,103.72375
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Cell2
     - type: Fixtures
@@ -181343,6 +181930,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -111.51626,103.90913
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Cell1
     - type: Fixtures
@@ -181355,6 +181947,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -111.51626,103.35299
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Cell4
     - type: Fixtures
@@ -181367,6 +181964,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -111.51626,103.16761
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Cell5
     - type: Fixtures
@@ -181379,6 +181981,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -111.51626,102.9776
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Cell6
     - type: Fixtures
@@ -181388,6 +181995,11 @@ entities:
     - type: Transform
       pos: -86.75,103.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CIC Conference
     - type: Fixtures
@@ -181403,6 +182015,11 @@ entities:
     - type: Transform
       pos: 33.65,1.4
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CargoNorth
     - type: Fixtures
@@ -181418,6 +182035,11 @@ entities:
     - type: Transform
       pos: 33.65,-2.2
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CargoSouth
     - type: Fixtures
@@ -181435,6 +182057,11 @@ entities:
     - type: Transform
       pos: -64.75,102.7
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CIC Lockdown
     - type: Fixtures
@@ -181452,6 +182079,11 @@ entities:
     - type: Transform
       pos: -64.75,102.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Hangar_Lockdown
     - type: Fixtures
@@ -181469,6 +182101,11 @@ entities:
     - type: Transform
       pos: -64.75,102.3
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Bot Armory
     - type: Fixtures
@@ -181485,6 +182122,11 @@ entities:
     - type: Transform
       pos: -75.26202,-15.483967
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Under Construction Shutters
     - type: Fixtures
@@ -181496,6 +182138,11 @@ entities:
     - type: Transform
       pos: -115.776634,116.91422
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Interrogation
     - type: Fixtures
@@ -181511,6 +182158,11 @@ entities:
     - type: Transform
       pos: -26.5,97.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Research_Armory
     - type: Fixtures
@@ -181520,6 +182172,13 @@ entities:
     - type: Transform
       pos: -11.25,96.25
       parent: 1
+    - type: DeviceLinkSource
+      lastSignals:
+        Status: False
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: researchlockdownext_door
     - type: Fixtures
@@ -181535,6 +182194,11 @@ entities:
     - type: Transform
       pos: 73.4,116
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CE Office Shutters
     - type: Fixtures
@@ -181544,6 +182208,15 @@ entities:
     - type: Transform
       pos: -11.25,97.45
       parent: 1
+    - type: RMCDoorButton
+      id: researchlockdownext_door
+    - type: DeviceLinkSource
+      lastSignals:
+        Status: False
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -181557,6 +182230,11 @@ entities:
     - type: Transform
       pos: -11.25,97.6
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: researchlockdownext
     - type: Fixtures
@@ -181572,6 +182250,11 @@ entities:
     - type: Transform
       pos: -7.6,94.8
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: researchlockdownext_windoor
     - type: Fixtures
@@ -181587,6 +182270,11 @@ entities:
     - type: Transform
       pos: -7.6,94.65
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: researchlockdownext_se_2
     - type: Fixtures
@@ -181602,6 +182290,11 @@ entities:
     - type: Transform
       pos: 131.25,51.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25755
@@ -181609,6 +182302,11 @@ entities:
     - type: Transform
       pos: 131.25,49.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25756
@@ -181616,6 +182314,11 @@ entities:
     - type: Transform
       pos: 117.25,48.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25757
@@ -181623,6 +182326,11 @@ entities:
     - type: Transform
       pos: 117.25,48.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25758
@@ -181630,6 +182338,11 @@ entities:
     - type: Transform
       pos: 118.75,47.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25759
@@ -181637,6 +182350,11 @@ entities:
     - type: Transform
       pos: 122.25,47.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25760
@@ -181644,6 +182362,11 @@ entities:
     - type: Transform
       pos: 123.75,48.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25761
@@ -181651,6 +182374,11 @@ entities:
     - type: Transform
       pos: 123.75,48.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25762
@@ -181658,6 +182386,11 @@ entities:
     - type: Transform
       pos: 118.75,49.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25763
@@ -181665,6 +182398,11 @@ entities:
     - type: Transform
       pos: 122.25,49.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25764
@@ -181672,6 +182410,11 @@ entities:
     - type: Transform
       pos: 118.25,51.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25765
@@ -181679,6 +182422,11 @@ entities:
     - type: Transform
       pos: 118.75,51.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25766
@@ -181686,6 +182434,11 @@ entities:
     - type: Transform
       pos: 122.75,51.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25767
@@ -181693,6 +182446,11 @@ entities:
     - type: Transform
       pos: 122.25,51.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25768
@@ -181700,6 +182458,11 @@ entities:
     - type: Transform
       pos: 122.25,54.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25769
@@ -181707,6 +182470,11 @@ entities:
     - type: Transform
       pos: 118.75,54.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25770
@@ -181714,6 +182482,11 @@ entities:
     - type: Transform
       pos: 118.75,56.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25771
@@ -181721,6 +182494,11 @@ entities:
     - type: Transform
       pos: 122.25,56.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25772
@@ -181728,6 +182506,11 @@ entities:
     - type: Transform
       pos: 122.25,56.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25773
@@ -181735,6 +182518,11 @@ entities:
     - type: Transform
       pos: 127.75,53.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25774
@@ -181742,6 +182530,11 @@ entities:
     - type: Transform
       pos: 127.25,53.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25775
@@ -181749,6 +182542,11 @@ entities:
     - type: Transform
       pos: 41.75,99.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: tcomms_outer
     - type: Fixtures
@@ -181758,6 +182556,11 @@ entities:
     - type: Transform
       pos: 41.75,99.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: tcomms_inner
     - type: Fixtures
@@ -181767,6 +182570,11 @@ entities:
     - type: Transform
       pos: 47.75,98.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: tcomms_outer
     - type: Fixtures
@@ -181776,6 +182584,11 @@ entities:
     - type: Transform
       pos: 26.8,104.8
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25779
@@ -181783,6 +182596,11 @@ entities:
     - type: Transform
       pos: 26.8,104.2
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25780
@@ -181790,6 +182608,11 @@ entities:
     - type: Transform
       pos: 26.3,100.8
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25781
@@ -181797,6 +182620,11 @@ entities:
     - type: Transform
       pos: 27.8,95.8
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: IO_Lab_Shutters
     - type: Fixtures
@@ -181812,6 +182640,11 @@ entities:
     - type: Transform
       pos: -95.25,11.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: flightcryo
     - type: Fixtures
@@ -181821,6 +182654,11 @@ entities:
     - type: Transform
       pos: -46.25,94.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: officers_mess
     - type: Fixtures
@@ -181830,6 +182668,15 @@ entities:
     - type: Transform
       pos: -62.5,118.7
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        140:
+        - - Status
+          - Toggle
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -181843,6 +182690,11 @@ entities:
     - type: Transform
       pos: 49.5,-3.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: crate_room2
     - type: Fixtures
@@ -181852,6 +182704,11 @@ entities:
     - type: Transform
       pos: 52.5,-3.75
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: crate_room4
     - type: Fixtures
@@ -181865,6 +182722,11 @@ entities:
     - type: Transform
       pos: -71.8,121.3
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: Brig Lockdown Shutters
     - type: Fixtures
@@ -181875,6 +182737,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 119.5,59.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25789
@@ -181883,6 +182750,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 28.5,101.6
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25790
@@ -181890,6 +182762,11 @@ entities:
     - type: Transform
       pos: 71.5,117.25
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: engie_store
     - type: Fixtures
@@ -181899,6 +182776,11 @@ entities:
     - type: Transform
       pos: -71.2,121.3
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25792
@@ -181906,6 +182788,11 @@ entities:
     - type: Transform
       pos: -71.5,121.3
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
 - proto: RMCPodDoorButtonWeYa
@@ -181915,6 +182802,11 @@ entities:
     - type: Transform
       pos: -2.3,81.3
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CLRoomDivider
     - type: Fixtures
@@ -181924,6 +182816,11 @@ entities:
     - type: Transform
       pos: -2.6,81.3
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: RMCDoorButton
       id: CL_Containment
     - type: Fixtures
@@ -181935,6 +182832,11 @@ entities:
     - type: Transform
       pos: -8.5,88.247894
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25796
@@ -181942,6 +182844,11 @@ entities:
     - type: Transform
       pos: -8.5,88.7673
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25797
@@ -181949,6 +182856,11 @@ entities:
     - type: Transform
       pos: -7.65,83.6
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
 - proto: RMCPodDoorButtonWeYaOfficeEvacPod
@@ -181958,6 +182870,11 @@ entities:
     - type: Transform
       pos: -7.65,83.42
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
 - proto: RMCPodDoorButtonWeYaOfficeMaintenanceDoor
@@ -181967,6 +182884,11 @@ entities:
     - type: Transform
       pos: 7.3138647,85.56271
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25800
@@ -181974,6 +182896,11 @@ entities:
     - type: Transform
       pos: 7.7113256,87.32211
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
 - proto: RMCPodDoorButtonWeYaOfficeQuarterDoor
@@ -181983,6 +182910,11 @@ entities:
     - type: Transform
       pos: -3.7,86.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
   - uid: 25802
@@ -181990,6 +182922,11 @@ entities:
     - type: Transform
       pos: -3.3,86.5
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
 - proto: RMCPodDoorButtonWeYaOfficeQuarterWindows
@@ -181999,6 +182936,11 @@ entities:
     - type: Transform
       pos: -1.1531153,88.68472
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
 - proto: RMCPodDoorButtonWeYaOfficeWindows
@@ -182008,6 +182950,11 @@ entities:
     - type: Transform
       pos: -7.65,83.77
       parent: 1
+    - type: DeviceLinkSource
+      ports:
+      - On
+      - Off
+      - Status
     - type: Fixtures
       fixtures: {}
 - proto: RMCPortableDialysis
@@ -186217,6 +187164,12 @@ entities:
       parent: 1
 - proto: RMCSleeper
   entities:
+  - uid: 5449
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -106.5,106.5
+      parent: 1
   - uid: 26393
     components:
     - type: Transform
@@ -188095,11 +189048,6 @@ entities:
     components:
     - type: Transform
       pos: -42.5,-6.5
-      parent: 1
-  - uid: 26739
-    components:
-    - type: Transform
-      pos: -9.5,4.5
       parent: 1
   - uid: 26740
     components:
