@@ -152,7 +152,7 @@ rmc-ert-category-civilian = Гражданские
 rmc-ert-category-event = Ивент
 rmc-ert-category-hostile = Враждебные
 
-rmc-ert-organization-unmc = UNMC
+rmc-ert-organization-unmc = USMC
 rmc-ert-organization-weya = WeYa
 rmc-ert-organization-cmb = CMB
 rmc-ert-organization-spp = SPP
@@ -191,7 +191,7 @@ rmc-ert-admin-button-xenos = ОТПРАВИТЬ КСЕНОСОВ
 rmc-ert-admin-button-feral-xenos = ОТПРАВИТЬ ДИКИХ КСЕНОСОВ
 rmc-ert-admin-button-pizza = ОТПРАВИТЬ ПИЦЦУ
 
-rmc-ert-call-cbrn-name = Группа РХБЗ UNMC
+rmc-ert-call-cbrn-name = Группа РХБЗ USMC
 rmc-ert-call-pmc-name = Группа реагирования ЧВК WeYa
 rmc-ert-call-pmc-platoon-name = Взвод ЧВК WeYa
 rmc-ert-call-weya-bodyguard-name = Отряд охраны руководства WeYa
@@ -212,7 +212,7 @@ rmc-ert-call-contractors-name = Военные контракторы
 rmc-ert-call-contractors-covert-name = Скрытные военные контракторы
 rmc-ert-call-freelancers-friendly-name = Дружественные фрилансеры
 rmc-ert-call-freelancers-hostile-name = Враждебные фрилансеры
-rmc-ert-call-wy-commando-name = Коммандо Weyland-Yutani
+rmc-ert-call-wy-commando-name = Коммандо Weston-Yamada
 rmc-ert-call-xenos-name = Реагирование ксеноморфов
 rmc-ert-call-feral-xenos-name = Реагирование диких ксеноморфов
 rmc-ert-call-pizza-name = Шаттл доставки Pizza Galaxy
@@ -277,9 +277,9 @@ rmc-ert-role-contractor-covert-heavy = Пулемётчик скрытных к�
 rmc-ert-role-freelancer-leader = Лидер фрилансеров
 rmc-ert-role-freelancer-standard = Наёмник-фрилансер
 rmc-ert-role-freelancer-medic = Медик фрилансеров
-rmc-ert-role-weya-commando-leader = Командир отделения коммандо Weyland-Yutani
-rmc-ert-role-weya-commando = Коммандо Weyland-Yutani
-rmc-ert-role-weya-commando-gunner = Тяжёлый пулемётчик коммандо Weyland-Yutani
+rmc-ert-role-weya-commando-leader = Командир отделения коммандо Weston-Yamada
+rmc-ert-role-weya-commando = Коммандо Weston-Yamada
+rmc-ert-role-weya-commando-gunner = Тяжёлый пулемётчик коммандо Weston-Yamada
 rmc-ert-role-xeno-ravager = Разрушитель
 rmc-ert-role-xeno-leader = Лидер диких ксеноморфов
 rmc-ert-role-xeno-filler = Ксеноморф
@@ -303,7 +303,7 @@ rmc-ert-announcement-message = [font size=16][bold][color=#CECECE]{$title}[/colo
 
     {$message}[/color][/font]
 
-rmc-ert-announcement-priority-alert = С UNS Almayer был запущен аварийный маяк.
+rmc-ert-announcement-priority-alert = С USS Almayer был запущен аварийный маяк.
 rmc-ert-announcement-distress-dispatch = Получен зашифрованный сигнал с ближайшего судна. Ожидайте.
 rmc-ert-announcement-distress-no-response = Аварийный сигнал не получил ответа, пусковые трубы перекалибровываются.
 
@@ -317,10 +317,10 @@ rmc-ert-announcement-cbrn-failed = Верховное командование �
 rmc-ert-announcement-cbrn-denied = Верховное командование отклонило запрос бедствия.
 
 rmc-ert-announcement-pmc-dispatch = Корпоративный экстренный контракт принят. {$team} готовится к развёртыванию.
-rmc-ert-announcement-pmc-arrival = UNS Almayer, это USCSS Royce отвечает на ваш сигнал бедствия. Мы приступаем к абордажу. Любые враждебные действия будут встречены летальной силой.
+rmc-ert-announcement-pmc-arrival = USS Almayer, это USCSS Royce отвечает на ваш сигнал бедствия. Мы приступаем к абордажу. Любые враждебные действия будут встречены летальной силой.
 rmc-ert-announcement-pmc-denied = Корпоративные каналы реагирования отклонили запрос.
 
-rmc-ert-announcement-bodyguard-dispatch = UNS Almayer, это шаттл отряда корпоративной охраны Weyland-Yutani направляется к маяку представителя.
+rmc-ert-announcement-bodyguard-dispatch = USS Almayer, это шаттл отряда корпоративной охраны Weston-Yamada направляется к маяку представителя.
 rmc-ert-announcement-bodyguard-arrival = {$team} состыковалась с боевым кораблём и движется для охраны принципала.
 rmc-ert-announcement-bodyguard-denied = Корпоративная охрана отклонила запрос на защиту руководителя.
 
@@ -329,34 +329,34 @@ rmc-ert-announcement-lawyers-arrival = {$team} состыковалась с б�
 rmc-ert-announcement-lawyers-denied = Отдел корпоративных дел отклонил запрос юридической помощи.
 
 rmc-ert-announcement-cmb-dispatch = Патруль Бюро колониальных маршалов принял запрос бедствия.
-rmc-ert-announcement-cmb-arrival = Входящая передача: UNS Almayer, это станция Anchorpoint с Бюро колониальных маршалов. Мы получаем ваш сигнал бедствия и отправляем ближайшую группу для немедленного абордажа. Ожидайте.
-rmc-ert-announcement-cmb-riot-arrival = Входящая передача: UNS Almayer, это станция Anchorpoint с Бюро колониальных маршалов. Мы получаем ваш сигнал бедствия и отправляем ближайшую группу подавления беспорядков для немедленного абордажа. Ожидайте.
+rmc-ert-announcement-cmb-arrival = Входящая передача: USS Almayer, это станция Anchorpoint с Бюро колониальных маршалов. Мы получаем ваш сигнал бедствия и отправляем ближайшую группу для немедленного абордажа. Ожидайте.
+rmc-ert-announcement-cmb-riot-arrival = Входящая передача: USS Almayer, это станция Anchorpoint с Бюро колониальных маршалов. Мы получаем ваш сигнал бедствия и отправляем ближайшую группу подавления беспорядков для немедленного абордажа. Ожидайте.
 
 rmc-ert-announcement-spp-dispatch = Обнаружен иностранный трафик реагирования. {$team} готовится к развёртыванию.
-rmc-ert-announcement-spp-arrival = Это диспетчер SPP. UNS Almayer, мы отвечаем на ваш сигнал бедствия, окажем помощь по возможности, не открывайте огонь.
-rmc-ert-announcement-spp-hostile-arrival = Это абордажный отряд SPP. UNS Almayer, сложите оружие и приготовьтесь к захвату.
+rmc-ert-announcement-spp-arrival = Это диспетчер SPP. USS Almayer, мы отвечаем на ваш сигнал бедствия, окажем помощь по возможности, не открывайте огонь.
+rmc-ert-announcement-spp-hostile-arrival = Это абордажный отряд SPP. USS Almayer, сложите оружие и приготовьтесь к захвату.
 
 rmc-ert-announcement-tse-dispatch = {$team} приняла запрос бедствия.
 rmc-ert-announcement-tse-arrival = {$team} состыковалась с боевым кораблём и входит в район операции.
-rmc-ert-announcement-tse-arrival-patna = UNS Almayer, это HMS Patna; мы отвечаем на ваш сигнал бедствия и начинаем абордаж согласно Закону о военной помощи 2177 года, код аутентификации Lima-18153.
-rmc-ert-announcement-tse-arrival-thunderchild = UNS Almayer, это HMS Thunderchild; мы отвечаем на ваш сигнал бедствия и начинаем абордаж согласно Закону о военной помощи 2177 года, код аутентификации Lima-18153.
+rmc-ert-announcement-tse-arrival-patna = USS Almayer, это HMS Patna; мы отвечаем на ваш сигнал бедствия и начинаем абордаж согласно Закону о военной помощи 2177 года, код аутентификации Lima-18153.
+rmc-ert-announcement-tse-arrival-thunderchild = USS Almayer, это HMS Thunderchild; мы отвечаем на ваш сигнал бедствия и начинаем абордаж согласно Закону о военной помощи 2177 года, код аутентификации Lima-18153.
 
 rmc-ert-announcement-provost-dispatch = Командование Провоста одобрило группу реагирования.
 rmc-ert-announcement-provost-arrival = {$team} состыковалась с боевым кораблём и принимает юрисдикцию Провоста.
 
 rmc-ert-announcement-clf-arrival = 'Внимание, вы вторглись на нашу суверенную территорию. Не ждите пощады.'
-rmc-ert-announcement-contractors-arrival = UNS Almayer, это USCSS Inheritor компании Vanguard's Arrow Incorporated, основные операции; мы отвечаем на ваш сигнал бедствия и начинаем абордаж согласно Закону о военной помощи 2177 года, код аутентификации Lima-18153.
-rmc-ert-announcement-contractors-covert-arrival = UNS Almayer, это USCSS Samburan компании Vanguard's Arrow Incorporated, специальные операции; мы начинаем абордаж согласно Закону о военной помощи 2177 года, код авторизации X-Ray 19601.
-rmc-ert-announcement-freelancers-friendly-arrival = UNS Almayer, это шаттл фрилансеров, отвечающий на ваш сигнал бедствия. Приготовьтесь к абордажу.
-rmc-ert-announcement-freelancers-hostile-arrival = UNS Almayer, это шаттл фрилансеров. Мы идём на абордаж; любой, кто встанет на пути, станет законной целью.
-rmc-ert-announcement-wy-commando-arrival = UNS Almayer, это USCSS Nisshoku отвечает на ваш сигнал бедствия. Мы идём на абордаж. Любые враждебные действия будут встречены летальной силой.
+rmc-ert-announcement-contractors-arrival = USS Almayer, это USCSS Inheritor компании Vanguard's Arrow Incorporated, основные операции; мы отвечаем на ваш сигнал бедствия и начинаем абордаж согласно Закону о военной помощи 2177 года, код аутентификации Lima-18153.
+rmc-ert-announcement-contractors-covert-arrival = USS Almayer, это USCSS Samburan компании Vanguard's Arrow Incorporated, специальные операции; мы начинаем абордаж согласно Закону о военной помощи 2177 года, код авторизации X-Ray 19601.
+rmc-ert-announcement-freelancers-friendly-arrival = USS Almayer, это шаттл фрилансеров, отвечающий на ваш сигнал бедствия. Приготовьтесь к абордажу.
+rmc-ert-announcement-freelancers-hostile-arrival = USS Almayer, это шаттл фрилансеров. Мы идём на абордаж; любой, кто встанет на пути, станет законной целью.
+rmc-ert-announcement-wy-commando-arrival = USS Almayer, это USCSS Nisshoku отвечает на ваш сигнал бедствия. Мы идём на абордаж. Любые враждебные действия будут встречены летальной силой.
 rmc-ert-announcement-xenos-arrival = Неопознанные враждебные формы жизни проникли на боевой корабль.
 rmc-ert-announcement-feral-xenos-arrival = Неопознанные дикие формы жизни проникли на боевой корабль.
 
 rmc-ert-announcement-pizza-dispatch = Pizza Galaxy приняла экстренный заказ доставки. {$team} готовится к развёртыванию.
 rmc-ert-announcement-pizza-arrival = 'С вас... шестнадцать порций сырной картошки, восемь больших пицц с двойной начинкой, девять бутылок Four Loko... алло? Есть кто-нибудь на этом корабле? Ваша пицца остывает.'
-rmc-ert-announcement-supply-drop-dispatch = Получен сигнал автоматического сброса припасов Weyland-Yutani 334-Q. Процедуры стыковки начаты.
-rmc-ert-announcement-supply-drop-arrival = Автоматический сброс припасов Weyland-Yutani 334-Q состыковался с боевым кораблём.
+rmc-ert-announcement-supply-drop-dispatch = Получен сигнал автоматического сброса припасов Weston-Yamada 334-Q. Процедуры стыковки начаты.
+rmc-ert-announcement-supply-drop-arrival = Автоматический сброс припасов Weston-Yamada 334-Q состыковался с боевым кораблём.
 
 rmc-ert-beacon-request-title-handheld = ручной аварийный маяк
 rmc-ert-beacon-request-title-cmb = аварийный маяк CMB
@@ -368,9 +368,9 @@ rmc-ert-beacon-request-title-foreign = иностранный аварийный
 
 rmc-ert-recipient-high-command = Верховное командование
 rmc-ert-recipient-anchorpoint = станция Anchorpoint
-rmc-ert-recipient-weya-command = командование экстренного реагирования Weyland-Yutani
-rmc-ert-recipient-weya-security = отдел корпоративной охраны Weyland-Yutani
-rmc-ert-recipient-weya-affairs = отдел корпоративных дел Weyland-Yutani
+rmc-ert-recipient-weya-command = командование экстренного реагирования Weston-Yamada
+rmc-ert-recipient-weya-security = отдел корпоративной охраны Weston-Yamada
+rmc-ert-recipient-weya-affairs = отдел корпоративных дел Weston-Yamada
 rmc-ert-recipient-provost = командование Провоста
 rmc-ert-recipient-allied = командование союзного реагирования
 rmc-ert-recipient-pizza = диспетчерская Pizza Galaxy
