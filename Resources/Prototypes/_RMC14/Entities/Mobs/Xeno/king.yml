@@ -201,3 +201,7 @@
   - type: XenoToggleChargingKnockback
     enabled: false
   - type: XenoToggleChargingStop
+  # Stories-KingTracker-Start
+  - type: XenoKing
+  - type: RMCTrackable
+  # Stories-KingTracker-End

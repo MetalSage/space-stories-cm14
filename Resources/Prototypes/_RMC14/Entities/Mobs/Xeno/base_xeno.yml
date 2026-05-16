@@ -310,6 +310,9 @@
   - type: HiveTracker
     trackerModes:
     - Queen
+    # Stories-KingTracker-Start
+    - King
+    # Stories-KingTracker-End
     - HiveLeader
     - Tunnel
     - HiveCore

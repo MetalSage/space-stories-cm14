@@ -31,6 +31,9 @@ public sealed class HiveTrackerSystem : EntitySystem
 
     private const string HiveTrackerCategory = "HiveTracker";
     private const string QueenTrackerComponent = "XenoOvipositorCapable";
+    // Stories-KingTracker-Start
+    private const string KingTrackerComponent = "XenoKing";
+    // Stories-KingTracker-End
 
     public override void Initialize()
     {
@@ -305,8 +308,11 @@ public sealed class HiveTrackerSystem : EntitySystem
                     if (member.Hive != targetMember.Hive)
                         continue;
 
-                    // Only automatically track the first found target if looking for a queen
-                    if (trackerMode.Component == QueenTrackerComponent)
+                    // Only automatically track the first found target if looking for a queen or king
+                    // Stories-KingTracker-Start
+                    if (trackerMode.Component == QueenTrackerComponent ||
+                        trackerMode.Component == KingTrackerComponent)
+                    // Stories-KingTracker-End
                     {
                         if (EntityManager.TryGetComponent(trackableUid, trackingComponent, out _))
                         {

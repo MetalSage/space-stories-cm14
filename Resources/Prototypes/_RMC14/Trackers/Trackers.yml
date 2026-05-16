@@ -214,6 +214,13 @@
   component: XenoOvipositorCapable
   alert: HiveTracker
 
+# Stories-KingTracker-Start
+- type: trackerMode
+  id: King
+  component: XenoKing
+  alert: HiveTracker
+# Stories-KingTracker-End
+
 - type: trackerMode
   id: HiveLeader
   component: HiveLeader
