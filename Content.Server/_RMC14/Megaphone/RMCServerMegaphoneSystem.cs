@@ -1,6 +1,8 @@
 using Content.Server.Chat.Systems;
+using Content.Server._Stories.TTS;
 using Content.Shared._RMC14.Chat;
 using Content.Shared._RMC14.Megaphone;
+using Content.Shared._Stories.TTS;
 using Content.Shared.Ghost;
 using Content.Shared.Speech;
 using Robust.Server.Console;
@@ -21,7 +23,8 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ActorComponent, MegaphoneInputEvent>(OnMegaphoneInput);
-        SubscribeLocalEvent<RMCMegaphoneUserComponent, EntitySpokeEvent>(OnEntitySpoke);
+        SubscribeLocalEvent<RMCMegaphoneUserComponent, EntitySpokeEvent>(OnEntitySpoke, after: new[] { typeof(TTSSystem) }); // Stories
+        SubscribeLocalEvent<RMCMegaphoneUserComponent, GetTTSPlaybackModifiersEvent>(OnGetTTSPlaybackModifiers); // Stories
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandRecipients);
     }
 
@@ -37,6 +40,9 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
         EnsureComp<RMCSpeechBubbleSpecificStyleComponent>(user);
         var userComp = EnsureComp<RMCMegaphoneUserComponent>(user);
         userComp.VoiceRangeMultiplier = ev.VoiceRangeMultiplier;
+        userComp.TTSVolumeMultiplier = ev.TTSVolumeMultiplier; // Stories
+        userComp.TTSRangeMultiplier = ev.TTSRangeMultiplier; // Stories
+        userComp.TTSAudioEffects = ev.TTSAudioEffects; // Stories
         Dirty(user, userComp);
 
         if (TryComp<SpeechComponent>(user, out var speech))
@@ -70,6 +76,13 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
         // Remove components after the message is sent
         RemComp<RMCMegaphoneUserComponent>(ent);
         RemComp<RMCSpeechBubbleSpecificStyleComponent>(ent);
+    }
+
+    private void OnGetTTSPlaybackModifiers(Entity<RMCMegaphoneUserComponent> ent, ref GetTTSPlaybackModifiersEvent args)
+    {
+        args.AddVolumeMultiplier(ent.Comp.TTSVolumeMultiplier); // Stories
+        args.AddRangeMultiplier(ent.Comp.TTSRangeMultiplier); // Stories
+        args.AddAudioEffects(ent.Comp.TTSAudioEffects); // Stories
     }
 
     private void OnExpandRecipients(ExpandICChatRecipientsEvent ev)

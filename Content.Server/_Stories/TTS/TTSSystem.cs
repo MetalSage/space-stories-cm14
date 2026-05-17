@@ -46,6 +46,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke, new[] { typeof(HeadsetSystem) });
+        SubscribeLocalEvent<TTSPlaybackModifierComponent, GetTTSPlaybackModifiersEvent>(OnGetTTSPlaybackModifiers);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
@@ -102,46 +103,85 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, messageToUse, protoVoice.Speaker);
+            var playbackModifiers = GetPlaybackModifiers(uid, ChatSystem.WhisperClearRange);
+            HandleWhisper(uid, messageToUse, protoVoice.Speaker, playbackModifiers);
             return;
         }
 
-        HandleSay(uid, messageToUse, protoVoice.Speaker);
+        HandleSay(uid, messageToUse, protoVoice.Speaker, GetPlaybackModifiers(uid, ChatSystem.VoiceRange));
     }
 
-    private async void HandleSay(EntityUid uid, string message, string speaker)
+    private void OnGetTTSPlaybackModifiers(Entity<TTSPlaybackModifierComponent> ent, ref GetTTSPlaybackModifiersEvent args)
+    {
+        args.AddVolumeMultiplier(ent.Comp.VolumeMultiplier);
+        args.AddRangeMultiplier(ent.Comp.RangeMultiplier);
+        args.AddAudioEffects(ent.Comp.AudioEffects);
+
+        if (ent.Comp.MaxDistance != null)
+            args.SetMaxDistance(ent.Comp.MaxDistance.Value);
+    }
+
+    private TTSPlaybackModifiers GetPlaybackModifiers(EntityUid uid, float baseRange)
+    {
+        var ev = new GetTTSPlaybackModifiersEvent(baseRange);
+        RaiseLocalEvent(uid, ev);
+
+        return new TTSPlaybackModifiers(
+            ev.HasVolumeOverride ? ev.VolumeMultiplier : 1f,
+            ev.HasDistanceOverride ? ev.EffectiveMaxDistance : (float?) null,
+            ev.HasAudioEffects ? ev.AudioEffects : TTSAudioEffect.None);
+    }
+
+    private async void HandleSay(EntityUid uid, string message, string speaker, TTSPlaybackModifiers playbackModifiers)
     {
         var soundData = await GenerateTTS(message, speaker);
         if (soundData is null)
             return;
 
-        soundData = await ProcessSpecificVoices(uid, soundData);
+        soundData = await ProcessTtsAudio(uid, soundData, playbackModifiers.AudioEffects);
 
-        var ttsEvent = new PlayTTSEvent(soundData, GetNetEntity(uid));
-        FilterAndSend(uid, ttsEvent, ChatSystem.VoiceRange);
+        var ttsEvent = new PlayTTSEvent(
+            soundData,
+            GetNetEntity(uid),
+            volumeMultiplier: playbackModifiers.VolumeMultiplier,
+            maxDistanceOverride: playbackModifiers.MaxDistanceOverride);
+
+        FilterAndSend(uid, ttsEvent, playbackModifiers.MaxDistanceOverride ?? ChatSystem.VoiceRange);
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, string speaker)
+    private async void HandleWhisper(EntityUid uid, string message, string speaker, TTSPlaybackModifiers playbackModifiers)
     {
         var fullSoundData = await GenerateTTS(message, speaker, true);
         if (fullSoundData is null)
             return;
 
-        fullSoundData = await ProcessSpecificVoices(uid, fullSoundData);
+        fullSoundData = await ProcessTtsAudio(uid, fullSoundData, playbackModifiers.AudioEffects);
 
-        var fullTtsEvent = new PlayTTSEvent(fullSoundData, GetNetEntity(uid), true);
-        FilterAndSend(uid, fullTtsEvent, ChatSystem.WhisperClearRange);
+        var fullTtsEvent = new PlayTTSEvent(
+            fullSoundData,
+            GetNetEntity(uid),
+            true,
+            volumeMultiplier: playbackModifiers.VolumeMultiplier,
+            maxDistanceOverride: playbackModifiers.MaxDistanceOverride);
+
+        FilterAndSend(uid, fullTtsEvent, playbackModifiers.MaxDistanceOverride ?? ChatSystem.WhisperClearRange);
     }
 
-    private async Task<byte[]> ProcessSpecificVoices(EntityUid uid, byte[] data)
+    private TTSAudioEffect GetSpecificVoiceEffects(EntityUid uid)
     {
         if (HasComp<HunterComponent>(uid))
-            return await _ttsAudio.ApplyHunterEffect(data);
+            return TTSAudioEffect.Hunter;
 
         if (HasComp<XenoComponent>(uid))
-            return await _ttsAudio.ApplyXenoHivemindEffect(data);
+            return TTSAudioEffect.XenoHivemind;
 
-        return data;
+        return TTSAudioEffect.None;
+    }
+
+    private async Task<byte[]> ProcessTtsAudio(EntityUid uid, byte[] data, TTSAudioEffect playbackEffects)
+    {
+        var effects = GetSpecificVoiceEffects(uid) | playbackEffects;
+        return await _ttsAudio.ApplyPlaybackEffects(data, effects);
     }
 
     private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range)
@@ -233,6 +273,11 @@ public sealed partial class TTSSystem : EntitySystem
         return await _ttsManager.ConvertTextToSpeech(speaker, textSsml);
     }
 }
+
+public readonly record struct TTSPlaybackModifiers(
+    float VolumeMultiplier,
+    float? MaxDistanceOverride,
+    TTSAudioEffect AudioEffects);
 
 public sealed class TransformSpeakerVoiceEvent : EntityEventArgs
 {

@@ -97,6 +97,11 @@ public sealed class SCCVars
             "-i pipe:0 -f ogg -v quiet -filter_complex \"[0:a]asetrate=44100*0.75,aresample=44100,lowpass=f=2500,equalizer=f=200:t=h:w=200:g=5[p];[p]aecho=0.8:0.88:20:0.3,loudnorm=I=-15\" pipe:1",
             CVar.SERVERONLY);
 
+    public static readonly CVarDef<string> TTSMegaphoneFfmpegArguments =
+        CVarDef.Create("scc.tts.megaphone_ffmpeg_arguments",
+            "-i pipe:0 -f ogg -v quiet -filter_complex \"[0:a]highpass=f=420,lowpass=f=4200,equalizer=f=900:t=q:w=1.1:g=4,equalizer=f=1800:t=q:w=1.0:g=6,equalizer=f=3200:t=q:w=1.2:g=4,acompressor=threshold=0.16:ratio=5:attack=4:release=90:makeup=2,acrusher=level_in=1.2:level_out=0.9:bits=7:mix=0.28:mode=log,loudnorm=I=-9:LRA=4:TP=-1.5\" pipe:1",
+            CVar.SERVERONLY);
+
     /// Sponsors
     /// <summary>
     /// URL of the sponsors server API.

@@ -1,5 +1,6 @@
 using Content.Shared.Interaction.Events;
 using Content.Shared._RMC14.Dialog;
+using Content.Shared._Stories.TTS;
 using Content.Shared.Examine;
 using Robust.Shared.Serialization;
 
@@ -23,7 +24,10 @@ public sealed class RMCMegaphoneSystem : EntitySystem
 
         var ev = new MegaphoneInputEvent(
             GetNetEntity(args.User),
-            VoiceRangeMultiplier: ent.Comp.VoiceRangeMultiplier);
+            VoiceRangeMultiplier: ent.Comp.VoiceRangeMultiplier,
+            TTSVolumeMultiplier: ent.Comp.TTSVolumeMultiplier, // Stories
+            TTSRangeMultiplier: ent.Comp.TTSRangeMultiplier, // Stories
+            TTSAudioEffects: ent.Comp.TTSAudioEffects); // Stories
         _dialog.OpenInput(args.User, Loc.GetString("rmc-megaphone-ui-text"), ev, largeInput: false, characterLimit: 150);
     }
 
@@ -37,4 +41,7 @@ public sealed class RMCMegaphoneSystem : EntitySystem
 public sealed record MegaphoneInputEvent(
     NetEntity Actor,
     string Message = "",
-    float VoiceRangeMultiplier = 1.5f) : DialogInputEvent(Message);
+    float VoiceRangeMultiplier = 1.5f,
+    float TTSVolumeMultiplier = 2f, // Stories
+    float TTSRangeMultiplier = 1.5f, // Stories
+    TTSAudioEffect TTSAudioEffects = TTSAudioEffect.Megaphone) : DialogInputEvent(Message); // Stories

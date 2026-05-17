@@ -115,8 +115,8 @@ public sealed class TTSSystem : EntitySystem
         }
 
         var audioParams = AudioParams.Default
-            .WithVolume(AdjustVolume(ev.IsWhisper, volumeCVar))
-            .WithMaxDistance(AdjustDistance(ev.IsWhisper));
+            .WithVolume(AdjustVolume(ev.IsWhisper, volumeCVar, ev.VolumeMultiplier))
+            .WithMaxDistance(AdjustDistance(ev.IsWhisper, ev.MaxDistanceOverride));
 
         if (ev.SourceUid != null && TryGetEntity(ev.SourceUid.Value, out var sourceUid))
         {
@@ -130,9 +130,11 @@ public sealed class TTSSystem : EntitySystem
         _contentRoot.RemoveFile(filePath);
     }
 
-    private float AdjustVolume(bool isWhisper, float volumeCVar)
+    private float AdjustVolume(bool isWhisper, float volumeCVar, float volumeMultiplier)
     {
-        var volume = MinimalVolume + SharedAudioSystem.GainToVolume(volumeCVar);
+        var volume = MinimalVolume
+            + SharedAudioSystem.GainToVolume(volumeCVar)
+            + SharedAudioSystem.GainToVolume(volumeMultiplier);
 
         if (isWhisper)
         {
@@ -142,8 +144,8 @@ public sealed class TTSSystem : EntitySystem
         return volume;
     }
 
-    private float AdjustDistance(bool isWhisper)
+    private float AdjustDistance(bool isWhisper, float? maxDistanceOverride)
     {
-        return isWhisper ? WhisperMuffledRange : VoiceRange;
+        return maxDistanceOverride ?? (isWhisper ? WhisperMuffledRange : VoiceRange);
     }
 }
