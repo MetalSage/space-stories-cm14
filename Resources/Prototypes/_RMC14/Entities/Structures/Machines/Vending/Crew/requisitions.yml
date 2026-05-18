@@ -78,8 +78,6 @@
         amount: 3
       - id: RMCGunCasePistolM13
         amount: 3
-      - id: RMCXM51Case
-        amount: 3
     - name: Explosives
       entries:
       - id: CMGrenadeFragOld
@@ -379,8 +377,6 @@
         amount: 56
       - id: RMCBoxShotgunSlugs
         amount: 56
-      - id: RMCBoxShotgunBreaching
-        amount: 4
       - id: CMMagazineRifleM4SPR
         amount: 60
       - id: CMMagazineRifleM54C
@@ -453,8 +449,6 @@
         amount: 2
       - id: RMCMagazineM2C
         amount: 2
-      - id: RMCMagazineShotgunXM51
-        amount: 3
     - name: Magazine Boxes
       hasBoxes: true
       entries:
