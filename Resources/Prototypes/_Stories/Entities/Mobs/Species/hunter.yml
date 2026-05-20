@@ -119,6 +119,7 @@
   - type: NpcFactionMember
     factions:
     - STHunter
+  - type: MotionDetectorTracked
   - type: Skills
     skills:
       RMCSkillCqc: 5
