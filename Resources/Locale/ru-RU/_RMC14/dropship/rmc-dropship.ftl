@@ -1,6 +1,16 @@
 rmc-dropship-pre-flight-fueling = Шаттл все еще заправляется перед полетом и пока не может отправиться. Пожалуйста, подождите еще { $minutes } минут, прежде чем повторить попытку.
 rmc-dropship-pre-hijack = Этот терминал не будет работать еще { $minutes } минут.
 rmc-dropship-invalid-hijack = На терминале мигают огни, но вы не можете понять их значение.
+rmc-dropship-terminal-clueless = Вы растерянно смотрите на { $terminal }.
+rmc-dropship-no-destinations-nearby = Рядом с вами нет точек назначения для десантного корабля!
+rmc-dropship-already-incoming = Сюда уже летит десантный корабль!
+rmc-dropship-already-here = Десантный корабль уже здесь!
+rmc-dropship-not-primary-shuttle = Шаттл не отвечает на команды. Похоже, это не основной шаттл.
+rmc-dropship-call-to-location = Вы вызываете один из десантных кораблей к своему местоположению.
+rmc-dropship-none-available = Нет доступных десантных кораблей! Подождите немного.
+rmc-dropship-no-remote-control = У этого десантного корабля не включено дистанционное управление.
+rmc-dropship-busy = Этот десантный корабль сейчас занят. Повторите попытку позже.
+rmc-dropship-now-on-its-way = Этот десантный корабль уже в пути.
 
 rmc-dropship-weapons-title = Оружейная консоль
 
@@ -115,10 +125,21 @@ rmc-dropship-medevac-system-screen-text = Система медицинской 
 
 rmc-dropship-fulton-system-screen-text = Система подъёма РМУ-19 Фултон
 
-rmc-dropship-locked= Эта птица теперь наша на { $minutes } минут.
+rmc-dropship-locked = Эта птица теперь наша на { $minutes } минут.
 rmc-dropship-locked-out = Шаттл не отвечает, попробуйте еще раз через { $minutes } минут.
 rmc-dropship-locked-out-bypass = Вы частично обошли блокировку, попробуйте еще раз!
 rmc-dropship-locked-out-bypass-complete = Вы успешно сняли блокировку!
+rmc-dropship-terminal-xeno-clueless = Вы растерянно смотрите на { $terminal }.
+rmc-dropship-terminal-no-nearby-destinations = Рядом с вами нет точек назначения для десантного корабля!
+rmc-dropship-terminal-dropship-inbound = Сюда уже летит десантный корабль!
+rmc-dropship-terminal-dropship-present = Десантный корабль уже здесь!
+rmc-dropship-terminal-not-primary = Шаттл не отвечает на команды; похоже, это не основной шаттл.
+rmc-dropship-terminal-call-down-success = Вы вызываете один из десантных кораблей к своему местоположению.
+rmc-dropship-terminal-no-available-dropships = Нет доступных десантных кораблей! Подождите немного.
+rmc-dropship-terminal-unknown-location = ???
+rmc-dropship-terminal-remote-control-disabled = У этого десантного корабля не включено дистанционное управление.
+rmc-dropship-terminal-dropship-busy = Этот десантный корабль сейчас занят. Повторите попытку позже.
+rmc-dropship-terminal-dropship-routed = Этот десантный корабль уже в пути.
 
 rmc-dropship-equipment-deployer-text = { $deployName }
 rmc-dropship-equipment-deployer-health = Статус: { $status }

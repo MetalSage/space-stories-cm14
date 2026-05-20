@@ -8,7 +8,6 @@ namespace Content.Shared.Preferences
     /// <summary>
     /// The client sends this to delete a character profile.
     /// </summary>
-    [Serializable, NetSerializable] // Stories-Hunter
     public sealed class MsgDeleteCharacter : NetMessage
     {
         public override MsgGroups MsgGroup => MsgGroups.Command;

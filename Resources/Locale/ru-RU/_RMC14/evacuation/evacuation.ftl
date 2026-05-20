@@ -1,0 +1,28 @@
+rmc-evacuation-pod-max-occupants = [color=red]Эта эвакуационная капсула рассчитана максимум на { $max } пассажиров! Большее число может привести к аварии и пожару.[/color]
+rmc-evacuation-not-started = Эвакуация еще не началась.
+rmc-evacuation-pod-already-launched = Спасательная капсула уже запущена!
+rmc-evacuation-pod-crashed = Эта спасательная капсула разбилась!
+rmc-evacuation-pump-examine-empty = Похоже, топлива пока почти нет.
+rmc-evacuation-pump-examine-low = Похоже, накопилось немного топлива.
+rmc-evacuation-pump-examine-half = Похоже, топливный бак заполнен чуть больше чем наполовину.
+rmc-evacuation-pump-examine-almost-full = Похоже, топливный бак почти полон.
+rmc-evacuation-pump-examine-full = Похоже, топливный бак полон.
+rmc-evacuation-not-authorized = Эвакуация не разрешена.
+rmc-evacuation-pod-overloaded = В эвакуационной капсуле слишком много людей!
+
+rmc-evacuation-started = Внимание. Чрезвычайная ситуация. Всему персоналу немедленно эвакуироваться.
+rmc-evacuation-cancelled = Эвакуация отменена.
+rmc-evacuation-area-status = [{ $area }] - [{ $status }]
+rmc-evacuation-area-status-online = Работает
+rmc-evacuation-area-status-offline = Отключено
+rmc-evacuation-fuel-start = Из-за низкой орбиты для эвакуации не с поверхности требуется дополнительное топливо. Поддерживайте работу заправочных систем для оптимальных условий эвакуации.
+rmc-evacuation-fuel-progress-operational = Пополнение аварийного топлива выполнено на { $percentage } процентов. Все зоны заправки работают.
+rmc-evacuation-fuel-progress-restore = Пополнение аварийного топлива выполнено на { $percentage } процентов. Для ускорения восстановите питание в следующих зонах: { $areas }
+rmc-evacuation-fuel-progress-25-operational = Пополнение аварийного топлива выполнено на 25 процентов. Аварийный ранний запуск спасательных шлюпок теперь доступен. Все зоны заправки работают.
+rmc-evacuation-fuel-progress-25-restore = Пополнение аварийного топлива выполнено на 25 процентов. Аварийный ранний запуск спасательных шлюпок теперь доступен. Для ускорения восстановите питание в следующих зонах: { $areas }
+rmc-evacuation-fuel-progress-complete = Пополнение аварийного топлива выполнено на 100 процентов. Безопасное использование спасательных шлюпок и капсул теперь возможно.
+rmc-evacuation-xeno-progress-complete = Высокие выполнили свои цели!
+rmc-evacuation-xeno-progress-75 = Высокие прошли три четверти пути к своим целям.
+rmc-evacuation-xeno-progress-50 = Высокие прошли половину пути к своим целям.
+rmc-evacuation-xeno-progress-25 = Высокие прошли четверть пути к своим целям.
+rmc-evacuation-xeno-progress-disable = { $message } Отключите следующие зоны: { $areas }

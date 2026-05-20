@@ -254,7 +254,7 @@ public abstract class SharedDropshipSystem : EntitySystem
             return;
 
         Audio.PlayPvs(ent.Comp.LaunchAlarmForcedShutdownSound, ent);
-        _popup.PopupEntity( Loc.GetString("rmc-dropship-launch-alarm-xeno-shutdown", ("console", ent)), args.Attacker);
+        _popup.PopupEntity(Loc.GetString("rmc-dropship-launch-alarm-xeno-shutdown", ("console", ent)), args.Attacker);
     }
 
     private void OnDropshipTerminalActivateInWorld(Entity<DropshipTerminalComponent> ent, ref ActivateInWorldEvent args)
