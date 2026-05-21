@@ -605,8 +605,10 @@
     stories-chatsan-word-24: stories-chatsan-replacement-24
     stories-chatsan-word-25: stories-chatsan-replacement-25
     stories-chatsan-word-26: stories-chatsan-replacement-26
+    stories-chatsan-word-27: stories-chatsan-replacement-27
+    stories-chatsan-word-28: stories-chatsan-replacement-28
+    stories-chatsan-word-29: stories-chatsan-replacement-29
     # Stories-Brainrot-End
-
 
 - type: accent
   id: liar
