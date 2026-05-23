@@ -35,7 +35,7 @@
 
           #Engineering
           CMChiefEngineer: [1, 1]
-          # CMOrdnanceTech: [3, 3]
+          CMOrdnanceTech: [3, 3]
           CMMaintTech: [3, 3]
 
           #Medical

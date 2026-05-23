@@ -23,7 +23,7 @@
     RMCSodium:
       amount: 1
   products:
-    TableSalt: 2
+    RMCTableSalt: 2 # Stories-Ordance
 
 - type: reaction
   id: RMCAluminiumMetalFoam

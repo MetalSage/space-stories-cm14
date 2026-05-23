@@ -218,4 +218,18 @@ public sealed class StickySystem : EntitySystem
         var ev = new EntityUnstuckEvent(stuckTo, user);
         RaiseLocalEvent(uid, ref ev);
     }
+
+    // Stories-Ordnance-Start
+    public void SetCanUnstick(EntityUid uid, bool canUnstick, StickyComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp, false))
+            return;
+
+        if (comp.CanUnstick == canUnstick)
+            return;
+
+        comp.CanUnstick = canUnstick;
+        Dirty(uid, comp);
+    }
+    // Stories-Ordnance-End
 }

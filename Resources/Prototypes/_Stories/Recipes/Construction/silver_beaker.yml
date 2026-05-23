@@ -1,0 +1,36 @@
+- type: rmcConstruction
+  id: STSilverBeakerBuild
+  name: большая серебряная мензурка
+  prototype: STSilverBeaker
+  doAfterTime: 3
+  doAfterTimeMin: 1.5
+  materialCost: 3
+  skill: RMCSkillConstruction
+  requiredSkillLevel: 1
+
+- type: constructionGraph
+  id: STSilverBeakerGraph
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: beaker
+      steps:
+      - material: STSilver
+        amount: 3
+        doAfter: 3
+
+  - node: beaker
+    entity: STSilverBeaker
+
+- type: construction
+  id: STSilverBeaker
+  name: большая серебряная мензурка
+  category: Chemistry
+  description: Большая серебряная мензурка. Вмещает до 240 единиц. Сама мензурка выступает в роли серебряного катализатора.
+  graph: STSilverBeakerGraph
+  startNode: start
+  targetNode: beaker
+  objectType: Item

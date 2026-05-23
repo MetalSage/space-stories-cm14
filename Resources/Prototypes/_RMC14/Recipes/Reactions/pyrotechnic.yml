@@ -27,7 +27,10 @@
     RMCSulphuricAcid:
       amount: 1
   effects:
-  - !type:ExplosionReactionEffect
+  # Stories-Ordnance-Start
+  - !type:SensitiveReactionExplosionEffect
+    threshold: 0
+  # Stories-Ordnance-End
     explosionType: RMC
     maxIntensity: 100
     intensityPerUnit: 0.33
@@ -59,7 +62,10 @@
     RMCFluorine:
       amount: 3
   effects:
-  - !type:ExplosionReactionEffect
+  # Stories-Ordnance-Start
+  - !type:SensitiveReactionExplosionEffect
+    threshold: 0
+  # Stories-Ordnance-End
     explosionType: RMC
     maxIntensity: 100
     intensityPerUnit: 0.25
@@ -81,7 +87,7 @@
   reactants:
     RMCNapalm:
       amount: 1
-    WeldingFuel:
+    RMCWeldingFuel: # Stories-Ordance
       amount: 1
   products:
     RMCNapalmSticky: 1

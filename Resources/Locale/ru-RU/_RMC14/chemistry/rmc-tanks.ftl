@@ -1,0 +1,10 @@
+rmc-chemistry-detailed-solution-contains = Оно содержит:
+rmc-chemistry-detailed-solution-nothing = Ничего.
+rmc-chemistry-detailed-solution-reagent = {$quantity} ед. {$name}
+rmc-chemistry-detailed-solution-total = Общий объём: {$volume} / {$maxVolume}.
+rmc-chemistry-detailed-solution-mode-drawing = Режим перекачки: Забор жидкости
+rmc-chemistry-detailed-solution-mode-dispensing = Режим перекачки: Раздача жидкости
+rmc-chemistry-verb-enable-drawing = Включить забор жидкости
+rmc-chemistry-verb-enable-dispensing = Включить раздачу жидкости
+rmc-chemistry-popup-now-drawing = Теперь забирает жидкость
+rmc-chemistry-popup-now-dispensing = Теперь раздаёт жидкость

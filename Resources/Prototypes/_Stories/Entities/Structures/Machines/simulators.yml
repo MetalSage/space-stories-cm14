@@ -1,0 +1,65 @@
+- type: entity
+  parent: RMCCommunicationsConsoleBase
+  id: STDemolitionsSimulator
+  name: demolitions simulator
+  description: A powerful simulator that can simulate explosions. Its processors need a cooldown of approximately 1 minute after each simulation.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Machines/computer.rsi
+    layers:
+      - state: demo_sim
+  - type: DemolitionsSimulator
+    requiredSkills:
+      all:
+        RMCSkillEngineer: 2
+    arenaMapPath: /Maps/_Stories/Test/demo_arena.yml
+    cleanupRadius: 15
+    spawnCategories:
+      Human:
+        - RMCRandomHumanoidUnassignedRifleman
+        - RMCRandomHumanoidCLFSoldier
+        - RMCRandomHumanoidSPPRiflemanHostile
+        - RMCRandomHumanoidPMCStandardSSG45
+        - RMCRandomHumanoidMarineRaider
+      Xeno:
+        - CMXenoLesserDrone
+        - CMXenoDrone
+        - CMXenoRunner
+        - CMXenoDefender
+        - CMXenoSentinel
+        - CMXenoHivelord
+        - CMXenoCarrier
+        - CMXenoBurrower
+        - CMXenoLurker
+        - CMXenoWarrior
+        - CMXenoSpitter
+        - CMXenoRavager
+        - RMCXenoCrusher
+        - CMXenoPraetorian
+        - CMXenoBoiler
+        - CMXenoQueen
+        - RMCXenoKing
+      Structure:
+        - CMWallMetal
+        - CMWallReinforced
+        - CMWindowWhiteColony
+        - CMWindowWhiteColonyReinforced
+        - WallXenoResin
+        - WallXenoResinThick
+  - type: ItemSlots
+    slots:
+      demo_sim_slot:
+        name: stories-demo-sim-slot-name
+        whitelist:
+          components:
+            - OrdnanceCasing
+  - type: ActivatableUI
+    key: enum.Content.Shared._Stories.Ordnance.Simulator.DemolitionsSimulatorUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.Content.Shared._Stories.Ordnance.Simulator.DemolitionsSimulatorUiKey.Key:
+        type: DemolitionsSimulatorBoundUserInterface
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno

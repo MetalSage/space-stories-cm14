@@ -1,0 +1,246 @@
+# Copper
+- type: material
+  id: STCopper
+  stackEntity: STSheetCopper
+  name: materials-copper
+  icon: { sprite: _Stories/Objects/Materials/Sheets/copper.rsi, state: copper }
+  color: "#A8A8A8"
+  price: 0.0053
+
+- type: stack
+  id: STCopper
+  name: copper
+  icon: { sprite: _Stories/Objects/Materials/Sheets/copper.rsi, state: copper }
+  spawn: STSheetCopper
+  maxCount: 50
+
+- type: entity
+  parent: SheetOtherBase
+  id: STSheetCopper
+  name: copper
+  suffix: Full
+  components:
+  - type: Material
+  - type: Stack
+    stackType: STCopper
+    count: 50
+  - type: Sprite
+    state: copper
+    sprite: _Stories/Objects/Materials/Sheets/copper.rsi
+  - type: Item
+    heldPrefix: copper
+    size: Normal
+    sprite: _Stories/Objects/Materials/Sheets/copper.rsi
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: copper
+  - type: SolutionContainerManager
+    solutions:
+      copper:
+        reagents:
+        - ReagentId: RMCCopper
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Sheet
+
+- type: entity
+  parent: STSheetCopper
+  id: STSheetCopper15
+  suffix: "15"
+  components:
+  - type: Stack
+    count: 15
+
+- type: entity
+  parent: STSheetCopper
+  id: STSheetCopper25
+  suffix: "25"
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  parent: STSheetCopper
+  id: STSheetCopper30
+  suffix: "30"
+  components:
+  - type: Stack
+    count: 30
+
+- type: entity
+  parent: STSheetCopper
+  id: STSheetCopper1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+# Gold
+- type: material
+  id: STGold
+  stackEntity: STSheetGold
+  name: materials-gold
+  icon: { sprite: _Stories/Objects/Materials/Sheets/gold.rsi, state: gold }
+  color: "#A8A8A8"
+  price: 0.0053
+
+- type: stack
+  id: STGold
+  name: gold
+  icon: { sprite: _Stories/Objects/Materials/Sheets/gold.rsi, state: gold }
+  spawn: STSheetGold
+  maxCount: 50
+
+- type: entity
+  parent: SheetOtherBase
+  id: STSheetGold
+  name: gold
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RMCGold: 3750
+  - type: Stack
+    stackType: STGold
+    count: 50
+  - type: Sprite
+    state: gold
+    sprite: _Stories/Objects/Materials/Sheets/gold.rsi
+  - type: Item
+    heldPrefix: gold
+    size: Normal
+    sprite: _Stories/Objects/Materials/Sheets/gold.rsi
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: gold
+  - type: SolutionContainerManager
+    solutions:
+      gold:
+        reagents:
+        - ReagentId: RMCGold
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Sheet
+
+- type: entity
+  parent: STSheetGold
+  id: STSheetGold15
+  suffix: "15"
+  components:
+  - type: Stack
+    count: 15
+
+- type: entity
+  parent: STSheetGold
+  id: STSheetGold25
+  suffix: "25"
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  parent: STSheetGold
+  id: STSheetGold30
+  suffix: "30"
+  components:
+  - type: Stack
+    count: 30
+
+- type: entity
+  parent: STSheetGold
+  id: STSheetGold1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+# Silver
+- type: material
+  id: STSilver
+  stackEntity: STSheetSilver
+  name: materials-silver
+  icon: { sprite: _Stories/Objects/Materials/Sheets/silver.rsi, state: silver }
+  color: "#A8A8A8"
+  price: 0.0053
+
+- type: stack
+  id: STSilver
+  name: silver
+  icon: { sprite: _Stories/Objects/Materials/Sheets/silver.rsi, state: silver }
+  spawn: STSheetSilver
+  maxCount: 50
+
+- type: entity
+  parent: SheetOtherBase
+  id: STSheetSilver
+  name: silver
+  suffix: Full
+  components:
+  - type: RMCConstructionItem
+    buildable:
+    - STSilverBeakerBuild
+  - type: UserInterface
+    interfaces:
+      enum.RMCConstructionUiKey.Key:
+        type: RMCConstructionBui
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      STSilver: 3750
+  - type: Stack
+    stackType: STSilver
+    count: 50
+  - type: Sprite
+    state: silver
+    sprite: _Stories/Objects/Materials/Sheets/silver.rsi
+  - type: Item
+    heldPrefix: silver
+    size: Normal
+    sprite: _Stories/Objects/Materials/Sheets/silver.rsi
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: silver
+  - type: SolutionContainerManager
+    solutions:
+      silver:
+        reagents:
+        - ReagentId: RMCSilver
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Sheet
+
+- type: entity
+  parent: STSheetSilver
+  id: STSheetSilver15
+  suffix: "15"
+  components:
+  - type: Stack
+    count: 15
+
+- type: entity
+  parent: STSheetSilver
+  id: STSheetSilver25
+  suffix: "25"
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  parent: STSheetSilver
+  id: STSheetSilver30
+  suffix: "30"
+  components:
+  - type: Stack
+    count: 30
+
+- type: entity
+  parent: STSheetSilver
+  id: STSheetSilver1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

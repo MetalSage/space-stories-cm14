@@ -1,0 +1,302 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using Content.Server._Stories.Ordnance.Explosion;
+using Content.Server.Ghost.Roles.Components;
+using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._Stories.Ordnance;
+using Content.Shared._Stories.Ordnance.Simulator;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Popups;
+using Robust.Server.GameObjects;
+using Robust.Shared.Containers;
+using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.GameObjects;
+using Robust.Shared.IoC;
+using Robust.Shared.Localization;
+using Robust.Shared.Map;
+using Robust.Shared.Player;
+using Robust.Shared.Timing;
+
+namespace Content.Server._Stories.Ordnance.Simulator;
+
+public sealed class DemolitionsSimulatorSystem : EntitySystem
+{
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
+    [Dependency] private readonly SharedMapSystem _maps = default!;
+    [Dependency] private readonly OrdnanceExplosionSystem _ordnanceExplosion = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly ViewSubscriberSystem _viewSubscriber = default!;
+
+    private readonly HashSet<EntityUid> _arenaMaps = new();
+    private readonly HashSet<EntityUid> _cleanupCache = new();
+    private readonly List<ReagentQuantity> _reagentCache = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, ComponentRemove>(OnRemove);
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, ItemSlotInsertAttemptEvent>(OnInsertAttempt);
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, EntInsertedIntoContainerMessage>(OnItemChanged);
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, EntRemovedFromContainerMessage>(OnItemChanged);
+
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, DemolitionsSimulatorDetonateMessage>(OnDetonate);
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, DemolitionsSimulatorResetMessage>(OnResetArena);
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, DemolitionsSimulatorEjectMessage>(OnEject);
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, DemolitionsSimulatorSwitchCategoryMessage>(OnSwitchCategory);
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, DemolitionsSimulatorSwitchProtoMessage>(OnSwitchProto);
+
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, BoundUIOpenedEvent>(OnUIOpened);
+        SubscribeLocalEvent<DemolitionsSimulatorComponent, BoundUIClosedEvent>(OnUIClosed);
+    }
+
+    private void OnUIOpened(Entity<DemolitionsSimulatorComponent> ent, ref BoundUIOpenedEvent args)
+    {
+        EnsureArena(ent);
+        if (ent.Comp.Camera != null && TryGetEntity(ent.Comp.Camera, out var cam))
+        {
+            if (TryComp<ActorComponent>(args.Actor, out var actor))
+                _viewSubscriber.AddViewSubscriber(cam.Value, actor.PlayerSession);
+        }
+    }
+
+    private void OnUIClosed(Entity<DemolitionsSimulatorComponent> ent, ref BoundUIClosedEvent args)
+    {
+        if (ent.Comp.Camera != null && TryGetEntity(ent.Comp.Camera, out var cam))
+        {
+            if (TryComp<ActorComponent>(args.Actor, out var actor))
+                _viewSubscriber.RemoveViewSubscriber(cam.Value, actor.PlayerSession);
+        }
+    }
+
+    private void OnMapInit(Entity<DemolitionsSimulatorComponent> ent, ref MapInitEvent args)
+    {
+        if (string.IsNullOrEmpty(ent.Comp.SelectedPrototype) &&
+            ent.Comp.SpawnCategories.TryGetValue(ent.Comp.SelectedCategory, out var protos) &&
+            protos.Count > 0)
+        {
+            ent.Comp.SelectedPrototype = protos[0];
+        }
+        EnsureArena(ent);
+    }
+
+    private void EnsureArena(Entity<DemolitionsSimulatorComponent> ent)
+    {
+        if (ent.Comp.ArenaMap != null) return;
+
+        if (!_mapLoader.TryLoadGeneric(ent.Comp.ArenaMapPath, out var maps, out var grids, null))
+            return;
+
+        var mapEnt = maps.FirstOrDefault();
+        if (mapEnt.Owner == default) return;
+
+        var mapUid = mapEnt.Owner;
+        var mapId = mapEnt.Comp.MapId;
+
+        var gridEnt = grids.FirstOrDefault();
+        var gridUid = gridEnt.Owner;
+
+        _maps.InitializeMap(mapId);
+        _maps.SetPaused(mapId, false);
+
+        ent.Comp.ArenaMap = GetNetEntity(mapUid);
+        _arenaMaps.Add(mapUid);
+
+        if (gridUid != default)
+            ent.Comp.ArenaGrid = GetNetEntity(gridUid);
+
+        var targetUid = gridUid == default ? mapUid : gridUid;
+        var centerCoords = new EntityCoordinates(targetUid, new Vector2(-0.5f, -0.5f));
+
+        var camera = Spawn(ent.Comp.CameraPrototype, centerCoords);
+        ent.Comp.Camera = GetNetEntity(camera);
+
+        Dirty(ent);
+
+        if (!string.IsNullOrEmpty(ent.Comp.SelectedPrototype))
+        {
+            ResetAndSpawn(ent);
+        }
+    }
+
+    private void OnRemove(Entity<DemolitionsSimulatorComponent> ent, ref ComponentRemove args)
+    {
+        if (ent.Comp.ArenaMap != null)
+        {
+            var mapUid = GetEntity(ent.Comp.ArenaMap.Value);
+            _arenaMaps.Remove(mapUid);
+            if (!Deleted(mapUid))
+                QueueDel(mapUid);
+        }
+    }
+
+    private void OnInsertAttempt(Entity<DemolitionsSimulatorComponent> ent, ref ItemSlotInsertAttemptEvent args)
+    {
+        if (args.Cancelled) return;
+
+        if (ent.Comp.RequiredSkills != null && args.User != null && !_skills.HasSkills(args.User.Value, ent.Comp.RequiredSkills))
+        {
+            args.Cancelled = true;
+            _popup.PopupEntity(Loc.GetString("stories-demo-sim-no-skill"), ent.Owner, args.User.Value);
+            return;
+        }
+
+        if (!HasComp<OrdnanceCasingComponent>(args.Item))
+        {
+            args.Cancelled = true;
+            if (args.User != null)
+                _popup.PopupEntity(Loc.GetString("stories-demo-sim-invalid-item"), ent.Owner, args.User.Value);
+        }
+    }
+
+    private void OnItemChanged(Entity<DemolitionsSimulatorComponent> ent, ref EntInsertedIntoContainerMessage args)
+    {
+        Dirty(ent);
+    }
+
+    private void OnItemChanged(Entity<DemolitionsSimulatorComponent> ent, ref EntRemovedFromContainerMessage args)
+    {
+        Dirty(ent);
+    }
+
+    private void OnEject(Entity<DemolitionsSimulatorComponent> ent, ref DemolitionsSimulatorEjectMessage args)
+    {
+        if (_itemSlots.TryGetSlot(ent.Owner, ent.Comp.ItemSlotId, out var slot))
+        {
+            _itemSlots.TryEjectToHands(ent.Owner, slot, args.Actor);
+        }
+    }
+
+    private void OnSwitchCategory(Entity<DemolitionsSimulatorComponent> ent, ref DemolitionsSimulatorSwitchCategoryMessage args)
+    {
+        ent.Comp.SelectedCategory = args.Category;
+
+        if (ent.Comp.SpawnCategories.TryGetValue(args.Category, out var protos) && protos.Count > 0)
+        {
+            ent.Comp.SelectedPrototype = protos[0];
+            ResetAndSpawn(ent);
+        }
+
+        Dirty(ent);
+    }
+
+    private void OnSwitchProto(Entity<DemolitionsSimulatorComponent> ent, ref DemolitionsSimulatorSwitchProtoMessage args)
+    {
+        ent.Comp.SelectedPrototype = args.Prototype;
+        ResetAndSpawn(ent);
+        Dirty(ent);
+    }
+
+    private void OnDetonate(Entity<DemolitionsSimulatorComponent> ent, ref DemolitionsSimulatorDetonateMessage args)
+    {
+        if (ent.Comp.IsSimulating) return;
+
+        if (_timing.CurTime < ent.Comp.NextDetonationTime)
+        {
+            _popup.PopupEntity(Loc.GetString("stories-demo-sim-cooldown"), ent.Owner, args.Actor);
+            return;
+        }
+
+        if (_itemSlots.GetItemOrNull(ent.Owner, ent.Comp.ItemSlotId) is not { } item)
+        {
+            _popup.PopupEntity(Loc.GetString("stories-demo-sim-empty"), ent.Owner, args.Actor);
+            return;
+        }
+
+        if (!TryComp<OrdnanceCasingComponent>(item, out var casing))
+            return;
+
+        if (ent.Comp.ArenaMap == null || ent.Comp.Camera == null)
+        {
+            _popup.PopupEntity(Loc.GetString("stories-demo-sim-no-arena"), ent.Owner, args.Actor);
+            return;
+        }
+
+        var mapUid = GetEntity(ent.Comp.ArenaMap.Value);
+        var gridUid = ent.Comp.ArenaGrid != null ? GetEntity(ent.Comp.ArenaGrid.Value) : mapUid;
+
+        var effectiveCasing = _ordnanceExplosion.GetEffectiveCasing(item, casing);
+        _reagentCache.Clear();
+        _ordnanceExplosion.PopulateContentsCache(item, casing);
+        var stats = _ordnanceExplosion.CalculateExplosionStats(_reagentCache, casing, effectiveCasing);
+
+        var arenaCoords = new EntityCoordinates(gridUid, new Vector2(-0.5f, -0.5f));
+
+        ent.Comp.NextDetonationTime = _timing.CurTime + ent.Comp.Cooldown;
+        ent.Comp.IsSimulating = true;
+        Dirty(ent);
+
+        _popup.PopupEntity(Loc.GetString("stories-demo-sim-success"), ent.Owner, args.Actor);
+
+        var actor = args.Actor;
+
+        Timer.Spawn(ent.Comp.SimulationDelay, () =>
+        {
+            ent.Comp.IsSimulating = false;
+            Dirty(ent);
+
+            if (Deleted(gridUid)) return;
+
+            _ordnanceExplosion.ExecuteExplosion(arenaCoords, stats, effectiveCasing, gridUid, actor);
+        });
+    }
+
+    private void OnResetArena(Entity<DemolitionsSimulatorComponent> ent, ref DemolitionsSimulatorResetMessage args)
+    {
+        if (ent.Comp.IsSimulating) return;
+        ResetAndSpawn(ent);
+        _popup.PopupEntity(Loc.GetString("stories-demo-sim-reset-done"), ent.Owner, args.Actor);
+    }
+
+    private void ResetAndSpawn(Entity<DemolitionsSimulatorComponent> ent)
+    {
+        if (ent.Comp.ArenaMap == null || string.IsNullOrEmpty(ent.Comp.SelectedPrototype))
+            return;
+
+        var mapUid = GetEntity(ent.Comp.ArenaMap.Value);
+        var gridUid = ent.Comp.ArenaGrid != null ? GetEntity(ent.Comp.ArenaGrid.Value) : mapUid;
+        var cameraUid = ent.Comp.Camera != null ? GetEntity(ent.Comp.Camera.Value) : EntityUid.Invalid;
+
+        var markersQuery = EntityQueryEnumerator<DemolitionsArenaComponent, TransformComponent>();
+        var spawnPoints = new List<EntityCoordinates>();
+
+        while (markersQuery.MoveNext(out var markerUid, out _, out var xform))
+        {
+            if (xform.MapUid == mapUid)
+                spawnPoints.Add(xform.Coordinates);
+        }
+
+        if (spawnPoints.Count == 0)
+        {
+            spawnPoints.Add(new EntityCoordinates(gridUid, new Vector2(-0.5f, -0.5f)));
+        }
+
+        _cleanupCache.Clear();
+        foreach (var point in spawnPoints)
+        {
+            _lookup.GetEntitiesInRange(point, ent.Comp.CleanupRadius, _cleanupCache);
+        }
+
+        foreach (var uid in _cleanupCache)
+        {
+            if (uid != cameraUid && uid != gridUid && uid != mapUid && !HasComp<DemolitionsArenaComponent>(uid))
+            {
+                Del(uid);
+            }
+        }
+
+        foreach (var point in spawnPoints)
+        {
+            var dummy = Spawn(ent.Comp.SelectedPrototype, point);
+            RemCompDeferred<GhostRoleComponent>(dummy);
+        }
+    }
+}

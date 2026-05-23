@@ -5,6 +5,8 @@
   description: A tank filled with fuel.
   suffix: Fuel
   components:
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
   - type: Sprite
     sprite: _Stories/Structures/Machinery/hunter_machines.rsi
     layers:
@@ -17,7 +19,191 @@
   description: A tank filled with water.
   suffix: Water
   components:
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
   - type: Sprite
     sprite: _Stories/Structures/Machinery/hunter_machines.rsi
     layers:
     - state: watertank
+
+- type: entity
+  parent: RMCTankReagentEmpty
+  id: STTankReagentMethane
+  suffix: Methane
+  components:
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  - type: Sprite
+    layers:
+    - state: methanetank
+    - state: t_inactive
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: RMCMethane
+          Quantity: 1000
+  - type: Label
+    currentLabel: reagent-name-rmcmethane
+
+- type: entity
+  parent: RMCTankReagentEmpty
+  id: STTankReagentHydrogen
+  suffix: Hydrogen
+  components:
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  - type: Sprite
+    layers:
+    - state: hydrogentank
+    - state: t_inactive
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: RMCHydrogen
+          Quantity: 1000
+  - type: Label
+    currentLabel: reagent-name-hydrogen
+
+- type: entity
+  parent: RMCTankReagentEmpty
+  id: STTankReagentAmmonia
+  suffix: Ammonia
+  components:
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  - type: Sprite
+    layers:
+    - state: ammoniatank
+    - state: t_inactive
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: RMCAmmonia
+          Quantity: 1000
+  - type: Label
+    currentLabel: reagent-name-rmc-ammonia
+
+- type: entity
+  parent: RMCTankReagentEmpty
+  id: STTankReagentPolytrinicAcid
+  suffix: Polytrinic Acid
+  components:
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  - type: Sprite
+    layers:
+    - state: pacidtank
+    - state: t_inactive
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: RMCPolytrinicAcid
+          Quantity: 1000
+  - type: Label
+    currentLabel: reagent-name-rmc-pacid
+
+- type: entity
+  parent: RMCTankReagentEmpty
+  id: STTankReagentOxygen
+  suffix: Oxygen
+  components:
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  - type: Sprite
+    layers:
+    - state: oxygentank
+    - state: t_inactive
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: RMCOxygen
+          Quantity: 1000
+  - type: Label
+    currentLabel: reagent-name-oxygen
+
+- type: entity
+  parent: RMCTankReagentEmpty
+  id: STTankReagentSulphuricAcid
+  suffix: Sulphuric Acid
+  components:
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  - type: Sprite
+    layers:
+    - state: sacidtank
+    - state: t_inactive
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: RMCSulphuricAcid
+          Quantity: 1000
+  - type: Label
+    currentLabel: reagent-name-rmc-sulphuric-acid
+
+- type: entity
+  parent: RMCTankReagentEmpty
+  id: STTankReagentEthanol
+  suffix: Ethanol
+  components:
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  - type: Sprite
+    layers:
+    - state: ethanoltank
+    - state: t_inactive
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: RMCEthanol
+          Quantity: 1000
+  - type: Label
+    currentLabel: reagent-name-ethanol

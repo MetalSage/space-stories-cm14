@@ -1,0 +1,131 @@
+- type: entity
+  parent: RMCBeakerBaseMetallic
+  id: STSilverBeaker
+  name: large silver beaker
+  description: A large silver beaker. Can hold up to 240 units. The beaker itself acts as a silver catalyst.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Medical/silver_beaker.rsi
+    layers:
+    - state: beakersilver
+    - state: beakersilver1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+    - state: lid_beakersilver
+      map: ["enum.OpenableVisuals.Layer"]
+      visible: false
+  - type: Item
+    sprite: _Stories/Objects/Medical/silver_beaker.rsi
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 240
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: beakersilver
+  - type: SolutionTransfer
+    transferAmount: 10
+    maxTransferAmount: 240
+    canChangeTransferAmount: true
+    transferAmounts:
+    - 5
+    - 10
+    - 20
+    - 30
+    - 40
+    - 60
+    - 80
+    - 120
+    - 240
+  - type: Openable
+    opened: true
+    closeable: true
+    examineText: rmc-bottle-closed
+    openVerbText: rmc-bottle-remove-lid
+    closeVerbText: rmc-bottle-put-lid
+    sound: null
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {visible: false}
+          False: {visible: true}
+  - type: Spillable
+    solution: beaker
+  - type: StaticPrice
+    price: 20
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - suitstorage
+  - type: SilverBeaker
+
+- type: entity
+  parent: CMBeakerLarge
+  id: STBeakerLargePotassiumChloride
+  name: potassium chloride beaker
+  suffix: Potassium Chloride
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 120
+        reagents:
+        - ReagentId: RMCPotassiumChlorophoride
+          Quantity: 120
+
+- type: entity
+  parent: CMBeakerLarge
+  id: STBeakerLargeTableSalt
+  name: sodium chloride beaker
+  suffix: Table Salt
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 120
+        reagents:
+        - ReagentId: RMCTableSalt
+          Quantity: 120
+
+- type: entity
+  parent: CMBeakerLarge
+  id: STBeakerLargeLithium
+  name: lithium beaker
+  suffix: Lithium
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 120
+        reagents:
+        - ReagentId: RMCLithium
+          Quantity: 120
+
+- type: entity
+  parent: CMBeakerLarge
+  id: STBeakerLargePhosphorus
+  name: phosphorus beaker
+  suffix: Phosphorus
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 120
+        reagents:
+        - ReagentId: RMCPhosphorus
+          Quantity: 120
+
+- type: entity
+  parent: CMBeaker
+  id: STBeakerEthanol
+  name: ethanol beaker
+  suffix: Ethanol
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 60
+        reagents:
+        - ReagentId: RMCEthanol
+          Quantity: 60

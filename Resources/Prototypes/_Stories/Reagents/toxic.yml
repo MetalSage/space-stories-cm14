@@ -1,0 +1,17 @@
+- type: reagent
+  parent: CMReagent
+  id: RMCPotassiumChlorophoride
+  name: reagent-name-rmc-potassium-chlorophoride
+  desc: reagent-desc-rmc-potassium-chlorophoride
+  physicalDesc: reagent-physical-desc-crystalline
+  color: "#FFFFFF"
+  toxin: true
+  overdose: 20
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1
+      effects:
+      - !type:Hypoxemic
+        potency: 4
+      - !type:Toxic
+        potency: 6

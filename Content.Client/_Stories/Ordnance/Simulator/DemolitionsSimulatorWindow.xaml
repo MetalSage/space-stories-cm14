@@ -1,0 +1,53 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:vp="clr-namespace:Content.Client.Viewport"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    Title="{Loc stories-demo-sim-title}"
+    MinSize="950 600">
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
+        <PanelContainer StyleClasses="AngleRect" HorizontalExpand="True" VerticalExpand="True">
+            <vp:ScalingViewport
+                Name="Viewport"
+                Access="Public"
+                MouseFilter="Ignore"
+                HorizontalExpand="True"
+                VerticalExpand="True" Margin="-8"/>
+        </PanelContainer>
+        <PanelContainer StyleClasses="LowDivider" MinWidth="2" Margin="8 0"/>
+        <PanelContainer StyleClasses="StripeBack">
+            <BoxContainer Orientation="Vertical" Margin="8">
+                <PanelContainer StyleClasses="AngleRect">
+                    <BoxContainer Orientation="Vertical">
+                        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Text="{Loc stories-demo-sim-loaded}"/>
+                        </BoxContainer>
+                        <Label Name="ItemLabel" Access="Public" Text="{Loc stories-demo-sim-none}" ClipText="True" Margin="0 5" />
+                        <Button Name="EjectButton" Access="Public" Text="{Loc stories-demo-sim-eject}" />
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer StyleClasses="AngleRect">
+                    <BoxContainer Orientation="Vertical" >
+                        <Label Text="{Loc stories-demo-sim-category}" Margin="0 5" />
+                        <BoxContainer Orientation="Horizontal" SeparationOverride="5">
+                            <Button Name="ModeHumanButton" Access="Public" Text="{Loc stories-demo-sim-cat-human}" HorizontalExpand="True" />
+                            <Button Name="ModeXenoButton" Access="Public" Text="{Loc stories-demo-sim-cat-xeno}" HorizontalExpand="True" />
+                            <Button Name="ModeStructureButton" Access="Public" Text="{Loc stories-demo-sim-cat-structure}" HorizontalExpand="True" />
+                        </BoxContainer>
+                        <Label Text="{Loc stories-demo-sim-prototype}" Margin="0 5" />
+                        <OptionButton Name="PrototypeDropdown" Access="Public" />
+                    </BoxContainer>
+                </PanelContainer>
+                <Control VerticalExpand="True" />
+                <PanelContainer StyleClasses="AngleRect">
+                    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="5">
+                        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Name="CooldownLabel" Access="Public" Text="" />
+                        </BoxContainer>
+                        <Button Name="ResetButton" Access="Public" Text="{Loc stories-demo-sim-reset}"/>
+                        <Button Name="DetonateButton" Access="Public" Text="{Loc stories-demo-sim-detonate}" StyleClasses="Caution"/>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</DefaultWindow>

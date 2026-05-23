@@ -1,14 +1,38 @@
 {
-  "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/master/icons/obj/items/assemblies.dmi",
-  "size": {
-    "x": 32,
-    "y": 32
-  },
-  "states": [
-    {
-      "name": "icon"
-    }
-  ]
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/master/icons/obj/items/assemblies.dmi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "icon_ass"
+        },
+        {
+            "name": "icon_locked"
+        },
+        {
+            "name": "icon_sensing",
+            "delays": [
+                [
+                    0.9,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "icon_active",
+            "delays": [
+                [
+                    0.1,
+                    0.1
+                ]
+            ]
+        }
+    ]
 }

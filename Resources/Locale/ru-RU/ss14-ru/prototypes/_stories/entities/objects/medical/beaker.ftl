@@ -1,0 +1,17 @@
+ent-STSilverBeaker = большая серебряная мензурка
+    .desc = большая серебряная мензурка. Вмещает до 240 единиц. Самам мензурка служит серебряным катализатором.
+ent-STBeakerLargePotassiumChloride = мензурка с хлоридом калия
+    .desc = { ent-CMBeakerLarge.desc }
+    .suffix = Хлорид Калия
+ent-STBeakerLargeTableSalt = мензурка с хлоридом натрия
+    .desc = { ent-CMBeakerLarge.desc }
+    .suffix = Поваренная Соль
+ent-STBeakerLargeLithium = мензурка с литием
+    .desc = { ent-CMBeakerLarge.desc }
+    .suffix = Литий
+ent-STBeakerLargePhosphorus = мензурка с фосфором
+    .desc = { ent-CMBeakerLarge.desc }
+    .suffix = Фосфор
+ent-STBeakerEthanol = мензурка с этанолом
+    .desc = { ent-CMBeaker.desc }
+    .suffix = Этанол

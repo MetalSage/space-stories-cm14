@@ -1,0 +1,11 @@
+- type: reagent
+  parent: CMReagent
+  id: RMCTableSalt
+  name: reagent-name-table-salt
+  desc: reagent-desc-table-salt
+  physicalDesc: reagent-physical-desc-crystalline
+  color: "#FFFFFF"
+  chemfiresupp: true
+  intensityMod: 0.1
+  burnColor: "#ffff00"
+  burncolormod: 2

@@ -1,0 +1,17 @@
+- type: entity
+  id: STIndustrialReagentGrinder
+  parent: RMCKitchenReagentGrinder
+  name: industrial grinder
+  description: A heavy-duty variant of the all-in-one grinder meant for grinding large amounts of industrial material. Not food safe.
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machines/industry.rsi
+    layers:
+    - map: [ "grinder" ]
+      state: "industry0"
+  - type: GenericVisualizer
+    visuals:
+      enum.ReagentGrinderVisualState.BeakerAttached:
+        grinder:
+          True: {state: "industry1"}
+          False: {state: "industry0"}

@@ -2,140 +2,410 @@
   abstract: true
   parent: BaseItem
   id: RMCCasingBase
-  name: base casing
-  description:  An empty casing.
+  name: ordnance base
+  description: A metallic shell waiting to be filled with explosives and fitted with a detonator.
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/CustomOrdnance/m40grenadecasing.rsi
     state: icon
   - type: Item
     size: Small
+  - type: OrdnanceCasing
+    maxVolume: 1000
+    baseFalloff: 75
+    minFalloff: 25
+    maxExplosionPower: 175
+    maxShards: 128
+    maxFireRadius: 5
+    maxFireIntensity: 20
+    maxFireDuration: 24
+    minFireRadius: 1
+    minFireIntensity: 3
+    minFireDuration: 3
+  - type: CMExplosionEffect
+  - type: RMCScorchEffect
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OrdnanceCasingVisuals.StateId:
+        enum.DamageStateVisualLayers.Base:
+          icon: { state: icon }
+          icon_ass: { state: icon_ass }
+          icon_locked: { state: icon_locked }
+          icon_active: { state: icon_active }
+          icon_sensing: { state: icon_sensing }
+          icon_unlocked: { state: icon_unlocked }
+          icon_no_fuel: { state: icon_no_fuel }
 
 - type: entity
-  name: 30mm grenade casing
-  description: A casing for an 30mm Grenade.
+  name: M40 grenade
+  description: A modular M40 grenade. Requires a chemical mixture and a detonator assembly to function.
   parent: RMCCasingBase
   id: RMCM40GrenadeCasing
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/CustomOrdnance/m40grenadecasing.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 4250
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: OrdnanceCasing
+    maxVolume: 120
+    requiredAssemblyMode: "TimerIgniter"
+    maxExplosionPower: 180
+    baseFalloff: 80
+    minFalloff: 25
+    maxFireRadius: 5
+    maxFireIntensity: 25
+    maxFireDuration: 24
+    minFireRadius: 1
+    minFireIntensity: 3
+    minFireDuration: 3
+    maxShards: 40
+    addedTags:
+    - LauncherCompatibleGrenade
+    - RMCGrenadeM40
+    addedComponents:
+    - type: OnUseTimerTrigger
+      delay: 4
+      beepSound:
+        path: "/Audio/_RMC14/Explosion/armbomb.ogg"
+        params:
+          volume: -5
+      initialBeepDelay: 0
+      beepInterval: 10
+      doPopup: false
+  - type: IgnorePredictionHide
+  - type: ChangeItemSizeOnTimerTrigger
+  - type: CancelUseWithCloak
+  - type: CMVocalizeTrigger
+  - type: GenericVisualizer
+    visuals:
+      enum.OrdnanceCasingVisuals.StateId:
+        enum.DamageStateVisualLayers.Base:
+          icon: { state: icon }
+          icon_ass: { state: icon_ass }
+          icon_locked: { state: icon_locked }
+          icon_active: { state: icon_active }
+          icon_sensing: { state: icon_sensing }
+          icon_unlocked: { state: icon_unlocked }
+          icon_no_fuel: { state: icon_no_fuel }
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: icon_active }
+          Unprimed: { state: icon }
 
 - type: entity
-  name: M15 grenade casing
-  description: A casing for an M15 Grenade.
+  name: M15 grenade
+  description: An old M15 fragmentation grenade. In the hands of a skilled chemist, this modular explosive can become a deadly weapon.
   parent: RMCCasingBase
   id: RMCM15GrenadeCasing
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/CustomOrdnance/m15grenadecasing.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 7000
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: OrdnanceCasing
+    maxVolume: 180
+    requiredAssemblyMode: "TimerIgniter"
+    maxExplosionPower: 220
+    baseFalloff: 120
+    minFalloff: 25
+    maxFireRadius: 6
+    maxFireIntensity: 30
+    maxFireDuration: 32
+    minFireRadius: 1
+    minFireIntensity: 3
+    minFireDuration: 3
+    maxShards: 80
+    addedComponents:
+    - type: OnUseTimerTrigger
+      delay: 4
+      beepSound:
+        path: "/Audio/_RMC14/Explosion/armbomb.ogg"
+        params:
+          volume: -5
+      initialBeepDelay: 0
+      beepInterval: 10
+      doPopup: false
+  - type: IgnorePredictionHide
+  - type: ChangeItemSizeOnTimerTrigger
+  - type: CancelUseWithCloak
+  - type: CMVocalizeTrigger
+  - type: GenericVisualizer
+    visuals:
+      enum.OrdnanceCasingVisuals.StateId:
+        enum.DamageStateVisualLayers.Base:
+          icon: { state: icon }
+          icon_ass: { state: icon_ass }
+          icon_locked: { state: icon_locked }
+          icon_active: { state: icon_active }
+          icon_sensing: { state: icon_sensing }
+          icon_unlocked: { state: icon_unlocked }
+          icon_no_fuel: { state: icon_no_fuel }
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: icon_active }
+          Unprimed: { state: icon }
 
 - type: entity
-  name: M20 mine casing
-  description: A casing for an M20 Claymore mine.
+  name: M20 mine
+  description: A modular M20 'Claymore' anti-personnel mine. The front reads 'FRONT TOWARD ENEMY'. Needs a deadly payload before deployment.
   parent: RMCCasingBase
   id: RMCM20MineCasing
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/CustomOrdnance/m20minecasing.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 3750
+  - type: OrdnanceCasing
+    maxVolume: 120
+    requiredAssemblyMode: "Mine"
+    dualIgniterConeAngle: 120
+    maxExplosionPower: 100
+    baseFalloff: 80
+    minFalloff: 25
+    maxFireRadius: 4
+    maxFireIntensity: 20
+    maxFireDuration: 18
+    minFireRadius: 2
+    minFireIntensity: 3
+    minFireDuration: 3
+    maxShards: 40
+    useDirection: false
+    coneAngle: 90
+  - type: RMCLandmine
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+  - type: Fixtures
+    fixtures:
+      trigger:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-1.5,0.25,0"
+        hard: false
+        layer:
+        - Opaque
+        mask:
+        - MobLayer
+      hitbox:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.125,0.25,0.125,0.5"
+        hard: false
+        layer:
+        - XenoProjectileImpassable
+  - type: GenericVisualizer
+    visuals:
+      enum.OrdnanceCasingVisuals.StateId:
+        enum.DamageStateVisualLayers.Base:
+          icon: { state: icon }
+          icon_ass: { state: icon_ass }
+          icon_locked: { state: icon_locked }
+          icon_active: { state: icon_active }
+          icon_sensing: { state: icon_active }
 
 - type: entity
-  name: C4 plastic casing
-  description: A casing for a plastic explosive.
+  name: C4 explosive
+  description: A sticky polymer explosive designed for directional breaching. Just needs to be filled with chemicals and wired to a detonator.
   parent: RMCCasingBase
   id: RMCC4PlasticCasing
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/CustomOrdnance/c4plasticcasing.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 7500
-      RMCPlastic: 2000
+  - type: OrdnanceCasing
+    maxVolume: 180
+    requiredAssemblyMode: "Plastic"
+    signallerDelay: 3.0
+    maxExplosionPower: 280
+    baseFalloff: 120
+    minFalloff: 25
+    maxFireRadius: 4
+    maxFireIntensity: 50
+    maxFireDuration: 20
+    minFireRadius: 2
+    minFireIntensity: 4
+    minFireDuration: 5
+    maxShards: 100
+  - type: Sticky
+    stickDelay: 5
+  - type: StickyVisualizer
+  - type: RMCExplosiveDelete
+    delay: 10
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 4
+    initialBeepDelay: 0
+    beepInterval: 0.5
+    whitelist:
+      components:
+      - XenoTunnel
+  - type: RequiresSkill
+    skills:
+      RMCSkillEngineer: 1
+  - type: GenericVisualizer
+    visuals:
+      enum.OrdnanceCasingVisuals.StateId:
+        enum.DamageStateVisualLayers.Base:
+          icon: { state: icon }
+          icon_ass: { state: icon_ass }
+          icon_locked: { state: icon_locked }
+          icon_active: { state: icon_active }
+          icon_sensing: { state: icon_sensing }
 
 - type: entity
-  name: 84mm rocket tube
-  description: A tube for a 84mm rocket.
-  parent: RMCCasingBase
-  id: RMC84mmRocketTube
+  parent: BaseItem
+  id: RMC88mmRocketTube
+  name: 84mm rocket
+  description: A rocket projectile. To launch, a warhead must be attached and rocket fuel must be added to the engine compartment.
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/CustomOrdnance/84mmrockettube.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 7500
+    state: icon
+  - type: Item
+    size: Normal
+  - type: OrdnanceCasing
+    allowStarShape: false
+    maxVolume: 60
+    requiredFuelReagent: RMCMethane
+    requiredFuelAmount: 60
+    addedTags:
+    - RMCRocketAmmo84mm
+  - type: Ammo
+  - type: AssistedReloadAmmo
+  - type: Tag
+    tags: ["RMCLaunchTube"]
+  - type: ItemSlots
+    slots:
+      warhead_slot:
+        name: stories-ordnance-warhead-slot-name
+        whitelist:
+          tags: ["RMCWarhead88"]
+      fuel_slot:
+        name: stories-ordnance-fuel-slot-name
+        whitelist:
+          components: ["FitsInDispenser"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OrdnanceCasingVisuals.StateId:
+        enum.DamageStateVisualLayers.Base:
+          icon: { state: icon }
+          icon_unlocked: { state: icon_unlocked }
+          icon_locked: { state: icon_locked }
+          icon_no_fuel: { state: icon_no_fuel }
 
 - type: entity
-  name: 84mm rocket warhead
-  description: A warhead for a 84mm rocket.
-  parent: RMCCasingBase
-  id: RMC84mmRocketWarhead
-  components:
-  - type: Sprite
-    sprite: _RMC14/Objects/Weapons/CustomOrdnance/84mmrocketwarhead.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 11250
-
-- type: entity
-  name: 80mm mortar shell casing
-  description: A shell for a 84mm mortar.
-  parent: RMCCasingBase
+  parent: BaseItem
   id: RMC80mmMortarShell
+  name: 80mm mortar shell
+  description: A modular mortar shell. Requires a propellant charge and an attached warhead.
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/CustomOrdnance/80mmmortarshell.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 18750
+    state: icon
+  - type: Item
+    size: Normal
+  - type: OrdnanceCasing
+    maxVolume: 60
+    requiredFuelReagent: RMCHydrogen
+    requiredFuelAmount: 60
+    addedComponents:
+    - type: MortarShell
+  - type: ItemSlots
+    slots:
+      warhead_slot:
+        name: stories-ordnance-warhead-slot-name
+        whitelist:
+          tags: ["RMCWarhead80"]
+      fuel_slot:
+        name: stories-ordnance-fuel-slot-name
+        whitelist:
+          components: ["FitsInDispenser"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OrdnanceCasingVisuals.StateId:
+        enum.DamageStateVisualLayers.Base:
+          icon: { state: icon }
+          icon_unlocked: { state: icon_unlocked }
+          icon_locked: { state: icon_locked }
+          icon_no_fuel: { state: icon_no_fuel }
+  - type: Tag
+    tags: ["RMCLaunchTube"]
 
 - type: entity
-  name: 80mm mortar shell warhead
-  description: A warhead for a 84mm mortar.
+  name: 84mm rocket warhead
+  description: A warhead section for an 84mm rocket. Designed to be filled with destructive chemicals.
+  parent: RMCCasingBase
+  id: RMC88mmRocketWarhead
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/CustomOrdnance/84mmrocketwarhead.rsi
+  - type: OrdnanceCasing
+    allowStarShape: false
+    maxVolume: 180
+    requiredAssemblyMode: "DualIgniter"
+    maxExplosionPower: 220
+    baseFalloff: 160
+    minFalloff: 25
+    maxFireRadius: 4
+    maxFireIntensity: 45
+    maxFireDuration: 36
+    minFireRadius: 2
+    minFireIntensity: 4
+    minFireDuration: 5
+    maxShards: 80
+  - type: Tag
+    tags: ["RMCWarhead88"]
+
+- type: entity
+  name: 80mm mortar warhead
+  description: A heavy mortar warhead. Can hold a large amount of explosive material.
   parent: RMCCasingBase
   id: RMC80mmMortarWarhead
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/CustomOrdnance/80mmmortarwarhead.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 11250
+  - type: OrdnanceCasing
+    maxVolume: 240
+    requiredAssemblyMode: "DualIgniter"
+    maxExplosionPower: 360
+    baseFalloff: 130
+    minFalloff: 25
+    maxFireRadius: 8
+    maxFireIntensity: 45
+    maxFireDuration: 48
+    minFireRadius: 3
+    minFireIntensity: 5
+    minFireDuration: 5
+    maxShards: 200
+  - type: Tag
+    tags: ["RMCWarhead80"]
 
 - type: entity
-  name: 80mm mortar shell camera warhead
-  description: A camera warhead for a 84mm mortar.
+  name: 80mm camera warhead
+  description: A mortar warhead with built-in optics. Can hold custom explosive reagents.
   parent: RMCCasingBase
   id: RMC80mmMortarCameraWarhead
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/CustomOrdnance/80mmmortarwarhead.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 15000
-
-- type: entity
-  name: Custom M34 smoke tank
-  description: An incomplete fuel tank used to store smoke for use in the M34 incinerator unit.
-  parent: RMCCasingBase
-  id: RMCCustomM34A1SmokeTankCase
-  components:
-  - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/flamethrower.rsi
-    state: flametank_custom
-    layers:
-    - state: flametank_custom
-    - state: flametank_custom_strip2
-    - state: flametank_custom_strip2
-      map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: Item
-    size: Normal
-  - type: PhysicalComposition
-    materialComposition:
-      CMSteel: 3750
+  - type: OrdnanceCasing
+    maxVolume: 180
+    requiredAssemblyMode: "DualIgniter"
+    maxExplosionPower: 360
+    baseFalloff: 130
+    minFalloff: 25
+    maxFireRadius: 8
+    maxFireIntensity: 45
+    maxFireDuration: 48
+    minFireRadius: 3
+    minFireIntensity: 5
+    minFireDuration: 5
+    maxShards: 200
+  - type: Tag
+    tags: ["RMCWarhead80"]

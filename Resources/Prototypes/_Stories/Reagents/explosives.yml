@@ -1,0 +1,206 @@
+- type: reagent
+  parent: CMReagent
+  id: RMCPotassiumHydroxide
+  name: reagent-name-rmc-potassium-hydroxide
+  desc: reagent-desc-rmc-potassium-hydroxide
+  physicalDesc: reagent-physical-desc-alkaline
+  color: "#FFFFFF"
+  explosive: true
+  power: 0.5
+  falloffModifier: 0
+
+- type: reagent
+  parent: CMReagent
+  id: RMCAmmonia
+  name: reagent-name-rmc-ammonia
+  desc: reagent-desc-rmc-ammonia
+  physicalDesc: reagent-physical-desc-pungent
+  color: "#404030"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1
+      effects:
+        - !type:Toxic
+          potency: 3
+        - !type:Nutritious
+          potency: 2
+
+- type: reagent
+  parent: CMReagent
+  id: RMCPolytrinicAcid
+  name: reagent-name-rmc-pacid
+  desc: reagent-desc-rmc-pacid
+  physicalDesc: reagent-physical-desc-acidic
+  color: "#8E18A9"
+
+- type: reagent
+  parent: [ CMReagent, BasePyrotechnic ]
+  id: RMCAmmoniumNitrate
+  name: reagent-name-rmc-ammonium-nitrate
+  desc: reagent-desc-rmc-ammonium-nitrate
+  physicalDesc: reagent-physical-desc-crystalline
+  color: "#E5E5E5"
+  explosive: true
+  power: 0.4
+  falloffModifier: 1.5
+  intensityMod: 0.5
+  durationMod: -0.2
+  radiusMod: 0
+  burnColor: "#ff9900"
+
+- type: reagent
+  parent: [ CMReagent, BasePyrotechnic ]
+  id: RMCWeldingFuel
+  name: reagent-name-rmc-fuel
+  desc: reagent-desc-rmc-fuel
+  physicalDesc: reagent-physical-desc-oily
+  color: "#660000"
+  intensity: 10
+  duration: 10
+  radius: 4
+  explosive: true
+  power: 0.12
+  falloffModifier: -0.1
+  burnColor: "#ff9900"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1
+      effects:
+        - !type:Fueling
+          potency: 5
+        - !type:Oxidizing
+          potency: 3
+        - !type:Viscous
+          potency: 4
+        - !type:Toxic
+          potency: 1
+
+- type: reagent
+  parent: CMReagent
+  id: RMCANFO
+  name: reagent-name-rmc-anfo
+  desc: reagent-desc-rmc-anfo
+  physicalDesc: reagent-physical-desc-grainy
+  color: "#E0E0E0"
+  explosive: true
+  power: 1.0
+  falloffModifier: -0.6
+
+- type: reagent
+  parent: CMReagent
+  id: RMCGlycerol
+  name: reagent-name-rmc-glycerol
+  desc: reagent-desc-rmc-glycerol
+  physicalDesc: reagent-physical-desc-syrupy
+  color: "#808080"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.005
+      effects: []
+
+- type: reagent
+  parent: CMReagent
+  id: RMCNitroglycerin
+  name: reagent-name-rmc-nitroglycerin
+  desc: reagent-desc-rmc-nitroglycerin
+  physicalDesc: reagent-physical-desc-volatile
+  color: "#808080"
+  explosive: true
+  power: 1.0
+  falloffModifier: -0.5
+  metabolisms:
+    Poison:
+      metabolismRate: 0.005
+      effects: []
+
+- type: reagent
+  parent: [ CMReagent, BasePyrotechnic ]
+  id: RMCHexamine
+  name: reagent-name-rmc-hexamine
+  desc: reagent-desc-rmc-hexamine
+  physicalDesc: reagent-physical-desc-crystalline
+  color: "#F0F0F0"
+  durationMod: 0.5
+  burnColor: "#ff9900"
+
+- type: reagent
+  parent: CMReagent
+  id: RMCCyclonite
+  name: reagent-name-rmc-cyclonite
+  desc: reagent-desc-rmc-cyclonite
+  physicalDesc: reagent-physical-desc-crystalline
+  color: "#E3E0BA"
+  explosive: true
+  power: 1.5
+  falloffModifier: -0.4
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Poison: 1
+
+- type: reagent
+  parent: CMReagent
+  id: RMCFormaldehyde
+  name: reagent-name-rmc-formaldehyde
+  desc: reagent-desc-rmc-formaldehyde
+  physicalDesc: reagent-physical-desc-strong-smelling
+  color: "#808080cc"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1
+      effects:
+        - !type:Toxic
+          potency: 3
+        - !type:Carcinogenic
+          potency: 2
+
+- type: reagent
+  parent: CMReagent
+  id: RMCParaformaldehyde
+  name: reagent-name-rmc-paraformaldehyde
+  desc: reagent-desc-rmc-paraformaldehyde
+  physicalDesc: reagent-physical-desc-crystalline
+  color: "#E0E0E0"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1
+      effects:
+        - !type:Toxic
+          potency: 2
+
+- type: reagent
+  parent: [ CMReagent, BasePyrotechnic ]
+  id: RMCOctogen
+  name: reagent-name-rmc-octogen
+  desc: reagent-desc-rmc-octogen
+  physicalDesc: reagent-physical-desc-crystalline
+  color: "#F5F5F5"
+  explosive: true
+  power: 2.0
+  falloffModifier: -0.2
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1
+      effects:
+        - !type:Oxidizing
+          potency: 2
+
+- type: reagent
+  parent: CMReagent
+  id: RMCFrostOil
+  name: reagent-name-rmc-frostoil
+  desc: reagent-desc-rmc-frostoil
+  physicalDesc: reagent-physical-desc-frosty
+  color: "#B31008"
+
+- type: reagent
+  parent: CMReagent
+  id: RMCCornOil
+  name: reagent-name-rmc-cornoil
+  desc: reagent-desc-rmc-cornoil
+  physicalDesc: reagent-physical-desc-oily
+  color: "#302000"

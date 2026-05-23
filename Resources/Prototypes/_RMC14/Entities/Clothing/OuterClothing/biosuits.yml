@@ -27,6 +27,7 @@
     sprintModifier: 0.725
   - type: RMCArmorSpeedTier
     speedTier: light
+  - type: RMCBioShield # Stories-Ordnance
 
 - type: entity
   parent: [RMCAllowSuitStorageClothingArmorVest, RMCBaseArmor]

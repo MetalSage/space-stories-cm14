@@ -289,7 +289,7 @@
     maxDuration: 10
     reagentWhitelist:
     - RMCNapalmUT
-    - WeldingFuel
+    - RMCWeldingFuel # Stories-Ordance
   - type: AttachableToggleable
     userOnly: true
     attachedOnly: true

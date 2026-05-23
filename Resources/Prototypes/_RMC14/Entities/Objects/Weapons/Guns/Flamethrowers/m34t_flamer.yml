@@ -71,9 +71,11 @@
         - ReagentId: RMCNapalmUT
           Quantity: 250
   - type: RMCFlamerTank
-    maxIntensity: 80
-    maxRange: 5
-    maxDuration: 24
+    # Stories-Parity-Start
+    maxIntensity: 60
+    maxRange: 8
+    maxDuration: 50
+    # Stories-Parity-End
   - type: Tag
     tags:
     - RMCTankFlamerLarge

@@ -11,6 +11,10 @@
   intensityMod: 0.4
   durationMod: -0.8
   radiusMod: 0.05
+  # Stories-Ordnance-Start
+  burnColor: "#e01e1e"
+  burncolormod: 3
+  # Stories-Ordnance-End
   tileReactions:
   - !type:FlammableTileReaction {}
   reactiveEffects:
@@ -31,154 +35,172 @@
         multiplier: 0.2
 
 - type: reagent
+  # Stories-Ordnance-Start
+  id: RMCBaseNapalm
+  abstract: true
+  # Stories-Ordnance-End
   parent: [ CMReagent, BasePyrotechnic ]
+  # Stories-Ordnance-Start
+  physicalDesc: reagent-physical-desc-shiny
+  flavor: bitter
+  metabolisms:
+    Poison:
+      metabolismRate: 0.1
+      effects:
+      - !type:Oxidizing
+        potency: 6
+      - !type:Fueling
+        potency: 7
+      - !type:Flowing
+        potency: 1
+  # Stories-Ordnance-End
+
+- type: reagent
+  parent: RMCBaseNapalm
   id: RMCNapalm
   name: reagent-name-rmcnapalm
   desc: reagent-desc-rmcnapalm
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#ffb300"
   intensity: 27
   duration: 38
   radius: 2
-  intensityMod: 0.45
-  durationMod: 0.75
-  radiusMod: 0.06
   fireEntity: RMCTileFireNapalmBase
+  burnColor: "#D05006" # Stories-Ordnance
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
+  parent: RMCBaseNapalm
   id: RMCNapalmSticky
   name: reagent-name-rmcnapalm-sticky
   desc: reagent-desc-rmcnapalm-sticky
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#f8e3b2"
   intensity: 15
   duration: 50
   radius: 5
   intensityMod: -1.5
-  durationMod: -5
+  durationMod: -5.0 # Stories-Ordnance
   radiusMod: -0.5
+  burnColor: "#f8e3b2" # Stories-Ordnance
   fireEntity: RMCTileFireStickyNapalm
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
+  parent: RMCBaseNapalm
   id: RMCNapalmHighCombustion
   name: reagent-name-rmcnapalm-hc
   desc: reagent-desc-rmcnapalm-hc
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#c51c1c"
   intensity: 45
   duration: 10
   radius: 5
   intensityMod: -4.5
-  durationMod: -1
+  durationMod: -1.0 # Stories-Ordnance
   radiusMod: -0.5
+  burnColor: "#c51c1c" # Stories-Ordnance
   fireEntity: RMCTileFireHCNapalm
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
+  parent: RMCBaseNapalm
   id: RMCNapalmUT
   name: reagent-name-rmcnapalm-ut
   desc: reagent-desc-rmcnapalm-ut
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#DD9B00"
   intensity: 30
   duration: 20
   radius: 5
+  burnColor: "#EE6515" # Stories-Ordnance
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
-  id: RMCNapalmUTTank
-  name: reagent-name-rmcnapalm-ut
-  desc: reagent-desc-rmcnapalm-ut
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
+  parent: RMCBaseNapalm
+  id: RMCNapalmWeak
+  name: reagent-name-rmcnapalm-weak
+  desc: reagent-desc-rmcnapalm-weak
   color: "#DD9B00"
-  intensity: 30
+  intensity: 15 # Stories-Ordnance
   duration: 20
-  radius: 7
+  # Stories-Ordnance-Start
+  radius: 5
+  burnColor: "#EE6515"
+  # Stories-Ordnance-End
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
+  parent: RMCBaseNapalm
   id: RMCBGel
   name: reagent-name-rmcbgel
   desc: reagent-desc-rmcbgel
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#00dd00"
   intensity: 15
   duration: 50
   radius: 7
+  burnColor: "#00dd00" # Stories-Ordnance
   fireEntity: RMCTileFireGreen
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
+  parent: RMCBaseNapalm
   id: RMCNapalmX
   name: reagent-name-rmcrapalm-x
   desc: reagent-desc-rmcrapalm-x
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#00b8ff"
   intensity: 40
   duration: 40
   radius: 6
+  burnColor: "#00b8ff" # Stories-Ordnance
   fireEntity: RMCTileFireBlue
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
+  parent: RMCBaseNapalm
   id: RMCNapalmB
   name: reagent-name-rmcnapalm-b
   desc: reagent-desc-rmcnapalm-b
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#00dd00"
   intensity: 15
   duration: 50
   radius: 6
+  burnColor: "#00dd00" # Stories-Ordnance
   fireEntity: RMCTileFireGreen
   fireSpread: true
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
+  parent: RMCBaseNapalm
   id: RMCNapalmE
   name: reagent-name-rmcnapalm-e
   desc: reagent-desc-rmcnapalm-e
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#800080"
   intensity: 15
   duration: 50
   radius: 6
+  # Stories-Ordnance-Start
+  burnColor: "#800080"
+  firePenetrating: true
+  # Stories-Ordnance-End
   fireEntity: RMCTileFireNapalmE
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
+  parent: RMCBaseNapalm
   id: RMCNapalmEX
   name: reagent-name-rmcnapalm-ex
   desc: reagent-desc-rmcnapalm-ex
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#641dd6"
   intensity: 40
   duration: 40
   radius: 6
+  # Stories-Ordnance-Start
+  burnColor: "#641dd6"
+  firePenetrating: true
+  # Stories-Ordnance-End
   fireEntity: RMCTileFireNapalmEX
 
 - type: reagent
-  parent: [ CMReagent, BasePyrotechnic ]
+  parent: RMCBaseNapalm
   id: RMCR189
   name: reagent-name-rmcr189
   desc: reagent-desc-rmcr189
-  physicalDesc: reagent-physical-desc-shiny
-  flavor: bitter
   color: "#ffe49c"
   intensity: 50
   duration: 30
   radius: 6
+  # Stories-Ordnance-Start
+  burnColor: "#ffe49c"
+  firePenetrating: true
+  # Stories-Ordnance-End
   fireEntity: RMCTileFireR189
 
 - type: reagent
@@ -188,22 +210,25 @@
   desc: reagent-desc-rmcclf3
   physicalDesc: reagent-physical-desc-shiny
   flavor: bitter
-  color: "#ff9300"
-  intensity: 72
-  duration: -27
-  radius: 0
-  intensityMod: 1.8
-  durationMod: -0.9
-  radiusMod: -0.09
   # TODO RMC14: IGNITING = 1
+  # Stories-Ordnance-Start
+  color: "#00FFFF"
+  burnColor: "#ff9300"
+  # Stories-Ordnance-End
   metabolisms:
     Poison:
-      metabolismRate: 0.1
+      metabolismRate: 1.0
       effects:
       - !type:Corrosive
         potency: 6
       - !type:Toxic
         potency: 6
+      # Stories-Ordnance-Start
+      - !type:Oxidizing
+        potency: 9
+      #- !type:Igniting
+      #  potency: 1
+      # Stories-Ordnance-End
 
 - type: reagent
   parent: [ CMReagent, BasePyrotechnic ]
@@ -214,15 +239,23 @@
   flavor: bitter
   color: "#0064C8"
   toxin: true
-  intensity: -6
-  duration: 16
-  radius: 6
-  intensityMod: -0.35
-  durationMod: 0.25
-  radiusMod: 0.095
+  # Stories-Ordnance-Start
+  explosive: true
+  power: 0.15
+  burnColor: "#00a5ff"
+  burncolormod: 1.5
+  # Stories-Ordnance-End
   metabolisms:
     Poison:
-      metabolismRate: 0.1
+      # Stories-Ordnance-Start
+      metabolismRate: 0.2
       effects:
       - !type:Toxic
         potency: 2
+      - !type:Flowing
+        potency: 3
+      - !type:Viscous
+        potency: 3
+      - !type:Fueling
+        potency: 2
+      # Stories-Ordnance-End

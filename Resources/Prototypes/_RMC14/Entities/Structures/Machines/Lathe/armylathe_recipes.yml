@@ -30,19 +30,23 @@
     CMSteel: 9375 # 7500
     RMCPlastic: 2500 # 2000
 
+# Stories-Ordnance-Start
 - type: latheRecipe
-  id: RMC84mmRocketTube
-  result: RMC84mmRocketTube
+  id: RMC88mmRocketTube
+  result: RMC88mmRocketTube
   completetime: 4
   materials:
     CMSteel: 9375 # 7500
+# Stories-Ordnance-End
 
+# Stories-Ordnance-Start
 - type: latheRecipe
-  id: RMC84mmRocketWarhead
-  result: RMC84mmRocketWarhead
+  id: RMC88mmRocketWarhead
+  result: RMC88mmRocketWarhead
   completetime: 4
   materials:
     CMSteel: 14062 # 11250
+# Stories-Ordnance-End
 
 - type: latheRecipe
   id: RMC80mmMortarShell

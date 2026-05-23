@@ -1,5 +1,10 @@
+using System.Collections.Frozen;
+using System.Linq;
+using Content.Shared._Stories.Chemistry.Reaction;
+using Content.Shared._Stories.Ordnance.Chemistry;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
@@ -7,9 +12,6 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using System.Collections.Frozen;
-using System.Linq;
-
 
 namespace Content.Shared.Chemistry.Reaction
 {
@@ -132,6 +134,13 @@ namespace Content.Shared.Chemistry.Reaction
 
                 var reactantQuantity = solution.GetTotalPrototypeQuantity(reactantName);
 
+                // Stories-Ordnance-Start
+                if (reactantName == "RMCSilver" && TryComp<ContainedSolutionComponent>(soln.Owner, out var containedSol) && HasComp<SilverBeakerComponent>(containedSol.Container))
+                {
+                    reactantQuantity = FixedPoint2.New(9999);
+                }
+                // Stories-Ordnance-End
+
                 if (reactantQuantity <= FixedPoint2.Zero)
                     return false;
 
@@ -155,7 +164,7 @@ namespace Content.Shared.Chemistry.Reaction
             }
 
             if (reaction.Quantized)
-                lowestUnitReactions = (int) lowestUnitReactions;
+                lowestUnitReactions = (int)lowestUnitReactions;
 
             return lowestUnitReactions > 0;
         }
@@ -226,6 +235,11 @@ namespace Content.Shared.Chemistry.Reaction
             }
 
             _audio.PlayPvs(reaction.Sound, soln);
+
+            // Stories-Ordnance-Start
+            var evOccurred = new ChemicalReactionOccurredEvent(reaction, soln, unitReactions);
+            RaiseLocalEvent(soln.Owner, ref evOccurred);
+            // Stories-Ordnance-End
         }
 
         /// <summary>

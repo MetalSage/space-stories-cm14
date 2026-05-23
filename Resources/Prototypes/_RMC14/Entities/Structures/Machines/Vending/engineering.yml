@@ -166,13 +166,13 @@
     sections:
     - name: Компоненты Для Сборки
       entries:
-      - id: Igniter
+      - id: STIgniter # Stories-Ordance
         amount: 8
-      - id: RMCTimerTrigger
+      - id: STTimer # Stories-Ordance
         amount: 4
-      - id: ProximitySensor
+      - id: STProximitySensor # Stories-Ordance
         amount: 4
-      - id: RemoteSignaller
+      - id: STSignaller # Stories-Ordance
         amount: 4
     - name: Контейнер
       entries:
