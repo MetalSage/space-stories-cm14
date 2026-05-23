@@ -32,6 +32,7 @@ entities:
     - type: Map
       mapPaused: True
     - type: GridTree
+    - type: ThunderdomeMap
     - type: MapGrid
       chunks:
         -1,-1:

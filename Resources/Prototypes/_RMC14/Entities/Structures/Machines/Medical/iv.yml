@@ -5,17 +5,19 @@
   description: Allows you to inject blood into a patient or extract blood from them to do a blood transfusion.
   suffix: IV, empty
   components:
-  - type: Physics
-    bodyType: Dynamic
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 60
-        mask:
-        - MobMask
+  # Stories-Fix-Start
+  # - type: Physics
+  #   bodyType: Dynamic
+  # - type: Fixtures
+  #   fixtures:
+  #     fix1:
+  #       shape:
+  #         !type:PhysShapeAabb
+  #         bounds: "-0.45,-0.45,0.45,0.45"
+  #       density: 60
+  #       mask:
+  #       - MobMask
+  # Stories-Fix-End
   - type: Transform
     anchored: false
     noRot: true

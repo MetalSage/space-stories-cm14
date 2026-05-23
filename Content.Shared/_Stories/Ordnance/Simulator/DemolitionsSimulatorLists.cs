@@ -2,15 +2,6 @@ namespace Content.Shared._Stories.Ordnance.Simulator;
 
 public static class DemolitionsSimulatorLists
 {
-    public static readonly IReadOnlyList<string> Humans = new[]
-    {
-        "RMCRandomHumanoidUnassignedRifleman",
-        "RMCRandomHumanoidCLFSoldier",
-        "RMCRandomHumanoidSPPRiflemanHostile",
-        "RMCRandomHumanoidPMCStandardSSG45",
-        "RMCRandomHumanoidMarineRaider",
-    };
-
     public static readonly IReadOnlyList<string> Xenomorphs = new[]
     {
         "CMXenoLesserDrone",

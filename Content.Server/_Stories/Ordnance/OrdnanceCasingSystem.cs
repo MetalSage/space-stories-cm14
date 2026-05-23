@@ -61,7 +61,7 @@ public sealed class OrdnanceCasingSystem : EntitySystem
         var effCasing = _ordnanceCasing.GetEffectiveCasing(ent.Owner, ent.Comp, out var effUid);
 
         _reagentCache.Clear();
-        _ordnanceExplosion.PopulateContentsCache(ent.Owner, ent.Comp);
+        _ordnanceExplosion.PopulateContentsCache(ent.Owner, ent.Comp, _reagentCache);
 
         var stats = _ordnanceExplosion.CalculateExplosionStats(_reagentCache, ent.Comp, effCasing);
 

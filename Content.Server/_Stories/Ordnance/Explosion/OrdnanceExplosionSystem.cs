@@ -89,23 +89,23 @@ public sealed class OrdnanceExplosionSystem : EntitySystem
             canCreateVacuum: false);
     }
 
-    public void PopulateContentsCache(EntityUid uid, OrdnanceCasingComponent casing)
+    public void PopulateContentsCache(EntityUid uid, OrdnanceCasingComponent casing, List<ReagentQuantity> cache)
     {
         if (casing.IsAssembly)
         {
             if (_itemSlots.TryGetSlot(uid, casing.BeakerSlot1Id, out var slot1) && slot1.Item != null &&
                 _solutions.TryGetFitsInDispenser(slot1.Item.Value, out _, out var sol1))
-                _reagentCache.AddRange(sol1.Contents);
+                cache.AddRange(sol1.Contents);
 
             if (_itemSlots.TryGetSlot(uid, casing.BeakerSlot2Id, out var slot2) && slot2.Item != null &&
                 _solutions.TryGetFitsInDispenser(slot2.Item.Value, out _, out var sol2))
-                _reagentCache.AddRange(sol2.Contents);
+                cache.AddRange(sol2.Contents);
 
             if (_itemSlots.TryGetSlot(uid, casing.WarheadSlotId, out var warheadSlot) && warheadSlot.Item != null)
             {
                 if (TryComp<OrdnanceCasingComponent>(warheadSlot.Item.Value, out var warheadCasing))
                 {
-                    PopulateContentsCache(warheadSlot.Item.Value, warheadCasing);
+                    PopulateContentsCache(warheadSlot.Item.Value, warheadCasing, cache);
                 }
             }
         }
@@ -114,7 +114,7 @@ public sealed class OrdnanceExplosionSystem : EntitySystem
         {
             foreach (var (_, solution) in _solutions.EnumerateSolutions((uid, solMan)))
             {
-                _reagentCache.AddRange(solution.Comp.Solution.Contents);
+                cache.AddRange(solution.Comp.Solution.Contents);
             }
         }
     }
@@ -157,7 +157,7 @@ public sealed class OrdnanceExplosionSystem : EntitySystem
         }
 
         _reagentCache.Clear();
-        PopulateContentsCache(uid, comp);
+        PopulateContentsCache(uid, comp, _reagentCache);
 
         var stats = CalculateExplosionStats(_reagentCache, comp, effectiveCasing);
 

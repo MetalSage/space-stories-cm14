@@ -225,7 +225,7 @@ public sealed class DemolitionsSimulatorSystem : EntitySystem
 
         var effectiveCasing = _ordnanceExplosion.GetEffectiveCasing(item, casing);
         _reagentCache.Clear();
-        _ordnanceExplosion.PopulateContentsCache(item, casing);
+        _ordnanceExplosion.PopulateContentsCache(item, casing, _reagentCache);
         var stats = _ordnanceExplosion.CalculateExplosionStats(_reagentCache, casing, effectiveCasing);
 
         var arenaCoords = new EntityCoordinates(gridUid, new Vector2(-0.5f, -0.5f));
@@ -297,6 +297,7 @@ public sealed class DemolitionsSimulatorSystem : EntitySystem
         {
             var dummy = Spawn(ent.Comp.SelectedPrototype, point);
             RemCompDeferred<GhostRoleComponent>(dummy);
+            RemCompDeferred<GhostTakeoverAvailableComponent>(dummy);
         }
     }
 }

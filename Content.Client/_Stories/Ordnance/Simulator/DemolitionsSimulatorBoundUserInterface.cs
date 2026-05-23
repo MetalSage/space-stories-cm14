@@ -29,7 +29,6 @@ public sealed class DemolitionsSimulatorBoundUserInterface : BoundUserInterface
         _window.OnDetonate += () => SendMessage(new DemolitionsSimulatorDetonateMessage());
         _window.ResetButton.OnPressed += _ => SendMessage(new DemolitionsSimulatorResetMessage());
 
-        _window.ModeHumanButton.OnPressed += _ => SendMessage(new DemolitionsSimulatorSwitchCategoryMessage("Human"));
         _window.ModeXenoButton.OnPressed += _ => SendMessage(new DemolitionsSimulatorSwitchCategoryMessage("Xeno"));
         _window.ModeStructureButton.OnPressed += _ => SendMessage(new DemolitionsSimulatorSwitchCategoryMessage("Structure"));
 
