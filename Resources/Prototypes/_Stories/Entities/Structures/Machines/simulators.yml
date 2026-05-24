@@ -14,13 +14,8 @@
         RMCSkillEngineer: 2
     arenaMapPath: /Maps/_Stories/Test/demo_arena.yml
     cleanupRadius: 15
+    selectedCategory: Xeno
     spawnCategories:
-      Human:
-        - RMCRandomHumanoidUnassignedRifleman
-        - RMCRandomHumanoidCLFSoldier
-        - RMCRandomHumanoidSPPRiflemanHostile
-        - RMCRandomHumanoidPMCStandardSSG45
-        - RMCRandomHumanoidMarineRaider
       Xeno:
         - CMXenoLesserDrone
         - CMXenoDrone

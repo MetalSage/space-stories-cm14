@@ -18,7 +18,7 @@ public sealed partial class DemolitionsSimulatorWindow : DefaultWindow
     public Action? OnDetonate;
 
     private TimeSpan _nextDetonation;
-    private string _currentCategory = "Human";
+    private string _currentCategory = "Xeno";
     private List<EntProtoId> _currentProtos = new();
     private bool _hasItem;
 
@@ -59,7 +59,6 @@ public sealed partial class DemolitionsSimulatorWindow : DefaultWindow
 
         _nextDetonation = nextDetonationTime;
 
-        ModeHumanButton.Pressed = selectedCategory == "Human";
         ModeXenoButton.Pressed = selectedCategory == "Xeno";
         ModeStructureButton.Pressed = selectedCategory == "Structure";
 

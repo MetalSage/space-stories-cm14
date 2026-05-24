@@ -1,6 +1,6 @@
-# - type: lobbyBackground
-#   id: Pyro
-#   background: /Textures/_RMC14/Lobby/PyrotechnicianXeno.png
+- type: lobbyBackground
+  id: Pyro
+  background: /Textures/_RMC14/Lobby/PyrotechnicianXeno.png
 
 # - type: lobbyBackground
 #   id: fob
@@ -14,13 +14,13 @@
 #   id: sisters
 #   background: /Textures/_RMC14/Lobby/sisters.png
 
-# - type: lobbyBackground
-#   id: smartgunoperator
-#   background: /Textures/_RMC14/Lobby/smart_gun.png
+- type: lobbyBackground
+  id: smartgunoperator
+  background: /Textures/_RMC14/Lobby/smart_gun.png
 
-# - type: lobbyBackground
-#   id: MarineMajor
-#   background: /Textures/_RMC14/Lobby/MarineMajor.png
+- type: lobbyBackground
+  id: MarineMajor
+  background: /Textures/_RMC14/Lobby/MarineMajor.png
 
 # - type: lobbyBackground
 #   id: Battered
@@ -34,9 +34,9 @@
 #   id: MoveOut
 #   background: /Textures/_RMC14/Lobby/Move_Out.png
 
-# - type: lobbyBackground
-#   id: Cornered
-#   background: /Textures/_RMC14/Lobby/Cornered.png
+- type: lobbyBackground
+  id: Cornered
+  background: /Textures/_RMC14/Lobby/Cornered.png
 
 # - type: lobbyBackground
 #   id: EyesUp

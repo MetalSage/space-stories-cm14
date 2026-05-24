@@ -191,10 +191,8 @@ public sealed class DemolitionsScannerSystem : EntitySystem
         {
             foreach (var casingEnt in _casingsCache)
             {
-                var casingReagents = new List<ReagentQuantity>();
-                _ordnanceExplosion.PopulateContentsCache(casingEnt.Owner, casingEnt.Comp);
                 var effCasing = _ordnanceExplosion.GetEffectiveCasing(casingEnt.Owner, casingEnt.Comp);
-                var stats = _ordnanceExplosion.CalculateExplosionStats(casingReagents, casingEnt.Comp, effCasing);
+                var stats = _ordnanceExplosion.CalculateExplosionStats(_reagentCache, casingEnt.Comp, effCasing);
 
                 if (stats.Power > 0 || stats.FireIntensity > 0)
                 {
@@ -209,6 +207,8 @@ public sealed class DemolitionsScannerSystem : EntitySystem
                         sb.AppendLine(Loc.GetString("stories-demo-scanner-report-fire"));
                         sb.AppendLine(Loc.GetString("stories-demo-scanner-report-fire-stats", ("intensity", MathF.Round(stats.FireIntensity)), ("radius", MathF.Round(stats.FireRadius))));
                     }
+
+                    break;
                 }
             }
         }

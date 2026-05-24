@@ -25,7 +25,7 @@ public sealed partial class DemolitionsSimulatorComponent : Component
     public SkillWhitelist? RequiredSkills;
 
     [DataField, AutoNetworkedField]
-    public string SelectedCategory = "Human";
+    public string SelectedCategory = "Xeno";
 
     [DataField(required: true), AutoNetworkedField]
     public Dictionary<string, List<EntProtoId>> SpawnCategories = new();
