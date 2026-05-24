@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 264.0.2-fix-physics
+  engineVersion: 264.0.2
   forkId: ""
   forkVersion: ""
-  time: 05/23/2026 21:45:14
+  time: 05/24/2026 08:33:35
   entityCount: 28021
 maps:
 - 1
@@ -30903,6 +30903,8 @@ entities:
     - type: Transform
       pos: -61.5,113.5
       parent: 1
+    - type: RMCPodDoor
+      id: Coexit
   - uid: 141
     components:
     - type: Transform
@@ -31017,6 +31019,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -53.5,96.5
       parent: 1
+    - type: RMCPodDoor
+      id: Actingexit
 - proto: CMAirlockEngineerLocked
   entities:
   - uid: 160
@@ -32669,6 +32673,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 61.5,-3.5
       parent: 1
+    - type: RMCPodDoor
+      id: SSIExit
   - uid: 427
     components:
     - type: Transform
@@ -58010,7 +58016,7 @@ entities:
     - type: CMDoubleDoor
       lastOpeningAt: 10761.05
     - type: Door
-      secondsUntilStateChange: -135918.8
+      secondsUntilStateChange: -136508.38
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -141200,7 +141206,7 @@ entities:
       pos: 71.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -282506.3
+      secondsUntilStateChange: -283095.88
       state: Opening
   - uid: 20386
     components:
@@ -141208,7 +141214,7 @@ entities:
       pos: 72.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -282505.88
+      secondsUntilStateChange: -283095.44
       state: Opening
   - uid: 20387
     components:
@@ -141216,7 +141222,7 @@ entities:
       pos: 73.5,-14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -282505.47
+      secondsUntilStateChange: -283095.03
       state: Opening
   - uid: 20388
     components:
@@ -141224,7 +141230,7 @@ entities:
       pos: 71.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -282499.94
+      secondsUntilStateChange: -283089.5
       state: Opening
   - uid: 20389
     components:
@@ -141232,7 +141238,7 @@ entities:
       pos: 72.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -282500.34
+      secondsUntilStateChange: -283089.9
       state: Opening
   - uid: 20390
     components:
@@ -141240,7 +141246,7 @@ entities:
       pos: 73.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -282500.75
+      secondsUntilStateChange: -283090.3
       state: Opening
   - uid: 20391
     components:
@@ -141250,7 +141256,7 @@ entities:
       pos: 11.5,91.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -15046.579
+      secondsUntilStateChange: -15636.155
       state: Opening
   - uid: 20392
     components:
@@ -179983,6 +179989,8 @@ entities:
     - type: Transform
       pos: -48.9,97.8
       parent: 1
+    - type: RMCDoorButton
+      id: Actingexit
     - type: Fixtures
       fixtures: {}
   - uid: 25630
@@ -180008,6 +180016,8 @@ entities:
     - type: Transform
       pos: 58.65,-4.5
       parent: 1
+    - type: RMCDoorButton
+      id: SSIExit
     - type: Fixtures
       fixtures: {}
   - uid: 25633
@@ -180222,6 +180232,8 @@ entities:
       denyTags: []
   - uid: 25646
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -25.35,-5.75
       parent: 1
@@ -180236,6 +180248,8 @@ entities:
       denyTags: []
   - uid: 25647
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -30.75,-5.25
       parent: 1
@@ -180250,6 +180264,8 @@ entities:
       denyTags: []
   - uid: 25648
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -25.65,-5.75
       parent: 1
@@ -180266,6 +180282,8 @@ entities:
       denyTags: []
   - uid: 25649
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -12.5,-10.75
       parent: 1
@@ -180299,6 +180317,8 @@ entities:
       denyTags: []
   - uid: 25651
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -23.5,4.25
       parent: 1
@@ -180331,6 +180351,8 @@ entities:
       denyTags: []
   - uid: 25653
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -15.25,-9.65
       parent: 1
@@ -180347,6 +180369,8 @@ entities:
       id: souexit2
   - uid: 25654
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -17.65,-5.75
       parent: 1
@@ -180361,6 +180385,8 @@ entities:
       denyTags: []
   - uid: 25655
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -17.35,-5.75
       parent: 1
@@ -180377,6 +180403,8 @@ entities:
       denyTags: []
   - uid: 25656
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -30.75,4.25
       parent: 1
@@ -180391,6 +180419,8 @@ entities:
       denyTags: []
   - uid: 25657
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -19.5,-5.25
       parent: 1
@@ -180407,6 +180437,8 @@ entities:
       denyTags: []
   - uid: 25658
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -25.65,4.75
       parent: 1
@@ -180473,6 +180505,8 @@ entities:
       denyTags: []
   - uid: 25662
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -23.5,-5.25
       parent: 1
@@ -180521,6 +180555,8 @@ entities:
       denyTags: []
   - uid: 25665
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -25.35,4.75
       parent: 1
@@ -180535,6 +180571,8 @@ entities:
       denyTags: []
   - uid: 25666
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -17.65,4.75
       parent: 1
@@ -180549,6 +180587,8 @@ entities:
       denyTags: []
   - uid: 25667
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -19.5,4.25
       parent: 1
@@ -180565,6 +180605,8 @@ entities:
       denyTags: []
   - uid: 25668
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -17.35,4.75
       parent: 1
@@ -180614,6 +180656,8 @@ entities:
       denyTags: []
   - uid: 25671
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -15.25,-9.35
       parent: 1
@@ -180630,6 +180674,8 @@ entities:
       denyTags: []
   - uid: 25672
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -15.25,8.35
       parent: 1
@@ -180646,6 +180692,8 @@ entities:
       denyTags: []
   - uid: 25673
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -12.75,8.25
       parent: 1
@@ -180662,6 +180710,8 @@ entities:
       denyTags: []
   - uid: 25674
     components:
+    - type: MetaData
+      name: Ставни шлюза
     - type: Transform
       pos: -12.5,9.75
       parent: 1
@@ -180678,6 +180728,8 @@ entities:
       denyTags: []
   - uid: 25675
     components:
+    - type: MetaData
+      name: Открыть шлюз
     - type: Transform
       pos: -15.25,8.65
       parent: 1
@@ -181676,6 +181728,8 @@ entities:
     - type: Transform
       pos: -11.25,97.45
       parent: 1
+    - type: RMCDoorButton
+      id: researchlockdownext_door
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
@@ -181962,6 +182016,8 @@ entities:
     - type: Transform
       pos: -62.5,118.7
       parent: 1
+    - type: RMCDoorButton
+      id: Coexit
     - type: Fixtures
       fixtures: {}
     - type: AccessReader
