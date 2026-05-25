@@ -113,7 +113,7 @@
       - Xeno
 
 - type: entity
-  parent: BaseArrow
+  parent: STArrowHunter
   id: STArrowHunterExplosive
   name: explosive arrow
   description: A sharp hunter arrow.

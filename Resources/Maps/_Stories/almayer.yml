@@ -202416,7 +202416,7 @@ entities:
     - type: Transform
       pos: 34.5,-33.5
       parent: 1
-- proto: STArmorHelmetM50
+- proto: CMArmorHelmetM50
   entities:
   - uid: 27714
     components:
@@ -202525,7 +202525,7 @@ entities:
     - type: Transform
       pos: 28.5,20.5
       parent: 1
-- proto: STColMarTechTankCrewWeapon
+- proto: ColMarTechVehicleCrewmanWeapon
   entities:
   - uid: 27721
     components:
@@ -202778,7 +202778,7 @@ entities:
     - type: Transform
       pos: -28.5,-23.5
       parent: 1
-- proto: STVendorTankCrew
+- proto: ColMarTechVehicleCrewmanEquipment
   entities:
   - uid: 27759
     components:
@@ -202786,7 +202786,7 @@ entities:
       anchored: False
       pos: -99.5,-14
       parent: 1
-- proto: STWeldingKit
+- proto: RMCWeldingKit
   entities:
   - uid: 27760
     components:

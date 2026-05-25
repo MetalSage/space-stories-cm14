@@ -220,7 +220,7 @@
     solutions:
       Welder:
         reagents:
-        - ReagentId: WeldingFuel
+        - ReagentId: RMCWeldingFuel # Stories-Ordance
           Quantity: 200
         maxVol: 200 # TODO RMC14 80 when welders are fixed
   - type: PhysicalComposition
@@ -239,6 +239,6 @@
     solutions:
       Welder:
         reagents:
-        - ReagentId: WeldingFuel
+        - ReagentId: RMCWeldingFuel # Stories-Ordance
           Quantity: 100
         maxVol: 100 # TODO RMC14 40 when welders are fixed

@@ -1,10 +1,13 @@
-stories-command-forcehuntermode-description = Принудительно включает режим охоты на текущий раунд (загружает карту и открывает слоты).
-stories-command-forcehuntermode-help = Использование: forcehuntermode
-stories-command-forcehuntermode-already-active = Режим охоты уже активен.
-stories-command-forcehuntermode-success = Режим охоты принудительно активирован! Карта загружена, слоты открыты.
-
+command-description-hunterforce = Принудительно включает режим охоты на текущий раунд.
+command-help-hunterforce = Использование: hunterforce
 stories-command-hunter-force-success = Раунд с охотниками принудительно включен.
+
+command-description-hunterdisable = Принудительно отключает режим охоты.
+command-help-hunterdisable = Использование: hunterdisable
 stories-command-hunter-disable-success = Раунд с охотниками принудительно отключен.
+
+command-description-huntercheck = Проверяет, активен ли сейчас раунд с охотниками.
+command-help-huntercheck = Использование: huntercheck
 stories-command-hunter-check = Сейчас раунд с охотниками: {$isHuntRound}
 
 stories-command-resetmap-description = Сбрасывает текущую выбранную карту для загрузки по умолчанию.
