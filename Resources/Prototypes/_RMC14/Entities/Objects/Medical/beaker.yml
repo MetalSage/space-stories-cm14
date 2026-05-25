@@ -378,6 +378,7 @@
     tags:
     - RMCMiniTank
     - ChemDispensable
+    - GlassBeaker # Space-Stories
   - type: RMCSmartRefillTank
     solution: beaker
   - type: SolutionTransfer
