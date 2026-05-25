@@ -9,10 +9,9 @@ public sealed class ForceHunterRoundCommand : IConsoleCommand
 {
     public string Command => "forcehuntermode";
 
-    public string Description =>
-        "Принудительно включает режим охоты на текущий раунд (загружает карту и открывает слоты).";
+    public string Description => Loc.GetString("stories-command-forcehuntermode-description");
 
-    public string Help => "forcehuntermode";
+    public string Help => Loc.GetString("stories-command-forcehuntermode-help");
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
@@ -21,11 +20,11 @@ public sealed class ForceHunterRoundCommand : IConsoleCommand
 
         if (hunterSystem.IsHuntRound)
         {
-            shell.WriteLine("Режим охоты уже активен.");
+            shell.WriteLine(Loc.GetString("stories-command-forcehuntermode-already-active"));
             return;
         }
 
         hunterSystem.ForceHuntRound();
-        shell.WriteLine("Режим охоты принудительно активирован! Карта загружена, слоты открыты.");
+        shell.WriteLine(Loc.GetString("stories-command-forcehuntermode-success"));
     }
 }

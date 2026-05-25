@@ -1,3 +1,6 @@
+ent-STTankReagentEmpty = reagent tank
+    .desc = A reagent tank, typically used to store large quantities of chemicals.
+    .suffix = Empty
 ent-STTankReagentFuelHunter = топливный бак
     .desc = Бак, наполненный топливом.
     .suffix = Топливо

@@ -4,6 +4,8 @@
   name: hunting pouch
   description: A hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies.
   components:
+  - type: Item
+    size: Large
   - type: Sprite
     sprite: _Stories/Objects/Clothing/Back/Backpacks/Hunters/standard.rsi
   - type: Clothing
