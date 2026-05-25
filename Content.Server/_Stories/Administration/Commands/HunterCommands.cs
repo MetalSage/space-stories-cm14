@@ -5,7 +5,7 @@ using Robust.Shared.Toolshed;
 
 namespace Content.Server._Stories.Administration.Commands;
 
-[ToolshedCommand] [AdminCommand(AdminFlags.Round)]
+[ToolshedCommand, AdminCommand(AdminFlags.Round)]
 public sealed class HunterForceCommand : ToolshedCommand
 {
     [CommandImplementation]
@@ -13,12 +13,11 @@ public sealed class HunterForceCommand : ToolshedCommand
     {
         var system = GetSys<HunterSystem>();
         system.IsHuntRound = true;
-        ctx.WriteLine(
-            "Раунд с охотниками принудительно вклюён.");
+        ctx.WriteLine(Loc.GetString("stories-command-hunter-force-success"));
     }
 }
 
-[ToolshedCommand] [AdminCommand(AdminFlags.Round)]
+[ToolshedCommand, AdminCommand(AdminFlags.Round)]
 public sealed class HunterDisableCommand : ToolshedCommand
 {
     [CommandImplementation]
@@ -26,17 +25,17 @@ public sealed class HunterDisableCommand : ToolshedCommand
     {
         var system = GetSys<HunterSystem>();
         system.IsHuntRound = false;
-        ctx.WriteLine("Раунд с охотниками принудительно отключён.");
+        ctx.WriteLine(Loc.GetString("stories-command-hunter-disable-success"));
     }
 }
 
-[ToolshedCommand] [AdminCommand(AdminFlags.Round)]
+[ToolshedCommand, AdminCommand(AdminFlags.Round)]
 public sealed class HunterCheckCommand : ToolshedCommand
 {
     [CommandImplementation]
     public void Run(IInvocationContext ctx)
     {
         var system = GetSys<HunterSystem>();
-        ctx.WriteLine($"Сейчас раунд с охотниками: {system.IsHuntRound}");
+        ctx.WriteLine(Loc.GetString("stories-command-hunter-check", ("isHuntRound", system.IsHuntRound)));
     }
 }

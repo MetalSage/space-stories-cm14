@@ -87,7 +87,6 @@ namespace Content.IntegrationTests.Tests
             "RMCDev", // RMC14
             "Savannah",
             "Almayer",
-            "STAlmayer", // Stories
             "RMCAdminFax",
             "OCP-583",
             "Haurchefant",

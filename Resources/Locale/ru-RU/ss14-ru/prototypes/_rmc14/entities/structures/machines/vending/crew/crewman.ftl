@@ -1,4 +1,4 @@
-ent-ColMarTechVehicleCrewmanWeapon = ColMarTech Vehicle Crewman Weapon Rack
-    .desc = An automated weapon rack hooked up to a small storage of standard-issue weapons. Can be accessed only by the Vehicle Crewmen.
-ent-ColMarTechVehicleCrewmanEquipment = ColMarTech Vehicle Crewman Equipment Rack
-    .desc = An automated rack hooked up to a colossal storage of Vehicle Crewmen standard-issue equipment.
+ent-ColMarTechVehicleCrewmanWeapon = КолМорТех стойка для снаряжения экипажа бронетехники
+    .desc = Автоматизированный стеллаж, подключенный к огромному хранилищу стандартного снаряжения экипажа бронетехники.
+ent-ColMarTechVehicleCrewmanEquipment = КолМорТех стойка для оружия экипажа бронетехники
+    .desc = Автоматизированный стеллаж для оружия, подключенный к небольшому хранилищу стандартного оружия. Доступ к нему имеют только члены экипажа бронетехники.

@@ -133,7 +133,7 @@
     solutions:
       Welder:
         reagents:
-        - ReagentId: WeldingFuel
+        - ReagentId: RMCWeldingFuel
           Quantity: 150
         maxVol: 150
   - type: Tag
