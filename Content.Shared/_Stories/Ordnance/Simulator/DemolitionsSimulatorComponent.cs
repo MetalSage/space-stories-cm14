@@ -31,7 +31,7 @@ public sealed partial class DemolitionsSimulatorComponent : Component
     public Dictionary<string, List<EntProtoId>> SpawnCategories = new();
 
     [DataField, AutoNetworkedField]
-    public EntProtoId SelectedPrototype = string.Empty;
+    public EntProtoId SelectedPrototype = "CMXenoDrone";
 
     [DataField]
     public ResPath ArenaMapPath = new("/Maps/Test/admin_test_arena.yml");

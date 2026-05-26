@@ -7,10 +7,12 @@
     camouflage: Jungle
     announcement: "Получен автоматический сигнал бедствия с археологической площадки 'Пристань Лазаря', на пограничном мире LV-624. Группа реагирования с борта ВКСШ Алмайер будет отправлена в ближайшее время для расследования." # Stories-Translate
     nightmareScenarios:
-    - scenarioName: fallen_ship
-      scenarioProbability: 0.1
+#   - scenarioName: clf_ship
+#     scenarioProbability: 0.1
     - scenarioName: asset_protection
       scenarioProbability: 0.1
+    - scenarioName: none
+      scenarioProbability: 0.9
     survivorJobVariants:
       CMSurvivor:
       - CMSurvivor: -1
@@ -629,6 +631,8 @@
     nightmareScenarios:
     - scenarioName: spp_sof
       scenarioProbability: 0.4
+    - scenarioName: none # reduce by 0.1 once clf survs are in
+      scenarioProbability: 0.6
     survivorJobVariants:
       CMSurvivor:
       - CMJobSurvivorSoroCivilian: -1

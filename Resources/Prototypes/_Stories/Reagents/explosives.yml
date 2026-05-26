@@ -200,7 +200,18 @@
 - type: reagent
   parent: CMReagent
   id: RMCCornOil
+  group: Foods
   name: reagent-name-rmc-cornoil
   desc: reagent-desc-rmc-cornoil
   physicalDesc: reagent-physical-desc-oily
+  flavor: oily
   color: "#302000"
+  recognizable: true
+  metabolisms:
+    Food:
+      metabolismRate: 0.1
+      effects:
+      - !type:Nutritious
+        potency: 2
+        nutFactor: 20
+        nutMetabolism: 0.1

@@ -31,7 +31,7 @@
           CMPilotDropship: [1, 1]
           CMPilotGunship: [1, 1]
           CMDropshipCrewChief: [2, 2]
-          STTankCrew: [2, 2]
+          CMVehicleCrewman: [2, 2]
 
           #Engineering
           CMChiefEngineer: [1, 1]

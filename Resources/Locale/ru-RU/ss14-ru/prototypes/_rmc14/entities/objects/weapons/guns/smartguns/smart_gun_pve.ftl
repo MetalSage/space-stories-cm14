@@ -4,6 +4,11 @@ ent-RMCSmartGunPVENoCamo = ML66A heavy support gun
 ent-RMCSmartGunPVE = { ent-RMCSmartGunPVENoCamo }
     .desc = { ent-RMCSmartGunPVENoCamo.desc }
     .suffix = { ent-RMCSmartGunPVENoCamo.suffix }
+ent-RMCSmartGunOvertunedPVE = ML66OT heavy support gun
+    .desc = The actual firearm in the Support Gun System. Essentially a heavy, mobile machinegun.
+
+        This model appears to have been overtuned, packing a greater punch than usual. Watch where you point this thing.
+    .suffix = PVE, Overtuned
 ent-RMCSmartGunPMCPVE = ML79A heavy support gun
     .desc = The actual firearm in the Support Gun System, modified for We-Ya PMCs. Essentially a heavy, mobile machinegun.
     .suffix = PVE, PMC

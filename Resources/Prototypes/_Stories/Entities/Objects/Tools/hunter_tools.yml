@@ -13,8 +13,6 @@
     - state: icon
   - type: Item
     size: Tiny
-    sprite: _Stories/Objects/Tools/hunter_screwdriver.rsi
-    state: icon
   - type: MeleeWeapon
     wideAnimationRotation: -90
     attackRate: 1
@@ -64,8 +62,6 @@
       path: /Audio/Items/wirecutter.ogg
   - type: Item
     size: Small
-    sprite: _Stories/Objects/Tools/hunter_wirecutters.rsi
-    state: icon
   - type: ToolTileCompatible
   - type: Tag
     tags:
@@ -83,8 +79,6 @@
     state: icon
   - type: Item
     size: Small
-    sprite: _Stories/Objects/Tools/hunter_wrench.rsi
-    state: icon
     storedRotation: 90
     storedSprite:
       sprite: _Stories/Objects/Tools/hunter_wrench.rsi
@@ -106,8 +100,6 @@
     state: icon
   - type: Item
     size: Small
-    sprite: _Stories/Objects/Tools/hunter_multitool.rsi
-    state: icon
   - type: Tag
     tags:
     - STPredatorGear
@@ -124,8 +116,6 @@
     state: icon
   - type: Item
     size: Small
-    sprite: _Stories/Objects/Tools/hunter_crowbar.rsi
-    state: icon
   - type: Tag
     tags:
     - STPredatorGear
@@ -143,7 +133,7 @@
     solutions:
       Welder:
         reagents:
-        - ReagentId: WeldingFuel
+        - ReagentId: RMCWeldingFuel
           Quantity: 150
         maxVol: 150
   - type: Tag
@@ -162,13 +152,12 @@
     state: icon
   - type: Item
     size: Small
-    sprite: _Stories/Objects/Tools/cleaner_vial.rsi
   - type: HunterCleanerVial
     doAfterDuration: 3.0
     meltTime: 2.0
     acidPrototype: STHunterDissolvingGel
     strength: Hunter
-    dissolveSound: /Audio/Effects/acid_sizzle4.ogg 
+    dissolveSound: /Audio/_Stories/Effects/acid_sizzle4.ogg
 
 - type: entity
   id: STHunterDissolvingGel

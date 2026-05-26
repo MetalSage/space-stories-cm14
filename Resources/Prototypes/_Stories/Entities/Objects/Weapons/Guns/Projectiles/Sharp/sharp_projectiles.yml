@@ -16,9 +16,6 @@
     embedOnThrow: false
     deleteOnRemove: false
     removalTime: null
-    whitelist:
-     components:
-     - MobState
 
   - type: Projectile
     deleteOnCollide: false
@@ -71,9 +68,6 @@
     embedOnThrow: false
     deleteOnRemove: false
     removalTime: null
-    whitelist:
-     components:
-     - MobState
 
   - type: Projectile
     deleteOnCollide: false
@@ -177,4 +171,3 @@
         mask:
         - Impassable
         - BulletImpassable
-

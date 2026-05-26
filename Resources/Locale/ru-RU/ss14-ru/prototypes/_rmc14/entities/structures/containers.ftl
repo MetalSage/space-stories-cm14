@@ -27,29 +27,20 @@ ent-RMCContainerRedMiddle = { ent-RMCContainerBase }
 ent-RMCContainerRedRight = { ent-RMCContainerBase }
     .desc = { ent-RMCContainerBase.desc }
     .suffix = Красный, Правый
-ent-RMCContainerFujinLeft = грузовой контейнер "Фуджин"
-    .desc =
-        Огромный промышленный транспортный контейнер.
-        Этот контейнер от "Фуджин", производителя разнообразной электронной и механической продукции.
-        По крайней мере, так написано на контейнере. Вы никогда раньше не слышали об этой компании.
+ent-RMCContainerFujinLeft = { ent-RMCContainerBase }
+    .desc = { ent-RMCContainerBase.desc }
     .suffix = Фуджин, Левый
 ent-RMCContainerFujinMiddle = { ent-RMCContainerFujinLeft }
     .desc = { ent-RMCContainerFujinLeft.desc }
     .suffix = Фуджин, Центральный
-ent-RMCContainerApocraphyLeft = грузовой контейнер "Апокрафия"
-    .desc =
-        Огромный промышленный транспортный контейнер.
-        Этот контейнер от корпорация "Апокрафия", производителя медицинских и биотехнологических комплектующих.
-        Вы помните, как слышали об одном из их последних препаратов и о том, насколько он был опасен... хотя они утверждали, что близки к нахождению решения.
+ent-RMCContainerApocraphyLeft = { ent-RMCContainerBase }
+    .desc = { ent-RMCContainerBase.desc }
     .suffix = Апокрафия, Левый
 ent-RMCContainerApocraphyMiddle = { ent-RMCContainerApocraphyLeft }
     .desc = { ent-RMCContainerApocraphyLeft.desc }
     .suffix = Апокрафия, Центральный
-ent-RMCContainerPathosLeft = грузовой контейнер "Пафос"
-    .desc =
-        Огромный промышленный транспортный контейнер.
-        Этот контейнер от "Пафос", производителя компьютерных комплектующих и датчиков движения.
-        Вы до сих пор задаетесь вопросом, почему у вас есть контейнер со старыми датчиками движения и работают ли они вообще.
+ent-RMCContainerPathosLeft = { ent-RMCContainerBase }
+    .desc = { ent-RMCContainerBase.desc }
     .suffix = Пафос, Левый
 ent-RMCContainerPathosMiddle = { ent-RMCContainerPathosLeft }
     .desc = { ent-RMCContainerPathosLeft.desc }
@@ -95,11 +86,8 @@ ent-RMCContainerTrijentAltMiddle = { ent-RMCContainerTrijentLeft }
 ent-RMCContainerTrijentAltRight = { ent-RMCContainerTrijentLeft }
     .desc = { ent-RMCContainerTrijentLeft.desc }
     .suffix = Триджент Альтернативный, Правый
-ent-RMCContainerFerretLeft = грузовой контейнер Ferret Heavy Industries
-    .desc =
-        Огромный промышленный транспортный контейнер.
-        Этот контейнер от Ferret Heavy Industries, производителя наземных шагающих машин и силовых костюмов.
-        К сожалению, компания обанкротилась. К счастью, эти контейнеры сейчас очень дешевы.
+ent-RMCContainerFerretLeft = { ent-RMCContainerBase }
+    .desc = { ent-RMCContainerBase.desc }
     .suffix = Ferret, Левый
 ent-RMCContainerFerretMiddle = { ent-RMCContainerFerretLeft }
     .desc = { ent-RMCContainerFerretLeft.desc }
@@ -118,10 +106,8 @@ ent-RMCContainerNovarisMiddle = { ent-RMCContainerNovarisLeft }
 ent-RMCContainerNovarisRight = { ent-RMCContainerNovarisLeft }
     .desc = { ent-RMCContainerNovarisLeft.desc }
     .suffix = Новарис, Правый
-ent-RMCContainerAICMiddle = грузовой контейнер AIC
-    .desc =
-        Огромный промышленный транспортный контейнер.
-        Этот контейнер от Asian Industrial Collective, которая была поглощена СПН. Их огромный промышленный выпуск гарантирует, что грузовые контейнеры с их символами и названием не исчезнут в ближайшее время.
+ent-RMCContainerAICMiddle = { ent-RMCContainerBase }
+    .desc = { ent-RMCContainerBase.desc }
     .suffix = AIC, Центральный
 ent-RMCContainerSPPLeft = грузовой контейнер СПН
     .desc =
@@ -143,10 +129,8 @@ ent-RMCContainerSPPAltMiddle = { ent-RMCContainerSPPLeft }
 ent-RMCContainerSPPAltRight = { ent-RMCContainerSPPLeft }
     .desc = { ent-RMCContainerSPPLeft.desc }
     .suffix = СПН Альтернативный, Правый
-ent-RMCContainerMSPLeft = грузовой контейнер Министерства космической защиты
-    .desc =
-        Огромный промышленный транспортный контейнер.
-        Этот принадлежит Министерству космической защиты КМП США.
+ent-RMCContainerMSPLeft = { ent-RMCContainerBase }
+    .desc = { ent-RMCContainerBase.desc }
     .suffix = MSP, Левый
 ent-RMCContainerMSPMiddle = { ent-RMCContainerMSPLeft }
     .desc = { ent-RMCContainerMSPLeft.desc }
@@ -176,6 +160,15 @@ ent-RMCContainerAegisMiddle = { ent-RMCContainerAegisLeft }
 ent-RMCContainerAegisRight = { ent-RMCContainerAegisLeft }
     .desc = { ent-RMCContainerAegisLeft.desc }
     .suffix = Эгида, Правый
+ent-RMCContainerAvantLeft = Avant Biomedical Cargo Container
+    .desc = A huge industrial shipping container. This one is from Avant Biomedical, a producer of biotechnology and medical goods. Despite being renowned for making high-quality products, rumors of shady projects seem to follow them.
+    .suffix = Avant, Left
+ent-RMCContainerAvantMiddle = { ent-RMCContainerAvantLeft }
+    .desc = { ent-RMCContainerAvantLeft.desc }
+    .suffix = Avant, Middle
+ent-RMCContainerAvantRight = { ent-RMCContainerAvantLeft }
+    .desc = { ent-RMCContainerAvantLeft.desc }
+    .suffix = Avant, Right
 ent-RMCContainerTartarusLeft = { ent-RMCContainerBase }
     .desc = { ent-RMCContainerBase.desc }
     .suffix = Тартар, Левый
@@ -351,7 +344,7 @@ ent-RMCContainerWeYaWhiteRight = { ent-RMCContainerTartarusLeft }
     .desc = { ent-RMCContainerTartarusLeft.desc }
     .suffix = Ве-Я, Белый, Правый
 ent-RMCContainerAMSLeft = { ent-RMCContainerTartarusLeft }
-    .desc = Огромный промышленный морской контейнер. Этот принадлежит компании Asian Multinational Shipping Line, дочернему предприятию Вестон-Ямада, занимающемуся перевозкой насыпных грузов.
+    .desc = { ent-RMCContainerTartarusLeft.desc }
     .suffix = AMS, Левый
 ent-RMCContainerAMSRight = { ent-RMCContainerAMSLeft }
     .desc = { ent-RMCContainerAMSLeft.desc }

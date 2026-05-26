@@ -9,6 +9,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -18,7 +19,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -33,6 +33,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -42,7 +43,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -57,6 +57,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -66,7 +67,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -81,6 +81,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -90,7 +91,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -105,6 +105,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -114,10 +115,30 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
+
+- type: roleLoadout
+  id: JobCMVehicleCrewman
+  points: 7
+  groups:
+  - MarineBackpack
+  - HeadwearRMC
+  - EyewearRMC
+  - MasksRMC
+  - HelmetGarbsRMC
+  - AccessoriesRMC
+  - PaperworkRMC
+  - RecreationalRMC
+  - PlushiesRMC
+  - WeaponsRMC
+  - CannedDrinksRMC
+  - FlasksRMC
+  - FoodSweetsRMC
+  - FoodPackagedRMC
+  - FoodHealthyRMC
+  - SmokablesRMC
 
 # Command
 - type: roleLoadout
@@ -133,6 +154,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesCommandingOfficerRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -142,7 +164,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -157,6 +178,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesLiaisonRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -166,7 +188,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -181,6 +202,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -190,7 +212,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -206,6 +227,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -215,7 +237,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -230,6 +251,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -239,7 +261,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -254,6 +275,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -263,7 +285,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -279,6 +300,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -288,7 +310,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -303,6 +324,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -312,7 +334,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -327,6 +348,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -336,7 +358,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -351,6 +372,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -360,7 +382,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -375,6 +396,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -384,7 +406,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -399,6 +420,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -408,7 +430,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -423,6 +444,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -432,7 +454,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -448,6 +469,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -457,7 +479,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -472,6 +493,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -481,7 +503,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -505,7 +526,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
 
@@ -519,6 +539,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -528,7 +549,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -543,6 +563,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesLiaisonRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -552,7 +573,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -578,7 +598,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -594,6 +613,7 @@
   - ChiefMPRoleSpecificRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -603,7 +623,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -618,6 +637,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -627,7 +647,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -642,6 +661,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -651,7 +671,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -667,6 +686,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesLiaisonRMC
   - PaperworkRMC
   - RecreationalRMC
   - WeaponsRMC
@@ -675,7 +695,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - CivilianOnlyRMC
@@ -691,6 +710,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesLiaisonRMC
   - PaperworkRMC
   - RecreationalRMC
   - WeaponsRMC
@@ -699,7 +719,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - CivilianOnlyRMC
@@ -714,6 +733,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -723,7 +743,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -738,6 +757,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesCommandingOfficerRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -747,7 +767,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -762,13 +781,13 @@
   - SynthMasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesSynthRMC
   - SynthUniformRMC
   - SynthUniformAccessoriesRMC
   - SynthSuitsRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -784,6 +803,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -793,7 +813,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -808,6 +827,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -817,7 +837,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -836,7 +855,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - CivilianOnlyRMC
@@ -854,7 +872,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - CivilianOnlyRMC
@@ -872,7 +889,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - CivilianOnlyRMC
@@ -890,7 +906,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - CivilianOnlyRMC
@@ -908,7 +923,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - CivilianOnlyRMC
@@ -926,7 +940,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - CivilianOnlyRMC
@@ -944,7 +957,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - CivilianOnlyRMC
@@ -962,7 +974,6 @@
   - FoodSweetsRMC
   - FoodPackagedRMC
   - FoodHealthyRMC
-  # - RMCLoadoutGroupPins
   - SmokablesRMC
   - MiscellaneousRMC
   - MeleeWeaponsRMC
@@ -981,7 +992,6 @@
   - AccessoriesRMCPVE
   - PlushiesRMC
   - WeaponsRMC
-  - RMCLoadoutGroupPins
 
 - type: roleLoadout
   id: JobCMPVEHospitalCorpsman
@@ -995,7 +1005,6 @@
   - AccessoriesRMCPVE
   - PlushiesRMC
   - WeaponsRMC
-  - RMCLoadoutGroupPins
 
 - type: roleLoadout
   id: JobCMPVESmartGunOperator
@@ -1009,7 +1018,6 @@
   - AccessoriesRMCPVE
   - PlushiesRMC
   - WeaponsRMC
-  - RMCLoadoutGroupPins
 
 - type: roleLoadout
   id: JobCMPVESquadLeader
@@ -1023,7 +1031,6 @@
   - AccessoriesRMCPVE
   - PlushiesRMC
   - WeaponsRMC
-  - RMCLoadoutGroupPins
 
 - type: roleLoadout
   id: JobCMPVESectionSergeant
@@ -1037,7 +1044,6 @@
   - AccessoriesRMCPVE
   - PlushiesRMC
   - WeaponsRMC
-  - RMCLoadoutGroupPins
 
 - type: roleLoadout
   id: JobCMPVEPlatoonCommander
@@ -1050,7 +1056,6 @@
   - AccessoriesRMCPVE
   - PlushiesRMC
   - WeaponsRMC
-  - RMCLoadoutGroupPins
 
 # PVE - RCM
 
@@ -1066,7 +1071,6 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC
 
 - type: roleLoadout
@@ -1081,7 +1085,6 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC
 
 - type: roleLoadout
@@ -1096,7 +1099,6 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC
 
 - type: roleLoadout
@@ -1111,7 +1113,6 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC
 
 - type: roleLoadout
@@ -1126,7 +1127,6 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC
 
 - type: roleLoadout
@@ -1141,7 +1141,6 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC
 
 - type: roleLoadout
@@ -1156,7 +1155,6 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC
 
 - type: roleLoadout
@@ -1171,7 +1169,6 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC
 
 - type: roleLoadout
@@ -1186,7 +1183,6 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC
 
 - type: roleLoadout
@@ -1201,5 +1197,4 @@
   - AccessoriesRoyalRMC
   - PlushiesRMC
   - WeaponsRoyalRMC
-  - RMCLoadoutGroupPins
   - MeleeWeaponsRoyalRMC

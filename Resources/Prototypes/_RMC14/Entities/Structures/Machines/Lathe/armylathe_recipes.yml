@@ -83,9 +83,9 @@
   materials:
     CMSteel: 4687 # 3750
 
-- type: latheRecipe
-  id: RMCCustomM34A1SmokeTankCase
-  result: RMCCustomM34A1SmokeTankCase
-  completetime: 4
-  materials:
-    CMSteel: 4687 # 3750
+# - type: latheRecipe
+#   id: RMCCustomM34A1SmokeTankCase
+#   result: RMCCustomM34A1SmokeTankCase
+#   completetime: 4
+#   materials:
+#     CMSteel: 4687 # 3750

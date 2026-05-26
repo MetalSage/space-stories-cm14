@@ -1,3 +1,12 @@
+- type: Tag
+  id: RMCLaunchTube
+
+- type: Tag
+  id: RMCWarhead88
+
+- type: Tag
+  id: RMCWarhead80
+
 - type: entity
   abstract: true
   parent: BaseItem

@@ -1,5 +1,109 @@
 - type: entity
-  parent: RMCTankReagentFuel
+  abstract: true
+  parent: [StorageTank, StructureWheeled]
+  id: STTankReagentEmpty
+  name: reagent tank
+  description: A reagent tank, typically used to store large quantities of chemicals.
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Storage/reagent_tank.rsi
+    layers:
+    - state: tank_normal
+    - state: tn_color-1
+    - state: tn_color-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+    - state: t_inactive
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 155
+        mask:
+        - MachineMask
+        - HighImpassable
+        layer:
+        - HighImpassable
+        - BulletImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:SpillBehavior
+        solution: tank
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+  - type: DamageOnToolInteract
+    tools: Welding
+    weldingDamage:
+      types:
+        Heat: 10
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: tn_color-
+  - type: DetailedExaminableSolution
+    solution: tank
+  - type: RMCToggleableSolutionTransfer
+    direction: Input
+    solution: tank
+  - type: OrdnanceCasing
+    requiredAssemblyMode: None
+    updateAppearance: false
+    isAssembly: false
+    hasBlastDampener: false
+    maxExplosionPower: 175
+    maxShards: 32
+    maxFireRadius: 5
+    maxFireIntensity: 20
+    maxFireDuration: 24
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 1000
+  - type: Corrodible
+    timeToApply: 4
+    structure: true
+  - type: Tag
+    tags:
+    - RMCTankReagent
+    - Structure
+  - type: XenoCrusherChargable
+    setDamage:
+      types:
+        Blunt: 0
+    throwRange: 2
+  - type: RMCMesonsNonviewable
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno
+
+- type: entity
+  parent: STTankReagentEmpty
   id: STTankReagentFuelHunter
   name: fuel tank
   description: A tank filled with fuel.
@@ -13,7 +117,7 @@
     - state: weldtank
 
 - type: entity
-  parent: RMCTankReagentWater
+  parent: STTankReagentEmpty
   id: STTankReagentWaterHunter
   name: water tank
   description: A tank filled with water.

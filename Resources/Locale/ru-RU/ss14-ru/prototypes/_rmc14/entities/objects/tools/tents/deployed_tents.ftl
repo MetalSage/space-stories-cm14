@@ -16,3 +16,5 @@ ent-RMCTentUNMCExtendedMess = UNMC Mess Tent
     .desc = A standard UNMC Mess Tent. This one comes equipped with a kitchen and dining utilities. Unfold in a suitable location to maximize meal handouts. ENTRANCE TO THE SOUTH.
 ent-RMCTentUNMCExtendedMP = UNMC Military Police Tent
     .desc = A standard UNMC Military Police Tent. This one comes equipped with a single detention cell and detainee handling equipment. Unfold in a suitable location to maximize order enforcement. ENTRANCE TO THE SOUTH.
+ent-RMCTentUNMCExtendedCorrespondent = Correspondent Field Tent
+    .desc = A standard civilian tent. This one is equipped for news on the go. Unfold in a suitable location for interviews. ENTRANCE TO THE SOUTH.

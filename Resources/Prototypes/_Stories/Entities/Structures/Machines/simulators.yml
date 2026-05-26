@@ -17,7 +17,6 @@
     selectedCategory: Xeno
     spawnCategories:
       Xeno:
-        - CMXenoLesserDrone
         - CMXenoDrone
         - CMXenoRunner
         - CMXenoDefender

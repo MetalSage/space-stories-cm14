@@ -6,7 +6,7 @@
   - RMCXenoSpeechSounds
   - RMCXenoCommendationReceiver
   - RMCXenoMobCollision
-  id: CMXenoWarriorBoxer
+  id: STXenoWarriorBoxer
   name: Warrior
   description: A beefy alien with an armored carapace.
   suffix: Boxer
@@ -36,7 +36,6 @@
     - STActionXenoBoxerUppercut
     - STActionXenoBoxerPunch
     - STActionXenoBoxerJab
-    hidden: true
     tier: 2
     hudOffset: 0,0.25
     unlockAt: 540 # 9 minutes
@@ -110,3 +109,6 @@
     name: cm-job-name-xeno-warrior
   - type: RMCSurgeryXenoHeart
     item: RMCOrganXenoHeartT2
+  - type: XenoHidden
+  - type: RMCActionOrder
+    id: STXenoWarriorBoxer

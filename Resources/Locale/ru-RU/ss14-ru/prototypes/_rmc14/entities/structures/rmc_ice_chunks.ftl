@@ -1,0 +1,14 @@
+ent-RMCIcechunk = large ice chunk sample
+    .desc = A large chunk of glacial ice atop a purpose built, metal pallet secured via a set of sharp spikes built into the pallet. Four large bolts with complex locking mechanisms hold the pallet in place. Forget moving it.
+ent-RMCIcechunkElsa = large ice chunk sample
+    .desc = A large chunk of glacial ice sitting atop a purpose built, metal pallet secured via a set of sharp spikes built into the pallet. Four large bolts with complex locking mechanisms hold the pallet in place. Forget moving it. Inside the ice floats a frozen creatrue of colossal size. You sense its eyes stalking you...
+    .suffix = Elsa
+ent-RMCIcechunkDroLar = large ice chunk sample
+    .desc = A large chunk of glacial ice sitting atop a purpose built, metal pallet secured via a set of sharp spikes built into the pallet. Four large bolts with complex locking mechanisms hold the pallet in place. Forget moving it. Inside the ice floats a sizable frozen creature cradling a tiny frozen serpentine creature. You sense that they know something you don't...
+    .suffix = Drone & Larva
+ent-RMCIcechunkPara = large ice chunk sample
+    .desc = A large chunk of glacial ice sitting atop a purpose built, metal pallet secured via a set of sharp spikes built into the pallet. Four large bolts with complex locking mechanisms hold the pallet in place. Forget moving it. Inside the ice floats four frozen crab like creatures. The undersides of each still seem to somehow pulsate...
+    .suffix = Parasites
+ent-RMCIcechunkCaveman = large ice chunk sample
+    .desc = A large chunk of glacial ice sitting atop a purpose built, metal pallet secured via a set of sharp spikes built into the pallet. Four large bolts with complex locking mechanisms hold the pallet in place. Forget moving it. Inside the ice floats a tall, mummified sapient. An assortment of mangy fur pelts hang loosely off its body, a heavily worn, crude baldric, made out of nothing but sinew rope, is wrapped around their torso, securing two withered haphazardly sharpened spears to their back. It appears that the creature has a large hole in its chest...
+    .suffix = Caveman

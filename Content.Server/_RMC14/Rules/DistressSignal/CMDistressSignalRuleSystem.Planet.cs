@@ -10,6 +10,7 @@ using Content.Shared._RMC14.Rules;
 using Content.Shared._RMC14.TacticalMap;
 using Content.Shared._RMC14.WeedKiller;
 using Content.Shared._RMC14.Xenonids.Construction.Tunnel;
+using Content.Shared.Chat;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -194,6 +195,7 @@ public sealed partial class CMDistressSignalRuleSystem
                     newVotes,
                     totalVotes: newVotes + _carryoverVotes.GetValueOrDefault(planet.Proto.ID)
                 ))
+                .OrderByDescending(v => v.totalVotes)
                 .ToList();
             var maxVotes = adjustedVotes.Max(v => v.totalVotes);
             var winningMaps = adjustedVotes
@@ -212,6 +214,7 @@ public sealed partial class CMDistressSignalRuleSystem
                     ("votes", result.totalVotes),
                     ("newVotes", result.newVotes)));
             }
+            sb.AppendLine();
 
             if (winningMaps.Count > 1)
             {
@@ -228,7 +231,7 @@ public sealed partial class CMDistressSignalRuleSystem
             }
             sb.AppendLine(Loc.GetString("rmc-distress-signal-next-map-win", ("winner", picked.Proto.Name)));
 
-            _chatManager.DispatchServerAnnouncement(sb.ToString());
+            _chatManager.ChatMessageToAll(ChatChannel.Server, sb.ToString(), sb.ToString(), EntityUid.Invalid, hideChat: false, recordReplay: true);
 
             foreach (var (planet, votes) in planets.Zip(args.Votes))
             {

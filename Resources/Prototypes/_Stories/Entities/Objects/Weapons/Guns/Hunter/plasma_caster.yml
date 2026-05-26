@@ -154,7 +154,6 @@
     damage:
       types:
         Shock: 0
-    lifespan: 1.0
   - type: HunterAreaStunOnHit
     radius: 7
     stunTime: 6

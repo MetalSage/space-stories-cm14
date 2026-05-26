@@ -28,7 +28,7 @@
     key: enum.VehicleSupplyUIKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
-    access: [ [ "STAccessTankCrew" ] ] # Stories-Vehicle
+    access: [ [ "CMAccessCrewman" ] ] # Stories-Vehicle
   - type: UserInterface
     interfaces:
       enum.VehicleSupplyUIKey.Key:

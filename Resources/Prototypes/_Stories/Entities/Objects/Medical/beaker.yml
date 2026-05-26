@@ -4,6 +4,9 @@
   name: large silver beaker
   description: A large silver beaker. Can hold up to 240 units. The beaker itself acts as a silver catalyst.
   components:
+  - type: Construction
+    graph: STSilverBeakerGraph
+    node: beaker
   - type: Sprite
     sprite: _Stories/Objects/Medical/silver_beaker.rsi
     layers:

@@ -64,7 +64,7 @@
     - RMCXenoCrusher
     - CMXenoPraetorian
     strains:
-    - CMXenoWarriorBoxer
+    - STXenoWarriorBoxer # Stories-XenoBoxer
   - type: CMArmor
     xenoArmor: 20
     explosionArmor: 40

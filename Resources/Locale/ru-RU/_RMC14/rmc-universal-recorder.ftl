@@ -1,6 +1,6 @@
 rmc-universal-recorder-examine-actions = Используйте его в руке, чтобы открыть управление рекордером. Alt-клик и контекстные глаголы также открывают или показывают управление.
-rmc-universal-recorder-examine-tape = Внутри находится {$tape}.
-rmc-universal-recorder-examine-display = На дисплее написано: [color=lightblue]{$value}[/color]
+rmc-universal-recorder-examine-tape = Внутри находится { $tape }.
+rmc-universal-recorder-examine-display = На дисплее написано: [color=lightblue]{ $value }[/color]
 rmc-universal-recorder-examine-broken = Кассета внутри повреждена.
 
 rmc-universal-recorder-state-idle = ожидание
@@ -9,7 +9,7 @@ rmc-universal-recorder-state-playing = воспроизведение
 
 rmc-universal-recorder-readout-empty = КАССЕТА НЕ ВСТАВЛЕНА
 rmc-universal-recorder-readout-playing = ВОСПРОИЗВЕДЕНИЕ
-rmc-universal-recorder-readout-time = {$duration}
+rmc-universal-recorder-readout-time = { $duration }
 
 rmc-universal-recorder-slot-name = кассета
 rmc-universal-recorder-verb-controls = Открыть управление
@@ -33,16 +33,16 @@ rmc-universal-recorder-popup-playback-stop = Воспроизведение ос
 rmc-universal-recorder-popup-end = Конец записи.
 rmc-universal-recorder-popup-print = Расшифровка распечатана.
 rmc-universal-recorder-popup-print-cooldown = Рекордер не может печатать так быстро.
-rmc-universal-recorder-popup-insert = Вставлено: {$tape}.
-rmc-universal-recorder-popup-eject = Извлечено: {$tape}.
-rmc-universal-recorder-popup-warning = На кассете осталось всего {$seconds} сек.
+rmc-universal-recorder-popup-insert = Вставлено: { $tape }.
+rmc-universal-recorder-popup-eject = Извлечено: { $tape }.
+rmc-universal-recorder-popup-warning = На кассете осталось всего { $seconds } сек.
 
-rmc-universal-recorder-playback-silence = Пропуск тишины: {$seconds} сек.
+rmc-universal-recorder-playback-silence = Пропуск тишины: { $seconds } сек.
 
 rmc-universal-recorder-transcript-header = Расшифровка:
-rmc-universal-recorder-transcript-name = Расшифровка {$tape}
+rmc-universal-recorder-transcript-name = Расшифровка { $tape }
 
-rmc-universal-recorder-tape-side = Сейчас используется [color=lightblue]{$side}[/color].
+rmc-universal-recorder-tape-side = Сейчас используется [color=lightblue]{ $side }[/color].
 rmc-universal-recorder-tape-side-front = лицевая сторона
 rmc-universal-recorder-tape-side-back = обратная сторона
 rmc-universal-recorder-tape-unspooled = Из кассеты вытянута вся магнитная лента! Возможно, ее можно намотать обратно отверткой.

@@ -42,8 +42,8 @@
   - RMCAccessTSEPABrig # tsepa brig / senior constables
   - RMCAccessTSEPA # tsepa
   - RMCAccessDatabase
+  - RMCAccessFieldDoctor
   - RMCAccessSeniorCommand
-  - STAccessTankCrew # Stories-Vehicle
 
 - type: accessGroup
   id: CO
@@ -89,8 +89,8 @@
   - RMCAccessTSEPABrig # tsepa brig / senior constables
   - RMCAccessTSEPA # tsepa
   - RMCAccessDatabase
+  - RMCAccessFieldDoctor
   - RMCAccessSeniorCommand
-  - STAccessTankCrew # Stories-Vehicle
 
 # all ship-side access that is not CO
 # SEA uses this.
@@ -135,8 +135,8 @@
   - CMAccessSquadLeaderPrep
   - CMAccessMarineRifleman
   - RMCAccessDatabase
+  - RMCAccessFieldDoctor
   - RMCAccessSeniorCommand
-  - STAccessTankCrew # Stories-Vehicle
 
 - type: accessGroup
   id: SEA
@@ -178,8 +178,8 @@
   - CMAccessSquadLeaderPrep
   - CMAccessMarineRifleman
   - RMCAccessDatabase
+  - RMCAccessFieldDoctor
   - RMCAccessSeniorCommand
-  - STAccessTankCrew # Stories-Vehicle
 
 - type: accessGroup
   id: SO

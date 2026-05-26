@@ -1,0 +1,12 @@
+ent-RMCPonchoBase = poncho
+    .desc = An abstract poncho.
+ent-RMCPoncho = UNMC poncho
+    .desc = The standard UNMC poncho has variations for every climate. Custom fitted to be attached to standard UNMC armor variants and worn over uniforms, it is comfortable, warming or cooling as needed, and well-fit. A marine couldn't ask for more. Affectionately referred to as a \"woobie\".
+ent-RMCPonchoUrban = UNMC urban poncho
+    .desc = The standard UNMC poncho has variations for every climate. Custom fitted to be attached to standard UNMC armor variants and worn over uniforms, it is comfortable, warming or cooling as needed, and well-fit. A marine couldn't ask for more. Affectionately referred to as a \"woobie\".
+ent-RMCPonchoJungle = UNMC jungle poncho
+    .desc = The standard UNMC poncho has variations for every climate. Custom fitted to be attached to standard UNMC armor variants and worn over uniforms, it is comfortable, warming or cooling as needed, and well-fit. A marine couldn't ask for more. Affectionately referred to as a \"woobie\".
+ent-RMCPonchoDesert = UNMC desert poncho
+    .desc = The standard UNMC poncho has variations for every climate. Custom fitted to be attached to standard UNMC armor variants and worn over uniforms, it is comfortable, warming or cooling as needed, and well-fit. A marine couldn't ask for more. Affectionately referred to as a \"woobie\".
+ent-RMCPonchoSnow = UNMC snow poncho
+    .desc = The standard UNMC poncho has variations for every climate. Custom fitted to be attached to standard UNMC armor variants and worn over uniforms, it is comfortable, warming or cooling as needed, and well-fit. A marine couldn't ask for more. Affectionately referred to as a \"woobie\".
