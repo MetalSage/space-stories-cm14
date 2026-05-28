@@ -36,11 +36,13 @@
 #        c: 1
 #        min: 2
 #        max: 3
-      CMOrdnanceTech: # Stories-Fixes OT start
+      # Stories-Ordnance-Start
+      CMOrdnanceTech:
        factor: 60
        c: 1
        min: 2
-       max: 3 # Stories-Fixes OT end
+       max: 3
+      # Stories-Ordnance-End
       CMCargoTech:
         factor: 30
         c: 0
