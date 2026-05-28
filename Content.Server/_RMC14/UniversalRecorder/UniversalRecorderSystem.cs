@@ -60,7 +60,6 @@ public sealed class UniversalRecorderSystem : EntitySystem
     {
         SubscribeLocalEvent<UniversalRecorderComponent, ComponentInit>(OnRecorderInit);
         SubscribeLocalEvent<UniversalRecorderComponent, MapInitEvent>(OnRecorderMapInit);
-        SubscribeLocalEvent<UniversalRecorderComponent, ComponentRemove>(OnRecorderRemove);
         SubscribeLocalEvent<UniversalRecorderComponent, ExaminedEvent>(OnRecorderExamined);
         SubscribeLocalEvent<UniversalRecorderComponent, UseInHandEvent>(OnRecorderUseInHand);
         SubscribeLocalEvent<UniversalRecorderComponent, InteractUsingEvent>(OnRecorderInteractUsing);
@@ -111,17 +110,11 @@ public sealed class UniversalRecorderSystem : EntitySystem
     private void OnRecorderInit(Entity<UniversalRecorderComponent> ent, ref ComponentInit args)
     {
         EnsureComp<UniversalRecorderRuntimeComponent>(ent);
-        _itemSlots.AddItemSlot(ent, UniversalRecorderComponent.TapeSlotId, ent.Comp.TapeSlot);
     }
 
     private void OnRecorderMapInit(Entity<UniversalRecorderComponent> ent, ref MapInitEvent args)
     {
         UpdateAppearance(ent);
-    }
-
-    private void OnRecorderRemove(Entity<UniversalRecorderComponent> ent, ref ComponentRemove args)
-    {
-        _itemSlots.RemoveItemSlot(ent, ent.Comp.TapeSlot);
     }
 
     private void OnTapeMapInit(Entity<UniversalRecorderTapeComponent> ent, ref MapInitEvent args)
@@ -224,7 +217,10 @@ public sealed class UniversalRecorderSystem : EntitySystem
         if (TryGetTape(ent, out _))
             return;
 
-        if (!_itemSlots.TryInsertFromHand(ent.Owner, ent.Comp.TapeSlot, args.User, excludeUserAudio: true))
+        if (!_itemSlots.TryGetSlot(ent, UniversalRecorderComponent.TapeSlotId, out var slot))
+            return;
+
+        if (!_itemSlots.TryInsertFromHand(ent.Owner, slot, args.User, excludeUserAudio: true))
             return;
 
         _popup.PopupEntity(
@@ -357,7 +353,8 @@ public sealed class UniversalRecorderSystem : EntitySystem
                 break;
             case UniversalRecorderRecorderAction.Eject:
                 if (TryGetTape(ent, out var tape) &&
-                    _itemSlots.TryEjectToHands(ent, ent.Comp.TapeSlot, args.Actor, excludeUserAudio: true))
+                    _itemSlots.TryGetSlot(ent, UniversalRecorderComponent.TapeSlotId, out var ejectSlot) &&
+                    _itemSlots.TryEjectToHands(ent, ejectSlot, args.Actor, excludeUserAudio: true))
                 {
                     _popup.PopupEntity(
                         Loc.GetString("rmc-universal-recorder-popup-eject", ("tape", tape.Owner)),
