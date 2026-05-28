@@ -324,6 +324,8 @@
     solution: beaker
   - type: SolutionItemStatus
     solution: beaker
+  - type: RefillableSolution
+    solution: beaker
   - type: UserInterface
     interfaces:
       enum.TransferAmountUiKey.Key:
@@ -376,6 +378,7 @@
     tags:
     - RMCMiniTank
     - ChemDispensable
+    - GlassBeaker # Space-Stories
   - type: RMCSmartRefillTank
     solution: beaker
   - type: SolutionTransfer
