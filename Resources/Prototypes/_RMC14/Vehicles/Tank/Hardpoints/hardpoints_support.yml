@@ -7,9 +7,9 @@
   - type: Sprite
     state: warray
   - type: HardpointItem
-    hardpointType: Support
-    vehicleFamily: Tank
-    slotType: SupportAttachment
+    hardpointType: HardpointTypeSupport
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeSupportAttachment
     damageMultiplier: 0.075
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -29,9 +29,9 @@
   - type: Sprite
     state: odrive_enhancer
   - type: HardpointItem
-    hardpointType: Support
-    vehicleFamily: Tank
-    slotType: SupportAttachment
+    hardpointType: HardpointTypeSupport
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeSupportAttachment
     damageMultiplier: 0.075
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -50,9 +50,9 @@
   - type: Sprite
     state: slauncher_0
   - type: HardpointItem
-    hardpointType: Support
-    vehicleFamily: Tank
-    slotType: SupportAttachment
+    hardpointType: HardpointTypeSupport
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeSupportAttachment
     damageMultiplier: 0.075
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -107,9 +107,9 @@
   - type: Sprite
     state: slauncher_1
   - type: HardpointItem
-    hardpointType: Support
-    vehicleFamily: Tank
-    slotType: SupportAttachment
+    hardpointType: HardpointTypeSupport
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeSupportAttachment
     damageMultiplier: 0.075
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -167,9 +167,9 @@
   - type: Sprite
     state: artillery
   - type: HardpointItem
-    hardpointType: Support
-    vehicleFamily: Tank
-    slotType: SupportAttachment
+    hardpointType: HardpointTypeSupport
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeSupportAttachment
     damageMultiplier: 0.075
     repairRate: 0.0125
   - type: HardpointIntegrity

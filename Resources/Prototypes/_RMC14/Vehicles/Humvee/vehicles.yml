@@ -6,6 +6,7 @@
   components:
   - type: Vehicle
     movementKind: Grid
+  - type: LagCompensation
   - type: Clickable
   - type: RMCIgnoreGhostInteractionLimits
   - type: RequireProjectileTarget
@@ -48,8 +49,10 @@
         - HighImpassable
         - LowImpassable
         - LargeMobLayer
+        - Vehicle
         layer:
         - LargeMobLayer
+        - Vehicle
       mob:
         shape:
           !type:PhysShapeAabb
@@ -119,29 +122,29 @@
           components:
           - VehicleWheelItem
   - type: HardpointSlots
-    vehicleFamily: Humvee
+    vehicleFamily: HardpointVehicleFamilyHumvee
     slots:
     - id: turret
-      hardpointType: Turret
-      slotType: Turret
+      hardpointType: HardpointTypeTurret
+      slotType: HardpointSlotTypeTurret
       visualLayer: primary
       insertDelay: 2.0
       required: false
     - id: roof
-      hardpointType: RoofAttachment
-      slotType: RoofAttachment
+      hardpointType: HardpointTypeRoofAttachment
+      slotType: HardpointSlotTypeRoofAttachment
       visualLayer: support
       insertDelay: 1.5
       required: false
     - id: front
-      hardpointType: FrontAttachment
-      slotType: FrontAttachment
+      hardpointType: HardpointTypeFrontAttachment
+      slotType: HardpointSlotTypeFrontAttachment
       visualLayer: support-2
       insertDelay: 1.5
       required: false
     - id: wheel-1
-      hardpointType: Wheel
-      slotType: Wheel
+      hardpointType: HardpointTypeWheel
+      slotType: HardpointSlotTypeWheel
       insertDelay: 1.5
   - type: VehicleWheelSlots
     slotCount: 1
@@ -215,23 +218,23 @@
     - map: [ rmc-wheels ]
       state: wheels_1
   - type: HardpointSlots
-    vehicleFamily: Humvee
+    vehicleFamily: HardpointVehicleFamilyHumvee
     slots:
     - id: roof
-      hardpointType: RoofAttachment
-      slotType: RoofAttachment
+      hardpointType: HardpointTypeRoofAttachment
+      slotType: HardpointSlotTypeRoofAttachment
       visualLayer: support
       insertDelay: 1.5
       required: false
     - id: front
-      hardpointType: FrontAttachment
-      slotType: FrontAttachment
+      hardpointType: HardpointTypeFrontAttachment
+      slotType: HardpointSlotTypeFrontAttachment
       visualLayer: support-2
       insertDelay: 1.5
       required: false
     - id: wheel-1
-      hardpointType: Wheel
-      slotType: Wheel
+      hardpointType: HardpointTypeWheel
+      slotType: HardpointSlotTypeWheel
       insertDelay: 1.5
   - type: VehicleEnter
     interiorPath: /Maps/_RMC14/Vehicles/humvee_medical_interior.yml
@@ -283,23 +286,23 @@
     - map: [ rmc-wheels ]
       state: wheels_1
   - type: HardpointSlots
-    vehicleFamily: Humvee
+    vehicleFamily: HardpointVehicleFamilyHumvee
     slots:
     - id: roof
-      hardpointType: RoofAttachment
-      slotType: RoofAttachment
+      hardpointType: HardpointTypeRoofAttachment
+      slotType: HardpointSlotTypeRoofAttachment
       visualLayer: support
       insertDelay: 1.5
       required: false
     - id: front
-      hardpointType: FrontAttachment
-      slotType: FrontAttachment
+      hardpointType: HardpointTypeFrontAttachment
+      slotType: HardpointSlotTypeFrontAttachment
       visualLayer: support-2
       insertDelay: 1.5
       required: false
     - id: wheel-1
-      hardpointType: Wheel
-      slotType: Wheel
+      hardpointType: HardpointTypeWheel
+      slotType: HardpointSlotTypeWheel
       insertDelay: 1.5
   - type: VehicleEnter
     interiorPath: /Maps/_RMC14/Vehicles/humvee_transport_interior.yml
@@ -349,13 +352,24 @@
     autoTurretEnabled: true
   - type: VehicleDeployGatedHardpoints
     blockedHardpoints:
-    - Cannon
+    - HardpointTypeCannon
   - type: VehicleEnter
     interiorPath: /Maps/_RMC14/Vehicles/humvee_arc_interior.yml
     enterDoAfter: 1.0
     exitDoAfter: 1.0
-    maxPassengers: 4
+    maxPassengers: 5
     maxXenos: 2
+    reservedPassengerPools:
+    - slots: 2
+      eligibleJobs:
+      - CMStaffOfficer
+      - CMSeniorEnlistedAdvisor
+      - CMExecutiveOfficer
+      - CMCommandingOfficer
+      - CMUNMCBrigadierGeneral
+    - slots: 1
+      eligibleJobs:
+      - CMIntelOfficer
     entryPoints:
     - offset: -1,-0.1
       radius: 0.5

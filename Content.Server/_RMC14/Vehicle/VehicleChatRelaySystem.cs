@@ -81,15 +81,11 @@ public sealed class VehicleChatRelaySystem : EntitySystem
     {
         target = default;
 
-        if (TryComp(user, out VehicleViewToggleComponent? viewToggle))
+        if (TryComp(user, out VehicleViewToggleComponent? viewToggle) &&
+            viewToggle.IsOutside &&
+            viewToggle.OutsideTarget is { } outsideTarget &&
+            Exists(outsideTarget))
         {
-            if (!viewToggle.IsOutside ||
-                viewToggle.OutsideTarget is not { } outsideTarget ||
-                !HasComp<VehicleComponent>(outsideTarget))
-            {
-                return false;
-            }
-
             target = outsideTarget;
             return true;
         }

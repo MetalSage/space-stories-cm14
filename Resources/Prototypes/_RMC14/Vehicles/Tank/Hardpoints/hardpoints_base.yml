@@ -18,9 +18,9 @@
     sprite: _RMC14/Structures/Vehicles/tank.rsi
     state: tank_turret_0
   - type: HardpointItem
-    hardpointType: Turret
-    vehicleFamily: Tank
-    slotType: Turret
+    hardpointType: HardpointTypeTurret
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeTurret
     damageMultiplier: 0.05
     repairRate: 0.008
   - type: HardpointIntegrity
@@ -50,16 +50,16 @@
           components:
           - HardpointItem
   - type: HardpointSlots
-    vehicleFamily: Tank
+    vehicleFamily: HardpointVehicleFamilyTank
     slots:
     - id: turret-cannon
-      hardpointType: Cannon
-      slotType: Cannon
+      hardpointType: HardpointTypeCannon
+      slotType: HardpointSlotTypeCannon
       required: false
       insertDelay: 2.0
     - id: turret-launcher
-      hardpointType: Launcher
-      slotType: Launcher
+      hardpointType: HardpointTypeLauncher
+      slotType: HardpointSlotTypeLauncher
       required: false
       insertDelay: 2.0
 
@@ -72,9 +72,9 @@
   - type: Sprite
     state: treads
   - type: HardpointItem
-    hardpointType: Wheel
-    vehicleFamily: Tank
-    slotType: Treads
+    hardpointType: HardpointTypeWheel
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeTreads
     damageMultiplier: 0.15
     repairRate: 0.0165
   - type: HardpointIntegrity
@@ -90,9 +90,9 @@
   - type: Sprite
     state: treads
   - type: HardpointItem
-    hardpointType: Wheel
-    vehicleFamily: Tank
-    slotType: Treads
+    hardpointType: HardpointTypeWheel
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeTreads
     damageMultiplier: 0.15
     repairRate: 0.0165
   - type: VehicleWheelItem

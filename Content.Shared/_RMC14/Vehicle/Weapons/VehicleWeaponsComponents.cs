@@ -4,6 +4,8 @@ using System.Numerics;
 using Content.Shared._RMC14.Marines.Skills;
 using Robust.Shared.GameStates;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared._RMC14.Vehicle;
 
@@ -41,7 +43,7 @@ public sealed partial class VehicleWeaponsOperatorComponent : Component
     public TimeSpan NextCooldownFeedbackAt = TimeSpan.Zero;
 }
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 [Access(typeof(VehicleWeaponsSystem))]
 public sealed partial class VehicleWeaponsSeatComponent : Component
 {
@@ -58,7 +60,7 @@ public sealed partial class VehicleWeaponsSeatComponent : Component
     public bool AllowHotbarSelection = true;
 
     [DataField]
-    public List<string> AllowedHardpointTypes = new();
+    public List<EntProtoId> AllowedHardpointTypes = new();
 
     [DataField]
     public float BaseViewPvsScale;
@@ -71,6 +73,9 @@ public sealed partial class VehicleWeaponsSeatComponent : Component
 
     [DataField]
     public float BaseViewCursorPvsIncrease;
+
+    [AutoNetworkedField]
+    public VehicleWeaponsUiState Ui = new(default, new List<VehicleWeaponsUiEntry>(), false, false, false, false);
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

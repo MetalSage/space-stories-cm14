@@ -173,7 +173,7 @@
     allowUiSelection: false
     allowHotbarSelection: true
     allowedHardpointTypes:
-    - Support
+    - HardpointTypeSupport
   - type: UserInterface
     interfaces:
       enum.VehicleWeaponsUiKey.Key:
@@ -215,8 +215,8 @@
     baseViewCursorMaxOffset: 5
     baseViewCursorPvsIncrease: 0.5
     allowedHardpointTypes:
-    - Secondary
-    - Launcher
+    - HardpointTypeSecondary
+    - HardpointTypeLauncher
   - type: UserInterface
     interfaces:
       enum.VehicleWeaponsUiKey.Key:
@@ -253,6 +253,16 @@
   parent: RMCSeatHumveeBase
   id: RMCSeatHumveeDriver
   name: humvee driver seat
+  components:
+  - type: VehicleDriverSeat
+    skills:
+      all:
+        RMCSkillVehicles: 2
+
+- type: entity
+  parent: RMCSeatHumveeBase
+  id: RMCSeatHumveeARCDriver
+  name: ARC driver seat
   components:
   - type: VehicleDriverSeat
     skills:

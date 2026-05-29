@@ -17,9 +17,9 @@
   - type: Sprite
     state: tires
   - type: HardpointItem
-    hardpointType: Wheel
-    vehicleFamily: APC
-    slotType: Wheel
+    hardpointType: HardpointTypeWheel
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeWheel
     damageMultiplier: 0.15
     repairRate: 0.0165
   - type: HardpointIntegrity
@@ -35,9 +35,9 @@
   - type: Sprite
     state: front_cannon
   - type: HardpointItem
-    hardpointType: Cannon
-    vehicleFamily: APC
-    slotType: Cannon
+    hardpointType: HardpointTypeCannon
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeCannon
     damageMultiplier: 0.11
     repairRate: 0.01
   - type: HardpointIntegrity
@@ -79,9 +79,9 @@
   - type: Sprite
     state: dual_cannon
   - type: HardpointItem
-    hardpointType: Turret
-    vehicleFamily: APC
-    slotType: Turret
+    hardpointType: HardpointTypeTurret
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeTurret
     damageMultiplier: 0.2
     repairRate: 0.008
   - type: HardpointIntegrity
@@ -94,7 +94,7 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-    soundGunshot: /Audio/_RMC14/Vehicle/weapons/dual_autocannon_fire.ogg #TODO change to mono
+    soundGunshot: /Audio/_RMC14/Vehicle/weapons/dual_autocannon_fire.ogg #TODO RMC14 change to mono
     cameraRecoilScalar: 0
   - type: BallisticAmmoProvider
     cycleable: false
@@ -109,7 +109,7 @@
     bulletType: VehicleAmmoBoxAceAutocannon
   - type: GunMuzzleOffset
     useDirectionalOffsets: true
-    offsetNorth: "0,0" #TODO
+    offsetNorth: "0,0" #TODO RMC14 verify the north-facing muzzle offset
     offsetEast: "0,0"
     offsetSouth: "-0.3,0.9"
     offsetWest: "0,0"
@@ -128,9 +128,9 @@
   - type: Sprite
     state: comms_relay
   - type: HardpointItem
-    hardpointType: SupportAttachment
-    vehicleFamily: APC
-    slotType: SupportAttachment
+    hardpointType: HardpointTypeSupportAttachment
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeSupportAttachment
     damageMultiplier: 0.075
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -147,9 +147,9 @@
   - type: Sprite
     state: flare_launcher
   - type: HardpointItem
-    hardpointType: SupportAttachment
-    vehicleFamily: APC
-    slotType: SupportAttachment
+    hardpointType: HardpointTypeSupportAttachment
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeSupportAttachment
     damageMultiplier: 0.1
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -199,9 +199,9 @@
   - type: Sprite
     state: freighter_storage
   - type: HardpointItem
-    hardpointType: SupportAttachment
-    vehicleFamily: APC
-    slotType: SupportAttachment
+    hardpointType: HardpointTypeSupportAttachment
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeSupportAttachment
     damageMultiplier: 0.075
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -278,4 +278,3 @@
     muzzleOffset: "0,0"
     angleOffset: -90
     useAimDirection: true
-
