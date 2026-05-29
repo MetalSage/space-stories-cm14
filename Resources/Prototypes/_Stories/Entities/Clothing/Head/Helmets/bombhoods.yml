@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: STHoodBomb
+  name: bomb hood
+  description: Use in case of bomb.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Head/Helmets/bombhood.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Head/Helmets/bombhood.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: Item
+    size: Normal
+  - type: CMArmor
+    explosionArmor: 50
+  - type: CMHardArmor

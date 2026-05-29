@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseItem
+  id: STDemolitionsScanner
+  name: demolitions scanner
+  description: A hand-held specially designed reagent scanner meant for analyzing bombs. It can report explosive and fire hazards from chemical containers and explosive casings.
+  components:
+    - type: Sprite
+      sprite: _Stories/Objects/Devices/demolitions_scanner.rsi
+      state: icon
+    - type: Item
+      size: Small
+    - type: DemolitionsScanner

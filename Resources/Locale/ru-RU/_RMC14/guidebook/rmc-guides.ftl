@@ -1,11 +1,8 @@
 rmc-guide-entry-rmc = Руководство Marine Corps
 rmc-guide-entry-rules = Правила
-rmc-guide-entry-rules-ban-types = Типы и Продолжительность Банов
 rmc-guide-entry-rules-zero-tolerance = Нулевая Терпимость
 rmc-guide-entry-rules-language = Язык Сервера
-rmc-guide-entry-rules-multikey = Несколько Аккаунтов
 rmc-guide-entry-rules-escalation = Эскалация Боевых Действий
-rmc-guide-entry-rules-metaknowledge = Использование Знаний Персонажа
 rmc-guide-entry-rules-kindness = Будьте Добры
 rmc-guide-entry-rules-mutinies = Мятежи, Беспорядки
 rmc-guide-entry-rules-marine-law = Морской Устав

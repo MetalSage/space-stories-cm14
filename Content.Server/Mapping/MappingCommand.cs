@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Mapping
 {
-    [AdminCommand(AdminFlags.Host)]
+    [AdminCommand(AdminFlags.Server | AdminFlags.Mapping)]
     public sealed class MappingCommand : LocalizedEntityCommands
     {
         [Dependency] private readonly IResourceManager _resourceMgr = default!;
@@ -101,7 +101,7 @@ namespace Content.Server.Mapping
                 {
                     var path = new ResPath(args[1]);
                     toLoad = path.FilenameWithoutExtension;
-                    var opts = new DeserializationOptions {StoreYamlUids = true};
+                    var opts = new DeserializationOptions { StoreYamlUids = true };
 
                     if (isGrid == true)
                     {

@@ -543,14 +543,14 @@ public sealed class VehicleSystem : EntitySystem
             rot -= gridRot;
             pos = (-gridRot).RotateVec(pos - gridPos);
 
-            var fixtureTransform = new Transform(pos, (float) rot.Theta);
+            var fixtureTransform = new Transform(pos, (float)rot.Theta);
 
             foreach (var fixture in fixtures.Fixtures.Values)
             {
                 if (!fixture.Hard)
                     continue;
 
-                if ((fixture.CollisionLayer & (int) CollisionGroup.MobMask) == 0)
+                if ((fixture.CollisionLayer & (int)CollisionGroup.MobMask) == 0)
                     continue;
 
                 for (var i = 0; i < fixture.Shape.ChildCount; i++)
@@ -739,7 +739,7 @@ public sealed class VehicleSystem : EntitySystem
         if (args.Popup)
             _popup.PopupClient(Loc.GetString("rmc-skills-cant-operate", ("target", ent)), args.Buckle, args.User);
 
-        //args.Cancelled = true;
+        args.Cancelled = true;
     }
 
     private void OnDriverSeatStrapped(Entity<VehicleDriverSeatComponent> ent, ref StrappedEvent args)

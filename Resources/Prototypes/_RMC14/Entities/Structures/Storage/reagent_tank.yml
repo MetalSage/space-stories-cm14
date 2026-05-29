@@ -14,6 +14,14 @@
       map: ["enum.SolutionContainerLayers.Fill"]
       visible: false
     - state: t_inactive
+    # Stories-Ordnance-Start
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+    # Stories-Ordnance-End
   - type: Fixtures
     fixtures:
       fix1:
@@ -33,8 +41,35 @@
         !type:DamageTrigger
         damage: 100
       behaviors:
+  # Stories-Ordnance-Start
+      - !type:TriggerBehavior
+      - !type:SpillBehavior
+        solution: tank
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+  - type: DamageOnToolInteract
+    tools: Welding
+    weldingDamage:
+      types:
+        Heat: 10
+  # Stories-Ordnance-End
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 2
@@ -42,7 +77,23 @@
   - type: DetailedExaminableSolution
     solution: tank
   - type: RMCToggleableSolutionTransfer
+    # Stories-Ordnance-Start
+    direction: Input
+    # Stories-Ordnance-End
     solution: tank
+  # Stories-Ordnance-Start
+  - type: RMCTankVisuals
+  - type: OrdnanceCasing
+    requiredAssemblyMode: None
+    updateAppearance: false
+    isAssembly: false
+    hasBlastDampener: false
+    maxExplosionPower: 175
+    maxShards: 32
+    maxFireRadius: 5
+    maxFireIntensity: 20
+    maxFireDuration: 24
+  # Stories-Ordnance-End
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -70,6 +121,20 @@
   id: RMCTankReagentWater
   suffix: Water
   components:
+  # Stories-Ordnance-Start
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  - type: Sprite
+    layers:
+    - state: watertank
+    - state: t_inactive
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+  # Stories-Ordnance-End
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -84,6 +149,10 @@
   id: RMCTankReagentWaterLocked
   suffix: Water, Locked
   components:
+  # Stories-Ordnance-Start
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  # Stories-Ordnance-End
   - type: Transform
     anchored: true
   - type: Physics
@@ -99,30 +168,30 @@
   description: A fuel tank, normally used to hold welding fuel. It's painted red with explosive warning labels.
   suffix: Fuel
   components:
+  # Stories-Ordnance-Start
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  # Stories-Ordnance-End
   - type: Sprite
     layers:
     - state: weldtank
+    # Stories-Ordnance-Start
+    - state: t_inactive
+    - state: t_100
+      map: ["enum.RMCTankVisualLayers.Meter"]
+      visible: false
+    - state: filling
+      map: ["enum.RMCTankVisualLayers.TransferMode"]
+      visible: false
+    # Stories-Ordnance-End
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
-        - ReagentId: WeldingFuel
+        - ReagentId: RMCWeldingFuel # Stories-Ordance
           Quantity: 1000
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 60
   - type: ReagentTank
     tankType: Fuel
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:SolutionExplosionBehavior
-        solution: tank
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: DamageOnToolInteract
     tools: Welding
     weldingDamage:
@@ -146,6 +215,10 @@
   id: RMCTankReagentMeralyne
   suffix: Meralyne
   components:
+  # Stories-Ordnance-Start
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  # Stories-Ordnance-End
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -160,6 +233,10 @@
   id: RMCTankReagentDermaline
   suffix: Dermaline
   components:
+  # Stories-Ordnance-Start
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  # Stories-Ordnance-End
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -174,6 +251,10 @@
   id: RMCTankReagentPhoron
   suffix: Phoron
   components:
+  # Stories-Ordnance-Start
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  # Stories-Ordnance-End
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -188,6 +269,10 @@
   id: RMCTankReagentSulphuricAcid
   suffix: SulphuricAcid
   components:
+  # Stories-Ordnance-Start
+  - type: RMCToggleableSolutionTransfer
+    direction: Output
+  # Stories-Ordnance-End
   - type: SolutionContainerManager
     solutions:
       tank:

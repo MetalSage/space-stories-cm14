@@ -19,7 +19,10 @@ namespace Content.IntegrationTests.Tests.Chemistry
             // These recipes create H2O, which almost instantly gets turned into Water.
             // Stress on the almost, as before that happens it can trigger a higher priority reaction.
             "RMCNapalm",
-            "RMCCLF3"
+            "RMCCLF3",
+            "RMCCLF3Bad",
+            "RMCANFO",
+            "RMCNapalm"
         };
 
         [TestPrototypes]

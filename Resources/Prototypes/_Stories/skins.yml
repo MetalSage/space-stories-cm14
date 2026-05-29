@@ -64,7 +64,7 @@
   spriteRsi: _Stories/Mobs/Xenos/Skins/warrior_boxer.rsi
   xeno: CMXenoWarrior
   isStrain: true
-  strainId: CMXenoWarriorBoxer
+  strainId: STXenoWarriorBoxer
 
 - type: xenoSkin
   id: STCrusherChargerBattleHardenedSkin

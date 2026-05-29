@@ -179,7 +179,7 @@
     description: rmc-xeno-watcher-description
     popup: rmc-xeno-watcher-popup
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Parasite/watcher_parasite.rsi
+    sprite: _Stories/Mobs/Xenos/Parasite/parasite.rsi # Stories-Parity
   - type: XenoZoom
     zoom: 1.3, 1.3
     blockLeaps: true

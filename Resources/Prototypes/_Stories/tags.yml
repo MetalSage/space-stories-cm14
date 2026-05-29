@@ -23,10 +23,19 @@
   id: STPlasmaCaster
 
 - type: Tag
+  id: STPlasmaCasterHolder
+
+- type: Tag
   id: STBracerAttachment
 
 - type: Tag
   id: STHunterMaskAccessory
+
+- type: Tag
+  id: STHunterMelee
+
+- type: Tag
+  id: STPredatorBow
 
 - type: Tag
   id: STHunterArrow

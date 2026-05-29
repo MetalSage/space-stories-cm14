@@ -26,6 +26,7 @@
   - CMAccessPress
   - CMAccessCrewman
   - RMCAccessDatabase
+  - RMCAccessFieldDoctor
   - RMCAccessSeniorCommand
 
 - type: accessGroup
@@ -60,3 +61,13 @@
   - CMAccessMarinePrep
   - CMAccessCombatTechPrep
   - CMAccessColonyEngineering
+
+- type: accessGroup
+  id: VehicleCrewman
+  tags:
+  - CMAccessCrewman
+  - CMAccessAlpha
+  - CMAccessBravo
+  - CMAccessCharlie
+  - CMAccessDelta
+  - CMAccessMarinePrep

@@ -107,7 +107,7 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
     private EntityQuery<QueenBuildingBoostComponent> _queenBoostQuery;
 
     private const string XenoStructuresAnimation = "RMCEffect";
-    private const string XenoHiveCoreNodeId = "HiveCoreXenoConstructionNode";
+    public const string XenoHiveCoreNodeId = "HiveCoreXenoConstructionNode";
     private const float VehicleConstructionBlockRange = 3f;
 
     private float _densityThreshold;
@@ -340,17 +340,42 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
             return;
         }
 
+        var tile = _mapSystem.CoordinatesToTile(gridUid, gridComp, coordinates);
+        var targetCenter = _mapSystem.GridTileToLocal(grid, gridComp, tile);
         Entity<XenoWeedsComponent> adjacent = default;
         if (existing == null)
         {
+            var foundAdjacent = false;
             foreach (var direction in _rmcMap.CardinalDirections)
             {
-                if (_rmcMap.HasAnchoredEntityEnumerator(coordinates, out adjacent, direction))
+                using var nearby = _rmcMap.GetAnchoredEntitiesEnumerator<XenoWeedsComponent>(coordinates, direction);
+                while (nearby.MoveNext(out var nearbyWeeds) &&
+                       TryComp(nearbyWeeds, out XenoWeedsComponent? nearbyWeedsComp))
+                {
+                    foundAdjacent = true;
+                    if (!_xenoWeeds.CanSpreadWeedsBetween(nearbyWeeds.ToCoordinates(), targetCenter))
+                        continue;
+
+                    adjacent = (nearbyWeeds, nearbyWeedsComp);
+                    break;
+                }
+
+                if (adjacent != default)
                     break;
             }
 
             if (adjacent == default)
             {
+                if (foundAdjacent)
+                {
+                    _popup.PopupClient(Loc.GetString("cm-xeno-construction-failed-weeds"),
+                        args.Target,
+                        xeno,
+                        PopupType.SmallCaution);
+
+                    return;
+                }
+
                 _popup.PopupClient("You can only plant weeds if there is a nearby node.",
                     args.Target,
                     xeno,
@@ -361,7 +386,6 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
         }
 
         var toSpawn = existing == null ? args.Expand : args.Source;
-        var tile = _mapSystem.CoordinatesToTile(gridUid, gridComp, coordinates);
         if (!_xenoWeeds.CanSpreadWeedsPopup(grid, tile, xeno, false, true))
             return;
 
@@ -1560,12 +1584,18 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
                 return false;
             }
 
-            if (choiceProto.ID == XenoHiveCoreNodeId && _hive.GetHive(xeno.Owner) is { } hive && hive.Comp.NewCoreAt > _timing.CurTime)
+            if (choiceProto.ID == XenoHiveCoreNodeId)
             {
-                if (_net.IsServer && popup)
-                    _popup.PopupEntity(Loc.GetString("rmc-xeno-cant-build-new-yet", ("choice", choiceProto.Name)), xeno, xeno, PopupType.MediumCaution);
+                if (!_area.CanXenoHiveSetupPopup((gridId, grid, null), tile, xeno, popup))
+                    return false;
 
-                return false;
+                if (_hive.GetHive(xeno.Owner) is { } hive && hive.Comp.NewCoreAt > _timing.CurTime)
+                {
+                    if (_net.IsServer && popup)
+                        _popup.PopupEntity(Loc.GetString("rmc-xeno-cant-build-new-yet", ("choice", choiceProto.Name)), xeno, xeno, PopupType.MediumCaution);
+
+                    return false;
+                }
             }
         }
 

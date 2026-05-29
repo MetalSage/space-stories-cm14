@@ -18,8 +18,8 @@ rmc-loadout-group-foods-packaged = Еда (в упаковке)
 rmc-loadout-group-foods-healthy = Еда (здоровая)
 rmc-loadout-group-role-specific = Для определённых ролей
 rmc-loadout-group-pins = Значки
+rmc-loadout-group-watches = Watches
 rmc-loadout-group-civilian = Только для гражданских (ограничено)
-
 
 rmc-loadout-group-role-specific-ID = Удостоверение командного состава
 rmc-loadout-group-role-specific-weapon = Командир (Личное оружие)

@@ -16,7 +16,6 @@
         Piercing: 20
   - type: CMArmorPiercing
     amount: 100
-  - type: DeleteXenoResinOnHit
   - type: RMCProjectileAccuracy
     accuracy: 110
     thresholds:

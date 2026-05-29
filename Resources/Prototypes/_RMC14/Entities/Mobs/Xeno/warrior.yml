@@ -10,6 +10,7 @@
   name: Warrior
   description: A beefy alien with an armored carapace.
   components:
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleWarrior
@@ -64,7 +65,7 @@
     - RMCXenoCrusher
     - CMXenoPraetorian
     strains:
-    - CMXenoWarriorBoxer
+    - STXenoWarriorBoxer # Stories-XenoBoxer
   - type: CMArmor
     xenoArmor: 20
     explosionArmor: 40

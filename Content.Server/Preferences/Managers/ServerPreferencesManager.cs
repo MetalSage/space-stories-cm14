@@ -197,13 +197,13 @@ namespace Content.Server.Preferences.Managers
 
                 var currentGear = gears.FirstOrDefault(g => g.EntityProto == currentId);
 
-                if (currentGear == null || 
-                    !_prototypeManager.HasIndex<EntityPrototype>(currentId) || 
+                if (currentGear == null ||
+                    !_prototypeManager.HasIndex<EntityPrototype>(currentId) ||
                     (currentGear.SponsorOnly && !isSponsor))
                 {
                     var defaultGear = gears.FirstOrDefault(g => g.IsDefault) ?? gears.FirstOrDefault();
                     if (defaultGear != null) return defaultGear.EntityProto;
-                    return currentId; 
+                    return currentId;
                 }
                 return currentId;
             }
@@ -455,9 +455,6 @@ namespace Content.Server.Preferences.Managers
                 var randomProfile = HumanoidCharacterProfile.Random();
                 var session = _playerManager.GetSessionById(userId);
                 randomProfile.EnsureValid(session, _dependencies);
-
-                var namingSystem = _entityManager.System<NamingSystem>();
-                randomProfile = randomProfile.WithName(namingSystem.GetName("STHunter", randomProfile.Gender));
 
                 return await _db.InitPrefsAsync(userId, randomProfile, cancel);
             }

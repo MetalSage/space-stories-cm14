@@ -7,7 +7,7 @@
   requirements:
   - !type:TotalJobsTimeRequirement
     group: CMJobsEngineering
-    time: 3600 # 1 hour
+    time: 36000 # Stories-Ordnance 10 hour
   startingGear: CMGearOrdnanceTech
   icon: "CMJobIconOrdnanceTech"
   joinNotifyCrew: false
@@ -47,7 +47,7 @@
         sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: background_shipside
     - type: MutinyEligible
-  hidden: true # TODO RMC14
+  hidden: false # Stories-Ordance
 
 - type: startingGear
   id: CMGearOrdnanceTech
@@ -58,7 +58,7 @@
     id: CMIDCardOrdnanceTech
     ears: CMHeadsetEngineer
     belt: CMBeltUtilityFilled
-#    pocket1: CMDemolitionsScanner TODO RMC14
+    pocket1: STDemolitionsScanner # Stories-Ordnance
     pocket2: RMCPouchGeneralMedium
 
 - type: entity

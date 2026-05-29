@@ -49,7 +49,7 @@ public sealed class RMCRepairableSystem : EntitySystem
     private static readonly EntProtoId<SkillDefinitionComponent> ConstructionSkill = "RMCSkillConstruction";
 
     const string SOLUTION_WELDER = "Welder";
-    const string REAGENT_WELDER = "WeldingFuel";
+    const string REAGENT_WELDER = "RMCWeldingFuel";
 
     private EntityUid? _forceRepairUser;
     private EntityUid? _forceRepairTarget;

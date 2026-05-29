@@ -15,6 +15,7 @@ using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._RMC14.Medical.MedevacStretcher;
 using Content.Shared._RMC14.OnCollide;
+using Content.Shared._RMC14.ParaDrop;
 using Content.Shared._RMC14.PowerLoader;
 using Content.Shared._RMC14.Rangefinder;
 using Content.Shared._RMC14.Rules;
@@ -34,7 +35,6 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Light.Components;
 using Content.Shared.NameModifier.EntitySystems;
-using Content.Shared.ParaDrop;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Shuttles.Components;
@@ -52,6 +52,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -94,6 +95,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     private static readonly EntProtoId DropshipTargetMarker = "RMCLaserDropshipTarget";
     private const string SpotlightState = "spotlights_";
@@ -139,6 +141,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
             subs =>
             {
                 subs.Event<DropshipTerminalWeaponsChangeScreenMsg>(OnWeaponsChangeScreenMsg);
+                subs.Event<DropshipTerminalWeaponsQuickModeMsg>(OnWeaponsQuickModeMsg);
                 subs.Event<DropshipTerminalWeaponsChooseWeaponMsg>(OnWeaponsChooseWeaponMsg);
                 subs.Event<DropshipTerminalWeaponsChooseMedevacMsg>(OnWeaponsChooseMedevacMsg);
                 subs.Event<DropshipTerminalWeaponsChooseFultonMsg>(OnWeaponsChooseFultonMsg);
@@ -330,6 +333,8 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
             Dirty(uid, terminal);
         }
 
+        ent.Comp.OriginalName = Name(ent);
+
         if (!TryComp(ent, out MetaDataComponent? metaData) || metaData.EntityPrototype == null)
             return;
 
@@ -379,6 +384,9 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
             RemComp<EyeComponent>(ent);
             _rmcCamera.RefreshCameras(prototype);
         }
+
+        if (ent.Comp.OriginalName != null)
+            _metaData.SetEntityName(ent.Owner, ent.Comp.OriginalName);
 
         if (_net.IsClient)
             return;
@@ -499,6 +507,19 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
 
         if (args.Screen == StrikeWeapon)
             screen.Weapon = null;
+
+        Dirty(ent);
+        RefreshWeaponsUI(ent);
+    }
+
+    private void OnWeaponsQuickModeMsg(Entity<DropshipTerminalWeaponsComponent> ent, ref DropshipTerminalWeaponsQuickModeMsg args)
+    {
+        ref var screen = ref args.First ? ref ent.Comp.ScreenOne : ref ent.Comp.ScreenTwo;
+        if (screen.State is not (Target or Strike or StrikeWeapon))
+            return;
+
+        screen.QuickMode = args.Enabled;
+        screen.State = Target;
 
         Dirty(ent);
         RefreshWeaponsUI(ent);
@@ -981,7 +1002,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
         // Can't drop underground
         if (!CasDebug)
         {
-            if(!_area.CanCAS(coordinates))
+            if (!_area.CanCAS(coordinates))
             {
                 if (_net.IsClient)
                 {
@@ -1005,7 +1026,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
                     continue;
 
                 _door.StartOpening(child);
-                _door.TrySetBoltDown((child,doorBolt), true);
+                _door.TrySetBoltDown((child, doorBolt), true);
             }
 
             var paraDrop = EnsureComp<ActiveParaDropComponent>(dropship);
@@ -1034,7 +1055,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
 
         var systemPoint = Transform(selectedSystem.Value).ParentUid;
         _pointLight.SetEnabled(systemPoint, args.On);
-        _appearance.SetData(systemPoint, DropshipUtilityVisuals.State, args.On ? SpotlightState + "on" : SpotlightState + "off" );
+        _appearance.SetData(systemPoint, DropshipUtilityVisuals.State, args.On ? SpotlightState + "on" : SpotlightState + "off");
         spotlight.Enabled = args.On;
 
         Dirty(ent);
@@ -1111,7 +1132,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
         if (!TryComp(selectedSystem, out RMCOrbitalDeployerComponent? deployer))
             return;
 
-        _rmcOrbitalDeployable.TryDeploy(selectedSystem.Value, target,  args.Actor, deployer);
+        _rmcOrbitalDeployable.TryDeploy(selectedSystem.Value, target, args.Actor, deployer);
 
         RefreshWeaponsUI(ent);
     }
@@ -1126,6 +1147,19 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
 
     private void UpdateTarget(Entity<DropshipTerminalWeaponsComponent> ent, EntityUid target)
     {
+        if (ent.Comp.Target == target)
+        {
+            if (EnsureTargetEye(ent, ent.Comp.Target) is { } currentTargetEye)
+            {
+                _eye.SetOffset(currentTargetEye, ent.Comp.Offset);
+                _eye.SetDrawLight(currentTargetEye, !ent.Comp.NightVision);
+            }
+
+            RefreshWeaponsUI(ent);
+            Dirty(ent);
+            return;
+        }
+
         RemovePvsActors(ent);
         SetTarget(ent, target);
 
@@ -1275,6 +1309,14 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
         _name.RefreshNameModifiers(ent.Owner);
         _physics.SetBodyType(ent, BodyType.Static);
 
+        var coordinates = _transform.GetMoverCoordinates(ent).SnapToGrid(EntityManager, _mapManager);
+
+        if (CasDebug || _area.CanCAS(coordinates))
+        {
+            if (TryComp<AppearanceComponent>(ent, out var appearance))
+                _appearance.SetData(ent, SignalFlareVisuals.BeaconState, true, appearance);
+        }
+
         return true;
     }
 
@@ -1283,11 +1325,15 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
         return _nextId++;
     }
 
-    public void MakeDropshipTarget(EntityUid ent, string abbreviation)
+    public void MakeDropshipTarget(EntityUid target, string abbreviation, bool targetableByWeapons = true)
     {
-        var dropshipTarget = new DropshipTargetComponent { Abbreviation = abbreviation };
-        AddComp(ent, dropshipTarget, true);
-        Dirty(ent, dropshipTarget);
+        var targetComp = new DropshipTargetComponent()
+        {
+            Abbreviation = abbreviation,
+            IsTargetableByWeapons = targetableByWeapons,
+        };
+
+        AddComp(target, targetComp, true);
     }
 
     public override void Update(float frameTime)
@@ -1348,7 +1394,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
                 {
                     flight.WarningMarker = Spawn(DropshipTargetMarker, flight.Target);
                     var despawn = EnsureComp<TimedDespawnComponent>(flight.WarningMarker.Value);
-                    despawn.Lifetime = (float) (flight.MarkerAt - _timing.CurTime).TotalSeconds;
+                    despawn.Lifetime = (float)(flight.MarkerAt - _timing.CurTime).TotalSeconds;
                 }
             }
 
@@ -1584,17 +1630,6 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
         return false;
     }
 
-    public void MakeTarget(EntityUid target, string abbreviation, bool targetableByWeapons)
-    {
-        var targetComp = new DropshipTargetComponent()
-        {
-            Abbreviation = abbreviation,
-            IsTargetableByWeapons = targetableByWeapons,
-        };
-
-        AddComp(target, targetComp, true);
-    }
-
     private void SetScreenUtility<T>(Entity<DropshipTerminalWeaponsComponent> ent, bool first, DropshipTerminalWeaponsScreen state, NetEntity? selected = null) where T : IComponent
     {
         if (!_dropship.TryGetGridDropship(ent, out var dropship) ||
@@ -1690,3 +1725,9 @@ public record struct DropshipWeaponShotEvent(
     RMCFire? Fire,
     int SoundEveryShots
 );
+
+[Serializable, NetSerializable]
+public enum SignalFlareVisuals : byte
+{
+    BeaconState
+}

@@ -1,6 +1,16 @@
 rmc-dropship-pre-flight-fueling = Шаттл все еще заправляется перед полетом и пока не может отправиться. Пожалуйста, подождите еще { $minutes } минут, прежде чем повторить попытку.
 rmc-dropship-pre-hijack = Этот терминал не будет работать еще { $minutes } минут.
 rmc-dropship-invalid-hijack = На терминале мигают огни, но вы не можете понять их значение.
+rmc-dropship-terminal-clueless = Вы растерянно смотрите на { $terminal }.
+rmc-dropship-no-destinations-nearby = Рядом с вами нет точек назначения для десантного корабля!
+rmc-dropship-already-incoming = Сюда уже летит десантный корабль!
+rmc-dropship-already-here = Десантный корабль уже здесь!
+rmc-dropship-not-primary-shuttle = Шаттл не отвечает на команды. Похоже, это не основной шаттл.
+rmc-dropship-call-to-location = Вы вызываете один из десантных кораблей к своему местоположению.
+rmc-dropship-none-available = Нет доступных десантных кораблей! Подождите немного.
+rmc-dropship-no-remote-control = У этого десантного корабля не включено дистанционное управление.
+rmc-dropship-busy = Этот десантный корабль сейчас занят. Повторите попытку позже.
+rmc-dropship-now-on-its-way = Этот десантный корабль уже в пути.
 
 rmc-dropship-weapons-title = Оружейная консоль
 
@@ -17,6 +27,7 @@ rmc-dropship-weapons-weapon-selected-ammo = { $weapon }
 rmc-dropship-weapons-target-strike = Приобретение цели
 
   Ударный режим: { $mode }
+  Режим цели: { $targetMode }
 
   Конфигурация удара { $weapon }
 
@@ -55,6 +66,14 @@ rmc-dropship-weapons-offset-calibration-does-not-affect-direct-bombardment = Н�
 rmc-dropship-weapons-fire = ОГОНЬ
 rmc-dropship-weapons-strike = УДАР
 rmc-dropship-weapons-vector = ВЕКТОР
+rmc-dropship-weapons-quick = БЫСТР
+# TODO RMC14 fire missions: restore these labels with fire mission vector controls.
+# rmc-dropship-weapons-north = NORTH
+# rmc-dropship-weapons-south = SOUTH
+# rmc-dropship-weapons-east = EAST
+# rmc-dropship-weapons-west = WEST
+rmc-dropship-weapons-target-mode-quick = БЫСТР
+rmc-dropship-weapons-target-mode-standard = СТАНД
 
 rmc-dropship-weapons-night-vision-on = НВ-ВКЛ
 rmc-dropship-weapons-night-vision-off = НВ-ВЫКЛ
@@ -110,7 +129,7 @@ rmc-dropship-medevac-system-screen-text = Система медицинской 
 
 rmc-dropship-fulton-system-screen-text = Система подъёма РМУ-19 Фултон
 
-rmc-dropship-locked= Эта птица теперь наша на { $minutes } минут.
+rmc-dropship-locked = Эта птица теперь наша на { $minutes } минут.
 rmc-dropship-locked-out = Шаттл не отвечает, попробуйте еще раз через { $minutes } минут.
 rmc-dropship-locked-out-bypass = Вы частично обошли блокировку, попробуйте еще раз!
 rmc-dropship-locked-out-bypass-complete = Вы успешно сняли блокировку!

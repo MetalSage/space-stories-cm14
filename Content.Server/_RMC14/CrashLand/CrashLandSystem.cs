@@ -28,14 +28,6 @@ public sealed class CrashLandSystem : SharedCrashLandSystem
         ent.Comp.OpenOnMove = true;
         Dirty(ent);
 
-        if (!args.ShouldDamage)
-            return;
-
-        foreach (var entity in ent.Comp.Contents.ContainedEntities.ToArray())
-        {
-            ApplyFallingDamage(entity);
-        }
-
         _entityStorage.OpenStorage(ent);
     }
 }

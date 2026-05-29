@@ -8,3 +8,7 @@ ent-CMIDCardDCC = ID-карта командира экипажа дропшип
     .desc = { ent-CMIDCardBase.desc }
 ent-CMIDCardIntelOfficer = ID-карта офицера разведки
     .desc = { ent-CMIDCardSilver.desc }
+ent-CMDogtagCrewman = Crewman's dogtags
+    .desc = { ent-CMIDCardStandardDogtag.desc }
+ent-RMCDogtagCrewmanHidden = { ent-RMCIDCardStandardDogtagHidden }
+    .desc = { ent-RMCIDCardStandardDogtagHidden.desc }

@@ -132,6 +132,7 @@
   parent: CMXenoRunnerBase
   id: CMXenoRunner
   components:
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleRunner

@@ -408,10 +408,10 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
     {
     }
 
-    private void SpawnFireChain(EntProtoId spawn, EntityUid chain, EntityCoordinates coordinates, int? intensity, int? duration)
+    protected virtual void SpawnFireChain(EntProtoId spawn, EntityUid chain, EntityCoordinates coordinates, int? intensity, int? duration, Color? burnColor = null) // Stories-Ordnance
     {
         var spawned = Spawn(spawn, coordinates);
-        if (intensity != null || duration != null)
+        if (intensity != null || duration != null || burnColor != null) // Stories-Ordnance-Start
         {
             var ignite = EnsureComp<RMCIgniteOnCollideComponent>(spawned);
             var tileFire = EnsureComp<TileFireComponent>(spawned);
@@ -422,16 +422,31 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             {
                 ignite.Duration = duration.Value;
                 tileFire.Duration = TimeSpan.FromSeconds(duration.Value);
+                Dirty(spawned, tileFire); // Stories-Ordnance
             }
 
+
+            if (burnColor != null)
+            {
+                ignite.BurnColor = burnColor.Value;
+                EnsureComp<RMCFireColorComponent>(spawned).Color = burnColor.Value;
+            }
+            // Stories-Ordnance-End
+
             Dirty(spawned, ignite);
+
+            if (TryComp<DamageOnCollideComponent>(spawned, out var dmg) && intensity != null)
+            {
+                dmg.Damage.DamageDict[HeatDamage] = intensity.Value * dmg.DirectHitMultiplier;
+                Dirty(spawned, dmg);
+            }
         }
 
         var onCollide = EnsureComp<DamageOnCollideComponent>(spawned);
         _onCollide.SetChain((spawned, onCollide), chain);
     }
 
-    private void SpawnFires(EntProtoId spawn, EntityCoordinates coordinates, int range, EntityUid chain, int? intensity, int? duration, HashSet<EntityCoordinates>? spawned = null)
+    private void SpawnFires(EntProtoId spawn, EntityCoordinates coordinates, int range, EntityUid chain, int? intensity, int? duration, HashSet<EntityCoordinates>? spawned = null, Color? burnColor = null) // Stories-Ordnance
     {
         if (_net.IsClient)
             return;
@@ -443,7 +458,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             if (!spawned.Add(target))
                 continue;
 
-            var nextRange = SpawnFire(target, spawn, chain, range, intensity, duration, out var cont);
+            var nextRange = SpawnFire(target, spawn, chain, range, intensity, duration, out var cont, burnColor); // Stories-Ordnance
             if (nextRange == 0 || cont)
                 continue;
 
@@ -452,7 +467,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
                 {
                     try
                     {
-                        SpawnFires(spawn, target, nextRange, chain, intensity, duration, spawned);
+                        SpawnFires(spawn, target, nextRange, chain, intensity, duration, spawned, burnColor); // Stories-Ordnance
                     }
                     catch (Exception e)
                     {
@@ -462,18 +477,24 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         }
     }
 
-    public void SpawnFireDiamond(EntProtoId spawn, EntityCoordinates center, int range, int? intensity = null, int? duration = null)
+    public void SpawnFireDiamond(EntProtoId spawn, EntityCoordinates center, int range, int? intensity = null, int? duration = null, Color? burnColor = null) // Stories-Ordnance
     {
         var chain = _onCollide.SpawnChain();
         // Ensure the center tile is ignited as part of the diamond.
-        SpawnFire(center, spawn, chain, range, intensity, duration, out _);
-        SpawnFires(spawn, center, range, chain, intensity, duration);
+        SpawnFire(center, spawn, chain, range, intensity, duration, out _, burnColor); // Stories-Ordnance
+        SpawnFires(spawn, center, range, chain, intensity, duration, burnColor: burnColor); // Stories-Ordnance
     }
 
-    public void SpawnFireLines(EntProtoId spawn, EntityCoordinates center, int cardinalRange, int ordinalRange, int? intensity = null, int? duration = null)
+    public void SpawnFireLines(EntProtoId spawn, EntityCoordinates center, int cardinalRange, int ordinalRange, int? intensity = null, int? duration = null, Color? burnColor = null) // Stories-Ordnance
     {
         var chain = _onCollide.SpawnChain();
         var spawned = new HashSet<EntityCoordinates>();
+
+        // Stories-Ordnance-Start
+        SpawnFire(center, spawn, chain, Math.Max(cardinalRange, ordinalRange), intensity, duration, out _, burnColor);
+        spawned.Add(center);
+        // Stories-Ordnance-End
+
         foreach (var direction in DirectionExtensions.AllDirections)
         {
             var range = _rmcMap.CardinalDirections.Contains(direction) ? cardinalRange : ordinalRange;
@@ -484,7 +505,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
                 if (!spawned.Add(target))
                     continue;
 
-                nextRange = SpawnFire(target, spawn, chain, nextRange, intensity, duration, out var cont);
+                nextRange = SpawnFire(target, spawn, chain, nextRange, intensity, duration, out var cont, burnColor); // Stories-Ordnance
                 target = target.Offset(direction);
                 if (cont)
                     break;
@@ -492,7 +513,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         }
     }
 
-    public int SpawnFire(EntityCoordinates target, EntProtoId spawn, EntityUid chain, int range, int? intensity, int? duration, out bool cont)
+    public int SpawnFire(EntityCoordinates target, EntProtoId spawn, EntityUid chain, int range, int? intensity, int? duration, out bool cont, Color? burnColor = null) // Stories-Ordnance
     {
         cont = false;
         if (!_rmcMap.TryGetTileDef(target, out var tile) ||
@@ -531,7 +552,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             }
         }
 
-        SpawnFireChain(spawn, chain, target, intensity, duration);
+        SpawnFireChain(spawn, chain, target, intensity, duration, burnColor); // Stories-Ordnance
         return nextRange;
     }
 
@@ -816,10 +837,10 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         if (!tileEv.Ignite)
             return;
 
-        if (!Ignite(flammableEnt, ent.Comp.Intensity, ent.Comp.Duration, ent.Comp.MaxStacks, tileDamage:ent.Comp.TileDamage))
+        if (!Ignite(flammableEnt, ent.Comp.Intensity, ent.Comp.Duration, ent.Comp.MaxStacks, tileDamage: ent.Comp.TileDamage))
             return;
 
-        ChangeBurnColor(flammableEnt, ent.Comp.BurnColor);
+        ChangeBurnColor(flammableEnt, ent.Comp.BurnColor); // Stories-Ordnance
 
         // If this fire can bypass immunity, mark the target as having bypass-active fire
         if (!CanFireBypassImmunity(ent, other))
@@ -877,7 +898,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
 
         if (canIgnite)
         {
-            Ignite((uid, flammable), ignite.Intensity, ignite.Duration, ignite.MaxStacks, tileDamage:ignite.TileDamage);
+            Ignite((uid, flammable), ignite.Intensity, ignite.Duration, ignite.MaxStacks, tileDamage: ignite.TileDamage);
 
             // If this fire can bypass immunity, mark the target as having bypass-active fire
             if (!CanFireBypassImmunity(fireEntity, uid))
@@ -949,7 +970,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         return ev.Ignite;
     }
 
-    public void ChangeBurnColor(EntityUid target, Color color)
+    public void ChangeBurnColor(EntityUid target, Color color) // Stories-Ordnance
     {
         if (TryComp<RMCFireColorComponent>(target, out var fireColorComp))
         {

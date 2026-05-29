@@ -99,7 +99,14 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
             return;
 
         var solution = solutionEnt.Value.Comp.Solution;
-        args.Count = solution.Volume.Int();
+
+        // Stories-Ordnance-Start
+        if (solution.TryFirstOrNull(out var firstReagent))
+            args.Count = firstReagent.Value.Quantity.Int();
+        else
+            args.Count = 0;
+        // Stories-Ordnance-End
+
         args.Capacity = solution.MaxVolume.Int();
     }
 
@@ -137,7 +144,7 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
         ent.Comp.CantShootPopupLast = time;
         Dirty(ent);
 
-        if (solution is not { } sol || sol.Comp.Solution.Volume < ent.Comp.CostPer)
+        if (solution is not { } sol || !sol.Comp.Solution.TryFirstOrNull(out var firstReagent) || firstReagent.Value.Quantity < ent.Comp.CostPer) // Stories-Ordnance
         {
             args.Message = Loc.GetString("rmc-flamer-empty");
             return;
@@ -288,7 +295,12 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
         if (TryGetTankSolution(ent, out var solutionEnt, out var _, display: true))
         {
             var solution = solutionEnt.Value.Comp.Solution;
-            volume = solution.Volume;
+
+            // Stories-Ordnance-Start
+            if (solution.TryFirstOrNull(out var firstReagent))
+                volume = firstReagent.Value.Quantity;
+            // Stories-Ordnance-End
+
             maxVolume = solution.MaxVolume;
             tank = true;
         }
@@ -326,7 +338,7 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
         if (reagent.FireSpread && cost > 2)
             cost = (int)Math.Ceiling(cost / 3.0f);
 
-        solution.Value.Comp.Solution.RemoveSolution(flamer.Comp.CostPer * cost);
+        solution.Value.Comp.Solution.RemoveReagent(reagent.ID, flamer.Comp.CostPer * cost); // Stories-Ordnance
         _solution.UpdateChemicals(solution.Value);
 
         if (_net.IsClient)
@@ -359,7 +371,13 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
         if (!TryGetTankSolution(flamer, out var solutionEnt, out _))
             return false;
 
-        color = solutionEnt.Value.Comp.Solution.GetColor(_prototypes);
+        // Stories-Ordnance-Start
+        if (!solutionEnt.Value.Comp.Solution.TryFirstOrNull(out var firstReagent) ||
+            !_reagent.TryIndex(firstReagent.Value.Reagent.Prototype, out var reagentProto))
+            return false;
+
+        color = reagentProto.BurnColor ?? reagentProto.SubstanceColor;
+        // Stories-Ordnance-End
         return true;
     }
 
@@ -377,9 +395,14 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
         if (!TryGetTankSolution(flamer, out solution, out tank))
             return false;
 
-        var volume = solution.Value.Comp.Solution.Volume;
-        if (volume < flamer.Comp.CostPer)
+        // Stories-Ordnance-Start
+        if (!solution.Value.Comp.Solution.TryFirstOrNull(out var firstReagent))
             return false;
+
+        var fuelVolume = firstReagent.Value.Quantity;
+        if (fuelVolume < flamer.Comp.CostPer)
+            return false;
+        // Stories-Ordnance-End
 
         if (!fromCoordinates.TryDelta(EntityManager, _transform, toCoordinates, out var delta))
             return false;
@@ -392,13 +415,11 @@ public abstract class SharedRMCFlamerSystem : EntitySystem
         // to prevent hitting yourself
         fromCoordinates = fromCoordinates.Offset(normalized * 0.23f);
 
-        if (!solution.Value.Comp.Solution.TryFirstOrNull(out var firstReagent))
-            return false;
-
         reagent = _reagent.Index(firstReagent.Value.Reagent.Prototype);
 
         var maxRange = Math.Min(tank.Value.Comp.MaxRange, reagent.Radius);
-        var range = Math.Min((volume / flamer.Comp.CostPer).Int(), maxRange);
+        var range = Math.Min((fuelVolume / flamer.Comp.CostPer).Int(), maxRange); // Stories-Ordnance
+
         if (delta.Length() > maxRange)
             toCoordinates = fromCoordinates.Offset(normalized * range);
 

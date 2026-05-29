@@ -8,7 +8,6 @@ namespace Content.Shared.Preferences
     /// <summary>
     /// The client sends this to select a character slot.
     /// </summary>
-    [Serializable, NetSerializable] // Stories-Hunter
     public sealed class MsgSelectCharacter : NetMessage
     {
         public override MsgGroups MsgGroup => MsgGroups.Command;

@@ -3,6 +3,9 @@
   parent: CMTileBaseUnpryable
   id: RMCFloorVehicleInteriorBase
   name: vehicle interior floor
+  blockAnchoring: true
+  blockConstruction: true
+  canPlaceTunnel: false
 
 - type: tile
   parent: RMCFloorVehicleInteriorBase

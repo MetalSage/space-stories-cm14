@@ -1,0 +1,9 @@
+- type: entity
+  parent: CMLockerFridge
+  id: RMCIndustryFreezer
+  name: industry freezer
+  description: A powerful fine-tuned freezer used to polymerize chemicals in the cold. This one is set to the perfect temperature for paraformaldehyde polymerization. The freezer must be kept closed for polymerization.
+  components:
+  - type: IndustryFreezer
+  - type: AccessReader
+    access: [["CMAccessOT"]]

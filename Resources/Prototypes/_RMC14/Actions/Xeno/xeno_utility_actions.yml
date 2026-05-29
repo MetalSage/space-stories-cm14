@@ -299,7 +299,6 @@
     icon:
       sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_seize
-    event: !type:XenoTailFountainActionEvent
     useDelay: 10
   - type: TargetAction
     range: 2

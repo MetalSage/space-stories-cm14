@@ -15,7 +15,6 @@
   parent: ActionMarineToggleable
   name: Toggle dart fuse
   description: Switches sticky dart detonation delay between 5s and 2.5s.
-  noSpawn: true
   components:
   - type: Action
     icon:

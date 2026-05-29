@@ -27,6 +27,10 @@
   color: "#1C1300"
   unknown: true
   durationMod: 1
+  # Stories-Ordnance-Start
+  burnColor: "#ffd700"
+  burncolormod: 3
+  # Stories-Ordnance-End
   metabolisms:
     Medicine:
       metabolismRate: 0.01 # 1 every 200 seconds in CM? 0.005 would be right but impossible because fixed point 2
@@ -62,6 +66,10 @@
   physicalDesc: reagent-physical-desc-metallic
   flavor: metallic
   color: "#6E3B08"
+  # Stories-Ordnance-Start
+  burnColor: "#78be5a"
+  burncolormod: 4
+  # Stories-Ordnance-End
   metabolisms:
     Medicine:
       metabolismRate: 0.01 # 1 every 200 seconds in CM?
@@ -128,6 +136,13 @@
   durationMod: -0.5
   radiusMod: 0.2
   intensityMod: -0.5
+  # Stories-Ordnance-Start
+  explosive: true
+  power: 0.15
+  falloffModifier: 0
+  burnColor: "#b6f8ff"
+  burncolormod: 2
+  # Stories-Ordnance-End
   metabolisms:
     Medicine:
       metabolismRate: 0.01 # 1 every 200 seconds in CM?
@@ -166,13 +181,20 @@
   intensity: 8
   duration: -3
   radius: 0
-  intensityMod: 0.2
-  durationMod: -0.1
-  radiusMod: -0.01
+  # Stories-Ordnance-Start
+  intensityMod: 0.15
+  radiusMod: 0
+  burnColor: "#ff356f"
+  burncolormod: 5
+  # Stories-Ordnance-End
   metabolisms:
     Poison:
       metabolismRate: 0.1
       effects:
+      # Stories-Ordnance-Start
+      - !type:Oxidizing
+        potency: 1
+      # Stories-Ordnance-End
       - !type:HealthChange
         damage:
           types:
@@ -237,6 +259,10 @@
   intensityMod: 1
   durationMod: 0.1
   radiusMod: -0.12
+  # Stories-Ordnance-Start
+  burnColor: "#ffdba4"
+  burncolormod: 5
+  # Stories-Ordnance-End
   metabolisms:
     Medicine:
       metabolismRate: 0.01 # 1 every 200 seconds in CM?
@@ -358,7 +384,19 @@
   unknown: true
   intensityMod: 0.75
   radiusMod: -0.08
+  # Stories-Ordnance-Start
+  durationMod: 0
+  burnColor: "#58daff"
+  burncolormod: 2
+  # Stories-Ordnance-End
   metabolisms:
+    # Stories-Ordnance-Start
+    Poison:
+      metabolismRate: 0.1
+      effects:
+      - !type:Oxidizing
+        potency: 2
+    # Stories-Ordnance-Start
     Medicine:
       metabolismRate: 0.01 # 1 every 200 seconds in CM?
       effects:
@@ -391,6 +429,10 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: alcohol
   color: "#404030"
+  # Stories-Ordnance-Start
+  burnColor: "#6897f7"
+  burncolormod: 2
+  # Stories-Ordnance-End
   metabolisms:
     Alcohol:
       metabolismRate: 0.1

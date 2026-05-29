@@ -7,13 +7,14 @@ using Content.Shared._RMC14.Extensions;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Marines.Announce;
 using Content.Shared._RMC14.Marines.Squads;
+using Content.Shared._RMC14.ParaDrop;
 using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Rules;
+using Content.Shared.Body.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.GameTicking;
 using Content.Shared.Maps;
-using Content.Shared.ParaDrop;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
@@ -100,6 +101,9 @@ public abstract class SharedSupplyDropSystem : EntitySystem
             _entityLookup.GetEntitiesInRange(ent, 0.33f, _intersecting);
             foreach (var intersecting in _intersecting)
             {
+                if (!HasComp<BodyComponent>(intersecting))
+                    continue;
+
                 var isInside = false;
                 var parent = Transform(intersecting).ParentUid;
 

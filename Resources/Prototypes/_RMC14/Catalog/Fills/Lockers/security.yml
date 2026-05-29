@@ -5,8 +5,10 @@
   components:
   - type: StorageFill
     contents:
-##      - id: ClothingHeadHelmetBombSuit
-##      - id: ClothingOuterSuitBomb
+      # Stories-Ordnance-Start
+      - id: STHoodBomb
+      - id: STSuitBomb
+      # Stories-Ordnance-End
       - id: CMWirecutter
         prob: 0.9
       - id: CMScrewdriver

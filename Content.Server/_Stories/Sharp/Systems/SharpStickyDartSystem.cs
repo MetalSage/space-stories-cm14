@@ -20,6 +20,8 @@ namespace Content.Server._Stories.Sharp;
 
 public sealed class SharpStickyDartSystem : EntitySystem
 {
+    private const float MaxFollowOffset = 0.5f;
+
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly GunIFFSystem _gunIFF = default!;
@@ -212,14 +214,22 @@ public sealed class SharpStickyDartSystem : EntitySystem
                 continue;
 
             var target = emb.EmbeddedIntoUid.Value;
+            if (TerminatingOrDeleted(target))
+            {
+                _transform.AttachToGridOrMap(uid);
+                ArmDart(uid, sticky);
+
+                if (_timing.CurTime >= sticky.DetonateAt)
+                    DetonateDart(uid, sticky, proj.Shooter);
+
+                continue;
+            }
+
+            EnsureDartFollowsTarget(uid, target);
 
             if (!sticky.Armed)
             {
-                sticky.Armed = true;
-
-                var delay = sticky.SelectedDelay ?? sticky.LongDelay;
-                sticky.DetonateAt = _timing.CurTime + TimeSpan.FromSeconds(delay);
-                Dirty(uid, sticky);
+                ArmDart(uid, sticky);
             }
             else if (_timing.CurTime >= sticky.DetonateAt)
             {
@@ -229,28 +239,45 @@ public sealed class SharpStickyDartSystem : EntitySystem
                 }
                 else
                 {
-                    _transform.AttachToGridOrMap(uid);
-
-                    if (HasComp<TileFireOnTriggerComponent>(uid))
-                    {
-                        var fireEv = new RMCTriggerEvent();
-                        RaiseLocalEvent(uid, ref fireEv);
-                    }
-
-                    if (TryComp<ExplosiveComponent>(uid, out var explosive))
-                    {
-                        _explosion.TriggerExplosive(uid,
-                            explosive,
-                            delete: true,
-                            radius: sticky.ExplosionRadius,
-                            user: proj.Shooter);
-                    }
-                    else
-                    {
-                        QueueDel(uid);
-                    }
+                    DetonateDart(uid, sticky, proj.Shooter);
                 }
             }
+        }
+    }
+
+    private void ArmDart(EntityUid uid, SharpStickyDartComponent sticky)
+    {
+        if (sticky.Armed)
+            return;
+
+        sticky.Armed = true;
+
+        var delay = sticky.SelectedDelay ?? sticky.LongDelay;
+        sticky.DetonateAt = _timing.CurTime + TimeSpan.FromSeconds(delay);
+        Dirty(uid, sticky);
+    }
+
+    private void DetonateDart(EntityUid uid, SharpStickyDartComponent sticky, EntityUid? shooter)
+    {
+        _transform.AttachToGridOrMap(uid);
+
+        if (HasComp<TileFireOnTriggerComponent>(uid))
+        {
+            var fireEv = new RMCTriggerEvent();
+            RaiseLocalEvent(uid, ref fireEv);
+        }
+
+        if (TryComp<ExplosiveComponent>(uid, out var explosive))
+        {
+            _explosion.TriggerExplosive(uid,
+                explosive,
+                delete: true,
+                radius: sticky.ExplosionRadius,
+                user: shooter);
+        }
+        else
+        {
+            QueueDel(uid);
         }
     }
 
@@ -318,5 +345,23 @@ public sealed class SharpStickyDartSystem : EntitySystem
     private bool CanStickToTarget(EntityUid target)
     {
         return HasComp<MobStateComponent>(target);
+    }
+
+    private void EnsureDartFollowsTarget(EntityUid uid, EntityUid target)
+    {
+        var xform = Transform(uid);
+        if (xform.ParentUid == target)
+            return;
+
+        var dartMap = _transform.GetMapCoordinates(uid);
+        var targetMap = _transform.GetMapCoordinates(target);
+        if (dartMap.MapId != targetMap.MapId)
+            return;
+
+        var offset = dartMap.Position - targetMap.Position;
+        if (offset.LengthSquared() > MaxFollowOffset * MaxFollowOffset)
+            offset = offset.Normalized() * MaxFollowOffset;
+
+        _transform.SetCoordinates(uid, xform, new EntityCoordinates(target, offset));
     }
 }

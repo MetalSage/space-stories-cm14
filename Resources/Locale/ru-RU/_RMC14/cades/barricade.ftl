@@ -5,3 +5,6 @@ rmc-barricade-damaged-1 = [color=lightgreen]Похоже, он в хорошей
 rmc-barricade-damaged-2 = [color=yellow]Он слегка поврежден, но все еще очень функционален.[/color]
 rmc-barricade-damaged-3 = [color=orange]Он довольно потрепан, но держится.[/color]
 rmc-barricade-damaged-4 = [color=red]Он разваливается на части, еще несколько ударов разорвут его на части.[/color]
+rmc-folding-barricade-link-set = Вы подготавливаете { THE($barricade) } к соединению.
+rmc-folding-barricade-link-removed = Вы убираете соединение с { THE($barricade) }.
+rmc-folding-barricade-link-no-points = У { THE($barricade) } нет точек соединения.

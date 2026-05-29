@@ -6,7 +6,9 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
+using Content.Shared.Inventory;
 using Content.Shared.Popups;
+using Content.Shared.Smoking;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
@@ -19,6 +21,7 @@ namespace Content.Shared._RMC14.Chemistry;
 
 public abstract class SharedRMCChemistrySystem : EntitySystem
 {
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!; // Stories-Ordnance
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
@@ -27,6 +30,7 @@ public abstract class SharedRMCChemistrySystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!; // Stories-Ordnance
 
     private readonly List<Entity<RMCChemicalDispenserComponent>> _dispensers = new();
 
@@ -40,6 +44,7 @@ public abstract class SharedRMCChemistrySystem : EntitySystem
         SubscribeLocalEvent<RMCChemicalDispenserComponent, MapInitEvent>(OnDispenserMapInit);
 
         SubscribeLocalEvent<RMCToggleableSolutionTransferComponent, MapInitEvent>(OnToggleableSolutionTransferMapInit);
+        SubscribeLocalEvent<RMCToggleableSolutionTransferComponent, AfterAutoHandleStateEvent>(OnToggleableSolutionTransferState); // Stories-Ordnance
         SubscribeLocalEvent<RMCToggleableSolutionTransferComponent, GetVerbsEvent<AlternativeVerb>>(OnToggleableSolutionTransferVerbs);
 
         SubscribeLocalEvent<RMCSolutionTransferWhitelistComponent, SolutionTransferAttemptEvent>(OnTransferWhitelistAttempt);
@@ -48,6 +53,8 @@ public abstract class SharedRMCChemistrySystem : EntitySystem
         SubscribeLocalEvent<NoMixingReagentsComponent, SolutionTransferAttemptEvent>(OnNoMixingReagentsTransferAttempt);
 
         SubscribeLocalEvent<RMCEmptySolutionComponent, GetVerbsEvent<AlternativeVerb>>(OnEmptySolutionGetVerbs);
+
+        SubscribeLocalEvent<InventoryComponent, SmokeReactionAttemptEvent>(OnSmokeReactionAttempt); // Stories-Ordnance
 
         Subs.BuiEvents<RMCChemicalDispenserComponent>(RMCChemicalDispenserUi.Key,
             subs =>
@@ -58,6 +65,22 @@ public abstract class SharedRMCChemistrySystem : EntitySystem
                 subs.Event<RMCChemicalDispenserDispenseBuiMsg>(OnChemicalDispenserDispenseMsg);
             });
     }
+
+    // Stories-Ordnance-Start
+    private void OnSmokeReactionAttempt(EntityUid uid, InventoryComponent comp, ref SmokeReactionAttemptEvent args)
+    {
+        if (args.Cancelled) return;
+
+        if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var suit) &&
+            _inventory.TryGetSlotEntity(uid, "head", out var head))
+        {
+            if (HasComp<RMCBioShieldComponent>(suit.Value) && HasComp<RMCBioShieldComponent>(head.Value))
+            {
+                args.Cancelled = true;
+            }
+        }
+    }
+    // Stories-Ordnance-End
 
     private void OnSolutionGetState(Entity<SolutionComponent> ent, ref ComponentGetState args)
     {
@@ -77,11 +100,11 @@ public abstract class SharedRMCChemistrySystem : EntitySystem
     {
         using (args.PushGroup(nameof(DetailedExaminableSolutionComponent)))
         {
-            args.PushText("It contains:");
+            args.PushText(Loc.GetString("rmc-chemistry-detailed-solution-contains")); // Stories-Ordnance
             if (!_solution.TryGetSolution(ent.Owner, ent.Comp.Solution, out _, out var solution) ||
                 solution.Volume <= FixedPoint2.Zero)
             {
-                args.PushText("Nothing.");
+                args.PushText(Loc.GetString("rmc-chemistry-detailed-solution-nothing")); // Stories-Ordnance
             }
             else
             {
@@ -91,18 +114,28 @@ public abstract class SharedRMCChemistrySystem : EntitySystem
                     if (_prototypes.TryIndexReagent(reagent.Reagent.Prototype, out ReagentPrototype? reagentProto))
                         name = reagentProto.LocalizedName;
 
-                    args.PushText($"{reagent.Quantity.Float():F2} units of {name}");
+                    // Stories-Ordnance-Start
+                    args.PushText(Loc.GetString("rmc-chemistry-detailed-solution-reagent",
+                        ("quantity", reagent.Quantity.Float().ToString("F2")),
+                        ("name", name)));
+                    // Stories-Ordnance-End
                 }
 
-                args.PushText($"Total volume: {solution.Volume} / {solution.MaxVolume}.");
+                // Stories-Ordnance-Start
+                args.PushText(Loc.GetString("rmc-chemistry-detailed-solution-total",
+                    ("volume", solution.Volume),
+                    ("maxVolume", solution.MaxVolume)));
+                // Stories-Ordnance-End
             }
 
             if (TryComp<RMCToggleableSolutionTransferComponent>(ent.Owner, out var transferComp))
             {
                 var directionText = transferComp.Direction switch
                 {
-                    SolutionTransferDirection.Input => "Transfer mode: Drawing",
-                    SolutionTransferDirection.Output => "Transfer mode: Dispensing",
+                    // Stories-Ordnance-Start
+                    SolutionTransferDirection.Input => Loc.GetString("rmc-chemistry-detailed-solution-mode-drawing"),
+                    SolutionTransferDirection.Output => Loc.GetString("rmc-chemistry-detailed-solution-mode-dispensing"),
+                    // Stories-Ordnance-End
                     _ => string.Empty,
                 };
 
@@ -119,12 +152,15 @@ public abstract class SharedRMCChemistrySystem : EntitySystem
 
     private void OnToggleableSolutionTransferMapInit(Entity<RMCToggleableSolutionTransferComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.Direction = SolutionTransferDirection.Input;
-        RemCompDeferred<DrainableSolutionComponent>(ent);
-        var refillable = EnsureComp<RefillableSolutionComponent>(ent);
-        refillable.Solution = ent.Comp.Solution;
-        Dirty(ent, refillable);
+        UpdateToggleableTransfer(ent); // Stories-Ordnance
     }
+
+    // Stories-Ordnance-Start
+    private void OnToggleableSolutionTransferState(Entity<RMCToggleableSolutionTransferComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        UpdateToggleableTransfer(ent);
+    }
+    // Stories-Ordnance-End
 
     private void OnToggleableSolutionTransferVerbs(Entity<RMCToggleableSolutionTransferComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
@@ -132,34 +168,50 @@ public abstract class SharedRMCChemistrySystem : EntitySystem
             return;
 
         var user = args.User;
-        var dispensing = HasComp<DrainableSolutionComponent>(ent);
+        var dispensing = ent.Comp.Direction == SolutionTransferDirection.Output; // Stories-Ordnance
+
         args.Verbs.Add(new AlternativeVerb
         {
-            Text = dispensing ? "Enable drawing" : "Enable dispensing",
+            Text = dispensing ? Loc.GetString("rmc-chemistry-verb-enable-drawing") : Loc.GetString("rmc-chemistry-verb-enable-dispensing"), // Stories-Ordnance
             Act = () =>
             {
-                dispensing = HasComp<DrainableSolutionComponent>(ent);
-                if (dispensing)
-                {
-                    RemCompDeferred<DrainableSolutionComponent>(ent);
-                    var refillable = EnsureComp<RefillableSolutionComponent>(ent);
-                    refillable.Solution = ent.Comp.Solution;
-                    ent.Comp.Direction = SolutionTransferDirection.Input;
-                    Dirty(ent, refillable);
-                    _popup.PopupClient("Now drawing", ent, user, PopupType.Medium);
-                }
-                else
-                {
-                    RemCompDeferred<RefillableSolutionComponent>(ent);
-                    var drainable = EnsureComp<DrainableSolutionComponent>(ent);
-                    drainable.Solution = ent.Comp.Solution;
-                    ent.Comp.Direction = SolutionTransferDirection.Output;
-                    Dirty(ent, drainable);
-                    _popup.PopupClient("Now dispensing", ent, user, PopupType.Medium);
-                }
+                // Stories-Ordnance-Start
+                ent.Comp.Direction = dispensing ? SolutionTransferDirection.Input : SolutionTransferDirection.Output;
+                Dirty(ent, ent.Comp);
+                UpdateToggleableTransfer(ent);
+
+                _popup.PopupClient(
+                    ent.Comp.Direction == SolutionTransferDirection.Input
+                    ? Loc.GetString("rmc-chemistry-popup-now-drawing")
+                    : Loc.GetString("rmc-chemistry-popup-now-dispensing"),
+                    ent, user, PopupType.Medium);
+                // Stories-Ordnance-End
             },
         });
     }
+
+    // Stories-Ordnance-Start
+    private void UpdateToggleableTransfer(Entity<RMCToggleableSolutionTransferComponent> ent)
+    {
+        if (ent.Comp.Direction == SolutionTransferDirection.Input)
+        {
+            RemCompDeferred<DrainableSolutionComponent>(ent);
+            var refillable = EnsureComp<RefillableSolutionComponent>(ent);
+            refillable.Solution = ent.Comp.Solution;
+            Dirty(ent, refillable);
+        }
+        else
+        {
+            RemCompDeferred<RefillableSolutionComponent>(ent);
+            var drainable = EnsureComp<DrainableSolutionComponent>(ent);
+            drainable.Solution = ent.Comp.Solution;
+            Dirty(ent, drainable);
+        }
+
+        if (TryComp<AppearanceComponent>(ent, out var appearance))
+            _appearance.SetData(ent, RMCTankVisuals.TransferDirection, ent.Comp.Direction, appearance);
+    }
+    // Stories-Ordnance-End
 
     private void OnTransferWhitelistAttempt(Entity<RMCSolutionTransferWhitelistComponent> ent, ref SolutionTransferAttemptEvent args)
     {

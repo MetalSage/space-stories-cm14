@@ -92,7 +92,7 @@
   - type: WeaponSkin # Stories-Partners
     defaultSkin: Default
     skins:
-      Default: /Textures/_RMC14/Objects/Weapons/Guns/RocketLaunchers/m5spec.rsi
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/RocketLaunchers/m5atl/m5atl_inhands.rsi
       Bombardier: /Textures/_Stories/Objects/Weapons/RocketLaunchers/m5spec.rsi
 
 # 84mm HE
