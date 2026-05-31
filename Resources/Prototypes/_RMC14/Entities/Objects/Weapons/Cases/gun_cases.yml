@@ -370,9 +370,7 @@
     contents:
     - id: RMCWeaponPistolM13
     - id: RMCMagazinePistolM13Ext
-      amount: 2
-    - id: RMCMagazinePistolM13ExtAP
-      amount: 2
+      amount: 4
     - id: RMCAttachmentS5MicroRedDotSight
     - id: RMCAttachmentSuppressorCompact
     - id: RMCAttachmentRecoilCompensatorM13Spiked

@@ -399,10 +399,6 @@
       entries:
       - id: CMMagazineRifleM4SPRAP
         amount: 4
-      - id: RMCMagazinePistolM13AP
-        amount: 4
-      - id: RMCMagazinePistolM13ExtAP
-        amount: 2
       - id: CMMagazineSMGM63AP
         amount: 3
       - id: CMMagazineRifleM54CAP
@@ -439,8 +435,6 @@
         amount: 2
       - id: RMCMagazineM2C
         amount: 2
-      - id: RMCBoxShotgunBreaching
-        amount: 2
       - id: RMCBatonSlugHIRR
         amount: 6
       - id: RMCStarShellM74AGMS
@@ -459,7 +453,7 @@
     - [ "CMAccessMarinePrep" ]
     - [ "CMAccessRequisitions" ]
   - type: Sprite
-    sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/attachments.rsi
+    sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/requisition_guns.rsi
   - type: CMAutomatedVendor
     access:
     - "CMAccessMarinePrep"

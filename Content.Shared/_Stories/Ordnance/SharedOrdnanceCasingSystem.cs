@@ -46,6 +46,7 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
     [Dependency] private readonly GunIFFSystem _gunIff = default!;
     [Dependency] private readonly StickySystem _sticky = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -68,6 +69,21 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
         SubscribeLocalEvent<OrdnanceCasingComponent, ClaymoreDisarmDoafterEvent>(OnClaymoreDisarmed);
         SubscribeLocalEvent<OrdnanceCasingComponent, OrdnanceDefuseDoAfterEvent>(OnDefuseDoAfter);
         SubscribeLocalEvent<OrdnanceCasingComponent, ContainerIsInsertingAttemptEvent>(OnContainerInserting);
+        SubscribeLocalEvent<OrdnanceCasingComponent, InteractHandEvent>(OnInteractHand);
+    }
+
+    private void OnInteractHand(Entity<OrdnanceCasingComponent> ent, ref InteractHandEvent args)
+    {
+        if (args.Handled) return;
+
+        if (TryComp<StickyComponent>(ent, out var sticky) && sticky.StuckTo != null)
+        {
+            if (!IsArmed(ent))
+            {
+                _sticky.UnstickFromEntity((ent.Owner, sticky), args.User);
+                args.Handled = true;
+            }
+        }
     }
 
     private void OnContainerInserting(Entity<OrdnanceCasingComponent> ent, ref ContainerIsInsertingAttemptEvent args)
@@ -82,6 +98,23 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
     {
         if (!ent.Comp.IsLocked)
             args.Cancelled = true;
+
+        if (ent.Comp.RequiredAssemblyMode == "Plastic" && args.Target != default)
+        {
+            if (_container.TryGetContainer(args.Target, "stickers_container", out var container))
+            {
+                foreach (var stuckEnt in container.ContainedEntities)
+                {
+                    if (HasComp<OrdnanceCasingComponent>(stuckEnt))
+                    {
+                        args.Cancelled = true;
+                        if (args.User != default)
+                            _popup.PopupClient(Loc.GetString("stories-ordnance-already-stuck"), ent, args.User);
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     public bool IsArmed(EntityUid uid)
@@ -500,6 +533,9 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
             return;
 
         var user = args.User;
+
+        if (HasComp<Content.Shared._RMC14.Xenonids.XenoComponent>(user))
+            return;
 
         if (ent.Comp.DampenerSkills != null && !_skills.HasSkills(user, ent.Comp.DampenerSkills))
             return;

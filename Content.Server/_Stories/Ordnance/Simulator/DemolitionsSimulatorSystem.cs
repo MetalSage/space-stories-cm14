@@ -18,6 +18,11 @@ using Robust.Shared.Localization;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared._RMC14.Xenonids;
+using Content.Shared._RMC14.Xenonids.Announce;
+using Content.Server._RMC14.Xenonids.AcidBloodSplash;
+using Content.Shared._RMC14.Xenonids.Deathcloud;
+using Content.Shared._RMC14.Xenonids.Hive;
 
 namespace Content.Server._Stories.Ordnance.Simulator;
 
@@ -33,6 +38,7 @@ public sealed class DemolitionsSimulatorSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly ViewSubscriberSystem _viewSubscriber = default!;
+    [Dependency] private readonly XenoSystem _xeno = default!;
 
     private readonly HashSet<EntityUid> _arenaMaps = new();
     private readonly HashSet<EntityUid> _cleanupCache = new();
@@ -296,8 +302,26 @@ public sealed class DemolitionsSimulatorSystem : EntitySystem
         foreach (var point in spawnPoints)
         {
             var dummy = Spawn(ent.Comp.SelectedPrototype, point);
+            EnsureComp<DemolitionsSimulatorDummyComponent>(dummy);
             RemCompDeferred<GhostRoleComponent>(dummy);
             RemCompDeferred<GhostTakeoverAvailableComponent>(dummy);
+            _xeno.MakeDummyXeno(dummy);
+            RemCompDeferred<XenoAnnounceDeathComponent>(dummy);
+            RemCompDeferred<AcidBloodSplashComponent>(dummy);
+            RemCompDeferred<XenoDeathcloudComponent>(dummy);
+            RemCompDeferred<AutoAssignHiveComponent>(dummy);
+            RemCompDeferred<HiveMemberComponent>(dummy);
+        }
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<DemolitionsSimulatorDummyComponent, HiveMemberComponent>();
+        while (query.MoveNext(out var uid, out _, out _))
+        {
+            RemCompDeferred<HiveMemberComponent>(uid);
         }
     }
 }
