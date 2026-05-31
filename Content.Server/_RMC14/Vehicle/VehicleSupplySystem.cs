@@ -27,6 +27,8 @@ using Content.Shared._RMC14.Requisitions.Components;
 using Robust.Shared.Physics.Systems;
 using Content.Shared.StepTrigger.Systems;
 using Content.Shared._RMC14.Marines.Announce;
+using Content.Shared._RMC14.Xenonids.Hive;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server._RMC14.Vehicle;
 
@@ -520,6 +522,24 @@ public sealed class VehicleSupplySystem : EntitySystem
 
         var vehicleName = GetPrototypeName(args.VehicleId);
         _announce.AnnounceARES(null, Loc.GetString("rmc-vehicle-announcement-armor-deployed", ("vehicle", vehicleName)));
+
+        // Stories-Vehicle-Start
+        var isApc = key.Contains("apc");
+        var isTank = key.Contains("tank");
+
+        if (isApc || isTank)
+        {
+            var t2Limit = isApc ? FixedPoint2.New(0.6) : FixedPoint2.New(0.7);
+            var t3Limit = isApc ? FixedPoint2.New(0.3) : FixedPoint2.New(0.4);
+
+            var hiveQuery = EntityQueryEnumerator<HiveComponent>();
+            while (hiveQuery.MoveNext(out var hiveUid, out var hive))
+            {
+                var ev = new HiveSetTierLimitsEvent(t2Limit, t3Limit);
+                RaiseLocalEvent(hiveUid, ref ev);
+            }
+        }
+        // Stories-Vehicle-End
 
         Dirty(lift.Owner, lift.Comp);
         SendConsoleStateAll();
@@ -1295,7 +1315,7 @@ public sealed class VehicleSupplySystem : EntitySystem
 
             foreach (var sectionGroup in hardpointEntries
                          .GroupBy(h => h.SectionName)
-                         .OrderBy(g => g.Min(h => h.SectionOrder))
+                         .OrderBy(g => g.Min(h => g.Min(h => h.SectionOrder)))
                          .ThenBy(g => g.Key, StringComparer.OrdinalIgnoreCase))
             {
                 var section = new CMVendorSection

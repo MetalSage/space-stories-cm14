@@ -1,7 +1,7 @@
 ent-RMCMK80 = пистолет VP78
     .desc = Мощный и надёжный полуавтоматический пистолет под патрон 9 мм "squash-head". Распространён в UA и 3WE, часто встречается как у наёмников Ве-Я, так и у корпоративных руководителей. Также проходит ограниченное испытание в составе программы морских пехотинцев по созданию нового поколения пистолетов. Затвор гравирован логотипом Ве-Я, что напоминает, кто здесь главный.
 ent-RMCMK80RCM = L189 offensive handgun
-    .desc = A large-frame, semi-automatic 9mm offensive handgun in limited use by members of the TSE's military. Although commercially produced by We-Ya and sold as the MK80, this handgun has been produced under contract specifically for the TSE's military and designated the L189 offensive handgun. The slide is engraved with the Three Suns flag, location of manufacture, and serial number.
+    .desc = A large-frame, semi-automatic 9mm offensive handgun in limited use by members of the TSE's military. Although commercially produced by We-Ya and sold as the VP78, this handgun has been produced under contract specifically for the TSE's military and designated the L189 offensive handgun. The slide is engraved with the Three Suns flag, location of manufacture, and serial number.
     .suffix = PVE, Filled, Royal
 ent-CMMagazinePistolMK80 = магазин VP78 (9 мм Squash-Head)
     .desc = { ent-CMBaseMagazinePistol.desc }

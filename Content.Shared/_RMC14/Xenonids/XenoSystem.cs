@@ -353,7 +353,7 @@ public sealed partial class XenoSystem : EntitySystem
 
     private void OnXenoGetVisMask(Entity<XenoComponent> ent, ref GetVisMaskEvent args)
     {
-        args.VisibilityMask |= (int) ent.Comp.Visibility;
+        args.VisibilityMask |= (int)ent.Comp.Visibility;
     }
 
     private void OnLeaderDisarmed(Entity<XenoComponent> ent, ref CMDisarmEvent args)
@@ -403,6 +403,18 @@ public sealed partial class XenoSystem : EntitySystem
     {
         EnsureComp<XenoComponent>(xeno);
     }
+
+    // Stories-Ordnance-Start
+    public void MakeDummyXeno(Entity<XenoComponent?> xeno)
+    {
+        if (!Resolve(xeno, ref xeno.Comp, false))
+            return;
+
+        xeno.Comp.CountedInSlots = false;
+        xeno.Comp.ContributesToVictory = false;
+        Dirty(xeno, xeno.Comp);
+    }
+    // Stories-Ordnance-End
 
     private FixedPoint2 GetWeedsHealAmount(Entity<XenoRegenComponent> xeno)
     {

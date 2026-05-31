@@ -65,7 +65,7 @@ public sealed partial class OrdnanceCasingComponent : Component
     public float MaxExplosionPower = 175f;
 
     [DataField, AutoNetworkedField]
-    public int MaxShards = 32;
+    public int MaxShards = 8;
 
     [DataField, AutoNetworkedField]
     public float MaxFireRadius = 5f;

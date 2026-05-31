@@ -1,6 +1,6 @@
 ent-RMCBaseMeleeWeapon = { "" }
     .desc = { "" }
-ent-RMCM5Bayonet = Штык-нож M5 "Ночной рейдер"
+ent-RMCM5Bayonet = штык-нож M5 "Ночной рейдер"
     .desc = Стандартный штык морской пехоты. Этот нож можно засунуть в сапоги.
 ent-RMCCombatUtilityKnifeA = 'Druzhina' Combat Utility Knife
     .desc = A heavy combat knife, designed for SPP special forces. Its heft and durability makes it popular for various uses in the field.
