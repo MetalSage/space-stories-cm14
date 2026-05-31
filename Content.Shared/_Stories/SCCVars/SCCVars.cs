@@ -195,7 +195,7 @@ public sealed class SCCVars
     /// Minimum player count required to spawn an APC.
     /// </summary>
     public static readonly CVarDef<int> RMCLowPopVehicle =
-        CVarDef.Create("rmc.vehicle.low_pop", 50, CVar.SERVERONLY);
+        CVarDef.Create("rmc.vehicle.low_pop", 100, CVar.SERVERONLY);
 
     /// <summary>
     /// Minimum player count required to spawn a Tank.

@@ -9,7 +9,7 @@
   - type: LagCompensation
   - type: Clickable
   - type: RMCIgnoreGhostInteractionLimits
-  - type: RequireProjectileTarget
+  # - type: RequireProjectileTarget # Stories-Vehicle
   - type: GridVehicleMover
     maxSpeed: 6
     acceleration: 5
@@ -50,6 +50,8 @@
         - LowImpassable
         - LargeMobLayer
         - Vehicle
+        - MobMask # Stories-Vehicle
+        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
         - Vehicle
@@ -62,6 +64,8 @@
         - MidImpassable
         - BarricadeImpassable
         - LargeMobLayer
+        - MobMask # Stories-Vehicle
+        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
   - type: Damageable
@@ -105,6 +109,12 @@
   - type: VehicleWeapons
   - type: InputMover
   - type: ItemSlots
+    slots:
+      wheel-1:
+        disableEject: true
+        whitelist:
+          components:
+          - VehicleWheelItem
   - type: ContainerContainer
     containers:
       wheel-1: !type:ContainerSlot
@@ -239,6 +249,8 @@
         - LowImpassable
         - LargeMobLayer
         - Vehicle
+        - MobMask # Stories-Vehicle
+        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
         - Vehicle
@@ -251,6 +263,8 @@
         - MidImpassable
         - BarricadeImpassable
         - LargeMobLayer
+        - MobMask # Stories-Vehicle
+        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
   - type: Damageable
@@ -295,6 +309,12 @@
   - type: VehicleWeapons
   - type: InputMover
   - type: ItemSlots
+    slots:
+      wheel-1:
+        disableEject: true
+        whitelist:
+          components:
+          - VehicleWheelItem
   - type: ContainerContainer
     containers:
       wheel-1: !type:ContainerSlot
@@ -442,9 +462,15 @@
     slots:
       secondary:
         startingItem: VehicleSPPVanTurret
+        disableEject: true
         whitelist:
           components:
           - HardpointItem
+      wheel-1:
+        disableEject: true
+        whitelist:
+          components:
+          - VehicleWheelItem
   - type: HardpointSlots
     vehicleFamily: HardpointVehicleFamilyVan
     slots:
@@ -573,6 +599,13 @@
     - offset: -1.2,-0.3
       radius: 0.7
       interiorCoords: 2.5,-0.2
+  - type: ItemSlots
+    slots:
+      wheel-1:
+        disableEject: true
+        whitelist:
+          components:
+          - VehicleWheelItem
   - type: HardpointSlots
     vehicleFamily: HardpointVehicleFamilyVan
     slots:

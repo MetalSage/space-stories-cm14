@@ -178,18 +178,6 @@
             sprite: _RMC14/Interface/tech_tree.rsi
             state: upgrade
       -
-        - name: Хамви ARC
-          description: Разблокирует Хамви в конфигурации ARC для снабжения транспортными средствами.
-          cost: 5
-          events:
-          - !type:TechUnlockVehicleEvent
-            unlock: VehicleHumveeARC
-          - !type:TechAnnounceEvent
-            author: АВТОРИЗАЦИЯ СПЕЦСРЕДСТВ АЛМАЙЕРА
-            message: Для проведения этой операции разрешено развертывание системы ARC.
-          icon:
-            sprite: _RMC14/Interface/tech_tree.rsi
-            state: humvee
         - name: Увеличение бюджета снабжения
           description: Выделяет ресурсы отделу снабжения для расходов.
           cost: 7
@@ -288,6 +276,18 @@
             sprite: _RMC14/Interface/tech_tree.rsi
             state: upgrade
       -
+        - name: Хамви ARC
+          description: Разблокирует Хамви в конфигурации ARC для снабжения транспортными средствами.
+          cost: 5
+          events:
+          - !type:TechUnlockVehicleEvent
+            unlock: VehicleHumveeARC
+          - !type:TechAnnounceEvent
+            author: АВТОРИЗАЦИЯ СПЕЦСРЕДСТВ АЛМАЙЕРА
+            message: Для проведения этой операции разрешено развертывание системы ARC.
+          icon:
+            sprite: _RMC14/Interface/tech_tree.rsi
+            state: humvee
         - name: Разбудить дополнительные войска
           description: Пробуждает дополнительных солдат для борьбы с любыми угрозами.
           cost: 6

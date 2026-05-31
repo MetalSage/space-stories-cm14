@@ -7,6 +7,9 @@
     sprite: _RMC14/Structures/Vehicles/hardpoints/humvee.rsi
   - type: Item
     size: Large
+  - type: RMCNightVisionVisible
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   parent: VehicleHumveeHardpointBase
@@ -147,7 +150,7 @@
   - type: GunUseGunOrigin
   - type: GunIgnoreContainerOwnerCollision
   - type: Gun
-    fireRate: 5 # 0.2 seconds between shots
+    fireRate: 5
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -188,7 +191,7 @@
   description: A burst-fire cannon configured for an ARC humvee turret.
   components:
   - type: Gun
-    fireRate: 5 # 0.2 seconds between shots
+    fireRate: 5
     burstFireRate: 5
     shotsPerBurst: 3
     selectedMode: Burst
@@ -305,4 +308,3 @@
     maxIntegrity: 100
   - type: HardpointVisual
     vehicleState: humveehatch_0
-

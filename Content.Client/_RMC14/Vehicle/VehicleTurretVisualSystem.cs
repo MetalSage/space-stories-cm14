@@ -9,6 +9,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
+using Content.Shared._RMC14.NightVision;
 
 namespace Content.Client._RMC14.Vehicle;
 
@@ -38,7 +39,7 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
             if (!TryComp(turretUid, out VehicleTurretComponent? turret))
                 continue;
 
-            if (!TryComputeRenderedTransform((EntityUid) turretUid,
+            if (!TryComputeRenderedTransform((EntityUid)turretUid,
                     turret,
                     out _,
                     out _,
@@ -101,31 +102,38 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
         {
             SetOverlayDepth((EntityUid)turretUid, sprite);
             var overlayState = turret.OverlayState;
+
+            // Stories-Visuals-Start
             if (!string.IsNullOrWhiteSpace(turret.OverlayRsi))
                 sprite.LayerSetState(0, overlayState, turret.OverlayRsi);
+            else if (TryComp(turretUid, out SpriteComponent? itemSprite) && itemSprite.BaseRSI != null)
+                sprite.LayerSetState(0, overlayState, itemSprite.BaseRSI.Path.ToString());
             else
                 sprite.LayerSetState(0, overlayState);
+            // Stories-Visuals-End
 
             sprite.LayerSetVisible(0, true);
             return;
         }
 
-        if (!TryComp(turretUid, out SpriteComponent? turretSprite))
+        // Stories-Visuals-Start
+        if (!TryComp(turretUid, out SpriteComponent? ts))
             return;
 
-        if (turretSprite.BaseRSI == null || !turretSprite.AllLayers.Any())
+        if (ts.BaseRSI == null || !ts.AllLayers.Any())
             return;
 
         SetOverlayDepth((EntityUid)turretUid, sprite);
-        var state = turretSprite.LayerGetState(0).ToString();
-        sprite.LayerSetRSI(0, turretSprite.BaseRSI);
+        var state = ts.LayerGetState(0).ToString();
+        sprite.LayerSetRSI(0, ts.BaseRSI);
         sprite.LayerSetState(0, state);
         sprite.LayerSetVisible(0, true);
+        // Stories-Visuals-End
     }
 
     private void SetOverlayDepth(EntityUid turretUid, SpriteComponent sprite)
     {
-        var depth = (int) DrawDepth.OverMobs;
+        var depth = (int)DrawDepth.OverMobs;
         if (HasComp<VehicleTurretAttachmentComponent>(turretUid))
             depth += 1;
 
@@ -202,7 +210,7 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
         if (normalized < 0)
             normalized += MathHelper.TwoPi;
 
-        var dir = GetDirectionalDir((float) normalized);
+        var dir = GetDirectionalDir((float)normalized);
         return baseOffset + GetDirectionalOffset(turret, dir);
     }
 

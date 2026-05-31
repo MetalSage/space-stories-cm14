@@ -32,7 +32,7 @@ public sealed partial class VehicleSupplyEntryState
         Name = string.Empty;
     }
 
-    public VehicleSupplyEntryState(string id, string name, int count)
+    public VehicleSupplyEntryState(string id, string name, int count, bool lockedByPop, bool isPurchasable)
     {
         Id = id;
         Name = name;

@@ -89,7 +89,13 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         var movementAabb = GetMovementAabb(aabb, mover);
         _intersecting.Clear();
         _lookup.GetEntitiesIntersecting(world.MapId, aabb, _intersecting, LookupFlags.Dynamic | LookupFlags.Static);
-        var hits = _intersecting;
+
+        // Stories-Vehicle-Start
+        var hits = new ValueList<EntityUid>(_intersecting.Count);
+        foreach (var e in _intersecting)
+            hits.Add(e);
+        // Stories-Vehicle-End
+
         var playedCollisionSound = false;
         var mobHits = new ValueList<EntityUid>(0);
 
@@ -285,6 +291,14 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         var isXeno = HasComp<XenoComponent>(other);
         var isVehicle = HasComp<VehicleComponent>(other);
         var isSmashable = HasComp<VehicleSmashableComponent>(other);
+
+        // Stories-Vehicle-Start
+        if (isMob && mob != null && _mobState.IsDead(other, mob))
+            return false;
+
+        if (isXeno && TryComp(other, out MobStateComponent? xenoMob) && _mobState.IsDead(other, xenoMob))
+            return false;
+        // Stories-Vehicle-End
 
         if (!isMob &&
             !isXeno &&
@@ -859,6 +873,8 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return;
 
         _stun.TryKnockdown(target, MobCollisionKnockdown, true);
+        _stun.TryStun(target, MobCollisionKnockdown, true); // Stories-Vehicle
+
         var runover = EnsureComp<VehicleRunoverComponent>(target);
         runover.Vehicle = vehicle;
         runover.Duration = MobCollisionKnockdown;
@@ -955,6 +971,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return;
 
         _stun.TryKnockdown(mob, MobCollisionKnockdown, true);
+        _stun.TryStun(mob, MobCollisionKnockdown, true); // Stories-Vehicle
 
         var runover = EnsureComp<VehicleRunoverComponent>(mob);
         runover.Vehicle = vehicle;
@@ -1194,14 +1211,14 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             var (pos, rot) = _transform.GetWorldPositionRotation(entXformComp, xformQuery);
             rot -= gridRot;
             pos = (-gridRot).RotateVec(pos - gridPos);
-            var entXform = new Transform(pos, (float) rot.Theta);
+            var entXform = new Transform(pos, (float)rot.Theta);
 
             foreach (var fixture in fixtures.Fixtures.Values)
             {
                 if (!fixture.Hard)
                     continue;
 
-                if ((fixture.CollisionLayer & (int) GridVehiclePushHardBlockMask) == 0)
+                if ((fixture.CollisionLayer & (int)GridVehiclePushHardBlockMask) == 0)
                     continue;
 
                 for (var i = 0; i < fixture.Shape.ChildCount; i++)
@@ -1297,7 +1314,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
                 if (!fixture.Hard)
                     continue;
 
-                if ((fixture.CollisionLayer & (int) CollisionGroup.Impassable) != 0)
+                if ((fixture.CollisionLayer & (int)CollisionGroup.Impassable) != 0)
                 {
                     wallLike = true;
                     for (var i = 0; i < fixture.Shape.ChildCount; i++)
@@ -1390,9 +1407,9 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
     private static bool IsNormallyMobPassable(Fixture fixture)
     {
-        const int mobMask = (int) CollisionGroup.MobMask;
-        const int mobLayer = (int) CollisionGroup.MobLayer;
-        const int vehicle = (int) CollisionGroup.Vehicle;
+        const int mobMask = (int)CollisionGroup.MobMask;
+        const int mobLayer = (int)CollisionGroup.MobLayer;
+        const int vehicle = (int)CollisionGroup.Vehicle;
 
         if (fixture.Hard && ((fixture.CollisionMask & vehicle) != 0 || (fixture.CollisionLayer & vehicle) != 0))
             return false;

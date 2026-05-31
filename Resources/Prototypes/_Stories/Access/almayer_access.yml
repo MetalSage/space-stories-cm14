@@ -1,4 +1,0 @@
-- type: accessLevel
-  id: STAccessTankCrew
-  parent: RMCBaseMarineAccess
-  name: rmc-access-tank-crew

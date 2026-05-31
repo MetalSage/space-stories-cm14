@@ -33,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Physics;
 using Content.Shared._RMC14.Map;
+using Content.Shared._RMC14.NightVision;
 
 namespace Content.Shared._RMC14.Vehicle;
 
@@ -62,6 +63,8 @@ public sealed class VehicleSystem : EntitySystem
 
     public override void Initialize()
     {
+        SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnVehicleMapInit);
+
         SubscribeLocalEvent<VehicleEnterComponent, ActivateInWorldEvent>(OnVehicleEnterActivate);
         SubscribeLocalEvent<VehicleEnterComponent, ComponentShutdown>(OnVehicleEnterShutdown);
         SubscribeLocalEvent<VehicleExitComponent, ActivateInWorldEvent>(OnVehicleExitActivate);
@@ -80,6 +83,13 @@ public sealed class VehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleInteriorOccupantComponent, MetaFlagRemoveAttemptEvent>(OnOccupantMetaFlagRemoveAttempt);
         SubscribeLocalEvent<HardpointIntegrityComponent, VehicleCanRunEvent>(OnFrameVehicleCanRun);
         SubscribeLocalEvent<RMCConstructionAttemptEvent>(OnConstructionAttempt);
+    }
+
+    private void OnVehicleMapInit(Entity<VehicleComponent> ent, ref MapInitEvent args)
+    {
+        // Stories-Vehicle-Start
+        EnsureComp<RMCNightVisionVisibleComponent>(ent);
+        // Stories-Vehicle-End
     }
 
     private void OnVehicleEnterActivate(Entity<VehicleEnterComponent> ent, ref ActivateInWorldEvent args)

@@ -9,7 +9,7 @@
   - type: LagCompensation
   - type: Clickable
   - type: RMCIgnoreGhostInteractionLimits
-  - type: RequireProjectileTarget
+  # - type: RequireProjectileTarget # Stories-Vehicle
   - type: GridVehicleMover
     maxSpeed: 6
     acceleration: 5
@@ -50,6 +50,8 @@
         - LowImpassable
         - LargeMobLayer
         - Vehicle
+        - MobMask # Stories-Vehicle
+        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
         - Vehicle
@@ -62,6 +64,8 @@
         - MidImpassable
         - BarricadeImpassable
         - LargeMobLayer
+        - MobMask # Stories-Vehicle
+        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
   - type: InteractionOutline
@@ -116,8 +120,24 @@
   - type: InputMover
   - type: ItemSlots
     slots:
+      turret:
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
+      roof:
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
+      front:
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
       wheel-1:
         startingItem: VehicleHumveeWheel
+        disableEject: true
         whitelist:
           components:
           - VehicleWheelItem
@@ -177,9 +197,26 @@
     slots:
       turret:
         startingItem: VehicleHumveeTurretArmed
+        disableEject: true
         whitelist:
           components:
           - HardpointItem
+      roof:
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
+      front:
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
+      wheel-1:
+        startingItem: VehicleHumveeWheel
+        disableEject: true
+        whitelist:
+          components:
+          - VehicleWheelItem
   - type: Damageable
     damageContainer: StructuralMarine
     damageModifierSet: StructuralMarine
@@ -334,9 +371,26 @@
     slots:
       turret:
         startingItem: VehicleHumveeARCTurret
+        disableEject: true
         whitelist:
           components:
           - HardpointItem
+      roof:
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
+      front:
+        disableEject: true
+        whitelist:
+          components:
+          - HardpointItem
+      wheel-1:
+        startingItem: VehicleHumveeWheel
+        disableEject: true
+        whitelist:
+          components:
+          - VehicleWheelItem
   - type: Damageable
     damageContainer: StructuralMarine
     damageModifierSet: VehicleFrameARC

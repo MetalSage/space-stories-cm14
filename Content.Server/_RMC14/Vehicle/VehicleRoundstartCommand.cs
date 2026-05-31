@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Intel.Tech;
 using Content.Shared.Administration;
 using Content.Shared.Roles;
@@ -11,6 +10,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Syntax;
+using Content.Shared._Stories.SCCVars;
 
 namespace Content.Server._RMC14.Vehicle;
 
@@ -40,7 +40,8 @@ public sealed class VehicleRoundstartCommand : ToolshedCommand
 
     private void TestInternal(IInvocationContext ctx, int totalPlayers)
     {
-        var threshold = _config.GetCVar(RMCCVars.RMCVehicleRoundstartThresholdPlayers);
+        // Stories-Vehicle-Start
+        var threshold = _config.GetCVar(SCCVars.RMCLowPopVehicle);
         var crewmanSlots = totalPlayers >= threshold ? 2 : 0;
         var stationJobs = Sys<StationJobsSystem>();
         var tech = Sys<TechSystem>();
@@ -57,20 +58,11 @@ public sealed class VehicleRoundstartCommand : ToolshedCommand
             stationsUpdated++;
         }
 
-        var tankReady = totalPlayers >= threshold;
+        var tankReady = totalPlayers >= _config.GetCVar(SCCVars.RMCHighPopVehicle);
         tech.SetVehicleUnlockOptionDisabled(VehicleHumveeArcUnlock, tankReady);
+        // Stories-Vehicle-End
 
-        string tankResult;
-        if (tankReady)
-        {
-            tankResult = vehicleSupply.DebugEnsureVehicleOnAnyLift(VehicleTankUnlock, true, out var reason)
-                ? "ensured on vehicle lift"
-                : reason ?? "failed to ensure on vehicle lift";
-        }
-        else
-        {
-            tankResult = "not applied below threshold";
-        }
+        string tankResult = "not applied below threshold";
 
         ctx.WriteLine($"Vehicle roundstart test: players={totalPlayers}, threshold={threshold}");
         ctx.WriteLine($"CMVehicleCrewman slots set to {crewmanSlots} on {stationsUpdated} station(s).");

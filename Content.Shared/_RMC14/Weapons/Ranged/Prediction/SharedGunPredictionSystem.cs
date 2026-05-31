@@ -38,6 +38,12 @@ public abstract class SharedGunPredictionSystem : EntitySystem
             return null;
 
         var shootCoordinates = GetCoordinates(coordinates);
+
+        // Stories-Vehicle-Start
+        if (!shootCoordinates.IsValid(EntityManager))
+            return null;
+        // Stories-Vehicle-End
+
         var targetUid = GetEntity(target);
         if (targetUid is { } clickedTarget)
         {

@@ -9,7 +9,7 @@
   - type: LagCompensation
   - type: Clickable
   - type: RMCIgnoreGhostInteractionLimits
-  - type: RequireProjectileTarget
+  # - type: RequireProjectileTarget # Stories-Vehicle
   - type: GridVehicleMover
     maxSpeed: 5
     acceleration: 4
@@ -40,7 +40,7 @@
       world:
         shape:
           !type:PhysShapeAabb
-          bounds: -1,-1.7,1,1.7
+          bounds: -1.25,-1.7,1.25,1.7 # Stories-Vehicle
         density: 1200
         mask:
         - Impassable
@@ -48,18 +48,22 @@
         - LowImpassable
         - LargeMobLayer
         - Vehicle
+        - MobMask # Stories-Vehicle
+        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
         - Vehicle
       mob:
         shape:
           !type:PhysShapeAabb
-          bounds: -1,-1.7,1,1.7
+          bounds: -1.25,-1.7,1.25,1.7 # Stories-Vehicle
         density: 1200
         mask:
         - MidImpassable
         - BarricadeImpassable
         - LargeMobLayer
+        - MobMask # Stories-Vehicle
+        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
   - type: Damageable
@@ -134,22 +138,22 @@
         whitelist:
           components:
           - VehiclePortGun
-      primary: # Stories-Vehicle
+      primary:
         disableEject: true
         whitelist:
           components:
           - HardpointItem
-      secondary: # Stories-Vehicle
+      secondary:
         disableEject: true
         whitelist:
           components:
           - HardpointItem
-      support: # Stories-Vehicle
+      support:
         disableEject: true
         whitelist:
           components:
           - HardpointItem
-      wheel-1: # Stories-Vehicle
+      wheel-1:
         disableEject: true
         whitelist:
           components:

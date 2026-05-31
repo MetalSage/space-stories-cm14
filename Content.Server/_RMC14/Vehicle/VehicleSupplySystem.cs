@@ -1,6 +1,9 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Chat.Systems;
+using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
+using Content.Server.Station.Events;
 using Content.Shared._RMC14.Intel;
 using Content.Shared._RMC14.Intel.Tech;
 using Content.Shared._RMC14.Vehicle;
@@ -48,6 +51,7 @@ public sealed class VehicleSupplySystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly FixtureSystem _fixtures = default!;
     [Dependency] private readonly SharedMarineAnnounceSystem _announce = default!;
+    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
 
     private readonly Dictionary<string, List<HardpointItemInfo>> _hardpointItemsByType = new();
     private readonly Dictionary<string, string> _hardpointTypeByProto = new();
@@ -78,6 +82,7 @@ public sealed class VehicleSupplySystem : EntitySystem
         SubscribeLocalEvent<VehicleSupplyLiftComponent, MapInitEvent>(OnLiftMapInit);
         SubscribeLocalEvent<ActorComponent, RMCAutomatedVendedUserEvent>(OnAutomatedVendorVended);
         SubscribeLocalEvent<VehicleSupplyLiftComponent, StepTriggerAttemptEvent>(OnStepTriggerAttempt);
+        SubscribeLocalEvent<StationPostInitEvent>(OnStationPostInit);
 
         Subs.BuiEvents<VehicleSupplyConsoleComponent>(VehicleSupplyUIKey.Key, subs =>
         {
@@ -126,23 +131,24 @@ public sealed class VehicleSupplySystem : EntitySystem
         return lift.Stored.TryGetValue(key, out var count) ? count : 0;
     }
 
+    // Stories-Vehicle-Start
     private int GetVendorAvailableVehicleCount(Entity<VehicleSupplyLiftComponent> lift, string key)
     {
         var count = GetStoredCount(lift.Comp, key);
+        var isDeployed = lift.Comp.Deployed.Contains(key);
+        var isActive = !string.IsNullOrWhiteSpace(lift.Comp.ActiveVehicleId) && Normalize(lift.Comp.ActiveVehicleId) == key;
+        var isPending = !string.IsNullOrWhiteSpace(lift.Comp.PendingVehicle) && Normalize(lift.Comp.PendingVehicle) == key;
 
-        if (!string.IsNullOrWhiteSpace(lift.Comp.ActiveVehicleId) && Normalize(lift.Comp.ActiveVehicleId) == key)
-        {
-            if (lift.Comp.ActiveVehicle != null && IsOnLift(lift, lift.Comp.ActiveVehicle.Value))
-                count++;
-        }
-
-        if (!string.IsNullOrWhiteSpace(lift.Comp.PendingVehicle) && Normalize(lift.Comp.PendingVehicle) == key)
-        {
+        if (isDeployed)
             count++;
-        }
+        else if (isActive)
+            count++;
+        else if (isPending)
+            count++;
 
         return count;
     }
+    // Stories-Vehicle-End
 
     private static void AddStored(VehicleSupplyLiftComponent lift, string key, int amount = 1)
     {
@@ -318,6 +324,11 @@ public sealed class VehicleSupplySystem : EntitySystem
             tech.Comp.Unlocked.Add(unlock);
             Dirty(tech);
         }
+
+        // Stories-Vehicle-Start
+        if (IsHeavyArmor(unlock))
+            return;
+        // Stories-Vehicle-End
 
         var liftQuery = EntityQueryEnumerator<VehicleSupplyLiftComponent>();
         while (liftQuery.MoveNext(out var uid, out var lift))
@@ -546,7 +557,12 @@ public sealed class VehicleSupplySystem : EntitySystem
                 var isHeavy = IsHeavyArmor(key);
                 var valid = false;
 
-                if (isHeavy)
+                // Stories-Vehicle-Start
+                if (GetStoredCount(comp, key) > 0)
+                {
+                    valid = true;
+                }
+                else if (isHeavy)
                 {
                     valid = true;
                 }
@@ -556,6 +572,7 @@ public sealed class VehicleSupplySystem : EntitySystem
                     if (IsEntryUnlocked(entry, unlocked))
                         valid = true;
                 }
+                // Stories-Vehicle-End
 
                 if (valid)
                 {
@@ -730,6 +747,24 @@ public sealed class VehicleSupplySystem : EntitySystem
         }
     }
 
+    // Stories-Vehicle-Start
+    private void OnStationPostInit(ref StationPostInitEvent ev)
+    {
+        var threshold = _cfg.GetCVar(SCCVars.RMCLowPopVehicle);
+        var totalPlayers = _player.PlayerCount;
+        var crewmanSlots = totalPlayers >= threshold ? 2 : 0;
+
+        var query = EntityQueryEnumerator<StationJobsComponent>();
+        while (query.MoveNext(out var stationId, out var jobs))
+        {
+            if (!_stationJobs.TryGetJobSlot(stationId, "CMVehicleCrewman", out _, jobs))
+                continue;
+
+            _stationJobs.TrySetJobSlot(stationId, "CMVehicleCrewman", crewmanSlots, stationJobs: jobs);
+        }
+    }
+    // Stories-Vehicle-End
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -740,6 +775,11 @@ public sealed class VehicleSupplySystem : EntitySystem
         {
             if (CleanupDestroyedActive((uid, lift)))
                 updateUi = true;
+
+            // Stories-Vehicle-Start
+            if (CleanupDrivenOffActive((uid, lift)))
+                updateUi = true;
+            // Stories-Vehicle-End
 
             if (ProcessLift((uid, lift)))
                 updateUi = true;
@@ -768,6 +808,25 @@ public sealed class VehicleSupplySystem : EntitySystem
 
         return false;
     }
+
+    // Stories-Vehicle-Start
+    private bool CleanupDrivenOffActive(Entity<VehicleSupplyLiftComponent> lift)
+    {
+        var comp = lift.Comp;
+        if (comp.ActiveVehicle == null)
+            return false;
+
+        var active = comp.ActiveVehicle.Value;
+        if (Exists(active) && !IsOnLift(lift, active))
+        {
+            comp.ActiveVehicle = null;
+            comp.ActiveVehicleId = string.Empty;
+            return true;
+        }
+
+        return false;
+    }
+    // Stories-Vehicle-End
 
     private bool ProcessLift(Entity<VehicleSupplyLiftComponent> lift)
     {
@@ -967,41 +1026,84 @@ public sealed class VehicleSupplySystem : EntitySystem
         var lowPop = _cfg.GetCVar(SCCVars.RMCLowPopVehicle);
         var highPop = _cfg.GetCVar(SCCVars.RMCHighPopVehicle);
 
-        // Stories-Start
-        if (hasLift && !lift.Comp.HasDispensedArmor)
+        // Stories-Vehicle-Start
+        if (hasLift)
         {
-            var options = new List<string>();
+            var addedKeys = new HashSet<string>();
 
-            if (sessionCount >= lowPop)
+            if (!lift.Comp.HasDispensedArmor)
             {
-                options.Add("VehicleAPC");
-                options.Add("VehicleAPCMed");
-                options.Add("VehicleAPCCommand");
-            }
-            if (sessionCount >= highPop)
-            {
-                options.Add("VehicleTank");
+                var options = new List<string>();
+
+                if (sessionCount >= lowPop)
+                {
+                    options.Add("VehicleAPC");
+                    options.Add("VehicleAPCMed");
+                    options.Add("VehicleAPCCommand");
+                }
+                if (sessionCount >= highPop)
+                {
+                    options.Add("VehicleTank");
+                }
+
+                if (options.Count > 0)
+                {
+                    foreach (var opt in options)
+                    {
+                        string name = opt;
+                        if (_prototypes.TryIndex<EntityPrototype>(opt, out var proto))
+                            name = proto.Name;
+
+                        available.Add(new VehicleSupplyEntryState(opt, name, 0, false, true));
+                        addedKeys.Add(Normalize(opt));
+                    }
+                }
+                else
+                {
+                    available.Add(new VehicleSupplyEntryState("", Loc.GetString("rmc-vehicle-supply-locked-pop"), 0, true, true));
+                }
             }
 
-            foreach (var opt in options)
-            {
-                string name = opt;
-                if (_prototypes.TryIndex<EntityPrototype>(opt, out var proto))
-                    name = proto.Name;
-
-                available.Add(new VehicleSupplyEntryState(opt, name, 0, false, true));
-            }
-        }
-        else if (hasLift)
-        {
             foreach (var entry in console.Vehicles)
             {
                 var key = Normalize(entry.Vehicle.Id);
                 var count = GetStoredCount(lift.Comp, key);
+                var isActiveOrPending = Normalize(lift.Comp.ActiveVehicleId) == key || Normalize(lift.Comp.PendingVehicle) == key;
 
-                if (count > 0 || Normalize(lift.Comp.ActiveVehicleId) == key || Normalize(lift.Comp.PendingVehicle) == key)
+                if (!addedKeys.Contains(key) && (count > 0 || isActiveOrPending))
                 {
-                    available.Add(new VehicleSupplyEntryState(entry.Vehicle.Id, GetEntryName(entry), count, false, false));
+                    available.Add(new VehicleSupplyEntryState(entry.Vehicle.Id, GetEntryName(entry), count > 0 ? count : 1, false, false));
+                    addedKeys.Add(key);
+                }
+            }
+
+            var allTrackedKeys = new HashSet<string>(lift.Comp.Stored.Keys);
+            if (!string.IsNullOrWhiteSpace(lift.Comp.ActiveVehicleId)) allTrackedKeys.Add(Normalize(lift.Comp.ActiveVehicleId));
+            if (!string.IsNullOrWhiteSpace(lift.Comp.PendingVehicle)) allTrackedKeys.Add(Normalize(lift.Comp.PendingVehicle));
+
+            foreach (var key in allTrackedKeys)
+            {
+                if (addedKeys.Contains(key)) continue;
+
+                var count = GetStoredCount(lift.Comp, key);
+                var isActiveOrPending = Normalize(lift.Comp.ActiveVehicleId) == key || Normalize(lift.Comp.PendingVehicle) == key;
+
+                if (count > 0 || isActiveOrPending)
+                {
+                    string originalId = key;
+                    string name = key;
+                    foreach (var proto in _prototypes.EnumeratePrototypes<EntityPrototype>())
+                    {
+                        if (Normalize(proto.ID) == key)
+                        {
+                            originalId = proto.ID;
+                            name = proto.Name;
+                            break;
+                        }
+                    }
+
+                    available.Add(new VehicleSupplyEntryState(originalId, name, count, false, false));
+                    addedKeys.Add(key);
                 }
             }
         }
@@ -1013,7 +1115,7 @@ public sealed class VehicleSupplySystem : EntitySystem
                     available.Add(new VehicleSupplyEntryState(entry.Vehicle.Id, GetEntryName(entry), 1, false, false));
             }
         }
-        // Stories-End
+        // Stories-Vehicle-End
 
         console.Ui = new VehicleSupplyUiState(mode, busy, activeId, selectedId, selectedCopyIndex, preview, available);
         Dirty(uid, console);
@@ -1032,17 +1134,17 @@ public sealed class VehicleSupplySystem : EntitySystem
     {
         return type switch
         {
-            "turret" => 0,
-            "primary" => 1,
-            "cannon" => 1,
-            "secondary" => 2,
-            "launcher" => 2,
-            "armor" => 3,
-            "frontattachment" => 4,
-            "roofattachment" => 5,
-            "support" => 6,
-            "supportattachment" => 6,
-            "wheel" => 7,
+            "HardpointTypeTurret" => 0,
+            "HardpointTypePrimary" => 1,
+            "HardpointTypeCannon" => 1,
+            "HardpointTypeSecondary" => 2,
+            "HardpointTypeLauncher" => 2,
+            "HardpointTypeArmor" => 3,
+            "HardpointTypeFrontAttachment" => 4,
+            "HardpointTypeRoofAttachment" => 5,
+            "HardpointTypeSupport" => 6,
+            "HardpointTypeSupportAttachment" => 6,
+            "HardpointTypeWheel" => 7,
             _ => 10
         };
     }
@@ -1114,11 +1216,12 @@ public sealed class VehicleSupplySystem : EntitySystem
                 }
                 else if (_hardpointTypeByProto.TryGetValue(Normalize(hardpoint), out var hType))
                 {
-                    var lowerType = hType.ToLowerInvariant();
+                    // Stories-Vehicle-Start
                     sharedKey = hType;
-                    sectionName = Loc.GetString($"rmc-hardpoint-category-{lowerType}");
-                    sectionOrder = GetHardpointTypeOrder(lowerType);
+                    sectionName = Loc.GetString($"rmc-hardpoint-category-{hType}");
+                    sectionOrder = GetHardpointTypeOrder(hType);
                     order = 0;
+                    // Stories-Vehicle-End
                 }
 
                 hardpointEntries.Add(new VendorHardpointEntry(
@@ -1250,7 +1353,7 @@ public sealed class VehicleSupplySystem : EntitySystem
             vendor.RemainingGroupAmounts.Remove(key);
         }
 
-        sections = sections.OrderBy(s => GetHardpointTypeOrder(s.Name.ToLowerInvariant())).ToList();
+        sections = sections.OrderBy(s => GetHardpointTypeOrder(s.Name.ToLowerInvariant())).ToList(); // fallback sort
 
         _vendor.SetSections((uid, automated), sections);
     }
@@ -1272,10 +1375,12 @@ public sealed class VehicleSupplySystem : EntitySystem
         var hardpointKey = Normalize(hardpointId);
         if (hardpointKey == "vehicletanksnowplow")
         {
+            // Stories-Vehicle-Start
             categoryKey = "tank-general";
-            categoryLabel = "General";
+            categoryLabel = Loc.GetString("rmc-hardpoint-category-general");
             categoryOrder = 5;
             return true;
+            // Stories-Vehicle-End
         }
 
         if (!_hardpointTypeByProto.TryGetValue(Normalize(hardpointId), out var hardpointType))
@@ -1298,16 +1403,18 @@ public sealed class VehicleSupplySystem : EntitySystem
                 categoryLabel = Loc.GetString("rmc-hardpoint-category-armor");
                 categoryOrder = 2;
                 return true;
+            // Stories-Vehicle-Start
             case "hardpointtypesupport":
                 categoryKey = "tank-support";
-                categoryLabel = "Support";
+                categoryLabel = Loc.GetString("rmc-hardpoint-category-support");
                 categoryOrder = 3;
                 return true;
             case "hardpointtypewheel":
                 categoryKey = "tank-treads";
-                categoryLabel = "Treads";
+                categoryLabel = Loc.GetString("rmc-hardpoint-category-wheel");
                 categoryOrder = 4;
                 return true;
+            // Stories-Vehicle-End
             default:
                 return false;
         }
@@ -1868,6 +1975,13 @@ public sealed class VehicleSupplySystem : EntitySystem
 
     private static bool IsEntryUnlocked(VehicleSupplyEntry entry, HashSet<string> unlocked)
     {
+        var key = Normalize(entry.Vehicle.Id);
+        if (key.Contains("humvee"))
+        {
+            var unlockKey = !string.IsNullOrWhiteSpace(entry.Unlock) ? Normalize(entry.Unlock) : key;
+            return unlocked.Contains(unlockKey);
+        }
+
         if (string.IsNullOrWhiteSpace(entry.Unlock))
             return true;
 

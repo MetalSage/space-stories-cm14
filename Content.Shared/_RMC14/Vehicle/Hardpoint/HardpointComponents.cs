@@ -221,6 +221,13 @@ public sealed partial class HardpointRepairDoAfterEvent : DoAfterEvent
     {
         return new HardpointRepairDoAfterEvent();
     }
+
+    // Stories-Vehicle-Start
+    public override bool IsDuplicate(DoAfterEvent other)
+    {
+        return other is HardpointRepairDoAfterEvent;
+    }
+    // Stories-Vehicle-End
 }
 
 public readonly record struct HardpointSlotsChangedEvent(EntityUid Vehicle);

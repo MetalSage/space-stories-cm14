@@ -53,7 +53,10 @@ public sealed class VehicleDeploySystem : EntitySystem
         SubscribeLocalEvent<VehicleDeployActionComponent, ComponentShutdown>(OnDeployActionShutdown);
         SubscribeLocalEvent<VehicleDeployableComponent, VehicleCanRunEvent>(OnVehicleCanRun);
         SubscribeLocalEvent<HardpointSlotsChangedEvent>(OnHardpointSlotsChanged);
+
+        // Stories-Vehicle-Start
         SubscribeLocalEvent<HardpointItemComponent, AttemptShootEvent>(OnDeployableAttemptShoot);
+        // Stories-Vehicle-End
     }
 
     private void OnDriverStrapped(Entity<StrapComponent> ent, ref StrappedEvent args)
@@ -293,15 +296,17 @@ public sealed class VehicleDeploySystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (ent.Comp.HardpointType != "HardpointTypeCannon")
-            return;
-
-        if (!TryGetVehicleFromContained(ent.Owner, out var vehicle))
+        // Stories-Vehicle-Start
+        if (!_topology.TryGetVehicle(ent.Owner, out var vehicle))
         {
             args.Cancelled = true;
-            args.ResetCooldown = true;
+            args.Message = Loc.GetString("rmc-hardpoint-error-no-hardpoint");
             return;
         }
+        // Stories-Vehicle-End
+
+        if (ent.Comp.HardpointType != "HardpointTypeCannon")
+            return;
 
         if (!TryComp(vehicle, out VehicleDeployableComponent? deployable))
             return;

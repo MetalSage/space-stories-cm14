@@ -44,7 +44,6 @@
   - RMCAccessDatabase
   - RMCAccessFieldDoctor
   - RMCAccessSeniorCommand
-  - STAccessTankCrew # Stories-Vehicle
 
 - type: accessGroup
   id: CO
@@ -92,7 +91,6 @@
   - RMCAccessDatabase
   - RMCAccessFieldDoctor
   - RMCAccessSeniorCommand
-  - STAccessTankCrew # Stories-Vehicle
 
 # all ship-side access that is not CO
 # SEA uses this.
@@ -139,7 +137,6 @@
   - RMCAccessDatabase
   - RMCAccessFieldDoctor
   - RMCAccessSeniorCommand
-  - STAccessTankCrew # Stories-Vehicle
 
 - type: accessGroup
   id: SEA
@@ -183,7 +180,6 @@
   - RMCAccessDatabase
   - RMCAccessFieldDoctor
   - RMCAccessSeniorCommand
-  - STAccessTankCrew # Stories-Vehicle
 
 - type: accessGroup
   id: SO

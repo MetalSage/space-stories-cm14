@@ -5,6 +5,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Destructible;
 using Content.Shared.Doors.Systems;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
@@ -55,12 +56,12 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
     private EntityQuery<FixturesComponent> fixtureQ;
 
     private const float Clearance = PhysicsConstants.PolygonRadius * 0.75f;
-    private const double MobCollisionDamage = 8;
-    private static readonly TimeSpan MobCollisionKnockdown = TimeSpan.FromSeconds(1.5);
+    private const double MobCollisionDamage = 25; // Stories-Vehicle
+    private static readonly TimeSpan MobCollisionKnockdown = TimeSpan.FromSeconds(2); // Stories-Vehicle
     private static readonly TimeSpan MobCollisionCooldown = TimeSpan.FromSeconds(0.75);
     private static readonly ProtoId<DamageTypePrototype> CollisionDamageType = "Blunt";
     private const int GridVehicleStaticBlockerMask =
-        (int) (CollisionGroup.Impassable |
+        (int)(CollisionGroup.Impassable |
                CollisionGroup.HighImpassable |
                CollisionGroup.LowImpassable |
                CollisionGroup.MidImpassable |
@@ -217,7 +218,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         if (!force && ent.Comp.SyncedGrid == grid)
             return false;
 
-        var coords = xform.Coordinates.WithEntityId(grid, _transform, EntityManager);
+        var coords = _transform.WithEntityId(xform.Coordinates, grid);
         var tile = _map.TileIndicesFor(grid, gridComp, coords);
 
         ent.Comp.SyncedGrid = grid;
@@ -272,6 +273,14 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
+
+        // Stories-Vehicle-Start
+        if (TryComp(args.OtherEntity, out MobStateComponent? mob) && _mobState.IsDead(args.OtherEntity, mob))
+        {
+            args.Cancelled = true;
+            return;
+        }
+        // Stories-Vehicle-End
 
         if (args.OtherBody.BodyType != BodyType.Static)
             return;
@@ -361,7 +370,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return;
 
         var coords = new EntityCoordinates(grid, mover.Position);
-        var target = coords.WithEntityId(xform.ParentUid, _transform, EntityManager).Position;
+        var target = _transform.WithEntityId(coords, xform.ParentUid).Position;
         var current = xform.LocalPosition;
         var delta = target - current;
 

@@ -11,6 +11,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Graphics.RSI;
 using Robust.Shared.IoC;
+using Robust.Shared.Localization;
 using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 
@@ -71,7 +72,7 @@ public sealed class VehicleSupplyWindowController : IDisposable
 
         if (preview == null || string.IsNullOrWhiteSpace(preview.VehicleId))
         {
-            _window.PreviewTitle.Text = "Vehicle Preview";
+            _window.PreviewTitle.Text = Loc.GetString("rmc-vehicle-supply-preview-selected"); // Stories-Vehicle
             _window.VehiclePreview.SetPrototype(null);
             _previewLayers.Clear();
             _previewDirty = false;

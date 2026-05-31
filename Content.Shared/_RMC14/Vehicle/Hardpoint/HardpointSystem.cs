@@ -81,7 +81,21 @@ public sealed partial class HardpointSystem : EntitySystem
             before: new[] { typeof(ItemSlotsSystem) });
         SubscribeLocalEvent<HardpointIntegrityComponent, ExaminedEvent>(OnHardpointExamined);
         SubscribeLocalEvent<HardpointIntegrityComponent, HardpointRepairDoAfterEvent>(OnHardpointRepairDoAfter);
+
+        // Stories-Vehicle-Start
+        SubscribeLocalEvent<HardpointItemComponent, DamageModifyEvent>(OnHardpointDamageModify);
+        // Stories-Vehicle-End
     }
+
+    // Stories-Vehicle-Start
+    private void OnHardpointDamageModify(Entity<HardpointItemComponent> ent, ref DamageModifyEvent args)
+    {
+        if (args.Damage.DamageDict.ContainsKey("Caustic"))
+        {
+            args.Damage.DamageDict["Caustic"] = FixedPoint2.Zero;
+        }
+    }
+    // Stories-Vehicle-End
 
     private void OnSlotsInit(Entity<HardpointSlotsComponent> ent, ref ComponentInit args)
     {
@@ -1054,12 +1068,16 @@ public sealed partial class HardpointSystem : EntitySystem
 
         ent.Comp.Repairing = true;
 
+        // Stories-Vehicle-Start
         var doAfter = new DoAfterArgs(EntityManager, args.User, repairTime, new HardpointRepairDoAfterEvent(), ent.Owner, ent.Owner, used)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = true,
+            CancelDuplicate = true,
+            DuplicateCondition = DuplicateConditions.SameEvent,
         };
+        // Stories-Vehicle-End
 
         if (!_doAfter.TryStartDoAfter(doAfter))
         {
