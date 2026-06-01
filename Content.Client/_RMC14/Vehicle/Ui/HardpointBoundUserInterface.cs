@@ -21,12 +21,12 @@ public sealed class HardpointBoundUserInterface : BoundUserInterface
         _menu.OnClose += Close;
         _menu.VehicleEntity = Owner;
 
-        var metaQuery = EntMan.GetEntityQuery<MetaDataComponent>();
-        if (metaQuery.TryGetComponent(Owner, out var metadata))
+        if (EntMan.TryGetComponent(Owner, out MetaDataComponent? metadata))
             _menu.Title = metadata.EntityName;
 
         _menu.OnRemove += slotId => SendMessage(new HardpointRemoveMessage(slotId));
         _menu.OpenCentered();
+        Refresh();
     }
 
     protected override void Dispose(bool disposing)
@@ -43,13 +43,15 @@ public sealed class HardpointBoundUserInterface : BoundUserInterface
         _menu = null;
     }
 
-    protected override void UpdateState(BoundUserInterfaceState state)
+    public void Refresh()
     {
-        base.UpdateState(state);
-
-        if (state is not HardpointBoundUserInterfaceState hardpointState)
+        if (_menu is not { IsOpen: true })
             return;
 
+        if (!EntMan.TryGetComponent(Owner, out HardpointSlotsComponent? hardpoints))
+            return;
+
+        var hardpointState = hardpoints.Ui;
         _menu?.Update(
             hardpointState.Hardpoints,
             hardpointState.FrameIntegrity,

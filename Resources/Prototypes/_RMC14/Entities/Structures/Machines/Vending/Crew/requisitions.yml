@@ -32,7 +32,7 @@
       sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/requisitions_wall/guns.rsi
       state: vend
     sections:
-    - name: Primary firearms
+    - name: Основное оружие
       entries:
       - id: WeaponShotgunM42A2
         amount: 30
@@ -42,7 +42,7 @@
         amount: 60
       - id: WeaponRifleM4SPR
         amount: 20
-    - name: Sidearms
+    - name: Вторичное оружие
       entries:
       - id: RMCWeaponPistolM77Empty
         amount: 50
@@ -54,7 +54,7 @@
         amount: 50
       - id: RMCWeaponPistolM82FEmpty
         amount: 20
-    - name: Restricted Firearms
+    - name: Ограниченное оружие
       entries:
       - id: RMCGunCasePistolMK80
         amount: 4
@@ -78,9 +78,7 @@
         amount: 3
       - id: RMCGunCasePistolM13
         amount: 3
-      - id: RMCXM51Case
-        amount: 3
-    - name: Explosives
+    - name: Взрывчатка
       entries:
       - id: CMGrenadeFragOld
         amount: 2
@@ -90,7 +88,7 @@
         amount: 25
       - id: RMCGrenadeIncendiary
         amount: 4
-      - id: RMCPacketGrenadeWhitePhosphorusCompoundFilled
+      - id: RMCGrenadeWhitePhosphorusCompound
         amount: 4
       - id: CMGrenadeSmoke
         amount: 5
@@ -114,7 +112,7 @@
         amount: 2
       - id: RMCRocketM5510Brute
         amount: 3
-    - name: Webbings
+    - name: Разгрузки
       entries:
       - id: CMWebbingBrown
         amount: 2
@@ -140,7 +138,7 @@
         amount: 1
       - id: RMCOuterClothingExternalWebbing
         amount: 2
-    - name: Backpacks
+    - name: Рюкзаки
       entries:
       - id: CMBackpackMarine
         amount: 15
@@ -162,7 +160,7 @@
         amount: 20
       - id: RMCSatchelGrenadeSpec
         amount: 2
-    - name: Belts
+    - name: Пояса
       entries:
       - id: RMCBeltUtilityGeneral
         amount: 2
@@ -173,7 +171,7 @@
       - id: RMCBeltHolsterM13
         amount: 10
       - id: CMBeltKnifeFilled
-        name: M276 Knife Rig (Full)
+        name: пояс M276 для ножей (заполненный)
         amount: 5
       - id: RMCBeltHolsterSMG
         amount: 5
@@ -189,7 +187,7 @@
         amount: 10
       - id: CMBeltMortar
         amount: 2
-    - name: Pouches
+    - name: Подсумки
       entries:
       - id: RMCPouchAutoinjector
         amount: 1
@@ -198,12 +196,12 @@
       - id: RMCPouchFirstAidInjectors
         amount: 5
       - id: RMCPouchFirstResponder
-        name: First Responder Pouch (Empty)
+        name: сумка для спасателя (пустая)
         amount: 2
       - id: RMCPouchSyringe
         amount: 2
       - id: RMCPouchToolsFill
-        name: Tools Pouch (Full)
+        name: подсумок для инструментов (заполненный)
         amount: 2
       - id: RMCPouchConstruction
         amount: 2
@@ -212,17 +210,17 @@
       - id: RMCPouchExplosive
         amount: 2
       - id: RMCPouchFlareFilled
-        name: flare pouch (Full)
+        name: подсумок для фаеров (заполненный)
         amount: 5
       - id: RMCPouchDocumentSmall
         amount: 2
       - id: RMCPouchSling
         amount: 2
       - id: RMCPouchMacheteFilled
-        name: machete pouch (Full)
+        name: подсумок для мачете (заполненный)
         amount: 1
       - id: RMCPouchBayonetFill
-        name: Bayonet Sheath (Full)
+        name: ножны для штыка (заполненные)
         amount: 2
       - id: RMCPouchGeneralMedium
         amount: 2
@@ -242,7 +240,7 @@
         amount: 1
       - id: RMCPouchShotgunLarge
         amount: 1
-    - name: Essential Devices
+    - name: Важные устройства
       entries:
       - id: RMCMotionDetector
         amount: 4
@@ -260,7 +258,7 @@
         amount: 4
       #- id: Spare PDT/L Battle Buddy Kit
       #  amount: 4
-    - name: Flare and Light
+    - name: Освещение
       entries:
       - id: RMCFlashlight # Combat Flashlight
         amount: 8
@@ -268,7 +266,7 @@
         amount: 2
       - id: CMPackFlare
         amount: 10
-    - name: Miscellaneous
+    - name: Разное
       entries:
       - id: CMEntrenchingTool
         amount: 4
@@ -288,7 +286,7 @@
         amount: 10
       - id: RMCMagazineSMGNailgun
         amount: 4
-    - name: Pamphlets
+    - name: Брошюры
       entries:
       - id: CMPamphletJTAC
         amount: 1
@@ -296,61 +294,54 @@
         amount: 1
       - id: CMPamphletPowerloader
         amount: 1
-    - name: Explosive Boxes
+    - name: Коробки со взрывчаткой
       hasBoxes: true
       entries:
       - id: CMPacketGrenadeFragOldFilled
-        name: M15 fragmentation grenade packet
         box: CMGrenadeFragOld
         boxAmount: 3
         boxSlots: 3
       - id: RMCBoxClaymoreMineFilled
-        name: M20 Claymore anti-personnel mine box
         box: RMCExplosiveClaymoreMine
         boxAmount: 5
         boxSlots: 5
       - id: CMPacketGrenadeHighExplosiveFilled
-        name: 30mm HEDP grenade packet
         box: CMGrenadeHighExplosive
         boxAmount: 3
         boxSlots: 3
       - id: RMCPacketGrenadeIncendiaryFilled
-        name: 30mm HIDP grenade packet
         box: RMCGrenadeIncendiary
         boxAmount: 3
         boxSlots: 3
+      - id: RMCPacketGrenadeWhitePhosphorusCompoundFilled
+        box: RMCGrenadeWhitePhosphorusCompound
+        boxAmount: 3
+        boxSlots: 3
       - id: RMCPacketGrenadeSmokeFilled
-        name: 30mm HSDP grenade packet
         box: CMGrenadeSmoke
         boxAmount: 3
         boxSlots: 3
       - id: RMCPacketGrenadeM74AGMFFilled
-        name: M74 AGM-F grenade packet
         box: RMC40MMGrenadeM74AGMF
         boxAmount: 3
         boxSlots: 3
       - id: RMCPacketGrenadeM74AGMIFilled
-        name: M74 AGM-I grenade packet
         box: RMC40MMGrenadeM74AGMI
         boxAmount: 3
         boxSlots: 3
       - id: RMCPacketGrenadeM74AGMSFilled
-        name: M74 AGM-S grenade packet
         box: RMC40MMGrenadeM74AGMS
         boxAmount: 3
         boxSlots: 3
       - id: RMCPacketGrenadeM74AGMSStarShellFilled
-        name: M74 AGM-S Starshell grenade packet
         box: RMCStarShellM74AGMS
         boxAmount: 3
         boxSlots: 3
       - id: RMCPacketGrenadeM74AGMSHornetFilled
-        name: M74 AGM-S Hornet grenade packet
         box: RMCHornetShellM74AGMS
         boxAmount: 3
         boxSlots: 3
       - id: RMCPacketGrenadeBatonSlugHIRRFilled
-        name: HIRR Baton Slug packet
         box: RMCBatonSlugHIRR
         boxAmount: 3
         boxSlots: 3
@@ -373,7 +364,7 @@
       sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/requisitions_wall/ammo.rsi
       state: vend
     sections:
-    - name: Regular ammunition
+    - name: Обычные боеприпасы
       entries:
       - id: RMCBoxShotgunBuckshot
         amount: 56
@@ -381,26 +372,20 @@
         amount: 56
       - id: RMCBoxShotgunSlugs
         amount: 56
-      - id: RMCBoxShotgunBreaching
-        amount: 4
       - id: CMMagazineRifleM4SPR
         amount: 60
       - id: CMMagazineRifleM54C
         amount: 100
       - id: CMMagazineSMGM63
         amount: 100
+      - id: RMCMagazinePistolM13
+        amount: 100
       - id: RMCSpeedLoaderM44
         amount: 80
       - id: CMMagazinePistolM1984
         amount: 100
-      - id: RMCMagazinePistolM13
-        amount: 100
-    - name: Armor-piercing ammunition
+    - name: Бронебойные боеприпасы
       entries:
-      - id: RMCMagazinePistolM13AP
-        amount: 14
-      - id: RMCMagazinePistolM13ExtAP
-        amount: 6
       - id: CMMagazinePistolM77AP
         amount: 50
       - id: CMMagazineRifleM4SPRAP
@@ -411,7 +396,7 @@
         amount: 10
       - id: RMCMagazinePistolM1984AP
         amount: 2
-    - name: Extended ammunition
+    - name: Увеличенные магазины
       entries:
       - id: RMCMagazinePistolM13Ext
         amount: 10
@@ -421,7 +406,7 @@
         amount: 10
       - id: CMMagazineRifleM54CExt
         amount: 8
-    - name: Special ammunition
+    - name: Специальные боеприпасы
       entries:
       - id: RMCPowerCellSmartgun
         amount: 4
@@ -437,7 +422,7 @@
         amount: 2
       - id: RMCBox458SOCOM
         amount: 4
-    - name: Restricted firearm ammunition
+    - name: Ограниченные боеприпасы
       entries:
       - id: CMMagazinePistolMK80
         amount: 11
@@ -455,73 +440,71 @@
         amount: 2
       - id: RMCMagazineM2C
         amount: 2
-      - id: RMCMagazineShotgunXM51
-        amount: 3
-    - name: Magazine Boxes
+    - name: Коробки с магазинами
       hasBoxes: true
       entries:
       - id: RMCBoxMagazinePistolM13
-        name: Magazine Box (M13 x 22)
+        name: коробка магазинов (M10 x 22)
         box: RMCMagazinePistolM13
 
       - id: RMCBoxMagazinePistolM13Ext
-        name: Magazine Box (Ext M13 x 14)
+        name: коробка магазинов (Увел. M10 x 14)
         box: RMCMagazinePistolM13Ext
 
       - id: RMCBoxMagazinePistolM13AP
-        name: Magazine Box (M13 AP x 22)
+        name: коробка магазинов (ББ M10 x 22)
         box: RMCMagazinePistolM13AP
 
       - id: RMCBoxMagazinePistolM13ExtAP
-        name: Magazine Box (Ext M13 AP x 14)
+        name: коробка магазинов (Увел. ББ M10 x 14)
         box: RMCMagazinePistolM13ExtAP
 
       - id: RMCBoxMagazineSMGM63
-        name: Magazine Box (M63 x 12)
+        name: коробка магазинов (M39 x 12)
         box: CMMagazineSMGM63
 
       - id: RMCBoxMagazineSMGM63AP
-        name: Magazine Box (AP M63 x 12)
+        name: коробка магазинов (ББ M39 x 12)
         box: CMMagazineSMGM63AP
 
       - id: RMCBoxMagazineSMGM63Ext
-        name: Magazine Box (Ext M63 x 10)
+        name: коробка магазинов (Увел. M39 x 10)
         box: CMMagazineSMGM63Ext
 
       - id: RMCBoxMagazineRifleM54C
-        name: Magazine Box (M54C x 10)
+        name: коробка магазинов (M41A x 10)
         box: CMMagazineRifleM54C
 
       - id: RMCBoxMagazineRifleM54CAP
-        name: Magazine Box (AP M54C x 10)
+        name: коробка магазинов (ББ M41A x 10)
         box: CMMagazineRifleM54CAP
 
       - id: RMCBoxMagazineRifleM54CExt
-        name: Magazine Box (Ext M54C x 8)
+        name: коробка магазинов (Увел. M41A x 8)
         box: CMMagazineRifleM54CExt
 
       - id: RMCBoxMagazinePistolM1984
-        name: Magazine Box (M1984 x 16)
+        name: коробка магазинов (M4A3 x 16)
         box: CMMagazinePistolM1984
 
       - id: RMCBoxMagazinePistolM1984AP
-        name: Magazine Box (AP M1984 x 16)
+        name: коробка магазинов (ББ M4A3 x 16)
         box: RMCMagazinePistolM1984AP
 
       - id: RMCBoxMagazinePistolM1984HP
-        name: Magazine Box (HP M1984 x 16)
+        name: коробка магазинов (Эксп. M4A3 x 16)
         box: RMCMagazinePistolM1984HP
 
       - id: RMCBoxMagazineRifleM4SPR
-        name: Magazine Box (M4SPR x 16)
+        name: коробка магазинов (M4RA x 16)
         box: CMMagazineRifleM4SPR
 
       - id: RMCBoxMagazineRifleM4SPRAP
-        name: Magazine Box (AP M4SPR x 16)
+        name: коробка магазинов (ББ M4RA x 16)
         box: CMMagazineRifleM4SPRAP
 
       - id: RMCBoxMagazineRifleM4SPRExt
-        name: Magazine Box (Ext M4SPR x 16)
+        name: коробка магазинов (Увел. M4RA x 16)
         box: CMMagazineRifleM4SPRExt
 
 #      - name: Magazine Box (M54CE2 x 8)
@@ -533,39 +516,32 @@
 #      - name: Magazine Box (M54C MK1 AP x 8)
 #        box: CMMagazineSMGM63
       - id: RMCBoxShellsBuckshot
-        name: Magazine Box (Buckshot x 100)
+        name: коробка дроби (Картечь x 100)
         box: RMCBoxShotgunBuckshot
         boxAmount: 4
 
       - id: RMCBoxShellsFlechette
-        name: Magazine Box (Flechette x 100)
+        name: коробка дроби (Флешетта x 100)
         box: RMCBoxShotgunFlechette
         boxAmount: 4
 
       - id: RMCBoxShellsSlugs
-        name: Magazine Box (Slugs x 100)
+        name: коробка дроби (Пули x 100)
         box: RMCBoxShotgunSlugs
         boxAmount: 4
 
-      - id: RMCBoxShellsBreaching
-        name: Magazine Box (16g) (Breaching x 120)
-        box: RMCBoxShotgunBreaching
-        boxAmount: 4
-
       - id: RMCBoxMagazinePistolM77AP
-        name: Magazine Box (M77 AP x 16)
+        name: Коробка магазинов (ББ 88 Мод 4 x 16)
         box: CMMagazinePistolM77AP
 
       - id: RMCBoxMagazinePistolSU6
-        name: Magazine Box (SU-6 x 16)
+        name: Коробка магазинов (SU-6 x 16)
         box: RMCMagazinePistolSU6
 
       - id: RMCBoxMagazinePistolMK80
-        name: Magazine Box (MK80 x 16)
+        name: Коробка магазинов (VP78 x 16)
         box: CMMagazinePistolMK80
 
-#      - name: Magazine Box (XM51 x 8)
-#        box: RMCMagazineShotgunXM51
       - id: RMCBoxBullets458
         box: RMCBox458SOCOM
         boxAmount: 3
@@ -578,11 +554,11 @@
 #        box: CMMagazineSMGM63
 
       - id: RMCBoxMagazineRevolverM44
-        name: Magazine Box (M44 x 16)
+        name: Коробка магазинов (M44 x 16)
         box: RMCSpeedLoaderM44
 
       - id: RMCBoxMagazineRevolverM44Marksman
-        name: Magazine Box (Marksman M44 x 16)
+        name: Коробка магазинов (Марксман M44 x 16)
         box: RMCSpeedLoader44Marksman
 
 #      - name: Magazine Box (Heavy M44 x 16)
@@ -590,31 +566,31 @@
 #      - name: Magazine Box (UT-Napthal Fuel x 8)
 #        box: CMMagazineSMGM63
 
-    - name: Ammunition Boxes
+    - name: Коробки с патронами
       hasBoxes: true
       entries:
       - id: RMCBoxBulletsSMG
-        name: SMG HV ammunition box (10x20mm) (M63)
+        name: Коробка патронов ПП (10x20мм) (M39)
         box: CMMagazineSMGM63
         boxSlots: 13 # 600 / 48, yes we lose half a mag to the void
       - id: RMCBoxBulletsSMGAP
-        name: SMG ammunition box (10x20mm AP) (M63)
+        name: Коробка бронебойных патронов ПП (10x20мм ББ) (M39)
         box: CMMagazineSMGM63AP
         boxSlots: 13 # 600 / 48, yes we lose half a mag to the void
       - id: RMCBoxBulletsRifle
-        name: rifle ammunition box (10x24mm) (M4SPR)
+        name: Коробка винтовочных патронов (10x24мм) (M4RA)
         box: CMMagazineRifleM4SPR
         boxSlots: 24 # 600 / 25
       - id: RMCBoxBulletsRifleAP
-        name: rifle ammunition box (10x24mm AP) (M4SPR)
+        name: Коробка бронебойных винтовочных патронов (10x24мм ББ) (M4RA)
         box: CMMagazineRifleM4SPRAP
         boxSlots: 24 # 600 / 25
       - id: RMCBoxBulletsRifle
-        name: rifle ammunition box (10x24mm) (M54C)
+        name: Коробка винтовочных патронов (10x24мм) (M41A)
         box: CMMagazineRifleM54C
         boxSlots: 15 # 600 / 40
       - id: RMCBoxBulletsRifleAP
-        name: rifle ammunition box (10x24mm AP) (M54C)
+        name: Коробка бронебойных винтовочных патронов (10x24мм ББ) (M41A)
         box: CMMagazineRifleM54CAP
         boxSlots: 15 # 600 / 40
 
@@ -636,7 +612,7 @@
       sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/requisitions_wall/attachments.rsi
       state: vend
     sections:
-    - name: Barrel
+    - name: Ствол
       entries:
       - id: RMCAttachmentExtendedBarrel
         amount: 7
@@ -652,7 +628,7 @@
         amount: 7
       - id: RMCAttachmentShotgunChoke
         amount: 5
-    - name: Rail
+    - name: Планка
       entries:
       - id: RMCAttachmentB8SmartScope
         amount: 4
@@ -670,7 +646,7 @@
         amount: 10
       - id: RMCAttachmentS84xTelescopicScope
         amount: 5
-    - name: Underbarrel
+    - name: Подствольное
       entries:
       - id: RMCAttachmentAngledGrip
         amount: 7
@@ -698,7 +674,7 @@
         amount: 10
       - id: RMCAttachmentVerticalGrip
         amount: 10
-    - name: Stock
+    - name: Приклад
       entries:
       - id: RMCAttachmentM13StockSolid
         amount: 5
@@ -734,7 +710,7 @@
     sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/clothing.rsi
   - type: CMAutomatedVendor
     sections:
-    - name: Uniform
+    - name: Униформа
       entries:
       - id: JumpsuitMarine
         amount: 20
@@ -742,7 +718,7 @@
         amount: 5
       - id: CMJumpsuitMarineMedic
         amount: 5
-    - name: Boots
+    - name: Ботинки
       entries:
       - id: CMBootsBlack
         amount: 20
@@ -750,7 +726,7 @@
         amount: 5
       - id: CMBootsGrey
         amount: 5
-    - name: Backpacks
+    - name: Рюкзаки
       entries:
       - id: CMBackpackMarine
         amount: 20
@@ -764,7 +740,7 @@
         amount: 10
       - id: CMSatchelMarineMedic
         amount: 10
-    - name: Armor
+    - name: Броня
       entries:
       - id: ArmorHelmetM10
         amount: 20
@@ -788,7 +764,7 @@
         amount: 10
       - id: RMCArmorM3LightPadded
         amount: 10
-    - name: Gloves
+    - name: Перчатки
       entries:
       - id: CMHandsBrown
         amount: 40
@@ -796,7 +772,7 @@
         amount: 40
       - id: CMHandsBlackMarine
         amount: 40
-    - name: Radio
+    - name: Радиостанции
       entries:
       - id: RMCHeadsetShip
         amount: 5
@@ -826,7 +802,7 @@
       #  amount: 8
       - id: CMEncryptionKeyRequisition
         amount: 5
-    - name: Masks
+    - name: Маски
       entries:
       - id: CMMaskGas
         amount: 20
@@ -834,7 +810,7 @@
         amount: 10
       - id: RMCMaskRebreather
         amount: 20
-    - name: Goggles
+    - name: Очки
       entries:
       - id: RMCGogglesBallistic
         amount: 10
@@ -844,7 +820,7 @@
         amount: 10
       - id: RMCGlassesMarineRpg
         amount: 10
-    - name: Miscellaneous
+    - name: Разное
       entries:
       - id: BedrollFolded
         amount: 30
@@ -857,21 +833,21 @@
       - id: RMCPatchFallingFalcons
         amount: 15
       - id: RMCPatchFallingFalconsAlt
-        name: Falling Falcons UN shoulder patch
+        name: альтернативная нашивка "Падающие соколы" КМП США
         amount: 15
       - id: RMCPatchFallingFalconsLarge
-        name: Falling Falcons large chest patch
+        name: большая нашивка "Падающие соколы" КМП США
         amount: 15
       - id: RMCPatchUNMC
-        name: UNMC shoulder patch
+        name: нашивка КМП США
         amount: 15
       - id: RMCPatchUnitedNations
-        name: United Nations shoulder patch
+        name: нашивка КМП США
         amount: 15
       - id: RMCPatchUnitedNationsSquare
-        name: United Nations flag shoulder patch
+        name: квадратная нашивка КМП США
         amount: 15
-    - name: Books
+    - name: Книги
       entries:
       - id: RMCGuidebookLawMarine
         amount: 10

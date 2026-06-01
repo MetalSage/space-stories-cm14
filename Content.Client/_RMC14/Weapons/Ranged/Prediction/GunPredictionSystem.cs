@@ -75,6 +75,12 @@ public sealed class GunPredictionSystem : SharedGunPredictionSystem
         if (_timing.IsFirstTimePredicted)
             return;
 
+        // Stories-Vehicle-Start
+        var coords = GetCoordinates(ev.Coordinates);
+        if (!coords.IsValid(EntityManager))
+            return;
+        // Stories-Vehicle-End
+
         ShootRequested(ev.Gun, ev.Coordinates, ev.Target, ev.Shot, args.SenderSession);
     }
 

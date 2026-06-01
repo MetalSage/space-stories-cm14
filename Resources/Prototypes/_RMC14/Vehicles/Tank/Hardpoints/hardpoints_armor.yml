@@ -7,9 +7,9 @@
   - type: Sprite
     state: ballistic_armor
   - type: HardpointItem
-    hardpointType: Armor
-    vehicleFamily: Tank
-    slotType: Armor
+    hardpointType: HardpointTypeArmor
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeArmor
     damageMultiplier: 0.5
     repairRate: 0.007
   - type: HardpointIntegrity
@@ -29,9 +29,9 @@
   - type: Sprite
     state: concussive_armor
   - type: HardpointItem
-    hardpointType: Armor
-    vehicleFamily: Tank
-    slotType: Armor
+    hardpointType: HardpointTypeArmor
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeArmor
     damageMultiplier: 0.5
     repairRate: 0.007
   - type: HardpointIntegrity
@@ -52,9 +52,9 @@
   - type: Sprite
     state: caustic_armor
   - type: HardpointItem
-    hardpointType: Armor
-    vehicleFamily: Tank
-    slotType: Armor
+    hardpointType: HardpointTypeArmor
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeArmor
     damageMultiplier: 0.5
     repairRate: 0.007
   - type: HardpointIntegrity
@@ -74,9 +74,9 @@
   - type: Sprite
     state: paladin_armor
   - type: HardpointItem
-    hardpointType: Armor
-    vehicleFamily: Tank
-    slotType: Armor
+    hardpointType: HardpointTypeArmor
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeArmor
     damageMultiplier: 0.5
     repairRate: 0.007
   - type: HardpointIntegrity
@@ -97,9 +97,9 @@
   - type: Sprite
     state: snowplow
   - type: HardpointItem
-    hardpointType: Armor
-    vehicleFamily: Tank
-    slotType: Armor
+    hardpointType: HardpointTypeArmor
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeArmor
     damageMultiplier: 0.5
     repairRate: 0.007
   - type: HardpointIntegrity

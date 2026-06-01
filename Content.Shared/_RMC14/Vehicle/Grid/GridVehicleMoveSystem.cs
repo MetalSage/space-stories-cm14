@@ -5,6 +5,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Destructible;
 using Content.Shared.Doors.Systems;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
@@ -32,35 +33,35 @@ namespace Content.Shared.Vehicle;
 
 public sealed partial class GridVehicleMoverSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem transform = default!;
-    [Dependency] private readonly SharedMapSystem map = default!;
-    [Dependency] private readonly SharedPhysicsSystem physics = default!;
-    [Dependency] private readonly EntityLookupSystem lookup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedDestructibleSystem _destructible = default!;
     [Dependency] private readonly SharedDoorSystem _door = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly SharedRMCPowerSystem _rmcPower = default!;
+    [Dependency] private readonly RMCSizeStunSystem _size = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly RMCSizeStunSystem _size = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly VehicleWheelSystem _wheels = default!;
-    [Dependency] private readonly SharedDestructibleSystem _destructible = default!;
-    [Dependency] private readonly SharedRMCPowerSystem _rmcPower = default!;
 
     private EntityQuery<MapGridComponent> gridQ;
     private EntityQuery<PhysicsComponent> physicsQ;
     private EntityQuery<FixturesComponent> fixtureQ;
 
     private const float Clearance = PhysicsConstants.PolygonRadius * 0.75f;
-    private const double MobCollisionDamage = 8;
-    private static readonly TimeSpan MobCollisionKnockdown = TimeSpan.FromSeconds(1.5);
+    private const double MobCollisionDamage = 25; // Stories-Vehicle
+    private static readonly TimeSpan MobCollisionKnockdown = TimeSpan.FromSeconds(2); // Stories-Vehicle
     private static readonly TimeSpan MobCollisionCooldown = TimeSpan.FromSeconds(0.75);
     private static readonly ProtoId<DamageTypePrototype> CollisionDamageType = "Blunt";
     private const int GridVehicleStaticBlockerMask =
-        (int) (CollisionGroup.Impassable |
+        (int)(CollisionGroup.Impassable |
                CollisionGroup.HighImpassable |
                CollisionGroup.LowImpassable |
                CollisionGroup.MidImpassable |
@@ -90,6 +91,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
     public static bool CollisionDebugEnabled { get; set; }
     public static bool MovementDebugEnabled { get; set; }
 
+    private readonly HashSet<EntityUid> _intersecting = new();
     private readonly Dictionary<EntityUid, TimeSpan> _lastMobCollision = new();
     private readonly Dictionary<EntityUid, bool> _hardState = new();
     private readonly Dictionary<EntityUid, bool> _lastMobPushAxis = new();
@@ -216,8 +218,8 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         if (!force && ent.Comp.SyncedGrid == grid)
             return false;
 
-        var coords = xform.Coordinates.WithEntityId(grid, transform, EntityManager);
-        var tile = map.TileIndicesFor(grid, gridComp, coords);
+        var coords = _transform.WithEntityId(xform.Coordinates, grid);
+        var tile = _map.TileIndicesFor(grid, gridComp, coords);
 
         ent.Comp.SyncedGrid = grid;
         ent.Comp.CurrentTile = tile;
@@ -271,6 +273,14 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
+
+        // Stories-Vehicle-Start
+        if (TryComp(args.OtherEntity, out MobStateComponent? mob) && _mobState.IsDead(args.OtherEntity, mob))
+        {
+            args.Cancelled = true;
+            return;
+        }
+        // Stories-Vehicle-End
 
         if (args.OtherBody.BodyType != BodyType.Static)
             return;
@@ -360,18 +370,18 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return;
 
         var coords = new EntityCoordinates(grid, mover.Position);
-        var target = coords.WithEntityId(xform.ParentUid, transform, EntityManager).Position;
+        var target = _transform.WithEntityId(coords, xform.ParentUid).Position;
         var current = xform.LocalPosition;
         var delta = target - current;
 
         if (delta.LengthSquared() >= ClientSmoothingSnapDistance * ClientSmoothingSnapDistance)
         {
-            transform.SetLocalPosition(uid, target, xform);
+            _transform.SetLocalPosition(uid, target, xform);
             return;
         }
 
         var alpha = 1f - MathF.Exp(-ClientSmoothingRate * frameTime);
         var smoothed = Vector2.Lerp(current, target, alpha);
-        transform.SetLocalPosition(uid, smoothed, xform);
+        _transform.SetLocalPosition(uid, smoothed, xform);
     }
 }

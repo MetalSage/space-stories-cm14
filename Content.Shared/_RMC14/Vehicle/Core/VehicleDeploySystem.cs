@@ -23,6 +23,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Containers;
 using Content.Shared.Mobs;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._RMC14.Vehicle;
@@ -30,19 +31,19 @@ namespace Content.Shared._RMC14.Vehicle;
 public sealed class VehicleDeploySystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedCMChatSystem _rmcChat = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly VehicleSystem _vehicleSystem = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
-    [Dependency] private readonly SharedSentryTargetingSystem _targeting = default!;
     [Dependency] private readonly SharedGunSystem _guns = default!;
-    [Dependency] private readonly VehicleTurretSystem _turret = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedCMChatSystem _rmcChat = default!;
+    [Dependency] private readonly SharedSentryTargetingSystem _targeting = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly VehicleTopologySystem _topology = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly VehicleTurretSystem _turret = default!;
+    [Dependency] private readonly VehicleSystem _vehicle = default!;
 
     public override void Initialize()
     {
@@ -52,7 +53,10 @@ public sealed class VehicleDeploySystem : EntitySystem
         SubscribeLocalEvent<VehicleDeployActionComponent, ComponentShutdown>(OnDeployActionShutdown);
         SubscribeLocalEvent<VehicleDeployableComponent, VehicleCanRunEvent>(OnVehicleCanRun);
         SubscribeLocalEvent<HardpointSlotsChangedEvent>(OnHardpointSlotsChanged);
+
+        // Stories-Vehicle-Start
         SubscribeLocalEvent<HardpointItemComponent, AttemptShootEvent>(OnDeployableAttemptShoot);
+        // Stories-Vehicle-End
     }
 
     private void OnDriverStrapped(Entity<StrapComponent> ent, ref StrappedEvent args)
@@ -63,7 +67,7 @@ public sealed class VehicleDeploySystem : EntitySystem
         if (!HasComp<VehicleDriverSeatComponent>(ent.Owner))
             return;
 
-        if (!_vehicleSystem.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle == null)
+        if (!_vehicle.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle == null)
             return;
 
         if (!TryComp(vehicle.Value, out VehicleDeployableComponent? deployable))
@@ -80,7 +84,7 @@ public sealed class VehicleDeploySystem : EntitySystem
         if (!HasComp<VehicleDriverSeatComponent>(ent.Owner))
             return;
 
-        if (!_vehicleSystem.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle == null)
+        if (!_vehicle.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle == null)
             return;
 
         DisableDeployAction(args.Buckle.Owner, vehicle.Value);
@@ -292,15 +296,17 @@ public sealed class VehicleDeploySystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!string.Equals(ent.Comp.HardpointType, "Cannon", StringComparison.OrdinalIgnoreCase))
-            return;
-
-        if (!TryGetVehicleFromContained(ent.Owner, out var vehicle))
+        // Stories-Vehicle-Start
+        if (!_topology.TryGetVehicle(ent.Owner, out var vehicle))
         {
             args.Cancelled = true;
-            args.ResetCooldown = true;
+            args.Message = Loc.GetString("rmc-hardpoint-error-no-hardpoint");
             return;
         }
+        // Stories-Vehicle-End
+
+        if (ent.Comp.HardpointType != "HardpointTypeCannon")
+            return;
 
         if (!TryComp(vehicle, out VehicleDeployableComponent? deployable))
             return;
@@ -318,14 +324,14 @@ public sealed class VehicleDeploySystem : EntitySystem
         }
     }
 
-    private static bool IsBlockedHardpoint(VehicleDeployGatedHardpointsComponent gated, string hardpointType)
+    private static bool IsBlockedHardpoint(VehicleDeployGatedHardpointsComponent gated, EntProtoId hardpointType)
     {
-        if (string.IsNullOrWhiteSpace(hardpointType))
+        if (hardpointType == default)
             return false;
 
         foreach (var blocked in gated.BlockedHardpoints)
         {
-            if (string.Equals(blocked, hardpointType, StringComparison.OrdinalIgnoreCase))
+            if (blocked == hardpointType)
                 return true;
         }
 

@@ -7,6 +7,9 @@
     sprite: _RMC14/Structures/Vehicles/hardpoints/humvee.rsi
   - type: Item
     size: Large
+  - type: RMCNightVisionVisible
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   parent: VehicleHumveeHardpointBase
@@ -17,9 +20,9 @@
   - type: Sprite
     state: tires
   - type: HardpointItem
-    hardpointType: Wheel
-    vehicleFamily: Humvee
-    slotType: Wheel
+    hardpointType: HardpointTypeWheel
+    vehicleFamily: HardpointVehicleFamilyHumvee
+    slotType: HardpointSlotTypeWheel
     damageMultiplier: 0.15
     repairRate: 0.0165
   - type: HardpointIntegrity
@@ -35,9 +38,9 @@
   - type: Sprite
     state: humveeturret
   - type: HardpointItem
-    hardpointType: Turret
-    vehicleFamily: Humvee
-    slotType: Turret
+    hardpointType: HardpointTypeTurret
+    vehicleFamily: HardpointVehicleFamilyHumvee
+    slotType: HardpointSlotTypeTurret
     damageMultiplier: 0.15
     repairRate: 0.008
   - type: HardpointIntegrity
@@ -67,16 +70,16 @@
           components:
           - HardpointItem
   - type: HardpointSlots
-    vehicleFamily: Humvee
+    vehicleFamily: HardpointVehicleFamilyHumvee
     slots:
     - id: turret-cannon
-      hardpointType: Cannon
-      slotType: Cannon
+      hardpointType: HardpointTypeCannon
+      slotType: HardpointSlotTypeCannon
       required: false
       insertDelay: 2.0
     - id: turret-launcher
-      hardpointType: Launcher
-      slotType: Launcher
+      hardpointType: HardpointTypeLauncher
+      slotType: HardpointSlotTypeLauncher
       required: false
       insertDelay: 2.0
 
@@ -129,9 +132,9 @@
   - type: Sprite
     state: humveecannon
   - type: HardpointItem
-    hardpointType: Cannon
-    vehicleFamily: Humvee
-    slotType: Cannon
+    hardpointType: HardpointTypeCannon
+    vehicleFamily: HardpointVehicleFamilyHumvee
+    slotType: HardpointSlotTypeCannon
     damageMultiplier: 0.1
     repairRate: 0.01
   - type: HardpointIntegrity
@@ -147,7 +150,7 @@
   - type: GunUseGunOrigin
   - type: GunIgnoreContainerOwnerCollision
   - type: Gun
-    fireRate: 5 # 0.2 seconds between shots
+    fireRate: 5
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -188,7 +191,7 @@
   description: A burst-fire cannon configured for an ARC humvee turret.
   components:
   - type: Gun
-    fireRate: 5 # 0.2 seconds between shots
+    fireRate: 5
     burstFireRate: 5
     shotsPerBurst: 3
     selectedMode: Burst
@@ -204,9 +207,9 @@
   - type: Sprite
     state: humveelauncher
   - type: HardpointItem
-    hardpointType: Launcher
-    vehicleFamily: Humvee
-    slotType: Launcher
+    hardpointType: HardpointTypeLauncher
+    vehicleFamily: HardpointVehicleFamilyHumvee
+    slotType: HardpointSlotTypeLauncher
     damageMultiplier: 0.0
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -256,9 +259,9 @@
   - type: Sprite
     state: snowplow
   - type: HardpointItem
-    hardpointType: FrontAttachment
-    vehicleFamily: Humvee
-    slotType: FrontAttachment
+    hardpointType: HardpointTypeFrontAttachment
+    vehicleFamily: HardpointVehicleFamilyHumvee
+    slotType: HardpointSlotTypeFrontAttachment
     damageMultiplier: 0.075
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -275,9 +278,9 @@
   - type: Sprite
     state: overlight
   - type: HardpointItem
-    hardpointType: RoofAttachment
-    vehicleFamily: Humvee
-    slotType: RoofAttachment
+    hardpointType: HardpointTypeRoofAttachment
+    vehicleFamily: HardpointVehicleFamilyHumvee
+    slotType: HardpointSlotTypeRoofAttachment
     damageMultiplier: 0.1
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -296,13 +299,12 @@
   - type: Sprite
     state: humveehatch
   - type: HardpointItem
-    hardpointType: RoofAttachment
-    vehicleFamily: Humvee
-    slotType: RoofAttachment
+    hardpointType: HardpointTypeRoofAttachment
+    vehicleFamily: HardpointVehicleFamilyHumvee
+    slotType: HardpointSlotTypeRoofAttachment
     damageMultiplier: 0.075
     repairRate: 0.0125
   - type: HardpointIntegrity
     maxIntegrity: 100
   - type: HardpointVisual
     vehicleState: humveehatch_0
-

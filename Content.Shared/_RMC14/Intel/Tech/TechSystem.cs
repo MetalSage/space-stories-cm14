@@ -8,6 +8,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.UserInterface;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -100,10 +101,13 @@ public sealed class TechSystem : EntitySystem
             return;
         }
 
-        if (option.TimeLock  > _ticker.RoundDuration())
+        if (option.TimeLock > _ticker.RoundDuration())
             return;
 
         if (option.Purchased && !option.Repurchasable)
+            return;
+
+        if (option.Disabled)
             return;
 
         if (!_intel.TryUsePoints(option.CurrentCost))
@@ -122,5 +126,45 @@ public sealed class TechSystem : EntitySystem
         }
 
         _intel.UpdateTree(tree);
+    }
+
+    public bool SetVehicleUnlockOptionDisabled(EntProtoId unlockId, bool disabled)
+    {
+        var tree = _intel.EnsureTechTree();
+        var changed = false;
+
+        foreach (var tier in tree.Comp.Tree.Options)
+        {
+            for (var i = 0; i < tier.Count; i++)
+            {
+                var option = tier[i];
+                if (!OptionUnlocksVehicle(option, unlockId) || option.Disabled == disabled)
+                    continue;
+
+                tier[i] = option with { Disabled = disabled };
+                changed = true;
+            }
+        }
+
+        if (!changed)
+            return false;
+
+        Dirty(tree);
+        _intel.UpdateTree(tree);
+        return true;
+    }
+
+    private static bool OptionUnlocksVehicle(TechOption option, EntProtoId unlockId)
+    {
+        foreach (var ev in option.Events)
+        {
+            if (ev is TechUnlockVehicleEvent unlock &&
+                unlock.Unlock == unlockId)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

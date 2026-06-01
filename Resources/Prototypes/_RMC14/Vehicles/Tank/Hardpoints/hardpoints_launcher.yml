@@ -7,9 +7,9 @@
   - type: Sprite
     state: flamer
   - type: HardpointItem
-    hardpointType: Launcher
-    vehicleFamily: Tank
-    slotType: Launcher
+    hardpointType: HardpointTypeLauncher
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeLauncher
     damageMultiplier: 0.0
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -78,9 +78,9 @@
   - type: Sprite
     state: glauncher
   - type: HardpointItem
-    hardpointType: Launcher
-    vehicleFamily: Tank
-    slotType: Launcher
+    hardpointType: HardpointTypeLauncher
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeLauncher
     damageMultiplier: 0.0
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -147,9 +147,9 @@
   - type: Sprite
     state: tow_launcher
   - type: HardpointItem
-    hardpointType: Launcher
-    vehicleFamily: Tank
-    slotType: Launcher
+    hardpointType: HardpointTypeLauncher
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeLauncher
     damageMultiplier: 0.0
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -212,9 +212,9 @@
   - type: Sprite
     state: m56_cupola
   - type: HardpointItem
-    hardpointType: Launcher
-    vehicleFamily: Tank
-    slotType: Launcher
+    hardpointType: HardpointTypeLauncher
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeLauncher
     damageMultiplier: 0.0
     repairRate: 0.0125
   - type: HardpointIntegrity
@@ -280,9 +280,9 @@
   - type: Sprite
     state: m56_cupola
   - type: HardpointItem
-    hardpointType: Launcher
-    vehicleFamily: Tank
-    slotType: Launcher
+    hardpointType: HardpointTypeLauncher
+    vehicleFamily: HardpointVehicleFamilyTank
+    slotType: HardpointSlotTypeLauncher
     damageMultiplier: 0.0
     repairRate: 0.0125
   - type: HardpointIntegrity

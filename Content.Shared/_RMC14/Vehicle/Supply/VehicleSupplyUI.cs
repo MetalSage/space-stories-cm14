@@ -12,16 +12,27 @@ public enum VehicleSupplyUIKey
     Key
 }
 
-[Serializable, NetSerializable]
-public sealed class VehicleSupplyEntryState
+[Serializable, NetSerializable, DataDefinition]
+public sealed partial class VehicleSupplyEntryState
 {
+    [DataField]
     public string Id;
+
+    [DataField]
     public string Name;
+
+    [DataField]
     public int Count;
     public bool LockedByPop;
     public bool IsPurchasable; // Stories-Vehicle
 
-    public VehicleSupplyEntryState(string id, string name, int count, bool lockedByPop = false, bool isPurchasable = false) // Stories-Vehicle
+    public VehicleSupplyEntryState()
+    {
+        Id = string.Empty;
+        Name = string.Empty;
+    }
+
+    public VehicleSupplyEntryState(string id, string name, int count, bool lockedByPop, bool isPurchasable)
     {
         Id = id;
         Name = name;
@@ -31,18 +42,36 @@ public sealed class VehicleSupplyEntryState
     }
 }
 
-[Serializable, NetSerializable]
-public sealed class VehicleSupplyBuiState : BoundUserInterfaceState
+[Serializable, NetSerializable, DataDefinition]
+public sealed partial class VehicleSupplyUiState
 {
+    [DataField]
     public VehicleSupplyLiftMode? LiftMode;
+
+    [DataField]
     public bool Busy;
+
+    [DataField]
     public string? ActiveVehicleId;
+
+    [DataField]
     public string? SelectedVehicleId;
+
+    [DataField]
     public int SelectedCopyIndex;
+
+    [DataField]
     public VehicleSupplyPreviewState? Preview;
+
+    [DataField]
     public List<VehicleSupplyEntryState> Available;
 
-    public VehicleSupplyBuiState(
+    public VehicleSupplyUiState()
+    {
+        Available = new List<VehicleSupplyEntryState>();
+    }
+
+    public VehicleSupplyUiState(
         VehicleSupplyLiftMode? liftMode,
         bool busy,
         string? activeVehicleId,
@@ -61,39 +90,71 @@ public sealed class VehicleSupplyBuiState : BoundUserInterfaceState
     }
 }
 
-[Serializable, NetSerializable]
-public sealed class VehicleSupplyPreviewState
+[Serializable, NetSerializable, DataDefinition]
+public sealed partial class VehicleSupplyPreviewState
 {
+    [DataField]
     public string VehicleId;
-    public int CopyIndex;
+
+    [DataField]
     public List<VehicleHardpointLayerState> Layers;
+
+    [DataField]
     public List<VehicleSupplyPreviewOverlay> Overlays;
+
+    public VehicleSupplyPreviewState()
+    {
+        VehicleId = string.Empty;
+        Layers = new List<VehicleHardpointLayerState>();
+        Overlays = new List<VehicleSupplyPreviewOverlay>();
+    }
 
     public VehicleSupplyPreviewState(
         string vehicleId,
-        int copyIndex,
         List<VehicleHardpointLayerState> layers,
         List<VehicleSupplyPreviewOverlay> overlays)
     {
         VehicleId = vehicleId;
-        CopyIndex = copyIndex;
         Layers = layers;
         Overlays = overlays;
     }
 }
 
-[Serializable, NetSerializable]
-public sealed class VehicleSupplyPreviewOverlay
+[Serializable, NetSerializable, DataDefinition]
+public sealed partial class VehicleSupplyPreviewOverlay
 {
+    [DataField]
     public string Rsi;
+
+    [DataField]
     public string State;
+
+    [DataField]
     public int Order;
+
+    [DataField]
     public Vector2 BaseOffset;
+
+    [DataField]
     public bool UseDirectional;
+
+    [DataField]
     public Vector2 North;
+
+    [DataField]
     public Vector2 East;
+
+    [DataField]
     public Vector2 South;
+
+    [DataField]
     public Vector2 West;
+
+    public VehicleSupplyPreviewOverlay()
+    {
+        Rsi = string.Empty;
+        State = string.Empty;
+    }
 
     public VehicleSupplyPreviewOverlay(
         string rsi,

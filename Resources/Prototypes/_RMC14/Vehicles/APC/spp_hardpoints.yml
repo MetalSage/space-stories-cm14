@@ -7,6 +7,9 @@
     sprite: _RMC14/Structures/Vehicles/hardpoints/sppapc.rsi
   - type: Item
     size: Large
+  - type: RMCNightVisionVisible
+  - type: Corrodible
+    isCorrodible: false
 
 - type: entity
   parent: VehicleSPPAPCHardpointBase
@@ -17,10 +20,10 @@
   - type: Sprite
     state: spp_tires
   - type: HardpointItem
-    hardpointType: Wheel
-    vehicleFamily: APC
-    slotType: Wheel
-    compatibilityId: SPPAPC
+    hardpointType: HardpointTypeWheel
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeWheel
+    compatibilityId: HardpointCompatibilitySPPAPC
     damageMultiplier: 0.15
     repairRate: 0.0165
   - type: HardpointIntegrity
@@ -37,10 +40,10 @@
     sprite: _RMC14/Structures/Vehicles/sppapc.rsi
     state: apc_turret_0
   - type: HardpointItem
-    hardpointType: Turret
-    vehicleFamily: APC
-    slotType: Turret
-    compatibilityId: SPPAPC
+    hardpointType: HardpointTypeTurret
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeTurret
+    compatibilityId: HardpointCompatibilitySPPAPC
     damageMultiplier: 0.2
     repairRate: 0.008
   - type: HardpointIntegrity
@@ -66,12 +69,12 @@
           components:
           - HardpointItem
   - type: HardpointSlots
-    vehicleFamily: APC
+    vehicleFamily: HardpointVehicleFamilyAPC
     slots:
     - id: turret-cannon
-      hardpointType: Cannon
-      slotType: Cannon
-      compatibilityId: SPPAPCTurret
+      hardpointType: HardpointTypeCannon
+      slotType: HardpointSlotTypeCannon
+      compatibilityId: HardpointCompatibilitySPPAPCTurret
       required: false
       insertDelay: 2.0
   - type: HardpointVisual
@@ -87,10 +90,10 @@
     sprite: _RMC14/Structures/Vehicles/hardpoints/sppapc.rsi
     state: apc_minigun
   - type: HardpointItem
-    hardpointType: Cannon
-    vehicleFamily: APC
-    slotType: Cannon
-    compatibilityId: SPPAPCTurret
+    hardpointType: HardpointTypeCannon
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeCannon
+    compatibilityId: HardpointCompatibilitySPPAPCTurret
     damageMultiplier: 0.2
     repairRate: 0.01
   - type: VehicleTurretAttachment
@@ -125,7 +128,7 @@
     sprite: _RMC14/Structures/Vehicles/hardpoints/sppapc.rsi
     state: apc_autocannon
   - type: HardpointItem
-    compatibilityId: SPPAPC
+    compatibilityId: HardpointCompatibilitySPPAPC
   - type: GunMuzzleOffset
     useDirectionalOffsets: true
     rotateDirectionalOffsets: true
@@ -148,10 +151,10 @@
     sprite: _RMC14/Structures/Vehicles/hardpoints/sppapc.rsi
     state: hj35launcher
   - type: HardpointItem
-    hardpointType: Cannon
-    vehicleFamily: APC
-    slotType: Cannon
-    compatibilityId: SPPAPC
+    hardpointType: HardpointTypeCannon
+    vehicleFamily: HardpointVehicleFamilyAPC
+    slotType: HardpointSlotTypeCannon
+    compatibilityId: HardpointCompatibilitySPPAPC
     damageMultiplier: 0.11
   - type: HardpointIntegrity
     maxIntegrity: 350
@@ -168,7 +171,7 @@
     sprite: _RMC14/Structures/Vehicles/hardpoints/sppapc.rsi
     state: spp_flare_launcher
   - type: HardpointItem
-    compatibilityId: SPPAPC
+    compatibilityId: HardpointCompatibilitySPPAPC
   - type: HardpointVisual
     vehicleState: spp_flare_launcher_0
 

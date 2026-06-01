@@ -7,8 +7,23 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
+using Content.Shared.Damage;
+using Robust.Shared.GameStates;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Vehicle;
+
+// Stories-Vehicle-Start
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class StoriesVehicleTerrainModifierComponent : Component
+{
+    [DataField, AutoNetworkedField]
+    public float SlowdownMultiplier = 1f;
+
+    [DataField]
+    public TimeSpan NextDamageTime;
+}
+// Stories-Vehicle-End
 
 public sealed partial class GridVehicleMoverSystem : EntitySystem
 {
@@ -67,10 +82,80 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         SetGridPosition(uid, grid, mover.Position);
 
         if (moved || mover.IsMoving)
-            physics.WakeBody(uid);
+            _physics.WakeBody(uid);
 
         Dirty(uid, mover);
+
+        // Stories-Vehicle-Start
+        ApplyTerrainEffects(uid, mover, frameTime);
+        // Stories-Vehicle-End
     }
+
+    // Stories-Vehicle-Start
+    private void ApplyTerrainEffects(EntityUid uid, GridVehicleMoverComponent mover, float frameTime)
+    {
+        var terrainMod = EnsureComp<StoriesVehicleTerrainModifierComponent>(uid);
+        var oldSlowdown = terrainMod.SlowdownMultiplier;
+        terrainMod.SlowdownMultiplier = 1f;
+
+        var isWater = false;
+        var isFire = false;
+
+        var waterQuery = GetEntityQuery<Content.Shared._RMC14.Water.RMCWaterComponent>();
+        var fireQuery = GetEntityQuery<Content.Shared._RMC14.Atmos.TileFireComponent>();
+        var igniteQuery = GetEntityQuery<Content.Shared._RMC14.Atmos.RMCIgniteOnCollideComponent>();
+
+        var aabb = _lookup.GetWorldAABB(uid).Enlarged(-0.1f);
+
+        _intersecting.Clear();
+        _lookup.GetEntitiesIntersecting(Transform(uid).MapID, aabb, _intersecting, LookupFlags.Dynamic | LookupFlags.Static | LookupFlags.Sundries | LookupFlags.Sensors);
+
+        foreach (var ent in _intersecting)
+        {
+            if (ent == uid) continue;
+
+            if (!isWater && waterQuery.HasComp(ent))
+                isWater = true;
+
+            if (!isFire && (fireQuery.HasComp(ent) || igniteQuery.HasComp(ent)))
+                isFire = true;
+
+            if (isWater && isFire)
+                break;
+        }
+
+        if (isWater)
+            terrainMod.SlowdownMultiplier = Math.Min(terrainMod.SlowdownMultiplier, 0.4f);
+        if (isFire)
+            terrainMod.SlowdownMultiplier = Math.Min(terrainMod.SlowdownMultiplier, 0.6f);
+
+        if (Math.Abs(oldSlowdown - terrainMod.SlowdownMultiplier) > 0.01f)
+            Dirty(uid, terrainMod);
+
+        if (_net.IsServer && (isWater || isFire) && _timing.CurTime > terrainMod.NextDamageTime)
+        {
+            terrainMod.NextDamageTime = _timing.CurTime + TimeSpan.FromSeconds(1);
+
+            var damageAmount = isFire ? 25f : 5f;
+
+            var damage = new DamageSpecifier
+            {
+                DamageDict =
+                {
+                    [isFire ? "Heat" : "Blunt"] = FixedPoint2.New(damageAmount)
+                }
+            };
+
+            _damageable.TryChangeDamage(uid, damage, true, origin: uid);
+
+            var hardpointSys = EntityManager.System<Content.Shared._RMC14.Vehicle.HardpointSystem>();
+
+            hardpointSys.DamageHardpoint(uid, uid, damageAmount);
+
+            _wheels.DamageWheels(uid, damageAmount);
+        }
+    }
+    // Stories-Vehicle-End
 
     private bool UpdatePushMovement(
         EntityUid uid,
@@ -292,7 +377,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         mover.Position = turnPosition;
         mover.CurrentTile = GetTile(grid, gridComp, mover.Position);
         mover.CurrentDirection = desiredFacing;
-        transform.SetLocalRotation(uid, desiredRot);
+        _transform.SetLocalRotation(uid, desiredRot);
 
         if (turned && startDelay)
         {
@@ -323,7 +408,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return false;
 
         var step = Math.Clamp(mover.MovementProbeStep, 0.02f, 0.5f);
-        var steps = Math.Max(1, (int) MathF.Ceiling(maxDistance / step));
+        var steps = Math.Max(1, (int)MathF.Ceiling(maxDistance / step));
         var initialBlockers = new HashSet<EntityUid>();
         if (CanOccupyTransform(uid, mover, grid, mover.Position, desiredRot, Clearance, applyEffects: false, blockers: initialBlockers) ||
             initialBlockers.Count == 0)
@@ -510,11 +595,11 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return true;
 
         var probeStep = Math.Clamp(mover.MovementProbeStep, 0.02f, 0.5f);
-        var steps = Math.Max(1, (int) MathF.Ceiling(distance / probeStep));
+        var steps = Math.Max(1, (int)MathF.Ceiling(distance / probeStep));
 
         for (var i = 1; i <= steps; i++)
         {
-            var candidate = start + delta * (i / (float) steps);
+            var candidate = start + delta * (i / (float)steps);
             if (!CanOccupyTransform(uid, mover, grid, candidate, rotation, Clearance, applyEffects: false, debug: debugProbes, blockers: blockers, ignoredEntities: ignoredEntities))
                 return false;
         }
@@ -571,7 +656,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         var centerLateral = GetLateralCoordinate(center, moveDir);
         var baseOffset = Math.Clamp(GetLateralCoordinate(target, moveDir) - centerLateral, -limit, limit);
         var lookahead = Math.Max(1, mover.TileOffsetLookahead);
-        var sampleSteps = (int) MathF.Ceiling(limit / step);
+        var sampleSteps = (int)MathF.Ceiling(limit / step);
         var lastPositiveOffset = float.NaN;
         var lastNegativeOffset = float.NaN;
 
@@ -691,7 +776,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             GetLateralCoordinate(target, moveDir) - GetLateralCoordinate(center, moveDir),
             -limit,
             limit);
-        var sampleSteps = (int) MathF.Ceiling(limit / step);
+        var sampleSteps = (int)MathF.Ceiling(limit / step);
         var lookahead = Math.Max(1, mover.TileOffsetLookahead);
         var foundLane = false;
         var bestOffset = baseOffset;
@@ -786,12 +871,12 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return false;
 
         var probeStep = Math.Clamp(mover.MovementProbeStep, 0.02f, 0.5f);
-        var steps = Math.Max(1, (int) MathF.Ceiling(distance / probeStep));
+        var steps = Math.Max(1, (int)MathF.Ceiling(distance / probeStep));
         var lastGood = start;
 
         for (var i = 1; i <= steps; i++)
         {
-            var candidate = start + delta * (i / (float) steps);
+            var candidate = start + delta * (i / (float)steps);
             if (!CanOccupyTransform(uid, mover, grid, candidate, rotation, Clearance, applyEffects: false, debug: debugProbes, ignoredEntities: ignoredEntities))
             {
                 if (applyBlockEffects)
@@ -862,7 +947,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         var min = center - new Vector2(limit, limit);
         var max = center + new Vector2(limit, limit);
 
-        var steps = (int) MathF.Ceiling(limit / step);
+        var steps = (int)MathF.Ceiling(limit / step);
         for (var ring = 1; ring <= steps; ring++)
         {
             var axialDistance = Math.Clamp(ring * step, -limit, limit);
@@ -967,6 +1052,11 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
     {
         var maxSpeed = mover.MaxSpeed * GetSmashSlowdownMultiplier(mover);
 
+        // Stories-Vehicle-Start
+        if (TryComp<StoriesVehicleTerrainModifierComponent>(uid, out var terrainMod))
+            maxSpeed *= terrainMod.SlowdownMultiplier;
+        // Stories-Vehicle-End
+
         if (TryComp<VehicleOverchargeComponent>(uid, out var overcharge) && _timing.CurTime < overcharge.ActiveUntil)
             maxSpeed *= overcharge.SpeedMultiplier;
         if (TryComp<VehicleSpeedModifierComponent>(uid, out var speedMod))
@@ -978,6 +1068,11 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
     private float GetModifiedMaxReverseSpeed(EntityUid uid, GridVehicleMoverComponent mover)
     {
         var maxSpeed = mover.MaxReverseSpeed * GetSmashSlowdownMultiplier(mover);
+
+        // Stories-Vehicle-Start
+        if (TryComp<StoriesVehicleTerrainModifierComponent>(uid, out var terrainMod))
+            maxSpeed *= terrainMod.SlowdownMultiplier;
+        // Stories-Vehicle-End
 
         if (TryComp<VehicleOverchargeComponent>(uid, out var overcharge) && _timing.CurTime < overcharge.ActiveUntil)
             maxSpeed *= overcharge.SpeedMultiplier;
@@ -1081,15 +1176,15 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return;
 
         var coords = new EntityCoordinates(grid, gridPos);
-        var local = coords.WithEntityId(xform.ParentUid, transform, EntityManager).Position;
+        var local = _transform.WithEntityId(coords, xform.ParentUid).Position;
 
-        transform.SetLocalPosition(uid, local, xform);
+        _transform.SetLocalPosition(uid, local, xform);
     }
 
     private Vector2i GetTile(EntityUid grid, MapGridComponent gridComp, Vector2 pos)
     {
         var coords = new EntityCoordinates(grid, pos);
-        return map.TileIndicesFor(grid, gridComp, coords);
+        return _map.TileIndicesFor(grid, gridComp, coords);
     }
 
     private void PlayRunningSound(EntityUid uid)

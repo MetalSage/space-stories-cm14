@@ -807,7 +807,7 @@ cm-chatsan-word-replacement-xover = конец
 cm-chatsan-word-m2c = m2c
 cm-chatsan-word-replacement-m2c = heavy mounted spitter
 
-cm-chatsan-word-m13 = м13
+cm-chatsan-word-m13 = м10
 cm-chatsan-word-replacement-m13 = быстрый плеватель
 
 cm-chatsan-word-m63 = м39

@@ -19,3 +19,5 @@ rmc-construction-build-here = Построить здесь
 rmc-construction-name = строительство
 
 rmc-construction-non-anchorable =  Оно не может быть ни закреплено, ни откреплено.
+
+rmc-construction-vehicle = В салоне автомобиля строить нельзя!

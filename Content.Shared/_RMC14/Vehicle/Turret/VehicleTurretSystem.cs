@@ -167,9 +167,23 @@ public sealed class VehicleTurretSystem : EntitySystem
         if (turret.VisualEntity is { } existing && Exists(existing))
             return;
 
+        // Stories-Vehicle-Start
+        if (_transform.GetMapId(vehicle) == MapId.Nullspace)
+            return;
+        // Stories-Vehicle-End
+
         var visual = Spawn("VehicleTurretVisual", new EntityCoordinates(vehicle, Vector2.Zero));
         var visualComp = EnsureComp<VehicleTurretVisualComponent>(visual);
         visualComp.Turret = GetNetEntity(turretUid);
+
+        // Stories-Vehicle-Start
+        EnsureComp<Content.Shared._RMC14.NightVision.RMCNightVisionVisibleComponent>(visual, out var nv);
+        if (HasComp<VehicleTurretAttachmentComponent>(turretUid))
+            nv.Priority = 20;
+        else
+            nv.Priority = 10;
+        // Stories-Vehicle-End
+
         Dirty(visual, visualComp);
         turret.VisualEntity = visual;
     }
@@ -301,7 +315,7 @@ public sealed class VehicleTurretSystem : EntitySystem
         if (normalized < 0)
             normalized += MathHelper.TwoPi;
 
-        var dir = GetDirectionalDir((float) normalized);
+        var dir = GetDirectionalDir((float)normalized);
         return baseOffset + GetDirectionalOffset(turret, dir);
     }
 
@@ -674,7 +688,7 @@ public sealed class VehicleTurretSystem : EntitySystem
             var desiredWorldRotation = (targetMap.Position - originMap.Position).ToWorldAngle();
             var maxCurveRadians = MathHelper.DegreesToRadians(maxCurveDegrees);
             var delta = Angle.ShortestDistance(barrelWorldRotation, desiredWorldRotation);
-            var clamped = MathHelper.Clamp((float) delta.Theta, -maxCurveRadians, maxCurveRadians);
+            var clamped = MathHelper.Clamp((float)delta.Theta, -maxCurveRadians, maxCurveRadians);
             shotWorldRotation = (barrelWorldRotation + clamped).Reduced();
         }
 
@@ -775,8 +789,10 @@ public sealed class VehicleTurretSystem : EntitySystem
 
     private bool CanOperatorUseTurret(EntityUid turretUid, EntityUid user)
     {
+        // Stories-Vehicle-Start
         if (!TryGetVehicle(turretUid, out var vehicle))
-            return true;
+            return false;
+        // Stories-Vehicle-End
 
         if (!TryComp(user, out VehicleWeaponsOperatorComponent? operatorComp) ||
             operatorComp.Vehicle != vehicle)

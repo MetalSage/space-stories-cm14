@@ -9,13 +9,15 @@
     state: tires
   - type: Item
     size: Large
+  - type: RMCNightVisionVisible
+  - type: Corrodible
+    isCorrodible: false
   - type: HardpointItem
-    hardpointType: Wheel
-    vehicleFamily: Van
-    slotType: Wheel
+    hardpointType: HardpointTypeWheel
+    vehicleFamily: HardpointVehicleFamilyVan
+    slotType: HardpointSlotTypeWheel
     damageMultiplier: 0.15
     repairRate: 0.0165
   - type: HardpointIntegrity
     maxIntegrity: 250
   - type: VehicleWheelItem
-

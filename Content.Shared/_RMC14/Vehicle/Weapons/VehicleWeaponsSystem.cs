@@ -12,12 +12,14 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared._RMC14.Weapons.Ranged;
+using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Localization;
 using Robust.Shared.Network;
 using Content.Shared.Weapons.Ranged.Systems;
-using Content.Shared.Vehicle.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._RMC14.Vehicle;
@@ -25,23 +27,24 @@ namespace Content.Shared._RMC14.Vehicle;
 public sealed partial class VehicleWeaponsSystem : EntitySystem
 {
     private const string HardpointSelectActionId = "ActionVehicleSelectHardpoint";
+    private static readonly EntProtoId HardpointTypeSupport = "HardpointTypeSupport";
 
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedContentEyeSystem _contentEye = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly VehicleHardpointAmmoSystem _hardpointAmmo = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
-    [Dependency] private readonly VehicleTopologySystem _topology = default!;
-    [Dependency] private readonly VehicleHardpointAmmoSystem _hardpointAmmo = default!;
-    [Dependency] private readonly VehicleSystem _vehicleSystem = default!;
-    [Dependency] private readonly VehicleTurretSystem _turretSystem = default!;
-    [Dependency] private readonly VehicleViewToggleSystem _viewToggle = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly VehicleTopologySystem _topology = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly VehicleTurretSystem _turret = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly VehicleSystem _vehicle = default!;
+    [Dependency] private readonly VehicleViewToggleSystem _viewToggle = default!;
 
     public override void Initialize()
     {
@@ -62,6 +65,9 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
         SubscribeLocalEvent<HardpointSlotsChangedEvent>(OnHardpointSlotsChanged);
 
         SubscribeLocalEvent<VehicleTurretComponent, GunShotEvent>(OnTurretGunShot);
+        SubscribeLocalEvent<VehicleTurretComponent, GetIFFGunUserEvent>(OnTurretGetIFFGunUser);
+
+        SubscribeLocalEvent<VehicleWeaponsComponent, AfterAutoHandleStateEvent>(OnWeaponsAfterState);
     }
 
     private void OnWeaponSeatStrapAttempt(Entity<VehicleWeaponsSeatComponent> ent, ref StrapAttemptEvent args)
@@ -83,7 +89,7 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        if (!_vehicleSystem.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle == null)
+        if (!_vehicle.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle == null)
         {
             return;
         }
@@ -133,31 +139,27 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
 
         _viewToggle.DisableViewToggle(args.Buckle.Owner, ent.Owner);
 
-        if (!_vehicleSystem.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle == null)
+        if (!_vehicle.TryGetVehicleFromInterior(ent.Owner, out var vehicle) || vehicle == null)
             return;
 
         var vehicleUid = vehicle.Value;
-        if (TryComp(vehicleUid, out VehicleWeaponsComponent? weapons) &&
-            ent.Comp.IsPrimaryOperatorSeat &&
-            weapons.Operator == args.Buckle.Owner)
+        if (!TryComp(vehicleUid, out VehicleWeaponsComponent? weapons))
+            return;
+
+        if (ent.Comp.IsPrimaryOperatorSeat && weapons.Operator == args.Buckle.Owner)
         {
             weapons.Operator = null;
             ClearOperatorSelections(weapons, args.Buckle.Owner);
-            RecalculateSelectedWeapon(vehicleUid, weapons);
-            Dirty(vehicleUid, weapons);
         }
-        else if (TryComp(vehicleUid, out VehicleWeaponsComponent? otherWeapons))
+        else
         {
-            ClearOperatorSelections(otherWeapons, args.Buckle.Owner);
-            RecalculateSelectedWeapon(vehicleUid, otherWeapons);
-            Dirty(vehicleUid, otherWeapons);
+            ClearOperatorSelections(weapons, args.Buckle.Owner);
         }
 
-        if (TryComp(vehicleUid, out VehicleWeaponsComponent? selectionWeapons))
-            RefreshOperatorSelectedWeapons(vehicleUid, selectionWeapons);
-
-        if (TryComp(vehicleUid, out VehicleWeaponsComponent? refreshedWeapons))
-            UpdateWeaponsUiForAllOperators(vehicleUid, refreshedWeapons);
+        RecalculateSelectedWeapon(vehicleUid, weapons);
+        Dirty(vehicleUid, weapons);
+        RefreshOperatorSelectedWeapons(vehicleUid, weapons);
+        UpdateWeaponsUiForAllOperators(vehicleUid, weapons);
 
         if (TryComp(args.Buckle.Owner, out EyeComponent? eye) && eye.Target == vehicleUid)
             _eye.SetTarget(args.Buckle.Owner, null, eye);
@@ -229,7 +231,7 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
         if (_net.IsClient)
             return false;
 
-        if (!_vehicleSystem.TryGetVehicleFromInterior(seat, out var vehicle) || vehicle == null)
+        if (!_vehicle.TryGetVehicleFromInterior(seat, out var vehicle) || vehicle == null)
             return false;
 
         var vehicleUid = vehicle.Value;
@@ -394,7 +396,7 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
         if (removeOnly)
         {
             if (RemCompDeferred<VehicleGunnerViewUserComponent>(user))
-                _eyeSystem.UpdatePvsScale(user);
+                _contentEye.UpdatePvsScale(user);
 
             return;
         }
@@ -434,12 +436,12 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
             view.CursorOffsetSpeed = cursorOffsetSpeed;
             view.CursorPvsIncrease = cursorPvsIncrease;
             Dirty(user, view);
-            _eyeSystem.UpdatePvsScale(user);
+            _contentEye.UpdatePvsScale(user);
             return;
         }
 
         if (RemCompDeferred<VehicleGunnerViewUserComponent>(user))
-            _eyeSystem.UpdatePvsScale(user);
+            _contentEye.UpdatePvsScale(user);
     }
 
     private static bool HasBaseGunnerView(VehicleWeaponsSeatComponent seatComp)
@@ -472,6 +474,36 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
             return;
 
         UpdateWeaponsUiForAllOperators(vehicle, weapons);
+    }
+
+    private void OnTurretGetIFFGunUser(Entity<VehicleTurretComponent> ent, ref GetIFFGunUserEvent args)
+    {
+        if (!TryGetContainingVehicle(ent.Owner, out var vehicle) ||
+            !TryComp(vehicle, out VehicleWeaponsComponent? weapons) ||
+            !weapons.HardpointOperators.TryGetValue(ent.Owner, out var operatorUid))
+            return;
+
+        args.GunUser = operatorUid;
+    }
+
+    private void OnWeaponsAfterState(Entity<VehicleWeaponsComponent> vehicleEnt, ref AfterAutoHandleStateEvent args)
+    {
+        vehicleEnt.Comp.HardpointOperators.Clear();
+        vehicleEnt.Comp.OperatorSelections.Clear();
+
+        var operatorQuery = EntityQueryEnumerator<VehicleWeaponsOperatorComponent>();
+        while (operatorQuery.MoveNext(out var operatorUid, out var operatorComp))
+        {
+            if (operatorComp.Vehicle != vehicleEnt.Owner || operatorComp.SelectedWeapon is not { } selectedWeapon)
+                continue;
+
+            vehicleEnt.Comp.OperatorSelections[operatorUid] = selectedWeapon;
+            if (TryGetMountedWeaponHardpointType(vehicleEnt.Owner, selectedWeapon, out var hardpointType) &&
+                !IsSharedHardpointType(hardpointType))
+            {
+                vehicleEnt.Comp.HardpointOperators[selectedWeapon] = operatorUid;
+            }
+        }
     }
 
     private bool TryGetContainingVehicle(EntityUid owner, out EntityUid vehicle)
@@ -543,7 +575,7 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
     private bool TryGetMountedWeaponHardpointType(
         EntityUid vehicle,
         EntityUid mountedWeapon,
-        out string hardpointType)
+        out EntProtoId hardpointType)
     {
         return TryGetMountedWeaponHardpointType(vehicle, mountedWeapon, out hardpointType, hardpoints: null, itemSlots: null);
     }
@@ -551,11 +583,11 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
     private bool TryGetMountedWeaponHardpointType(
         EntityUid vehicle,
         EntityUid mountedWeapon,
-        out string hardpointType,
+        out EntProtoId hardpointType,
         HardpointSlotsComponent? hardpoints,
         ItemSlotsComponent? itemSlots)
     {
-        hardpointType = string.Empty;
+        hardpointType = default;
 
         if (!_topology.TryGetMountedSlotByItem(vehicle, mountedWeapon, out var mountedSlot, hardpoints, itemSlots))
             return false;
@@ -564,23 +596,23 @@ public sealed partial class VehicleWeaponsSystem : EntitySystem
         return true;
     }
 
-    private bool IsHardpointTypeAllowed(VehicleWeaponsSeatComponent seatComp, string hardpointType)
+    private bool IsHardpointTypeAllowed(VehicleWeaponsSeatComponent seatComp, EntProtoId hardpointType)
     {
         if (seatComp.AllowedHardpointTypes.Count == 0)
             return true;
 
         foreach (var allowed in seatComp.AllowedHardpointTypes)
         {
-            if (string.Equals(allowed, hardpointType, StringComparison.OrdinalIgnoreCase))
+            if (allowed == hardpointType)
                 return true;
         }
 
         return false;
     }
 
-    private static bool IsSharedHardpointType(string hardpointType)
+    private static bool IsSharedHardpointType(EntProtoId hardpointType)
     {
-        return string.Equals(hardpointType, "Support", StringComparison.OrdinalIgnoreCase);
+        return hardpointType == HardpointTypeSupport;
     }
 
     private void RefreshOperatorSelectedWeapons(
