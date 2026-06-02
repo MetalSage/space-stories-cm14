@@ -48,8 +48,6 @@
         crate: RMCCrateBoxShellsShotgunBuckshot
       - cost: 3000
         crate: RMCCrateBoxShellsShotgunFlechette
-      - cost: 4000
-        crate: RMCCrateBoxShellsShotgunBreaching
       - cost: 2000
         crate: RMCCrateBoxMagazinePistolM77AP
       - cost: 4000

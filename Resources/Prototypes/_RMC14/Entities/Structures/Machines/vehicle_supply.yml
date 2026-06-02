@@ -35,7 +35,7 @@
         type: VehicleSupplyBui
   - type: VehicleSupplyConsole
     vehicles:
-    - name: Хамви
+    - name: Хамви M2420 СТММ-ТНВ
       vehicle: VehicleHumvee
       unlock: VehicleHumvee
       hardpoints:
@@ -46,7 +46,7 @@
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: Хамви (Медицинский)
+    - name: Санитарный Хамви M2421 СТММ-С
       vehicle: VehicleHumveeMedical
       unlock: VehicleHumveeMedical
       hardpoints:
@@ -54,7 +54,7 @@
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: Хамви (Транспортный)
+    - name: Утилитарный Хамви M2422 СТММ-У
       vehicle: VehicleHumveeTransport
       unlock: VehicleHumveeTransport
       hardpoints:
@@ -62,7 +62,7 @@
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: БТР
+    - name: Бронетранспортер M577
       vehicle: VehicleAPC
       unlock: VehicleAPC
       hardpoints:
@@ -72,7 +72,7 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: БТР (Медицинский)
+    - name: Медицинский бронетранспортер M577-МЕД
       vehicle: VehicleAPCMed
       unlock: VehicleAPCMed
       hardpoints:
@@ -82,7 +82,7 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: БТР (Командный)
+    - name: Командный бронетранспортер M577-КОМ
       vehicle: VehicleAPCCommand
       unlock: VehicleAPCCommand
       hardpoints:
@@ -92,7 +92,7 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: Танк
+    - name: Легкий танк M34A2 "Лонгстрит"
       vehicle: VehicleTank
       unlock: VehicleTank
       hardpoints:
@@ -116,7 +116,7 @@
       - VehicleTankArtilleryModule
       - VehicleTankReinforcedTreads
       - VehicleTankTreads
-    - name: Хамви (Разведовательный)
+    - name: Разведывательный Хамви M2423 СТММ-Р
       vehicle: VehicleHumveeARC
       unlock: VehicleHumveeARC
       hardpoints:

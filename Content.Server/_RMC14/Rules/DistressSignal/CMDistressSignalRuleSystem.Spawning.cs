@@ -7,14 +7,15 @@ using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Dropship;
 using Content.Shared._RMC14.Fax;
 using Content.Shared._RMC14.Humanoid;
-using Content.Shared._RMC14.Intel.Tech;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._RMC14.Rules;
 using Content.Shared._RMC14.Spawners;
+using Content.Shared._RMC14.Vehicle.Supply;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Parasite;
+using Content.Shared._Stories.SCCVars;
 using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.Fax.Components;
@@ -33,8 +34,6 @@ namespace Content.Server._RMC14.Rules.DistressSignal;
 public sealed partial class CMDistressSignalRuleSystem
 {
     private static readonly ProtoId<JobPrototype> VehicleCrewmanJob = "CMVehicleCrewman";
-    private static readonly EntProtoId VehicleHumveeArcUnlock = "VehicleHumveeARC";
-    private static readonly EntProtoId VehicleTankUnlock = "VehicleTank";
 
     /// <summary>
     /// Main handler for player spawning during the distress signal round.
@@ -128,13 +127,23 @@ public sealed partial class CMDistressSignalRuleSystem
     private void ApplyJobSlotScaling(CMDistressSignalRuleComponent comp, RulePlayerSpawningEvent ev)
     {
         var totalPlayers = ev.PlayerPool.Count;
-        var vehicleThreshold = _config.GetCVar(RMCCVars.RMCVehicleRoundstartThresholdPlayers);
-        var totalXenos = (int) Math.Round(Math.Max(1, totalPlayers / _marinesPerXeno));
+        var onlinePlayers = _player.PlayerCount;
+        var totalXenos = (int)Math.Round(Math.Max(1, totalPlayers / _marinesPerXeno));
         // TODO RMC14 dont count survivors
-        var totalSurvivors = (int) Math.Clamp((int) Math.Round(totalPlayers / _marinesPerSurvivor), _minimumSurvivors, _maximumSurvivors);
+        var totalSurvivors = (int)Math.Clamp((int)Math.Round(totalPlayers / _marinesPerSurvivor), _minimumSurvivors, _maximumSurvivors);
         var marines = totalPlayers - totalXenos - totalSurvivors;
-        var roundstartTank = totalPlayers >= vehicleThreshold;
-        var crewmanSlots = roundstartTank ? 2 : 0;
+        var lowPop = _config.GetCVar(SCCVars.RMCLowPopVehicle);
+        var highPop = _config.GetCVar(SCCVars.RMCHighPopVehicle);
+        var roundstartTank = onlinePlayers >= highPop;
+        var crewmanSlots = onlinePlayers >= lowPop ? 2 : 0;
+
+        var liftQuery = EntityQueryEnumerator<VehicleSupplyLiftComponent>();
+        while (liftQuery.MoveNext(out var uid, out var lift))
+        {
+            lift.ApcUnlocked = onlinePlayers >= lowPop;
+            lift.TankUnlocked = onlinePlayers >= highPop;
+            Dirty(uid, lift);
+        }
 
         // TODO RMC14: Move to component
         var doJobSlotScaling = comp.DoJobSlotScaling &&
@@ -151,10 +160,10 @@ public sealed partial class CMDistressSignalRuleSystem
                 foreach (var (job, scaling) in scalingComp.Jobs)
                 {
                     var minimumPlayers = job == VehicleCrewmanJob
-                        ? vehicleThreshold
+                        ? lowPop
                         : scaling.MinimumPlayers;
 
-                    var slots = minimumPlayers > 0 && totalPlayers < minimumPlayers
+                    var slots = minimumPlayers > 0 && onlinePlayers < minimumPlayers
                         ? 0
                         : _rmcStationJobs.GetSlots(marines, scaling.Factor, scaling.C, scaling.Min, scaling.Max);
 
@@ -195,11 +204,6 @@ public sealed partial class CMDistressSignalRuleSystem
             Log.Info($"Setting {VehicleCrewmanJob} to {crewmanSlots} slots.");
             _stationJobs.TrySetJobSlot(stationId, VehicleCrewmanJob, crewmanSlots, stationJobs: stationJobs);
         }
-
-        _tech.SetVehicleUnlockOptionDisabled(VehicleHumveeArcUnlock, roundstartTank);
-
-        if (roundstartTank)
-            RaiseLocalEvent(new TechUnlockVehicleEvent(VehicleTankUnlock));
     }
 
     /// <summary>
@@ -247,7 +251,7 @@ public sealed partial class CMDistressSignalRuleSystem
             return playerId;
         }
 
-        var totalXenos = (int) Math.Round(Math.Max(1, ev.PlayerPool.Count / _marinesPerXeno));
+        var totalXenos = (int)Math.Round(Math.Max(1, ev.PlayerPool.Count / _marinesPerXeno));
         var priorities = Enum.GetValues<JobPriority>().Length;
         var xenoCandidates = new List<NetUserId>[priorities];
         for (var i = 0; i < priorities; i++)

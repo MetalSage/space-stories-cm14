@@ -25,21 +25,26 @@
   rules:
   - STDistressSignalLowPop
 
-- type: entity
-  id: STDistressSignalLowPop
-  parent: CMDistressSignal
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: CMDistressSignalRule
-    squadIds:
-    - SquadAlpha
-    - SquadBravo
-    extraSquadIds:
-    - SquadIntel
-    - SquadFORECON
-    doJobSlotScaling: false
+- type: gamePreset
+  id: STDistressSignalNoEnd
+  alias:
+  - stdistresssignalnoend
+  - stdsnoend
+  - stnoend
+  name: stories-distress-signal-no-end-title
+  description: stories-distress-signal-no-end-description
+  showInVote: false
+  rules:
+  - STDistressSignalNoEnd
 
-- type: gameMapPool
-  id: STLowPopMapPool
-  maps:
-  - STAlmayerLowPop
+- type: gamePreset
+  id: STGreenshift
+  alias:
+  - stgreenshift
+  - stgreen
+  - greenshift
+  name: stories-greenshift-title
+  description: stories-greenshift-description
+  showInVote: false
+  rules:
+  - STGreenshift

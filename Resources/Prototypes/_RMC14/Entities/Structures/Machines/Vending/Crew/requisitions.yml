@@ -451,14 +451,6 @@
         name: коробка магазинов (Увел. M10 x 14)
         box: RMCMagazinePistolM13Ext
 
-      - id: RMCBoxMagazinePistolM13AP
-        name: коробка магазинов (ББ M10 x 22)
-        box: RMCMagazinePistolM13AP
-
-      - id: RMCBoxMagazinePistolM13ExtAP
-        name: коробка магазинов (Увел. ББ M10 x 14)
-        box: RMCMagazinePistolM13ExtAP
-
       - id: RMCBoxMagazineSMGM63
         name: коробка магазинов (M39 x 12)
         box: CMMagazineSMGM63

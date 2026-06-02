@@ -284,7 +284,7 @@
             unlock: VehicleHumveeARC
           - !type:TechAnnounceEvent
             author: АВТОРИЗАЦИЯ СПЕЦСРЕДСТВ АЛМАЙЕРА
-            message: Для проведения этой операции разрешено развертывание системы ARC.
+            message: Транспортное средство Разведывательный Хамви M2423 СТММ-Р было подготовлено и добавлено в хранилище лифта.
           icon:
             sprite: _RMC14/Interface/tech_tree.rsi
             state: humvee
