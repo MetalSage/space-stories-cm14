@@ -300,6 +300,7 @@
       cluster-payload: !type:Container
   - type: Tag
     tags:
+    - LauncherCompatibleGrenade
     - Grenade
   - type: Ammo
   - type: ClusterLimitHits
@@ -320,6 +321,7 @@
     totalIntensity: 280
   - type: Tag
     tags:
+    - LauncherCompatibleGrenade
     - Grenade
 
 - type: entity
