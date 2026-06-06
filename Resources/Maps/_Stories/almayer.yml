@@ -58395,7 +58395,7 @@ entities:
     - type: MetaData
       name: Инженерный отдел - Низ
     - type: Transform
-      pos: 74.5,-0.5
+      pos: 63.5,-0.5
       parent: 1
   - uid: 5197
     components:
