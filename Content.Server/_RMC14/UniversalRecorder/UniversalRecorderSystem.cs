@@ -1035,6 +1035,9 @@ public sealed class UniversalRecorderSystem : EntitySystem
     {
         tape = default;
 
+        if (MetaData(ent).EntityLifeStage >= EntityLifeStage.Terminating)
+            return false;
+
         if (!_itemSlots.TryGetSlot(ent, UniversalRecorderComponent.TapeSlotId, out var slot) ||
             slot.Item is not { } item ||
             !TryComp(item, out UniversalRecorderTapeComponent? tapeComp))
