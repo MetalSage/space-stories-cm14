@@ -59,6 +59,15 @@
     },
     {
       "name": "drone_downed_0"
+    },
+    {
+      "name": "drone_parasite_left"
+    },
+    {
+      "name": "drone_parasite_right"
+    },
+    {
+      "name": "drone_egg_right"
     }
   ]
 }
