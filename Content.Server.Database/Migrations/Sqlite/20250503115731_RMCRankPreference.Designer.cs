@@ -866,6 +866,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
 
+                    b.Property<string>("Voice")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("voice");
+
                     b.Property<string>("XenoPostfix")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
