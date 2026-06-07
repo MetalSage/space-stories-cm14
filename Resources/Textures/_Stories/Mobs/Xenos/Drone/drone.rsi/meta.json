@@ -67,6 +67,9 @@
       "name": "drone_parasite_right"
     },
     {
+      "name": "drone_egg_left"
+    },
+    {
       "name": "drone_egg_right"
     }
   ]
