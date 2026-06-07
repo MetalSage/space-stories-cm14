@@ -72,6 +72,12 @@
     },
     {
       "name": "gardener_dead"
+    },
+    {
+      "name": "drone_egg_right"
+    },
+    {
+      "name": "drone_parasite_right"
     }
   ]
 }
