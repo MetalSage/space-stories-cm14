@@ -79,14 +79,14 @@ rmc-xeno-evolution-start-self = Мы начинаем скручиваться �
 rmc-xeno-evolution-start-others = { $xeno } начинает крутиться и извиваться.
 
 # Insight
-rmc-xeno-insight-empower = We have gained sufficient insight in our prey to empower our next Deploy Traps!
+rmc-xeno-insight-empower = Мы получили достаточно информации о нашей добыче, чтобы усовершенствовать наши следующие ловушки!
 
 # Deploy Traps
-rmc-xeno-deploy-traps-self = We create a sudden surge of traps!
-rmc-xeno-deploy-traps-others = The sapper creates a sudden surge of traps!
-rmc-xeno-deploy-traps-empower = We have tapped into our reserves to prepare a stronger Acid Mine!
-rmc-xeno-deploy-traps-range-fail = That target is too far away!
-rmc-xeno-deploy-traps-see-fail = There's something in the way!
+rmc-xeno-deploy-traps-self = Мы создаём внезапный поток ловушек!
+rmc-xeno-deploy-traps-others = Сапер создаёт внезапный поток ловушек!
+rmc-xeno-deploy-traps-empower = Мы задействовали наши резервы для подготовки более мощной кислотной мины!
+rmc-xeno-deploy-traps-range-fail = Эта цель слишком далеко!
+rmc-xeno-deploy-traps-see-fail = Что-то мешает!
 
 
 # Acid Mine
