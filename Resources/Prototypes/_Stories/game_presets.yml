@@ -21,7 +21,7 @@
   description: rmc-distress-signal-description
   showInVote: false
   maxPlayers: 50
-  supportedMaps: STLowPopMapPool
+  supportedMaps: STDefaultMapPool // Stories-все карты для лоупопа
   rules:
   - STDistressSignalLowPop
 
