@@ -293,8 +293,8 @@
   - type: RMCArmorSpeedTier
     speedTier: medium
   - type: ClothingSpeedModifier
-    walkModifier: 0.666
-    sprintModifier: 0.666
+    walkModifier: 0.725
+    sprintModifier: 0.725
   # Stories-Balance-End
   - type: ClothingRequireEquipped
     autoUnequip: true
