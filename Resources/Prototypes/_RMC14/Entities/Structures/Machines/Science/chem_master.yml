@@ -97,7 +97,7 @@
   - type: SolutionContainerManager
     solutions:
       buffer:
-        maxVol: 300 # Stories-Parity
+        maxVol: 500
   - type: RMCChemMaster
     pillBottleWhitelist:
       tags:
