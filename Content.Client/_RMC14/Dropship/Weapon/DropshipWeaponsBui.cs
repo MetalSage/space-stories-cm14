@@ -148,8 +148,7 @@ public sealed class DropshipWeaponsBui : RMCPopOutBui<DropshipWeaponsWindow>
 
         string TargetAcquisition()
         {
-            var weapon = EntMan.GetEntity(compScreen.Weapon);
-            if (weapon != null)
+            if (EntMan.TryGetEntity(compScreen.Weapon, out var weapon))
             {
                 var check = _weaponSystem.TryGetWeaponAmmo(weapon.Value, out var ammo);
                 return Loc.GetString("rmc-dropship-weapons-target-strike",
