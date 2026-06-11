@@ -29,7 +29,8 @@ rmc-dropship-weapons-target-strike = Приобретение цели
   Ударный режим: { $mode }
   Режим цели: { $targetMode }
 
-  Конфигурация удара { $weapon }
+  Конфигурация удара:
+  { $weapon }
 
   Цель выбрана: { $target }
 
