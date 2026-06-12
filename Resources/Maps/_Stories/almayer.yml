@@ -181207,7 +181207,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: RMCLockerFieldDoctor
+- proto: RMCLockerFieldDoctorFilled
   entities:
   - uid: 24979
     components:
