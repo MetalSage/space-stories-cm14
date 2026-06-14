@@ -185,7 +185,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_attack
     useDelay: 3
   - type: WorldTargetAction
@@ -1577,7 +1577,7 @@
   - type: XenoAcidMine
     actionIconEmpowered:
       sprite: _Stories/Actions/xeno_actions.rsi
-      state: acid_mine_empowered
+      state: acid_mine
   - type: TargetAction
     deselectOnMiss: false
     checkCanAccess: false
