@@ -282,10 +282,9 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
 
             // RMC14 use the normal stop-drop-roll resist before active water extinguishes.
-            var wasResisting = ent.Comp.Resisting;
             _rmcFlammable.DoStopDropRollAnimation(ent.Owner);
             Resist(ent, ent);
-            if (!wasResisting && ent.Comp.Resisting)
+            if (ent.Comp.Resisting)
                 TryExtinguishWithWater(ent.Owner, ent.Comp);
             // RMC14 end
 
@@ -457,7 +456,8 @@ namespace Content.Server.Atmos.EntitySystems
             if (!Resolve(uid, ref flammable))
                 return;
 
-            if (!flammable.OnFire || !_actionBlockerSystem.CanInteract(uid, null) || flammable.Resisting)
+            // RMC14 use CanMove instead of CanInteract
+            if (!flammable.OnFire || flammable.Resisting || !_actionBlockerSystem.CanMove(uid))
                 return;
 
             flammable.Resisting = true;

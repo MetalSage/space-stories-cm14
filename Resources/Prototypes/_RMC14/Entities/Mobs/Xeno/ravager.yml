@@ -14,8 +14,6 @@
   - type: GuideHelp
     guides:
     - RMCGuideRoleRavager
-  - type: GhostRole
-    name: cm-job-name-xeno-ravager
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Ravager/ravager.rsi
     layers:
@@ -186,6 +184,9 @@
   components:
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Ravager/berserker_ravager.rsi
+  - type: XenoCappedPheromones
+    cappedPheromones:
+      Frenzy: 2.9
   - type: Xeno
     actionIds:
     - ActionXenoRest

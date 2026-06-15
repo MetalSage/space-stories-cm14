@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server.Atmos.Components;
 using Content.Server.Spreader;
+using Content.Shared._RMC14.Barricade;
 using Content.Shared._RMC14.Communications;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Xenonids.Construction.Nest;
@@ -10,6 +11,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Maps;
+using Content.Shared.Physics;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
@@ -28,7 +30,9 @@ public sealed class XenoWeedsSystem : SharedXenoWeedsSystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedDirectionalAttackBlockSystem _directionBlocker = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+
     private static readonly ProtoId<TagPrototype> IgnoredTag = "SpreaderIgnore";
 
     private readonly List<EntityUid> _anchored = new();
@@ -114,7 +118,7 @@ public sealed class XenoWeedsSystem : SharedXenoWeedsSystem
                     }
                 }
 
-                if (!CanSpreadWeedsBetween(uid.ToCoordinates(), _map.GridTileToLocal(grid, grid, neighbor)))
+                if (_directionBlocker.IsDirectionBlocked(uid, cardinal, collisionGroup: CollisionGroup.BarricadeImpassable))
                     blocked = true;
 
                 if (blocked)
@@ -147,7 +151,7 @@ public sealed class XenoWeedsSystem : SharedXenoWeedsSystem
                     break;
                 }
 
-                if (!CanSpreadWeedsPopup(grid, neighbor, null, weeds.SpreadsOnSemiWeedable))
+                if (!CanSpreadWeedsPopup(grid, neighbor, null, null, weeds.SpreadsOnSemiWeedable))
                     continue;
 
                 if (weedsToReplace != null)

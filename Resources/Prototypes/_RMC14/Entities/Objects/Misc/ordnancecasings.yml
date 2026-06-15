@@ -152,7 +152,6 @@
   - type: CMVocalizeTrigger
   - type: Tag
     tags:
-    - LauncherCompatibleGrenade
     - Grenade
   - type: GenericVisualizer
     visuals:

@@ -67,6 +67,12 @@ public sealed partial class VehicleSupplyLiftComponent : Component
     [DataField, AutoNetworkedField]
     public bool HasDispensedArmor;
 
+    [DataField, AutoNetworkedField]
+    public bool ApcUnlocked;
+
+    [DataField, AutoNetworkedField]
+    public bool TankUnlocked;
+
     [NonSerialized]
     public string PendingVehicle = string.Empty;
 

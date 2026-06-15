@@ -136,7 +136,6 @@
           components:
           - HardpointItem
       wheel-1:
-        startingItem: VehicleHumveeWheel
         disableEject: true
         whitelist:
           components:
@@ -196,7 +195,6 @@
   - type: ItemSlots
     slots:
       turret:
-        startingItem: VehicleHumveeTurretArmed
         disableEject: true
         whitelist:
           components:
@@ -212,7 +210,6 @@
           components:
           - HardpointItem
       wheel-1:
-        startingItem: VehicleHumveeWheel
         disableEject: true
         whitelist:
           components:
@@ -370,7 +367,6 @@
   - type: ItemSlots
     slots:
       turret:
-        startingItem: VehicleHumveeARCTurret
         disableEject: true
         whitelist:
           components:
@@ -386,7 +382,6 @@
           components:
           - HardpointItem
       wheel-1:
-        startingItem: VehicleHumveeWheel
         disableEject: true
         whitelist:
           components:

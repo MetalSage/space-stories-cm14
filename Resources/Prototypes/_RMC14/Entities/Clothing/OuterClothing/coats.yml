@@ -628,6 +628,7 @@
     sprite: _RMC14/Objects/Clothing/OuterClothing/Coats/service/jungle.rsi
   - type: CMArmor
     melee: 10
+    bullet: 10
   - type: Appearance
   - type: ItemCamouflage
     camouflageVariations:
@@ -1111,11 +1112,6 @@
     sprite: _RMC14/Objects/Clothing/OuterClothing/Coats/Snowsuits/soviet.rsi
   - type: Clothing
     sprite: _RMC14/Objects/Clothing/OuterClothing/Coats/Snowsuits/soviet.rsi
-  - type: CMArmor
-    melee: 20
-    bullet: 20
-    bio: 20
-    explosionArmor: 0
 
 - type: entity
   parent: RMCCoatSnow

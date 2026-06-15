@@ -10,5 +10,7 @@ ent-RMCHandsBrownMarine = коричневые тактические перча
     .desc = Стандартные морские тактические перчатки. Надпись гласит: "Вязаные Ассоциацией вдов морских пехотинцев". Эти перчатки коричневые, а не классического черного цвета.
 ent-RMCHandsGreyMarine = серые тактические перчатки морской пехоты
     .desc = Стандартные морские тактические перчатки. Надпись гласит: "Вязаные Ассоциацией вдов морских пехотинцев". Эти перчатки серого оттенка, а не классического черного цвета.
+ent-RMCHandsFingerlessMarine = marine fingerless combat gloves
+    .desc = Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'. These ones have been modified by having the fingertips removed.
 ent-RMCHandsCOGloves = перчатки командующего офицера
     .desc = Возможно, вам нравятся эти перчатки, но ОНИ считают, что вы их недостойны.

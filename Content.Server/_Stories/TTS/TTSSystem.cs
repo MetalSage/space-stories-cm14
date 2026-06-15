@@ -10,6 +10,7 @@ using Content.Shared._Stories.SCCVars;
 using Content.Shared._Stories.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
+using Content.Shared._RMC14.Mentor.ImaginaryFriend;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -159,6 +160,8 @@ public sealed partial class TTSSystem : EntitySystem
         if (isHunter && _bracer.IsHunterWithBracer(source, out var bracer))
             isTranslated = bracer.Value.Comp.TranslatorActive;
 
+        var isImaginaryFriend = TryComp<ImaginaryFriendComponent>(source, out var imaginaryFriend);
+
         var recipients = new List<ICommonSession>();
         foreach (var player in _playerManager.Sessions)
         {
@@ -175,6 +178,16 @@ public sealed partial class TTSSystem : EntitySystem
             if (HasComp<GhostComponent>(listener))
             {
                 recipients.Add(player);
+                continue;
+            }
+
+            if (isImaginaryFriend)
+            {
+                if (listener == source || listener == imaginaryFriend!.Imaginer)
+                {
+                    recipients.Add(player);
+                    continue;
+                }
                 continue;
             }
 

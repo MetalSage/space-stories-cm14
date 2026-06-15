@@ -15,8 +15,6 @@
   - type: GuideHelp
     guides:
     - RMCGuideRoleSpitter
-  - type: GhostRole
-    name: cm-job-name-xeno-spitter
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Spitter/spitter.rsi
     layers:
@@ -77,7 +75,7 @@
   - type: XenoEvolution
     max: 500
     evolvesTo:
-    - CMXenoBoiler
+    - RMCXenoBoiler
     - CMXenoPraetorian
   - type: XenoSpit
   - type: XenoChargeSpit

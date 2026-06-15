@@ -48,4 +48,5 @@ rmc-hivemanagement-must-overwatch = Вы должны следить за ксе
 rmc-hivemanagement-cant-be-devolved = { $name } не может быть дезэволюционирован!
 rmc-hivemanagement-cant-deevolve-larva = Вы не можете дезэволюционировать ксеноморфа до личинки.
 rmc-hivemanagement-cant-deevolve-other-hive = Вы не можете дезэволюционировать ксеноморфа из другого улья!
+rmc-hivemanagement-manage-teams = Управлять группами улья
 

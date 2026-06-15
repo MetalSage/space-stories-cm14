@@ -72,16 +72,13 @@ public sealed class GunPredictionSystem : SharedGunPredictionSystem
 
     private void OnShootRequest(RequestShootEvent ev, EntitySessionEventArgs args)
     {
-        if (_timing.IsFirstTimePredicted)
-            return;
-
         // Stories-Vehicle-Start
         var coords = GetCoordinates(ev.Coordinates);
         if (!coords.IsValid(EntityManager))
             return;
         // Stories-Vehicle-End
 
-        ShootRequested(ev.Gun, ev.Coordinates, ev.Target, ev.Shot, args.SenderSession);
+        ShootRequested(ev.Gun, ev.Coordinates, ev.Target, null, args.SenderSession, ev.RearmSemiAuto);
     }
 
     private void OnClientProjectileUpdateIsPredicted(Entity<PredictedProjectileClientComponent> ent, ref UpdateIsPredictedEvent args)

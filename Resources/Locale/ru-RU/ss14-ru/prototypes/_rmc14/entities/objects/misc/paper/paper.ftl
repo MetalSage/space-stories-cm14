@@ -20,3 +20,5 @@ ent-RMCPaperWeYa = weston-yamada official document
     .desc = { ent-CMPaper.desc }
 ent-RMCPaperWeYaLiaison = weston-yamada document
     .desc = { ent-RMCPaperWeYa.desc }
+ent-RMCPaperBodyguardInstructions = executive bodyguard instructions (Must Read)
+    .desc = { ent-RMCPaperWeYa.desc }

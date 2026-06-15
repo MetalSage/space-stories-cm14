@@ -18,7 +18,6 @@ namespace Content.Server._RMC14.Vehicle;
 public sealed class VehicleRoundstartCommand : ToolshedCommand
 {
     private static readonly ProtoId<JobPrototype> VehicleCrewmanJob = "CMVehicleCrewman";
-    private static readonly EntProtoId VehicleHumveeArcUnlock = "VehicleHumveeARC";
     private static readonly EntProtoId VehicleTankUnlock = "VehicleTank";
 
     [Dependency] private readonly IConfigurationManager _config = default!;
@@ -27,7 +26,7 @@ public sealed class VehicleRoundstartCommand : ToolshedCommand
     [CommandImplementation("current")]
     public void TestCurrent([CommandInvocationContext] IInvocationContext ctx)
     {
-        TestInternal(ctx, _players.Sessions.Count());
+        TestInternal(ctx, _players.PlayerCount);
     }
 
     [CommandImplementation("test")]
@@ -41,11 +40,11 @@ public sealed class VehicleRoundstartCommand : ToolshedCommand
     private void TestInternal(IInvocationContext ctx, int totalPlayers)
     {
         // Stories-Vehicle-Start
-        var threshold = _config.GetCVar(SCCVars.RMCLowPopVehicle);
-        var crewmanSlots = totalPlayers >= threshold ? 2 : 0;
+        var lowPop = _config.GetCVar(SCCVars.RMCLowPopVehicle);
+        var highPop = _config.GetCVar(SCCVars.RMCHighPopVehicle);
+        var crewmanSlots = totalPlayers >= lowPop ? 2 : 0;
         var stationJobs = Sys<StationJobsSystem>();
         var tech = Sys<TechSystem>();
-        var vehicleSupply = Sys<VehicleSupplySystem>();
 
         var stationsUpdated = 0;
         var query = EntityManager.EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent>();
@@ -58,13 +57,12 @@ public sealed class VehicleRoundstartCommand : ToolshedCommand
             stationsUpdated++;
         }
 
-        var tankReady = totalPlayers >= _config.GetCVar(SCCVars.RMCHighPopVehicle);
-        tech.SetVehicleUnlockOptionDisabled(VehicleHumveeArcUnlock, tankReady);
+        var tankReady = totalPlayers >= highPop;
         // Stories-Vehicle-End
 
-        string tankResult = "not applied below threshold";
+        string tankResult = tankReady ? "applied" : "not applied below threshold";
 
-        ctx.WriteLine($"Vehicle roundstart test: players={totalPlayers}, threshold={threshold}");
+        ctx.WriteLine($"Vehicle roundstart test: players={totalPlayers}, threshold={lowPop}");
         ctx.WriteLine($"CMVehicleCrewman slots set to {crewmanSlots} on {stationsUpdated} station(s).");
         ctx.WriteLine($"VehicleTank: {tankResult}.");
     }

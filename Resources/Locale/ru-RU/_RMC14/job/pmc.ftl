@@ -130,5 +130,11 @@ rmc-job-name-corp-dep-director = Заместитель директора Ве-
 rmc-ghost-name-corp-director = Директор Ве-Я (нейтральный)
 rmc-job-name-corp-director = Директор Ве-Я
 
+# CL Bodyguard
+rmc-job-name-executive-bodyguard = Корпоративный телохранитель
+rmc-job-description-executive-bodyguard = Защищайте корпоративного связного и его офис. Помните, что вы не должны выступать в роли головореза, и при необходимости сотрудничайте с военной полицией.
+rmc-job-prefix-executive-bodyguard = КТ
+RMCWeYaExecutiveBodyguard = Корпоративный телохранитель
+
 # Corpses
 rmc-job-name-pmc-operator-corpse = Оператор ЧВК

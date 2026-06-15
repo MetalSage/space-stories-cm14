@@ -85,3 +85,5 @@ ent-RMCPouchCassette = подсумок для кассет
     .desc = Тщательно изготовленный чехол, специально созданный для сохранности кассет во время войны.
 ent-RMCPouchDrumPMC = подсумок для барабанов смартгана
     .desc = Тяжелый подсумок, предназначенный для переноски избыточного количества барабанов со смартами.
+ent-RMCPouchSecurityTools = tactical security pouch
+    .desc = A custom fit security pouch, capable of fitting a variety of security tools in different compartments.

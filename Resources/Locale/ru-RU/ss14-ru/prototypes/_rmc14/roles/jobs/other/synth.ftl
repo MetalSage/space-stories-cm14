@@ -5,3 +5,5 @@ ent-RMCSynthAddComponents = { "" }
     .desc = { "" }
 ent-RMCSynthRemoveComponents = { "" }
     .desc = { "" }
+ent-RMCSynthHudComponents = { "" }
+    .desc = { "" }

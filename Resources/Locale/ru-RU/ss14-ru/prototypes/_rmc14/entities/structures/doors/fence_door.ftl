@@ -1,0 +1,4 @@
+ent-RMCFenceDoor = fence door
+    .desc = A sturdy chainlink door set between two metal poles. A cheap way to section off areas while still allowing visibility through it.
+ent-RMCFenceDoorBroken = broken fence door
+    .desc = Someone really didn't want to use the door.

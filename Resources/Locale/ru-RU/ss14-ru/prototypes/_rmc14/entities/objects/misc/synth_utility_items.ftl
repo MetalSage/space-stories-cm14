@@ -1,0 +1,13 @@
+ent-CMAirlockCircuitBoard = airlock circuit board
+    .desc = An electronics board used in airlocks.
+    .suffix = { ent-DoorElectronics.suffix }
+ent-RMCES11MobileFuelCanister = ES-11 mobile fuel canister
+    .desc = A compact welding fuel canister for field repairs and refills.
+ent-RMCSynthRepairKit = synthetic repair kit
+    .desc = A compact kit of field tools and replacement cabling for synthetic structural repairs.
+ent-RMCSynthRepairKitFilled = { ent-RMCSynthRepairKit }
+    .desc = { ent-RMCSynthRepairKit.desc }
+    .suffix = Filled
+ent-RMCSynthRepairKitEliteFilled = elite synthetic repair kit
+    .desc = { ent-RMCSynthRepairKit.desc }
+    .suffix = Filled

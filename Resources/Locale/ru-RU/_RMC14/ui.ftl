@@ -3,6 +3,7 @@ cm-ui-rmc14 = RMC14
 rmc-ui-options-cassettes-volume = Громкость кассет:
 rmc-ui-options-hijack-song-volume = Громкость песен захвата:
 rmc-ui-options-xeno-ability-previews = Показать предварительный просмотр способностей ксеноморфов
+rmc-ui-options-marine-equipment-previews = Показать предварительный просмотр снаряжения морпехов
 
 rmc-ui-voicelines = Голосовые реплики
 rmc-ui-options-tab-voicelines = Голосовые реплики
@@ -38,6 +39,7 @@ rmc-ui-audio-emotes-feroxi = Проигрывать эмоции для феро
 rmc-ui-audio-emotes-skrell = Проигрывать эмоции для скреллов
 
 cm-ui-roadmap = Дорожная карта
+rmc-ui-roadmap-orbital-bombardment = Орбитальная бомбардировка
 
 rmc-ui-link-discord-account = Ссылка на аккаунт Discord
 rmc-ui-link-discord-account-text = Нажмите на кнопку ниже, чтобы скопировать код.

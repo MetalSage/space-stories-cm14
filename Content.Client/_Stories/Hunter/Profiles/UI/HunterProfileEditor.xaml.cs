@@ -7,6 +7,8 @@ using Content.Client.Inventory;
 using Content.Client.Lobby;
 using Content.Shared._RMC14.Clothing;
 using Content.Shared._RMC14.NamedItems;
+using Content.Shared._RMC14.Marines.Roles.Ranks;
+using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._Stories.Hunter;
 using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared._Stories.Hunter.Prototypes;
@@ -39,7 +41,7 @@ namespace Content.Client._Stories.Hunter.Profiles.UI;
 public sealed partial class HunterProfileEditor : Control
 {
     private readonly Dictionary<string, Dictionary<string, List<HunterGearPrototype>>> _categorizedGear = new();
-    
+
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
@@ -408,7 +410,7 @@ public sealed partial class HunterProfileEditor : Control
                 foreach (var material in materials.Keys.OrderBy(k => k))
                 {
                     firstMaterial ??= material;
-                    
+
                     var matKey = $"st-hunter-material-{material.ToLowerInvariant()}";
                     var locTitle = Loc.GetString(matKey);
                     if (locTitle.StartsWith("st-hunter-material-"))
@@ -440,7 +442,7 @@ public sealed partial class HunterProfileEditor : Control
             {
                 var gears = materials.First().Value;
                 var picker = new SpritePicker();
-                
+
                 picker.Populate(gears, isSponsor);
 
                 if (category == "Accessory")
@@ -478,14 +480,14 @@ public sealed partial class HunterProfileEditor : Control
         _profile.Name = name;
         _profile.Gender = randomProfile.Gender;
         _profile.Age = randomProfile.Age;
-        
+
         _profile.ArmorPrototype = randomProfile.ArmorPrototype;
         _profile.MaskPrototype = randomProfile.MaskPrototype;
         _profile.GreavesPrototype = randomProfile.GreavesPrototype;
         _profile.CasterPrototype = randomProfile.CasterPrototype;
         _profile.BracerPrototype = randomProfile.BracerPrototype;
         _profile.HeadAccessory = randomProfile.HeadAccessory;
-        
+
         _profile.SkinColor = randomProfile.SkinColor;
         _profile.Voice = randomProfile.Voice;
         _profile.TranslatorSound = randomProfile.TranslatorSound;
@@ -589,7 +591,7 @@ public sealed partial class HunterProfileEditor : Control
         }
         if (genderValid || GenderButton.ItemCount > 0)
             GenderButton.SelectId(genderId);
-        
+
         AgeEdit.Text = _profile.Age.ToString();
 
         _cachedFlavorText = _profile.FlavorText ?? "";
@@ -626,7 +628,7 @@ public sealed partial class HunterProfileEditor : Control
                     statusId = fallbackId;
                 else
                     statusId = StatusButton.GetItemId(0);
-            
+
                 _profile.Status = (HunterStatus)statusId;
                 SetDirty();
             }
@@ -678,7 +680,7 @@ public sealed partial class HunterProfileEditor : Control
             CloakStyleButton.SelectId(cloakId);
         else if (CloakStyleButton.ItemCount > 0)
             CloakStyleButton.SelectId(CloakStyleButton.GetItemId(0));
-        
+
         CapeColorSelector.Color = _profile.CapeColor;
 
         SetPickerSelected("Armor", _profile.ArmorPrototype);
@@ -753,7 +755,7 @@ public sealed partial class HunterProfileEditor : Control
                                     var picker = new SpritePicker();
                                     picker.Populate(gears, isSponsor);
                                     if (category == "Accessory") picker.AddCustomButton("Nothing", Loc.GetString("st-hunter-gear-none"), false, true);
-                                    
+
                                     picker.OnSelectionChanged += pid => OnSpriteSelected(category, pid);
                                     rightArea.AddChild(picker);
                                     picker.SetSelected(protoId);
@@ -807,6 +809,7 @@ public sealed partial class HunterProfileEditor : Control
             appearance,
             SpawnPriorityPreference.None,
             ArmorPreference.Random,
+            new Dictionary<ProtoId<JobPrototype>, ProtoId<RankPrototype>?>(),
             null,
             new Dictionary<ProtoId<JobPrototype>, JobPriority>(),
             PreferenceUnavailableMode.StayInLobby,
@@ -845,7 +848,7 @@ public sealed partial class HunterProfileEditor : Control
             EquipIfValid(_profile.ArmorPrototype, "outerClothing");
             EquipIfValid(_profile.MaskPrototype, "mask");
             EquipIfValid(_profile.GreavesPrototype, "shoes");
-            
+
             if (ShowCapeButton.Pressed)
                 EquipIfValid(_previewCapePrototype, "back");
 

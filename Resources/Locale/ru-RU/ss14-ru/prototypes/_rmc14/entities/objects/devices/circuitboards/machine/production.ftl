@@ -31,3 +31,6 @@ ent-CMCircuitboardMicrowave = плата микроволновой печи
 ent-RMCArmylatheMachineCircuitboard = печатная плата для станка Армилат
     .desc = Печатная плата станка для армилата
     .suffix = { ent-CMBaseMachineCircuitboard.suffix }
+ent-RMCRechargerCircuitboard = recharger machine board
+    .desc = A machine printed circuit board for a recharger
+    .suffix = { ent-CMBaseMachineCircuitboard.suffix }

@@ -197,6 +197,9 @@ public sealed partial class CMDistressSignalRuleComponent : Component
     };
 
     [DataField]
+    public bool MarinesLanded;
+
+    [DataField]
     public ProtoId<JobPrototype> QueenJob = "CMXenoQueen";
 
     [DataField]
@@ -299,6 +302,9 @@ public sealed partial class CMDistressSignalRuleComponent : Component
     public bool AresGreetingDone;
 
     [DataField]
+    public bool AresPreflightDone;
+
+    [DataField]
     public TimeSpan AresMapDelay = TimeSpan.FromSeconds(20);
 
     [DataField]
@@ -360,7 +366,7 @@ public sealed partial class CMDistressSignalRuleComponent : Component
     public bool DoJobSlotScaling = true;
 
     [DataField]
-    public bool AutoEnd = false;
+    public bool AutoEnd = true;
 
     [DataField]
     public bool StartARESAnnouncements = true;
