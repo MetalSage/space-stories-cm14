@@ -8,8 +8,6 @@ rmc-species-synth-generation-third = Третье поколение
 
 rmc-species-synth-defib-attempt = Вы не можете использовать дефибриллятор на { $target }. Для перезагрузки нужен ключ сброса синтетика!
 rmc-species-synth-reset-key-invalid = Вы не можете использовать ключ сброса на них, они не синтетик!
-rmc-synth-item-restricted = Ваше программирование запрещает вам использовать { THE($item) }!
-rmc-synth-item-too-heavy = { CAPITALIZE(THE($item)) } слишком тяжёлый для любого, кто не обладает силой синтетика.
 
 rmc-synth-repair-brute-start-others = { THE($user) } начинает исправлять вмятины на своей { $limb }.
 rmc-synth-repair-brute-start-self = Вы начинаете аккуратно выправлять вмятины на своем { $limb }, чтобы не нарушить гарантию.

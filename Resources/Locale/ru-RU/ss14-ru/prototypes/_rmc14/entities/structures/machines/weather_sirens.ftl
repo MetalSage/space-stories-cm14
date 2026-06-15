@@ -1,3 +1,5 @@
+ent-RMCWeatherSirenBase = { "" }
+    .desc = { "" }
 ent-RMCWeatherSiren = погодная сирена
     .desc = Сирена, используемая для воспроизведения погодных предупреждений колонии.
 ent-RMCStormSiren = штормовая сирена

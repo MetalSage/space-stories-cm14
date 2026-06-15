@@ -684,17 +684,20 @@ public sealed class OrbitalCannonSystem : EntitySystem
 
                 cannon.Comp.Status = OrbitalCannonStatus.Unloaded;
                 cannon.Comp.LastFireAt = time;
+                cannon.Comp.UnloadingTrayAt = time;
                 Dirty(cannon, cannon.Comp);
 
                 var cannonEnt = new Entity<OrbitalCannonComponent>(cannon, cannon.Comp);
-                CannonStatusChanged(cannonEnt);
 
                 if (_container.TryGetContainer(trayId, tray.FuelContainer, out var fuelCont))
                     _container.CleanContainer(fuelCont);
 
                 if (_container.TryGetContainer(trayId, tray.WarheadContainer, out var warheadCont))
                     _container.CleanContainer(warheadCont);
-                
+
+                _animation.TryFlick(cannon.Owner, cannon.Comp.UnloadingAnimation, cannon.Comp.UnloadedState, cannon.Comp.BaseLayerKey);
+                CannonStatusChanged(cannonEnt);
+
                 return false;
             }
 
