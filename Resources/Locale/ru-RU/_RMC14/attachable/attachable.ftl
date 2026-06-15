@@ -72,3 +72,10 @@ rmc-attachable-examine-speed-walk = [color={ $colour }]{ $sign }{ TOSTRING($spee
 rmc-attachable-examine-speed-sprint = [color={ $colour }]{ $sign }{ TOSTRING($speed, "F2") }[/color] множитель скорости бега.
 
 rmc-attachable-examine-wield-delay = [color={ $colour }]{ $sign }{ $delay }[/color] секунд задержки взмаха.
+
+rmc-attachable-examine-verb-text = Просмотреть совместимые обвесы
+rmc-attachable-examine-window-title = Совместимые обвесы
+rmc-attachable-examine-no-slots = У этого оружия нет слотов для обвесов.
+rmc-attachable-examine-header = [bold]Слоты для обвесов:[/bold]
+rmc-attachable-examine-slot-filled = • [bold]{ $slot }:[/bold] { $attachment }
+rmc-attachable-examine-slot-empty = • [bold]{ $slot }:[/bold] [color=gray]пусто[/color]

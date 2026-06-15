@@ -24,6 +24,7 @@ ent-RMCCrateBlackmarketFireArms = Black market firearm crate
     .desc = A hefty wooden crate.
 ent-RMCCrateBlackmarketFireArmsHidden = supply crate
     .desc = A hefty wooden crate.
+    .suffix = Hidden Firearms
 ent-RMCCrateBlackmarketConfiscatedEquipment = seized foreign equipment crate
     .desc = { ent-RMCCrateLarge.desc }
 ent-RMCCrateBlackmarketConfiscatedWeaponry = seized foreign weaponry crate

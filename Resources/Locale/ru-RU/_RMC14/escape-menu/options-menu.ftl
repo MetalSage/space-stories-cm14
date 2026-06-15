@@ -14,6 +14,7 @@ ui-options-function-cm-holster-quaternary = Снять с хранения че�
 ui-options-function-rmc-pick-up-dropped-items = Подобрать упавший предмет
 ui-options-function-rmc-interact-with-other-hand = Взаимодействие с другой рукой
 ui-options-function-rmc-rest = Отдыхать
+ui-options-function-rmc-resist = Сопротивляться
 
 ui-options-header-rmc-xeno = Ксеноморфы
 

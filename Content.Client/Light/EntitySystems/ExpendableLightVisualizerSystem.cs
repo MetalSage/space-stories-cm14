@@ -57,12 +57,13 @@ public sealed class ExpendableLightVisualizerSystem : VisualizerSystem<Expendabl
             case ExpendableLightState.PhaseFour:
             case ExpendableLightState.PhaseFive:
             case ExpendableLightState.Fading:
-                // Stories-Fix-End
-                _audioSystem.Stop(comp.PlayingStream);
-                comp.PlayingStream = _audioSystem.PlayPvs(
-                    comp.LoopedSound, uid)?.Entity;
+                if (state != ExpendableLightState.PhaseOne)
+                    _audioSystem.Stop(comp.PlayingStream);
 
-                if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ExpendableLightVisualLayers.Overlay, out var layerIdx, true))
+                if (state == ExpendableLightState.Lit)
+                    comp.PlayingStream = _audioSystem.PlayPvs(comp.LoopedSound, uid)?.Entity;
+
+                if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ExpendableLightVisualLayers.Overlay, out var layerIdx, false))
                 {
                     if (!string.IsNullOrWhiteSpace(comp.IconStateLit))
                         SpriteSystem.LayerSetRsiState((uid, args.Sprite), layerIdx, comp.IconStateLit);
@@ -76,7 +77,7 @@ public sealed class ExpendableLightVisualizerSystem : VisualizerSystem<Expendabl
                 }
 
                 // Stories-Fix-Start
-                if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ExpendableLightVisualLayers.Glow, out var glowLayerIdx, true))
+                if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ExpendableLightVisualLayers.Glow, out var glowLayerIdx, false))
                 {
                     if (comp.GlowColorLit.HasValue)
                         SpriteSystem.LayerSetColor((uid, args.Sprite), glowLayerIdx, comp.GlowColorLit.Value);
@@ -94,7 +95,7 @@ public sealed class ExpendableLightVisualizerSystem : VisualizerSystem<Expendabl
                     spentLayer = ExpendableLightVisualLayers.Overlay;
                 //RMC14
 
-                if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), spentLayer, out layerIdx, true))
+                if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), spentLayer, out layerIdx, false))
                 {
                     if (!string.IsNullOrWhiteSpace(comp.IconStateSpent))
                         SpriteSystem.LayerSetRsiState((uid, args.Sprite), layerIdx, comp.IconStateSpent);
@@ -105,7 +106,7 @@ public sealed class ExpendableLightVisualizerSystem : VisualizerSystem<Expendabl
                 }
 
                 // Stories-Fix-Start
-                if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ExpendableLightVisualLayers.Glow, out glowLayerIdx, true))
+                if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ExpendableLightVisualLayers.Glow, out glowLayerIdx, false))
                     SpriteSystem.LayerSetVisible((uid, args.Sprite), glowLayerIdx, false);
                 // Stories-Fix-End
                 break;

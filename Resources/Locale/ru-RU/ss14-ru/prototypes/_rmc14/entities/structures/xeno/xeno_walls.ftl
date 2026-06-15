@@ -1,10 +1,10 @@
 ent-WallXenoResin = смоляная стена
     .desc = Странная слизь затвердела в толстую стену.
 ent-WallXenoResinImpenetrable = impenetrable resin wall
-    .desc = { ent-WallXenoResinThick.desc }
+    .desc = Completely invulnerable. It should degrade into a vulnerable state given enough time.
     .suffix = Invincible, 30 minutes
 ent-DoorXenoResinImpenetrable = impenetrable resin door
-    .desc = { ent-DoorXenoResinThick.desc }
+    .desc = Completely invulnerable. It should degrade into a vulnerable state given enough time.
     .suffix = Invincible, 30 minutes
 ent-RMCBlockerMarine = marine blocker
     .desc = { "" }

@@ -1,5 +1,7 @@
 ent-CMMedilinkSupplyPort = порт поставки медлинк
     .desc = Сложная сеть труб и механизмов, соединяющихся с большими системами хранения под палубой. Медицинские поставщики, подключенные к этому порту, смогут бесконечно пополнять запасы.
+ent-RMCMedilinkSupplyPortGrey = { ent-CMMedilinkSupplyPort }
+    .desc = { ent-CMMedilinkSupplyPort.desc }
 ent-CMVendorMedicalAllAccess = Вей-Мед Плюс
     .desc = Медицинский фармацевтический диспенсер. Предоставляется компанией Ве-Я Pharmaceuticals Division(TM).
     .suffix = Все Доступы
