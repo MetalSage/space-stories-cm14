@@ -15,7 +15,15 @@
     role: CMJobFireteamLeader
     time: 3600 # 1 hour
   ranks:
-    RMCRankSecondLT: []
+    RMCRankSecondLT: # space-stories start
+    - !type:RoleTimeRequirement
+      role: CMJobIntelOfficer
+      time: 252000 # 70 hours
+    RMCRankChiefWarrantOfficer:
+    - !type:RoleTimeRequirement
+      role: CMJobIntelOfficer
+      time: 90000 # 25 hours
+    RMCRankWarrantOfficer: [] # space-stories end
   startingGear: CMGearIntelOfficer
   dummyStartingGear: RMCGearIntelOfficerEquipped
   icon: "CMJobIconIntelOfficer"
