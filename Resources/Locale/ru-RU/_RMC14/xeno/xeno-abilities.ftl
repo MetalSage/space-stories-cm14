@@ -339,6 +339,7 @@ rmc-xeno-sacrifice-heal-announce = ;НАША СЕСТРА НЕ УМРЕТ!!!
 # Dodge
 rmc-xeno-dodge-self = Теперь мы можем пробираться сквозь врагов!
 rmc-xeno-dodge-end = Мы больше не можем пробираться сквозь врагов!
+rmc-xeno-dodge-end-manual = Мы заканчиваем наш танец пораньше!
 
 # Vanguard Shield
 rmc-xeno-shield-vanguard-hit = Наш щит принял удар на себя!
@@ -459,7 +460,17 @@ rmc-doomed-fail = Это не сработало...
 rmc-destroy-cant-reach = У нас нет прямого пути к этому месту!
 rmc-destroy-cant-area = Мы не можем прыгнуть в эту область!
 
+# Queen Eye
 rmc-xeno-weeds-no-nearby-node = Нам нужно, чтобы сорняки были ближе!
 rmc-xeno-queen-eye-no-weeds = Мы не можем переместить туда своё око, там нет сорняков!
 rmc-xeno-queen-eye-expand-weeds-name = Расширить сорняки (50)
 rmc-xeno-queen-eye-expand-weeds-desc = Расширить существующие сорняки или превратить плитку сорняков в узел.
+
+# Swift Steps
+rmc-xeno-swift-steps-self = Мы едва увернулись от { THE($bullet) }!
+rmc-xeno-swift-steps-others = { CAPITALIZE(THE($user)) } отскакивает в сторону, уклоняясь от { THE($bullet) }!
+
+# Finesse
+rmc-xeno-marked-critical-apply = Ты чувствуешь, как страх пробегает по твоей спине... ты можешь быть следующим!
+rmc-xeno-marked-critical-disappear = Ты успокаиваешься и приходишь в себя.
+rmc-xeno-marked-critical-consumed = Ты пришёл в себя!

@@ -11,7 +11,7 @@
       RMCSkillMeleeWeapons: 1
       RMCSkillCqc: 1
       RMCSkillFireman: 1
-      RMCSkillFirearms: 1
+      RMCSkillFirearms:  2 # Stories-Survivors
       RMCSkillMedical: 1
       RMCSkillJtac: 2
       RMCSkillEndurance: 2

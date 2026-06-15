@@ -17,3 +17,5 @@ ent-RMCMagazineRifleType77Incendiary = Type77 Incendiary magazine (10x24mm)
 ent-RMCMagazineRifleType77HEAP = Type77 HEAP magazine (10x24mm)
     .desc = { ent-RMCMagazineRifleType77.desc }
     .suffix = HEAP
+ent-RMCMagazineRifleType77Rubber = Type 77 rubber magazine (10x24mm)
+    .desc = { ent-RMCMagazineRifleType77.desc }
