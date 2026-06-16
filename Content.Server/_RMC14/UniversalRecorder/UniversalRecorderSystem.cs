@@ -1035,7 +1035,8 @@ public sealed class UniversalRecorderSystem : EntitySystem
     {
         tape = default;
 
-        if (!_itemSlots.TryGetSlot(ent, UniversalRecorderComponent.TapeSlotId, out var slot) ||
+        if (!TryComp<ItemSlotsComponent>(ent, out var itemSlots) ||
+            !_itemSlots.TryGetSlot(ent, UniversalRecorderComponent.TapeSlotId, out var slot, itemSlots) ||
             slot.Item is not { } item ||
             !TryComp(item, out UniversalRecorderTapeComponent? tapeComp))
         {
