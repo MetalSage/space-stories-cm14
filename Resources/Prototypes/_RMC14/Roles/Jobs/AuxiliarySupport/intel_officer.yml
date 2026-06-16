@@ -11,7 +11,7 @@
     time: 57600 # 16 hours
   - !type:RoleTimeRequirement
     role: CMJobCombatTech
-    time: 10800 # 3 hours
+    time: 3600 # 1 hour
   - !type:RoleTimeRequirement
     role: CMJobFireteamLeader
     time: 10800 # 3 hours
