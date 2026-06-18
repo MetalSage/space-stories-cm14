@@ -9,10 +9,12 @@ rmc-job-description-doctor = Лечите всех пациентов, пост�
 rmc-job-prefix-doctor = Док
 CMJobDoctor = Доктор
 
-rmc-job-name-nurse = Интерн
+rmc-job-name-nurse = Фельдшер
+}
 rmc-job-description-nurse = Помогайте врачам и медикам в оказании помощи раненым.
-rmc-job-prefix-nurse = Интерн
-CMJobNurse = Интерн
+rmc-job-prefix-nurse = Фельд.
+}
+CMJobNurse = Фельдшер
 
 rmc-job-name-researcher = Исследователь
 rmc-job-description-researcher = Проводите исследования того, что вам присылают. Создавайте и анализируйте новые химические вещества, инструменты и предметы.
