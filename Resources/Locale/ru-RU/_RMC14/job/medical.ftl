@@ -10,10 +10,8 @@ rmc-job-prefix-doctor = Док
 CMJobDoctor = Доктор
 
 rmc-job-name-nurse = Фельдшер
-}
 rmc-job-description-nurse = Помогайте врачам и медикам в оказании помощи раненым.
 rmc-job-prefix-nurse = Фельд
-}
 CMJobNurse = Фельдшер
 
 rmc-job-name-researcher = Исследователь
