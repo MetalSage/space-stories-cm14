@@ -12,7 +12,7 @@ CMJobDoctor = Доктор
 rmc-job-name-nurse = Фельдшер
 }
 rmc-job-description-nurse = Помогайте врачам и медикам в оказании помощи раненым.
-rmc-job-prefix-nurse = Фельд.
+rmc-job-prefix-nurse = Фельд
 }
 CMJobNurse = Фельдшер
 
