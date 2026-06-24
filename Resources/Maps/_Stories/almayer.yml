@@ -61514,9 +61514,6 @@ entities:
     - type: Transform
       pos: -63.5,106.5
       parent: 1
-    - type: AccessReader
-      access:
-      - - CMAccessCO
 - proto: CMLockerCMO
   entities:
   - uid: 5739
