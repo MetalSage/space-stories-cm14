@@ -6,6 +6,7 @@
   components:
   - type: Sprite
     sprite: _RMC14/Structures/Machines/computer.rsi
+    drawdepth: HighFloorObjects
     layers:
     - map: ["base"]
       state: "ob_console0"

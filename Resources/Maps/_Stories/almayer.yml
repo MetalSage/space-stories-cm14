@@ -182221,17 +182221,13 @@ entities:
     - type: Transform
       pos: -114.5,-8.5
       parent: 1
+- proto: RMCShipAntiAirConsole
+  entities:
   - uid: 25156
     components:
-    - type: MetaData
-      name: системная консоль МГАД
     - type: Transform
       pos: -114.5,4.5
       parent: 1
-    missingComponents:
-    - UserInterface
-    - ActivatableUI
-    - OrbitalCannonComputer
 - proto: RMCOrbitalCannonFuel
   entities:
   - uid: 25157
@@ -187364,7 +187360,7 @@ entities:
     - type: Transform
       pos: -50.5,113.5
       parent: 1
-- proto: RMCRailgunProp
+- proto: RMCShipAntiAirCannon
   entities:
   - uid: 25828
     components:
