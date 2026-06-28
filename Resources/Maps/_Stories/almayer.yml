@@ -61514,9 +61514,6 @@ entities:
     - type: Transform
       pos: -63.5,106.5
       parent: 1
-    - type: AccessReader
-      access:
-      - - CMAccessCO
 - proto: CMLockerCMO
   entities:
   - uid: 5739
@@ -200801,5 +200798,13 @@ entities:
     components:
     - type: Transform
       pos: -115.5,87.5
+      parent: 1
+- proto: RMCCryoRecoveryConsole
+  entities:
+  - uid: 46377
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 33.5,-8.5
       parent: 1
 ...

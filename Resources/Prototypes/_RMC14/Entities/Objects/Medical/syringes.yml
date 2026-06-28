@@ -24,6 +24,7 @@
   - type: Clothing
     quickEquip: false
     slots:
+    - ears
     - suitstorage
   - type: PhysicalComposition
     materialComposition:

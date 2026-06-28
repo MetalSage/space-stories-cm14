@@ -5,17 +5,32 @@
   description: cm-job-description-intel
   playTimeTracker: CMJobIntelOfficer
   requirements:
+   # Stories-JobTime-Start
   - !type:DepartmentTimeRequirement
     department: CMSquad
-    time: 36000 # 10 hours
+    time: 54000 # 15 hours
   - !type:RoleTimeRequirement
     role: CMJobCombatTech
     time: 3600 # 1 hour
   - !type:RoleTimeRequirement
     role: CMJobFireteamLeader
+    time: 10800 # 3 hours
+  - !type:TotalJobsTimeRequirement
+    group: CMJobsMedical
     time: 3600 # 1 hour
+   # Stories-JobTime-End
   ranks:
-    RMCRankSecondLT: []
+   # Stories-JobTime-Start
+    RMCRankSecondLT:
+    - !type:RoleTimeRequirement
+      role: CMJobIntelOfficer
+      time: 252000 # 70 часов
+    RMCRankChiefWarrantOfficer:
+    - !type:RoleTimeRequirement
+      role: CMJobIntelOfficer
+      time: 90000 # 25 часов
+    RMCRankWarrantOfficer: []
+   # Stories-JobTime-End
   startingGear: CMGearIntelOfficer
   dummyStartingGear: RMCGearIntelOfficerEquipped
   icon: "CMJobIconIntelOfficer"

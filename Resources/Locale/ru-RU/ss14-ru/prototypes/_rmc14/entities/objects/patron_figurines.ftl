@@ -283,8 +283,6 @@ ent-RMCFigurinePatronKallKallovski = Kall Kallovski figurine
     .desc = Delta leads the way.
 ent-RMCFigurinePatronAtlasWolfySnowlight = Katerina AW Dragunov figurine
     .desc = A short figure depicting one of the poster child of the success of the Artificial Womb program. Katerina ability to inspire her fellow marines and fear in the enemies of the UN resulted in WE-YA making her into a figure, despite her objections. As many have learn to their dismay her bite is stronger than her bark. It smells like strawberries.
-ent-RMCFigurinePatronCaineRuffRuffalo = Caine 'Ruff' Ruffalo figurine
-    .desc = Ruff as a Ruffalo. Always Ruffs. Is always Rough as a Ruff.
 ent-RMCFigurinePatronAnneTaylor = Anne Taylor figurine
     .desc = If you see her piloting the Alamo and it still looks normal, something is horribly wrong.
 ent-RMCFigurinePatronYeoSakuraBunnia = Yeo 'Sakura' Bunnia figurine
@@ -571,6 +569,12 @@ ent-RMCFigurinePatronAriaShark-Scale = Aria Shark-Scale figurine
     .desc = { ent-RMCBaseFigurinePatron.desc }
 ent-RMCFigurinePatronWyattHossCross = Wyatt 'Hoss' Cross figurine
     .desc = { ent-RMCBaseFigurinePatron.desc }
+ent-RMCFigurinePatronMixes-the-Fuel = Mixes-the-Fuel figurine
+    .desc = Mixes is a small kobold with a positive attitude that always speaks in third person, but always tries to follow their duties to the letter. They always like be as friendly as they can be, and they are a bit silly and goofy at times, although they tend to be quite happy about completing their assigned tasks.
+
+        Warning: Do not give them a flamer under any circumstance. It will only end up in a disaster.
+ent-RMCFigurinePatronCaineRuffRuffalo = Caine 'Ruff' Ruffalo figurine
+    .desc = Ruff as a Ruffalo. Always Ruffs. Is always Rough as a Ruff.
 ent-RMCFigurinePatronKillsTheMice = мусор
     .desc = мусор
 ent-RMCFigurinePatronJermaineBaitMcClune = мусор

@@ -22,13 +22,13 @@
   id: STBoilerAcidSkin
   name: Кислотный
   spriteRsi: _Stories/Mobs/Xenos/Skins/boiler.rsi
-  xeno: RMCXenoBoiler
+  xeno: CMXenoBoiler
 
 - type: xenoSkin
   id: STBoilerGasSkin
   name: Газовый
   spriteRsi: _Stories/Mobs/Xenos/Skins/gasboiler.rsi
-  xeno: RMCXenoBoiler
+  xeno: CMXenoBoiler
 
 - type: xenoSkin
   id: STCrusherBattleHardenedSkin
