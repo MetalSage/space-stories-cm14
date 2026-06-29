@@ -4,8 +4,6 @@ using Content.Shared._RMC14.Entrenching;
 using Content.Shared._RMC14.Ladder;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Marines.Skills;
-using Content.Shared._RMC14.Marines;
-using Content.Shared._RMC14.Rules;
 using Content.Shared.Construction.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.DoAfter;
@@ -233,6 +231,9 @@ public sealed class RMCConstructionSystem : EntitySystem
         else
         {
             var built = SpawnAtPosition(entry.Prototype, coordinates);
+
+            if (!entry.NoRotate)
+                _transform.SetLocalRotation(built, args.Direction.ToAngle());
 
             // This is so you won't be stuck inside of a construction you build
             // Removes collision with the construction until you leave

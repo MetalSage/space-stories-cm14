@@ -1876,8 +1876,7 @@ public sealed class CMDistressSignalRuleSystem : GameRuleSystem<CMDistressSignal
             EnsureComp<ThunderdomeMapComponent>(mapEnt.Value);
     }
 
-    // Stories-Tweak, make EndRound method public
-    public void EndRound(CMDistressSignalRuleComponent rule, DistressSignalRuleResult result, LocId? customMessage = null)
+    private void EndRound(CMDistressSignalRuleComponent rule, DistressSignalRuleResult result, LocId? customMessage = null)
     {
         if (!rule.AutoEnd)
             return;
