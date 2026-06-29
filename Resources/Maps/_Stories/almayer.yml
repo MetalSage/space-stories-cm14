@@ -142180,13 +142180,13 @@ entities:
       parent: 1
 - proto: RMCDropper
   entities:
-  - uid: 28027
+  - uid: 28040
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -34.277256,-18.418943
       parent: 1
-  - uid: 28028
+  - uid: 28041
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
