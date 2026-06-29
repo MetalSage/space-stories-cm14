@@ -141,7 +141,7 @@
   - RMCMedicAutoInjector30
   - CMHypospray
   - CMBloodPack
-  # - RMCBeakerHighCapacity replaced in RMC by RMCReagentJug
+  - RMCBeakerHighCapacity
   - RMCReagentJug
   - CMBonesetter
   #    - FixOVein (5000 Plastic)->(6250)
