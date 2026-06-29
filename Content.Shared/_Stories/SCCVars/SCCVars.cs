@@ -156,28 +156,6 @@ public sealed class SCCVars
     public static readonly CVarDef<bool> AutoClimb =
         CVarDef.Create("rmc.autoclimb", true, CVar.ARCHIVE | CVar.CLIENT | CVar.REPLICATED);
 
-    /* 
-    * Auto Round Restart
-    */
-
-    /// <summary>
-    /// Enables or disables automatic round restart
-    /// </summary>
-    public static readonly CVarDef<bool> AutoRestartEnabled =
-        CVarDef.Create("scc.autorestart_enabled", true, CVar.SERVER | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Interval in minutes between auto-restart votes
-    /// </summary>
-    public static readonly CVarDef<int> AutoRestartVoteInterval =
-        CVarDef.Create("scc.autorestart_vote_interval", 30, CVar.SERVER | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Maximum round duration in hours before an automatic restart vote
-    /// </summary>
-    public static readonly CVarDef<int> AutoRestartRoundMaxHours =
-        CVarDef.Create("scc.autorestart_round_max_hours", 2, CVar.SERVER | CVar.ARCHIVE);
-
     /// <summary>
     /// Minimum marines on planet to block hijack refuse
     /// </summary>

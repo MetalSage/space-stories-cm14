@@ -62,8 +62,5 @@ namespace Content.Server.Voting.Managers
 
         void Initialize();
         void Update();
-
-        // Stories-Auto-Restart-Vote
-        void CreateForceRestartVote();
     }
 }
