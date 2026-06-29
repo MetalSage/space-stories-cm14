@@ -1,9 +1,12 @@
 ent-RMCGeneratorFusionFake = окончательно разрушенный термоядерный реактор S-52
     .desc = { "" }
 ent-RMCGeneratorFusion = термоядерный реактор S-52
-    .desc = { "" }
+    .desc = { ent-RMCGeneratorFusionFake.desc }
 ent-RMCGeneratorFusionColony = геотермальный генератор G-11
     .desc = Термоэлектрический генератор, расположенный в скважине, заполненной плазмой.
+ent-RMCGeneratorFusionColonyNoMapIcon = { ent-RMCGeneratorFusionColony }
+    .desc = { ent-RMCGeneratorFusionColony.desc }
+    .suffix = Нет значка карты
 ent-RMCGeneratorFusionCell = универсальный топливный элемент WL-6
     .desc = Перезаряжаемый топливный элемент.
 ent-RMCPortableGeneratorBase = { ent-BaseMachine }

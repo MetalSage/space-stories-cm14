@@ -1,5 +1,5 @@
-ent-CMShardBase = { ent-ShardBase }
-    .desc = { ent-ShardBase.desc }
+ent-CMShardBase = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
 ent-CMShardGlass = осколок стекла
     .desc = Осколок разбитого стекла. Возможно, может быть использован как... метательное оружие?
 ent-RMCShardIce = осколок льда

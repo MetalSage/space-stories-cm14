@@ -12,11 +12,12 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: hangar
 
 - type: entity
-  parent: CMWallReinforced
+  parent: RMCBaseWallReinforced
   id: RMCWallBunker
   name: bunker wall
   components:
@@ -29,11 +30,12 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: bunker
 
 - type: entity
-  parent: CMWallReinforced
+  parent: RMCBaseWallReinforced
   id: RMCWallChigusa
   name: facility wall
   components:
@@ -46,7 +48,8 @@
   - type: IconSmooth
     key: walls
     additionalKeys:
-    - window # Stories-Fixes
+    - windows
+    - doors
     base: chigusa
 
 - type: entity

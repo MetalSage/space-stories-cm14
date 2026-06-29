@@ -1,2 +1,2 @@
 ent-CMHydroponicsTray = гидропонный лоток
-    .desc = { ent-hydroponicsTray.desc }
+    .desc = Используется для выращивания растений.

@@ -1,30 +1,23 @@
 ﻿<Document>
-  # Стандартная Оперативная Процедура
+  # Standard Operating Procedure
 
-  Это свод правил и политик КМП США.
-  \nНесоблюдение Стандартной Оперативной Процедуры может привести к обвинениям в [bold]Несоблюдении Процедуры[/bold].
+  These are sets of regulations and policies of the UNMC.
+  \nFailure to follow the Standard Operating Procedure may result in [bold]Failure to Follow Procedure[/bold] charges.
 
-  ## Привилегии Командующего Офицера
-  - [color=#00CBFE][bold]Командующий Офицер[/bold][/color] может изменять любой аспект СОП (если не указано иное) при условии, что эти изменения не противоречат военному закону. Он не может изменять Военный Закон.
-  - Если возникнут какие-либо опасения по поводу использования этой привилегии, любой персонал может связаться с [color=#ffa500][bold]Офисом Провост Маршалов[/bold][/color], чтобы узнать о законности изменений и запросить их отмену.
-  - [color=#ff000d][bold]Военная Полиция[/bold][/color] должна быть проинформирована о любых изменениях, внесенных в СОП, до их введения в действие.
-  - СОП не может быть изменена до такой степени, чтобы причинять вред или физически обременять морпехов. Изменения, такие как разрешение только ходьбы или изменение СОП с целью заключения морпеха под стражу за вымышленное нарушение со злым умыслом, не допускаются.
-  - Стандартное снаряжение, которое предоставляется морпехам в их казармах и по заявкам, не может быть ограничено или запрещено каким-либо образом. Морпехи имеют право свободно носить и использовать предоставленное им снаряжение.
+ ## Categories
+  - [textlink="General Regulations" link="RMCMarineSOPGeneral"]
+  - [textlink="Equipment" link="RMCMarineSOPEquipment"]
+  - [textlink="Department" link="RMCMarineSOPDepartment"]
+  - [textlink="NON-Modifiable SOP" link="RMCMarineSOPNONMod"]
 
- ## Категории
-  - [textlink="Общие Положения" link="RMCMarineSOPGeneral"]
-  - [textlink="Снаряжение" link="RMCMarineSOPEquipment"]
-  - [textlink="Департамент" link="RMCMarineSOPDepartment"]
-  - [textlink="НЕ изменяемая СОП" link="RMCMarineSOPNONMod"]
+  ## NON-Modifiable SOP
 
-  ## НЕ изменяемая СОП
+  The SOP written in these sections may only be modified with [color=#ffa500][bold]Provost Marshal Office[/bold][/color] permission.
 
-  СОП, написанная в этих разделах, может быть изменена только с разрешения ПРОВОСТА.
-
-  - [textlink="НЕ изменяемый Департамент" link="RMCMarineSOPNONModDepartment"]
-  - [textlink="НЕ изменяемая Командная СОП" link="RMCMarineSOPNONModCommand"]
-  - [textlink="НЕ изменяемые Ограничения Развертывания" link="RMCMarineSOPNONModDeployment"]
-  - [textlink="НЕ изменяемый Персонал Третьих Сторон" link="RMCMarineSOPNONModThirdparty"]
+  - [textlink="NON-Modifiable Department" link="RMCMarineSOPNONModDepartment"]
+  - [textlink="NON-Modifiable Command SOP" link="RMCMarineSOPNONModCommand"]
+  - [textlink="NON-Modifiable Deployment Restrictions" link="RMCMarineSOPNONModDeployment"]
+  - [textlink="NON-Modifiable Third-Party Personnel" link="RMCMarineSOPNONModThirdparty"]
 
 
 </Document>

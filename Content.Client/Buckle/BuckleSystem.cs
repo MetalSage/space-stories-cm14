@@ -54,6 +54,11 @@ internal sealed class BuckleSystem : SharedBuckleSystem
         // Give some of the sprite rotations their own drawdepth, maybe as an offset within the rsi, or something like this
         // And we won't ever need to set the draw depth manually
 
+        // RMC14
+        if (!component.ModifyBuckleDrawDepth)
+            return;
+        // RMC14
+
         if (args.NewRotation == args.OldRotation)
             return;
 
@@ -91,6 +96,11 @@ internal sealed class BuckleSystem : SharedBuckleSystem
     /// </summary>
     private void OnBuckledEvent(Entity<BuckleComponent> ent, ref BuckledEvent args)
     {
+        // RMC14
+        if (!args.Strap.Comp.ModifyBuckleDrawDepth)
+            return;
+        // RMC14
+
         if (!TryComp<SpriteComponent>(args.Strap, out var strapSprite))
             return;
 
@@ -111,6 +121,11 @@ internal sealed class BuckleSystem : SharedBuckleSystem
     /// </summary>
     private void OnUnbuckledEvent(Entity<BuckleComponent> ent, ref UnbuckledEvent args)
     {
+        // RMC14
+        if (!args.Strap.Comp.ModifyBuckleDrawDepth)
+            return;
+        // RMC14
+
         if (!TryComp<SpriteComponent>(ent.Owner, out var buckledSprite))
             return;
 

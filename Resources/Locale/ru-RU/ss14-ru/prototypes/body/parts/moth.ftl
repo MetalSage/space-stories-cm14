@@ -1,5 +1,5 @@
 ent-PartMoth = часть тела моли
-    .desc = { ent-BasePart.desc }
+    .desc = { ent-BaseItem.desc }
 ent-TorsoMoth = торс моли
     .desc = { ent-PartMoth.desc }
 ent-HeadMoth = голова моли

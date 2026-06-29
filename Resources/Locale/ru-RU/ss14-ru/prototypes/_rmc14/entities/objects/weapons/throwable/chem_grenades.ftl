@@ -15,6 +15,7 @@ ent-RMCGrenadeCustomWeedkiller = граната с гербицидом
     .suffix = RMC
 ent-RMCChemicalPayloadWeedkiller = химический заряд с гербицидом
     .desc = { ent-RMCChemicalPayloadMetalFoam.desc }
+    .suffix = { ent-RMCChemicalPayloadMetalFoam.suffix }
 ent-RMCBeakerWeedkillerPlantBGone = { ent-CMBeaker }
     .desc = { ent-CMBeaker.desc }
 ent-RMCBeakerWeedkillerPhosphorus = { ent-CMBeaker }

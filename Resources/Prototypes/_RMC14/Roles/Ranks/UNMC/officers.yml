@@ -36,24 +36,24 @@
 
 - type: rank
   id: RMCRankFirstLT
-  name: Старший Лейтенант
-  prefix: Ст. Лейт.
+  name: Первый Лейтенант
+  prefix: 1-ый. Лейт.
   paygrade: O2
 
 - type: rank
   id: RMCRankSecondLT
-  name: Младший Лейтенант
-  prefix: Мл. Лейт.
+  name: Второй Лейтенант
+  prefix: 2-ой. Лейт.
   paygrade: O1
 
 - type: rank
   id: RMCRankChiefWarrantOfficer
-  name: Chief Warrant Officer
-  prefix: CWarOff.
+  name: Старший Уорент-Офицер
+  prefix: Ст. Уор. Оф.
   paygrade: O0-2
 
 - type: rank
   id: RMCRankWarrantOfficer
-  name: Warrant Officer
-  prefix: WarOff.
+  name: Уоррент-Офицер
+  prefix: Уор. Оф.
   paygrade: O0-1

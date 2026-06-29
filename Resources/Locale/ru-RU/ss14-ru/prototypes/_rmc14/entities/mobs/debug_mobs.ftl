@@ -1,6 +1,6 @@
 ent-CMTestDummy = испытательный манекен
+    .desc = { ent-RMCBaseMobSpeciesOrganic.desc }
     .suffix = КМ14
-    .desc = { ent-CMBaseMobSpeciesOrganic.desc }
 ent-SpawnCMTestDummy = спавнер тестового манекена КМ
-    .suffix = ДЕБАГ
     .desc = { ent-MarkerBase.desc }
+    .suffix = ДЕБАГ

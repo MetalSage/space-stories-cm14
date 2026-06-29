@@ -38,8 +38,14 @@ public sealed partial class OverwatchConsoleComponent : Component
     [DataField, AutoNetworkedField]
     public TimeSpan MessageCooldown = TimeSpan.FromSeconds(0.5);
 
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
+    public TimeSpan LastObjectiveUpdate;
+
     [DataField, AutoNetworkedField]
     public bool CanMessageSquad = true;
+
+    [DataField, AutoNetworkedField]
+    public bool ShowAntiAirStatus;
 
     [DataField, AutoNetworkedField]
     public bool HasOrbital;

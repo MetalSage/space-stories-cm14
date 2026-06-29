@@ -22,6 +22,8 @@ using Content.Shared.Strip.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 using Content.Shared._RMC14.Clothing;
+using Content.Shared._RMC14.Marines.Skills;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Strip;
 
@@ -41,7 +43,11 @@ public abstract class SharedStrippableSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
 
     // RMC14
-    [Dependency] private readonly ISharedAdminManager _admin = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!;
+
+    private static readonly EntProtoId<SkillDefinitionComponent> Skill = "RMCSkillPolice";
+    public const int MinimumStripSkillLevel = 1;
+    private const int MultiStripSkillLevel = 2;
 
     public override void Initialize()
     {
@@ -65,7 +71,8 @@ public abstract class SharedStrippableSystem : EntitySystem
 
     private void AddStripVerb(EntityUid uid, StrippableComponent component, GetVerbsEvent<Verb> args)
     {
-        if (args.Hands == null || !args.CanAccess || !args.CanInteract || args.Target == args.User)
+        if ((args.Hands == null || !args.CanAccess || !args.CanInteract || args.Target == args.User) &&
+            TryComp<StrippingComponent>(args.User, out var strippingComponent) && strippingComponent.ForceSee) // Stories
             return;
 
         Verb verb = new()
@@ -80,7 +87,8 @@ public abstract class SharedStrippableSystem : EntitySystem
 
     private void AddStripExamineVerb(EntityUid uid, StrippableComponent component, GetVerbsEvent<ExamineVerb> args)
     {
-        if (args.Hands == null || !args.CanAccess || !args.CanInteract || args.Target == args.User)
+        if ((args.Hands == null || !args.CanAccess || !args.CanInteract || args.Target == args.User) &&
+            TryComp<StrippingComponent>(args.User, out var strippingComponent) && strippingComponent.ForceSee == false) // Stories
             return;
 
         ExamineVerb verb = new()
@@ -99,6 +107,11 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (args.Actor is not { Valid: true } user ||
             !TryComp<HandsComponent>(user, out var userHands))
             return;
+
+        // Stories-start
+        if (TryComp<StrippingComponent>(user, out var strippingComponent) && strippingComponent.OnlySee)
+            return;
+        // Stories-end
 
         if (args.IsHand)
         {
@@ -282,8 +295,10 @@ public abstract class SharedStrippableSystem : EntitySystem
             return false;
         }
 
-        if (HasComp<RMCUnstrippableComponent>(slotItem))
+        if (TryComp<RMCUnstrippableComponent>(slotItem, out var unstrippableItem))
         {
+            if (unstrippableItem.PoliceCanStrip && _skills.HasSkill(user, Skill, MinimumStripSkillLevel))
+                return true;
             _popupSystem.PopupCursor(Loc.GetString("rmc-unstrippable", ("item", slotItem), ("owner", Identity.Entity(target, EntityManager))));
             return false;
         }
@@ -340,7 +355,7 @@ public abstract class SharedStrippableSystem : EntitySystem
             BreakOnMove = true,
             NeedHand = true,
             BreakOnHandChange = false, // Allow simultaneously removing multiple items.
-            DuplicateCondition = DuplicateConditions.SameTool,
+            DuplicateCondition = _skills.HasSkill(user, Skill, MultiStripSkillLevel) ? DuplicateConditions.SameTool : DuplicateConditions.SameEvent, // RMC14
             ForceVisible = user != target,
         };
 
@@ -556,7 +571,7 @@ public abstract class SharedStrippableSystem : EntitySystem
             BreakOnMove = true,
             NeedHand = true,
             BreakOnHandChange = false, // Allow simultaneously removing multiple items.
-            DuplicateCondition = DuplicateConditions.SameTool,
+            DuplicateCondition = _skills.HasSkill(user.Owner, Skill, MultiStripSkillLevel) ? DuplicateConditions.SameTool : DuplicateConditions.SameEvent, // RMC14
             ForceVisible = user != target,
         };
 

@@ -1,8 +1,8 @@
 ent-RMCMatchbox = спичечный коробок
     .desc = спичечный коробок
 ent-RMCMatchboxFull = спичечный коробок
-    .suffix = Полный
     .desc = { ent-RMCMatchbox.desc }
+    .suffix = Полный
 ent-RMCMatchstick = спичка
     .desc = Простая спичечная палочка, используемая для зажигания тонких курительных смесей.
 ent-RMCMatchstickPaper = бумажная спичка

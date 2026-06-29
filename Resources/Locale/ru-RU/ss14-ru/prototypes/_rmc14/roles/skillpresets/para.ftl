@@ -1,0 +1,14 @@
+ent-RMCSkillPresetParamarine = Королевский парадесантник Стрелок
+    .desc = { "" }
+ent-RMCSkillPresetParaPilot = Королевский парадесантник Пилот
+    .desc = { ent-RMCSkillPresetParamarine.desc }
+ent-RMCSkillPresetParaEngineer = Королевский парадесантник Инженер
+    .desc = { ent-RMCSkillPresetParamarine.desc }
+ent-RMCSkillPresetParaMedic = Королевский парадесантник Медик
+    .desc = { ent-RMCSkillPresetParamarine.desc }
+ent-RMCSkillPresetParaLeader = Королевский парадесантник Лидер отделения
+    .desc = { ent-RMCSkillPresetParamarine.desc }
+ent-RMCSkillPresetParaSynth = Королевский парадесантник Синтетик
+    .desc = { "" }
+ent-RMCSkillPresetParaCommander = Royal Paramarine Commander
+    .desc = { ent-RMCSkillPresetParamarine.desc }

@@ -19,7 +19,7 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly DamageableSystem _demageable = default!;
-    [Dependency] private readonly RMCActionsSystem _rmcActions = default!;
+    [Dependency] private readonly SharedRMCActionsSystem _rmcActions = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
@@ -58,61 +58,15 @@ public sealed class RMCXenoDeployAcidMineSystem : EntitySystem
 
     private void OnMineInit(Entity<RMCXenoAcidMineComponent> ent, ref ComponentInit args)
     {
-        // Specify the time after which the mine will activate
         ent.Comp.Activation = _timing.CurTime + ent.Comp.Delay;
         DirtyField(ent.Owner, ent.Comp, nameof(RMCXenoAcidMineComponent.Activation));
     }
 
     private void OnMineActivate(Entity<RMCXenoAcidMineComponent> ent)
     {
-        /*
-         You can not just take and see the damage of the mine,
-         so I leave pieces of code that you can understand where some values come from
-
-        https://github.com/cmss13-devs/cmss13/blob/4dfaca73cc5d9d08f79c487d4af079b5afbb1999/code/__DEFINES/xeno.dm#L124
-        #define XVX_UNIVERSAL_DAMAGEMULT 1.5 // Use to unilaterally buff every caste's DAMAGE against other xenos.
-
-        #define XVX_SLASH_DAMAGEMULT 1 * XVX_UNIVERSAL_DAMAGEMULT // 1.5 | Applies to any abilities that uses brute damage or slash damage
-        #define XVX_ACID_DAMAGEMULT 1.75 * XVX_UNIVERSAL_DAMAGEMULT // 2.625 | Applies to any abilities that apply acid damage (not including projectiles)
-        #define XVX_PROJECTILE_DAMAGEMULT 1.75 * XVX_UNIVERSAL_DAMAGEMULT // 2.625 | Applies to any abilities that use projectiles
-
-        https://github.com/cmss13-devs/cmss13/blob/4dfaca73cc5d9d08f79c487d4af079b5afbb1999/code/modules/mob/living/carbon/xenomorph/abilities/boiler/boiler_abilities.dm#L114
-        var/damage = 45
-        var/delay = 13.5
-
-        https://github.com/cmss13-devs/cmss13/blob/64e91def8e884dc1ff5df9868977fa15a2fd7313/code/game/objects/effects/aliens.dm#L555
-        var/xeno_empower_modifier = 1
-        var/immobilized_multiplier = 1.45
-        if(empowered)
-            xeno_empower_modifier = 1.25
-
-        https://github.com/cmss13-devs/cmss13/blob/64e91def8e884dc1ff5df9868977fa15a2fd7313/code/game/objects/effects/aliens.dm#L569
-        if(isxeno(H))
-            H.apply_armoured_damage(damage * XVX_ACID_DAMAGEMULT * xeno_empower_modifier, ARMOR_BIO, BURN)
-        else
-            if(empowered)
-                new /datum/effects/acid(H, linked_xeno, initial(linked_xeno.caste_type))
-            var/found = null
-            for (var/datum/effects/boiler_trap/F in H.effects_list)
-                if (F.cause_data && F.cause_data.resolve_mob() == linked_xeno)
-                    found = F
-                    break
-            if(found)
-                H.apply_armoured_damage(damage*immobilized_multiplier, ARMOR_BIO, BURN)
-            else
-                H.apply_armoured_damage(damage, ARMOR_BIO, BURN)
-
-        https://github.com/cmss13-devs/cmss13/blob/64e91def8e884dc1ff5df9868977fa15a2fd7313/code/game/objects/effects/aliens.dm#L569
-        /obj/effect/xenomorph/acid_damage_delay/boiler_landmine/deal_damage()
-        var/total_hits = 0
-        for (var/obj/structure/barricade/B in loc)
-            B.take_acid_damage(damage*(1.15 + 0.55 * empowered))
-        */
-
         if (ent.Comp.Activated)
             return;
 
-        // TODO: if(isxeno(H)) H.apply_armoured_damage(damage * XVX_ACID_DAMAGEMULT * xeno_empower_modifier, ARMOR_BIO, BURN)
         var hits = 0;
         foreach (var targetUid in _lookup.GetEntitiesIntersecting(ent))
         {

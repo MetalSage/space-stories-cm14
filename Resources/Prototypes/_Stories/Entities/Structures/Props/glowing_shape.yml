@@ -1,0 +1,30 @@
+- type: entity
+  id: STGlowingShapeBigRed
+  name: glowing shape
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: _Stories/Structures/Props/GlowingShapes/big_red.rsi
+    drawdepth: FloorTiles
+    state: icon
+    noRot: false
+  - type: Icon
+    sprite: _Stories/Structures/Props/GlowingShapes/big_red.rsi
+    state: icon
+  - type: Transform
+  - type: TileEmission
+    color: "#FF0000"
+
+- type: entity
+  parent: STGlowingShapeBigRed
+  id: STGlowingShapeMedRed
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/GlowingShapes/med_red_bottom.rsi
+
+- type: entity
+  parent: STGlowingShapeBigRed
+  id: STGlowingShapeSmallRed
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/GlowingShapes/small_red.rsi

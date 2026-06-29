@@ -1,7 +1,9 @@
 using Content.Shared._RMC14.Xenonids.Egg;
 using Content.Shared._RMC14.Xenonids.Hive;
+using Content.Shared._RMC14.Xenonids.ManageHive.Boons;
 using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._RMC14.Xenonids.Projectile.Parasite;
+using Content.Shared._RMC14.Synth;
 using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -21,6 +23,7 @@ public sealed partial class EggMorpherSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
+    [Dependency] private readonly HiveBoonSystem _boon = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -68,6 +71,13 @@ public sealed partial class EggMorpherSystem : EntitySystem
         }
 
         var user = args.User;
+
+        if (HasComp<SynthComponent>(user))
+        {
+            args.Handled = true;
+            _popup.PopupEntity(Loc.GetString("rmc-species-synth-programming-prevents-use", ("user", user), ("tool", eggMorpher.Owner)), user, user, PopupType.SmallCaution);
+            return;
+        }
 
         if (HasComp<XenoParasiteComponent>(user))
         {
@@ -261,6 +271,9 @@ public sealed partial class EggMorpherSystem : EntitySystem
 
     private TimeSpan GetParasiteSpawnCooldown(Entity<EggMorpherComponent> eggMorpher)
     {
+        if (_boon.HasActiveBoon<HiveBoonFortificationComponent>(eggMorpher.Owner))
+            return eggMorpher.Comp.FortifiedSpawnCooldown;
+
         if (_hive.GetHive(eggMorpher.Owner) is not { } hive)
         {
             return eggMorpher.Comp.StandardSpawnCooldown;

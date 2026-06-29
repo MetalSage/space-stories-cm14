@@ -26,7 +26,7 @@
   requireAdminNotify: true
   joinNotifyCrew: false
   marineAuthorityLevel: 11
-  supervisors: cm-job-supervisors-co
+  supervisors: rmc-job-supervisors-commander
   accessGroups:
   - CMP
   roleWeight: 0.25
@@ -59,7 +59,12 @@
       icon:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: cmp
+      background:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: background_mp
     - type: RMCTrackable
+    - type: RMCAwardRecommendation
+    - type: SeeNewPlayers
 
 - type: startingGear
   id: CMGearChiefMP
@@ -73,7 +78,7 @@
     outerClothing: CMArmorM3WO
     ears: CMHeadsetCMP
     belt: CMBeltSecurityMPFilled
-    #    pocket1: TODO RMC14 tape recorder
+    pocket1: RMCUniversalRecorder
     pocket2: RMCPouchGeneralLarge
 
 - type: entity
@@ -90,6 +95,7 @@
   id: CMJobChiefMP
   isHumanoid: true
 
+# Guidebook
 - type: entity
   parent: CMGuidebookRole
   id: RMCGuidebookRoleCMP

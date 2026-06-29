@@ -13,6 +13,8 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-cough"]
@@ -64,6 +66,8 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-yawn"]

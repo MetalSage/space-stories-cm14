@@ -1,0 +1,223 @@
+<Control
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Robust.Client.UserInterface.Controls;assembly=Robust.Client"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    VerticalExpand="True"
+    HorizontalExpand="True">
+    <BoxContainer
+        Orientation="Horizontal"
+        Margin="5"
+        SeparationOverride="10"
+        HorizontalExpand="True"
+        VerticalExpand="True">
+        <BoxContainer
+            Orientation="Vertical"
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            SizeFlagsStretchRatio="0.35"
+            SeparationOverride="8">
+            <PanelContainer StyleClasses="AngleRect" VerticalAlignment="Top" MinHeight="280">
+                <BoxContainer Orientation="Vertical" Margin="10">
+                    <Label
+                        Text="{Loc 'lobby-character-preview-panel-header'}"
+                        HorizontalAlignment="Center"
+                        StyleClasses="LabelHeading"
+                        Margin="0 0 0 5" />
+                    <SpriteView
+                        Name="SpriteView"
+                        Scale="6 6"
+                        VerticalExpand="True"
+                        SizeFlagsStretchRatio="1"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" />
+                    <BoxContainer
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0 5"
+                        SeparationOverride="10">
+                        <Button Name="RotateLeftButton" Text="◀" StyleClasses="OpenRight" MinWidth="30" />
+                        <Button
+                            Name="ShowClothesButton"
+                            ToggleMode="True"
+                            Pressed="True"
+                            Text="{Loc 'humanoid-profile-editor-clothing-show'}" />
+                        <Button
+                            Name="ShowCapeButton"
+                            ToggleMode="True"
+                            Pressed="False"
+                            Text="{Loc 'st-hunter-profile-editor-show-cape'}" />
+                        <Button Name="RotateRightButton" Text="▶" StyleClasses="OpenLeft" MinWidth="30" />
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+            <PanelContainer StyleClasses="AngleRect" VerticalExpand="True">
+                <BoxContainer Orientation="Vertical" Margin="5" VerticalExpand="True">
+                    <Label
+                        Text="{Loc 'st-hunter-profile-editor-equipment-header'}"
+                        StyleClasses="LabelHeading"
+                        Margin="5" />
+                    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="True" VScrollEnabled="True">
+                        <TabContainer Name="EquipmentTabs" VerticalExpand="True">
+                            <BoxContainer Name="ArmorTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="MaskTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="AccessoryTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="GreavesTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="CapeTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="CasterTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                            <BoxContainer Name="BracerTab" Orientation="Vertical" HorizontalExpand="True"
+                                          VerticalExpand="True" Margin="5" />
+                        </TabContainer>
+                    </ScrollContainer>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+        <BoxContainer
+            Orientation="Vertical"
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            SizeFlagsStretchRatio="0.65"
+            SeparationOverride="8">
+            <PanelContainer StyleClasses="AngleRect">
+                <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="10">
+                        <Label
+                            Text="{Loc 'st-hunter-profile-editor-name-label'}"
+                            VerticalAlignment="Center"
+                            MinWidth="40"
+                            StyleClasses="LabelHeading" />
+                        <LineEdit Name="NameEdit" HorizontalExpand="True" PlaceHolder="Yautja Name" MinWidth="200" />
+                        <Button
+                            Name="RandomizeNameButton"
+                            Text="🎲"
+                            ToolTip="{Loc 'humanoid-profile-editor-name-random-button'}" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="10">
+                        <Button
+                            Name="RandomizeCharacterButton"
+                            Text="{Loc 'humanoid-profile-editor-randomize-everything-button'}"
+                            StyleClasses="ButtonCaution"
+                            HorizontalExpand="True" />
+
+                        <Button
+                            Name="SaveButton"
+                            Text="{Loc 'humanoid-profile-editor-save-button'}"
+                            StyleClasses="ButtonBig"
+                            MinWidth="120"
+                            HorizontalAlignment="Right" />
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+            <PanelContainer StyleClasses="AngleRect" VerticalExpand="True">
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="12" HorizontalExpand="True">
+                        <Label
+                            Text="{Loc 'st-hunter-profile-editor-general-info'}"
+                            StyleClasses="LabelHeading"
+                            FontColorOverride="Gray" />
+
+                        <GridContainer
+                            Columns="2"
+                            HorizontalExpand="True"
+                            HSeparationOverride="15"
+                            VSeparationOverride="12">
+                            <Label Text="{Loc 'st-hunter-profile-editor-age-label'}" VerticalAlignment="Center"
+                                   MinWidth="90" />
+                            <LineEdit Name="AgeEdit" HorizontalExpand="True" ToolTip="(175 - 3000)" />
+
+                            <Label Text="{Loc 'st-hunter-profile-editor-gender-label'}" VerticalAlignment="Center"
+                                   MinWidth="90" />
+                            <OptionButton Name="GenderButton" HorizontalExpand="True" />
+
+                            <Label Text="{Loc 'st-hunter-profile-editor-status-label'}" VerticalAlignment="Center"
+                                   MinWidth="90" />
+                            <OptionButton Name="StatusButton" HorizontalExpand="True" />
+                            <Label
+                                Name="VoiceLabel"
+                                Text="{Loc 'humanoid-profile-editor-voice-label'}"
+                                VerticalAlignment="Center"
+                                Visible="False"
+                                MinWidth="90" />
+                            <BoxContainer
+                                Name="TTSContainer"
+                                Orientation="Horizontal"
+                                HorizontalExpand="True"
+                                Visible="False"
+                                SeparationOverride="5">
+                                <OptionButton Name="VoiceButton" HorizontalExpand="True" />
+                                <Button Name="VoicePlayButton" Text="▶" MinWidth="30" />
+                            </BoxContainer>
+                        </GridContainer>
+                        <PanelContainer MinHeight="2" Margin="0 10 0 5">
+                            <PanelContainer.PanelOverride>
+                                <gfx:StyleBoxFlat BackgroundColor="#3E3E42" />
+                            </PanelContainer.PanelOverride>
+                        </PanelContainer>
+                        <Label
+                            Text="{Loc 'humanoid-profile-editor-appearance-tab'}"
+                            StyleClasses="LabelHeading"
+                            FontColorOverride="Gray" />
+                        <BoxContainer Orientation="Vertical" SeparationOverride="5">
+                            <Label Text="{Loc 'st-hunter-profile-editor-skin-color-label'}" />
+                            <controls:ColorSelectorSliders Name="SkinColor" />
+                        </BoxContainer>
+                        <BoxContainer Orientation="Vertical" SeparationOverride="5">
+                            <Label Text="{Loc 'st-hunter-profile-editor-quills-tab'}" />
+                            <BoxContainer Name="QuillsContent" Orientation="Vertical" HorizontalExpand="True" />
+                        </BoxContainer>
+                        <PanelContainer MinHeight="2" Margin="0 5">
+                            <PanelContainer.PanelOverride>
+                                <gfx:StyleBoxFlat BackgroundColor="#3E3E42" />
+                            </PanelContainer.PanelOverride>
+                        </PanelContainer>
+                        <Label
+                            Text="{Loc 'st-hunter-profile-editor-misc-tab'}"
+                            StyleClasses="LabelHeading"
+                            FontColorOverride="Gray" />
+                        <GridContainer
+                            Columns="2"
+                            HorizontalExpand="True"
+                            HSeparationOverride="15"
+                            VSeparationOverride="8">
+                            <Label
+                                Text="{Loc 'st-hunter-profile-editor-translator-style'}"
+                                VerticalAlignment="Center" />
+                            <OptionButton Name="TranslatorStyleButton" HorizontalExpand="True" />
+
+                            <Label Text="{Loc 'st-hunter-profile-editor-cloak-style'}" VerticalAlignment="Center" />
+                            <OptionButton Name="CloakStyleButton" HorizontalExpand="True" />
+                        </GridContainer>
+                        <BoxContainer Orientation="Vertical" SeparationOverride="5">
+                            <Label Text="{Loc 'st-hunter-profile-editor-cape-color-label'}" />
+                            <controls:ColorSelectorSliders Name="CapeColorSelector" />
+                        </BoxContainer>
+                        <PanelContainer MinHeight="2" Margin="0 5">
+                            <PanelContainer.PanelOverride>
+                                <gfx:StyleBoxFlat BackgroundColor="#3E3E42" />
+                            </PanelContainer.PanelOverride>
+                        </PanelContainer>
+                        <Label
+                            Text="{Loc 'st-hunter-profile-editor-flavor-text-label'}"
+                            StyleClasses="LabelHeading"
+                            FontColorOverride="Gray" />
+                        <PanelContainer VerticalExpand="True" MinHeight="150">
+                            <PanelContainer.PanelOverride>
+                                <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" BorderColor="#3E3E42" BorderThickness="1" />
+                            </PanelContainer.PanelOverride>
+                            <TextEdit
+                                Name="FlavorTextEdit"
+                                VerticalExpand="True"
+                                Margin="4" />
+                        </PanelContainer>
+                    </BoxContainer>
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </BoxContainer>
+</Control>

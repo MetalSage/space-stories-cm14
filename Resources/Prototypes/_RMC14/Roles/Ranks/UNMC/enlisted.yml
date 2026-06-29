@@ -6,8 +6,8 @@
 
 - type: rank
   id: RMCRankMasterGunnerySergeant
-  name: Главный Сержант Артиллерист
-  prefix: Гл. Серж. Арт.
+  name: Мастер Комендор-Сержант
+  prefix: Мст. Ком-Серж.
   paygrade: E9
 
 - type: rank
@@ -18,14 +18,14 @@
 
 - type: rank
   id: RMCRankMasterSergeant
-  name: Главный Сержант
-  prefix: Гл. Сержант
+  name: Мастер-Сержант
+  prefix: Мст-Серж.
   paygrade: E8
 
 - type: rank
   id: RMCRankGunnerySergeant
-  name: Сержант Артиллерист
-  prefix: Серж. Арт.
+  name: Комендор-Сержант
+  prefix: Ком-Серж.
   paygrade: E7
 
 - type: rank

@@ -1,0 +1,4 @@
+- type: tile
+  parent: CMFloorCorsatBasicBase
+  id: CMFloorCorsatBasicPlating
+  sprite: /Textures/_RMC14/Tiles/corsat/plating.png

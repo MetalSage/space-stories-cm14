@@ -1,51 +1,74 @@
 marking-RMCUnderwearBoxers = Боксеры
 marking-RMCUnderwearBoxers-c_boxers = Боксеры
+
 marking-RMCUnderwearBoxersBlue = Голубые боксеры
 marking-RMCUnderwearBoxersBlue-d_boxers = Голубые боксеры
+
 marking-RMCUnderwearBoxersJungle = Боксеры (Джунгли)
 marking-RMCUnderwearBoxersJungle-j_boxers = Боксеры
+
 marking-RMCUnderwearBoxersSnow = Боксеры (Снег)
 marking-RMCUnderwearBoxersSnow-s_boxers = Боксеры
+
 marking-RMCUnderwearBoxersUrban = Боксеры (Городские)
 marking-RMCUnderwearBoxersUrban-urban_boxers = Боксеры
+
 marking-RMCUnderwearBriefs = Брифы
 marking-RMCUnderwearBriefs-c_briefs = Брифы
+
 marking-RMCUnderwearBriefsDesert = Брифы (Пустыня)
 marking-RMCUnderwearBriefsDesert-d_briefs = Брифы
+
 marking-RMCUnderwearBriefsJungle = Брифы (Джунгли)
 marking-RMCUnderwearBriefsJungle-j_briefs = Брифы
+
 marking-RMCUnderwearBriefsSnow = Брифы (Снег)
 marking-RMCUnderwearBriefsSnow-s_briefs = Брифы
+
 marking-RMCUnderwearBriefsUrban = Брифы (Городские)
 marking-RMCUnderwearBriefsUrban-urban_briefs = Брифы
+
 marking-RMCUnderwearLowriders = Низкие бортики
 marking-RMCUnderwearLowriders-c_lowriders = Низкие бортики
+
 marking-RMCUnderwearLowridersDesert = Лоурайдеры (Пустыня)
 marking-RMCUnderwearLowridersDesert-d_lowriders = Лоурайдеры
+
 marking-RMCUnderwearLowridersJungle = Лоурайдеры (Джунгли)
 marking-RMCUnderwearLowridersJungle-j_lowriders = Лоурайдеры
+
 marking-RMCUnderwearLowridersSnow = Лоурайдеры (Снег)
 marking-RMCUnderwearLowridersSnow-s_lowriders = Лоурайдеры
+
 marking-RMCUnderwearLowridersUrban = Лоурайдеры (Городские)
 marking-RMCUnderwearLowridersUrban-urban_lowriders = Лоурайдеры
+
 marking-RMCUnderwearSatin = Сатин
 marking-RMCUnderwearSatin-c_satin = Сатин
+
 marking-RMCUnderwearSatinDesert = Сатин (Пустыня)
 marking-RMCUnderwearSatinDesert-d_satin = Сатин
+
 marking-RMCUnderwearSatinJungle = Сатин (Джунгли)
 marking-RMCUnderwearSatinJungle-j_satin = Сатин
+
 marking-RMCUnderwearSatinSnow = Сатин (Снег)
 marking-RMCUnderwearSatinSnow-s_satin = Сатин
+
 marking-RMCUnderwearSatinUrban = Сатин (Городские)
 marking-RMCUnderwearSatinUrban-urban_satin = Сатин
+
 marking-RMCUnderwearTanga = Танга
 marking-RMCUnderwearTanga-classic_tanga = Танга
+
 marking-RMCUnderwearTangaDesert = Танга (Пустыня)
 marking-RMCUnderwearTangaDesert-desert_tanga = Танга
+
 marking-RMCUnderwearTangaJungle = Танга (Джунгли)
 marking-RMCUnderwearTangaJungle-jungle_tanga = Танга
+
 marking-RMCUnderwearTangaSnow = Танга (Снег)
 marking-RMCUnderwearTangaSnow-snow_tanga = Танга
+
 marking-RMCUnderwearTangaUrban = Танга (Городские)
 marking-RMCUnderwearTangaUrban-urban_tanga = Танга
-marking-RMCUnderwearTanga-c_tanga = Танга

@@ -1,5 +1,5 @@
 ent-XenoEgg = яйцо
-    .desc = { ent-BaseItem.desc }
+    .desc = It looks like a weird egg.
 ent-XenoEggDestroyed = яйцо
     .desc = Куча... чего-то.
 ent-XenoEggDestroyedFragile = хрупкое яйцо

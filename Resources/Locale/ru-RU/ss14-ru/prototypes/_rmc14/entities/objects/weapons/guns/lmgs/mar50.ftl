@@ -1,7 +1,5 @@
 ent-RMCWeaponMar50LMG = легкий пулемет MAR-50
     .desc = Дешевый, надежный LMG под патрон 7,62x39 мм. Часто встречается в руках преступников с небольшим достатком.
-ent-RMCMagazineMar50LMG = барабанный магазин MAR (7,62x39 мм)
-    .desc = Барабанный магазин 7,62x39 мм для MAR-50 LMG.
 ent-RMCCartridgeRifle762x39mm = патрон (7.62x39 мм)
     .desc = Патрон калибра 7,62x39 мм. Устанавливается в магазины калибра 7,62x39 мм.
 ent-RMCBulletRifle762x39mm = { ent-RMCBaseBullet }

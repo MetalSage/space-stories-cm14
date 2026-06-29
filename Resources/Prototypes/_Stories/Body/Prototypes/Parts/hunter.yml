@@ -1,0 +1,125 @@
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: STPartHunter
+  parent: [BaseItem, BasePart]
+  name: "hunter body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: STTorsoHunter
+  name: "hunter torso"
+  parent: [STPartHunter, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: STHeadHunter
+  name: "hunter head"
+  parent: [STPartHunter, BaseHead]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: STLeftArmHunter
+  name: "left hunter arm"
+  parent: [STPartHunter, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: STRightArmHunter
+  name: "right hunter arm"
+  parent: [STPartHunter, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: STLeftHandHunter
+  name: "left hunter hand"
+  parent: [STPartHunter, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: STRightHandHunter
+  name: "right hunter hand"
+  parent: [STPartHunter, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: STLeftLegHunter
+  name: "left hunter leg"
+  parent: [STPartHunter, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "l_leg"
+  - type: MovementBodyPart
+    walkSpeed: 3
+    sprintSpeed: 6.5
+
+- type: entity
+  id: STRightLegHunter
+  name: "right hunter leg"
+  parent: [STPartHunter, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "r_leg"
+  - type: MovementBodyPart
+    walkSpeed: 3
+    sprintSpeed: 6.5
+
+- type: entity
+  id: STLeftFootHunter
+  name: "left hunter foot"
+  parent: [STPartHunter, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: STRightFootHunter
+  name: "right hunter foot"
+  parent: [STPartHunter, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Hunter/parts.rsi
+    state: "r_foot"

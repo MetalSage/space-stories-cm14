@@ -1,4 +1,7 @@
 using Content.Shared.Actions;
+// RMC14
+using Content.Shared._RMC14.Vehicle;
+// RMC14
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -11,7 +14,9 @@ namespace Content.Shared.Actions.Components;
 /// <summary>
 /// Component all actions are required to have.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedActionsSystem))]
+// RMC14
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedActionsSystem), typeof(VehicleViewToggleSystem))]
+// RMC14
 [AutoGenerateComponentState(true, true)]
 [EntityCategory("Actions")]
 public sealed partial class ActionComponent : Component
@@ -28,6 +33,13 @@ public sealed partial class ActionComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public SpriteSpecifier? IconOn;
+
+    // Stories-Hunter-Start
+    /// <summary>
+    ///     Background to show when the action is not toggled on. If null, a default texture is used.
+    /// </summary>
+    [DataField] public SpriteSpecifier? Background;
+    // Stories-Hunter-Start
 
     /// <summary>
     ///     For toggle actions only, background to show when toggled on.

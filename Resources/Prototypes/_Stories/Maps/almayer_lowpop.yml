@@ -1,0 +1,65 @@
+- type: gameMap
+  id: STAlmayerLowPop
+  mapName: ВКСШ Алмайер
+  mapPath: /Maps/_Stories/almayer.yml
+  minPlayers: 0
+  maxPlayers: 50
+  maxRandomOffset: 0
+  randomRotation: false
+  fallback: true
+  stations:
+    Almayer:
+      stationProto: StandardUNMCWarship
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'ВКСШ Алмайер'
+      - type: StationJobs
+        availableJobs:
+          #Command
+          CMCommandingOfficer: [1, 1]
+          CMExecutiveOfficer: [1, 1]
+          CMStaffOfficer: [2, 2]
+          CMSeniorEnlistedAdvisor: [1, 1]
+
+          #Military Police
+          CMChiefMP: [1, 1]
+          CMMilitaryWarden: [1, 1]
+          CMMilitaryPolice: [3, 5]
+
+          #Auxiliary
+          CMAuxiliarySupportOfficer: [1, 1]
+          CMIntelOfficer: [2, 2]
+          CMPilotDropship: [1, 1]
+          CMPilotGunship: [1, 1]
+          CMDropshipCrewChief: [2, 2]
+
+          #Engineering
+          CMChiefEngineer: [1, 1]
+          CMOrdnanceTech: [1, 1]
+          CMMaintTech: [2, 2]
+
+          #Medical
+          CMCMO: [1, 1]
+          CMDoctor: [2, 3]
+          CMNurse: [2, 3]
+          # CMResearcher: [2, 2]
+
+          #Requisition
+          CMQuartermaster: [1, 1]
+          CMCargoTech: [2, 2]
+          CMMessTech: [1, 1]
+
+          #Marines
+          CMSquadLeader: [2, 2]
+          CMFireteamLeader: [4, 4]
+          CMSmartGunOperator: [2, 2]
+          CMWeaponsSpecialist: [2, 2]
+          CMCombatTech: [6, 6]
+          CMHospitalCorpsman: [8, 8]
+          CMRifleman: [ -1, -1 ]
+
+          #Civilians
+          CMCorrespondent: [2, 2]
+
+          # Other
+          CMLiaison: [1, 1]

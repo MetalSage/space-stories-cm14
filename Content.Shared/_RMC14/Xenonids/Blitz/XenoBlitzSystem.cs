@@ -34,7 +34,7 @@ public sealed class XenoBlitzSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly VanguardShieldSystem _vanguard = default!;
     [Dependency] private readonly SharedInteractionSystem _interact = default!;
-    [Dependency] private readonly RMCActionsSystem _rmcActions = default!;
+    [Dependency] private readonly SharedRMCActionsSystem _rmcActions = default!;
 
     public override void Initialize()
     {
@@ -112,7 +112,7 @@ public sealed class XenoBlitzSystem : EntitySystem
 
             hits++;
 
-            var myDamage = _damage.TryChangeDamage(hit, _xeno.TryApplyXenoSlashDamageMultiplier(hit, xeno.Comp.Damage), origin: xeno, tool: xeno);
+            var myDamage = _damage.TryChangeDamage(hit, _xeno.ApplyXenoMeleeDamageModifiers(xeno, hit, xeno.Comp.Damage), origin: xeno, tool: xeno);
             if (myDamage?.GetTotal() > FixedPoint2.Zero)
             {
                 var filter = Filter.Pvs(hit, entityManager: EntityManager).RemoveWhereAttachedEntity(o => o == xeno.Owner);

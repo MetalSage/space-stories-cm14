@@ -1,148 +1,150 @@
 ﻿<Document>
-  # Мелкие Преступления
-  - Эти преступления имеют низкую степень тяжести и могут быть наказаны Дисциплинарным Взысканием без Суда (ДВС).
+  # Minor Crimes
+  - These crimes are low severity, and can be instead punished with an NJP, or a warning.
   <Table Columns="3">
     <ColorBox>
       <Box>
-        Обвинение
+        Charge
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Описание
+        Description
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        Наказание
+        Punishment
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Несоблюдение Процедуры
+        Hooliganism
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Несоблюдение положений, изложенных в Стандартной Оперативной Процедуре.
+        \- Behavior that is generally disruptive to the warship and crew that classifies as low-level shenanigans not deserving of more severe punishment. Things such as excessive window knocking, force-feeding other marines or failing to conduct oneself properly during the briefing, such as climbing the Briefing overview. This can escalate to [bold]Disorderly Conduct[/bold].
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут, конфискация снаряжения, где уместно.[/bold]
-      </Box>
-    </ColorBox>
-
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Курение в Медицинских Зонах
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Курение в зонах, предназначенных для использования медицинским персоналом, таких как весь медблок и операционные.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут.[/bold]
+        [bold]NJP.[/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Хулиганство
+        Disrespecting a Superior
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Поведение, которое в целом нарушает порядок на корабле и среди экипажа и классифицируется как мелкие выходки, не заслуживающие более сурового наказания. Такие вещи, как чрезмерное стучание в окна, насильственное кормление других морпехов или ненадлежащее поведение во время брифинга, например, залезание на обзорную панель брифинга. Это может перерасти в [bold]Нарушение Общественного Порядка[/bold].
+        \- Using offensive names or being directly disrespectful to someone of a higher rank or position.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]Дисциплинарное Взыскание без Суда (ДВС).[/bold]
-      </Box>
-    </ColorBox>
-
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Незаконное Вторжение
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Несанкционированный доступ в зону, к которой у человека обычно нет доступа или без одобрения командования/начальства.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]Вывод из зоны и, опционально, 7,5 минут.[/bold]
+        [bold]NJP.[/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Опьянение
+        False Testimony
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Употребление алкоголя или других веществ, таких как алкоголь или галлюциногенные наркотики, приводящее к ухудшению выполнения служебных обязанностей.
+        \- To intentionally provide false information during a criminal investigation with the intent to disrupt said investigation.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут, продлевается до тех пор, пока человек больше не находится в состоянии опьянения.[/bold]
-      </Box>
-    </ColorBox>
-
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Кража
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Взятие предметов (или имущества) у другого человека или организации без их явного разрешения или сохранение владения предметами, взятыми без разрешения. Это включает в себя удаление торговых автоматов из зон департаментов без разрешения.
-      </Box>
-    </ColorBox>
-    <ColorBox>
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут и возврат предмета(ов) владельцу.[/bold]
+        [bold]5 minutes.[/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Неуважение к Старшему Офицеру
+        Trespassing
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Использование оскорбительных выражений или проявление прямого неуважения к офицеру высшего звания или должности.
+        \- Unauthorized access of an area which a person does not normally have access to or without command/superior approval.
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]10 минут.[/bold]
+        [bold]Escort out of the area and optionally 7.5 minutes.[/bold]
       </Box>
     </ColorBox>
 
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Лжесвидетельство
+        Failure to Follow Procedure
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        Намеренное и добровольная ложь военной полиции или уполномоченному офицеру во время уголовного расследования с целью сорвать указанное расследование.
+        \- Failing to follow the regulations found in the [bold]Standard Operating Procedure[/bold].
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
-        [bold]5 минут.[/bold]
+        [bold]10 Minutes, equipment confiscation where relevant.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Smoking in Medical Areas
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        \- Smoking in areas designated for use by medical personnel, such as the entire medbay and surgical rooms.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]10 Minutes.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Intoxication
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        \- During active duty, to consume alcohol or other substances such as hallucinogenic drugs that cause impairment of speech or mind of some form.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]10 minutes, extended until the person is no longer impaired.[/bold]
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Theft
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        \- To take items or property from another person or entity without their express permission.
+        \n\- To retain possession of items that have been taken without permission or were knowingly not legal to be provided. A chance to return the item(s) or property should be given first.
+        \n\- Removal of vendors from department areas without permission.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]10 minutes, and the item(s) returned to the owner.[/bold]
       </Box>
     </ColorBox>
 

@@ -1,0 +1,163 @@
+- type: reaction
+  id: RMCPotassiumHydroxide
+  reactants:
+    Water:
+      amount: 1
+    RMCPotassium:
+      amount: 1
+  products:
+    RMCPotassiumHydroxide: 1
+  effects:
+  - !type:SensitiveReactionExplosionEffect
+    threshold: 0
+    explosionType: RMC
+    maxIntensity: 100
+    intensityPerUnit: 1
+    intensitySlope: 4
+    maxTotalIntensity: 100
+
+- type: reaction
+  id: RMCAmmonia
+  reactants:
+    RMCHydrogen:
+      amount: 3
+    RMCNitrogen:
+      amount: 1
+  products:
+    RMCAmmonia: 3
+
+- type: reaction
+  id: RMCPolytrinicAcid
+  reactants:
+    RMCSulphuricAcid:
+      amount: 1
+    RMCChlorine:
+      amount: 1
+    RMCPotassium:
+      amount: 1
+  products:
+    RMCPolytrinicAcid: 3
+
+- type: reaction
+  id: RMCAmmoniumNitrate
+  reactants:
+    RMCAmmonia:
+      amount: 1
+    RMCPolytrinicAcid:
+      amount: 1
+  products:
+    RMCAmmoniumNitrate: 2
+
+- type: reaction
+  id: RMCANFO
+  reactants:
+    RMCAmmoniumNitrate:
+      amount: 2
+    RMCWeldingFuel:
+      amount: 1
+  products:
+    RMCANFO: 2
+  effects:
+  - !type:SensitiveReactionExplosionEffect
+    threshold: 60.001
+    explosionType: RMC
+    maxIntensity: 100
+    intensityPerUnit: 1
+    intensitySlope: 4
+    maxTotalIntensity: 100
+
+- type: reaction
+  id: RMCGlycerol
+  reactants:
+    RMCCornOil:
+      amount: 3
+    RMCSulphuricAcid:
+      amount: 1
+  products:
+    RMCGlycerol: 1
+
+- type: reaction
+  id: RMCNitroglycerin
+  reactants:
+    RMCGlycerol:
+      amount: 1
+    RMCPolytrinicAcid:
+      amount: 1
+    RMCSulphuricAcid:
+      amount: 1
+  products:
+    RMCNitroglycerin: 2
+  effects:
+  - !type:SensitiveReactionExplosionEffect
+    threshold: 5.001
+    explosionType: RMC
+    maxIntensity: 100
+    intensityPerUnit: 1
+    intensitySlope: 4
+    maxTotalIntensity: 100
+
+- type: reaction
+  id: RMCFormaldehyde
+  priority: 5
+  reactionFlags: [Smoking]
+  storiesConfig:
+    smokeSpreadDivisor: 50.0
+    smokeVolumeScale: 0.05
+  reactants:
+    RMCMethane:
+      amount: 1
+    RMCOxygen:
+      amount: 1
+    RMCPhoron:
+      amount: 1
+    RMCSilver:
+      amount: 5
+      catalyst: true
+  products:
+    RMCFormaldehyde: 3
+
+- type: reaction
+  id: RMCHexamine
+  reactionFlags: [Bubbling]
+  reactants:
+    RMCAmmonia:
+      amount: 2
+    RMCFormaldehyde:
+      amount: 3
+  products:
+    RMCHexamine: 3
+
+- type: reaction
+  id: RMCParaformaldehyde
+  reactants:
+    RMCFormaldehyde:
+      amount: 1
+    RMCFrostOil:
+      amount: 1
+  products:
+    RMCParaformaldehyde: 1
+
+- type: reaction
+  id: RMCCyclonite
+  reactants:
+    RMCHexamine:
+      amount: 1
+    RMCPolytrinicAcid:
+      amount: 1
+  products:
+    RMCCyclonite: 1
+
+- type: reaction
+  priority: 5
+  id: RMCOctogen
+  reactants:
+    RMCParaformaldehyde:
+      amount: 1
+    RMCAmmoniumNitrate:
+      amount: 1
+    RMCHexamine:
+      amount: 1
+    RMCPolytrinicAcid:
+      amount: 1
+  products:
+    RMCOctogen: 2

@@ -1,12 +1,12 @@
 ent-BarbedWireBase = колючая проволока
     .desc = Тип металлической проволоки для ограждения, имеющей острые края или острия, расположенные с определенным интервалом вдоль прядей. Короче говоря, прикасаться к ней больно. Очень много. Устанавливается на баррикадах, чтобы предотвратить безболезненный прорыв нежелательных объектов.
     .suffix = Полный
-ent-BarbedWire10 = колючая проволока
+ent-BarbedWire10 = { ent-BarbedWireBase }
+    .desc = { ent-BarbedWireBase.desc }
     .suffix = 10
-    .desc = { ent-BarbedWireBase.desc }
 ent-BarbedWire15 = { ent-BarbedWireBase }
+    .desc = { ent-BarbedWireBase.desc }
     .suffix = 15
+ent-BarbedWire1 = { ent-BarbedWireBase }
     .desc = { ent-BarbedWireBase.desc }
-ent-BarbedWire1 = колючая проволока
     .suffix = Одиночная
-    .desc = { ent-BarbedWireBase.desc }

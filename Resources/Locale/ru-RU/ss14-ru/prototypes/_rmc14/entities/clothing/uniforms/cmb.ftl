@@ -1,5 +1,9 @@
+ent-RMCCMBUniformBase = { ent-RMCMarineUniformBase }
+    .desc = { ent-RMCMarineUniformBase.desc }
 ent-RMCSwatCMBUniform = униформа БКМ для подавления беспорядков
     .desc = Темный комплект тактической формы, используемый маршалами колонии, предназначенный для использования подразделениями по подавлению беспорядков на дальних мирах, находящихся под юрисдикцией колонии.
+ent-RMCSwatCMBUniformSpearhead = { ent-RMCSwatCMBUniform }
+    .desc = { ent-RMCSwatCMBUniform.desc }
 ent-RMCSwatLeaderCMBUniform = униформа маршала БКМ для подавления беспорядков.
     .desc = Тёмный тактический комплект формы, используемый маршалами колонии. Предназначен для подразделений по подавлению беспорядков на дальних планетах, находящихся под юрисдикцией колонии.
 ent-RMCMarshalCMBUniform = униформа колониального маршала.

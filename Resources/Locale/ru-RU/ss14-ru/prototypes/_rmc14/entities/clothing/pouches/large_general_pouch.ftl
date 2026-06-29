@@ -1,5 +1,17 @@
 ent-RMCPouchGeneralLarge = большой подсумок общего назначения
     .desc = Подсумок общего назначения, используемый для переноски большего количества предметов разного размера.
 ent-RMCPouchGeneralLargeFilledSmartGunDrums = { ent-RMCPouchGeneralLarge }
+    .desc = { ent-RMCPouchGeneralLarge.desc }
     .suffix = Заполненный, барабаны для смартгана
+ent-RMCPouchGeneralLargeFilledRCM = { ent-RMCPouchGeneralLarge }
+    .desc = { ent-RMCPouchGeneralLarge.desc }
+    .suffix = RCM, Filled
+ent-RMCPouchGeneralLargeFilledSPPCommand = { ent-RMCPouchGeneralLarge }
+    .desc = { ent-RMCPouchGeneralLarge.desc }
+    .suffix = Filled, SPP
+ent-RMCPouchGeneralLargeFilledParaCO = { ent-RMCPouchGeneralLarge }
+    .desc = { ent-RMCPouchGeneralLarge.desc }
+    .suffix = Survivor, Paramarine, Filled, CO
+ent-RMCPouchGeneralLargeFilledRoyalCommando = { ent-RMCPouchGeneralLarge }
+    .suffix = Filled, RoyalCommando
     .desc = { ent-RMCPouchGeneralLarge.desc }

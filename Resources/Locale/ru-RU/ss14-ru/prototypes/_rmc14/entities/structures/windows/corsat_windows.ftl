@@ -1,5 +1,5 @@
-ent-RMCWindowFrameCorsatReinforced = { ent-RMCBaseWindowFrame }
-    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowFrameCorsatReinforced = { ent-RMCWindowFrameColonyReinforced }
+    .desc = { ent-RMCWindowFrameColonyReinforced.desc }
 ent-RMCWindowCorsatReinforced = армированное окно
     .desc = Стеклянная витрина со специальным стержнем-матрицей внутри настенной рамы. Выглядит довольно прочно. Потребуется несколько ударов, чтобы разбить его.
 ent-RMCWindowCorsatReinforcedSecurity = { ent-RMCWindowCorsatReinforced }

@@ -8,7 +8,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 10 # Stories-Fix
         reagents:
         - ReagentId: Nutriment
           Quantity: 8
@@ -19,8 +19,8 @@
     grindableSolutionName: food
   - type: InjectableSolution
     solution: food
-  - type: DrawableSolution
-    solution: food
+  # - type: DrawableSolution # Stories-Fix
+  #   solution: food
 
 - type: entity
   parent: CMBarFoodBase
@@ -30,3 +30,13 @@
   components:
   - type: Sprite
     state: protein_bar
+
+- type: entity
+  parent: CMBarFoodBase
+  id: RMCMarineRCMSnackBar
+  name: Biscuits Brown snack bar
+  description: The devil in disguise. Quick to eat, with a fairly pleasant taste and texture, but consuming more than one in a short span of time will ensure you won't be digging latrine holes out in the field for at least two weeks.
+  components:
+  - type: Sprite # TODO RMC14 find a proper sprite for this
+    sprite: _RMC14/Objects/Consumable/Food/packaged.rsi
+    state: barcardine-o

@@ -3,5 +3,5 @@ ent-CMXenoDefenderBase = Защитник
 ent-CMXenoDefender = { ent-CMXenoDefenderBase }
     .desc = { ent-CMXenoDefenderBase.desc }
 ent-CMXenoDefenderSteelcrest = { ent-CMXenoDefenderBase }
-    .suffix = Стальной Гребень
     .desc = { ent-CMXenoDefenderBase.desc }
+    .suffix = Стальной Гребень

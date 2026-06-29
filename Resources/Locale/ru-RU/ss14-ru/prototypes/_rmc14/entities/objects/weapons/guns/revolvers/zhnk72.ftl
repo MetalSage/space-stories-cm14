@@ -1,8 +1,8 @@
 ent-RMCWeaponRevolverZHNK72 = револьвер ZHNK-72
     .desc = ZHNK-72 — револьвер, разработанный СПН. ZHNK-72 используется вооруженными силами СПН в полицейских целях, а также в ограниченных количествах находится в руках старших сержантов.
 ent-RMCWeaponRevolverZHNK72Empty = { ent-RMCWeaponRevolverZHNK72 }
-    .suffix = Пустой
     .desc = { ent-RMCWeaponRevolverZHNK72.desc }
+    .suffix = Пустой
 ent-RMCBaseSpeedLoaderZHNK72 = спидлоадер (7,62 мм)
     .desc = { ent-BaseItem.desc }
 ent-RMCSpeedLoaderZHNK72 = спидлоадер ZHNK-72 (7,62 мм)

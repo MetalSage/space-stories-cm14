@@ -1,0 +1,14 @@
+ent-CMArmorFreelancer = латы наемника-фрилансера
+    .desc = Бронежилет, собранный из различных бронеплит. Удивительно прочный, благодаря качественной работе и дизайну, напоминающему броню СПН иКМП США. Квалифицированные мастера-фрилансеры изготавливают такие бронежилеты примерно один в месяц.
+ent-RMCArmorFreelancerVestBlack = black plate carrier vest
+    .desc = A standard plate carrier produced by virtually every armour manufacturer in the galaxy, and sold to both governments, mercenaries and civilians alike. As the name implies, it carries a series of armoured plates for protection, and has two pouches on the front.
+    .suffix = No lamp
+ent-RMCArmorFreelancerVestBlackLamp = { ent-RMCArmorFreelancerVestBlack }
+    .desc = A standard plate carrier produced by virtually every armour manufacturer in the galaxy, and sold to both governments, mercenaries and civilians alike. As the name implies, it carries a series of armoured plates for protection, two pouches on the front. This one has had a lamp attached to the back.
+    .suffix = Lamp
+ent-RMCArmorFreelancerVestBeige = beige plate carrier vest
+    .desc = A standard plate carrier produced by virtually every armour manufacturer in the galaxy, and sold to both governments, mercenaries and civilians alike. As the name implies, it carries a series of armoured plates for protection, and has two pouches on the front.
+    .suffix = No lamp
+ent-RMCArmorFreelancerVestBeigeLamp = beige plate carrier vest
+    .desc = { ent-RMCArmorFreelancerVestBlackLamp.desc }
+    .suffix = Lamp

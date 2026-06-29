@@ -118,7 +118,7 @@ ent-RMCWeyaWallStandard7 = { ent-RMCBaseWeyaWall }
     .desc = { ent-RMCBaseWeyaWall.desc }
 ent-RMCWeyaWallStandard8 = { ent-RMCBaseWeyaWall }
     .desc = { ent-RMCBaseWeyaWall.desc }
-ent-RMCWeyaWallStandard18 = = { ent-RMCBaseWeyaWall }
+ent-RMCWeyaWallStandard18 = { ent-RMCBaseWeyaWall }
     .desc = { ent-RMCBaseWeyaWall.desc }
 ent-RMCWeyaWallStandard19 = { ent-RMCBaseWeyaWall }
     .desc = { ent-RMCBaseWeyaWall.desc }

@@ -1,2 +1,5 @@
 ent-RMCPropTrashFull = полный мешок для мусора
     .desc = Это сверхпрочный черный полимер. Он полон старого мусора, не стоит к нему прикасаться.
+ent-RMCPropBananaPeel = banana peel
+    .desc = A peel from a banana.
+    .suffix = RMC

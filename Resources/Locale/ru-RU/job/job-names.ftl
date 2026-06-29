@@ -50,6 +50,7 @@ job-name-boxer = боксёр
 job-name-zookeeper = зоотехник
 job-name-visitor = посетитель
 job-name-cluwne = Cluwne
+
 # unused jobs
 # these are required for the agent ID job icon tooltips
 # I am keeping them for roleplaying opportunities
@@ -61,10 +62,12 @@ job-name-syndicate = синдикат
 job-name-unknown = неизвестно
 job-name-virologist = вирусолог
 job-name-zombie = зомби
+
 # Job titles
 job-title-visitor = посетитель
 job-title-cluwne = клувень
 job-title-universal = универсальная
+
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = атмосферный техник
 JobBartender = бармен

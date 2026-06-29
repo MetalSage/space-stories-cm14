@@ -3,5 +3,5 @@ ent-RMCXenoCarrierBase = Носитель
 ent-CMXenoCarrier = { ent-RMCXenoCarrierBase }
     .desc = { ent-RMCXenoCarrierBase.desc }
 ent-RMCXenoCarrierEggsac = { ent-RMCXenoCarrierBase }
-    .suffix = Кокон
     .desc = { ent-RMCXenoCarrierBase.desc }
+    .suffix = Кокон

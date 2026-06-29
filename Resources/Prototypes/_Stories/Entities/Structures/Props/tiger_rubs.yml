@@ -1,0 +1,75 @@
+- type: entity
+  parent: RMCPropBase
+  id: STTigerRubsBengal
+  name: animal pelt
+  description: A pelt of a fearsome dead creature.
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    sprite: _Stories/Structures/Props/tiger_rubs.rsi
+    state: bengal
+    drawdepth: FloorObjects
+
+- type: entity
+  parent: STTigerRubsBengal
+  id: STTigerRubsGray
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/tiger_rubs.rsi
+    state: gray
+
+- type: entity
+  parent: STTigerRubsBengal
+  id: STTigerRubsHotline
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/tiger_rubs.rsi
+    state: hotline
+
+- type: entity
+  parent: STTigerRubsBengal
+  id: STTigerRubsPlain
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/tiger_rubs.rsi
+    state: plain
+
+- type: entity
+  parent: STTigerRubsBengal
+  id: STTigerRubsWhite
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Props/tiger_rubs.rsi
+    state: white
+
+# Hunter
+- type: entity
+  parent: STTigerRubsPlain
+  id: STTigerRubsPlainHunter
+  components:
+  - type: Sprite
+    color: "#52443b"
+
+- type: entity
+  parent: STTigerRubsPlain
+  id: STTigerRubsPlainHunterAlt
+  components:
+  - type: Sprite
+    color: "#63594d"
+
+- type: entity
+  parent: STTigerRubsWhite
+  id: STTigerRubsWhiteHunter
+  components:
+  - type: Sprite
+    color: "#52443b"
+
+- type: entity
+  parent: STTigerRubsWhite
+  id: STTigerRubsWhiteHunterAlt
+  components:
+  - type: Sprite
+    color: "#63594d"

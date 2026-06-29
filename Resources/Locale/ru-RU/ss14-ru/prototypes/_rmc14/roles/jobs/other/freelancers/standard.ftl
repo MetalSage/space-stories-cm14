@@ -1,9 +1,9 @@
 ent-RMCRandomHumanoidFreelancerStandardHostile = роль призрака стрелка фрилансера
+    .desc = { "" }
     .suffix = Спавнер, Игрок, Враждебный
-    .desc = { "" }
 ent-RMCRandomHumanoidFreelancerStandardFriendly = роль призрака стрелка фрилансера
-    .suffix = Спавнер, Игрок, Дружелюбный
     .desc = { "" }
+    .suffix = Спавнер, Игрок, Дружелюбный
 ent-RMCSpawnerFreelancerStandard = спавнер фрилансера
     .suffix = Спавнер
     .desc = { ent-MarkerBase.desc }

@@ -13,14 +13,20 @@ rmc-storage-limit-accessories = В шлем больше не помещаетс
 rmc-storage-limit-grenades = Вы не можете больше поместить гранаты!
 rmc-storage-limit-not-ziptie-box = Этот слот зарезервирован для коробки с стяжками!
 rmc-storage-nothing-left = { CAPITALIZE($storage) } пустой. Запечатлеть нечего.
+rmc-storage-limit-generic = Это не вместит больше подобных предметов!
+
 rmc-holster-verb = Развернуть
 rmc-storage-webbing-remove-verb = Снять разгрузку
 rmc-storage-medal-remove-verb = Снять медаль
 rmc-storage-holster-eject-verb = Развернуть
 rmc-storage-nested-unable = Похоже, вы не можете открыть { $nested }, пока он находится в { $parent }.
 rmc-storage-store-skill-unable = Хранилище не может вместить этот предмет!
+
 rmc-storage-hand-switch = Переключить способ извлечения из хранилища
+
 rmc-storage-hand-eject-last-item = Щелчок по { $storage } пустой рукой теперь помещает последний хранимый предмет в вашу руку.
 rmc-storage-hand-eject-first-item = Щелчок по { $storage } пустой рукой теперь помещает первый хранимый предмет в вашу руку.
 rmc-storage-hand-eject-unequips = Щелчок по { $storage } теперь снимает его.
 rmc-storage-hand-eject-open = Щелчок по { $storage } теперь открывает его.
+
+rmc-hijack-cabinet-locked = Этот шкаф автоматически разблокируется и откроется во время эвакуации.

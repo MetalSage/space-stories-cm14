@@ -1,0 +1,72 @@
+- type: entity
+  abstract: true
+  id: STAssemblyBase
+  parent: BaseItem
+  components:
+  - type: OrdnanceAssembly
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: STAssemblyBase
+  id: STIgniter
+  name: igniter
+  description: A small electronic device able to ignite combustible substances.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Misc/new_assemblies.rsi
+    state: igniter
+  - type: OrdnanceIgniter
+  - type: OrdnanceAssembly
+    spriteId: igniter
+
+- type: entity
+  parent: STAssemblyBase
+  id: STTimer
+  name: timer
+  description: A specialized timer for detonating explosives.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Misc/new_assemblies.rsi
+    state: timer
+  - type: OrdnanceTimer
+  - type: OrdnanceAssembly
+    spriteId: timer
+  - type: UserInterface
+    interfaces:
+      enum.OrdnanceTimerUiKey.Key:
+        type: OrdnanceTimerBoundUserInterface
+
+- type: entity
+  parent: STAssemblyBase
+  id: STProximitySensor
+  name: proximity sensor
+  description: Detects motion and sends a signal.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Misc/new_assemblies.rsi
+    state: prox
+  - type: OrdnanceProxSensor
+  - type: OrdnanceAssembly
+    spriteId: prox
+  - type: UserInterface
+    interfaces:
+      enum.OrdnanceProxSensorUiKey.Key:
+        type: OrdnanceProxSensorBoundUserInterface
+
+- type: entity
+  parent: STAssemblyBase
+  id: STSignaller
+  name: signaller
+  description: A remote control device capable of sending and receiving wireless signals.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Misc/new_assemblies.rsi
+    state: signaller
+  - type: OrdnanceSignaller
+  - type: OrdnanceAssembly
+    spriteId: signaller
+  - type: UserInterface
+    interfaces:
+      enum.OrdnanceSignallerUiKey.Key:
+        type: OrdnanceSignallerBoundUserInterface

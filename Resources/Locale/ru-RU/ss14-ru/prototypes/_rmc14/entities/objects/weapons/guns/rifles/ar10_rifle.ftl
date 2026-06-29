@@ -5,5 +5,5 @@ ent-RMCMagazineRifleAR10 = магазин винтовки AR10 (7,62x51 мм)
     .desc = { ent-CMMagazineRifleBase.desc }
 ent-RMCCartridgeRifleAR10 = патрон (7,62x51)
     .desc = Патрон 7,62x51 для винтовки.
-ent-BulletRifleAR10 = пуля
-    .desc = { ent-BaseBullet.desc }
+ent-BulletRifleAR10 = { ent-RMCBaseBullet }
+    .desc = { ent-RMCBaseBullet.desc }

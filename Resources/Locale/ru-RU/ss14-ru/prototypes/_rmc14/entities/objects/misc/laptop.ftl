@@ -1,0 +1,10 @@
+ent-RMCDropshipMaintsComputer = компьютер дропшипа
+    .desc = Вскрытый компьютер для обслуживания десантного корабля, похоже, выключен. Он используется техниками и пилотами для обнаружения поврежденных или сломанных систем на десантном корабле. Он имеет различные разъемы для подключения к разным системам.
+    .suffix = Open
+ent-RMCDropshipMaintsComputerOpen = компьютер дропшипа
+    .desc = Закрытый бортовой компьютер для технического обслуживания десантных кораблей, используемый техниками и пилотами для выявления неисправностей. Он имеет различные разъемы для подключения к разным системам.
+    .suffix = Closed
+ent-RMCLaptopBudget = laptop
+    .desc = The screen is stuck on some sort of boot-loop in terrible garish green. All the text is in Rusoek, a creole language spawned out of the borders of UN and SPP space from some Korean settlements.
+ent-RMCLaptop = laptop
+    .desc = Laptops, porta-comps, and reel-back computers, all of these and more available at your local WEYA-Mart electronics section!

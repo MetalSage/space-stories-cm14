@@ -1,0 +1,15 @@
+- type: entity
+  parent: CMClosetBase
+  id: STClosetHunter
+  name: alien closet
+  description: A suspicious dark metal alien closet, what horrors can be stored inside?
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Storage/Closets/hunter.rsi
+
+- type: entity
+  parent: STClosetHunter
+  id: STClosetHunterDouble
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Storage/Closets/hunter_double.rsi

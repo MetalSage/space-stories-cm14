@@ -1,4 +1,14 @@
 ent-CMDrinkWEYAWaterBottle30 = бутилированная родниковая вода Ве-Я
     .desc = Родниковая вода по завышенной цене. Разливается в бутылки корпорацией Ве-Я.
+    .suffix = { ent-DrinkBottlePlasticBaseFull.suffix }
+ent-RMCDrinkWEYABugJuice = Weston-Yamada Bug Juice Protein Drink
+    .desc = We-Ya brand plastic bottle full of toxic looking green goo, tastes like kiwi, but you are more than sure that there is none of it here.
+    .suffix = { ent-CMDrinkWEYAWaterBottle30.suffix }
+ent-RMCDrinkWEYACocoMilk = Weston-Yamada Bottled Coconut Milk
+    .desc = Rich in vitamins and (artificial) flavor, quenches thirst in a few sips. Bottled by the Weston-Yamada Corporation.
+    .suffix = { ent-CMDrinkWEYAWaterBottle30.suffix }
+ent-RMCDrinkWEYASoylent = Weston-Yamada Premium Choco Soylent
+    .desc = A plastic bottle full of gooey goodness, choco flavor. One bottle has enough calories for a lunch — don't drink it all in one sitting, better not risk getting a stomachache.
+    .suffix = { ent-CMDrinkWEYAWaterBottle30.suffix }
 ent-CMDrinkWYWaterBottle30 = бутылка воды Вестон Ямада
     .desc = Родниковая вода по завышенной цене. Разливается в бутылки корпорацией Вестон Ямада.

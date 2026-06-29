@@ -1,17 +1,25 @@
 # medical
-cm-job-name-cmo = Главный врач
-cm-job-description-cmo = Контролируйте медблок, исследования и химию. Управляйте медицинским персоналом. Консультируйте командный состав по вопросам здоровья и благополучия морских сил.
-cm-job-prefix-cmo = ГВ
+rmc-job-name-cmo = Главный врач
+rmc-job-description-cmo = Контролируйте медблок, исследования и химию. Управляйте медицинским персоналом. Консультируйте командный состав по вопросам здоровья и благополучия морских сил.
+rmc-job-prefix-cmo = ГВ
 CMJobCMO = Главный медик
-cm-job-name-doctor = Доктор
-cm-job-description-doctor = Лечите всех пациентов, поступающих в медблок. Переносите раненых морских пехотинцев из вешалки в медблок. При необходимости проводите хирургические операции.
-cm-job-prefix-doctor = Док
+
+rmc-job-name-doctor = Доктор
+rmc-job-description-doctor = Лечите всех пациентов, поступающих в медблок. Переносите раненых морских пехотинцев из вешалки в медблок. При необходимости проводите хирургические операции.
+rmc-job-prefix-doctor = Док
 CMJobDoctor = Доктор
-cm-job-name-nurse = Интерн
-cm-job-description-nurse = Помогайте врачам и медикам в оказании помощи раненым.
-cm-job-prefix-nurse = Интерн
-CMJobNurse = Интерн
-cm-job-name-researcher = Исследователь
-cm-job-description-researcher = Проводите исследования того, что вам присылают. Создавайте и анализируйте новые химические вещества, инструменты и предметы.
-cm-job-prefix-researcher = Исс
+
+rmc-job-name-nurse = Фельдшер
+rmc-job-description-nurse = Помогайте врачам и медикам в оказании помощи раненым.
+rmc-job-prefix-nurse = Фельд
+CMJobNurse = Фельдшер
+
+rmc-job-name-researcher = Исследователь
+rmc-job-description-researcher = Проводите исследования того, что вам присылают. Создавайте и анализируйте новые химические вещества, инструменты и предметы.
+rmc-job-prefix-researcher = Исс
 CMJobResearcher = Исследователь
+
+rmc-job-name-field-doctor = Полевой доктор
+rmc-job-description-field-doctor = Обеспечивайте здоровье морских пехотинцев на планетах в полевых условиях, зачастую с помощью хирургических операций.
+rmc-job-prefix-field-doctor = ПОЛ ДОК
+RMCJobFieldDoctor  = Полевой доктор

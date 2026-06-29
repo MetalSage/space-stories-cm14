@@ -4,5 +4,5 @@ ent-CMXenoLurker = { ent-RMCXenoLurkerBase }
     .desc = { ent-RMCXenoLurkerBase.desc }
     .suffix = Обычный
 ent-RMCXenoLurkerVampire = { ent-RMCXenoLurkerBase }
-    .suffix = Вампир
     .desc = { ent-RMCXenoLurkerBase.desc }
+    .suffix = Вампир

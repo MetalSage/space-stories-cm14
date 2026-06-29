@@ -35,7 +35,7 @@
           radius: 1.5
         hard: false
         layer:
-        - SmallMobLayer
+        - Opaque
         mask:
         - MobLayer
   - type: CollisionWake
@@ -45,20 +45,19 @@
     damage:
       types:
         Heat: 3
-  - type: Sprite
-    sprite: _RMC14/Structures/Xenos/xeno_resin_trap.rsi
+  - type: Sprite # Stories-Parity
+    sprite: _Stories/Structures/Xenos/xeno_resin_trap.rsi
     drawdepth: FloorObjects
     layers:
-    - state: trapbackground
-    - state: trap
+    - state: trap0
       map: [ "enum.XenoResinHoleLayers.Base" ]
   - type: GenericVisualizer
     visuals:
       enum.XenoResinHoleVisuals.Contained:
         enum.XenoResinHoleLayers.Base:
-          Empty: {state: trap}
-          Parasite: {state: trapparasite}
-          NeuroticGas: {state: trapgasn}
+          Empty: {state: trap0}
+          Parasite: {state: trap1}
+          NeuroticGas: {state: trapgas}
           AcidGas: {state: trapgas}
           Acid1: {state: trapacid1}
           Acid2: {state: trapacid2}
@@ -68,6 +67,7 @@
   - type: XenoResinHole
   - type: XenoAnnounceStructureDestruction
     messageID: rmc-xeno-construction-resin-hole-destroyed
+    structureName: empty
   - type: Damageable
     damageContainer: StructuralXeno
   - type: Destructible
@@ -94,3 +94,4 @@
   - type: XenoConstruct
   - type: RequireProjectileTarget
   - type: DeletedByWeedKiller
+  - type: XenoChargeDontHit

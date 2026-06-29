@@ -1,0 +1,10 @@
+- type: entity
+  parent: CMOperatingTable
+  id: STHunterOperatingTable
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi
+    state: table1
+  - type: Icon
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi
+    state: table1

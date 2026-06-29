@@ -3,6 +3,7 @@
   id: CMMilitaryPolice
   name: cm-job-name-militarypolice
   description: cm-job-description-militarypolice
+  newToJobInfo: rmc-new-to-job-military-police
   playTimeTracker: CMJobMilitaryPolice
   requirements:
   - !type:DepartmentTimeRequirement
@@ -45,6 +46,9 @@
       icon:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: mp
+      background:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: background_mp
 
 - type: startingGear
   id: CMGearMilitaryPolice
@@ -58,7 +62,7 @@
     outerClothing: CMArmorM2MP
     ears: CMHeadsetMPO
     belt: CMBeltSecurityMPFilled
-    #    pocket1: TODO RMC14 tape recorder
+    pocket1: RMCUniversalRecorder
     pocket2: RMCPouchGeneralLarge
 
 - type: entity
@@ -74,3 +78,14 @@
 - type: playTimeTracker
   id: CMJobMilitaryPolice
   isHumanoid: true
+
+# Guidebook
+- type: entity
+  parent: CMGuidebookRole
+  id: RMCGuidebookRoleMP
+  name: Military Police
+  description: Military Police
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: military_police

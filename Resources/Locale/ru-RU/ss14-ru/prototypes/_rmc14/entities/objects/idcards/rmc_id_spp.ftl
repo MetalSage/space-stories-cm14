@@ -1,10 +1,14 @@
-ent-FactionSPP = { "" }
-    .desc = { "" }
 ent-FactionHalcyon = { "" }
     .desc = { "" }
-ent-RMCIDSPP = { ent-CMIDCardStandardDogtag }
+ent-RMCIDSPP = SPP dog tag
     .desc = Солдатский жетон.
+ent-RMCIDSPPCard = SPP ID Card
+    .desc = A SPP officer's ID card.
 ent-RMCIDSPPHidden = { ent-RMCIDCardStandardDogtagHidden }
+    .desc = { ent-RMCIDCardStandardDogtagHidden.desc }
+ent-RMCIDSPPRifleman = { ent-RMCIDSPP }
+    .desc = { ent-RMCIDSPP.desc }
+ent-RMCIDSPPRiflemanHidden = { ent-RMCIDCardStandardDogtagHidden }
     .desc = { ent-RMCIDCardStandardDogtagHidden.desc }
 ent-RMCIDCardPaP = идентификационный голо-значок НВП
     .desc = Стандартный голо-значок для сотрудников Народной вооружённой полиции СПН. Отображает звание и принадлежность сотрудника.

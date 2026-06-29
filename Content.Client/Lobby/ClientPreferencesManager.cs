@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Client._Stories.Sponsors;
+using Content.Shared._Stories.Hunter;
+using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Client;
@@ -24,11 +26,13 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IConfigurationManager _cfg = default!; // Stories-Sponsors
         [Dependency] private readonly IPrototypeManager _prototypes = default!; // Stories-Sponsors
         [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Stories-Sponsors
+        [Dependency] private readonly IEntityNetworkManager _netEntManager = default!; // Stories-Hunter
 
         public event Action? OnServerDataLoaded;
 
         public GameSettings Settings { get; private set; } = default!;
         public PlayerPreferences Preferences { get; private set; } = default!;
+        public HunterProfile? HunterProfile { get; private set; } // Stories-Hunter
 
         public void Initialize()
         {
@@ -36,6 +40,7 @@ namespace Content.Client.Lobby
             _netManager.RegisterNetMessage<MsgUpdateCharacter>();
             _netManager.RegisterNetMessage<MsgSelectCharacter>();
             _netManager.RegisterNetMessage<MsgDeleteCharacter>();
+            _netManager.RegisterNetMessage<MsgUpdateConstructionFavorites>(); // Stories-Hunter
 
             _baseClient.RunLevelChanged += BaseClientOnRunLevelChanged;
         }
@@ -46,6 +51,7 @@ namespace Content.Client.Lobby
             {
                 Settings = default!;
                 Preferences = default!;
+                HunterProfile = null; // Stories-Hunter
             }
         }
 
@@ -121,10 +127,19 @@ namespace Content.Client.Lobby
             _netManager.ClientSendMessage(msg);
         }
 
+        // Stories-Hunter-Start
+        public void UpdateHunterProfile(HunterProfile profile)
+        {
+            HunterProfile = profile;
+            _netEntManager.SendSystemNetworkMessage(new UpdateHunterProfileEvent { Profile = profile });
+        }
+        // Stories-Hunter-End
+
         private void HandlePreferencesAndSettings(MsgPreferencesAndSettings message)
         {
             Preferences = message.Preferences;
             Settings = message.Settings;
+            HunterProfile = message.HunterProfile; // Stories-Hunter
 
             OnServerDataLoaded?.Invoke();
         }

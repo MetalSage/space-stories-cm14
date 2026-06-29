@@ -8,6 +8,7 @@
     - Vocal
   blacklist:
     components:
+    - Hunter
     - BorgChassis
   chatMessages: ["chat-emote-msg-warcry"]
   chatTriggers:

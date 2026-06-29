@@ -1,0 +1,12 @@
+ent-RMClogisticsofficerGuideBook = logistics Officers symbol
+    .desc = The Logistics Officers sumbol
+    .suffix = (GuideBookEntity)
+ent-RMCStampGuideBook = approval stamp
+    .desc = a approval stamp
+    .suffix = (GuideBookEntity)
+ent-RMCInvoiceBlankGuideBook = Blank invoice
+    .desc = a Blank invoice
+    .suffix = (GuideBookEntity)
+ent-RMCInvoiceApprovedBook = approved invoice
+    .desc = a approved invoice
+    .suffix = (GuideBookEntity)

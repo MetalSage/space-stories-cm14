@@ -1,4 +1,5 @@
 using System.IO;
+using Content.Shared._Stories.Hunter.Profiles;
 using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -14,6 +15,7 @@ namespace Content.Shared.Preferences
 
         public PlayerPreferences Preferences = default!;
         public GameSettings Settings = default!;
+        public HunterProfile? HunterProfile; // Stories-Hunter
 
         public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
         {
@@ -22,6 +24,7 @@ namespace Content.Shared.Preferences
             using (var stream = new MemoryStream())
             {
                 buffer.ReadAlignedMemory(stream, length);
+                stream.Position = 0; // Stories-Hunter
                 serializer.DeserializeDirect(stream, out Preferences);
             }
 
@@ -29,8 +32,20 @@ namespace Content.Shared.Preferences
             using (var stream = new MemoryStream())
             {
                 buffer.ReadAlignedMemory(stream, length);
+                stream.Position = 0; // Stories-Hunter
                 serializer.DeserializeDirect(stream, out Settings);
             }
+
+            // Stories-Hunter-Start
+            if (buffer.ReadByte() == 1)
+            {
+                length = buffer.ReadVariableInt32();
+                using var stream = new MemoryStream();
+                buffer.ReadAlignedMemory(stream, length);
+                stream.Position = 0;
+                serializer.DeserializeDirect(stream, out HunterProfile);
+            }
+            // Stories-Hunter-End
         }
 
         public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
@@ -50,6 +65,22 @@ namespace Content.Shared.Preferences
                 stream.TryGetBuffer(out var segment);
                 buffer.Write(segment);
             }
+
+            // Stories-Hunter-Start
+            if (HunterProfile != null)
+            {
+                buffer.Write((byte)1);
+                using var stream = new MemoryStream();
+                serializer.SerializeDirect(stream, HunterProfile);
+                buffer.WriteVariableInt32((int) stream.Length);
+                stream.TryGetBuffer(out var segment);
+                buffer.Write(segment);
+            }
+            else
+            {
+                buffer.Write((byte)0);
+            }
+            // Stories-Hunter-End
         }
     }
 }

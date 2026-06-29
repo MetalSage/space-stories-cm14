@@ -1,2 +1,2 @@
-ent-RMCEffectTailHit = { "" }
-    .desc = { "" }
+ent-RMCEffectTailHit = { ent-RMCBaseEffect }
+    .desc = { ent-RMCBaseEffect.desc }

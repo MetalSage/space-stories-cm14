@@ -1,39 +1,39 @@
 - type: rank
   id: RMCRankFLFreelancer
-  name: Mercenary
-  prefix: Merc.
+  name: Наемник
+  prefix: Наем.
 
 - type: rank
   id: RMCRankFLMedic
   name: Medic
-  prefix: Med.
+  prefix: Мед.
 
 - type: rank
   id: RMCRankFLLeader
-  name: Leader
-  prefix: Warlord
+  name: Лидер
+  prefix: Барон
 
 - type: rank
   id: RMCRankFLEliteFreelancer
-  name: Elite
-  prefix: Merc.
+  name: Элита
+  prefix: Наем.
 
 - type: rank
   id: RMCRankFLEliteHeavy
-  name: Elite Heavy
-  prefix: Hvy.
+  name: Элитный Пулеметчик
+  prefix: Тяж.
 
 - type: rank
   id: RMCRankFLEliteEngineer
-  name: Elite Engineer
-  prefix: Eng.
+  name: Элитный Инженер
+  prefix: Инж.
 
 - type: rank
   id: RMCRankFLEliteMedic
-  name: Elite Medic
-  prefix: Med.
+  name: Элитный Медик
+  prefix: Мед.
 
 - type: rank
   id: RMCRankFLEliteLeader
-  name: Elite Leader
-  prefix: Warlord
+  name: Элитный Лидер
+  prefix: Барон

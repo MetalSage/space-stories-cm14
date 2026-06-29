@@ -47,3 +47,6 @@ rmc-name-hefa-46 = Тор
 rmc-name-hefa-47 = Ульфиус
 rmc-name-hefa-48 = Ивейн
 rmc-name-hefa-49 = Ивейн
+
+rmc-hefa-sword-primed = Ты взвел меч! Теперь он взорвется, когда ты ударишь кого-нибудь.
+rmc-hefa-sword-deprimed = Ты снял взвод с меча!

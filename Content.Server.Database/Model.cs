@@ -46,6 +46,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<HunterProfile> HunterProfile { get; set; } = null!; // Stories-Hunter
 
         // RMC14
         public DbSet<RMCDiscordAccount> RMCDiscordAccounts { get; set; } = default!;
@@ -61,6 +62,8 @@ namespace Content.Server.Database
         public DbSet<RMCSquadPreference> RMCSquadPreferences { get; set; } = default!;
         public DbSet<RMCCommendation> RMCCommendations { get; set; } = default!;
         public DbSet<RMCPlayerStats> RMCPlayerStats { get; set; } = default!;
+        public DbSet<RMCPlayerActionOrder> RMCPlayerActionOrder { get; set; } = default!;
+        public DbSet<RMCChatBans> RMCPlayerChatBans { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -130,6 +133,12 @@ namespace Content.Server.Database
             modelBuilder.Entity<AssignedUserId>()
                 .HasIndex(p => p.UserId)
                 .IsUnique();
+
+            // Stories-Hunter-Start
+            modelBuilder.Entity<HunterProfile>()
+                .HasIndex(p => p.UserId)
+                .IsUnique();
+            // Stories-Hunter-End
 
             modelBuilder.Entity<Admin>()
                 .HasOne(p => p.AdminRank)
@@ -481,12 +490,64 @@ namespace Content.Server.Database
                 .HasPrincipalKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<RMCCommendation>()
+                .HasOne(r => r.DeletedBy)
+                .WithMany(p => p.CommendationsDeleted)
+                .HasForeignKey(r => r.DeletedById)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             modelBuilder.Entity<RMCPlayerStats>()
                 .HasOne(s => s.Player)
                 .WithOne(p => p.Stats)
                 .HasForeignKey<RMCPlayerStats>(p => p.PlayerId)
                 .HasPrincipalKey<Player>(p => p.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RMCPlayerActionOrder>()
+                .HasOne(a => a.Player)
+                .WithMany(p => p.ActionOrder)
+                .HasForeignKey(a => a.PlayerId)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RMCChatBans>()
+                .HasOne(b => b.Player)
+                .WithMany(p => p.ChatBans)
+                .HasForeignKey(b => b.PlayerId)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<RMCChatBans>()
+                .HasOne(b => b.BanningAdmin)
+                .WithMany(p => p.AdminChatBansCreated)
+                .HasForeignKey(b => b.BanningAdminId)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<RMCChatBans>()
+                .HasOne(b => b.UnbanningAdmin)
+                .WithMany(p => p.AdminChatBansPardoned)
+                .HasForeignKey(b => b.UnbanningAdminId)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<RMCChatBans>()
+                .HasOne(b => b.LastEditedBy)
+                .WithMany(p => p.AdminChatBansLastEdited)
+                .HasForeignKey(b => b.LastEditedById)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<RMCChatBans>()
+                .OwnsOne(b => b.HWId)
+                .Property(h => h.Hwid)
+                .HasColumnName("hwid");
+
+            modelBuilder.Entity<RMCChatBans>()
+                .OwnsOne(b => b.HWId)
+                .Property(h => h.Type)
+                .HasDefaultValue(HwidType.Legacy);
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -544,10 +605,47 @@ namespace Content.Server.Database
         public RMCNamedItems? NamedItems { get; set; }
         public RMCSquadPreference? SquadPreference { get; set; }
         public string ArmorPreference { get; set; } = null!;
+        public List<Rank> Ranks { get; } = new();
         public bool PlaytimePerks { get; set; } = true;
         public string XenoPrefix { get; set; } = string.Empty;
         public string XenoPostfix { get; set; } = string.Empty;
     }
+
+    // Stories-Hunter-Start
+    [Table("st_hunter_profile")]
+    public class HunterProfile
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required]
+        public Guid UserId { get; set; }
+
+        [Column("char_name")]
+        public string CharacterName { get; set; } = "Yautja";
+
+        public string Gender { get; set; } = "Male";
+        public int Age { get; set; } = 175;
+        public string FlavorText { get; set; } = "";
+        public string Status { get; set; } = "Normal";
+        public string SkinColor { get; set; } = "#FFFFFF";
+        public string QuillMarkingId { get; set; } = "HunterHairStandard";
+        public string ArmorPrototype { get; set; } = "STHalfArmorClanHunterEbony1";
+        public string MaskPrototype { get; set; } = "STMaskHunterEbony1";
+        public string GreavesPrototype { get; set; } = "STBootsHunterEbony1";
+        public string CasterPrototype { get; set; } = "STBracerAttachmentPlasmaCasterEbony";
+        public string Voice { get; set; } = "STHunter";
+        [Column("head_accessory")]
+        public string HeadAccessory { get; set; } = "Nothing";
+        [Column("translator_sound")]
+        public string TranslatorSound { get; set; } = "Modern";
+        [Column("cloak_sound")]
+        public string CloakSound { get; set; } = "Modern";
+        [Column("cape_color")]
+        public string CapeColor { get; set; } = "#FFFFFF";
+        public string BracerPrototype { get; set; } = "STBracerHunter";
+    }
+    // Stories-Hunter-End
 
     public class Job
     {
@@ -585,6 +683,17 @@ namespace Content.Server.Database
 
         public string TraitName { get; set; } = null!;
     }
+
+    public class Rank
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+
+        public string JobName { get; set; } = null!;
+        public string RankName { get; set; } = null!;
+    }
+
 
     #region Loadouts
 
@@ -727,7 +836,13 @@ namespace Content.Server.Database
         public List<RMCRoleTimerExclude> RoleTimerExcludes { get; set; } = default!;
         public List<RMCCommendation> CommendationsGiven { get; set; } = default!;
         public List<RMCCommendation> CommendationsReceived { get; set; } = default!;
+        public List<RMCCommendation> CommendationsDeleted { get; set; } = default!;
         public RMCPlayerStats Stats { get; set; } = default!;
+        public List<RMCPlayerActionOrder> ActionOrder { get; set; } = default!;
+        public List<RMCChatBans> ChatBans { get; set; } = default!;
+        public List<RMCChatBans> AdminChatBansCreated { get; set; } = default!;
+        public List<RMCChatBans> AdminChatBansLastEdited { get; set; } = default!;
+        public List<RMCChatBans> AdminChatBansPardoned { get; set; } = default!;
     }
 
     [Table("whitelist")]

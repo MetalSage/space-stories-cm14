@@ -16,6 +16,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Directions;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
@@ -30,10 +31,12 @@ using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Tag;
 using Content.Shared.Whitelist;
+using Content.Shared.Vehicle.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
@@ -81,7 +84,6 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
     private EntityQuery<RMCIgniteOnCollideComponent> _igniteOnCollideQuery;
     private EntityQuery<ProjectileComponent> _projectileQuery;
     private EntityQuery<TileFireComponent> _tileFireQuery;
-    private EntityQuery<RMCImmuneToIgnitionComponent> _immuneToIgnitionQuery;
     private EntityQuery<InventoryComponent> _inventoryQuery;
 
     public override void Initialize()
@@ -92,14 +94,13 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         _igniteOnCollideQuery = GetEntityQuery<RMCIgniteOnCollideComponent>();
         _projectileQuery = GetEntityQuery<ProjectileComponent>();
         _tileFireQuery = GetEntityQuery<TileFireComponent>();
-        _immuneToIgnitionQuery = GetEntityQuery<RMCImmuneToIgnitionComponent>();
         _inventoryQuery = GetEntityQuery<InventoryComponent>();
 
         SubscribeLocalEvent<IgniteOnProjectileHitComponent, ProjectileHitEvent>(OnIgniteOnProjectileHit);
 
         SubscribeLocalEvent<TileFireComponent, MapInitEvent>(OnTileFireMapInit);
         SubscribeLocalEvent<TileFireComponent, VaporHitEvent>(OnTileFireVaporHit);
-        SubscribeLocalEvent<TileFireComponent, InteractHandEvent>(OnTileFireInteractHand, before: [typeof(InteractionPopupSystem)]);
+        SubscribeLocalEvent<TileFireComponent, InteractHandEvent>(OnTileFireInteractHand, before: new [] {typeof(InteractionPopupSystem), typeof(DamagePopupSystem)});
         SubscribeLocalEvent<TileFireComponent, PreventCollideEvent>(OnTileFirePreventCollide);
 
         SubscribeLocalEvent<CraftsIntoMolotovComponent, ExaminedEvent>(OnCraftsIntoMolotovExamined);
@@ -117,7 +118,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         SubscribeLocalEvent<SteppingOnFireComponent, CMGetArmorEvent>(OnSteppingOnFireGetArmor);
         SubscribeLocalEvent<SteppingOnFireComponent, ComponentRemove>(OnSteppingOnFireRemoved);
 
-        SubscribeLocalEvent<CanBeFirePattedComponent, InteractHandEvent>(OnCanBeFirePattedInteractHand, before: [typeof(InteractionPopupSystem)]);
+        SubscribeLocalEvent<CanBeFirePattedComponent, InteractHandEvent>(OnCanBeFirePattedInteractHand, before: new [] {typeof(InteractionPopupSystem), typeof(DamagePopupSystem)});
 
         SubscribeLocalEvent<FlammableComponent, IgnitedEvent>(OnFlammableIgnite);
         SubscribeLocalEvent<FlammableComponent, RMCExtinguishedEvent>(OnFlammableExtinguished);
@@ -126,13 +127,20 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
 
         SubscribeLocalEvent<RMCImmuneToIgnitionComponent, GetIgnitionImmunityEvent>(OnGetIgnitionImmunity);
         SubscribeLocalEvent<RMCImmuneToIgnitionComponent, InventoryRelayedEvent<GetIgnitionImmunityEvent>>(OnGetIgnitionEquipmentImmunity);
+        SubscribeLocalEvent<RMCImmuneToIgnitionComponent, ExaminedEvent>(OnIgnitionImmunityExamined);
+
+        SubscribeLocalEvent<RMCImmuneToFireTileDamageComponent, RMCGetFireImmunityEvent>(OnImmuneToTileFireGet);
+        SubscribeLocalEvent<RMCImmuneToFireTileDamageComponent, ExaminedEvent>(OnImmuneToTileFireExamined);
+
+        SubscribeLocalEvent<RMCFireArmorDebuffModifierComponent, ExaminedEvent>(OnFireArmorDebuffModifierExamined);
     }
 
     private void OnIgniteOnProjectileHit(Entity<IgniteOnProjectileHitComponent> ent, ref ProjectileHitEvent args)
     {
-        if (!CanBeIgnited(args.Target, ent))
+        if (!CanBeIgnited(args.Target, ent, ent.Comp.Intensity))
             return;
 
+        ChangeBurnColor(args.Target, ent.Comp.BurnColor);
         Ignite(args.Target, ent.Comp.Intensity, ent.Comp.Duration, ent.Comp.Duration, false);
     }
 
@@ -169,7 +177,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             return;
         }
 
-        ent.Comp.Duration -= TimeSpan.FromSeconds(7);
+        ent.Comp.Duration -= TimeSpan.FromSeconds(args.Power);
         Dirty(ent);
     }
 
@@ -273,18 +281,21 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
     private void OnDirectionTileFireTriggered(Entity<DirectionalTileFireOnTriggerComponent> ent,
         ref RMCTriggerEvent args)
     {
-        var moverCoordinates = _transform.GetMoverCoordinateRotation(ent, Transform(ent));
-        var tile = moverCoordinates.Coords.SnapToGrid(EntityManager, _map);
+        var rotation = _transform.GetWorldRotation(ent);
+        var coordinates = _transform.GetMoverCoordinates(ent);
 
-        ent.Comp.Direction = Angle.FromDegrees(ent.Comp.Direction.ToAngle().Degrees + moverCoordinates.worldRot.Degrees).GetDir();
+        if (ent.Comp.OffsetForward)
+            coordinates = coordinates.Offset(rotation.ToWorldVec() / 2);
+
+        ent.Comp.Direction = Angle.FromDegrees(ent.Comp.Direction.ToAngle().Degrees + rotation.Degrees).GetDir();
         Dirty(ent);
 
         if (ent.Comp.Rebounded)
-            tile = tile.Offset(ent.Comp.Direction);
+            coordinates = coordinates.Offset(ent.Comp.Direction);
 
-        _audio.PlayPvs(ent.Comp.Sound, moverCoordinates.Coords);
+        _audio.PlayPvs(ent.Comp.Sound, coordinates);
 
-        SpawnFireCone(ent, tile, ent.Comp.Intensity, ent.Comp.Duration);
+        SpawnFireCone(ent, coordinates, ent.Comp.Intensity, ent.Comp.Duration);
         QueueDel(ent);
     }
 
@@ -301,10 +312,10 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
 
     private void OnIgniteDamageCollide(Entity<RMCIgniteOnCollideComponent> ent, ref DamageCollideEvent args)
     {
-        if (!CanBeIgnited(args.Target, ent, true)) // Direct hits can ignore pyro/firesuit ignition resistance
+        if (!CanBeIgnited(args.Target, ent, ent.Comp.Intensity, true)) // Direct hits can ignore pyro/firesuit ignition resistance
             return;
 
-        Ignite(args.Target, ent.Comp.Intensity, ent.Comp.Duration, ent.Comp.MaxStacks);
+        Ignite(args.Target, ent.Comp.Intensity, ent.Comp.Duration, ent.Comp.MaxStacks, tileDamage: ent.Comp.TileDamage);
     }
 
     private void OnSteppingOnFireRemoved(Entity<SteppingOnFireComponent> ent, ref ComponentRemove args)
@@ -376,7 +387,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         return Resolve(ent, ref ent.Comp, false) && ent.Comp.OnFire;
     }
 
-    public virtual bool Ignite(Entity<FlammableComponent?> flammable, int intensity, int duration, int? maxStacks, bool igniteDamage = true)
+    public virtual bool Ignite(Entity<FlammableComponent?> flammable, int intensity, int duration, int? maxStacks, bool igniteDamage = true, DamageSpecifier? tileDamage = null)
     {
         // TODO RMC14
         return false;
@@ -390,26 +401,53 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
     {
     }
 
-    private void SpawnFireChain(EntProtoId spawn, EntityUid chain, EntityCoordinates coordinates, int? intensity, int? duration)
+    public virtual void AdjustStacks(Entity<FlammableComponent?> flammable, int stacks)
+    {
+    }
+
+    public virtual void DoStopDropRollAnimation(EntityUid uid)
+    {
+    }
+
+    protected virtual void SpawnFireChain(EntProtoId spawn, EntityUid chain, EntityCoordinates coordinates, int? intensity, int? duration, Color? burnColor = null) // Stories-Ordnance
     {
         var spawned = Spawn(spawn, coordinates);
-        if (intensity != null || duration != null)
+        if (intensity != null || duration != null || burnColor != null) // Stories-Ordnance-Start
         {
             var ignite = EnsureComp<RMCIgniteOnCollideComponent>(spawned);
+            var tileFire = EnsureComp<TileFireComponent>(spawned);
             if (intensity != null)
                 ignite.Intensity = intensity.Value;
 
             if (duration != null)
+            {
                 ignite.Duration = duration.Value;
+                tileFire.Duration = TimeSpan.FromSeconds(duration.Value);
+                Dirty(spawned, tileFire); // Stories-Ordnance
+            }
+
+
+            if (burnColor != null)
+            {
+                ignite.BurnColor = burnColor.Value;
+                EnsureComp<RMCFireColorComponent>(spawned).Color = burnColor.Value;
+            }
+            // Stories-Ordnance-End
 
             Dirty(spawned, ignite);
+
+            if (TryComp<DamageOnCollideComponent>(spawned, out var dmg) && intensity != null)
+            {
+                dmg.Damage.DamageDict[HeatDamage] = intensity.Value * dmg.DirectHitMultiplier;
+                Dirty(spawned, dmg);
+            }
         }
 
         var onCollide = EnsureComp<DamageOnCollideComponent>(spawned);
         _onCollide.SetChain((spawned, onCollide), chain);
     }
 
-    private void SpawnFires(EntProtoId spawn, EntityCoordinates coordinates, int range, EntityUid chain, int? intensity, int? duration, HashSet<EntityCoordinates>? spawned = null)
+    private void SpawnFires(EntProtoId spawn, EntityCoordinates coordinates, int range, EntityUid chain, int? intensity, int? duration, HashSet<EntityCoordinates>? spawned = null, Color? burnColor = null) // Stories-Ordnance
     {
         if (_net.IsClient)
             return;
@@ -421,7 +459,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             if (!spawned.Add(target))
                 continue;
 
-            var nextRange = SpawnFire(target, spawn, chain, range, intensity, duration, out var cont);
+            var nextRange = SpawnFire(target, spawn, chain, range, intensity, duration, out var cont, burnColor); // Stories-Ordnance
             if (nextRange == 0 || cont)
                 continue;
 
@@ -430,7 +468,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
                 {
                     try
                     {
-                        SpawnFires(spawn, target, nextRange, chain, intensity, duration, spawned);
+                        SpawnFires(spawn, target, nextRange, chain, intensity, duration, spawned, burnColor); // Stories-Ordnance
                     }
                     catch (Exception e)
                     {
@@ -440,16 +478,25 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         }
     }
 
-    public void SpawnFireDiamond(EntProtoId spawn, EntityCoordinates center, int range, int? intensity = null, int? duration = null)
+    public void SpawnFireDiamond(EntProtoId spawn, EntityCoordinates center, int range, int? intensity = null, int? duration = null, Color? burnColor = null) // Stories-Ordnance
     {
         var chain = _onCollide.SpawnChain();
-        SpawnFires(spawn, center, range, chain, intensity, duration);
+        // Ensure the center tile is ignited as part of the diamond.
+        SpawnFire(center, spawn, chain, range, intensity, duration, out _, burnColor); // Stories-Ordnance
+        SpawnFires(spawn, center, range, chain, intensity, duration, burnColor: burnColor); // Stories-Ordnance
+        _onCollide.CleanupChain(chain);
     }
 
-    public void SpawnFireLines(EntProtoId spawn, EntityCoordinates center, int cardinalRange, int ordinalRange, int? intensity = null, int? duration = null)
+    public void SpawnFireLines(EntProtoId spawn, EntityCoordinates center, int cardinalRange, int ordinalRange, int? intensity = null, int? duration = null, Color? burnColor = null) // Stories-Ordnance
     {
         var chain = _onCollide.SpawnChain();
         var spawned = new HashSet<EntityCoordinates>();
+
+        // Stories-Ordnance-Start
+        SpawnFire(center, spawn, chain, Math.Max(cardinalRange, ordinalRange), intensity, duration, out _, burnColor);
+        spawned.Add(center);
+        // Stories-Ordnance-End
+
         foreach (var direction in DirectionExtensions.AllDirections)
         {
             var range = _rmcMap.CardinalDirections.Contains(direction) ? cardinalRange : ordinalRange;
@@ -460,15 +507,17 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
                 if (!spawned.Add(target))
                     continue;
 
-                nextRange = SpawnFire(target, spawn, chain, nextRange, intensity, duration, out var cont);
+                nextRange = SpawnFire(target, spawn, chain, nextRange, intensity, duration, out var cont, burnColor); // Stories-Ordnance
                 target = target.Offset(direction);
                 if (cont)
                     break;
             }
         }
+
+        _onCollide.CleanupChain(chain);
     }
 
-    public int SpawnFire(EntityCoordinates target, EntProtoId spawn, EntityUid chain, int range, int? intensity, int? duration, out bool cont)
+    public int SpawnFire(EntityCoordinates target, EntProtoId spawn, EntityUid chain, int range, int? intensity, int? duration, out bool cont, Color? burnColor = null) // Stories-Ordnance
     {
         cont = false;
         if (!_rmcMap.TryGetTileDef(target, out var tile) ||
@@ -507,7 +556,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             }
         }
 
-        SpawnFireChain(spawn, chain, target, intensity, duration);
+        SpawnFireChain(spawn, chain, target, intensity, duration, burnColor); // Stories-Ordnance
         return nextRange;
     }
 
@@ -558,6 +607,8 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             if (CheckViableTile(ent, ignitionTarget))
                 SpawnFireChain(ent.Comp.Spawn, chain, ignitionTarget, intensity, duration);
         }
+
+        _onCollide.CleanupChain(chain);
     }
 
     private EntityCoordinates ChangeTarget(EntityCoordinates target, Direction direction)
@@ -654,7 +705,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             if (!_prototype.TryIndexReagent(solutionReagent.Reagent.Prototype, out ReagentPrototype? reagent))
                 continue;
 
-            intensity += reagent.Intensity * solutionReagent.Quantity;
+            intensity += reagent.IntensityMod * solutionReagent.Quantity;
         }
 
         if (intensity < ent.Comp.MinIntensity)
@@ -701,9 +752,48 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         args.Ignite = false;
     }
 
-    public void SetIntensityDuration(Entity<RMCIgniteOnCollideComponent?, DamageOnCollideComponent?> ent, int? intensity, int? duration)
+    private void OnIgnitionImmunityExamined(Entity<RMCImmuneToIgnitionComponent> ent, ref ExaminedEvent args)
     {
-        Resolve(ent, ref ent.Comp1, ref ent.Comp2, false);
+        using (args.PushGroup(nameof(RMCImmuneToIgnitionComponent)))
+        {
+            args.PushMarkup(Loc.GetString("rmc-immune-to-ignition-examine", ("ent", ent), ("direct", ent.Comp.ImmuneToDirectHits)));
+        }
+    }
+
+    private void OnImmuneToTileFireGet(Entity<RMCImmuneToFireTileDamageComponent> ent, ref RMCGetFireImmunityEvent args)
+    {
+        if (args.Fire == null)
+        {
+            args.Immune = true;
+            return;
+        }
+
+        if (_entityWhitelist.IsWhitelistPass(ent.Comp.BypassWhitelist, args.Fire.Value))
+            return;
+
+        args.Immune = true;
+    }
+
+    private void OnImmuneToTileFireExamined(Entity<RMCImmuneToFireTileDamageComponent> ent, ref ExaminedEvent args)
+    {
+        using (args.PushGroup(nameof(RMCImmuneToFireTileDamageComponent)))
+        {
+            args.PushMarkup(Loc.GetString("rmc-immune-to-fire-tile-damage-examine", ("ent", ent)));
+        }
+    }
+
+    private void OnFireArmorDebuffModifierExamined(Entity<RMCFireArmorDebuffModifierComponent> ent, ref ExaminedEvent args)
+    {
+        using (args.PushGroup(nameof(RMCFireArmorDebuffModifierComponent)))
+        {
+            args.PushMarkup(Loc.GetString("rmc-fire-armor-debuff-modifier-examine", ("ent", ent), ("percentage",
+                $"{(ent.Comp.DebuffModifier - 1) * 100:F0}")));
+        }
+    }
+
+    public void SetIntensityDuration(Entity<RMCIgniteOnCollideComponent?, DamageOnCollideComponent?, TileFireComponent?> ent, int? intensity, int? duration)
+    {
+        Resolve(ent, ref ent.Comp1, ref ent.Comp2, ref ent.Comp3, false);
         if (ent.Comp1 != null)
         {
             if (intensity != null)
@@ -717,15 +807,32 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
 
         if (ent.Comp2 != null)
         {
-            if (duration != null)
-                ent.Comp2.Damage.DamageDict[HeatDamage] = duration.Value;
+            if (intensity != null)
+                ent.Comp2.Damage.DamageDict[HeatDamage] = intensity.Value * ent.Comp2.DirectHitMultiplier;
 
             Dirty(ent, ent.Comp2);
         }
+
+        if (ent.Comp3 != null)
+        {
+            if (duration != null)
+                ent.Comp3.Duration = TimeSpan.FromSeconds(duration.Value);
+
+            Dirty(ent, ent.Comp3);
+        }
+    }
+
+    private bool ShouldIgnoreTileFire(EntityUid uid)
+    {
+        return _blockTileFireQuery.HasComp(uid) || HasComp<VehicleRideSurfaceRiderComponent>(uid);
     }
 
     private void TryIgnite(Entity<RMCIgniteOnCollideComponent> ent, EntityUid other, bool checkIgnited)
     {
+        // This will ignite too much during hijack otherwise, including fires
+        if (!HasComp<DamageableComponent>(other))
+            return;
+
         EnsureComp<SteppingOnFireComponent>(other);
         var flammableEnt = new Entity<FlammableComponent?>(other, null);
         if (!Resolve(flammableEnt, ref flammableEnt.Comp, false))
@@ -735,22 +842,20 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         if (checkIgnited && wasOnFire)
             return;
 
-        if (!CanBeIgnited(other, ent))
+        if (!CanBeIgnited(other, ent, ent.Comp.Intensity))
             return;
 
         // Check RMCImmuneToFireTileDamageComponent for ignition immunity
-        if (TryComp<RMCImmuneToFireTileDamageComponent>(other, out var fireImmunity) && fireImmunity.BypassWhitelist != null)
-        {
-            // Check if this fire is on the bypass whitelist
-            if (!_entityWhitelist.IsWhitelistPass(fireImmunity.BypassWhitelist, ent))
-            {
-                // Fire is not on bypass whitelist, cannot ignite
-                return;
-            }
-        }
+        var tileEv = new RMCGetFireImmunityEvent(ent);
+        RaiseLocalEvent(other, ref tileEv);
 
-        if (!Ignite(flammableEnt, ent.Comp.Intensity, ent.Comp.Duration, ent.Comp.MaxStacks))
+        if (!tileEv.Ignite)
             return;
+
+        if (!Ignite(flammableEnt, ent.Comp.Intensity, ent.Comp.Duration, ent.Comp.MaxStacks, tileDamage: ent.Comp.TileDamage))
+            return;
+
+        ChangeBurnColor(flammableEnt, ent.Comp.BurnColor); // Stories-Ordnance
 
         // If this fire can bypass immunity, mark the target as having bypass-active fire
         if (!CanFireBypassImmunity(ent, other))
@@ -770,6 +875,12 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
 
     private void ApplyTileEffect(Entity<SteppingOnFireComponent> ent, RMCIgniteOnCollideComponent ignite, EntityUid fireEntity)
     {
+        if (ShouldIgnoreTileFire(ent.Owner))
+        {
+            RemCompDeferred<SteppingOnFireComponent>(ent);
+            return;
+        }
+
         var timing = _timing.CurTime;
 
         if (ignite.TileDamage is not { } tile)
@@ -804,11 +915,11 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             return;
 
         // Check for ignition immunity before igniting
-        var canIgnite = CanBeIgnited(uid, fireEntity);
+        var canIgnite = CanBeIgnited(uid, fireEntity, ignite.Intensity);
 
         if (canIgnite)
         {
-            Ignite((uid, flammable), ignite.Intensity, ignite.Duration, ignite.MaxStacks);
+            Ignite((uid, flammable), ignite.Intensity, ignite.Duration, ignite.MaxStacks, tileDamage: ignite.TileDamage);
 
             // If this fire can bypass immunity, mark the target as having bypass-active fire
             if (!CanFireBypassImmunity(fireEntity, uid))
@@ -843,128 +954,6 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         Dirty(ent);
     }
 
-    public override void Update(float frameTime)
-    {
-        if (_net.IsClient)
-            return;
-
-        var applyQuery = EntityQueryEnumerator<RMCIgniteOnCollideComponent>();
-        while (applyQuery.MoveNext(out var uid, out var apply))
-        {
-            foreach (var contact in _physics.GetEntitiesIntersectingBody(uid, (int)apply.Collision))
-            {
-                TryIgnite((uid, apply), contact, true);
-            }
-
-            if (apply.InitDamaged)
-                continue;
-
-            apply.InitDamaged = true;
-            Dirty(uid, apply);
-
-            RemCompDeferred<DamageOnCollideComponent>(uid);
-        }
-
-        var time = _timing.CurTime;
-        var tileFireQuery = EntityQueryEnumerator<TileFireComponent>();
-        while (tileFireQuery.MoveNext(out var uid, out var fire))
-        {
-            var despawnAt = fire.SpawnedAt + fire.Duration;
-            var timeLeft = despawnAt - time;
-            if (timeLeft <= TimeSpan.Zero)
-            {
-                QueueDel(uid);
-                continue;
-            }
-
-            if (time < fire.SpawnedAt + fire.BigFireDuration)
-                _appearance.SetData(uid, TileFireLayers.Base, TileFireVisuals.Four);
-            else if (timeLeft < TimeSpan.FromSeconds(9))
-                _appearance.SetData(uid, TileFireLayers.Base, TileFireVisuals.One);
-            else if (timeLeft < TimeSpan.FromSeconds(25))
-                _appearance.SetData(uid, TileFireLayers.Base, TileFireVisuals.Two);
-            else
-                _appearance.SetData(uid, TileFireLayers.Base, TileFireVisuals.Three);
-        }
-
-        var extinguishQuery = EntityQueryEnumerator<ExtinguishFireComponent>();
-        while (extinguishQuery.MoveNext(out var uid, out var extinguish))
-        {
-            if (extinguish.Extinguished)
-                continue;
-
-            extinguish.Extinguished = true;
-            Dirty(uid, extinguish);
-
-            var intersecting = _physics.GetEntitiesIntersectingBody(uid, (int)extinguish.Collision);
-            foreach (var entIntersecting in intersecting)
-            {
-                if (!_flammableQuery.TryComp(entIntersecting, out var flammable))
-                    continue;
-
-                var ev = new ExtinguishFireAttemptEvent(uid, entIntersecting);
-                RaiseLocalEvent(uid, ref ev);
-
-                if (!ev.Cancelled)
-                    Extinguish((entIntersecting, flammable));
-            }
-        }
-
-        var tileExtinguishQuery = EntityQueryEnumerator<SprayExtinguishTileFireComponent>();
-        while (tileExtinguishQuery.MoveNext(out var uid, out var extinguishTile))
-        {
-            if (extinguishTile.Extinguished)
-                continue;
-
-            extinguishTile.Extinguished = true;
-            Dirty(uid, extinguishTile);
-
-            var anchored = _rmcMap.GetAnchoredEntitiesEnumerator(uid);
-
-            while (anchored.MoveNext(out var anchorUid))
-            {
-                if (!_tileFireQuery.TryComp(anchorUid, out var tileFire))
-                    continue;
-
-                tileFire.Duration -= extinguishTile.ExtinguishAmount * tileFire.SprayExtinguishMultiplier;
-                Dirty(anchorUid, tileFire);
-            }
-        }
-
-        var steppingQuery = EntityQueryEnumerator<SteppingOnFireComponent>();
-        while (steppingQuery.MoveNext(out var uid, out var stepping))
-        {
-            stepping.ArmorMultiplier = 1;
-            Dirty(uid, stepping);
-
-            var isStepping = false;
-            foreach (var contact in _physics.GetContactingEntities(uid, approximate: true))
-            {
-                if (!_igniteOnCollideQuery.TryComp(contact, out var ignite))
-                    continue;
-
-                ApplyTileEffect((uid, stepping), ignite, contact);
-                isStepping = true;
-                break;
-            }
-
-            // Entities with a static body type do not have any contacts with tile fires, so we do another standing on fire check.
-            if (!isStepping)
-            {
-                var nearbyEntities = _entityLookup.GetEntitiesInRange<RMCIgniteOnCollideComponent>(Transform(uid).Coordinates, 0.35f);
-                if (nearbyEntities.Count != 0)
-                {
-                    var nearbyEntity = nearbyEntities.First();
-                    ApplyTileEffect((uid, stepping), nearbyEntity.Comp, nearbyEntity.Owner);
-                    isStepping = true;
-                }
-            }
-
-            if (!isStepping)
-                RemCompDeferred<SteppingOnFireComponent>(uid);
-        }
-    }
-
     /// <summary>
     /// Checks if a fire entity can deal damage to an entity that has fire immunity.
     /// </summary>
@@ -973,22 +962,14 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
     /// <returns>True if damage should be dealt, false if it should be blocked by immunity</returns>
     private bool CanFireBypassImmunity(EntityUid fireEntity, EntityUid targetEntity)
     {
-        // If the target doesn't have fire immunity, fire always works
-        if (!TryComp<RMCImmuneToFireTileDamageComponent>(targetEntity, out var immunity))
-            return true;
-
         // If the fire has a bypass component, it can always bypass immunity
         if (HasComp<RMCFireImmunityBypassComponent>(fireEntity))
             return true;
 
-        // If immunity has a bypass whitelist, check if this fire is on it
-        if (immunity.BypassWhitelist != null)
-        {
-            return _entityWhitelist.IsWhitelistPass(immunity.BypassWhitelist, fireEntity);
-        }
+        var tileEv = new RMCGetFireImmunityEvent(fireEntity);
+        RaiseLocalEvent(targetEntity, ref tileEv);
 
-        // No bypass mechanisms apply, immunity blocks the damage
-        return false;
+        return !tileEv.Immune;
     }
 
     /// <summary>
@@ -996,19 +977,211 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
     /// </summary>
     /// <param name="target">The entity that might be ignited</param>
     /// <param name="fireSource">The fire source attempting to ignite the target</param>
+    /// <param name="intensity">How powerful the fire is</param>
     /// <returns>True if the target can be ignited, false if immunity blocks it</returns>
-    public bool CanBeIgnited(EntityUid target, EntityUid fireSource, bool directHit = false)
+    public bool CanBeIgnited(EntityUid target, EntityUid fireSource, int intensity, bool directHit = false)
     {
-        if (!_igniteOnCollideQuery.TryComp(fireSource, out var collide))
-            return true;
-
-        var ev = new GetIgnitionImmunityEvent(collide.Intensity, directHit);
+        var ev = new GetIgnitionImmunityEvent(intensity, directHit);
         RaiseLocalEvent(target, ref ev);
+        RaiseLocalEvent(ref ev);
 
         if (_inventoryQuery.TryComp(target, out var inv))
             _inventory.RelayEvent((target, inv), ref ev);
 
         return ev.Ignite;
+    }
+
+    public void ChangeBurnColor(EntityUid target, Color color) // Stories-Ordnance
+    {
+        if (TryComp<RMCFireColorComponent>(target, out var fireColorComp))
+        {
+            fireColorComp.Color = color;
+            Dirty(target, fireColorComp);
+        }
+    }
+
+    private void RunIgniteOnCollide()
+    {
+        try
+        {
+            var applyQuery = EntityQueryEnumerator<RMCIgniteOnCollideComponent>();
+            while (applyQuery.MoveNext(out var uid, out var apply))
+            {
+                var enumerator = _rmcMap.GetAnchoredEntitiesEnumerator(uid);
+                while (enumerator.MoveNext(out var contact))
+                {
+                    TryIgnite((uid, apply), contact, true);
+                }
+
+                if (apply.InitDamaged)
+                    continue;
+
+                apply.InitDamaged = true;
+                Dirty(uid, apply);
+
+                foreach (var contact in _physics.GetEntitiesIntersectingBody(uid, (int)apply.Collision))
+                {
+                    TryIgnite((uid, apply), contact, true);
+                }
+
+                RemCompDeferred<DamageOnCollideComponent>(uid);
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Error processing {nameof(RMCIgniteOnCollideComponent)}:\n{e}");
+        }
+    }
+
+    private void RunTileFires()
+    {
+        try
+        {
+            var time = _timing.CurTime;
+            var tileFireQuery = EntityQueryEnumerator<TileFireComponent>();
+            while (tileFireQuery.MoveNext(out var uid, out var fire))
+            {
+                var despawnAt = fire.SpawnedAt + fire.Duration;
+                var timeLeft = despawnAt - time;
+                if (timeLeft <= TimeSpan.Zero)
+                {
+                    QueueDel(uid);
+                    continue;
+                }
+
+                if (time < fire.SpawnedAt + fire.BigFireDuration)
+                    _appearance.SetData(uid, TileFireLayers.Base, TileFireVisuals.Four);
+                else if (timeLeft < fire.Duration * 0.33)
+                    _appearance.SetData(uid, TileFireLayers.Base, TileFireVisuals.One);
+                else if (timeLeft < fire.Duration * 0.66)
+                    _appearance.SetData(uid, TileFireLayers.Base, TileFireVisuals.Two);
+                else
+                    _appearance.SetData(uid, TileFireLayers.Base, TileFireVisuals.Three);
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Error processing {nameof(TileFireComponent)}:\n{e}");
+        }
+    }
+
+    private void RunExtinguishFire()
+    {
+        try
+        {
+            var extinguishQuery = EntityQueryEnumerator<ExtinguishFireComponent>();
+            while (extinguishQuery.MoveNext(out var uid, out var extinguish))
+            {
+                if (extinguish.Extinguished)
+                    continue;
+
+                extinguish.Extinguished = true;
+                Dirty(uid, extinguish);
+
+                var intersecting = _physics.GetEntitiesIntersectingBody(uid, (int)extinguish.Collision);
+                foreach (var entIntersecting in intersecting)
+                {
+                    if (!_flammableQuery.TryComp(entIntersecting, out var flammable))
+                        continue;
+
+                    var ev = new ExtinguishFireAttemptEvent(uid, entIntersecting);
+                    RaiseLocalEvent(uid, ref ev);
+
+                    if (!ev.Cancelled)
+                        Extinguish((entIntersecting, flammable));
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Error processing {nameof(ExtinguishFireComponent)}:\n{e}");
+        }
+    }
+
+    private void RunSprayExtinguishTileFire()
+    {
+        try
+        {
+            var tileExtinguishQuery = EntityQueryEnumerator<SprayExtinguishTileFireComponent>();
+            while (tileExtinguishQuery.MoveNext(out var uid, out var extinguishTile))
+            {
+                if (extinguishTile.Extinguished)
+                    continue;
+
+                extinguishTile.Extinguished = true;
+                Dirty(uid, extinguishTile);
+
+                var anchored = _rmcMap.GetAnchoredEntitiesEnumerator(uid);
+
+                while (anchored.MoveNext(out var anchorUid))
+                {
+                    if (!_tileFireQuery.TryComp(anchorUid, out var tileFire))
+                        continue;
+
+                    tileFire.Duration -= extinguishTile.ExtinguishAmount * tileFire.SprayExtinguishMultiplier;
+                    Dirty(anchorUid, tileFire);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Error processing {nameof(SprayExtinguishTileFireComponent)}:\n{e}");
+        }
+    }
+
+    private void RunSteppingOnFire()
+    {
+        try
+        {
+            var steppingQuery = EntityQueryEnumerator<SteppingOnFireComponent, PhysicsComponent>();
+            while (steppingQuery.MoveNext(out var uid, out var stepping, out var body))
+            {
+                stepping.ArmorMultiplier = 1;
+                Dirty(uid, stepping);
+
+                var isStepping = false;
+                foreach (var contact in _physics.GetContactingEntities(uid, body, approximate: true))
+                {
+                    if (!_igniteOnCollideQuery.TryComp(contact, out var ignite))
+                        continue;
+
+                    ApplyTileEffect((uid, stepping), ignite, contact);
+                    isStepping = true;
+                    break;
+                }
+
+                // Entities with a static body type do not have any contacts with tile fires, so we do another standing on fire check.
+                if (!isStepping)
+                {
+                    var nearbyEntities = _entityLookup.GetEntitiesInRange<RMCIgniteOnCollideComponent>(Transform(uid).Coordinates, 0.35f);
+                    if (nearbyEntities.Count != 0)
+                    {
+                        var nearbyEntity = nearbyEntities.First();
+                        ApplyTileEffect((uid, stepping), nearbyEntity.Comp, nearbyEntity.Owner);
+                        isStepping = true;
+                    }
+                }
+
+                if (!isStepping)
+                    RemCompDeferred<SteppingOnFireComponent>(uid);
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Error processing {nameof(SteppingOnFireComponent)}:\n{e}");
+        }
+    }
+
+    public override void Update(float frameTime)
+    {
+        if (_net.IsClient)
+            return;
+
+        RunIgniteOnCollide();
+        RunTileFires();
+        RunExtinguishFire();
+        RunSprayExtinguishTileFire();
+        RunSteppingOnFire();
     }
 }
 
@@ -1028,3 +1201,6 @@ public sealed class GetIgnitionImmunityEvent : EntityEventArgs, IInventoryRelayE
         Intensity = intensity;
     }
 }
+
+[ByRefEvent]
+public record struct RMCGetFireImmunityEvent(EntityUid? Fire, bool Ignite = true, bool Immune = false);

@@ -60,6 +60,8 @@
     tags:
     - CigPack
     - Trash
+  - type: PhysicalComposition
+    materialComposition: {}
 
 - type: entity
   parent: CigPackBase
@@ -183,15 +185,25 @@
     rsi:
       sprite: _RMC14/Objects/Clothing/HelmetGarb/Smoking/CigPacks/sloths.rsi
       state: helmet
+  - type: PhysicalComposition
+    materialComposition: {}
 
 - type: entity
   parent: Cigarette
   id: RMCCigarette
   description: An unfiltered roll of tobacco and nicotine. Smoking this releases even more tar and soot into your mouth.
   components:
+  - type: RMCCryoUnavailableOnStore
   - type: Sprite
     sprite: _RMC14/Objects/Consumable/Smokeables/Cigarettes/unfiltered_roll.rsi
     state: unlit-icon
+  - type: SolutionContainerManager # Stories-Fix
+    solutions:
+      smokable:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 10
 
 - type: entity
   id: RMCCigaretteSpent
@@ -205,7 +217,7 @@
   - type: SolutionContainerManager
     solutions:
       smokable:
-        maxVol: 20
+        maxVol: 0 # Stories-Fix
   - type: Tag
     tags:
       - Cigarette

@@ -1,9 +1,0 @@
-ent-RMCMechPropBase = { ent-BaseItem }
-    .suffix = Проп
-    .desc = { ent-BaseItem.desc }
-ent-RMCMechPropDrill = дрель
-    .desc = Это дрель, которая пронзит небеса!
-ent-RMCMechPropClamp = гидравлический зажим
-    .desc = { ent-RMCMechPropBase.desc }
-ent-RMCMechPropArmorBooster = модуль усиления брони (Ближний бой)
-    .desc = Увеличивает броню экзокостюма против атак ближнего боя. Требует энергии для работы.

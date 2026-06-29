@@ -1,2 +1,2 @@
 ent-RMCKitHonorGuard = комплект почетного караула
-    .desc = { ent-RMCKitBase.desc }
+    .desc = A case containing the equipment for an Honor Guard.

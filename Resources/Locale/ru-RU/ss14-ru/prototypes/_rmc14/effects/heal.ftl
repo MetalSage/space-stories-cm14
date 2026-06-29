@@ -1,5 +1,5 @@
-ent-RMCEffectHeal = { "" }
-    .desc = { "" }
+ent-RMCEffectHeal = { ent-RMCBaseEffect }
+    .desc = { ent-RMCBaseEffect.desc }
 ent-RMCEffectHealBusy = { ent-RMCEffectHeal }
     .desc = { ent-RMCEffectHeal.desc }
 ent-RMCEffectHealPlasma = { ent-RMCEffectHeal }

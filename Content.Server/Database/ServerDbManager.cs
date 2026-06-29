@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server._RMC14.LinkAccount;
 using Content.Server.Administration.Logs;
+using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -344,6 +345,13 @@ namespace Content.Server.Database
 
         #endregion
 
+        // Stories-Hunter-Customization-Start
+        #region Hunter Customization
+        Task<Content.Shared._Stories.Hunter.Profiles.HunterProfile?> GetHunterProfileAsync(NetUserId userId, CancellationToken cancel = default);
+        Task SaveHunterProfileAsync(NetUserId userId, Content.Shared._Stories.Hunter.Profiles.HunterProfile profile, CancellationToken cancel = default);
+        #endregion
+        // Stories-Hunter-Customization-End
+
         #region RMC14
 
         Task<Guid?> GetLinkingCode(Guid player);
@@ -383,11 +391,49 @@ namespace Content.Server.Database
             CommendationType type,
             int round);
 
-        Task<List<RMCCommendation>> GetCommendationsReceived(Guid player);
+        Task<List<RMCCommendation>> GetCommendationsReceived(Guid player, CommendationType? filterType = null, bool includePlayers = false);
 
-        Task<List<RMCCommendation>> GetCommendationsGiven(Guid player);
+        Task<List<RMCCommendation>> GetCommendationsGiven(Guid player, CommendationType? filterType = null, bool includePlayers = false);
+
+        Task<List<RMCCommendation>> GetLastCommendations(int count, CommendationType? filterType = null, bool includePlayers = false);
+
+        Task<RMCCommendation?> GetCommendationById(int commendationId, bool includePlayers = false);
+
+        Task<List<RMCCommendation>> GetCommendationsByRound(int roundId, CommendationType? filterType = null, bool includePlayers = false);
+
+        Task<RMCCommendation?> DeleteCommendationById(int commendationId, Guid deletedBy, DateTimeOffset deletedAt, bool includePlayers = false);
+
+        Task<List<RMCCommendation>> DeleteCommendationsByRound(
+            int roundId,
+            CommendationType type,
+            Guid deletedBy,
+            DateTimeOffset deletedAt,
+            Guid? giverId = null,
+            Guid? receiverId = null,
+            bool includePlayers = false);
 
         Task IncreaseInfects(Guid player);
+
+        Task<Dictionary<string, List<string>>?> GetAllActionOrders(Guid player);
+
+        Task SetActionOrder(Guid player, string id, List<string> actions);
+
+        Task AddChatBan(
+            int? round,
+            NetUserId target,
+            (IPAddress, int)? addressRange,
+            ImmutableTypedHwid? hwid,
+            TimeSpan? duration,
+            ChatType type,
+            NetUserId admin,
+            string reason
+        );
+
+        Task<List<RMCChatBans>> GetAllChatBans(Guid player);
+
+        Task<List<RMCChatBans>> GetActiveChatBans(Guid player);
+
+        Task<Guid?> TryPardonChatBan(int id, Guid? admin);
 
         #endregion
 
@@ -1100,6 +1146,22 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
         }
 
+        // Stories-Hunter-Customization-Start
+        #region Hunter Customization
+        public Task<Content.Shared._Stories.Hunter.Profiles.HunterProfile?> GetHunterProfileAsync(NetUserId userId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetHunterProfileAsync(userId, cancel));
+        }
+
+        public Task SaveHunterProfileAsync(NetUserId userId, Content.Shared._Stories.Hunter.Profiles.HunterProfile profile, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SaveHunterProfileAsync(userId, profile, cancel));
+        }
+        #endregion
+        // Stories-Hunter-Customization-End
+
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)
         {
             lock (_notificationHandlers)
@@ -1227,22 +1289,103 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.AddCommendation(giver, receiver, giverName, receiverName, name, text, type, round));
         }
 
-        public Task<List<RMCCommendation>> GetCommendationsReceived(Guid player)
+        public Task<List<RMCCommendation>> GetCommendationsReceived(Guid player, CommendationType? filterType = null, bool includePlayers = false)
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetCommendationsReceived(player));
+            return RunDbCommand(() => _db.GetCommendationsReceived(player, filterType, includePlayers));
         }
 
-        public Task<List<RMCCommendation>> GetCommendationsGiven(Guid player)
+        public Task<List<RMCCommendation>> GetCommendationsGiven(Guid player, CommendationType? filterType = null, bool includePlayers = false)
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetCommendationsGiven(player));
+            return RunDbCommand(() => _db.GetCommendationsGiven(player, filterType, includePlayers));
+        }
+
+        public Task<List<RMCCommendation>> GetLastCommendations(int count, CommendationType? filterType = null, bool includePlayers = false)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetLastCommendations(count, filterType, includePlayers));
+        }
+
+        public Task<RMCCommendation?> GetCommendationById(int commendationId, bool includePlayers = false)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetCommendationById(commendationId, includePlayers));
+        }
+
+        public Task<List<RMCCommendation>> GetCommendationsByRound(int roundId, CommendationType? filterType = null, bool includePlayers = false)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetCommendationsByRound(roundId, filterType, includePlayers));
+        }
+
+        public Task<RMCCommendation?> DeleteCommendationById(int commendationId, Guid deletedBy, DateTimeOffset deletedAt, bool includePlayers = false)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteCommendationById(commendationId, deletedBy, deletedAt, includePlayers));
+        }
+
+        public Task<List<RMCCommendation>> DeleteCommendationsByRound(
+            int roundId,
+            CommendationType type,
+            Guid deletedBy,
+            DateTimeOffset deletedAt,
+            Guid? giverId = null,
+            Guid? receiverId = null,
+            bool includePlayers = false)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteCommendationsByRound(roundId, type, deletedBy, deletedAt, giverId, receiverId, includePlayers));
         }
 
         public Task IncreaseInfects(Guid player)
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.IncreaseInfects(player));
+        }
+
+        public Task<Dictionary<string, List<string>>?> GetAllActionOrders(Guid player)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetActionOrder(player));
+        }
+
+        public Task SetActionOrder(Guid player, string id, List<string> actions)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetActionOrder(player, id, actions));
+        }
+
+        public Task AddChatBan(
+            int? round,
+            NetUserId target,
+            (IPAddress, int)? addressRange,
+            ImmutableTypedHwid? hwid,
+            TimeSpan? duration,
+            ChatType type,
+            NetUserId admin,
+            string reason)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddChatBan(round, target, addressRange, hwid, duration, type, admin, reason));
+        }
+
+        public Task<List<RMCChatBans>> GetAllChatBans(Guid player)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAllChatBans(player));
+        }
+
+        public Task<List<RMCChatBans>> GetActiveChatBans(Guid player)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetActiveChatBans(player));
+        }
+
+        public Task<Guid?> TryPardonChatBan(int id, Guid? admin)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.TryPardonChatBan(id, admin));
         }
 
         // Wrapper functions to run DB commands from the thread pool.

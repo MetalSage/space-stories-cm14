@@ -1,12 +1,12 @@
 ent-BaseCartridgeMagnum = патрон (.45 магнум)
     .desc = { ent-BaseCartridge.desc }
 ent-CartridgeMagnum = патрон (.45 магнум)
-    .desc = { ent-BaseCartridgeMagnum.desc }
+    .desc = Heavy magnum cartridge mostly used by revolvers. Standard kinetic ammunition is common and useful in most situations.
 ent-CartridgeMagnumPractice = патрон (.45 магнум учебный)
-    .desc = { ent-BaseCartridgeMagnum.desc }
+    .desc = Heavy magnum cartridge mostly used by revolvers. Chalk ammunition is generally non-harmful, used for practice.
 ent-CartridgeMagnumIncendiary = патрон (.45 магнум зажигательный)
-    .desc = { ent-BaseCartridgeMagnum.desc }
+    .desc = Heavy magnum cartridge mostly used by revolvers. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
 ent-CartridgeMagnumAP = патрон (.45 магнум бронебойный)
-    .desc = { ent-BaseCartridgeMagnum.desc }
+    .desc = Heavy magnum cartridge mostly used by revolvers. Armor piercing ammunition is renowned for its ability to cut straight through body armor.
 ent-CartridgeMagnumUranium = патрон (.45 магнум урановый)
-    .desc = { ent-BaseCartridgeMagnum.desc }
+    .desc = Heavy magnum cartridge mostly used by revolvers. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.

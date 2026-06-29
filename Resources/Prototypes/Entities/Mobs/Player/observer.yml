@@ -11,8 +11,10 @@
   - type: FTLSmashImmune
   - type: CargoSellBlacklist
   - type: MovementSpeedModifier
-    baseSprintSpeed: 12
-    baseWalkSpeed: 30 # Stories-Ghost-Speed-Tweak
+    # Stories-start
+    baseSprintSpeed: 20
+    baseWalkSpeed: 12
+    # Stories-end
   - type: MovementIgnoreGravity
   - type: Physics
     bodyType: KinematicController
@@ -92,6 +94,16 @@
     xenos: true
   - type: ViewIntelObjectives
   - type: VentSight
+  - type: IgnoreInteractionRange
+    whitelist:
+      components:
+      - Ladder
+    range: 15
+  # Stories-start
+  - type: Stripping
+    onlySee: true
+    forceSee: true
+  # Stories-end
 
 # proto for player ghosts specifically
 - type: entity

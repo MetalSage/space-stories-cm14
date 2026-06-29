@@ -3,10 +3,10 @@ using System.Numerics;
 using Content.Server.Announcements;
 using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
+using Content.Server.GameTicking.Presets;
 using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
-using Content.Shared._RMC14.Rules;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Prototypes;
 using Content.Server.Voting.Managers;
@@ -407,6 +407,16 @@ namespace Content.Server.GameTicking
 
             DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
 
+            // Stories-start
+            if (!force && !_map.MapExists(DefaultMap) && Preset?.ID is ("STDistressSignal" or "STDistressSignalLowPop"))
+            {
+                var lowPopThreshold = _prototypeManager.TryIndex<GamePresetPrototype>("STDistressSignalLowPop", out var lowPopPreset)
+                    ? lowPopPreset.MaxPlayers ?? int.MaxValue
+                    : int.MaxValue;
+                SetGamePreset(_playerManager.PlayerCount <= lowPopThreshold ? "STDistressSignalLowPop" : "STDistressSignal");
+            }
+            // Stories-end
+
             // Just in case it hasn't been loaded previously we'll try loading it.
             LoadMaps();
 
@@ -616,22 +626,12 @@ namespace Content.Server.GameTicking
                 if (_webhookIdentifier == null)
                     return;
 
-                // Stories-Discord-Start
-                string result = "Неизвестно";
-                var query = EntityQueryEnumerator<CMDistressSignalRuleComponent>();
-                while (query.MoveNext(out var uid, out var component))
-                {
-                    result = Loc.GetString($"cm-distress-signal-discord-{component.Result?.ToString().ToLower()}");
-                }
-                // Stories-Discord-End
-
                 var duration = RoundDuration();
                 var content = Loc.GetString("discord-round-notifications-end",
                     ("id", RoundId),
                     ("hours", Math.Truncate(duration.TotalHours)),
                     ("minutes", duration.Minutes),
-                    ("seconds", duration.Seconds),
-                    ("result", result)); // Stories-Discord
+                    ("seconds", duration.Seconds));
 
                 if (_distressSignal.SelectedPlanetMapName is { } planet &&
                     _distressSignal.OperationName is { } operation)
@@ -645,8 +645,7 @@ namespace Content.Server.GameTicking
                         ("ship", mapName),
                         ("hours", Math.Truncate(duration.TotalHours)),
                         ("minutes", duration.Minutes),
-                        ("seconds", duration.Seconds),
-                        ("result", result)); // Stories-Discord
+                        ("seconds", duration.Seconds));
                 }
 
                 var payload = new WebhookPayload { Content = content };
@@ -821,6 +820,16 @@ namespace Content.Server.GameTicking
             // Preload maps so we can start faster
             else if (_roundStartTime - RoundPreloadTime < _gameTiming.CurTime)
             {
+                // Stories-start
+                if (!_map.MapExists(DefaultMap) && Preset?.ID is ("STDistressSignal" or "STDistressSignalLowPop"))
+                {
+                    var lowPopThreshold = _prototypeManager.TryIndex<GamePresetPrototype>("STDistressSignalLowPop", out var lowPopPreset)
+                        ? lowPopPreset.MaxPlayers ?? int.MaxValue
+                        : int.MaxValue;
+                    SetGamePreset(_playerManager.PlayerCount <= lowPopThreshold ? "STDistressSignalLowPop" : "STDistressSignal");
+                }
+                // Stories-end
+
                 LoadMaps();
             }
         }

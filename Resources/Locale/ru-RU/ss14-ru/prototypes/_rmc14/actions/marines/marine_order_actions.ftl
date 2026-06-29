@@ -1,6 +1,6 @@
-ent-ActionMarineFocus = Приказ - Фокус
+ent-ActionMarineFocus = Приказ — Фокус
     .desc = Повышает точность стрельбы ближайших пехотинцев
-ent-ActionMarineHold = Приказ - Удержание
+ent-ActionMarineHold = Приказ — Удержание
     .desc = Повышает сопротивление урону ближайших пехотинцев
-ent-ActionMarineMove = Приказ - Двигаться
+ent-ActionMarineMove = Приказ — Двигаться
     .desc = Повышает скорость передвижения ближайших пехотинцев

@@ -10,5 +10,5 @@ ent-ToiletGoldenEmpty = золотой унитаз
     .desc = НТ-451-З — золотая версия аппарата. На боку написано, что он сделан из чистейшего меркурианского золота, а сиденье из натуральной кожи.
     .suffix = Пустой
 ent-ToiletGoldenDirtyWater = { ent-ToiletGoldenEmpty }
-    .suffix = Грязная вода, Цель кражи
     .desc = { ent-ToiletGoldenEmpty.desc }
+    .suffix = Грязная вода, Цель кражи

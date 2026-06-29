@@ -1,8 +1,11 @@
 ent-CMHypospray = гипоспрей
-    .desc = Гипоспрей DeForest Medical Corporation - это стерильный автоинъектор с воздушной иглой для быстрого введения лекарств пациентам.
+    .desc = Гипоспрей DeForest Medical Corporation — это стерильный автоинъектор с воздушной иглой для быстрого введения лекарств пациентам.
 ent-CMHyposprayWithVial = { ent-CMHypospray }
+    .desc = { ent-CMHypospray.desc }
     .suffix = Пробирка
-    .desc = { ent-CMHypospray.desc }
-ent-CMHyposprayFilledTricord = { ent-CMHypospray }
+ent-CMHyposprayFilledTricord = { ent-CMHyposprayWithVial }
+    .desc = { ent-CMHyposprayWithVial.desc }
     .suffix = Полный, Трикордразин
+ent-RMCHyposprayFilledEpi = { ent-CMHypospray }
     .desc = { ent-CMHypospray.desc }
+    .suffix = Filled, Epinephrine

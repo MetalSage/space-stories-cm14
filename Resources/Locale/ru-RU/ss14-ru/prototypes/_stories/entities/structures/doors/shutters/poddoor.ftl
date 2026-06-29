@@ -1,0 +1,11 @@
+ent-STPodDoorHunter = { ent-RMCPodDoorHybrisaIndestructibleUltra }
+    .desc = { ent-RMCPodDoorHybrisaIndestructibleUltra.desc }
+    .suffix = { ent-RMCPodDoorHybrisaIndestructibleUltra.suffix }
+ent-STPodDoorHunterOpen = { ent-STPodDoorHunter }
+    .desc = { ent-STPodDoorHunter.desc }
+    .suffix = Открыто
+ent-STShutterHunterWindow = { ent-RMCShutterHybrisaWindow }
+    .desc = { ent-RMCShutterHybrisaWindow.desc }
+ent-STShutterHunterWindowOpen = { ent-STShutterHunterWindow }
+    .desc = { ent-STShutterHunterWindow.desc }
+    .suffix = Открыто

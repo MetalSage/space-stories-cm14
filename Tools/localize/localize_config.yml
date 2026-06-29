@@ -1,0 +1,12 @@
+ignored_paths: # Игнорирует указанные пути до папок/файлов
+- "Resources/Locale/ru-RU/_stories"
+ignored_untranslated_paths: # Игнорирует предупреждения в указанных путях до папок/файлов
+- "Resources/Locale/ru-RU/_RMC14/feroxi"
+- "Resources/Locale/ru-RU/_RMC14/felinid"
+- "Resources/Locale/ru-RU/_RMC14/avali"
+- "Resources/Locale/ru-RU/_RMC14/rodentia"
+- "Resources/Locale/ru-RU/_RMC14/vulpkanin"
+- "Resources/Locale/ru-RU/_RMC14/species"
+- "Resources/Locale/ru-RU/_RMC14/markings/reptilian.ftl"
+- "Resources/Locale/ru-RU/_RMC14/markings/slimeperson.ftl"
+- "Resources/Locale/ru-RU/_RMC14/cm-chatsan.ftl"

@@ -597,6 +597,110 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("connection_log", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.HunterProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("st_hunter_profile_id");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("age");
+
+                    b.Property<string>("ArmorPrototype")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("armor_prototype");
+
+                    b.Property<string>("BracerPrototype")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("bracer_prototype");
+
+                    b.Property<string>("CapeColor")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("cape_color");
+
+                    b.Property<string>("CasterPrototype")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("caster_prototype");
+
+                    b.Property<string>("CharacterName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("char_name");
+
+                    b.Property<string>("CloakSound")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("cloak_sound");
+
+                    b.Property<string>("FlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("flavor_text");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("gender");
+
+                    b.Property<string>("GreavesPrototype")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("greaves_prototype");
+
+                    b.Property<string>("HeadAccessory")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("head_accessory");
+
+                    b.Property<string>("MaskPrototype")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("mask_prototype");
+
+                    b.Property<string>("QuillMarkingId")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("quill_marking_id");
+
+                    b.Property<string>("SkinColor")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("skin_color");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("status");
+
+                    b.Property<string>("TranslatorSound")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("translator_sound");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.Property<string>("Voice")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("voice");
+
+                    b.HasKey("Id")
+                        .HasName("PK_st_hunter_profile");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("st_hunter_profile", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")
@@ -868,12 +972,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
 
-                    // Stories-TTS-Start
                     b.Property<string>("Voice")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("voice");
-                    // Stories-TTS-End
 
                     b.Property<string>("XenoPostfix")
                         .IsRequired()
@@ -978,12 +1080,101 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("profile_role_loadout", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.RMCChatBans", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("rmc_chat_bans_id");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("address");
+
+                    b.Property<DateTime>("BannedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("banned_at");
+
+                    b.Property<Guid?>("BanningAdminId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("banning_admin_id");
+
+                    b.Property<DateTime?>("ExpiresAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("expires_at");
+
+                    b.Property<DateTime?>("LastEditedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_edited_at");
+
+                    b.Property<Guid?>("LastEditedById")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_edited_by_id");
+
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_id");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("reason");
+
+                    b.Property<int?>("RoundId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("round_id");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("type");
+
+                    b.Property<DateTime?>("UnbannedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("unbanned_at");
+
+                    b.Property<Guid?>("UnbanningAdminId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("unbanning_admin_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_rmc_chat_bans");
+
+                    b.HasIndex("Address")
+                        .HasDatabaseName("IX_rmc_chat_bans_address");
+
+                    b.HasIndex("BanningAdminId");
+
+                    b.HasIndex("LastEditedById");
+
+                    b.HasIndex("PlayerId")
+                        .HasDatabaseName("IX_rmc_chat_bans_player_id");
+
+                    b.HasIndex("RoundId")
+                        .HasDatabaseName("IX_rmc_chat_bans_round_id");
+
+                    b.HasIndex("UnbanningAdminId");
+
+                    b.ToTable("rmc_chat_bans", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.RMCCommendation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("rmc_commendations_id");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("deleted");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<Guid?>("DeletedById")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("deleted_by_id");
 
                     b.Property<Guid>("GiverId")
                         .HasColumnType("TEXT")
@@ -1023,6 +1214,8 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.HasKey("Id")
                         .HasName("PK_rmc_commendations");
+
+                    b.HasIndex("DeletedById");
 
                     b.HasIndex("GiverId");
 
@@ -1290,6 +1483,27 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("rmc_patron_tiers", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.RMCPlayerActionOrder", b =>
+                {
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_id");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("rmc_player_action_order_id");
+
+                    b.PrimitiveCollection<string>("Actions")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("actions");
+
+                    b.HasKey("PlayerId", "Id")
+                        .HasName("PK_rmc_player_action_order");
+
+                    b.ToTable("rmc_player_action_order", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.RMCPlayerStats", b =>
                 {
                     b.Property<Guid>("PlayerId")
@@ -1336,6 +1550,35 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasName("PK_rmc_squad_preferences");
 
                     b.ToTable("rmc_squad_preferences", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.Rank", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("rank_id");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("job_name");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.Property<string>("RankName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("rank_name");
+
+                    b.HasKey("Id")
+                        .HasName("PK_rank");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("rank", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.RoleWhitelist", b =>
@@ -2106,8 +2349,90 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Profile");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.RMCChatBans", b =>
+                {
+                    b.HasOne("Content.Server.Database.Player", "BanningAdmin")
+                        .WithMany("AdminChatBansCreated")
+                        .HasForeignKey("BanningAdminId")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_rmc_chat_bans_player_banning_admin_id1");
+
+                    b.HasOne("Content.Server.Database.Player", "LastEditedBy")
+                        .WithMany("AdminChatBansLastEdited")
+                        .HasForeignKey("LastEditedById")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_rmc_chat_bans_player_last_edited_by_id1");
+
+                    b.HasOne("Content.Server.Database.Player", "Player")
+                        .WithMany("ChatBans")
+                        .HasForeignKey("PlayerId")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_rmc_chat_bans_player_player_id");
+
+                    b.HasOne("Content.Server.Database.Round", "Round")
+                        .WithMany()
+                        .HasForeignKey("RoundId")
+                        .HasConstraintName("FK_rmc_chat_bans_round_round_id");
+
+                    b.HasOne("Content.Server.Database.Player", "UnbanningAdmin")
+                        .WithMany("AdminChatBansPardoned")
+                        .HasForeignKey("UnbanningAdminId")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_rmc_chat_bans_player_unbanning_admin_id1");
+
+                    b.OwnsOne("Content.Server.Database.TypedHwid", "HWId", b1 =>
+                        {
+                            b1.Property<int>("RMCChatBansId")
+                                .HasColumnType("INTEGER")
+                                .HasColumnName("rmc_chat_bans_id");
+
+                            b1.Property<byte[]>("Hwid")
+                                .IsRequired()
+                                .HasColumnType("BLOB")
+                                .HasColumnName("hwid");
+
+                            b1.Property<int>("Type")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("INTEGER")
+                                .HasDefaultValue(0)
+                                .HasColumnName("hwid_type");
+
+                            b1.HasKey("RMCChatBansId");
+
+                            b1.ToTable("rmc_chat_bans");
+
+                            b1.WithOwner()
+                                .HasForeignKey("RMCChatBansId")
+                                .HasConstraintName("FK_rmc_chat_bans_rmc_chat_bans_rmc_chat_bans_id");
+                        });
+
+                    b.Navigation("BanningAdmin");
+
+                    b.Navigation("HWId");
+
+                    b.Navigation("LastEditedBy");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("Round");
+
+                    b.Navigation("UnbanningAdmin");
+                });
+
             modelBuilder.Entity("Content.Server.Database.RMCCommendation", b =>
                 {
+                    b.HasOne("Content.Server.Database.Player", "DeletedBy")
+                        .WithMany("CommendationsDeleted")
+                        .HasForeignKey("DeletedById")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_rmc_commendations_player_deleted_by_id");
+
                     b.HasOne("Content.Server.Database.Player", "Giver")
                         .WithMany("CommendationsGiven")
                         .HasForeignKey("GiverId")
@@ -2130,6 +2455,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_rmc_commendations_round_round_id");
+
+                    b.Navigation("DeletedBy");
 
                     b.Navigation("Giver");
 
@@ -2265,6 +2592,19 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Patron");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.RMCPlayerActionOrder", b =>
+                {
+                    b.HasOne("Content.Server.Database.Player", "Player")
+                        .WithMany("ActionOrder")
+                        .HasForeignKey("PlayerId")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_rmc_player_action_order_player_player_id");
+
+                    b.Navigation("Player");
+                });
+
             modelBuilder.Entity("Content.Server.Database.RMCPlayerStats", b =>
                 {
                     b.HasOne("Content.Server.Database.Player", "Player")
@@ -2299,6 +2639,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_rmc_squad_preferences_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.Rank", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithMany("Ranks")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_rank_profile_profile_id");
 
                     b.Navigation("Profile");
                 });
@@ -2538,6 +2890,14 @@ namespace Content.Server.Database.Migrations.Sqlite
 
             modelBuilder.Entity("Content.Server.Database.Player", b =>
                 {
+                    b.Navigation("ActionOrder");
+
+                    b.Navigation("AdminChatBansCreated");
+
+                    b.Navigation("AdminChatBansLastEdited");
+
+                    b.Navigation("AdminChatBansPardoned");
+
                     b.Navigation("AdminLogs");
 
                     b.Navigation("AdminMessagesCreated");
@@ -2571,6 +2931,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("AdminWatchlistsLastEdited");
 
                     b.Navigation("AdminWatchlistsReceived");
+
+                    b.Navigation("ChatBans");
+
+                    b.Navigation("CommendationsDeleted");
 
                     b.Navigation("CommendationsGiven");
 
@@ -2606,6 +2970,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Loadouts");
 
                     b.Navigation("NamedItems");
+
+                    b.Navigation("Ranks");
 
                     b.Navigation("SquadPreference");
 

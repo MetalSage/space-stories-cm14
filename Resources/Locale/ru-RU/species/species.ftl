@@ -10,4 +10,7 @@ species-name-moth = Моль
 species-name-skeleton = Скелет
 species-name-vox = Вокс
 species-name-gingerbread = вкуснейшая выпечка
+
+## Misc species things
+
 snail-hurt-by-salt-popup = Солевой раствор жжёт как кислота!

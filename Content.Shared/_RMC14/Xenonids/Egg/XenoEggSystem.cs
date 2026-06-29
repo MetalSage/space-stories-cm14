@@ -1,10 +1,12 @@
 ﻿using Content.Shared._RMC14.Actions;
 using Content.Shared._RMC14.Dropship;
+using Content.Shared._RMC14.Areas;
 using Content.Shared._RMC14.Hands;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Xenonids.Construction;
 using Content.Shared._RMC14.Xenonids.Construction.Tunnel;
 using Content.Shared._RMC14.Xenonids.Egg.EggRetriever;
+using Content.Shared._RMC14.Vehicle;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._RMC14.Xenonids.Plasma;
@@ -54,6 +56,7 @@ namespace Content.Shared._RMC14.Xenonids.Egg;
 public sealed class XenoEggSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly AreaSystem _area = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly FixtureSystem _fixture = default!;
@@ -70,7 +73,7 @@ public sealed class XenoEggSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly EntityManager _entities = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly RMCActionsSystem _rmcActions = default!;
+    [Dependency] private readonly SharedRMCActionsSystem _rmcActions = default!;
     [Dependency] private readonly RMCHandsSystem _rmcHands = default!;
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -142,8 +145,20 @@ public sealed class XenoEggSystem : EntitySystem
             return;
 
         var hasOvipositor = HasComp<XenoAttachedOvipositorComponent>(xeno);
+        if (!hasOvipositor && HasComp<VehicleInteriorOccupantComponent>(xeno.Owner))
+        {
+            _popup.PopupClient(Loc.GetString("cm-xeno-ovipositor-vehicle"), xeno, xeno, PopupType.SmallCaution);
+            return;
+        }
+
         if (!hasOvipositor &&
             !_plasma.HasPlasmaPopup(xeno.Owner, args.AttachPlasmaCost))
+        {
+            return;
+        }
+
+        if (!hasOvipositor &&
+            !_area.CanXenoHiveSetupPopup(xeno.Owner, xeno.Owner))
         {
             return;
         }
@@ -176,16 +191,19 @@ public sealed class XenoEggSystem : EntitySystem
     private void OnXenoGrowOvipositorDoAfter(Entity<XenoComponent> xeno, ref XenoGrowOvipositorDoAfterEvent args)
     {
         if (args.Cancelled ||
-            args.Handled ||
-            !_plasma.TryRemovePlasmaPopup(xeno.Owner, args.PlasmaCost))
+            args.Handled)
         {
             return;
         }
 
+        var attached = TryComp(xeno, out XenoAttachedOvipositorComponent? attachedComp);
+        if (!_plasma.TryRemovePlasmaPopup(xeno.Owner, args.PlasmaCost))
+            return;
+
         args.Handled = true;
 
-        if (TryComp(xeno, out XenoAttachedOvipositorComponent? attached))
-            DetachOvipositor((xeno, attached));
+        if (attached)
+            DetachOvipositor((xeno, attachedComp!));
         else
             AttachOvipositor(xeno.Owner);
     }

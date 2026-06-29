@@ -69,6 +69,7 @@ admin-smite-creampie-description = Кримпай всего одной кноп
 admin-smite-remove-blood-description = Обескровливает цель, кроваво.
 admin-smite-vomit-organs-description = Вызывает у цели рвоту, в том числе и органами.
 admin-smite-remove-hands-description = Лишает цель рук.
+admin-smite-remove-hand-description = Удаляет только одну из рук цели вместо всех.
 admin-smite-pinball-description = Превращает цель в суперпрыгучий мяч, метая её об стены пока она не клипнется сквозь станцию в бездну.
 admin-smite-yeet-description = Изгоняет цель в глубины космоса, включив no-clip и швыряя её.
 admin-smite-become-bread-description = Превращает цель в хлеб. И всё.
@@ -89,22 +90,21 @@ admin-smite-maid-description = Насильно превращает цель в
 admin-smite-zoom-in-description = Увеличивает зум так, что цель перестаёт видеть окружение.
 admin-smite-flip-eye-description = Переворачивает их обзор, фактически меняя управление и делая игру раздражающей.
 admin-smite-run-walk-swap-description = Меняет местами бег и ходьбу, заставляя цель держать Shift, чтобы двигаться быстро.
-admin-smite-stomach-removal-description = Удаляет желудок цели, лишая её возможности питаться.
 admin-smite-super-speed-description = Делает цель очень быстрой, заставляя её превращаться в фарш при столкновении со стеной.
+admin-smite-stomach-removal-description = Удаляет желудок цели, лишая её возможности питаться.
 admin-smite-speak-backwards-description = Заставляет цель говорить задом наперёд, так что она не сможет позвать на помощь.
 admin-smite-lung-removal-description = Удаляет лёгкие цели, топя её.
-admin-smite-remove-hand-description = Удаляет только одну из рук цели вместо всех.
 admin-smite-disarm-prone-description = Шанс обезоружить цель становится 100%, а наручники надеваются на неё мгновенно.
 admin-smite-garbage-can-description = Превратите цель в мусорку, чтобы подчеркнуть, о чём она вам напоминает.
-admin-trick-unbolt-description = Разболтирует целевой шлюз.
 admin-smite-super-bonk-description = Заставляет цель удариться о каждый стол на станции и за её пределами.
+admin-smite-super-bonk-lite-description= Заставляет цель удариться о каждый стол на станции и за её пределами. Прекращает действовать после смерти цели.
 admin-smite-terminate-description = Создаёт экстерминатора с ролью призрака, с единственной задачей — убить выбранную цель.
 admin-smite-super-slip-description = Очень сильно поскальзывает цель.
 admin-smite-omni-accent-description = Заставляет цель говорить с почти каждым возможным акцентом.
-admin-smite-super-bonk-lite-description = Заставляет цель удариться о каждый стол на станции и за её пределами. Прекращает действовать после смерти цели.
 
 ## Tricks descriptions
 
+admin-trick-unbolt-description = Разболтирует целевой шлюз.
 admin-trick-bolt-description = Болтирует целевой шлюз.
 admin-trick-emergency-access-on-description = Включает аварийный доступ к целевому шлюзу.
 admin-trick-emergency-access-off-description = Выключает аварийный доступ к целевому шлюзу.

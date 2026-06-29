@@ -1,17 +1,18 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Json;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using Content.Shared._Stories.SCCVars;
 using Prometheus;
 using Robust.Shared.Configuration;
-using System.Collections.Specialized;
-using System.Web;
 
 namespace Content.Server._Stories.TTS;
 
@@ -61,7 +62,7 @@ public sealed class TTSManager
         _cfg.OnValueChanged(SCCVars.TTSApiUrl, v => _apiUrl = v, true);
         _cfg.OnValueChanged(SCCVars.TTSApiToken, v =>
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", v);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", v);
             _apiToken = v;
         },
         true);
@@ -178,8 +179,8 @@ public sealed class TTSManager
     private string GenerateCacheKey(string speaker, string text)
     {
         var key = $"{speaker}/{text}";
-        byte[] keyData = Encoding.UTF8.GetBytes(key);
-        var sha256 = System.Security.Cryptography.SHA256.Create();
+        var keyData = Encoding.UTF8.GetBytes(key);
+        var sha256 = SHA256.Create();
         var bytes = sha256.ComputeHash(keyData);
         return Convert.ToHexString(bytes);
     }

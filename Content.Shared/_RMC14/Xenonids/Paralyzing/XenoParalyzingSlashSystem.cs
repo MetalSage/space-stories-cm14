@@ -1,6 +1,5 @@
 using Content.Shared._RMC14.Actions;
 using Content.Shared._RMC14.Stun;
-using Content.Shared._RMC14.Synth;
 using Content.Shared.Actions;
 using Content.Shared.Jittering;
 using Content.Shared.Popups;
@@ -18,7 +17,7 @@ public sealed class XenoParalyzingSlashSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly XenoSystem _xeno = default!;
-    [Dependency] private readonly RMCActionsSystem _rmcActions = default!;
+    [Dependency] private readonly SharedRMCActionsSystem _rmcActions = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly RMCDazedSystem _daze = default!;
@@ -72,15 +71,9 @@ public sealed class XenoParalyzingSlashSystem : EntitySystem
         {
             if (!_xeno.CanAbilityAttackTarget(xeno, entity) ||
                 HasComp<VictimBeingParalyzedComponent>(entity) ||
+                HasComp<UnparalyzableComponent>(entity) || // Stories-Hunter
                 HasComp<XenoComponent>(entity))
             {
-                continue;
-            }
-
-            if (HasComp<SynthComponent>(entity))
-            {
-                var immuneMsg = Loc.GetString("cm-xeno-paralyzing-slash-immune", ("target", entity));
-                _popup.PopupEntity(immuneMsg, entity, entity, PopupType.SmallCaution);
                 continue;
             }
 

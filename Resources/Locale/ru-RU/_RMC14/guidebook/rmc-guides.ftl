@@ -1,16 +1,11 @@
 rmc-guide-entry-rmc = Руководство Marine Corps
 rmc-guide-entry-rules = Правила
-rmc-guide-entry-rules-ban-types = Типы и Продолжительность Банов
 rmc-guide-entry-rules-zero-tolerance = Нулевая Терпимость
 rmc-guide-entry-rules-language = Язык Сервера
-rmc-guide-entry-rules-multikey = Несколько Аккаунтов
 rmc-guide-entry-rules-escalation = Эскалация Боевых Действий
-rmc-guide-entry-rules-metaknowledge = Использование Знаний Персонажа
 rmc-guide-entry-rules-kindness = Будьте Добры
 rmc-guide-entry-rules-mutinies = Мятежи, Беспорядки
-rmc-guide-entry-rules-command-roles = Командные Роли, Отключение от Сети
 rmc-guide-entry-rules-marine-law = Морской Устав
-rmc-guide-entry-rules-higher-standards = Повышенные Стандарты для Командования/ВП
 rmc-guide-entry-rules-general-roleplay-standards = Общие Стандарты Ролевой Игры
 rmc-guide-entry-rules-marine-character-names = Имена Персонажей Морпехов
 rmc-guide-entry-rules-marine-roleplay-standards = Стандарты Ролевой Игры Морпехов
@@ -22,3 +17,5 @@ rmc-guide-entry-rules-command-chain = Командная Цепь
 rmc-guide-entry-rules-core = Основные Правила
 rmc-guide-entry-rules-command = Правила для Командования
 rmc-guide-entry-rules-roleplay-standards = Стандарты Ролевой Игры
+rmc-guide-entry-rules-community = Правила сообщества
+

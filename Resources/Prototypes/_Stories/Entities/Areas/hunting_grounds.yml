@@ -1,0 +1,113 @@
+- type: entity
+  parent: RMCAreaBase
+  id: STAreaHuntingGrounds
+  name: Hunting Grounds
+  suffix: Hunting Grounds
+  components:
+  - type: Sprite
+    state: green
+  - type: Area
+    powerNet: hunting_ground
+    CAS: false
+    fulton: false
+    lasing: false
+    mortarPlacement: false
+    mortarFire: false
+    medevac: false
+    paradropping: false
+    OB: false
+    supplyDrop: false
+    resinAllowed: false
+    avoidBioscan: false
+    noTunnel: true
+    unweedable: false
+    buildSpecial: false
+    weatherEnabled: false
+
+- type: entity
+  parent: STAreaHuntingGrounds
+  id: STAreaHuntingJungleCentral
+  name: Hunting Grounds Jungle Central
+  components:
+  - type: Sprite
+    state: central
+
+- type: entity
+  parent: STAreaHuntingJungleCentral
+  id: STAreaHuntingJungleNorth
+  name: Hunting Grounds Jungle North
+  components:
+  - type: Sprite
+    state: north
+
+- type: entity
+  parent: STAreaHuntingJungleCentral
+  id: STAreaHuntingJungleNorthEast
+  name: Hunting Grounds Jungle North East
+  components:
+  - type: Sprite
+    state: northeast
+
+- type: entity
+  parent: STAreaHuntingJungleCentral
+  id: STAreaHuntingJungleNorthWest
+  name: Hunting Grounds Jungle North West
+  components:
+  - type: Sprite
+    state: northwest
+
+- type: entity
+  parent: STAreaHuntingJungleCentral
+  id: STAreaHuntingJungleEast
+  name: Hunting Grounds Jungle East
+  components:
+  - type: Sprite
+    state: east
+
+- type: entity
+  parent: STAreaHuntingJungleCentral
+  id: STAreaHuntingJungleSouth
+  name: Hunting Grounds Jungle South
+  components:
+  - type: Sprite
+    state: south
+
+- type: entity
+  parent: STAreaHuntingJungleCentral
+  id: STAreaHuntingJungleSouthEast
+  name: Hunting Grounds Jungle South East
+  components:
+  - type: Sprite
+    state: southeast
+
+- type: entity
+  parent: STAreaHuntingJungleCentral
+  id: STAreaHuntingJungleSouthWest 
+  name: Hunting Grounds Jungle South West 
+  components:
+  - type: Sprite
+    state: southwest
+
+- type: entity
+  parent: STAreaHuntingJungleCentral
+  id: STAreaHuntingJungleWest
+  name: Hunting Grounds Jungle West
+  components:
+  - type: Sprite
+    state: west
+
+- type: entity
+  parent: STAreaHuntingGrounds
+  id: STAreaHuntingCaves
+  name: Hunting Grounds Caves
+  components:
+  - type: Sprite
+    state: cave
+
+- type: entity
+  parent: STAreaHuntingGrounds
+  id: STAreaHuntingCampsite
+  name: Jungle Moon Campsite
+  components:
+  - type: Sprite
+    state: red

@@ -1,0 +1,12 @@
+ent-FactionMarine = { "" }
+    .desc = { "" }
+ent-FactionSurvivor = { "" }
+    .desc = { "" }
+ent-FactionCLF = { ent-FactionSurvivor }
+    .desc = { ent-FactionSurvivor.desc }
+ent-FactionWeYa = { "" }
+    .desc = { "" }
+ent-FactionTSE = { "" }
+    .desc = { "" }
+ent-FactionSPP = { "" }
+    .desc = { "" }

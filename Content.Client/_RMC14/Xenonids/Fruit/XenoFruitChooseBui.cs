@@ -54,7 +54,7 @@ public sealed class XenoFruitChooseBui : BoundUserInterface
 
                 var name = fruit.Name;
 
-                var specifier = new SpriteSpecifier.Rsi(new ResPath("_RMC14/Structures/Xenos/xeno_fruit.rsi"), sprite);
+                var specifier = new SpriteSpecifier.Rsi(new ResPath("_Stories/Structures/Xenos/xeno_fruit.rsi"), sprite); // Stories-Parity
                 control.Set(name, _sprite.Frame0(specifier));
                 control.Button.OnPressed += _ => SendPredictedMessage(new XenoFruitChooseBuiMsg(fruitId));
                 control.Button.ToolTip = fruit.Description;

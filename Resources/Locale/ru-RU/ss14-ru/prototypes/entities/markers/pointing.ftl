@@ -1,2 +1,2 @@
 ent-PointingArrow = pointing arrow
-    .desc = { "" }
+    .desc = { ent-RMCBaseEffect.desc }

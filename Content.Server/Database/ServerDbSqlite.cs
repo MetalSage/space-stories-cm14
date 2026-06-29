@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.IP;
 using Content.Server.Preferences.Managers;
+using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
+using SharedHunterProfile = Content.Shared._Stories.Hunter.Profiles.HunterProfile;
 
 namespace Content.Server.Database
 {
@@ -63,6 +65,28 @@ namespace Content.Server.Database
             }
 
             cfg.OnValueChanged(CCVars.DatabaseSqliteDelay, v => _msDelay = v, true);
+        }
+
+        public override async Task<SharedHunterProfile?> GetHunterProfileAsync(NetUserId userId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDbImpl(cancel);
+            var profile = await db.SqliteDbContext.HunterProfile.AsNoTracking().SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
+            return profile == null ? null : ConvertToSharedHunterProfile(profile);
+        }
+
+        public override async Task SaveHunterProfileAsync(NetUserId userId, SharedHunterProfile profile, CancellationToken cancel = default)
+        {
+            await using var db = await GetDbImpl(cancel);
+            var dbProfile = await db.SqliteDbContext.HunterProfile.SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
+
+            if (dbProfile == null)
+            {
+                dbProfile = new Database.HunterProfile { UserId = userId.UserId };
+                db.SqliteDbContext.HunterProfile.Add(dbProfile);
+            }
+
+            ConvertFromSharedHunterProfile(profile, dbProfile);
+            await db.SqliteDbContext.SaveChangesAsync(cancel);
         }
 
         #region Ban

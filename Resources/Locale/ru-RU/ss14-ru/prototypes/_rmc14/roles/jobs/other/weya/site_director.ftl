@@ -1,5 +1,6 @@
 ent-RMCRandomHumanoidPMCDirector = роль призрака ЧВК Ве-Я директор
+    .desc = { "" }
     .suffix = Спавнер, Игрок
-    .desc = { ent-MarkerBase.desc }
 ent-RMCSpawnPointPMCSiteDirector = точка появления ЧВК Ве-Я директор
     .desc = { ent-CMSpawnPointJobBase.desc }
+    .suffix = { ent-CMSpawnPointJobBase.suffix }

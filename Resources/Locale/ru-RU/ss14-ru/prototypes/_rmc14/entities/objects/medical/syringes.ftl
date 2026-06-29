@@ -1,11 +1,12 @@
 ent-CMSyringe = { ent-Syringe }
-    .suffix = RMC14
     .desc = { ent-Syringe.desc }
+    .suffix = RMC14
 ent-RMCPrefilledSyringe = { ent-CMSyringe }
-    .suffix = RMC14, Ввести
     .desc = { ent-CMSyringe.desc }
+    .suffix = RMC14, Ввести
 ent-RMCSyringeLethal = шприц для смертельной инъекции
     .desc = Шприц, используемый для смертельных инъекций.
+    .suffix = { ent-CMSyringe.suffix }
 ent-RMCSyringeLethalPrefilled = { ent-RMCSyringeLethal }
-    .suffix = RMC14, Предварительно заполненный
     .desc = { ent-RMCSyringeLethal.desc }
+    .suffix = RMC14, Предварительно заполненный

@@ -1,0 +1,35 @@
+- type: entity
+  id: STExplosionBracerSmall
+  name: bracer explosive charge (small)
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: RMC
+    totalIntensity: 1750.0
+    intensitySlope: 50.0
+    maxIntensity: 100.0
+  - type: RMCExplosionShockWave
+    falloffPower: 50
+    sharpness: 25
+    width: 0.7
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: STExplosionBracerBig
+  name: bracer explosive charge (big)
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: RMCOB
+    totalIntensity: 350000.0
+    intensitySlope: 500.0
+    maxIntensity: 1000.0
+  - type: RMCExplosionShockWave
+    falloffPower: 50
+    sharpness: 25
+    width: 0.7
+  - type: TimedDespawn
+    lifetime: 1

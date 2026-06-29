@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseItem
+  id: STHunterBaseItem
+  abstract: true
+  components:
+  - type: Corrodible
+    isCorrodible: false
+  - type: HunterGearTrackable
+  - type: Tag
+    tags:
+    - STPredatorGear

@@ -1,0 +1,17 @@
+ent-STHunterBridgeBorder = окантовка
+    .desc = { "" }
+ent-STHunterBridgeBorderCorner = { ent-STHunterBridgeBorder }
+    .desc = { ent-STHunterBridgeBorder.desc }
+    .suffix = Угловая
+ent-STHunterBridgeBorderEdge = { ent-STHunterBridgeBorder }
+    .desc = { ent-STHunterBridgeBorder.desc }
+    .suffix = Край
+ent-STHunterBridgeBorderBrown = { ent-STHunterBridgeBorder }
+    .desc = { ent-STHunterBridgeBorder.desc }
+    .suffix = Коричневая
+ent-STHunterBridgeBorderBrownCorner = { ent-STHunterBridgeBorder }
+    .desc = { ent-STHunterBridgeBorder.desc }
+    .suffix = Коричневая, Угловая
+ent-STHunterBridgeBorderBrownEdge = { ent-STHunterBridgeBorder }
+    .desc = { ent-STHunterBridgeBorder.desc }
+    .suffix = Коричневая, Край

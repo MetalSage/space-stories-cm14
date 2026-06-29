@@ -1,38 +1,60 @@
 ﻿<Document>
-  # Предъявление обвинений и вынесение приговора
+  # Charging and Sentencing
 
-  [italic]Эта процедура может быть изменена с появлением новых технологий таймеров брига в будущем. Убедитесь, что права заключенных соблюдены.[/italic]
+  [italic]This procedure is subject to change, with new brig timer technology in the future.[/italic]
 
-  ## Общая Процедура Предъявления Обвинений
-  После ареста арестовывающий [color=#ff000d][bold]Офицер Военной Полиции[/bold][/color] должен перевести подозреваемого в бриг, где другой член [color=#ff000d][bold]Военной Полиции[/bold][/color] предъявит подозреваемому обвинения в совершенных преступлениях.
-  - Таймеры брига не должны превышать 30 минут, за исключением случаев [bold]Тяжкого Преступления[/bold] или продления за преступления, совершенные во время тюремного заключения.
-  - Предъявление обвинений должно осуществляться в порядке доступности [bold]Начальником Тюрьмы[/bold], [color=#8B0000][bold]Начальником Военной Полиции[/bold][/color], непричастным [color=#ff000d][bold]Офицерами Военной Полиции[/bold][/color], арестовывающим [color=#ff000d][bold]Офицерами Военной Полиции[/bold][/color].
-  - Если кто-либо из них присутствует, он может явно уступить следующему в очереди, если его внимание требуется в другом месте. Этим правом следует пользоваться разумно.
-  - Лицо, предъявляющее обвинения, также должно определить приговор.
-  - Сообщите Подозреваемому о предъявленных ему Обвинениях до запуска таймера брига.
-  - Сообщите Подозреваемому, что он может подать апелляцию, если пожелает.
-  - Убедитесь, что права заключенных и право на апелляцию соблюдены.
+  ## General Information
 
-  ## Дополнительное обвинение Военной Полиции
-  - [bold]Всегда убедитесь, что у вас есть разрешение на их арест, прежде чем это делать.[/bold]
-  - Им должно быть предъявлено обвинение в пренебрежении служебными обязанностями в качестве дополнительного преступления. Это не повышает мелкие преступления до тяжких.
-  - В случае любых тяжких или более серьезных преступлений, если они не пытаются подать апелляцию или их апелляция или помилование отклонены, они должны быть понижены в звании в соответствии с процедурой понижения в звании [color=#ff000d][bold]Военной Полиции[/bold][/color].
+  - Brig timers must not exceed 30 minutes, but can be extended by crimes performed while jailed past this limit.
+  - Ensure to follow prisoner rights and the right to appeal.
+  - In the case of Prisoners of War, be sure to read the relevant section of [textlink="Third-Parties SOP." link="RMCMarineSOPNONModThirdparty"]
+  - If a prisoner has been SSD for over 5 minutes they may be placed in hypersleep, but they must serve the rest of their time if they return.
 
-  ## Чек-лист для заключения в бриге
-  - Примените обвинения и активируйте таймер брига.
-  - Заберите все их вещи, включая удостоверение личности и гарнитуру.
-  - Оденьте их в оранжевую форму, если она есть, иначе в их оригинальную форму.
-  - Дайте им стандартную гарнитуру общего канала, если она есть.
-  - Поместите их внутрь камеры, пристегнув к кровати, затем ослепите или оглушите их и заберите свои наручники.
-  - Осмотрите их вещи на предмет контрабанды и кражи.
-  - Когда время истечет, дайте им забрать свои вещи, проводите их из брига.
-  - Если заключенный находится в состоянии SSD в конце срока, верните их вещи и поместите их в камеру гиперсна брига.
-  - Если заключенный находится в состоянии SSD более 5 минут, вы можете поместить его в камеру гиперсна, но он должен отбыть остаток своего срока, если вернется.
+  ### Who May Charge
 
-  ## Медицинские Эксперименты
-  Заключенный может отказаться от своего права участвовать в медицинских экспериментах. Исследователи, проводящие утвержденные медицинские эксперименты, не могут нести ответственность за ущерб, причиненный субъекту в пределах утвержденных параметров эксперимента.
-  - Все эксперименты требуют подписанного (или заверенного печатью) одобрения либо [color=#008000][bold]Командира[/bold][/color] (но не [color=#90EE90][bold]Дежурного Офицера[/bold][/color]) или Главного Врача.
-  - Заключенные могут попросить использовать их в качестве испытуемых. Время заключения заключенного должно продолжать идти, пока они используются, и они могут уйти, когда оно истечет, и не обязаны продолжать.
-  - Медицинские эксперименты, которые приведут к смерти, должны предлагаться только заключенным, которые подлежат казни, или если казнь является одним из перечисленных вариантов наказания за их преступление. В противном случае это является незаконным и приведет к обвинению в [bold]Попытке Убийства[/bold] или [bold]Убийстве[/bold], где это уместно.
+  This order of priority must be used to select the person issuing charges:
+
+  - [bold]Military Warden[/bold].
+  - [color=#8B0000][bold]Chief MP[/bold][/color].
+  - An uninvolved [color=#ff000d][bold]MP[/bold][/color], in order of rank.
+  - Arresting [color=#ff000d][bold]MP[/bold][/color] (only as a last resort).
+
+  Anyone may choose to defer to the next in line if their attention is needed elsewhere. This should be done sparingly.
+
+  ## Charging and Sentencing Procedure
+
+  Charging and sentencing must be done in this order.
+
+  ### Set the Charges
+  - The person issuing the charges should determine a sentence.
+  - Inform the Suspect of their Charges before the brig timer starts.
+  - Apply the charges and activate the brig timer.
+
+  ### Search and Remove belongings
+  - Remove all their belongings, including ID and headset.
+  - Put them in the orange uniform, if available, else their original uniform. Ensure they also have footwear.
+  - Give them a standard headset with the ship's common channel, if available.
+
+  ### Cell
+  - Place them inside the cell, buckled to the bed, then stun them and recover your handcuffs.
+  - Inform the Suspect they may file an appeal should they wish so.
+  - Search their belongings for contraband and theft.
+
+  ### End of Time Served
+  - When the time is over, let them grab their belongings, escort them out of the brig.
+  - If the prisoner is SSD at the end of their sentence, return their belongings and place them in brig hypersleep.
+
+  ## Additional Charging of Military Police
+
+  - [bold]Always ensure you are permitted to arrest them, first.[/bold]
+  - They are to be charged with [bold]Neglect of Duty[/bold] as an additional crime. This does not upgrade minor crimes to major.
+  - In the event of any major or worse crimes, if they do not attempt to appeal, or their appeal or pardon is denied, they are to be demoted, following the [color=#ff000d][bold]MP[/bold][/color] demotion procedure.
+
+  ## Medical Experiments
+
+  A prisoner may waive their rights in order to participate in medical experiments. Researchers performing approved medical experiments may not be held liable for damages inflicted on the subject within the approved parameters of the experiment.
+  - All experiments require the signed (or stamped) approval of either the [color=#008000][bold]Commander[/bold][/color], or the [bold]Chief Medical Officer[/bold].
+  - Prisoners can request to be used as subjects. The prisoner's brig time must continue to run while they are being used, and are free to go when it expires and are not obligated to continue.
+  - Medical experiments that will result in death must only be offered to prisoners who are to be executed, or if execution is one of the listed punishment options for their crime. It is otherwise illegal, and will result in a [bold]Attempted Murder[/bold], or [bold]Murder[/bold] charge where relevant.
 
 </Document>

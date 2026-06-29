@@ -16,4 +16,9 @@ public sealed partial class CMSurgeryComponent : Component
 
     [DataField(required: true), AutoNetworkedField]
     public List<EntProtoId> Steps = new();
+
+    // Stories-Start
+    [DataField, AutoNetworkedField]
+    public bool SelfOperable;
+    // Stories-End
 }

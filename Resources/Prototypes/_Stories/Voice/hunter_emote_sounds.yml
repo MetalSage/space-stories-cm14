@@ -1,0 +1,13 @@
+- type: emoteSounds
+  id: STHunter
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: STHunterRoar
+    Laugh:
+      collection: STHunterLaugh
+    Click:
+      collection: STHunterClick
+    DefaultDeathgasp:
+      collection: STHunterDeathGasp

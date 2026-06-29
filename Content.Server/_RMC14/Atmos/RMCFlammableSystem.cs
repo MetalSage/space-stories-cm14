@@ -1,12 +1,26 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared._RMC14.Atmos;
+using Content.Shared._RMC14.OnCollide;
+using Content.Shared._RMC14.Sprite;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Damage;
+using Robust.Server.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._RMC14.Atmos;
 
 public sealed class RMCFlammableSystem : SharedRMCFlammableSystem
 {
     [Dependency] private readonly FlammableSystem _flammable = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    // Stories-Ordnance-Start
+    [Dependency] private readonly SharedOnCollideSystem _onCollide = default!;
+    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
+    [Dependency] private readonly SharedRMCSpriteSystem _rmcSprite = default!;
+    // Stories-Ordnance-End
 
     public override void Initialize()
     {
@@ -21,9 +35,9 @@ public sealed class RMCFlammableSystem : SharedRMCFlammableSystem
             args.Show = true;
     }
 
-    public override bool Ignite(Entity<FlammableComponent?> flammable, int intensity, int duration, int? maxStacks, bool igniteDamage = true)
+    public override bool Ignite(Entity<FlammableComponent?> flammable, int intensity, int duration, int? maxStacks, bool igniteDamage = true, DamageSpecifier? tileDamage = null)
     {
-        base.Ignite(flammable, intensity, duration, maxStacks);
+        base.Ignite(flammable, intensity, duration, maxStacks, igniteDamage, tileDamage);
 
         if (!Resolve(flammable, ref flammable.Comp, false))
             return false;
@@ -45,6 +59,7 @@ public sealed class RMCFlammableSystem : SharedRMCFlammableSystem
 
         flammable.Comp.Intensity = intensity;
         flammable.Comp.Duration = duration;
+        flammable.Comp.TileDamage = tileDamage;
         return true;
     }
 
@@ -65,4 +80,69 @@ public sealed class RMCFlammableSystem : SharedRMCFlammableSystem
 
         _flammable.AdjustFireStacks(flammable, stacks, flammable);
     }
+
+    public override void AdjustStacks(Entity<FlammableComponent?> flammable, int stacks)
+    {
+        if (!Resolve(flammable, ref flammable.Comp, false))
+            return;
+
+        flammable.Comp.Intensity = 30;
+        flammable.Comp.Duration = 20;
+        Dirty(flammable);
+
+        _flammable.AdjustFireStacks(flammable, stacks, flammable);
+    }
+
+    public override void DoStopDropRollAnimation(EntityUid uid)
+    {
+        if (!_actionBlocker.CanMove(uid))
+            return;
+
+        RaiseNetworkEvent(new RMCStopDropRollVisualsNetworkEvent(GetNetEntity(uid)), Filter.Pvs(uid)); // RMC14
+    }
+
+    // Stories-Ordnance-Start
+    protected override void SpawnFireChain(EntProtoId spawn, EntityUid chain, EntityCoordinates coordinates, int? intensity, int? duration, Color? burnColor = null)
+    {
+        var spawned = Spawn(spawn, coordinates);
+        if (intensity != null || duration != null || burnColor != null)
+        {
+            var ignite = EnsureComp<RMCIgniteOnCollideComponent>(spawned);
+            var tileFire = EnsureComp<TileFireComponent>(spawned);
+            if (intensity != null)
+                ignite.Intensity = intensity.Value;
+
+            if (duration != null)
+            {
+                ignite.Duration = duration.Value;
+                tileFire.Duration = TimeSpan.FromSeconds(duration.Value);
+                Dirty(spawned, tileFire);
+            }
+
+            if (burnColor != null)
+            {
+                ignite.BurnColor = burnColor.Value;
+                EnsureComp<RMCFireColorComponent>(spawned).Color = burnColor.Value;
+
+                if (TryComp<PointLightComponent>(spawned, out var pointLight))
+                {
+                    _pointLight.SetColor(spawned, burnColor.Value, pointLight);
+                }
+
+                _rmcSprite.SetColor(spawned, burnColor.Value);
+            }
+
+            Dirty(spawned, ignite);
+
+            if (TryComp<DamageOnCollideComponent>(spawned, out var dmg) && intensity != null)
+            {
+                dmg.Damage.DamageDict["Heat"] = intensity.Value * dmg.DirectHitMultiplier;
+                Dirty(spawned, dmg);
+            }
+        }
+
+        var onCollide = EnsureComp<DamageOnCollideComponent>(spawned);
+        _onCollide.SetChain((spawned, onCollide), chain);
+    }
+    // Stories-Ordnance-End
 }

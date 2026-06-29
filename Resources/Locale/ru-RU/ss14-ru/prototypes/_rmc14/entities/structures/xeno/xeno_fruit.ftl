@@ -1,9 +1,9 @@
 ent-XenoFruitBase = смоляное плод
-    .desc = { ent-BaseItem.desc }
+    .desc = a fruit that shouldn't exist
 ent-XenoFruitLesser = Плод смолы (меньший)
     .desc = Плод, съев который, можно моментально восстановить здоровье.
 ent-XenoFruitGreater = Плод смолы (больший)
-    .desc = Плод, съев который, можно моментально восстановить здоровье и получить мощный эффект регенерации на несколько секунд.
+    .desc = { ent-XenoFruitLesser.desc }
 ent-XenoFruitUnstable = Плод смолы (нестабильный)
     .desc = Плод, съев который, можно получить мощный эффект временного щита и небольшую регенерацию в течение нескольких секунд.
 ent-XenoFruitSpore = Плод смолы (споры)

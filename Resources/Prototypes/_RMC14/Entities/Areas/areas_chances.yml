@@ -68,6 +68,7 @@
     noTunnel: true
     unweedable: true
     weatherEnabled: false
+    alwaysPowered: true
 
 - type: entity
   parent: RMCAreaLv522Oob
@@ -159,6 +160,8 @@
   components:
   - type: Sprite
     state: tcomsatcham
+  - type: Area
+    alwaysPowered: true
 
 - type: entity
   parent: RMCAreaLv522
@@ -199,6 +202,7 @@
   - type: Area
     linkedLz: dropship_lz2
     weatherEnabled: true
+    alwaysPowered: true
 
 - type: entity
   parent: RMCAreaLv522LandingZone2
@@ -226,6 +230,7 @@
     OB: true
     supplyDrop: true
     weatherEnabled: false
+    alwaysPowered: true
 
 - type: entity
   parent: RMCAreaLv522LandingZoneForecon
@@ -300,6 +305,8 @@
   components:
   - type: Sprite
     state: yellow
+  - type: Area
+    xenoHiveSetupRestriction: null
 
 - type: entity
   parent: RMCAreaLv522OutdoorsColonyStreets
@@ -318,6 +325,7 @@
     paradropping: true
     OB: true
     supplyDrop: true
+    alwaysPowered: true
 
 - type: entity
   parent: RMCAreaLv522OutdoorsColonyStreetsWindbreaker
@@ -336,6 +344,7 @@
     paradropping: true
     OB: true
     supplyDrop: true
+    alwaysPowered: true
 
 - type: entity
   parent: RMCAreaLv522OutdoorsColonyStreets
@@ -436,6 +445,7 @@
     state: green
   - type: Area
     linkedLz: dropship_lz2
+    alwaysPowered: true
 
 - type: entity
   parent: RMCAreaLv522IndoorsLoneBuildings
@@ -1038,6 +1048,7 @@
   - type: Sprite
     state: unknown
   - type: Area
+    xenoHiveSetupRestriction: null
     CAS: false
     fulton: false
     lasing: false

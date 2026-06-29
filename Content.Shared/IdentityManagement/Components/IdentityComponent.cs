@@ -31,7 +31,9 @@ public sealed class IdentityRepresentation
     public string? PresumedName;
     public string? PresumedJob;
 
-    public IdentityRepresentation(string trueName, Gender trueGender, string ageString, string? presumedName=null, string? presumedJob=null)
+    public bool ForceUnknown; // Stories-Hunter
+
+    public IdentityRepresentation(string trueName, Gender trueGender, string ageString, string? presumedName=null, string? presumedJob=null, bool forceUnknown = false) // Stories-Hunter
     {
         TrueName = trueName;
         TrueGender = trueGender;
@@ -40,6 +42,7 @@ public sealed class IdentityRepresentation
 
         PresumedJob = presumedJob;
         PresumedName = presumedName;
+        ForceUnknown = forceUnknown; // Stories-Hunter
     }
 
     public string ToStringKnown(bool trueName)
@@ -56,6 +59,11 @@ public sealed class IdentityRepresentation
     /// </summary>
     public string ToStringUnknown()
     {
+        // Stories-Hunter-Start
+        if (ForceUnknown)
+            return Loc.GetString("identity-unknown-name");
+        // Stories-Hunter-End
+
         var genderString = TrueGender switch
         {
             Gender.Female => Loc.GetString("identity-gender-feminine"),

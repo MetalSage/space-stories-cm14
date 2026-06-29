@@ -1,0 +1,12 @@
+- type: entity
+  parent: STHunterBaseItem
+  id: STHunterTeleporterBeacon
+  name: relay beacon
+  description: A device covered in sacred text. It whirrs and beeps every couple of seconds.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Misc/hunter_teleporter.rsi
+    state: icon
+  - type: HunterTeleporterBeacon
+  - type: Item
+    size: Small

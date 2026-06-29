@@ -5,8 +5,11 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._RMC14.Atmos;
 
+/// <summary>
+///     Duration-based tile fire; weather can shorten the remaining duration while flammable owns normal fire behavior.
+/// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(SharedRMCFlammableSystem))]
+[Access(typeof(SharedRMCFlammableSystem), typeof(Content.Shared._RMC14.Weather.RMCWeatherSystem))]
 public sealed partial class TileFireComponent : Component
 {
     [DataField(required: true), AutoNetworkedField]
@@ -25,7 +28,7 @@ public sealed partial class TileFireComponent : Component
     public TimeSpan SpawnedAt;
 
     [DataField, AutoNetworkedField]
-    public TimeSpan Duration = TimeSpan.FromMinutes(1);
+    public TimeSpan Duration = TimeSpan.FromSeconds(55);
 
     [DataField, AutoNetworkedField]
     public TimeSpan BigFireDuration = TimeSpan.FromSeconds(0.5);

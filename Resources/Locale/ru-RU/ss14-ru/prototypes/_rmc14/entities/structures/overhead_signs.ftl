@@ -51,5 +51,5 @@ ent-RMCOverheadSignNeonPizza = { ent-RMCOverheadSignNeon }
 ent-RMCOverheadSignNeonWeYaMart = { ent-RMCOverheadSignNeon }
     .desc = { ent-RMCOverheadSignNeon.desc }
 ent-RMCOverheadSignNeonWeYaMartOffset = { ent-RMCOverheadSignNeonWeYaMart }
-    .suffix = Смещение
     .desc = { ent-RMCOverheadSignNeonWeYaMart.desc }
+    .suffix = Смещение

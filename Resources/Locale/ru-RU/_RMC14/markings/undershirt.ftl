@@ -1,48 +1,71 @@
 marking-RMCUndershirtStandard = Нижняя рубашка (стандартная)
 marking-RMCUndershirtStandard-t_undershirt = Нижняя рубашка
+
 marking-RMCUndershirtStandardDark = Черная нижняя рубашка (стандартная)
 marking-RMCUndershirtStandardDark-b_undershirt = Нижняя рубашка
+
 marking-RMCUndershirtSleeveless = Нижняя рубашка (без рукавов)
 marking-RMCUndershirtSleeveless-t_undershirt_sleeveless = Нижняя рубашка
+
 marking-RMCUndershirtSleevelessDark = Черная нижняя рубашка (без рукавов)
 marking-RMCUndershirtSleevelessDark-b_undershirt_sleeveless = Нижняя рубашка
+
 marking-RMCUndershirtRolled = Нижняя рубашка в рубчик
 marking-RMCUndershirtRolled-t_rolled_undershirt = Нижняя рубашка
+
 marking-RMCUndershirtRolledSleeveless = Нижняя рубашка в рубчик (без рукавов)
 marking-RMCUndershirtRolledSleeveless-t_rolled_undershirt_sleeveless = Нижняя рубашка
+
 marking-RMCUndershirtLong = Нижняя рубашка (длинная)
 marking-RMCUndershirtLong-t_long_undershirt = Нижняя рубашка
+
 marking-RMCUndershirtLongDark = Черная нижняя рубашка (длинная)
 marking-RMCUndershirtLongDark-b_long_undershirt = Нижняя рубашка
+
 marking-RMCUndershirtClassic = Бюстгальтер (классический)
 marking-RMCUndershirtClassic-c_classic = Бюстгальтер
+
 marking-RMCUndershirtSports = Бюстгальтер (спортивный)
 marking-RMCUndershirtSports-c_sports = Бюстгальтер
+
 marking-RMCUndershirtStrapless = Бюстгальтер (без бретелек)
 marking-RMCUndershirtStrapless-c_strapless = Бюстгальтер
+
 marking-RMCUndershirtClassicDesert = Бюстгальтер (классический, Пустыня)
 marking-RMCUndershirtClassicDesert-d_classic = Бюстгальтер
+
 marking-RMCUndershirtSportsDesert = Бюстгальтер (спортивный, Пустыня)
 marking-RMCUndershirtSportsDesert-d_sports = Бюстгальтер
+
 marking-RMCUndershirtStraplessDesert = Бюстгальтер (без бретелек, Пустыня)
 marking-RMCUndershirtStraplessDesert-d_strapless = Бюстгальтер
+
 marking-RMCUndershirtClassicJungle = Бюстгальтер (классический, Джунгли)
 marking-RMCUndershirtClassicJungle-j_classic = Бюстгальтер
+
 marking-RMCUndershirtSportsJungle = Бюстгальтер (спортивный, Джунгли)
 marking-RMCUndershirtSportsJungle-j_sports = Бюстгальтер
+
 marking-RMCUndershirtStraplessJungle = Бюстгальтер (без бретелек, Джунгли)
 marking-RMCUndershirtStraplessJungle-j_strapless = Бюстгальтер
+
 marking-RMCUndershirtClassicSnow = Бюстгальтер (классический, Снег)
 marking-RMCUndershirtClassicSnow-s_classic = Бюстгальтер
+
 marking-RMCUndershirtSportsSnow = Бюстгальтер (спортивный, Снег)
 marking-RMCUndershirtSportsSnow-s_sports = Бюстгальтер
+
 marking-RMCUndershirtStraplessSnow = Бюстгальтер (без бретелек, Снег)
 marking-RMCUndershirtStraplessSnow-s_strapless = Бюстгальтер
+
 marking-RMCUndershirtClassicUrban = Бюстгальтер (классический, Городской)
 marking-RMCUndershirtClassicUrban-u_bra = Бюстгальтер
+
 marking-RMCUndershirtSportsUrban = Бюстгальтер (спортивный, Городской)
 marking-RMCUndershirtSportsUrban-u_sports = Бюстгальтер
+
 marking-RMCUndershirtStraplesUrban = Бюстгальтер (без бретелек, Городской)
 marking-RMCUndershirtStraplesUrban-u_strapless = Бюстгальтер
+
 marking-RMCUndershirtNone = Нет
 marking-RMCUndershirtNone-blank = Нет

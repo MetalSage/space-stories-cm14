@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseFoam
+  id: STTransparentSmoke
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: "#ffffffcc"
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Tag
+    tags:
+    - HideContextMenu

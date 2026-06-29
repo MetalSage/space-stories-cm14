@@ -1,0 +1,6 @@
+- type: entity
+  parent: CMRack
+  id: STRackHunter
+  components:
+  - type: Sprite
+    color: "#6B675E"

@@ -1,3 +1,4 @@
+using Content.Shared._Stories.Hunter.Profiles; // Stories-Hunter
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Shared.Prototypes;
@@ -12,6 +13,7 @@ namespace Content.Client.Lobby
 
         GameSettings? Settings { get; }
         PlayerPreferences? Preferences { get; }
+        HunterProfile? HunterProfile { get; } // Stories-Hunter
         void Initialize();
         void SelectCharacter(ICharacterProfile profile);
         void SelectCharacter(int slot);
@@ -20,5 +22,6 @@ namespace Content.Client.Lobby
         void DeleteCharacter(ICharacterProfile profile);
         void DeleteCharacter(int slot);
         void UpdateConstructionFavorites(List<ProtoId<ConstructionPrototype>> favorites);
+        void UpdateHunterProfile(HunterProfile profile); // Stories-Hunter
     }
 }

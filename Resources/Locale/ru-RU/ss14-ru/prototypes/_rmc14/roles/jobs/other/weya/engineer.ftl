@@ -1,5 +1,6 @@
 ent-RMCRandomHumanoidPMCEngineer = роль призрака ЧВК Ве-Я инженер
+    .desc = { "" }
     .suffix = Спавнер, Игрок
-    .desc = { ent-MarkerBase.desc }
 ent-RMCSpawnPointPMCEngineer = точка появления ЧВК Ве-Я инженер
     .desc = { ent-CMSpawnPointJobBase.desc }
+    .suffix = { ent-CMSpawnPointJobBase.suffix }

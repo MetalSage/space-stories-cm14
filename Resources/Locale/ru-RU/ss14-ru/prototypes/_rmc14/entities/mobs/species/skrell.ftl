@@ -1,5 +1,5 @@
 ent-RMCMobSkrell = Урист Р МаЖаб
+    .desc = { ent-RMCBaseMobSpeciesOrganic.desc }
     .suffix = RMC14
-    .desc = { ent-CMBaseMobSpeciesOrganic.desc }
 ent-MobSkrellDummy = { ent-BaseSpeciesDummy }
     .desc = { ent-BaseSpeciesDummy.desc }

@@ -1,0 +1,12 @@
+ent-RMCResearchUpgradeBase = research upgrade
+    .desc = A disk containing research data for upgrading equipment.
+ent-RMCResearchUpgradeAutodocInternalBleeding = research upgrade (autodoc — internal bleeding)
+    .desc = Research upgrade for an autodoc. The technology on this disk is used for stitching up internal bleeding. Insert it into an autodoc console to use it.
+ent-RMCResearchUpgradeAutodocBrokenBone = research upgrade (autodoc — broken bones)
+    .desc = Research upgrade for an autodoc. The technology on this disk is used for fixing broken bones. Insert it into an autodoc console to use it.
+ent-RMCResearchUpgradeAutodocOrganDamage = research upgrade (autodoc — organ damage)
+    .desc = Research upgrade for an autodoc. The technology on this disk is used for treating internal organ damage. Insert it into an autodoc console to use it.
+ent-RMCResearchUpgradeAutodocLarvaExtraction = research upgrade (autodoc — parasite extraction)
+    .desc = Research upgrade for an autodoc. The technology on this disk is used for extracting unknown parasites. Insert it into an autodoc console to use it.
+ent-RMCResearchUpgradeSleeper = research upgrade (sleeper)
+    .desc = Research upgrade for a sleeper system. The technology on this disk allows a wider spectrum of chemicals to be administered and improves the dialysis machine.

@@ -2,6 +2,7 @@
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
+using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Medical.Surgery;
 using Content.Shared._RMC14.Medical.Surgery.Conditions;
@@ -95,11 +96,25 @@ public sealed class CMSurgerySystem : SharedCMSurgerySystem
             return;
         }
 
-        if (user == args.Target)
+        // Stories-Start
+        var canSelfOperate = false;
+        foreach (var surgeryProto in _surgeries)
+        {
+            if (GetSingleton(surgeryProto) is { } surgeryEnt &&
+                TryComp<CMSurgeryComponent>(surgeryEnt, out var surgeryComp) &&
+                surgeryComp.SelfOperable)
+            {
+                canSelfOperate = true;
+                break;
+            }
+        }
+
+        if (user == args.Target && !canSelfOperate)
         {
             _popup.PopupEntity("You can't perform surgery on yourself!", user, user);
             return;
         }
+        // Stories-End
 
         args.Handled = true;
         _ui.OpenUi(args.Target.Value, CMSurgeryUIKey.Key, user);
@@ -119,7 +134,10 @@ public sealed class CMSurgerySystem : SharedCMSurgerySystem
 
     private void OnStepScreamComplete(Entity<CMSurgeryStepEmoteEffectComponent> ent, ref CMSurgeryStepEvent args)
     {
-        _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
+        if (!HasComp<RMCUnconsciousComponent>(args.Body))
+        {
+            _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
+        }
     }
 
     private void OnStepSpawnComplete(Entity<RMCSurgeryStepSpawnEffectComponent> ent, ref CMSurgeryStepEvent args)

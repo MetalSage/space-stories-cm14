@@ -1,0 +1,16 @@
+ent-RMCWatchBaseL = watchL
+    .desc = An abstract watch.
+ent-RMCWatchBaseR = watchR
+    .desc = An abstract watch.
+ent-RMCWatchCheap = cheap digital watch
+    .desc = A cheap 24-hour only digital wrist watch. It has a crappy red display, great for looking at in the dark!
+ent-RMCWatchBasic = Seikaku Pulsemeter wristwatch
+    .desc = Model S448-209A, a durable quartz-based wristwatch issued to most Marines who pass through basic training.
+ent-RMCWatchSynth = Seikaku 13B6-2000 wristwatch
+    .desc = A fancy black-bodied wristwatch. Once set correctly, it always holds the right time. For the connoisseurs of precision.
+ent-RMCWatchSurv = Seikaku 13B6-3000 wristwatch
+    .desc = With the pioneering design of analog quartz chronographs beating inside it, this asymetric wristwatch is perfect for anyone who can remain standing where others have all fallen.
+ent-RMCWatchLiaison = Seikaku H487-9098 wristwatch
+    .desc = A more upmarket wristwatch tailored towards junior executives & 'company guys' all across the galaxy. Flashy, but not horribly ostentatious.
+ent-RMCWatchPilot = Veniti E-338 wristwatch
+    .desc = Advertised as being 'A new dawn of precision digital watches', the E-338 became a popular hit with members of the civil aerospace industry.

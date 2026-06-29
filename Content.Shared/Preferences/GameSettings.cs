@@ -15,5 +15,7 @@ namespace Content.Shared.Preferences
             get => _maxCharacterSlots;
             set => _maxCharacterSlots = value;
         }
+
+        public bool IsHunterWhitelisted { get; set; } // Stories-Hunter
     }
 }

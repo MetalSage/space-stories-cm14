@@ -1,5 +1,6 @@
 - type: reaction
   id: RMCLexorin
+  priority: 5
   reactants:
     RMCPhoron:
       amount: 1

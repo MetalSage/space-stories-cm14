@@ -25,18 +25,54 @@ public sealed class CMStorageVisualizerSystem : VisualizerSystem<CMStorageVisual
         //  don't count holster's contents towards fill status
         if (TryComp(uid, out StorageComponent? storage) &&
             TryComp(uid, out CMHolsterComponent? holster) &&
+            storage.Container != null &&
             storage.Container.ContainedEntities.Count == holster.Contents.Count)
             used = 0;
 
+        // Lockable storage uses a custom presentation:
+        // locked storage rests closed but still shows open while actively viewed,
+        // while unlocked storage rests open when empty and closed when it contains items.
+        if (TryComp(uid, out RMCIdLockableStorageComponent? lockable))
+        {
+            if (component.StorageEmpty != null)
+                args.Sprite.LayerSetVisible(component.StorageEmpty, false);
+
+            if (!AppearanceSystem.TryGetData<bool>(uid, StorageVisuals.Open, out var lockableOpen, args.Component))
+                return;
+
+            if (lockable.Locked)
+            {
+                if (component.StorageOpen != null)
+                    args.Sprite.LayerSetVisible(component.StorageOpen, lockableOpen);
+                if (component.StorageClosed != null)
+                    args.Sprite.LayerSetVisible(component.StorageClosed, !lockableOpen);
+                return;
+            }
+
+            var emptyUnlocked = used == 0;
+            var showOpen = lockableOpen || emptyUnlocked;
+            if (component.StorageOpen != null)
+                args.Sprite.LayerSetVisible(component.StorageOpen, showOpen);
+            if (component.StorageClosed != null)
+                args.Sprite.LayerSetVisible(component.StorageClosed, !showOpen);
+            return;
+        }
+
         if (used == 0)
         {
-            if (component.StorageOpen != null)
-                args.Sprite.LayerSetVisible(component.StorageOpen, false);
-            if (component.StorageClosed != null)
-                args.Sprite.LayerSetVisible(component.StorageClosed, false);
+            if (!component.ShowOpenClosedWhenEmpty)
+            {
+                if (component.StorageOpen != null)
+                    args.Sprite.LayerSetVisible(component.StorageOpen, false);
+                if (component.StorageClosed != null)
+                    args.Sprite.LayerSetVisible(component.StorageClosed, false);
+                if (component.StorageEmpty != null)
+                    args.Sprite.LayerSetVisible(component.StorageEmpty, true);
+                return;
+            }
+
             if (component.StorageEmpty != null)
-                args.Sprite.LayerSetVisible(component.StorageEmpty, true);
-            return;
+                args.Sprite.LayerSetVisible(component.StorageEmpty, false);
         }
         else
         {

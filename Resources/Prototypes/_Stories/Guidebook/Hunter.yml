@@ -1,0 +1,39 @@
+- type: guideEntry
+  id: STHunterGuide
+  parent: RMC
+  name: "Охотник"
+  priority: 2
+  text: "/ServerInfo/Guidebook/_Stories/HonorCode/STHunterGuide.xml"
+  children:
+    - STHunterHonorCode
+    - STHunterHunterMemo
+    - STHunterRoleplayStandards
+    - STHunterLore
+
+- type: guideEntry
+  id: STHunterHonorCode
+  parent: RMC
+  name: "Кодекс Чести"
+  priority: 1
+  text: "/ServerInfo/Guidebook/_Stories/HonorCode/STHunterHonorCode.xml"
+
+- type: guideEntry
+  id: STHunterHunterMemo
+  parent: RMC
+  name: "Памятка Охотника"
+  priority: 2
+  text: "/ServerInfo/Guidebook/_Stories/HonorCode/STHunterMemo.xml"
+
+- type: guideEntry
+  id: STHunterRoleplayStandards
+  parent: RMC
+  name: "Стандарты Ролевой Игры"
+  priority: 3
+  text: "/ServerInfo/Guidebook/_Stories/HonorCode/STHunterRoleplayStandards.xml"
+
+- type: guideEntry
+  id: STHunterLore
+  parent: RMC
+  name: "История (Лор)"
+  priority: 4
+  text: "/ServerInfo/Guidebook/_Stories/HonorCode/STHunterLore.xml"

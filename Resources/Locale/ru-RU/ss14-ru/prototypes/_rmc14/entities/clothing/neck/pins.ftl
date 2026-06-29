@@ -1,3 +1,5 @@
+ent-RMCPridePinBase = pride pin
+    .desc = An abstract pride pin.
 ent-RMCClothingNeckLGBTPin = { ent-ClothingNeckLGBTPin }
     .desc = { ent-ClothingNeckLGBTPin.desc }
 ent-RMCClothingNeckAromanticPin = { ent-ClothingNeckAromanticPin }

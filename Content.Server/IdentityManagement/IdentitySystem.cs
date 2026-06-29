@@ -2,6 +2,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.CriminalRecords.Systems;
 using Content.Server.Humanoid;
+using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Database;
 using Content.Shared.Hands;
@@ -159,8 +160,11 @@ public sealed class IdentitySystem : SharedIdentitySystem
 
         var ageString = _humanoid.GetAgeRepresentation(species, age);
         var trueName = Name(target);
+
+        var isHunter = HasComp<HunterComponent>(target); // Stories-Hunter
+
         if (!Resolve(target, ref inventory, false))
-            return new(trueName, gender, ageString, string.Empty);
+            return new(trueName, gender, ageString, string.Empty, forceUnknown: isHunter); // Stories-Hunter
 
         string? presumedJob = null;
         string? presumedName = null;
@@ -173,7 +177,7 @@ public sealed class IdentitySystem : SharedIdentitySystem
         }
 
         // If it didn't find a job, that's fine.
-        return new(trueName, gender, ageString, presumedName, presumedJob);
+        return new(trueName, gender, ageString, presumedName, presumedJob, forceUnknown: isHunter); // Stories-Hunter
     }
 
     #endregion

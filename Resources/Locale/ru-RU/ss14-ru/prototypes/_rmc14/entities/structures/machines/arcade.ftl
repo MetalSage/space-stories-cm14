@@ -1,0 +1,12 @@
+ent-RMCArcadeBroken = broken arcade cabinet
+    .desc = A broken arcade cabinet. You won't be playing much computer with this thing.
+    .suffix = RMC
+ent-RMCArcade = arcade cabinet
+    .desc = An arcade cabinet.
+    .suffix = RMC
+ent-RMCArcadeBlockGame = { ent-RMCArcade }
+    .desc = { ent-RMCArcade.desc }
+    .suffix = { ent-RMCArcade.suffix }
+ent-RMCArcadeSpaceVillain = { ent-RMCArcade }
+    .desc = { ent-RMCArcade.desc }
+    .suffix = { ent-RMCArcade.suffix }

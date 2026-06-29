@@ -811,6 +811,9 @@
   id: InvalidForSurvivorAntag
 
 - type: Tag
+  id: JanicartKeys
+
+- type: Tag
   id: JawsOfLife
 
 - type: Tag
@@ -1456,6 +1459,9 @@
 
 - type: Tag
   id: WeldingMask
+
+- type: Tag
+  id: Welder
 
 - type: Tag
   id: WetFloorSign

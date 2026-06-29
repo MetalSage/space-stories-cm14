@@ -105,6 +105,8 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-sigh"]
@@ -130,6 +132,8 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-whistle"]
@@ -151,6 +155,8 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-crying"]
@@ -484,13 +490,11 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-chirp"]
   chatTriggers:
-    - chirp
-    - chirps
-    - chirped
-    - chirping
-    # Corvax-Localization-Start
-    - чирикает
-    # Corvax-Localization-End
+    - placeholderEmoteTrigger #RMC14  chat triggers conflict with RMCAvaliChirp
+    #- chirp
+    #- chirps
+    #- chirped
+    #- chirping
 
 # Machine Emotes
 - type: emote

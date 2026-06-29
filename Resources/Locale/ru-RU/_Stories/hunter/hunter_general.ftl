@@ -1,0 +1,12 @@
+st-hunter-join-failed-not-hunt-round = Это не раунд охоты.
+st-hunter-join-failed-banned = Вы забанены на роле Охотника.
+st-hunter-join-failed-no-profile = У вас не выбран профиль Охотника в настройках персонажа.
+st-hunter-join-failed-already-playing = Вы уже в игре.
+st-hunter-join-failed-status-whitelist = У вас нет доступа к выбранному статусу Охотника ({ $status }).
+st-hunter-join-failed-no-slots = Нет свободных слотов для Охотников.
+st-hunter-join-failed-error = Произошла ошибка при попытке присоединиться как Охотник.
+st-hunter-round-started-announcement = Обнаружены неопознанные тепловые сигнатуры, входящие в зону операции. Соблюдайте предельную осторожность.
+st-hunter-round-admin-announcement = Начался раунд Охотников.
+job-name-hunter-normal = Охотник
+job-name-hunter-council = Член Совета
+job-name-hunter-leader = Лидер Клана

@@ -13,7 +13,7 @@ namespace Content.Server.Speech
             SubscribeLocalEvent<TransformSpeechEvent>(AccentHandler);
         }
 
-        private void AccentHandler(TransformSpeechEvent args)
+        private void AccentHandler(ref TransformSpeechEvent args)
         {
             var accentEvent = new AccentGetEvent(args.Sender, args.Message);
 

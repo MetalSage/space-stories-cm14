@@ -1,0 +1,5 @@
+- type: soundCollection
+  id: STNukeSoundCollection
+  files:
+  - /Audio/_Stories/Nuke/nuke.ogg
+  - /Audio/_Stories/Nuke/nuke2-1.ogg

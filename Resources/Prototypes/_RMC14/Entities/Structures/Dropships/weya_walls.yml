@@ -723,7 +723,7 @@
 
 - type: entity
   parent: RMCBaseWeyaWall
-  id: RMCWeyaWallStandard18=
+  id: RMCWeyaWallStandard18
   components:
   - type: Sprite
     state: 18

@@ -1,7 +1,7 @@
 ent-RMCWindowFrameKutjevo = { ent-RMCBaseWindowFrame }
     .desc = { ent-RMCBaseWindowFrame.desc }
-ent-RMCWindowFrameKutjevoReinforced = { ent-RMCBaseWindowFrame }
-    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowFrameKutjevoReinforced = { ent-RMCWindowFrameColonyReinforced }
+    .desc = { ent-RMCWindowFrameColonyReinforced.desc }
 ent-RMCWindowKutjevo = окно
     .desc = Стеклянная витрина в настенной раме.
 ent-RMCWindowKutjevoReinforced = армированное окно

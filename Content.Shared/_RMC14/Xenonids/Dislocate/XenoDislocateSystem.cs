@@ -31,7 +31,7 @@ public sealed class XenoDislocateSystem : EntitySystem
     [Dependency] private readonly SharedRMCMeleeWeaponSystem _rmcMelee = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly RMCActionsSystem _rmcActions = default!;
+    [Dependency] private readonly SharedRMCActionsSystem _rmcActions = default!;
     [Dependency] private readonly XenoSystem _xeno = default!;
     [Dependency] private readonly RMCSizeStunSystem _sizeStun = default!;
     [Dependency] private readonly RMCObstacleSlammingSystem _obstacleSlamming = default!;
@@ -63,7 +63,7 @@ public sealed class XenoDislocateSystem : EntitySystem
                          HasComp<StunnedComponent>(targetId) ||
                          _standing.IsDown(targetId);
 
-        var damage = _damageable.TryChangeDamage(targetId, xeno.Comp.Damage, ignoreResistances: isDebuffed, origin: xeno, tool: xeno);
+        var damage = _damageable.TryChangeDamage(targetId, _xeno.ApplyXenoMeleeDamageModifiers(xeno, targetId, xeno.Comp.Damage), ignoreResistances: isDebuffed, origin: xeno, tool: xeno);
         if (damage?.GetTotal() > FixedPoint2.Zero)
         {
             var filter = Filter.Pvs(targetId, entityManager: EntityManager).RemoveWhereAttachedEntity(o => o == xeno.Owner);

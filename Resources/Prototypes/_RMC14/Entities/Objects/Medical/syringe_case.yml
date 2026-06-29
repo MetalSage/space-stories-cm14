@@ -31,6 +31,19 @@
     blacklist:
       components:
       - Xeno
+  - type: PhysicalComposition
+    materialComposition:
+      RMCPlastic: 1000
+  - type: StorageStoreSkillRequired
+    entries:
+    - whitelist:
+        tags:
+        - Bottle
+        - Syringe
+        - CMAutoInjector
+      skills:
+        all:
+          RMCSkillMedical: 1
 
 - type: Tag
   id: RMCSyringeCase

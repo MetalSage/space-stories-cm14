@@ -1,12 +1,12 @@
 ent-BaseItem = предмет
-    .desc = { "" }
+    .desc = { ent-CMCorrodible.desc }
 ent-BaseStorageItem = предмет хранения
     .desc = { ent-BaseItem.desc }
 ent-BaseBagOpenClose = { "" }
     .desc = { "" }
-ent-PowerCellSlotSmallItem = a
+ent-PowerCellSlotSmallItem = { "" }
     .desc = { "" }
-ent-PowerCellSlotMediumItem = a
+ent-PowerCellSlotMediumItem = { "" }
     .desc = { "" }
 ent-PowerCellSlotHighItem = { "" }
     .desc = { "" }

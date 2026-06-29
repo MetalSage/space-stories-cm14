@@ -418,33 +418,6 @@
   components:
   - type: PaperRandomStory
     template: GenericStory
-    storySegments:
-    - "Это "
-    - book_genre
-    - ", где главными героями являются "
-    - book_character_trait
-    - " "
-    - book_character
-    - " и "
-    - book_character_trait
-    - " "
-    - book_character
-    - ". Вследствие "
-    - book_event
-    - ", они "
-    - book_action_trait
-    - " "
-    - book_action
-    - " "
-    - book_character
-    - ", "
-    - book_location
-    - ". \n\n"
-    - book_story_element
-    - " "
-    - book_story_element_trait
-    - "."
-    storySeparator: ""
 
 - type: entity
   parent: BookBase

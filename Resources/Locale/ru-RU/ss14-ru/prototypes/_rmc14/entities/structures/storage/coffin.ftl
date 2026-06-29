@@ -1,6 +1,9 @@
 ent-CMCoffin = гроб
     .desc = Это погребальный сосуд для усопших.
+    .suffix = { ent-CMClosetBase.suffix }
 ent-CMCoffinMarine = Гроб для морского пехотинца
     .desc = Погребальный сосуд для усопших морских пехотинцев, украшенный красной эмблемой Корпуса. Semper fi.
+    .suffix = { ent-CMCoffin.suffix }
 ent-CMCoffinPred = странный гроб
     .desc = Это погребальный сосуд для усопших. Кажется, на боку есть странная маркировка...?
+    .suffix = { ent-CMCoffin.suffix }

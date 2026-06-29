@@ -1,5 +1,5 @@
 ent-CMMobFelinid = Urist McFelinid
+    .desc = { ent-RMCBaseMobSpeciesOrganic.desc }
     .suffix = RMC14
-    .desc = { ent-CMBaseMobSpeciesOrganic.desc }
 ent-MobFelinidDummy = { ent-BaseSpeciesDummy }
     .desc = { ent-BaseSpeciesDummy.desc }

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._RMC14.CrashLand;
@@ -24,14 +25,6 @@ public sealed class CrashLandSystem : SharedCrashLandSystem
 
     private void OnCrashLanded(Entity<EntityStorageComponent> ent, ref CrashLandedEvent args)
     {
-        if (!args.ShouldDamage)
-            return;
-
-        foreach (var entity in ent.Comp.Contents.ContainedEntities)
-        {
-            ApplyFallingDamage(entity);
-        }
-
         ent.Comp.OpenOnMove = true;
         Dirty(ent);
 

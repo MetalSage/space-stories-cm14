@@ -27,3 +27,6 @@ ent-RMCBoxShotgunHeavyFlechette = коробка тяжелых патронов
     .desc = Коробка, наполненная тяжелыми дробовыми патронами со стреловидными пулями. 8 калибр.
 ent-RMCBoxShotgunHeavyDragonbreath = коробка дробовых патронов с огненным дыханием
     .desc = Коробка, наполненная дробовыми патронами с огненным дыханием. 8 калибр.
+ent-RMCBoxShotgunL49B = box of L49B shells
+    .desc = A box filled with breaching shells, compatible with the L49 assault shotgun. 12 Gauge.
+    .suffix = PVE, RCM

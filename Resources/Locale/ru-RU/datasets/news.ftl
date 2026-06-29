@@ -62,8 +62,6 @@ news-dataset-61 = If Tin Whistles Are Made Of Tin, What Do They Make Foghorns Ou
 news-dataset-62 = Broccoli discovered to be colonies of tiny aliens with murder on their minds
 
 ## Commented
-
-
 # {{AFFECTED}} clerk first person able to pronounce '@*$%!'.
 # {{AFFECTED}} delis serving boiled paperback dictionaries, 'Adjectives chewy' customers declare.
 # {{AFFECTED}} weather deemed 'boring'; meteors and rad storms to be imported.
@@ -84,4 +82,3 @@ news-dataset-62 = Broccoli discovered to be colonies of tiny aliens with murder 
 # Boy Saves Tajaran From Tree on {{AFFECTED}}, Thousands Cheer
 # Shipment Of Apples Overturns, {{AFFECTED}} Diner Offers Applesauce Special
 # Spotted Owl Spotted on {{AFFECTED}}
-

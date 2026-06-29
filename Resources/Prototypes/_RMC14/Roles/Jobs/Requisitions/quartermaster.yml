@@ -9,22 +9,22 @@
     department: CMRequisitions
     time: 36000 # 10 hours
   ranks:
-    RMCRankMasterSergeant:
+    RMCRankMasterSergeant: # Stories-Fixes
     - !type:RoleTimeRequirement
       role: CMJobQuartermaster
       time: 252000 # 70 hours
-    RMCRankGunnerySergeant:
+    RMCRankGunnerySergeant: # Stories-Fixes start
     - !type:RoleTimeRequirement
       role: CMJobQuartermaster
       time: 36000 # 10 hours
-    RMCRankStaffSergeant: []
+    RMCRankStaffSergeant: [] # Stories-Fixes end
   weight: 5
   startingGear: CMGearQuartermaster
-  icon: "CMJobIconQuartermaster"
+  icon: "STJobIconQuartermaster" # Stories-Fixes
   requireAdminNotify: true
   joinNotifyCrew: false
-  marineAuthorityLevel: 6
-  supervisors: cm-job-supervisors-aso
+  marineAuthorityLevel: 6 # Stories-Fixes start
+  supervisors: cm-job-supervisors-aso # Stories-Fixes end
   accessGroups:
   - QuarterMaster
   roleWeight: 0.25
@@ -55,14 +55,20 @@
     - type: TacticalMapIcon
       icon:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi
-        state: cargo
+        state: ro
+      background:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: background_command
     - type: RMCTrackable
+    - type: MutinyEligible
+    - type: RMCAwardRecommendation
+    - type: SeeNewPlayers
 
 - type: startingGear
   id: CMGearQuartermaster
   equipment:
     jumpsuit: CMJumpsuitQM
-    shoes: CMBootsBlack
+    shoes: CMBootsBlackFilled
     head: RMCHeadCapQuartermaster
     gloves: CMHandsInsulated
     id: CMIDCardQuartermaster
@@ -75,7 +81,7 @@
 - type: entity
   parent: CMSpawnPointJobBase
   id: CMSpawnPointQuartermaster
-  name: quartermaster spawn point
+  name: Logistics Officer spawn point
   components:
   - type: SpawnPoint
     job_id: CMQuartermaster
@@ -89,8 +95,8 @@
 - type: entity
   parent: CMGuidebookRole
   id: RMCGuidebookRoleQM
-  name: The QM
-  description: The Quartermaster.
+  name: The LO
+  description: The Logistics Officer.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite

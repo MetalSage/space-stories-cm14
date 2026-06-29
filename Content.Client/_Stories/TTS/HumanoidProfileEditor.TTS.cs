@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Content.Client._Stories.TTS;
-using Content.Client.Lobby;
 using Content.Shared._Stories.TTS;
 using Content.Shared.Preferences;
 
@@ -34,25 +33,43 @@ public sealed partial class HumanoidProfileEditor
 
         VoiceButton.Clear();
 
-        var firstVoiceChoiceId = 1;
+        var firstVoiceChoiceId = -1;
+
+        var isHunter = Profile.Species == "STHunter";
+
         for (var i = 0; i < _voiceList.Count; i++)
         {
             var voice = _voiceList[i];
             if (!HumanoidCharacterProfile.CanHaveVoice(voice, Profile.Sex))
                 continue;
 
+            if (voice.Blacklist != null)
+            {
+                if (isHunter)
+                {
+                    if (voice.Blacklist.Contains("Hunter"))
+                        continue;
+                }
+                else
+                {
+                    if (voice.Blacklist.Contains("Human"))
+                        continue;
+                }
+            }
+
             var name = Loc.GetString(voice.Name);
             VoiceButton.AddItem(name, i);
 
-            if (firstVoiceChoiceId == 1)
+            if (firstVoiceChoiceId == -1)
                 firstVoiceChoiceId = i;
         }
 
         var voiceChoiceId = _voiceList.FindIndex(x => x.ID == Profile.Voice);
-        if (!VoiceButton.TrySelectId(voiceChoiceId) &&
-            VoiceButton.TrySelectId(firstVoiceChoiceId))
+
+        if (!VoiceButton.TrySelectId(voiceChoiceId))
         {
-            SetVoice(_voiceList[firstVoiceChoiceId].ID);
+            if (firstVoiceChoiceId != -1 && VoiceButton.TrySelectId(firstVoiceChoiceId))
+                SetVoice(_voiceList[firstVoiceChoiceId].ID);
         }
     }
 
@@ -61,6 +78,7 @@ public sealed partial class HumanoidProfileEditor
         if (Profile is null)
             return;
 
-        _entManager.System<TTSSystem>().RequestPreviewTTS(Profile.Voice);
+        var isHunter = Profile.Species == "STHunter";
+        _entManager.System<TTSSystem>().RequestPreviewTTS(Profile.Voice, isHunter);
     }
 }

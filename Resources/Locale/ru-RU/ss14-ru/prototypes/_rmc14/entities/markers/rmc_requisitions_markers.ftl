@@ -1,0 +1,15 @@
+ent-RMCRequisitionsChairMarker = маркер кресла отдела снабжения
+    .desc = { ent-MarkerBase.desc }
+    .suffix = RMC14
+ent-RMCRequisitionsChairMarkerNorth = { ent-RMCRequisitionsChairMarker }
+    .desc = { ent-RMCRequisitionsChairMarker.desc }
+    .suffix = RMC14, Север
+ent-RMCRequisitionsChairMarkerEast = { ent-RMCRequisitionsChairMarker }
+    .desc = { ent-RMCRequisitionsChairMarker.desc }
+    .suffix = RMC14, Восток
+ent-RMCRequisitionsChairMarkerSouth = { ent-RMCRequisitionsChairMarker }
+    .desc = { ent-RMCRequisitionsChairMarker.desc }
+    .suffix = RMC14, Юг
+ent-RMCRequisitionsChairMarkerWest = { ent-RMCRequisitionsChairMarker }
+    .desc = { ent-RMCRequisitionsChairMarker.desc }
+    .suffix = RMC14, Запад

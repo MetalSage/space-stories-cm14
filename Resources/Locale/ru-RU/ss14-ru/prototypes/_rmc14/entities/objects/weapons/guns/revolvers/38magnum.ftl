@@ -1,8 +1,8 @@
 ent-RMCWeaponRevolver38Magnum = револьвер .38 магнум
     .desc = Тощий револьвер .38. Нестареющая классика, от древности до будущего. Эта конкретная модель известна своей крайней неточностью, но чрезвычайной летальностью.
 ent-RMCWeaponRevolver38Empty = { ent-RMCWeaponRevolver38Magnum }
-    .suffix = Пустой
     .desc = { ent-RMCWeaponRevolver38Magnum.desc }
+    .suffix = Пустой
 ent-RMCBaseSpeedLoader38 = спидлоадер (.38)
     .desc = { ent-BaseItem.desc }
 ent-RMCSpeedLoader38 = спидлоадер (.38)

@@ -1,5 +1,5 @@
-ent-RMCBasePalm = { ent-BaseTree }
-    .desc = { ent-BaseTree.desc }
+ent-RMCBasePalm = { ent-RMCBaseTree }
+    .desc = { ent-RMCBaseTree.desc }
 ent-RMCBasePlant = { "" }
     .desc = { "" }
 ent-RMCBaseRockIndistructable = { "" }

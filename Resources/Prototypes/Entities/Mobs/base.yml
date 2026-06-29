@@ -111,6 +111,7 @@
 #    - Asphyxiation
 #    - Radiation
   - type: RMCHealthExaminable # RMC14
+    speciesType: Humanoid
   - type: DamageOnHighSpeedImpact
     damage:
       types:

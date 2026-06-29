@@ -1,0 +1,13 @@
+ent-STSharpSpecEquipmentCase = кейс минометного снаряжения
+    .desc = Большой кейс с установкой SHARP, магазинами и вспомогательным снаряжением специалиста минометчика. Предметы обратно в кейс положить нельзя.
+ent-STBeltSharpMagazine = подсумок для магазинов SHARP
+    .desc = Поясной подсумок специалиста, рассчитанный на магазины SHARP.
+ent-STBeltSharpMagazineFilled = { ent-STBeltSharpMagazine }
+    .desc = { ent-STBeltSharpMagazine.desc }
+    .suffix = Заполненный
+ent-STCrateMagazineSharpExplosive = ящик магазинов SHARP с взрывными дротиками (x3)
+    .desc = { ent-RMCCrateAmmo.desc }
+ent-STCrateMagazineSharpIncendiary = ящик магазинов SHARP с зажигательными дротиками (x3)
+    .desc = { ent-RMCCrateAmmo.desc }
+ent-STCrateMagazineSharpFlechette = ящик магазинов SHARP с флешетт-дротиками (x3)
+    .desc = { ent-RMCCrateAmmo.desc }

@@ -1,7 +1,9 @@
 using System.Numerics;
+using Content.Shared._RMC14.Weather;
 using Content.Shared.Light.Components;
 using Content.Shared.Weather;
 using Robust.Client.Graphics;
+using Robust.Shared.Enums;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 
@@ -10,6 +12,7 @@ namespace Content.Client.Overlays;
 public sealed partial class StencilOverlay
 {
     private List<Entity<MapGridComponent>> _grids = new();
+    private readonly HashSet<Entity<RMCBlockWeatherComponent>> _rmcWeatherBlockers = new();
 
     private void DrawWeather(in OverlayDrawArgs args, WeatherPrototype weatherProto, float alpha, Matrix3x2 invMatrix)
     {
@@ -51,6 +54,36 @@ public sealed partial class StencilOverlay
                     worldHandle.DrawRect(gridTile, Color.White);
                 }
             }
+
+            // RMC14 start - weather partial blockers.
+            if (_playerManager.LocalEntity is { } player &&
+                _entManager.TryGetComponent(player, out TransformComponent? playerXform) &&
+                playerXform.MapID == mapId)
+            {
+                var playerPos = _transform.GetMapCoordinates(player, playerXform).Position;
+
+                _rmcWeatherBlockers.Clear();
+                _entLookup.GetEntitiesIntersecting(mapId, worldAABB, _rmcWeatherBlockers, LookupFlags.Uncontained);
+                worldHandle.SetTransform(invMatrix);
+
+                foreach (var blocker in _rmcWeatherBlockers)
+                {
+                    var uid = blocker.Owner;
+                    if (!_entManager.TryGetComponent(uid, out TransformComponent? xform) ||
+                        xform.MapID != mapId)
+                    {
+                        continue;
+                    }
+
+                    var roofBounds = _entLookup.GetAABBNoContainer(uid,
+                        _transform.GetWorldPosition(xform),
+                        _transform.GetWorldRotation(xform));
+
+                    if (roofBounds.Contains(playerPos))
+                        worldHandle.DrawRect(roofBounds, Color.White);
+                }
+            }
+            // RMC14 end
 
         }, Color.Transparent);
 

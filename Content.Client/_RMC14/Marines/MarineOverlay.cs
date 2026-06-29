@@ -1,12 +1,11 @@
-using System.Linq;
 using System.Numerics;
 using Content.Shared._RMC14.CrashLand;
 using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.ParaDrop;
 using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Tracker.SquadLeader;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
-using Content.Shared.ParaDrop;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -119,7 +118,8 @@ public sealed class MarineOverlay : Overlay
                 if (_npcFactionMemberQuery.TryComp(uid, out var factionMember))
                 {
                     // First faction is the entity's default faction
-                    if (factionIcons.TryGetValue(factionMember.Factions.First(), out var newIcon))
+                    if (factionMember.Factions.TryFirstOrNull(out var firstFaction) &&
+                        factionIcons.TryGetValue(firstFaction.Value, out var newIcon))
                     {
                         icon.Background = null;
                         icon.Icon = newIcon;
@@ -181,6 +181,7 @@ public sealed class MarineOverlay : Overlay
             }
         }
 
+        handle.SetTransform(Matrix3x2.Identity);
         handle.UseShader(null);
     }
 }

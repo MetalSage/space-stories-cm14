@@ -1,0 +1,41 @@
+- type: accessLevel
+  id: STAccessHunterSecure
+  name: st-access-hunter
+
+- type: accessGroup
+  id: STAccessHunterSecure
+  tags:
+  - STAccessHunterSecure
+
+- type: accessLevel
+  id: STAccessHunterElite
+  name: st-access-hunter-elite
+
+- type: accessGroup
+  id: STAccessHunterElite
+  tags:
+  - STAccessHunterSecure
+  - STAccessHunterElite
+
+- type: accessLevel
+  id: STAccessHunterElder
+  name: st-access-hunter-elder
+
+- type: accessGroup
+  id: STAccessHunterElder
+  tags:
+  - STAccessHunterSecure
+  - STAccessHunterElite
+  - STAccessHunterElder
+
+- type: accessLevel
+  id: STAccessHunterAncient
+  name: st-access-hunter-ancient
+
+- type: accessGroup
+  id: STAccessHunterAncient
+  tags:
+  - STAccessHunterSecure
+  - STAccessHunterElite
+  - STAccessHunterElder
+  - STAccessHunterAncient

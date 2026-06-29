@@ -54,3 +54,73 @@
   - type: EntityTargetAction
     event: !type:BoxerUppercutActionEvent
   - type: ActionBlockIfResting
+
+- type: entity
+  parent: ActionXenoBase
+  id: STActionXenoBulwarkEncasedPlates
+  name: Encased Plates
+  description: STActionXenoBulwarkEncasedPlates
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: encased_plates
+    useDelay: 2
+  - type: InstantAction
+    event: !type:EncasedPlatesActionEvent
+  - type: ActionBlockIfResting
+
+- type: entity
+  parent: ActionXenoBase
+  id: STActionXenoBulwarkPlateBash
+  name: Plate Bash
+  description: STActionXenoBulwarkPlateBash
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: plate_bash
+    useDelay: 8
+  - type: TargetAction
+    range: 3
+    deselectOnMiss: false
+  - type: EntityTargetAction
+    event: !type:PlateBashActionEvent
+  - type: ActionBlockIfResting
+
+- type: entity
+  parent: ActionXenoBase
+  id: STActionXenoBulwarkTailSweep
+  name: Tail Sweep
+  description: STActionXenoBulwarkTailSweep
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: tail_sweep
+    useDelay: 11
+  - type: InstantAction
+    event: !type:BulwarkTailSweepActionEvent
+  - type: ActionBlockIfResting
+  - type: XenoActionPlasma
+    cost: 20
+
+- type: entity
+  parent: ActionXenoBase
+  id: STActionXenoBulwarkReflectiveShield
+  name: Reflective Shield
+  description: STActionXenoBulwarkReflectiveShield
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: reflective_shield
+  - type: InstantAction
+    event: !type:ReflectiveShieldActionEvent
+  - type: ActionBlockIfResting
+  - type: XenoActionPlasma
+    cost: 100

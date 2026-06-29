@@ -1,15 +1,21 @@
 cm-xeno-devour-self = Мы пожираем { $target }!
 cm-xeno-devour-target = { $user } пожирает вас!
 cm-xeno-devour-observer = { $user } пожирает { $target }!
+
 cm-xeno-devour-start-self = Мы начинаем пожирать { $target }
 cm-xeno-devour-start-target = { $user } пытается поглотить вас!
 cm-xeno-devour-start-observer = { $user } начинает пожирать { $target }!
+
 cm-xeno-devour-regurgitate = Мы собираемся извергнуть { $target }...
 cm-xeno-devour-hurl-out = Мы извергаем содержимое своего желудка!
+
+cm-xeno-devour-fake-host = Это не принесло бы никакой пользы.
 cm-xeno-devour-success = Это было бы не очень вкусно.
+
 cm-xeno-devour-failed = Вы не можете поглотить { $target }!
 cm-xeno-devour-failed-cant-now = Вы не можете сделать это прямо сейчас!
 cm-xeno-devour-failed-stomach-full = У вас в животе уже что-то есть, и это никак не поместится!
 cm-xeno-devour-failed-target-roting = Фу, { $target } уже начинает гнить.
 cm-xeno-devour-failed-target-buckled = { $target } пристегнут к { $strap }.
 cm-xeno-devour-failed-target-resisting = { $target } сопротивляется, перемолоть их!
+cm-xeno-devour-failed-target-not-grabbed = Нам нужно поудобнее взяться за { $target }, схватите его!

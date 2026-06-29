@@ -1,0 +1,5 @@
+- type: tile
+  parent: RMCFloorPlatingNoBuild
+  id: STFloorSteelPlanetEngine
+  name: tiles-cm-engine
+  sprite: /Textures/_RMC14/Tiles/floors/engine.png

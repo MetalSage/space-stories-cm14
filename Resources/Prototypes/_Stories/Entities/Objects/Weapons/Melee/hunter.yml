@@ -1,0 +1,354 @@
+- type: entity
+  abstract: true
+  parent: [STHunterBaseItem, RMCBaseMeleeWeapon]
+  id: STHunterBaseMeleeWeapon
+  components:
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STHunterMelee
+  - type: Clothing
+    slots:
+    - suitStorage
+    - Back
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STHarpoon
+  name: large harpoon
+  description: A huge metal spike with a hook at the end. It's carved with mysterious alien writing.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/spike.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 10
+    soundHit:
+      path: /Audio/_Stories/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 30
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STCeremonialDagger
+  name: ceremonial dagger
+  description: A viciously sharp dagger inscribed with ancient Hunter markings. Smells thickly of blood. Carried by some hunters.
+  components:
+  - type: Tag
+    tags:
+    - Knife
+    - STPredatorGear
+    - STHunterMelee
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/ceremonial_dagger.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 25
+    soundHit:
+      path: /Audio/_Stories/Weapons/slash.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 20
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STChainwhip
+  name: chainwhip
+  description: A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Hunter Hunters, but still a dangerous weapon capable of shredding prey.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/chainwhip.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 30
+    attackRate: 1.25
+    soundHit:
+      path: /Audio/_Stories/Weapons/chain_whip.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 25
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STClanSword
+  name: clan sword
+  description: An expertly crafted Hunter blade carried by hunters who wish to fight up close. Razor sharp and capable of cutting flesh into ribbons. Commonly carried by aggressive and lethal hunters.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/clan_sword.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 35
+    attackRate: 1
+    soundHit:
+      path: /Audio/_Stories/Weapons/bladeslice.ogg
+
+- type: entity
+  parent: STClanSword
+  id: STClanSwordAlt1
+  name: rending sword
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/clan_sword_alt1.rsi
+
+- type: entity
+  parent: STClanSword
+  id: STClanSwordAlt2
+  name: piercing sword
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/clan_sword_alt2.rsi
+
+- type: entity
+  parent: STClanSword
+  id: STClanSwordAlt3
+  name: severing sword
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/clan_sword_alt3.rsi
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STWeaponTaruulanStaff
+  name: cruel staff
+  description: A wicked and battered staff wrapped in worn crimson rags. A crescent shaped blade adorns the top, while the bottom is rounded and blunt.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/staff.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 35
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STWarAxe
+  name: war axe
+  description: A swift weapon designed to gouge and gore the hunter's prey. A chain is attached to the hilt, allowing for a quick retrieval.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/war_axe.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 30
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 30
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STDualWarScythe
+  name: dual war scythe
+  description: A huge, incredibly sharp dual blade used for hunting dangerous prey. This weapon is commonly carried by Hunter who wish to disable and slice apart their foes.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/predscythe.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 30
+    soundHit:
+      path: /Audio/_Stories/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 25
+
+- type: entity
+  parent: STDualWarScythe
+  id: STDoubleWarScythe
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/predscythe_alt.rsi
+    state: icon
+
+- type: entity
+  abstract: true
+  parent: STHunterBaseMeleeWeapon
+  id: STHunterBaseTwoHandedMeleeWeapon
+  components:
+  - type: Wieldable
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/_Stories/Weapons/bladeslice.ogg
+
+- type: entity
+  parent: STHunterBaseTwoHandedMeleeWeapon
+  id: STHunterSpear
+  name: hunter spear
+  description: A spear of exquisite design, used by an ancient civilisation.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/spearhunter.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 15
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 20
+
+- type: entity
+  parent: STHunterBaseTwoHandedMeleeWeapon
+  id: STWarGlaive
+  name: war glaive
+  description: Two huge, powerful blades on a metallic pole. Mysterious writing is carved into the weapon.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/glaive_alt.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 15
+    attackRate: 0.71
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 30
+
+- type: entity
+  parent: STWarGlaive
+  id: STCleavingGlaive
+  name: cleaving glaive
+  description: A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/glaive.rsi
+    state: icon
+
+- type: entity
+  parent: STWarGlaive
+  id: STAncientWarGlaive
+  name: ancient war glaive
+  description: A huge, powerful blade on a metallic pole. This one is ancient and has suffered serious acid damage, making it near-useless.
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 5
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 10
+
+- type: entity
+  parent: STWarGlaive
+  id: STLongAxe
+  name: longaxe
+  description: A frighteningly big axe. The blade edge is chipped and gnarled from thousands of bone-crushing blows.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/longaxe.rsi
+    state: icon
+
+# - type: entity
+#   parent: STHunterBaseTwoHandedMeleeWeapon
+#   id: STCombistick
+#   name: combi-stick
+#   description: A compact yet deadly personal weapon. Can be concealed when folded. Functions well as a throwing weapon or defensive tool.
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STDuellingBlade
+  name: duelling blade
+  description: A primitive yet deadly sword used in Hunter rituals and duels.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/duelling_sword.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 25
+    attackRate: 1.11
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STDuellingClub
+  name: duelling club
+  description: A crude metal club adorned with a skull. Used as a non-lethal training weapon.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/duelling_club.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 25
+    soundHit:
+      path: /Audio/_Stories/Weapons/genhit3.ogg
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STDuellingHatchet
+  name: duelling hatchet
+  description: A short ceremonial duelling hatchet, designed for ritual combat.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/duelling_hatchet.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 15
+
+- type: entity
+  parent: STHunterBaseMeleeWeapon
+  id: STDuellingKnife
+  name: duelling knife
+  description: A length of leather-bound wood studded with razor-sharp teeth. How crude.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/duelling_knife.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 25
+    attackRate: 0.83

@@ -1,0 +1,186 @@
+- type: entity
+  parent: [STHunterBaseItem, ClothingHandsBase]
+  id: STBracerHunter
+  name: clan bracers
+  description: An extremely complex, yet simple-to-operate set of armored bracers worn by the Yautja. It has many functions, activate them to use some.
+  suffix: Base
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/base.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/base.rsi
+  - type: Access
+    slot: gloves
+  - type: IdCard
+    nameLocId: cm-access-id-card-component-owner-name-job-title-text
+    fullNameLocId: cm-access-id-card-component-owner-full-name-job-title-text
+    canMicrowave: false
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - DoorBumpOpener
+  - type: PresetIdCard
+    job: STHunter
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerBase
+  - type: ItemSlots
+    slots:
+      st-bracer-plasma-caster-slot:
+        name: st-bracer-plasma-caster-slot
+        insertOnInteract: false
+        ejectOnInteract: false
+        insertSound: /Audio/_Stories/Weapons/pred_attach.ogg
+        ejectSound: /Audio/_Stories/Machines/click.ogg
+        whitelist:
+          tags:
+          - STPlasmaCasterHolder
+      st-bracer-left-attachment-slot:
+        name: st-bracer-left-attachment-slot
+        insertOnInteract: false
+        ejectOnInteract: false
+        insertSound: /Audio/_Stories/Weapons/pred_attach.ogg
+        ejectSound: /Audio/_Stories/Machines/click.ogg
+        whitelist:
+          tags:
+          - STBracerAttachment
+      st-bracer-right-attachment-slot:
+        name: st-bracer-right-attachment-slot
+        insertOnInteract: false
+        ejectOnInteract: false
+        insertSound: /Audio/_Stories/Weapons/pred_attach.ogg
+        ejectSound: /Audio/_Stories/Machines/click.ogg
+        whitelist:
+          tags:
+          - STBracerAttachment
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterRetro
+  suffix: Retro
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/retro.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/retro.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerRetro
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterEbony
+  suffix: Ebony
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/ebony.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/ebony.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerEbony
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterBronze
+  suffix: Bronze
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/bronze.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/bronze.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerBronze
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterSilver
+  suffix: Silver
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/silver.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/silver.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerSilver
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterBone
+  suffix: Bone
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/bone.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/bone.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerBone
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterCrimson
+  suffix: Crimson
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/crimson.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/crimson.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerCrimson
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterGold
+  suffix: Gold
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/gold.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/gold.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerBronze
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterWild
+  suffix: Wild
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/wild.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/wild.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerBone
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterOutcast
+  suffix: Outcast
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/outcast.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/outcast.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerRetro
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterLeader
+  suffix: Leader
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/leader.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/leader.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerSilver
+
+- type: entity
+  parent: STBracerHunter
+  id: STBracerHunterSamurai
+  suffix: Samurai
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/samurai.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/Bracer/samurai.rsi
+  - type: HunterBracer
+    bracerPowerAlert: STBracerPowerSilver

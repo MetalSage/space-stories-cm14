@@ -11,13 +11,28 @@
   name: Sentinel
   description: A slithery, spitting kind of alien.
   components:
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleSentinel
-  - type: GhostRole
-    name: cm-job-name-xeno-sentinel
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Sentinel/sentinel.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Sentinel/sentinel_spit.rsi
+      state: spit
+      visible: false
   - type: MobState
     allowedStates:
     - Alive
@@ -28,6 +43,10 @@
       0: Alive
       500: Critical
       600: Dead
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - RMCSynthGrabbable
   - type: Xeno
     role: CMXenoSentinel
     actionIds:
@@ -98,3 +117,10 @@
     item: RMCOrganXenoHeartT1
   - type: VentCrawler
     ventCrawlIcon: sentinel
+  - type: RMCActionOrder
+    id: CMXenoSentinel
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidWeak
+    - ActionXenoSlowingSpit
+    - ActionXenoScatteredSpit

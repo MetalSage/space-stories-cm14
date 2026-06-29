@@ -10,11 +10,19 @@
   name: Queen
   description: A huge, looming alien creature. The biggest and the baddest.
   components:
+  - type: CanBuildThickFromConstructNode
   - type: GuideHelp
     guides:
     - RMCGuideRoleQueen
   - type: GhostRole
     name: cm-job-name-xeno-queen
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    description: cm-xeno-description
+    raffle:
+      settings: short
+    rules: cm-xeno-rules
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Queen/queen.rsi
     layers:
@@ -28,17 +36,12 @@
       visible: false
     - map: [ "enum.XenoInhandVisualLayers.Right" ]
       visible: false
-    - map: [ "focused" ]
-      sprite: _RMC14/Interface/xeno_hud.rsi
-      state: hudeye
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
-    - map: [ "targetedDirection" ]
-      sprite: _RMC14/Effects/targeted.rsi
-      state: sniper_lockon_direction
-      visible: false
-    - map: [ "targetedDirectionIntense" ]
-      sprite: _RMC14/Effects/targeted.rsi
-      state: sniper_lockon_intense_direction
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Queen/queen_spit.rsi
+      state: spit
       visible: false
   - type: MobState
     allowedStates:
@@ -66,8 +69,9 @@
     - ActionXenoAcidNormal
     - ActionXenoPheromones
     - ActionXenoWordQueen
-#    - ActionXenoPsychicWhisper
-#    - ActionXenoPsychicRadiance
+    - ActionXenoPsychicWhisper
+    - ActionXenoPsychicRadiance
+    - ActionXenoGiveOrder
     - ActionXenoGut
     - ActionXenoPlantWeeds
     - ActionXenoChooseStructure
@@ -79,21 +83,26 @@
     tier: 0
     bypassTierCount: true
     unlockAt: 0
+    hudOffset: 0, 0
   - type: XenoHeavy
   - type: XenoAcid
   - type: XenoConstruction
     buildDelay: 2
     canBuild:
     - WallXenoResin
+    - WallXenoResinReflective #TODO should only be available while in ovipositor mode
     - WallXenoMembrane
     - DoorXenoResin
     - XenoStickyResin
     - XenoFastResin
+    - XenoResinSpikes
+    - HiveAcidPillarXeno
     canOrderConstruction:
     - HiveCoreXenoConstructionNode
     - HiveEggMorpherXenoConstructionNode
     - HiveClusterXenoConstructionNode
     - HiveRecoveryNodeXenoConstructionNode
+    - HivePlasmaTreeXenoConstructionNode
   - type: XenoDevour
   - type: XenoPheromones
     pheromonesMultiplier: 4
@@ -102,10 +111,18 @@
     plasma: 1000
     maxPlasma: 1000
     plasmaRegenOnWeeds: 4
+    plasmaTransferDelay: 0
   - type: CMArmor
     xenoArmor: 25
     explosionArmor: 100
   - type: XenoWordQueen
+  - type: VehicleDamageMultiplier
+    multiplier: 2
+  - type: XenoPsychicCommunication
+  - type: InnateCommandSpeech
+  - type: RMCInnateRadioTextIncrease
+    radioTextIncrease: 3
+    instrinsic: true
   - type: XenoGut
   - type: XenoClaws
     clawType: VerySharp
@@ -166,7 +183,7 @@
     footstepSoundCollection:
       collection: XenoFootstepLarge
       params:
-        volume: -6
+        volume: 0
 #  - type: RandomSound
 #    sound:
 #      collection: XenoQueenBreath # TODO RMC14
@@ -259,6 +276,9 @@
     value: 1.4
   - type: QueenEyeAction
   - type: StunFriendlyXenoOnStep
+    whitelist:
+      components:
+      - StunFriendlyXenoOnStep
   - type: XenoToggleChargingKnockback
     enabled: false
   - type: XenoToggleChargingStop
@@ -273,14 +293,28 @@
     name: cm-job-name-xeno-queen
   - type: TTS # Stories-TTS
     voice: cirilla
+  - type: TypingIndicator
+    proto: alienroyal
   - type: RMCSurgeryXenoHeart
     item: RMCOrganXenoHeartTQ
   - type: RMCTrackable
+  - type: ExcludedFromKingVote
+    canVote: true
+  - type: RemoveComponents
+    components:
+    - type: Gibbable
+    - type: CanBeLarvaQueued
 
 - type: entity
   parent: RMCXenoQueenBase
   id: CMXenoQueen
-  #components:
+  components:
+  - type: RMCActionOrder
+    id: CMXenoQueen
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpitQueen
   # - type: XenoEvolution #can be enabled for events like april fools.
   #   strains:
   #   - RMCXenoQueenMaid

@@ -1,2 +1,5 @@
 ent-RMCHeadsetProvost = гарнитура провоста КМП США
-    .desc = { ent-CMHeadset.desc }
+    .desc = { ent-RMCHeadsetShip.desc }
+ent-RMCHeadsetProvostLead = { ent-RMCHeadsetProvost }
+    .desc = { ent-RMCHeadsetProvost.desc }
+    .suffix = SL Tracker

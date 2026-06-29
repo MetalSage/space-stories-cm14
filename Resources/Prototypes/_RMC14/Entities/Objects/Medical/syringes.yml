@@ -24,7 +24,14 @@
   - type: Clothing
     quickEquip: false
     slots:
+    - ears
     - suitstorage
+  - type: PhysicalComposition
+    materialComposition:
+      CMGlass: 150
+  - type: RequiresSkill # Stories-Parity
+    skills:
+      RMCSkillMedical: 2
 
 - type: entity
   parent: CMSyringe

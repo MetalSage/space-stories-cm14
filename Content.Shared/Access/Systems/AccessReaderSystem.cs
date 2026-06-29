@@ -629,11 +629,15 @@ public sealed class AccessReaderSystem : EntitySystem
     {
         items = new(_handsSystem.EnumerateHeld(uid));
 
-        // maybe its inside an inventory slot?
-        if (_inventorySystem.TryGetSlotEntity(uid, "id", out var idUid))
+        // Stories-Hunter-Start
+        if (_inventorySystem.TryGetContainerSlotEnumerator(uid, out var enumerator))
         {
-            items.Add(idUid.Value);
+            while (enumerator.NextItem(out var item))
+            {
+                items.Add(item);
+            }
         }
+        // Stories-Hunter-End
 
         return items.Any();
     }

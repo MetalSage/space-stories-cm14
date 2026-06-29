@@ -5,6 +5,7 @@ using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Entrenching;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Medical.Scanner;
+using Content.Shared._RMC14.Mentor.ImaginaryFriend;
 using Content.Shared._RMC14.NightVision;
 using Content.Shared._RMC14.Rules;
 using Content.Shared._RMC14.Tackle;
@@ -17,12 +18,14 @@ using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Fortify;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.HiveLeader;
+using Content.Shared._RMC14.Xenonids.ManageHive.Boons;
 using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._RMC14.Xenonids.Pheromones;
 using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared._RMC14.Xenonids.Rest;
 using Content.Shared._RMC14.Xenonids.ScissorCut;
 using Content.Shared._RMC14.Xenonids.Weeds;
+using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Actions;
 using Content.Shared.Atmos;
@@ -67,7 +70,9 @@ public sealed partial class XenoSystem : EntitySystem
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
+    [Dependency] private readonly HiveBoonSystem _hiveBoon = default!;
     [Dependency] private readonly HiveLeaderSystem _hiveLeader = default!;
+    [Dependency] private readonly SharedImaginaryFriendSystem _imaginaryFriend = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholds = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
@@ -188,12 +193,16 @@ public sealed partial class XenoSystem : EntitySystem
     {
         var oldRotation = _transform.GetWorldRotation(args.OldXeno);
         _transform.SetWorldRotation(newXeno, oldRotation);
+
+        _imaginaryFriend.TryTransferFriends(args.OldXeno, newXeno);
     }
 
     private void OnXenoDevolved(Entity<XenoComponent> newXeno, ref XenoDevolvedEvent args)
     {
         var oldRotation = _transform.GetWorldRotation(args.OldXeno);
         _transform.SetWorldRotation(newXeno, oldRotation);
+
+        _imaginaryFriend.TryTransferFriends(args.OldXeno, newXeno);
     }
 
     private void OnXenoHealthScannerAttemptTarget(Entity<XenoComponent> ent, ref HealthScannerAttemptTargetEvent args)
@@ -231,9 +240,12 @@ public sealed partial class XenoSystem : EntitySystem
 
     private void OnXenoMeleeAttackAttempt(Entity<XenoComponent> xeno, ref MeleeAttackAttemptEvent args)
     {
-        if (!TryComp<XenoNestComponent>(GetEntity(args.Target), out var nest) || nest.Nested == null
-            || !_hive.FromSameHive(xeno.Owner, GetEntity(args.Target)))
+        if (!TryComp<XenoNestComponent>(GetEntity(args.Target), out var nest) ||
+            nest.Nested == null ||
+            !_hive.FromSameHive(xeno.Owner, GetEntity(args.Target)))
+        {
             return;
+        }
 
         var attacker = GetNetEntity(xeno);
         args.Target = GetNetEntity(nest.Nested.Value);
@@ -270,10 +282,10 @@ public sealed partial class XenoSystem : EntitySystem
 
     private void OnXenoGetMeleeDamage(Entity<XenoComponent> ent, ref GetMeleeDamageEvent args)
     {
-        if (MathHelper.CloseTo(_xenoDamageDealtMultiplier, 1))
-            return;
+        args.Damage = ApplyXenoAggressionDamage(ent.Owner, args.Damage);
 
-        args.Damage *= _xenoDamageDealtMultiplier;
+        if (!MathHelper.CloseTo(_xenoDamageDealtMultiplier, 1))
+            args.Damage *= _xenoDamageDealtMultiplier;
     }
 
     private void OnXenoDamageModify(Entity<XenoComponent> ent, ref DamageModifyEvent args)
@@ -347,7 +359,7 @@ public sealed partial class XenoSystem : EntitySystem
 
     private void OnXenoGetVisMask(Entity<XenoComponent> ent, ref GetVisMaskEvent args)
     {
-        args.VisibilityMask |= (int) ent.Comp.Visibility;
+        args.VisibilityMask |= (int)ent.Comp.Visibility;
     }
 
     private void OnLeaderDisarmed(Entity<XenoComponent> ent, ref CMDisarmEvent args)
@@ -398,6 +410,18 @@ public sealed partial class XenoSystem : EntitySystem
         EnsureComp<XenoComponent>(xeno);
     }
 
+    // Stories-Ordnance-Start
+    public void MakeDummyXeno(Entity<XenoComponent?> xeno)
+    {
+        if (!Resolve(xeno, ref xeno.Comp, false))
+            return;
+
+        xeno.Comp.CountedInSlots = false;
+        xeno.Comp.ContributesToVictory = false;
+        Dirty(xeno, xeno.Comp);
+    }
+    // Stories-Ordnance-End
+
     private FixedPoint2 GetWeedsHealAmount(Entity<XenoRegenComponent> xeno)
     {
         if (!_mobThresholdsQuery.TryComp(xeno, out var thresholds) ||
@@ -408,19 +432,19 @@ public sealed partial class XenoSystem : EntitySystem
 
         FixedPoint2 multiplier;
         if (_mobState.IsCritical(xeno))
-            multiplier = xeno.Comp.RestHealMultiplier; // TODO RMC14
+            multiplier = xeno.Comp.CritHealMultiplier;
         else if (_standing.IsDown(xeno) || HasComp<XenoRestingComponent>(xeno))
             multiplier = xeno.Comp.RestHealMultiplier;
         else
             multiplier = xeno.Comp.StandHealingMultiplier;
 
         var passiveHeal = threshold.Value / 65 + xeno.Comp.FlatHealing;
-        var recovery = (CompOrNull<XenoRecoveryPheromonesComponent>(xeno)?.Multiplier ?? 0);
+        var recovery = CompOrNull<XenoRecoveryPheromonesComponent>(xeno)?.Multiplier ?? 0;
         if (!CanHeal(xeno))
             recovery = FixedPoint2.Zero;
 
         var recoveryHeal = (threshold.Value / 65) * (recovery / 2);
-        return (passiveHeal + recoveryHeal) * multiplier / 2; // TODO RMC14 add Strain based multiplier for Gardener Drone
+        return (passiveHeal + recoveryHeal) * multiplier / 2;
     }
 
     public void HealDamage(Entity<DamageableComponent?> xeno, FixedPoint2 amount)
@@ -475,7 +499,7 @@ public sealed partial class XenoSystem : EntitySystem
         if (canAttackWindows && HasComp<DestroyOnXenoPierceScissorComponent>(target))
             return true;
 
-        return HasComp<MarineComponent>(target) || HasComp<XenoComponent>(target);
+        return HasComp<MarineComponent>(target) || HasComp<XenoComponent>(target) || HasComp<HunterComponent>(target); // Stories-Hunter
     }
 
     public bool CanHeal(EntityUid xeno)

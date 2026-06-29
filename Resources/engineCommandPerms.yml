@@ -80,8 +80,8 @@
   - rmgrid
   - rmmap
   - mapinit
-  - savegrid
   - savemap
+  - savegrid
   - setambientlight
   - tpgrid
   - gridtc
@@ -97,11 +97,15 @@
   Commands:
   - tippy
   - tip
+  - throwscoreboard
 
 - Flags: SERVER
   Commands:
   - delete
   - unpausemap
+  # Stories-Admins
+  - pausemap
+  - shutdown
 
 - Flags: SPAWN
   Commands:
@@ -131,8 +135,6 @@
   - replay_recording_start
   - replay_recording_stop
   - restart
-  - shutdown
-  - pausemap
 
 - Flags: QUERY
   Commands:

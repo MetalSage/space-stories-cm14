@@ -1,261 +1,222 @@
-stack-steel =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } стали
-stack-bananium =
-    { $amount ->
-        [1] бананиум
-        [few] бананиума
-       *[other] бананиума
-    }
-stack-glass =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } стекла
-stack-plasteel =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } пластали
-stack-brass =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } латуни
-stack-plastic =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } пластика
-stack-silver =
-    { $amount ->
-        [1] слиток
-        [few] слитка
-       *[other] слитков
-    } серебра
-stack-gold =
-    { $amount ->
-        [1] слиток
-        [few] слитка
-       *[other] слитков
-    } золота
-stack-reinforced-glass =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } бронестекла
-stack-plasma-glass =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } плазменного стекла
-stack-uranium =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } урана
-stack-uranium-glass =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } уранового стекла
-stack-clockwork-glass =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } заводного стекла
-stack-reinforced-plasma-glass =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } плазменного бронестекла
-stack-reinforced-uranium-glass =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } уранового бронестекла
-stack-gunpowder =
-    { $amount ->
-        [1] порох
-       *[other] пороха
-    }
-stack-cardboard =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } картона
-stack-bones =
-    { $amount ->
-        [1] кость
-        [few] кости
-       *[other] костей
-    }
-stack-cloth =
-    { $amount ->
-        [1] рулон
-        [few] рулона
-       *[other] рулонов
-    } ткани
-stack-lv-cable =
-    НВ { $amount ->
-        [1] кабель
-        [few] кабеля
-       *[other] кабелей
-    }
-stack-mv-cable =
-    СВ { $amount ->
-        [1] кабель
-        [few] кабеля
-       *[other] кабелей
-    }
-stack-hv-cable =
-    ВВ { $amount ->
-        [1] кабель
-        [few] кабеля
-       *[other] кабелей
-    }
-stack-wood-plank =
-    { $amount ->
-        [1] доску
-        [few] доски
-       *[other] досок
-    }
-stack-durathread =
-    { $amount ->
-        [1] рулон
-        [few] рулона
-       *[other] рулонов
-    }  дюраткани
-stack-rods =
-    { $amount ->
-        [1] стержень
-        [few] стержня
-       *[other] стержней
-    }
-stack-meat-sheet =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } мяса
-stack-space-carp-tooth =
-    { $amount ->
-        [1] зуб
-        [few] зуба
-       *[other] зубов
-    } космического карпа
-stack-paper =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } бумаги
-stack-diamond =
-    { $amount ->
-        [1] алмаз
-        [few] алмаза
-       *[other] алмазов
-    }
-stack-silk =
-    { $amount ->
-        [1] шёлк
-       *[other] шёлка
-    }
-stack-cotton =
-    { $amount ->
-        [1] шарик
-        [few] шарика
-       *[other] шариков
-    } хлопка
-stack-artifact-fragment =
-    { $amount ->
-        [1] фрагмент
-        [few] фрагмента
-       *[other] фрагментов
-    } артефакта
+stack-steel = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} стали
+stack-bananium = { $amount ->
+    [1] бананиум
+    [few] бананиума
+    *[other] бананиума
+}
+stack-glass = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} стекла
+stack-plasteel = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} пластали
+stack-brass = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} латуни
+stack-plastic = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} пластика
+stack-silver = { $amount ->
+    [1] слиток
+    [few] слитка
+    *[other] слитков
+} серебра
+stack-gold = { $amount ->
+    [1] слиток
+    [few] слитка
+    *[other] слитков
+} золота
+stack-reinforced-glass = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} бронестекла
+stack-plasma-glass = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} плазменного стекла
+stack-uranium = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} урана
+stack-uranium-glass = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} уранового стекла
+stack-clockwork-glass = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} заводного стекла
+stack-reinforced-plasma-glass = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} плазменного бронестекла
+stack-reinforced-uranium-glass = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} уранового бронестекла
+stack-gunpowder = { $amount ->
+    [1] порох
+    *[other] пороха
+}
+stack-cardboard = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} картона
+
+stack-bones = { $amount ->
+    [1] кость
+    [few] кости
+    *[other] костей
+}
+stack-cloth = { $amount ->
+    [1] рулон
+    [few] рулона
+    *[other] рулонов
+} ткани
+stack-lv-cable = НВ { $amount ->
+    [1] кабель
+    [few] кабеля
+    *[other] кабелей
+}
+stack-mv-cable = СВ { $amount ->
+    [1] кабель
+    [few] кабеля
+    *[other] кабелей
+}
+stack-hv-cable = ВВ { $amount ->
+    [1] кабель
+    [few] кабеля
+    *[other] кабелей
+}
+stack-wood-plank = { $amount ->
+    [1] доску
+    [few] доски
+    *[other] досок
+}
+stack-durathread = { $amount ->
+    [1] рулон
+    [few] рулона
+    *[other] рулонов
+}  дюраткани
+stack-rods = { $amount ->
+    [1] стержень
+    [few] стержня
+    *[other] стержней
+}
+stack-meat-sheet = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} мяса
+stack-space-carp-tooth = { $amount ->
+    [1] зуб
+    [few] зуба
+    *[other] зубов
+} космического карпа
+stack-paper = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} бумаги
+stack-diamond = { $amount ->
+    [1] алмаз
+    [few] алмаза
+    *[other] алмазов
+}
+stack-silk = { $amount ->
+    [1] шёлк
+    *[other] шёлка
+}
+stack-cotton = { $amount ->
+    [1] шарик
+    [few] шарика
+    *[other] шариков
+} хлопка
+stack-artifact-fragment = { $amount ->
+    [1] фрагмент
+    [few] фрагмента
+    *[other] фрагментов
+} артефакта
+
 # best materials
-stack-ground-tobacco =
-    { $amount ->
-        [1] измельчённый табак
-       *[other] измельчённого табака
-    }
-stack-ground-cannabis =
-    { $amount ->
-        [1] измельчённую коноплю
-       *[other] измельчённой конопли
-    }
-stack-ground-rainbow-cannabis =
-    { $amount ->
-        [1] измельчённую радужную коноплю
-       *[other] измельчённой радужной конопли
-    }
-stack-dried-tobacco-leaves =
-    { $amount ->
-        [1] сушённый лист
-        [few] сушённых листа
-       *[other] сушённых листьев
-    } табака
-stack-dried-cannabis-leaves =
-    { $amount ->
-        [1] сушённый лист
-        [few] сушённых листа
-       *[other] сушённых листьев
-    } конопли
-stack-dried-rainbow-cannabis-leaves =
-    { $amount ->
-        [1] сушённый лист
-        [few] сушённых листа
-       *[other] сушённых листьев
-    } радужной конопли
-stack-cigarette-filter =
-    { $amount ->
-        [1] сигаретный фильтр
-        [few] сигаретных фильтра
-       *[other] сигаретных фильтров
-    }
-stack-rolling-paper =
-    { $amount ->
-        [1] сигаретную бумагу
-        [few] сигаретных бумаги
-       *[other] сигаретных бумаг
-    }
+stack-ground-tobacco = { $amount ->
+    [1] измельчённый табак
+    *[other] измельчённого табака
+}
+stack-ground-cannabis = { $amount ->
+    [1] измельчённую коноплю
+    *[other] измельчённой конопли
+}
+stack-ground-rainbow-cannabis = { $amount ->
+    [1] измельчённую радужную коноплю
+    *[other] измельчённой радужной конопли
+}
+stack-dried-tobacco-leaves = { $amount ->
+    [1] сушённый лист
+    [few] сушённых листа
+    *[other] сушённых листьев
+} табака
+stack-dried-cannabis-leaves = { $amount ->
+    [1] сушённый лист
+    [few] сушённых листа
+    *[other] сушённых листьев
+} конопли
+stack-dried-rainbow-cannabis-leaves = { $amount ->
+    [1] сушённый лист
+    [few] сушённых листа
+    *[other] сушённых листьев
+} радужной конопли
+
+stack-cigarette-filter = { $amount ->
+    [1] сигаретный фильтр
+    [few] сигаретных фильтра
+    *[other] сигаретных фильтров
+}
+stack-rolling-paper = { $amount ->
+    [1] сигаретную бумагу
+    [few] сигаретных бумаги
+    *[other] сигаретных бумаг
+}
+
 stack-fulton = фултон
 stack-credit = кредиты
-stack-plasma =
-    { $amount ->
-        [1] лист
-        [few] листа
-       *[other] листов
-    } плазмы
+stack-plasma = { $amount ->
+    [1] лист
+    [few] листа
+    *[other] листов
+} плазмы
 stack-biomass = биомасса
 stack-pyrotton = пирохлопок
-stack-sharkminnow-tooth =
-    { $amount ->
-        [1] зуб
-        [few] зуба
-       *[other] зубов
-    } карпоакулы
-stack-goliath-hide =
-    { $amount ->
-        [1] пластина
-        [few] пластины
-       *[other] пластин
-    } голиафа
+stack-sharkminnow-tooth = { $amount ->
+    [1] зуб
+    [few] зуба
+    *[other] зубов
+} карпоакулы
+stack-goliath-hide = { $amount ->
+    [1] пластина
+    [few] пластины
+    *[other] пластин
+} голиафа
 stack-telecrystal = телекристалл
 stack-gold-ore = золотая руда
 stack-rough-diamond = сырой алмаз
@@ -310,9 +271,9 @@ stack-white-steel-vertical-pavement = белая стальная вертика
 stack-steel-dark-checker-tile = тёмная стальная плитка шашечками
 stack-steel-light-checker-tile = светлая стальная плитка шашечками
 stack-steel-tile = стальная плитка
-stack-techmaint-floor-dark = тёмная техническая плитка
 stack-wood-floor = деревянный пол
 stack-techmaint-floor = технический пол
+stack-techmaint-floor-dark = тёмная техническая плитка
 stack-freezer-tile = плитка морозильника
 stack-showroom-tile = плитка выставочного зала
 stack-green-circuit-floor = плитка зелёных микросхем
@@ -383,11 +344,11 @@ stack-mowed-astro-grass-floor = астро-газон
 stack-jungle-astro-grass-floor = астро-трава джунглей
 stack-astro-ice-floor = астро-лёд
 stack-astro-snow-floor = астро-снег
+stack-large-wood-floor = большой деревянный пол
+stack-red-circuit-floor = плитка красных микросхем
+stack-asteroid-astro-sand-floor = астро-песок астероида
 stack-xeno-floor = ксенопол
 stack-xeno-steel = стальной ксенопол
 stack-xeno-steel-corner = стальной угловой ксенопол
 stack-xeno-maint = технический ксенопол
 stack-dark-squiggly = тёмная волнистая стальная плитка
-stack-large-wood-floor = большой деревянный пол
-stack-red-circuit-floor = плитка красных микросхем
-stack-asteroid-astro-sand-floor = астро-песок астероида

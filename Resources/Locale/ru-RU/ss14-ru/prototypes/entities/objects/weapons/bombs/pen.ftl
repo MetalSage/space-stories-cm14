@@ -1,5 +1,5 @@
-ent-PenExploding = { ent-Pen }
-    .desc = { ent-Pen.desc }
+ent-PenExploding = pen
+    .desc = A dark ink pen.
     .suffix = Взрывчатка
 ent-PenExplodingBox = футляр взрывающейся ручки
     .desc = Небольшая коробочка, содержащая взрывающуюся ручку. После вскрытия упаковка дезинтегрируется, не оставив улик.

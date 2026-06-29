@@ -1,10 +1,15 @@
-ent-RMCAreaSupply = { ent-RMCAreaProtectionMetal }
-    .desc = { ent-RMCAreaProtectionMetal.desc }
+ent-RMCAreaSupply = { ent-RMCAreaBase }
+    .desc = { ent-RMCAreaBase.desc }
+    .suffix = { ent-RMCAreaBase.suffix }
 ent-RMCAreaSupplyStation = Шаттл со снабжением
     .desc = { ent-RMCAreaSupply.desc }
+    .suffix = { ent-RMCAreaSupply.suffix }
 ent-RMCAreaSupplyDock = Причал снабжения
     .desc = { ent-RMCAreaSupply.desc }
+    .suffix = { ent-RMCAreaSupply.suffix }
 ent-RMCAreaSupplyStationVehicle = Транспорт ASRS
     .desc = { ent-RMCAreaSupply.desc }
+    .suffix = { ent-RMCAreaSupply.suffix }
 ent-RMCAreaSupplyDockVehicle = Транспорт ASRS
     .desc = { ent-RMCAreaSupply.desc }
+    .suffix = { ent-RMCAreaSupply.suffix }

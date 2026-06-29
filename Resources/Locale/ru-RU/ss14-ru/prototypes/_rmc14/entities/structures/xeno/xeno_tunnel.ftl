@@ -9,3 +9,4 @@ ent-XenoTunnelMaintHybrisa = канализационный люк
     .desc = { ent-XenoTunnelMaint.desc }
 ent-XenoTunnelMaintHybrisaNoXenoDesc = канализационный люк
     .desc = { ent-XenoTunnelMaintNoXenoDesc.desc }
+    .suffix = { ent-XenoTunnelMaintNoXenoDesc.suffix }

@@ -5,7 +5,7 @@
   description: A warm, soothing light source that pulsates with a faint hum.
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Xenos/hive_structures.rsi
+    sprite: _Stories/Structures/Xenos/hive_structures.rsi # Stories-Parity
     state: recovery
   - type: Destructible
     thresholds:
@@ -43,7 +43,7 @@
   - type: Sprite
     color: '#FFFFFFAA'
     layers:
-    - sprite: _RMC14/Structures/Xenos/hive_structures.rsi
+    - sprite: _Stories/Structures/Xenos/hive_structures.rsi # Stories-Parity
       state: recovery
     - sprite: _RMC14/Interface/xeno_hud.rsi
       state: xeno_structure_node_indicator

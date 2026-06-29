@@ -1,0 +1,13 @@
+ent-RMCAutodoc = autodoc emergency medical system
+    .desc = An emergency surgical device designed to perform life-saving treatments and basic surgeries on patients automatically, without the need of a surgeon.
+    .suffix = Spawns with Console
+ent-RMCAutodocNoConsole = { ent-RMCAutodoc }
+    .desc = { ent-RMCAutodoc.desc }
+    .suffix = No Console
+ent-RMCAutodocConsole = autodoc medical system control console
+    .desc = The control interface used to operate the adjoining autodoc. Requires training to use properly.
+ent-RMCAutodocUnskilled = advanced autodoc emergency medical system
+    .desc = A much more expensive model of autodoc modified with an A.I. diagnostic unit. The result is a much simpler, point-and-click interface that anyone, regardless of training, can use.
+    .suffix = Unskilled, Upgraded
+ent-RMCAutodocConsoleUpgraded = upgraded autodoc control console
+    .desc = { ent-RMCAutodocConsole.desc }

@@ -17,6 +17,16 @@
   id: RMCNightVision
   kind: source
   path: "/Textures/_RMC14/Shaders/night_vision.swsl"
+  params:
+    nv_color: 0.1, 0.75, 0.1 
+   # Green tint
+
+- type: shader
+  id: RMCDoomVision
+  kind: source
+  path: "/Textures/_RMC14/Shaders/night_vision.swsl"
+  params:
+    nv_color: 0.5, 0.5, 0.5
 
 - type: shader
   id: RMCBlurryVisionX
@@ -32,3 +42,8 @@
     light_boost: 4.0
     light_gamma: 1.0
     light_whitepoint: 1.0
+
+- type: shader
+  id: RMCWeatherPersonalOverlay
+  kind: source
+  path: "/Textures/_RMC14/Shaders/weather_personal_overlay.swsl"

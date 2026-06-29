@@ -1,0 +1,44 @@
+- type: entity
+  id: STHunterRune
+  name: rune
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: _Stories/Structures/Props/hunter.rsi
+    drawdepth: BelowFloor
+    state: hunter_rune
+    noRot: false
+  - type: Icon
+    sprite: _Stories/Structures/Props/hunter.rsi
+    state: hunter_rune
+  - type: Transform
+  - type: TileEmission
+    color: "#FF0000"
+
+- type: entity
+  parent: STHunterRune
+  id: STHunterRuneCorner
+  components:
+  - type: Sprite
+    state: hunter_rune_corner
+
+- type: entity
+  parent: STHunterRune
+  id: STHunterRuneCornerAlt
+  components:
+  - type: Sprite
+    state: hunter_rune_corner_2
+
+- type: entity
+  parent: STHunterRune
+  id: STHunterRuneArrow
+  components:
+  - type: Sprite
+    state: small_arrow
+
+- type: entity
+  parent: STHunterRune
+  id: STHunterRuneArrowAlt
+  components:
+  - type: Sprite
+    state: stripes_arrow

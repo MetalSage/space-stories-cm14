@@ -3,6 +3,6 @@ ent-RMCXM43E1AntiMaterielRifle = антиматериальная винтовк
 ent-RMCMagazineSniperXM43E1AntiMateriel = антиматериальный магазин XM43E1 (10x99 мм)
     .desc = Магазин с безоболочечными патронами 10x99 мм, способными пробить большинство боевых единиц пехоты. В зависимости от того, во что вы попали, энергии может хватить даже на то, чтобы ранить все, что находится за целью.
 ent-RMCCartridgeSniper10x99mmAntiMateriel = антиматериальный патрон (10x99 мм)
-    .desc = { ent-CMCCartridgeSniper10x28mm.desc }
+    .desc = { ent-CMCartridgeSniper10x28mm.desc }
 ent-RMCBulletSniper10x99mmAntiMateriel = антиматериальная пуля (10x99 мм)
     .desc = { ent-CMBulletSniper10x28mm.desc }

@@ -1,0 +1,87 @@
+- type: entity
+  parent: [STHunterBaseItem, CMBaseToolSurgery]
+  id: STHealingGun
+  name: healing gun
+  description: Used for mending stabilized wounds.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Medical/Surgery/healing_gun.rsi
+    state: healing_gun
+  - type: Item
+    sprite: _RMC14/Objects/Medical/Surgery/healing_gun.rsi
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STHealingGun
+  - type: HunterHealingGun
+  - type: HealingGunTool
+  - type: Appearance
+  - type: CMSurgeryTool
+    skillType: STSkillIllegalTechnology
+    startSound:
+      path: /Audio/_RMC14/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_RMC14/Medical/Surgery/cautery2.ogg
+
+- type: entity
+  parent: [STHunterBaseItem, CMBaseToolSurgery]
+  id: STHealingGel
+  name: healing gel capsule
+  description: Used for reloading the healing gun.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Medical/Surgery/healing_gun.rsi
+    state: healing_gel
+  - type: Item
+    sprite: _RMC14/Objects/Medical/Surgery/healing_gun.rsi
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STHealingGel
+  - type: HealingGel
+
+- type: entity
+  parent: [STHunterBaseItem, CMBaseToolSurgery]
+  id: STStabilizerGel
+  name: stabilizer gel vials
+  description: Used for stabilizing wounds for treatment.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Medical/Surgery/healing.rsi
+    state: stabilizer_gel
+  - type: Item
+    sprite: _RMC14/Objects/Medical/Surgery/healing.rsi
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STStabilizerGel
+  - type: StabilizerGelTool
+  - type: CMSurgeryTool
+    skillType: STSkillIllegalTechnology
+    startSound:
+      path: /Audio/_RMC14/Medical/Surgery/retractor1.ogg
+    endSound:
+      path: /Audio/_RMC14/Medical/Surgery/retractor2.ogg
+
+- type: entity
+  parent: [STHunterBaseItem, CMBaseToolSurgery]
+  id: STWoundClamp
+  name: wound clamp
+  description: Used for clamping wounds after treatment.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Medical/Surgery/wound_clamp.rsi
+    state: wound_clamp
+  - type: Item
+    sprite: _RMC14/Objects/Medical/Surgery/wound_clamp.rsi
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STWoundClamp
+  - type: WoundClampTool
+  - type: CMSurgeryTool
+    skillType: STSkillIllegalTechnology
+    startSound:
+      path: /Audio/_RMC14/Medical/Surgery/hemostat1.ogg
+    endSound:
+      path: /Audio/_RMC14/Medical/Surgery/hemostat1.ogg

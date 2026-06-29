@@ -37,6 +37,11 @@ jobs:
       env:
         version: 1
 
+    - name: Fetch tags for RobustToolbox
+      run: |
+        cd RobustToolbox
+        git fetch --tags --force
+
     - name: Publish version
       run: Tools/publish_multi_request.py
       env:

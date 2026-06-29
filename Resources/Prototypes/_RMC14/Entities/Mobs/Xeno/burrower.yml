@@ -11,11 +11,11 @@
   name: Burrower
   description: A beefy alien with sharp claws.
   components:
+  - type: XenoBaseCaste
+  - type: CanBuildThickFromConstructNode
   - type: GuideHelp
     guides:
     - RMCGuideRoleBurrower
-  - type: GhostRole
-    name: cm-job-name-xeno-burrower
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Burrower/burrower.rsi
   - type: MobState
@@ -23,6 +23,10 @@
     - Alive
     - Critical
     - Dead
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - RMCSynthGrabbable
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -117,6 +121,7 @@
     - HiveEggMorpherXenoConstructionNode
     - HiveClusterXenoConstructionNode
     - HiveRecoveryNodeXenoConstructionNode
+    - HivePlasmaTreeXenoConstructionNode
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 0.2
   - type: FixedIdentity
@@ -125,3 +130,5 @@
     item: RMCOrganXenoHeartT2
   - type: VentCrawler
     ventCrawlIcon: burrower
+  - type: RMCActionOrder
+    id: CMXenoBurrower
