@@ -1,4 +1,4 @@
-using System.Linq; 
+using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared._RMC14.Armor.Ghillie;
