@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared._RMC14.Armor.Ghillie;
@@ -302,10 +302,17 @@ public sealed partial class CMDistressSignalRuleSystem
         }
     }
 
+    // Stories-Public-EndRound-Start
+    public void EndRound(CMDistressSignalRuleComponent rule, DistressSignalRuleResult result, LocId? customMessage = null)
+    {
+        EndRoundInternal(rule, result, customMessage);
+    }
+
     /// <summary>
     /// Ends the round with the specified result, handling victory conditions and announcements.
     /// </summary>
-    private void EndRound(CMDistressSignalRuleComponent rule, DistressSignalRuleResult result, LocId? customMessage = null)
+    private void EndRoundInternal(CMDistressSignalRuleComponent rule, DistressSignalRuleResult result, LocId? customMessage = null)
+    // Stories-Public-EndRound-End
     {
         if (!rule.AutoEnd)
             return;
