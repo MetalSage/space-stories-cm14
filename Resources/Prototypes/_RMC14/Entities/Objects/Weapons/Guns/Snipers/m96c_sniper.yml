@@ -154,14 +154,14 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 100
+        Piercing: 300 # TODO RMC14: 150% damage to runners (225), 300% against Big xenos (450), and 200% against all others (300). For now it's just 300, base damage should be 150 when this multiplier is added
   - type: RMCProjectileDamageFalloff
     thresholds:
     - range: 32
       falloff: 9999
       ignoreModifiers: true
   - type: CMArmorPiercing
-    amount: 30
+    amount: 75
   - type: RMCProjectileAccuracy
     accuracy: 125
     thresholds:
