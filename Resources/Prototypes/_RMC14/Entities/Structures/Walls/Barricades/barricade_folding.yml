@@ -49,3 +49,8 @@
     damageOverlay:
       sprite: _RMC14/Structures/Walls/Barricades/folding_cracks.rsi
   - type: RMCFoldingBarricade
+  - type: StoriesFoldingBarricadeMountable # Stories-M56DCade
+    targetPrototype: STBarricadeFoldingWithMount # Stories-M56DCade
+    weaponWhitelist: # Stories-M56DCade
+      tags: # Stories-M56DCade
+      - RMCSmartGunMounted # Stories-M56DCade

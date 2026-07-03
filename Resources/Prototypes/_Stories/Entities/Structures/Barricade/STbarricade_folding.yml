@@ -1,0 +1,49 @@
+- type: entity
+  parent: CMBarricadeFolding
+  id: STBarricadeFoldingWithMount
+  name: баррикада с М56Д
+  description: Развёрнутая баррикада МВ-6 со стационарно установленным тяжёлым пулемётом М56Д. Орудие нельзя повернуть, но его можно снять ломом при достаточном навыке инженерии.
+  suffix: Stories, With Mount
+  components:
+  - type: StoriesFoldingBarricadeMountable
+    revertPrototype: CMBarricadeFolding
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/HMGs/ML66D/mount.rsi
+    layers:
+    - state: towergun_folding
+  - type: Strap
+    whitelist: { components: [ Marine ] }
+    position: Stand
+    buckleSound: /Audio/_RMC14/Weapons/Guns/Reload/hpr_reload.ogg
+    unbuckleSound: /Audio/_RMC14/Weapons/Guns/Reload/hpr_unload.ogg
+    buckledAlertType: null
+    buckleOffset: "0,0.48"
+  - type: WeaponMount
+    fixedWeaponPrototype: RMCSmartGunMounted
+    isWeaponSecured: true
+    isWeaponLocked: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:EmptyContainersBehaviour
+        containers:
+        - weapon
+        deleteChance: 0.5
+
+- type: entity
+  parent: CMFoldingBarricade
+  id: STFoldingBarricadeWithMount
+  name: сложенная баррикада с креплением под М56Д
+  description: Сложенная баррикада МВ-6, готовая при развёртывании сразу принять тяжёлый пулемёт М56Д.
+  suffix: Stories, With Mount
+  components:
+  - type: RMCFoldingBarricadeStack
+    deployedPrototype: STBarricadeFoldingWithMount

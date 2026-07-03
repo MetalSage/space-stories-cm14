@@ -1,0 +1,9 @@
+stories-folding-barricade-mount-install-start = Вы начинаете устанавливать оружие на { $barricade }.
+stories-folding-barricade-mount-install-start-others = { $user } начинает устанавливать оружие на { $barricade }.
+stories-folding-barricade-mount-install-finish = Оружие установлено на { $barricade }.
+stories-folding-barricade-mount-uninstall-start = Вы начинаете снимать оружие с { $barricade }.
+stories-folding-barricade-mount-uninstall-start-others = { $user } начинает снимать оружие с { $barricade }.
+stories-folding-barricade-mount-uninstall-finish = Оружие снято с { $barricade }.
+stories-folding-barricade-mount-collapse-blocked = Нельзя собрать баррикаду, пока на ней установлено орудие.
+stories-folding-barricade-mount-examine-installable = На эту баррикаду можно установить орудие.
+stories-folding-barricade-mount-untrained = Вам не хватает навыка инженерии, чтобы устанавливать или снимать орудие.
