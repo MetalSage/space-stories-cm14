@@ -4,6 +4,6 @@ ent-RMCMarshalCMBUniformSurvivorMarshal = { ent-RMCMarshalCMBUniform }
 ent-RMCWebbingSurvivorCMBMarshal = { ent-CMWebbingHolster }
     .desc = { ent-CMWebbingHolster.desc }
     .suffix = Маршал, Выживший, Заполнена
-ent-CMSpawnPointSolarisCMBMarshal = точка появления маршала КМБ (Солярис)
+ent-CMSpawnPointSolarisCMBMarshal = точка появления маршала БКМ (Солярис)
     .desc = { ent-CMSpawnPointJobBase.desc }
     .suffix = { ent-CMSpawnPointJobBase.suffix }

@@ -1,6 +1,6 @@
 rmc-medevac-toggle-beacon-verb = Включить медэвакуацию
 
-rmc-medevac-area-not-cas = ИНВАЛИДНАЯ ЦЕЛЬ: носилки должны быть видны с большой высоты.
+rmc-medevac-area-not-cas = НЕВОЗМОЖНАЯ ЦЕЛЬ: носилки должны быть видны с большой высоты.
 rmc-medevac-activate-beacon = Маяк носилок теперь активен.
 rmc-medevac-inactivate-beacon = Носилочный маяк теперь неактивен.
 

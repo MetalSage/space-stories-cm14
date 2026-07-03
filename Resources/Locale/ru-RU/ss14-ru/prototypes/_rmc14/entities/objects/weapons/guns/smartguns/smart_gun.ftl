@@ -1,5 +1,5 @@
-ent-RMCSmartGunNoCamo = ML66A smart gun
-    .desc = The actual firearm in the Smart Gun System. Essentially a heavy, mobile machinegun.
+ent-RMCSmartGunNoCamo = умная пушка M56B
+    .desc = Настоящее огнестрельное оружие в системе Smart Gun System. Большое и громоздкое.
 ent-RMCSmartGun = { ent-RMCSmartGunNoCamo }
     .desc = { ent-RMCSmartGunNoCamo.desc }
 ent-RMCSmartGunUNMC = { ent-RMCSmartGun }

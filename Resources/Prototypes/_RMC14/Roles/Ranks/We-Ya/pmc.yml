@@ -84,9 +84,9 @@
 
 - type: rank
   id: RMCRankWeYaFieldOperaionsLeader
-  name: Field Operations Leader
-  prefix: FOL.
-  paygrade: PMC-FOL
+  name: Лидер Полевых Операций
+  prefix: ЛПО.
+  paygrade: ЧВК-ЛПО
 
 - type: rank
   id: RMCRankWeYaForceLeader
