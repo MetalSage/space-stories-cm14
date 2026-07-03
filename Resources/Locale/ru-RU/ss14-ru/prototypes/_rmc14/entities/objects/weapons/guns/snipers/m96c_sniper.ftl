@@ -1,8 +1,8 @@
-ent-CMM96CSniperRifle = M96C anti-tank sniper rifle
-    .desc = A high-end superheavy magrail sniper rifle from Weston-Yamada chambered in a specialized variant of the heaviest ammo available, 10x99mm Caseless. This weapon requires a specialized armor rig for recoil mitigation in order to be used effectively.
-ent-CMMagazineSniperM96C = M42C marksman magazine (10x99mm)
-    .desc = A magazine of specialized supersonic 10x99mm anti-tank rounds.
-ent-CMCartridgeSniper10x99mm = cartridge (10x99mm)
+ent-CMM96CSniperRifle = модифицированная снайперская винтовка M96C
+    .desc = Сверхтяжелая снайперская винтовка усовершенствованная Вестон-Ямадой, использующая специальный вариант тяжелого безгильзового снайперского патрона 10x99мм. Для более эффективного результата и стрельбы нужна специальная броня для смягчения отдачи.
+ent-CMMagazineSniperM96C = модифицированный магазин M96C (10x99мм)
+    .desc = Магазин тяжелого безгильзового снайперского патрона.
+ent-CMCartridgeSniper10x99mm = снайперский патрон (10x99мм)
     .desc = { ent-CMBaseCartridgeRifle.desc }
-ent-CMBulletSniper10x99mm = supersonic sniper bullet (10x99mm)
+ent-CMBulletSniper10x99mm = сверхзвуковая снайперская пуля (10x99мм)
     .desc = { ent-RMCBaseBullet.desc }

@@ -164,8 +164,16 @@
       probability: 0.1
     - spawn: "/Maps/_RMC14/Inserts/LV624/centralcaves_qc.yml"
       probability: 0.1
+    # Stories Grid
+    - spawn: "/Maps/_Stories/Inserts/LV624/Central_2.yml"
+      probability: 0.15
+      offset: 11,43
+    - spawn: "/Maps/_Stories/Inserts/LV624/Central_1.yml"
+      probability: 0.1
+      offset: 18,15
     clearEntities: true
     clearDecals: true
+    #replaceAreas: true
 
 - type: entity
   parent: RMCMapInsertLV624Base
