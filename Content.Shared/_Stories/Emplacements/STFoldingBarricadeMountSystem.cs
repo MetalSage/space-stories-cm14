@@ -107,7 +107,6 @@ public sealed class StoriesFoldingBarricadeMountSystem : EntitySystem
             return;
         }
 
-        // Block prying/collapsing the barricade back down while it's still an active gun emplacement.
         args.Handled = true;
         _popup.PopupClient(Loc.GetString("stories-folding-barricade-mount-collapse-blocked"), ent, args.User, PopupType.SmallCaution);
     }
@@ -230,7 +229,6 @@ public sealed class StoriesFoldingBarricadeMountSystem : EntitySystem
         if (args.Cancelled || args.Handled || !IsArmed(ent.Owner))
             return;
 
-        // Refuse to let the upstream system collapse (and delete) an armed mount.
         args.Handled = true;
         _popup.PopupClient(Loc.GetString("stories-folding-barricade-mount-collapse-blocked"), ent, args.User, PopupType.SmallCaution);
     }
