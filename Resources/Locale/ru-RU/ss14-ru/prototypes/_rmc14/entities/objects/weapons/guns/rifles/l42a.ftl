@@ -1,4 +1,4 @@
-ent-RMCWeaponRifleL42A =  боевая винтовка L42A
+ent-RMCWeaponRifleL42A = боевая винтовка L42A
     .desc = Штурмовая винтовка L42A, которую часто можно встретить на границах Галактики. Её обычно используют колонисты для самообороны, а также многие колониальные ополчения, кем бы они ни служили, благодаря её надежности и простоте в обращении без особого обучения. Эта винтовка была предложена для принятия на вооружение КМП США и некоторое время тестировалась, но в итоге уступила уже находящейся на службе M4RA.
     .suffix = Filled
 ent-RMCMagazineRifleL42A = магазин L42A (10x24mm)
@@ -7,7 +7,7 @@ ent-RMCMagazineRifleL42AEmpty = { ent-RMCMagazineRifleL42A }
     .desc = { ent-RMCMagazineRifleL42A.desc }
     .suffix = Empty
 ent-RMCMagazineRifleL42AExtended = увеличенный магазин L42A (10x24mm)
-    .desc = увеличенный магазин на патроне 10x24мм для винтовки L42A.
+    .desc = Увеличенный магазин на патроне 10x24мм для винтовки L42A.
 ent-RMCMagazineRifleL42AExtendedEmpty = { ent-RMCMagazineRifleL42AExtended }
     .desc = { ent-RMCMagazineRifleL42AExtended.desc }
     .suffix = Empty

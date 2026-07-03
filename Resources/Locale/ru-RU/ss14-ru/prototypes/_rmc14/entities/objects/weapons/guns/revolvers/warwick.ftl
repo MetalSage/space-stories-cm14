@@ -1,7 +1,7 @@
-ent-RMCWeaponRevolverWarwickMkVII = Служебный револьвер Warwick MkVII
+ent-RMCWeaponRevolverWarwickMkVII = служебный револьвер Warwick MkVII
     .desc = Револьвер L187 Warwick MkVII с верхним разрывом ствола является стандартным служебным револьвером полков Парамарины ИТМ. Несмотря на устаревший дизайн Warwick, вакуумно-запечатанные внутренние части MkVII, бакелитовые рукоятки и калибр .44 магнум делают оружие актуальным и крайне эффективным.
     .suffix = Paramarine
-ent-RMCWeaponRevolverWarwickMkVIIAlt = Служебный револьвер Warwick MkVII
+ent-RMCWeaponRevolverWarwickMkVIIAlt = служебный револьвер Warwick MkVII
     .desc = { ent-RMCWeaponRevolverWarwickMkVII.desc }
     .suffix = Paramarine, Alt
 ent-RMCWeaponRevolverWarwickMkVIISnub = Warwick MkVII snubnose revolver
