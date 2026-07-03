@@ -1,0 +1,288 @@
+- type: entity
+  parent: RMCMechPowerLoaderWreckage
+  id: STRX47CombatMechWreckage
+  name: RX47 combat mechsuit wreckage
+  description: The torn remains of an RX47 combat mechsuit.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Stories/Objects/Vehicles/RX47/combat_mech.rsi
+    layers:
+    - state: wymech_wreck
+  - type: RemoveComponents
+    components:
+    - type: Strap
+    - type: InputMover
+
+- type: entity
+  id: STRX47CombatMechBodyOverlay
+  name: RX47 body overlay
+  description: Visual overlay layer for the RX47 mech cockpit. Drawn above the pilot without changing global draw depth.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - HideContextMenu
+  - type: Appearance
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Stories/Objects/Vehicles/RX47/combat_mech.rsi
+    layers:
+    - state: wymech_body_overlay
+      shader: unshaded
+    - state: wymech_helmet_open
+      map: [ "enum.CombatMechVisualLayers.Helmet" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombatMechVisuals.HelmetClosed:
+        enum.CombatMechVisualLayers.Helmet:
+          True: { state: wymech_helmet_closed }
+          False: { state: wymech_helmet_open }
+  - type: SpriteSetRenderOrder
+    renderOrder: 2
+
+- type: entity
+  parent: RMCMechBase
+  id: STRX47CombatMechBase
+  name: RX47 combat mechsuit
+  description: A Weston-Yamada RX47 combat mechsuit. This unit is reserved for event and administrative use.
+  abstract: true
+  components:
+  - type: CombatMech
+    bodyOverlayPrototype: STRX47CombatMechBodyOverlay
+    primaryWeapon: STWeaponRX47Chaingun
+    secondaryWeapon: STWeaponRX47Scattergun
+    weaponInstallDelay: 2
+    weaponDetachDelay: 2
+    forceEjectDelay: 3
+    stepStunDuration: 3
+    stepStunCooldown: 1
+    stepStunOverlapRatio: 0.2
+    barricadeCollisionDamage: 900
+    barricadeBumperRange: 0.5
+    barricadeBumperCooldown: 0.25
+  - type: RemoveComponents
+    components:
+    - type: MeleeWeapon
+      damage: { }
+  - type: RMCAllowStrapMovement
+  - type: SpriteSetRenderOrder
+    renderOrder: 0
+  - type: Tag
+    tags:
+    - FootstepSound
+  - type: RMCImmuneToFireTileDamage
+  - type: RMCImmuneToIgnition
+  - type: NoSlip
+  - type: RMCSize
+    size: Immobile
+  - type: PreventPulledWhileAlive
+  - type: Corrodible
+    isCorrodible: false
+  - type: Hands
+  - type: GiveHands
+    hands:
+    - name: Right Hand
+      location: Right
+    - name: Left Hand
+      location: Left
+  - type: IgnoreInteractionRange
+    range: 6
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
+  - type: MobState
+  - type: MobCollision
+    minimumSpeedModifier: 0.1
+    strength: 80
+  - type: RMCMobCollision
+    fixtureShape: !type:PhysShapeCircle
+      radius: 0.55
+  - type: RMCMobCollisionMass
+    mass: 1000
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: true
+        shape: !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - MobMask
+        - BarbedBarricade
+        layer:
+        - MobLayer
+      fix2:
+        hard: true
+        shape: !type:PhysShapeCircle
+          radius: 0.52
+        density: 1000
+        layer:
+        - BulletImpassable
+  - type: Physics
+    bodyType: KinematicController
+    fixedRotation: true
+  - type: PointLight
+    enabled: true
+    radius: 8
+    color: "#d8f2ff"
+    energy: 1.6
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Stories/Objects/Vehicles/RX47/combat_mech.rsi
+    layers:
+    - state: wymech_legs
+      map: [ "enum.CombatMechVisualLayers.Legs" ]
+    - state: wymech_body
+      map: [ "enum.CombatMechVisualLayers.Body" ]
+    - state: wymech_arms
+      map: [ "enum.CombatMechVisualLayers.Arms" ]
+    - state: weapon_chaingun_left
+      map: [ "enum.CombatMechVisualLayers.PrimaryWeapon" ]
+    - state: weapon_shotgun_right
+      map: [ "enum.CombatMechVisualLayers.SecondaryWeapon" ]
+    - state: empty
+      map: [ "enum.CombatMechVisualLayers.MarkingsColor" ]
+    - state: empty
+      map: [ "enum.CombatMechVisualLayers.MarkingsSpecialty" ]
+    - state: empty
+      map: [ "enum.CombatMechVisualLayers.TowLauncher" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombatMechVisuals.PrimaryWeapon:
+        enum.CombatMechVisualLayers.PrimaryWeapon:
+          empty: { state: empty }
+          "weapon_chaingun_left": { state: weapon_chaingun_left }
+          "weapon_cannon_left": { state: weapon_cannon_left }
+          "weapon_cupola_left": { state: weapon_cupola_left }
+          "weapon_shotgun_left": { state: weapon_shotgun_left }
+      enum.CombatMechVisuals.SecondaryWeapon:
+        enum.CombatMechVisualLayers.SecondaryWeapon:
+          empty: { state: empty }
+          "weapon_chaingun_right": { state: weapon_chaingun_right }
+          "weapon_cannon_right": { state: weapon_cannon_right }
+          "weapon_cupola_right": { state: weapon_cupola_right }
+          "weapon_shotgun_right": { state: weapon_shotgun_right }
+      enum.CombatMechVisuals.MarkingsColor:
+        enum.CombatMechVisualLayers.MarkingsColor:
+          "": { state: empty }
+          "markings_c_": { state: markings_c_ }
+          "markings_c_red": { state: markings_c_red }
+          "markings_c_yellow": { state: markings_c_yellow }
+          "markings_c_pink": { state: markings_c_pink }
+          "markings_c_blue": { state: markings_c_blue }
+          "markings_c_green": { state: markings_c_green }
+      enum.CombatMechVisuals.MarkingsSpecialty:
+        enum.CombatMechVisualLayers.MarkingsSpecialty:
+          "": { state: empty }
+          "markings_s_wy": { state: markings_s_wy }
+          "markings_s_clf": { state: markings_s_clf }
+          "markings_s_upp": { state: markings_s_upp }
+          "markings_s_uscm": { state: markings_s_uscm }
+          "markings_s_uscm_flag": { state: markings_s_uscm_flag }
+      enum.CombatMechVisuals.HasTowLauncher:
+        enum.CombatMechVisualLayers.TowLauncher:
+          True: { state: weapon_tow }
+          False: { state: empty }
+  - type: CMArmor
+    melee: 20
+    bullet: 20
+    xenoArmor: 20
+    explosionArmor: 20
+  - type: Damageable
+    damageContainer: STRX47CombatMech
+    # RX47 reduction is handled by CMArmor (flat per-type subtraction). damageModifierSet stays null so
+    # the modifier multiplier pass is not stacked on top of armor.
+    damageModifierSet: null
+  - type: RMCRepairable
+    heal: 100
+    delay: 10
+    repairableDamageLimit: 3000
+  - type: XenoCrusherChargable
+    setDamage:
+      types:
+        Blunt: 300
+  - type: XenoToggleChargingDamage
+    stop: true
+    damage:
+      types:
+        Blunt: 17
+    armorPiercingDamage:
+      types:
+        Blunt: 50
+    armorPiercing: 30
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 3000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          RMCPowerCellAPC:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SpawnOnTerminate
+    spawn: STRX47CombatMechWreckage
+
+- type: entity
+  parent: STRX47CombatMechBase
+  id: STRX47CombatMechChaingun
+  name: RX47 combat mechsuit
+  description: A Weston-Yamada RX47 combat mechsuit fitted with a chaingun and scattergun.
+  suffix: Chaingun
+  components:
+  - type: CombatMech
+    primaryWeapon: STWeaponRX47Chaingun
+    secondaryWeapon: STWeaponRX47Scattergun
+    markingsColorState: markings_c_
+    markingsSpecialtyState: markings_s_wy
+
+- type: entity
+  parent: STRX47CombatMechBase
+  id: STRX47CombatMechSiegebreaker
+  name: RX47-SB combat mechsuit
+  description: A Weston-Yamada RX47-SB "Siegebreaker" combat mechsuit fitted with a siege cannon and cupola smartgun.
+  suffix: Siegebreaker
+  components:
+  - type: CombatMech
+    primaryWeapon: STWeaponRX47Siegebreaker
+    secondaryWeapon: STWeaponRX47CupolaSmartgun
+    markingsColorState: markings_c_yellow
+    markingsSpecialtyState: markings_s_uscm
+    hasTowLauncher: true
+
+- type: entity
+  parent: STRX47CombatMechBase
+  id: STRX47CombatMechExterminator
+  name: RX47-EX combat mechsuit
+  description: A Weston-Yamada RX47-EX "Exterminator" combat mechsuit fitted with a siege cannon and chaingun.
+  suffix: Exterminator
+  components:
+  - type: CombatMech
+    primaryWeapon: STWeaponRX47Siegebreaker
+    secondaryWeapon: STWeaponRX47Chaingun
+    markingsColorState: markings_c_red
+    markingsSpecialtyState: markings_s_wy
+    hasTowLauncher: true
+
+- type: entity
+  parent: STRX47CombatMechBase
+  id: STRX47CombatMechRecon
+  name: RX47-RC combat mechsuit
+  description: A Weston-Yamada RX47-RC "Recon" combat mechsuit fitted with a cupola smartgun and scattergun.
+  suffix: Recon
+  components:
+  - type: CombatMech
+    primaryWeapon: STWeaponRX47CupolaSmartgun
+    secondaryWeapon: STWeaponRX47Scattergun
+    markingsColorState: markings_c_green
+    markingsSpecialtyState: markings_s_uscm_flag

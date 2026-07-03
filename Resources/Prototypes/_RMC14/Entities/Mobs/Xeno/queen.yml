@@ -130,6 +130,10 @@
     damage:
       groups:
         Brute: 40
+  # Stories-start
+  - type: CombatMechMeleeDamageMultiplier
+    multiplier: 2
+  # Stories-end
   - type: XenoTailStab
     tailDamage:
       groups:

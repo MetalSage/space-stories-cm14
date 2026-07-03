@@ -72,6 +72,9 @@
       components:
       - Marine
       - Xeno
+      # Stories-start
+      - CombatMech
+      # Stories-end
   - type: UncloakOnHit
   - type: ExtinguishFire
   - type: IgnorePredictionHit

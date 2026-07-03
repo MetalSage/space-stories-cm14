@@ -1,0 +1,13 @@
+- type: jobIcon
+  parent: CMJobIconBase
+  id: STJobIconMechOperator
+  icon:
+    sprite: _Stories/Interface/rx47_job_icons.rsi
+    state: mech_operator
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: STJobIconLeadMechOperator
+  icon:
+    sprite: _Stories/Interface/rx47_job_icons.rsi
+    state: lead_mech_operator

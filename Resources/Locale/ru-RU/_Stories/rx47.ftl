@@ -1,0 +1,51 @@
+stories-job-name-mech-operator = Оператор меха
+stories-job-description-mech-operator = Управляет ивентовыми боевыми мехами RX47 под надзором командования.
+stories-job-name-lead-mech-operator = Ведущий оператор меха
+stories-job-description-lead-mech-operator = Командует ивентовой группой боевых мехов RX47.
+
+stories-chat-radio-mech = Мех
+
+stories-rx47-examine-health = Индикатор целостности брони показывает [color=cyan]{$health}%[/color].
+stories-rx47-examine-pilot = {$pilot} пристегнут в кабине.
+stories-rx47-alert-damaged = Целостность брони RX47 ниже двадцати пяти процентов.
+stories-rx47-alert-critical = Целостность брони RX47 критическая.
+stories-rx47-verb-open-faceplate = Открыть лицевую панель
+stories-rx47-verb-close-faceplate = Закрыть лицевую панель
+stories-rx47-faceplate-opened = Лицевая панель RX47 открывается.
+stories-rx47-faceplate-closed = Лицевая панель RX47 блокируется.
+stories-rx47-faceplate-blocks-exit = Откройте лицевую панель RX47 перед выходом из кабины.
+stories-rx47-weapon-not-linked = Оружие не связано с этим мехом.
+stories-rx47-weapon-pilot-mismatch = Только пилот в кабине может стрелять из этого оружия.
+stories-rx47-weapon-out-of-arc = Цель вне дуги наведения оружия.
+stories-rx47-underbarrel-pilot-only = Этот обвес работает только когда вы пилотируете RX47.
+stories-rx47-left-slot = левый узел крепления
+stories-rx47-right-slot = правый узел крепления
+stories-rx47-verb-install-left-weapon = Установить оружие на левый узел
+stories-rx47-verb-install-right-weapon = Установить оружие на правый узел
+stories-rx47-verb-detach-left-weapon = Снять оружие с левого узла ({$weapon})
+stories-rx47-verb-detach-right-weapon = Снять оружие с правого узла ({$weapon})
+stories-rx47-verb-force-eject = Вскрыть кабину
+stories-rx47-weapon-slots-full = Оба узла оружия RX47 заняты. Используйте меню действий, чтобы заменить конкретный узел.
+stories-rx47-weapon-already-linked = Это оружие уже связано с мехом.
+stories-rx47-weapon-slot-occupied = На {$slot} уже установлено оружие. Сначала снимите его.
+stories-rx47-weapon-install-in-progress = {$slot} уже модифицируется.
+stories-rx47-weapon-slot-empty = Этот узел уже пуст.
+stories-rx47-need-free-hand = Нужна свободная рука, чтобы снять оружие.
+stories-rx47-weapon-not-trained = Вы не обучены обслуживать оружейные узлы RX47.
+stories-rx47-missing-weapons = RX47 не хватает обязательных оружейных модулей.
+stories-rx47-need-both-hands = Для управления RX47 нужны две свободные руки.
+stories-rx47-weapon-install-start-self = Вы начинаете устанавливать оружие на {$slot}.
+stories-rx47-weapon-install-start-others = {$user} начинает устанавливать оружие на {$slot}.
+stories-rx47-weapon-detach-start-self = Вы начинаете снимать оружие с {$slot}.
+stories-rx47-weapon-detach-start-others = {$user} начинает снимать оружие с {$slot}.
+stories-rx47-force-eject-start-self = Вы начинаете вскрывать кабину RX47.
+stories-rx47-force-eject-start-others = {$user} начинает вскрывать кабину RX47.
+stories-rx47-weapon-installed = {$weapon} установлено на {$slot}.
+stories-rx47-weapon-detached = {$weapon} снято с {$slot}.
+stories-rx47-not-trained-pilot = Вы не обучены пилотировать RX47.
+stories-rx47-cannot-modify-piloted = Нельзя обслуживать RX47, пока в нем пилот.
+
+stories-ghost-name-mech-operator = Оператор меха
+stories-ghost-description-mech-operator = Пилотируй боевой мех RX47 во время ивента.
+stories-ghost-name-lead-mech-operator = Ведущий оператор меха
+stories-ghost-description-lead-mech-operator = Веди звено боевых мехов RX47 во время ивента.

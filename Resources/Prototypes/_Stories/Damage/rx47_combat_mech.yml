@@ -1,0 +1,8 @@
+- type: damageContainer
+  id: STRX47CombatMech
+  supportedGroups:
+  - Brute
+  supportedTypes:
+  - Heat
+  - Shock
+  - Caustic

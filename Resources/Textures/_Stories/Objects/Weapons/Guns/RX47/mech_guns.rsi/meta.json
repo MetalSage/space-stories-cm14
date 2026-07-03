@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 PR #9318 at https://github.com/cmss13-devs/cmss13/blob/5c4ab5f13d374696a83acf8e0ab0d501a6f28503/icons/obj/vehicles/wymech_guns.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ITEM"
+    },
+    {
+      "name": "chaingun"
+    },
+    {
+      "name": "Switch Weapon"
+    },
+    {
+      "name": "aux_cupola"
+    },
+    {
+      "name": "aux_fire"
+    },
+    {
+      "name": "TOW"
+    },
+    {
+      "name": "siegebreaker"
+    },
+    {
+      "name": "shotgun"
+    },
+    {
+      "name": "shotgun_fire",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "siegebreaker_color"
+    },
+    {
+      "name": "chaingun_color"
+    },
+    {
+      "name": "shotgun_color"
+    },
+    {
+      "name": "TOW_color"
+    },
+    {
+      "name": "cupola"
+    },
+    {
+      "name": "cupola_fire",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+ent-STRX47CombatMechWreckage = обломки боевого меха RX47
+    .desc = Изорванные останки боевого меха RX47.
+ent-STRX47CombatMechBase = боевой мех RX47
+    .desc = Боевой мех Weston-Yamada RX47. Эта единица зарезервирована для ивентов и административного использования.
+ent-STRX47CombatMechChaingun = боевой мех RX47
+    .desc = Боевой мех Weston-Yamada RX47, оснащённый пулемётом и дробовиком.
+ent-STRX47CombatMechSiegebreaker = боевой мех RX47-SB
+    .desc = Боевой мех Weston-Yamada RX47-SB «Осадолом», оснащённый осадной пушкой и купольным смартганом.
+ent-STRX47CombatMechExterminator = боевой мех RX47-EX
+    .desc = Боевой мех Weston-Yamada RX47-EX «Экстерминатор», оснащённый осадной пушкой и пулемётом.
+ent-STRX47CombatMechRecon = боевой мех RX47-RC
+    .desc = Боевой мех Weston-Yamada RX47-RC «Разведчик», оснащённый купольным смартганом и дробовиком.

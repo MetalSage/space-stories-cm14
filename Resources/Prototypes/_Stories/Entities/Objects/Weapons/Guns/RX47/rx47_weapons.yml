@@ -1,0 +1,466 @@
+- type: entity
+  abstract: true
+  parent: [ CMBaseWeaponGun, BaseItem, RMCBaseAttachableHolder ]
+  id: STWeaponRX47Base
+  components:
+  - type: Item
+    size: Huge
+  - type: Clothing
+    slots: NONE
+  - type: AmmoCounter
+  - type: GunIFF
+    enabled: true
+  - type: GunPointBlank
+  - type: Appearance
+  - type: GunSkilledRecoil
+    setRecoil: 0
+    mustBeWielded: false
+    skills:
+      RMCSkillFirearms: 0
+
+- type: entity
+  parent: STWeaponRX47Base
+  id: STWeaponRX47Chaingun
+  name: RX47 arm-mounted chaingun
+  description: A mechsuit-mounted 20x102mm chaingun with an integrated IFF feed.
+  components:
+  - type: CombatMechWeapon
+    armState: chaingun
+    firingArc: 160
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
+    layers:
+    - state: chaingun
+  - type: Gun
+    cameraRecoilScalar: 0
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.85
+    fireRate: 8.33
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Stories/Weapons/Guns/Gunshots/gun_minigun.ogg
+      params:
+        volume: -2
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/lmg_mouse.rsi
+      state: all
+  - type: RMCSelectiveFire
+    baseFireModes:
+    - FullAuto
+    recoilWielded: 0
+    recoilUnwielded: 0
+    scatterWielded: 3
+    scatterUnwielded: 3
+    baseFireRate: 8.33
+    modifiers:
+      FullAuto:
+        fireDelay: 0
+        maxScatterModifier: 2
+        useBurstScatterMult: true
+        unwieldedScatterMultiplier: 1
+        shotsToMaxScatter: 30
+  - type: BallisticAmmoProvider
+    cycleable: false
+    mayTransfer: false
+    proto: STCartridgeRX47Chaingun
+    capacity: 5000
+
+- type: entity
+  parent: STWeaponRX47Base
+  id: STWeaponRX47Siegebreaker
+  name: RX47 siegebreaker cannon
+  description: A 50mm mechsuit cannon with a narrow firing arc and explosive impact.
+  components:
+  - type: CombatMechWeapon
+    armState: cannon
+    firingArc: 90
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
+    layers:
+    - state: siegebreaker
+  - type: Gun
+    cameraRecoilScalar: 0
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.85
+    fireRate: 0.4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_sniper.ogg
+      params:
+        volume: 2
+  - type: ShootAtFixedPoint
+    shootArcProj: false
+  - type: OnShootTriggerAmmoTimer
+    delay: 0.2
+  - type: GunIgnorePrediction
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/explosive_mouse.rsi
+      state: all
+  - type: BallisticAmmoProvider
+    cycleable: false
+    mayTransfer: false
+    proto: STCartridgeRX47Siegebreaker
+    capacity: 500
+
+- type: entity
+  parent: STWeaponRX47Base
+  id: STWeaponRX47CupolaSmartgun
+  name: RX47 cupola smartgun
+  description: A compact mechsuit smartgun with IFF-linked fire control.
+  components:
+  - type: CombatMechWeapon
+    armState: cupola
+    firingArc: 160
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
+    layers:
+    - state: cupola
+  - type: Gun
+    cameraRecoilScalar: 0
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.85
+    fireRate: 7
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_ml66a.ogg
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/smartgun_mouse.rsi
+      state: all
+  - type: RMCSelectiveFire
+    baseFireModes:
+    - FullAuto
+    recoilWielded: 0
+    recoilUnwielded: 0
+    scatterWielded: 3
+    scatterUnwielded: 3
+    baseFireRate: 7
+    modifiers:
+      FullAuto:
+        fireDelay: 0
+        maxScatterModifier: 3
+        useBurstScatterMult: true
+        unwieldedScatterMultiplier: 1
+        shotsToMaxScatter: 30
+  - type: BallisticAmmoProvider
+    cycleable: false
+    mayTransfer: false
+    proto: STCartridgeRX47Cupola
+    capacity: 3000
+  - type: ContainerContainer
+    containers:
+      rx47_flamer_tank: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      rx47_flamer_tank:
+        name: Flamer tank
+        startingItem: STRX47FlamerTank
+        priority: 3
+        whitelist:
+          tags:
+          - STRX47FlamerTank
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-underbarrel:
+        locked: true
+        startingAttachable: STRX47AttachmentMiniFlamethrower
+        whitelist:
+          tags:
+          - RMCAttachmentFlamer
+
+- type: entity
+  parent: STWeaponRX47Base
+  id: STWeaponRX47Scattergun
+  name: RX47 scattergun
+  description: A breaching scattergun tuned for structures and close-range suppression.
+  components:
+  - type: CombatMechWeapon
+    # Hidden/admin-only refit; reuses scattergun arm art until dedicated RX47 flamer arm states exist.
+    armState: shotgun
+    firingArc: 160
+  - type: GunIFF
+    enabled: false
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
+    layers:
+    - state: shotgun
+  - type: Gun
+    cameraRecoilScalar: 0
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.85
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_shotgun.ogg
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/shotgun_mouse.rsi
+      state: all
+  - type: RMCSelectiveFire
+    baseFireModes:
+    - SemiAuto
+    recoilWielded: 0
+    recoilUnwielded: 0
+    scatterWielded: 8
+    scatterUnwielded: 8
+    baseFireRate: 1.5
+  - type: BallisticAmmoProvider
+    cycleable: false
+    mayTransfer: false
+    proto: STCartridgeRX47Scattergun
+    capacity: 1000
+  - type: ContainerContainer
+    containers:
+      rx47_flamer_tank: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      rx47_flamer_tank:
+        name: Flamer tank
+        startingItem: STRX47FlamerTank
+        priority: 3
+        whitelist:
+          tags:
+          - STRX47FlamerTank
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-underbarrel:
+        locked: true
+        startingAttachable: STRX47AttachmentMiniFlamethrower
+        whitelist:
+          tags:
+          - RMCAttachmentFlamer
+
+- type: entity
+  parent: STWeaponRX47Base
+  id: STWeaponRX47AuxiliaryFlamer
+  name: RX47 auxiliary flamer
+  description: A standalone RX47 auxiliary flamer module for event refits.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CombatMechWeapon
+    armState: shotgun
+    firingArc: 160
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/RX47/mech_guns.rsi
+    layers:
+    - state: aux_fire
+  - type: Gun
+    cameraRecoilScalar: 0
+    # Tuned to fire from the RX47 shoulder instead of above the sprite.
+    shootOriginOffset: 0, -0.85
+    fireRate: 0.333
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: RMCFlamerShoot
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/flamer_mouse.rsi
+      state: all
+  - type: RMCFlamerAmmoProvider
+  - type: RMCIgniter
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Tank
+        locked: true
+        startingItem: RMCTankFlamer
+        priority: 2
+        whitelist:
+          tags:
+          - RMCTankFlamer
+
+- type: entity
+  parent: RMCTankFlamer
+  id: STRX47FlamerTank
+  name: RX47 flamer fuel tank
+  description: A high-capacity fuel tank for RX47-mounted flamethrower systems.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - STRX47FlamerTank
+    - RMCTankFlamer
+  - type: SolutionContainerManager
+    solutions:
+      rmc_flamer_tank:
+        maxVol: 750
+        reagents:
+        - ReagentId: RMCNapalmUT
+          Quantity: 750
+  - type: RMCFlamerTank
+    maxIntensity: 10
+    maxDuration: 10
+    reagentWhitelist:
+    - RMCNapalmUT
+    - WeldingFuel
+
+- type: entity
+  parent: CMBaseCartridgeRifle
+  id: STCartridgeRX47Chaingun
+  name: cartridge (20x102mm)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - STCartridgeRX47Chaingun
+  - type: CartridgeAmmo
+    proto: STBulletRX47Chaingun
+
+- type: entity
+  parent: CMBaseCartridgeRifle
+  id: STCartridgeRX47Siegebreaker
+  name: shell (50mm)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - STCartridgeRX47Siegebreaker
+  - type: CartridgeAmmo
+    proto: STBulletRX47Siegebreaker
+
+- type: entity
+  parent: CMCartridgeSmartGun10x30mm
+  id: STCartridgeRX47Cupola
+  name: cartridge (10x30mm)
+  # Uses the existing RMC smartgun cartridge path for IFF behavior, despite the DM source using 15x102mm.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - STCartridgeRX47Cupola
+  - type: CartridgeAmmo
+    proto: STBulletRX47Cupola
+
+- type: entity
+  parent: CMBaseCartridgeRifle
+  id: STCartridgeRX47Scattergun
+  name: RX47 buckshot shell
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - STCartridgeRX47Scattergun
+  - type: CartridgeAmmo
+    proto: STPelletRX47Scattergun
+
+- type: entity
+  parent: RMCBaseBullet
+  id: STBulletRX47Chaingun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40
+  - type: CMArmorPiercing
+    amount: 40
+  - type: RMCProjectileAccuracy
+    accuracy: 95
+    thresholds:
+    - range: 7
+      falloff: 8
+
+- type: entity
+  parent: RMCProjectileRocket84mm
+  id: STBulletRX47Siegebreaker
+  name: 50mm siegebreaker shell
+  # Reuses the RMC rocket projectile base for explosive behavior; the RX47 round remains balanced as 50mm data below.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 22.5
+        Structural: 45
+    maxFixedRange: 6 # 7 tiles
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Projectiles/m5spec_projectiles.rsi
+    layers:
+    - state: m5_84mm_he
+  - type: Explosive
+    explosionType: RMC
+    maxIntensity: 20
+    intensitySlope: 20
+    totalIntensity: 50
+    maxTileBreak: 0
+  - type: CMArmorPiercing
+    amount: 100
+
+- type: entity
+  parent: CMBulletSmartGun10x30mm
+  id: STBulletRX47Cupola
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 25
+  - type: CMArmorPiercing
+    amount: 20
+
+- type: entity
+  parent: CMPelletShotgunBase
+  id: STPelletRX47Scattergun
+  name: RX47 buckshot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Projectiles/shotgun_projectiles.rsi
+    layers:
+    - state: buckshot
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 22
+        Structural: 20
+  - type: CMArmorPiercing
+    amount: 10
+  - type: ProjectileSpread
+    proto: STPelletRX47Scattergun
+    count: 7
+    spread: 18
+  - type: RMCProjectileDamageFalloff
+    thresholds:
+    - range: 4
+      falloff: 9999
+      ignoreModifiers: true
+    - range: 0
+      falloff: 1
+  - type: RMCProjectileAccuracy
+    accuracy: 85
+    thresholds:
+    - range: 5
+      falloff: 20
+
+- type: Tag
+  id: STCartridgeRX47Chaingun
+
+- type: Tag
+  id: STCartridgeRX47Siegebreaker
+
+- type: Tag
+  id: STCartridgeRX47Cupola
+
+- type: Tag
+  id: STCartridgeRX47Scattergun
+
+- type: Tag
+  id: STRX47FlamerTank

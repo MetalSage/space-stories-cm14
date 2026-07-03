@@ -1,0 +1,13 @@
+- type: entity
+  parent: CMHeadset
+  id: StoriesHeadsetMech
+  name: mech operations headset
+  description: A command headset keyed to a dedicated mech operations channel.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - StoriesEncryptionKeyMech
+  - type: GrantMarineIcons
+    factions:
+    - UNMC

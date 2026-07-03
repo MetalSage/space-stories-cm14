@@ -1,0 +1,165 @@
+- type: job
+  parent: CMJobBase
+  id: STMechOperator
+  name: stories-job-name-mech-operator
+  description: stories-job-description-mech-operator
+  playTimeTracker: STJobMechOperator
+  ranks:
+    RMCRankSergeant: []
+  startingGear: STGearMechOperator
+  icon: "STJobIconMechOperator"
+  joinNotifyCrew: false
+  supervisors: cm-job-supervisors-staff
+  accessGroups:
+  - Pilot
+  - MaintTech
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Skills
+      skills:
+        RMCSkillConstruction: 2
+        RMCSkillEndurance: 2
+        RMCSkillEngineer: 2
+        RMCSkillFirearms: 2
+        RMCSkillFireman: 1
+        RMCSkillJtac: 2
+        RMCSkillLeadership: 1
+        RMCSkillMedical: 1
+        RMCSkillPowerLoader: 3
+        RMCSkillVehicles: 2
+  hasIcon: true
+
+- type: job
+  parent: STMechOperator
+  id: STLeadMechOperator
+  name: stories-job-name-lead-mech-operator
+  description: stories-job-description-lead-mech-operator
+  playTimeTracker: STJobLeadMechOperator
+  ranks:
+    RMCRankStaffSergeant: []
+  startingGear: STGearLeadMechOperator
+  icon: "STJobIconLeadMechOperator"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Skills
+      skills:
+        RMCSkillConstruction: 2
+        RMCSkillEndurance: 2
+        RMCSkillEngineer: 2
+        RMCSkillFirearms: 2
+        RMCSkillFireman: 1
+        RMCSkillJtac: 3
+        RMCSkillLeadership: 2
+        RMCSkillMedical: 1
+        RMCSkillOverwatch: 1
+        RMCSkillPowerLoader: 3
+        RMCSkillVehicles: 2
+
+- type: startingGear
+  id: STGearMechOperator
+  equipment:
+    jumpsuit: CMJumpsuitMarineTanker
+    shoes: CMBootsBlackFilled
+    head: STArmorHelmetM50
+    outerClothing: STArmorM3Tanker
+    gloves: CMHandsBlackInsulated
+    id: STIDCardMechOperator
+    ears: StoriesHeadsetMech
+    back: STWeldingKit
+    belt: RMCHolsterSMGPouchFilledExtended
+    pocket1: RMCPouchGeneralLarge
+    pocket2: RMCPouchToolsSocFilledSOF
+
+- type: startingGear
+  id: STGearLeadMechOperator
+  equipment:
+    jumpsuit: CMJumpsuitMarineTanker
+    shoes: CMBootsBlackFilled
+    head: STArmorHelmetM50
+    outerClothing: STArmorM3Tanker
+    gloves: CMHandsBlackInsulated
+    id: STIDCardLeadMechOperator
+    ears: StoriesHeadsetMech
+    back: STWeldingKit
+    belt: RMCHolsterSMGPouchFilledExtended
+    pocket1: RMCPouchGeneralLarge
+    pocket2: RMCPouchToolsSocFilledSOF
+
+- type: entity
+  parent: CMIDCardGold
+  id: STIDCardMechOperator
+  name: mech operator ID card
+  description: Issued to event RX47 mechsuit operators.
+  components:
+  - type: PresetIdCard
+    job: STMechOperator
+
+- type: entity
+  parent: STIDCardMechOperator
+  id: STIDCardLeadMechOperator
+  name: lead mech operator ID card
+  components:
+  - type: PresetIdCard
+    job: STLeadMechOperator
+
+- type: playTimeTracker
+  id: STJobMechOperator
+  isHumanoid: true
+
+- type: playTimeTracker
+  id: STJobLeadMechOperator
+  isHumanoid: true
+
+# Admin-spawnable ghost role (mech operator)
+- type: entity
+  parent: MarkerBase
+  id: STRandomHumanoidMechOperator
+  name: ghost role mech operator
+  suffix: Spawner, Player
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomHumanoidSpawner
+    settings: STMechOperatorSpawn
+
+- type: randomHumanoidSettings
+  parent: RMCRandomHumanoidBase
+  id: STMechOperatorSpawn
+  components:
+  - type: GhostRole
+    name: stories-ghost-name-mech-operator
+    description: stories-ghost-description-mech-operator
+    rules: ghost-role-information-nonantagonist-rules
+    reregister: false
+    job: STMechOperator
+    raffle:
+      settings: short
+
+# Admin-spawnable ghost role (lead mech operator)
+- type: entity
+  parent: MarkerBase
+  id: STRandomHumanoidLeadMechOperator
+  name: ghost role lead mech operator
+  suffix: Spawner, Player
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomHumanoidSpawner
+    settings: STLeadMechOperatorSpawn
+
+- type: randomHumanoidSettings
+  parent: RMCRandomHumanoidBase
+  id: STLeadMechOperatorSpawn
+  components:
+  - type: GhostRole
+    name: stories-ghost-name-lead-mech-operator
+    description: stories-ghost-description-lead-mech-operator
+    rules: ghost-role-information-nonantagonist-rules
+    reregister: false
+    job: STLeadMechOperator
+    raffle:
+      settings: short

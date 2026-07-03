@@ -6,6 +6,10 @@
   color: "#C38312"
   roles:
   - CMAuxiliarySupportOfficer
+  # Stories-start
+  - STLeadMechOperator
+  - STMechOperator
+  # Stories-end
   - CMPilotDropship
   - CMPilotGunship
   - CMDropshipCrewChief
