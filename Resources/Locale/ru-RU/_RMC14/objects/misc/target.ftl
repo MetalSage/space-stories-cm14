@@ -1,2 +1,2 @@
-rmc-target-dps-popup = { $dps } DPS
-rmc-target-dps-examine = DPS (last { $window }s): [color=yellow]{ $dps }[/color] | Total: [color=yellow]{ $total }[/color]
+rmc-target-dps-popup = { $dps } УВС
+rmc-target-dps-examine = УВС (за последние { $window } секунд): [color=yellow]{ $dps }[/color] | Всего: [color=yellow]{ $total }[/color]

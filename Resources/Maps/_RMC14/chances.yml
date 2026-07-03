@@ -58213,14 +58213,14 @@ entities:
   - uid: 2285
     components:
     - type: MetaData
-      name: 'LZ1: Southwest Landing Zone'
+      name: "ЗП1: Юго-Западная Зона Посадки"
     - type: Transform
       pos: -77.5,-65.5
       parent: 1
   - uid: 2286
     components:
     - type: MetaData
-      name: 'LZ2: Southeast Landing Zone'
+      name: "ЗП2: Юго-Восточная Зона Посадки"
     - type: Transform
       pos: 64.5,-81.5
       parent: 1
@@ -123385,161 +123385,161 @@ entities:
   - uid: 12708
     components:
     - type: MetaData
-      name: LZ1
+      name: "ЗП1"
     - type: Transform
       pos: -77.5,-65.5
       parent: 1
   - uid: 12709
     components:
     - type: MetaData
-      name: LZ1 Tunnels
+      name: "Тоннели ЗП1"
     - type: Transform
       pos: -66.5,-89.5
       parent: 1
   - uid: 12710
     components:
     - type: MetaData
-      name: Hydro South
+      name: "Южная Гидропоника"
     - type: Transform
       pos: -23.5,-88.5
       parent: 1
   - uid: 12711
     components:
     - type: MetaData
-      name: Mining
+      name: "Шахта"
     - type: Transform
       pos: 12.5,-84.5
       parent: 1
   - uid: 12712
     components:
     - type: MetaData
-      name: LZ2
+      name: "ЗП2"
     - type: Transform
       pos: 64.5,-81.5
       parent: 1
   - uid: 12713
     components:
     - type: MetaData
-      name: Garage
+      name: "Гараж"
     - type: Transform
       pos: 62.5,-28.5
       parent: 1
   - uid: 12714
     components:
     - type: MetaData
-      name: Cargo
+      name: "Карго"
     - type: Transform
       pos: 8.5,-41.5
       parent: 1
   - uid: 12715
     components:
     - type: MetaData
-      name: Hydro North
+      name: "Северная Гидропоника"
     - type: Transform
       pos: -25.5,-38.5
       parent: 1
   - uid: 12716
     components:
     - type: MetaData
-      name: Bar
+      name: "Бар"
     - type: Transform
       pos: -44.5,-34.5
       parent: 1
   - uid: 12717
     components:
     - type: MetaData
-      name: Grill
+      name: "Гриль"
     - type: Transform
       pos: -53.5,-39.5
       parent: 1
   - uid: 12718
     components:
     - type: MetaData
-      name: Engineering
+      name: "Инженерный Отсек"
     - type: Transform
       pos: -69.5,-33.5
       parent: 1
   - uid: 12719
     components:
     - type: MetaData
-      name: A-Block Dorms And Offices
+      name: "Спальни и Офисы Блока А"
     - type: Transform
       pos: -46.5,-1.5
       parent: 1
   - uid: 12720
     components:
     - type: MetaData
-      name: Typhoon Dropship
+      name: "Десантный корабль «Тайфун»"
     - type: Transform
       pos: -75.5,36.5
       parent: 1
   - uid: 12721
     components:
     - type: MetaData
-      name: Reactor West
+      name: "Западный Реактор"
     - type: Transform
       pos: -62.5,82.5
       parent: 1
   - uid: 12722
     components:
     - type: MetaData
-      name: Reactor East
+      name: "Восточный Реактор"
     - type: Transform
       pos: 28.5,82.5
       parent: 1
   - uid: 12723
     components:
     - type: MetaData
-      name: Corporate Executive Office
+      name: "Офис Руководителя"
     - type: Transform
       pos: 2.5,27.5
       parent: 1
   - uid: 12724
     components:
     - type: MetaData
-      name: Security
+      name: "Охрана"
     - type: Transform
       pos: 4.5,5.5
       parent: 1
   - uid: 12725
     components:
     - type: MetaData
-      name: Kitchen
+      name: "Кухня"
     - type: Transform
       pos: 14.5,-9.5
       parent: 1
   - uid: 12726
     components:
     - type: MetaData
-      name: Medical
+      name: "Медицинский"
     - type: Transform
       pos: 45.5,-11.5
       parent: 1
   - uid: 12727
     components:
     - type: MetaData
-      name: Administration
+      name: "Администрация"
     - type: Transform
       pos: 45.5,-1.5
       parent: 1
   - uid: 12728
     components:
     - type: MetaData
-      name: Tornado Dropship
+      name: "Десантный корабль «Торнадо»"
     - type: Transform
       pos: 79.5,21.5
       parent: 1
   - uid: 12729
     components:
     - type: MetaData
-      name: Casino
+      name: "Казино"
     - type: Transform
       pos: 29.5,-33.5
       parent: 1
   - uid: 12730
     components:
     - type: MetaData
-      name: Fitness
+      name: "Фитнес"
     - type: Transform
       pos: -30.5,35.5
       parent: 1

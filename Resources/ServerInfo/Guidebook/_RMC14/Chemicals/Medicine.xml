@@ -1,33 +1,218 @@
 ﻿<Document>
+  # Руководство по Химии (Chemistry Guide)
 
-  # Основные лекарственные препараты
+  [color=#E1C16E][bold]OOC ПРИМЕЧАНИЕ:[/bold][/color] Синтезом химических веществ на корабле должны заниматься исключительно Врачи (Doctors), Исследователи (Researchers), Медсёстры (Nurses) и Главный врач (CMO). Полевые медики (Hospital Corpsmen) обязаны знать пороги передозировки лекарств и опасные сочетания хим. элементов.
 
-  Эти лекарства почти всегда полезны в той или иной степени.
+  ## I. Лабораторное Оборудование
 
-  <GuideReagentEmbed Reagent="CMTricordrazine"/>
-  <GuideReagentEmbed Reagent="CMBicaridine"/>
-  <GuideReagentEmbed Reagent="CMKelotane"/>
-  <GuideReagentEmbed Reagent="CMDylovene"/>
-  <GuideReagentEmbed Reagent="CMDexalin"/>
-  <GuideReagentEmbed Reagent="CMDexalinPlus"/>
-  <GuideReagentEmbed Reagent="CMMeralyne"/>
-  <GuideReagentEmbed Reagent="CMDermaline"/>
+  В химической лаборатории находятся важнейшие устройства для создания медикаментов. Ознакомьтесь с их назначением:
 
-  # Специализированные лекарственные препараты
+  <Box>
+    <GuideEntityEmbed Entity="RMCComputerIntel" Caption="Химический раздатчик (Dispenser)" />
+  </Box>
+  - [bold]Химический раздатчик (Chem Dispenser):[/bold] Основное устройство для получения базовых элементов. Работает от внутренней батареи, которая со временем перезаряжается. Вы можете переключать объём подачи реагентов (от 5 до 40 единиц за клик).
 
-  Эти лекарства, как правило, имеют конкретные случаи применения.
+  <Box>
+    <GuideEntityEmbed Entity="RMCTechTreeConsole" Caption="ХимМастер (ChemMaster)" />
+  </Box>
+  - [bold]ХимМастер (ChemMaster 3000):[/bold] Используется для точного разделения жидкостей в мензурках, создания таблеток и бутылочек.
+    - [italic]Буфер (Buffer):[/italic] Позволяет отмерить точное количество вещества. Кнопка между мензуркой и буфером меняет режим: «переместить в буфер» или «вернуть в мензурку».
+    - [italic]Флаконы и таблетки:[/italic] Вы можете настроить размер, форму и цвет таблеток, а также автоматически упаковать их в баночки.
 
-  <GuideReagentEmbed Reagent="CMInaprovaline"/>
-  <GuideReagentEmbed Reagent="CMEpinephrine"/>
-  <GuideReagentEmbed Reagent="CMEthylredoxrazine"/>
-  <GuideReagentEmbed Reagent="CMArithrazine"/>
-  <GuideReagentEmbed Reagent="CMLeporazine"/>
-  <GuideReagentEmbed Reagent="CMCryoxadone"/>
+  <Box>
+    <GuideEntityEmbed Entity="RMCPortableVendorCorporate" Caption="Утилитарный измельчитель (Grinder)" />
+  </Box>
+  - [bold]Измельчитель/Соковыжималка (Grinder/Juicer):[/bold] Экстрагирует химикаты из твёрдых объектов. Чаще всего применяется для измельчения кристаллов форона (Phoron) для производства Клонексадона (Clonexadone) и Перидаксона (Peridaxon), а также для переработки пищевых пайков.
 
-  # Все лекарственные препараты
+  - [bold]Химический шкаф (Smart-Fridge):[/bold] Хранилище для мензурок, готовых пилюль и баночек. Помогает поддерживать порядок в лаборатории.
 
-  Это список всех доступных лекарств, включая перечисленные ранее.
+  ---
 
-  <GuideReagentGroupEmbed Group="Medicine"/>
+  ## II. Инструменты и Контейнеры
+
+  <Table Columns="2">
+    <ColorBox>
+      <Box>
+        Инструмент
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Описание
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Мензурки (Beakers)[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Основная тара. Объём: малая мензурка/флакон — 60u, большая мензурка — 120u, высокоёмкая мензурка — 500u. Нажатие ПКМ по мензурке в руке меняет объём переливания.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Капельница (Dropper)[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Используется для точного переноса малых объёмов (от 1 до 24 единиц) между емкостями.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Шприц (Syringe)[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Вмещает 15u. Имеет два режима: забор (draw) и ввод (inject). Использование шприца в режиме «Harm» мгновенно вводит случайную дозу, нанося небольшой физический урон и ломая иглу.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Пилюли (Pills)[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Максимальный объём — 60u. Употребление пилюли занимает некоторое время. Растворяются при добавлении в жидкие среды.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Гипоспрей (Hypospray)[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Вмещает 30u. По умолчанию заправлен Трикордазином. Мгновенно и безболезненно вводит фиксированную дозу в 5u.
+      </Box>
+    </ColorBox>
+  </Table>
+
+  ---
+
+  ## III. Рецепты и Смеси (Рекомендуется 500u мензурка)
+
+  Ниже представлены медицинские рецепты, используемые на передовой:
+
+  ### 1. ИмиАлки (ImiAlky) — Глазные и Нейро-таблетки
+  - [bold]Состав одной таблетки:[/bold] 10u Имидазолин (Imidazoline), 5u Алкизин (Alkysine).
+  - [bold]Эффект:[/bold] Лечит 3 единицы повреждения мозга и 1 единицу повреждения глаз за тик.
+  - [bold]Порог передозировки:[/bold] 30u для обоих веществ (более 3 таблеток Имидазолина или 6 Алкизина).
+
+  <Box Orientation="Vertical" Margin="5">
+    [bold]Рецепт для обычного раздатчика (Chem Dispenser):[/bold]
+    1. Добавьте 80u Азота (Nitrogen)
+    2. Добавьте 40u Калия (Potassium)
+    3. Добавьте 40u Кремния (Silicon)
+    4. Добавьте 40u Хлора (Chlorine)
+    5. Добавьте 80u Углерода (Carbon)
+    6. Добавьте 80u Водорода (Hydrogen)
+    [italic]Результат: 160u Imidazoline и 80u Alkysine. Разделите в ХимМастере на 16 таблеток.[/italic]
+  </Box>
+
+  ### 2. МераБика (MeraBica) — Противоударная смесь
+  - [bold]Состав одной таблетки:[/bold] 7.5u Мералин (Meralyne), 7.5u Бикаридин (Bicaridine).
+  - [bold]Эффект:[/bold] Быстро залечивает физические раны (Brute) — 2.5 единицы за тик.
+  - [bold]Порог передозировки:[/bold] 15u Мералина (2 таблетки), 30u Бикаридина (4 таблетки).
+
+  <Box Orientation="Vertical" Margin="5">
+    [bold]Рецепт для обычного раздатчика (Chem Dispenser):[/bold]
+    1. Добавьте 160u Углерода (Carbon)
+    2. Добавьте 40u Воды (Water)
+    3. Добавьте 30u Кислорода (Oxygen)
+    4. Добавьте 30u Сахара (Sugar)
+    5. Перенесите избыток (20u Bicaridine) в буфер ХимМастера и утилизируйте его для выравнивания пропорций 1:1.
+    [italic]Результат: 120u Meralyne и 120u Bicaridine. Сформируйте 16 таблеток.[/italic]
+  </Box>
+
+  ### 3. КелоДерм (KeloDerm) — Противоожоговая смесь
+  - [bold]Состав одной таблетки:[/bold] 7.5u Дермалин (Dermaline), 7.5u Келотан (Kelotane).
+  - [bold]Эффект:[/bold] Лечит термические и химические ожоги — 2.5 единицы за тик.
+  - [bold]Порог передозировки:[/bold] 15u Дермалина (2 таблетки), 30u Келотана (4 таблетки).
+
+  <Box Orientation="Vertical" Margin="5">
+    [bold]Рецепт для обычного раздатчика (Chem Dispenser):[/bold]
+    1. Добавьте 80u Углерода (Carbon)
+    2. Добавьте 80u Кремния (Silicon)
+    3. Добавьте 40u Кислорода (Oxygen)
+    4. Добавьте 40u Фосфора (Phosphorus)
+    [italic]Результат: 120u Dermaline и 120u Kelotane. Сформируйте 16 таблеток.[/italic]
+  </Box>
+
+  ### 4. Железо и Нутриенты (IronNutriment) — Восстановление крови
+  - [bold]Состав одной таблетки:[/bold] 7.5u Железо (Iron), 7.5u Нутриенты (Nutriment).
+  - [bold]Эффект:[/bold] Быстро восстанавливает уровень крови при кровопотере (4u за тик) и притупляет чувство голода.
+  - [bold]Порог передозировки:[/bold] 30u Железа (более 2 таблеток).
+
+  <Box Orientation="Vertical" Margin="5">
+    [bold]Рецепт:[/bold]
+    1. Измельчите 15 протеиновых батончиков в Grinder для получения ровно 120u Нутриентов.
+    2. Смешайте полученные Нутриенты с 120u Железа (Iron) из раздатчика.
+    3. Сформируйте 16 таблеток в ХимМастере.
+  </Box>
+
+  ### 5. Дексалин Плюс (Dexalin Plus / D+) — Борьба с гипоксией
+  - [bold]Состав одной таблетки:[/bold] 7.5u Dexalin Plus.
+  - [bold]Эффект:[/bold] Полностью купирует урон от нехватки кислорода (Асфиксии) в организме.
+  - [bold]Порог передозировки:[/bold] 15u (2 таблетки).
+
+  <Box Orientation="Vertical" Margin="5">
+    [bold]Рецепт для обычного раздатчика (Chem Dispenser):[/bold]
+    1. Добавьте 20u Форона (Phoron) (можно измельчить 1 твердый осколок форона в Grinder)
+    2. Добавьте 80u Кислорода (Oxygen)
+    3. Добавьте 40u Углерода (Carbon)
+    4. Добавьте 40u Железа (Iron)
+    5. Отфильтруйте и удалите лишний форон (16u Phoron) через ХимМастер.
+    [italic]Результат: 120u Dexalin Plus. Сформируйте 16 таблеток.[/italic]
+  </Box>
+
+  ### 6. АриТриДило (AriTricaDylo / ATD) — Комплексный антитоксин
+  - [bold]Состав одной таблетки:[/bold] 3.75u Аритрэзин (Arithrazine), 7.5u Трикордазин (Tricordrazine), 7.5u Диловен (Dylovene).
+  - [bold]Эффект:[/bold] Выводит токсины (3.5u за тик) и лечит ожоги, нанося незначительный физический урон (0.5u за тик).
+  - [bold]Порог передозировки:[/bold] 15u Аритрэзина (4 таблетки).
+
+  <Box Orientation="Vertical" Margin="5">
+    [bold]Рецепт для обычного раздатчика (Chem Dispenser):[/bold]
+    1. Добавьте 20u Кислорода (Oxygen)
+    2. Добавьте 20u Углерода (Carbon)
+    3. Добавьте 20u Сахара (Sugar)
+    4. Добавьте 30u Фосфора (Phosphorus)
+    5. Добавьте 70u Кремния (Silicon)
+    6. Добавьте 70u Азота (Nitrogen)
+    7. Добавьте 70u Калия (Potassium)
+    [italic]Сформируйте 16 таблеток зеленого цвета.[/italic]
+  </Box>
+
+  ---
+
+  ## IV. Смеси для резервуаров (UNGA Tanks)
+
+  Для массового снабжения десантных групп химикаты заливают в стационарные баки (Reagent Tanks). Пехотинцы заправляют из них свои 60u фляги.
+
+  ### Смесь «УНГА» (UNGA-Mix)
+  Это универсальный солдатский коктейль. Одна фляга (60u) содержит по 10u каждого из пяти ключевых медикаментов, что исключает риск случайной передозировки при разовом приёме.
+
+  [bold]Эффект:[/bold] Оказывает обезболивающий эффект, восстанавливая по 3u физического урона (Brute), 3u ожогов (Burn), 0.5u токсинов и 0.5u кислородного голодания за один тик.
+
+  <Box Orientation="Vertical" Margin="5">
+    [bold]Как приготовить 720u смеси UNGA:[/bold]
+    Залейте в пустой бак:
+    - 120u Bicaridine (Бикаридин)
+    - 120u Kelotane (Келотан)
+    - 120u Oxycodone (Оксикодон)
+    - 60u Inaprovaline (Инапровалин)
+    - 60u Dylovene (Диловен)
+    [italic]Рекомендуется брать готовые бутылки Wey-Med со склада медицинского хранения для экономии энергии раздатчика.[/italic]
+  </Box>
 
 </Document>

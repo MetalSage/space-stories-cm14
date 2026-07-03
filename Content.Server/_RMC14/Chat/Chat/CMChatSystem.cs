@@ -35,6 +35,7 @@ public sealed class CMChatSystem : SharedCMChatSystem
     private static readonly ProtoId<ReplacementAccentPrototype> ChatSanitize = "CMChatSanitize";
     private static readonly ProtoId<ReplacementAccentPrototype> MarineChatSanitize = "CMChatSanitizeMarine";
     private static readonly ProtoId<ReplacementAccentPrototype> XenoChatSanitize = "CMChatSanitizeXeno";
+    private static readonly ProtoId<ReplacementAccentPrototype> GlobalChatSanitize = "chatsanitize"; // Stories-Chat
     private static readonly Regex MultiBroadcastRegex = new(@"^[:.]([^ ]+)\s+(.*)"); // Stories-Hunter
 
     private readonly List<ICommonSession> _toRemove = new();
@@ -158,6 +159,7 @@ public sealed class CMChatSystem : SharedCMChatSystem
 
     public override string SanitizeMessageReplaceWords(EntityUid source, string msg)
     {
+        msg = _wordreplacement.ApplyReplacements(msg, GlobalChatSanitize); // Stories-Chat
         msg = _wordreplacement.ApplyReplacements(msg, ChatSanitize);
 
         var factionSanitize = HasComp<XenoComponent>(source) ? XenoChatSanitize : MarineChatSanitize;

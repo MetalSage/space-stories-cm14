@@ -32,7 +32,7 @@ public partial class ChatBox : UIWidget
 
     // RMC14
     public readonly Queue<RepeatedMessage> RepeatQueue = new();
-    private readonly HashSet<string> _whitelist = ["mono", "scramble", "bolditalic", "bold", "bullet", "color", "font", "head", "italic"];
+    private readonly HashSet<string> _whitelist = ["mono", "scramble", "bolditalic", "bold", "bullet", "color", "font", "head", "italic", "size"]; // Stories-Chat-Start
 
     public ChatBox()
     {

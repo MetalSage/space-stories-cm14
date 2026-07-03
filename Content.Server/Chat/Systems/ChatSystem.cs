@@ -132,7 +132,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             Loc.GetString(val ? "chat-manager-crit-looc-chat-enabled-message" : "chat-manager-crit-looc-chat-disabled-message"));
     }
 
-        private void OnDeadChatEnabledChanged(bool val)
+    private void OnDeadChatEnabledChanged(bool val)
     {
         if (_DeadchatEnabled == val)
             return;
@@ -907,7 +907,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var msg = message;
 
-        msg = _wordreplacement.ApplyReplacements(msg, ChatSanitize_Accent);
+        // Stories-Chat
         msg = _cmChat.SanitizeMessageReplaceWords(source, msg);
 
         return msg;

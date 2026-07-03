@@ -133,12 +133,6 @@ public sealed class RMCFlammableSystem : SharedRMCFlammableSystem
             }
 
             Dirty(spawned, ignite);
-
-            if (TryComp<DamageOnCollideComponent>(spawned, out var dmg) && intensity != null)
-            {
-                dmg.Damage.DamageDict["Heat"] = intensity.Value * dmg.DirectHitMultiplier;
-                Dirty(spawned, dmg);
-            }
         }
 
         var onCollide = EnsureComp<DamageOnCollideComponent>(spawned);

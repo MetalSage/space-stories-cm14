@@ -104,7 +104,7 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
         Color? color = null,
         bool needsQueen = false)
     {
-        if (Hive.GetHive(xeno) is not {} hive)
+        if (Hive.GetHive(xeno) is not { } hive)
             return;
 
         AnnounceToHive(xeno, hive, message, sound, popup, color, needsQueen);
@@ -137,14 +137,16 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
         );
     }
 
-    public void AnnounceQueenMother(string message)
-    {
-        var sound = new BioscanComponent().XenoSound;
-        AnnounceAll(default, FormatQueenMother(message), sound);
-    }
-
+    // Stories-TTS-Start
     public string FormatQueenMother(string message)
     {
         return $"\n[bold][color=#7575F3][font size=24]Queen Mother Psychic Directive[/font][/color][/bold]\n\n[color=red][font size=14]{message}[/font][/color]\n\n";
     }
+
+    public virtual void AnnounceQueenMother(string message)
+    {
+        var sound = new BioscanComponent().XenoSound;
+        AnnounceAll(default, FormatQueenMother(message), sound);
+    }
+    // Stories-TTS-End
 }

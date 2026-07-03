@@ -426,7 +426,6 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
                 Dirty(spawned, tileFire); // Stories-Ordnance
             }
 
-
             if (burnColor != null)
             {
                 ignite.BurnColor = burnColor.Value;
@@ -435,12 +434,6 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             // Stories-Ordnance-End
 
             Dirty(spawned, ignite);
-
-            if (TryComp<DamageOnCollideComponent>(spawned, out var dmg) && intensity != null)
-            {
-                dmg.Damage.DamageDict[HeatDamage] = intensity.Value * dmg.DirectHitMultiplier;
-                Dirty(spawned, dmg);
-            }
         }
 
         var onCollide = EnsureComp<DamageOnCollideComponent>(spawned);

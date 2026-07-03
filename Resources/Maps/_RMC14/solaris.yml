@@ -60806,14 +60806,14 @@ entities:
   - uid: 1275
     components:
     - type: MetaData
-      name: 'LZ1: Communications Landing Zone'
+      name: "ЗП1: Зона Посадки Связи"
     - type: Transform
       pos: 26.5,-19.5
       parent: 1
   - uid: 1276
     components:
     - type: MetaData
-      name: 'LZ2: Engineering Landing Zone'
+      name: "ЗП2: Зона Посадки Инженерии"
     - type: Transform
       pos: 32.5,-119.5
       parent: 1
@@ -200051,35 +200051,35 @@ entities:
   - uid: 28038
     components:
     - type: MetaData
-      name: LZ1
+      name: "ЗП1"
     - type: Transform
       pos: 26.5,-19.5
       parent: 1
   - uid: 28039
     components:
     - type: MetaData
-      name: T-Comms
+      name: "Телекоммуникации"
     - type: Transform
       pos: 10.5,-30.5
       parent: 1
   - uid: 28040
     components:
     - type: MetaData
-      name: Garage
+      name: "Гараж"
     - type: Transform
       pos: 24.5,-43.5
       parent: 1
   - uid: 28041
     components:
     - type: MetaData
-      name: Marshal Office
+      name: "Офис Маршала"
     - type: Transform
       pos: 84.5,-37.5
       parent: 1
   - uid: 28042
     components:
     - type: MetaData
-      name: Hospital
+      name: "Госпиталь"
     - type: Transform
       pos: 70.5,-61.5
       parent: 1
@@ -200093,126 +200093,126 @@ entities:
   - uid: 28044
     components:
     - type: MetaData
-      name: Store
+      name: "Магазин"
     - type: Transform
       pos: 53.5,-83.5
       parent: 1
   - uid: 28045
     components:
     - type: MetaData
-      name: Cargo
+      name: "Карго"
     - type: Transform
       pos: 58.5,-105.5
       parent: 1
   - uid: 28046
     components:
     - type: MetaData
-      name: LZ2
+      name: "ЗП2"
     - type: Transform
       pos: 32.5,-119.5
       parent: 1
   - uid: 28047
     components:
     - type: MetaData
-      name: Engineering
+      name: "Инженерный Отсек"
     - type: Transform
       pos: 74.5,-140.5
       parent: 1
   - uid: 28048
     components:
     - type: MetaData
-      name: Mining Facility
+      name: "Шахтерский Комплекс"
     - type: Transform
       pos: 34.5,-178.5
       parent: 1
   - uid: 28049
     components:
     - type: MetaData
-      name: ETA Research Lab
+      name: "Исследовательская Лаборатория ETA"
     - type: Transform
       pos: 105.5,-176.5
       parent: 1
   - uid: 28050
     components:
     - type: MetaData
-      name: Filtration
+      name: "Фильтрация"
     - type: Transform
       pos: 103.5,-119.5
       parent: 1
   - uid: 28051
     components:
     - type: MetaData
-      name: Admin
+      name: "Администрация"
     - type: Transform
       pos: 87.5,-87.5
       parent: 1
   - uid: 28052
     components:
     - type: MetaData
-      name: Dorms
+      name: "Спальни"
     - type: Transform
       pos: 105.5,-59.5
       parent: 1
   - uid: 28053
     components:
     - type: MetaData
-      name: Storage
+      name: "Хранилище"
     - type: Transform
       pos: 82.5,-112.5
       parent: 1
   - uid: 28054
     components:
     - type: MetaData
-      name: EVA
+      name: "ВКД"
     - type: Transform
       pos: 137.5,-50.5
       parent: 1
   - uid: 28055
     components:
     - type: MetaData
-      name: Mess
+      name: "Столовая"
     - type: Transform
       pos: 138.5,-79.5
       parent: 1
   - uid: 28056
     components:
     - type: MetaData
-      name: Hydro
+      name: "Гидропоника"
     - type: Transform
       pos: 138.5,-68.5
       parent: 1
   - uid: 28057
     components:
     - type: MetaData
-      name: Bar
+      name: "Бар"
     - type: Transform
       pos: 117.5,-74.5
       parent: 1
   - uid: 28058
     components:
     - type: MetaData
-      name: Office Complex
+      name: "Офисный Комплекс"
     - type: Transform
       pos: 124.5,-101.5
       parent: 1
   - uid: 28059
     components:
     - type: MetaData
-      name: Chapel
+      name: "Часовня"
     - type: Transform
       pos: 156.5,-95.5
       parent: 1
   - uid: 28060
     components:
     - type: MetaData
-      name: Lambda Lab
+      name: "Лаборатория Лямбда"
     - type: Transform
       pos: 176.5,-52.5
       parent: 1
   - uid: 28061
     components:
     - type: MetaData
-      name: South Eastern Caves
+      name: "Юго-Восточные Пещеры"
     - type: Transform
       pos: 186.5,-178.5
       parent: 1

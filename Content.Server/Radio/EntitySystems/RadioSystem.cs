@@ -44,12 +44,14 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!; 
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly TTSSystem _tts = default!; 
     [Dependency] private readonly TtsAudioProcessingSystem _ttsProcessing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    // Stories-TTS-Start
+    [Dependency] private readonly TTSSystem _tts = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    // Stories-TTS-End
 
     private readonly HashSet<string> _messages = new();
     private EntityQuery<TelecomExemptComponent> _exemptQuery;
@@ -107,7 +109,7 @@ public sealed class RadioSystem : EntitySystem
 
         var processedSoundData = await _ttsProcessing.ProcessRadioAudio(messageSource, soundData);
 
-        var ttsEvent = new PlayTTSEvent(processedSoundData, sourceUid: null, isWhisper: false, originalSourceUid: GetNetEntity(messageSource));
+        var ttsEvent = new PlayTTSEvent(processedSoundData, message, sourceUid: null, isWhisper: false, originalSourceUid: GetNetEntity(messageSource), isRadio: true, radioChannel: channel.ID); // Stories-TTS
 
         var filter = Filter.Empty().AddPlayers(recipients.ToList());
         RaiseNetworkEvent(ttsEvent, filter);
@@ -123,12 +125,12 @@ public sealed class RadioSystem : EntitySystem
         return "father_grigori";
     }
 
-    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, bool escapeMarkup = true)
+    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, bool escapeMarkup = true, bool playTTS = true) // Stories-TTS
     {
-        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup);
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, playTTS: playTTS); // Stories-TTS
     }
 
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true)
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true, bool playTTS = true) // Stories-TTS
     {
         if (!_messages.Add(message))
             return;
@@ -214,8 +216,6 @@ public sealed class RadioSystem : EntitySystem
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
         var recipientUids = new List<EntityUid>();
-        
-        // Stories-Fix: Используем HashSet для отслеживания отправленных клиентов, чтобы избежать дублей (призрак + обычный)
         var sentClients = new HashSet<INetChannel>();
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
@@ -244,32 +244,36 @@ public sealed class RadioSystem : EntitySystem
             RaiseLocalEvent(receiver, ref ev);
             recipientUids.Add(receiver);
 
-            // Регистрируем клиента получателя
             if (transform.ParentUid.IsValid() && TryComp<ActorComponent>(transform.ParentUid, out var actor))
             {
                 sentClients.Add(actor.PlayerSession.Channel);
             }
-            else if (TryComp<ActorComponent>(receiver, out var directActor)) // На случай встроенного радио у игрока
+            else if (TryComp<ActorComponent>(receiver, out var directActor))
             {
                 sentClients.Add(directActor.PlayerSession.Channel);
             }
         }
 
-        // Stories-Fix: Отдельный список для призраков для TTS, чтобы не смешивать с EntityUid получателей
         var ghostSessions = new List<ICommonSession>();
 
-        // Stories-Fix: Рассылка призракам
         if (canSend)
         {
             foreach (var session in _playerManager.Sessions)
             {
                 if (session.AttachedEntity is not { } ent) continue;
-                
-                // Если это призрак и он еще не получил сообщение (например, через вселение в тело с радио)
+
                 if (HasComp<GhostComponent>(ent))
                 {
-                    if (sentClients.Contains(session.Channel)) 
+                    // Stories-Sponsors-Start
+                    if (sentClients.Contains(session.Channel))
                         continue;
+
+                    var hasHearing = HasComp<GhostHearingComponent>(ent);
+                    var sameMap = Transform(ent).MapID == sourceMapId;
+
+                    if (!hasHearing && !sameMap)
+                        continue;
+                    // Stories-Sponsors-End
 
                     _netMan.ServerSendMessage(chatMsg, session.Channel);
                     sentClients.Add(session.Channel);
@@ -281,8 +285,7 @@ public sealed class RadioSystem : EntitySystem
         if (canSend && (recipientUids.Count > 0 || ghostSessions.Count > 0))
         {
             var sessions = new List<ICommonSession>();
-            
-            // Добавляем обычных получателей
+
             var actorQuery = GetEntityQuery<ActorComponent>();
             foreach (var uid in recipientUids)
             {
@@ -296,10 +299,9 @@ public sealed class RadioSystem : EntitySystem
                 }
             }
 
-            // Добавляем призраков для TTS
             sessions.AddRange(ghostSessions);
 
-            if (sessions.Count > 0)
+            if (sessions.Count > 0 && playTTS) // Stories-TTS
             {
                 ProcessAndSendRadioTts(messageSource, message, channel, sessions);
             }

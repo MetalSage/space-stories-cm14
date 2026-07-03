@@ -95404,14 +95404,14 @@ entities:
   - uid: 4565
     components:
     - type: MetaData
-      name: LZ1 Landing Zone
+      name: "ЗП1: Зона Посадки"
     - type: Transform
       pos: -12.5,-17.5
       parent: 1
   - uid: 4566
     components:
     - type: MetaData
-      name: LZ2 Landing Zone
+      name: "ЗП2: Зона Посадки"
     - type: Transform
       pos: -15.5,-147.5
       parent: 1
@@ -227147,210 +227147,210 @@ entities:
   - uid: 26074
     components:
     - type: MetaData
-      name: LZ1
+      name: "ЗП1"
     - type: Transform
       pos: -12.5,-17.5
       parent: 1
   - uid: 26075
     components:
     - type: MetaData
-      name: TMCC Interstellar Freight Hub
+      name: "Межзвездный Грузовой Узел TMCC"
     - type: Transform
       pos: -18.5,-111.5
       parent: 1
   - uid: 26076
     components:
     - type: MetaData
-      name: LZ2
+      name: "ЗП2"
     - type: Transform
       pos: -15.5,-147.5
       parent: 1
   - uid: 26077
     components:
     - type: MetaData
-      name: TMCC Departures
+      name: "Отправления TMCC"
     - type: Transform
       pos: -35.5,-162.5
       parent: 1
   - uid: 26078
     components:
     - type: MetaData
-      name: TMCC Mining Outpost South
+      name: "Южный Шахтерский Аванпост TMCC"
     - type: Transform
       pos: -28.5,-181.5
       parent: 1
   - uid: 26079
     components:
     - type: MetaData
-      name: Caverns East
+      name: "Восточные Пещеры"
     - type: Transform
       pos: -57.5,-168.5
       parent: 1
   - uid: 26080
     components:
     - type: MetaData
-      name: TMCC Mining Outpost SE
+      name: "Юго-Восточный Шахтерский Аванпост TMCC"
     - type: Transform
       pos: -28.5,-207.5
       parent: 1
   - uid: 26081
     components:
     - type: MetaData
-      name: Caverns Southeast
+      name: "Юго-Восточные Пещеры"
     - type: Transform
       pos: -42.5,-220.5
       parent: 1
   - uid: 26082
     components:
     - type: MetaData
-      name: Caverns South
+      name: "Южные Пещеры"
     - type: Transform
       pos: -71.5,-238.5
       parent: 1
   - uid: 26083
     components:
     - type: MetaData
-      name: Derelict Ship
+      name: "Заброшенный Корабль"
     - type: Transform
       pos: -84.5,-221.5
       parent: 1
   - uid: 26084
     components:
     - type: MetaData
-      name: Caverns Plateau
+      name: "Плато Пещер"
     - type: Transform
       pos: -109.5,-199.5
       parent: 1
   - uid: 26085
     components:
     - type: MetaData
-      name: Caverns West
+      name: "Западные Пещеры"
     - type: Transform
       pos: -161.5,-187.5
       parent: 1
   - uid: 26086
     components:
     - type: MetaData
-      name: Caverns Central
+      name: "Центральные Пещеры"
     - type: Transform
       pos: -130.5,-150.5
       parent: 1
   - uid: 26087
     components:
     - type: MetaData
-      name: Caverns Southwest
+      name: "Юго-Западные Пещеры"
     - type: Transform
       pos: -201.5,-225.5
       parent: 1
   - uid: 26088
     components:
     - type: MetaData
-      name: We-Ya Advanced Bio-Genomic Research Lab
+      name: "Лаборатория Биогеномики We-Ya"
     - type: Transform
       pos: -190.5,-176.5
       parent: 1
   - uid: 26089
     components:
     - type: MetaData
-      name: Caverns Northwest
+      name: "Северо-Западные Пещеры"
     - type: Transform
       pos: -203.5,-110.5
       parent: 1
   - uid: 26090
     components:
     - type: MetaData
-      name: Night Gold Casino
+      name: "Казино «Ночное Золото»"
     - type: Transform
       pos: -172.5,-76.5
       parent: 1
   - uid: 26091
     components:
     - type: MetaData
-      name: We-Ya Celestia Gateway
+      name: "Врата Селестии We-Ya"
     - type: Transform
       pos: -195.5,-30.5
       parent: 1
   - uid: 26092
     components:
     - type: MetaData
-      name: We-Ya Offices
+      name: "Офисы We-Ya"
     - type: Transform
       pos: -151.5,-42.5
       parent: 1
   - uid: 26093
     components:
     - type: MetaData
-      name: Garage
+      name: "Гараж"
     - type: Transform
       pos: -148.5,-17.5
       parent: 1
   - uid: 26094
     components:
     - type: MetaData
-      name: Caverns North
+      name: "Северные Пещеры"
     - type: Transform
       pos: -114.5,-7.5
       parent: 1
   - uid: 26095
     components:
     - type: MetaData
-      name: Pizza Galaxy
+      name: "Пиццерия «Галактика»"
     - type: Transform
       pos: -124.5,-34.5
       parent: 1
   - uid: 26096
     components:
     - type: MetaData
-      name: Bar
+      name: "Бар"
     - type: Transform
       pos: -100.5,-37.5
       parent: 1
   - uid: 26097
     components:
     - type: MetaData
-      name: Nova Medica
+      name: "Нова Медика"
     - type: Transform
       pos: -52.5,-35.5
       parent: 1
   - uid: 26098
     components:
     - type: MetaData
-      name: Dynagrid Telecomms
+      name: "Телекоммуникации Динагрид"
     - type: Transform
       pos: -54.5,-73.5
       parent: 1
   - uid: 26099
     components:
     - type: MetaData
-      name: We-Ya Dynagrid
+      name: "Динагрид We-Ya"
     - type: Transform
       pos: -82.5,-79.5
       parent: 1
   - uid: 26100
     components:
     - type: MetaData
-      name: Meridian
+      name: "Меридиан"
     - type: Transform
       pos: -105.5,-101.5
       parent: 1
   - uid: 26101
     components:
     - type: MetaData
-      name: Weyamart
+      name: "Веймарт"
     - type: Transform
       pos: -150.5,-102.5
       parent: 1
   - uid: 26102
     components:
     - type: MetaData
-      name: TSEPA - Ironbridge Precinct
+      name: "Участок Айронбридж"
     - type: Transform
       pos: -79.5,-117.5
       parent: 1
   - uid: 26103
     components:
     - type: MetaData
-      name: Street Comms
+      name: "Уличная Связь"
     - type: Transform
       pos: -45.5,-122.5
       parent: 1

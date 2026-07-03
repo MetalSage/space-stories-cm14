@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Client._RMC14.Mentor;
+using Content.Client._Stories.Chat;
 using Content.Client.Administration.Managers;
 using Content.Client.Chat;
 using Content.Client.Chat.Managers;
@@ -44,7 +45,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
@@ -925,6 +925,15 @@ public sealed partial class ChatUIController : UIController
 
     public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
     {
+        // Stories-TTS-Start
+        var filter = _ent.SystemOrNull<ChatFilterSystem>();
+        if (filter != null)
+        {
+            msg.Message = filter.CensorMessage(msg.Message, false);
+            msg.WrappedMessage = filter.CensorMessage(msg.WrappedMessage, true);
+        }
+        // Stories-TTS-End
+
         if (_colorBlindMode)
         {
             foreach (var (color, colorblindColor) in _colorBlindReplacements)

@@ -42971,14 +42971,14 @@ entities:
   - uid: 1136
     components:
     - type: MetaData
-      name: 'LZ2: Research Landing Zone'
+      name: "ЗП2: Зона Посадки Исследований"
     - type: Transform
       pos: 22.5,138.5
       parent: 1
   - uid: 1137
     components:
     - type: MetaData
-      name: LZ1 Landing Zone
+      name: "ЗП1: Зона Посадки"
     - type: Transform
       pos: 23.5,32.5
       parent: 1
@@ -118085,182 +118085,182 @@ entities:
   - uid: 15155
     components:
     - type: MetaData
-      name: LZ1
+      name: "ЗП1"
     - type: Transform
       pos: 23.5,32.5
       parent: 1
   - uid: 15156
     components:
     - type: MetaData
-      name: Warehouse
+      name: "Склад"
     - type: Transform
       pos: 55.5,19.5
       parent: 1
   - uid: 15157
     components:
     - type: MetaData
-      name: North Aerodrome Hangar
+      name: "Северный Ангар Аэродрома"
     - type: Transform
       pos: 56.5,48.5
       parent: 1
   - uid: 15158
     components:
     - type: MetaData
-      name: Cave Camp
+      name: "Лагерь в Пещерах"
     - type: Transform
       pos: 65.5,89.5
       parent: 1
   - uid: 15159
     components:
     - type: MetaData
-      name: LZ2
+      name: "ЗП2"
     - type: Transform
       pos: 22.5,138.5
       parent: 1
   - uid: 15160
     components:
     - type: MetaData
-      name: Auxiliary Generator Station
+      name: "Вспомогательная Генераторная"
     - type: Transform
       pos: 57.5,146.5
       parent: 1
   - uid: 15161
     components:
     - type: MetaData
-      name: Botany
+      name: "Ботаника"
     - type: Transform
       pos: 106.5,96.5
       parent: 1
   - uid: 15162
     components:
     - type: MetaData
-      name: Crisis Center
+      name: "Кризисный Центр"
     - type: Transform
       pos: 107.5,79.5
       parent: 1
   - uid: 15163
     components:
     - type: MetaData
-      name: Panic Room
+      name: "Комната Паники"
     - type: Transform
       pos: 105.5,69.5
       parent: 1
   - uid: 15164
     components:
     - type: MetaData
-      name: Anti-Freeze Bar
+      name: "Бар «Антифриз»"
     - type: Transform
       pos: 114.5,54.5
       parent: 1
   - uid: 15165
     components:
     - type: MetaData
-      name: Junk Yard
+      name: "Свалка"
     - type: Transform
       pos: 120.5,36.5
       parent: 1
   - uid: 15166
     components:
     - type: MetaData
-      name: Junk Yard
+      name: "Свалка"
     - type: Transform
       pos: 103.5,15.5
       parent: 1
   - uid: 15167
     components:
     - type: MetaData
-      name: Fort Biceps
+      name: "Форт Бицепс"
     - type: Transform
       pos: 128.5,17.5
       parent: 1
   - uid: 15168
     components:
     - type: MetaData
-      name: Research Habitation
+      name: "Жилой Блок Исследователей"
     - type: Transform
       pos: 182.5,38.5
       parent: 1
   - uid: 15169
     components:
     - type: MetaData
-      name: Research Hab Interior
+      name: "Интерьер Жилого Блока Исследователей"
     - type: Transform
       pos: 196.5,14.5
       parent: 1
   - uid: 15170
     components:
     - type: MetaData
-      name: Disposals
+      name: "Утилизация"
     - type: Transform
       pos: 197.5,89.5
       parent: 1
   - uid: 15171
     components:
     - type: MetaData
-      name: Colony Garage
+      name: "Гараж Колонии"
     - type: Transform
       pos: 151.5,82.5
       parent: 1
   - uid: 15172
     components:
     - type: MetaData
-      name: Administration
+      name: "Администрация"
     - type: Transform
       pos: 116.5,119.5
       parent: 1
   - uid: 15173
     components:
     - type: MetaData
-      name: Church
+      name: "Церковь"
     - type: Transform
       pos: 116.5,133.5
       parent: 1
   - uid: 15174
     components:
     - type: MetaData
-      name: Morgue
+      name: "Морг"
     - type: Transform
       pos: 127.5,137.5
       parent: 1
   - uid: 15175
     components:
     - type: MetaData
-      name: Canteen
+      name: "Столовая"
     - type: Transform
       pos: 139.5,142.5
       parent: 1
   - uid: 15176
     components:
     - type: MetaData
-      name: B-Ball Court
+      name: "Баскетбольная Площадка"
     - type: Transform
       pos: 135.5,148.5
       parent: 1
   - uid: 15177
     components:
     - type: MetaData
-      name: Security
+      name: "Охрана"
     - type: Transform
       pos: 156.5,132.5
       parent: 1
   - uid: 15178
     components:
     - type: MetaData
-      name: Power Substation
+      name: "Энергоподстанция"
     - type: Transform
       pos: 180.5,138.5
       parent: 1
   - uid: 15179
     components:
     - type: MetaData
-      name: Underground Security Armory
+      name: "Подземная Оружейная"
     - type: Transform
       pos: 170.5,153.5
       parent: 1
   - uid: 15180
     components:
     - type: MetaData
-      name: Aurora Medical Clinic
+      name: "Медицинская Клиника «Аврора»"
     - type: Transform
       pos: 194.5,146.5
       parent: 1

@@ -12,20 +12,40 @@ using Content.Shared._RMC14.Thunderdome;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Parasite;
+using Content.Shared._Stories.SCCVars;
+using Content.Shared._Stories.TTS;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Preferences;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server._RMC14.Rules.DistressSignal;
 
 public sealed partial class CMDistressSignalRuleSystem
 {
     private const int LastMarineEquipmentCooldownHours = 2;
+
+    private void InitializeRoundEnd()
+    {
+        SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEndMessage);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+
+        SubscribeLocalEvent<MarineComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<MarineComponent, ComponentRemove>(OnCompRemove);
+        SubscribeLocalEvent<VictimInfectedComponent, ComponentRemove>(OnCompRemove);
+        SubscribeLocalEvent<VictimBurstComponent, ComponentRemove>(OnCompRemove);
+        SubscribeLocalEvent<XenoComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<XenoComponent, ComponentRemove>(OnCompRemove);
+
+        SubscribeLocalEvent<XenoEvolutionGranterComponent, MapInitEvent>(OnMapInit);
+
+        SubscribeLocalEvent<CMDistressSignalRuleComponent, RoundEndTextAppendEvent>(AppendRoundEndText);
+        SubscribeLocalEvent<CMDistressSignalRuleComponent, RoundStartAttemptEvent>(OnStartAttempt);
+    }
 
     /// <summary>
     /// Performs all round end condition checks including hijack status, faction live counts,
@@ -332,16 +352,24 @@ public sealed partial class CMDistressSignalRuleSystem
             }
 
             var ares = _aresCore.EnsureMarineARES();
-            _marineAnnounce.AnnounceRadio(ares,
-                Loc.GetString("rmc-distress-signal-bioscan-complete"),
-                rule.AllClearChannel);
-            _marineAnnounce.AnnounceRadio(ares,
-                Loc.GetString("rmc-distress-signal-saving-report"),
-                rule.AllClearChannel);
-            _marineAnnounce.AnnounceRadio(ares,
-                Loc.GetString("rmc-distress-signal-final-scan"),
-                rule.AllClearChannel);
+
+            // Stories-TTS-Start
+            if (!HasComp<TTSComponent>(ares))
+            {
+                var tts = EnsureComp<TTSComponent>(ares);
+                tts.VoicePrototypeId = _config.GetCVar(SCCVars.TTSAresVoice);
+            }
+
+            _marineAnnounce.AnnounceRadio(ares, Loc.GetString("rmc-distress-signal-bioscan-complete"), rule.AllClearChannel);
+
+            Timer.Spawn(TimeSpan.FromSeconds(5), () =>
+                _marineAnnounce.AnnounceRadio(ares, Loc.GetString("rmc-distress-signal-saving-report"), rule.AllClearChannel));
+
+            Timer.Spawn(TimeSpan.FromSeconds(10), () =>
+                _marineAnnounce.AnnounceRadio(ares, Loc.GetString("rmc-distress-signal-final-scan"), rule.AllClearChannel));
+
             rule.EndAtAllClear ??= Timing.CurTime + rule.AllClearEndDelay;
+            // Stories-TTS-End
         }
         else
         {
@@ -370,13 +398,9 @@ public sealed partial class CMDistressSignalRuleSystem
         CheckRoundShouldEnd();
     }
 
-    protected override void AppendRoundEndText(EntityUid uid,
-        CMDistressSignalRuleComponent component,
-        GameRuleComponent gameRule,
-        ref RoundEndTextAppendEvent args)
+    private void AppendRoundEndText(Entity<CMDistressSignalRuleComponent> rule, ref RoundEndTextAppendEvent args)
     {
-        base.AppendRoundEndText(uid, component, gameRule, ref args);
-
+        var component = rule.Comp;
         var result = component.Result ??= DistressSignalRuleResult.None;
         args.AddLine(component.CustomRoundEndMessage != null
             ? $"{Loc.GetString(component.CustomRoundEndMessage)}"
@@ -393,12 +417,12 @@ public sealed partial class CMDistressSignalRuleSystem
         _gameRulesExtras.XenoAwards(ref args);
     }
 
-    protected override void OnStartAttempt(Entity<CMDistressSignalRuleComponent, GameRuleComponent> gameRule, RoundStartAttemptEvent ev)
+    private void OnStartAttempt(Entity<CMDistressSignalRuleComponent> gameRule, ref RoundStartAttemptEvent ev)
     {
         if (ev.Forced || ev.Cancelled)
             return;
 
-        if (!gameRule.Comp1.RequireXenoPlayers)
+        if (!gameRule.Comp.RequireXenoPlayers)
             return;
 
         var query = QueryAllRules();

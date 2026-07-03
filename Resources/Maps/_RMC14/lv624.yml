@@ -45239,14 +45239,14 @@ entities:
   - uid: 447
     components:
     - type: MetaData
-      name: 'LZ2: Robotics Landing Zone'
+      name: "ЗП2: Зона Посадки Робототехники"
     - type: Transform
       pos: -51.5,-70.5
       parent: 1
   - uid: 448
     components:
     - type: MetaData
-      name: 'LZ1: Nexus Landing Zone'
+      name: "ЗП1: Зона Посадки Нексус"
     - type: Transform
       pos: 65.5,-77.5
       parent: 1
@@ -155324,147 +155324,147 @@ entities:
   - uid: 21620
     components:
     - type: MetaData
-      name: Robotics
+      name: "Робототехника"
     - type: Transform
       pos: -32.5,-59.5
       parent: 1
   - uid: 21621
     components:
     - type: MetaData
-      name: Underground Lake
+      name: "Подземное Озеро"
     - type: Transform
       pos: -1.5,91.5
       parent: 1
   - uid: 21622
     components:
     - type: MetaData
-      name: Central Caves
+      name: "Центральные Пещеры"
     - type: Transform
       pos: -2.5,47.5
       parent: 1
   - uid: 21623
     components:
     - type: MetaData
-      name: Western Caves
+      name: "Западные Пещеры"
     - type: Transform
       pos: -57.5,50.5
       parent: 1
   - uid: 21624
     components:
     - type: MetaData
-      name: Western Barrens
+      name: "Западные Пустоши"
     - type: Transform
       pos: -58.5,-12.5
       parent: 1
   - uid: 21625
     components:
     - type: MetaData
-      name: Cargo Containers
+      name: "Грузовые Контейнеры"
     - type: Transform
       pos: 24.5,9.5
       parent: 1
   - uid: 21626
     components:
     - type: MetaData
-      name: Sand Temple
+      name: "Песчаный Храм"
     - type: Transform
       pos: 60.5,12.5
       parent: 1
   - uid: 21627
     components:
     - type: MetaData
-      name: Eastern Caves
+      name: "Восточные Пещеры"
     - type: Transform
       pos: 62.5,52.5
       parent: 1
   - uid: 21628
     components:
     - type: MetaData
-      name: Hydro
+      name: "Гидропоника"
     - type: Transform
       pos: 11.5,-35.5
       parent: 1
   - uid: 21629
     components:
     - type: MetaData
-      name: Medbay
+      name: "Медблок"
     - type: Transform
       pos: -7.5,-36.5
       parent: 1
   - uid: 21630
     components:
     - type: MetaData
-      name: Research
+      name: "Исследования"
     - type: Transform
       pos: -10.5,-52.5
       parent: 1
   - uid: 21631
     components:
     - type: MetaData
-      name: Fitness
+      name: "Фитнес"
     - type: Transform
       pos: 6.5,-53.5
       parent: 1
   - uid: 21632
     components:
     - type: MetaData
-      name: Nexus
+      name: "Нексус"
     - type: Transform
       pos: 31.5,-77.5
       parent: 1
   - uid: 21633
     components:
     - type: MetaData
-      name: LZ1
+      name: "ЗП1"
     - type: Transform
       pos: 65.5,-77.5
       parent: 1
   - uid: 21634
     components:
     - type: MetaData
-      name: Cargo Storage
+      name: "Склад Грузов"
     - type: Transform
       pos: 50.5,-55.5
       parent: 1
   - uid: 21635
     components:
     - type: MetaData
-      name: Atmos
+      name: "Атмосферная"
     - type: Transform
       pos: 0.5,-83.5
       parent: 1
   - uid: 21636
     components:
     - type: MetaData
-      name: Power Plant
+      name: "Электростанция"
     - type: Transform
       pos: 2.5,-96.5
       parent: 1
   - uid: 21637
     components:
     - type: MetaData
-      name: Comms Relay
+      name: "Ретранслятор Связи"
     - type: Transform
       pos: -13.5,-90.5
       parent: 1
   - uid: 21638
     components:
     - type: MetaData
-      name: Secure Storage
+      name: "Защищенное Хранилище"
     - type: Transform
       pos: -51.5,-97.5
       parent: 1
   - uid: 21639
     components:
     - type: MetaData
-      name: Corporate Dome
+      name: "Корпоративный Купол"
     - type: Transform
       pos: -31.5,-82.5
       parent: 1
   - uid: 21640
     components:
     - type: MetaData
-      name: LZ2
+      name: "ЗП2"
     - type: Transform
       pos: -51.5,-70.5
       parent: 1

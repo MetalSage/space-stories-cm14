@@ -104,3 +104,8 @@ rmc-overwatch-console-objective-updated = [bold][color=#7FFFD4]'{ $squadName }' 
 rmc-overwatch-console-objective-cancelled = [bold][color=#7FFFD4]'{ $squadName }' { $objectiveType } '{ $objective }' отменена.[/color][/bold]
 rmc-overwatch-console-objectives = Задачи вашего отряда:
     { $objectives }
+
+# TTS additions
+rmc-overwatch-tts-message = Внимание отряд { $squadName }. { $message }
+rmc-overwatch-tts-objective = Внимание отряд { $squadName }. Новая { $objectiveType }. { $objective }
+rmc-overwatch-tts-objective-cancelled = Внимание отряд { $squadName }. { $objectiveType } отменена.

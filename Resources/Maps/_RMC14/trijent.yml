@@ -77711,14 +77711,14 @@ entities:
   - uid: 1638
     components:
     - type: MetaData
-      name: 'LZ1: Airstrip'
+      name: "ЗП1: Взлетная Полоса"
     - type: Transform
       pos: 34.5,-26.5
       parent: 1
   - uid: 1639
     components:
     - type: MetaData
-      name: 'LZ2: Aerodrome'
+      name: "ЗП2: Аэродром"
     - type: Transform
       pos: 21.5,-206.5
       parent: 1
@@ -177641,98 +177641,98 @@ entities:
   - uid: 18540
     components:
     - type: MetaData
-      name: LZ1
+      name: "ЗП1"
     - type: Transform
       pos: 34.5,-26.5
       parent: 1
   - uid: 18541
     components:
     - type: MetaData
-      name: Administration
+      name: "Администрация"
     - type: Transform
       pos: 63.5,-22.5
       parent: 1
   - uid: 18542
     components:
     - type: MetaData
-      name: Hangar
+      name: "Ангар"
     - type: Transform
       pos: 32.5,-59.5
       parent: 1
   - uid: 18543
     components:
     - type: MetaData
-      name: Tech/Tool Storage
+      name: "Склад Инструментов"
     - type: Transform
       pos: 57.5,-64.5
       parent: 1
   - uid: 18544
     components:
     - type: MetaData
-      name: Cargo
+      name: "Карго"
     - type: Transform
       pos: 25.5,-79.5
       parent: 1
   - uid: 18545
     components:
     - type: MetaData
-      name: Western Workshop
+      name: "Западная Мастерская"
     - type: Transform
       pos: 25.5,-92.5
       parent: 1
   - uid: 18546
     components:
     - type: MetaData
-      name: Disposals
+      name: "Утилизация"
     - type: Transform
       pos: 23.5,-104.5
       parent: 1
   - uid: 18547
     components:
     - type: MetaData
-      name: Breakroom
+      name: "Комната Отдыха"
     - type: Transform
       pos: 62.5,-104.5
       parent: 1
   - uid: 18548
     components:
     - type: MetaData
-      name: Engineer Central
+      name: "Инженерный Центр"
     - type: Transform
       pos: 75.5,-87.5
       parent: 1
   - uid: 18549
     components:
     - type: MetaData
-      name: Marshal Office
+      name: "Офис Маршала"
     - type: Transform
       pos: 37.5,-143.5
       parent: 1
   - uid: 18550
     components:
     - type: MetaData
-      name: T-Comms
+      name: "Телекоммуникации"
     - type: Transform
       pos: 21.5,-174.5
       parent: 1
   - uid: 18551
     components:
     - type: MetaData
-      name: LZ2
+      name: "ЗП2"
     - type: Transform
       pos: 21.5,-206.5
       parent: 1
   - uid: 18552
     components:
     - type: MetaData
-      name: Chapel
+      name: "Часовня"
     - type: Transform
       pos: 50.5,-181.5
       parent: 1
   - uid: 18553
     components:
     - type: MetaData
-      name: Loading Bay
+      name: "Зона Погрузки"
     - type: Transform
       pos: 49.5,-211.5
       parent: 1
@@ -177746,84 +177746,84 @@ entities:
   - uid: 18555
     components:
     - type: MetaData
-      name: Water Treatment Plant
+      name: "Очистные Сооружения"
     - type: Transform
       pos: 108.5,-200.5
       parent: 1
   - uid: 18556
     components:
     - type: MetaData
-      name: Graveyard
+      name: "Кладбище"
     - type: Transform
       pos: 68.5,-159.5
       parent: 1
   - uid: 18557
     components:
     - type: MetaData
-      name: Bar
+      name: "Бар"
     - type: Transform
       pos: 80.5,-129.5
       parent: 1
   - uid: 18558
     components:
     - type: MetaData
-      name: Botany
+      name: "Ботаника"
     - type: Transform
       pos: 79.5,-12.5
       parent: 1
   - uid: 18559
     components:
     - type: MetaData
-      name: Hydro Dam
+      name: "Гидроэлектростанция"
     - type: Transform
       pos: 122.5,-75.5
       parent: 1
   - uid: 18560
     components:
     - type: MetaData
-      name: Dormitories
+      name: "Спальни"
     - type: Transform
       pos: 187.5,-211.5
       parent: 1
   - uid: 18561
     components:
     - type: MetaData
-      name: Eastern Workshop
+      name: "Восточная Мастерская"
     - type: Transform
       pos: 218.5,-204.5
       parent: 1
   - uid: 18562
     components:
     - type: MetaData
-      name: Mess Hall
+      name: "Столовая"
     - type: Transform
       pos: 193.5,-183.5
       parent: 1
   - uid: 18563
     components:
     - type: MetaData
-      name: Hospital
+      name: "Госпиталь"
     - type: Transform
       pos: 163.5,-130.5
       parent: 1
   - uid: 18564
     components:
     - type: MetaData
-      name: Eastern Filtration Plant
+      name: "Восточная Фильтрационная Станция"
     - type: Transform
       pos: 206.5,-130.5
       parent: 1
   - uid: 18565
     components:
     - type: MetaData
-      name: Excavation
+      name: "Раскопки"
     - type: Transform
       pos: 186.5,-75.5
       parent: 1
   - uid: 18566
     components:
     - type: MetaData
-      name: Eastern Laboratory
+      name: "Восточная Лаборатория"
     - type: Transform
       pos: 172.5,-15.5
       parent: 1

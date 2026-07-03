@@ -590,7 +590,6 @@ public abstract class SharedOverwatchConsoleSystem : EntitySystem
 
         _adminLog.Add(LogType.RMCMarineAnnounce, $"{ToPrettyString(args.Actor)} sent {squadProto.Name} squad message: {args.Message}");
         _core.CreateARESLog(ent, LogCat, (string)$"{Name(args.Actor)} sent a squad announcement: {args.Message}");
-        _marineAnnounce.AnnounceSquad($"[color=#3C70FF][bold]Overwatch:[/bold] {Name(args.Actor)} transmits: [font size=16][bold]{message}[/bold][/font][/color]", squadProto.ID);
         _marineAnnounce.AnnounceSquad(Loc.GetString("rmc-overwatch-console-announce-message", ("operatorName", Name(args.Actor)), ("message", message)), squadProto.ID);
 
         var coordinates = TransformSystem.GetMapCoordinates(ent);
@@ -600,6 +599,12 @@ public abstract class SharedOverwatchConsoleSystem : EntitySystem
         var userMsg = Loc.GetString("rmc-overwatch-console-squad-message-sent", ("squadName", Name(squad.Value)), ("message", message));
         var author = CompOrNull<ActorComponent>(args.Actor)?.PlayerSession.UserId;
         _rmcChat.ChatMessageToMany(userMsg, userMsg, players, ChatChannel.Local, author: author);
+
+        // Stories-TTS-Start
+        var squadFilter = Filter.Empty().AddWhereAttachedEntity(e => _squad.IsInSquad(e, squad.Value));
+        var ttsMsg = Loc.GetString("rmc-overwatch-tts-message", ("squadName", Name(squad.Value)), ("message", message));
+        RaiseLocalEvent(new OverwatchConsoleMessageSentEvent(ttsMsg, args.Actor, squadFilter, players));
+        // Stories-TTS-End
     }
 
     private void OnOverwatchSetSquadObjectiveBui(Entity<OverwatchConsoleComponent> ent, ref OverwatchConsoleSetSquadObjectiveBuiMsg args)
@@ -645,6 +650,12 @@ public abstract class SharedOverwatchConsoleSystem : EntitySystem
         var userMsg = Loc.GetString("rmc-overwatch-console-objective-updated", ("squadName", Name(squad.Value)), ("objectiveType", objectiveTypeName), ("objective", objective));
         var author = CompOrNull<ActorComponent>(args.Actor)?.PlayerSession.UserId;
         _rmcChat.ChatMessageToMany(userMsg, userMsg, players, ChatChannel.Local, author: author);
+
+        // Stories-TTS-Start
+        var squadFilter = Filter.Empty().AddWhereAttachedEntity(e => _squad.IsInSquad(e, squad.Value));
+        var ttsMsg = Loc.GetString("rmc-overwatch-tts-objective", ("squadName", Name(squad.Value)), ("objectiveType", objectiveTypeName), ("objective", objective));
+        RaiseLocalEvent(new OverwatchConsoleObjectiveSetEvent(ttsMsg, args.Actor, squadFilter, players));
+        // Stories-TTS-End
     }
 
     private void OnOverwatchClearSquadObjectiveBui(Entity<OverwatchConsoleComponent> ent, ref OverwatchConsoleClearSquadObjectiveBuiMsg args)
@@ -693,6 +704,12 @@ public abstract class SharedOverwatchConsoleSystem : EntitySystem
         var userMsg = Loc.GetString("rmc-overwatch-console-objective-cancelled", ("squadName", Name(squad.Value)), ("objectiveType", objectiveTypeName), ("objective", cancelledObjective));
         var author = CompOrNull<ActorComponent>(args.Actor)?.PlayerSession.UserId;
         _rmcChat.ChatMessageToMany(userMsg, userMsg, players, ChatChannel.Local, author: author);
+
+        // Stories-TTS-Start
+        var squadFilter = Filter.Empty().AddWhereAttachedEntity(e => _squad.IsInSquad(e, squad.Value));
+        var ttsMsg = Loc.GetString("rmc-overwatch-tts-objective-cancelled", ("squadName", Name(squad.Value)), ("objectiveType", objectiveTypeName));
+        RaiseLocalEvent(new OverwatchConsoleObjectiveSetEvent(ttsMsg, args.Actor, squadFilter, players));
+        // Stories-TTS-End
     }
 
     protected virtual void Watch(Entity<ActorComponent?, EyeComponent?> watcher, Entity<OverwatchCameraComponent?> toWatch)
@@ -891,3 +908,35 @@ public abstract class SharedOverwatchConsoleSystem : EntitySystem
         UpdateConsoles();
     }
 }
+
+// Stories-TTS-Start
+public sealed class OverwatchConsoleMessageSentEvent : EntityEventArgs
+{
+    public string Message;
+    public EntityUid Actor;
+    public Filter SquadFilter;
+    public Filter ConsoleFilter;
+    public OverwatchConsoleMessageSentEvent(string msg, EntityUid actor, Filter squadFilter, Filter consoleFilter)
+    {
+        Message = msg;
+        Actor = actor;
+        SquadFilter = squadFilter;
+        ConsoleFilter = consoleFilter;
+    }
+}
+
+public sealed class OverwatchConsoleObjectiveSetEvent : EntityEventArgs
+{
+    public string Message;
+    public EntityUid Actor;
+    public Filter SquadFilter;
+    public Filter ConsoleFilter;
+    public OverwatchConsoleObjectiveSetEvent(string msg, EntityUid actor, Filter squadFilter, Filter consoleFilter)
+    {
+        Message = msg;
+        Actor = actor;
+        SquadFilter = squadFilter;
+        ConsoleFilter = consoleFilter;
+    }
+}
+// Stories-TTS-End

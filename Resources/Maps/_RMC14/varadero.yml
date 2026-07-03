@@ -47799,14 +47799,14 @@ entities:
   - uid: 1034
     components:
     - type: MetaData
-      name: 'LZ1: Pontoon Dock'
+      name: "ЗП1: Понтонный Док"
     - type: Transform
       pos: 70.5,142.5
       parent: 1
   - uid: 1035
     components:
     - type: MetaData
-      name: 'LZ2: Palm Airfield'
+      name: "ЗП2: Аэродром Палм"
     - type: Transform
       pos: 144.5,148.5
       parent: 1
@@ -175188,238 +175188,238 @@ entities:
   - uid: 23997
     components:
     - type: MetaData
-      name: Tech Storage
+      name: "Склад Техники"
     - type: Transform
       pos: 52.5,74.5
       parent: 1
   - uid: 23998
     components:
     - type: MetaData
-      name: South West Caves
+      name: "Юго-Западные Пещеры"
     - type: Transform
       pos: 20.5,15.5
       parent: 1
   - uid: 23999
     components:
     - type: MetaData
-      name: South Research Caves
+      name: "Южные Пещеры Исследователей"
     - type: Transform
       pos: 43.5,50.5
       parent: 1
   - uid: 24000
     components:
     - type: MetaData
-      name: Research
+      name: "Исследования"
     - type: Transform
       pos: 19.5,74.5
       parent: 1
   - uid: 24001
     components:
     - type: MetaData
-      name: North Research Caves
+      name: "Северные Пещеры Исследователей"
     - type: Transform
       pos: 27.5,102.5
       parent: 1
   - uid: 24002
     components:
     - type: MetaData
-      name: Cargo
+      name: "Карго"
     - type: Transform
       pos: 40.5,131.5
       parent: 1
   - uid: 24003
     components:
     - type: MetaData
-      name: LZ1
+      name: "ЗП1"
     - type: Transform
       pos: 70.5,142.5
       parent: 1
   - uid: 24004
     components:
     - type: MetaData
-      name: Cargo Generator
+      name: "Генератор Грузового Отсека"
     - type: Transform
       pos: 35.5,139.5
       parent: 1
   - uid: 24005
     components:
     - type: MetaData
-      name: Walkway Extension
+      name: "Расширение Дорожки"
     - type: Transform
       pos: 20.5,127.5
       parent: 1
   - uid: 24006
     components:
     - type: MetaData
-      name: Admin
+      name: "Администрация"
     - type: Transform
       pos: 74.5,76.5
       parent: 1
   - uid: 24007
     components:
     - type: MetaData
-      name: Medical
+      name: "Медицинский"
     - type: Transform
       pos: 61.5,95.5
       parent: 1
   - uid: 24008
     components:
     - type: MetaData
-      name: Chapel
+      name: "Часовня"
     - type: Transform
       pos: 46.5,110.5
       parent: 1
   - uid: 24009
     components:
     - type: MetaData
-      name: Morgue
+      name: "Морг"
     - type: Transform
       pos: 65.5,110.5
       parent: 1
   - uid: 24010
     components:
     - type: MetaData
-      name: Northern Maintenance
+      name: "Северные Техтоннели"
     - type: Transform
       pos: 52.5,120.5
       parent: 1
   - uid: 24011
     components:
     - type: MetaData
-      name: Library
+      name: "Библиотека"
     - type: Transform
       pos: 90.5,111.5
       parent: 1
   - uid: 24012
     components:
     - type: MetaData
-      name: Interior Pool
+      name: "Внутренний Бассейн"
     - type: Transform
       pos: 83.5,83.5
       parent: 1
   - uid: 24013
     components:
     - type: MetaData
-      name: Mess Hall
+      name: "Столовая"
     - type: Transform
       pos: 95.5,82.5
       parent: 1
   - uid: 24014
     components:
     - type: MetaData
-      name: Dorms
+      name: "Спальни"
     - type: Transform
       pos: 93.5,73.5
       parent: 1
   - uid: 24015
     components:
     - type: MetaData
-      name: Security Offices
+      name: "Офисы Охраны"
     - type: Transform
       pos: 115.5,67.5
       parent: 1
   - uid: 24016
     components:
     - type: MetaData
-      name: Southern Maintenance
+      name: "Южные Техтоннели"
     - type: Transform
       pos: 72.5,39.5
       parent: 1
   - uid: 24017
     components:
     - type: MetaData
-      name: Grass Caves
+      name: "Травяные Пещеры"
     - type: Transform
       pos: 99.5,15.5
       parent: 1
   - uid: 24018
     components:
     - type: MetaData
-      name: Bathrooms
+      name: "Туалеты"
     - type: Transform
       pos: 126.5,39.5
       parent: 1
   - uid: 24019
     components:
     - type: MetaData
-      name: Records
+      name: "Архивы"
     - type: Transform
       pos: 107.5,48.5
       parent: 1
   - uid: 24020
     components:
     - type: MetaData
-      name: Beach Caves
+      name: "Пляжные Пещеры"
     - type: Transform
       pos: 145.5,51.5
       parent: 1
   - uid: 24021
     components:
     - type: MetaData
-      name: Dig Site
+      name: "Раскопки"
     - type: Transform
       pos: 159.5,35.5
       parent: 1
   - uid: 24022
     components:
     - type: MetaData
-      name: Unknown Vessel
+      name: "Неизвестное Судно"
     - type: Transform
       pos: 177.5,21.5
       parent: 1
   - uid: 24023
     components:
     - type: MetaData
-      name: Monsoon
+      name: "Муссон"
     - type: Transform
       pos: 156.5,73.5
       parent: 1
   - uid: 24024
     components:
     - type: MetaData
-      name: Engineering
+      name: "Инженерный Отсек"
     - type: Transform
       pos: 121.5,104.5
       parent: 1
   - uid: 24025
     components:
     - type: MetaData
-      name: East Beach
+      name: "Восточный Пляж"
     - type: Transform
       pos: 134.5,126.5
       parent: 1
   - uid: 24026
     components:
     - type: MetaData
-      name: LZ2
+      name: "ЗП2"
     - type: Transform
       pos: 144.5,148.5
       parent: 1
   - uid: 24027
     components:
     - type: MetaData
-      name: Rockabilly Beach
+      name: "Рокабилли Пляж"
     - type: Transform
       pos: 99.5,132.5
       parent: 1
   - uid: 24028
     components:
     - type: MetaData
-      name: Bar
+      name: "Бар"
     - type: Transform
       pos: 104.5,151.5
       parent: 1
   - uid: 24029
     components:
     - type: MetaData
-      name: B-Ball
+      name: "Баскетбол"
     - type: Transform
       pos: 91.5,96.5
       parent: 1
   - uid: 24030
     components:
     - type: MetaData
-      name: Security Maintenance
+      name: "Техобслуживание Охраны"
     - type: Transform
       pos: 133.5,78.5
       parent: 1

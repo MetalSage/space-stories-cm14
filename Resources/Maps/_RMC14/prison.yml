@@ -65769,14 +65769,14 @@ entities:
   - uid: 1915
     components:
     - type: MetaData
-      name: 'LZ1: Hangar Landing Zone'
+      name: "ЗП1: Зона Посадки Ангара"
     - type: Transform
       pos: 110.5,9.5
       parent: 1
   - uid: 1916
     components:
     - type: MetaData
-      name: 'LZ2: Security Landing Zone'
+      name: "ЗП2: Зона Посадки Охраны"
     - type: Transform
       pos: 35.5,-73.5
       parent: 1
@@ -99630,161 +99630,161 @@ entities:
   - uid: 7859
     components:
     - type: MetaData
-      name: LZ2
+      name: "ЗП2"
     - type: Transform
       pos: 35.5,-73.5
       parent: 1
   - uid: 7860
     components:
     - type: MetaData
-      name: Engineering Ring
+      name: "Инженерное Кольцо"
     - type: Transform
       pos: 79.5,-38.5
       parent: 1
   - uid: 7861
     components:
     - type: MetaData
-      name: LZ1
+      name: "ЗП1"
     - type: Transform
       pos: 110.5,9.5
       parent: 1
   - uid: 7862
     components:
     - type: MetaData
-      name: Disco
+      name: "Дискотека"
     - type: Transform
       pos: 71.5,-3.5
       parent: 1
   - uid: 7863
     components:
     - type: MetaData
-      name: Survivor Camp
+      name: "Лагерь Выживших"
     - type: Transform
       pos: 78.5,12.5
       parent: 1
   - uid: 7864
     components:
     - type: MetaData
-      name: Research Cellblock
+      name: "Исследовательские Камеры"
     - type: Transform
       pos: 56.5,39.5
       parent: 1
   - uid: 7865
     components:
     - type: MetaData
-      name: Medbay Admin
+      name: "Администрация Медблока"
     - type: Transform
       pos: 6.5,42.5
       parent: 1
   - uid: 7866
     components:
     - type: MetaData
-      name: Medbay
+      name: "Медблок"
     - type: Transform
       pos: 7.5,25.5
       parent: 1
   - uid: 7867
     components:
     - type: MetaData
-      name: Cryo Labs
+      name: "Криолаборатории"
     - type: Transform
       pos: 6.5,60.5
       parent: 1
   - uid: 7868
     components:
     - type: MetaData
-      name: Servers
+      name: "Серверная"
     - type: Transform
       pos: -45.5,61.5
       parent: 1
   - uid: 7869
     components:
     - type: MetaData
-      name: Green Dorms
+      name: "Зеленые Спальни"
     - type: Transform
       pos: -79.5,19.5
       parent: 1
   - uid: 7870
     components:
     - type: MetaData
-      name: Blue Dorms
+      name: "Синие Спальни"
     - type: Transform
       pos: -34.5,17.5
       parent: 1
   - uid: 7871
     components:
     - type: MetaData
-      name: Elevators
+      name: "Лифты"
     - type: Transform
       pos: -75.5,-15.5
       parent: 1
   - uid: 7872
     components:
     - type: MetaData
-      name: Fiberbush
+      name: "Заросли"
     - type: Transform
       pos: -106.5,-15.5
       parent: 1
   - uid: 7873
     components:
     - type: MetaData
-      name: Scavenger Ship
+      name: "Корабль Мусорщиков"
     - type: Transform
       pos: -108.5,-38.5
       parent: 1
   - uid: 7874
     components:
     - type: MetaData
-      name: Park
+      name: "Парк"
     - type: Transform
       pos: -58.5,-70.5
       parent: 1
   - uid: 7875
     components:
     - type: MetaData
-      name: Bobda Promo
+      name: "Реклама Bobda"
     - type: Transform
       pos: -31.5,-70.5
       parent: 1
   - uid: 7876
     components:
     - type: MetaData
-      name: Botany
+      name: "Ботаника"
     - type: Transform
       pos: -22.5,-42.5
       parent: 1
   - uid: 7877
     components:
     - type: MetaData
-      name: Armory
+      name: "Оружейная"
     - type: Transform
       pos: 21.5,-53.5
       parent: 1
   - uid: 7878
     components:
     - type: MetaData
-      name: Transit Hub
+      name: "Транзитный Узел"
     - type: Transform
       pos: -31.5,-21.5
       parent: 1
   - uid: 7879
     components:
     - type: MetaData
-      name: Chapel
+      name: "Часовня"
     - type: Transform
       pos: -15.5,1.5
       parent: 1
   - uid: 7880
     components:
     - type: MetaData
-      name: Garden
+      name: "Сад"
     - type: Transform
       pos: 21.5,1.5
       parent: 1
   - uid: 7881
     components:
     - type: MetaData
-      name: Lowsec Cellblock
+      name: "Камеры Строгого Режима (Lowsec)"
     - type: Transform
       pos: 42.5,-19.5
       parent: 1
