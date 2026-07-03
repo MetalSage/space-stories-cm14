@@ -7,6 +7,6 @@ namespace Content.Shared._Stories.TTS;
 public sealed partial class TTSComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<TTSVoicePrototype>))]
+    [DataField("voice", customTypeSerializer: typeof(PrototypeIdSerializer<TTSVoicePrototype>))]
     public string? VoicePrototypeId { get; set; }
 }
