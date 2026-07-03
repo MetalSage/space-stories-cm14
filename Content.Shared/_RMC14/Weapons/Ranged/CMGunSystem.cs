@@ -483,17 +483,10 @@ public sealed class CMGunSystem : EntitySystem
             return;
 
         var session = CompOrNull<ActorComponent>(user)?.PlayerSession;
+        // Stories-NoSelfShoot: ranged self-damage is always disabled regardless of rmc.damage_yourself;
+        // melee self-damage (SharedRMCMeleeWeaponSystem.OnActorAttackAttempt) still respects the CVar.
         if (gunComp.Target.Value == user.Owner)
-        {
-            if (gunComp.SelectedMode == SelectiveFire.FullAuto)
-                return;
-
-            if (session != null &&
-                !_netConfig.GetClientCVar(session.Channel, RMCCVars.RMCDamageYourself))
-            {
-                return;
-            }
-        }
+            return; // Stories-SelfDamageGunOFF
 
         if (!_interaction.InRangeUnobstructed(gun.Owner, gunComp.Target.Value, gun.Comp.Range, user: user))
             return;
