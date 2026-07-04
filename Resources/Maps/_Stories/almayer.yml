@@ -132806,6 +132806,14 @@ entities:
     - type: Transform
       pos: -96.25,-15.5
       parent: 1
+- proto: RMCSigintTerminal
+  entities:
+  - uid: 18695
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 29.5,107.5
+      parent: 1
 - proto: RMCComputerIntel
   entities:
   - uid: 18693
@@ -132819,12 +132827,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 29.5,108.3
-      parent: 1
-  - uid: 18695
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 29.5,107.5
       parent: 1
   - uid: 18696
     components:
