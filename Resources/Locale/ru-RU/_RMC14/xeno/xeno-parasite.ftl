@@ -6,7 +6,7 @@ rmc-xeno-infect-fail = Лицехват разбивается о { $target } { 
 rmc-xeno-failed-parasite-dead = Мы не можем заразить мертвого лицехвата!
 rmc-xeno-cant-throw = Мы не можем бросить { $target }!
 
-rmc-xeno-parasite-dead = { CAPITALIZE(SUBJECT($parasite)) } { CONJUGATE-BE($parasite) } не двигается.
+rmc-xeno-parasite-dead = { CAPITALIZE(SUBJECT($parasite)) } не двигается.
 rmc-xeno-parasite-announce-infect = Мы чувствуем, что { $xeno } заразил носителя в { $location }!
 
 rmc-xeno-parasite-player-pickup = { CAPITALIZE($parasite) } может обрабатывать { REFLEXIVE($parasite) }!
