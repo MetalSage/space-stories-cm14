@@ -1,29 +1,29 @@
 - type: stTtsReplacement
   id: STRegex_USA
-  pattern: \bСША\b
-  replacedWith: сэ шэ а
+  pattern: 'США'
+  replacedWith: 'сэ шэ а'
   isRegex: true
 
 - type: stTtsReplacement
   id: STRegex_USS
-  pattern: \bВКСШ\b
-  replacedWith: вэ ке сэ шэ а
+  pattern: 'ВКСШ'
+  replacedWith: 'вэ ке сэ шэ а'
   isRegex: true
 
 - type: stTtsReplacement
   id: STRegex_ARES_V32
-  pattern: \bARES v3\.2\b
-  replacedWith: Арес
+  pattern: 'ARES v3.2'
+  replacedWith: 'Арес'
   isRegex: true
 
 - type: stTtsReplacement
   id: STRegex_ARES
-  pattern: \bARES\b
-  replacedWith: Арес
+  pattern: 'ARES'
+  replacedWith: 'Арес'
   isRegex: true
 
 - type: stTtsReplacement
   id: STRegex_USCM
-  pattern: \bUSCM\b
-  replacedWith: ю эс си эм
+  pattern: 'USCM'
+  replacedWith: 'ю эс си эм'
   isRegex: true
