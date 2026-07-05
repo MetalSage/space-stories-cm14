@@ -8,19 +8,19 @@
     guides:
     - RMCGuideRoleSpecSniper
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Snipers/m96s/snow.rsi # # TODO RMC14: just uses snow to represent 'corporate' for now but it should get its' own sprites later
+    sprite: _RMC14/Objects/Weapons/Guns/Snipers/m96s/pmc.rsi
     layers:
     - state: bolt-open
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
     - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
-      state: sniperbarrel
+      state: wy_sniperbarrel
       offset: 0.715, 0.025
   - type: Item
     size: Large
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/Snipers/m96s/snow.rsi
+    sprite: _RMC14/Objects/Weapons/Guns/Snipers/m96s/pmc.rsi
   - type: Tag
     tags:
     - CMM96CSniperRifle
@@ -66,10 +66,10 @@
     slots:
       rmc-aslot-rail:
         locked: true
-        startingAttachable: RMCM96SIntegratedScope # TODO RMC14: m42c pmc scope
+        startingAttachable: RMCM96CIntegratedScope
         whitelist:
           tags:
-          - RMCM96SIntegratedScope
+          - RMCM96CIntegratedScope
       rmc-aslot-underbarrel:
         whitelist:
           tags:

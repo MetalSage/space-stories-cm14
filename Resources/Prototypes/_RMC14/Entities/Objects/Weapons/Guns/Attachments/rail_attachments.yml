@@ -518,11 +518,6 @@
       offset: 14
       allowMovement: false
       doAfter: 0
-    - name: 2x
-      zoom: 1
-      offset: 14
-      allowMovement: true
-      doAfter: 0
 
 - type: entity
   parent: RMCM96SIntegratedScope
@@ -541,6 +536,25 @@
       sprite: _RMC14/Objects/Weapons/Guns/Attachments/rail.rsi
       state: xm43e1_scope
     actionName: Look through the XM43E1's Integrated Scope
+    actionDesc: Lets you see further.
+
+- type: entity
+  parent: RMCM96SIntegratedScope
+  id: RMCM96CIntegratedScope
+  name: M96C integrated scope
+  description: This isn't supposed to come off the gun. How did you get it?
+  components:
+  - type: Sprite
+    state: m96c_scope
+  - type: Tag
+    tags:
+    - RMCAttachmentRail
+    - RMCM96CIntegratedScope
+  - type: AttachableToggleable
+    icon:
+      sprite: _RMC14/Objects/Weapons/Guns/Attachments/rail.rsi
+      state: m96c_scope
+    actionName: Look through the M96C Integrated Scope
     actionDesc: Lets you see further.
 
 - type: entity
