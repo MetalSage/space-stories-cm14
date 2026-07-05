@@ -4,7 +4,7 @@
   name: rmc-job-name-pmc-field-operations-leader
   whitelistParent: CMCommandingOfficer
   ranks:
-    RMCRankWeYaFieldOperationsLeader: []
+    RMCRankWeYaFieldOperaionsLeader: []
   supervisors: cm-job-supervisors-we-ya
   accessGroups:
   - ColonistPMC
