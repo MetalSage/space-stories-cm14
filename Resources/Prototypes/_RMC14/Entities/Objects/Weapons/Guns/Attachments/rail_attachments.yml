@@ -792,6 +792,9 @@
   id: RMCXM43E1IntegratedScope
 
 - type: Tag
+  id: RMCM96CIntegratedScope
+
+- type: Tag
   id: RMCType88IntegratedScope
 
 - type: Tag
