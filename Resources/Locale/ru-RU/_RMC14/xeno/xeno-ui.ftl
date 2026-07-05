@@ -9,9 +9,9 @@ xeno-ui-find-parasite-spawn-button = Взять лицехвата
 xeno-ui-find-parasite-item = { $itemName } ({ $areaName })
 xeno-ui-default-area-name = Неизвестный
 
-xeno-ui-name-tunnel-title = Имя туннеля
+xeno-ui-name-tunnel-title = Имя тунелля
 xeno-ui-name-tunnel-submit-text = Применить имя
-xeno-ui-rename-tunnel-verb = Переименовать туннель
+xeno-ui-rename-tunnel-verb = Переименовть туннель
 xeno-ui-enter-tunnel-verb = Войти в туннель
 
 xeno-ui-select-destination-tunnel-title = Выберите туннель назначения
@@ -24,6 +24,6 @@ rmc-xeno-tracker-target-HiveLeader = Лидер улья
 rmc-xeno-tracker-target-Tunnel = Туннель
 rmc-xeno-tracker-target-HiveCore = Ядро Улья
 
-rmc-xeno-ui-ovi-needed-label = [bold][color=red]Для получения очков Королева должна находиться на яйцекладе![/color][/bold]
+rmc-xeno-ui-ovi-needed-label = [bold][color=red]Для получения очков Королева должна находиться в своем\n яйцекладе![/color][/bold]
 rmc-xeno-ui-evolution-points = Очки эволюции: { $points } / { $maxPoints }
 rmc-ui-xeno-strain-confirm = Подтвердить

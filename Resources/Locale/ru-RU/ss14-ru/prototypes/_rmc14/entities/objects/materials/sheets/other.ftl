@@ -1,5 +1,5 @@
 ent-CMSheetPhoron = форон
-    .desc = Особая форма металлической плазмы, которая не встречается на Земле. Хотя форон легко воспламеняется и чрезвычайно токсичен, его высокая плотность энергии делает его одной из лучших альтернатив твердому топливу. Жидкий форон часто используется в исследовательских целях и в медицинской промышленности в качестве катализатора для многих передовых химических веществ.
+    .desc = Phoron is an extremely rare mineral with exotic properties, often used in cutting-edge research. Just getting it into a stable, solid form is already difficult enough, considering it can be quite toxic and flammable.
     .suffix = Полный
 ent-CMSheetPhoron15 = { ent-CMSheetPhoron }
     .desc = { ent-CMSheetPhoron.desc }

@@ -25,29 +25,9 @@ rmc-mortar-shell-load-start-self = Вы начинаете загружать { 
 rmc-mortar-shell-load-start-others = { $user } начинает загрузку { $shell } в { $mortar }.
 rmc-mortar-shell-load-finish-self = Вы загружаете { $shell } в { $mortar }.
 rmc-mortar-shell-fire = { CAPITALIZE($mortar) } стреляет!
-rmc-mortar-shell-warning = К ВАШЕМУ { $direction ->
-    [NORTH] СЕВЕРУ
-    [SOUTH] ЮГУ
-    [EAST] ВОСТОКУ
-    [WEST] ЗАПАДУ
-    [NORTHEAST] СЕВЕРО-ВОСТОКУ
-    [NORTHWEST] СЕВЕРО-ЗАПАДУ
-    [SOUTHEAST] ЮГО-ВОСТОКУ
-    [SOUTHWEST] ЮГО-ЗАПАДУ
-   *[other] { $direction }
-} приближается снаряд.
+rmc-mortar-shell-warning = К ВАШЕМУ { $direction } приближается снаряд.
 rmc-mortar-shell-warning-above = ПРЯМО НАД ВАМИ ПАДАЕТ СНАРЯД.
-rmc-mortar-shell-impact-warning = СНАРЯД ВОТ-ВОТ УДАРИТ РЯДОМ { $direction ->
-    [NORTH] С СЕВЕРА
-    [SOUTH] С ЮГА
-    [EAST] С ВОСТОКА
-    [WEST] С ЗАПАДА
-    [NORTHEAST] С СЕВЕРО-ВОСТОКА
-    [NORTHWEST] С СЕВЕРО-ЗАПАДА
-    [SOUTHEAST] С ЮГО-ВОСТОКА
-    [SOUTHWEST] С ЮГО-ЗАПАДА
-   *[other] { $direction }
-}
+rmc-mortar-shell-impact-warning = СНАРЯД ВОТ-ВОТ УДАРИТ РЯДОМ { $direction }
 rmc-mortar-shell-impact-warning-above = СНАРЯД ВОТ-ВОТ УПАДЕТ ПРЯМО НАД ВАМИ.
 
 rmc-mortar-interface = Интерфейс миномета

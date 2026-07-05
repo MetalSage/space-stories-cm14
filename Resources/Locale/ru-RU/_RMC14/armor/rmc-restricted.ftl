@@ -16,4 +16,4 @@ rmc-armor-not-spp-jumpsuit = Вы не можете носить это, не н
 
 rmc-armor-not-cmb-jumpsuit = Вы не можете носить это, не надев униформу БКМ.
 
-rmc-armor-not-tse-jumpsuit = Вы не можете носить это, не надев униформу ИТC.
+rmc-armor-not-tse-jumpsuit = Вы не можете носить это, не надев униформу ИТС.

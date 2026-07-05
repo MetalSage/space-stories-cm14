@@ -1,6 +1,6 @@
 ent-RMCToolboxBase = { ent-ToolboxBase }
     .desc = { ent-ToolboxBase.desc }
-ent-RMCToolboxEmergency = аварийный ящик
+ent-RMCToolboxEmergency = emergency toolbox
     .desc = { ent-ToolboxEmergency.desc }
     .suffix = RMC14
 ent-RMCToolboxEmergencyFilled = { ent-RMCToolboxEmergency }
@@ -12,7 +12,7 @@ ent-RMCToolboxElectrical = electrical toolbox
 ent-RMCToolboxElectricalFilled = { ent-RMCToolboxElectrical }
     .desc = { ent-RMCToolboxElectrical.desc }
     .suffix = RMC14, Заполненный
-ent-RMCToolboxMechanical = ящик с инструментами
+ent-RMCToolboxMechanical = mechanical toolbox
     .desc = { ent-ToolboxMechanical.desc }
     .suffix = RMC14
 ent-RMCToolboxMechanicalFilled = { ent-RMCToolboxMechanical }
