@@ -137,7 +137,6 @@ public abstract class SharedChatSystem : EntitySystem
             return;
 
         // Stories-Hunter-Start
-        //var messageWithoutPrefix = input[1..];
         string? foundKey = null;
 
         foreach (var key in _keyCodes.Keys.OrderByDescending(k => k.Length))
@@ -227,7 +226,6 @@ public abstract class SharedChatSystem : EntitySystem
         // RMC14
 
         // Stories-Hunter-Start
-        //var messageWithoutPrefix = message[1..];
         string? channelKey = null;
 
         foreach (var key in _keyCodes.Keys.OrderByDescending(k => k.Length))
