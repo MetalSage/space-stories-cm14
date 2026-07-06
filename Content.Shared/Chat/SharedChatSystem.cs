@@ -137,12 +137,12 @@ public abstract class SharedChatSystem : EntitySystem
             return;
 
         // Stories-Hunter-Start
-        var messageWithoutPrefix = input[1..];
+        //var messageWithoutPrefix = input[1..];
         string? foundKey = null;
 
         foreach (var key in _keyCodes.Keys.OrderByDescending(k => k.Length))
         {
-            if (messageWithoutPrefix.StartsWith(key, StringComparison.OrdinalIgnoreCase))
+            if (input.StartsWith(key, StringComparison.OrdinalIgnoreCase))
             {
                 foundKey = key;
                 break;
@@ -227,12 +227,12 @@ public abstract class SharedChatSystem : EntitySystem
         // RMC14
 
         // Stories-Hunter-Start
-        var messageWithoutPrefix = message[1..];
+        //var messageWithoutPrefix = message[1..];
         string? channelKey = null;
 
         foreach (var key in _keyCodes.Keys.OrderByDescending(k => k.Length))
         {
-            if (messageWithoutPrefix.StartsWith(key, StringComparison.OrdinalIgnoreCase))
+            if (message.StartsWith(key, StringComparison.OrdinalIgnoreCase))
             {
                 channelKey = key;
                 break;
@@ -254,7 +254,7 @@ public abstract class SharedChatSystem : EntitySystem
         output = SanitizeMessageCapital(message[(1 + channelKey.Length)..].TrimStart()); // Stories-Hunter
 
         var isDefaultChannel = string.Equals(channelKey, DefaultChannelKey, StringComparison.OrdinalIgnoreCase); // Stories-Hunter
-        var lookupKey = $"{firstChar}{char.ToLowerInvariant(channelKey[0])}";
+        var lookupKey = $"{firstChar}{char.ToLowerInvariant(channelKey[1])}";
         var foundChannel = _channelLookup.TryGetValue(lookupKey, out channel);
 
         if (isDefaultChannel)
