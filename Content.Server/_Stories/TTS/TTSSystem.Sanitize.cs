@@ -23,7 +23,7 @@ public sealed partial class TTSSystem
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
     {
-        if (ev.WasModified<TTSReplacementPrototype>() || ev.WasModified<TTSSanitizeConfigPrototype>())
+        if (ev.WasModified<TTSSanitizeConfigPrototype>())
             BuildReplacements();
     }
 
@@ -32,20 +32,32 @@ public sealed partial class TTSSystem
         _wordReplacement.Clear();
         _regexReplacements.Clear();
 
-        foreach (var proto in _prototypeManager.EnumeratePrototypes<TTSReplacementPrototype>())
+        if (_prototypeManager.TryIndex<TTSSanitizeConfigPrototype>("Default", out _sanitizeConfig))
         {
-            if (proto.IsRegex)
+            Log.Info($"TTS Sanitize: successfully indexed Default config. Reading {_sanitizeConfig.Replacements.Count} replacements.");
+            foreach (var replacement in _sanitizeConfig.Replacements)
             {
-                var pattern = string.IsNullOrEmpty(proto.Pattern) ? proto.ID : proto.Pattern;
-                _regexReplacements.Add((new Regex(pattern, RegexOptions.IgnoreCase), proto.ReplacedWith));
-            }
-            else
-            {
-                _wordReplacement[proto.ID.ToLowerInvariant()] = proto.ReplacedWith;
+                if (replacement.IsRegex)
+                {
+                    var pattern = replacement.Pattern;
+                    if (pattern.StartsWith(@"\b"))
+                        pattern = @"(?<![a-zA-Zа-яА-ЯёЁ0-9_])" + pattern.Substring(2);
+                    if (pattern.EndsWith(@"\b"))
+                        pattern = pattern.Substring(0, pattern.Length - 2) + @"(?![a-zA-Zа-яА-ЯёЁ0-9_])";
+
+                    Log.Debug($"TTS Sanitize: Compiling regex '{pattern}' -> '{replacement.ReplacedWith}'");
+                    _regexReplacements.Add((new Regex(pattern, RegexOptions.IgnoreCase), replacement.ReplacedWith));
+                }
+                else
+                {
+                    _wordReplacement[replacement.Pattern.ToLowerInvariant()] = replacement.ReplacedWith;
+                }
             }
         }
-
-        _prototypeManager.TryIndex("Default", out _sanitizeConfig);
+        else
+        {
+            Log.Error("TTS Sanitize: failed to find 'Default' TTSSanitizeConfigPrototype!");
+        }
     }
 
     private void OnTransformSpeech(ref TransformSpeechEvent args)

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server._Stories.Sponsors;
@@ -18,6 +18,8 @@ using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared._RMC14.Language.Systems;
+using Content.Shared._RMC14.Language.Prototypes;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -38,6 +40,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _rng = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SponsorsManager _sponsorsManager = default!;
+    [Dependency] private readonly SharedLanguageSystem _language = default!;
 
     private readonly List<string> _sampleText =
         new()
@@ -215,14 +218,14 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, messageToUse, protoVoice.Speaker, isRadio);
+            HandleWhisper(uid, messageToUse, protoVoice.Speaker, isRadio, args.Language);
             return;
         }
 
-        HandleSay(uid, messageToUse, protoVoice.Speaker, isRadio, args.Channel?.ID);
+        HandleSay(uid, messageToUse, protoVoice.Speaker, isRadio, args.Language, args.Channel?.ID);
     }
 
-    private async void HandleSay(EntityUid uid, string message, string speaker, bool isRadio, string? channelId = null)
+    private async void HandleSay(EntityUid uid, string message, string speaker, bool isRadio, ProtoId<LanguagePrototype> language, string? channelId = null)
     {
         var soundData = await GenerateTTS(message, speaker);
         if (soundData is null)
@@ -231,10 +234,10 @@ public sealed partial class TTSSystem : EntitySystem
         soundData = await ProcessSpecificVoices(uid, soundData);
 
         var ttsEvent = new PlayTTSEvent(soundData, message, GetNetEntity(uid), isRadio: isRadio, radioChannel: channelId);
-        FilterAndSend(uid, ttsEvent, ChatSystem.VoiceRange);
+        FilterAndSend(uid, ttsEvent, ChatSystem.VoiceRange, language);
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, string speaker, bool isRadio)
+    private async void HandleWhisper(EntityUid uid, string message, string speaker, bool isRadio, ProtoId<LanguagePrototype> language)
     {
         var fullSoundData = await GenerateTTS(message, speaker, true);
         if (fullSoundData is null)
@@ -243,7 +246,7 @@ public sealed partial class TTSSystem : EntitySystem
         fullSoundData = await ProcessSpecificVoices(uid, fullSoundData);
 
         var fullTtsEvent = new PlayTTSEvent(fullSoundData, message, GetNetEntity(uid), true, isRadio: isRadio);
-        FilterAndSend(uid, fullTtsEvent, ChatSystem.WhisperClearRange);
+        FilterAndSend(uid, fullTtsEvent, ChatSystem.WhisperClearRange, language);
     }
 
     public async void PlayGlobalTTS(string text, string voiceId, Filter filter, bool isXeno = false, bool isAnnounce = false, bool isAres = false, bool isRadio = false)
@@ -278,7 +281,7 @@ public sealed partial class TTSSystem : EntitySystem
         return data;
     }
 
-    private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range)
+    private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range, ProtoId<LanguagePrototype> language)
     {
         var xformQuery = GetEntityQuery<TransformComponent>();
         var sourceXform = xformQuery.GetComponent(source);
@@ -314,6 +317,9 @@ public sealed partial class TTSSystem : EntitySystem
             }
 
             if (!listenerMapCoords.InRange(sourceMapCoords, range))
+                continue;
+
+            if (!_language.CanUnderstand(listener, language))
                 continue;
 
             if (isImaginaryFriend)

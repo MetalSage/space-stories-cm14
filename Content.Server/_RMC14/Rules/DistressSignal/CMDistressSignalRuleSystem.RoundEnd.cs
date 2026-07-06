@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared._RMC14.Armor.Ghillie;
@@ -16,6 +16,7 @@ using Content.Shared._Stories.SCCVars;
 using Content.Shared._Stories.TTS;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Preferences;
@@ -42,9 +43,6 @@ public sealed partial class CMDistressSignalRuleSystem
         SubscribeLocalEvent<XenoComponent, ComponentRemove>(OnCompRemove);
 
         SubscribeLocalEvent<XenoEvolutionGranterComponent, MapInitEvent>(OnMapInit);
-
-        SubscribeLocalEvent<CMDistressSignalRuleComponent, RoundEndTextAppendEvent>(AppendRoundEndText);
-        SubscribeLocalEvent<CMDistressSignalRuleComponent, RoundStartAttemptEvent>(OnStartAttempt);
     }
 
     /// <summary>
@@ -398,9 +396,8 @@ public sealed partial class CMDistressSignalRuleSystem
         CheckRoundShouldEnd();
     }
 
-    private void AppendRoundEndText(Entity<CMDistressSignalRuleComponent> rule, ref RoundEndTextAppendEvent args)
+    protected override void AppendRoundEndText(EntityUid uid, CMDistressSignalRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
     {
-        var component = rule.Comp;
         var result = component.Result ??= DistressSignalRuleResult.None;
         args.AddLine(component.CustomRoundEndMessage != null
             ? $"{Loc.GetString(component.CustomRoundEndMessage)}"
@@ -417,12 +414,12 @@ public sealed partial class CMDistressSignalRuleSystem
         _gameRulesExtras.XenoAwards(ref args);
     }
 
-    private void OnStartAttempt(Entity<CMDistressSignalRuleComponent> gameRule, ref RoundStartAttemptEvent ev)
+    protected override void OnStartAttempt(Entity<CMDistressSignalRuleComponent, GameRuleComponent> gameRule, RoundStartAttemptEvent ev)
     {
         if (ev.Forced || ev.Cancelled)
             return;
 
-        if (!gameRule.Comp.RequireXenoPlayers)
+        if (!gameRule.Comp1.RequireXenoPlayers)
             return;
 
         var query = QueryAllRules();

@@ -602,7 +602,7 @@ public abstract class SharedOverwatchConsoleSystem : EntitySystem
 
         // Stories-TTS-Start
         var squadFilter = Filter.Empty().AddWhereAttachedEntity(e => _squad.IsInSquad(e, squad.Value));
-        var ttsMsg = Loc.GetString("rmc-overwatch-tts-message", ("squadName", Name(squad.Value)), ("message", message));
+        var ttsMsg = Loc.GetString("stories-overwatch-tts-message", ("squadName", Name(squad.Value)), ("message", message));
         RaiseLocalEvent(new OverwatchConsoleMessageSentEvent(ttsMsg, args.Actor, squadFilter, players));
         // Stories-TTS-End
     }
@@ -653,7 +653,7 @@ public abstract class SharedOverwatchConsoleSystem : EntitySystem
 
         // Stories-TTS-Start
         var squadFilter = Filter.Empty().AddWhereAttachedEntity(e => _squad.IsInSquad(e, squad.Value));
-        var ttsMsg = Loc.GetString("rmc-overwatch-tts-objective", ("squadName", Name(squad.Value)), ("objectiveType", objectiveTypeName), ("objective", objective));
+        var ttsMsg = Loc.GetString("stories-overwatch-tts-objective", ("squadName", Name(squad.Value)), ("objectiveType", objectiveTypeName), ("objective", objective));
         RaiseLocalEvent(new OverwatchConsoleObjectiveSetEvent(ttsMsg, args.Actor, squadFilter, players));
         // Stories-TTS-End
     }
@@ -707,7 +707,7 @@ public abstract class SharedOverwatchConsoleSystem : EntitySystem
 
         // Stories-TTS-Start
         var squadFilter = Filter.Empty().AddWhereAttachedEntity(e => _squad.IsInSquad(e, squad.Value));
-        var ttsMsg = Loc.GetString("rmc-overwatch-tts-objective-cancelled", ("squadName", Name(squad.Value)), ("objectiveType", objectiveTypeName));
+        var ttsMsg = Loc.GetString("stories-overwatch-tts-objective-cancelled", ("squadName", Name(squad.Value)), ("objectiveType", objectiveTypeName));
         RaiseLocalEvent(new OverwatchConsoleObjectiveSetEvent(ttsMsg, args.Actor, squadFilter, players));
         // Stories-TTS-End
     }
