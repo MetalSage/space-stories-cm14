@@ -1,0 +1,124 @@
+- type: entity
+  parent: RMCShellShotgunBreaching
+  id: STShellShotgunXM52
+  name: ent-STShellShotgunXM52
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Breacher/xm52_shells.rsi
+    layers:
+    - state: breaching_shell_1
+      map: [ "base" ]
+  - type: Stack
+    count: 6
+    stackType: STShellShotgunXM52
+    baseLayer: base
+    layerStates:
+    - breaching_shell_1
+    - breaching_shell_2
+    - breaching_shell_3
+    - breaching_shell_4
+    - breaching_shell_5
+    - breaching_shell_6
+  - type: Tag
+    tags:
+    - RMCShellShotgun
+    - STShellShotgunXM52
+
+- type: Tag
+  id: STShellShotgunXM52
+
+- type: stack
+  id: STShellShotgunXM52
+  name: ent-STShellShotgunXM52
+  icon: { sprite: _Stories/Objects/Weapons/Guns/Ammunition/Breacher/xm52_shells.rsi, state: breaching_shell_1 }
+  spawn: STShellShotgunXM52
+  maxCount: 6
+
+- type: entity
+  parent: STShellShotgunXM52
+  id: STShellShotgunXM52One
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: CMMagazineRifleBase
+  id: STMagazineShotgunXM52
+  name: ent-STMagazineShotgunXM52
+  components:
+  - type: Tag
+    tags:
+    - RMCMagazineShotgun
+    - RMCMagazineShotgunXM51
+    - STMagazineShotgunXM52
+  - type: BallisticAmmoProvider
+    mayTransfer: True
+    whitelist:
+      tags:
+      - STShellShotgunXM52
+    proto: STShellShotgunXM52One
+    capacity: 12
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Breacher/xm52_magazine.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-1
+      map: [ "enum.GunVisualLayers.Mag" ]
+
+- type: Tag
+  id: STMagazineShotgunXM52
+
+- type: entity
+  parent: RMCBoxShotgunBase
+  id: STBoxShotgunXM52
+  name: ent-STBoxShotgunXM52
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - STShellShotgunXM52
+  - type: StorageFill
+    contents:
+    - id: STShellShotgunXM52
+      amount: 5
+  - type: Sprite
+    layers:
+    - state: smallshell_box
+      color: "#6b4226"
+    - state: shell_box_buckshot
+      color: "#c98a4b"
+    - state: smallshell_ammo_full_12g_base
+      color: "#ffffff"
+    - state: smallshell_ammo_full_12g_color
+      color: "#6b4226"
+      map: [ "full" ]
+    - state: smallshell_empty
+      map: [ "empty" ]
+      color: "#6b4226"
+
+- type: entity
+  parent: RMCCrateAmmo
+  id: STCrateBoxShotgunXM52
+  name: ent-STCrateBoxShotgunXM52
+  components:
+  - type: StorageFill
+    contents:
+    - id: STBoxShotgunXM52
+    - id: STMagazineShotgunXM52
+      amount: 2
+
+- type: entity
+  parent: RMCBeltXM51
+  id: STBeltXM52Filled
+  suffix: Stories, Breacher, Filled
+  components:
+  - type: Storage
+    grid:
+    - 0,0,15,3 # 16 slots, second row added for the extra STMagazineShotgunXM52 stock
+  - type: StorageFill
+    contents:
+    - id: STWeaponShotgunXM52
+    - id: STMagazineShotgunXM52
+      amount: 2

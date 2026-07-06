@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Extracted and converted from RU-CMSS13 (RU-CMSS13/RU-CMSS13 fork, GPL), PR #538 by Arom-beep",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    }
+  ]
+}

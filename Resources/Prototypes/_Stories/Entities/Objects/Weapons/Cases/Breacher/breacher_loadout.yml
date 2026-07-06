@@ -1,0 +1,29 @@
+- type: entity
+  parent: RMCBaseEquipmentCase
+  id: STBreacherSpecEquipmentCase
+  name: ent-STBreacherSpecEquipmentCase
+  components:
+  - type: CMChangeUserOnVend
+    addComponents:
+    - type: BreacherWhitelist
+  - type: Sprite
+    layers:
+    - state: closed
+      map: [ base ]
+    - state: icon
+      sprite: _Stories/Objects/loadout_kits_breacher/breacher_kit_label.rsi
+      map: [ label ]
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,15,4
+  - type: StorageFill
+    contents:
+    - id: STBreacherArmorM40
+    - id: STBreacherHelmetM40
+    - id: STBreacherGlovesM40
+    - id: STBreacherHammer
+    - id: STBreacherShieldN30
+    - id: STBeltXM52Filled
+    - id: STBoxShotgunXM52
+      amount: 2

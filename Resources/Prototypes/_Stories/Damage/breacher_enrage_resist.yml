@@ -1,0 +1,6 @@
+- type: damageModifierSet
+  id: STBreacherEnrageResist
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.6
+    Piercing: 0.6

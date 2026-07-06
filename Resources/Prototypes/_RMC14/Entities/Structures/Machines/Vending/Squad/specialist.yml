@@ -57,6 +57,19 @@
         linkedEntries:
         - RMCGrenadeSpecEquipmentCase
       # Stories-SHARP-End
+      # Stories-Breacher-Start
+      - id: STBreacherSpecEquipmentCase
+        giveSquadRoleName: stories-job-name-weapons-specialist-breacher
+        isAppendSquadRoleName: false
+        givePrefix: stories-job-prefix-weapons-specialist-breacher
+        isAppendPrefix: true
+        giveIcon:
+          sprite: _Stories/Interface/cm_job_icons_breacher.rsi
+          state: hudsquad_spec_breacher
+        giveMapBlip:
+          sprite: /Textures/_RMC14/Interface/map_blips.rsi
+          state: spec
+      # Stories-Breacher-End
       - id: RMCPyroSpecEquipmentCase
         giveSquadRoleName: rmc-job-name-weapons-specialist-pyro
         isAppendSquadRoleName: false
@@ -167,6 +180,12 @@
         points: 40
       - id: RMCTankFlamerLargeX
         points: 40
+    - name: Дополнительные пробивные боеприпасы # Stories-BREACHER
+      entries:
+      - id: STBoxShotgunXM52
+        points: 40
+        spawn: 2
+
 
 - type: entity
   parent: [ColMarTechBase, RMCVendorWeaponsSpecialistGearBase]

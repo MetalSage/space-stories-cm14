@@ -414,6 +414,10 @@
       - cost: 3000
         crate: STCrateMagazineSharpFlechette
       # Stories-SHARP-End
+      # Stories-Breacher-Start
+      - cost: 3000
+        crate: STCrateBoxShotgunXM52
+      # Stories-Breacher-End
 
 
 

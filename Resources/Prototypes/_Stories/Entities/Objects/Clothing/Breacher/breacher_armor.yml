@@ -1,0 +1,79 @@
+- type: entity
+  parent: CMArmorM3Heavy
+  id: STBreacherArmorM40
+  name: ent-STBreacherArmorM40
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/breacher_armor.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/breacher_armor.rsi
+    slots:
+    - outerClothing
+  - type: CMArmor
+    melee: 35
+    bullet: 40
+    bio: 30
+    explosionArmor: 25
+  - type: ClothingBlockBackpack
+  - type: BreacherArmor
+  - type: ActionGrant
+    actions:
+    - STActionBreacherEnrage
+  - type: ItemActionGrant
+    actions:
+    - STActionBreacherEnrage
+    activeIfWorn: true
+  - type: Tag
+    tags:
+    - STBreacherArmorM40
+
+- type: Tag
+  id: STBreacherArmorM40
+
+- type: entity
+  parent: RMCMarineHelmetBase
+  id: STBreacherHelmetM40
+  name: ent-STBreacherHelmetM40
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Head/breacher_helmet.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Head/breacher_helmet.rsi
+    slots:
+    - HEAD
+  - type: CMArmor
+    melee: 35
+    bullet: 25
+    bio: 20
+    explosionArmor: 10
+  - type: Tag
+    tags:
+    - STBreacherHelmetM40
+
+- type: Tag
+  id: STBreacherHelmetM40
+
+- type: entity
+  parent: [ClothingHandsBase, RMCBaseUniformAccessoryItemGloves]
+  id: STBreacherGlovesM40
+  name: ent-STBreacherGlovesM40
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Hands/breacher_gloves.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Hands/breacher_gloves.rsi
+    slots:
+    - gloves
+  - type: CMArmor
+    melee: 35
+    bullet: 20
+    bio: 20
+  - type: Tag
+    tags:
+    - STBreacherGlovesM40
+
+- type: Tag
+  id: STBreacherGlovesM40

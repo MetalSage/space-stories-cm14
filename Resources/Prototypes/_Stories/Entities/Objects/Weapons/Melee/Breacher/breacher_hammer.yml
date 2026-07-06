@@ -1,0 +1,34 @@
+- type: entity
+  parent: [RMCBaseMeleeWeapon, BaseItem]
+  id: STBreacherHammer
+  name: ent-STBreacherHammer
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/breacher_hammer.rsi
+    state: icon
+  - type: Item
+    size: Huge
+  - type: MeleeWeapon
+    attackRate: 0.6
+    damage:
+      types:
+        Blunt: 40
+    soundHit:
+      collection: GenericHit
+    wideAnimationRotation: 90
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 12
+  - type: MeleeRequiresSkill
+    skills:
+      RMCSkillSpecialistWeapons: 1
+  - type: BreacherHammer
+    instantOnIncapacitated: true
+  - type: Tag
+    tags:
+    - STBreacherHammer
+
+- type: Tag
+  id: STBreacherHammer

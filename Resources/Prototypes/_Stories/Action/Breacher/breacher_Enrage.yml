@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: STActionBreacherEnrage
+  name: ent-STActionBreacherEnrage
+  components:
+  - type: Action
+    useDelay: 120
+    icon:
+      sprite: _Stories/Actions/breacher_action.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:BreacherEnrageActionEvent {}

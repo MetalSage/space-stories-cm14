@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "White silhouette derived from the extracted breacher_hammer icon, styled to match the game's other hudsquad_spec_* icons (pale, small, centered).",
+  "size": { "x": 16, "y": 16 },
+  "states": [
+    { "name": "hudsquad_spec_breacher" }
+  ]
+}

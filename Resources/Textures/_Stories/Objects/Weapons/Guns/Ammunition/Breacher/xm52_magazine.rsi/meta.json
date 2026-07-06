@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Hue-shifted (+35 deg) from RMC14 xm51.rsi magazine to match the Breacher XM52 tint.",
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "mag-1"
+    }
+  ]
+}

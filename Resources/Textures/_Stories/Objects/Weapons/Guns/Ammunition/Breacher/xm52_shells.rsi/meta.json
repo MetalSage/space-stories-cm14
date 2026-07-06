@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Hue-shifted (+35 deg) from RMC14 shotgun_handfuls.rsi breaching shells to match the Breacher XM52 tint.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "breaching_shell_1"
+    },
+    {
+      "name": "breaching_shell_2"
+    },
+    {
+      "name": "breaching_shell_3"
+    },
+    {
+      "name": "breaching_shell_4"
+    },
+    {
+      "name": "breaching_shell_5"
+    },
+    {
+      "name": "breaching_shell_6"
+    }
+  ]
+}

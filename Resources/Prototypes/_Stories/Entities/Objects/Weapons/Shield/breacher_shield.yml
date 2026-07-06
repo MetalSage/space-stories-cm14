@@ -1,0 +1,40 @@
+- type: entity
+  parent: BaseItem
+  id: STBreacherShieldN30
+  name: ent-STBreacherShieldN30
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Shields/breacher_shield.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.BreacherShieldVisuals.Raised:
+        base:
+          True: { state: icon-raised }
+          False: { state: icon }
+  - type: Clothing
+    sprite: _Stories/Objects/Weapons/Shields/breacher_shield.rsi
+    slots:
+    - back
+  - type: Item
+    size: Huge
+  - type: Wieldable
+    freeHandsRequired: 0
+    wieldedInhandPrefix: null
+  - type: WieldableSpeedModifiers
+    base: 0.8
+    light: 0.8
+    medium: 0.8
+    heavy: 0.8
+  - type: BreacherShield
+    passiveBlockChance: 0.45
+    raisedBlockChance: 0.65
+  - type: ClothingIgnoreBlockBackpack
+  - type: Tag
+    tags:
+    - STBreacherShieldN30
+
+- type: Tag
+  id: STBreacherShieldN30
