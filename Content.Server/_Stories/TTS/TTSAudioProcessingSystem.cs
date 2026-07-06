@@ -16,6 +16,7 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
     private string _ffmpegArgs = "";
     private string _ffmpegPath = "ffmpeg";
     private string _hunterFfmpegArgs = "";
+    private string _aresFfmpegArgs = "";
     private bool _radioEffectEnabled;
 
     private ISawmill _sawmill = default!;
@@ -31,6 +32,7 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
         _cfg.OnValueChanged(SCCVars.TTSFfmpegArguments, v => _ffmpegArgs = v, true);
         _cfg.OnValueChanged(SCCVars.TTSXenoFfmpegArguments, v => _xenoFfmpegArgs = v, true);
         _cfg.OnValueChanged(SCCVars.TTSHunterFfmpegArguments, v => _hunterFfmpegArgs = v, true);
+        _cfg.OnValueChanged(SCCVars.TTSAresFfmpegArguments, v => _aresFfmpegArgs = v, true);
     }
 
     public async Task<byte[]> ProcessRadioAudio(EntityUid uid, byte[] audioData)
@@ -59,6 +61,11 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
         return await ApplyEffect(oggData, _hunterFfmpegArgs, "hunter");
     }
 
+    public async Task<byte[]> ApplyAresEffect(byte[] oggData)
+    {
+        return await ApplyEffect(oggData, _aresFfmpegArgs, "ARES");
+    }
+
     private async Task<byte[]> ApplyEffect(byte[] oggData, string ffmpegArgs, string effectName)
     {
         if (!_radioEffectEnabled && effectName == "standard radio")
@@ -67,7 +74,7 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
         if (string.IsNullOrWhiteSpace(_ffmpegPath))
         {
             _sawmill.Warning("ffmpeg path is not configured. Disabling radio effect.");
-            _radioEffectEnabled = false; // Disable to prevent future errors
+            _radioEffectEnabled = false;
             return oggData;
         }
 

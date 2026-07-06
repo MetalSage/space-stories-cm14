@@ -4,16 +4,25 @@ using Content.Shared._RMC14.Aura;
 using Content.Shared._RMC14.Projectiles.Reflect;
 using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared.Actions;
 using Content.Shared.CombatMode;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
+using Content.Shared.Projectiles;
+using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
+using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared._RMC14.Projectiles;
 
 namespace Content.Shared._Stories.Xenonids.WarriorBulwark.ReflectiveShield;
 
@@ -25,9 +34,14 @@ public sealed class ReflectiveShieldSystem : EntitySystem
     [Dependency] private readonly SharedAuraSystem _aura = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
     [Dependency] private readonly SharedRMCActionsSystem _rmcActions = default!;
+    [Dependency] private readonly RMCReflectSystem _reflect = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly XenoPlasmaSystem _xenoPlasma = default!;
 
     public override void Initialize()
     {
@@ -36,6 +50,65 @@ public sealed class ReflectiveShieldSystem : EntitySystem
         SubscribeLocalEvent<ReflectiveShieldComponent, AttackAttemptEvent>(OnAttackAttempt);
         SubscribeLocalEvent<ReflectiveShieldComponent, ToggleCombatActionEvent>(OnCombatModeToggle);
         SubscribeLocalEvent<ReflectiveShieldComponent, ComponentShutdown>(OnReflectiveShieldShutdown);
+        SubscribeLocalEvent<ReflectiveShieldComponent, PreventCollideEvent>(OnShieldPreventCollide, before: [typeof(RMCProjectileSystem)]);
+        SubscribeLocalEvent<ReflectiveShieldComponent, MobStateChangedEvent>(OnMobStateChanged);
+    }
+
+    private void OnMobStateChanged(Entity<ReflectiveShieldComponent> xeno, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Alive)
+            Deactivate(xeno);
+    }
+
+    private void OnShieldPreventCollide(Entity<ReflectiveShieldComponent> xeno, ref PreventCollideEvent args)
+    {
+        if (!xeno.Comp.Active)
+            return;
+
+        if (!HasComp<ProjectileComponent>(args.OtherEntity))
+            return;
+
+        var projUid = args.OtherEntity;
+
+        var meta = MetaData(projUid);
+        if (meta.EntityPrototype != null &&
+            xeno.Comp.PenetratingProjectiles.Contains(new EntProtoId(meta.EntityPrototype.ID)))
+            return;
+
+        if (TryComp(projUid, out RMCReflectedProjectileComponent? alreadyReflected) &&
+            alreadyReflected.ReflectedBy.Contains(GetNetEntity(xeno).Id))
+            return;
+
+        if (TryComp(projUid, out Robust.Shared.Physics.Components.PhysicsComponent? projPhysics))
+        {
+            var velocity = _physics.GetMapLinearVelocity(projUid, projPhysics);
+            if (velocity != System.Numerics.Vector2.Zero)
+            {
+                var xenoRot = _transform.GetWorldRotation(xeno);
+                var projDirection = velocity.ToWorldAngle();
+                var diff = Angle.ShortestDistance(xenoRot, projDirection.Opposite());
+
+                if (Math.Abs(diff.Degrees) > xeno.Comp.FrontalAngle.Degrees)
+                    return;
+            }
+        }
+
+        if (!TryComp<ProjectileComponent>(projUid, out var projectileComp))
+            return;
+
+        if (!_reflect.TryReflectProjectile(projUid, xeno, xeno.Comp.ReflectAngle, xeno.Comp.ReflectChance))
+            return;
+
+        var reflected = EnsureComp<RMCReflectedProjectileComponent>(projUid);
+        reflected.ReflectionMultiplier = xeno.Comp.ReflectionMultiplier;
+        reflected.ReflectedBy.Add(GetNetEntity(xeno).Id);
+        reflected.LastReflectedBy = GetNetEntity(xeno).Id;
+        Dirty(projUid, reflected);
+
+        projectileComp.IgnoreShooter = false;
+        Dirty(projUid, projectileComp);
+
+        args.Cancelled = true;
     }
 
     private void OnReflectiveShieldShutdown(Entity<ReflectiveShieldComponent> xeno, ref ComponentShutdown args)
@@ -52,6 +125,12 @@ public sealed class ReflectiveShieldSystem : EntitySystem
         xeno.Comp.DeactivateAt = null;
         xeno.Comp.ActivatedAt = null;
         xeno.Comp.PendingCooldown = null;
+
+        if (TryComp<CombatModeComponent>(xeno, out var combatMode) && combatMode.IsInCombatMode)
+        {
+            EnsureComp<MouseRotatorComponent>(xeno);
+            EnsureComp<NoRotateOnMoveComponent>(xeno);
+        }
     }
 
     public override void Update(float frameTime)
@@ -116,15 +195,23 @@ public sealed class ReflectiveShieldSystem : EntitySystem
 
         if (xeno.Comp.Active)
         {
+            if (xeno.Comp.ActivatedAt != null &&
+                _timing.CurTime < xeno.Comp.ActivatedAt.Value + xeno.Comp.ToggleBuffer)
+                return;
+
             args.Handled = true;
             Deactivate(xeno);
             return;
         }
 
-        if (!_rmcActions.TryUseAction(args))
+        if (!TryComp<XenoPlasmaComponent>(xeno, out var plasma))
+            return;
+
+        if (!_xenoPlasma.HasPlasmaPopup((xeno, plasma), xeno.Comp.PlasmaCost))
             return;
 
         args.Handled = true;
+        _xenoPlasma.RemovePlasma((xeno, plasma), xeno.Comp.PlasmaCost);
         Activate(xeno);
     }
 
@@ -136,9 +223,7 @@ public sealed class ReflectiveShieldSystem : EntitySystem
         Dirty(xeno);
 
         var reflect = EnsureComp<RMCReflectiveComponent>(xeno);
-        reflect.Angle = xeno.Comp.ReflectAngle;
-        reflect.Chance = xeno.Comp.ReflectChance;
-        reflect.ReflectionMultiplier = xeno.Comp.ReflectionMultiplier;
+        reflect.Chance = 0f;
         Dirty(xeno.Owner, reflect);
 
         _rmcPulling.TryStopAllPullsFromAndOn(xeno);
@@ -157,6 +242,9 @@ public sealed class ReflectiveShieldSystem : EntitySystem
 
     private void Deactivate(Entity<ReflectiveShieldComponent> xeno)
     {
+        if (!xeno.Comp.Active)
+            return;
+
         TimeSpan cooldown;
         if (xeno.Comp.ActivatedAt != null)
         {
@@ -188,6 +276,12 @@ public sealed class ReflectiveShieldSystem : EntitySystem
         foreach (var action in _rmcActions.GetActionsWithEvent<ReflectiveShieldActionEvent>(xeno))
         {
             _actions.SetToggled(action.AsNullable(), false);
+        }
+
+        if (TryComp<CombatModeComponent>(xeno, out var combatMode) && combatMode.IsInCombatMode)
+        {
+            EnsureComp<MouseRotatorComponent>(xeno);
+            EnsureComp<NoRotateOnMoveComponent>(xeno);
         }
     }
 }

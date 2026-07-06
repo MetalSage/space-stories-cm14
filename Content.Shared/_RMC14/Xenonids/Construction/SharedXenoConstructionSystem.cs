@@ -109,11 +109,8 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
     private EntityQuery<QueenBuildingBoostComponent> _queenBoostQuery;
 
     private const string XenoStructuresAnimation = "RMCEffect";
-    public const string XenoHiveCoreNodeId = "HiveCoreXenoConstructionNode";
-
-    // Stories-Vehicle-Start
-    private const float VehicleConstructionBlockRange = 0.1f;
-    // Stories-Vehicle-End
+    private const string XenoHiveCoreNodeId = "HiveCoreXenoConstructionNode";
+    private const float VehicleConstructionBlockRange = 3f;
 
     private float _densityThreshold;
     private TimeSpan _newResinPreventCollideTime;
@@ -264,9 +261,6 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
         if (HasComp<HiveConstructionSuppressAnnouncementsComponent>(ent))
             return;
 
-        if (_hive.GetHive(ent.Owner) is not { } hive)
-            return;
-
         var locationName = "Unknown";
         var structureName = "Unknown";
 
@@ -284,7 +278,7 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
         }
 
         var msg = Loc.GetString(ent.Comp.MessageID, ("location", locationName), ("structureName", structureName), ("destructionVerb", ent.Comp.DestructionVerb));
-        _announce.AnnounceToHive(ent.Owner, hive, msg, color: ent.Comp.MessageColor);
+        _announce.AnnounceSameHive(ent.Owner, msg, color: ent.Comp.MessageColor, useHiveAsSource: true);
     }
 
     private void OnXenoPlantWeedsAction(Entity<XenoConstructionComponent> xeno, ref XenoPlantWeedsActionEvent args)
@@ -830,7 +824,7 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
             areaName = areaProto.Name;
 
         msg = Loc.GetString("rmc-xeno-order-construction-structure-designated", ("construct", structureProto.Name), ("area", areaName));
-        _announce.AnnounceSameHive(xeno.Owner, msg, needsQueen: true);
+        _announce.AnnounceSameHive(xeno.Owner, msg, needsQueen: true, useHiveAsSource: true);
     }
 
     private void OnHiveConstructionNodeAddPlasmaDoAfter(Entity<XenoCanAddPlasmaToConstructComponent> xeno, ref XenoConstructionAddPlasmaDoAfterEvent args)
@@ -1387,11 +1381,8 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
         target = target.SnapToGrid(EntityManager, _map);
         var hasBoost = _queenBoostQuery.HasComp(xeno.Owner);
 
-        // Stories-Vehicle-Start
         if (IsNearVehiclePopup(xeno, target, popup))
             return false;
-        // Stories-Vehicle-End
-
         if (checkStructureSelected &&
             buildChoice is { } nodeChoice &&
             _prototype.TryIndex(nodeChoice, out var nodeChoiceProto) &&
@@ -1832,7 +1823,6 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
         return true;
     }
 
-    // Stories-Vehicle-Start
     private bool IsNearVehiclePopup(Entity<XenoConstructionComponent> xeno, EntityCoordinates target, bool popup = true)
     {
         if (!IsNearVehicle(_transform.ToMapCoordinates(target)))
@@ -1840,9 +1830,9 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
 
         if (popup)
             _popup.PopupClient(Loc.GetString("cm-xeno-construction-failed-cant-build"), target, xeno);
+
         return true;
     }
-    // Stories-Vehicle-End
 
     private bool IsNearVehicle(MapCoordinates mapCoords)
     {

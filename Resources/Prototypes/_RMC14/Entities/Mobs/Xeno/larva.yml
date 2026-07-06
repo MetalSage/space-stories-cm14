@@ -11,6 +11,11 @@
     - RMCGuideRoleDrone
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Larva/larva.rsi
+  - type: FiremanCarriable
+    canThrow: true
+    carrierWhitelist:
+      components:
+      - Synth
   - type: MobState
     allowedStates:
     - Alive

@@ -1,0 +1,29 @@
+- type: stTtsReplacement
+  id: STRegex_USA
+  pattern: 'США'
+  replacedWith: 'сэ шэ а'
+  isRegex: true
+
+- type: stTtsReplacement
+  id: STRegex_USS
+  pattern: 'ВКСШ'
+  replacedWith: 'вэ ке сэ шэ а'
+  isRegex: true
+
+- type: stTtsReplacement
+  id: STRegex_ARES_V32
+  pattern: 'ARES v3.2'
+  replacedWith: 'Арес'
+  isRegex: true
+
+- type: stTtsReplacement
+  id: STRegex_ARES
+  pattern: 'ARES'
+  replacedWith: 'Арес'
+  isRegex: true
+
+- type: stTtsReplacement
+  id: STRegex_USCM
+  pattern: 'USCM'
+  replacedWith: 'ю эс си эм'
+  isRegex: true

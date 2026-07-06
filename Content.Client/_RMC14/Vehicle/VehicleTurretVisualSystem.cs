@@ -1,15 +1,11 @@
-using System;
 using System.Linq;
 using System.Numerics;
 using Content.Shared._RMC14.Vehicle;
-using Content.Shared.Vehicle.Components;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
-using Content.Shared._RMC14.NightVision;
 
 namespace Content.Client._RMC14.Vehicle;
 
@@ -17,15 +13,16 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
 {
     private const float PixelsPerMeter = 32f;
 
-    [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly VehicleTurretSystem _turret = default!;
 
     public override void Initialize()
     {
         UpdatesAfter.Add(typeof(VehicleTurretSystem));
         SubscribeLocalEvent<VehicleTurretVisualComponent, ComponentInit>(OnVisualInit);
         SubscribeLocalEvent<VehicleTurretVisualComponent, AfterAutoHandleStateEvent>(OnVisualState);
+        SubscribeLocalEvent<HardpointIntegrityComponent, AfterAutoHandleStateEvent>(OnIntegrityState);
     }
 
     public override void FrameUpdate(float frameTime)
@@ -33,13 +30,16 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
         var query = EntityQueryEnumerator<VehicleTurretVisualComponent>();
         while (query.MoveNext(out var uid, out var visual))
         {
+            if (!visual.SpriteInitialized)
+                UpdateVisual((uid, visual));
+
             if (!TryGetEntity(visual.Turret, out var turretUid))
                 continue;
 
             if (!TryComp(turretUid, out VehicleTurretComponent? turret))
                 continue;
 
-            if (!TryComputeRenderedTransform((EntityUid)turretUid,
+            if (!TryComputeRenderedTransform((EntityUid) turretUid,
                     turret,
                     out _,
                     out _,
@@ -89,6 +89,14 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
         UpdateVisual(ent);
     }
 
+    private void OnIntegrityState(Entity<HardpointIntegrityComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        if (!HasComp<VehicleTurretComponent>(ent.Owner))
+            return;
+
+        RefreshLinkedVisuals(ent.Owner);
+    }
+
     private void UpdateVisual(Entity<VehicleTurretVisualComponent> ent)
     {
         if (!TryComp(ent.Owner, out SpriteComponent? sprite))
@@ -100,45 +108,65 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
         if (TryComp(turretUid, out VehicleTurretComponent? turret) &&
             !string.IsNullOrWhiteSpace(turret.OverlayState))
         {
-            SetOverlayDepth((EntityUid)turretUid, sprite);
-            var overlayState = turret.OverlayState;
-
-            // Stories-Visuals-Start
+            SetOverlayDepth((EntityUid) turretUid, sprite);
+            var overlayState = ResolveOverlayState((EntityUid) turretUid, turret);
             if (!string.IsNullOrWhiteSpace(turret.OverlayRsi))
                 sprite.LayerSetState(0, overlayState, turret.OverlayRsi);
-            else if (TryComp(turretUid, out SpriteComponent? itemSprite) && itemSprite.BaseRSI != null)
-                sprite.LayerSetState(0, overlayState, itemSprite.BaseRSI.Path.ToString());
             else
                 sprite.LayerSetState(0, overlayState);
-            // Stories-Visuals-End
 
             sprite.LayerSetVisible(0, true);
+            ent.Comp.SpriteInitialized = true;
             return;
         }
 
-        // Stories-Visuals-Start
-        if (!TryComp(turretUid, out SpriteComponent? ts))
+        if (!TryComp(turretUid, out SpriteComponent? turretSprite))
             return;
 
-        if (ts.BaseRSI == null || !ts.AllLayers.Any())
+        if (turretSprite.BaseRSI == null || !turretSprite.AllLayers.Any())
             return;
 
-        SetOverlayDepth((EntityUid)turretUid, sprite);
-        var state = ts.LayerGetState(0).ToString();
-        sprite.LayerSetRSI(0, ts.BaseRSI);
+        SetOverlayDepth((EntityUid) turretUid, sprite);
+        var state = turretSprite.LayerGetState(0).ToString();
+        sprite.LayerSetRSI(0, turretSprite.BaseRSI);
         sprite.LayerSetState(0, state);
         sprite.LayerSetVisible(0, true);
-        // Stories-Visuals-End
+        ent.Comp.SpriteInitialized = true;
     }
 
     private void SetOverlayDepth(EntityUid turretUid, SpriteComponent sprite)
     {
-        var depth = (int)DrawDepth.OverMobs;
+        var depth = (int) DrawDepth.OverMobs;
         if (HasComp<VehicleTurretAttachmentComponent>(turretUid))
             depth += 1;
 
         if (sprite.DrawDepth != depth)
             sprite.DrawDepth = depth;
+    }
+
+    private string ResolveOverlayState(EntityUid turretUid, VehicleTurretComponent turret)
+    {
+        if (!TryComp(turretUid, out HardpointIntegrityComponent? integrity) ||
+            integrity.Integrity > 0f ||
+            string.IsNullOrWhiteSpace(turret.OverlayDamagedState))
+        {
+            return turret.OverlayState;
+        }
+
+        return turret.OverlayDamagedState;
+    }
+
+    private void RefreshLinkedVisuals(EntityUid turretUid)
+    {
+        var netTurret = GetNetEntity(turretUid);
+        var query = EntityQueryEnumerator<VehicleTurretVisualComponent>();
+        while (query.MoveNext(out var uid, out var visual))
+        {
+            if (visual.Turret != netTurret)
+                continue;
+
+            UpdateVisual((uid, visual));
+        }
     }
 
     private bool TryComputeRenderedTransform(
@@ -154,16 +182,16 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
         localOffset = Vector2.Zero;
         localRotation = Angle.Zero;
 
-        if (!TryGetVehicle(turretUid, out vehicle))
+        if (!_turret.TryGetVehicle(turretUid, out vehicle))
             return false;
 
-        TryGetAnchorTurret(turretUid, turret, out var anchorUid, out var anchorTurret);
+        _turret.TryGetAnchorTurret(turretUid, turret, out var anchorUid, out var anchorTurret);
 
         vehicleRot = _transform.GetWorldRotation(vehicle);
         var eyeRot = _eye.CurrentEye.Rotation;
-        var baseFacingAngle = GetVehicleFacingAngle(vehicle, vehicleRot);
+        var baseFacingAngle = _turret.GetVehicleFacingAngle(vehicle, vehicleRot);
         var anchorFacingAngle = GetRenderFacing(anchorTurret, anchorTurret, vehicleRot, baseFacingAngle, eyeRot);
-        var anchorPixelOffset = GetPixelOffset(anchorTurret, anchorFacingAngle) / PixelsPerMeter;
+        var anchorPixelOffset = _turret.GetPixelOffset(anchorTurret, anchorFacingAngle) / PixelsPerMeter;
         var anchorLocalOffset = GetVehicleLocalOffset(anchorTurret, anchorPixelOffset, vehicleRot, eyeRot);
 
         var targetLocalRotation = anchorTurret.RotateToCursor ? anchorTurret.WorldRotation : Angle.Zero;
@@ -174,15 +202,15 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
             return true;
 
         var turretFacingAngle = GetRenderFacing(turret, anchorTurret, vehicleRot, baseFacingAngle, eyeRot);
-        var worldOffset = GetPixelOffset(turret, turretFacingAngle) / PixelsPerMeter;
+        var worldOffset = _turret.GetPixelOffset(turret, turretFacingAngle) / PixelsPerMeter;
         Vector2 turretLocalOffset;
 
         if (turret.OffsetRotatesWithTurret)
         {
             if (turret.UseDirectionalOffsets)
             {
-                var dir = GetDirectionalDir(turretFacingAngle);
-                var snappedAngle = GetDirectionalAngle(dir);
+                var dir = VehicleTurretDirectionHelpers.GetRenderAlignedCardinalDir(turretFacingAngle);
+                var snappedAngle = dir.ToAngle();
                 turretLocalOffset = (targetLocalRotation - snappedAngle).RotateVec(worldOffset);
             }
             else
@@ -199,112 +227,6 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
         return true;
     }
 
-
-    private Vector2 GetPixelOffset(VehicleTurretComponent turret, Angle facing)
-    {
-        if (!turret.UseDirectionalOffsets)
-            return turret.PixelOffset;
-
-        var baseOffset = turret.PixelOffset;
-        var normalized = facing.Theta % MathHelper.TwoPi;
-        if (normalized < 0)
-            normalized += MathHelper.TwoPi;
-
-        var dir = GetDirectionalDir((float)normalized);
-        return baseOffset + GetDirectionalOffset(turret, dir);
-    }
-
-    private static Vector2 GetDirectionalOffset(VehicleTurretComponent turret, Direction dir)
-    {
-        return dir switch
-        {
-            Direction.South => turret.PixelOffsetSouth,
-            Direction.East => turret.PixelOffsetEast,
-            Direction.North => turret.PixelOffsetNorth,
-            Direction.West => turret.PixelOffsetWest,
-            _ => Vector2.Zero
-        };
-    }
-
-    private static Direction GetDirectionalDir(Angle facing)
-    {
-        return VehicleTurretDirectionHelpers.GetRenderAlignedCardinalDir(facing);
-    }
-
-    private static Direction GetDirectionalDir(float normalized)
-    {
-        return VehicleTurretDirectionHelpers.GetRenderAlignedCardinalDir(new Angle(normalized));
-    }
-
-    private static Angle GetDirectionalAngle(Direction dir)
-    {
-        return dir.ToAngle();
-    }
-
-    private bool TryGetVehicle(EntityUid turretUid, out EntityUid vehicle)
-    {
-        vehicle = default;
-        var current = turretUid;
-
-        while (_container.TryGetContainingContainer((current, null), out var container))
-        {
-            var owner = container.Owner;
-            if (HasComp<VehicleComponent>(owner))
-            {
-                vehicle = owner;
-                return true;
-            }
-
-            current = owner;
-        }
-
-        return false;
-    }
-
-    private void TryGetAnchorTurret(
-        EntityUid turretUid,
-        VehicleTurretComponent turret,
-        out EntityUid anchorUid,
-        out VehicleTurretComponent anchorTurret)
-    {
-        anchorUid = turretUid;
-        anchorTurret = turret;
-
-        if (!HasComp<VehicleTurretAttachmentComponent>(turretUid))
-            return;
-
-        if (!TryGetParentTurret(turretUid, out var parentUid, out var parentTurret))
-            return;
-
-        anchorUid = parentUid;
-        anchorTurret = parentTurret;
-    }
-
-    private bool TryGetParentTurret(
-        EntityUid turretUid,
-        out EntityUid parentUid,
-        out VehicleTurretComponent parentTurret)
-    {
-        parentUid = default;
-        parentTurret = default!;
-        var current = turretUid;
-
-        while (_container.TryGetContainingContainer((current, null), out var container))
-        {
-            var owner = container.Owner;
-            if (TryComp(owner, out VehicleTurretComponent? turret))
-            {
-                parentUid = owner;
-                parentTurret = turret;
-                return true;
-            }
-
-            current = owner;
-        }
-
-        return false;
-    }
-
     private Angle GetRenderFacing(
         VehicleTurretComponent turret,
         VehicleTurretComponent anchorTurret,
@@ -312,7 +234,7 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
         Angle baseFacingAngle,
         Angle eyeRot)
     {
-        return (GetOffsetFacing(turret, anchorTurret, vehicleRot, baseFacingAngle) + eyeRot).Reduced();
+        return (_turret.GetOffsetFacing(turret, anchorTurret, vehicleRot, baseFacingAngle) + eyeRot).Reduced();
     }
 
     private static Vector2 GetVehicleLocalOffset(
@@ -325,25 +247,5 @@ public sealed class VehicleTurretVisualSystem : EntitySystem
             offset = (-eyeRot).RotateVec(offset);
 
         return (-vehicleRot).RotateVec(offset);
-    }
-
-    private Angle GetOffsetFacing(
-        VehicleTurretComponent turret,
-        VehicleTurretComponent anchorTurret,
-        Angle vehicleRot,
-        Angle baseFacingAngle)
-    {
-        if (!turret.OffsetRotatesWithTurret)
-            return baseFacingAngle;
-
-        return (vehicleRot + anchorTurret.WorldRotation).Reduced();
-    }
-
-    private Angle GetVehicleFacingAngle(EntityUid vehicle, Angle vehicleRot)
-    {
-        if (TryComp(vehicle, out GridVehicleMoverComponent? mover) && mover.CurrentDirection != Vector2i.Zero)
-            return new Vector2(mover.CurrentDirection.X, mover.CurrentDirection.Y).ToWorldAngle();
-
-        return vehicleRot;
     }
 }

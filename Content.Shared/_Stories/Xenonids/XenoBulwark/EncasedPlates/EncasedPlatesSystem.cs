@@ -6,6 +6,8 @@ using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Rest;
 using Content.Shared._Stories.Xenonids.WarriorBulwark.ReflectiveShield;
 using Content.Shared.Actions;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
@@ -31,6 +33,37 @@ public sealed class EncasedPlatesSystem : EntitySystem
         SubscribeLocalEvent<EncasedPlatesComponent, BeforeStatusEffectAddedEvent>(OnEncasedPlatesBeforeStatusAdded);
         SubscribeLocalEvent<EncasedPlatesComponent, XenoRestAttemptEvent>(OnEncasedPlatesRestAttempt);
         SubscribeLocalEvent<EncasedPlatesComponent, ComponentShutdown>(OnEncasedPlatesShutdown);
+        SubscribeLocalEvent<EncasedPlatesComponent, MobStateChangedEvent>(OnMobStateChanged);
+    }
+
+    private void OnMobStateChanged(Entity<EncasedPlatesComponent> xeno, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Alive)
+            Deactivate(xeno);
+    }
+
+    private void Deactivate(Entity<EncasedPlatesComponent> xeno)
+    {
+        if (!xeno.Comp.Active)
+            return;
+
+        xeno.Comp.Active = false;
+        Dirty(xeno);
+
+        if (TryComp<RMCSizeComponent>(xeno, out var size))
+        {
+            size.Size = xeno.Comp.OriginalSize ?? RMCSizes.Xeno;
+            Dirty(xeno.Owner, size);
+        }
+
+        _appearance.SetData(xeno, XenoVisualLayers.EncasedPlates, false);
+        _armor.UpdateArmorValue((xeno, null));
+        _movementSpeed.RefreshMovementSpeedModifiers(xeno);
+
+        foreach (var action in _rmcActions.GetActionsWithEvent<EncasedPlatesActionEvent>(xeno))
+        {
+            _actions.SetToggled(action.AsNullable(), false);
+        }
     }
 
     private void OnEncasedPlatesShutdown(Entity<EncasedPlatesComponent> xeno, ref ComponentShutdown args)

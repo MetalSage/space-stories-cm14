@@ -9,9 +9,6 @@
     state: tires
   - type: Item
     size: Large
-  - type: RMCNightVisionVisible
-  - type: Corrodible
-    isCorrodible: false
   - type: HardpointItem
     hardpointType: HardpointTypeWheel
     vehicleFamily: HardpointVehicleFamilyVan
@@ -21,3 +18,4 @@
   - type: HardpointIntegrity
     maxIntegrity: 250
   - type: VehicleWheelItem
+

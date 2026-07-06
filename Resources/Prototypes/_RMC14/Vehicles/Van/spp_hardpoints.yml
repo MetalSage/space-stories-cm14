@@ -9,9 +9,6 @@
     state: van_turret_0
   - type: Item
     size: Large
-  - type: RMCNightVisionVisible
-  - type: Corrodible
-    isCorrodible: false
   - type: HardpointItem
     hardpointType: HardpointTypeSecondary
     vehicleFamily: HardpointVehicleFamilyVan
@@ -29,6 +26,7 @@
     showOverlay: true
     overlayRsi: _RMC14/Structures/Vehicles/sppvan.rsi
     overlayState: van_turret_0
+    overlayDamagedState: van_turret_1
     pixelOffsetNorth: "0,4"
     pixelOffsetEast: "-6,16"
     pixelOffsetSouth: "0,15"
@@ -73,7 +71,8 @@
     showOverlay: true
     overlayRsi: _RMC14/Structures/Vehicles/sppvan.rsi
     overlayState: t60p3m_0
-    fireWhileRotatingGraceDegrees: 20
+    overlayDamagedState: t60p3m_1
+    fireWhileRotatingGraceDegrees: 180
     useBarrelDirectionForShots: true
     maxShotCurvatureDegrees: 10
   - type: Gun
@@ -102,6 +101,7 @@
     useContainerOwner: false
   - type: HardpointVisual
     vehicleState: t60p3m_0
+    damagedVehicleState: t60p3m_1
 
 - type: entity
   parent: RMCVanWheel
@@ -114,3 +114,4 @@
     state: spp_tires
   - type: HardpointItem
     compatibilityId: HardpointCompatibilitySPPVan
+

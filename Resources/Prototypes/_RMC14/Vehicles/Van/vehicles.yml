@@ -8,8 +8,11 @@
     movementKind: Grid
   - type: LagCompensation
   - type: Clickable
+  - type: WarpPoint
+    follow: true
+    location: Van
   - type: RMCIgnoreGhostInteractionLimits
-  # - type: RequireProjectileTarget # Stories-Vehicle
+  - type: RequireProjectileTarget
   - type: GridVehicleMover
     maxSpeed: 6
     acceleration: 5
@@ -28,7 +31,7 @@
     runningSoundCooldown: 2
     hornSound: /Audio/Effects/Vehicle/carhorn.ogg
     hornCooldown: 1
-    collisionSound: /Audio/_RMC14/Structures/metalhit.ogg
+    #collisionSound: /Audio/_RMC14/Structures/metalhit.ogg
     collisionSoundCooldown: 0.5
     mobCollisionSound: /Audio/_RMC14/Xeno/alien_claw_block.ogg
   - type: VehicleSpotlight
@@ -50,8 +53,6 @@
         - LowImpassable
         - LargeMobLayer
         - Vehicle
-        - MobMask # Stories-Vehicle
-        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
         - Vehicle
@@ -64,8 +65,6 @@
         - MidImpassable
         - BarricadeImpassable
         - LargeMobLayer
-        - MobMask # Stories-Vehicle
-        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
   - type: Damageable
@@ -109,12 +108,6 @@
   - type: VehicleWeapons
   - type: InputMover
   - type: ItemSlots
-    slots:
-      wheel-1:
-        disableEject: true
-        whitelist:
-          components:
-          - VehicleWheelItem
   - type: ContainerContainer
     containers:
       wheel-1: !type:ContainerSlot
@@ -138,7 +131,6 @@
   - type: HardpointIntegrity
     maxIntegrity: 1000
     integrity: 1000
-    repairFuelCost: 10
     bypassEntryOnZero: true
   - type: HardpointState
   - type: Appearance
@@ -210,6 +202,9 @@
   - type: Vehicle
     movementKind: Grid
   - type: Clickable
+  - type: WarpPoint
+    follow: true
+    location: Box Van
   - type: GridVehicleMover
     maxSpeed: 6
     acceleration: 5
@@ -249,8 +244,6 @@
         - LowImpassable
         - LargeMobLayer
         - Vehicle
-        - MobMask # Stories-Vehicle
-        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
         - Vehicle
@@ -263,8 +256,6 @@
         - MidImpassable
         - BarricadeImpassable
         - LargeMobLayer
-        - MobMask # Stories-Vehicle
-        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
   - type: Damageable
@@ -309,12 +300,6 @@
   - type: VehicleWeapons
   - type: InputMover
   - type: ItemSlots
-    slots:
-      wheel-1:
-        disableEject: true
-        whitelist:
-          components:
-          - VehicleWheelItem
   - type: ContainerContainer
     containers:
       wheel-1: !type:ContainerSlot
@@ -338,7 +323,6 @@
   - type: HardpointIntegrity
     maxIntegrity: 1000
     integrity: 1000
-    repairFuelCost: 10
     bypassEntryOnZero: true
   - type: HardpointState
   - type: Appearance
@@ -462,15 +446,9 @@
     slots:
       secondary:
         startingItem: VehicleSPPVanTurret
-        disableEject: true
         whitelist:
           components:
           - HardpointItem
-      wheel-1:
-        disableEject: true
-        whitelist:
-          components:
-          - VehicleWheelItem
   - type: HardpointSlots
     vehicleFamily: HardpointVehicleFamilyVan
     slots:
@@ -599,13 +577,6 @@
     - offset: -1.2,-0.3
       radius: 0.7
       interiorCoords: 2.5,-0.2
-  - type: ItemSlots
-    slots:
-      wheel-1:
-        disableEject: true
-        whitelist:
-          components:
-          - VehicleWheelItem
   - type: HardpointSlots
     vehicleFamily: HardpointVehicleFamilyVan
     slots:
