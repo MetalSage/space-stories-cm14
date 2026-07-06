@@ -4,7 +4,7 @@
   name: ent-STActionBreacherEnrage
   components:
   - type: Action
-    useDelay: 120
+    useDelay: 150
     icon:
       sprite: _Stories/Actions/breacher_action.rsi
       state: icon
