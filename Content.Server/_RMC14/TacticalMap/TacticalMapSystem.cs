@@ -579,7 +579,7 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
         Delete
     }
 
-        private void OnUserQueenEyeMoveMsg(Entity<TacticalMapUserComponent> ent, ref TacticalMapQueenEyeMoveMsg args)
+    private void OnUserQueenEyeMoveMsg(Entity<TacticalMapUserComponent> ent, ref TacticalMapQueenEyeMoveMsg args)
     {
         var user = args.Actor;
         HandleQueenEyeMove(user, args.Position);
@@ -1003,7 +1003,7 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
 
                 IncludeRangedXenoBlips(mapId, map, map.LastUpdateMarineBlips);
 
-                _marineAnnounce.AnnounceARESStaging(user, "The UNMC tactical map has been updated.", sound);
+                _marineAnnounce.AnnounceARESStaging(user, "Тактическая карта КМП США была обновлена.", sound);
                 _adminLog.Add(LogType.RMCTacticalMapUpdated, $"{ToPrettyString(user)} updated the marine tactical map for {ToPrettyString(mapId)}");
             }
 
@@ -1013,7 +1013,7 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
                 map.XenoLabels = new Dictionary<Vector2i, string>(labels);
                 map.LastUpdateXenoBlips = map.XenoBlips.ToDictionary();
                 map.LastUpdateXenoStructureBlips = map.XenoStructureBlips.ToDictionary();
-                _xenoAnnounce.AnnounceSameHive(user, "The Xenonid tactical map has been updated.", sound);
+                _xenoAnnounce.AnnounceSameHive(user, "Тактическая карта Улья была обновлена.", sound);
                 _adminLog.Add(LogType.RMCTacticalMapUpdated, $"{ToPrettyString(user)} updated the xenonid tactical map for {ToPrettyString(mapId)}");
             }
 

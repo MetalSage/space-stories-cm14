@@ -236,9 +236,9 @@ public sealed class CMChatSystem : SharedCMChatSystem
         if (prefix == SharedChatSystem.RadioChannelAltPrefix)
             prefix = SharedChatSystem.RadioChannelPrefix;
 
-        var keycode = char.ToLowerInvariant(prefixPart[1]);
+        var keycode = char.ToLowerInvariant(prefixPart[1]).ToString();
 
-        if (keycode.ToString() == SharedChatSystem.DefaultChannelKey && keys.DefaultChannel != null)
+        if (keycode == SharedChatSystem.DefaultChannelKey && keys.DefaultChannel != null)
             return true;
 
         foreach (var ch in _proto.EnumeratePrototypes<RadioChannelPrototype>())
@@ -246,7 +246,8 @@ public sealed class CMChatSystem : SharedCMChatSystem
             if (!keys.Channels.Contains(ch.ID))
                 continue;
 
-            if (ch.RadioPrefix == prefix && ch.KeyCode == keycode.ToString())
+            var chKeycode = ch.KeyCode.ToLowerInvariant();
+            if (ch.RadioPrefix == prefix && chKeycode == keycode)
                 return true;
         }
 

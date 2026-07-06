@@ -21,6 +21,19 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         SubscribeLocalEvent<LanguageComponent, MapInitEvent>(OnInitLanguageSpeaker);
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
         SubscribeNetworkEvent<LanguagesSetMessage>(OnClientSetLanguage);
+        SubscribeLocalEvent<HunterTranslatorToggledEvent>(OnTranslatorToggled);
+    }
+
+    private void OnTranslatorToggled(HunterTranslatorToggledEvent ev)
+    {
+        if (!ev.Active)
+        {
+            if (TryGetCurrentLanguage(ev.Mob, out var current) && current.Id != "STHunter")
+            {
+                SetLanguage(ev.Mob, "STHunter");
+            }
+        }
+        UpdateEntityLanguages(ev.Mob);
     }
 
     private void OnInitLanguageSpeaker(Entity<LanguageComponent> ent, ref MapInitEvent args)

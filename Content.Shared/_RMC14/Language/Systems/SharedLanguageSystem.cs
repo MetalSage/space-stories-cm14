@@ -4,6 +4,9 @@ using Content.Shared._RMC14.Language.Prototypes;
 using Content.Shared.Ghost;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Stories.Hunter.Marking.Components;
+using Content.Shared._Stories.Hunter.Bracer.Components;
+using Content.Shared.Inventory;
 
 namespace Content.Shared._RMC14.Language.Systems;
 
@@ -49,6 +52,23 @@ public abstract class SharedLanguageSystem : EntitySystem
 
     public bool CanSpeak(Entity<LanguageComponent?> ent, ProtoId<LanguagePrototype> language)
     {
+        if (HasComp<HunterComponent>(ent.Owner))
+        {
+            if (language.Id == "STHunter")
+                return true;
+
+            if (EntityManager.TrySystem<InventorySystem>(out var invSys) &&
+                invSys.TryGetSlotEntity(ent.Owner, "gloves", out var equipped) &&
+                equipped.HasValue &&
+                HasComp<HunterBracerComponent>(equipped.Value) &&
+                Comp<HunterBracerComponent>(equipped.Value).TranslatorActive)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         if (!Resolve(ent, ref ent.Comp, false))
             return language == CommonLanguage;
 
@@ -62,7 +82,10 @@ public abstract class SharedLanguageSystem : EntitySystem
 
     public bool CanUnderstand(Entity<LanguageComponent?> ent, ProtoId<LanguagePrototype> language)
     {
-        if (HasComp<GhostComponent>(ent))
+        if (HasComp<GhostComponent>(ent.Owner))
+            return true;
+
+        if (HasComp<HunterComponent>(ent.Owner))
             return true;
 
         if (!Resolve(ent, ref ent.Comp, false))
@@ -78,6 +101,27 @@ public abstract class SharedLanguageSystem : EntitySystem
 
     public IReadOnlySet<ProtoId<LanguagePrototype>> GetSpokenLanguages(Entity<LanguageComponent?> ent)
     {
+        if (HasComp<HunterComponent>(ent.Owner))
+        {
+            if (EntityManager.TrySystem<InventorySystem>(out var invSys) &&
+                invSys.TryGetSlotEntity(ent.Owner, "gloves", out var equipped) &&
+                equipped.HasValue &&
+                HasComp<HunterBracerComponent>(equipped.Value) &&
+                Comp<HunterBracerComponent>(equipped.Value).TranslatorActive)
+            {
+                var allLangs = new HashSet<ProtoId<LanguagePrototype>>();
+                foreach (var proto in _prototypeManager.EnumeratePrototypes<LanguagePrototype>())
+                {
+                    allLangs.Add(proto.ID);
+                }
+                return allLangs;
+            }
+            else
+            {
+                return new HashSet<ProtoId<LanguagePrototype>> { "STHunter" };
+            }
+        }
+
         if (!Resolve(ent, ref ent.Comp, false))
             return DefaultLanguages;
 
