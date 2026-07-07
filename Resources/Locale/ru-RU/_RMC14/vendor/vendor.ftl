@@ -36,3 +36,11 @@ rmc-vending-machine-restock-blood-pack-not-full = { THE($item) } не запол
 rmc-vending-machine-restock-refillable-not-full = { THE($item) } не заполнен. Заполните его у продавца перед пополнением запасов.
 rmc-vending-machine-restock-power-cell-missing = { THE($item) } требует установки батареи для пополнения запасов.
 rmc-vending-machine-restock-power-cell-not-charged = Батарея { THE($item) } должна быть полностью заряжена перед пополнением запасов.
+
+rmc-automated-vendor-search = Поиск
+rmc-automated-vendor-reagents = Реагенты
+rmc-automated-vendor-points = Осталось очков: { $points }
+rmc-automated-vendor-units = { $units } ед.
+rmc-automated-vendor-take-all =  (ЗАБРАТЬ ВСЕ)
+rmc-automated-vendor-take-one =  (ВЫБРАТЬ ОДНО)
+rmc-automated-vendor-choose =  (ВЫБРАТЬ { $amount })

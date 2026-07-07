@@ -1,21 +1,32 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
+using Content.Server._Stories.Sponsors;
 using Content.Server.Chat.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.Mentor.ImaginaryFriend;
+using Content.Shared._RMC14.Overwatch;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._RMC14.Xenonids.Word;
 using Content.Shared._Stories.Hunter.Bracer;
 using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared._Stories.SCCVars;
 using Content.Shared._Stories.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
-using Content.Shared._RMC14.Mentor.ImaginaryFriend;
+using Content.Shared.Humanoid;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Content.Shared._RMC14.Language.Systems;
+using Content.Shared._RMC14.Language.Prototypes;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Stories.TTS;
 
@@ -27,6 +38,9 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _rng = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SponsorsManager _sponsorsManager = default!;
+    [Dependency] private readonly SharedLanguageSystem _language = default!;
 
     private readonly List<string> _sampleText =
         new()
@@ -50,6 +64,12 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
+
+        SubscribeLocalEvent<XenoWordQueenSpokenEvent>(OnXenoWordQueenSpoken);
+        SubscribeLocalEvent<OverwatchConsoleMessageSentEvent>(OnOverwatchMessageSent);
+        SubscribeLocalEvent<OverwatchConsoleObjectiveSetEvent>(OnOverwatchObjectiveSet);
+
+        InitializeSanitize();
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -71,7 +91,94 @@ public sealed partial class TTSSystem : EntitySystem
         if (ev.IsHunter)
             soundData = await _ttsAudio.ApplyHunterEffect(soundData);
 
-        RaiseNetworkEvent(new PlayTTSEvent(soundData), Filter.SinglePlayer(args.SenderSession));
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, previewText), Filter.SinglePlayer(args.SenderSession));
+    }
+
+    private void OnXenoWordQueenSpoken(XenoWordQueenSpokenEvent ev)
+    {
+        if (TryComp<TTSComponent>(ev.Source, out var ttsComp) && !string.IsNullOrEmpty(ttsComp.VoicePrototypeId))
+        {
+            PlayGlobalTTS(ev.Message, ttsComp.VoicePrototypeId, ev.Filter, true);
+        }
+    }
+
+    private void OnOverwatchMessageSent(OverwatchConsoleMessageSentEvent ev)
+    {
+        var voice = _cfg.GetCVar(SCCVars.TTSAresVoice);
+        if (TryComp<TTSComponent>(ev.Actor, out var tts) && !string.IsNullOrEmpty(tts.VoicePrototypeId))
+            voice = tts.VoicePrototypeId;
+
+        if (!string.IsNullOrEmpty(voice))
+        {
+            var combinedFilter = Filter.Empty().AddPlayers(ev.SquadFilter.Recipients).AddPlayers(ev.ConsoleFilter.Recipients);
+
+            if (TryComp<ActorComponent>(ev.Actor, out var actor))
+                combinedFilter.RemovePlayer(actor.PlayerSession);
+
+            PlayGlobalTTS(ev.Message, voice, combinedFilter, isRadio: true);
+        }
+    }
+
+    private void OnOverwatchObjectiveSet(OverwatchConsoleObjectiveSetEvent ev)
+    {
+        var voice = _cfg.GetCVar(SCCVars.TTSAresVoice);
+        if (TryComp<TTSComponent>(ev.Actor, out var tts) && !string.IsNullOrEmpty(tts.VoicePrototypeId))
+            voice = tts.VoicePrototypeId;
+
+        if (!string.IsNullOrEmpty(voice))
+        {
+            var combinedFilter = Filter.Empty().AddPlayers(ev.SquadFilter.Recipients).AddPlayers(ev.ConsoleFilter.Recipients);
+
+            if (TryComp<ActorComponent>(ev.Actor, out var actor))
+                combinedFilter.RemovePlayer(actor.PlayerSession);
+
+            PlayGlobalTTS(ev.Message, voice, combinedFilter, isRadio: true);
+        }
+    }
+
+    private bool ValidateVoiceForEntity(EntityUid uid, TTSVoicePrototype voice)
+    {
+        if (voice.Sex != Sex.Unsexed)
+        {
+            if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+            {
+                if (humanoid.Sex != voice.Sex)
+                    return false;
+            }
+        }
+
+        if (voice.Blacklist != null && voice.Blacklist.Count > 0)
+        {
+            if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+            {
+                if (voice.Blacklist.Contains(humanoid.Species))
+                    return false;
+            }
+        }
+
+        if (voice.SponsorOnly)
+        {
+            NetUserId? userId = null;
+            if (TryComp<ActorComponent>(uid, out var actor))
+                userId = actor.PlayerSession.UserId;
+            else if (TryComp<MindContainerComponent>(uid, out var mindContainer) && TryComp<MindComponent>(mindContainer.Mind, out var mind))
+                userId = mind.UserId;
+
+            if (userId == null)
+                return false;
+
+            if (_sponsorsManager.TryGetInfo(userId.Value, out var sponsorInfo))
+            {
+                if (sponsorInfo.AllowedTTSVoices == null || !sponsorInfo.AllowedTTSVoices.Contains(voice.ID))
+                    return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private bool GetVoicePrototype(string voiceId, [NotNullWhen(true)] out TTSVoicePrototype? voicePrototype)
@@ -92,8 +199,11 @@ public sealed partial class TTSSystem : EntitySystem
         RaiseLocalEvent(uid, voiceEv);
         voiceId = voiceEv.VoiceId;
 
-        if (!GetVoicePrototype(voiceId, out var protoVoice))
-            return;
+        if (!GetVoicePrototype(voiceId, out var protoVoice) || !ValidateVoiceForEntity(uid, protoVoice))
+        {
+            if (!GetVoicePrototype("father_grigori", out protoVoice))
+                return;
+        }
 
         var messageToUse = args.Message;
 
@@ -101,16 +211,21 @@ public sealed partial class TTSSystem : EntitySystem
             bracer.Value.Comp.TranslatorActive)
             messageToUse = args.OriginalMessage;
 
+        if (messageToUse.Contains('\u200B'))
+            return;
+
+        bool isRadio = args.Channel != null;
+
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, messageToUse, protoVoice.Speaker);
+            HandleWhisper(uid, messageToUse, protoVoice.Speaker, isRadio, args.Language);
             return;
         }
 
-        HandleSay(uid, messageToUse, protoVoice.Speaker);
+        HandleSay(uid, messageToUse, protoVoice.Speaker, isRadio, args.Language, args.Channel?.ID);
     }
 
-    private async void HandleSay(EntityUid uid, string message, string speaker)
+    private async void HandleSay(EntityUid uid, string message, string speaker, bool isRadio, ProtoId<LanguagePrototype> language, string? channelId = null)
     {
         var soundData = await GenerateTTS(message, speaker);
         if (soundData is null)
@@ -118,11 +233,11 @@ public sealed partial class TTSSystem : EntitySystem
 
         soundData = await ProcessSpecificVoices(uid, soundData);
 
-        var ttsEvent = new PlayTTSEvent(soundData, GetNetEntity(uid));
-        FilterAndSend(uid, ttsEvent, ChatSystem.VoiceRange);
+        var ttsEvent = new PlayTTSEvent(soundData, message, GetNetEntity(uid), isRadio: isRadio, radioChannel: channelId);
+        FilterAndSend(uid, ttsEvent, ChatSystem.VoiceRange, language);
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, string speaker)
+    private async void HandleWhisper(EntityUid uid, string message, string speaker, bool isRadio, ProtoId<LanguagePrototype> language)
     {
         var fullSoundData = await GenerateTTS(message, speaker, true);
         if (fullSoundData is null)
@@ -130,8 +245,29 @@ public sealed partial class TTSSystem : EntitySystem
 
         fullSoundData = await ProcessSpecificVoices(uid, fullSoundData);
 
-        var fullTtsEvent = new PlayTTSEvent(fullSoundData, GetNetEntity(uid), true);
-        FilterAndSend(uid, fullTtsEvent, ChatSystem.WhisperClearRange);
+        var fullTtsEvent = new PlayTTSEvent(fullSoundData, message, GetNetEntity(uid), true, isRadio: isRadio);
+        FilterAndSend(uid, fullTtsEvent, ChatSystem.WhisperClearRange, language);
+    }
+
+    public async void PlayGlobalTTS(string text, string voiceId, Filter filter, bool isXeno = false, bool isAnnounce = false, bool isAres = false, bool isRadio = false)
+    {
+        if (text.Contains('\u200B')) return;
+
+        if (!GetVoicePrototype(voiceId, out var protoVoice))
+            return;
+
+        var soundData = await GenerateTTS(text, protoVoice.Speaker);
+        if (soundData == null) return;
+
+        if (isXeno)
+            soundData = await _ttsAudio.ApplyXenoHivemindEffect(soundData);
+        else if (isAres)
+            soundData = await _ttsAudio.ApplyAresEffect(soundData);
+        else if (isRadio)
+            soundData = await _ttsAudio.ApplyStandardRadioEffect(soundData);
+
+        var ev = new PlayTTSEvent(soundData, text, null, false, null, isRadio, null, isAnnounce);
+        RaiseNetworkEvent(ev, filter);
     }
 
     private async Task<byte[]> ProcessSpecificVoices(EntityUid uid, byte[] data)
@@ -145,12 +281,11 @@ public sealed partial class TTSSystem : EntitySystem
         return data;
     }
 
-    private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range)
+    private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range, ProtoId<LanguagePrototype> language)
     {
         var xformQuery = GetEntityQuery<TransformComponent>();
         var sourceXform = xformQuery.GetComponent(source);
-        var sourceCoords = sourceXform.Coordinates;
-        var sourceMapId = sourceXform.MapID;
+        var sourceMapCoords = _xforms.GetMapCoordinates(sourceXform);
 
         var isHunter = HasComp<HunterComponent>(source);
         var isMarine = HasComp<MarineComponent>(source);
@@ -169,17 +304,23 @@ public sealed partial class TTSSystem : EntitySystem
                 continue;
 
             var listenerXform = xformQuery.GetComponent(listener);
-            if (listenerXform.MapID != sourceMapId)
-                continue;
+            var listenerMapCoords = _xforms.GetMapCoordinates(listenerXform);
 
-            if (!listenerXform.Coordinates.InRange(EntityManager, sourceCoords, range))
+            if (listenerMapCoords.MapId != sourceMapCoords.MapId)
                 continue;
 
             if (HasComp<GhostComponent>(listener))
             {
-                recipients.Add(player);
+                if (HasComp<GhostHearingComponent>(listener) || listenerMapCoords.InRange(sourceMapCoords, range))
+                    recipients.Add(player);
                 continue;
             }
+
+            if (!listenerMapCoords.InRange(sourceMapCoords, range))
+                continue;
+
+            if (!_language.CanUnderstand(listener, language))
+                continue;
 
             if (isImaginaryFriend)
             {

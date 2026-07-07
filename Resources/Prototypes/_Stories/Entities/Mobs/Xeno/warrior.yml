@@ -165,7 +165,7 @@
     - type: XenoPlasma
       plasma: 200
       maxPlasma: 200
-      plasmaRegenOnWeeds: 3
+      plasmaRegenOnWeeds: 1.5
     - type: XenoEvolution
       max: 500
       evolvesTo:

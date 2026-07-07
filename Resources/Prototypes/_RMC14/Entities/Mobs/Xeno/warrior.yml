@@ -64,7 +64,7 @@
         - CMXenoPraetorian
       strains:
         - STXenoWarriorBoxer # Stories-XenoBoxer
-        # - STXenoWarriorBulwark # Stories-XenoBulwark Времено удалено из за дизбаланса.
+        - STXenoWarriorBulwark # Stories-XenoBulwark
     - type: CMArmor
       xenoArmor: 20
       explosionArmor: 40
