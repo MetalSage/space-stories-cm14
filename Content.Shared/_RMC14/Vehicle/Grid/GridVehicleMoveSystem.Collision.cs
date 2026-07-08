@@ -21,7 +21,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Collections;
 
-namespace Content.Shared.Vehicle;
+namespace Content.Shared._RMC14.Vehicle;
 
 public sealed partial class GridVehicleMoverSystem : EntitySystem
 {
@@ -89,13 +89,9 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         var movementAabb = GetMovementAabb(aabb, mover);
         _intersecting.Clear();
         _lookup.GetEntitiesIntersecting(world.MapId, aabb, _intersecting, LookupFlags.Dynamic | LookupFlags.Static);
-
-        // Stories-Vehicle-Start
-        var hits = new ValueList<EntityUid>(_intersecting.Count);
-        foreach (var e in _intersecting)
-            hits.Add(e);
-        // Stories-Vehicle-End
-
+        var hits = _hitsBuffers[_hitsDepth++];
+        hits.Clear();
+        hits.AddRange(_intersecting);
         var playedCollisionSound = false;
         var mobHits = new ValueList<EntityUid>(0);
 
@@ -112,7 +108,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             if (other == uid)
                 continue;
 
-            if (TryComp(other, out VehicleRideSurfaceRiderComponent? rider) && rider.Vehicle == uid)
+            if (TryComp(other, out VehicleRideSurfaceRiderComponent? rider) && rider!.Vehicle == uid)
                 continue;
 
             if (ignoredEntities != null && ignoredEntities.Contains(other))
@@ -133,6 +129,9 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
             if (candidate.CollisionClass == VehicleCollisionClass.SoftMob && candidate.IsXeno)
             {
+                if (candidate.MobState != null && _mobState.IsDead(candidate.Entity, candidate.MobState))
+                    continue;
+
                 var result = HandleSoftXenoCollision(
                     uid,
                     mover,
@@ -152,6 +151,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
                 if (result == CollisionHandlingResult.Blocked)
                 {
+                    _hitsDepth--;
                     AddProbe(true);
                     return false;
                 }
@@ -166,7 +166,8 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
                 continue;
             }
 
-            if (applyEffects && candidate.Door is { } door && !_net.IsClient)
+            if (applyEffects && candidate.Door is { } door && !_net.IsClient &&
+                (candidate.CollisionClass == VehicleCollisionClass.Breakable || candidate.CollisionClass == VehicleCollisionClass.Ignore))
             {
                 if (!candidate.IsUnpoweredDoor)
                 {
@@ -199,6 +200,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
                 if (result == CollisionHandlingResult.Blocked)
                 {
+                    _hitsDepth--;
                     AddProbe(true);
                     return false;
                 }
@@ -227,6 +229,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
                 if (result == CollisionHandlingResult.Blocked)
                 {
+                    _hitsDepth--;
                     AddProbe(true);
                     return false;
                 }
@@ -261,6 +264,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             }
         }
 
+        _hitsDepth--;
         AddProbe(false);
         return true;
     }
@@ -291,14 +295,6 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         var isXeno = HasComp<XenoComponent>(other);
         var isVehicle = HasComp<VehicleComponent>(other);
         var isSmashable = HasComp<VehicleSmashableComponent>(other);
-
-        // Stories-Vehicle-Start
-        if (isMob && mob != null && _mobState.IsDead(other, mob))
-            return false;
-
-        if (isXeno && TryComp(other, out MobStateComponent? xenoMob) && _mobState.IsDead(other, xenoMob))
-            return false;
-        // Stories-Vehicle-End
 
         if (!isMob &&
             !isXeno &&
@@ -340,7 +336,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
         var doorPowerKnown = TryGetDoorPowered(other, out var doorPowered);
         var isUnpoweredDoor = hasDoor && doorPowerKnown && !doorPowered;
-        if (hasDoor && doorPowerKnown && doorPowered && door != null && _door.CanOpen(other, door, operatorUid))
+        if (hasDoor && isSmashable && doorPowerKnown && doorPowered && door != null && _door.CanOpen(other, door, operatorUid))
             collisionClass = VehicleCollisionClass.Ignore;
 
         var collisionAabb = GetCollisionAabb(collisionClass, vehicleAabb, movementAabb);
@@ -698,7 +694,9 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         if (pushedMover.SyncedGrid != grid)
             return false;
 
-        var ignored = new HashSet<EntityUid> { pusher };
+        _vehiclePushIgnored.Clear();
+        _vehiclePushIgnored.Add(pusher);
+        var ignored = _vehiclePushIgnored;
         var pushedTarget = pushedMover.Position + pushDelta;
         if (!CanOccupyTransform(
                 pushed,
@@ -851,6 +849,12 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         if (_net.IsClient || _mobState.IsDead(target, mobState))
             return;
 
+        if (TryComp(vehicle, out GridVehicleMoverComponent? vehicleMover) &&
+            MathF.Abs(vehicleMover.CurrentSpeed) < MobCollisionMinKnockdownSpeed)
+        {
+            return;
+        }
+
         var now = _timing.CurTime;
         if (_lastMobCollision.TryGetValue(target, out var last) && now < last + MobCollisionCooldown)
             return;
@@ -859,22 +863,12 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
         PlayMobCollisionSound(vehicle, ref playedCollisionSound);
 
-        var damage = new DamageSpecifier
-        {
-            DamageDict =
-            {
-                [CollisionDamageType] = MobCollisionDamage,
-            },
-        };
-
-        _damageable.TryChangeDamage(target, damage);
+        _damageable.TryChangeDamage(target, _mobCollisionDamage);
 
         if (HasComp<XenoComponent>(target))
             return;
 
         _stun.TryKnockdown(target, MobCollisionKnockdown, true);
-        _stun.TryStun(target, MobCollisionKnockdown, true); // Stories-Vehicle
-
         var runover = EnsureComp<VehicleRunoverComponent>(target);
         runover.Vehicle = vehicle;
         runover.Duration = MobCollisionKnockdown;
@@ -970,8 +964,13 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         if (_mobState.IsDead(mob, mobState) || _standing.IsDown(mob))
             return;
 
+        if (TryComp(vehicle, out GridVehicleMoverComponent? vehicleMover) &&
+            MathF.Abs(vehicleMover.CurrentSpeed) < MobCollisionMinKnockdownSpeed)
+        {
+            return;
+        }
+
         _stun.TryKnockdown(mob, MobCollisionKnockdown, true);
-        _stun.TryStun(mob, MobCollisionKnockdown, true); // Stories-Vehicle
 
         var runover = EnsureComp<VehicleRunoverComponent>(mob);
         runover.Vehicle = vehicle;
@@ -1139,10 +1138,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             target = _transform.ToCoordinates(mapCoords);
         }
 
-        if (target == EntityCoordinates.Invalid)
-            return false;
-
-        return true;
+        return target != EntityCoordinates.Invalid;
     }
 
     private bool IsPushTileBlocked(
@@ -1211,14 +1207,14 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             var (pos, rot) = _transform.GetWorldPositionRotation(entXformComp, xformQuery);
             rot -= gridRot;
             pos = (-gridRot).RotateVec(pos - gridPos);
-            var entXform = new Transform(pos, (float)rot.Theta);
+            var entXform = new Transform(pos, (float) rot.Theta);
 
             foreach (var fixture in fixtures.Fixtures.Values)
             {
                 if (!fixture.Hard)
                     continue;
 
-                if ((fixture.CollisionLayer & (int)GridVehiclePushHardBlockMask) == 0)
+                if ((fixture.CollisionLayer & (int) GridVehiclePushHardBlockMask) == 0)
                     continue;
 
                 for (var i = 0; i < fixture.Shape.ChildCount; i++)
@@ -1314,7 +1310,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
                 if (!fixture.Hard)
                     continue;
 
-                if ((fixture.CollisionLayer & (int)CollisionGroup.Impassable) != 0)
+                if ((fixture.CollisionLayer & (int) CollisionGroup.Impassable) != 0)
                 {
                     wallLike = true;
                     for (var i = 0; i < fixture.Shape.ChildCount; i++)
@@ -1407,9 +1403,9 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
     private static bool IsNormallyMobPassable(Fixture fixture)
     {
-        const int mobMask = (int)CollisionGroup.MobMask;
-        const int mobLayer = (int)CollisionGroup.MobLayer;
-        const int vehicle = (int)CollisionGroup.Vehicle;
+        const int mobMask = (int) CollisionGroup.MobMask;
+        const int mobLayer = (int) CollisionGroup.MobLayer;
+        const int vehicle = (int) CollisionGroup.Vehicle;
 
         if (fixture.Hard && ((fixture.CollisionMask & vehicle) != 0 || (fixture.CollisionLayer & vehicle) != 0))
             return false;

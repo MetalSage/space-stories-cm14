@@ -8,8 +8,11 @@
     movementKind: Grid
   - type: LagCompensation
   - type: Clickable
+  - type: WarpPoint
+    follow: true
+    location: APC
   - type: RMCIgnoreGhostInteractionLimits
-  # - type: RequireProjectileTarget # Stories-Vehicle
+  - type: RequireProjectileTarget
   - type: GridVehicleMover
     maxSpeed: 5
     acceleration: 4
@@ -40,7 +43,7 @@
       world:
         shape:
           !type:PhysShapeAabb
-          bounds: -1.25,-1.7,1.25,1.7 # Stories-Vehicle
+          bounds: -1.25,-1.7,1.25,1.7
         density: 1200
         mask:
         - Impassable
@@ -48,22 +51,18 @@
         - LowImpassable
         - LargeMobLayer
         - Vehicle
-        - MobMask # Stories-Vehicle
-        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
         - Vehicle
       mob:
         shape:
           !type:PhysShapeAabb
-          bounds: -1.25,-1.7,1.25,1.7 # Stories-Vehicle
+          bounds: -1.25,-1.7,1.25,1.7
         density: 1200
         mask:
         - MidImpassable
         - BarricadeImpassable
         - LargeMobLayer
-        - MobMask # Stories-Vehicle
-        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
   - type: Damageable
@@ -138,26 +137,6 @@
         whitelist:
           components:
           - VehiclePortGun
-      primary:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
-      secondary:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
-      support:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
-      wheel-1:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
   - type: HardpointSlots
     vehicleFamily: HardpointVehicleFamilyAPC
     slots:
@@ -187,7 +166,6 @@
     slotCount: 1
   - type: HardpointIntegrity
     maxIntegrity: 1000
-    repairFuelCost: 15
     bypassEntryOnZero: true
   - type: Appearance
   - type: VehicleEnter
@@ -229,6 +207,12 @@
     - offset: -1.5,0
       radius: 0.7
       interiorCoords: 1.55,-1.2
+  - type: MarineMapTracked
+  - type: TacticalMapTracked
+  - type: TacticalMapIcon
+    icon:
+      sprite: /Textures/_RMC14/Interface/map_blips_large.rsi
+      state: apc
 
 - type: entity
   parent: VehicleAPCBase
@@ -284,6 +268,12 @@
     - offset: 0,2
       radius: 0.85
       interiorCoords: 0.25,-1
+  - type: MarineMapTracked
+  - type: TacticalMapTracked
+  - type: TacticalMapIcon
+    icon:
+      sprite: /Textures/_RMC14/Interface/map_blips_large.rsi
+      state: apc
 
 - type: entity
   parent: VehicleAPCBase
@@ -340,6 +330,12 @@
     - offset: 0,2
       radius: 0.85
       interiorCoords: 0.25,-1
+  - type: MarineMapTracked
+  - type: TacticalMapTracked
+  - type: TacticalMapIcon
+    icon:
+      sprite: /Textures/_RMC14/Interface/map_blips_large.rsi
+      state: apc
 
 - type: entity
   parent: VehicleAPCBase

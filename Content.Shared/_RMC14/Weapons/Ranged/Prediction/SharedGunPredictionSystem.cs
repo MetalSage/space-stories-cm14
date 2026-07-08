@@ -1,6 +1,6 @@
 ﻿using Content.Shared._RMC14.CCVar;
+using Content.Shared._RMC14.Vehicle;
 using Content.Shared.CombatMode;
-using Content.Shared.Vehicle;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -38,12 +38,6 @@ public abstract class SharedGunPredictionSystem : EntitySystem
             return null;
 
         var shootCoordinates = GetCoordinates(coordinates);
-
-        // Stories-Vehicle-Start
-        if (!shootCoordinates.IsValid(EntityManager))
-            return null;
-        // Stories-Vehicle-End
-
         var targetUid = GetEntity(target);
         if (targetUid is { } clickedTarget)
         {

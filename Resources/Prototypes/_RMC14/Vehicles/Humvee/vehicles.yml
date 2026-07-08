@@ -8,8 +8,11 @@
     movementKind: Grid
   - type: LagCompensation
   - type: Clickable
+  - type: WarpPoint
+    follow: true
+    location: Humvee
   - type: RMCIgnoreGhostInteractionLimits
-  # - type: RequireProjectileTarget # Stories-Vehicle
+  - type: RequireProjectileTarget
   - type: GridVehicleMover
     maxSpeed: 6
     acceleration: 5
@@ -50,8 +53,6 @@
         - LowImpassable
         - LargeMobLayer
         - Vehicle
-        - MobMask # Stories-Vehicle
-        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
         - Vehicle
@@ -64,8 +65,6 @@
         - MidImpassable
         - BarricadeImpassable
         - LargeMobLayer
-        - MobMask # Stories-Vehicle
-        - SlipLayer # Stories-Vehicle
         layer:
         - LargeMobLayer
   - type: InteractionOutline
@@ -120,23 +119,8 @@
   - type: InputMover
   - type: ItemSlots
     slots:
-      turret:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
-      roof:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
-      front:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
       wheel-1:
-        disableEject: true
+        startingItem: VehicleHumveeWheel
         whitelist:
           components:
           - VehicleWheelItem
@@ -187,6 +171,12 @@
     - offset: 1,-0.1
       radius: 0.45
       interiorCoords: 2.41,-1.35
+  - type: MarineMapTracked
+  - type: TacticalMapTracked
+  - type: TacticalMapIcon
+    icon:
+      sprite: /Textures/_RMC14/Interface/map_blips_large.rsi
+      state: humvee
 
 - type: entity
   parent: VehicleHumveeBase
@@ -195,31 +185,15 @@
   - type: ItemSlots
     slots:
       turret:
-        disableEject: true
+        startingItem: VehicleHumveeTurretArmed
         whitelist:
           components:
           - HardpointItem
-      roof:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
-      front:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
-      wheel-1:
-        disableEject: true
-        whitelist:
-          components:
-          - VehicleWheelItem
   - type: Damageable
     damageContainer: StructuralMarine
     damageModifierSet: StructuralMarine
   - type: HardpointIntegrity
     maxIntegrity: 1000
-    repairFuelCost: 12
     bypassEntryOnZero: true
 
 - type: entity
@@ -233,7 +207,6 @@
     damageModifierSet: StructuralMarine
   - type: HardpointIntegrity
     maxIntegrity: 1000
-    repairFuelCost: 12
     bypassEntryOnZero: true
   - type: Sprite
     sprite: _RMC14/Structures/Vehicles/humvee_medical.rsi
@@ -301,7 +274,6 @@
     damageModifierSet: StructuralMarine
   - type: HardpointIntegrity
     maxIntegrity: 1000
-    repairFuelCost: 12
     bypassEntryOnZero: true
   - type: Sprite
     sprite: _RMC14/Structures/Vehicles/humvee_transport.rsi
@@ -367,38 +339,24 @@
   - type: ItemSlots
     slots:
       turret:
-        disableEject: true
         whitelist:
           components:
           - HardpointItem
-      roof:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
-      front:
-        disableEject: true
-        whitelist:
-          components:
-          - HardpointItem
-      wheel-1:
-        disableEject: true
-        whitelist:
-          components:
-          - VehicleWheelItem
   - type: Damageable
     damageContainer: StructuralMarine
     damageModifierSet: VehicleFrameARC
   - type: HardpointIntegrity
     maxIntegrity: 800
-    repairFuelCost: 12
     bypassEntryOnZero: true
   - type: VehicleDeployable
     deployTime: 5
     undeployTime: 5
-    autoTargetRange: 20
+    autoTargetRange: 7
     autoTargetCooldown: 0.2
     autoTurretEnabled: true
+  - type: VehicleSensor
+    range: 40
+    requiresDeployed: true
   - type: VehicleDeployGatedHardpoints
     blockedHardpoints:
     - HardpointTypeCannon
@@ -426,3 +384,4 @@
     - offset: 1,-0.1
       radius: 0.5
       interiorCoords: 3.56, -0.42
+

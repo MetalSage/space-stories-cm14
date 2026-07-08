@@ -52,6 +52,10 @@
     variations:
     - spawn: "/Maps/_RMC14/Inserts/Solaris/se-checkpoint.yml"
       probability: 0.7
+    # Stories grid
+    - spawn: "/Maps/_Stories/Inserts/Solaris/Bio_1.yml"
+      probability: 0.15
+      offset: 20,-13
 
 - type: entity
   parent: RMCMapInsertSolarisBase

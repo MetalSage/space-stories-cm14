@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Client._RMC14.Mentor;
+using Content.Client._Stories.Chat;
 using Content.Client.Administration.Managers;
 using Content.Client.Chat;
 using Content.Client.Chat.Managers;
@@ -44,7 +45,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
@@ -914,7 +914,9 @@ public sealed partial class ChatUIController : UIController
     private void OnChatMessage(MsgChatMessage message)
     {
         var msg = message.Message;
-        ProcessChatMessage(msg, !msg.HidePopup);
+        // RMC14
+        ProcessChatMessage(msg, !msg.HidePopup || msg.UseEmoteSpeechBubble);
+        // RMC14
 
         if ((msg.Channel & ChatChannel.AdminRelated) == 0 ||
             _config.GetCVar(CCVars.ReplayRecordAdminChat))
@@ -925,6 +927,15 @@ public sealed partial class ChatUIController : UIController
 
     public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
     {
+        // Stories-TTS-Start
+        var filter = _ent.SystemOrNull<ChatFilterSystem>();
+        if (filter != null)
+        {
+            msg.Message = filter.CensorMessage(msg.Message, false);
+            msg.WrappedMessage = filter.CensorMessage(msg.WrappedMessage, true);
+        }
+        // Stories-TTS-End
+
         if (_colorBlindMode)
         {
             foreach (var (color, colorblindColor) in _colorBlindReplacements)
@@ -993,11 +1004,15 @@ public sealed partial class ChatUIController : UIController
         switch (msg.Channel)
         {
             case ChatChannel.Local:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
+                // RMC14
+                AddSpeechBubble(msg, msg.UseEmoteSpeechBubble ? SpeechBubble.SpeechType.Emote : SpeechBubble.SpeechType.Say);
+                // RMC14
                 break;
 
             case ChatChannel.Whisper:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Whisper);
+                // RMC14
+                AddSpeechBubble(msg, msg.UseEmoteSpeechBubble ? SpeechBubble.SpeechType.Emote : SpeechBubble.SpeechType.Whisper);
+                // RMC14
                 break;
 
             case ChatChannel.Dead:

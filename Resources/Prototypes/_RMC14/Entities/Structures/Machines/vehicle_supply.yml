@@ -28,16 +28,15 @@
     key: enum.VehicleSupplyUIKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
-    access: [ [ "CMAccessCrewman" ] ] # Stories-Vehicle
+    access: [ [ "RMCAccessVehicleCrew" ] ]
   - type: UserInterface
     interfaces:
       enum.VehicleSupplyUIKey.Key:
         type: VehicleSupplyBui
   - type: VehicleSupplyConsole
     vehicles:
-    - name: Хамви M2420 СТММ-ТНВ
+    - name: Хамви
       vehicle: VehicleHumvee
-      unlock: VehicleHumvee
       hardpoints:
       - VehicleHumveeTurret
       - VehicleHumveeCannon
@@ -46,25 +45,22 @@
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: Санитарный Хамви M2421 СТММ-С
+    - name: Хамви (Медицинский)
       vehicle: VehicleHumveeMedical
-      unlock: VehicleHumveeMedical
       hardpoints:
       - VehicleHumveeSnowplow
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: Утилитарный Хамви M2422 СТММ-У
+    - name: humvee (transport)
       vehicle: VehicleHumveeTransport
-      unlock: VehicleHumveeTransport
       hardpoints:
       - VehicleHumveeSnowplow
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: Бронетранспортер M577
+    - name: БТР
       vehicle: VehicleAPC
-      unlock: VehicleAPC
       hardpoints:
       - RMCAPCDualCannon
       - RMCAPCFrontCannon
@@ -72,9 +68,8 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: Медицинский бронетранспортер M577-МЕД
+    - name: БТР (Медицинский)
       vehicle: VehicleAPCMed
-      unlock: VehicleAPCMed
       hardpoints:
       - RMCAPCDualCannon
       - RMCAPCFrontCannon
@@ -82,9 +77,8 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: Командный бронетранспортер M577-КОМ
+    - name: БТР (Командный)
       vehicle: VehicleAPCCommand
-      unlock: VehicleAPCCommand
       hardpoints:
       - RMCAPCDualCannon
       - RMCAPCFrontCannon
@@ -92,9 +86,8 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: Легкий танк M34A2 "Лонгстрит"
+    - name: Танк
       vehicle: VehicleTank
-      unlock: VehicleTank
       hardpoints:
       - VehicleTankArmorBallistic
       - VehicleTankArmorConcussive
@@ -107,7 +100,7 @@
       - VehicleTankDragonFlamer
       - VehicleTankFlamer
       - VehicleTankGrenadeLauncher
-      - VehicleTankRERE700
+      - VehicleTankM56Cupola
       - VehicleTankWarningArray
       - VehicleTankOverdriveEnhancer
       - VehicleTankRocketLauncher
@@ -116,9 +109,39 @@
       - VehicleTankArtilleryModule
       - VehicleTankReinforcedTreads
       - VehicleTankTreads
-    - name: Разведывательный Хамви M2423 СТММ-Р
+      hardpointCategories:
+      - key: tank-primary
+        label: Primary
+        sortOrder: 0
+        hardpointTypes:
+        - HardpointTypeCannon
+      - key: tank-secondary
+        label: Secondary
+        sortOrder: 1
+        hardpointTypes:
+        - HardpointTypeLauncher
+      - key: tank-armor
+        label: Armor
+        sortOrder: 2
+        hardpointTypes:
+        - HardpointTypeArmor
+      - key: tank-support
+        label: Support
+        sortOrder: 3
+        hardpointTypes:
+        - HardpointTypeSupport
+      - key: tank-treads
+        label: Treads
+        sortOrder: 4
+        hardpointTypes:
+        - HardpointTypeWheel
+      - key: tank-general
+        label: General
+        sortOrder: 5
+        hardpointItems:
+        - VehicleTankSnowplow
+    - name: humvee (arc)
       vehicle: VehicleHumveeARC
-      unlock: VehicleHumveeARC
       hardpoints:
       - VehicleHumveeTurret
       - VehicleHumveeARCCannon
@@ -182,7 +205,6 @@
         - ItemMask
         density: 1000
         hard: false
-  - type: Chasm
   - type: StepTrigger
     requiredTriggeredSpeed: 0
     intersectRatio: 1

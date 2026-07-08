@@ -7,7 +7,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using Content.Shared.Movement.Systems;
 
-namespace Content.Shared.Vehicle;
+namespace Content.Shared._RMC14.Vehicle;
 
 public sealed partial class GridVehicleMoverSystem : EntitySystem
 {
@@ -48,6 +48,12 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         {
             _activeXenoPushers.Remove(uid);
             return Vector2i.Zero;
+        }
+
+        if (TryComp(uid, out RMCVehicleAutopilotComponent? autopilot))
+        {
+            _activeXenoPushers.Remove(uid);
+            return autopilot.Direction;
         }
 
         if (!TryGetActivePusher(uid, mover, out var pusher))
@@ -134,10 +140,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             }
         }
 
-        if (bestScore > 0f)
-            return true;
-
-        return false;
+        return bestScore > 0f;
     }
 
     private Vector2i GetPushDirection(EntityUid uid, EntityUid pusher)

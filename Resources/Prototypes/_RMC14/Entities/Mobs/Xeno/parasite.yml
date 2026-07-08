@@ -18,6 +18,11 @@
       settings: parasiteTimeRequirement
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Parasite/parasite.rsi
+  - type: FiremanCarriable
+    canThrow: true
+    carrierWhitelist:
+      components:
+      - Synth
   - type: MobState
     allowedStates:
     - Alive

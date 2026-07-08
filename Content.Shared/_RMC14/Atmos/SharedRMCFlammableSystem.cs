@@ -6,6 +6,7 @@ using Content.Shared._RMC14.Emote;
 using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.OnCollide;
+using Content.Shared._RMC14.Vehicle;
 using Content.Shared._RMC14.Weapons.Melee;
 using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared.Alert;
@@ -72,7 +73,6 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
 
-    private static readonly ProtoId<AlertPrototype> FireAlert = "Fire";
     private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
     private static readonly ProtoId<TagPrototype> StructureTag = "Structure";
     private static readonly ProtoId<TagPrototype> WallTag = "Wall";
@@ -371,17 +371,6 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         RemCompDeferred<RMCFireBypassActiveComponent>(ent);
     }
 
-    public void UpdateFireAlert(EntityUid ent)
-    {
-        var ev = new ShowFireAlertEvent();
-        RaiseLocalEvent(ent, ref ev);
-
-        if (ev.Show)
-            _alerts.ShowAlert(ent, FireAlert);
-        else
-            _alerts.ClearAlert(ent, FireAlert);
-    }
-
     public bool IsOnFire(Entity<FlammableComponent?> ent)
     {
         return Resolve(ent, ref ent.Comp, false) && ent.Comp.OnFire;
@@ -426,7 +415,6 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
                 Dirty(spawned, tileFire); // Stories-Ordnance
             }
 
-
             if (burnColor != null)
             {
                 ignite.BurnColor = burnColor.Value;
@@ -435,12 +423,6 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
             // Stories-Ordnance-End
 
             Dirty(spawned, ignite);
-
-            if (TryComp<DamageOnCollideComponent>(spawned, out var dmg) && intensity != null)
-            {
-                dmg.Damage.DamageDict[HeatDamage] = intensity.Value * dmg.DirectHitMultiplier;
-                Dirty(spawned, dmg);
-            }
         }
 
         var onCollide = EnsureComp<DamageOnCollideComponent>(spawned);
@@ -833,6 +815,12 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
         if (!HasComp<DamageableComponent>(other))
             return;
 
+        if (_tileFireQuery.HasComp(ent.Owner) && ShouldIgnoreTileFire(other))
+        {
+            RemCompDeferred<SteppingOnFireComponent>(other);
+            return;
+        }
+
         EnsureComp<SteppingOnFireComponent>(other);
         var flammableEnt = new Entity<FlammableComponent?>(other, null);
         if (!Resolve(flammableEnt, ref flammableEnt.Comp, false))
@@ -1024,7 +1012,7 @@ public abstract class SharedRMCFlammableSystem : EntitySystem
                     TryIgnite((uid, apply), contact, true);
                 }
 
-                RemCompDeferred<DamageOnCollideComponent>(uid);
+                _onCollide.DisableDamageOnCollide(uid);
             }
         }
         catch (Exception e)

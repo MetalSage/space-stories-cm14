@@ -22,7 +22,6 @@ public sealed class SponsorsManager
 
     private readonly HttpClient _httpClient = new();
     [Dependency] private readonly IServerNetManager _netMgr = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     private string _apiUrl = string.Empty;
 
     private ISawmill _sawmill = default!;
@@ -85,7 +84,6 @@ public sealed class SponsorsManager
             return null;
         }
 
-
         if (response.StatusCode == HttpStatusCode.NotFound)
             return null;
 
@@ -106,9 +104,11 @@ public sealed class SponsorsManager
         return new SponsorInfo
         {
             Tier = apiInfo.Tier,
+            TierName = apiInfo.TierName,
             OOCColor = apiInfo.OOCColor,
             HavePriorityJoin = apiInfo.HavePriorityJoin,
             AllowedMarkings = apiInfo.AllowedMarkings,
+            AllowedTTSVoices = apiInfo.AllowedTTSVoices ?? Array.Empty<string>(),
             RoleTimeBypass = apiInfo.RoleTimeBypass,
             WhitelistRoleTimeBypass = apiInfo.WhitelistRoleTimeBypass,
             GhostSkin = apiInfo.GhostSkin,
@@ -126,6 +126,9 @@ public sealed class SponsorsManager
         [JsonPropertyName("tier")]
         public int? Tier { get; set; }
 
+        [JsonPropertyName("tierName")]
+        public string? TierName { get; set; }
+
         [JsonPropertyName("oocColor")]
         public string? OOCColor { get; set; }
 
@@ -134,6 +137,9 @@ public sealed class SponsorsManager
 
         [JsonPropertyName("allowedMarkings")]
         public string[] AllowedMarkings { get; set; } = Array.Empty<string>();
+
+        [JsonPropertyName("allowedTTSVoices")]
+        public string[] AllowedTTSVoices { get; set; } = Array.Empty<string>();
 
         [JsonPropertyName("roleTimeBypass")]
         public bool RoleTimeBypass { get; set; }

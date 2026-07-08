@@ -12,6 +12,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Popups;
+using Content.Shared.Sprite;
 using Content.Shared.Storage;
 using Content.Shared.Throwing;
 using Content.Shared.Verbs;
@@ -602,7 +603,7 @@ public sealed class RMCFishingSystem : EntitySystem
 
         var t = (float)(ent.Comp.Length - ent.Comp.MinLength) / (ent.Comp.MaxLength - ent.Comp.MinLength);
         var scaleVal = ent.Comp.MinScale + t * (ent.Comp.MaxScale - ent.Comp.MinScale);
-        _appearance.SetData(ent.Owner, ScaleVisuals.Scale,  Vector2.One * scaleVal);
+        _appearance.SetData(ent.Owner, Robust.Shared.GameObjects.ScaleVisuals.Scale,  Vector2.One * scaleVal);
     }
 
     private void OnSpearAfterInteract(Entity<RMCFishingSpearComponent> ent, ref AfterInteractEvent args)

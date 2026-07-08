@@ -1,9 +1,9 @@
 ent-RMCPlayingCardBase = Playing card
-    .desc = A standard playing card.
+    .desc = { ent-BaseItem.desc }
 ent-RMCPlayingCard = { ent-RMCPlayingCardBase }
     .desc = { ent-RMCPlayingCardBase.desc }
 ent-RMCPlayingCardHand = Hand of cards
-    .desc = A hand of playing cards.
+    .desc = { ent-BaseItem.desc }
 ent-RMCPlayingCardDeck = Deck of cards
     .desc = I swear the game was called Goldfish!
     .suffix = RMC

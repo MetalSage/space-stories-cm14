@@ -64,16 +64,13 @@ public sealed partial class HardpointSlotsComponent : Component
 public sealed partial class HardpointStateComponent : Component
 {
     [NonSerialized]
-    public HashSet<string> PendingInserts = new();
+    public Dictionary<string, EntityUid> PendingInserts = new();
 
     [NonSerialized]
     public HashSet<string> CompletingInserts = new();
 
     [NonSerialized]
     public HashSet<string> PendingRemovals = new();
-
-    [NonSerialized]
-    public HashSet<EntityUid> PendingInsertUsers = new();
 
     [NonSerialized]
     public string? LastUiError;
@@ -110,7 +107,7 @@ public sealed partial class HardpointSlot
     public EntityWhitelist? Whitelist { get; set; }
 }
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class HardpointIntegrityComponent : Component
 {
     [DataField]
@@ -120,7 +117,7 @@ public sealed partial class HardpointIntegrityComponent : Component
     public float Integrity;
 
     [DataField]
-    public FixedPoint2 RepairFuelCost = FixedPoint2.New(5);
+    public FixedPoint2 FuelPerSecond = FixedPoint2.New(1);
 
     [DataField]
     public SoundSpecifier? RepairSound;
@@ -144,7 +141,7 @@ public sealed partial class HardpointIntegrityComponent : Component
     public float RepairChunkMinimum = 0.01f;
 
     [DataField]
-    public float FrameRepairChunkSeconds = 2f;
+    public float FrameRepairChunkSeconds = 1f;
 
     [DataField, AutoNetworkedField]
     public bool BypassEntryOnZero;
@@ -221,13 +218,13 @@ public sealed partial class HardpointRepairDoAfterEvent : DoAfterEvent
     {
         return new HardpointRepairDoAfterEvent();
     }
-
-    // Stories-Vehicle-Start
-    public override bool IsDuplicate(DoAfterEvent other)
-    {
-        return other is HardpointRepairDoAfterEvent;
-    }
-    // Stories-Vehicle-End
 }
 
+[ByRefEvent]
 public readonly record struct HardpointSlotsChangedEvent(EntityUid Vehicle);
+
+[ByRefEvent]
+public readonly record struct HardpointIntegrityChangedEvent;
+
+[ByRefEvent]
+public readonly record struct VehicleFrameIntegrityChangedEvent(EntityUid Vehicle, bool Intact);
