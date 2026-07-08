@@ -93,7 +93,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -126,7 +126,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -159,7 +159,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -192,7 +192,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -225,7 +225,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -258,7 +258,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -291,7 +291,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -324,7 +324,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -357,7 +357,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -388,7 +388,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -421,7 +421,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 # TODO RMC14 peridaxon, tramadol
 
@@ -456,7 +456,7 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
 
 - type: entity
   parent: RMCPillCanisterNoSkill
@@ -489,4 +489,4 @@
   components:
   - type: StorageSkillRequired
     skills:
-      RMCSkillMedical: 2
+      RMCSkillMedical: 1 #Stories-Skill
