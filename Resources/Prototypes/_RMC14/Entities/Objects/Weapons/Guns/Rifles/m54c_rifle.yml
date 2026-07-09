@@ -82,6 +82,7 @@
           tags:
           - RMCAttachmentM54CStockSolid
           - RMCAttachmentM54CStockCollapsible
+          - RMCAttachmentM54C2StockCollapsible
       rmc-aslot-underbarrel:
         startingAttachable: RMCAttachmentU1GrenadeLauncher
         whitelist:
