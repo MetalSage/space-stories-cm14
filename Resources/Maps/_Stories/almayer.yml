@@ -110863,6 +110863,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-0.5
       parent: 1
+    - type: AccessReader
+      access:
+      - - RMCAccessCommand
   - uid: 14863
     components:
     - type: Transform
