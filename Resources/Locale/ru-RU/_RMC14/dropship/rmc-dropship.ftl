@@ -29,7 +29,8 @@ rmc-dropship-weapons-target-strike = Приобретение цели
   Ударный режим: { $mode }
   Режим цели: { $targetMode }
 
-  Конфигурация удара { $weapon }
+  Конфигурация удара:
+  { $weapon }
 
   Цель выбрана: { $target }
 
@@ -67,7 +68,11 @@ rmc-dropship-weapons-fire = ОГОНЬ
 rmc-dropship-weapons-strike = УДАР
 rmc-dropship-weapons-vector = ВЕКТОР
 rmc-dropship-weapons-quick = БЫСТР
-
+# TODO RMC14 fire missions: restore these labels with fire mission vector controls.
+# rmc-dropship-weapons-north = NORTH
+# rmc-dropship-weapons-south = SOUTH
+# rmc-dropship-weapons-east = EAST
+# rmc-dropship-weapons-west = WEST
 rmc-dropship-weapons-target-mode-quick = БЫСТР
 rmc-dropship-weapons-target-mode-standard = СТАНД
 
@@ -103,6 +108,14 @@ rmc-dropship-fabricator-equipment = [bold]Снаряжение[/bold]
 rmc-dropship-fabricator-ammo = [bold]Патроны[/bold]
 rmc-dropship-fabricator-fabricate = Изготовить ({ $cost })
 rmc-dropship-fabricator-busy = Изготовитель деталей для дропшиппинга занят. Пожалуйста, подождите завершения предыдущей операции.
+rmc-dropship-fabricator-current = [bold]Сейчас:[/bold] { $item }
+rmc-dropship-fabricator-idle = [bold]Сейчас:[/bold] ожидание
+rmc-dropship-fabricator-queue = [bold]Очередь:[/bold] { $count }/{ $max }
+rmc-dropship-fabricator-queue-empty = Нет ожидающих заказов.
+rmc-dropship-fabricator-queue-entry = { $position }. { $item } ({ $cost })
+rmc-dropship-fabricator-cancel = Отмена
+rmc-dropship-fabricator-queue-full = Очередь изготовителя деталей десантного корабля заполнена.
+rmc-dropship-fabricator-insufficient-points = У вас недостаточно очков для изготовления.
 
 rmc-dropship-firemission-warning = Десантный корабль ведет огонь в направлении { $direction }.
 rmc-dropship-firemission-warning-above = Десантный корабль ведет огонь прямо над вами!
@@ -144,6 +157,7 @@ rmc-dropship-equipment-operational = В СТРОЮ
 rmc-dropship-equipment-damaged = ПОВРЕЖДЕНО
 rmc-dropship-equipment-destroyed = УНИЧТОЖЕНО
 
+rmc-dropship-launch-bay-fire-not-flying = Вы можете запускать оборудование только во время полёта.
 rmc-dropship-launch-bay-screen-text = Внутренняя пусковая установка сторожевого корабля LAG-14
 rmc-dropship-launch-bay-screen-text-loaded = Внутренняя пусковая установка сторожевого корабля LAG-14
 

@@ -8,7 +8,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 
-namespace Content.Shared.Vehicle;
+namespace Content.Shared._RMC14.Vehicle;
 
 public sealed partial class GridVehicleMoverSystem : EntitySystem
 {
@@ -67,7 +67,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         SetGridPosition(uid, grid, mover.Position);
 
         if (moved || mover.IsMoving)
-            physics.WakeBody(uid);
+            _physics.WakeBody(uid);
 
         Dirty(uid, mover);
     }
@@ -185,7 +185,6 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             }
             else if (TryApplyFacing(uid, mover, grid, gridComp, inputDir, startDelay: true, blockAfterTurn: false, allowMoveClearance: true))
             {
-                facing = mover.CurrentDirection;
             }
             else if (MathF.Abs(mover.CurrentSpeed) <= MinVehicleSpeed)
             {
@@ -276,13 +275,26 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return false;
 
         var desiredRot = DirectionToVehicleRotation(desiredFacing);
-        var immediateClear = TryFindTurnPosition(uid, mover, grid, gridComp, desiredRot, out var turnPosition);
+
+        Vector2 turnPosition;
+        if (mover.TurnNudgeSkipSteps > 0 && mover.TurnNudgeCacheDir == desiredFacing)
+        {
+            mover.TurnNudgeSkipSteps--;
+            return false;
+        }
+
+        var immediateClear = TryFindTurnPosition(uid, mover, grid, gridComp, desiredRot, out turnPosition);
         if (!immediateClear &&
             (!allowMoveClearance ||
              !TryFindTransientTurnClearance(uid, mover, grid, desiredFacing, desiredRot, out turnPosition)))
         {
+            mover.TurnNudgeCacheDir = desiredFacing;
+            mover.TurnNudgeSkipSteps = 2;
             return false;
         }
+
+        mover.TurnNudgeSkipSteps = 0;
+        mover.TurnNudgeCacheDir = Vector2i.Zero;
 
         if (!CanOccupyTransform(uid, mover, grid, turnPosition, desiredRot, Clearance, applyEffects: true))
             return false;
@@ -292,7 +304,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         mover.Position = turnPosition;
         mover.CurrentTile = GetTile(grid, gridComp, mover.Position);
         mover.CurrentDirection = desiredFacing;
-        transform.SetLocalRotation(uid, desiredRot);
+        _transform.SetLocalRotation(uid, desiredRot);
 
         if (turned && startDelay)
         {
@@ -324,35 +336,29 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
         var step = Math.Clamp(mover.MovementProbeStep, 0.02f, 0.5f);
         var steps = Math.Max(1, (int) MathF.Ceiling(maxDistance / step));
-        var initialBlockers = new HashSet<EntityUid>();
-        if (CanOccupyTransform(uid, mover, grid, mover.Position, desiredRot, Clearance, applyEffects: false, blockers: initialBlockers) ||
-            initialBlockers.Count == 0)
+        _bypassInitialBlockers.Clear();
+        if (CanOccupyTransform(uid, mover, grid, mover.Position, desiredRot, Clearance, applyEffects: false, blockers: _bypassInitialBlockers) ||
+            _bypassInitialBlockers.Count == 0)
         {
             return false;
         }
 
-        var sampleBlockers = new HashSet<EntityUid>();
         for (var i = 1; i <= steps; i++)
         {
             var distance = MathF.Min(i * step, maxDistance);
             var sample = mover.Position + forward * distance;
-            sampleBlockers.Clear();
-            if (CanOccupyTransform(uid, mover, grid, sample, desiredRot, Clearance, applyEffects: false, blockers: sampleBlockers))
+            _bypassSampleBlockers.Clear();
+            if (CanOccupyTransform(uid, mover, grid, sample, desiredRot, Clearance, applyEffects: false, blockers: _bypassSampleBlockers))
             {
                 clearPosition = sample;
                 return true;
             }
 
-            foreach (var blocker in sampleBlockers)
+            foreach (var blocker in _bypassSampleBlockers)
             {
-                if (!initialBlockers.Contains(blocker))
+                if (!_bypassInitialBlockers.Contains(blocker))
                     return false;
             }
-
-            if (sampleBlockers.Count > 0)
-                continue;
-
-            return false;
         }
 
         return false;
@@ -402,20 +408,8 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
                 return true;
         }
 
-        if (TryGetLaneCorrection(
-                uid,
-                mover,
-                grid,
-                gridComp,
-                moveDir,
-                rotation,
-                directTarget,
-                frameTime,
-                ignoredEntities,
-                out var correction))
-        {
+        if (TryGetLaneCorrection(uid, mover, grid, gridComp, moveDir, rotation, directTarget, frameTime, ignoredEntities, out var correction))
             moved = TryApplyLateralCorrection(uid, mover, grid, moveDir, rotation, correction, ignoredEntities);
-        }
 
         var forwardStart = mover.Position;
         var forwardTarget = mover.Position + forward * travel;
@@ -693,6 +687,18 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             limit);
         var sampleSteps = (int) MathF.Ceiling(limit / step);
         var lookahead = Math.Max(1, mover.TileOffsetLookahead);
+
+        // test center & both extremes before committing to full scan
+        // reversed CanOccupyMoveLane loop, each probe costs 1 query when a wall
+        // is present (fails at the farthest lookahead tile immediately). A solid wall
+        // blocking all lateral positions is detected in 3 queries total
+        if (!CanOccupyMoveLane(uid, mover, grid, gridComp, moveDir, rotation, target, 0f, lookahead, ignoredEntities) &&
+            !CanOccupyMoveLane(uid, mover, grid, gridComp, moveDir, rotation, target, limit, lookahead, ignoredEntities) &&
+            !CanOccupyMoveLane(uid, mover, grid, gridComp, moveDir, rotation, target, -limit, lookahead, ignoredEntities))
+        {
+            return false;
+        }
+
         var foundLane = false;
         var bestOffset = baseOffset;
         var bestScore = float.MaxValue;
@@ -752,7 +758,8 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         var forward = new Vector2(moveDir.X, moveDir.Y);
         var tileSize = MathF.Max(1f, gridComp.TileSize);
 
-        for (var i = 0; i < lookahead; i++)
+        // Check farthest tile first — blocked paths fail after 1 query instead of probing from current position inward.
+        for (var i = lookahead - 1; i >= 0; i--)
         {
             var sample = target + forward * (tileSize * i);
             var tile = GetTile(grid, gridComp, sample);
@@ -828,6 +835,20 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         HashSet<EntityUid>? ignoredEntities = null)
     {
         blocked = false;
+        var start = mover.Position;
+        var delta = target - start;
+        var distance = delta.Length();
+
+        if (applyBlockEffects && distance > MinMoveDistance)
+        {
+            var probeStep = Math.Clamp(mover.MovementProbeStep, 0.02f, 0.5f);
+            var steps = Math.Max(1, (int)MathF.Ceiling(distance / probeStep));
+            for (var i = 1; i < steps; i++)
+            {
+                var candidate = start + delta * (i / (float)steps);
+                CanOccupyTransform(uid, mover, grid, candidate, rotation, Clearance, applyEffects: true, debug: false, ignoredEntities: ignoredEntities);
+            }
+        }
 
         if (applyBlockEffects &&
             !CanOccupyTransform(uid, mover, grid, target, rotation, Clearance, applyEffects: true, debug: false, ignoredEntities: ignoredEntities))
@@ -878,23 +899,27 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             if (TryTurnNudgePosition(uid, mover, grid, gridComp, currentTile, desiredRot, new Vector2(0f, -axialDistance), min, max, out turnPosition))
                 return true;
 
-            for (var x = -ring; x <= ring; x++)
+            // traverse the perimeter first
+            var outerDist = Math.Clamp(ring * step, 0f, limit);
+            for (var yi = -ring; yi <= ring; yi++)
             {
-                for (var y = -ring; y <= ring; y++)
-                {
-                    if (Math.Max(Math.Abs(x), Math.Abs(y)) != ring)
-                        continue;
-
-                    if (x == 0 || y == 0)
-                        continue;
-
-                    var offset = new Vector2(
-                        Math.Clamp(x * step, -limit, limit),
-                        Math.Clamp(y * step, -limit, limit));
-
-                    if (TryTurnNudgePosition(uid, mover, grid, gridComp, currentTile, desiredRot, offset, min, max, out turnPosition))
-                        return true;
-                }
+                if (yi == 0)
+                    continue;
+                var innerY = Math.Clamp(MathF.Abs(yi) * step, 0f, limit) * MathF.Sign(yi);
+                if (TryTurnNudgePosition(uid, mover, grid, gridComp, currentTile, desiredRot, new Vector2(outerDist, innerY), min, max, out turnPosition))
+                    return true;
+                if (TryTurnNudgePosition(uid, mover, grid, gridComp, currentTile, desiredRot, new Vector2(-outerDist, innerY), min, max, out turnPosition))
+                    return true;
+            }
+            for (var xi = -(ring - 1); xi <= ring - 1; xi++)
+            {
+                if (xi == 0)
+                    continue;
+                var innerX = Math.Clamp(MathF.Abs(xi) * step, 0f, limit) * MathF.Sign(xi);
+                if (TryTurnNudgePosition(uid, mover, grid, gridComp, currentTile, desiredRot, new Vector2(innerX, outerDist), min, max, out turnPosition))
+                    return true;
+                if (TryTurnNudgePosition(uid, mover, grid, gridComp, currentTile, desiredRot, new Vector2(innerX, -outerDist), min, max, out turnPosition))
+                    return true;
             }
         }
 
@@ -965,26 +990,24 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
     private float GetModifiedMaxSpeed(EntityUid uid, GridVehicleMoverComponent mover)
     {
-        var maxSpeed = mover.MaxSpeed * GetSmashSlowdownMultiplier(mover);
-
-        if (TryComp<VehicleOverchargeComponent>(uid, out var overcharge) && _timing.CurTime < overcharge.ActiveUntil)
-            maxSpeed *= overcharge.SpeedMultiplier;
-        if (TryComp<VehicleSpeedModifierComponent>(uid, out var speedMod))
-            maxSpeed *= speedMod.SpeedMultiplier;
-
-        return maxSpeed;
+        return GetModifiedSpeed(uid, mover, mover.MaxSpeed);
     }
 
     private float GetModifiedMaxReverseSpeed(EntityUid uid, GridVehicleMoverComponent mover)
     {
-        var maxSpeed = mover.MaxReverseSpeed * GetSmashSlowdownMultiplier(mover);
+        return GetModifiedSpeed(uid, mover, mover.MaxReverseSpeed);
+    }
+
+    private float GetModifiedSpeed(EntityUid uid, GridVehicleMoverComponent mover, float baseSpeed)
+    {
+        var speed = baseSpeed * GetSmashSlowdownMultiplier(mover);
 
         if (TryComp<VehicleOverchargeComponent>(uid, out var overcharge) && _timing.CurTime < overcharge.ActiveUntil)
-            maxSpeed *= overcharge.SpeedMultiplier;
+            speed *= overcharge.SpeedMultiplier;
         if (TryComp<VehicleSpeedModifierComponent>(uid, out var speedMod))
-            maxSpeed *= speedMod.SpeedMultiplier;
+            speed *= speedMod.SpeedMultiplier;
 
-        return maxSpeed;
+        return speed;
     }
 
     private float GetAccelerationModifier(EntityUid uid)
@@ -1081,15 +1104,15 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return;
 
         var coords = new EntityCoordinates(grid, gridPos);
-        var local = coords.WithEntityId(xform.ParentUid, transform, EntityManager).Position;
+        var local = coords.WithEntityId(xform.ParentUid, _transform, EntityManager).Position;
 
-        transform.SetLocalPosition(uid, local, xform);
+        _transform.SetLocalPosition(uid, local, xform);
     }
 
     private Vector2i GetTile(EntityUid grid, MapGridComponent gridComp, Vector2 pos)
     {
         var coords = new EntityCoordinates(grid, pos);
-        return map.TileIndicesFor(grid, gridComp, coords);
+        return _map.TileIndicesFor(grid, gridComp, coords);
     }
 
     private void PlayRunningSound(EntityUid uid)

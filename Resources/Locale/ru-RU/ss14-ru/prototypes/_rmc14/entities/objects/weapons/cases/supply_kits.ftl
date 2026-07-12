@@ -1,0 +1,10 @@
+ent-RMCSupplyKitPursuit = M63 Point Man Kit
+    .desc = { ent-RMCKitBase.desc }
+ent-RMCSupplyKitSelfDefense = Personal Self Defense Kit
+    .desc = { ent-RMCKitBase.desc }
+ent-RMCSupplyKitMiniMedic = First Responder Medical Support Kit
+    .desc = { ent-RMCKitBase.desc }
+ent-RMCSupplyKitMOU53 = MOU53 Field Test Kit
+    .desc = { ent-RMCKitBase.desc }
+ent-RMCSupplyKitHeavySupport = Forward HAR Shield Kit
+    .desc = { ent-RMCKitBase.desc }

@@ -1,7 +1,0 @@
-- type: entity
-  parent: CMIDCardBase
-  id: STIDCardTankCrew
-  name: tank crew's ID card
-  components:
-  - type: PresetIdCard
-    job: STTankCrew

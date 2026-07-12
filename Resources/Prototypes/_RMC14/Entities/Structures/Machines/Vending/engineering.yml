@@ -11,9 +11,9 @@
     sprite: _RMC14/Structures/Machines/VendingMachines/tool.rsi
     layers:
     - state: "off"
-      map: [ "enum.VendingMachineVisualLayers.Base" ]
+      map: ["enum.VendingMachineVisualLayers.Base"]
     - state: "normal-unshaded"
-      map: [ "enum.VendingMachineVisualLayers.BaseUnshaded" ]
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
       shader: unshaded
   - type: Corrodible
     timeToApply: 4
@@ -21,6 +21,7 @@
   - type: AccessReader
     access: [["CMAccessCombatTechPrep"], ["CMAccessEngineering"], ["CMAccessColonyEngineering"]]
   - type: CMAutomatedVendor
+    canManualRestock: true
     access:
     - "CMAccessCombatTechPrep"
     - "CMAccessEngineering"
@@ -166,13 +167,13 @@
     sections:
     - name: Компоненты Для Сборки
       entries:
-      - id: Igniter
+      - id: STIgniter # Stories-Ordance
         amount: 8
-      - id: RMCTimerTrigger
+      - id: STTimer # Stories-Ordance
         amount: 4
-      - id: ProximitySensor
+      - id: STProximitySensor # Stories-Ordance
         amount: 4
-      - id: RemoteSignaller
+      - id: STSignaller # Stories-Ordance
         amount: 4
     - name: Контейнер
       entries:
@@ -209,6 +210,7 @@
   - type: AccessReader
     access: [["CMAccessResearch"]]
   - type: CMAutomatedVendor
+    canManualRestock: true
     access:
     - "CMAccessResearch"
     hackable: true

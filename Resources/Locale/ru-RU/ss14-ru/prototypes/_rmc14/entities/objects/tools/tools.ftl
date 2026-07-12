@@ -31,3 +31,5 @@ ent-RMCWireSnappersNoRepeat = { ent-RMCWireSnappers }
 ent-RMCWireSnappersNormal = { ent-RMCWireSnappers }
     .desc = { ent-RMCWireSnappers.desc }
     .suffix = Slow
+ent-RMCMaintenanceJack = maintenance jack
+    .desc = A heavy synthetic-grade maintenance tool that can pry doors and work as a wrench.

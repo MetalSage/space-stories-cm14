@@ -51,11 +51,24 @@ public sealed class XenoPylonSystem : SharedXenoPylonSystem
 
         SubscribeLocalEvent<HiveCoreComponent, StepTriggerAttemptEvent>(OnHiveCoreStepTriggerAttempt);
         SubscribeLocalEvent<HiveCoreComponent, StepTriggeredOffEvent>(OnHiveCoreStepTriggered);
+
+        // Stories-Vehicle-Start
+        SubscribeLocalEvent<HiveComponent, HiveSetTierLimitsEvent>(OnSetTierLimits);
+        // Stories-Vehicle-End
     }
+
+    // Stories-Vehicle-Start
+    private void OnSetTierLimits(Entity<HiveComponent> ent, ref HiveSetTierLimitsEvent args)
+    {
+        ent.Comp.TierLimits[2] = args.T2;
+        ent.Comp.TierLimits[3] = args.T3;
+        Dirty(ent);
+    }
+    // Stories-Vehicle-End
 
     private void OnHiveCoreDestruction(Entity<HiveCoreComponent> ent, ref DestructionEventArgs args)
     {
-        if (_hive.GetHive(ent.Owner) is {} hive &&
+        if (_hive.GetHive(ent.Owner) is { } hive &&
             _gameTicker.RoundDuration() > hive.Comp.PreSetupCutoff)
         {
             hive.Comp.NewCoreAt = _timing.CurTime + hive.Comp.NewCoreCooldown;
@@ -110,11 +123,20 @@ public sealed class XenoPylonSystem : SharedXenoPylonSystem
         var available = Math.Max(core.MinimumLesserDrones, living / core.XenosPerLesserDrone);
         core.MaxLesserDrones = available;
 
+        // Stories-HijackLesserDrones
+        var hijack = _hive.GetHive(uid) is { } hive && hive.Comp.HijackSurged;
+        if (hijack)
+            core.MaxLesserDrones = Math.Max(core.MaxLesserDrones, core.HijackMaxLesserDrones);
+
         var time = _timing.CurTime;
         if (time > core.NextLesserDroneAt)
         {
             var hasOvipositor = _evolution.HasLiving<XenoAttachedOvipositorComponent>(1);
-            core.NextLesserDroneAt = time + (hasOvipositor ? core.NextLesserDroneOviCooldown : core.NextLesserDroneCooldown * 2);
+            // Stories-HijackLesserDrones
+            var cooldown = hijack
+                ? core.HijackLesserDroneCooldown
+                : (hasOvipositor ? core.NextLesserDroneOviCooldown : core.NextLesserDroneCooldown * 2);
+            core.NextLesserDroneAt = time + cooldown;
             core.CurrentLesserDrones = Math.Min(core.MaxLesserDrones, core.CurrentLesserDrones + 1);
         }
 
@@ -166,18 +188,17 @@ public sealed class XenoPylonSystem : SharedXenoPylonSystem
         if (CanTrigger(tripper))
         {
             var othersFilter = Filter.Pvs(core);
-                foreach (var other in othersFilter.Recipients)
-                {
-                    if (other.AttachedEntity is not { } otherEnt)
-                        continue;
+            foreach (var other in othersFilter.Recipients)
+            {
+                if (other.AttachedEntity is not { } otherEnt)
+                    continue;
 
                     _popup.PopupEntity(Loc.GetString("rmc-xeno-larva-recovered", ("larva", Identity.Name(tripper, EntityManager, otherEnt))),
                     core, othersFilter, true, PopupType.Medium);
                 }
-            _hive.IncreaseBurrowedLarva(1);
+            _hive.ChangeBurrowedLarva(1);
             QueueDel(tripper);
         }
     }
 
 }
-

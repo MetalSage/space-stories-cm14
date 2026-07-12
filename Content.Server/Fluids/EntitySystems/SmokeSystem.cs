@@ -75,7 +75,7 @@ public sealed class SmokeSystem : EntitySystem
             if (curTime < smoke.NextSecond)
                 continue;
 
-            smoke.NextSecond += TimeSpan.FromSeconds(1);
+            smoke.NextSecond += TimeSpan.FromSeconds(6); // RMC14 change smoke reaction rate
             SmokeReact(uid, smoke.SmokeEntity);
         }
     }
@@ -261,6 +261,13 @@ public sealed class SmokeSystem : EntitySystem
         if (!Resolve(smokeUid, ref component))
             return;
 
+        // Stories-Ordnance-Start
+        var preventEv = new SmokeReactionAttemptEvent(entity);
+        RaiseLocalEvent(entity, ref preventEv);
+        if (preventEv.Cancelled)
+            return;
+        // Stories-Ordnance-End
+
         // RMC14 allow smoke to react without a bloodstream
         if (!TryComp<BloodstreamComponent>(entity, out var bloodstream))
         {
@@ -285,10 +292,14 @@ public sealed class SmokeSystem : EntitySystem
 
         var blockIngestion = _internals.AreInternalsWorking(entity);
 
+        // RMC14 start
+        // Change smoke interactions to CM13's values:
+        // The transfer amount is calcuated with a base of 10, divided by the amount of different reagents in the solution
         var cloneSolution = solution.Clone();
-        var availableTransfer = FixedPoint2.Min(cloneSolution.Volume, component.TransferRate);
+        var availableTransfer = FixedPoint2.Min(cloneSolution.Volume, 10 / cloneSolution.Contents.Count);
         var transferAmount = FixedPoint2.Min(availableTransfer, chemSolution.AvailableVolume);
         var transferSolution = cloneSolution.SplitSolution(transferAmount);
+        // RMC14 end
 
         foreach (var reagentQuantity in transferSolution.Contents.ToArray())
         {

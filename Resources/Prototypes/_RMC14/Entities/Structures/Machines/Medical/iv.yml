@@ -13,9 +13,9 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
-        density: 60
+        density: 20
         mask:
-        - MobMask
+        - ItemMask # Stories-Fix
   - type: Transform
     anchored: false
     noRot: true
@@ -56,6 +56,9 @@
       components:
       - Xeno
   - type: RMCMesonsNonviewable
+  - type: GuideHelp
+    guides:
+    - RMCMedical
 
 - type: entity
   parent: BaseItem
@@ -112,6 +115,9 @@
   - type: PhysicalComposition
     materialComposition:
       RMCPlastic: 500
+  - type: GuideHelp
+    guides:
+    - RMCMedical
 
 - type: entity
   parent: CMBloodPack

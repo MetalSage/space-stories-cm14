@@ -5,7 +5,6 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Systems;
-using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameObjects;
@@ -21,10 +20,10 @@ public sealed class VehicleLockSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly SharedPointLightSystem _lights = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPointLightSystem _lights = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
@@ -97,9 +96,9 @@ public sealed class VehicleLockSystem : EntitySystem
             return;
         }
 
-        if (actionComp.Action != null)
+        if (actionComp.Action is { } action)
         {
-            _actions.RemoveAction(user, actionComp.Action.Value);
+            RemoveAndDeleteLockAction(user, action);
             actionComp.Action = null;
         }
 
@@ -109,7 +108,21 @@ public sealed class VehicleLockSystem : EntitySystem
     private void OnLockActionShutdown(Entity<VehicleLockActionComponent> ent, ref ComponentShutdown args)
     {
         if (ent.Comp.Action is { } action)
-            _actions.RemoveAction(action);
+            RemoveAndDeleteLockAction(ent.Owner, action);
+    }
+
+    private void RemoveAndDeleteLockAction(EntityUid user, EntityUid action)
+    {
+        if (TerminatingOrDeleted(action))
+            return;
+
+        _actions.RemoveAction(user, action);
+
+        if (_net.IsClient)
+            return;
+
+        if (Exists(action))
+            QueueDel(action);
     }
 
     private void OnLockAction(Entity<VehicleLockActionComponent> ent, ref VehicleLockActionEvent args)
@@ -142,6 +155,7 @@ public sealed class VehicleLockSystem : EntitySystem
         }
 
         lockComp.Locked = !lockComp.Locked;
+        Dirty(vehicle, lockComp);
         RefreshLockAction(vehicle, lockComp, ent.Comp);
 
         _popup.PopupEntity(
@@ -379,7 +393,7 @@ public sealed class VehicleLockSystem : EntitySystem
 
         if (vehicleName != null)
         {
-            _metaData.SetEntityName(
+            _meta.SetEntityName(
                 key.Owner,
                 Loc.GetString(
                     copied ? "rmc-vehicle-key-name-copy-specific" : "rmc-vehicle-key-name-specific",
@@ -387,7 +401,7 @@ public sealed class VehicleLockSystem : EntitySystem
             return;
         }
 
-        _metaData.SetEntityName(key.Owner, Loc.GetString(copied ? "rmc-vehicle-key-name-copy" : "rmc-vehicle-key-name"));
+        _meta.SetEntityName(key.Owner, Loc.GetString(copied ? "rmc-vehicle-key-name-copy" : "rmc-vehicle-key-name"));
     }
 
     private void StartBreakAlarm(EntityUid vehicle, VehicleLockComponent lockComp)

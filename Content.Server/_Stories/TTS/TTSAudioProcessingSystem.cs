@@ -16,6 +16,7 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
     private const string XenoHivemindEffectName = "xeno hivemind";
     private const string HunterEffectName = "hunter";
     private const string MegaphoneEffectName = "megaphone";
+    private const string AresEffectName = "ARES";
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
@@ -26,6 +27,7 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
     private string _ffmpegPath = "ffmpeg";
     private string _hunterFfmpegArgs = "";
     private string _megaphoneFfmpegArgs = "";
+    private string _aresFfmpegArgs = "";
     private bool _radioEffectEnabled;
 
     private ISawmill _sawmill = default!;
@@ -66,6 +68,11 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
         {
             _megaphoneFfmpegArgs = v;
             EnableEffect(MegaphoneEffectName);
+        }, true);
+        _cfg.OnValueChanged(SCCVars.TTSAresFfmpegArguments, v =>
+        {
+            _aresFfmpegArgs = v;
+            EnableEffect(AresEffectName);
         }, true);
     }
 
@@ -120,6 +127,11 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
             processed = await ApplyMegaphoneEffect(processed);
 
         return processed;
+    }
+
+    public async Task<byte[]> ApplyAresEffect(byte[] oggData)
+    {
+        return await ApplyEffect(oggData, _aresFfmpegArgs, AresEffectName);
     }
 
     private async Task<byte[]> ApplyEffect(byte[] oggData, string ffmpegArgs, string effectName)

@@ -11,8 +11,6 @@
   name: Lurker
   description: A beefy, fast alien with sharp claws.
   components:
-  - type: GhostRole
-    name: cm-job-name-xeno-lurker
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Lurker/lurker.rsi
   - type: MobState
@@ -108,6 +106,7 @@
   id: CMXenoLurker
   suffix: Base
   components:
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleLurker

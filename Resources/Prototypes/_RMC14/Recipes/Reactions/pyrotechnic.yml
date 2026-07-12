@@ -27,7 +27,10 @@
     RMCSulphuricAcid:
       amount: 1
   effects:
-  - !type:ExplosionReactionEffect
+  # Stories-Ordnance-Start
+  - !type:SensitiveReactionExplosionEffect
+    threshold: 0
+  # Stories-Ordnance-End
     explosionType: RMC
     maxIntensity: 100
     intensityPerUnit: 0.33
@@ -39,15 +42,15 @@
   priority: 10
   reactants:
     Water:
-      amount: 1
+      amount: 3
     RMCChlorine:
       amount: 1
     RMCFluorine:
       amount: 3
   products:
-    RMCCLF3: 1
-    RMCHydrogen: 2
-    RMCOxygen: 1
+    RMCCLF3: 3
+    RMCHydrogen: 6
+    RMCOxygen: 3
 
 - type: reaction
   id: RMCCLF3Bad
@@ -59,7 +62,10 @@
     RMCFluorine:
       amount: 3
   effects:
-  - !type:ExplosionReactionEffect
+  # Stories-Ordnance-Start
+  - !type:SensitiveReactionExplosionEffect
+    threshold: 0
+  # Stories-Ordnance-End
     explosionType: RMC
     maxIntensity: 100
     intensityPerUnit: 0.25
@@ -74,17 +80,17 @@
     RMCCLF3:
       amount: 1
   products:
-    RMCNapalmHighCombustion: 1
+    RMCNapalmHighCombustion: 2
 
 - type: reaction
   id: RMCNapalmSticky
   reactants:
     RMCNapalm:
       amount: 1
-    WeldingFuel:
+    RMCWeldingFuel: # Stories-Ordance
       amount: 1
   products:
-    RMCNapalmSticky: 1
+    RMCNapalmSticky: 2
 
 - type: reaction
   id: RMCMethane

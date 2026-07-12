@@ -2,18 +2,23 @@ using System.Linq;
 using System.Numerics;
 using Content.Client._RMC14.ItemPickup;
 using Content.Client._RMC14.Movement;
+// RMC14
 using Content.Client._RMC14.Vehicle;
 using Content.Client._RMC14.Weapons.Ranged.Prediction;
+// RMC14
 using Content.Client.Animations;
 using Content.Client.Gameplay;
 using Content.Client.Items;
 using Content.Client.Weapons.Ranged.Components;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Weapons.Ranged.Prediction;
+using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
+// RMC14
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
-using Content.Shared.Weapons.Ranged.Components;
+// RMC14
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -21,6 +26,7 @@ using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Animations;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -39,6 +45,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly IStateManager _state = default!;
     [Dependency] private readonly AnimationPlayerSystem _animPlayer = default!;
     [Dependency] private readonly InputSystem _inputSystem = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
@@ -48,6 +55,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly GunPredictionSystem _gunPrediction = default!;
     [Dependency] private readonly RMCLagCompensationSystem _rmcLagCompensation = default!;
     [Dependency] private readonly VehicleTurretMuzzleOffsetSystem _vehicleTurretMuzzleOffset = default!;
+    // RMC14
 
     public static readonly EntProtoId HitscanProto = "HitscanEffect";
 
@@ -205,8 +213,10 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         // Define target coordinates relative to gun entity, so that network latency on moving grids doesn't fuck up the target location.
+        // RMC14
         var coordinateEntity = HasComp<GunUseGunOriginComponent>(gunUid) ? gunUid : entity;
         var coordinates = TransformSystem.ToCoordinates(coordinateEntity, mousePos);
+        // RMC14
 
         NetEntity? target = null;
         if (_state.CurrentState is GameplayStateBase screen)
@@ -220,13 +230,20 @@ public sealed partial class GunSystem : SharedGunSystem
 
         Log.Debug($"Sending shoot request tick {Timing.CurTick} / {Timing.CurTime}");
 
-        var projectiles = _gunPrediction.ShootRequested(GetNetEntity(gunUid), GetNetCoordinates(coordinates), target, null, session);
+        // RMC rearm instead of treating every held-fire request as continuous fire.
+        var rearmSemiAuto =
+            _cfg.GetCVar(CCVars.ControlHoldToAttackRanged) &&
+            gun.SelectedMode == SelectiveFire.SemiAuto &&
+            !HasComp<GunClickToFireComponent>(gunUid) &&
+            (gun.AvailableModes & SelectiveFire.FullAuto) == 0;
+        var projectiles = _gunPrediction.ShootRequested(GetNetEntity(gunUid), GetNetCoordinates(coordinates), target, null, session, rearmSemiAuto);
 
         RaisePredictiveEvent(new RequestShootEvent()
         {
             Target = target,
             Coordinates = GetNetCoordinates(coordinates),
             Gun = GetNetEntity(gunUid),
+            RearmSemiAuto = rearmSemiAuto,
             Shot = projectiles?.Select(e => e.Id).ToList(),
             LastRealTick = _rmcLagCompensation.GetLastRealTick(null),
         });
@@ -273,6 +290,7 @@ public sealed partial class GunSystem : SharedGunSystem
         var ent = Spawn(message.Prototype, coordinates);
         TransformSystem.SetWorldRotationNoLerp(ent, message.Angle);
 
+        // RMC14
         if (_vehicleTurretMuzzleOffset.TryGetGunPose(gunUid, null, out var origin, out var rotation))
         {
             var renderedMap = TransformSystem.ToMapCoordinates(origin);
@@ -294,6 +312,7 @@ public sealed partial class GunSystem : SharedGunSystem
             track.Offset = offset; // RMC14
             track.OriginOffset = originOffset; // RMC14
         }
+        // RMC14
 
         var lifetime = 0.4f;
 
@@ -322,6 +341,7 @@ public sealed partial class GunSystem : SharedGunSystem
         };
 
         _animPlayer.Play(ent, anim, "muzzle-flash");
+        // RMC14
         if (!TryComp(ent, out PointLightComponent? light))
         {
             light = Factory.GetComponent<PointLightComponent>();
@@ -333,6 +353,7 @@ public sealed partial class GunSystem : SharedGunSystem
         Lights.SetRadius(ent, 2f, light);
         Lights.SetColor(ent, Color.FromHex("#cc8e2b"), light);
         Lights.SetEnergy(ent, 5f, light);
+        // RMC14
 
         var animTwo = new Animation()
         {
@@ -364,10 +385,12 @@ public sealed partial class GunSystem : SharedGunSystem
             }
         };
 
+        // RMC14
         var uidPlayer = EnsureComp<AnimationPlayerComponent>(ent);
 
         _animPlayer.Stop(ent, uidPlayer, "muzzle-flash-light");
         _animPlayer.Play((ent, uidPlayer), animTwo, "muzzle-flash-light");
+        // RMC14
     }
 
     public override void ShootProjectile(EntityUid uid,

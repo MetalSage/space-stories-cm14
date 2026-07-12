@@ -6,7 +6,11 @@
   components:
   - type: Vehicle
     movementKind: Grid
+  - type: LagCompensation
   - type: Clickable
+  - type: WarpPoint
+    follow: true
+    location: Humvee
   - type: RMCIgnoreGhostInteractionLimits
   - type: RequireProjectileTarget
   - type: GridVehicleMover
@@ -48,8 +52,10 @@
         - HighImpassable
         - LowImpassable
         - LargeMobLayer
+        - Vehicle
         layer:
         - LargeMobLayer
+        - Vehicle
       mob:
         shape:
           !type:PhysShapeAabb
@@ -119,29 +125,29 @@
           components:
           - VehicleWheelItem
   - type: HardpointSlots
-    vehicleFamily: Humvee
+    vehicleFamily: HardpointVehicleFamilyHumvee
     slots:
     - id: turret
-      hardpointType: Turret
-      slotType: Turret
+      hardpointType: HardpointTypeTurret
+      slotType: HardpointSlotTypeTurret
       visualLayer: primary
       insertDelay: 2.0
       required: false
     - id: roof
-      hardpointType: RoofAttachment
-      slotType: RoofAttachment
+      hardpointType: HardpointTypeRoofAttachment
+      slotType: HardpointSlotTypeRoofAttachment
       visualLayer: support
       insertDelay: 1.5
       required: false
     - id: front
-      hardpointType: FrontAttachment
-      slotType: FrontAttachment
+      hardpointType: HardpointTypeFrontAttachment
+      slotType: HardpointSlotTypeFrontAttachment
       visualLayer: support-2
       insertDelay: 1.5
       required: false
     - id: wheel-1
-      hardpointType: Wheel
-      slotType: Wheel
+      hardpointType: HardpointTypeWheel
+      slotType: HardpointSlotTypeWheel
       insertDelay: 1.5
   - type: VehicleWheelSlots
     slotCount: 1
@@ -165,6 +171,12 @@
     - offset: 1,-0.1
       radius: 0.45
       interiorCoords: 2.41,-1.35
+  - type: MarineMapTracked
+  - type: TacticalMapTracked
+  - type: TacticalMapIcon
+    icon:
+      sprite: /Textures/_RMC14/Interface/map_blips_large.rsi
+      state: humvee
 
 - type: entity
   parent: VehicleHumveeBase
@@ -182,7 +194,6 @@
     damageModifierSet: StructuralMarine
   - type: HardpointIntegrity
     maxIntegrity: 1000
-    repairFuelCost: 12
     bypassEntryOnZero: true
 
 - type: entity
@@ -196,7 +207,6 @@
     damageModifierSet: StructuralMarine
   - type: HardpointIntegrity
     maxIntegrity: 1000
-    repairFuelCost: 12
     bypassEntryOnZero: true
   - type: Sprite
     sprite: _RMC14/Structures/Vehicles/humvee_medical.rsi
@@ -215,23 +225,23 @@
     - map: [ rmc-wheels ]
       state: wheels_1
   - type: HardpointSlots
-    vehicleFamily: Humvee
+    vehicleFamily: HardpointVehicleFamilyHumvee
     slots:
     - id: roof
-      hardpointType: RoofAttachment
-      slotType: RoofAttachment
+      hardpointType: HardpointTypeRoofAttachment
+      slotType: HardpointSlotTypeRoofAttachment
       visualLayer: support
       insertDelay: 1.5
       required: false
     - id: front
-      hardpointType: FrontAttachment
-      slotType: FrontAttachment
+      hardpointType: HardpointTypeFrontAttachment
+      slotType: HardpointSlotTypeFrontAttachment
       visualLayer: support-2
       insertDelay: 1.5
       required: false
     - id: wheel-1
-      hardpointType: Wheel
-      slotType: Wheel
+      hardpointType: HardpointTypeWheel
+      slotType: HardpointSlotTypeWheel
       insertDelay: 1.5
   - type: VehicleEnter
     interiorPath: /Maps/_RMC14/Vehicles/humvee_medical_interior.yml
@@ -264,7 +274,6 @@
     damageModifierSet: StructuralMarine
   - type: HardpointIntegrity
     maxIntegrity: 1000
-    repairFuelCost: 12
     bypassEntryOnZero: true
   - type: Sprite
     sprite: _RMC14/Structures/Vehicles/humvee_transport.rsi
@@ -283,23 +292,23 @@
     - map: [ rmc-wheels ]
       state: wheels_1
   - type: HardpointSlots
-    vehicleFamily: Humvee
+    vehicleFamily: HardpointVehicleFamilyHumvee
     slots:
     - id: roof
-      hardpointType: RoofAttachment
-      slotType: RoofAttachment
+      hardpointType: HardpointTypeRoofAttachment
+      slotType: HardpointSlotTypeRoofAttachment
       visualLayer: support
       insertDelay: 1.5
       required: false
     - id: front
-      hardpointType: FrontAttachment
-      slotType: FrontAttachment
+      hardpointType: HardpointTypeFrontAttachment
+      slotType: HardpointSlotTypeFrontAttachment
       visualLayer: support-2
       insertDelay: 1.5
       required: false
     - id: wheel-1
-      hardpointType: Wheel
-      slotType: Wheel
+      hardpointType: HardpointTypeWheel
+      slotType: HardpointSlotTypeWheel
       insertDelay: 1.5
   - type: VehicleEnter
     interiorPath: /Maps/_RMC14/Vehicles/humvee_transport_interior.yml
@@ -330,7 +339,6 @@
   - type: ItemSlots
     slots:
       turret:
-        startingItem: VehicleHumveeARCTurret
         whitelist:
           components:
           - HardpointItem
@@ -339,23 +347,36 @@
     damageModifierSet: VehicleFrameARC
   - type: HardpointIntegrity
     maxIntegrity: 800
-    repairFuelCost: 12
     bypassEntryOnZero: true
   - type: VehicleDeployable
     deployTime: 5
     undeployTime: 5
-    autoTargetRange: 20
+    autoTargetRange: 7
     autoTargetCooldown: 0.2
     autoTurretEnabled: true
+  - type: VehicleSensor
+    range: 40
+    requiresDeployed: true
   - type: VehicleDeployGatedHardpoints
     blockedHardpoints:
-    - Cannon
+    - HardpointTypeCannon
   - type: VehicleEnter
     interiorPath: /Maps/_RMC14/Vehicles/humvee_arc_interior.yml
     enterDoAfter: 1.0
     exitDoAfter: 1.0
-    maxPassengers: 4
+    maxPassengers: 5
     maxXenos: 2
+    reservedPassengerPools:
+    - slots: 2
+      eligibleJobs:
+      - CMStaffOfficer
+      - CMSeniorEnlistedAdvisor
+      - CMExecutiveOfficer
+      - CMCommandingOfficer
+      - CMUNMCBrigadierGeneral
+    - slots: 1
+      eligibleJobs:
+      - CMIntelOfficer
     entryPoints:
     - offset: -1,-0.1
       radius: 0.5
@@ -363,3 +384,4 @@
     - offset: 1,-0.1
       radius: 0.5
       interiorCoords: 3.56, -0.42
+

@@ -9,12 +9,8 @@ rmc-hardpoint-remove-verb = Remove {$slot}
 rmc-hardpoint-repaired = Hardpoint repaired.
 rmc-hardpoint-intact = Hardpoint is already intact.
 rmc-hardpoint-integrity-examine = Integrity: [color={$color}]{$current}/{$max} ({$percent}%)[/color]
+rmc-hardpoint-ammo-type-examine = Ammo type: {$type}
 rmc-hardpoint-armor-modifiers-examine = Damage modifiers: acid {$acid}, slash {$slash}, bullet {$bullet}, explosive {$explosive}, blunt {$blunt}
-rmc-hardpoint-condition-pristine = It is in pristine condition.
-rmc-hardpoint-condition-good = It is in good condition.
-rmc-hardpoint-condition-worn = It is showing wear.
-rmc-hardpoint-condition-bad = It is in bad condition.
-rmc-hardpoint-condition-critical = It is barely holding together.
 rmc-hardpoint-ui-title = Hardpoints
 rmc-hardpoint-ui-empty-slot = Empty
 rmc-hardpoint-ui-integrity = {$current}/{$max} ({$percent}%)
@@ -92,8 +88,10 @@ rmc-vehicle-deploy-action-desc-undeploying = Retraction in progress.
 rmc-vehicle-enter-locked = The vehicle is locked.
 rmc-vehicle-enter-use-doorway = You need to use a doorway to enter.
 rmc-vehicle-enter-busy = Someone is already entering there.
+rmc-vehicle-enter-no-power-loader = The power loader doesn't fit through the vehicle door.
 rmc-vehicle-enter-xeno-full = There's no room for more xenos inside.
 rmc-vehicle-enter-passenger-full = There's no room for more passengers inside.
+rmc-vehicle-enter-pulled-full = There's no room for who you're dragging inside.
 rmc-vehicle-hull-destroyed = The vehicle's hull is destroyed.
 rmc-vehicle-exit-busy = Someone is already using this exit.
 rmc-vehicle-exit-blocked = The exit is blocked.
@@ -119,3 +117,31 @@ rmc-vehicle-key-examine-blank = [color=lightblue]This blank key can be imprinted
 rmc-vehicle-key-examine-duplicator = [color=lightblue]This blank key can copy an existing vehicle key by using it on that key.[/color]
 rmc-vehicle-key-examine-bound = [color=lightblue]This key is bound to a vehicle lock.[/color]
 rmc-hardpoint-remove-blocked = That hardpoint is fixed in place.
+
+rmc-vehicle-supply-stored = Stored Vehicles
+rmc-vehicle-supply-vehicle = Vehicle
+rmc-vehicle-supply-raise = Raise
+rmc-vehicle-supply-lower = Lower
+rmc-vehicle-supply-status-lift = Lift: { $mode } | Status: { $status } | Active: { $active }
+rmc-vehicle-supply-mode-no-lift = No lift
+rmc-vehicle-supply-status-none = none
+rmc-vehicle-supply-status-busy = busy
+rmc-vehicle-supply-status-idle = idle
+rmc-vehicle-supply-copies-collapsed = Copies >
+rmc-vehicle-supply-copies-expanded = Copies v
+rmc-vehicle-supply-preview-selected = Vehicle Preview
+rmc-vehicle-supply-mode-lowered = Lowered
+rmc-vehicle-supply-mode-raised = Raised
+rmc-vehicle-supply-mode-lowering = Lowering
+rmc-vehicle-supply-mode-raising = Raising
+rmc-vehicle-supply-mode-preparing = Preparing
+rmc-vehicle-supply-locked-pop = Insufficient troops
+rmc-vehicle-supply-purchase = Request
+rmc-vehicle-supply-status-select-order = Select a vehicle to order for the squad.
+
+rmc-hardpoint-category-tank-primary = Primary
+rmc-hardpoint-category-tank-secondary = Secondary
+rmc-hardpoint-category-tank-armor = Armor
+rmc-hardpoint-category-tank-support = Support
+rmc-hardpoint-category-tank-treads = Treads
+rmc-hardpoint-category-tank-general = General

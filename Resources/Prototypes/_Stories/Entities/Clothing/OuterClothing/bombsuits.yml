@@ -1,0 +1,23 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: STSuitBomb
+  name: bomb suit
+  description: A suit designed for safety when handling explosives.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Misc/bombsuit.rsi
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Misc/bombsuit.rsi
+  - type: Item
+    size: Huge
+  - type: CMArmor
+    explosionArmor: 50
+  - type: CMHardArmor
+  - type: RMCArmorSpeedTier
+    speedTier: heavy
+  - type: ClothingSpeedModifier
+    walkModifier: 0.4
+    sprintModifier: 0.4
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.3

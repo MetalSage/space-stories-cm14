@@ -129,6 +129,11 @@ public abstract class SharedXenoNameSystem : EntitySystem
                 }
             }
         }
+        // Stories-Fix-Start
+        catch (InvalidOperationException)
+        {
+        }
+        // Stories-Fix-End
         catch (Exception e)
         {
             Log.Error($"Error reading total xeno playtime:\n{e}");

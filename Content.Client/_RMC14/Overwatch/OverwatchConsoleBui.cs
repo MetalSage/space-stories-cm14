@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Client._RMC14.UserInterface;
+using Content.Client._Stories.Chat;
 using Content.Client.Message;
 using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._RMC14.Maths;
@@ -72,6 +73,8 @@ public sealed class OverwatchConsoleBui : RMCPopOutBui<OverwatchConsoleWindow>
         {
             return;
         }
+
+        RefreshAntiAirHeader(s);
 
         var squads = s.Squads.ToList();
         squads.Sort((a, b) => string.CompareOrdinal(a.Name, b.Name));
@@ -223,8 +226,15 @@ public sealed class OverwatchConsoleBui : RMCPopOutBui<OverwatchConsoleWindow>
 
                     void SendSquadMessage()
                     {
-                        SendPredictedMessage(new OverwatchConsoleSendMessageBuiMsg(window.MessageBox.Text));
+                        // Stories-TTS-Start
+                        var text = window.MessageBox.Text;
+                        var filter = EntMan.System<ChatFilterSystem>();
+                        if (filter != null)
+                            text = filter.ApplyClientReplacements(text);
+
+                        SendPredictedMessage(new OverwatchConsoleSendMessageBuiMsg(text));
                         window.Close();
+                        // Stories-TTS-End
                     }
 
                     window.MessageBox.OnTextEntered += _ => SendSquadMessage();
@@ -276,6 +286,13 @@ public sealed class OverwatchConsoleBui : RMCPopOutBui<OverwatchConsoleWindow>
                             // Don't send empty or whitespace-only objectives
                             if (string.IsNullOrWhiteSpace(objective))
                                 return;
+
+                            // Stories-TTS-Start
+                            var filter = EntMan.System<ChatFilterSystem>();
+                            if (filter != null)
+                                objective = filter.ApplyClientReplacements(objective);
+                            // Stories-TTS-End
+
                             SendPredictedMessage(new OverwatchConsoleSetSquadObjectiveBuiMsg(objectiveType, objective));
                         });
 
@@ -732,6 +749,35 @@ public sealed class OverwatchConsoleBui : RMCPopOutBui<OverwatchConsoleWindow>
 
         UpdateView();
         UpdateObjectivesWindow(s);
+    }
+
+    private void RefreshAntiAirHeader(OverwatchConsoleBuiState s)
+    {
+        if (Window == null)
+            return;
+
+        var selectSquad = Loc.GetString("rmc-overwatch-console-disabled-select-squad");
+        if (!s.AntiAir.HasConsole)
+        {
+            Window.OverwatchHeader.SetMarkupPermissive($"[color=#88C7FA]{selectSquad}[/color]");
+            return;
+        }
+
+        var status = s.AntiAir.Disabled
+            ? Loc.GetString("rmc-anti-air-status-disabled")
+            : Loc.GetString("rmc-anti-air-status-operational");
+
+        var zone = s.AntiAir.ProtectedZone ?? Loc.GetString("rmc-anti-air-zone-none");
+        var engagement = !s.AntiAir.Disabled && s.AntiAir.ProtectedZone != null
+            ? Loc.GetString("rmc-anti-air-status-engaged")
+            : Loc.GetString("rmc-anti-air-status-disengaged");
+
+        var antiAir = Loc.GetString("rmc-overwatch-anti-air-status",
+            ("status", status),
+            ("zone", zone),
+            ("engagement", engagement));
+
+        Window.OverwatchHeader.SetMarkupPermissive($"[color=#88C7FA]{selectSquad}[/color]\n[color=#CED22B]{antiAir}[/color]");
     }
 
     private void UpdateObjectivesWindow(OverwatchConsoleBuiState s)

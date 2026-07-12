@@ -11,11 +11,10 @@
   name: Sentinel
   description: A slithery, spitting kind of alien.
   components:
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleSentinel
-  - type: GhostRole
-    name: cm-job-name-xeno-sentinel
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Sentinel/sentinel.rsi
     layers:

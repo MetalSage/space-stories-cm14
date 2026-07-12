@@ -3,6 +3,11 @@
   copyright: "Taken from cmss13"
   source: "https://github.com/cmss13-devs/cmss13/blob/21e6447cc08aea502f671c819fdbcecbb85e6028/sound/effects/bamf.ogg"
 
+- files: ["antiair_explosions.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/b26246cf7710ac6f2c2e4eddf94a49eb47f40800/sound/effects/antiair_explosions.ogg"
+
 - files: ["flag_lowering.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Taken from cmss13"
@@ -72,6 +77,26 @@
   license: "CC-BY-SA-3.0"
   copyright: "Taken from cmss13"
   source: "https://github.com/cmss13-devs/cmss13/blob/30a083c72320b6cc3c724f98d795385b1080fe6a/sound/soundscape/thunderclap2.ogg"
+
+- files: ["weather_warning.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/master/sound/effects/weather_warning.ogg"
+
+- files: ["weather_warning.wav"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13, converted to mono PCM WAV for positional audio"
+  source: "https://github.com/cmss13-devs/cmss13/blob/master/sound/effects/weather_warning.ogg"
+
+- files: ["weather_warning_varadero.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/master/sound/effects/weather_warning_varadero.ogg"
+
+- files: ["weather_warning_varadero.wav"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13, converted to mono PCM WAV for positional audio"
+  source: "https://github.com/cmss13-devs/cmss13/blob/master/sound/effects/weather_warning_varadero.ogg"
 
 - files: ["gibbed.ogg"]
   license: "CC-BY-SA-3.0"

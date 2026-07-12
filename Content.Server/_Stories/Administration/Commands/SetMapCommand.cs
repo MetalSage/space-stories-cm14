@@ -18,14 +18,14 @@ namespace Content.Server._Stories.GameTicking.Commands
         [Dependency] private readonly IGameMapManager _gameMapManager = default!;
 
         public string Command => "setmap";
-        public string Description => Loc.GetString("setmap-command-description");
-        public string Help => Loc.GetString("setmap-command-help");
+        public string Description => Loc.GetString("stories-command-setmap-description");
+        public string Help => Loc.GetString("stories-command-setmap-help");
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             if (args.Length != 1)
             {
-                shell.WriteLine(Loc.GetString("setmap-command-need-one-argument"));
+                shell.WriteLine(Loc.GetString("stories-command-setmap-need-one-argument"));
                 return;
             }
 
@@ -38,11 +38,11 @@ namespace Content.Server._Stories.GameTicking.Commands
 
                 _gameMapManager.SelectMap(name);
                 ticker.UpdateInfoText();
-                shell.WriteLine(Loc.GetString("setmap-command-success", ("map", name)));
+                shell.WriteLine(Loc.GetString("stories-command-setmap-success", ("map", name)));
             }
             else
             {
-                shell.WriteLine(Loc.GetString("setmap-command-failed", ("map", name)));
+                shell.WriteLine(Loc.GetString("stories-command-setmap-failed", ("map", name)));
             }
         }
 
@@ -55,7 +55,7 @@ namespace Content.Server._Stories.GameTicking.Commands
                     .Select(p => new CompletionOption(p.ID, p.MapName))
                     .OrderBy(p => p.Value);
 
-                return CompletionResult.FromHintOptions(options, Loc.GetString("setmap-command-arg-map"));
+                return CompletionResult.FromHintOptions(options, Loc.GetString("stories-command-setmap-arg-map"));
             }
 
             return CompletionResult.Empty;

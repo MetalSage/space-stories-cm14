@@ -3,20 +3,17 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.Hunter.Projectiles;
 
-[RegisterComponent] [NetworkedComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class HunterStunBoltComponent : Component
 {
     [DataField]
     public TimeSpan StunTime = TimeSpan.FromSeconds(4);
 }
 
-[RegisterComponent] [NetworkedComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class HunterAreaStunOnHitComponent : Component
 {
     public bool Detonated = false;
-
-    [DataField]
-    public EntProtoId Effect = "STEffectPlasmaImmobilizer";
 
     [DataField]
     public TimeSpan HunterReductionTime = TimeSpan.FromSeconds(2);

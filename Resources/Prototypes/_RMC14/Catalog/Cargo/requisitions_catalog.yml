@@ -48,8 +48,6 @@
         crate: RMCCrateBoxShellsShotgunBuckshot
       - cost: 3000
         crate: RMCCrateBoxShellsShotgunFlechette
-      - cost: 4000
-        crate: RMCCrateBoxShellsShotgunBreaching
       - cost: 2000
         crate: RMCCrateBoxMagazinePistolM77AP
       - cost: 4000
@@ -60,8 +58,6 @@
         crate: RMCCrateMagazineSmartGun
       - cost: 4000
         crate: RMCCrateBoxMagazineSmartPistol
-      - cost: 2000
-        crate: RMCCrateBoxMagazineBreaching
       - cost: 2000
         crate: RMCCrateBoxMagazineM54CE2
       - cost: 2000
@@ -88,6 +84,8 @@
         crate: RMCCrateMagazineML66DDrum
       - cost: 2500
         crate: RMCCrateMagazineM2C
+      - cost: 6000
+        crate: RMCCrateMagazineAmmoSurplus
     - name: Обвесы # Stories-Translate
       entries:
       - cost: 3000
@@ -170,8 +168,8 @@
         crate: RMCCrateGlassSheets
       - cost: 2000
         crate: RMCCrateWoodenPlanks
-#      - cost: 2000
-#        crate: RMCCrateFoldingBarricades
+      - cost: 2000
+        crate: RMCCrateFoldingBarricades
 #      - cost: 3000
 #        crate: RMCCrateSuperconductingMagneticCoil
       - cost: 2000
@@ -365,8 +363,6 @@
         crate: RMCCrateM34
       - cost: 3000
         crate: RMCCrateMOU53
-      - cost: 3000
-        crate: RMCCrateXM51
       - cost: 4000
         crate: RMCCrateM85A1
       - cost: 6000

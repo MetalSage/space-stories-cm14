@@ -1,4 +1,8 @@
 using System.Linq;
+using Content.Shared._RMC14.AntiAir;
+using Content.Shared._RMC14.ARES;
+using Content.Shared._RMC14.ARES.Logs;
+using Content.Shared._RMC14.Areas;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Dropship.AttachmentPoint;
 using Content.Shared._RMC14.Dropship.Utility.Components;
@@ -10,6 +14,7 @@ using Content.Shared._RMC14.Rules;
 using Content.Shared._RMC14.Thunderdome;
 using Content.Shared._RMC14.Tracker;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._RMC14.Xenonids.Announce;
 using Content.Shared._RMC14.Xenonids.Maturing;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
@@ -28,7 +33,9 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Shared._RMC14.Dropship;
 
@@ -36,9 +43,12 @@ public abstract class SharedDropshipSystem : EntitySystem
 {
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
 
+    [Dependency] private readonly AreaSystem _areas = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private readonly RMCShipAntiAirSystem _antiAir = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly ARESCoreSystem _core = default!;
     [Dependency] private readonly SharedGameTicker _gameTicker = default!;
     [Dependency] private readonly SharedMarineAnnounceSystem _marineAnnounce = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -48,9 +58,12 @@ public abstract class SharedDropshipSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedXenoAnnounceSystem _xenoAnnounce = default!;
 
     private TimeSpan _dropshipInitialDelay;
     private TimeSpan _hijackInitialDelay;
+
+    private static readonly EntProtoId<ARESLogTypeComponent> LogCat = "ARESTabDropshipLogs";
 
     public override void Initialize()
     {
@@ -209,12 +222,7 @@ public abstract class SharedDropshipSystem : EntitySystem
         if (!TryDropshipHijackPopup(ent, args.User, false))
             return;
 
-        var destinations = new List<(NetEntity Id, string Name)>();
-        var query = EntityQueryEnumerator<DropshipHijackDestinationComponent>();
-        while (query.MoveNext(out var uid, out _))
-        {
-            destinations.Add((GetNetEntity(uid), Name(uid)));
-        }
+        var destinations = _antiAir.GetHijackDestinations();
 
         _ui.OpenUi(ent.Owner, DropshipHijackerUiKey.Key, args.User);
         _ui.SetUiState(ent.Owner, DropshipHijackerUiKey.Key, new DropshipHijackerBuiState(destinations));
@@ -319,6 +327,12 @@ public abstract class SharedDropshipSystem : EntitySystem
                     FlyTo((computerId, computer), closestDestination.Value, user))
                 {
                     _popup.PopupEntity(Loc.GetString("rmc-dropship-call-to-location"), user, user, PopupType.LargeCaution);
+
+                    var locationName = "Unknown";
+                    if (_areas.TryGetArea(closestDestination.Value, out _, out var areaProto))
+                        locationName = areaProto.Name;
+
+                    _xenoAnnounce.AnnounceSameHiveDefaultSound(user, $"The Queen has commanded the metal bird to the hive at {locationName}");
                     return;
                 }
             }
@@ -506,6 +520,10 @@ public abstract class SharedDropshipSystem : EntitySystem
         }
 
         FlyTo(ent, destination.Value, user);
+
+        var grid = _transform.GetGrid((ent.Owner, Transform(ent.Owner)));
+        if (grid != null)
+            _core.CreateARESLog(ent.Comp.Faction, LogCat, (string)$"{Name(args.Actor)} launched the {Name(grid.Value)} to {Name(destination.Value)}");
     }
 
     private void OnDropshipNavigationCancelMsg(Entity<DropshipNavigationComputerComponent> ent,
@@ -542,13 +560,42 @@ public abstract class SharedDropshipSystem : EntitySystem
             return;
         }
 
-        if (FlyTo(ent, destination.Value, args.Actor, true) &&
-            TryComp(ent, out TransformComponent? xform) &&
+        if (!TryComp(ent, out TransformComponent? xform) ||
+            !xform.ParentUid.Valid)
+        {
+            return;
+        }
+
+        var originalDestination = destination.Value;
+        var antiAirEv = new RMCGetHijackDestinationEvent(xform.ParentUid, originalDestination, args.Actor);
+        RaiseLocalEvent(ref antiAirEv);
+
+        if (!HasComp<DropshipHijackDestinationComponent>(antiAirEv.Destination))
+        {
+            Log.Warning($"{ToPrettyString(args.Actor)} tried to hijack to invalid redirected destination {ToPrettyString(antiAirEv.Destination)}");
+            return;
+        }
+
+        if (FlyTo(ent, antiAirEv.Destination, args.Actor, true) &&
             xform.ParentUid.Valid)
         {
             var dropship = EnsureComp<DropshipComponent>(xform.ParentUid);
             dropship.Crashed = true;
             Dirty(xform.ParentUid, dropship);
+
+            var resolvedEv = new RMCDropshipHijackAntiAirResolvedEvent(
+                xform.ParentUid,
+                args.Actor,
+                originalDestination,
+                antiAirEv.Destination,
+                antiAirEv.AntiAirConsole,
+                antiAirEv.OriginalZone,
+                antiAirEv.DivertedZone,
+                antiAirEv.Deterrence,
+                antiAirEv.DeterrenceSound,
+                antiAirEv.DeterrenceShakeIntensity,
+                antiAirEv.DeterrenceShakeDuration);
+            RaiseLocalEvent(ref resolvedEv);
 
             var ev = new DropshipHijackStartEvent(xform.ParentUid);
             RaiseLocalEvent(ref ev);

@@ -1,0 +1,12 @@
+ent-RMCMREInstantPowderBase = { ent-DrinkBase }
+    .desc = { ent-DrinkBase.desc }
+ent-RMCMREInstantPowderOrange = orange juice packet
+    .desc = A small packet of orange flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone.
+ent-RMCMREInstantPowderApple = apple juice packet
+    .desc = A small packet of apple flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone.
+ent-RMCMREInstantPowderWatermelon = watermelon juice packet
+    .desc = A small packet of watermelon flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone.
+ent-RMCMREInstantPowderGrape = grape juice packet
+    .desc = A small packet of grape flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone.
+ent-RMCMREInstantPowderPineapple = pineapple juice packet
+    .desc = A small packet of pineapple flavored drink mix, sweetened with sugar alcohols. For best results, mix with water instead of consuming standalone.

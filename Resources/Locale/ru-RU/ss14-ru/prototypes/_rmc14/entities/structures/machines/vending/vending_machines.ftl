@@ -1,5 +1,7 @@
 ent-CMVendor = Торговый автомат
     .desc = Универсальный торговый автомат.
+ent-VehicleHardpointVendor = принтер для печати снаряжения транспортных средств
+    .desc = Устройство для печати точек крепления на транспортных средствах.
 ent-CMVendorCoffee = Автомат по продаже горячих напитков
     .desc = Торговый автомат, выдающий горячие напитки.
 ent-CMVendorCoffeeLockedPowered = { ent-CMVendorCoffee }

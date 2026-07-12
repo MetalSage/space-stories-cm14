@@ -144,8 +144,10 @@
         name: Зажигательные Гранаты M40 HIDP (x6)
         points: 40
         spawn: 6
-      #- id: M40HPDPWhitePhosphorusGrenadesx6
-      #  points: 40
+      - id: RMCGrenadeWhitePhosphorusCompound
+        name: M40 CCDP Chemical Compound Grenades (x6)
+        points: 40
+        spawn: 6
       - id: RMC40MMGrenadeM74AGMF
         points: 40
         spawn: 6

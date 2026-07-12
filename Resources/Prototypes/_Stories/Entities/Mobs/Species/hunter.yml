@@ -99,6 +99,13 @@
   - type: ParalyzeOnPullAttemptImmune
   - type: RMCRevivable
     unrevivableDelay: 0
+  - type: Language
+    spokenLanguages:
+      - STHunter
+    understoodLanguages:
+      - STHunter
+    currentLanguage: STHunter
+    defaultLanguage: STHunter
   - type: Hunter
     removeComponents:
     - type: RMCStamina
@@ -119,6 +126,7 @@
   - type: NpcFactionMember
     factions:
     - STHunter
+  - type: MotionDetectorTracked
   - type: Skills
     skills:
       RMCSkillCqc: 5

@@ -14,8 +14,13 @@ ui-options-function-cm-holster-quaternary = Снять с хранения че�
 ui-options-function-rmc-pick-up-dropped-items = Подобрать упавший предмет
 ui-options-function-rmc-interact-with-other-hand = Взаимодействие с другой рукой
 ui-options-function-rmc-rest = Отдыхать
+ui-options-function-rmc-resist = Сопротивляться
 
 ui-options-header-rmc-xeno = Ксеноморфы
 
 ui-options-function-cm-xeno-wide-swing = Широкий размах ксеноморфа
 ui-options-function-rmc-xeno-rest = Отдых ксеноморфов
+
+ui-options-function-smart-equip-uniform = Smart-equip to uniform
+ui-options-function-smart-equip-armor = Smart-equip to armor
+ui-options-function-smart-equip-helmet = Smart-equip to helmet

@@ -1,0 +1,31 @@
+- type: entity
+  id: STAssemblyHolder
+  parent: BaseItem
+  name: assembly holder
+  description: A holder for electronic assemblies.
+  components:
+    - type: Sprite
+      sprite: _Stories/Objects/Misc/new_assemblies.rsi
+      layers:
+        - state: holder
+          map: ["enum.OrdnanceAssemblyLayers.Base"]
+        - state: blank
+          map: ["enum.OrdnanceAssemblyLayers.Left"]
+        - state: blank
+          map: ["enum.OrdnanceAssemblyLayers.Right"]
+    - type: Item
+      size: Small
+    - type: OrdnanceAssemblyHolder
+    - type: ContainerContainer
+      containers:
+        assembly_container: !type:Container
+    - type: OrdnanceTrigger
+    - type: Appearance
+    - type: UserInterface
+      interfaces:
+        enum.OrdnanceTimerUiKey.Key:
+          type: OrdnanceTimerBoundUserInterface
+        enum.OrdnanceProxSensorUiKey.Key:
+          type: OrdnanceProxSensorBoundUserInterface
+        enum.OrdnanceSignallerUiKey.Key:
+          type: OrdnanceSignallerBoundUserInterface

@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Client._RMC14.Mentor;
+using Content.Client._Stories.Chat;
 using Content.Client.Administration.Managers;
 using Content.Client.Chat;
 using Content.Client.Chat.Managers;
@@ -44,7 +45,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
@@ -141,6 +141,8 @@ public sealed partial class ChatUIController : UIController
     /// </summary>
     private readonly Dictionary<EntityUid, SpeechBubbleQueueData> _queuedSpeechBubbles
         = new();
+
+    private bool _speechBubblesSuppressed;
 
     private readonly HashSet<ChatBox> _chats = new();
     public IReadOnlySet<ChatBox> Chats => _chats;
@@ -448,7 +450,20 @@ public sealed partial class ChatUIController : UIController
         _speechBubbleRoot.Orphan();
         root.AddChild(_speechBubbleRoot);
         LayoutContainer.SetAnchorPreset(_speechBubbleRoot, LayoutContainer.LayoutPreset.Wide);
+        _speechBubbleRoot.Visible = !_speechBubblesSuppressed;
         _speechBubbleRoot.SetPositionLast();
+    }
+
+    public void SetSpeechBubblesSuppressed(bool suppressed)
+    {
+        if (_speechBubblesSuppressed == suppressed)
+            return;
+
+        _speechBubblesSuppressed = suppressed;
+        _speechBubbleRoot.Visible = !suppressed;
+
+        if (suppressed)
+            ClearSpeechBubbles();
     }
 
     private void OnAttachedChanged(EntityUid uid)
@@ -460,6 +475,9 @@ public sealed partial class ChatUIController : UIController
 
     private void AddSpeechBubble(ChatMessage msg, SpeechBubble.SpeechType speechType)
     {
+        if (_speechBubblesSuppressed)
+            return;
+
         var ent = EntityManager.GetEntity(msg.SenderEntity);
 
         if (!EntityManager.EntityExists(ent))
@@ -535,6 +553,22 @@ public sealed partial class ChatUIController : UIController
         {
             _activeSpeechBubbles.Remove(entityUid);
         }
+    }
+
+    private void ClearSpeechBubbles()
+    {
+        _queuedSpeechBubbles.Clear();
+
+        foreach (var bubbles in _activeSpeechBubbles.Values)
+        {
+            foreach (var bubble in bubbles)
+            {
+                bubble.OnDied -= SpeechBubbleDied;
+                bubble.Orphan();
+            }
+        }
+
+        _activeSpeechBubbles.Clear();
     }
 
     private void UpdateChannelPermissions()
@@ -663,6 +697,9 @@ public sealed partial class ChatUIController : UIController
 
     private void UpdateQueuedSpeechBubbles(FrameEventArgs delta)
     {
+        if (_speechBubblesSuppressed)
+            return;
+
         // Update queued speech bubbles.
         if (_queuedSpeechBubbles.Count == 0 || _examine == null)
         {
@@ -877,7 +914,9 @@ public sealed partial class ChatUIController : UIController
     private void OnChatMessage(MsgChatMessage message)
     {
         var msg = message.Message;
-        ProcessChatMessage(msg, !msg.HidePopup);
+        // RMC14
+        ProcessChatMessage(msg, !msg.HidePopup || msg.UseEmoteSpeechBubble);
+        // RMC14
 
         if ((msg.Channel & ChatChannel.AdminRelated) == 0 ||
             _config.GetCVar(CCVars.ReplayRecordAdminChat))
@@ -888,6 +927,15 @@ public sealed partial class ChatUIController : UIController
 
     public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
     {
+        // Stories-TTS-Start
+        var filter = _ent.SystemOrNull<ChatFilterSystem>();
+        if (filter != null)
+        {
+            msg.Message = filter.CensorMessage(msg.Message, false);
+            msg.WrappedMessage = filter.CensorMessage(msg.WrappedMessage, true);
+        }
+        // Stories-TTS-End
+
         if (_colorBlindMode)
         {
             foreach (var (color, colorblindColor) in _colorBlindReplacements)
@@ -956,11 +1004,15 @@ public sealed partial class ChatUIController : UIController
         switch (msg.Channel)
         {
             case ChatChannel.Local:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
+                // RMC14
+                AddSpeechBubble(msg, msg.UseEmoteSpeechBubble ? SpeechBubble.SpeechType.Emote : SpeechBubble.SpeechType.Say);
+                // RMC14
                 break;
 
             case ChatChannel.Whisper:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Whisper);
+                // RMC14
+                AddSpeechBubble(msg, msg.UseEmoteSpeechBubble ? SpeechBubble.SpeechType.Emote : SpeechBubble.SpeechType.Whisper);
+                // RMC14
                 break;
 
             case ChatChannel.Dead:

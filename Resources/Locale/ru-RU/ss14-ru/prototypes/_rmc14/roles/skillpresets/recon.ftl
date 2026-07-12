@@ -1,0 +1,12 @@
+ent-RMCSkillPresetReconRifleman = Survivor Recon Rifleman
+    .desc = { "" }
+ent-RMCSkillPresetReconSpecialist = Survivor Recon Specialist
+    .desc = { ent-RMCSkillPresetReconRifleman.desc }
+ent-RMCSkillPresetReconSmartGunOperator = Survivor Recon Smartgun Operator
+    .desc = { ent-RMCSkillPresetReconRifleman.desc }
+ent-RMCSkillPresetReconSquadLeader = Survivor Recon Squad Leader
+    .desc = { ent-RMCSkillPresetReconRifleman.desc }
+ent-RMCSkillPresetReconSupportTechnician = Survivor Recon Support Technician
+    .desc = { ent-RMCSkillPresetReconRifleman.desc }
+ent-RMCSkillPresetReconSynth = Survivor Recon Synthetic
+    .desc = { "" }

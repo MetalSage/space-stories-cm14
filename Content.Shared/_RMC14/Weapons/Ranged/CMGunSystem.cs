@@ -484,16 +484,7 @@ public sealed class CMGunSystem : EntitySystem
 
         var session = CompOrNull<ActorComponent>(user)?.PlayerSession;
         if (gunComp.Target.Value == user.Owner)
-        {
-            if (gunComp.SelectedMode == SelectiveFire.FullAuto)
-                return;
-
-            if (session != null &&
-                !_netConfig.GetClientCVar(session.Channel, RMCCVars.RMCDamageYourself))
-            {
-                return;
-            }
-        }
+            return; // Stories-SelfDamageGunOFF
 
         if (!_interaction.InRangeUnobstructed(gun.Owner, gunComp.Target.Value, gun.Comp.Range, user: user))
             return;

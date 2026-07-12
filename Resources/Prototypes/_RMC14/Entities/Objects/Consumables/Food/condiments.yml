@@ -161,25 +161,6 @@
         - ReagentId: RMCSoysauce
           Quantity: 50
 
-# Corn Oil
-- type: reagent
-  id: RMCCornoil
-  name: reagent-name-cornoil
-  group: Foods
-  desc: reagent-desc-cornoil
-  physicalDesc: reagent-physical-desc-oily
-  flavor: oily
-  color: "#302000"
-  recognizable: true
-  metabolisms:
-    Food:
-      metabolismRate: 0.1
-      effects:
-      - !type:Nutritious
-        potency: 2
-        nutFactor: 20
-        nutMetabolism: 0.1
-
 - type: entity
   parent: RMCCondiment
   id: RMCCondimentCornOil
@@ -192,7 +173,7 @@
     solutions:
       food:
         reagents:
-        - ReagentId: RMCCornoil
+        - ReagentId: RMCCornOil
           Quantity: 50
 
 # Salt
