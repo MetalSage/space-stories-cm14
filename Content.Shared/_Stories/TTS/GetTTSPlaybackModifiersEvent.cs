@@ -16,12 +16,12 @@ public sealed class GetTTSPlaybackModifiersEvent(float baseRange) : EntityEventA
     public float? MaxDistance { get; private set; }
     public float? ReferenceDistance { get; private set; }
     public float? RolloffFactor { get; private set; }
-    public TTSAudioEffect AudioEffects { get; private set; } = TTSAudioEffect.None;
+    public TTSAudioEffect AudioEffect { get; private set; } = TTSAudioEffect.None;
 
     public bool HasVolumeOverride => MathF.Abs(VolumeMultiplier - 1f) > Epsilon;
     public bool HasDistanceOverride => MaxDistance != null || MathF.Abs(RangeMultiplier - 1f) > Epsilon;
     public bool HasSpatialOverride => ReferenceDistance != null || RolloffFactor != null;
-    public bool HasAudioEffects => AudioEffects != TTSAudioEffect.None;
+    public bool HasAudioEffect => AudioEffect != TTSAudioEffect.None;
     public float EffectiveMaxDistance => MathF.Max(0f, MaxDistance ?? BaseRange * RangeMultiplier);
 
     public void AddVolumeMultiplier(float multiplier)
@@ -58,8 +58,8 @@ public sealed class GetTTSPlaybackModifiersEvent(float baseRange) : EntityEventA
             : MathF.Min(RolloffFactor.Value, rolloffFactor);
     }
 
-    public void AddAudioEffects(TTSAudioEffect effects)
+    public void AddAudioEffect(TTSAudioEffect effect)
     {
-        AudioEffects = (TTSAudioEffect)Math.Max((byte)AudioEffects, (byte)effects);
+        AudioEffect = (TTSAudioEffect)Math.Max((byte)AudioEffect, (byte)effect);
     }
 }

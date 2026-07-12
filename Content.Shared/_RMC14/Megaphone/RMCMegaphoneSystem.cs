@@ -29,7 +29,7 @@ public sealed class RMCMegaphoneSystem : EntitySystem
             TTSRangeMultiplier: ent.Comp.TTSRangeMultiplier, // Stories
             TTSReferenceDistance: ent.Comp.TTSReferenceDistance, // Stories
             TTSRolloffFactor: ent.Comp.TTSRolloffFactor, // Stories
-            TTSAudioEffects: ent.Comp.TTSAudioEffects); // Stories
+            AudioEffect: ent.Comp.AudioEffect); // Stories
         _dialog.OpenInput(args.User, Loc.GetString("rmc-megaphone-ui-text"), ev, largeInput: false, characterLimit: 150);
     }
 
@@ -48,4 +48,4 @@ public sealed record MegaphoneInputEvent(
     float TTSRangeMultiplier = 1.5f, // Stories
     float TTSReferenceDistance = 4f, // Stories
     float TTSRolloffFactor = 0.25f, // Stories
-    TTSAudioEffect TTSAudioEffects = TTSAudioEffect.Megaphone) : DialogInputEvent(Message); // Stories
+    TTSAudioEffect AudioEffect = TTSAudioEffect.Megaphone) : DialogInputEvent(Message); // Stories

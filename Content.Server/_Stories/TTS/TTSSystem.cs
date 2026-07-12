@@ -238,7 +238,7 @@ public sealed partial class TTSSystem : EntitySystem
     {
         args.AddVolumeMultiplier(ent.Comp.VolumeMultiplier);
         args.AddRangeMultiplier(ent.Comp.RangeMultiplier);
-        args.AddAudioEffects(ent.Comp.AudioEffects);
+        args.AddAudioEffect(ent.Comp.AudioEffect);
 
         if (ent.Comp.MaxDistance != null)
             args.SetMaxDistance(ent.Comp.MaxDistance.Value);
@@ -260,7 +260,7 @@ public sealed partial class TTSSystem : EntitySystem
             ev.HasDistanceOverride ? ev.EffectiveMaxDistance : (float?) null,
             ev.HasSpatialOverride ? ev.ReferenceDistance : null,
             ev.HasSpatialOverride ? ev.RolloffFactor : null,
-            ev.HasAudioEffects ? ev.AudioEffects : TTSAudioEffect.None);
+            ev.HasAudioEffect ? ev.AudioEffect : TTSAudioEffect.None);
     }
 
     private async void HandleSay(
@@ -276,7 +276,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (soundData is null)
             return;
 
-        soundData = await ProcessTtsAudio(uid, soundData, playbackModifiers.AudioEffects);
+        soundData = await ProcessTtsAudio(uid, soundData, playbackModifiers.AudioEffect);
 
         var ttsEvent = new PlayTTSEvent(
             soundData,
@@ -308,7 +308,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (fullSoundData is null)
             return;
 
-        fullSoundData = await ProcessTtsAudio(uid, fullSoundData, playbackModifiers.AudioEffects);
+        fullSoundData = await ProcessTtsAudio(uid, fullSoundData, playbackModifiers.AudioEffect);
 
         var fullTtsEvent = new PlayTTSEvent(
             fullSoundData,
@@ -338,14 +338,14 @@ public sealed partial class TTSSystem : EntitySystem
         var soundData = await GenerateTTS(text, protoVoice.Speaker);
         if (soundData == null) return;
 
-        var audioEffects = isXeno
+        var audioEffect = isXeno
             ? TTSAudioEffect.XenoHivemind
             : isAres
                 ? TTSAudioEffect.Ares
                 : isRadio
                     ? TTSAudioEffect.StandardRadio
                     : TTSAudioEffect.None;
-        soundData = await _ttsAudio.ApplyPlaybackEffects(soundData, audioEffects);
+        soundData = await _ttsAudio.ApplyPlaybackEffect(soundData, audioEffect);
 
         var ev = new PlayTTSEvent(
             soundData,
@@ -366,10 +366,10 @@ public sealed partial class TTSSystem : EntitySystem
         return TTSAudioEffect.None;
     }
 
-    private async Task<byte[]> ProcessTtsAudio(EntityUid uid, byte[] data, TTSAudioEffect playbackEffects)
+    private async Task<byte[]> ProcessTtsAudio(EntityUid uid, byte[] data, TTSAudioEffect playbackEffect)
     {
-        var effect = (TTSAudioEffect)Math.Max((byte)GetSpecificVoiceEffect(uid), (byte)playbackEffects);
-        return await _ttsAudio.ApplyPlaybackEffects(data, effect);
+        var effect = (TTSAudioEffect)Math.Max((byte)GetSpecificVoiceEffect(uid), (byte)playbackEffect);
+        return await _ttsAudio.ApplyPlaybackEffect(data, effect);
     }
 
     private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range, ProtoId<LanguagePrototype> language)
@@ -484,7 +484,7 @@ public readonly record struct TTSPlaybackModifiers(
     float? MaxDistanceOverride,
     float? ReferenceDistanceOverride,
     float? RolloffFactorOverride,
-    TTSAudioEffect AudioEffects);
+    TTSAudioEffect AudioEffect);
 
 public sealed class TransformSpeakerVoiceEvent : EntityEventArgs
 {

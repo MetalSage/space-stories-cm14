@@ -12,7 +12,7 @@ public sealed partial class TTSPlaybackModifierComponent : Component
     /// <summary>
     /// Client playback gain multiplier applied on top of the listener's TTS volume setting.
     /// It is capped at <see cref="GetTTSPlaybackModifiersEvent.MaxClientVolumeMultiplier"/>
-    /// to avoid saturating the OpenAL source. Use <see cref="AudioEffects"/> for loudness processing.
+    /// to avoid saturating the OpenAL source. Use <see cref="AudioEffect"/> for loudness processing.
     /// </summary>
     [DataField("volumeMultiplier")]
     public float VolumeMultiplier = 1f;
@@ -47,6 +47,6 @@ public sealed partial class TTSPlaybackModifierComponent : Component
     /// Server-side audio effect applied to generated TTS before it is sent to clients.
     /// Effects from different modifier providers resolve to one effect by fixed priority.
     /// </summary>
-    [DataField("audioEffects")]
-    public TTSAudioEffect AudioEffects = TTSAudioEffect.None;
+    [DataField("audioEffect")]
+    public TTSAudioEffect AudioEffect = TTSAudioEffect.None;
 }

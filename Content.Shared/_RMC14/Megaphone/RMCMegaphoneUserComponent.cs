@@ -89,6 +89,6 @@ public sealed partial class RMCMegaphoneUserComponent : Component
     /// <summary>
     /// Stories: Server-side audio effects applied to TTS generated while using a megaphone.
     /// </summary>
-    [DataField("ttsAudioEffects"), AutoNetworkedField]
-    public TTSAudioEffect TTSAudioEffects = TTSAudioEffect.Megaphone;
+    [DataField("ttsAudioEffect"), AutoNetworkedField]
+    public TTSAudioEffect AudioEffect = TTSAudioEffect.Megaphone;
 }

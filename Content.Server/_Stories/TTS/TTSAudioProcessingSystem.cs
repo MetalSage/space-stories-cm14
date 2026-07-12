@@ -107,9 +107,9 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
         return await ApplyEffect(oggData, _megaphoneFfmpegArgs, MegaphoneEffectName);
     }
 
-    public async Task<byte[]> ApplyPlaybackEffects(byte[] oggData, TTSAudioEffect effects)
+    public async Task<byte[]> ApplyPlaybackEffect(byte[] oggData, TTSAudioEffect effect)
     {
-        return effects switch
+        return effect switch
         {
             TTSAudioEffect.Hunter => await ApplyHunterEffect(oggData),
             TTSAudioEffect.XenoHivemind => await ApplyXenoHivemindEffect(oggData),

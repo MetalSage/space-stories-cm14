@@ -44,7 +44,7 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
         userComp.TTSRangeMultiplier = ev.TTSRangeMultiplier; // Stories
         userComp.TTSReferenceDistance = ev.TTSReferenceDistance; // Stories
         userComp.TTSRolloffFactor = ev.TTSRolloffFactor; // Stories
-        userComp.TTSAudioEffects = ev.TTSAudioEffects; // Stories
+        userComp.AudioEffect = ev.AudioEffect; // Stories
         Dirty(user, userComp);
 
         if (TryComp<SpeechComponent>(user, out var speech))
@@ -86,7 +86,7 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
         args.AddRangeMultiplier(ent.Comp.TTSRangeMultiplier); // Stories
         args.SetReferenceDistance(ent.Comp.TTSReferenceDistance); // Stories
         args.SetRolloffFactor(ent.Comp.TTSRolloffFactor); // Stories
-        args.AddAudioEffects(ent.Comp.TTSAudioEffects); // Stories
+        args.AddAudioEffect(ent.Comp.AudioEffect); // Stories
     }
 
     private void OnExpandRecipients(ExpandICChatRecipientsEvent ev)
