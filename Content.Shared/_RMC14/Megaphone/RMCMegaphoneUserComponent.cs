@@ -57,7 +57,7 @@ public sealed partial class RMCMegaphoneUserComponent : Component
     };
 
     /// <summary>
-    /// Multiplier applied to the base voice range when using a megaphone.
+    /// Stories: Multiplier applied to the base voice range when using a megaphone.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float VoiceRangeMultiplier = 1.5f;

@@ -23,7 +23,7 @@ public sealed class RMCMegaphoneSystem : EntitySystem
         args.Handled = true;
 
         var ev = new MegaphoneInputEvent(
-            GetNetEntity(args.User),
+            GetNetEntity(args.User), // Stories
             VoiceRangeMultiplier: ent.Comp.VoiceRangeMultiplier,
             TTSVolumeMultiplier: ent.Comp.TTSVolumeMultiplier, // Stories
             TTSRangeMultiplier: ent.Comp.TTSRangeMultiplier, // Stories
@@ -43,7 +43,7 @@ public sealed class RMCMegaphoneSystem : EntitySystem
 public sealed record MegaphoneInputEvent(
     NetEntity Actor,
     string Message = "",
-    float VoiceRangeMultiplier = 1.5f,
+    float VoiceRangeMultiplier = 1.5f, // Stories
     float TTSVolumeMultiplier = 1.5f, // Stories
     float TTSRangeMultiplier = 1.5f, // Stories
     float TTSReferenceDistance = 4f, // Stories

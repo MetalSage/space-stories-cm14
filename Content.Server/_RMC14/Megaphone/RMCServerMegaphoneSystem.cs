@@ -17,15 +17,15 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IServerConsoleHost _console = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Stories
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!; // Stories
 
     public override void Initialize()
     {
         SubscribeLocalEvent<ActorComponent, MegaphoneInputEvent>(OnMegaphoneInput);
         SubscribeLocalEvent<RMCMegaphoneUserComponent, EntitySpokeEvent>(OnEntitySpoke, after: new[] { typeof(TTSSystem) }); // Stories
         SubscribeLocalEvent<RMCMegaphoneUserComponent, GetTTSPlaybackModifiersEvent>(OnGetTTSPlaybackModifiers); // Stories
-        SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandRecipients);
+        SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandRecipients); // Stories
     }
 
     private void OnMegaphoneInput(Entity<ActorComponent> ent, ref MegaphoneInputEvent ev)
@@ -45,7 +45,7 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
         userComp.TTSReferenceDistance = ev.TTSReferenceDistance; // Stories
         userComp.TTSRolloffFactor = ev.TTSRolloffFactor; // Stories
         userComp.AudioEffect = ev.AudioEffect; // Stories
-        Dirty(user, userComp);
+        Dirty(user, userComp); // Stories
 
         if (TryComp<SpeechComponent>(user, out var speech))
         {
@@ -80,7 +80,7 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
         RemComp<RMCSpeechBubbleSpecificStyleComponent>(ent);
     }
 
-    private void OnGetTTSPlaybackModifiers(Entity<RMCMegaphoneUserComponent> ent, ref GetTTSPlaybackModifiersEvent args)
+    private void OnGetTTSPlaybackModifiers(Entity<RMCMegaphoneUserComponent> ent, ref GetTTSPlaybackModifiersEvent args) // Stories
     {
         args.AddVolumeMultiplier(ent.Comp.TTSVolumeMultiplier); // Stories
         args.AddRangeMultiplier(ent.Comp.TTSRangeMultiplier); // Stories
@@ -89,7 +89,7 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
         args.AddAudioEffect(ent.Comp.AudioEffect); // Stories
     }
 
-    private void OnExpandRecipients(ExpandICChatRecipientsEvent ev)
+    private void OnExpandRecipients(ExpandICChatRecipientsEvent ev) // Stories start
     {
         if (!TryComp<RMCMegaphoneUserComponent>(ev.Source, out var megaphoneUser))
             return;
@@ -118,5 +118,5 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
             if (distance < megaphoneRange && distance >= ev.VoiceRange && !ev.Recipients.ContainsKey(player))
                 ev.Recipients.TryAdd(player, new ICChatRecipientData(distance, observer));
         }
-    }
+    } // Stories end
 }
