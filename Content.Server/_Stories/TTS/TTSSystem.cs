@@ -326,12 +326,14 @@ public sealed partial class TTSSystem : EntitySystem
         var soundData = await GenerateTTS(text, protoVoice.Speaker);
         if (soundData == null) return;
 
-        if (isXeno)
-            soundData = await _ttsAudio.ApplyXenoHivemindEffect(soundData);
-        else if (isAres)
-            soundData = await _ttsAudio.ApplyAresEffect(soundData);
-        else if (isRadio)
-            soundData = await _ttsAudio.ApplyStandardRadioEffect(soundData);
+        var audioEffects = isXeno
+            ? TTSAudioEffect.XenoHivemind
+            : isAres
+                ? TTSAudioEffect.Ares
+                : isRadio
+                    ? TTSAudioEffect.StandardRadio
+                    : TTSAudioEffect.None;
+        soundData = await _ttsAudio.ApplyPlaybackEffects(soundData, audioEffects);
 
         var ev = new PlayTTSEvent(
             soundData,

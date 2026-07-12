@@ -120,6 +120,9 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
         if (effects.HasFlag(TTSAudioEffect.XenoHivemind))
             processed = await ApplyXenoHivemindEffect(processed);
 
+        if (effects.HasFlag(TTSAudioEffect.Ares))
+            processed = await ApplyAresEffect(processed);
+
         if (effects.HasFlag(TTSAudioEffect.StandardRadio))
             processed = await ApplyStandardRadioEffect(processed);
 

@@ -12,4 +12,5 @@ public enum TTSAudioEffect : byte
     StandardRadio = 1 << 1,
     XenoHivemind = 1 << 2,
     Hunter = 1 << 3,
+    Ares = 1 << 4,
 }
