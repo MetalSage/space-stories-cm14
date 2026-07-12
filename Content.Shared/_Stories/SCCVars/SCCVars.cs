@@ -128,7 +128,7 @@ public sealed class SCCVars
     /// </summary>
     public static readonly CVarDef<string> TTSMegaphoneFfmpegArguments =
         CVarDef.Create("scc.tts.megaphone_ffmpeg_arguments",
-            "-i pipe:0 -f ogg -v quiet -filter_complex \"[0:a]highpass=f=420,lowpass=f=4200,equalizer=f=900:t=q:w=1.1:g=4,equalizer=f=1800:t=q:w=1.0:g=6,equalizer=f=3200:t=q:w=1.2:g=4,acompressor=threshold=0.16:ratio=5:attack=4:release=90:makeup=2,acrusher=level_in=1.2:level_out=0.9:bits=7:mix=0.28:mode=log,volume=20,alimiter=limit=0.98\" pipe:1",
+            "-i pipe:0 -f ogg -v quiet -filter_complex \"[0:a]highpass=f=420,lowpass=f=4200,equalizer=f=900:t=q:w=1.1:g=4,equalizer=f=1800:t=q:w=1.0:g=6,equalizer=f=3200:t=q:w=1.2:g=4,acompressor=threshold=0.03:ratio=20:attack=0.1:release=150:makeup=16:knee=1:link=maximum:detection=peak,acrusher=level_in=1.4:level_out=0.9:bits=5:mix=0.45:mode=log,volume=30,alimiter=limit=0.98:attack=1:release=20:level=false\" pipe:1",
             CVar.SERVERONLY);
 
     /// <summary>
