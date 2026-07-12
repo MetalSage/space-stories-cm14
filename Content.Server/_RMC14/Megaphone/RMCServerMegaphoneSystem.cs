@@ -42,6 +42,8 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
         userComp.VoiceRangeMultiplier = ev.VoiceRangeMultiplier;
         userComp.TTSVolumeMultiplier = ev.TTSVolumeMultiplier; // Stories
         userComp.TTSRangeMultiplier = ev.TTSRangeMultiplier; // Stories
+        userComp.TTSReferenceDistance = ev.TTSReferenceDistance; // Stories
+        userComp.TTSRolloffFactor = ev.TTSRolloffFactor; // Stories
         userComp.TTSAudioEffects = ev.TTSAudioEffects; // Stories
         Dirty(user, userComp);
 
@@ -82,6 +84,8 @@ public sealed class RMCServerMegaphoneSystem : EntitySystem
     {
         args.AddVolumeMultiplier(ent.Comp.TTSVolumeMultiplier); // Stories
         args.AddRangeMultiplier(ent.Comp.TTSRangeMultiplier); // Stories
+        args.SetReferenceDistance(ent.Comp.TTSReferenceDistance); // Stories
+        args.SetRolloffFactor(ent.Comp.TTSRolloffFactor); // Stories
         args.AddAudioEffects(ent.Comp.TTSAudioEffects); // Stories
     }
 

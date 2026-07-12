@@ -10,8 +10,9 @@ namespace Content.Shared._Stories.TTS;
 public sealed partial class TTSPlaybackModifierComponent : Component
 {
     /// <summary>
-    /// Linear gain multiplier applied on top of the listener's TTS volume setting.
-    /// Multiple volume multipliers from different modifier providers are multiplied together.
+    /// Client playback gain multiplier applied on top of the listener's TTS volume setting.
+    /// It is capped at <see cref="GetTTSPlaybackModifiersEvent.MaxClientVolumeMultiplier"/>
+    /// to avoid saturating the OpenAL source. Use <see cref="AudioEffects"/> for loudness processing.
     /// </summary>
     [DataField("volumeMultiplier")]
     public float VolumeMultiplier = 1f;
@@ -31,8 +32,20 @@ public sealed partial class TTSPlaybackModifierComponent : Component
     public float? MaxDistance;
 
     /// <summary>
-    /// Server-side audio effects applied to generated TTS before it is sent to clients.
-    /// Effects from different modifier providers are combined as flags.
+    /// Distance at which positional TTS starts to attenuate. Multiple values use the largest value.
+    /// </summary>
+    [DataField("referenceDistance")]
+    public float? ReferenceDistance;
+
+    /// <summary>
+    /// Strength of positional attenuation. Multiple values use the smallest value.
+    /// </summary>
+    [DataField("rolloffFactor")]
+    public float? RolloffFactor;
+
+    /// <summary>
+    /// Server-side audio effect applied to generated TTS before it is sent to clients.
+    /// Effects from different modifier providers resolve to one effect by fixed priority.
     /// </summary>
     [DataField("audioEffects")]
     public TTSAudioEffect AudioEffects = TTSAudioEffect.None;

@@ -13,6 +13,8 @@ public sealed class PlayTTSEvent : EntityEventArgs
     public NetEntity? OriginalSourceUid { get; }
     public float VolumeMultiplier { get; }
     public float? MaxDistanceOverride { get; }
+    public float? ReferenceDistanceOverride { get; }
+    public float? RolloffFactorOverride { get; }
     public bool IsRadio { get; }
     public string? RadioChannel { get; }
     public bool IsAnnounce { get; }
@@ -27,7 +29,9 @@ public sealed class PlayTTSEvent : EntityEventArgs
         string? radioChannel = null,
         bool isAnnounce = false,
         float volumeMultiplier = 1f,
-        float? maxDistanceOverride = null)
+        float? maxDistanceOverride = null,
+        float? referenceDistanceOverride = null,
+        float? rolloffFactorOverride = null)
     {
         Data = data;
         Text = text;
@@ -36,6 +40,8 @@ public sealed class PlayTTSEvent : EntityEventArgs
         OriginalSourceUid = originalSourceUid ?? sourceUid;
         VolumeMultiplier = volumeMultiplier;
         MaxDistanceOverride = maxDistanceOverride;
+        ReferenceDistanceOverride = referenceDistanceOverride;
+        RolloffFactorOverride = rolloffFactorOverride;
         IsRadio = isRadio;
         RadioChannel = radioChannel;
         IsAnnounce = isAnnounce;

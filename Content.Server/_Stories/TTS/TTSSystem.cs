@@ -242,6 +242,12 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (ent.Comp.MaxDistance != null)
             args.SetMaxDistance(ent.Comp.MaxDistance.Value);
+
+        if (ent.Comp.ReferenceDistance != null)
+            args.SetReferenceDistance(ent.Comp.ReferenceDistance.Value);
+
+        if (ent.Comp.RolloffFactor != null)
+            args.SetRolloffFactor(ent.Comp.RolloffFactor.Value);
     }
 
     private TTSPlaybackModifiers GetPlaybackModifiers(EntityUid uid, float baseRange)
@@ -252,6 +258,8 @@ public sealed partial class TTSSystem : EntitySystem
         return new TTSPlaybackModifiers(
             ev.HasVolumeOverride ? ev.VolumeMultiplier : 1f,
             ev.HasDistanceOverride ? ev.EffectiveMaxDistance : (float?) null,
+            ev.HasSpatialOverride ? ev.ReferenceDistance : null,
+            ev.HasSpatialOverride ? ev.RolloffFactor : null,
             ev.HasAudioEffects ? ev.AudioEffects : TTSAudioEffect.None);
     }
 
@@ -277,7 +285,9 @@ public sealed partial class TTSSystem : EntitySystem
             isRadio: isRadio,
             radioChannel: channelId,
             volumeMultiplier: playbackModifiers.VolumeMultiplier,
-            maxDistanceOverride: playbackModifiers.MaxDistanceOverride);
+            maxDistanceOverride: playbackModifiers.MaxDistanceOverride,
+            referenceDistanceOverride: playbackModifiers.ReferenceDistanceOverride,
+            rolloffFactorOverride: playbackModifiers.RolloffFactorOverride);
 
         FilterAndSend(
             uid,
@@ -307,7 +317,9 @@ public sealed partial class TTSSystem : EntitySystem
             true,
             isRadio: isRadio,
             volumeMultiplier: playbackModifiers.VolumeMultiplier,
-            maxDistanceOverride: playbackModifiers.MaxDistanceOverride);
+            maxDistanceOverride: playbackModifiers.MaxDistanceOverride,
+            referenceDistanceOverride: playbackModifiers.ReferenceDistanceOverride,
+            rolloffFactorOverride: playbackModifiers.RolloffFactorOverride);
 
         FilterAndSend(
             uid,
@@ -343,7 +355,7 @@ public sealed partial class TTSSystem : EntitySystem
         RaiseNetworkEvent(ev, filter);
     }
 
-    private TTSAudioEffect GetSpecificVoiceEffects(EntityUid uid)
+    private TTSAudioEffect GetSpecificVoiceEffect(EntityUid uid)
     {
         if (HasComp<HunterComponent>(uid))
             return TTSAudioEffect.Hunter;
@@ -356,8 +368,8 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async Task<byte[]> ProcessTtsAudio(EntityUid uid, byte[] data, TTSAudioEffect playbackEffects)
     {
-        var effects = GetSpecificVoiceEffects(uid) | playbackEffects;
-        return await _ttsAudio.ApplyPlaybackEffects(data, effects);
+        var effect = (TTSAudioEffect)Math.Max((byte)GetSpecificVoiceEffect(uid), (byte)playbackEffects);
+        return await _ttsAudio.ApplyPlaybackEffects(data, effect);
     }
 
     private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range, ProtoId<LanguagePrototype> language)
@@ -470,6 +482,8 @@ public sealed partial class TTSSystem : EntitySystem
 public readonly record struct TTSPlaybackModifiers(
     float VolumeMultiplier,
     float? MaxDistanceOverride,
+    float? ReferenceDistanceOverride,
+    float? RolloffFactorOverride,
     TTSAudioEffect AudioEffects);
 
 public sealed class TransformSpeakerVoiceEvent : EntityEventArgs

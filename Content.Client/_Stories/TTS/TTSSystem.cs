@@ -137,6 +137,12 @@ public sealed class TTSSystem : EntitySystem
             .WithVolume(AdjustVolume(ev.IsWhisper, volumeCVar, ev.VolumeMultiplier))
             .WithMaxDistance(AdjustDistance(ev.IsWhisper, ev.MaxDistanceOverride));
 
+        if (ev.ReferenceDistanceOverride != null)
+            audioParams = audioParams.WithReferenceDistance(ev.ReferenceDistanceOverride.Value);
+
+        if (ev.RolloffFactorOverride != null)
+            audioParams = audioParams.WithRolloffFactor(ev.RolloffFactorOverride.Value);
+
         if (ev.SourceUid != null && TryGetEntity(ev.SourceUid.Value, out var sourceUid))
         {
             _audio.PlayEntity(audioResource.AudioStream, sourceUid.Value, new ResolvedPathSpecifier(filePath), audioParams);

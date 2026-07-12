@@ -109,27 +109,15 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
 
     public async Task<byte[]> ApplyPlaybackEffects(byte[] oggData, TTSAudioEffect effects)
     {
-        if (effects == TTSAudioEffect.None)
-            return oggData;
-
-        var processed = oggData;
-
-        if (effects.HasFlag(TTSAudioEffect.Hunter))
-            processed = await ApplyHunterEffect(processed);
-
-        if (effects.HasFlag(TTSAudioEffect.XenoHivemind))
-            processed = await ApplyXenoHivemindEffect(processed);
-
-        if (effects.HasFlag(TTSAudioEffect.Ares))
-            processed = await ApplyAresEffect(processed);
-
-        if (effects.HasFlag(TTSAudioEffect.StandardRadio))
-            processed = await ApplyStandardRadioEffect(processed);
-
-        if (effects.HasFlag(TTSAudioEffect.Megaphone))
-            processed = await ApplyMegaphoneEffect(processed);
-
-        return processed;
+        return effects switch
+        {
+            TTSAudioEffect.Hunter => await ApplyHunterEffect(oggData),
+            TTSAudioEffect.XenoHivemind => await ApplyXenoHivemindEffect(oggData),
+            TTSAudioEffect.Ares => await ApplyAresEffect(oggData),
+            TTSAudioEffect.Megaphone => await ApplyMegaphoneEffect(oggData),
+            TTSAudioEffect.StandardRadio => await ApplyStandardRadioEffect(oggData),
+            _ => oggData,
+        };
     }
 
     public async Task<byte[]> ApplyAresEffect(byte[] oggData)
