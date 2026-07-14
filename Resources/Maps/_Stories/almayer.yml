@@ -69595,6 +69595,15 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 105.84878,82.428246
       parent: 1
+- proto: CMStampMW
+  entities:
+  - uid: 28141
+    components:
+    - type: Transform
+      parent: 18540
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: CMTableAlmayer
   entities:
   - uid: 7165
@@ -132330,6 +132339,7 @@ entities:
           occludes: True
           ents:
           - 18541
+          - 28141
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
