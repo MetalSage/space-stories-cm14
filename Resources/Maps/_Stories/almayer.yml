@@ -32892,6 +32892,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -11.5,77.5
       parent: 1
+    - type: AccessReader
+      access:
+      - - RMCAccessWeYa
 - proto: CMAirlockSecureLockedCommand
   entities:
   - uid: 443
