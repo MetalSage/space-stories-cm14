@@ -50,6 +50,8 @@
   - type: XenoPheromones
     pheromonesMultiplier: 6
     pheroSuffix: king
+  - type: TTS # Stories-TTS 
+    voice: pudge_dota_2
   - type: XenoPlasma
     plasma: 1000
     maxPlasma: 1000
