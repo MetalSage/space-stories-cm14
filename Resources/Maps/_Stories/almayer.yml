@@ -142408,9 +142408,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,82.5
       parent: 1
-    - type: AccessReader
-      access:
-      - - RMCAccessWeYa
   - uid: 20507
     components:
     - type: Transform
@@ -187893,6 +187890,13 @@ entities:
     components:
     - type: Transform
       pos: -6.258654,75.91252
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 28141
+    components:
+    - type: Transform
+      pos: -6.258654,75.2
       parent: 1
     - type: Fixtures
       fixtures: {}
