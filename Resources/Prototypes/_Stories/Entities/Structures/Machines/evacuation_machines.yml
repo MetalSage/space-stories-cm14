@@ -1,0 +1,7 @@
+- type: entity
+  parent: RMCSpawnerEvacuationPodSouth
+  id: RMCSpawnerEvacuationPodWestLiaison
+  suffix: West, Liaison
+  components:
+  - type: GridSpawner
+    spawn: "/Maps/_Stories/Shuttles/escape_pod_west_liaison.yml"
