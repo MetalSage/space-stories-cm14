@@ -195784,6 +195784,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 152.5,46.5
       parent: 1
+    - type: RMCPodDoor
+      id: 2523
 - proto: RMCShutterAlmayerCLDoor
   entities:
   - uid: 25510
