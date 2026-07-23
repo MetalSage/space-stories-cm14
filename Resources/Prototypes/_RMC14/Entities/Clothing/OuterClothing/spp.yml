@@ -62,6 +62,8 @@
   name: SPP UL6 synthetic personal armor
   description: Modified variant of the UL6 personal armor system intended to be usable by Synthetic units. Offers no protection but very little movement impairment.
   components:
+  - type: STSynthItemRestriction
+    checkEquip: false
   - type: Sprite
     sprite: _RMC14/Objects/Clothing/OuterClothing/SPP/support.rsi
   - type: Clothing

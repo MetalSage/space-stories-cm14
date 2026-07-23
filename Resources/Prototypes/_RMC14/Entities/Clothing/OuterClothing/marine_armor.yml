@@ -676,6 +676,8 @@
   name: M3A1 synthetic utility vest
   description: This variant of the ubiquitous M3 pattern vest has been extensively modified to become superlight, providing zero protection in exchange for maximum mobility and added storage. Compliant will all synthetic armor regulations.
   components:
+  - type: STSynthItemRestriction
+    checkEquip: false
   - type: Sprite
     sprite: _RMC14/Objects/Clothing/OuterClothing/Armor/m3/vl-synth/jungle.rsi
   - type: Clothing

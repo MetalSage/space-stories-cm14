@@ -125,6 +125,8 @@
   name: M4 pattern PMC synthetic armor
   description: A serious modification of the standard M3 armor. This variant was designed for PMC Support Units in the field, with every armor insert removed. It's designed with the idea of a high speed lifesaver in mind.
   components:
+  - type: STSynthItemRestriction
+    checkEquip: false
   - type: Clothing
     equipDelay: 1
     unequipDelay: 0.5
