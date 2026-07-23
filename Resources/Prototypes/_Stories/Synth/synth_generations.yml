@@ -35,8 +35,8 @@
       399: Critical
       400: Dead
   - type: MovementSpeedModifier
-    baseSprintSpeed: 3.8
-    baseWalkSpeed: 1.9575
+    baseSprintSpeed: 4.5
+    baseWalkSpeed: 2.4
   - type: ShowHealthIcons
   - type: ShowHealthBars
   - type: RMCAllowSuitStorage
@@ -73,8 +73,8 @@
       RMCSkillIntel: 1
       RMCSkillDomestics: 2
   - type: MovementSpeedModifier
-    baseSprintSpeed: 3.625
-    baseWalkSpeed: 1.9575
+    baseSprintSpeed: 4.5
+    baseWalkSpeed: 2.4
   - type: ShowHealthIcons
   - type: ShowHealthBars
   - type: RMCAllowSuitStorage
@@ -112,8 +112,8 @@
       RMCSkillDomestics: 2
       RMCSkillNavigations: 1
   - type: MovementSpeedModifier
-    baseSprintSpeed: 3.625
-    baseWalkSpeed: 1.9575
+    baseSprintSpeed: 5
+    baseWalkSpeed: 2.7
   - type: ShowHealthIcons
   - type: ShowHealthBars
   - type: RMCAllowSuitStorage
