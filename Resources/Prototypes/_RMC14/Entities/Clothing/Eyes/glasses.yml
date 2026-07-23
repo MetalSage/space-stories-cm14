@@ -196,7 +196,6 @@
     components:
     - type: NightVisionItem
       mesons: true
-      overlay: true
       defaultState: half
   - type: Appearance
   - type: RMCItemToggleClothingVisuals

@@ -331,10 +331,21 @@ public abstract class SharedNightVisionSystem : EntitySystem
 
         _appearance.SetData(item, NightVisionItemVisuals.Active, false);
 
-        if (TryComp(user, out NightVisionComponent? nightVision) &&
-            !nightVision.Innate)
+        if (TryComp(user, out NightVisionComponent? nightVision))
         {
-            RemCompDeferred<NightVisionComponent>(user.Value);
+            if (nightVision.Innate)
+            {
+                nightVision.Mesons = false;
+                nightVision.Green = false;
+                nightVision.BlockScopes = false;
+                nightVision.Overlay = false;
+                Dirty(user.Value, nightVision);
+                NightVisionChanged((user.Value, nightVision));
+            }
+            else
+            {
+                RemCompDeferred<NightVisionComponent>(user.Value);
+            }
         }
     }
 
