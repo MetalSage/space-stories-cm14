@@ -18,18 +18,19 @@ rmc-loadout-group-foods-packaged = Food (packaged)
 rmc-loadout-group-foods-healthy = Food (healthy)
 rmc-loadout-group-role-specific = Role specific
 rmc-loadout-group-pins = Pins
-rmc-loadout-group-synth = Synth Generations
+st-loadout-group-synth = Synth Generations
 rmc-loadout-group-watches = Watches
 rmc-loadout-group-civilian = Civilian only (Restricted)
 
 rmc-loadout-group-role-specific-ID = Commanding Officer (ID)
 rmc-loadout-group-role-specific-weapon = Commanding Officer (Sidearm)
 rmc-loadout-group-provost-role-specific-outerwear = Provost Inspector (Filled Outerwear)
-rmc-loadout-group-synthetic-uniform = Synthetic Uniforms
-rmc-loadout-group-synthetic-accessories = Synthetic Uniform Accessories
-rmc-loadout-group-synthetic-glasses = Synthetic Glasses
-rmc-loadout-group-synthetic-shoes = Synthetic Shoes
-rmc-loadout-group-synthetic-headwear = Synthetic Headwear
-rmc-loadout-group-synthetic-suits = Synthetic Outerwear
+st-loadout-group-synthetic-uniform = Synthetic Uniforms
+st-loadout-group-synthetic-accessories = Synthetic Uniform Accessories
+st-loadout-group-synthetic-glasses = Synthetic Glasses
+st-loadout-group-synthetic-shoes = Synthetic Shoes
+st-loadout-group-synthetic-headwear = Synthetic Headwear
+st-loadout-group-synthetic-suits = Synthetic Outerwear
 
 loadout-group-points-insufficient = You have insufficient points!
+st-loadout-group-synth-specialization = Synthetic Specialization

@@ -116931,7 +116931,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: RMCSynthResetKey
+- proto: STSynthResetKey
   entities:
   - uid: 10760
     components:

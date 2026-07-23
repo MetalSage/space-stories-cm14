@@ -1,0 +1,94 @@
+- type: job
+  parent: CMSurvivor
+  id: STSyntheticColony
+  name: st-job-name-synth-colony
+  description: st-job-description-synth-colony
+  playTimeTracker: STJobSyntheticColony
+  ranks:
+    STRankSyntheticColonist: []
+  startingGear: STGearSyntheticColonist
+  icon: "STJobIconSynth"
+  joinNotifyCrew: true
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  supervisors: cm-job-supervisors-colonists
+  accessGroups:
+  - Colony
+  - ColonistSynthShipside
+  roleWeight: 0.25
+  basePlaytimeTracker: true
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      preset: STLanguagePresetSynthColonist
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: synth
+    - type: NpcFactionMember
+      factions:
+      - Civilian
+    - type: IntelRescueSurvivorObjective
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  useLoadoutOfJob: STSyntheticColony
+
+- type: startingGear
+  id: STGearSyntheticColonistBase
+  equipment:
+    id: STIDCardSynthColony
+    ears: CMHeadsetColony
+    belt: CMBeltUtilityFilled
+    pocket1: STPouchSurvivalSynthFill
+    pocket2: RMCPouchToolsFill
+  storage:
+    belt:
+    - STSynthResetKey
+
+- type: startingGear
+  parent: STGearSyntheticColonistBase
+  id: STGearSyntheticColonist
+  equipment:
+    jumpsuit: STJumpsuitSynthetic
+    gloves: CMHandsInsulated
+    shoes: CMBootsBlackFilled
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointSynthColonist
+  name: st-spawn-point-synth-colony
+  components:
+  - type: SpawnPoint
+    job_id: STSyntheticColony
+  - type: Sprite
+    state: syn_spawn
+
+- type: playTimeTracker
+  id: STJobSyntheticColony
+  name: st-playtime-tracker-job-name-colony-synth
+  isHumanoid: true

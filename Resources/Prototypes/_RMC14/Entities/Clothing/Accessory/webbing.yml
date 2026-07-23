@@ -674,7 +674,7 @@
       - PowerCell
       - RMCNailgunCompact
       - RMCNailgunTactical
-      - RMCSynthResetKey
+      - STSynthResetKey
       - RodMetal1
       components:
       - Welder
@@ -703,7 +703,7 @@
         - PowerCell
         - RMCNailgunCompact
         - RMCNailgunTactical
-        - RMCSynthResetKey
+        - STSynthResetKey
         - RodMetal1
         components:
         - Welder
@@ -781,7 +781,7 @@
       - PowerCell
       - RMCNailgunCompact
       - RMCNailgunTactical
-      - RMCSynthResetKey
+      - STSynthResetKey
       - RodMetal1
       - LightReplacer
       components:
@@ -805,7 +805,7 @@
         - PowerCell
         - RMCNailgunCompact
         - RMCNailgunTactical
-        - RMCSynthResetKey
+        - STSynthResetKey
         - RodMetal1
         components:
         - Welder
@@ -953,7 +953,7 @@
     - id: RMCMREWeYaPMC
     - id: RMCRangefinder
     - id: RMCGrenadeBlastM12
-    - id: RMCTelescopicBaton
+    - id: STTelescopicBaton
     - id: RMCHandcuffs
 
 - type: entity

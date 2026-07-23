@@ -1,0 +1,94 @@
+- type: job
+  parent: CMJobBase
+  id: STJobTSEPASynthetic
+  name: st-job-name-tsepa-synth
+  description: st-job-description-tsepa-synth
+  playTimeTracker: STJobTSEPASynthetic
+  ranks:
+    RMCRankTSEPAConstable: [ ]
+  startingGear: STGearTSEPASynthetic
+  icon: "STJobIconTSEPASynth"
+  joinNotifyCrew: false
+  accessGroups:
+  - ColonistTSEPAInspector
+  - Synth
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: LanguageLearning
+      learnableLanguages:
+      - Xeno
+      firstContactLanguages:
+      - Xeno
+      comprehensionThreshold: 0.8
+      learningRange: 8.0
+      baseWordLearningRate: 0.05
+    - type: NpcFactionMember
+      factions:
+      - TSE
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: JobPrefix
+      prefix: st-job-prefix-tsepa-synth
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: synth
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  hidden: true
+
+- type: startingGear
+  id: STGearTSEPASynthetic
+  equipment:
+    head: RMCHeadBeretTSEPA
+    ears: RMCHeadsetTSEPA
+    jumpsuit: RMCJumpsuitTSEPA
+    outerClothing: RMCCoatTSEPAHighVisVest
+    gloves: RMCHandsVeteran
+    shoes: CMBootsBlackFilled
+    id: RMCIDCardTSEPASilverGold
+    back: RMCSatchelTSEPA
+    pocket1: STSynthResetKey
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointTSEPASynthetic
+  name: st-spawn-point-tsepa-synth
+  components:
+  - type: SpawnPoint
+    job_id: STJobTSEPASynthetic
+  - type: Sprite
+    layers:
+    - sprite: Markers/jobs.rsi
+      state: green
+    - sprite: _RMC14/Objects/Clothing/OuterClothing/TSE/TSEPA/highvis_vest.rsi
+      state: icon
+
+- type: playTimeTracker
+  id: STJobTSEPASynthetic
+  isHumanoid: true
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: STJobIconTSEPASynth
+  icon:
+    sprite: _RMC14/Interface/job_icons/TSE/TSEPA.rsi
+    state: tse_pasynth

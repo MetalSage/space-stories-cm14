@@ -1,0 +1,86 @@
+
+- type: job
+  parent: CMJobBase
+  id: STJobAutomatonJoe
+  name: st-job-name-automaton-joe
+  description: st-job-description-automaton-joe
+  playTimeTracker: STJobAutomatonJoe
+  icon: "STJobIconSynth"
+  joinNotifyCrew: true
+  whitelisted: true
+  supervisors: st-job-supervisors-ares
+  accessGroups:
+  - ShipMasterAccess
+  - Synth
+  roleWeight: 0.1
+  applyTraits: false
+  jobEntity: STMobAutomatonJoe
+  jobPreviewEntity: STMobWorkingJoeDummy
+  dummyStartingGear: STGearAutomatonJoeEquipped
+  hasIcon: false
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - Russian
+      - German
+      - Chinese
+      - English
+      understoodLanguages:
+      - Russian
+      - German
+      - Chinese
+      - English
+      currentLanguage: Russian
+      defaultLanguage: Russian
+    - type: NpcFactionMember
+      factions:
+      - SPP
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: synth
+    - type: Loadout
+      prototypes: [ STGearAutomatonJoeEquipped ]
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointAutomatonJoe
+  name: st-spawn-point-automaton-joe
+  components:
+  - type: SpawnPoint
+    job_id: STJobAutomatonJoe
+  - type: Sprite
+    sprite: _Stories/Synth/WorkingJoe/wj_spawn.rsi
+    state: icon
+
+- type: playTimeTracker
+  id: STJobAutomatonJoe
+  isHumanoid: true
+
+- type: startingGear
+  id: STGearAutomatonJoeEquipped
+  equipment:
+    ears: RMCHeadsetDistressSPP
+    jumpsuit: STJumpsuitAutomatonJoe
+    belt: RMCBeltHolsterPistolSPPNPZ92
+    gloves: RMCHandsVeteranSPP
+    back: RMCSatchelLightpackBlack
+    shoes: RMCBootsSPPFilled
+    id: RMCIDSPP
+    pocket1: STPouchToolsSocFilledSPPSynthetic
+    pocket2: RMCPouchConstruction
+  storage:
+    back:
+    - RMCSprayBottleSpaceCleaner
+    - RMCBucketJanitorial
+    - CMMop
+    - STTelescopicBaton
+    - RMCHandcuffs
+    - RMCHandcuffs
+    - STSynthResetKeyNovaris
+    pocket2:
+    - RMCLightReplacer
+    - CMSheetMetal20
+    - CMSheetGlassReinforced10

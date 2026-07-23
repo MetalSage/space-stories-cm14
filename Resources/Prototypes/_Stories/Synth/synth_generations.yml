@@ -1,0 +1,159 @@
+- type: entity
+  id: STSynthGenOne
+  name: Generation One
+  components:
+  - type: SynthGeneration
+    generation: STSynthGenOne
+    damageModifier: STSynthGenOne
+    selectable: false
+  - type: STSynthHeavyGrab
+  - type: Skills
+    skills:
+      RMCSkillCqc: 3
+      RMCSkillEngineer: 4
+      RMCSkillConstruction: 3
+      RMCSkillFirearms: 2
+      RMCSkillOverwatch: 1
+      RMCSkillMedical: 3
+      RMCSkillSurgery: 2
+      RMCSkillResearch: 1
+      RMCSkillMeleeWeapons: 2
+      RMCSkillPilot: 2
+      RMCSkillPolice: 2
+      RMCSkillFireman: 3
+      RMCSkillPowerLoader: 2
+      RMCSkillVehicles: 2
+      RMCSkillJtac: 1
+      RMCSkillIntel: 1
+      RMCSkillDomestics: 2
+  - type: RMCLeapProtection
+    inherentStunDuration: 3
+    fullProtection: true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      399: Critical
+      400: Dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3.8
+    baseWalkSpeed: 1.9575
+  - type: ShowHealthIcons
+  - type: ShowHealthBars
+  - type: RMCAllowSuitStorage
+  - type: RemoveComponents
+    components:
+    - type: HiddenAppearance
+
+- type: entity
+  id: STSynthGenTwo
+  name: Generation Two
+  components:
+  - type: SynthGeneration
+    generation: STSynthGenTwo
+    damageModifier: STSynthGenTwo
+  - type: LanguageLearning
+    preset: STLanguageLearningPresetSynthColonist
+  - type: Skills
+    skills:
+      RMCSkillCqc: 3
+      RMCSkillEngineer: 4
+      RMCSkillConstruction: 3
+      RMCSkillFirearms: 2
+      RMCSkillOverwatch: 1
+      RMCSkillMedical: 3
+      RMCSkillSurgery: 2
+      RMCSkillResearch: 1
+      RMCSkillMeleeWeapons: 2
+      RMCSkillPilot: 2
+      RMCSkillPolice: 2
+      RMCSkillFireman: 3
+      RMCSkillPowerLoader: 2
+      RMCSkillVehicles: 2
+      RMCSkillJtac: 1
+      RMCSkillIntel: 1
+      RMCSkillDomestics: 2
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3.625
+    baseWalkSpeed: 1.9575
+  - type: ShowHealthIcons
+  - type: ShowHealthBars
+  - type: RMCAllowSuitStorage
+  - type: RemoveComponents
+    components:
+    - type: HiddenAppearance
+
+- type: entity
+  id: STSynthGenThree
+  name: Generation Three
+  components:
+  - type: SynthGeneration
+    generation: STSynthGenThree
+  - type: LanguageLearning
+    preset: STLanguageLearningPresetSynthColonist
+  - type: Skills
+    skills:
+      RMCSkillCqc: 5
+      RMCSkillEndurance: 1
+      RMCSkillEngineer: 4
+      RMCSkillConstruction: 3
+      RMCSkillFirearms: 2
+      RMCSkillOverwatch: 1
+      RMCSkillMedical: 4
+      RMCSkillSurgery: 3
+      RMCSkillResearch: 1
+      RMCSkillMeleeWeapons: 2
+      RMCSkillPilot: 2
+      RMCSkillPolice: 2
+      RMCSkillFireman: 5
+      RMCSkillPowerLoader: 2
+      RMCSkillVehicles: 2
+      RMCSkillJtac: 3
+      RMCSkillIntel: 2
+      RMCSkillDomestics: 2
+      RMCSkillNavigations: 1
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3.625
+    baseWalkSpeed: 1.9575
+  - type: ShowHealthIcons
+  - type: ShowHealthBars
+  - type: RMCAllowSuitStorage
+  - type: RemoveComponents
+    components:
+    - type: HiddenAppearance
+
+- type: entity
+  id: STARESWorker
+  name: ARES Worker
+  components:
+  - type: SynthGeneration
+    generation: STARESWorker
+    damageModifier: STSynthGenOne
+    selectable: false
+  - type: STSynthHeavyGrab
+  - type: Skills
+    skills:
+      RMCSkillCqc: 5
+      RMCSkillEngineer: 4
+      RMCSkillConstruction: 3
+      RMCSkillFirearms: 2
+      RMCSkillMeleeWeapons: 2
+      RMCSkillPolice: 2
+      RMCSkillFireman: 2
+      RMCSkillPowerLoader: 2
+      RMCSkillVehicles: 2
+      RMCSkillDomestics: 2
+      RMCSkillEndurance: 1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      399: Critical
+      400: Dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3.8
+    baseWalkSpeed: 2.7
+  - type: ShowHealthIcons
+  - type: ShowHealthBars
+  - type: RMCAllowSuitStorage
+  - type: RemoveComponents
+    components:
+    - type: HiddenAppearance

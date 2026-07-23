@@ -1,0 +1,9 @@
+﻿- type: reagent
+  parent: Blood
+  id: STSynthBlood
+  name: st-reagent-name-synth-blood
+  desc: st-reagent-desc-synth-blood
+  physicalDesc: reagent-physical-desc-oily
+  color: "#EEEEEE"
+  unknown: true
+  flavor: funny

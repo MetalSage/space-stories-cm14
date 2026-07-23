@@ -29,12 +29,12 @@
   
 - type: entity
   parent: RMCWatchCase
-  id: RMCWatchCaseSynth
+  id: STWatchCaseSynth
   name: Seikaku 13B6-2000 wristwatch storage case
   components:
   - type: StorageFill
     contents:
-    - id: RMCWatchSynth
+    - id: STWatchSynth
   
 - type: entity
   parent: RMCWatchCase

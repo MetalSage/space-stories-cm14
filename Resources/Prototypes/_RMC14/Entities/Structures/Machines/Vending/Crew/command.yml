@@ -349,7 +349,7 @@
         points: 5
       - id: RMCFlashlight
         points: 1
-      - id: RMCSynthResetKey
+      - id: STSynthResetKey
         points: 10
       - id: RMCVisorWelding
         points: 5
@@ -1195,7 +1195,7 @@
       entries:
       - id: CMHeadsetEngineer
         points: 15
-      - id: RMCSynthResetKey
+      - id: STSynthResetKey
         points: 15
     # ////////////////////////////////////
     # Logistics Officer

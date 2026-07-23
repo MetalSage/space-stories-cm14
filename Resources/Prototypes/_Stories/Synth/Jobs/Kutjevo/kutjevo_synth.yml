@@ -1,0 +1,233 @@
+
+- type: job
+  parent: CMSurvivor
+  id: STSurvivorKutjevoSynthCivilian
+  name: st-job-name-kutjevo-synth-civilian
+  description: st-job-description-kutjevo-synth
+  startingGear: STGearKutjevoSynthCivilian
+  spawnMenuRoleName: Kutjevo Synthetic - Civilian (Kutjevo Survivor)
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      preset: STLanguagePresetSynthColonist
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: synth
+    - type: NpcFactionMember
+      factions:
+      - Civilian
+    - type: IntelRescueSurvivorObjective
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  useLoadoutOfJob: STSurvivorKutjevoSynthCivilian
+
+- type: startingGear
+  id: STGearKutjevoSynthCivilian
+  equipment:
+    eyes: RMCGogglesKutjevo
+    head: ArmorHelmetPMCKutjevo
+    mask: RMCMaskKutjevoRespirator
+    jumpsuit: RMCJumpsuitKutjevoJumper
+    shoes: RMCShoesJackboots
+    gloves: RMCHandsBlack
+    back: CMSatchel
+  storage:
+    back:
+    - STSynthResetKey
+  inhand:
+  - RMCFireAxe
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointKutjevoSynthCivilian
+  name: kutjevo synthetic civilian spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorKutjevoSynthCivilian
+  - type: Sprite
+    layers:
+    - sprite: _RMC14/Markers/landmarks.rsi
+      state: surv
+
+- type: job
+  parent: CMSurvivorEngineer
+  id: STSurvivorKutjevoSynthEngineer
+  name: st-job-name-kutjevo-synth-engineer
+  description: st-job-description-kutjevo-synth
+  startingGear: STGearKutjevoSynthEngineer
+  spawnMenuRoleName: Kutjevo Synthetic - Engineer (Kutjevo Survivor)
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      preset: STLanguagePresetSynthColonist
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: synth
+    - type: NpcFactionMember
+      factions:
+      - Civilian
+    - type: IntelRescueSurvivorObjective
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  useLoadoutOfJob: STSurvivorKutjevoSynthEngineer
+
+- type: startingGear
+  parent: RMCGearSurvivorEngineer
+  id: STGearKutjevoSynthEngineer
+  equipment:
+    head: ArmorHelmetPMCKutjevo
+    eyes: RMCGogglesKutjevo
+    mask: RMCMaskKutjevoRespirator
+    jumpsuit: RMCJumpsuitKutjevoDrysuit
+    outerClothing: RMCHazardVestBlack
+    shoes: RMCShoesJackboots
+  storage:
+    back:
+    - STSynthResetKey
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointKutjevoSynthEngineer
+  name: kutjevo synthetic engineer spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorKutjevoSynthEngineer
+  - type: Sprite
+    layers:
+    - sprite: _RMC14/Markers/landmarks.rsi
+      state: surv
+
+- type: job
+  parent: CMSurvivorDoctor
+  id: STSurvivorKutjevoSynthMedical
+  name: st-job-name-kutjevo-synth-medical
+  description: st-job-description-kutjevo-synth
+  startingGear: STGearKutjevoSynthMedical
+  spawnMenuRoleName: Kutjevo Synthetic - Medical (Kutjevo Survivor)
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      preset: STLanguagePresetSynthColonist
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: synth
+    - type: NpcFactionMember
+      factions:
+      - Civilian
+    - type: IntelRescueSurvivorObjective
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  useLoadoutOfJob: STSurvivorKutjevoSynthMedical
+
+- type: startingGear
+  parent: RMCGearSurvivorDoctor
+  id: STGearKutjevoSynthMedical
+  equipment:
+    eyes: RMCGlassesMedicalHUDGlasses
+    head: ArmorHelmetPMCKutjevo
+    mask: CMMaskSterile
+    jumpsuit: RMCJumpsuitKutjevoJumper
+    outerClothing: RMCHazardVestEMT
+    gloves: CMHandsLatex
+    shoes: RMCShoesJackboots
+  storage:
+    back:
+    - STSynthResetKey
+  inhand:
+  - RMCFireAxe
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointKutjevoSynthMedical
+  name: kutjevo synthetic medical spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorKutjevoSynthMedical
+  - type: Sprite
+    layers:
+    - sprite: _RMC14/Markers/landmarks.rsi
+      state: surv

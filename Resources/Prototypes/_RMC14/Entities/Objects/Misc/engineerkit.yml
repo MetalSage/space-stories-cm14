@@ -28,7 +28,7 @@
       # - TODO RMC14 RMCAssembly
       # - TODO RMC14 RMCStockParts,
       - RMCExplosiveBreachingCharge
-      - RMCSynthResetKey
+      - STSynthResetKey
       components:
       - TrayScanner
   - type: FixedItemSizeStorage

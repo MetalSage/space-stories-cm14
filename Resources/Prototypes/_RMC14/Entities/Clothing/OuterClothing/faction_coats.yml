@@ -122,7 +122,7 @@
     contents:
     - id: CMFlash
       amount: 1
-    - id: RMCTelescopicBaton
+    - id: STTelescopicBaton
       amount: 1
     - id: RMCHandcuffs
       amount: 1

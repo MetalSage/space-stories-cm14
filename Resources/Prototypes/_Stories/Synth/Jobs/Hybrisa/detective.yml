@@ -1,0 +1,69 @@
+- type: job
+  parent: STSyntheticColony
+  id: STSyntheticColonyHybrisaDetective
+  startingGear: STGearSyntheticColonistHybrisaDetective
+  spawnMenuRoleName: Detective Synth (Hybrisa Survivor)
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      preset: STLanguagePresetSynthColonist
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: synth
+    - type: NpcFactionMember
+      factions:
+      - Civilian
+    - type: IntelRescueSurvivorObjective
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: EquipSurvivorPreset
+      preset: STSurvivorPresetHybrisaSynthDetective
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  useLoadoutOfJob: STSyntheticColony
+
+- type: startingGear
+  parent: STGearSyntheticColonistHybrisaCivilian
+  id: STGearSyntheticColonistHybrisaDetective
+  equipment:
+    back: CMSatchelSecurity
+    shoes: CMBootsBlackFilled
+    gloves: RMCHandsBlack
+    belt: RMCBeltSecurityWeYaFilled
+  storage:
+    back:
+    - RMCUniversalRecorder
+
+- type: entity
+  id: STSurvivorPresetHybrisaSynthDetective
+  name: survivor synth hybrisa detective colonist preset
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityPreset
+    randomOutfits:
+    - [ RMCGlassesSecurityBlue, RMCCoatBureauTrenchCoatBrown, RMCHeadCapFedoraBrown, ClothingUniformJumpsuitDetective ]
+    - [ CMGlassesSecurity, RMCCoatBureauTrenchCoatGrey, RMCHeadCapFedoraGrey, ClothingUniformJumpsuitDetectiveGrey ]

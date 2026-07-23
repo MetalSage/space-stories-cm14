@@ -62,7 +62,7 @@
       RMCSkillSurgery: 1
 
 - type: entity
-  id: RMCSkillPresetReconSynth
+  id: STSkillPresetReconSynth
   name: Survivor Recon Synthetic
   categories: [ HideSpawnMenu ]
   components:

@@ -1,0 +1,80 @@
+
+- type: job
+  parent: RMCSurvivorSPPSOFBase
+  id: STSurvivorSPPSOFSynth
+  name: st-job-name-soro-sof-synth
+  startingGear: STGearSPPSOFSynth
+  ranks:
+    RMCRankSPPMladshiySerzhant: []
+  icon: "STJobIconSynth"
+  spawnMenuRoleName: SPP SOF Synthetic (Survivor)
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - Russian
+      - English
+      - German
+      - Chinese
+      understoodLanguages:
+      - Russian
+      - English
+      - German
+      - Chinese
+      currentLanguage: Russian
+      defaultLanguage: Russian
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: NpcFactionMember
+      factions:
+      - SPP
+    - type: IntelRescueSurvivorObjective
+    - type: JobPrefix
+      prefix: st-job-prefix-synth
+    - type: AssignSquad
+      squad: SquadSPP
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  hidden: true
+
+- type: startingGear
+  parent: RMCGearSPPSOFBase
+  id: STGearSPPSOFSynth
+  equipment:
+    eyes: RMCGlassesMedicalHUDGlasses
+    belt: RMCBeltMedicBagSPP
+    suitstorage: RMCFlashlight
+  storage:
+    back:
+    - CMHealthAnalyzer
+    - STSynthResetKey
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointSPPSOFSynth
+  name: special survivor spp sof synth spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorSPPSOFSynth
+  - type: Sprite
+    state: surv_spp

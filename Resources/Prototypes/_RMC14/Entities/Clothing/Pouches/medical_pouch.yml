@@ -74,7 +74,7 @@
 
 - type: entity
   parent: RMCPouchMedical
-  id: RMCPouchMedicalSPPSynth
+  id: STPouchMedicalSPPSynth
   suffix: ERT
   components:
   - type: StorageFill

@@ -166,7 +166,7 @@
 
 - type: entity
   parent: RMCAreaGA
-  id: RMCAreaGASynth
+  id: STAreaGASynth
   categories: [ HideSpawnMenu ]
   name: Synthetic Storage Closet
   components:

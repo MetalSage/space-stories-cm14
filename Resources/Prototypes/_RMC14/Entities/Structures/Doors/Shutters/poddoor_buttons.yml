@@ -178,13 +178,13 @@
 
 - type: entity
   parent: RMCPodDoorButtonShip
-  id: RMCPodDoorButtonSynth
+  id: STPodDoorButtonSynth
   name: button
   description: A basic button locked to Synthetics.
   suffix: Locked, Synthetic
   components:
   - type: AccessReader
-    access: [ [ "RMCAccessSynth" ] ]
+    access: [ [ "STAccessSynth" ] ]
 
 - type: entity
   parent: RMCPodDoorButtonShip
@@ -390,13 +390,13 @@
 
 - type: entity
   parent: RMCPodDoorButtonBigRedShip
-  id: RMCPodDoorButtonBigRedSynth
+  id: STPodDoorButtonBigRedSynth
   name: button
   description: A basic button locked to Synthetics.
   suffix: Locked, Synthetic
   components:
   - type: AccessReader
-    access: [ [ "RMCAccessSynth" ] ]
+    access: [ [ "STAccessSynth" ] ]
 
 - type: entity
   parent: RMCPodDoorButtonBigRedShip

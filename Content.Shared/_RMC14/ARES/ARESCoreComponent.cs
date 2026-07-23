@@ -20,6 +20,21 @@ public sealed partial class ARESCoreComponent : Component
     [DataField, AutoNetworkedField]
     public int MaxLogs = 5000;
 
+    [DataField, AutoNetworkedField]
+    public TimeSpan GasReleaseCooldown = TimeSpan.FromMinutes(2);
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan NextGasRelease;
+
+    [DataField, AutoNetworkedField]
+    public bool LockdownActive;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan LockdownCooldown = TimeSpan.FromMinutes(2);
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan NextLockdown;
+
     // Client Empty.
     [DataField, Access(typeof(ARESCoreSystem), Other = AccessPermissions.None)]
     public Dictionary<EntProtoId<ARESLogTypeComponent>, List<string>> Logs = new();

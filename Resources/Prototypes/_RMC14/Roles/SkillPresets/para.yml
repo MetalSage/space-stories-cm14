@@ -68,7 +68,7 @@
       RMCSkillIntel: 1
 
 - type: entity
-  id: RMCSkillPresetParaSynth
+  id: STSkillPresetParaSynth
   name: Royal Paramarine Synthetic
   categories: [ HideSpawnMenu ]
   components:

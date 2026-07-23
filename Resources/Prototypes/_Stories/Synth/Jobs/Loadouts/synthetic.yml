@@ -1,0 +1,410 @@
+
+- type: loadout
+  id: SynthUniformST
+  equipment:
+    jumpsuit: STJumpsuitSynthetic
+
+- type: loadout
+  id: SynthJumpsuitPristineST
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: STJobSynthetic
+        time: 630000
+  equipment:
+    jumpsuit: STJumpsuitSyntheticPristine
+
+- type: loadout
+  id: ScrubsBlueST
+  equipment:
+    jumpsuit: CMScrubsBlue
+
+- type: loadout
+  id: ScrubsLightBlueST
+  equipment:
+    jumpsuit: RMCScrubsLightBlue
+
+- type: loadout
+  id: ScrubsGreenST
+  equipment:
+    jumpsuit: CMScrubsGreen
+
+- type: loadout
+  id: ScrubsPurpleST
+  equipment:
+    jumpsuit: CMScrubsPurple
+
+- type: loadout
+  id: ScrubsOliveST
+  equipment:
+    jumpsuit: RMCScrubsOlive
+
+- type: loadout
+  id: ScrubsGreyST
+  equipment:
+    jumpsuit: RMCScrubsGrey
+
+- type: loadout
+  id: ServiceUniformST
+  equipment:
+    jumpsuit: CMJumpsuitBO
+
+- type: loadout
+  id: ServiceUniformXOST
+  equipment:
+    jumpsuit: CMJumpsuitXOFormal
+
+- type: loadout
+  id: MarineUniformST
+  equipment:
+    jumpsuit: JumpsuitMarine
+
+- type: loadout
+  id: CorpsmanUniformST
+  equipment:
+    jumpsuit: CMJumpsuitMarineMedic
+
+- type: loadout
+  id: ComTechUniformST
+  equipment:
+    jumpsuit: CMJumpsuitMarineEngineer
+
+- type: loadout
+  id: EngineerUniformST
+  equipment:
+    jumpsuit: CMJumpsuitMaintTech
+
+- type: loadout
+  id: MPUniformST
+  equipment:
+    jumpsuit: CMJumpsuitMP
+
+- type: loadout
+  id: JumpsuitOperationsST
+  equipment:
+    jumpsuit: CMJumpsuitOperations
+
+- type: loadout
+  id: DCCJumpsuitST
+  equipment:
+    jumpsuit: CMJumpsuitDCC
+
+- type: loadout
+  id: TShirtWhiteST
+  equipment:
+    jumpsuit: CMJumpsuitTShirtWhite
+
+- type: loadout
+  id: TShirtGrayST
+  equipment:
+    jumpsuit: CMJumpsuitTShirtGray
+
+- type: loadout
+  id: TShirtRedST
+  equipment:
+    jumpsuit: CMJumpsuitTShirtRed
+
+- type: loadout
+  id: CivilianJumpsuitST
+  equipment:
+    jumpsuit: RMCJumpsuitCivilian
+
+- type: loadout
+  id: WhiteServiceJumpsuitST
+  equipment:
+    jumpsuit: RMCJumsuitWhiteService
+
+- type: loadout
+  id: LiaisonBlueJumpsuitST
+  equipment:
+    jumpsuit: CMJumpsuitLiaisonBlue
+
+- type: loadout
+  id: LiaisonBrownJumpsuitST
+  equipment:
+    jumpsuit: CMJumpsuitLiaisonBrown
+
+- type: loadout
+  id: LiaisonCorporateFormalJumpsuitST
+  equipment:
+    jumpsuit: CMJumpsuitLiaisonCorporateFormal
+
+- type: loadout
+  id: ScienceArmbandST
+  storage:
+    back:
+    - RMCScienceArmband
+
+- type: loadout
+  id: EngiArmbandST
+  storage:
+    back:
+    - RMCEngiArmband
+
+- type: loadout
+  id: MedArmbandST
+  storage:
+    back:
+    - RMCMedArmband
+
+- type: loadout
+  id: TieST
+  storage:
+    back:
+    - RMCTie
+
+- type: loadout
+  id: TieGreenST
+  storage:
+    back:
+    - RMCTieGreen
+
+- type: loadout
+  id: TieBlackST
+  storage:
+    back:
+    - RMCTieBlack
+
+- type: loadout
+  id: TieGoldST
+  storage:
+    back:
+    - RMCTieGold
+
+- type: loadout
+  id: TieRedST
+  storage:
+    back:
+    - RMCTieRed
+
+- type: loadout
+  id: TiePurpleST
+  storage:
+    back:
+    - RMCTiePurple
+
+- type: loadout
+  id: GlassesSecurityST
+  storage:
+    back:
+    - CMGlassesSecurity
+
+- type: loadout
+  id: BootsBlackSTSynth
+  storage:
+    back:
+    - CMBootsBlack
+
+- type: loadout
+  id: ShoesBlackSTSynth
+  storage:
+    back:
+    - RMCShoesBlack
+
+- type: loadout
+  id: ShoesBrownSTSynth
+  storage:
+    back:
+    - RMCShoesBrown
+
+- type: loadout
+  id: ShoesRedSTSynth
+  storage:
+    back:
+    - RMCShoesRed
+
+- type: loadout
+  id: ShoesGreenSTSynth
+  storage:
+    back:
+    - RMCShoesGreen
+
+- type: loadout
+  id: ShoesPurpleSTSynth
+  storage:
+    back:
+    - RMCShoesPurple
+
+- type: loadout
+  id: ShoeWhiteSTSynth
+  storage:
+    back:
+    - RMCShoesWhite
+
+- type: loadout
+  id: ShoeYellowSTSynth
+  storage:
+    back:
+    - RMCShoesYellow
+
+- type: loadout
+  id: BeretEngineerST
+  storage:
+    back:
+    - CMHeadBeretEngineer
+
+- type: loadout
+  id: BeretRedST
+  storage:
+    back:
+    - CMHeadBeretRed
+
+- type: loadout
+  id: CapMPST
+  storage:
+    back:
+    - CMHeadCapMP
+
+- type: loadout
+  id: CapQuartermasterST
+  storage:
+    back:
+    - RMCHeadCapQuartermaster
+
+- type: loadout
+  id: CapOfficerST
+  storage:
+    back:
+    - CMHeadCapOfficer
+
+- type: loadout
+  id: ArmorHelmetM10ST
+  storage:
+    back:
+    - ArmorHelmetM10
+
+- type: loadout
+  id: HardHatST
+  storage:
+    back:
+    - RMCHardHat
+
+- type: loadout
+  id: HardHatOrangeST
+  storage:
+    back:
+    - RMCHardhatOrange
+
+- type: loadout
+  id: HardHatWhiteST
+  storage:
+    back:
+    - RMCHardhatWhite
+
+- type: loadout
+  id: HardHatBlueST
+  storage:
+    back:
+    - RMCHardhatBlue
+
+- type: loadout
+  id: HeadCapOfficerST
+  storage:
+    back:
+    - CMHeadCapOfficer
+
+- type: loadout
+  id: HeadCapCargoST
+  storage:
+    back:
+    - CMHeadCapCargo
+
+- type: loadout
+  id: CoatBomberST
+  storage:
+    back:
+    - RMCCoatBomber
+
+- type: loadout
+  id: ExternalWebbingST
+  storage:
+    back:
+    - RMCOuterClothingExternalWebbing
+
+- type: loadout
+  id: ArmorM3VLSynthST
+  storage:
+    back:
+    - CMArmorM3VLSynth
+
+- type: loadout
+  id: HazardVestST
+  storage:
+    back:
+    - RMCHazardVest
+
+- type: loadout
+  id: HazardVestBlueST
+  storage:
+    back:
+    - RMCHazardVestBlue
+
+- type: loadout
+  id: HazardVestYellowST
+  storage:
+    back:
+    - RMCHazardVestYellow
+
+- type: loadout
+  id: HazardVestBlackST
+  storage:
+    back:
+    - RMCHazardVestBlack
+
+- type: loadout
+  id: CoatServiceST
+  storage:
+    back:
+    - RMCCoatService
+
+- type: loadout
+  id: LabcoatST
+  storage:
+    back:
+    - RMCLabcoat
+
+- type: loadout
+  id: QuartermasterJacketST
+  storage:
+    back:
+    - RMCQuartermasterJacket
+
+- type: loadout
+  id: CorporateBlackJacketST
+  storage:
+    back:
+    - RMCJacketCorporateBlack
+
+- type: loadout
+  id: CorporateBrownJacketST
+  storage:
+    back:
+    - RMCJacketCorporateBrown
+
+- type: loadout
+  id: CorporateBlueJacketST
+  storage:
+    back:
+    - RMCJacketCorporateBlue
+
+- type: loadout
+  id: JacketWindbreakerST
+  storage:
+    back:
+    - RMCJacketWindbreaker
+
+- type: loadout
+  id: BackpackEngineerST
+  equipment:
+    back: CMBackpackEngineer
+
+- type: loadout
+  id: BackpackMarineMedicST
+  equipment:
+    back: CMBackpackMarineMedic
+
+- type: loadout
+  id: SatchelWelderST
+  equipment:
+    back: RMCSatchelWelder

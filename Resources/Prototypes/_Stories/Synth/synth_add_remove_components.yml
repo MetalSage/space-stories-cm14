@@ -1,0 +1,45 @@
+- type: entity
+  id: STSynthAddComponents
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NightVision
+    innate: true
+    state: half
+    onlyHalf: true
+    alert: STNightVision
+  - type: EyeProtection
+  - type: WoundableUntreatable
+  - type: Insulated
+  - type: ZombieImmune
+  - type: Unparalyzable # Stories-Hunter
+  - type: ShowHealthIcons
+  - type: ShowHealthBars
+  - type: ParalyzeImmuneFrom
+    whitelist:
+      tags:
+      - STSynthGrabbable
+
+- type: entity
+  id: STSynthRemoveComponents
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CMSurgeryTarget
+  - type: Infectable
+  - type: Hunger
+  - type: Thirst
+  - type: Perishable
+  - type: ThermalRegulator
+  - type: Stamina
+  - type: DamageForceSay
+  - type: Dna
+  - type: InjectableSolution
+  - type: IVDripTarget
+  - type: RMCSuicide
+    damage: { }
+
+- type: entity
+  parent: STSynthRemoveComponents
+  id: STSynthJoeRemoveComponents
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HiddenAppearance

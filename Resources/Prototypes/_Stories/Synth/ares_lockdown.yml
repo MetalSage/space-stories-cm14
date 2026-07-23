@@ -1,0 +1,14 @@
+- type: entity
+  parent: RMCShutterAlmayer
+  id: STARESLockdownDoor
+  name: ARES emergency lockdown shutter
+  description: A reinforced blast shutter tied into the ARES core's emergency lockdown system.
+  components:
+  - type: Sprite
+    sprite: _Stories/Synth/ares_lockdown_door.rsi
+    drawdepth: BlastDoors
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: STARESLockdownDoor
+

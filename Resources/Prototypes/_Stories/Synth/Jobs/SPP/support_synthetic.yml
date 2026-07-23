@@ -1,0 +1,228 @@
+- type: job
+  parent: CMJobBase
+  id: STSPPSynthetic
+  name: st-job-name-spp-synth
+  description: st-ghost-role-information-spp-pve-description
+  playTimeTracker: STJobSPPSynthetic
+  ranks:
+    STRankSPPSynthetic: [ ]
+  startingGear: STGearSPPSynthetic
+  icon: "STJobIconSPPSynth"
+  joinNotifyCrew: false
+  accessGroups:
+  - ShipMasterAccess
+  - Synth
+  spawnMenuRoleName: SPP Support Synthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: NpcFactionMember
+      factions:
+      - SPP
+    - type: Language
+      spokenLanguages:
+      - Russian
+      - Scandinavian
+      - English
+      - Japanese
+      - Chinese
+      - German
+      - French
+      - Spanish
+      understoodLanguages:
+      - Russian
+      - Scandinavian
+      - English
+      - Japanese
+      - Chinese
+      - German
+      - French
+      - Spanish
+      currentLanguage: Russian
+      defaultLanguage: Russian
+    - type: LanguageLearning
+      learnableLanguages:
+      - Xeno
+      firstContactLanguages:
+      - Xeno
+      comprehensionThreshold: 0.8
+      learningRange: 8.0
+      baseWordLearningRate: 0.05
+    - type: Skills
+      skills:
+        RMCSkillCqc: 5
+        RMCSkillEndurance: 1
+        RMCSkillEngineer: 4
+        RMCSkillConstruction: 3
+        RMCSkillFirearms: 2
+        RMCSkillOverwatch: 1
+        RMCSkillMedical: 4
+        RMCSkillSurgery: 3
+        RMCSkillResearch: 1
+        RMCSkillMeleeWeapons: 2
+        RMCSkillPilot: 2
+        RMCSkillPolice: 2
+        RMCSkillFireman: 5
+        RMCSkillPowerLoader: 2
+        RMCSkillVehicles: 2
+        RMCSkillJtac: 3
+        RMCSkillIntel: 2
+        RMCSkillDomestics: 2
+        RMCSkillNavigations: 1
+    - type: CMVendorUser
+      id: STJobSynthetic
+      points: 45
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: QYJWhitelist
+    - type: JobPrefix
+      prefix: st-job-prefix-spp-synth
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+  hidden: true
+
+- type: startingGear
+  id: STGearSPPSynthetic
+  equipment:
+    head: CMHeadCapSPPBeret
+    ears: RMCHeadsetSPPCommand
+    eyes: RMCGlassesMedicalHUDGlasses
+    mask: CMScrewdriver
+    back: STSatchelSPPSynth
+    belt: STBeltMedicBagSPPSynthFilled
+    gloves: RMCHandsVeteranSPP
+    suitstorage: RMCMotionDetector
+    jumpsuit: RMCJumpsuitSPPMedicSurgicalWebbing
+    outerClothing: STArmorSPPSupportSynthFilled
+    shoes: RMCBootsSPPBlackFilled
+    id: RMCIDSPP
+    pocket1: STPouchToolsSocFilledSPPSynthetic
+    pocket2: STPouchMedicalSPPSynth
+  storage:
+    back:
+    - STSynthResetKey
+
+- type: playTimeTracker
+  id: STJobSPPSynthetic
+  isHumanoid: true
+
+- type: job
+  parent: STSPPSynthetic
+  id: STSPPCombatSynthetic
+  name: st-job-name-spp-combat-synth
+  description: st-ghost-role-information-spp-pve-description
+  playTimeTracker: STJobSPPCombatSynthetic
+  startingGear: STGearSPPCombatSynthetic
+  spawnMenuRoleName: SPP Combat Synthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: NpcFactionMember
+      factions:
+      - SPP
+    - type: Language
+      spokenLanguages:
+      - Russian
+      - Scandinavian
+      - English
+      - Japanese
+      - Chinese
+      - German
+      - French
+      - Spanish
+      understoodLanguages:
+      - Russian
+      - Scandinavian
+      - English
+      - Japanese
+      - Chinese
+      - German
+      - French
+      - Spanish
+      currentLanguage: Russian
+      defaultLanguage: Russian
+    - type: LanguageLearning
+      learnableLanguages:
+      - Xeno
+      firstContactLanguages:
+      - Xeno
+      comprehensionThreshold: 0.8
+      learningRange: 8.0
+      baseWordLearningRate: 0.05
+    - type: Skills
+      skills:
+        RMCSkillCqc: 5
+        RMCSkillEndurance: 1
+        RMCSkillEngineer: 4
+        RMCSkillConstruction: 3
+        RMCSkillFirearms: 2
+        RMCSkillOverwatch: 1
+        RMCSkillMedical: 4
+        RMCSkillSurgery: 3
+        RMCSkillResearch: 1
+        RMCSkillMeleeWeapons: 2
+        RMCSkillPilot: 2
+        RMCSkillPolice: 2
+        RMCSkillFireman: 5
+        RMCSkillPowerLoader: 2
+        RMCSkillVehicles: 2
+        RMCSkillJtac: 3
+        RMCSkillIntel: 2
+        RMCSkillDomestics: 2
+        RMCSkillNavigations: 1
+    - type: CMVendorUser
+      id: STJobSynthetic
+      points: 45
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: QYJWhitelist
+    - type: JobPrefix
+      prefix: st-job-prefix-spp-synth
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+      canUseGuns: true
+  hidden: true
+
+- type: startingGear
+  parent: STGearSPPSynthetic
+  id: STGearSPPCombatSynthetic
+  equipment:
+    suitstorage: RMCWeaponSMGType64
+  storage:
+    back:
+    - RMCMagazineSMGType64
+    - RMCMagazineSMGType64
+    - STTelescopicBaton
+    - STSynthResetKey
+
+- type: playTimeTracker
+  id: STJobSPPCombatSynthetic
+  isHumanoid: true

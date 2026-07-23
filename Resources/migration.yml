@@ -874,8 +874,8 @@ CMPouchGeneralMedium: RMCPouchGeneralMedium
 CMPouchGeneralLarge: RMCPouchGeneralLarge
 CMPouchSurvival: RMCPouchSurvival
 CMPouchSurvivalFill: RMCPouchSurvivalFill
-CMPouchSurvivalSynth: RMCPouchSurvivalSynth
-CMPouchSurvivalSynthFill: RMCPouchSurvivalSynthFill
+CMPouchSurvivalSynth: STPouchSurvivalSynth
+CMPouchSurvivalSynthFill: STPouchSurvivalSynthFill
 CMPouchCommand: RMCPouchCommand
 CMPouchMagazine: RMCPouchMagazine
 CMPouchMagazineLarge: RMCPouchMagazineLarge

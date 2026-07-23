@@ -19,3 +19,12 @@
   planet: true
   tower: false
   ttsCategory: "stories-tts-category-radio-hunter"
+
+- type: radioChannel
+  id: ApolloLink
+  name: stories-chat-radio-apollo-link
+  keycode: "6"
+  frequency: 1498
+  color: "#00CED1"
+  longRange: true
+  showInTTSOptions: false

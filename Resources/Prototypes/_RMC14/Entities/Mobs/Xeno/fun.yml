@@ -55,7 +55,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
-    - RMCSynthGrabbable
+    - STSynthGrabbable
   - type: Sprite
     sprite: _RMC14/Mobs/Xenonids/Extras/lesser_carrier.rsi
     layers:

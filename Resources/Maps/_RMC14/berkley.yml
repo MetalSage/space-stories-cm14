@@ -4593,32 +4593,32 @@ entities:
         -25,21: RMCAreaBerkleyPilotsRoom
         -25,20: RMCAreaBerkleyPilotsRoom
         -25,19: RMCAreaBerkleyPilotsRoom
-        -35,26: RMCAreaBerkleySynthetic
-        -35,25: RMCAreaBerkleySynthetic
-        -35,24: RMCAreaBerkleySynthetic
-        -35,23: RMCAreaBerkleySynthetic
-        -34,26: RMCAreaBerkleySynthetic
-        -34,25: RMCAreaBerkleySynthetic
-        -34,24: RMCAreaBerkleySynthetic
-        -34,23: RMCAreaBerkleySynthetic
-        -33,26: RMCAreaBerkleySynthetic
-        -33,25: RMCAreaBerkleySynthetic
-        -33,24: RMCAreaBerkleySynthetic
-        -33,23: RMCAreaBerkleySynthetic
-        -32,26: RMCAreaBerkleySynthetic
-        -32,25: RMCAreaBerkleySynthetic
-        -32,24: RMCAreaBerkleySynthetic
-        -32,23: RMCAreaBerkleySynthetic
-        -31,26: RMCAreaBerkleySynthetic
-        -31,25: RMCAreaBerkleySynthetic
-        -31,24: RMCAreaBerkleySynthetic
-        -31,23: RMCAreaBerkleySynthetic
-        -30,26: RMCAreaBerkleySynthetic
-        -30,25: RMCAreaBerkleySynthetic
-        -30,24: RMCAreaBerkleySynthetic
-        -30,23: RMCAreaBerkleySynthetic
-        -29,26: RMCAreaBerkleySynthetic
-        -29,25: RMCAreaBerkleySynthetic
+        -35,26: STAreaBerkleySynthetic
+        -35,25: STAreaBerkleySynthetic
+        -35,24: STAreaBerkleySynthetic
+        -35,23: STAreaBerkleySynthetic
+        -34,26: STAreaBerkleySynthetic
+        -34,25: STAreaBerkleySynthetic
+        -34,24: STAreaBerkleySynthetic
+        -34,23: STAreaBerkleySynthetic
+        -33,26: STAreaBerkleySynthetic
+        -33,25: STAreaBerkleySynthetic
+        -33,24: STAreaBerkleySynthetic
+        -33,23: STAreaBerkleySynthetic
+        -32,26: STAreaBerkleySynthetic
+        -32,25: STAreaBerkleySynthetic
+        -32,24: STAreaBerkleySynthetic
+        -32,23: STAreaBerkleySynthetic
+        -31,26: STAreaBerkleySynthetic
+        -31,25: STAreaBerkleySynthetic
+        -31,24: STAreaBerkleySynthetic
+        -31,23: STAreaBerkleySynthetic
+        -30,26: STAreaBerkleySynthetic
+        -30,25: STAreaBerkleySynthetic
+        -30,24: STAreaBerkleySynthetic
+        -30,23: STAreaBerkleySynthetic
+        -29,26: STAreaBerkleySynthetic
+        -29,25: STAreaBerkleySynthetic
         -23,26: RMCAreaBerkleyPilotsRoom
         -23,25: RMCAreaBerkleyPilotsRoom
         -23,24: RMCAreaBerkleyPilotsRoom
@@ -24688,7 +24688,7 @@ entities:
     - type: Transform
       pos: 28.5,2.5
       parent: 1
-- proto: RMCSpawnPointSynth
+- proto: STSpawnPointSynth
   entities:
   - uid: 1068
     components:

@@ -26,7 +26,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
-    - RMCSynthGrabbable
+    - STSynthGrabbable
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -50,6 +50,11 @@
     tier: 2
     hudOffset: 0,0.56
     unlockAt: 420 # 7 minutes
+  - type: FiremanCarriable
+    canThrow: true
+    carrierWhitelist:
+      components:
+      - STSynthHeavyGrab
   - type: XenoLight
   - type: XenoDevolve
     devolvesTo:

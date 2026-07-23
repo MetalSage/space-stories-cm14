@@ -362,8 +362,8 @@
     sprite: _RMC14/Objects/Clothing/Pouches/survivalpouch_black.rsi
 
 - type: entity
-  parent: RMCPouchSurvivalSynth
-  id: RMCPouchSurvivalSynthFill
+  parent: STPouchSurvivalSynth
+  id: STPouchSurvivalSynthFill
   suffix: Filled
   components:
   - type: StorageFill

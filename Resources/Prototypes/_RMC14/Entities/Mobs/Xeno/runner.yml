@@ -29,7 +29,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
-    - RMCSynthGrabbable
+    - STSynthGrabbable
   - type: Xeno
     role: CMXenoRunner
     tier: 1

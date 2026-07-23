@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/master/icons/obj/items/weapons/melee/non_lethal.dmi, https://github.com/cmss13-devs/cmss13/blob/master/icons/mob/humans/onmob/inhands/weapons/melee/non_lethal_lefthand.dmi, https://github.com/cmss13-devs/cmss13/blob/master/icons/mob/humans/onmob/inhands/weapons/melee/non_lethal_righthand.dmi. equipped-BELT/equipped-SUITSTORAGE reused from _RMC14/Objects/Weapons/Melee/stun_baton.rsi (no distinct telebaton belt sprite exists upstream).",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "telebaton_0"
+    },
+    {
+      "name": "telebaton_1"
+    },
+    {
+      "name": "off-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "off-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "on-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "on-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "equipped-BELT",
+      "directions": 4
+    },
+    {
+      "name": "equipped-SUITSTORAGE",
+      "directions": 4
+    }
+  ]
+}

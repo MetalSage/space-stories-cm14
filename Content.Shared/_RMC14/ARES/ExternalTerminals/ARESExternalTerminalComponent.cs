@@ -35,6 +35,9 @@ public sealed partial class ARESExternalTerminalComponent : Component
     public bool ShowsLogs = false;
 
     [DataField, AutoNetworkedField]
+    public bool ShowCore = false;
+
+    [DataField, AutoNetworkedField]
     public string LoggedInUser = "";
 
     [DataField, AutoNetworkedField]

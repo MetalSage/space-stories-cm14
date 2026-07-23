@@ -1,0 +1,16 @@
+<controls:STSynthVoiceSynthesizerWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._Stories.Synth.VoiceSynthesizer"
+    xmlns:crt="clr-namespace:Content.Client._RMC14.UserInterface.Crt"
+    MinSize="500 500">
+    <crt:RMCCrtThemeScope Name="ThemeScope" Access="Public" Effects="HorizontalScanlines" BorderThickness="1">
+        <BoxContainer Orientation="Vertical" Margin="4 4 4 4">
+            <crt:RMCCrtLabel Name="PanelTitleLabel" Access="Public" Heading="True" HorizontalAlignment="Center" />
+            <LineEdit Name="SearchBar" Access="Public" HorizontalExpand="True" Margin="0 4 0 4" />
+            <TabContainer Name="CategoryTabs" Access="Public" VerticalExpand="True" />
+            <ScrollContainer Name="SearchResultsScroll" Access="Public" VerticalExpand="True" HorizontalExpand="True" Visible="False">
+                <BoxContainer Name="SearchResultsContainer" Access="Public" Orientation="Vertical" />
+            </ScrollContainer>
+        </BoxContainer>
+    </crt:RMCCrtThemeScope>
+</controls:STSynthVoiceSynthesizerWindow>

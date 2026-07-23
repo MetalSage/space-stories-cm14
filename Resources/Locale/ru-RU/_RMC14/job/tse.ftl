@@ -10,6 +10,6 @@ rmc-job-name-tsepa-inspector = инспектор ИТСПД
 rmc-job-description-tsepa-inspector = Контролируйте обеспечение соблюдения Законов ИТСПД.
 rmc-job-prefix-tsepa-inspector = Инс. ИТСПД
 
-rmc-job-name-tsepa-synth = синтетик поддержки ИТСПД
-rmc-job-description-tsepa-synth = Оказывать поддержку и помощь персоналу ИТСПД.
-rmc-job-prefix-tsepa-synth = Синт.
+st-job-name-tsepa-synth = синтетик поддержки ИТСПД
+st-job-description-tsepa-synth = Оказывать поддержку и помощь персоналу ИТСПД.
+st-job-prefix-tsepa-synth = Синт.

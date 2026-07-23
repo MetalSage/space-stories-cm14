@@ -157,7 +157,7 @@
   id: RMCPinpointer
 
 - type: Tag
-  id: RMCSynthResetKey
+  id: STSynthResetKey
 
 - type: Tag
   id: RMCUniformMarine
@@ -190,7 +190,7 @@
   id: RMCXenoParasitePreparingLeap
 
 - type: Tag
-  id: RMCSynthGrabbable # whitelist tag for synths being able to grab particular xenos
+  id: STSynthGrabbable # whitelist tag for synths being able to grab particular xenos
 
 - type: Tag
   id: RMCSentryLaptop

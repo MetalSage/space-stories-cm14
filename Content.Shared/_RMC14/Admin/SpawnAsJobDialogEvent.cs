@@ -5,4 +5,4 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._RMC14.Admin;
 
 [Serializable, NetSerializable]
-public sealed record SpawnAsJobDialogEvent(NetEntity User, NetEntity Target, ProtoId<JobPrototype> JobId);
+public sealed record SpawnAsJobDialogEvent(NetEntity User, NetEntity Target, ProtoId<JobPrototype> JobId, string? Variant = null);

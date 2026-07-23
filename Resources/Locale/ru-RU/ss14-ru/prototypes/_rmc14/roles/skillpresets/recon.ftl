@@ -8,5 +8,5 @@ ent-RMCSkillPresetReconSquadLeader = Survivor Recon Squad Leader
     .desc = { ent-RMCSkillPresetReconRifleman.desc }
 ent-RMCSkillPresetReconSupportTechnician = Survivor Recon Support Technician
     .desc = { ent-RMCSkillPresetReconRifleman.desc }
-ent-RMCSkillPresetReconSynth = Survivor Recon Synthetic
+ent-STSkillPresetReconSynth = Survivor Recon Synthetic
     .desc = { "" }

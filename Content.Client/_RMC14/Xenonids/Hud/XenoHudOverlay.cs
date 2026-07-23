@@ -30,7 +30,7 @@ using Robust.Shared.Utility;
 using Content.Shared._RMC14.Xenonids.Finesse;
 using static Robust.Shared.Utility.SpriteSpecifier;
 using Content.Shared._RMC14.Slow;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Content.Shared._RMC14.Xenonids.Hedgehog;
 using Content.Shared.FixedPoint;
 

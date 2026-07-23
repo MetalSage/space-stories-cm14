@@ -22,7 +22,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Whitelist;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;

@@ -160,8 +160,8 @@
       - CMVehicleCrewman
     - slots: 1
       eligibleJobs:
-      - RMCJobSynthetic
-      - RMCCorporateSynthetic
+      - STJobSynthetic
+      - STCorporateSynthetic
     entryPoints:
     - offset: 1.5,0
       radius: 0.7
@@ -225,8 +225,8 @@
       - CMCMO
       - CMNurse
       - RMCFieldDoctor
-      - RMCJobSynthetic
-      - RMCCorporateSynthetic
+      - STJobSynthetic
+      - STCorporateSynthetic
     entryPoints:
     - offset: 1.5,0
       radius: 0.7
@@ -282,8 +282,8 @@
       - CMUNMCBrigadierGeneral
     - slots: 1
       eligibleJobs:
-      - RMCJobSynthetic
-      - RMCCorporateSynthetic
+      - STJobSynthetic
+      - STCorporateSynthetic
     entryPoints:
     - offset: 1.5,0
       radius: 0.7

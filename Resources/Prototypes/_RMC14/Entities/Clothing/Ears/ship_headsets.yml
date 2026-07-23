@@ -528,7 +528,7 @@
 
 - type: entity
   parent: CMHeadsetSeniorCommand
-  id: RMCHeadsetSynth
+  id: STHeadsetSynth
   name: marine synth headset
   description: Issued only to UNMC synthetics.
   components:

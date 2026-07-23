@@ -1,0 +1,111 @@
+- type: job
+  parent: CMJobBase
+  id: STJobSynthetic
+  name: st-job-name-synth
+  description: st-job-description-synth
+  playTimeTracker: STJobSynthetic
+  ranks:
+    STRankSyntheticMG:
+    - !type:RoleTimeRequirement
+      role: STJobSynthetic
+      time: 270000
+    STRankSynthetic: [ ]
+  startingGear: STGearSyntheticEquipped
+  dummyStartingGear: STGearSyntheticEquipped
+  icon: "STJobIconSynth"
+  joinNotifyCrew: true
+  whitelisted: true
+  supervisors: rmc-job-supervisors-commander
+  accessGroups:
+  - ShipMasterAccess
+  - Synth
+  roleWeight: 0.25
+  setVariantPreference: true
+  variants:
+    STSynthGenTwo: st-job-synth-variant-gen-two
+    STSynthGenThree: st-job-synth-variant-gen-three
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - English
+      - French
+      - Japanese
+      - Russian
+      - Scandinavian
+      - German
+      - Chinese
+      - Spanish
+      understoodLanguages:
+      - English
+      - French
+      - Japanese
+      - Russian
+      - Scandinavian
+      - German
+      - Chinese
+      - Spanish
+      currentLanguage: English
+      defaultLanguage: English
+    - type: LanguageLearning
+      learnableLanguages:
+      - Xeno
+      firstContactLanguages:
+      - Xeno
+      comprehensionThreshold: 0.8
+      learningRange: 8.0
+      baseWordLearningRate: 0.05
+    - type: CMVendorUser
+      id: STJobSynthetic
+      points: 45
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: JobPrefix
+      prefix: st-job-prefix-synth
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: synth
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+
+- type: startingGear
+  id: STGearSyntheticEquipped
+  equipment:
+    jumpsuit: STJumpsuitSynthetic
+    gloves: CMHandsInsulated
+    shoes: RMCShoesWhite
+    id: STIDCardSynth
+    ears: STHeadsetSynth
+    belt: CMBeltUtilityFilled
+    back: CMSatchelMarine
+    pocket1: RMCUniversalRecorder
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointSynth
+  name: st-spawn-point-synth
+  components:
+  - type: SpawnPoint
+    job_id: STJobSynthetic
+  - type: Sprite
+    state: syn_spawn
+
+- type: playTimeTracker
+  id: STJobSynthetic
+  isHumanoid: true

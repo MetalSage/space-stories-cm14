@@ -750,39 +750,39 @@
 
 # Synthetic
 - type: loadoutGroup
-  id: SynthUniformRMC
-  name: rmc-loadout-group-synthetic-uniform
+  id: SynthUniformST
+  name: st-loadout-group-synthetic-uniform
   minLimit: 1
   loadouts:
-  - SynthUniformRMC
-  - SynthJumpsuitPristineRMC
-  - ScrubsBlueRMC
-  - ScrubsLightBlueRMC
-  - ScrubsGreenRMC
-  - ScrubsPurpleRMC
-  - ScrubsOliveRMC
-  - ScrubsGreyRMC
-  - ServiceUniformRMC
-  - ServiceUniformXORMC
-  - MarineUniformRMC
-  - CorpsmanUniformRMC
-  - ComTechUniformRMC
-  - EngineerUniformRMC
-  - MPUniformRMC
-  - JumpsuitOperationsRMC
-  - DCCJumpsuitRMC
-  - TShirtWhiteRMC
-  - TShirtGrayRMC
-  - TShirtRedRMC
-  - CivilianJumpsuitRMC
-  - WhiteServiceJumpsuitRMC
-  - LiaisonBlueJumpsuitRMC
-  - LiaisonBrownJumpsuitRMC
-  - LiaisonCorporateFormalJumpsuitRMC
+  - SynthUniformST
+  - SynthJumpsuitPristineST
+  - ScrubsBlueST
+  - ScrubsLightBlueST
+  - ScrubsGreenST
+  - ScrubsPurpleST
+  - ScrubsOliveST
+  - ScrubsGreyST
+  - ServiceUniformST
+  - ServiceUniformXOST
+  - MarineUniformST
+  - CorpsmanUniformST
+  - ComTechUniformST
+  - EngineerUniformST
+  - MPUniformST
+  - JumpsuitOperationsST
+  - DCCJumpsuitST
+  - TShirtWhiteST
+  - TShirtGrayST
+  - TShirtRedST
+  - CivilianJumpsuitST
+  - WhiteServiceJumpsuitST
+  - LiaisonBlueJumpsuitST
+  - LiaisonBrownJumpsuitST
+  - LiaisonCorporateFormalJumpsuitST
 
 - type: loadoutGroup
-  id: SynthGlassesRMC
-  name: rmc-loadout-group-synthetic-glasses
+  id: SynthGlassesST
+  name: st-loadout-group-synthetic-glasses
   minLimit: 0
   maxLimit: 2
   loadouts:
@@ -809,26 +809,26 @@
   - GogglesPolarizedBlueRMC
   - GogglesPolarizedOrangeRMC
   - GogglesM1A1BlueRMC
-  - GlassesSecurityRMC
+  - GlassesSecurityST
 
 - type: loadoutGroup
-  id: SynthShoesRMC
-  name: rmc-loadout-group-synthetic-shoes
+  id: SynthShoesST
+  name: st-loadout-group-synthetic-shoes
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - BootsBlackRMCSynth
-  - ShoesBlackRMCSynth
-  - ShoesBrownRMCSynth
-  - ShoesGreenRMCSynth
-  - ShoesPurpleRMCSynth
-  - ShoesRedRMCSynth
-  - ShoeWhiteRMCSynth
-  - ShoeYellowRMCSynth
+  - BootsBlackSTSynth
+  - ShoesBlackSTSynth
+  - ShoesBrownSTSynth
+  - ShoesGreenSTSynth
+  - ShoesPurpleSTSynth
+  - ShoesRedSTSynth
+  - ShoeWhiteSTSynth
+  - ShoeYellowSTSynth
 
 - type: loadoutGroup
-  id: SynthHeadwearRMC
-  name: rmc-loadout-group-synthetic-headwear
+  id: SynthHeadwearST
+  name: st-loadout-group-synthetic-headwear
   minLimit: 0
   maxLimit: 2
   loadouts:
@@ -839,69 +839,69 @@
   - BoonieRMC
   - BoonieTanRMC
   - CapRMC
-  - BeretEngineerRMC
-  - CapMPRMC
-  - CapQuartermasterRMC
-  - HeadCapCargoRMC
-  - ArmorHelmetM10RMC
-  - HardHatRMC
-  - HardHatOrangeRMC
-  - HardHatWhiteRMC
-  - HardHatBlueRMC
-  - HeadCapOfficerRMC
+  - BeretEngineerST
+  - CapMPST
+  - CapQuartermasterST
+  - HeadCapCargoST
+  - ArmorHelmetM10ST
+  - HardHatST
+  - HardHatOrangeST
+  - HardHatWhiteST
+  - HardHatBlueST
+  - HeadCapOfficerST
 
 - type: loadoutGroup
-  id: SynthSuitsRMC
-  name: rmc-loadout-group-synthetic-suits
+  id: SynthSuitsST
+  name: st-loadout-group-synthetic-suits
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - CoatBomberRMC
-  - ExternalWebbingRMC
-  - ArmorM3VLSynthRMC
-  - HazardVestRMC
-  - HazardVestBlueRMC
-  - HazardVestYellowRMC
-  - HazardVestBlackRMC
-  - CoatServiceRMC
-  - LabcoatRMC
-  - QuartermasterJacketRMC
-  - CorporateBlackJacketRMC
-  - CorporateBrownJacketRMC
-  - CorporateBlueJacketRMC
-  - JacketWindbreakerRMC
+  - CoatBomberST
+  - ExternalWebbingST
+  - ArmorM3VLSynthST
+  - HazardVestST
+  - HazardVestBlueST
+  - HazardVestYellowST
+  - HazardVestBlackST
+  - CoatServiceST
+  - LabcoatST
+  - QuartermasterJacketST
+  - CorporateBlackJacketST
+  - CorporateBrownJacketST
+  - CorporateBlueJacketST
+  - JacketWindbreakerST
 
 - type: loadoutGroup
-  id: SynthUniformAccessoriesRMC
-  name: rmc-loadout-group-synthetic-accessories
+  id: SynthUniformAccessoriesST
+  name: st-loadout-group-synthetic-accessories
   minLimit: 0
   maxLimit: 3
   loadouts:
-  - ScienceArmbandRMC
-  - EngiArmbandRMC
-  - MedArmbandRMC
-  - TieRMC
-  - TieGreenRMC
-  - TieBlackRMC
-  - TieGoldRMC
-  - TieRedRMC
-  - TiePurpleRMC
+  - ScienceArmbandST
+  - EngiArmbandST
+  - MedArmbandST
+  - TieST
+  - TieGreenST
+  - TieBlackST
+  - TieGoldST
+  - TieRedST
+  - TiePurpleST
 
 - type: loadoutGroup
-  id: SynthBackpackRMC
+  id: SynthBackpackST
   name: rmc-loadout-group-backpack
   minLimit: 1
   loadouts:
-  - BackpackEngineerRMC
-  - BackpackMarineMedicRMC
+  - BackpackEngineerST
+  - BackpackMarineMedicST
   - MarineTechnicianSatchel
   - MarineSatchel
   - MarineLeatherSatchel
   - MarineMedicSatchel
-  - SatchelWelderRMC
+  - SatchelWelderST
 
 - type: loadoutGroup
-  id: SynthMasksRMC
+  id: SynthMasksST
   name: rmc-loadout-group-masks
   minLimit: 1
   loadouts:
@@ -924,15 +924,6 @@
   - NeckerchiefWhiteRMC
   - NeckerchiefRedRMC
 
-- type: loadoutGroup
-  id: SynthGenRMC
-  name: rmc-loadout-group-synth
-  maxLimit: 1
-  minLimit: 1
-  loadouts:
-  - RMCSynthGenOne
-  - RMCSynthGenTwo
-  - RMCSynthGenThree
 # Watches
 - type: loadoutGroup
   id: WatchesBasicRMC
@@ -946,7 +937,7 @@
   - WatchPilotRMC
 
 - type: loadoutGroup
-  id: WatchesSynthRMC
+  id: WatchesSynthST
   name: rmc-loadout-group-watches
   minLimit: 0
   maxLimit: 1
@@ -955,7 +946,7 @@
   - WatchBasicRMC
   - WatchSurvRMC
   - WatchPilotRMC
-  - WatchSynthRMC
+  - WatchSynthST
 
 - type: loadoutGroup
   id: WatchesLiaisonRMC
@@ -980,7 +971,7 @@
   - WatchSurvRMC
   - WatchPilotRMC
   - WatchLiaisonRMC
-  - WatchSynthRMC
+  - WatchSynthST
 
 # Civilian
 - type: loadoutGroup

@@ -1,0 +1,96 @@
+
+- type: job
+  parent: CMSurvivorFiorinaRiotOfficer
+  id: STSurvivorFiorinaRiotInProgressCMBSynth
+  name: st-job-name-fiorina-cmb-synth
+  description: cm-job-description-survivor
+  playTimeTracker: STJobFiorinaCMBSynth
+  startingGear: STGearFiorinaRiotInProgressCMBSynth
+  accessGroups:
+  - ColonistSec
+  spawnMenuRoleName: CMB Riot Control Synthetic (Special Survivor)
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - Japanese
+      - English
+      understoodLanguages:
+      - Japanese
+      - English
+      currentLanguage: English
+      defaultLanguage: English
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: Skills
+      preset: RMCSkillPresetSurvivorMarshal
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: NpcFactionMember
+      factions:
+      - Bureau
+      - Civilian
+    - type: IntelRescueSurvivorObjective
+    - type: RMCAllowSuitStorage
+    - type: JobPrefix
+      prefix: st-job-prefix-synth
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: mp
+      background:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: background_cmb
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+
+- type: startingGear
+  id: STGearFiorinaRiotInProgressCMBSynth
+  equipment:
+    id: RMCIDCardCMBDeputySurvivor
+    head: RMCHeadCapBureau
+    jumpsuit: RMCMarshalCMBUniform
+    outerClothing: RMCArmorPMCRiot
+    ears: RMCHeadsetDistressBureauDamaged
+    eyes: RMCGlassesSecurityBlue
+    gloves: CMHandsBlackMarine
+    shoes: RMCBootsPMCFilled
+    belt: CMBeltSecurityMP
+    back: CMSatchelSecuritySurvivorFill
+    pocket1: RMCPouchSurvivalBlackFilled
+  storage:
+    back:
+    - STSynthResetKey
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointFiorinaRiotInProgressCMBSynth
+  name: special survivor fiorina riot in progress cmb synth spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorFiorinaRiotInProgressCMBSynth
+  - type: Sprite
+    layers:
+    - sprite: _RMC14/Markers/landmarks.rsi
+      state: surv
+
+- type: playTimeTracker
+  id: STJobFiorinaCMBSynth
+  isHumanoid: true

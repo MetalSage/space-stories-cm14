@@ -826,20 +826,20 @@
   - MeleeWeaponsRMC
 
 - type: roleLoadout
-  id: JobRMCJobSynthetic
+  id: JobSTJobSynthetic
   points: 7
   groups:
-  - SynthGenRMC
-  - SynthBackpackRMC
-  - SynthHeadwearRMC
-  - SynthGlassesRMC
-  - SynthMasksRMC
+  - SynthSpecializationST
+  - SynthBackpackST
+  - SynthHeadwearST
+  - SynthGlassesST
+  - SynthMasksST
   - HelmetGarbsRMC
   - AccessoriesRMC
-  - WatchesSynthRMC
-  - SynthUniformRMC
-  - SynthUniformAccessoriesRMC
-  - SynthSuitsRMC
+  - WatchesSynthST
+  - SynthUniformST
+  - SynthUniformAccessoriesST
+  - SynthSuitsST
   - PaperworkRMC
   - RecreationalRMC
   # - PlushiesRMC
@@ -917,7 +917,7 @@
   - MeleeWeaponsRMC
 
 - type: roleLoadout
-  id: JobRMCSyntheticColony
+  id: JobSTSyntheticColony
   points: 7
   groups:
   - EyewearRMC

@@ -28,7 +28,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
-    - RMCSynthGrabbable
+    - STSynthGrabbable
   - type: MobThresholds
     thresholds:
       0: Alive

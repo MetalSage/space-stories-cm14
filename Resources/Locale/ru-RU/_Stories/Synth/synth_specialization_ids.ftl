@@ -1,0 +1,12 @@
+ent-STIDCardSynthEngineering = ID-карта синтетика (Инженерный)
+    .desc = { "" }
+ent-STIDCardSynthMedical = ID-карта синтетика (Медицинский)
+    .desc = { "" }
+ent-STIDCardSynthIntel = ID-карта синтетика (Разведка)
+    .desc = { "" }
+ent-STIDCardSynthMP = ID-карта синтетика (Военная полиция)
+    .desc = { "" }
+ent-STIDCardSynthCommand = ID-карта синтетика (Командный)
+    .desc = { "" }
+ent-STIDCardSynthResearch = ID-карта синтетика (Исследовательский)
+    .desc = { "" }

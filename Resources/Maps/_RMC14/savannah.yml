@@ -10054,48 +10054,48 @@ entities:
         99,-32: RMCAreaSavannahMaintsPortQuarter
         98,-31: RMCAreaSavannahMaintsPortQuarter
         98,-32: RMCAreaSavannahMaintsPortQuarter
-        97,-31: RMCAreaSavannahSynthetic
-        97,-32: RMCAreaSavannahSynthetic
+        97,-31: STAreaSavannahSynthetic
+        97,-32: STAreaSavannahSynthetic
         100,-33: RMCAreaSavannahMaintsPortQuarter
         99,-33: RMCAreaSavannahMaintsPortQuarter
         98,-33: RMCAreaSavannahMaintsPortQuarter
-        97,-33: RMCAreaSavannahSynthetic
-        96,-33: RMCAreaSavannahSynthetic
-        95,-33: RMCAreaSavannahSynthetic
-        94,-33: RMCAreaSavannahSynthetic
-        93,-33: RMCAreaSavannahSynthetic
-        92,-33: RMCAreaSavannahSynthetic
+        97,-33: STAreaSavannahSynthetic
+        96,-33: STAreaSavannahSynthetic
+        95,-33: STAreaSavannahSynthetic
+        94,-33: STAreaSavannahSynthetic
+        93,-33: STAreaSavannahSynthetic
+        92,-33: STAreaSavannahSynthetic
         91,-33: RMCAreaSavannahMaintsPortQuarter
         90,-33: RMCAreaSavannahMaintsPortQuarter
         89,-33: RMCAreaSavannahMaintsPortQuarter
         88,-33: RMCAreaSavannahMaintsPortQuarter
         87,-33: RMCAreaSavannahMaintsPortQuarter
         86,-33: RMCAreaSavannahMaintsPortQuarter
-        96,-28: RMCAreaSavannahSynthetic
-        96,-29: RMCAreaSavannahSynthetic
-        96,-30: RMCAreaSavannahSynthetic
-        96,-31: RMCAreaSavannahSynthetic
-        96,-32: RMCAreaSavannahSynthetic
-        95,-28: RMCAreaSavannahSynthetic
-        95,-29: RMCAreaSavannahSynthetic
-        95,-30: RMCAreaSavannahSynthetic
-        95,-32: RMCAreaSavannahSynthetic
-        95,-31: RMCAreaSavannahSynthetic
-        94,-29: RMCAreaSavannahSynthetic
-        94,-28: RMCAreaSavannahSynthetic
-        94,-30: RMCAreaSavannahSynthetic
-        94,-31: RMCAreaSavannahSynthetic
-        94,-32: RMCAreaSavannahSynthetic
-        93,-28: RMCAreaSavannahSynthetic
-        93,-29: RMCAreaSavannahSynthetic
-        93,-30: RMCAreaSavannahSynthetic
-        93,-31: RMCAreaSavannahSynthetic
-        93,-32: RMCAreaSavannahSynthetic
-        92,-28: RMCAreaSavannahSynthetic
-        92,-29: RMCAreaSavannahSynthetic
-        92,-30: RMCAreaSavannahSynthetic
-        92,-31: RMCAreaSavannahSynthetic
-        92,-32: RMCAreaSavannahSynthetic
+        96,-28: STAreaSavannahSynthetic
+        96,-29: STAreaSavannahSynthetic
+        96,-30: STAreaSavannahSynthetic
+        96,-31: STAreaSavannahSynthetic
+        96,-32: STAreaSavannahSynthetic
+        95,-28: STAreaSavannahSynthetic
+        95,-29: STAreaSavannahSynthetic
+        95,-30: STAreaSavannahSynthetic
+        95,-32: STAreaSavannahSynthetic
+        95,-31: STAreaSavannahSynthetic
+        94,-29: STAreaSavannahSynthetic
+        94,-28: STAreaSavannahSynthetic
+        94,-30: STAreaSavannahSynthetic
+        94,-31: STAreaSavannahSynthetic
+        94,-32: STAreaSavannahSynthetic
+        93,-28: STAreaSavannahSynthetic
+        93,-29: STAreaSavannahSynthetic
+        93,-30: STAreaSavannahSynthetic
+        93,-31: STAreaSavannahSynthetic
+        93,-32: STAreaSavannahSynthetic
+        92,-28: STAreaSavannahSynthetic
+        92,-29: STAreaSavannahSynthetic
+        92,-30: STAreaSavannahSynthetic
+        92,-31: STAreaSavannahSynthetic
+        92,-32: STAreaSavannahSynthetic
         91,-28: RMCAreaSavannahMaintsPortQuarter
         91,-29: RMCAreaSavannahMaintsPortQuarter
         91,-30: RMCAreaSavannahMaintsPortQuarter
@@ -11463,9 +11463,9 @@ entities:
         118,-15: RMCAreaSavannahLifeboatAmidship
         119,-15: RMCAreaSavannahLifeboatAmidship
         120,-15: RMCAreaSavannahLifeboatAmidship
-        97,-28: RMCAreaSavannahSynthetic
-        97,-29: RMCAreaSavannahSynthetic
-        97,-30: RMCAreaSavannahSynthetic
+        97,-28: STAreaSavannahSynthetic
+        97,-29: STAreaSavannahSynthetic
+        97,-30: STAreaSavannahSynthetic
         78,-7: RMCAreaSavannahCorridorEngineering
         78,-8: RMCAreaSavannahCorridorEngineering
         79,-7: RMCAreaSavannahCorridorEngineering
@@ -80575,7 +80575,7 @@ entities:
     - type: Transform
       pos: -58.5,5.5
       parent: 1
-- proto: RMCSpawnPointSynth
+- proto: STSpawnPointSynth
   entities:
   - uid: 11324
     components:

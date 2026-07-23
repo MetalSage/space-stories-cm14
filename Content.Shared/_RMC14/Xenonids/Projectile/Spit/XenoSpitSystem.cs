@@ -6,7 +6,7 @@ using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.OnCollide;
 using Content.Shared._RMC14.Shields;
 using Content.Shared._RMC14.Slow;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Content.Shared._RMC14.Xenonids.Construction.DeployedTraps;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Insight;

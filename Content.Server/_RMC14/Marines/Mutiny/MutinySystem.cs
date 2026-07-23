@@ -5,7 +5,7 @@ using Content.Server.Actions;
 using Content.Server.Roles.Jobs;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Mutiny;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Mind.Components;

@@ -5,6 +5,7 @@ using Content.Shared._RMC14.ARES.Logs;
 using Content.Shared._RMC14.ARES.Tabs;
 using Content.Shared._RMC14.Rules;
 using Content.Shared._RMC14.Weapons.Ranged.IFF;
+using Content.Shared._Stories.Synth;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Prototypes;
@@ -118,6 +119,9 @@ public sealed class ARESExternalTerminalSystem : EntitySystem
         ent.Comp.LoggedIn = true;
         ent.Comp.Accesses = access.Tags;
         ent.Comp.LoggedInUser = $"{idCard.Comp.FullName} ({idCard.Comp._jobTitle})";
+
+        ent.Comp.ShowCore = TryComp<SynthGenerationComponent>(args.Actor, out var genComp) &&
+            genComp.Generation?.Id == "STARESWorker";
 
         // logs are special...
         if (ent.Comp.ShowsLogs)

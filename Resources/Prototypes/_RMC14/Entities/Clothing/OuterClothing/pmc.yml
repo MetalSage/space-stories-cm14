@@ -149,7 +149,7 @@
     contents:
     - id: RMCMagazineSMGNailgun
     - id: RMCMagazineSMGNailgun
-    # - id: RMCTelescopicBaton // 8/21/25: telebaton implementation is TODOed
+    # - id: STTelescopicBaton // 8/21/25: telebaton implementation is TODOed
 
 - type: entity
   parent: RMCArmorM4PMCNoLight

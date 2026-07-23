@@ -1,0 +1,154 @@
+
+- type: job
+  parent: CMJobBase
+  id: STJobCLFSynthetic
+  name: st-job-name-clf-synth
+  description: st-job-description-clf-synth
+  playTimeTracker: STJobCLFSynthetic
+  icon: "STJobIconSynth"
+  joinNotifyCrew: false
+  whitelisted: true
+  supervisors: rmc-job-supervisors-commander
+  accessGroups:
+  - Synth
+  roleWeight: 0.1
+  startingGear: STGearCLFSynthetic
+  hidden: true
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - Japanese
+      - English
+      understoodLanguages:
+      - Japanese
+      - English
+      currentLanguage: Japanese
+      defaultLanguage: Japanese
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: NpcFactionMember
+      factions:
+      - CLF
+    - type: JobPrefix
+      prefix: st-job-prefix-synth
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointCLFSynthetic
+  name: st-spawn-point-clf-synth
+  components:
+  - type: SpawnPoint
+    job_id: STJobCLFSynthetic
+
+- type: playTimeTracker
+  id: STJobCLFSynthetic
+  isHumanoid: true
+
+- type: startingGear
+  id: STGearCLFSynthetic
+  equipment:
+    mask: CMMaskSterile
+    ears: RMCHeadsetDistressCLF
+    eyes: RMCGlassesMedicalHUDGlasses
+    head: CMHeadBandRed
+    jumpsuit: RMCJumpsuitCLFWebbingSurgical
+    outerClothing: RMCCoatMilitiaVest
+    gloves: CMHandsBlackMarine
+    shoes: RMCShoesBrown
+    belt: CMBeltMedicalFilled
+    back: RMCSatchelLightpack
+    pocket1: RMCFlashlight
+    pocket2: RMCPouchConstruction
+  storage:
+    back:
+    - CMFireExtinguisher
+    - CMDefibrillator
+    - CMRollerBedSpawnFolded
+    - RMCGrenadeIED
+    - RMCGrenadeIED
+    - CMCrowbar
+    - STSynthResetKey
+    belt:
+    - CMHealthAnalyzer
+
+- type: job
+  parent: STJobCLFSynthetic
+  id: STJobCLFCombatSynthetic
+  name: st-job-name-clf-combat-synth
+  description: st-job-description-clf-combat-synth
+  playTimeTracker: STJobCLFCombatSynthetic
+  startingGear: STGearCLFCombatSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - Japanese
+      - English
+      understoodLanguages:
+      - Japanese
+      - English
+      currentLanguage: Japanese
+      defaultLanguage: Japanese
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: NpcFactionMember
+      factions:
+      - CLF
+    - type: JobPrefix
+      prefix: st-job-prefix-synth
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+      canUseGuns: true
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointCLFCombatSynthetic
+  name: st-spawn-point-clf-combat-synth
+  components:
+  - type: SpawnPoint
+    job_id: STJobCLFCombatSynthetic
+
+- type: playTimeTracker
+  id: STJobCLFCombatSynthetic
+  isHumanoid: true
+
+- type: startingGear
+  parent: STGearCLFSynthetic
+  id: STGearCLFCombatSynthetic
+  equipment:
+    pocket2: RMCMagazinePistolB92FS
+  inhand:
+  - RMCWeaponPistolB92FS

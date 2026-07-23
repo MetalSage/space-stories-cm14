@@ -61,7 +61,7 @@
 
 - type: entity
   parent: RMCJumpsuitVeteranPMC
-  id: RMCJumpsuitVeteranPMCSynth
+  id: STJumpsuitVeteranPMCSynth
   suffix: Webbing, Synthetic
   components:
   - type: WebbingClothing

@@ -168,7 +168,7 @@
         points: 8
       - id: RMCWhistle
         points: 3
-      - id: RMCSynthResetKey
+      - id: STSynthResetKey
         points: 10
     - name: Binoculars
       entries:

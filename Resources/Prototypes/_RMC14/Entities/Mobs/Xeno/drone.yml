@@ -25,7 +25,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
-    - RMCSynthGrabbable
+    - STSynthGrabbable
   - type: MeleeWeapon
     damage:
       groups:

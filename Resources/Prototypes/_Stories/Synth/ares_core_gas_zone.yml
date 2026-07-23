@@ -1,0 +1,11 @@
+- type: entity
+  id: STARESCoreGasZone
+  parent: MarkerBase
+  name: ARES core gas zone
+  description: Marks a tile the ARES core's nerve gas defense system can reach. Place across the core room.
+  components:
+  - type: STARESCoreGasZone
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: red

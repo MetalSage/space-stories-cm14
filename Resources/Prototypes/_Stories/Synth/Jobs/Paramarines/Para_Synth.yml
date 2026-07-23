@@ -1,0 +1,104 @@
+- type: job
+  parent: RMCSurvivorParaBase
+  id: STSurvivorParaSupportSynthetic
+  name: st-job-name-para-synth
+  ranks:
+    STRankSyntheticColonist: [ ]
+  startingGear: STGearParaSupportSynthetic
+  icon: STJobIconParaSupportSynthetic
+  playTimeTracker: STJobSyntheticColony
+  spawnMenuRoleName: Royal Paramarine Support Synthetic (Hybrisa Special Survivor)
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: Language
+          preset: STLanguagePresetSynthColonist
+        - type: LanguageLearning
+          learnableLanguages:
+            - Xeno
+          firstContactLanguages:
+            - Xeno
+          languages:
+            Xeno:
+              initialBoostedWordCount: 18
+              initialBoostedWordComprehension: 0.4
+          comprehensionThreshold: 0.8
+          learningRange: 8.0
+          baseWordLearningRate: 0.05
+        - type: NpcFactionMember
+          factions:
+            - RoyalMarines
+            - TSE
+        - type: RMCSurvivor
+        - type: RMCAllowSuitStorage
+        - type: IntelRescueSurvivorObjective
+        - type: MotionDetectorTracked
+        - type: Skills
+          preset: STSkillPresetParaSynth
+        - type: DemoSpecWhitelist
+        - type: GrenadeSpecWhitelist
+        - type: ScoutWhitelist
+        - type: SniperWhitelist
+        - type: PyroWhitelist
+        - type: TacticalMapIcon
+          icon:
+            sprite: /Textures/_RMC14/Interface/map_blips.rsi
+            state: synth
+          background:
+            sprite: /Textures/_RMC14/Interface/map_blips.rsi
+            state: background_para
+        - type: AssignSquad
+          squad: SquadPara
+        - type: JobPrefix
+          prefix: st-job-prefix-para-synth
+        - type: MeleeWeapon
+          soundHit:
+            path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+            params:
+              variation: 0.15
+              volume: -1
+          angle: 30
+          animation: WeaponArcFist
+          attackRate: 1
+          damage:
+            types:
+              Blunt: 35
+        - type: Synth
+        - type: SynthGeneration
+          generation: STSynthGenTwo
+          selectable: false
+  useLoadoutOfJob: STSyntheticColony
+  hidden: true
+
+- type: startingGear
+  parent: RMCGearParaBase
+  id: STGearParaSupportSynthetic
+  equipment:
+    id: STIDRoyalParamarinesSupportSynthetic
+    jumpsuit: RMCJumpsuitMarinePara
+    back: STSatchelLightpackFilledParaSynth
+    belt: RMCMedicalL75RCMFillPara
+    pocket1: STPouchSurvivalSynthFill
+    pocket2: RMCPouchElectronics
+    outerClothing: STArmorParaSynthVestFill
+    suitstorage: RMCFlashlight
+  storage:
+    back:
+    - STSynthResetKey
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointParaSupportSynthetic
+  name: st-spawn-point-para-synth
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorParaSupportSynthetic
+  - type: Sprite
+    state: surv_tse
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: STJobIconParaSupportSynthetic
+  icon:
+    sprite: _RMC14/Interface/job_icons/TSE/RCM/paramarine.rsi
+    state: para_synth

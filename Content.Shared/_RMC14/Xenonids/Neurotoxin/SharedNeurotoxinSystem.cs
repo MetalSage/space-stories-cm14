@@ -8,7 +8,7 @@ using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Stamina;
 using Content.Shared._RMC14.Stun;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Content.Shared._RMC14.Xenonids.Construction.Nest;
 using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._Stories.Hunter.Marking.Components;

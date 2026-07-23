@@ -6,7 +6,7 @@ using Content.Shared._RMC14.CombatMode;
 using Content.Shared._RMC14.Fireman;
 using Content.Shared._RMC14.Inventory;
 using Content.Shared._RMC14.Pulling;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Content.Shared._RMC14.TrainingDummy;
 using Content.Shared._RMC14.Vents;
 using Content.Shared._RMC14.Xenonids.Construction.Nest;

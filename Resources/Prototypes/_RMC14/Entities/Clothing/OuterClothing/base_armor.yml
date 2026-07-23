@@ -85,6 +85,7 @@
       - RMCFoldingBarricade
       - STHunterMelee # Stories-Hunter
       - STHunterQuiver # Stories-Hunter
+      - STMaintenanceJack # Stories-Synth
 
 - type: entity
   abstract: true
@@ -105,6 +106,7 @@
       - RMCGeneralPistolHolster
       - RMCGeneralRevolverHolster
       - RMCFoldingBarricade
+      - STMaintenanceJack # Stories-Synth
 
 - type: entity
   abstract: true
@@ -133,6 +135,7 @@
       - RMCScabbardKatana
       - RMCDetector
       - RMCFoldingBarricade
+      - STMaintenanceJack # Stories-Synth
 
 - type: entity
   abstract: true
@@ -157,6 +160,7 @@
       - CMMagazineRifle
       - RMCMagazineShotgun
       - CMMagazineSniper
+      - STMaintenanceJack # Stories-Synth
 
 - type: entity
   abstract: true
@@ -191,6 +195,7 @@
       - RMCCeremonialSword
       - RMCDetector
       - RMCFoldingBarricade
+      - STMaintenanceJack # Stories-Synth
 
 - type: entity
   abstract: true
@@ -215,6 +220,7 @@
       - Machete
       - RMCDetector
       - RMCFoldingBarricade
+      - STMaintenanceJack # Stories-Synth
 
 # TODO: Add separate whitelists for 'safari jacket' and 'bureau deputy jacket'
 
@@ -223,6 +229,13 @@
   id: RMCBaseMarineArmorNoAccessory
   abstract: true
   components:
+  # CMSS13 parity: synths can't wear ballistic-rated armor at all ("Your programming prevents
+  # you from wearing this!") -- only equipping is blocked, they can still carry/hand it off.
+  - type: STSynthItemRestriction
+    synthOnly: false
+    checkPickup: false
+    checkUse: false
+    denyPopup: st-synth-item-restricted-armor
   - type: Clothing
     equipDelay: 2
     unequipDelay: 2

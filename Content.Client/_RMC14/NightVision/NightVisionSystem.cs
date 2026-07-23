@@ -6,6 +6,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Client._RMC14.NightVision;
 
@@ -17,6 +18,10 @@ public sealed class NightVisionSystem : SharedNightVisionSystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    private static readonly TimeSpan MesonSpriteUpdateInterval = TimeSpan.FromSeconds(0.1);
+    private TimeSpan _nextMesonSpriteUpdate;
 
     private EntityQuery<XenoComponent> _xenoQuery;
     private EntityQuery<NightVisionComponent> _nvQuery;
@@ -73,7 +78,6 @@ public sealed class NightVisionSystem : SharedNightVisionSystem
 
     private void SetMesons(bool on)
     {
-        return; // TODO RMC14 make this not lag horribly
         if (_player.LocalEntity == null)
             return;
 
@@ -118,7 +122,6 @@ public sealed class NightVisionSystem : SharedNightVisionSystem
 
     private void SetMesonSprites(bool mesons)
     {
-        return; // TODO RMC14 make this not lag horribly
         if (_player.LocalEntity == null)
             return;
 
@@ -151,6 +154,10 @@ public sealed class NightVisionSystem : SharedNightVisionSystem
         if (nightVision.State == NightVisionState.Off)
             return;
 
+        if (_timing.CurTime < _nextMesonSpriteUpdate)
+            return;
+
+        _nextMesonSpriteUpdate = _timing.CurTime + MesonSpriteUpdateInterval;
         SetMesonSprites(nightVision.Mesons);
     }
 }

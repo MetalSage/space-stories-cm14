@@ -46,7 +46,7 @@
     - RMCBaseMPJob
     - RMCBaseMiscellaneousJob
     hiddenAccessList:
-    - RMCAccessSynth
+    - STAccessSynth
     - CMAccessPress
     - CMAccessASO
     - CMAccessCrewman

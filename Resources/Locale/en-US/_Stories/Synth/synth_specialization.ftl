@@ -1,0 +1,6 @@
+st-job-title-synth-engineering = Synthetic (Engineering)
+st-job-title-synth-medical = Synthetic (Medical)
+st-job-title-synth-intel = Synthetic (Intel)
+st-job-title-synth-mp = Synthetic (MP)
+st-job-title-synth-command = Synthetic (Command)
+st-job-title-synth-research = Synthetic (Research)

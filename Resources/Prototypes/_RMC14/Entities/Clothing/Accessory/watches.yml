@@ -71,7 +71,7 @@
 
 - type: entity
   parent: RMCWatchBaseL
-  id: RMCWatchSynth
+  id: STWatchSynth
   name: Seikaku 13B6-2000 wristwatch
   description: A fancy black-bodied wristwatch. Once set correctly, it always holds the right time. For the connoisseurs of precision.
   components:

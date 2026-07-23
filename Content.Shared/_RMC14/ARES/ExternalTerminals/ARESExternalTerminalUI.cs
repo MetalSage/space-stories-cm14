@@ -22,3 +22,9 @@ public sealed class RMCARESExternalShowLogs(EntProtoId<ARESLogTypeComponent>? ty
     public readonly EntProtoId<ARESLogTypeComponent>? Type = type;
     public readonly int Index = index;
 }
+
+[Serializable] [NetSerializable]
+public sealed class RMCARESExternalReleaseGas() : BoundUserInterfaceMessage;
+
+[Serializable] [NetSerializable]
+public sealed class RMCARESExternalToggleLockdown() : BoundUserInterfaceMessage;

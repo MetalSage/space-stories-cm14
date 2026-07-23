@@ -405,7 +405,7 @@
 
 - type: entity
   parent: RMCAreaSavannahEngineering
-  id: RMCAreaSavannahSynthetic
+  id: STAreaSavannahSynthetic
   name: Synthetic Storage
 
 - type: entity

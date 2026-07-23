@@ -1,0 +1,54 @@
+
+- type: entity
+  parent: STIDCardSynth
+  id: STIDCardSynthEngineering
+  name: synthetic engineering ID card
+  suffix: Engineering
+  components:
+  - type: IdCard
+    jobTitle: st-job-title-synth-engineering
+
+- type: entity
+  parent: STIDCardSynth
+  id: STIDCardSynthMedical
+  name: synthetic medical ID card
+  suffix: Medical
+  components:
+  - type: IdCard
+    jobTitle: st-job-title-synth-medical
+
+- type: entity
+  parent: STIDCardSynth
+  id: STIDCardSynthIntel
+  name: synthetic intel ID card
+  suffix: Intel
+  components:
+  - type: IdCard
+    jobTitle: st-job-title-synth-intel
+
+- type: entity
+  parent: STIDCardSynth
+  id: STIDCardSynthMP
+  name: synthetic MP ID card
+  suffix: MP
+  components:
+  - type: IdCard
+    jobTitle: st-job-title-synth-mp
+
+- type: entity
+  parent: STIDCardSynth
+  id: STIDCardSynthCommand
+  name: synthetic command ID card
+  suffix: Command
+  components:
+  - type: IdCard
+    jobTitle: st-job-title-synth-command
+
+- type: entity
+  parent: STIDCardSynth
+  id: STIDCardSynthResearch
+  name: synthetic research ID card
+  suffix: Research
+  components:
+  - type: IdCard
+    jobTitle: st-job-title-synth-research

@@ -1,9 +1,9 @@
-ent-RMCSpawnPointSynth = точка спавна синтетика
+ent-STSpawnPointSynth = точка спавна синтетика
     .desc = { ent-CMSpawnPointJobBase.desc }
     .suffix = { ent-CMSpawnPointJobBase.suffix }
-ent-RMCSynthAddComponents = { "" }
+ent-STSynthAddComponents = { "" }
     .desc = { "" }
-ent-RMCSynthRemoveComponents = { "" }
+ent-STSynthRemoveComponents = { "" }
     .desc = { "" }
-ent-RMCSynthHudComponents = { "" }
+ent-STSynthHudComponents = { "" }
     .desc = { "" }

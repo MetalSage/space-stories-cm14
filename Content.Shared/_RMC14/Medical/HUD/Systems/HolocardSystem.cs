@@ -1,5 +1,5 @@
 using Content.Shared._RMC14.Marines.Skills;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Content.Shared._RMC14.Overwatch;
 using Content.Shared._RMC14.Medical.HUD.Components;
 using Content.Shared._RMC14.Medical.HUD.Events;

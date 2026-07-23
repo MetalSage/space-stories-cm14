@@ -8,7 +8,7 @@ using Content.Shared._RMC14.Medical.Unrevivable;
 using Content.Shared._RMC14.Sprite;
 using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Stun;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Content.Shared._RMC14.Xenonids.Construction.Nest;
 using Content.Shared._RMC14.Xenonids.Construction.ResinWhisper;
 using Content.Shared._RMC14.Xenonids.Hide;

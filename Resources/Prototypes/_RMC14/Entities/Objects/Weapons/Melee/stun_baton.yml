@@ -91,12 +91,57 @@
     guides:
     - RMCGuideRoleMilitaryPolice
 
-# TODO RMC14: Actually implement the telescopic baton
 - type: entity
-  parent: CMStunbaton
-  id: RMCTelescopicBaton
+  parent: RMCStunBatonDamaged
+  id: STTelescopicBaton
   name: telescopic baton
-  description: A compact yet rebalanced personal defense weapon. Can be concealed when folded.
+  description: A compact yet rebalanced personal defense weapon. Can be concealed when folded. It will knock down on a disarm, not a regular hit.
   components:
+  - type: Sprite
+    sprite: _Stories/Synth/telescopic_baton.rsi
+    layers:
+    - state: telebaton_0
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    sprite: _Stories/Synth/telescopic_baton.rsi
+    slots:
+    - Belt
+    - Suitstorage
   - type: Item
     size: Small
+  - type: GenericVisualizer
+    visuals:
+     enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: telebaton_1}
+          False: {state: telebaton_0}
+  - type: MeleeRequiresSkill
+    skills:
+      RMCSkillPolice: 1
+  - type: RMCStaminaDamageOnHit
+    damage: 40
+    jitterDuration: 2
+  - type: ItemToggle
+    predictable: false
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+      params:
+        variation: 0.250
+  - type: ItemToggleSize
+    activatedSize: Normal
+    deactivatedSize: Small
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 12
+    deactivatedDamage:
+      types:
+        Blunt: 4

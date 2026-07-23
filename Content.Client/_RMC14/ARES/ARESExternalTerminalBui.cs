@@ -45,6 +45,15 @@ public sealed class ARESExternalTerminalBui : BoundUserInterface, IRefreshableBu
         RefreshLogin(terminal);
         UpdateLogCategory(terminal);
         RefreshLogs(terminal);
+        UpdateCoreSecurity(terminal);
+    }
+
+    private void UpdateCoreSecurity(ARESExternalTerminalComponent terminal)
+    {
+        if (_window is not { IsOpen: true })
+            return;
+
+        _window.CoreSecurity.Visible = terminal.LoggedIn && terminal.ShowCore;
     }
 
     private void RefreshLogs(ARESExternalTerminalComponent component)
@@ -210,6 +219,16 @@ public sealed class ARESExternalTerminalBui : BoundUserInterface, IRefreshableBu
             _logIndex++;
             SendPredictedMessage(new RMCARESExternalShowLogs(_logType, _logIndex));
             Refresh();
+        };
+
+        _window.ReleaseGas.OnPressed += _ =>
+        {
+            SendPredictedMessage(new RMCARESExternalReleaseGas());
+        };
+
+        _window.LockdownOverrides.OnPressed += _ =>
+        {
+            SendPredictedMessage(new RMCARESExternalToggleLockdown());
         };
 
         Refresh();

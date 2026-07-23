@@ -21,7 +21,7 @@
 
 - type: jobIcon
   parent: CMJobIconBase
-  id: RMCJobIconSynth
+  id: STJobIconSynth
   icon:
     sprite: _RMC14/Interface/job_icons/UNMC/other.rsi
     state: hudsquad_syn
@@ -70,7 +70,7 @@
 
 - type: jobIcon
   parent: CMJobIconBase
-  id: RMCJobIconReconSynthetic
+  id: STJobIconReconSynthetic
   icon:
     sprite: _RMC14/Interface/job_icons/Misc/other.rsi
     state: hudsquad_syn_forecon
@@ -134,14 +134,14 @@
 
 - type: jobIcon
   parent: CMJobIconBase
-  id: RMCJobIconPMCSynthetic
+  id: STJobIconPMCSynthetic
   icon:
     sprite: _RMC14/Interface/job_icons/We-Ya/pmc.rsi
     state: pmc_syn
 
 - type: jobIcon
   parent: CMJobIconBase
-  id: RMCJobIconSPPSynth
+  id: STJobIconSPPSynth
   icon:
     sprite: _RMC14/Interface/job_icons/SPP/standard.rsi
     state: spp_synth

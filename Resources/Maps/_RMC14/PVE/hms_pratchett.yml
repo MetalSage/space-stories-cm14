@@ -6553,24 +6553,24 @@ entities:
         -74,-17: RMCAreaPRTCraneTunnel
         -74,-18: RMCAreaPRTCraneTunnel
         -73,-22: RMCAreaPRTCraneTunnel
-        -56,-69: RMCAreaPRTSynth
-        -56,-70: RMCAreaPRTSynth
-        -56,-71: RMCAreaPRTSynth
+        -56,-69: STAreaPRTSynth
+        -56,-70: STAreaPRTSynth
+        -56,-71: STAreaPRTSynth
         -75,-17: RMCAreaPRTCraneTunnel
         -73,-24: RMCAreaPRTCraneTunnel
-        -55,-69: RMCAreaPRTSynth
-        -55,-70: RMCAreaPRTSynth
-        -55,-71: RMCAreaPRTSynth
-        -55,-72: RMCAreaPRTSynth
+        -55,-69: STAreaPRTSynth
+        -55,-70: STAreaPRTSynth
+        -55,-71: STAreaPRTSynth
+        -55,-72: STAreaPRTSynth
         -73,-21: RMCAreaPRTCraneTunnel
-        -54,-69: RMCAreaPRTSynth
-        -54,-70: RMCAreaPRTSynth
-        -54,-71: RMCAreaPRTSynth
-        -54,-72: RMCAreaPRTSynth
+        -54,-69: STAreaPRTSynth
+        -54,-70: STAreaPRTSynth
+        -54,-71: STAreaPRTSynth
+        -54,-72: STAreaPRTSynth
         -73,-20: RMCAreaPRTCraneTunnel
-        -53,-69: RMCAreaPRTSynth
-        -53,-70: RMCAreaPRTSynth
-        -53,-71: RMCAreaPRTSynth
+        -53,-69: STAreaPRTSynth
+        -53,-70: STAreaPRTSynth
+        -53,-71: STAreaPRTSynth
         -73,-23: RMCAreaPRTCraneTunnel
         -73,-19: RMCAreaPRTCraneTunnel
         -73,-18: RMCAreaPRTCraneTunnel

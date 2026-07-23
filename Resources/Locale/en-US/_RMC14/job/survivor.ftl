@@ -90,7 +90,7 @@ rmc-job-description-forecon = You are a stranded UNMC Forecon marine. Your ship,
 rmc-job-name-forecon-sniper = Sniper
 rmc-job-name-forecon-marksman = Marksman
 rmc-job-name-forecon-support-tech = Support Technician
-rmc-job-name-forecon-synth = Synthetic
+st-job-name-forecon-synth = Synthetic
 rmc-job-name-forecon-commander = Commander
 
 # LV-624 survs
@@ -225,8 +225,8 @@ rmc-job-prefix-paramarine = 24/PARA
 rmc-job-name-para-team-leader = Team Leader
 rmc-job-prefix-para-team-leader = 24/PARA TL
 
-rmc-job-name-para-synth = Support Synthetic
-rmc-job-prefix-para-synth = 24/PARA Syn
+st-job-name-para-synth = Support Synthetic
+st-job-prefix-para-synth = 24/PARA Syn
 
 rmc-job-name-para-commander = Commander
 rmc-job-prefix-para-commander = 24/PARA CDR

@@ -328,20 +328,20 @@
 
 - type: entity
   parent: CMIDCardGold
-  id: RMCIDCardSynth
+  id: STIDCardSynth
   name: synth ID card
   components:
   - type: PresetIdCard
-    job: RMCJobSynthetic
+    job: STJobSynthetic
 
 - type: entity
   parent: CMIDCardLanyard
-  id: RMCIDCardSynthColony
+  id: STIDCardSynthColony
   name: synth ID card
   suffix: Survivor
   components:
   - type: PresetIdCard
-    job: RMCSyntheticColony
+    job: STSyntheticColony
   - type: ItemIFF
     factions:
     - FactionSurvivor

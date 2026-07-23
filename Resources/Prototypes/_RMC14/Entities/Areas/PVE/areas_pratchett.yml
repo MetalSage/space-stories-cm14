@@ -175,7 +175,7 @@
 
 - type: entity
   parent: RMCAreaPRT
-  id: RMCAreaPRTSynth
+  id: STAreaPRTSynth
   name: Synthetic Storage
   components:
   - type: Sprite

@@ -199,11 +199,11 @@
 
 - type: entity
   parent: RMCIDRoyalMarines
-  id: RMCIDRoyalParamarinesSupportSynthetic
+  id: STIDRoyalParamarinesSupportSynthetic
   name: Support Synthetic's dogtags
   components:
   - type: PresetIdCard
-    job: RMCSurvivorParaSupportSynthetic
+    job: STSurvivorParaSupportSynthetic
 
 - type: entity
   parent: RMCIDCardGoldRoyalMarines

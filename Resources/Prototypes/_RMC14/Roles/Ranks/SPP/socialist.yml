@@ -19,7 +19,7 @@
   paygrade: STRSH
 
 - type: rank
-  id: RMCRankSPPSynthetic
+  id: STRankSPPSynthetic
   name: Синтетик
   prefix: Син.
 

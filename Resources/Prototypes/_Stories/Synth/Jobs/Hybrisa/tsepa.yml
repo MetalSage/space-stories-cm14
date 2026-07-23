@@ -1,0 +1,75 @@
+- type: job
+  parent: STSyntheticColony
+  id: STSyntheticColonyHybrisaTSEPA
+  startingGear: STGearSyntheticColonistHybrisaTSEPA
+  spawnMenuRoleName: TSEPA Support Synth (Hybrisa Survivor)
+  ranks:
+    RMCRankTSEPAConstable: [ ]
+  icon: "STJobIconTSEPASynth"
+  hasIcon: true
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      preset: STLanguagePresetSynthColonist
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: synth
+    - type: NpcFactionMember
+      factions:
+      - TSE
+      - Civilian
+    - type: IntelRescueSurvivorObjective
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: EquipSurvivorPreset
+      preset: STSurvivorPresetHybrisaSynthTSEPA
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  useLoadoutOfJob: STSyntheticColony
+
+- type: startingGear
+  parent: STGearSyntheticColonistHybrisaCivilian
+  id: STGearSyntheticColonistHybrisaTSEPA
+  equipment:
+    ears: RMCHeadsetTSEPA
+    eyes: RMCGlassesSecurityBlue
+    jumpsuit: RMCJumpsuitTSEPA
+    gloves: RMCHandsVeteran
+    shoes: CMBootsBlackFilled
+    id: RMCIDCardTSEPASilverGold
+    back: RMCSatchelBlackFillSurvivorConstable
+
+- type: entity
+  id: STSurvivorPresetHybrisaSynthTSEPA
+  name: survivor synth hybrisa tsepa colonist preset
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityPreset
+    randomOutfits:
+    - [ RMCCoatTSEPAHighVisVest, RMCHeadCapTSEPA ]
+    - [ RMCCoatTSEPAHighVis, RMCHeadBeretTSEPA ]
+    - [ RMCCoatTSEPA, RMCHeadCapTSEPAPeaked ]

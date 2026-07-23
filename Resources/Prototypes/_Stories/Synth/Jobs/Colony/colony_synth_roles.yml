@@ -1,0 +1,130 @@
+
+- type: job
+  parent: CMSurvivorEngineer
+  id: STSurvivorSyntheticColonyEngineer
+  name: st-job-name-synth-colony-engineer
+  description: st-job-description-synth-colony
+  playTimeTracker: STJobSyntheticColonyEngineer
+  startingGear: STGearSyntheticColonyEngineer
+  icon: "STJobIconSynth"
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      preset: STLanguagePresetSynthColonist
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: NpcFactionMember
+      factions:
+      - Civilian
+    - type: IntelRescueSurvivorObjective
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  hidden: true
+
+- type: startingGear
+  parent: RMCGearSurvivorEngineer
+  id: STGearSyntheticColonyEngineer
+  equipment:
+    jumpsuit: STJumpsuitSynthetic
+  storage:
+    back:
+    - STSynthResetKey
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointSyntheticColonyEngineer
+  name: synthetic colony engineer spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorSyntheticColonyEngineer
+  - type: Sprite
+    state: syn_spawn
+
+- type: playTimeTracker
+  id: STJobSyntheticColonyEngineer
+  isHumanoid: true
+
+- type: job
+  parent: CMSurvivorDoctor
+  id: STSurvivorSyntheticColonyMedical
+  name: st-job-name-synth-colony-medical
+  description: st-job-description-synth-colony
+  playTimeTracker: STJobSyntheticColonyMedical
+  startingGear: STGearSyntheticColonyMedical
+  icon: "STJobIconSynth"
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      preset: STLanguagePresetSynthColonist
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: NpcFactionMember
+      factions:
+      - Civilian
+    - type: IntelRescueSurvivorObjective
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  hidden: true
+
+- type: startingGear
+  parent: RMCGearSurvivorDoctor
+  id: STGearSyntheticColonyMedical
+  equipment:
+    jumpsuit: STJumpsuitSynthetic
+  storage:
+    back:
+    - STSynthResetKey
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointSyntheticColonyMedical
+  name: synthetic colony medical spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorSyntheticColonyMedical
+  - type: Sprite
+    state: syn_spawn
+
+- type: playTimeTracker
+  id: STJobSyntheticColonyMedical
+  isHumanoid: true

@@ -1,0 +1,88 @@
+- type: job
+  parent: RMCSurvivorForeconBase
+  id: STSurvivorForeconSynth
+  name: st-job-name-forecon-synth
+  description: rmc-job-description-forecon
+  playTimeTracker: STJobSyntheticColony
+  ranks:
+    RMCRankMasterSergeant: []
+  supervisors: rmc-job-supervisors-commander
+  accessGroups:
+  - ColonistEngi
+  - Synth
+  startingGear: STGearForeconSynthetic
+  spawnMenuRoleName: FORECON Synthetic (Survivor)
+  roleWeight: 0.25
+  icon: "STJobIconReconSynthetic"
+  whitelisted: true
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      preset: RMCLanguagePresetSynthColonist
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: Skills
+      preset: STSkillPresetReconSynth
+    - type: MarineOrders
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: forecon_synth
+    - type: IntelRescueSurvivorObjective
+    - type: AssignSquad
+      whitelist:
+        tags:
+        - RMCSquadFORECON
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: ScoutWhitelist
+    - type: SniperWhitelist
+    - type: PyroWhitelist
+    - type: JobPrefix
+      prefix: st-job-prefix-synth
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  hidden: true
+
+- type: startingGear
+  id: STGearForeconSynthetic
+  equipment:
+    id: STIDCardSynth
+    back: STSatchelFillColonySynthetic
+    jumpsuit: CMJumpsuitMaintTech
+    shoes: CMBootsBlackFilled
+    ears: RMCHeadsetForecon
+    pocket1: RMCPouchToolsFill
+    pocket2: STPouchSurvivalSynthFill
+  storage:
+    back:
+    - STSynthResetKey
+  inhand:
+    - RMCMotionDetector
+    - CMFirstAidKitFilled
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointForeconSynth
+  name: st-spawn-point-forecon-synth
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorForeconSynth
+  - type: Sprite
+    state: syn_spawn

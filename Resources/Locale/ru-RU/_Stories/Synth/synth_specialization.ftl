@@ -1,0 +1,6 @@
+st-job-title-synth-engineering = Синтетик (Инженерный)
+st-job-title-synth-medical = Синтетик (Медицинский)
+st-job-title-synth-intel = Синтетик (Разведка)
+st-job-title-synth-mp = Синтетик (Военная полиция)
+st-job-title-synth-command = Синтетик (Командный)
+st-job-title-synth-research = Синтетик (Исследовательский)

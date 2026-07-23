@@ -5,7 +5,7 @@ rmc-ghost-role-information-spp-rules = Вы являетесь [color=red][bold]
 
 rmc-ghost-role-information-spp-friendly-description = Оказывайте помощь силам КМП США, слушайте своих старших офицеров.
 rmc-ghost-role-information-spp-hostile-description = Уничтожьте силы КМП США, чтобы обеспечить дальнейшее присутствие СПН в этом секторе. Слушайте своих старших офицеров и захватите основной корабль США любой ценой.
-rmc-ghost-role-information-spp-pve-description = Выполняйте все приказы командования и исполняйте их наилучшим образом. Во имя народа!
+st-ghost-role-information-spp-pve-description = Выполняйте все приказы командования и исполняйте их наилучшим образом. Во имя народа!
 
 rmc-ghost-name-spp-hostile-leader = Командир отряда СПН (Враждебный)
 rmc-ghost-name-spp-friendly-leader = Командир отряда СПН (Дружественный)
@@ -79,8 +79,9 @@ rmc-job-prefix-spp-squadlead = КОМ. ГР.
 rmc-ghost-name-spp-squadlead = Командир группы СПН
 rmc-job-description-spp-squadlead = Выполняйте приказы старшего сержанта и командуйте своим отрядом.
 
-rmc-job-name-spp-synth = Синтетик поддержки
-rmc-job-prefix-spp-synth = СИНТ
+st-job-name-spp-synth = Синтетик поддержки
+st-job-name-spp-combat-synth = Боевой синтетик
+st-job-prefix-spp-synth = СИНТ
 
 rmc-job-name-spp-so= Офицер штаба
 rmc-job-prefix-spp-so = ОШ

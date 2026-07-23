@@ -74,17 +74,17 @@
     - RMCWatchCaseLiaison
 
 - type: loadout
-  id: WatchSynthRMC
+  id: WatchSynthST
   cost: 2
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
         !type:RoleTimeRequirement
-        role: RMCJobSynthetic
+        role: STJobSynthetic
         time: 126000 # 35 hrs
   storage:
     back:
-    - RMCWatchCaseSynth
+    - STWatchCaseSynth
 
 - type: loadout
   id: PatchPeaceRMC

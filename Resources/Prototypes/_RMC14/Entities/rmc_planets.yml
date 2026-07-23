@@ -23,6 +23,7 @@
       scenarioProbability: 0.9
     survivorJobVariants:
       CMSurvivor:
+      - STSyntheticColony: -1
       - CMSurvivor: -1
       - RMCSurvivorCivilianUnique: 1
       - RMCSurvivorHybrisaTMCCMiner: -1
@@ -30,8 +31,10 @@
       CMSurvivorCorporate:
       - CMSurvivorLV624CorporateLiaison: 2
       CMSurvivorDoctor:
+      - STSurvivorSyntheticColonyMedical: -1
       - CMSurvivorLV624MedicalTechnician: 3
       CMSurvivorEngineer:
+      - STSurvivorSyntheticColonyEngineer: -1
       - CMSurvivorLV624Engineer: 2
       - CMSurvivorLV624CargoTechnician: 2
       CMSurvivorSecurity:
@@ -145,6 +148,7 @@
         CMSurvivorEngineer:
         - RMCSurvivorSolarisPMCEngineer: 1
         CMSurvivor:
+        - STSurvivorSolarisPMCSynth: -1
         - RMCSurvivorSolarisPMCStandard: -1
       # clfmining:
       #   CMSurvivor:
@@ -196,11 +200,16 @@
     - scenarioName: none # 85% chance of regular surv. Reduce to 75% (0.75) once CLF survs are in.
       scenarioProbability: 0.85
     survivorJobVariants: # Civ survivor is default one
+      CMSurvivor:
+      - STSyntheticColony: -1
+      - CMSurvivor: -1
       CMSurvivorCorporate:
       - RMCSurvivorShivasCorporateLiaison: -1
       CMSurvivorDoctor:
+      - STSurvivorSyntheticColonyMedical: -1
       - RMCSurvivorShivasDoctor: -1
       CMSurvivorEngineer:
+      - STSurvivorSyntheticColonyEngineer: -1
       - RMCSurvivorShivasEngineer: -1
       CMSurvivorSecurity:
       - RMCSurvivorShivasCMBDeputy: -1
@@ -282,6 +291,7 @@
       riot_in_progress: # Riot In Progress Riot Control team
         CMSurvivor:
         - RMCSurvivorFiorinaRiotInProgressCMBRiotControlTeamLeader: 1
+        - STSurvivorFiorinaRiotInProgressCMBSynth: -1
         - RMCSurvivorFiorinaRiotInProgressCMBRiotControlOfficer: -1
     survivorJobOverrideScenarios:
       riot_in_progress: # Riot In Progress job overrides.
@@ -348,6 +358,7 @@
     survivorJobVariantScenarios:
       spp_bar:
         CMSurvivorDoctor:
+        - STSurvivorSPPCrashlandSynth: -1
         - RMCSurvivorSPPCrashlandMedic: 1
         CMSurvivorEngineer:
         - RMCSurvivorSPPCrashlandSapper: 1
@@ -441,6 +452,7 @@
       RMCSurvivorCommandingOfficer:
       - RMCSurvivorCommanderNewVaradero: 1
       CMSurvivor:
+      - STSyntheticColony: -1
       - CMSurvivor: -1
       - RMCSurvivorCivilianUnique: -1
       - CMSurvivorBeachBum: -1
@@ -449,8 +461,10 @@
       CMSurvivorCorporate:
       - CMSurvivorVaraderoICB: 2
       CMSurvivorDoctor:
+      - STSurvivorSyntheticColonyMedical: -1
       - CMSurvivorMedicalTechnician: 3
       CMSurvivorEngineer:
+      - STSurvivorSyntheticColonyEngineer: -1
       - CMSurvivorTechnician: 2
       - CMSurvivorCargoTechnician: 2
       CMSurvivorSecurity:
@@ -485,13 +499,16 @@
       Liaison: RMCPaperWeYaLiaisonBriefingKutjevo
     survivorJobVariants:
       CMSurvivor:
+      - STSurvivorKutjevoSynthCivilian: -1
       - CMSurvivor: -1
       - RMCSurvivorKutjevoChaplain: 1
       CMSurvivorCorporate:
       - RMCSurvivorKutjevoCorporate: 2
       CMSurvivorDoctor:
+      - STSurvivorKutjevoSynthMedical: -1
       - RMCSurvivorKutjevoDoctor: 3
       CMSurvivorEngineer:
+      - STSurvivorKutjevoSynthEngineer: -1
       - RMCSurvivorKutjevoEngineer: 4
       - RMCSurvivorKutjevoTrucker: 4
       CMSurvivorSecurity:
@@ -575,6 +592,7 @@
     minPlayers: 130
     survivorJobVariants:
       CMSurvivor:
+      - STSyntheticColonyHybrisaCivilian: -1
       - RMCSurvivorHybrisaCivilian: -1
       - RMCSurvivorHybrisaTMCCMiner: -1
       - RMCSurvivorHybrisaGrindBarista: 1
@@ -584,25 +602,34 @@
       - RMCSurvivorHybrisaWeyamartEmployee: 1
       - RMCSurvivorHybrisaFireProtectionSpecialist: 1
       CMSurvivorCorporate:
+      - STSyntheticColonyHybrisaExecBodyguard: -1
       - RMCSurvivorHybrisaCorporateLiaison: 2
       - RMCSurvivorHybrisaCommercialPilot: 2
       CMSurvivorDoctor:
+      - STSyntheticColonyHybrisaEMT: -1
       - RMCSurvivorHybrisaMedicalDoctor: 3
       - RMCSurvivorHybrisaEMTParamedic: 3
       CMSurvivorEngineer:
+      - STSyntheticColonyHybrisaEngineer: -1
       - RMCSurvivorHybrisaConstructionWorker: 2
       - RMCSurvivorHybrisaEngineer: 2
       - RMCSurvivorHybrisaHeavyVehicleOperator: 2
+      # Two synth variants share this category -- neither can be -1 (first -1 always wins
+      # immediately and the entry after it would never be reached), so both get an equal finite
+      # share ahead of the human options instead.
       CMSurvivorSecurity:
+      - STSyntheticColonyHybrisaDetective: 1
+      - STSyntheticColonyHybrisaTSEPA: 1
       - RMCSurvivorHybrisaCorporateSecurity: 2
       - RMCSurvivorHybrisaTSEPAConstable: 2
       CMSurvivorScientist:
+      - STSyntheticColonyHybrisaXenoarch: -1
       - RMCSurvivorHybrisaXenoarchaeologist: 2
       - RMCSurvivorHybrisaXenobiologist: 2
     survivorJobScenarios:
       tse_airbase: # Order of job priority for paramarines. Scientist is overriden into doctor, Corporate into survivor
       - RMCSurvivorCommandingOfficer: 1
-      - RMCSyntheticColony: 1
+      - STSyntheticColony: 1
       - CMSurvivorDoctor: 1
       - CMSurvivorEngineer: 1
       - CMSurvivorSecurity: 2
@@ -611,7 +638,7 @@
       tse_airbase: # RCM Paramarines
         RMCSurvivorCommandingOfficer:
         - RMCSurvivorParaCommander: 1
-        RMCSyntheticColony:
+        STSyntheticColony:
         - RMCSurvivorParaSupportSynthetic: 1
         CMSurvivorDoctor:
         - RMCSurvivorParaMedicalTechnician: 1
@@ -704,6 +731,7 @@
         - RMCSurvivorSPPSOFSpec: 1
         - RMCSurvivorSPPSOFSL: 1
         CMSurvivorDoctor:
+        - STSurvivorSPPSOFSynth: -1
         - RMCSurvivorSPPSOFMedic: 1
         CMSurvivorEngineer:
         - RMCSurvivorSPPSOFSapper: 1

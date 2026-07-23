@@ -1,0 +1,19 @@
+
+- type: entity
+  save: false
+  parent: STMobWorkingJoe
+  id: STMobAutomatonJoe
+  name: Urist McAutomaton
+  suffix: Stories
+  components:
+  - type: Synth
+    removeComponents: STSynthJoeRemoveComponents
+    newDamageModifier: STJoeSynth
+    canUseGuns: true
+  - type: SynthGeneration
+    generation: STSynthGenOne
+    selectable: false
+  - type: STRandomName
+    baseName: st-species-name-automaton-joe-base
+    postFix: st-species-name-automaton-joe-postfix
+    maxNumber: 5000

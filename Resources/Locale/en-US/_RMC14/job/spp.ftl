@@ -5,7 +5,7 @@
 
 rmc-ghost-role-information-spp-friendly-description = Render assistance towards the UN Forces, Listen to your superior officers.
 rmc-ghost-role-information-spp-hostile-description = Eliminate the UN Forces to ensure the SPP presence in this sector is continued. Listen to your superior officers and take over the main UNS vessel at all costs.
-rmc-ghost-role-information-spp-pve-description = Follow any orders from command and carry them out to the best of your abillity. For the people!
+st-ghost-role-information-spp-pve-description = Follow any orders from command and carry them out to the best of your abillity. For the people!
 
 rmc-ghost-name-spp-hostile-leader = SPP Squad Leader (Hostile)
 rmc-ghost-name-spp-friendly-leader = SPP Squad Leader (Friendly)
@@ -79,8 +79,9 @@ rmc-job-prefix-spp-squadlead = SL
 rmc-ghost-name-spp-squadlead = SPP Squad Lead
 rmc-job-description-spp-squadlead = Follow the section sergeant's orders and command your squad. 
 
-rmc-job-name-spp-synth = Support Synthetic
-rmc-job-prefix-spp-synth = SYN.
+st-job-name-spp-synth = Support Synthetic
+st-job-name-spp-combat-synth = Combat Synthetic
+st-job-prefix-spp-synth = SYN.
 
 rmc-job-name-spp-so= Staff Officer
 rmc-job-prefix-spp-so = SO

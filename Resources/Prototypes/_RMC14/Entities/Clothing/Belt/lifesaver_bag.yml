@@ -129,7 +129,7 @@
 
 - type: entity
   parent: RMCBeltMedicBagSPP
-  id: RMCBeltMedicBagSPPSynthFilled
+  id: STBeltMedicBagSPPSynthFilled
   suffix: Synthetic, Filled
   components:
   - type: StorageFill

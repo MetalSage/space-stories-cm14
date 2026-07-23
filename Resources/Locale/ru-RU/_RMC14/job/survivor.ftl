@@ -84,7 +84,7 @@ rmc-job-description-forecon = Вы — заброшенный на планет�
 rmc-job-name-forecon-sniper = Снайпер
 rmc-job-name-forecon-marksman = Меткий стрелок
 rmc-job-name-forecon-support-tech = Техник поддержки
-rmc-job-name-forecon-synth = Синтетик
+st-job-name-forecon-synth = Синтетик
 rmc-job-name-forecon-commander = Командир
 
 # LV-624 survs
@@ -219,8 +219,8 @@ rmc-job-prefix-paramarine = 24/ПАРА
 rmc-job-name-para-team-leader = Лидер группы
 rmc-job-prefix-para-team-leader = 24/ПАРА ЛГ
 
-rmc-job-name-para-synth = Синтетик поддержки
-rmc-job-prefix-para-synth = 24/ПАРА Синт
+st-job-name-para-synth = Синтетик поддержки
+st-job-prefix-para-synth = 24/ПАРА Синт
 
 rmc-job-name-para-commander = Командир
 rmc-job-prefix-para-commander = 24/ПАРА КМД

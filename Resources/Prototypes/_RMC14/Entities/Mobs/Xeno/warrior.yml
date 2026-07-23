@@ -40,6 +40,11 @@
       tier: 2
       hudOffset: 0,0.25
       unlockAt: 540 # 9 minutes
+    - type: FiremanCarriable
+      canThrow: true
+      carrierWhitelist:
+        components:
+        - STSynthHeavyGrab
     - type: XenoRegen
       restHealMultiplier: 1.4
     - type: XenoLight

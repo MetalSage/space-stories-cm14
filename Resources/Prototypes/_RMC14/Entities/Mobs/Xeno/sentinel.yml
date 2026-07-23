@@ -46,7 +46,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
-    - RMCSynthGrabbable
+    - STSynthGrabbable
   - type: Xeno
     role: CMXenoSentinel
     actionIds:

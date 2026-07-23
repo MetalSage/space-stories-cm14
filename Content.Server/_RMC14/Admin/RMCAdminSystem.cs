@@ -12,6 +12,7 @@ using Content.Server.Roles.Jobs;
 using Content.Server.Station.Systems;
 using Content.Shared._RMC14.Admin;
 using Content.Shared._RMC14.CCVar;
+using Content.Shared._RMC14.Dialog;
 using Content.Shared._RMC14.TacticalMap;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -33,6 +34,7 @@ public sealed class RMCAdminSystem : SharedRMCAdminSystem
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly DialogSystem _dialog = default!;
     [Dependency] private readonly EuiManager _eui = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly JobSystem _job = default!;
@@ -112,10 +114,25 @@ public sealed class RMCAdminSystem : SharedRMCAdminSystem
             return;
         }
 
-        SpawnAsJob(user, target, ev.JobId);
+        if (ev.Variant == null &&
+            _prototypes.TryIndex(ev.JobId, out var jobProto) &&
+            jobProto.Variants is { Count: > 0 } variants)
+        {
+            var options = new List<DialogOption>();
+            foreach (var (variantId, variantName) in variants)
+            {
+                var variantEv = new SpawnAsJobDialogEvent(ev.User, ev.Target, ev.JobId, variantId);
+                options.Add(new DialogOption(Loc.GetString(variantName), variantEv));
+            }
+
+            _dialog.OpenOptions(user, "Choose a variant", options);
+            return;
+        }
+
+        SpawnAsJob(user, target, ev.JobId, ev.Variant);
     }
 
-    public void SpawnAsJob(EntityUid user, EntityUid target, ProtoId<JobPrototype> job)
+    public void SpawnAsJob(EntityUid user, EntityUid target, ProtoId<JobPrototype> job, string? variant = null)
     {
         if (!_adminManager.IsAdmin(user))
             return;
@@ -130,6 +147,9 @@ public sealed class RMCAdminSystem : SharedRMCAdminSystem
         var player = actor.PlayerSession;
         var stationUid = _station.GetOwningStation(target);
         var profile = _gameTicker.GetPlayerProfile(actor.PlayerSession);
+
+        if (variant != null)
+            profile = profile.WithVariantPreference(job, variant);
 
         var newMind = _mind.CreateMind(player.UserId, profile.Name);
         _mind.SetUserId(newMind, player.UserId);

@@ -15,7 +15,7 @@
   clickEvent: !type:ToggleNightVisionAlertEvent
 
 - type: alert
-  id: SynthNightVision
+  id: STNightVision
   category: Sight
   icons:
   - sprite: /Textures/_RMC14/Interface/Alerts/xeno_night_vision.rsi

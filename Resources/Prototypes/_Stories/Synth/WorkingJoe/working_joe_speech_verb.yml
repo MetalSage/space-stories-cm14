@@ -1,0 +1,6 @@
+- type: speechVerb
+  id: STWorkingJoe
+  name: st-speech-verb-name-working-joe
+  speechVerbStrings:
+  - st-speech-verb-working-joe-1
+  - st-speech-verb-working-joe-2

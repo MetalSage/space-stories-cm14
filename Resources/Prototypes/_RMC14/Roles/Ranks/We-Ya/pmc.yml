@@ -71,7 +71,7 @@
   paygrade: ЧВК-ЭЛС
 
 - type: rank
-  id: RMCRankWeYaPMCSynthetic
+  id: STRankWeYaPMCSynthetic
   name: Синтетик
   prefix: Син.
   paygrade: PMC-SYN

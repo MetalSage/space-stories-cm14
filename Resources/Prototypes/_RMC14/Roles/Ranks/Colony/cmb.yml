@@ -11,12 +11,12 @@
   paygrade: БКММ
 
 - type: rank
-  id: RMCRankCMBInvestigativeSynthetic
+  id: STRankCMBInvestigativeSynthetic
   name: БКМ Следователь-Синтетик
   prefix: Син.
 
 - type: rank
-  id: RMCRankCMBRiotControlSynthetic
+  id: STRankCMBRiotControlSynthetic
   name: БКМ Синтетик Подавления Бунтов
   prefix: Син.
 

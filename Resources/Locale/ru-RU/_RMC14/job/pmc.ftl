@@ -73,8 +73,8 @@ rmc-job-name-pmc-director = Директор объекта ЧВК Ве-Я
 rmc-job-prefix-pmc-director = Дир.
 
 rmc-ghost-name-pmc-synth = Синтетик поддержки ЧВК Ве-Я (Нейтральный)
-rmc-job-name-pmc-synth = Синтетик службы поддержки Ве-Я
-rmc-job-prefix-pmc-synth = Синтетик Ве-Я
+st-job-name-pmc-synth = Синтетик службы поддержки Ве-Я
+st-job-prefix-pmc-synth = Синтетик Ве-Я
 
 rmc-job-name-pmc-bodyguard = Телохранитель Ве-Я
 rmc-ghost-name-pmc-bodyguard = Телохранитель Ве-Я (Глава охраны)

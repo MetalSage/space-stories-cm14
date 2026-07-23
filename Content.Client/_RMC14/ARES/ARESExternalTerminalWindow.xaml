@@ -64,11 +64,11 @@
                                 <BoxContainer Access="Public" Name="MasterMenu" Orientation="Vertical">
                                     <controls:ARESExternalTerminalSection Access="Public" Name="LogCategory" SectionNameText="[font size= 15]Logs" Visible="False"/>
 
-                                    <Control Visible="False">
+                                    <Control Name="CoreSecurity" Access="Public" Visible="False">
                                         <RichTextLabel Text="[font size= 15]Security Procedures" Margin="0 10 0 5" HorizontalAlignment="Center" HorizontalExpand="True"/>
                                         <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button Text="Lockdown Overrides" SetHeight="30" SetWidth="200" Margin="2.5 0 2.5 2.5" StyleClasses="OpenBoth" ModulateSelfOverride="Maroon"/>
-                                            <Button Text="Ship Decontamination" SetHeight="30" SetWidth="200" Margin="2.5 0 2.5 2.5" StyleClasses="OpenBoth" ModulateSelfOverride="Maroon"/>
+                                            <Button Name="LockdownOverrides" Access="Public" Text="Lockdown Overrides" SetHeight="30" SetWidth="200" Margin="2.5 0 2.5 2.5" StyleClasses="OpenBoth" ModulateSelfOverride="Maroon"/>
+                                            <Button Name="ReleaseGas" Access="Public" Text="Ship Decontamination" SetHeight="30" SetWidth="200" Margin="2.5 0 2.5 2.5" StyleClasses="OpenBoth" ModulateSelfOverride="Maroon"/>
                                         </BoxContainer>
                                     </Control>
 

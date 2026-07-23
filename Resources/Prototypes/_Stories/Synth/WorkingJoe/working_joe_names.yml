@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: RMCNamesAverageJoe
+  values:
+    prefix: st-name-average-joe-
+    count: 1

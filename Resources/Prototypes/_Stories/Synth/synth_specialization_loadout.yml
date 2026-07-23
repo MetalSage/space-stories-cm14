@@ -1,0 +1,49 @@
+
+- type: loadout
+  id: STSynthSpecEngineering
+  equipment:
+    id: STIDCardSynthEngineering
+
+- type: loadout
+  id: STSynthSpecMedical
+  equipment:
+    id: STIDCardSynthMedical
+
+- type: loadout
+  id: STSynthSpecIntel
+  equipment:
+    id: STIDCardSynthIntel
+
+- type: loadout
+  id: STSynthSpecMP
+  equipment:
+    id: STIDCardSynthMP
+
+- type: loadout
+  id: STSynthSpecCommand
+  equipment:
+    id: STIDCardSynthCommand
+
+- type: loadout
+  id: STSynthSpecResearch
+  equipment:
+    id: STIDCardSynthResearch
+
+- type: loadout
+  id: STSynthSpecGeneralized
+  equipment:
+    id: STIDCardSynth
+
+- type: loadoutGroup
+  id: SynthSpecializationST
+  name: st-loadout-group-synth-specialization
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - STSynthSpecGeneralized
+  - STSynthSpecEngineering
+  - STSynthSpecMedical
+  - STSynthSpecIntel
+  - STSynthSpecMP
+  - STSynthSpecCommand
+  - STSynthSpecResearch

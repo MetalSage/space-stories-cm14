@@ -1,0 +1,91 @@
+
+- type: job
+  parent: CMSurvivor
+  id: STSurvivorSolarisPMCSynth
+  name: st-job-name-solaris-pmc-synth
+  description: cm-job-description-survivor
+  playTimeTracker: STJobSolarisPMCSynth
+  startingGear: STGearSolarisPMCSynth
+  spawnMenuRoleName: PMC Support Synthetic (Special Survivor)
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - English
+      - Japanese
+      understoodLanguages:
+      - English
+      - Japanese
+      currentLanguage: English
+      defaultLanguage: English
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: RMCAllowSuitStorage
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: NpcFactionMember
+      factions:
+      - WeYa
+    - type: IntelRescueSurvivorObjective
+    - type: JobPrefix
+      prefix: st-job-prefix-synth
+    - type: TacticalMapIcon
+      icon:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: pmc_syn
+      background:
+        sprite: /Textures/_RMC14/Interface/map_blips.rsi
+        state: background_pmc
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+
+- type: startingGear
+  id: STGearSolarisPMCSynth
+  equipment:
+    head: ArmorHelmetPMCOfficer
+    ears: RMCHeadsetDistressPMC
+    eyes: RMCSunglasses
+    back: STPMCSyntheticSmartpack
+    belt: RMCBeltMedicBagPMCFilled
+    jumpsuit: STJumpsuitVeteranPMCSynth
+    outerClothing: RMCArmorM4PMCSynthFilled
+    shoes: RMCBootsPMCFilled
+    id: CMIDCardPMC
+    pocket1: STPouchToolsSocFilledSynthetic
+  storage:
+    back:
+    - RMCUniversalRecorder
+    - STSynthResetKey
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointSolarisPMCSynth
+  name: special survivor solaris pmc synth spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorSolarisPMCSynth
+  - type: Sprite
+    layers:
+    - sprite: _RMC14/Markers/landmarks.rsi
+      state: surv
+
+- type: playTimeTracker
+  id: STJobSolarisPMCSynth
+  isHumanoid: true

@@ -117,7 +117,7 @@
   - type: StorageFill
     contents:
     - id: RMCArmorBulletproof
-    - id: RMCSynthResetKeySMART
+    - id: STSynthResetKeySMART
     - id: RMCMREWeYa
     - id: RMCMREWeYa
       # ToDo: RMC14 Platinum Coin

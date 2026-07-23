@@ -26,6 +26,7 @@
       - RMCMacheteScabbard
       - RMCScabbardKatana
       - RMCDetector
+      - STMaintenanceJack # Stories-Synth
 
 - type: entity
   parent: [ClothingOuterStorageBase]

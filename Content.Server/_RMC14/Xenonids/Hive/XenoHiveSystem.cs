@@ -5,7 +5,7 @@ using Content.Shared._RMC14.Admin;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Chat;
 using Content.Shared._RMC14.Marines;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared.Chat;

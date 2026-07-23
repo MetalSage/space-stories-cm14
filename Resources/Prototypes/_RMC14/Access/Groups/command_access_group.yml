@@ -211,6 +211,6 @@
   parent: RMCBaseMiscellaneousJob
   name: Synthetic
   tags:
-  - RMCAccessSynth
+  - STAccessSynth
   - RMCAccessDatabase
   - RMCAccessSeniorCommand

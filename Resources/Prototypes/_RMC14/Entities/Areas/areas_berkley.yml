@@ -250,7 +250,7 @@
 
 - type: entity
   parent:  RMCAreaBerkley
-  id: RMCAreaBerkleySynthetic
+  id: STAreaBerkleySynthetic
   name: Synthetic Storage
 
 - type: entity

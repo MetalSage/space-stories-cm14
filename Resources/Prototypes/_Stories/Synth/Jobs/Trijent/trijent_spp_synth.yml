@@ -1,0 +1,81 @@
+
+- type: job
+  parent: RMCSurvivorSPPCrashlandBase
+  id: STSurvivorSPPCrashlandSynth
+  name: st-job-name-crashland-synth
+  startingGear: STGearSPPCrashlandSynth
+  ranks:
+    RMCRankSPPMladshiySerzhant: []
+  icon: "STJobIconSynth"
+  spawnMenuRoleName: SPP Airborne Synthetic (Survivor)
+  whitelisted: true
+  whitelistParent: STJobSynthetic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: NpcFactionMember
+      factions:
+      - SPP
+    - type: IntelRescueSurvivorObjective
+    - type: Language
+      spokenLanguages:
+      - Russian
+      - German
+      - Chinese
+      understoodLanguages:
+      - Russian
+      - German
+      - Chinese
+      currentLanguage: Russian
+      defaultLanguage: Russian
+    - type: LanguageLearning
+      preset: STLanguageLearningPresetSynthColonist
+    - type: AssignSquad
+      squad: SquadSPP
+    - type: JobPrefix
+      prefix: st-job-prefix-synth
+    - type: RMCSurvivor
+    - type: MotionDetectorTracked
+    - type: RMCAllowSuitStorage
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/_RMC14/Weapons/synthpunch1.ogg
+        params:
+          variation: 0.15
+          volume: -1
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 35
+    - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
+  hidden: true
+
+- type: startingGear
+  parent: RMCGearSPPCrashlandBase
+  id: STGearSPPCrashlandSynth
+  equipment:
+    eyes: RMCGlassesMedicalHUDGlasses
+    belt: RMCBeltMedicBagSPPCrashland
+    back: RMCSatchelSPPMedicSurvivor
+    suitstorage: RMCFlashlight
+  storage:
+    back:
+    - CMHealthAnalyzer
+    - STSynthResetKey
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointSPPCrashlandSynth
+  name: special survivor spp crashland synth spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STSurvivorSPPCrashlandSynth
+  - type: Sprite
+    layers:
+    - sprite: _RMC14/Markers/landmarks.rsi
+      state: surv_spp

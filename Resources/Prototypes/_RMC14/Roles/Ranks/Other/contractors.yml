@@ -19,7 +19,7 @@
   prefix: Инж.
 
 - type: rank
-  id: RMCRankVAISynthetic
+  id: STRankVAISynthetic
   name: Синтетик VAI
   prefix: Син.
 

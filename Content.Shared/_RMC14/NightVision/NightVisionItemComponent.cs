@@ -36,6 +36,9 @@ public sealed partial class NightVisionItemComponent : Component
     public bool Mesons;
 
     [DataField, AutoNetworkedField]
+    public bool Overlay;
+
+    [DataField, AutoNetworkedField]
     public bool BlockScopes;
 
     [DataField, AutoNetworkedField]

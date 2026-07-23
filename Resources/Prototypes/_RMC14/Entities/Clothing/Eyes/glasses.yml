@@ -195,6 +195,9 @@
   - type: ComponentToggler
     components:
     - type: NightVisionItem
+      mesons: true
+      overlay: true
+      defaultState: half
   - type: Appearance
   - type: RMCItemToggleClothingVisuals
   - type: GenericVisualizer

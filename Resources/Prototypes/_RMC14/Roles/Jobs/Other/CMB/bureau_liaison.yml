@@ -87,7 +87,7 @@
     id: RMCIDCardICBLiaison
     pocket1: RMCPouchFirstAidERTFill
     pocket2: RMCPouchGeneralLargeICBLiaison
-    suitStorage: RMCFlashlight
+    suitstorage: RMCFlashlight
   inhand:
   - CMClipboard
 

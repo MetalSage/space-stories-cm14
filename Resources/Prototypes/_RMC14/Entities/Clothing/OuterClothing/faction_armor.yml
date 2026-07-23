@@ -305,7 +305,7 @@
 
 - type: entity
   parent: RMCArmorPMCRiot
-  id: RMCArmorPMCRiotSynth
+  id: STArmorPMCRiotSynth
   name: UN-M1S synthetic body armor
   description: Based on the M3 pattern employed by the UNMC, the UN-M1 body armor is employed by security, riot control and union-busting teams. The UN-1MS modification is Synthetic programming compliant, sacrificing protection for speed and carrying capacity.
   components:

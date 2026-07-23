@@ -292,6 +292,7 @@ public abstract class SharedNightVisionSystem : EntitySystem
                 nightVision.Green = item.Comp.Green;
                 nightVision.Mesons = item.Comp.Mesons;
                 nightVision.BlockScopes = item.Comp.BlockScopes;
+                nightVision.Overlay = item.Comp.Overlay;
                 Dirty(user, nightVision);
             }
             else
@@ -302,6 +303,7 @@ public abstract class SharedNightVisionSystem : EntitySystem
                     Green = item.Comp.Green,
                     Mesons = item.Comp.Mesons,
                     BlockScopes = item.Comp.BlockScopes,
+                    Overlay = item.Comp.Overlay,
                 };
 
                 AddComp(user, nightVision, true);

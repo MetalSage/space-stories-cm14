@@ -5,6 +5,8 @@ using Content.Server.Radio.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Content.Shared._RMC14.Chat;
+using Content.Shared._RMC14.Language.Components;
+using Content.Shared._RMC14.Language.Prototypes;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Mentor.ImaginaryFriend;
 using Content.Shared._RMC14.Xenonids;
@@ -33,6 +35,8 @@ public sealed class CMChatSystem : SharedCMChatSystem
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly BracerSystem _bracer = default!; // Stories-Hunter
+
+    private static readonly ProtoId<LanguagePrototype> XenoLanguage = "Xeno";
 
     private static readonly ProtoId<ReplacementAccentPrototype> ChatSanitize = "CMChatSanitize";
     private static readonly ProtoId<ReplacementAccentPrototype> MarineChatSanitize = "CMChatSanitizeMarine";
@@ -91,7 +95,9 @@ public sealed class CMChatSystem : SharedCMChatSystem
 
             // `data.Observer` only indicates whether the recipient has `GhostHearingComponent`.
             // Disabling ghost hearing removes this component, so the `GhostComponent` check is needed to keep ghosts included.
-            if (!HasComp<XenoComponent>(session.AttachedEntity) && !HasComp<GhostComponent>(session.AttachedEntity))
+            if (!HasComp<XenoComponent>(session.AttachedEntity) &&
+                !HasComp<GhostComponent>(session.AttachedEntity) &&
+                !CanLearnXeno(session.AttachedEntity))
                 _toRemove.Add(session);
         }
 
@@ -99,6 +105,12 @@ public sealed class CMChatSystem : SharedCMChatSystem
         {
             args.Recipients.Remove(session);
         }
+    }
+
+    private bool CanLearnXeno(EntityUid? entity)
+    {
+        return TryComp<LanguageLearningComponent>(entity, out var learning) &&
+            learning.Languages.ContainsKey(XenoLanguage);
     }
 
     private void OnImaginaryFriendGetRecipients(Entity<ImaginaryFriendComponent> ent, ref ChatMessageAfterGetRecipients args)

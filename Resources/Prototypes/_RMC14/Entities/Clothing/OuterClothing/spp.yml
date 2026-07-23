@@ -58,7 +58,7 @@
 
 - type: entity
   parent: RMCArmorSPPSupport
-  id: RMCArmorSPPSupportSynth
+  id: STArmorSPPSupportSynth
   name: SPP UL6 synthetic personal armor
   description: Modified variant of the UL6 personal armor system intended to be usable by Synthetic units. Offers no protection but very little movement impairment.
   components:
@@ -79,8 +79,8 @@
     sprintModifier: 0.897
 
 - type: entity
-  parent: RMCArmorSPPSupportSynth
-  id: RMCArmorSPPSupportSynthFilled
+  parent: STArmorSPPSupportSynth
+  id: STArmorSPPSupportSynthFilled
   suffix: Filled
   components:
   - type: StorageFill

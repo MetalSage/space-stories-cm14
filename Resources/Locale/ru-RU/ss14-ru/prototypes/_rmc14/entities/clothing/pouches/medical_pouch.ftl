@@ -9,6 +9,6 @@ ent-RMCPouchMedicalPills = { ent-RMCPouchMedical }
 ent-RMCPouchMedicalERT = { ent-RMCPouchMedical }
     .desc = { ent-RMCPouchMedical.desc }
     .suffix = ОБР
-ent-RMCPouchMedicalSPPSynth = { ent-RMCPouchMedical }
+ent-STPouchMedicalSPPSynth = { ent-RMCPouchMedical }
     .desc = { ent-RMCPouchMedical.desc }
     .suffix = ERT

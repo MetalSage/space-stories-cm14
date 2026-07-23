@@ -147,7 +147,7 @@
 
 - type: entity
   parent: [CMBaseDefibrillator, RMCPowerCellSlotUnremovable]
-  id: RMCSynthResetKey
+  id: STSynthResetKey
   name: WeYa synthetic reset key
   description: This device can fix major glitches or programming errors of synthetic units, as well as being able to restart a synthetic that has suffered critical failure. It can only be used once before being reset.
   components:
@@ -189,7 +189,7 @@
         volume: -6
   - type: UseOnSynthBlocked
     reversed: true
-    popup: rmc-species-synth-reset-key-invalid
+    popup: st-species-synth-reset-key-invalid
     whitelist:
       components:
         - Marine
@@ -199,30 +199,82 @@
     heldPrefix: null
   - type: Tag
     tags:
-    - RMCSynthResetKey
+    - STSynthResetKey
 
 - type: entity
-  parent: RMCSynthResetKey
-  id: RMCSynthResetKeySMART
+  parent: STSynthResetKey
+  id: STSynthResetKeySMART
   name: SMART WeYa synthetic reset key
   description: This device can fix major glitches or programming errors of synthetic units, as well as being able to restart a synthetic that has suffered critical failure. It can only be used once before being reset. This one has a microfunction AI and can be operated by anyone.
   components:
   - type: RequiresSkill
     skills:
       RMCSkillEngineer: 0
+  - type: Sprite
+    sprite: _RMC14/Objects/Devices/reset_key.rsi
+    layers:
+    - state: defib_ns
+    - state: defib_ns_on
+      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+  - type: Item
+    size: Small
+    sprite: _RMC14/Objects/Devices/reset_key.rsi
+    heldPrefix: null
 
 - type: entity
-  parent: RMCSynthResetKey
-  id: RMCSynthResetKeyNovaris # TODO RMC14 unique sprite for this
+  parent: STSynthResetKey
+  id: STSynthResetKeySeegson
+  name: Seegson synthetic reset key
+  description: A Seegson-manufactured device that can fix major glitches or programming errors of synthetic units, as well as being able to restart a synthetic that has suffered critical failure. It can only be used once before being reset. Standard issue for Working Joe units.
+  components:
+  - type: Sprite
+    sprite: _Stories/Synth/seegson_reset_key.rsi
+    layers:
+    - state: defib
+    - state: defib_on
+      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+  - type: Item
+    size: Small
+    sprite: _Stories/Synth/seegson_reset_key.rsi
+    heldPrefix: null
+
+- type: entity
+  parent: STSynthResetKey
+  id: STSynthResetKeyNovaris
   name: Novaris synthetic reset key
   description: An independent Novaris design, based on a previous collaboration with Weston-Yamada. This device can fix major glitches or programming errors of synthetic units, as well as being able to restart a synthetic that has suffered critical failure. It can only be used once before being reset.
+  components:
+  - type: Sprite
+    sprite: _Stories/Synth/novaris_reset_key.rsi
+    layers:
+    - state: defib
+    - state: defib_on
+      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+  - type: Item
+    size: Small
+    sprite: _Stories/Synth/novaris_reset_key.rsi
+    heldPrefix: null
 
 - type: entity
-  parent: RMCSynthResetKey
-  id: RMCSynthResetKeyNovarisSMART # TODO RMC14 unique sprite for this
+  parent: STSynthResetKey
+  id: STSynthResetKeyNovarisSMART
   name: SMART Novaris synthetic reset key
   description: An independent Novaris design, based on a previous collaboration with Weston-Yamada. This device can fix major glitches or programming errors of synthetic units, as well as being able to restart a synthetic that has suffered critical failure. It can only be used once before being reset. This one has a micro-function AI and can be operated by anyone.
   components:
   - type: RequiresSkill
     skills:
       RMCSkillEngineer: 0
+  - type: Sprite
+    sprite: _Stories/Synth/novaris_reset_key.rsi
+    layers:
+    - state: defib_ns
+    - state: defib_ns_on
+      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+  - type: Item
+    size: Small
+    sprite: _Stories/Synth/novaris_reset_key.rsi
+    heldPrefix: null

@@ -29,6 +29,11 @@
     tier: 2
     hudOffset: 0,0.19
     unlockAt: 300 # 5 minutes
+  - type: FiremanCarriable
+    canThrow: true
+    carrierWhitelist:
+      components:
+      - STSynthHeavyGrab
   - type: XenoHeavy
   - type: XenoDevolve
     devolvesTo:

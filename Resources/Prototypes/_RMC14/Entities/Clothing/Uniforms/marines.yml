@@ -592,7 +592,7 @@
 # Synthetic
 - type: entity
   parent: [RMCMarineUniformBase, RMCFoldableUniformBase]
-  id: CMJumpsuitSyntheticPristine
+  id: STJumpsuitSyntheticPristine
   name: UNMC pristine support uniform
   description: A simple uniform made for synthetic crew members, this one is in Weston-Yamada's signature black and orange color scheme.
   components:
@@ -610,10 +610,86 @@
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Clothing/Uniforms/Synthetic/joe.rsi
+  - type: WebbingClothing
+    startingWebbing: STWebbingDropPouchWorkingJoe
+  - type: STWorkingJoeUniform
+  # CM13's /obj/item/clothing/under/rank/synthetic/joe/Initialize() adds this to every Joe uniform
+  # (both plain and hazmat), not just this one.
+  - type: RMCCorpLabel
+    manufacturer: rmc-corp-label-manufacturer-seegson
 
 - type: entity
   parent: RMCMarineUniformBase
-  id: CMJumpsuitSyntheticOutdated
+  id: STJumpsuitHazmatJoe
+  name: hazmat joe uniform
+  description: A reinforced uniform used for synthetic labor in hazardous areas.
+  components:
+  - type: Sprite
+    sprite: _Stories/Synth/WorkingJoe/working_joe_uniform.rsi
+    state: icon-working_joe_engi
+  - type: Clothing
+    equippedPrefix: working_joe_engi
+  - type: WebbingClothing
+    startingWebbing: STWebbingDropPouchWorkingJoe
+  # CM13's /obj/item/clothing/under/rank/synthetic/joe/engi: armor_melee=LOW(10),
+  # armor_energy=MEDIUMLOW(15), armor_bomb=MEDIUMLOW(15), armor_bio=MEDIUM(20). Its
+  # armor_rad=HIGH and armor_internaldamage=MEDIUMLOW have no equivalent field on CMArmorComponent
+  # yet (radiation/internal-damage protection isn't modeled in this engine at all -- see the
+  # "TODO RMC14 other types of armor" note on CMArmorComponent) so they're dropped, not lost track
+  # of. The plain (non-hazmat) Working Joe/Average Joe uniform has no armor stats in CM13 either,
+  # so CMJumpsuitAverageJoe correctly stays without a CMArmor override.
+  - type: CMArmor
+    melee: 10
+    bullet: 15
+    bio: 20
+    explosionArmor: 15
+  - type: STWorkingJoeUniform
+  - type: RMCCorpLabel
+    manufacturer: rmc-corp-label-manufacturer-seegson
+
+# CM13's /obj/item/clothing/under/rank/synthetic/joe/engi/overalls: same protection as the plain
+# hazmat uniform except armor_bio bumped to MEDIUMHIGH(25), plus unacidable=TRUE (no engine
+# equivalent yet, same gap as radiation armor -- see the note on STJumpsuitHazmatJoe). CM13 rolls a
+# 50/50 chance between this and the plain hazmat uniform on spawn (see
+# STWorkingJoeVariantSystem.OnPlayerSpawnComplete), not a separate pickable item.
+- type: entity
+  parent: STJumpsuitHazmatJoe
+  id: STJumpsuitHazmatJoeOveralls
+  name: hazmat joe uniform
+  description: A reinforced uniform used for synthetic labor in hazardous areas. Comes with an additional layer for liquid hazards.
+  components:
+  - type: Sprite
+    sprite: _Stories/Synth/WorkingJoe/working_joe_uniform.rsi
+    state: icon-working_joe_overalls
+  - type: Clothing
+    equippedPrefix: working_joe_overalls
+  - type: CMArmor
+    melee: 10
+    bullet: 15
+    bio: 25
+    explosionArmor: 15
+
+# CM13's /obj/item/clothing/under/rank/synthetic/upp_joe ("android suit") -- Automaton Joe's
+# uniform. Unlike the Seegson Working Joe uniform, this one is NOT a subtype of
+# /obj/item/clothing/under/rank/synthetic/joe in CM13 (no camera/3RR0R element), so no
+# STWorkingJoeUniform marker here. It does still get its own corp label (Norcomm).
+- type: entity
+  parent: RMCMarineUniformBase
+  id: STJumpsuitAutomatonJoe
+  name: android suit
+  description: Uniform designed for SPP security synthetics.
+  components:
+  - type: Sprite
+    sprite: _Stories/Synth/Automaton/automaton_joe_uniform.rsi
+  - type: Clothing
+    sprite: _Stories/Synth/Automaton/automaton_joe_uniform.rsi
+    equippedPrefix: automaton_joe
+  - type: RMCCorpLabel
+    manufacturer: rmc-corp-label-manufacturer-norcomm
+
+- type: entity
+  parent: RMCMarineUniformBase
+  id: STJumpsuitSyntheticOutdated
   name: outdated synthetic support uniform
   description: An outdated version of the UNMC synthetic support uniform. Despite the age, it is still very stylish and practical.
   components:
@@ -622,7 +698,7 @@
 
 - type: entity
   parent: [RMCMarineUniformBase, RMCAlternateFoldableUniformBase]
-  id: RMCJumpsuitSynthetic
+  id: STJumpsuitSynthetic
   name: UNMC Support Uniform
   description: A simple uniform made for Synthetic crewmembers
   components:

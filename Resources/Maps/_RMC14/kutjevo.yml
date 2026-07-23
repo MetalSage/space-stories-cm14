@@ -80334,7 +80334,7 @@ entities:
     - type: Transform
       pos: 113.5,-62.5
       parent: 1
-- proto: RMCSynthResetKey
+- proto: STSynthResetKey
   entities:
   - uid: 6955
     components:

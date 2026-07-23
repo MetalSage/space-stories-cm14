@@ -20325,7 +20325,7 @@ entities:
     - type: Transform
       pos: 16.5,97.5
       parent: 1
-- proto: RMCArmorSPPSupportSynth
+- proto: STArmorSPPSupportSynth
   entities:
   - uid: 3
     components:

@@ -112,7 +112,7 @@
 
 - type: entity
   parent: RMCSatchelBlack
-  id: RMCSatchelBlackBartenderSynthFill
+  id: STSatchelBlackBartenderSynthFill
   suffix: Bartender Synth, Filled
   components:
   - type: StorageFill

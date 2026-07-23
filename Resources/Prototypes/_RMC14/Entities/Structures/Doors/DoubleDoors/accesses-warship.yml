@@ -100,23 +100,23 @@
 
 - type: entity
   parent: RMCDoubleDoorAlmayerGlass
-  id: RMCDoubleDoorAlmayerGlassSynth
+  id: STDoubleDoorAlmayerGlassSynth
   suffix: Almayer, Glass, Locked, Synth
   description: A glass door locked to Synths.
   name: Synthetics Double Door
   components:
   - type: AccessReader
-    access: [ [ "RMCAccessSynth" ] ]
+    access: [ [ "STAccessSynth" ] ]
 
 - type: entity
   parent: RMCDoubleDoorAlmayerSolid
-  id: RMCDoubleDoorAlmayerSolidSynth
+  id: STDoubleDoorAlmayerSolidSynth
   suffix: Almayer, Glass, Locked, Synth
   description: A door locked to the Synths.
   name: Synthetics Double Door
   components:
   - type: AccessReader
-    access: [ [ "RMCAccessSynth" ] ]
+    access: [ [ "STAccessSynth" ] ]
 
 ##
 

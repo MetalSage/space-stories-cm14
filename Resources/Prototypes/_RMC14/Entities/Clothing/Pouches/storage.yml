@@ -70,7 +70,7 @@
 # Survival Synth Pouch
 - type: entity
   parent: RMCPouchSurvival
-  id: RMCPouchSurvivalSynth
+  id: STPouchSurvivalSynth
   name: synth survival pouch
   description: An emergency pouch given to silicons in the event of an emergency.
   components:
@@ -520,7 +520,7 @@
       # - TODO RMC14 RMCAssembly
       # - TODO RMC14 RMCStockParts
       - RMCExplosiveBreachingCharge
-      - RMCSynthResetKey
+      - STSynthResetKey
       components:
       - TrayScanner
       - ComputerBoard
@@ -540,7 +540,7 @@
         # - TODO RMC14 RMCAssembly
         # - TODO RMC14 RMCStockParts
         - RMCExplosiveBreachingCharge
-        - RMCSynthResetKey
+        - STSynthResetKey
         components:
         - TrayScanner
         - ComputerBoard
@@ -599,7 +599,7 @@
 
 - type: entity
   parent: RMCPouchToolsSoc
-  id: RMCPouchToolsSocFilledSynthetic
+  id: STPouchToolsSocFilledSynthetic
   suffix: Filled, Synthetic
   components:
   - type: StorageFill
@@ -615,7 +615,7 @@
 
 - type: entity
   parent: RMCPouchToolsSoc
-  id: RMCPouchToolsSocFilledSPPSynthetic
+  id: STPouchToolsSocFilledSPPSynthetic
   suffix: Filled, SPP Synthetic
   components:
   - type: StorageFill

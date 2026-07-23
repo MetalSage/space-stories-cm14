@@ -56,21 +56,21 @@
 
 - type: healthIcon
   parent: CMHealthIconBase
-  id: RMCHealthIconHealthySynth
+  id: STHealthIconHealthySynth
   icon:
     sprite: /Textures/_RMC14/Interface/health_hud.rsi
     state: hudsynth
 
 - type: healthIcon
   parent: CMHealthIconBase
-  id: RMCHealthIconDeadSynth
+  id: STHealthIconDeadSynth
   icon:
     sprite: /Textures/_RMC14/Interface/health_hud.rsi
     state: hudsynthdead
 
 - type: healthIcon
   parent: CMHealthIconBase
-  id: RMCHealthIconDeadDNRSynth
+  id: STHealthIconDeadDNRSynth
   icon:
     sprite: /Textures/_RMC14/Interface/health_hud.rsi
     state: hudsynthdnr

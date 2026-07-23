@@ -1326,7 +1326,7 @@
 
 - type: entity
   parent: RMCAreaWarship
-  id: RMCAreaWarshipSyntheticPreparations
+  id: STAreaWarshipSyntheticPreparations
   name: Synthetic Preparations
   components:
   - type: Sprite

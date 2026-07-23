@@ -94,7 +94,7 @@
   - type: Tag
     tags:
     - RMCXenoLarva
-    - RMCSynthGrabbable
+    - STSynthGrabbable
   - type: RMCBuckleOffset
     offset: 0, 0
   - type: AutoClimbBlocked # Stories-AutoClimb

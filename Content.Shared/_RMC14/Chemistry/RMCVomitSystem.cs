@@ -1,5 +1,5 @@
 using Content.Shared._RMC14.Damage;
-using Content.Shared._RMC14.Synth;
+using Content.Shared._Stories.Synth;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
