@@ -1,6 +1,6 @@
 
 - type: loadout
-  id: SynthUniformST
+  id: SynthJumpsuitST
   equipment:
     jumpsuit: STJumpsuitSynthetic
 

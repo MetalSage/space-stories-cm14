@@ -754,7 +754,7 @@
   name: st-loadout-group-synthetic-uniform
   minLimit: 1
   loadouts:
-  - SynthUniformST
+  - SynthJumpsuitST
   - SynthJumpsuitPristineST
   - ScrubsBlueST
   - ScrubsLightBlueST

@@ -63,6 +63,9 @@
         types:
           Blunt: 35
     - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
     - type: AssignSquad
       whitelist:
         tags:

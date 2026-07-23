@@ -93,6 +93,9 @@
         types:
           Blunt: 35
     - type: Synth
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
   hidden: true
 
 - type: startingGear
@@ -209,6 +212,9 @@
           Blunt: 35
     - type: Synth
       canUseGuns: true
+    - type: SynthGeneration
+      generation: STSynthGenTwo
+      selectable: false
   hidden: true
 
 - type: startingGear
