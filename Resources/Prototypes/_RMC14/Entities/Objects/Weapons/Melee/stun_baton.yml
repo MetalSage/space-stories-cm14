@@ -145,3 +145,9 @@
     deactivatedDamage:
       types:
         Blunt: 4
+  - type: MeleeWeapon
+    angle: 60
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Blunt: 4
