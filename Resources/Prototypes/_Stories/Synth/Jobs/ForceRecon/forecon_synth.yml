@@ -20,8 +20,6 @@
     components:
     - type: Language
       preset: STLanguagePresetSynthColonist
-    - type: LanguageLearning
-      preset: STLanguageLearningPresetSynthColonist
     - type: RMCAllowSuitStorage
     - type: Skills
       preset: STSkillPresetReconSynth

@@ -8,8 +8,6 @@
     components:
     - type: Language
       preset: STLanguagePresetSynthColonist
-    - type: LanguageLearning
-      preset: STLanguageLearningPresetSynthColonist
     - type: RMCAllowSuitStorage
     - type: DemoSpecWhitelist
     - type: GrenadeSpecWhitelist

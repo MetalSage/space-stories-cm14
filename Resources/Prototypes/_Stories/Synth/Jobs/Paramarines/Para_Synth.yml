@@ -13,18 +13,6 @@
       components:
         - type: Language
           preset: STLanguagePresetSynthColonist
-        - type: LanguageLearning
-          learnableLanguages:
-            - Xeno
-          firstContactLanguages:
-            - Xeno
-          languages:
-            Xeno:
-              initialBoostedWordCount: 18
-              initialBoostedWordComprehension: 0.4
-          comprehensionThreshold: 0.8
-          learningRange: 8.0
-          baseWordLearningRate: 0.05
         - type: NpcFactionMember
           factions:
             - RoyalMarines

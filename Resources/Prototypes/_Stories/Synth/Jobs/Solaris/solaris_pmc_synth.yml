@@ -16,13 +16,13 @@
       spokenLanguages:
       - English
       - Japanese
+      - Xeno
       understoodLanguages:
       - English
       - Japanese
+      - Xeno
       currentLanguage: English
       defaultLanguage: English
-    - type: LanguageLearning
-      preset: STLanguageLearningPresetSynthColonist
     - type: RMCAllowSuitStorage
     - type: RMCSurvivor
     - type: MotionDetectorTracked

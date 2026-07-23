@@ -22,14 +22,14 @@
       - Russian
       - German
       - Chinese
+      - Xeno
       understoodLanguages:
       - Russian
       - German
       - Chinese
+      - Xeno
       currentLanguage: Russian
       defaultLanguage: Russian
-    - type: LanguageLearning
-      preset: STLanguageLearningPresetSynthColonist
     - type: AssignSquad
       squad: SquadSPP
     - type: JobPrefix

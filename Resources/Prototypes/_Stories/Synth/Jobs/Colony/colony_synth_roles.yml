@@ -14,8 +14,6 @@
     components:
     - type: Language
       preset: STLanguagePresetSynthColonist
-    - type: LanguageLearning
-      preset: STLanguageLearningPresetSynthColonist
     - type: RMCAllowSuitStorage
     - type: RMCSurvivor
     - type: MotionDetectorTracked
@@ -79,8 +77,6 @@
     components:
     - type: Language
       preset: STLanguagePresetSynthColonist
-    - type: LanguageLearning
-      preset: STLanguageLearningPresetSynthColonist
     - type: RMCAllowSuitStorage
     - type: RMCSurvivor
     - type: MotionDetectorTracked

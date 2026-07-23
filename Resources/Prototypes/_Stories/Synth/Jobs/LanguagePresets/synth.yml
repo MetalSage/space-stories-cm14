@@ -14,6 +14,7 @@
     - German
     - Chinese
     - Spanish
+    - Xeno
     understoodLanguages:
     - English
     - French
@@ -23,6 +24,7 @@
     - German
     - Chinese
     - Spanish
+    - Xeno
     currentLanguage: English
     defaultLanguage: English
 

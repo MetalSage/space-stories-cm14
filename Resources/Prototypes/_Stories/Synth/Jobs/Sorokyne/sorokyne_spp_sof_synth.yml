@@ -19,15 +19,15 @@
       - English
       - German
       - Chinese
+      - Xeno
       understoodLanguages:
       - Russian
       - English
       - German
       - Chinese
+      - Xeno
       currentLanguage: Russian
       defaultLanguage: Russian
-    - type: LanguageLearning
-      preset: STLanguageLearningPresetSynthColonist
     - type: RMCAllowSuitStorage
     - type: RMCSurvivor
     - type: MotionDetectorTracked

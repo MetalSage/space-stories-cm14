@@ -15,6 +15,7 @@
       - German
       - Chinese
       - Spanish
+      - Xeno
       understoodLanguages:
       - English
       - French
@@ -23,20 +24,9 @@
       - German
       - Chinese
       - Spanish
+      - Xeno
       currentLanguage: English
       defaultLanguage: English
-    - type: LanguageLearning
-      learnableLanguages:
-      - Xeno
-      firstContactLanguages:
-      - Xeno
-      languages:
-        Xeno:
-          initialBoostedWordCount: 18
-          initialBoostedWordComprehension: 0.4
-      comprehensionThreshold: 0.8
-      learningRange: 8.0
-      baseWordLearningRate: 0.05
     - type: DemoSpecWhitelist
     - type: GrenadeSpecWhitelist
     - type: ScoutWhitelist

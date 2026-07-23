@@ -18,13 +18,13 @@
       spokenLanguages:
       - Japanese
       - English
+      - Xeno
       understoodLanguages:
       - Japanese
       - English
+      - Xeno
       currentLanguage: English
       defaultLanguage: English
-    - type: LanguageLearning
-      preset: STLanguageLearningPresetSynthColonist
     - type: Skills
       preset: RMCSkillPresetSurvivorMarshal
     - type: RMCSurvivor
