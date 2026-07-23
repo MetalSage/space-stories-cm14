@@ -2,10 +2,6 @@ rmc-species-name-synth = Синтетик
 
 rmc-species-synth-programming-prevents-use = Ваше программирование запрещает использовать { THE($tool) }!
 
-rmc-species-synth-generation-first = Первое поколение
-rmc-species-synth-generation-second = Второе поколение
-rmc-species-synth-generation-third = Третье поколение
-
 rmc-species-synth-defib-attempt = Вы не можете использовать дефибриллятор на { $target }. Для перезагрузки нужен ключ сброса синтетика!
 rmc-species-synth-reset-key-invalid = Вы не можете использовать ключ сброса на них, они не синтетик!
 

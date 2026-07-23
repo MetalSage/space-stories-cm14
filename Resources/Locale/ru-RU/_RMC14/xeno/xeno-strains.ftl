@@ -192,6 +192,6 @@ rmc-xeno-designer-description = Вы теряете:
     - Немного более мощная атака
 rmc-xeno-designer-popup = Вы — дизайнер улья, так что идите и расширьте улей за его нынешние пределы.
 
-rmc-xeno-magicalgirl-name = Magical Girl
-rmc-xeno-magicalgirl-description = Receive your Plasma Wand from The Queen Mother and transform into your Magical Girl form to combat the forces of evil!
-rmc-xeno-magicalgirl-popup = With the power of Plasma and Resin! Transform!
+rmc-xeno-magicalgirl-name = Девочка-волшебница
+rmc-xeno-magicalgirl-description = Получите свой плазменный жезл от Королевы-Матери и превратитесь в форму Девочки-волшебницы, чтобы сражаться со силами зла!
+rmc-xeno-magicalgirl-popup = Силой Плазмы и Смолы! Перевоплощение!

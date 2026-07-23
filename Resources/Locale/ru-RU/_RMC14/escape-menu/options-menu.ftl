@@ -21,6 +21,6 @@ ui-options-header-rmc-xeno = Ксеноморфы
 ui-options-function-cm-xeno-wide-swing = Широкий размах ксеноморфа
 ui-options-function-rmc-xeno-rest = Отдых ксеноморфов
 
-ui-options-function-smart-equip-uniform = Smart-equip to uniform
-ui-options-function-smart-equip-armor = Smart-equip to armor
-ui-options-function-smart-equip-helmet = Smart-equip to helmet
+ui-options-function-smart-equip-uniform = Быстрая экипировка в униформу
+ui-options-function-smart-equip-armor = Быстрая экипировка в броню
+ui-options-function-smart-equip-helmet = Быстрая экипировка в шлем
