@@ -39,7 +39,7 @@ rmc-announcement-dropship-message = [color=#CECECE][font size=14][bold]Опов�
 
     { $message }[/bold][/font][/color]
 
-rmc-announcement-anti-air = [color=#CECECE][font size=16][bold]IX-50 MGAD System[/bold][/font][/color][color=red][font size=16][bold]
+rmc-announcement-anti-air = [color=#CECECE][font size=16][bold]Система ПВО IX-50 MGAD[/bold][/font][/color][color=red][font size=16][bold]
 
     { $message }[/bold][/font][/color]
 

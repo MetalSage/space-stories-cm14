@@ -1,11 +1,11 @@
-rmc-intel-suffix = {$baseName} ({$number})
-rmc-intel-unlocked = {$baseName} ({$unlocked})
-rmc-intel-label-name = {$baseName} {$label}
-rmc-intel-label-name-parenthetical = {$baseName} ({$label})
-rmc-intel-serial-name = {$baseName} #{$serial}
-rmc-intel-serial-examine = Серийный номер — {$serial}.
-rmc-intel-announcement = ТЕХНИЧЕСКИЙ ОТЧЕТ: доступно {$points} очков.
-rmc-intel-announcement-gain = ТЕХНИЧЕСКИЙ ОТЧЕТ: доступно {$points} очков (+{$change}).
+rmc-intel-suffix = { $baseName } ({ $number })
+rmc-intel-unlocked = { $baseName } ({ $unlocked })
+rmc-intel-label-name = { $baseName } { $label }
+rmc-intel-label-name-parenthetical = { $baseName } ({ $label })
+rmc-intel-serial-name = { $baseName } #{ $serial }
+rmc-intel-serial-examine = Серийный номер — { $serial }.
+rmc-intel-announcement = ТЕХНИЧЕСКИЙ ОТЧЕТ: доступно { $points } очков.
+rmc-intel-announcement-gain = ТЕХНИЧЕСКИЙ ОТЧЕТ: доступно { $points } очков (+{ $change }).
 rmc-intel-reports = Отчеты
 rmc-intel-folders = Папки
 rmc-intel-manuals = Руководства
@@ -14,7 +14,7 @@ rmc-intel-retrieve = Извлечь
 rmc-intel-misc = Разное
 rmc-intel-personal = Личные подсказки
 
-rmc-intel-data-disk-uploaded = {$baseName} (загружен)
+rmc-intel-data-disk-uploaded = { $baseName } (загружен)
 rmc-intel-color-red = [color=#eb4034]красного цвета[/color]
 rmc-intel-color-black = [color=#000000]черного цвета[/color]
 rmc-intel-color-blue = [color=#3449eb]синего цвета[/color]
@@ -25,19 +25,19 @@ rmc-intel-color-green = [color=#5dbf36]зеленого цвета[/color]
 rmc-intel-color-cracked-blue = [color=#3449eb]с треснувшей синей маркировкой[/color]
 rmc-intel-color-bloodied-blue = [color=#3449eb]с испачканной кровью синей маркировкой[/color]
 rmc-intel-color-unknown = без маркировки
-rmc-intel-clue-found = Вы разбираете что-то о {$clue}.
+rmc-intel-clue-found = Вы разбираете что-то о { $clue }.
 rmc-intel-personal-clues-added = Новые подсказки добавлены в ваши личные подсказки.
-rmc-intel-clue-label-number = #{$number}
-rmc-intel-clue-label-serial = #{$serial}
+rmc-intel-clue-label-number = #{ $number }
+rmc-intel-clue-label-serial = #{ $serial }
 rmc-intel-clue-label-unmarked = без видимой метки
-rmc-intel-clue-paper-scrap = клочок бумаги {$label} в {$area}.
-rmc-intel-clue-progress-report = отчет о проделанной работе {$label} в {$area}.
-rmc-intel-clue-folder = папка {$color} {$label} в {$area}.
-rmc-intel-clue-technical-manual = техническое руководство {$label} в {$area}.
-rmc-intel-clue-experimental-device = получить {$name} {$label} в {$area}.
-rmc-intel-clue-data-disk = диск {$color} [bold]{$label}[/bold], ключ расшифровки: [bold]{$key}[/bold] в {$area}.
-rmc-intel-clue-data-terminal = загрузить данные с терминала [bold]{$label}[/bold], пароль: [bold]{$password}[/bold] в {$area}.
-rmc-intel-clue-safe = вскрыть сейф {$label}, кодовый замок: [bold]{$code}[/bold] в {$area}.
+rmc-intel-clue-paper-scrap = клочок бумаги { $label } в { $area }.
+rmc-intel-clue-progress-report = отчет о проделанной работе { $label } в { $area }.
+rmc-intel-clue-folder = папка { $color } { $label } в { $area }.
+rmc-intel-clue-technical-manual = техническое руководство { $label } в { $area }.
+rmc-intel-clue-experimental-device = получить { $name } { $label } в { $area }.
+rmc-intel-clue-data-disk = диск { $color } [bold]{ $label }[/bold], ключ расшифровки: [bold]{ $key }[/bold] в { $area }.
+rmc-intel-clue-data-terminal = загрузить данные с терминала [bold]{ $label }[/bold], пароль: [bold]{ $password }[/bold] в { $area }.
+rmc-intel-clue-safe = вскрыть сейф { $label }, кодовый замок: [bold]{ $code }[/bold] в { $area }.
 rmc-intel-data-terminal-password-prompt = Введите пароль
 rmc-intel-data-terminal-no-power = У этого терминала нет питания!
 rmc-intel-data-terminal-no-comms = Терминал показывает ошибку сетевого подключения.
@@ -59,22 +59,22 @@ rmc-intel-disk-reader-disk-complete = Считыватель показывае�
 rmc-intel-safe-code-prompt = Введите комбинацию сейфа.
 rmc-intel-safe-wrong-code = Сейф не открывается.
 rmc-intel-safe-complete = Сейф отпирается.
-rmc-intel-reading-start = Вы начинаете читать {$thing}.
+rmc-intel-reading-start = Вы начинаете читать { $thing }.
 rmc-intel-reading-cancelled = Вы отвлекаетесь и теряете мысль. Придется начать чтение заново.
 rmc-intel-reading-inactive = Вы не замечаете ничего полезного. Вероятно, сначала нужно найти инструкции на клочке бумаги.
-rmc-intel-reading-finished = Вы заканчиваете читать {$thing}.
+rmc-intel-reading-finished = Вы заканчиваете читать { $thing }.
 rmc-intel-console-typing-start = Вы начинаете вводить разведданные в компьютер...
 rmc-intel-console-typing-no-new = Вы начинаете вводить разведданные в компьютер... но вам нечего добавить...
 rmc-intel-console-typing-cancelled = Вы отвлекаетесь и теряете мысль. Придется начать ввод заново...
 rmc-intel-console-submit-no-new = ...и вам нечего добавить...
-rmc-intel-console-submit-done = ...готово! Вы загрузили записей: {$amount}!
-rmc-intel-survivor-pickup = Вам не нужна эта вещь: {$thing}.
+rmc-intel-console-submit-done = ...готово! Вы загрузили записей: { $amount }!
+rmc-intel-survivor-pickup = Вам не нужна эта вещь: { $thing }.
     Сначала сосредоточьтесь на том, чтобы выбраться живым.
-rmc-intel-survivor-read = Вам не нужно читать {$thing}.
+rmc-intel-survivor-read = Вам не нужно читать { $thing }.
     Сначала сосредоточьтесь на том, чтобы выбраться живым.
-rmc-intel-survivor-xeno-pull = Попытка забрать с собой {$thing} только замедлит меня.
+rmc-intel-survivor-xeno-pull = Попытка забрать с собой { $thing } только замедлит меня.
     Мне следует сначала сосредоточиться на получении помощи.
-rmc-intel-survivor-corpse-pull = Я не могу спасти {$thing}, это только замедлит меня.
+rmc-intel-survivor-corpse-pull = Я не могу спасти { $thing }, это только замедлит меня.
     Мне следует сначала сосредоточиться на получении помощи.
 
 
@@ -98,23 +98,23 @@ rmc-ui-intel-search-placeholder = Поиск подсказок...
 rmc-ui-intel-hide-areas = Скрыть зоны
 rmc-ui-intel-show-areas = Показать зоны
 rmc-ui-intel-clue-area-preposition = в
-rmc-ui-intel-points-value = {$value}
-rmc-ui-intel-tier-value = {$value}
-rmc-ui-intel-total-credits = Всего заработано кредитов: {$value}
-rmc-ui-intel-progress = {$current} / {$total}
-rmc-ui-intel-infinite-progress = {$current} / ∞
+rmc-ui-intel-points-value = { $value }
+rmc-ui-intel-tier-value = { $value }
+rmc-ui-intel-total-credits = Всего заработано кредитов: { $value }
+rmc-ui-intel-progress = { $current } / { $total }
+rmc-ui-intel-infinite-progress = { $current } / ∞
 rmc-ui-intel-colony-status =
     {$online ->
         [true] Онлайн.
-       *[false] Офлайн.
+        *[false] Офлайн.
     }
 
 ## Tech Control Console
-rmc-ui-tech-tier-header = [font size=14][bold]Уровень: {$tier}[/bold][/font]
-rmc-ui-tech-points = [font size=14][bold]Очки: {$points}[/bold][/font]
-rmc-ui-tech-points-value = Очки технологий: {$value}
+rmc-ui-tech-tier-header = [font size=14][bold]Уровень: { $tier }[/bold][/font]
+rmc-ui-tech-points = [font size=14][bold]Очки: { $points }[/bold][/font]
+rmc-ui-tech-points-value = Очки технологий: { $value }
 rmc-ui-tech-repurchasable = Можно выкупить повторно
-rmc-ui-tech-incremental-price = Увеличение цены: +{$increase} за покупку
+rmc-ui-tech-incremental-price = Увеличение цены: +{ $increase } за покупку
 rmc-ui-tech-purchase-button = Купить
 
 rmc-ui-tech-information-header = [bold]Информация[/bold]
@@ -135,11 +135,11 @@ rmc-intel-tech-requisition-budget-name = Увеличение бюджета с�
 rmc-intel-tech-requisition-budget-description = Распределяет ресурсы в отдел снабжения.
 rmc-intel-tech-dropship-budget-name = Увеличение бюджета десантного корабля
 rmc-intel-tech-dropship-budget-description = Распределяет ресурсы в фабрикатор десантного корабля.
-rmc-intel-tech-ob-he-name = Дополнительные боеприпасы ОБ - HE
+rmc-intel-tech-ob-he-name = Дополнительные боеприпасы ОБ — HE
 rmc-intel-tech-ob-he-description = Фугасный боеприпас для орбитальной бомбардировки, загружается в орбитальную пушку.
-rmc-intel-tech-ob-incendiary-name = Дополнительные боеприпасы ОБ - зажигательные
+rmc-intel-tech-ob-incendiary-name = Дополнительные боеприпасы ОБ — зажигательные
 rmc-intel-tech-ob-incendiary-description = Зажигательный боеприпас для орбитальной бомбардировки, загружается в орбитальную пушку.
-rmc-intel-tech-ob-cluster-name = Дополнительные боеприпасы ОБ - кассетные
+rmc-intel-tech-ob-cluster-name = Дополнительные боеприпасы ОБ — кассетные
 rmc-intel-tech-ob-cluster-description = Фугасный фрагментирующий боеприпас для орбитальной бомбардировки, загружается в орбитальную пушку.
 rmc-intel-tech-wake-troops-name = Разбудить дополнительные войска
 rmc-intel-tech-wake-troops-description = Будит дополнительные войска для борьбы с угрозами.
