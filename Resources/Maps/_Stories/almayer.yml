@@ -114540,14 +114540,14 @@ entities:
     - type: Transform
       pos: -10.5,110.5
       parent: 1
-- proto: ColMarTechCrewSynthetic
+- proto: STColMarTechCrewSynthetic
   entities:
   - uid: 15758
     components:
     - type: Transform
       pos: -74.5,118.5
       parent: 1
-- proto: ColMarTechCrewSyntheticGear
+- proto: STColMarTechCrewSyntheticGear
   entities:
   - uid: 15759
     components:
@@ -185588,7 +185588,7 @@ entities:
     - type: Transform
       pos: 11.5,90.5
       parent: 1
-- proto: RMCSpawnPointSynth
+- proto: STSpawnPointSynth
   entities:
   - uid: 25712
     components:
@@ -187903,7 +187903,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -17.5,78.5
       parent: 1
-- proto: RMCSynthResetKey
+- proto: STSynthResetKey
   entities:
   - uid: 26128
     components:
