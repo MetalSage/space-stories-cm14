@@ -21,3 +21,27 @@
   id: jinx
   category: "Кастомные"
   sponsorOnly: true
+
+- type: ttsVoice
+  name: "Повелители Ночи"
+  sex: Male
+  speaker: night_lord
+  id: night_lord
+  category: "Кастомные"
+  sponsorOnly: true
+
+- type: ttsVoice
+  name: "Аларак"
+  sex: Male
+  speaker: alarak
+  id: alarak
+  category: "Кастомные"
+  sponsorOnly: true
+
+- type: ttsVoice
+  name: "Элли"
+  sex: Female
+  speaker: ellie
+  id: ellie
+  category: "Кастомные"
+  sponsorOnly: true
