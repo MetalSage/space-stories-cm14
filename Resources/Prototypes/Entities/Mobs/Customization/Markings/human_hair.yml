@@ -76,13 +76,6 @@
     - sprite: Mobs/Customization/human_hair.rsi
       state: long_bedhead2
 - type: marking
-  id: HumanHairFloorlengthBedhead
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: floorlength_bedhead
-- type: marking
   id: HumanHairBeehive
   bodyPart: Hair
   markingCategory: Hair
@@ -159,13 +152,6 @@
   sprites:
     - sprite: Mobs/Customization/human_hair.rsi
       state: bowlcut2
-- type: marking
-  id: HumanHairBraid
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: braid
 - type: marking
   id: HumanHairBraided
   bodyPart: Hair
@@ -328,13 +314,6 @@
     - sprite: Mobs/Customization/human_hair.rsi
       state: classiccornrows2
 - type: marking
-  id: HumanHairClassicFloorlengthBedhead
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classicfloorlength_bedhead
-- type: marking
   id: HumanHairClassicModern
   bodyPart: Hair
   markingCategory: Hair
@@ -468,20 +447,6 @@
     - sprite: Mobs/Customization/human_hair.rsi
       state: dreads
 - type: marking
-  id: HumanHairDrillruru
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: drillruru
-- type: marking
-  id: HumanHairDrillhairextended
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: drillhairextended
-- type: marking
   id: HumanHairEmo
   bodyPart: Hair
   markingCategory: Hair
@@ -545,26 +510,12 @@
     - sprite: Mobs/Customization/human_hair.rsi
       state: father
 - type: marking
-  id: HumanHairSargeant
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: sargeant
-- type: marking
   id: HumanHairFlair
   bodyPart: Hair
   markingCategory: Hair
   sprites:
     - sprite: Mobs/Customization/human_hair.rsi
       state: flair
-- type: marking
-  id: HumanHairBigflattop
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bigflattop
 - type: marking
   id: HumanHairFlow
   bodyPart: Hair
@@ -776,20 +727,6 @@
     - sprite: Mobs/Customization/human_hair.rsi
       state: d
 - type: marking
-  id: HumanHairNitori
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: nitori
-- type: marking
-  id: HumanHairReversemohawk
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: reversemohawk
-- type: marking
   id: HumanHairUnshavenMohawk
   bodyPart: Hair
   markingCategory: Hair
@@ -866,13 +803,6 @@
   sprites:
     - sprite: Mobs/Customization/human_hair.rsi
       state: pigtails
-- type: marking
-  id: HumanHairPigtails2
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: pigtails2
 - type: marking
   id: HumanHairPixie
   bodyPart: Hair
@@ -1168,13 +1098,6 @@
     - sprite: Mobs/Customization/human_hair.rsi
       state: spiky2
 - type: marking
-  id: HumanHairSpookyLong
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: spookylong
-- type: marking
   id: HumanHairSwept
   bodyPart: Hair
   markingCategory: Hair
@@ -1377,17 +1300,3 @@
   sprites:
     - sprite: Mobs/Customization/human_hair.rsi
       state: shaped
-- type: marking
-  id: HumanHairLongBow
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longbow
-- type: marking
-  id: HumanHairLongWithBangs
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-  - sprite: Mobs/Customization/human_hair.rsi
-    state: longwithbangs

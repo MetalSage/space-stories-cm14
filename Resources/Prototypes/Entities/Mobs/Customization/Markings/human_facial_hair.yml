@@ -6,13 +6,6 @@
     - sprite: Mobs/Customization/human_facial_hair.rsi
       state: abe
 - type: marking
-  id: HumanFacialHairBrokenman
-  bodyPart: FacialHair
-  markingCategory: FacialHair
-  sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: brokenman
-- type: marking
   id: HumanFacialHairChin
   bodyPart: FacialHair
   markingCategory: FacialHair
