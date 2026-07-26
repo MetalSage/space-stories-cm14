@@ -1,6 +1,6 @@
 using Content.Shared.Interaction.Events;
 using Content.Shared._RMC14.Dialog;
-using Content.Shared._Stories.TTS;
+using Content.Shared._Stories.TTS; // Stories-TTS
 using Content.Shared.Examine;
 using Robust.Shared.Serialization;
 
@@ -22,14 +22,16 @@ public sealed class RMCMegaphoneSystem : EntitySystem
     {
         args.Handled = true;
 
+        // Stories-TTS-Start
         var ev = new MegaphoneInputEvent(
-            GetNetEntity(args.User), // Stories
+            GetNetEntity(args.User),
             VoiceRangeMultiplier: ent.Comp.VoiceRangeMultiplier,
-            TTSVolumeMultiplier: ent.Comp.TTSVolumeMultiplier, // Stories
-            TTSRangeMultiplier: ent.Comp.TTSRangeMultiplier, // Stories
-            TTSReferenceDistance: ent.Comp.TTSReferenceDistance, // Stories
-            TTSRolloffFactor: ent.Comp.TTSRolloffFactor, // Stories
-            AudioEffect: ent.Comp.AudioEffect); // Stories
+            TTSVolumeMultiplier: ent.Comp.TTSVolumeMultiplier,
+            TTSRangeMultiplier: ent.Comp.TTSRangeMultiplier,
+            TTSReferenceDistance: ent.Comp.TTSReferenceDistance,
+            TTSRolloffFactor: ent.Comp.TTSRolloffFactor,
+            AudioEffects: ent.Comp.AudioEffects);
+        // Stories-TTS-End
         _dialog.OpenInput(args.User, Loc.GetString("rmc-megaphone-ui-text"), ev, largeInput: false, characterLimit: 150);
     }
 
@@ -40,12 +42,14 @@ public sealed class RMCMegaphoneSystem : EntitySystem
 }
 
 [Serializable, NetSerializable]
+// Stories-TTS-Start
 public sealed record MegaphoneInputEvent(
     NetEntity Actor,
     string Message = "",
-    float VoiceRangeMultiplier = 1.5f, // Stories
-    float TTSVolumeMultiplier = 1.5f, // Stories
-    float TTSRangeMultiplier = 1.5f, // Stories
-    float TTSReferenceDistance = 4f, // Stories
-    float TTSRolloffFactor = 0.25f, // Stories
-    TTSAudioEffect AudioEffect = TTSAudioEffect.Megaphone) : DialogInputEvent(Message); // Stories
+    float VoiceRangeMultiplier = 1.5f,
+    float TTSVolumeMultiplier = 1.5f,
+    float TTSRangeMultiplier = 1.5f,
+    float TTSReferenceDistance = 4f,
+    float TTSRolloffFactor = 0.25f,
+    TTSAudioEffect AudioEffects = TTSAudioEffect.Megaphone) : DialogInputEvent(Message);
+// Stories-TTS-End

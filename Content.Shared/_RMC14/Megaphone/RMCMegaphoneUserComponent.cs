@@ -1,4 +1,4 @@
-using Content.Shared._Stories.TTS;
+using Content.Shared._Stories.TTS; // Stories-TTS
 using Content.Shared.Speech;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -56,6 +56,7 @@ public sealed partial class RMCMegaphoneUserComponent : Component
         { "chat-speech-verb-suffix-mumble", "Megaphone" },
     };
 
+    // Stories-TTS-Start
     /// <summary>
     /// Stories: Multiplier applied to the base voice range when using a megaphone.
     /// </summary>
@@ -89,6 +90,7 @@ public sealed partial class RMCMegaphoneUserComponent : Component
     /// <summary>
     /// Stories: Server-side audio effects applied to TTS generated while using a megaphone.
     /// </summary>
-    [DataField("ttsAudioEffect"), AutoNetworkedField]
-    public TTSAudioEffect AudioEffect = TTSAudioEffect.Megaphone;
+    [DataField("ttsAudioEffects"), AutoNetworkedField]
+    public TTSAudioEffect AudioEffects = TTSAudioEffect.Megaphone;
+    // Stories-TTS-End
 }

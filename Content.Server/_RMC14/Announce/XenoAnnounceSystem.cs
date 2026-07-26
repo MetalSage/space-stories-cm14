@@ -3,6 +3,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Shared._RMC14.Xenonids.Announce;
 using Content.Shared._Stories.SCCVars;
+using Content.Shared._Stories.TTS; // Stories-TTS
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
@@ -82,7 +83,12 @@ public sealed class XenoAnnounceSystem : SharedXenoAnnounceSystem
         var ttsMessage = Loc.GetString("tts-announce-queen-mother", ("message", message));
 
         if (!string.IsNullOrEmpty(voice))
-            _tts.PlayGlobalTTS(ttsMessage, voice, filter, true, isAnnounce: true);
+            _tts.PlayGlobalTTS(
+                ttsMessage,
+                voice,
+                filter,
+                TTSAudioEffect.XenoHivemind,
+                isAnnounce: true);
     }
-    // Stories-TTS-Start
+    // Stories-TTS-End
 }

@@ -12,26 +12,38 @@ namespace Content.Server._Stories.TTS;
 
 public sealed class TtsAudioProcessingSystem : EntitySystem
 {
-    private const string StandardRadioEffectName = "standard radio";
-    private const string XenoHivemindEffectName = "xeno hivemind";
-    private const string HunterEffectName = "hunter";
-    private const string MegaphoneEffectName = "megaphone";
-    private const string AresEffectName = "ARES";
+    private const TTSAudioEffect KnownEffects =
+        TTSAudioEffect.Hunter |
+        TTSAudioEffect.XenoHivemind |
+        TTSAudioEffect.Ares |
+        TTSAudioEffect.StandardRadio |
+        TTSAudioEffect.Megaphone;
+
+    private static readonly TTSAudioEffect[] EffectOrder =
+    {
+        TTSAudioEffect.Hunter,
+        TTSAudioEffect.XenoHivemind,
+        TTSAudioEffect.Ares,
+        TTSAudioEffect.StandardRadio,
+        TTSAudioEffect.Megaphone,
+    };
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    private readonly HashSet<string> _disabledEffects = new();
+
+    private readonly HashSet<TTSAudioEffect> _disabledEffects = new();
+    private readonly HashSet<TTSAudioEffect> _disabledEffectCombinations = new();
     private readonly object _disabledEffectsLock = new();
 
-    private string _ffmpegArgs = "";
     private string _ffmpegPath = "ffmpeg";
-    private string _hunterFfmpegArgs = "";
-    private string _megaphoneFfmpegArgs = "";
-    private string _aresFfmpegArgs = "";
+    private string _standardRadioFfmpegFilter = "";
+    private string _xenoFfmpegFilter = "";
+    private string _hunterFfmpegFilter = "";
+    private string _megaphoneFfmpegFilter = "";
+    private string _aresFfmpegFilter = "";
     private bool _radioEffectEnabled;
-
+    private bool _processingDisabled;
     private ISawmill _sawmill = default!;
-    private string _xenoFfmpegArgs = "";
 
     public override void Initialize()
     {
@@ -42,119 +54,198 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
         {
             _radioEffectEnabled = v;
             if (v)
-                EnableEffect(StandardRadioEffectName);
+                EnableEffect(TTSAudioEffect.StandardRadio);
         }, true);
         _cfg.OnValueChanged(SCCVars.TTSFfmpegPath, v =>
         {
             _ffmpegPath = v;
             EnableAllEffects();
         }, true);
-        _cfg.OnValueChanged(SCCVars.TTSFfmpegArguments, v =>
+        _cfg.OnValueChanged(SCCVars.TTSStandardRadioFfmpegFilter, v =>
         {
-            _ffmpegArgs = v;
-            EnableEffect(StandardRadioEffectName);
+            _standardRadioFfmpegFilter = v;
+            EnableEffect(TTSAudioEffect.StandardRadio);
         }, true);
-        _cfg.OnValueChanged(SCCVars.TTSXenoFfmpegArguments, v =>
+        _cfg.OnValueChanged(SCCVars.TTSXenoFfmpegFilter, v =>
         {
-            _xenoFfmpegArgs = v;
-            EnableEffect(XenoHivemindEffectName);
+            _xenoFfmpegFilter = v;
+            EnableEffect(TTSAudioEffect.XenoHivemind);
         }, true);
-        _cfg.OnValueChanged(SCCVars.TTSHunterFfmpegArguments, v =>
+        _cfg.OnValueChanged(SCCVars.TTSHunterFfmpegFilter, v =>
         {
-            _hunterFfmpegArgs = v;
-            EnableEffect(HunterEffectName);
+            _hunterFfmpegFilter = v;
+            EnableEffect(TTSAudioEffect.Hunter);
         }, true);
-        _cfg.OnValueChanged(SCCVars.TTSMegaphoneFfmpegArguments, v =>
+        _cfg.OnValueChanged(SCCVars.TTSMegaphoneFfmpegFilter, v =>
         {
-            _megaphoneFfmpegArgs = v;
-            EnableEffect(MegaphoneEffectName);
+            _megaphoneFfmpegFilter = v;
+            EnableEffect(TTSAudioEffect.Megaphone);
         }, true);
-        _cfg.OnValueChanged(SCCVars.TTSAresFfmpegArguments, v =>
+        _cfg.OnValueChanged(SCCVars.TTSAresFfmpegFilter, v =>
         {
-            _aresFfmpegArgs = v;
-            EnableEffect(AresEffectName);
+            _aresFfmpegFilter = v;
+            EnableEffect(TTSAudioEffect.Ares);
         }, true);
     }
 
     public async Task<byte[]> ProcessRadioAudio(EntityUid uid, byte[] audioData)
     {
+        var effects = TTSAudioEffect.StandardRadio;
+
         if (_entityManager.HasComponent<HunterComponent>(uid))
-            return await ApplyHunterEffect(audioData);
+            effects |= TTSAudioEffect.Hunter;
 
         if (_entityManager.HasComponent<XenoComponent>(uid))
-            return await ApplyXenoHivemindEffect(audioData);
+            effects |= TTSAudioEffect.XenoHivemind;
 
-        return await ApplyStandardRadioEffect(audioData);
+        return await ApplyPlaybackEffects(audioData, effects);
     }
 
-    public async Task<byte[]> ApplyStandardRadioEffect(byte[] oggData)
+    public async Task<byte[]> ApplyPlaybackEffects(byte[] oggData, TTSAudioEffect effects)
     {
-        return await ApplyEffect(oggData, _ffmpegArgs, StandardRadioEffectName);
-    }
+        effects = NormalizeEffects(effects, _radioEffectEnabled);
 
-    public async Task<byte[]> ApplyXenoHivemindEffect(byte[] oggData)
-    {
-        return await ApplyEffect(oggData, _xenoFfmpegArgs, XenoHivemindEffectName);
-    }
-
-    public async Task<byte[]> ApplyHunterEffect(byte[] oggData)
-    {
-        return await ApplyEffect(oggData, _hunterFfmpegArgs, HunterEffectName);
-    }
-
-    public async Task<byte[]> ApplyMegaphoneEffect(byte[] oggData)
-    {
-        return await ApplyEffect(oggData, _megaphoneFfmpegArgs, MegaphoneEffectName);
-    }
-
-    public async Task<byte[]> ApplyPlaybackEffect(byte[] oggData, TTSAudioEffect effect)
-    {
-        return effect switch
-        {
-            TTSAudioEffect.Hunter => await ApplyHunterEffect(oggData),
-            TTSAudioEffect.XenoHivemind => await ApplyXenoHivemindEffect(oggData),
-            TTSAudioEffect.Ares => await ApplyAresEffect(oggData),
-            TTSAudioEffect.Megaphone => await ApplyMegaphoneEffect(oggData),
-            TTSAudioEffect.StandardRadio => await ApplyStandardRadioEffect(oggData),
-            _ => oggData,
-        };
-    }
-
-    public async Task<byte[]> ApplyAresEffect(byte[] oggData)
-    {
-        return await ApplyEffect(oggData, _aresFfmpegArgs, AresEffectName);
-    }
-
-    private async Task<byte[]> ApplyEffect(byte[] oggData, string ffmpegArgs, string effectName)
-    {
-        if (!_radioEffectEnabled && effectName == StandardRadioEffectName)
+        if (effects == TTSAudioEffect.None || IsProcessingDisabled())
             return oggData;
 
-        if (IsEffectDisabled(effectName))
+        var filterChain = BuildFilterChain(effects, GetEffectFilter, IsEffectDisabled);
+        foreach (var effect in EnumerateEffects(filterChain.MissingEffects))
+        {
+            DisableEffect(
+                effect,
+                $"FFmpeg filter for {GetEffectName(effect)} is not configured. Skipping this effect.");
+        }
+
+        if (filterChain.ActiveEffects == TTSAudioEffect.None ||
+            IsEffectCombinationDisabled(filterChain.ActiveEffects))
             return oggData;
 
         if (string.IsNullOrWhiteSpace(_ffmpegPath))
         {
-            DisableEffect(effectName, "ffmpeg path is not configured.", false);
+            DisableProcessing("FFmpeg path is not configured.");
             return oggData;
         }
 
-        if (string.IsNullOrWhiteSpace(ffmpegArgs))
+        return await ApplyEffectChain(oggData, filterChain.Filter, filterChain.ActiveEffects);
+    }
+
+    internal static TTSAudioEffect NormalizeEffects(TTSAudioEffect effects, bool radioEffectEnabled)
+    {
+        effects &= KnownEffects;
+
+        if (!radioEffectEnabled)
+            effects &= ~TTSAudioEffect.StandardRadio;
+
+        // Hivemind speech is not transmitted through a physical radio channel.
+        if ((effects & TTSAudioEffect.XenoHivemind) != 0)
+            effects &= ~TTSAudioEffect.StandardRadio;
+
+        return effects;
+    }
+
+    internal static IEnumerable<TTSAudioEffect> EnumerateEffects(TTSAudioEffect effects)
+    {
+        foreach (var effect in EffectOrder)
         {
-            DisableEffect(effectName, $"ffmpeg arguments for {effectName} are not configured.", false);
-            return oggData;
+            if ((effects & effect) != 0)
+                yield return effect;
+        }
+    }
+
+    internal static TtsAudioFilterChain BuildFilterChain(
+        TTSAudioEffect effects,
+        Func<TTSAudioEffect, string> getFilter,
+        Func<TTSAudioEffect, bool> isDisabled)
+    {
+        var filters = new List<string>();
+        var activeEffects = TTSAudioEffect.None;
+        var missingEffects = TTSAudioEffect.None;
+
+        foreach (var effect in EnumerateEffects(effects))
+        {
+            if (isDisabled(effect))
+                continue;
+
+            var filter = getFilter(effect);
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                missingEffects |= effect;
+                continue;
+            }
+
+            filters.Add(filter.Trim().Trim(','));
+            activeEffects |= effect;
         }
 
+        return new TtsAudioFilterChain(
+            string.Join(",", filters),
+            activeEffects,
+            missingEffects);
+    }
+
+    private string GetEffectFilter(TTSAudioEffect effect)
+    {
+        return effect switch
+        {
+            TTSAudioEffect.Hunter => _hunterFfmpegFilter,
+            TTSAudioEffect.XenoHivemind => _xenoFfmpegFilter,
+            TTSAudioEffect.Ares => _aresFfmpegFilter,
+            TTSAudioEffect.StandardRadio => _standardRadioFfmpegFilter,
+            TTSAudioEffect.Megaphone => _megaphoneFfmpegFilter,
+            _ => "",
+        };
+    }
+
+    private static string GetEffectName(TTSAudioEffect effect)
+    {
+        return effect switch
+        {
+            TTSAudioEffect.Hunter => "hunter",
+            TTSAudioEffect.XenoHivemind => "xeno hivemind",
+            TTSAudioEffect.Ares => "ARES",
+            TTSAudioEffect.StandardRadio => "standard radio",
+            TTSAudioEffect.Megaphone => "megaphone",
+            _ => effect.ToString(),
+        };
+    }
+
+    private static string GetEffectCombinationName(TTSAudioEffect effects)
+    {
+        var names = new List<string>();
+
+        foreach (var effect in EnumerateEffects(effects))
+        {
+            names.Add(GetEffectName(effect));
+        }
+
+        return string.Join(" -> ", names);
+    }
+
+    private async Task<byte[]> ApplyEffectChain(
+        byte[] oggData,
+        string filterChain,
+        TTSAudioEffect effects)
+    {
         var processStartInfo = new ProcessStartInfo
         {
             FileName = _ffmpegPath,
-            Arguments = ffmpegArgs,
             RedirectStandardInput = true,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,
             CreateNoWindow = true,
         };
+        processStartInfo.ArgumentList.Add("-v");
+        processStartInfo.ArgumentList.Add("error");
+        processStartInfo.ArgumentList.Add("-i");
+        processStartInfo.ArgumentList.Add("pipe:0");
+        processStartInfo.ArgumentList.Add("-filter:a");
+        processStartInfo.ArgumentList.Add(filterChain);
+        processStartInfo.ArgumentList.Add("-f");
+        processStartInfo.ArgumentList.Add("ogg");
+        processStartInfo.ArgumentList.Add("pipe:1");
+
+        var effectNames = GetEffectCombinationName(effects);
 
         try
         {
@@ -162,7 +253,7 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
 
             if (!process.Start())
             {
-                DisableEffect(effectName, $"Failed to start ffmpeg process for {effectName} effect.", true);
+                DisableProcessing($"Failed to start FFmpeg for TTS effects: {effectNames}.");
                 return oggData;
             }
 
@@ -171,7 +262,6 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
             var errorTask = process.StandardError.ReadToEndAsync();
 
             await process.StandardInput.BaseStream.WriteAsync(oggData, 0, oggData.Length);
-
             process.StandardInput.Close();
 
             await Task.WhenAll(outputTask, errorTask);
@@ -180,9 +270,9 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
             var errorOutput = await errorTask;
             if (process.ExitCode != 0)
             {
-                DisableEffect(
-                    effectName,
-                    $"ffmpeg for {effectName} effect exited with code {process.ExitCode}. Stderr: {errorOutput}",
+                DisableEffectCombination(
+                    effects,
+                    $"FFmpeg for TTS effects {effectNames} exited with code {process.ExitCode}. Stderr: {errorOutput}",
                     true);
                 return oggData;
             }
@@ -190,9 +280,9 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
             var processedData = memoryStream.ToArray();
             if (processedData.Length == 0)
             {
-                DisableEffect(
-                    effectName,
-                    $"ffmpeg for {effectName} effect produced an empty output. Stderr: {errorOutput}.",
+                DisableEffectCombination(
+                    effects,
+                    $"FFmpeg for TTS effects {effectNames} produced an empty output. Stderr: {errorOutput}.",
                     false);
                 return oggData;
             }
@@ -201,44 +291,89 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
         }
         catch (Win32Exception)
         {
-            DisableEffect(effectName, $"ffmpeg not found at path '{_ffmpegPath}'.", true);
+            DisableProcessing($"FFmpeg not found at path '{_ffmpegPath}'.");
             return oggData;
         }
         catch (Exception e)
         {
-            DisableEffect(effectName, $"An exception occurred while running ffmpeg for {effectName} effect: {e}", true);
+            DisableEffectCombination(
+                effects,
+                $"An exception occurred while running FFmpeg for TTS effects {effectNames}: {e}",
+                true);
             return oggData;
         }
     }
 
-    private bool IsEffectDisabled(string effectName)
+    private bool IsProcessingDisabled()
     {
         lock (_disabledEffectsLock)
         {
-            return _disabledEffects.Contains(effectName);
+            return _processingDisabled;
         }
     }
 
-    private void DisableEffect(string effectName, string reason, bool error)
+    private bool IsEffectDisabled(TTSAudioEffect effect)
     {
         lock (_disabledEffectsLock)
         {
-            if (!_disabledEffects.Add(effectName))
+            return _disabledEffects.Contains(effect);
+        }
+    }
+
+    private bool IsEffectCombinationDisabled(TTSAudioEffect effects)
+    {
+        lock (_disabledEffectsLock)
+        {
+            return _disabledEffectCombinations.Contains(effects);
+        }
+    }
+
+    private void DisableProcessing(string reason)
+    {
+        lock (_disabledEffectsLock)
+        {
+            if (_processingDisabled)
+                return;
+
+            _processingDisabled = true;
+        }
+
+        _sawmill.Error($"{reason} Disabling TTS audio processing until the FFmpeg path changes.");
+    }
+
+    private void DisableEffect(TTSAudioEffect effect, string reason)
+    {
+        lock (_disabledEffectsLock)
+        {
+            if (!_disabledEffects.Add(effect))
                 return;
         }
 
-        var message = $"{reason} Disabling {effectName} TTS effect until its audio processing configuration changes.";
+        _sawmill.Warning($"{reason} It will be retried when its audio filter configuration changes.");
+    }
+
+    private void DisableEffectCombination(TTSAudioEffect effects, string reason, bool error)
+    {
+        lock (_disabledEffectsLock)
+        {
+            if (!_disabledEffectCombinations.Add(effects))
+                return;
+        }
+
+        var message =
+            $"{reason} Disabling this TTS effect combination until one of its audio filters changes.";
         if (error)
             _sawmill.Error(message);
         else
             _sawmill.Warning(message);
     }
 
-    private void EnableEffect(string effectName)
+    private void EnableEffect(TTSAudioEffect effect)
     {
         lock (_disabledEffectsLock)
         {
-            _disabledEffects.Remove(effectName);
+            _disabledEffects.Remove(effect);
+            _disabledEffectCombinations.RemoveWhere(effects => (effects & effect) != 0);
         }
     }
 
@@ -246,7 +381,14 @@ public sealed class TtsAudioProcessingSystem : EntitySystem
     {
         lock (_disabledEffectsLock)
         {
+            _processingDisabled = false;
             _disabledEffects.Clear();
+            _disabledEffectCombinations.Clear();
         }
     }
 }
+
+internal readonly record struct TtsAudioFilterChain(
+    string Filter,
+    TTSAudioEffect ActiveEffects,
+    TTSAudioEffect MissingEffects);
