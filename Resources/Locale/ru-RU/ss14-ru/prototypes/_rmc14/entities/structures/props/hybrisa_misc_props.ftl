@@ -1,6 +1,6 @@
 ent-RMCPropInertEgg = странное яйцо
     .desc = Странное яйцо, выглядящее древним; по-видимому, оно инертно.
-ent-RMCPropDogcatchersuit = Демонстрация «M5X Apesuit» от Ве-Я
+ent-RMCPropDogcatchersuit = демонстрация «M5X Apesuit» от Ве-Я
     .desc = Демонстрационный образец костюма «Apesuit» конструкции Вестон-Ямады — жаль, что это всего лишь макет...
 ent-RMCPropFireHydrantRed = пожарный гидрант
     .desc = Это просто пожарный гидрант. Ты знаешь что он может делать.
