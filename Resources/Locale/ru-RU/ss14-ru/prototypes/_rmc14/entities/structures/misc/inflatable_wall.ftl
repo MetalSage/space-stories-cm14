@@ -7,5 +7,5 @@ ent-RMCInflatableWallBroken = пробитая надувная стена
 ent-RMCInflatableDoorBroken = пробитая надувная дверь
     .desc = Раньше это была надувная дверь, теперь это просто куча пластика.
 ent-RMCInflatableWallUnbreakable = надувная стена
-    .desc = Надутая мембрана. Активируйте, чтобы сдуть. Теперь с дверцей. Не проткните.
+    .desc = Надутая мембрана. Активируйте, чтобы сдуть. Не проткните.
     .suffix = unbreakable
