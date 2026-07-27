@@ -3,9 +3,9 @@ meta:
   category: Grid
   engineVersion: 264.0.2-fix-physics
   forkId: marines
-  forkVersion: 82ba4970e6a9ca9507bb8f92500f913369d09bc6
-  time: 07/20/2026 09:49:00
-  entityCount: 782
+  forkVersion: 9a9e84735b6a6f01dcf88c974d89df1afd2145ef
+  time: 07/27/2026 07:36:13
+  entityCount: 770
 maps: []
 grids:
 - 1
@@ -503,6 +503,12 @@ entities:
             162: 5.037693,-3.5903716
         - node:
             cleanable: True
+            angle: 3.141592653589793 rad
+            id: burnt3
+          decals:
+            225: 4.272068,-5.1059966
+        - node:
+            cleanable: True
             angle: 4.71238898038469 rad
             id: burnt3
           decals:
@@ -513,6 +519,12 @@ entities:
           decals:
             153: 5.037693,-3.5903716
             155: 4.240818,-4.1997466
+        - node:
+            cleanable: True
+            angle: 4.71238898038469 rad
+            id: burnt4
+          decals:
+            226: 5.037693,-3.5903716
     - type: GridAtmosphere
       version: 2
       data:
@@ -1891,12 +1903,6 @@ entities:
     - type: Transform
       pos: 15.5,-19.5
       parent: 1
-  - uid: 571
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 21.5,-18.5
-      parent: 1
   - uid: 572
     components:
     - type: Transform
@@ -3246,75 +3252,6 @@ entities:
           hard: True
           restitution: 0
           friction: 0.4
-  - uid: 556
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 22.5,-19.5
-      parent: 1
-    - type: Destructible
-      thresholds:
-      - trigger: !type:DamageTrigger
-          damage: 450
-        triggersOnce: False
-        triggered: False
-        behaviors:
-        - !type:SpawnEntitiesBehavior
-          offset: 0.5
-          spawnInContainer: False
-          transferForensics: False
-          spawn:
-            CMSheetMetal1:
-              max: 3
-              min: 3
-        - !type:PlaySoundBehavior
-          sound: !type:SoundCollectionSpecifier
-            params:
-              variation: null
-              playOffsetSeconds: 0
-              loop: False
-              referenceDistance: 1
-              rolloffFactor: 1
-              maxDistance: 15
-              pitch: 1
-              volume: 0
-            collection: MetalBreak
-        - !type:DoActsBehavior
-          acts: Destruction
-    - type: Barbed
-      isBarbed: True
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.49,-0.49
-            - 0.49,-0.49
-            - 0.49,-0.38
-            - -0.49,-0.38
-          mask:
-          - Impassable
-          - MidImpassable
-          - HighImpassable
-          - LowImpassable
-          - InteractImpassable
-          layer:
-          - MidImpassable
-          - BarbedBarricade
-          - BarricadeImpassable
-          density: 500
-          hard: True
-          restitution: 0
-          friction: 0.4
-- proto: CMBarricadePlasteelDoor
-  entities:
-  - uid: 570
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 21.5,-17.5
-      parent: 1
 - proto: CMBarricadeSandbag
   entities:
   - uid: 302
@@ -3753,11 +3690,6 @@ entities:
     components:
     - type: Transform
       pos: 19.857475,-16.438702
-      parent: 1
-  - uid: 602
-    components:
-    - type: Transform
-      pos: 22.847057,-19.352802
       parent: 1
   - uid: 603
     components:
@@ -4594,31 +4526,6 @@ entities:
     - type: Transform
       pos: 23.5,-14.5
       parent: 1
-  - uid: 107
-    components:
-    - type: Transform
-      pos: 23.5,-15.5
-      parent: 1
-  - uid: 108
-    components:
-    - type: Transform
-      pos: 23.5,-16.5
-      parent: 1
-  - uid: 109
-    components:
-    - type: Transform
-      pos: 22.5,-15.5
-      parent: 1
-  - uid: 110
-    components:
-    - type: Transform
-      pos: 22.5,-16.5
-      parent: 1
-  - uid: 111
-    components:
-    - type: Transform
-      pos: 23.5,-17.5
-      parent: 1
 - proto: CMWardrobeYellow
   entities:
   - uid: 173
@@ -4656,8 +4563,6 @@ entities:
       rot: 0.02099721133708954 rad
       pos: 16.253195,-16.014046
       parent: 1
-    - type: Physics
-      sleepTime: 0.04
   - uid: 266
     components:
     - type: Transform
@@ -4724,8 +4629,6 @@ entities:
     - type: Transform
       pos: 4.327041,-13.598889
       parent: 1
-    - type: Physics
-      sleepTime: 0.81333286
     - type: Pullable
       prevFixedRotation: True
 - proto: GasPipeBroken
@@ -6267,8 +6170,6 @@ entities:
     - type: Transform
       pos: 4.2057714,-12.430707
       parent: 1
-    - type: Physics
-      sleepTime: 0.4666665
     - type: Pullable
       prevFixedRotation: True
 - proto: RMCCrateLarge
@@ -6295,15 +6196,11 @@ entities:
     - type: Transform
       pos: 3.4127338,-11.900175
       parent: 1
-    - type: Physics
-      sleepTime: 0.7866662
   - uid: 341
     components:
     - type: Transform
       pos: 4.447463,-12.9850855
       parent: 1
-    - type: Physics
-      sleepTime: 0.49333313
     - type: Pullable
       prevFixedRotation: True
 - proto: RMCCrateMini
@@ -7422,8 +7319,6 @@ entities:
     - type: Transform
       pos: 3.431725,-12.6650505
       parent: 1
-    - type: Physics
-      sleepTime: 0.5333331
     - type: Pullable
       prevFixedRotation: True
   - uid: 344
@@ -7705,7 +7600,7 @@ entities:
       pos: 0.5,-14.5
       parent: 1
     - type: MaxRotation
-      deviation: 180
+      deviation: 3.141592653589793 rad
   - uid: 520
     components:
     - type: Transform
@@ -7713,7 +7608,7 @@ entities:
       pos: 4.5,-22.5
       parent: 1
     - type: MaxRotation
-      deviation: 180
+      deviation: 3.141592653589793 rad
   - uid: 521
     components:
     - type: Transform
@@ -7721,7 +7616,7 @@ entities:
       pos: 6.5,-8.5
       parent: 1
     - type: MaxRotation
-      deviation: 180
+      deviation: 3.141592653589793 rad
   - uid: 522
     components:
     - type: Transform
@@ -7729,14 +7624,14 @@ entities:
       pos: 9.5,-12.5
       parent: 1
     - type: MaxRotation
-      deviation: 180
+      deviation: 3.141592653589793 rad
   - uid: 523
     components:
     - type: Transform
       pos: 2.5,-5.5
       parent: 1
     - type: MaxRotation
-      deviation: 180
+      deviation: 3.141592653589793 rad
   - uid: 524
     components:
     - type: Transform
@@ -7744,7 +7639,7 @@ entities:
       pos: 10.5,-1.5
       parent: 1
     - type: MaxRotation
-      deviation: 180
+      deviation: 3.141592653589793 rad
   - uid: 525
     components:
     - type: Transform
@@ -7752,14 +7647,7 @@ entities:
       pos: 16.5,-2.5
       parent: 1
     - type: MaxRotation
-      deviation: 180
-  - uid: 526
-    components:
-    - type: Transform
-      pos: 14.5,-11.5
-      parent: 1
-    - type: MaxRotation
-      deviation: 180
+      deviation: 3.141592653589793 rad
 - proto: RMCWallPropBloodWall
   entities:
   - uid: 394
@@ -7816,12 +7704,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 16.5,-20.5
       parent: 1
-  - uid: 531
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 22.5,-18.5
-      parent: 1
   - uid: 532
     components:
     - type: Transform
@@ -7833,12 +7715,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,-18.5
-      parent: 1
-  - uid: 534
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 22.5,-17.5
       parent: 1
   - uid: 536
     components:
