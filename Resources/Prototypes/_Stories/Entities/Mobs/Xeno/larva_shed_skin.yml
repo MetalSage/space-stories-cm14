@@ -1,0 +1,16 @@
+- type: entity
+  id: STXenoLarvaShedSkin
+  name: larva shed skin
+  description: A thin, translucent, wet skin.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Stories/Mobs/Xenos/Larva/shed_skin.rsi
+    state: shed_skin
+    noRot: true
+    drawdepth: FloorObjects
+    color: "#FFFFFFB3"
+  - type: Clickable
+  - type: InteractionOutline

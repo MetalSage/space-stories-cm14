@@ -58,6 +58,8 @@
     - CMXenoDefender
     - CMXenoSentinel
     - CMXenoRunner
+  - type: StoriesXenoSpawnOnEvolve
+    spawn: STXenoLarvaShedSkin
   - type: XenoHide
   - type: Fixtures
     fixtures:
