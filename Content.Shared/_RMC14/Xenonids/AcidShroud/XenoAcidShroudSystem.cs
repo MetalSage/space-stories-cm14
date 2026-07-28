@@ -27,7 +27,7 @@ public sealed class XenoAcidShroudSystem : EntitySystem
         var ev = new XenoAcidShroudDoAfterEvent();
         var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.DoAfter, ev, ent, args.Action)
         {
-            BreakOnMove = true,
+            BreakOnMove = false, //SSMC: true ---> falses
         };
         _doAfter.TryStartDoAfter(doAfter);
 
