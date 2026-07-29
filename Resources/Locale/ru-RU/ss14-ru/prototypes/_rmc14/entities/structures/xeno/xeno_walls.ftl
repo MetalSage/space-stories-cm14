@@ -1,9 +1,9 @@
 ent-WallXenoResin = смоляная стена
     .desc = Странная слизь затвердела в толстую стену.
-ent-WallXenoResinImpenetrable = императорская смоляная дверь
+ent-WallXenoResinImpenetrable = непробиваемая смоляная дверь
     .desc = Полностью неуязвим. По прошествии достаточного времени он должен перейти в уязвимое состояние.
     .suffix = Invincible, 30 minutes
-ent-DoorXenoResinImpenetrable = императорская смоляная дверь
+ent-DoorXenoResinImpenetrable = непробиваемая смоляная дверь
     .desc = Полностью неуязвим. По прошествии достаточного времени он должен перейти в уязвимое состояние.
     .suffix = Invincible, 30 minutes
 ent-RMCBlockerMarine = marine blocker
