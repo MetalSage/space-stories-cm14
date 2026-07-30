@@ -1,7 +1,7 @@
 ent-RMCWeaponRevolverWarwickMkVII = служебный револьвер Уорик MkVII
     .desc = Револьвер L187 Уорик MkVII с верхним разрывом ствола является стандартным служебным револьвером полков королевских парамаринов. Несмотря на устаревший дизайн Уорик, вакуумно-запечатанные внутренние части MkVII, бакелитовые рукоятки и калибр .44 магнум делают оружие актуальным и крайне эффективным.
     .suffix = Paramarine
-ent-RMCWeaponRevolverWarwickMkVIIAlt = служебный револьвер Warwick MkVII
+ent-RMCWeaponRevolverWarwickMkVIIAlt = служебный револьвер Уорик MkVII
     .desc = { ent-RMCWeaponRevolverWarwickMkVII.desc }
     .suffix = Paramarine, Alt
 ent-RMCWeaponRevolverWarwickMkVIISnub = Warwick MkVII snubnose revolver
