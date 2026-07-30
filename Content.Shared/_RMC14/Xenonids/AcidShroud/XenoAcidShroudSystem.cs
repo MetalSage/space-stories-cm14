@@ -25,7 +25,7 @@ public sealed class XenoAcidShroudSystem : EntitySystem
     {
         args.Handled = true;
         var ev = new XenoAcidShroudDoAfterEvent();
-        var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.DoAfter, ev, ent, args.Action)
+        var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.DoAfter, ev, ent, args.Action);
         // Stories-Boiler update
         _doAfter.TryStartDoAfter(doAfter);
 
