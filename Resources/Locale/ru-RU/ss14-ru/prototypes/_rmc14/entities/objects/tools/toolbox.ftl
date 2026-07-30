@@ -1,6 +1,6 @@
 ent-RMCToolboxBase = { ent-ToolboxBase }
     .desc = { ent-ToolboxBase.desc }
-ent-RMCToolboxEmergency = аварийный ящик
+ent-RMCToolboxEmergency = ящик для инструментов
     .desc = { ent-ToolboxEmergency.desc }
     .suffix = RMC14
 ent-RMCToolboxEmergencyFilled = { ent-RMCToolboxEmergency }
