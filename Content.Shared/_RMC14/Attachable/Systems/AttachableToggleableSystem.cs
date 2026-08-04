@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared._RMC14.Attachable.Components;
 using Content.Shared._RMC14.Attachable.Events;
 using Content.Shared._RMC14.Slow;
+using Content.Shared._RMC14.Vehicle;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.AntiGrief.Cadet;
@@ -505,6 +506,18 @@ public sealed class AttachableToggleableSystem : EntitySystem
             return false;
         }
 
+        if (!attachable.Comp.Active &&
+            attachable.Comp.InstantToggle == AttachableInstantToggleConditions.Brace &&
+            HasComp<VehicleRideSurfaceRiderComponent>(args.User))
+        {
+            if (!silent)
+                _popupSystem.PopupClient(
+                    Loc.GetString("rmc-attachable-activation-fail-on-vehicle", ("attachable", attachable)),
+                    args.User,
+                    args.User);
+            return false;
+        }
+
         return true;
     }
 
@@ -798,7 +811,9 @@ public sealed class AttachableToggleableSystem : EntitySystem
 
     private void RelayAttachableActions(Entity<AttachableToggleableComponent> attachable, EntityUid user)
     {
-        if (attachable.Comp.ActionsToRelayWhitelist == null || !TryComp(attachable.Owner, out ActionsContainerComponent? actionsContainerComponent))
+        if (attachable.Comp.ActionsToRelayWhitelist == null ||
+            !TryComp(attachable.Owner, out ActionsContainerComponent? actionsContainerComponent) ||
+            actionsContainerComponent.Container is not { } container) // Your IDE lies, this CAN be null.
             return;
 
         foreach (var actionUid in actionsContainerComponent.Container.ContainedEntities)
@@ -835,7 +850,9 @@ public sealed class AttachableToggleableSystem : EntitySystem
 
     private void RemoveRelayedActions(Entity<AttachableToggleableComponent> attachable, EntityUid user)
     {
-        if (attachable.Comp.ActionsToRelayWhitelist == null || !TryComp(attachable.Owner, out ActionsContainerComponent? actionsContainerComponent))
+        if (attachable.Comp.ActionsToRelayWhitelist == null ||
+            !TryComp(attachable.Owner, out ActionsContainerComponent? actionsContainerComponent) ||
+            actionsContainerComponent.Container is not { } container) // Your IDE lies, this CAN be null.
             return;
 
         foreach (var actionUid in actionsContainerComponent.Container.ContainedEntities)

@@ -24,8 +24,8 @@ using Content.Server.Stunnable;
 using Content.Server.Temperature.Systems;
 using Content.Server.Voting;
 using Content.Server.Voting.Managers;
-using Content.Shared._RMC14.ARES;
 using Content.Shared._RMC14.AlertLevel;
+using Content.Shared._RMC14.ARES;
 using Content.Shared._RMC14.Armor.Ghillie;
 using Content.Shared._RMC14.Armor.ThermalCloak;
 using Content.Shared._RMC14.Atmos;
@@ -39,6 +39,7 @@ using Content.Shared._RMC14.Item;
 using Content.Shared._RMC14.Light;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.Marines.Command;
 using Content.Shared._RMC14.Marines.HyperSleep;
 using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._RMC14.Power;
@@ -52,8 +53,11 @@ using Content.Shared._RMC14.Xenonids.Construction.Nest;
 using Content.Shared._RMC14.Xenonids.Construction.Tunnel;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Hive;
+using Content.Shared._RMC14.Xenonids.JoinXeno;
 using Content.Shared._RMC14.Xenonids.Maturing;
 using Content.Shared._RMC14.Xenonids.Parasite;
+using Content.Shared._Stories.SCCVars;
+using Content.Shared._Stories.TTS;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
@@ -123,7 +127,7 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
     [Dependency] private readonly XenoSystem _xeno = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly ARESSystem _ares = default!;
+    [Dependency] private readonly ARESCoreSystem _aresCore = default!;
     [Dependency] private readonly MarineAnnounceSystem _marineAnnounce = default!;
     [Dependency] private readonly RMCAlertLevelSystem _alertLevelSystem = default!;
     [Dependency] private readonly RMCNukeSystem _rmcNuke = default!;
@@ -152,6 +156,7 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
     [Dependency] private readonly ScalingSystem _scaling = default!;
     [Dependency] private readonly SharedXenoConstructionSystem _xenoConstruction = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly LarvaQueueSystem _larvaQueue = default!;
 
     private readonly HashSet<string> _operationNames = new();
     private readonly HashSet<string> _operationPrefixes = new();
@@ -167,7 +172,7 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
     private float _minimumSurvivors;
     private int _mapVoteExcludeLast;
     private bool _useCarryoverVoting;
-    private readonly TimeSpan _hijackStunTime = TimeSpan.FromSeconds(5);
+    private TimeSpan _hijackStunTime;
     private bool _landingZoneMiasmaEnabled;
     private TimeSpan _sunsetDuration;
     private TimeSpan _sunriseDuration;
@@ -182,6 +187,7 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
     private float _queenBoostRemoteRange;
 
     private bool _spawnedDropships;
+    private TimeSpan _dropshipPreflight;
 
     private readonly List<MapId> _almayerMaps = [];
     private readonly List<EntityUid> _marineList = [];
@@ -250,8 +256,10 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnRulePlayerSpawning);
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning,
              before: [typeof(ArrivalsSystem), typeof(SpawnPointSystem)]);
+        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnCommandingOfficerSpawnComplete);
         SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEndMessage);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<DropshipLandedOnPlanetEvent>(OnDropshipLandedOnPlanet);
         SubscribeLocalEvent<DropshipHijackStartEvent>(OnDropshipHijackStart);
         SubscribeLocalEvent<DropshipHijackLandedEvent>(OnDropshipHijackLanded);
         SubscribeLocalEvent<RMCFusionReactorComponent, RMCFusionReactorCanOverloadEvent>(OnFusionReactorCanOverload);
@@ -262,7 +270,7 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
         SubscribeLocalEvent<MarineComponent, ComponentRemove>(OnCompRemove);
 
         SubscribeLocalEvent<XenoComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<XenoComponent, ComponentRemove>(OnCompRemove);
+        SubscribeLocalEvent<XenoComponent, ComponentRemove>(OnXenoComponentRemoved);
 
         SubscribeLocalEvent<XenoEvolutionGranterComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<XenoComponent, ComponentInit>(OnXenoComponentInit);
@@ -279,9 +287,11 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
         Subs.CVar(_config, RMCCVars.RMCPlanetMapVoteExcludeLast, v => _mapVoteExcludeLast = v, true);
         Subs.CVar(_config, RMCCVars.RMCUseCarryoverVoting, v => _useCarryoverVoting = v, true);
         Subs.CVar(_config, RMCCVars.RMCLandingZoneMiasmaEnabled, v => _landingZoneMiasmaEnabled = v, true);
+        Subs.CVar(_config, RMCCVars.RMCDropshipInitialDelayMinutes, v => _dropshipPreflight = TimeSpan.FromMinutes(v), true);
         Subs.CVar(_config, RMCCVars.RMCSunsetDuration, v => _sunsetDuration = TimeSpan.FromSeconds(v), true);
         Subs.CVar(_config, RMCCVars.RMCSunriseDuration, v => _sunriseDuration = TimeSpan.FromSeconds(v), true);
         Subs.CVar(_config, RMCCVars.RMCForceEndHijackTimeMinutes, v => _forceEndHijackTime = TimeSpan.FromMinutes(v), true);
+        Subs.CVar(_config, RMCCVars.RMCHijackCrashStunTimeSeconds, v => _hijackStunTime = TimeSpan.FromSeconds(v), true);
         Subs.CVar(_config, RMCCVars.RMCHijackShipWeight, v => _hijackShipWeight = v, true);
         Subs.CVar(_config, RMCCVars.RMCMinimumHijackBurrowed, v => _hijackMinBurrowed = v, true);
         Subs.CVar(_config, RMCCVars.RMCDistressXenosMinimum, v => _xenosMinimum = v, true);
@@ -354,6 +364,26 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
                 SelectedPlanetMap.Value.Comp.Announcement is { } announcement)
             {
                 _marineAnnounce.AnnounceARESStaging(default, announcement, announcement: "rmc-announcement-ares-map");
+            }
+        }
+
+        if (!component.AresPreflightDone && announcementTime >= _dropshipPreflight)
+        {
+            component.AresPreflightDone = true;
+
+            if (_aresCore.TryGetARES(component.MarineFaction, out var ares))
+            {
+                // Stories-TTS-Start
+                if (!HasComp<TTSComponent>(ares.Value))
+                {
+                    var tts = EnsureComp<TTSComponent>(ares.Value);
+                    tts.VoicePrototypeId = _config.GetCVar(SCCVars.TTSAresVoice);
+                }
+                // Stories-TTS-End
+
+                _marineAnnounce.AnnounceRadio(ares.Value,
+                    Loc.GetString("rmc-distress-signal-preflight-complete"),
+                    component.AllClearChannel);
             }
         }
 

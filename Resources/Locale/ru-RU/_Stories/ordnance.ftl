@@ -104,7 +104,7 @@ stories-demo-sim-proto-CMXenoSpitter = Плеватели
 stories-demo-sim-proto-CMXenoRavager = Разрушители
 stories-demo-sim-proto-RMCXenoCrusher = Крушители
 stories-demo-sim-proto-CMXenoPraetorian = Преторианцы
-stories-demo-sim-proto-CMXenoBoiler = Бойлеры
+stories-demo-sim-proto-RMCXenoBoiler = Бойлеры
 stories-demo-sim-proto-CMXenoQueen = Королевы
 stories-demo-sim-proto-RMCXenoKing = Короли
 

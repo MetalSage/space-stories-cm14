@@ -17,3 +17,5 @@ ent-RMCSpawnerLifeboat = спавнер спасательной шлюпки
     .desc = Определяет место для порождения спасательной шлюпки.
 ent-RMCSpawnerLifeboatAthena = спавнер спасательных шлюпок
     .desc = Определяет место для появления спасательной шлюпки.
+ent-RMCCrashLandingBlocker = crash landing blocker
+    .desc = Defines a location a pod or lifeboat can't crash onto.

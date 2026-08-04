@@ -1164,6 +1164,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("rmc_commendations_id");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("deleted");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<Guid?>("DeletedById")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("deleted_by_id");
+
                     b.Property<Guid>("GiverId")
                         .HasColumnType("TEXT")
                         .HasColumnName("giver_id");
@@ -1196,18 +1208,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("text");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("deleted");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("deleted_at");
-
-                    b.Property<Guid?>("DeletedById")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("deleted_by_id");
-
                     b.Property<int>("Type")
                         .HasColumnType("INTEGER")
                         .HasColumnName("type");
@@ -1215,8 +1215,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.HasKey("Id")
                         .HasName("PK_rmc_commendations");
 
-                    b.HasIndex("DeletedById")
-                        .HasDatabaseName("IX_rmc_commendations_deleted_by_id");
+                    b.HasIndex("DeletedById");
 
                     b.HasIndex("GiverId");
 
@@ -1551,6 +1550,35 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasName("PK_rmc_squad_preferences");
 
                     b.ToTable("rmc_squad_preferences", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.Rank", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("rank_id");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("job_name");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.Property<string>("RankName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("rank_name");
+
+                    b.HasKey("Id")
+                        .HasName("PK_rank");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("rank", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.RoleWhitelist", b =>
@@ -2398,6 +2426,13 @@ namespace Content.Server.Database.Migrations.Sqlite
 
             modelBuilder.Entity("Content.Server.Database.RMCCommendation", b =>
                 {
+                    b.HasOne("Content.Server.Database.Player", "DeletedBy")
+                        .WithMany("CommendationsDeleted")
+                        .HasForeignKey("DeletedById")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_rmc_commendations_player_deleted_by_id");
+
                     b.HasOne("Content.Server.Database.Player", "Giver")
                         .WithMany("CommendationsGiven")
                         .HasForeignKey("GiverId")
@@ -2413,13 +2448,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_rmc_commendations_player_receiver_id");
-
-                    b.HasOne("Content.Server.Database.Player", "DeletedBy")
-                        .WithMany("CommendationsDeleted")
-                        .HasForeignKey("DeletedById")
-                        .HasPrincipalKey("UserId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_rmc_commendations_player_deleted_by_id");
 
                     b.HasOne("Content.Server.Database.Round", "Round")
                         .WithMany("Commendations")
@@ -2611,6 +2639,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_rmc_squad_preferences_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.Rank", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithMany("Ranks")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_rank_profile_profile_id");
 
                     b.Navigation("Profile");
                 });
@@ -2930,6 +2970,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Loadouts");
 
                     b.Navigation("NamedItems");
+
+                    b.Navigation("Ranks");
 
                     b.Navigation("SquadPreference");
 

@@ -88,7 +88,7 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
 
     private void OnContainerInserting(Entity<OrdnanceCasingComponent> ent, ref ContainerIsInsertingAttemptEvent args)
     {
-        if (args.Container.ID == "ballistic-ammo" && !ent.Comp.IsLocked)
+        if (args.Container.ID == ent.Comp.BallisticAmmoSlotId && !ent.Comp.IsLocked)
         {
             args.Cancel();
         }
@@ -266,7 +266,7 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
 
     public OrdnanceCasingComponent GetEffectiveCasing(EntityUid uid, OrdnanceCasingComponent casing, out EntityUid effectiveUid)
     {
-        if (casing.IsAssembly && _itemSlots.TryGetSlot(uid, "warhead_slot", out var warheadSlot) && warheadSlot.Item != null)
+        if (casing.IsAssembly && _itemSlots.TryGetSlot(uid, casing.WarheadSlotId, out var warheadSlot) && warheadSlot.Item != null)
         {
             if (TryComp<OrdnanceCasingComponent>(warheadSlot.Item.Value, out var warheadCasing))
             {
@@ -371,6 +371,19 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
 
         EnsureComp<ItemSlotsComponent>(ent);
 
+        if (_tag.HasTag(ent, "RMCLaunchTube"))
+        {
+            if (!_itemSlots.TryGetSlot(ent, ent.Comp.FuelSlotId, out _))
+            {
+                _itemSlots.AddItemSlot(ent, ent.Comp.FuelSlotId, new ItemSlot
+                {
+                    Whitelist = new EntityWhitelist { Components = new[] { "FitsInDispenser" } },
+                    Name = Loc.GetString("stories-ordnance-fuel-slot-name")
+                });
+            }
+            return;
+        }
+
         if (!_itemSlots.TryGetSlot(ent, ent.Comp.BeakerSlot1Id, out _))
         {
             _itemSlots.AddItemSlot(ent, ent.Comp.BeakerSlot1Id, new ItemSlot
@@ -395,15 +408,6 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
             {
                 Whitelist = new EntityWhitelist { Components = new[] { "OrdnanceAssemblyHolder" } },
                 Name = Loc.GetString("stories-ordnance-trigger-slot-name")
-            });
-        }
-
-        if (_tag.HasTag(ent, "RMCLaunchTube") && !_itemSlots.TryGetSlot(ent, ent.Comp.FuelSlotId, out _))
-        {
-            _itemSlots.AddItemSlot(ent, ent.Comp.FuelSlotId, new ItemSlot
-            {
-                Whitelist = new EntityWhitelist { Components = new[] { "FitsInDispenser" } },
-                Name = Loc.GetString("stories-ordnance-fuel-slot-name")
             });
         }
     }
@@ -447,14 +451,16 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
             ent.Comp.IsLocked = !ent.Comp.IsLocked;
             Dirty(ent);
 
-            _itemSlots.SetLock(ent, ent.Comp.BeakerSlot1Id, ent.Comp.IsLocked);
-            _itemSlots.SetLock(ent, ent.Comp.BeakerSlot2Id, ent.Comp.IsLocked);
-            _itemSlots.SetLock(ent, ent.Comp.TriggerSlotId, ent.Comp.IsLocked);
-
             if (_tag.HasTag(ent, "RMCLaunchTube"))
             {
                 _itemSlots.SetLock(ent, ent.Comp.FuelSlotId, ent.Comp.IsLocked);
-                _itemSlots.SetLock(ent, "warhead_slot", ent.Comp.IsLocked);
+                _itemSlots.SetLock(ent, ent.Comp.WarheadSlotId, ent.Comp.IsLocked);
+            }
+            else
+            {
+                _itemSlots.SetLock(ent, ent.Comp.BeakerSlot1Id, ent.Comp.IsLocked);
+                _itemSlots.SetLock(ent, ent.Comp.BeakerSlot2Id, ent.Comp.IsLocked);
+                _itemSlots.SetLock(ent, ent.Comp.TriggerSlotId, ent.Comp.IsLocked);
             }
 
             if (ent.Comp.IsLocked)
@@ -625,7 +631,7 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
                     _popup.PopupClient(Loc.GetString("stories-ordnance-invalid-trigger"), ent, args.User.Value);
             }
         }
-        else if (args.Slot.ID == "warhead_slot")
+        else if (args.Slot.ID == ent.Comp.WarheadSlotId)
         {
             if (TryComp<OrdnanceCasingComponent>(args.Item, out var warheadComp) && !warheadComp.IsLocked)
             {
@@ -683,7 +689,7 @@ public sealed class SharedOrdnanceCasingSystem : EntitySystem
 
         if (_tag.HasTag(ent, "RMCLaunchTube"))
         {
-            var hasWarhead = _itemSlots.GetItemOrNull(ent, "warhead_slot") != null;
+            var hasWarhead = _itemSlots.GetItemOrNull(ent, ent.Comp.WarheadSlotId) != null;
             var hasFuel = HasFuel(ent.Owner, ent.Comp);
 
             if (!hasWarhead)

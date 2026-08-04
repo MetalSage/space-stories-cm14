@@ -1,23 +1,22 @@
 using System.Globalization;
 using System.Linq;
-using Robust.Shared.Timing;
 using Content.Server._RMC14.Marines;
-using Content.Shared.Roles;
-using Robust.Shared.Prototypes;
+using Content.Server.StationRecords;
+using Content.Server.StationRecords.Systems;
 using Content.Shared._RMC14.ARES;
-using Content.Shared.Radio;
 using Content.Shared._RMC14.Marines.Roles.Ranks;
 using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared.Bed.Cryostorage;
+using Content.Shared.Radio;
+using Content.Shared.Roles;
 using Content.Shared.StationRecords;
-using Content.Server.StationRecords.Systems;
-using Content.Server.StationRecords;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._RMC14.Announce
 {
     public sealed class MarinePresenceAnnounceSystem : EntitySystem
     {
-        [Dependency] private readonly ARESSystem _ares = default!;
+        [Dependency] private readonly ARESCoreSystem _aresCore = default!;
         [Dependency] private readonly MarineAnnounceSystem _marineAnnounce = default!;
         [Dependency] private readonly SharedRankSystem _rankSystem = default!;
         [Dependency] private readonly SquadSystem _squad = default!;
@@ -29,7 +28,7 @@ namespace Content.Server._RMC14.Announce
 
         public void AnnounceLateJoin(bool lateJoin, bool silent, EntityUid mob, string jobId, string jobName, JobPrototype jobPrototype)
         {
-            var ares = _ares.EnsureARES();
+            var ares = _aresCore.EnsureMarineARES();
             var fullRankName = _rankSystem.GetSpeakerFullRankName(mob) ?? Name(mob);
             var rankName = _rankSystem.GetSpeakerRankName(mob) ?? Name(mob);
 
@@ -41,7 +40,8 @@ namespace Content.Server._RMC14.Announce
                         Loc.GetString("rmc-latejoin-arrival-announcement-special",
                         ("character", fullRankName)),
                         jobPrototype.LatejoinArrivalSound,
-                        null);
+                        null,
+                        playTTS: false); // Stories-TTS-Skip
                 }
                 else
                 {
@@ -84,18 +84,23 @@ namespace Content.Server._RMC14.Announce
                             ("character", rankName),
                             ("entity", mob),
                             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                            channelId.Value);
+                            channelId.Value,
+                            playTTS: false); // Stories-TTS-Skip
                     }
 
                     // If no department channel found OR the player is the head of the department, send to CommonChannel
                     if (!departmentChannelFound || isHead)
                     {
-                        _marineAnnounce.AnnounceRadio(ares,
-                            Loc.GetString("rmc-latejoin-arrival-announcement",
-                            ("character", rankName),
-                            ("entity", mob),
-                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                            CommonChannel);
+                        if (processedChannels.Add(CommonChannel))
+                        {
+                            _marineAnnounce.AnnounceRadio(ares,
+                                Loc.GetString("rmc-latejoin-arrival-announcement",
+                                ("character", rankName),
+                                ("entity", mob),
+                                ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                                CommonChannel,
+                                playTTS: false); // Stories-TTS-Skip
+                        }
                     }
                 }
             }
@@ -103,7 +108,7 @@ namespace Content.Server._RMC14.Announce
 
         public void AnnounceEarlyLeave(Entity<CryostorageContainedComponent> ent, uint? recordId, EntityUid? station, string jobName)
         {
-            var ares = _ares.EnsureARES();
+            var ares = _aresCore.EnsureMarineARES();
             var rankName = _rankSystem.GetSpeakerRankName(ent.Owner) ?? Name(ent.Owner);
             JobPrototype? jobProto = null;
 
@@ -158,18 +163,23 @@ namespace Content.Server._RMC14.Announce
                         ("character", rankName),
                         ("entity", ent.Owner),
                         ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                        channelId.Value);
+                        channelId.Value,
+                        playTTS: false); // Stories-TTS-Skip
                 }
 
                 // If no department channel found OR the player is the head of the department, send to CommonChannel
                 if (!departmentChannelFound || isHead)
                 {
-                    _marineAnnounce.AnnounceRadio(ares,
-                        Loc.GetString("rmc-earlyleave-cryo-announcement",
-                        ("character", rankName),
-                        ("entity", ent.Owner),
-                        ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                        CommonChannel);
+                    if (processedChannels.Add(CommonChannel))
+                    {
+                        _marineAnnounce.AnnounceRadio(ares,
+                            Loc.GetString("rmc-earlyleave-cryo-announcement",
+                            ("character", rankName),
+                            ("entity", ent.Owner),
+                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                            CommonChannel,
+                            playTTS: false); // Stories-TTS-Skip
+                    }
                 }
             }
             else
@@ -179,7 +189,8 @@ namespace Content.Server._RMC14.Announce
                         ("character", rankName),
                         ("entity", ent.Owner),
                         ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                        CommonChannel);
+                        CommonChannel,
+                        playTTS: false); // Stories-TTS-Skip
             }
         }
     }

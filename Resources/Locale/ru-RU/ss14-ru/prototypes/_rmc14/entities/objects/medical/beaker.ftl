@@ -40,5 +40,7 @@ ent-RMCVialTricordrazine = пробирка трикордразина
 ent-RMCVialEpinephrine = epinephrine vial
     .desc = A small glass vial. Can hold up to 30 units. Contains Epinephrine, a cardiostimulant used to assist in revival.
     .suffix = Filled, Epinephrine
+ent-RMCReagentJug = кувшин для реагентов
+    .desc = Большой кувшин из нереактивного пластика, способный вмещать большие объемы различных химических веществ и доставлять их туда, где они необходимы. Вмещает 500 единиц.
 ent-CMPressurizedCanister = баллон под давлением
     .desc = Контейнер под давлением. Внутренняя часть сумки для канистр с реагентами под давлением. Совместим только со своим чехлом, оборудованием или резервуаром для хранения.

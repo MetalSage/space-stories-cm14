@@ -15,6 +15,7 @@ using Content.Shared._RMC14.Xenonids.Egg;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Eye;
 using Content.Shared._RMC14.Xenonids.HiveLeader;
+using Content.Shared._RMC14.Xenonids.Weeds;
 using Content.Shared.Actions;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Database;
@@ -22,6 +23,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.UserInterface;
@@ -45,11 +47,13 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
     [Dependency] private readonly MarineAnnounceSystem _marineAnnounce = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
     [Dependency] private readonly SquadSystem _squad = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedXenoWeedsSystem _weeds = default!;
     [Dependency] private readonly XenoAnnounceSystem _xenoAnnounce = default!;
     [Dependency] private readonly RMCUnrevivableSystem _unrevivableSystem = default!;
 
@@ -575,7 +579,7 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
         Delete
     }
 
-        private void OnUserQueenEyeMoveMsg(Entity<TacticalMapUserComponent> ent, ref TacticalMapQueenEyeMoveMsg args)
+    private void OnUserQueenEyeMoveMsg(Entity<TacticalMapUserComponent> ent, ref TacticalMapQueenEyeMoveMsg args)
     {
         var user = args.Actor;
         HandleQueenEyeMove(user, args.Position);
@@ -601,7 +605,15 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
             return;
 
         var tileCoords = new Vector2(position.X, position.Y);
-        var worldPos = _transform.ToMapCoordinates(new EntityCoordinates(map.Owner, tileCoords * grid.TileSize));
+        var targetCoords = new EntityCoordinates(map.Owner, tileCoords * grid.TileSize);
+
+        if (!_weeds.IsOnWeeds((map.Owner, grid), targetCoords))
+        {
+            _popup.PopupCursor(Loc.GetString("rmc-xeno-queen-eye-no-weeds"), user, PopupType.MediumCaution);
+            return;
+        }
+
+        var worldPos = _transform.ToMapCoordinates(targetCoords);
 
         _transform.SetWorldPosition(eye, worldPos.Position);
     }
@@ -775,10 +787,7 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
 
         tracked.Comp.Background = squad.Comp.MinimapBackground;
         if (TryComp(tracked, out TacticalMapIconComponent? icon))
-        {
-            icon.Background = tracked.Comp.Background;
-            Dirty(tracked, icon);
-        }
+            SetBackground((tracked, icon), tracked.Comp.Background);
     }
 
     private void UpdateRotting(Entity<ActiveTacticalMapTrackedComponent> tracked)
@@ -804,10 +813,7 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
         }
 
         if (TryComp(tracked, out TacticalMapIconComponent? icon))
-        {
-            icon.Background = tracked.Comp.Background;
-            Dirty(tracked, icon);
-        }
+            SetBackground((tracked, icon), tracked.Comp.Background);
     }
 
     private void UpdateHiveLeader(Entity<ActiveTacticalMapTrackedComponent> tracked, bool isLeader)
@@ -989,7 +995,9 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
                     }
                 }
 
-                _marineAnnounce.AnnounceARESStaging(user, "The UNMC tactical map has been updated.", sound);
+                IncludeRangedXenoBlips(mapId, map, map.LastUpdateMarineBlips);
+
+                _marineAnnounce.AnnounceARESStaging(user, "Тактическая карта КМП США была обновлена.", sound);
                 _adminLog.Add(LogType.RMCTacticalMapUpdated, $"{ToPrettyString(user)} updated the marine tactical map for {ToPrettyString(mapId)}");
             }
 
@@ -999,7 +1007,7 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
                 map.XenoLabels = new Dictionary<Vector2i, string>(labels);
                 map.LastUpdateXenoBlips = map.XenoBlips.ToDictionary();
                 map.LastUpdateXenoStructureBlips = map.XenoStructureBlips.ToDictionary();
-                _xenoAnnounce.AnnounceSameHive(user, "The Xenonid tactical map has been updated.", sound);
+                _xenoAnnounce.AnnounceSameHive(user, "Тактическая карта Улья была обновлена.", sound);
                 _adminLog.Add(LogType.RMCTacticalMapUpdated, $"{ToPrettyString(user)} updated the xenonid tactical map for {ToPrettyString(mapId)}");
             }
 
@@ -1008,22 +1016,51 @@ public sealed class TacticalMapSystem : SharedTacticalMapSystem
         }
     }
 
+    private void IncludeRangedXenoBlips(EntityUid gridId, TacticalMapComponent map, Dictionary<int, TacticalMapBlip> target)
+    {
+        var rangeEv = new TacticalMapXenoRevealRangeEvent();
+        RaiseLocalEvent(ref rangeEv);
+        if (rangeEv.Sources.Count == 0)
+            return;
+
+        foreach (var (key, blip) in map.XenoBlips)
+        {
+            if (target.ContainsKey(key))
+                continue;
+
+            foreach (var source in rangeEv.Sources)
+            {
+                if (source.Grid != gridId)
+                    continue;
+
+                var delta = blip.Indices - source.Indices;
+                var distanceSquared = delta.X * delta.X + delta.Y * delta.Y;
+                if (distanceSquared > source.Range * source.Range)
+                    continue;
+
+                target[key] = blip;
+                break;
+            }
+        }
+    }
+
     protected void UpdateMapData(Entity<TacticalMapComputerComponent> computer, TacticalMapComponent map)
     {
         var ev = new TacticalMapIncludeXenosEvent();
         RaiseLocalEvent(ref ev);
+
+        computer.Comp.Blips = new Dictionary<int, TacticalMapBlip>(map.MarineBlips);
         if (ev.Include)
         {
-            computer.Comp.Blips = new Dictionary<int, TacticalMapBlip>(map.MarineBlips);
             foreach (var blip in map.XenoBlips)
             {
                 computer.Comp.Blips.TryAdd(blip.Key, blip.Value);
             }
         }
-        else
-        {
-            computer.Comp.Blips = map.MarineBlips;
-        }
+
+        if (TryGetTacticalMap(out var tacticalMapEnt))
+            IncludeRangedXenoBlips(tacticalMapEnt.Owner, map, computer.Comp.Blips);
+
         Dirty(computer);
 
         var lines = EnsureComp<TacticalMapLinesComponent>(computer);

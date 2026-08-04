@@ -13,6 +13,7 @@ rmc-aslot-harness = Упряжь
 rmc-attachable-activation-fail-not-wielded = { CAPITALIZE($holder) } должен быть взят в руки, чтобы активировать { $attachable }!
 rmc-attachable-activation-fail-not-held = { CAPITALIZE($holder) } необходимо удерживать, чтобы активировать { $attachable }!
 rmc-attachable-activation-fail-not-owned = { CAPITALIZE($holder) } должен находиться у вас в руках или быть экипирован, чтобы активировать { $attachable }!
+rmc-attachable-activation-fail-on-vehicle = Вы не можете развернуть { $attachable }, находясь на транспорте!
 
 rmc-attachable-shoot-fail-not-wielded = { CAPITALIZE($holder) } должен быть взят в руки, чтобы выстрелить { $attachable }!
 
@@ -72,3 +73,10 @@ rmc-attachable-examine-speed-walk = [color={ $colour }]{ $sign }{ TOSTRING($spee
 rmc-attachable-examine-speed-sprint = [color={ $colour }]{ $sign }{ TOSTRING($speed, "F2") }[/color] множитель скорости бега.
 
 rmc-attachable-examine-wield-delay = [color={ $colour }]{ $sign }{ $delay }[/color] секунд задержки взмаха.
+
+rmc-attachable-examine-verb-text = Просмотреть совместимые обвесы
+rmc-attachable-examine-window-title = Совместимые обвесы
+rmc-attachable-examine-no-slots = У этого оружия нет слотов для обвесов.
+rmc-attachable-examine-header = [bold]Слоты для обвесов:[/bold]
+rmc-attachable-examine-slot-filled = • [bold]{ $slot }:[/bold] { $attachment }
+rmc-attachable-examine-slot-empty = • [bold]{ $slot }:[/bold] [color=gray]пусто[/color]

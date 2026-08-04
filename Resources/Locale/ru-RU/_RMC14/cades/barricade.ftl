@@ -8,3 +8,14 @@ rmc-barricade-damaged-4 = [color=red]Он разваливается на час
 rmc-folding-barricade-link-set = Вы подготавливаете { THE($barricade) } к соединению.
 rmc-folding-barricade-link-removed = Вы убираете соединение с { THE($barricade) }.
 rmc-folding-barricade-link-no-points = У { THE($barricade) } нет точек соединения.
+rmc-folding-barricade-stack-examine-deploy = [color=green]Используйте[/color] её в руке, чтобы развернуть.
+rmc-folding-barricade-stack-examine-damaged = [color=yellow]Похоже, она повреждена.[/color]
+rmc-folding-barricade-deployed-examine = [color=green]Перетащите[/color] её на себя, чтобы свернуть.
+rmc-folding-barricade-collapse-verb = Свернуть
+rmc-folding-barricade-deploy-start = Вы начинаете разворачивать { THE($barricade) }.
+rmc-folding-barricade-deploy-start-others = { $user } начинает разворачивать { THE($barricade) }.
+rmc-folding-barricade-deploy-finish = Вы разворачиваете { THE($barricade) }.
+rmc-folding-barricade-collapse-start = Вы начинаете сворачивать { THE($barricade) }.
+rmc-folding-barricade-collapse-start-others = { $user } начинает сворачивать { THE($barricade) }.
+rmc-folding-barricade-collapse-finish = Вы сворачиваете { THE($barricade) }.
+rmc-folding-barricade-collapse-crowbar-untrained = Вы не знаете, как свернуть { THE($barricade) } ломом.

@@ -5,6 +5,7 @@ using Content.Client._RMC14.TacticalMap;
 using Content.Client._Stories.DiscordAuth;
 using Content.Client._Stories.JoinQueue;
 using Content.Client._Stories.Sponsors;
+using Content.Shared._Stories.Sponsors;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -61,6 +62,7 @@ namespace Content.Client.IoC
             collection.Register<ExtendedDisconnectInformationManager>();
             collection.Register<JobRequirementsManager>();
             collection.Register<SponsorsManager>(); // Stories-Sponsors
+            collection.Register<ISharedSponsorsManager, SponsorsManager>(); // Stories-SponsorsLoadout
             collection.Register<JoinQueueManager>(); // Stories-Queue
             collection.Register<DiscordAuthManager>(); // Stories-DiscordAuth
             collection.Register<DocumentParsingManager>();

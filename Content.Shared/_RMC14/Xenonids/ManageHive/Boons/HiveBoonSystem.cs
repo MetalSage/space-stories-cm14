@@ -190,7 +190,11 @@ public sealed class HiveBoonSystem : EntitySystem
 
     private void OnActivateLarvaSurge(HiveBoonActivateLarvaSurgeEvent ev)
     {
-        _hive.IncreaseBurrowedLarva(ev.Hive, 5);
+        if (TryComp(ev.Hive, out HiveComponent? hive))
+        {
+            _hive.ChangeBurrowedLarva((ev.Hive, hive), 5);
+        }
+
         AnnounceBoonActivation(ev.Boon);
     }
 
@@ -799,7 +803,7 @@ public sealed class HiveBoonSystem : EntitySystem
             {
                 var msg = Loc.GetString("rmc-boon-on-cooldown",
                     ("boon", boonName),
-                    ("minutes", (int) cooldownLeft.TotalMinutes));
+                    ("minutes", (int)cooldownLeft.TotalMinutes));
                 _popup.PopupCursor(msg, manage, PopupType.MediumCaution);
                 return;
             }
@@ -824,7 +828,7 @@ public sealed class HiveBoonSystem : EntitySystem
         if (boonComp.Event == null)
             return;
 
-        var ev = (HiveBoonEvent?) _serialization.CreateCopy((object) boonComp.Event, notNullableOverride: true);
+        var ev = (HiveBoonEvent?)_serialization.CreateCopy((object)boonComp.Event, notNullableOverride: true);
         if (ev == null)
             return;
 
@@ -837,14 +841,14 @@ public sealed class HiveBoonSystem : EntitySystem
         var boonEnt = Spawn(boonProto.ID, MapCoordinates.Nullspace);
         _hive.SetSameHive(manage.Owner, boonEnt);
 
-        EnsureComp<TimedDespawnComponent>(boonEnt).Lifetime = (float) boonComp.Duration.TotalSeconds;
+        EnsureComp<TimedDespawnComponent>(boonEnt).Lifetime = (float)boonComp.Duration.TotalSeconds;
 
         var activeId = boonComp.DuplicateId ?? boonProto.ID;
         boons.Comp.Active[activeId] = boonEnt;
         Dirty(boons, boons.Comp);
 
         ev.Boon = boonEnt;
-        RaiseLocalEvent((object) ev);
+        RaiseLocalEvent((object)ev);
     }
 
     private void ApplyKingPylonObProtection(EntityUid hiveMember)
@@ -1176,8 +1180,8 @@ public sealed class HiveBoonSystem : EntitySystem
                 Dirty(cocoonId, cocoonComp);
 
                 var areaName = _area.GetAreaName(cocoonId);
-                _marineAnnounce.AnnounceToMarines(Loc.GetString("rmc-boon-king-announcement-minutes-marine", ("area", areaName), ("minutes", (int) cocoonComp.TimeLeft.TotalMinutes + 1)));
-                _xenoAnnounce.AnnounceSameHiveDefaultSound(cocoonId, Loc.GetString("rmc-boon-king-announcement-minutes-xeno", ("minutes", (int) cocoonComp.TimeLeft.TotalMinutes + 1)));
+                _marineAnnounce.AnnounceToMarines(Loc.GetString("rmc-boon-king-announcement-minutes-marine", ("area", areaName), ("minutes", (int)cocoonComp.TimeLeft.TotalMinutes + 1)));
+                _xenoAnnounce.AnnounceSameHiveDefaultSound(cocoonId, Loc.GetString("rmc-boon-king-announcement-minutes-xeno", ("minutes", (int)cocoonComp.TimeLeft.TotalMinutes + 1)));
             }
 
             if (cocoonComp.TimeLeft > _kingVoteStartTime)
@@ -1201,10 +1205,10 @@ public sealed class HiveBoonSystem : EntitySystem
                 var areaName = _area.GetAreaName(cocoonId);
                 _marineAnnounce.AnnounceToMarines(Loc.GetString("rmc-boon-king-announcement-seconds-marine",
                     ("area", areaName),
-                    ("seconds", (int) cocoonComp.TimeLeft.TotalSeconds + 1)));
+                    ("seconds", (int)cocoonComp.TimeLeft.TotalSeconds + 1)));
                 _xenoAnnounce.AnnounceSameHiveDefaultSound(cocoonId,
                     Loc.GetString("rmc-boon-king-announcement-seconds-xeno",
-                        ("seconds", (int) cocoonComp.TimeLeft.TotalSeconds + 1)));
+                        ("seconds", (int)cocoonComp.TimeLeft.TotalSeconds + 1)));
             }
 
             if (cocoonComp.TimeLeft > TimeSpan.Zero)

@@ -1,3 +1,3 @@
-ent-CMSpawnPointNurse = точка появления интерна
+ent-CMSpawnPointNurse = точка появления фельдшера
     .desc = { ent-CMSpawnPointJobBase.desc }
     .suffix = { ent-CMSpawnPointJobBase.suffix }

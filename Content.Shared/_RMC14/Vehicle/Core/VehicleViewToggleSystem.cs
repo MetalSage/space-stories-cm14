@@ -212,16 +212,10 @@ public sealed class VehicleViewToggleSystem : EntitySystem
         if (TerminatingOrDeleted(action))
             return;
 
-        // Stories-Vehicle-Start
-        if (TryComp(action, out ActionComponent? actionComp) && actionComp.AttachedEntity != null)
-        {
-            _actions.RemoveAction(actionComp.AttachedEntity.Value, action);
-        }
-        else if (user != null)
-        {
-            _actions.RemoveAction(user.Value, action);
-        }
-        // Stories-Vehicle-End
+        if (user is { } actionUser)
+            _actions.RemoveAction(actionUser, action);
+        else
+            _actions.RemoveAction(action);
 
         // The action entity is networked; client-side queued deletion causes prediction errors.
         if (_net.IsClient)

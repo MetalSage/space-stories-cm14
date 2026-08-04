@@ -17,3 +17,5 @@ ent-RMCWelderIndustrialHighCapacity = high-capacity industrial blowtorch
 ent-RMCWelderPVE = modified blowtorch
     .desc = A more 'advanced' version of the standard UNMC Blowtorch, this blowtorch has a welding shield for eye protection affixed to it. Seems the eye shield was ripped off of a standard ME3 hand welder and then crudely affixed.
     .suffix = PVE, DO NOT MAP
+ent-RMCWelderExperimental = experimental welder
+    .desc = A synthetic-grade experimental blowtorch with a compact fuel recycler.

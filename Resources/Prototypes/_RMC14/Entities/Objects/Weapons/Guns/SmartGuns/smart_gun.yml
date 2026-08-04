@@ -155,6 +155,9 @@
     rsi:
       sprite: _RMC14/Interface/MousePointer/smartgun_mouse.rsi
       state: all
+  - type: GuideHelp
+    guides:
+    - RMCGuideRoleSGO
   - type: WeaponSkin # Stories-Partners
     defaultSkin: Default
     skins:
@@ -381,6 +384,9 @@
     - suitStorage
   - type: RefillableByBulletBox
     bulletType: RMCBoxBulletsSmartGun
+  - type: GuideHelp
+    guides:
+    - RMCGuideRoleSGO
 
 - type: entity
   parent: RMCMagazineSmartGun

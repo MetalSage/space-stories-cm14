@@ -16,3 +16,6 @@ ent-RMCMapInsertFiorinaRocinanteCLF = Росинанте — КОФ
 ent-RMCMapInsertFiorinaRiotInProgress = Riot In Progress
     .desc = { ent-RMCMapInsertFiorinaBase.desc }
     .suffix = Insert Fiorina
+ent-RMCMapInsertFiorinaSurvSpawnTogether = Together Surv Spawn
+    .desc = { ent-RMCMapInsertFiorinaBase.desc }
+    .suffix = Insert Fiorina

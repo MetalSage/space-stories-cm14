@@ -11,8 +11,6 @@
   name: Hivelord
   description: A builder of really big hives.
   components:
-  - type: GhostRole
-    name: cm-job-name-xeno-hivelord
   - type: MobState
     allowedStates:
     - Alive
@@ -103,6 +101,13 @@
   parent: CMXenoHivelordBase
   id: CMXenoHivelord
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoPlantWeeds ]
+      XenoPrimaryTwo: [ ActionXenoChooseStructure ]
+      XenoPrimaryThree: [ ActionXenoSecreteStructure ]
+      XenoPrimaryFour: [ ActionXenoResinWalker ]
+      XenoPrimaryFive: [ ActionXenoOrderConstruction ]
   - type: XenoBaseCaste
   - type: CanBuildThickFromConstructNode
   - type: GuideHelp
@@ -282,8 +287,8 @@
     plasmaRegenOnWeeds: 5.5
     plasmaTransferDelay: 0.5
   - type: XenoPheromones
-    pheromonesMultiplier: 3
-    pheroSuffix: strong
+    pheromonesMultiplier: 3.5
+    pheroSuffix: designer
   - type: Tackle
     max: 4
     # Stories-start
