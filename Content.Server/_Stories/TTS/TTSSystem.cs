@@ -61,6 +61,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke, new[] { typeof(HeadsetSystem) });
+        SubscribeLocalEvent<TTSPlaybackModifierComponent, GetTTSPlaybackModifiersEvent>(OnGetTTSPlaybackModifiers);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
@@ -89,7 +90,7 @@ public sealed partial class TTSSystem : EntitySystem
             return;
 
         if (ev.IsHunter)
-            soundData = await _ttsAudio.ApplyHunterEffect(soundData);
+            soundData = await _ttsAudio.ApplyPlaybackEffects(soundData, TTSAudioEffect.Hunter);
 
         RaiseNetworkEvent(new PlayTTSEvent(soundData, previewText), Filter.SinglePlayer(args.SenderSession));
     }
@@ -98,7 +99,11 @@ public sealed partial class TTSSystem : EntitySystem
     {
         if (TryComp<TTSComponent>(ev.Source, out var ttsComp) && !string.IsNullOrEmpty(ttsComp.VoicePrototypeId))
         {
-            PlayGlobalTTS(ev.Message, ttsComp.VoicePrototypeId, ev.Filter, true);
+            PlayGlobalTTS(
+                ev.Message,
+                ttsComp.VoicePrototypeId,
+                ev.Filter,
+                TTSAudioEffect.XenoHivemind);
         }
     }
 
@@ -115,7 +120,11 @@ public sealed partial class TTSSystem : EntitySystem
             if (TryComp<ActorComponent>(ev.Actor, out var actor))
                 combinedFilter.RemovePlayer(actor.PlayerSession);
 
-            PlayGlobalTTS(ev.Message, voice, combinedFilter, isRadio: true);
+            PlayGlobalTTS(
+                ev.Message,
+                voice,
+                combinedFilter,
+                isRadio: true);
         }
     }
 
@@ -132,7 +141,11 @@ public sealed partial class TTSSystem : EntitySystem
             if (TryComp<ActorComponent>(ev.Actor, out var actor))
                 combinedFilter.RemovePlayer(actor.PlayerSession);
 
-            PlayGlobalTTS(ev.Message, voice, combinedFilter, isRadio: true);
+            PlayGlobalTTS(
+                ev.Message,
+                voice,
+                combinedFilter,
+                isRadio: true);
         }
     }
 
@@ -218,38 +231,122 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, messageToUse, protoVoice.Speaker, isRadio, args.Language);
+            var playbackModifiers = GetPlaybackModifiers(uid, ChatSystem.WhisperClearRange);
+            HandleWhisper(uid, messageToUse, protoVoice.Speaker, isRadio, args.Language, playbackModifiers);
             return;
         }
 
-        HandleSay(uid, messageToUse, protoVoice.Speaker, isRadio, args.Language, args.Channel?.ID);
+        HandleSay(
+            uid,
+            messageToUse,
+            protoVoice.Speaker,
+            isRadio,
+            args.Language,
+            GetPlaybackModifiers(uid, ChatSystem.VoiceRange),
+            args.Channel?.ID);
     }
 
-    private async void HandleSay(EntityUid uid, string message, string speaker, bool isRadio, ProtoId<LanguagePrototype> language, string? channelId = null)
+    private void OnGetTTSPlaybackModifiers(Entity<TTSPlaybackModifierComponent> ent, ref GetTTSPlaybackModifiersEvent args)
+    {
+        args.AddVolumeMultiplier(ent.Comp.VolumeMultiplier);
+        args.AddRangeMultiplier(ent.Comp.RangeMultiplier);
+        args.AddAudioEffect(ent.Comp.AudioEffects);
+
+        if (ent.Comp.MaxDistance != null)
+            args.SetMaxDistance(ent.Comp.MaxDistance.Value);
+
+        if (ent.Comp.ReferenceDistance != null)
+            args.SetReferenceDistance(ent.Comp.ReferenceDistance.Value);
+
+        if (ent.Comp.RolloffFactor != null)
+            args.SetRolloffFactor(ent.Comp.RolloffFactor.Value);
+    }
+
+    private TTSPlaybackModifiers GetPlaybackModifiers(EntityUid uid, float baseRange)
+    {
+        var ev = new GetTTSPlaybackModifiersEvent(baseRange);
+        RaiseLocalEvent(uid, ev);
+
+        return new TTSPlaybackModifiers(
+            ev.HasVolumeOverride ? ev.VolumeMultiplier : 1f,
+            ev.HasDistanceOverride ? ev.EffectiveMaxDistance : (float?) null,
+            ev.HasSpatialOverride ? ev.ReferenceDistance : null,
+            ev.HasSpatialOverride ? ev.RolloffFactor : null,
+            ev.HasAudioEffects ? ev.AudioEffects : TTSAudioEffect.None);
+    }
+
+    private async void HandleSay(
+        EntityUid uid,
+        string message,
+        string speaker,
+        bool isRadio,
+        ProtoId<LanguagePrototype> language,
+        TTSPlaybackModifiers playbackModifiers,
+        string? channelId = null)
     {
         var soundData = await GenerateTTS(message, speaker);
         if (soundData is null)
             return;
 
-        soundData = await ProcessSpecificVoices(uid, soundData);
+        soundData = await ProcessTtsAudio(uid, soundData, playbackModifiers.AudioEffects);
 
-        var ttsEvent = new PlayTTSEvent(soundData, message, GetNetEntity(uid), isRadio: isRadio, radioChannel: channelId);
-        FilterAndSend(uid, ttsEvent, ChatSystem.VoiceRange, language);
+        var ttsEvent = new PlayTTSEvent(
+            soundData,
+            message,
+            GetNetEntity(uid),
+            isRadio: isRadio,
+            radioChannel: channelId,
+            volumeMultiplier: playbackModifiers.VolumeMultiplier,
+            maxDistanceOverride: playbackModifiers.MaxDistanceOverride,
+            referenceDistanceOverride: playbackModifiers.ReferenceDistanceOverride,
+            rolloffFactorOverride: playbackModifiers.RolloffFactorOverride);
+
+        FilterAndSend(
+            uid,
+            ttsEvent,
+            playbackModifiers.MaxDistanceOverride ?? ChatSystem.VoiceRange,
+            language);
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, string speaker, bool isRadio, ProtoId<LanguagePrototype> language)
+    private async void HandleWhisper(
+        EntityUid uid,
+        string message,
+        string speaker,
+        bool isRadio,
+        ProtoId<LanguagePrototype> language,
+        TTSPlaybackModifiers playbackModifiers)
     {
         var fullSoundData = await GenerateTTS(message, speaker, true);
         if (fullSoundData is null)
             return;
 
-        fullSoundData = await ProcessSpecificVoices(uid, fullSoundData);
+        fullSoundData = await ProcessTtsAudio(uid, fullSoundData, playbackModifiers.AudioEffects);
 
-        var fullTtsEvent = new PlayTTSEvent(fullSoundData, message, GetNetEntity(uid), true, isRadio: isRadio);
-        FilterAndSend(uid, fullTtsEvent, ChatSystem.WhisperClearRange, language);
+        var fullTtsEvent = new PlayTTSEvent(
+            fullSoundData,
+            message,
+            GetNetEntity(uid),
+            true,
+            isRadio: isRadio,
+            volumeMultiplier: playbackModifiers.VolumeMultiplier,
+            maxDistanceOverride: playbackModifiers.MaxDistanceOverride,
+            referenceDistanceOverride: playbackModifiers.ReferenceDistanceOverride,
+            rolloffFactorOverride: playbackModifiers.RolloffFactorOverride);
+
+        FilterAndSend(
+            uid,
+            fullTtsEvent,
+            playbackModifiers.MaxDistanceOverride ?? ChatSystem.WhisperClearRange,
+            language);
     }
 
-    public async void PlayGlobalTTS(string text, string voiceId, Filter filter, bool isXeno = false, bool isAnnounce = false, bool isAres = false, bool isRadio = false)
+    public async void PlayGlobalTTS(
+        string text,
+        string voiceId,
+        Filter filter,
+        TTSAudioEffect audioEffects = TTSAudioEffect.None,
+        bool isAnnounce = false,
+        bool isRadio = false)
     {
         if (text.Contains('\u200B')) return;
 
@@ -259,26 +356,36 @@ public sealed partial class TTSSystem : EntitySystem
         var soundData = await GenerateTTS(text, protoVoice.Speaker);
         if (soundData == null) return;
 
-        if (isXeno)
-            soundData = await _ttsAudio.ApplyXenoHivemindEffect(soundData);
-        else if (isAres)
-            soundData = await _ttsAudio.ApplyAresEffect(soundData);
-        else if (isRadio)
-            soundData = await _ttsAudio.ApplyStandardRadioEffect(soundData);
+        if (isRadio)
+            audioEffects |= TTSAudioEffect.StandardRadio;
 
-        var ev = new PlayTTSEvent(soundData, text, null, false, null, isRadio, null, isAnnounce);
+        soundData = await _ttsAudio.ApplyPlaybackEffects(soundData, audioEffects);
+
+        var ev = new PlayTTSEvent(
+            soundData,
+            text,
+            isRadio: isRadio,
+            isAnnounce: isAnnounce);
         RaiseNetworkEvent(ev, filter);
     }
 
-    private async Task<byte[]> ProcessSpecificVoices(EntityUid uid, byte[] data)
+    private TTSAudioEffect GetSpecificVoiceEffects(EntityUid uid)
     {
+        var effects = TTSAudioEffect.None;
+
         if (HasComp<HunterComponent>(uid))
-            return await _ttsAudio.ApplyHunterEffect(data);
+            effects |= TTSAudioEffect.Hunter;
 
         if (HasComp<XenoComponent>(uid))
-            return await _ttsAudio.ApplyXenoHivemindEffect(data);
+            effects |= TTSAudioEffect.XenoHivemind;
 
-        return data;
+        return effects;
+    }
+
+    private async Task<byte[]> ProcessTtsAudio(EntityUid uid, byte[] data, TTSAudioEffect playbackEffects)
+    {
+        var effects = GetSpecificVoiceEffects(uid) | playbackEffects;
+        return await _ttsAudio.ApplyPlaybackEffects(data, effects);
     }
 
     private void FilterAndSend(EntityUid source, PlayTTSEvent ev, float range, ProtoId<LanguagePrototype> language)
@@ -387,6 +494,13 @@ public sealed partial class TTSSystem : EntitySystem
         return await _ttsManager.ConvertTextToSpeech(speaker, textSsml);
     }
 }
+
+public readonly record struct TTSPlaybackModifiers(
+    float VolumeMultiplier,
+    float? MaxDistanceOverride,
+    float? ReferenceDistanceOverride,
+    float? RolloffFactorOverride,
+    TTSAudioEffect AudioEffects);
 
 public sealed class TransformSpeakerVoiceEvent : EntityEventArgs
 {

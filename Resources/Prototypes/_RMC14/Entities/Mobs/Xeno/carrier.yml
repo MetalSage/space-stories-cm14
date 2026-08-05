@@ -111,6 +111,13 @@
   parent: RMCXenoCarrierBase
   id: CMXenoCarrier
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoPlantWeeds ]
+      XenoPrimaryTwo: [ ActionXenoResinHole ]
+      XenoPrimaryThree: [ ActionXenoThrowParasite ]
+      XenoPrimaryFour: [ ActionXenoRetrieveEgg ]
+      XenoPrimaryFive: [ ActionXenoOrderConstruction ]
   - type: XenoBaseCaste
   - type: GuideHelp
     guides:

@@ -139,6 +139,12 @@
   parent: CMXenoPraetorianBase
   id: CMXenoPraetorian
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoSpitPraetorian ]
+      XenoPrimaryTwo: [ ActionXenoDash ]
+      XenoPrimaryThree: [ ActionXenoAcidBall ]
+      XenoPrimaryFour: [ ActionXenoSprayAcidPraetorian ]
   - type: XenoBaseCaste
   - type: GuideHelp
     guides:

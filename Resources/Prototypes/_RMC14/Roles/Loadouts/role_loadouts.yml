@@ -129,6 +129,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   - PlushiesRMC
@@ -145,6 +146,8 @@
   id: JobCMCommandingOfficer
   points: 7
   groups:
+  - CommandingOfficerCareerRMC
+  - CommandingOfficerAffiliationRMC
   - MarineLeatherBackpack
   - CommandingOfficerIDRMC
   - CommandingOfficerWeaponRMC
@@ -589,6 +592,7 @@
   - MasksRMC
   - HelmetGarbsRMC
   - AccessoriesRMC
+  - WatchesBasicRMC
   - PaperworkRMC
   - RecreationalRMC
   - PlushiesRMC

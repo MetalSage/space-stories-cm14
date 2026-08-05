@@ -22,6 +22,10 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: NpcFactionMember
+      factions:
+      - Provost
+    - type: MutinyForcedLoyalist
     - type: Skills
       skills:
         RMCSkillConstruction: 2
@@ -89,7 +93,7 @@
   parent: CMJobIconBase
   id: RMCJobIconProvostMarshal
   icon:
-    sprite: _RMC14/Interface/cm_job_icons.rsi
+    sprite: _RMC14/Interface/job_icons/UNMC/provost.rsi
     state: hudsquad_pvtml
 
 # Guidebook

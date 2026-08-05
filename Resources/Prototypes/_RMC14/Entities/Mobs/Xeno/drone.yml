@@ -113,6 +113,13 @@
   parent: CMXenoDroneBase
   id: CMXenoDrone
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoPlantWeeds ]
+      XenoPrimaryTwo: [ ActionXenoChooseStructure ]
+      XenoPrimaryThree: [ ActionXenoSecreteStructure ]
+      XenoPrimaryFour: [ ActionXenoTransferPlasma ]
+      XenoPrimaryFive: [ ActionXenoOrderConstruction ]
   - type: XenoBaseCaste
   - type: GuideHelp
     guides:

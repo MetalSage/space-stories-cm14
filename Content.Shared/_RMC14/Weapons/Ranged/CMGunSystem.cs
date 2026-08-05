@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared._RMC14.Attachable.Components;
+using Content.Shared._RMC14.Attachable.Systems;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Evasion;
 using Content.Shared._RMC14.Hands;
@@ -57,6 +58,7 @@ namespace Content.Shared._RMC14.Weapons.Ranged;
 
 public sealed class CMGunSystem : EntitySystem
 {
+    [Dependency] private readonly AttachableHolderSystem _attachables = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
@@ -149,6 +151,7 @@ public sealed class CMGunSystem : EntitySystem
         SubscribeLocalEvent<UserBlockShootingInsideContainersComponent, ShotAttemptedEvent>(OnUserBlockShootingInsideContainersAttemptShoot);
 
         SubscribeLocalEvent<RMCAmmoEjectComponent, ActivateInWorldEvent>(OnAmmoEjectActivateInWorld);
+        SubscribeLocalEvent<HandsComponent, RMCUnloadWeaponEvent>(OnUnloadWeapon);
 
         SubscribeLocalEvent<AssistedReloadAmmoComponent, AfterInteractEvent>(OnAssistedReloadAmmoAfterInteract);
 
@@ -216,13 +219,8 @@ public sealed class CMGunSystem : EntitySystem
             if (!_physicsQuery.TryComp(projectile, out var physics))
                 continue;
 
-            // Preserve spread direction for multi-projectile shots. Single projectiles still snap to target.
-            var projectileDirection = normalized;
-            if (args.FiredProjectiles.Count > 1 && physics.LinearVelocity != Vector2.Zero)
-                projectileDirection = physics.LinearVelocity.Normalized();
-
-            // Calculate needed impulse to get to target direction, remove all velocity from projectile, then apply.
-            var impulse = projectileDirection * gun.ProjectileSpeedModified * physics.Mass;
+            // Calculate needed impulse to get to target, remove all velocity from projectile, then apply.
+            var impulse = normalized * gun.ProjectileSpeedModified * physics.Mass;
             _physics.SetLinearVelocity(projectile, Vector2.Zero, body: physics);
             _physics.ApplyLinearImpulse(projectile, impulse, body: physics);
             _physics.SetBodyStatus(projectile, physics, BodyStatus.InAir);
@@ -246,7 +244,6 @@ public sealed class CMGunSystem : EntitySystem
                 distance = distance > 0 ? Math.Min(normalProjectile.MaxFixedRange.Value, distance) : normalProjectile.MaxFixedRange.Value;
             }
             // Calculate travel time and equivalent distance based either on click location or calculated max range, whichever is shorter.
-            comp.TargetCoordinates = new MapCoordinates(from.Position + projectileDirection * distance, from.MapId);
             comp.FlyEndTime = time + TimeSpan.FromSeconds(distance / gun.ProjectileSpeedModified);
         }
 
@@ -646,9 +643,6 @@ public sealed class CMGunSystem : EntitySystem
             if (time < comp.FlyEndTime)
                 continue;
 
-            if (comp.TargetCoordinates is { } targetCoords)
-                _transform.SetMapCoordinates(uid, targetCoords);
-
             StopProjectile((uid, comp));
             RemCompDeferred<ProjectileFixedDistanceComponent>(uid);
             var ev = new ProjectileFixedDistanceStopEvent();
@@ -689,48 +683,100 @@ public sealed class CMGunSystem : EntitySystem
 
     private void OnAmmoEjectActivateInWorld(Entity<RMCAmmoEjectComponent> gun, ref ActivateInWorldEvent args)
     {
-        if (args.Handled ||
-            !_container.TryGetContainer(gun.Owner, gun.Comp.ContainerID, out var container) ||
-            container.ContainedEntities.Count <= 0 ||
-            _hands.GetActiveHand(args.User) is not { } hand ||
-            !_hands.HandIsEmpty(args.User, hand) ||
-            !_hands.CanPickupToHand(args.User, container.ContainedEntities[0], hand))
-        {
-            return;
-        }
-
-        var cancelEvent = new RMCTryAmmoEjectEvent(args.User, false);
-        RaiseLocalEvent(gun.Owner, ref cancelEvent);
-
-        if (cancelEvent.Cancelled)
+        if (args.Handled || !TryEjectAmmo(gun, args.User))
             return;
 
         args.Handled = true;
+    }
+
+    private void OnUnloadWeapon(Entity<HandsComponent> user, ref RMCUnloadWeaponEvent args)
+    {
+        if (!args.Handled)
+            args.Handled = TryEjectAmmoInHand(user);
+    }
+
+    public bool TryEjectAmmoInHand(EntityUid user)
+    {
+        EntityUid? gun = null;
+        if (_attachables.TryGetInhandSupercedingGun(user, out var attachable, out _) &&
+            HasComp<RMCAmmoEjectComponent>(attachable))
+        {
+            gun = attachable;
+        }
+        else if (_hands.TryGetActiveItem(user, out var held))
+        {
+            gun = held;
+        }
+
+        return gun is { } weapon &&
+               TryComp(weapon, out RMCAmmoEjectComponent? ammoEject) &&
+               TryEjectAmmo((weapon, ammoEject), user);
+    }
+
+    public bool TryEjectAmmo(Entity<RMCAmmoEjectComponent> gun, EntityUid user)
+    {
+        if (!_container.TryGetContainer(gun.Owner, gun.Comp.ContainerID, out var container) ||
+            container.ContainedEntities.Count == 0)
+        {
+            return false;
+        }
+
+        var cancelEvent = new RMCTryAmmoEjectEvent(user, false);
+        RaiseLocalEvent(gun.Owner, ref cancelEvent);
+        if (cancelEvent.Cancelled)
+            return false;
 
         var ejectedAmmo = container.ContainedEntities[0];
+        var playedSlotAudio = false;
 
         // For guns with a BallisticAmmoProviderComponent, if you just remove the ammo from its container, the gun system thinks it's still in the gun and you can still shoot it.
         // So instead I'm having to inflict this shit on our codebase.
         if (TryComp(gun.Owner, out BallisticAmmoProviderComponent? ammoProviderComponent))
         {
-            var takeAmmoEvent = new TakeAmmoEvent(1, new List<(EntityUid?, IShootable)>(), Transform(gun.Owner).Coordinates, args.User);
+            var takeAmmoEvent = new TakeAmmoEvent(
+                1,
+                new List<(EntityUid?, IShootable)>(),
+                Transform(gun.Owner).Coordinates,
+                user);
             RaiseLocalEvent(gun.Owner, takeAmmoEvent);
 
             if (takeAmmoEvent.Ammo.Count <= 0)
-                return;
+                return false;
 
             var ammo = takeAmmoEvent.Ammo[0].Entity;
 
             if (ammo == null)
-                return;
+                return false;
 
             ejectedAmmo = ammo.Value;
         }
+        else if (HasComp<ItemSlotsComponent>(gun.Owner))
+        {
+            if (!_slots.TryEject(
+                    gun.Owner,
+                    gun.Comp.ContainerID,
+                    user,
+                    out var ejected,
+                    excludeUserAudio: true))
+            {
+                return false;
+            }
 
-        if (!HasComp<ItemSlotsComponent>(gun.Owner) || !_slots.TryEject(gun.Owner, gun.Comp.ContainerID, args.User, out _, excludeUserAudio: true))
-            _audio.PlayPredicted(gun.Comp.EjectSound, gun.Owner, args.User);
+            ejectedAmmo = ejected.Value;
+            playedSlotAudio = true;
+        }
+        else if (!_container.Remove(ejectedAmmo, container))
+        {
+            return false;
+        }
 
-        _hands.TryPickup(args.User, ejectedAmmo, hand);
+        if (!playedSlotAudio)
+            _audio.PlayPredicted(gun.Comp.EjectSound, gun.Owner, user);
+
+        if (!_hands.TryPickupAnyHand(user, ejectedAmmo))
+            _transform.DropNextTo(ejectedAmmo, user);
+
+        return true;
     }
 
     private void OnDualWieldingEquippedHand(Entity<GunDualWieldingComponent> gun, ref GotEquippedHandEvent args)

@@ -16,6 +16,10 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: NpcFactionMember
+      factions:
+      - Provost
+    - type: MutinyForcedLoyalist
     - type: Skills
       skills:
         RMCSkillCqc: 2
@@ -34,7 +38,7 @@
     - type: MarineOrders
     - type: SquadLeader
       icon:
-        sprite: _RMC14/Interface/cm_job_icons.rsi
+        sprite: _RMC14/Interface/job_icons/UNMC/provost.rsi
         state: hudsquad_pvl
     - type: RMCPointing
     - type: JobPrefix
@@ -99,5 +103,5 @@
   parent: CMJobIconBase
   id: RMCJobIconProvostTeamLeader
   icon:
-    sprite: _RMC14/Interface/cm_job_icons.rsi
+    sprite: _RMC14/Interface/job_icons/UNMC/provost.rsi
     state: hudsquad_pvl

@@ -21,6 +21,10 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: NpcFactionMember
+      factions:
+      - Provost
+    - type: MutinyForcedLoyalist
     - type: Skills
       skills:
         RMCSkillCqc: 3
@@ -47,6 +51,7 @@
       background:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi
         state: background_mp
+  hidden: true
 
 - type: entity
   id: RMCRandomHumanoidProvostChiefInspector
@@ -96,5 +101,5 @@
   parent: CMJobIconBase
   id: RMCJobIconProvostChiefInspector
   icon:
-    sprite: _RMC14/Interface/cm_job_icons.rsi
+    sprite: _RMC14/Interface/job_icons/UNMC/provost.rsi
     state: hudsquad_pvi

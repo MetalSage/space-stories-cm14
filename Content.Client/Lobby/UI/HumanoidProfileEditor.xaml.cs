@@ -1262,6 +1262,8 @@ namespace Content.Client.Lobby.UI
             JobOverride = jobProto;
             var session = _playerManager.LocalSession;
 
+            roleLoadout.EnsureValid(Profile, session, collection); // Stories-SponsorsLoadout
+
             _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection)
             {
                 Title = jobProto?.ID + "-loadout",
@@ -1281,16 +1283,26 @@ namespace Content.Client.Lobby.UI
             _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
             {
                 roleLoadout.AddLoadout(loadoutGroup, loadoutProto, _prototypeManager);
+                // Stories-SponsorsLoadout-Start
+                if (Profile != null)
+                    roleLoadout.EnsureValid(Profile, session, collection);
+                // Stories-SponsorsLoadout-End
                 _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
                 Profile = Profile?.WithLoadout(roleLoadout);
+                SetDirty(); // Stories-SponsorsLoadout
                 ReloadPreview();
             };
 
             _loadoutWindow.OnLoadoutUnpressed += (loadoutGroup, loadoutProto) =>
             {
                 roleLoadout.RemoveLoadout(loadoutGroup, loadoutProto, _prototypeManager);
+                // Stories-SponsorsLoadout-Start
+                if (Profile != null)
+                    roleLoadout.EnsureValid(Profile, session, collection);
+                // Stories-SponsorsLoadout-End
                 _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
                 Profile = Profile?.WithLoadout(roleLoadout);
+                SetDirty(); // Stories-SponsorsLoadout
                 ReloadPreview();
             };
 

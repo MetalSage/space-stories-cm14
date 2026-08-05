@@ -135,6 +135,11 @@
   parent: CMXenoRunnerBase
   id: CMXenoRunner
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoLeap ]
+      XenoPrimaryTwo: [ ActionXenoBoneChips ]
+      XenoPrimaryThree: [ ActionXenoZoom ]
   - type: XenoBaseCaste
   - type: GuideHelp
     guides:
