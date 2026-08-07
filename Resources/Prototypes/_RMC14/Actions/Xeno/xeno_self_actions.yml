@@ -7,7 +7,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: resting
     useDelay: 1
   - type: InstantAction
@@ -31,7 +31,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: watch_xeno
   - type: InstantAction
     event: !type:XenoWatchActionEvent
@@ -54,7 +54,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: emit_pheromones
     useDelay: 0.33
   - type: InstantAction
@@ -79,7 +79,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xenohide
     useDelay: 0.5
   - type: InstantAction
@@ -102,7 +102,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: crest_defense
     useDelay: 2
   - type: InstantAction
@@ -125,7 +125,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: fortify
     useDelay: 5
   - type: InstantAction
@@ -154,7 +154,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: toggle_speed
     useDelay: 0.25
   - type: InstantAction
@@ -176,7 +176,21 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: toggle_long_range
+    useDelay: 0.2
+  - type: InstantAction
+    event: !type:XenoZoomActionEvent
+
+- type: entity
+  id: ActionXenoTrapperZoom
+  parent: ActionXenoBase
+  name: Toggle Long-Range Sight
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: toggle_long_range
     useDelay: 0.2
   - type: InstantAction
@@ -199,7 +213,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: queen_word
     useDelay: 10
   - type: InstantAction
@@ -271,7 +285,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: grow_ovipositor
   - type: InstantAction
     event: !type:XenoGrowOvipositorActionEvent
@@ -288,6 +302,20 @@
       state: grow_ovipositor
 
 - type: entity
+  id: ActionXenoTransmute
+  parent: ActionXenoBase
+  name: Transmute
+  description: Change into another caste of the same tier.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _RMC14/Actions/xeno_actions.rsi
+      state: evolve
+  - type: InstantAction
+    event: !type:XenoTransmuteActionEvent
+
+- type: entity
   id: ActionXenoTurnInvisible
   parent: ActionXenoBase
   name: Turn Invisible (20) # TODO RMC14 proper plasma costs
@@ -296,7 +324,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: lurker_invisibility
   - type: InstantAction
     event: !type:XenoTurnInvisibleActionEvent
@@ -318,7 +346,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: empower
     useDelay: 26
   - type: InstantAction
@@ -341,7 +369,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: retrieve_egg
   - type: TargetAction
     checkCanAccess: false
@@ -368,7 +396,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: throw_parasite
     useDelay: 0
   - type: TargetAction
@@ -396,7 +424,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: reserve_parasite
     useDelay: 1
   - type: InstantAction
@@ -418,7 +446,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xeno_readmit
     useDelay: 0.5
   - type: InstantAction
@@ -433,7 +461,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_dodge
     useDelay: 13
   - type: InstantAction
@@ -448,7 +476,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: burrow
     checkCanInteract: false
   - type: TargetAction
@@ -477,7 +505,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: soak
     useDelay: 17
   - type: InstantAction
@@ -493,8 +521,8 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: rav_empower
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: empower
   - type: InstantAction
     event: !type:XenoEmpowerActionEvent
   - type: ActionBlockIfResting
@@ -505,7 +533,7 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
-      state: rav_empower
+      state: empower
 
 - type: entity
   parent: ActionXenoBase
@@ -516,7 +544,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: lay_egg
   - type: InstantAction
     event: !type:XenoGenerateEggsActionEvent

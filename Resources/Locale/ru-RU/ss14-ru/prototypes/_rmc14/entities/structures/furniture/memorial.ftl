@@ -1,0 +1,10 @@
+ent-CMMemorialBase = { ent-Memorial }
+    .desc = { ent-Memorial.desc }
+ent-CMMemorial = мемориал
+    .desc = Корабельный мемориал, посвященный победам КМП США и павшим морским пехотинцам этого корабля. Слева на плите высечены великие истории о победе. Справа — список знаменитых морских пехотинцев, павших в бою, служа на КМП США.
+ent-CMMemorialMaintainers = мемориал
+    .desc = Памятная плита для всех членов команды Maintainer Team, ушедших на пенсию после работы над CM13. Имена наставников не указаны.
+ent-CMMemorialAdmins = { ent-CMMemorialMaintainers }
+    .desc = Памятка всем администраторам и модераторам, ушедшим из CM13. Имена наставников отсутствуют.
+ent-RMCMemorialWall = { ent-CMMemorial }
+    .desc = { ent-CMMemorial.desc }

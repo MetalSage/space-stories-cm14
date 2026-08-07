@@ -1,0 +1,135 @@
+- type: entity
+  parent: ColMarTechBase
+  id: STColMarTechSponsor
+  name: ColMarTech automated spray rack
+  description: An automated spray rack hooked up to a big storage of standard-issue spray.
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machines/VendingMachines/ColMarTech/sponsor.rsi
+  - type: CMAutomatedVendor
+    pointsType: Sponsor
+    sections:
+    - name: Балончики с краской
+      entries:
+      - id: STSprayFate
+        points: 1
+      - id: STSprayRust
+        points: 1
+      - id: STSprayAmethyst
+        points: 1
+      - id: STSprayPhantom
+        points: 1
+      - id: STSprayGoldRush
+        points: 2
+      - id: STSprayAngelOfDeath
+        points: 5
+      - id: STSprayPhoenix
+        points: 6
+      - id: STSprayBloodyParty
+        points: 4
+      - id: STSprayToxic
+        points: 3
+      - id: STSprayImpulse
+        points: 9
+      - id: STSprayBombardier
+        points: 4
+      - id: STSprayGoldenAutumn
+        points: 8
+      - id: STSprayPacifist
+        points: 10
+      - id: STSprayTiger
+        points: 7
+      - id: STSprayBlazing
+        points: 2
+      - id: STSprayGoldenHardened
+        points: 4
+      - id: STSprayMagma
+        points: 3
+    - name: Плащи
+      entries:
+      - id: STClothingNeckCloakAceOfHeart
+        points: 1
+      - id: STClothingNeckCloakAceOfSpades
+        points: 1
+      - id: STClothingNeckCloakAmerica
+        points: 4
+      - id: STClothingNeckCloakBloodySkull
+        points: 2
+      - id: STClothingNeckCloakBreakThrough
+        points: 2
+      - id: STClothingNeckCloakConductor
+        points: 1
+      - id: STClothingNeckCloakDareDevil
+        points: 3
+      - id: STClothingNeckCloakDuty
+        points: 2
+      - id: STClothingNeckCloakFirstShield
+        points: 2
+      - id: STClothingNeckCloakGlory
+        points: 2
+      - id: STClothingNeckCloakHeraldOfBetrayal
+        points: 3
+      - id: STClothingNeckCloakHolyBlades
+        points: 2
+      - id: STClothingNeckCloakHolyHammer
+        points: 2
+      - id: STClothingNeckCloakHolyScripture
+        points: 2
+      - id: STClothingNeckCloakHolySpear
+        points: 2
+      - id: STClothingNeckCloakImperator
+        points: 2
+      - id: STClothingNeckCloakInquisition
+        points: 1
+      - id: STClothingNeckCloakMorgenstern
+        points: 2
+      - id: STClothingNeckCloakPiercingPoison
+        points: 3
+      - id: STClothingNeckCloakRapier
+        points: 3
+      - id: STClothingNeckCloakRedDemon
+        points: 2
+      - id: STClothingNeckCloakSparta
+        points: 3
+      - id: STClothingNeckCloakSpoilage
+        points: 1
+      - id: STClothingNeckCloakStrongholdOfWorld
+        points: 3
+    - name: Аксессуары
+      entries:
+      - id: STClothingNeckDrone
+        points: 3
+      - id: STClothingNeckFlag
+        points: 4
+      - id: STClothingNeckTurret
+        points: 5
+
+- type: entity
+  parent: ColMarTechBase
+  id: STColMarTechSponsorAlt
+  name: ColMarTech automated uniform rack
+  description: An automated uniform rack hooked up to a big storage of standard-issue uniform.
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machines/VendingMachines/ColMarTech/sponsor.rsi
+  - type: CMAutomatedVendor
+    pointsType: SponsorAlt
+    sections:
+    - name: Униформа
+      entries:
+      - id: STJumpsuitMarineFormalKilla0
+        points: 2
+      - id: STJumpsuitMarineFormalKilla1
+        points: 2
+    - name: Шлем
+      entries:
+      - id: STArmorHelmetM10MPKilla0
+        points: 3
+      - id: STArmorHelmetM10MPKilla1
+        points: 3
+      - id: STArmorHelmetM10MPKilla2
+        points: 3
+    - name: Броня
+      entries:
+      - id: STArmorM3MediumKilla
+        points: 3

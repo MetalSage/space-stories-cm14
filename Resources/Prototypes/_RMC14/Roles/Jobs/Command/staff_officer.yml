@@ -8,7 +8,7 @@
   requirements:
   - !type:RoleTimeRequirement
     role: CMJobSquadLeader
-    time: 18000 # 5 hours
+    time: 72000 # 20 hours # Stories-RolePlay
   - !type:TotalDepartmentsTimeRequirement
     group: CMDepartmentsHuman
     time: 54000 # 15 hours
@@ -23,7 +23,7 @@
   icon: "CMJobIconStaffOfficer"
   requireAdminNotify: true
   joinNotifyCrew: false
-  marineAuthorityLevel: 13
+  marineAuthorityLevel: 12
   supervisors: rmc-job-supervisors-commander
   accessGroups:
   - SO

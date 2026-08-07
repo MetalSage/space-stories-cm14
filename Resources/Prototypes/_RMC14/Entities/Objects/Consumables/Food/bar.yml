@@ -8,7 +8,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 10 # Stories-Fix
         reagents:
         - ReagentId: Nutriment
           Quantity: 8
@@ -19,8 +19,8 @@
     grindableSolutionName: food
   - type: InjectableSolution
     solution: food
-  - type: DrawableSolution
-    solution: food
+  # - type: DrawableSolution # Stories-Fix
+  #   solution: food
 
 - type: entity
   parent: CMBarFoodBase

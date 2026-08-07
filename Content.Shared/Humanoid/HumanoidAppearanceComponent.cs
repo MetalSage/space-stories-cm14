@@ -1,3 +1,4 @@
+using Content.Shared._Stories.TTS;
 using Content.Shared._RMC14.Humanoid;
 using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid.Markings;
@@ -48,6 +49,14 @@ public sealed partial class HumanoidAppearanceComponent : Component, IRMCHumanoi
     /// </summary>
     [DataField(required: true), AutoNetworkedField]
     public ProtoId<SpeciesPrototype> Species { get; set; }
+
+    // Stories-TTS-Start
+    /// <summary>
+    ///     Current voice. Used for correct cloning.
+    /// </summary>
+    [DataField("voice")]
+    public ProtoId<TTSVoicePrototype> Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
+    // Stories-TTS-End
 
     /// <summary>
     ///     The initial profile and base layers to apply to this humanoid.

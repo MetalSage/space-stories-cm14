@@ -1,0 +1,15 @@
+ent-RMCSpawnerRandomClothingBase = спаунер оружия
+    .desc = создает случайный предмет одежды
+    .suffix = Базовый
+ent-RMCSpawnerRandomGoggles = спаунер лута для очков
+    .desc = Это случайный комплект очков для выживших.
+    .suffix = Гарантированно
+ent-RMCSpawnerRandomGogglesLowChance = { ent-RMCSpawnerRandomGoggles }
+    .desc = { ent-RMCSpawnerRandomGoggles.desc }
+    .suffix = Низкий шанс
+ent-RMCSpawnerRandomGogglesMidChance = { ent-RMCSpawnerRandomGoggles }
+    .desc = { ent-RMCSpawnerRandomGoggles.desc }
+    .suffix = Средний шанс
+ent-RMCSpawnerRandomGogglesHighChance = { ent-RMCSpawnerRandomGoggles }
+    .desc = { ent-RMCSpawnerRandomGoggles.desc }
+    .suffix = Высокий шанс

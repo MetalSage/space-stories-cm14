@@ -8,6 +8,9 @@ using Content.Shared._RMC14.Chat;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Mentor.ImaginaryFriend;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._Stories.Hunter.Bracer.Components;
+using Content.Shared._Stories.Hunter.Bracer;
+using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared.Chat;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
@@ -29,11 +32,13 @@ public sealed class CMChatSystem : SharedCMChatSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly BracerSystem _bracer = default!; // Stories-Hunter
 
     private static readonly ProtoId<ReplacementAccentPrototype> ChatSanitize = "CMChatSanitize";
     private static readonly ProtoId<ReplacementAccentPrototype> MarineChatSanitize = "CMChatSanitizeMarine";
     private static readonly ProtoId<ReplacementAccentPrototype> XenoChatSanitize = "CMChatSanitizeXeno";
-    private static readonly Regex PrefixesRegex = new(@"^:(\w)+");
+    private static readonly ProtoId<ReplacementAccentPrototype> GlobalChatSanitize = "chatsanitize"; // Stories-Chat
+    private static readonly Regex MultiBroadcastRegex = new(@"^[:.]([^ ]+)\s+(.*)"); // Stories-Hunter
 
     private readonly List<ICommonSession> _toRemove = new();
 
@@ -43,6 +48,7 @@ public sealed class CMChatSystem : SharedCMChatSystem
         SubscribeLocalEvent<MarineComponent, ChatMessageAfterGetRecipients>(OnMarineAfterGetRecipients);
         SubscribeLocalEvent<XenoComponent, ChatMessageAfterGetRecipients>(OnXenoAfterGetRecipients);
         SubscribeLocalEvent<ImaginaryFriendComponent, ChatMessageAfterGetRecipients>(OnImaginaryFriendGetRecipients);
+        SubscribeLocalEvent<HunterComponent, ChatMessageAfterGetRecipients>(OnHunterAfterGetRecipients); // Stories-Hunter
     }
 
     private void OnMarineAfterGetRecipients(Entity<MarineComponent> ent, ref ChatMessageAfterGetRecipients args)
@@ -53,6 +59,11 @@ public sealed class CMChatSystem : SharedCMChatSystem
         {
             if (data.Observer)
                 continue;
+
+            // Stories-Hunter-Start
+            if (HasComp<HunterComponent>(session.AttachedEntity))
+                continue;
+            // Stories-Hunter-End
 
             if (HasComp<XenoComponent>(session.AttachedEntity))
                 _toRemove.Add(session);
@@ -72,6 +83,11 @@ public sealed class CMChatSystem : SharedCMChatSystem
         {
             if (data.Observer)
                 continue;
+
+            // Stories-Hunter-Start
+            if (HasComp<HunterComponent>(session.AttachedEntity))
+                continue;
+            // Stories-Hunter-End
 
             // `data.Observer` only indicates whether the recipient has `GhostHearingComponent`.
             // Disabling ghost hearing removes this component, so the `GhostComponent` check is needed to keep ghosts included.
@@ -104,8 +120,47 @@ public sealed class CMChatSystem : SharedCMChatSystem
         }
     }
 
+    // Stories-Hunter-Start
+    private void OnHunterAfterGetRecipients(Entity<HunterComponent> ent, ref ChatMessageAfterGetRecipients args)
+    {
+        var isTranslated = false;
+        if (_bracer.IsHunterWithBracer(ent, out var bracer))
+        {
+            isTranslated = bracer.Value.Comp.TranslatorActive;
+        }
+
+        if (isTranslated)
+            return;
+
+        _toRemove.Clear();
+
+        foreach (var (session, data) in args.Recipients)
+        {
+            if (data.Observer)
+                continue;
+
+            if (session.AttachedEntity is not { } listener)
+            {
+                _toRemove.Add(session);
+                continue;
+            }
+
+            if (!HasComp<HunterComponent>(listener))
+            {
+                _toRemove.Add(session);
+            }
+        }
+
+        foreach (var session in _toRemove)
+        {
+            args.Recipients.Remove(session);
+        }
+    }
+    // Stories-Hunter-End
+
     public override string SanitizeMessageReplaceWords(EntityUid source, string msg)
     {
+        msg = _wordreplacement.ApplyReplacements(msg, GlobalChatSanitize); // Stories-Chat
         msg = _wordreplacement.ApplyReplacements(msg, ChatSanitize);
 
         var factionSanitize = HasComp<XenoComponent>(source) ? XenoChatSanitize : MarineChatSanitize;
@@ -181,7 +236,7 @@ public sealed class CMChatSystem : SharedCMChatSystem
         if (prefix == SharedChatSystem.RadioChannelAltPrefix)
             prefix = SharedChatSystem.RadioChannelPrefix;
 
-        var keycode = char.ToLowerInvariant(prefixPart[1]);
+        var keycode = char.ToLowerInvariant(prefixPart[1]).ToString();
 
         if (keycode == SharedChatSystem.DefaultChannelKey && keys.DefaultChannel != null)
             return true;
@@ -191,7 +246,8 @@ public sealed class CMChatSystem : SharedCMChatSystem
             if (!keys.Channels.Contains(ch.ID))
                 continue;
 
-            if (ch.RadioPrefix == prefix && ch.KeyCode == keycode)
+            var chKeycode = ch.KeyCode.ToLowerInvariant();
+            if (ch.RadioPrefix == prefix && chKeycode == keycode)
                 return true;
         }
 
@@ -262,33 +318,30 @@ public sealed class CMChatSystem : SharedCMChatSystem
         if (validPrefixes.Count < 2)
             return null;
 
+        if (headset.Value.Comp.Last != null)
+        {
+            var timeLeft = headset.Value.Comp.Last.Value + headset.Value.Comp.Cooldown - time;
+            if (timeLeft > TimeSpan.Zero)
+            {
+                _popup.PopupEntity(
+                    $"Вы использовали систему мультитрансляции слишком часто. Подождите еще {timeLeft.TotalSeconds:F0} секунд.",
+                    source,
+                    source,
+                    PopupType.MediumCaution
+                );
+                return null;
+            }
+        }
+
         var messages = new List<string>(validPrefixes.Count);
         var messageBody = message[prefixLength..];
 
         for (var idx = 0; idx < validPrefixes.Count; idx++)
             messages.Add($"{validPrefixes[idx]}{messageBody}");
 
-        if (messages.Count < 2)
-            return null;
-
-        var timeLeft = headset.Value.Comp.Last + headset.Value.Comp.Cooldown - time;
-        if (headset.Value.Comp.Last != null &&
-            timeLeft != null &&
-            timeLeft.Value > TimeSpan.Zero)
-        {
-            _popup.PopupEntity(
-                $"You've used the multi-broadcast system too recently, wait {timeLeft.Value.TotalSeconds:F0} more seconds.",
-                source,
-                source,
-                PopupType.MediumCaution
-            );
-
-            messages.Clear();
-            return messages;
-        }
-
         headset.Value.Comp.Last = time;
         Dirty(headset.Value);
+
         return messages;
     }
 }

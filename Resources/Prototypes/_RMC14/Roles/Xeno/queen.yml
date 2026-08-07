@@ -17,7 +17,7 @@
   icon: "RMCJobIconXenoQueen"
   requireAdminNotify: true
   hidden: false
-  supervisors: nobody
+  supervisors: cm-job-supervisors-nobody # Stories-Fixes
   jobPreviewEntity: RMCPlayerXenoQueenPreview
   accessGroups:
   - CMAccessXeno
@@ -32,7 +32,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Queen/queen.rsi
+    sprite: _Stories/Mobs/Xenos/Queen/queen.rsi
     layers:
     - state: alive
       scale: 0.5, 0.5

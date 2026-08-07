@@ -322844,7 +322844,7 @@ entities:
     - type: Transform
       pos: -201.5,-31.5
       parent: 1
-- proto: RMCWeyaWallStandard18=
+- proto: RMCWeyaWallStandard18
   entities:
   - uid: 44418
     components:

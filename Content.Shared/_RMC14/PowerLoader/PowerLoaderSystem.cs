@@ -6,6 +6,7 @@ using Content.Shared._RMC14.Dropship.ElectronicSystem;
 using Content.Shared._RMC14.Dropship.Fabricator;
 using Content.Shared._RMC14.Dropship.Utility.Components;
 using Content.Shared._RMC14.Dropship.Weapon;
+using Content.Shared._RMC14.Interaction;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.PowerLoader.Events;
@@ -297,7 +298,7 @@ public sealed class PowerLoaderSystem : EntitySystem
         {
             BreakOnMove = true,
             DuplicateCondition = DuplicateConditions.SameEvent,
-            DistanceThreshold = 2.5f,
+            DistanceThreshold = GetRange(ent),
         };
 
         if (_doAfter.TryStartDoAfter(doAfter))
@@ -625,7 +626,7 @@ public sealed class PowerLoaderSystem : EntitySystem
         {
             BreakOnMove = true,
             DuplicateCondition = DuplicateConditions.SameEvent,
-            DistanceThreshold = 2.5f,
+            DistanceThreshold = GetRange(user),
         };
         if (_doAfter.TryStartDoAfter(doAfter) && TryComp<PowerLoaderComponent>(args.User, out var loader))
             loader.DoAfter = ev.DoAfter;
@@ -668,7 +669,7 @@ public sealed class PowerLoaderSystem : EntitySystem
         {
             BreakOnMove = true,
             DuplicateCondition = DuplicateConditions.SameEvent,
-            DistanceThreshold = 2.5f,
+            DistanceThreshold = GetRange(args.PowerLoader),
         };
 
         if (_doAfter.TryStartDoAfter(doAfter) && TryComp<PowerLoaderComponent>(args.PowerLoader, out var loader))
@@ -691,6 +692,21 @@ public sealed class PowerLoaderSystem : EntitySystem
         {
             slotId = target.Comp.WeaponContainerSlotId;
             msg = Loc.GetString("rmc-power-loader-occupied-weapon");
+
+            if (_container.TryGetContainer(target, target.Comp.AmmoContainerSlotId, out var ammoContainer) &&
+                ammoContainer.ContainedEntities.TryFirstOrNull(out var ammoEnt) &&
+                TryComp(ammoEnt, out DropshipAmmoComponent? ammo))
+            {
+                if (ammo.Weapon.Id != Prototype(used)?.ID)
+                {
+                    foreach (var buckled in GetBuckled(user))
+                    {
+                        _popup.PopupClient(Loc.GetString("rmc-power-loader-wrong-weapon"), target, buckled, PopupType.SmallCaution);
+                    }
+                    slot = null;
+                    return false;
+                }
+            }
         }
         else if (HasComp<DropshipAmmoComponent>(used))
         {
@@ -1259,7 +1275,7 @@ public sealed class PowerLoaderSystem : EntitySystem
         {
             BreakOnMove = true,
             DuplicateCondition = DuplicateConditions.SameEvent,
-            DistanceThreshold = 2.5f,
+            DistanceThreshold = GetRange(user),
         };
 
         if (_doAfter.TryStartDoAfter(doAfter))
@@ -1389,7 +1405,8 @@ public sealed class PowerLoaderSystem : EntitySystem
             return true;
         }
 
-        if (distance > InteractionRange)
+        var range = GetRange(loader);
+        if (distance > range)
         {
             var msg = Loc.GetString("rmc-power-loader-too-far");
             foreach (var buckled in GetBuckled(loader))
@@ -1422,6 +1439,14 @@ public sealed class PowerLoaderSystem : EntitySystem
         }
 
         return true;
+    }
+
+    private float GetRange(EntityUid uid)
+    {
+        if (TryComp(uid, out IgnoreInteractionRangeComponent? range))
+            return range.Range;
+
+        return SharedInteractionSystem.InteractionRange;
     }
 
     public override void Update(float frameTime)

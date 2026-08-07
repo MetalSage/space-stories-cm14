@@ -4,6 +4,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Intel.Tech;
+using Content.Shared._Stories.SCCVars;
 using Content.Shared.Administration;
 using Content.Shared.Roles;
 using Robust.Server.Player;
@@ -40,8 +41,9 @@ public sealed class VehicleRoundstartCommand : ToolshedCommand
 
     private void TestInternal(IInvocationContext ctx, int totalPlayers)
     {
-        var threshold = _config.GetCVar(RMCCVars.RMCVehicleRoundstartThresholdPlayers);
-        var crewmanSlots = totalPlayers >= threshold ? 2 : 0;
+        var lowPop = _config.GetCVar(SCCVars.RMCLowPopVehicle);
+        var highPop = _config.GetCVar(SCCVars.RMCHighPopVehicle);
+        var crewmanSlots = totalPlayers >= lowPop ? 2 : 0;
         var stationJobs = Sys<StationJobsSystem>();
         var tech = Sys<TechSystem>();
         var vehicleSupply = Sys<VehicleSupplySystem>();
@@ -57,7 +59,7 @@ public sealed class VehicleRoundstartCommand : ToolshedCommand
             stationsUpdated++;
         }
 
-        var tankReady = totalPlayers >= threshold;
+        var tankReady = totalPlayers >= highPop;
         tech.SetVehicleUnlockOptionDisabled(VehicleHumveeArcUnlock, tankReady);
 
         string tankResult;
@@ -72,7 +74,7 @@ public sealed class VehicleRoundstartCommand : ToolshedCommand
             tankResult = "not applied below threshold";
         }
 
-        ctx.WriteLine($"Vehicle roundstart test: players={totalPlayers}, threshold={threshold}");
+        ctx.WriteLine($"Vehicle roundstart test: players={totalPlayers}, crew threshold={lowPop}, tank threshold={highPop}");
         ctx.WriteLine($"CMVehicleCrewman slots set to {crewmanSlots} on {stationsUpdated} station(s).");
         ctx.WriteLine($"VehicleTank: {tankResult}.");
     }

@@ -6,6 +6,6 @@
   - cmds
   name: rmc-distress-signal-title
   description: rmc-distress-signal-description
-  showInVote: false
+  showInVote: true
   rules:
   - CMDistressSignal

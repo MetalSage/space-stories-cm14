@@ -11,7 +11,7 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Festive Meals
+    - name: Праздничные Блюда
       holidays:
       - FestiveSeason
       entries:
@@ -21,10 +21,10 @@
         amount: 25
       - id: RMCMarinePreparedMealFruitcake
         amount: 25
-    - name: Prepared Meals
+    - name: Готовые Блюда
       entries:
       - id: CMMRE
-        name: UNMC Meal Ready to Eat
+        name: готовая к употреблению еда КМП США
         amount: 15
       - id: CMMarinePreparedMealChicken
         amount: 15
@@ -40,12 +40,12 @@
         amount: 15
       - id: CMMarineProteinBar
         amount: 50
-    - name: Flasks
+    - name: Фляги
       entries:
       - id: CMCanteen
         amount: 10
       - id: CMMetalFlask
-        name: metal flask (empty)
+        name: металлическая фляга (пустая)
         amount: 10
       - id: CMMarineFlask
         amount: 5
@@ -227,7 +227,7 @@
     randomUnstockAmount: 3 # between 1 and 3
     randomEmptyChance: 0.25 # 25% chance
     sections:
-    - name: Alcohol
+    - name: Алкоголь
       entries:
       - id: CMDrinkCanAle
         name: ale
@@ -268,7 +268,7 @@
         amount: 5
     - name: Craft Beers
       entries: []
-    - name: Non-Alcohol
+    - name: Не Алкоголь
       entries:
       - id: CMDrinkCanFruitBeer
         amount: 8
@@ -284,10 +284,10 @@
         amount: 4
       - id: CMDrinkCanTonic
         amount: 8
-    - name: Containers
+    - name: Контейнер
       entries:
       - id: CMMetalFlask
-        name: metal flask (empty)
+        name: металлическая фляга (пустая)
         amount: 5
       - id: DrinkGlass
         amount: 10
@@ -313,47 +313,47 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Chess
+    - name: шахматы
       entries:
       - id: ChessBoard
         amount: 5
-    - name: White Pieces
+    - name: Белые Фигуры
       entries:
       - id: RMCDrinkAlcoholVodkaChessWhitePawn
-        name: Pawn
+        name: Пешка
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessWhiteBishop
-        name: Bishop
+        name: Слон
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessWhiteKnight
-        name: Knight
+        name: Конь
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessWhiteRook
-        name: Rook
+        name: Ладья
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessWhiteKing
-        name: King
+        name: Король
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessWhiteQueen
-        name: Queen
+        name: Королева
         amount: 2
-    - name: Black Pieces
+    - name: Черные Фигуры
       entries:
       - id: RMCDrinkAlcoholVodkaChessBlackPawn
-        name: Pawn
+        name: Пешка
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessBlackBishop
-        name: Bishop
+        name: Слон
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessBlackKnight
-        name: Knight
+        name: Конь
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessBlackRook
-        name: Rook
+        name: Ладья
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessBlackKing
-        name: King
+        name: Король
         amount: 2
       - id: RMCDrinkAlcoholVodkaChessBlackQueen
-        name: Queen
+        name: Королева
         amount: 2

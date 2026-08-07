@@ -102,12 +102,25 @@
 
 - type: entity
   parent:
-  - CMGrenadeBase
+  - GrenadeBase # Stories-Balance
   - RMCM40DPTags
   id: CMGrenadeSmoke
   name: 30mm HSDP smoke grenade
   description: The 30mm HSDP is a small, but powerful smoke grenade. Based off the same platform as the 30mm HEDP. It is set to detonate in 2 seconds.
   components:
+  # Stories-Balance-Start
+  - type: Explosive
+    explosionType: RMC
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: IgnorePredictionHide
+  - type: Clothing
+    slots:
+    - suitStorage
+  - type: Destructible
+    thresholds: []
+  - type: ChangeItemSizeOnTimerTrigger
+  # Stories-Balance-End
   - type: OnUseTimerTrigger
     delay: 2
   - type: Sprite
@@ -291,7 +304,6 @@
   - type: Tag
     tags:
     - Grenade
-    - LauncherCompatibleGrenade
   - type: Ammo
   - type: ClusterLimitHits
   - type: CMExplosionEffect
@@ -312,7 +324,6 @@
   - type: Tag
     tags:
     - Grenade
-    - LauncherCompatibleGrenade
 
 - type: entity
   parent: CMGrenadeBase

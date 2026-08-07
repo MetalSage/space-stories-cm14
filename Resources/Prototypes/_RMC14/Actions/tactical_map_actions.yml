@@ -23,8 +23,8 @@
   components:
   - type: Action
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: xeno_tacmap
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: toggle_queen_zoom
 
 - type: entity
   parent: RMCActionOpenTacticalMap

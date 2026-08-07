@@ -1,0 +1,9 @@
+ent-RMCWeaponPistolHoldout = пистолет-держатель
+    .desc = Миниатюрный пистолет, предназначенный для того, чтобы прятаться в труднодоступных местах. Лучше не спрашивать, откуда он взялся.
+    .suffix = Заполненный
+ent-RMCMagazinePistolHoldout = магазин миниатюрного пистолета (.22)
+    .desc = Удивительно маленький магазин, вмещающий патроны 22 калибра. Колибри еще нет, но все идет к этому.
+ent-CMBulletPistol22mm = пуля (.22)
+    .desc = { ent-CMBulletBase.desc }
+ent-CMCartridgePistol22mm = патрон (.22)
+    .desc = { ent-CMCartridgePistolBase.desc }

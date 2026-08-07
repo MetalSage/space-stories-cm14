@@ -113,8 +113,8 @@
     grindableSolutionName: food
   - type: InjectableSolution
     solution: food
-  - type: DrawableSolution
-    solution: food
+  # - type: DrawableSolution # Stories-Fix
+  #   solution: food
 
 - type: entity
   parent: RMCFoodDonut

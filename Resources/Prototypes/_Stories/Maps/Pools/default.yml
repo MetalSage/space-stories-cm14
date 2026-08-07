@@ -1,0 +1,9 @@
+- type: gameMapPool
+  id: STDefaultMapPool
+  maps:
+  - STAlmayer
+
+- type: gameMapPool
+  id: STLowPopMapPool
+  maps:
+  - STAlmayerLowPop

@@ -1,0 +1,76 @@
+- type: entity
+  parent: CMBaseWindow
+  id: STWindowHunter
+  name: alien window
+  description: Nigh indestructible walls that make up the hull of a hunter ship.
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Windows/hunter.rsi
+    state: pred_window0
+  - type: Icon
+    sprite: _Stories/Structures/Windows/hunter.rsi
+    state: pred_window0
+  - type: IconSmooth
+    key: window
+    base: pred_window
+    mode: CardinalFlags
+  - type: Repairable
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 600
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: WindowShatter
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: WindowShatter
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              CMShardGlass:
+                min: 1
+                max: 1
+              CMRodMetal:
+                min: 1
+                max: 1
+          - !type:ChangeConstructionNodeBehavior
+            node: windowFrameAlmayer
+  - type: RMCWallExplosionDeletable
+  - type: DestroyedByExplosionType
+  - type: Construction
+    graph: RMCWindowAlmayer
+    node: windowAlmayerReinforced
+  - type: DestroyOnXenoPierceScissor
+    spawnPrototype: RMCWindowFrameAlmayer
+    sound:
+      collection: WindowShatter
+  - type: ImmuneToUnarmed
+
+- type: entity
+  parent: CMBaseWindowIndestructible
+  id: STWindowHunterHull
+  name: alien hull window
+  description: Nigh indestructible walls that make up the hull of a hunter ship.
+  components:
+  - type: Corrodible
+    isCorrodible: false
+  - type: Sprite
+    sprite: _Stories/Structures/Windows/hunter.rsi
+    state: pred_window0
+  - type: Icon
+    sprite: _Stories/Structures/Windows/hunter.rsi
+    state: pred_window0
+  - type: IconSmooth
+    key: windows
+    additionalKeys:
+    - doors
+    base: pred_window
+    mode: CardinalFlags

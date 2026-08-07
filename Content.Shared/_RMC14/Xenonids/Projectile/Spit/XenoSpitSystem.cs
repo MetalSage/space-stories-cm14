@@ -10,6 +10,7 @@ using Content.Shared._RMC14.Synth;
 using Content.Shared._RMC14.Xenonids.Construction.DeployedTraps;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Insight;
+using Content.Shared._RMC14.Xenonids.Paralyzing;
 using Content.Shared._RMC14.Xenonids.Projectile.Spit.Ball;
 using Content.Shared._RMC14.Xenonids.Projectile.Spit.Charge;
 using Content.Shared._RMC14.Xenonids.Projectile.Spit.Scattered;
@@ -288,17 +289,9 @@ public sealed class XenoSpitSystem : EntitySystem
     private void OnXenoSlowingSpitHit(Entity<XenoSlowingSpitProjectileComponent> spit, ref ProjectileHitEvent args)
     {
         var target = args.Target;
-        if (_hive.FromSameHive(spit.Owner, target) ||
-            HasComp<XenoComponent>(target))
+        if (_hive.FromSameHive(spit.Owner, target) || HasComp<XenoComponent>(target) || HasComp<UnparalyzableComponent>(target)) // Stories-Hunter
         {
             PredictedQueueDel(spit.Owner);
-            return;
-        }
-
-        if (HasComp<SynthComponent>(target))
-        {
-            var immuneMsg = Loc.GetString("cm-xeno-paralyzing-slash-immune", ("target", target));
-            _popup.PopupEntity(immuneMsg, target, target, PopupType.SmallCaution);
             return;
         }
 
@@ -339,6 +332,7 @@ public sealed class XenoSpitSystem : EntitySystem
         if (args.Handled)
             return;
 
+        args.Handled = true;
         var ev = new XenoAcidBallDoAfterEvent(GetNetCoordinates(args.Target));
         var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.Delay, ev, ent) { BreakOnMove = true, RootEntity = true };
         _doAfter.TryStartDoAfter(doAfter);

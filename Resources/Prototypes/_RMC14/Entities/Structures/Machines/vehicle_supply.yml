@@ -35,7 +35,7 @@
         type: VehicleSupplyBui
   - type: VehicleSupplyConsole
     vehicles:
-    - name: humvee
+    - name: Хамви
       vehicle: VehicleHumvee
       hardpoints:
       - VehicleHumveeTurret
@@ -45,7 +45,7 @@
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: humvee (medical)
+    - name: Хамви (Медицинский)
       vehicle: VehicleHumveeMedical
       hardpoints:
       - VehicleHumveeSnowplow
@@ -59,7 +59,7 @@
       - VehicleHumveeOverlight
       - VehicleHumveeHatch
       - VehicleHumveeWheel
-    - name: apc
+    - name: БТР
       vehicle: VehicleAPCTracked
       hardpoints:
       - RMCAPCDualCannon
@@ -68,7 +68,7 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: apc (medical)
+    - name: БТР (Медицинский)
       vehicle: VehicleAPCMed
       hardpoints:
       - RMCAPCDualCannon
@@ -77,7 +77,7 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: apc (command)
+    - name: БТР (Командный)
       vehicle: VehicleAPCCommand
       hardpoints:
       - RMCAPCDualCannon
@@ -86,7 +86,7 @@
       - RMCAPCFlareLauncher
       - RMCAPCFreightStorage
       - RMCAPCWheel
-    - name: tank
+    - name: Танк
       vehicle: VehicleTank
       hardpoints:
       - VehicleTankArmorBallistic

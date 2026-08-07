@@ -197,6 +197,13 @@
   - type: Sprite
     sprite: _RMC14/Objects/Consumable/Smokeables/Cigarettes/unfiltered_roll.rsi
     state: unlit-icon
+  - type: SolutionContainerManager # Stories-Fix
+    solutions:
+      smokable:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 10
 
 - type: entity
   id: RMCCigaretteSpent
@@ -210,7 +217,7 @@
   - type: SolutionContainerManager
     solutions:
       smokable:
-        maxVol: 20
+        maxVol: 0 # Stories-Fix
   - type: Tag
     tags:
       - Cigarette

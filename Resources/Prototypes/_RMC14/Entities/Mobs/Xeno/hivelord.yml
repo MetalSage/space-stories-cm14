@@ -23,7 +23,7 @@
       650: Dead
   - type: Xeno
     tier: 2
-    hudOffset: -0.1,0.1
+    hudOffset: 0,0.35
     unlockAt: 180 # 3 minutes
   - type: XenoHeavy
   - type: XenoDevolve
@@ -101,12 +101,20 @@
   parent: CMXenoHivelordBase
   id: CMXenoHivelord
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoPlantWeeds ]
+      XenoPrimaryTwo: [ ActionXenoChooseStructure ]
+      XenoPrimaryThree: [ ActionXenoSecreteStructure ]
+      XenoPrimaryFour: [ ActionXenoResinWalker ]
+      XenoPrimaryFive: [ ActionXenoOrderConstruction ]
+  - type: XenoBaseCaste
   - type: CanBuildThickFromConstructNode
   - type: GuideHelp
     guides:
     - RMCGuideRoleHivelord
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Hivelord/hivelord.rsi
+    sprite: _Stories/Mobs/Xenos/Hivelord/hivelord.rsi
   - type: Xeno
     role: CMXenoHivelord
     actionIds:
@@ -161,7 +169,7 @@
   components:
   - type: CanBuildThickFromConstructNode
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Hivelord/resin_whisperer_hivelord.rsi
+    sprite: _Stories/Mobs/Xenos/Hivelord/resin_whisperer_hivelord.rsi
   - type: Xeno
     role: CMXenoHivelord
     actionIds:
@@ -219,7 +227,7 @@
     guides:
     - RMCGuideRoleDesigner
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Hivelord/designer_hivelord.rsi
+    sprite: _Stories/Mobs/Xenos/Hivelord/designer_hivelord.rsi
   - type: Xeno
     role: CMXenoHivelord
     actionIds:
@@ -283,9 +291,11 @@
     pheroSuffix: designer
   - type: Tackle
     max: 4
-    chance: 0.45
-    stunMin: 5
-    stunMax: 6
+    # Stories-start
+    chance: 0.35
+    stunMin: 2
+    stunMax: 3
+    # Stories-end
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.15
     baseSprintSpeed: 3.9

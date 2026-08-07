@@ -22,9 +22,26 @@
   - /Audio/_RMC14/Weapons/Guns/Gunshots/gun_shotgun_tactical_4.ogg
 
 - type: soundCollection
-  id: CMM54CShoot
+  id: CMM54CShoot # Stoires-Sound
   files:
-  - /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m54c_1.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_m41a_1.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_m41a_2.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_m41a_3.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_m41a_4.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_m41a_5.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_m41a_6.ogg
+
+- type: soundCollection
+  id: CMM56BShoot # Stoires-Sound
+  files:
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_smartgun1.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_smartgun1_rattle.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_smartgun2.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_smartgun2_rattle.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_smartgun3.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_smartgun3_rattle.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_smartgun4.ogg
+  - /Audio/_Stories/Weapons/Guns/Gunshots/gun_smartgun4_rattle.ogg
 
 - type: soundCollection
   id: CMSilencedShoot

@@ -6,7 +6,7 @@
 
 - type: rmcConstruction
   id: RMCBarbedWireBuild
-  name: barbed wire
+  name: колючая проволока
   prototype: BarbedWire1
   doAfterTime: 1
   doAfterTimeMin: 1
@@ -21,7 +21,7 @@
 
 - type: rmcConstruction
   id: RMCMetalBarricadeBuild
-  name: metal barricade
+  name: металлическая баррикада
   prototype: CMBarricadeMetal
   doAfterTime: 2
   doAfterTimeMin: 1
@@ -31,7 +31,7 @@
 
 - type: rmcConstruction
   id: RMCMetalBarricadeFoldableBuild
-  name: folding metal barricade
+  name: складная металлическая баррикада
   prototype: CMBarricadeMetalDoor
   doAfterTime: 3
   doAfterTimeMin: 1.5
@@ -41,7 +41,7 @@
 
 - type: rmcConstruction
   id: RMCHandrailBuild
-  name: handrail
+  name: перила
   prototype: RMCBarricadeHandrail
   doAfterTime: 2
   doAfterTimeMin: 1
@@ -51,7 +51,7 @@
 
 - type: rmcConstruction
   id: RMCFloorTileBuild
-  name: floor tile (x4)
+  name: напольная плитка (x4)
   prototype: CMTileItemSteel
   doAfterTime: 0
   doAfterTimeMin: 0
@@ -64,7 +64,7 @@
 
 - type: rmcConstruction
   id: RMCMetalRodBuild
-  name: metal rod (x2)
+  name: металлический стержень (x2)
   prototype: CMRodMetal1
   doAfterTime: 0
   doAfterTimeMin: 0
@@ -80,23 +80,23 @@
 
 - type: rmcConstruction
   id: RMCWallGirderBuild
-  name: wall girder
+  name: каркас стены
   prototype: CMGirder
   noRotate: true
   doAfterTime: 5
   materialCost: 2
   skill: RMCSkillConstruction
-  requiredSkillLevel: 2
+  requiredSkillLevel: 3
 
 - type: rmcConstruction
   id: RMCWindowFrameBuild
-  name: window frame
+  name: оконная рама
   prototype: RMCWindowFrameAlmayer
   noRotate: true
   doAfterTime: 5
   materialCost: 5
   skill: RMCSkillConstruction
-  requiredSkillLevel: 2
+  requiredSkillLevel: 3
 
 # Bed
 - type: rmcConstruction
@@ -119,7 +119,7 @@
 # Comfy Chairs
 - type: rmcConstruction
   id: RMCComfyChairList
-  name: comfy chairs (2 metal sheets) #material cost written manually since the lists won't show costs
+  name: удобные стулья
   prototype: CMChairComfy
   listed:
   - RMCComfyChairBeigeBuild
@@ -130,35 +130,35 @@
 
 - type: rmcConstruction
   id: RMCComfyChairBeigeBuild
-  name: beige comfy chair
+  name: бежевое удобное кресло
   prototype: CMChairComfyBeige
   materialCost: 2
   restrictedTags: [RMCSeat]
 
 - type: rmcConstruction
   id: RMCComfyChairBlackBuild
-  name: black comfy chair
+  name: черное удобное кресло
   prototype: CMChairComfyBlack
   materialCost: 2
   restrictedTags: [RMCSeat]
 
 - type: rmcConstruction
   id: RMCComfyChairBrownBuild
-  name: brown comfy chair
+  name: коричневое удобное кресло
   prototype: CMChairComfy
   materialCost: 2
   restrictedTags: [RMCSeat]
 
 - type: rmcConstruction
   id: RMCComfyChairLimeBuild
-  name: lime comfy chair
+  name: лаймовое удобное кресло
   prototype: CMChairComfyLime
   materialCost: 2
   restrictedTags: [RMCSeat]
 
 - type: rmcConstruction
   id: RMCComfyChairTealBuild
-  name: teal comfy chair
+  name: бирюзовое удобное кресло
   prototype: CMChairComfyTeal
   materialCost: 2
   restrictedTags: [RMCSeat]
@@ -227,7 +227,7 @@
 
 - type: rmcConstruction
   id: RMCMachineFrameBuild
-  name: machine frame
+  name: каркас машины
   prototype: CMMachineFrameUnfinished
   noRotate: true
   doAfterTime: 2.5

@@ -43,6 +43,7 @@
   - type: CameraRecoil
   - type: MindContainer
   - type: MovementSpeedModifier
+  - type: TTS # Stories-TTS
   - type: RequireProjectileTarget
     active: False
 

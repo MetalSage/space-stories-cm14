@@ -10,13 +10,14 @@ using Content.Shared._RMC14.Extensions;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Marines.Announce;
 using Content.Shared._RMC14.Marines.Squads;
+using Content.Shared._RMC14.ParaDrop;
 using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Rules;
+using Content.Shared.Body.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.GameTicking;
 using Content.Shared.Maps;
-using Content.Shared.ParaDrop;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
@@ -265,8 +266,8 @@ public abstract class SharedSupplyDropSystem : EntitySystem
             return false;
         }
 
-        var skyFallDuration = (float) crate.Comp.ArrivingSoundDelay.TotalSeconds;
-        var dropDuration = (float) crate.Comp.DropDuration.TotalSeconds;
+        var skyFallDuration = (float)crate.Comp.ArrivingSoundDelay.TotalSeconds;
+        var dropDuration = (float)crate.Comp.DropDuration.TotalSeconds;
         var dropCoordinates = mapCoordinates.Offset(new Vector2(0.5f, 0.5f));
         var crateCoordinates = _transform.GetMoverCoordinates(crate);
         var openAt = crate.Comp.ArrivingSoundDelay + crate.Comp.DropDuration + crate.Comp.OpenDelay;

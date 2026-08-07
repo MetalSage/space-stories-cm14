@@ -1,0 +1,13 @@
+- type: entity
+  parent: RMCBaseDoorInvincible
+  id: STAirlockHunter
+  name: hunter airlock
+  suffix: Hunter
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Doors/Airlocks/hunter_door.rsi
+  - type: ApcPowerReceiver
+    powerLoad: 0
+    needsPower: false
+  - type: Airlock
+    powered: true

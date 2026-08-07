@@ -1,0 +1,16 @@
+- type: entity
+  parent: RMCFlashlightLantern
+  id: STFlashlightLanternHunter
+  name: lantern
+  description: A rugged alien lantern with a metallic frame, emitting a steady red glow. Its light has an unsettling, otherworldly aura.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Tools/Light/lantern.rsi
+    layers:
+      - state: lantern
+      - state: lantern-on
+        visible: false
+        map: [ "light" ]
+  - type: PointLight
+    radius: 6
+    color: "#f03939"

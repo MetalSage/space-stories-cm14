@@ -1,0 +1,14 @@
+ent-CMSurgicalCase = хирургический чемоданчик
+    .desc = Это медицинский кейс для хранения основных хирургических инструментов.
+ent-CMSurgicalCaseFilled = { ent-CMSurgicalCase }
+    .desc = { ent-CMSurgicalCase.desc }
+    .suffix = Наполнение
+ent-RMCSurgicalCaseRCM = хирургический чемоданчик Королевской Морской Пехоты
+    .desc = Усовершенствованный хирургический футляр, используемый Королевской морской пехотой, вмещающий больше инструментов.
+    .suffix = RCM
+ent-RMCSurgicalCaseRCMFilled = { ent-RMCSurgicalCaseRCM }
+    .desc = { ent-RMCSurgicalCaseRCM.desc }
+    .suffix = Filled
+ent-CMSurgicalCaseFilledAllTools = { ent-CMSurgicalCase }
+    .suffix = Заполненный, все инструменты
+    .desc = { ent-CMSurgicalCase.desc }

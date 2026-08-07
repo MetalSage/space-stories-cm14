@@ -35,15 +35,18 @@
     medium: 0.75
     heavy: 0.806
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     layers:
     - state: base
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
     - state: mag-0
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
+    - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
+      state: m56_barrel
+      offset: 0.625, 0
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     slots:
     - suitStorage
     - Back
@@ -56,7 +59,7 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_ml66a_2.ogg
+      collection: CMM56BShoot # Stoires-Sound
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: RMCSelectiveFire
@@ -155,29 +158,34 @@
   - type: GuideHelp
     guides:
     - RMCGuideRoleSGO
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
+      Impulse: /Textures/_Stories/Objects/Weapons/SmartGuns/smart_gun.rsi
 
 - type: entity
   parent: RMCSmartGunNoCamo
   id: RMCSmartGun
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     layers:
     - state: base
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
-    - state: camo
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
-      map: [ "enum.ItemCamouflageLayers.Layer" ]
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
     - state: mag-0
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
-  - type: ItemCamouflage
-    colors:
-      Jungle: "#ccd08d"
-      Desert: "#ffd2a6"
-      Snow: "#ddcbc9"
-      Classic: "#c7e7d9"
-      Urban: "#acb8c7"
+    - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
+      state: m56_barrel
+      offset: 0.625, 0
+  # - type: ItemCamouflage
+  #   colors:
+  #     Jungle: "#ccd08d"
+  #     Desert: "#ffd2a6"
+  #     Snow: "#ddcbc9"
+  #     Classic: "#c7e7d9"
+  #     Urban: "#acb8c7"
 
 - type: entity
   parent: RMCSmartGun
@@ -197,15 +205,18 @@
   suffix: PMC
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml79a.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
     layers:
     - state: base
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml79a.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
     - state: mag-0
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml79a.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
+    - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
+      state: m56_barrel
+      offset: 0.625, 0
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml79a.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -269,15 +280,18 @@
   description: The actual firearm in the Smart Gun System. Back order only. Besides a more robust weapons casing, an ID lock system and a fancy paintjob, the gun's performance is identical to the standard-issue ML66A.
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/CO.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     layers:
     - state: base
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/CO.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
     - state: mag-0
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/CO.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
+    - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
+      state: m56_barrel
+      offset: 0.625, 0
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/CO.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
   - type: Gun
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_ml66a.ogg
@@ -313,15 +327,18 @@
   description: The actual firearm in the 2-piece ML66C Smart Gun System. This variant is used by the Three Sun Empire's Royal Crown Marine units. You may toggle firing restrictions by using a special action.
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a_royal.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
     layers:
     - state: base
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a_royal.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
     - state: mag-0
-      sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a_royal.rsi
+      sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
+    - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
+      state: m56_barrel
+      offset: 0.625, 0
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/SmartGuns/ml66a_royal.rsi
+    sprite: _Stories/Objects/Weapons/Guns/SmartGuns/m56b.rsi # Stories-Parity
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -356,7 +373,7 @@
     proto: CMCartridgeSmartGun10x30mm
     capacity: 500
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/SmartGuns/magazine_smart_gun.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/m56b.rsi # Stories-Parity
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

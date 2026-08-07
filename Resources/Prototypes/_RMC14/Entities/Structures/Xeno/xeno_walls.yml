@@ -9,8 +9,10 @@
   - type: Icon
     sprite: _RMC14/Structures/Xenos/xeno_resin_wall.rsi
     state: resin
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    additionalKeys:
+    - walls
     base: resin
   - type: Destructible
     thresholds:
@@ -28,6 +30,8 @@
   - type: XenoStructureUpgradeable
     to: WallXenoResinThick
     cost: 50
+  - type: HiveBoonFortifiableWall
+    heal: 75
   - type: MeleeReceivedMultiplier
     xenoDamage:
       types:
@@ -84,8 +88,10 @@
   - type: Icon
     sprite: _RMC14/Structures/Xenos/xeno_resin_wall.rsi
     state: thickresin
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    additionalKeys:
+    - walls
     base: thickresin
   - type: Destructible
     thresholds:
@@ -104,6 +110,8 @@
     scalingCost: true
   - type: XenoStructureUpgradeable
     to: null
+  - type: HiveBoonFortifiableWall
+    heal: 100
 
 - type: entity
   parent: CMBaseWallXeno
@@ -119,8 +127,10 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    additionalKeys:
+    - walls
   - type: Occluder
     enabled: false
   - type: Fixtures
@@ -163,8 +173,10 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    additionalKeys:
+    - walls
     base: membrane
   - type: XenoStructureUpgradeable
     to: WallXenoMembraneThick
@@ -189,8 +201,10 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    additionalKeys:
+    - walls
     base: thickmembrane
   - type: MeleeReceivedMultiplier
     xenoDamage:

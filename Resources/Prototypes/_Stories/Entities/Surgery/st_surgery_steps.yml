@@ -1,0 +1,44 @@
+- type: entity
+  id: STSurgeryStepStabilizeWounds
+  name: Stabilize wounds
+  description: Apply stabilizer gel to the wounds.
+  components:
+  - type: CMSurgeryStep
+    skillType: STSkillIllegalTechnology
+    skill: 1
+    tool:
+    - type: StabilizerGelTool
+  - type: STSurgeryStepStabilize
+  - type: Sprite
+    sprite: _RMC14/Objects/Medical/Surgery/healing.rsi
+    state: stabilizer_gel
+
+- type: entity
+  id: STSurgeryStepMendWounds
+  name: Mend wounds
+  description: Use the healing gun to mend the stabilized wounds.
+  components:
+  - type: CMSurgeryStep
+    skillType: STSkillIllegalTechnology
+    skill: 1
+    tool:
+    - type: HealingGunTool
+  - type: STSurgeryStepMend
+  - type: Sprite
+    sprite: _RMC14/Objects/Medical/Surgery/healing_gun.rsi
+    state: healing_gun
+
+- type: entity
+  id: STSurgeryStepClampWounds
+  name: Clamp wounds
+  description: Clamp the treated wounds to close them.
+  components:
+  - type: CMSurgeryStep
+    skillType: STSkillIllegalTechnology
+    skill: 1
+    tool:
+    - type: WoundClampTool
+  - type: STSurgeryStepClamp
+  - type: Sprite
+    sprite: _RMC14/Objects/Medical/Surgery/wound_clamp.rsi
+    state: wound_clamp

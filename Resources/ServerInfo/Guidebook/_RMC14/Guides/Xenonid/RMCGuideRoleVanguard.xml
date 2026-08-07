@@ -1,28 +1,28 @@
 <Document>
-  #Vanguard, Tier 3
+  #Авангард, Уровень 3
 
   <GuideEntityEmbed Entity="RMCXenoPraetorianVanguard"/>
 
-  ##Playing as a Vanguard
+  ##Игра за Авангарда
 
-  Firstly let's see what's changed from your Base form. You lose a portion of your health, but you are now slightly faster than your base form. You also trade your corrosive acid and spit to get a regenerating shield that perfectly blocks one attack, which recharges out of combat.
+  Прежде всего, давайте посмотрим, что изменилось по сравнению с вашей базовой формой. Вы теряете часть своего здоровья, но теперь вы немного быстрее, чем в своей базовой форме. Вы также обмениваете свою едкую кислоту и плевки на регенерирующий щит, который идеально блокирует одну атаку и перезаряжается вне боя.
 
-  You gain the ability to use Pierce, that penetrates through opponents, and it will also instantly recharge your shield if you hit 2 targets.
+  Вы получаете способность «Прокол», которая пронзает противников, и она также мгновенно перезарядит ваш щит, если вы поразите 2 цели.
 
-  You also gain cleave, which has two states: Root, which will immobilise a target and Fling, which will fling a target away from you.
+  Вы также получаете «Рассекающий удар», который имеет два состояния: «Обездвиживание», которое обездвиживает цель, и «Отбрасывание», которое отбрасывает цель от вас.
 
-  Your dash has changed as well, it now has an area slash after you dash. By activating your dash again, you can do the area slash.
+  Ваш рывок также изменился: теперь он имеет удар по области после рывка. Активировав свой рывок снова, вы можете совершить удар по области.
 
-  Vanguard is similar to an upgraded Warrior, specializing in consistent melee attacks or doing heavy burst damage and having a dash ability. They can combine multiple abilities to deal bursts of damage from around corners or just frontline combat.
+  Авангард похож на улучшенного Воина, специализирующегося на постоянных рукопашных атаках или нанесении большого взрывного урона, и обладающего способностью к рывку. Они могут комбинировать несколько способностей для нанесения залпового урона из-за углов или просто в ближнем бою.
 
-  ##Abilities:
-  - [bold][color=green]PASSIVE[/color][/bold]: You are granted a shield that perfectly blocks one attack and rapidly decays after you're hit. The shield recharges while out of combat.
-  - [bold]Pierce[/bold]: Stab through your enemies with your tail against hosts. If you hit two people with your pierce, your shield is instantly recharged. This ability does slight extra damage than normal slash. The ability also has slight AP (armor piercing).
+  ##Способности:
+  - [bold][color=green]ПАССИВНО[/color][/bold]: Вы получаете щит, который идеально блокирует одну атаку и быстро исчезает после получения урона. Щит перезаряжается вне боя.
+  - [bold]Прокол[/bold]: Пронзайте врагов хвостом, нанося урон носителям. Если вы поразите двух человек своим проколом, ваш щит мгновенно перезарядится. Эта способность наносит немного больше урона, чем обычный удар. Способность также имеет небольшое БП (бронепробитие).
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoPierce"/>
-  - [bold]Blitz[/bold]: Charge through enemies with a range of 4 tiles. Upon stopping, activate again to do an AoE slash in a 3x3 tile range, otherwise the ability will activate automatically after a 3 second delay. If the AoE slash hits, it will instantly regenerate your shield.
+  - [bold]Блиц[/bold]: Рывок сквозь врагов на 4 клетки. После остановки активируйте снова, чтобы нанести удар по области в радиусе 3x3 клеток, в противном случае способность активируется автоматически через 3 секунды. Если удар по области попадает, ваш щит мгновенно восстанавливается.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoDash"/>
-  - [bold]Root[/bold]: Immobilizes your target shortly, making them a sitting duck. Shares cooldown with Fling.
+  - [bold]Обездвиживание[/bold]: Ненадолго обездвиживает вашу цель, делая её лёгкой добычей. Разделяет перезарядку с Отбрасыванием.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoCleaveRoot"/>
-  - [bold]Fling[/bold]: Flings your target away from you, sending them flying backwards. Shares cooldown with Root.
+  - [bold]Отбрасывание[/bold]: Отбрасывает вашу цель от вас, отправляя её в полёт назад. Разделяет перезарядку с Обездвиживанием.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoCleaveFling"/>
 </Document>

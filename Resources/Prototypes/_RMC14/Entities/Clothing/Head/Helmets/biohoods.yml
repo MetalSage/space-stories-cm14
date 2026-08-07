@@ -19,6 +19,7 @@
     bio: 100 # CLOTHING_ARMOR_HARDCORE
     # armor_rad = 20
     # armor_internaldamage = 10
+  - type: RMCBioShield # Stories-Ordnance
 
 - type: entity
   parent: RMCHoodBioGeneral

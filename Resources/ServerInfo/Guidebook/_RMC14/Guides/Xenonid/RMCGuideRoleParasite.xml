@@ -1,19 +1,19 @@
 <Document>
-  #Parasite
-  <GuideEntityEmbed Entity="CMXenoParasite" Caption="Child / Parasite"/>
-  ##How to play as a Parasite
-  Parasites are unique from regular Xenonid gameplay, they are expendable and help infect captured hosts, or can attempt to hide under objects to catch unsuspecting victims.
+  #Лицехват
+  <GuideEntityEmbed Entity="CMXenoParasite" Caption="Дитя / Лицехват"/>
+  ##Как играть за Лицехвата
+  Лицехваты уникальны на фоне обычного геймплея ксеноморфов: они расходный материал, помогают заражать захваченных носителей, а ещё могут прятаться под предметами, подстерегая беспечных жертв.
 
-  To become a parasite you can use the Find Parasite ability as a ghost or click on an egg. If you have recently died you will have to wait to become one.
+  Чтобы стать Лицехватом, вы можете использовать способность «Найти Лицехвата» в качестве призрака или щелкнуть по яйцу. Если вы недавно умерли, вам придётся подождать, чтобы стать им.
 
-  Once you have become a parasite, you can walk to the front and wait for your sisters to drag a cap. To infect somebody on the ground, you must use [color=yellow][bold][keybind="Use"][/bold][/color] on them and wait for the action to complete.
+  Как только вы станете Лицехватом, вы можете пройти на передовую и ждать, пока ваши сёстры приведут захваченного. Чтобы заразить кого-либо на земле, вы должны использовать [color=yellow][bold][keybind="Use"][/bold][/color] на них и дождаться завершения действия.
 
-  Every successful infection you get will let you become a parasite again without the need to wait. You can also infect standing targets by leaping onto them within a one tile range. If you leap from far away it won't infect them, only briefly stunning them and leaving you exposed.
+  Каждое успешное заражение позволит вам снова стать Лицехватом без необходимости ждать. Вы также можете заражать стоящие цели, прыгая на них в радиусе одной клетки. Если вы прыгнете издалека, это их не заразит, а лишь кратковременно оглушит и оставит вас уязвимым.
 
-  ##Non-Player Parasites
-  Drones, carriers and hivelords can all pick up uncontrolled parasites and use them to infect captures in the same way by using [color=yellow][bold][keybind="Use"][/bold][/color] on them while they are held.
+  ##Неигровые Лицехваты
+  Трутни, носители и повелители улья могут подбирать неконтролируемых Лицехватов и использовать их для заражения захваченных точно так же, используя [color=yellow][bold][keybind="Use"][/bold][/color] на них, пока они находятся в руке.
 
-  - If your target is nested on a wall then you may need to walk closer to it with a parasite in hand and use [color=yellow][bold][keybind="UIRightClick"/][/bold][/color] to bring up the context menu, then [color=yellow][bold][keybind="Use"][/bold][/color] the target.
+  - Если ваша цель находится в гнезде на стене, вам может потребоваться подойти ближе к ней с Лицехватом в руке и использовать [color=yellow][bold][keybind="UIRightClick"/][/bold][/color], чтобы вызвать контекстное меню, затем [color=yellow][bold][keybind="Use"][/bold][/color] на цели.
 
-  Uncontrolled parasites will die if not held by a sister and left for 30 seconds. Make sure to keep them in safe spots such as on a host or in an egg morpher. You can also put them inside empty eggs to refill them or fill resin holes as a trap.
+  Неконтролируемые Лицехваты погибнут, если их не держит сестра и они оставлены на 30 секунд. Убедитесь, что вы держите их в безопасных местах, например, на носителе или в яйцеморфере. Вы также можете поместить их внутрь пустых яиц, чтобы пополнить их, или заполнить смоляные норы в качестве ловушки.
 </Document>

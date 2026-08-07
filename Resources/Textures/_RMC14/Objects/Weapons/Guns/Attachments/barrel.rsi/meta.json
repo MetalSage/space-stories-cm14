@@ -170,6 +170,9 @@
       "name": "u_m4spr_barrel"
     },
     {
+      "name": "m4spr_barrel_aod"
+    },
+    {
       "name": "m4spr_custom_barrel"
     },
     {
@@ -183,6 +186,9 @@
     },
     {
       "name": "c_m4spr_custom_barrel"
+    },
+    {
+      "name": "m4spr_custom_barrel_aod"
     },
     {
       "name": "m4spr_barrel_a"
@@ -243,6 +249,9 @@
     },
     {
       "name": "pmc_sniperbarrel"
+    },
+    {
+      "name": "sniperbarrel_t"
     },
     {
       "name": "npz92_suppressor"

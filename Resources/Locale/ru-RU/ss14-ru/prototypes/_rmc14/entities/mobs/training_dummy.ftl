@@ -1,0 +1,17 @@
+ent-RMCTrainingDummy = тренировочный манекен
+    .desc = Тренировочный манекен, используемый КМП США для имитации человеческого тела. Кажется почти слишком реалистичным.
+    .suffix = RMC14
+ent-SpawnRMCTrainingDummy = Генератор тренировочных манекенов RMC
+    .desc = { ent-MarkerBase.desc }
+ent-RMCLockerTrainingDummy = шкаф для тренировочного манекена
+    .desc = Сверхзащищенный шкаф, содержащий тренировочный манекен. Доступен только главным врачам и старшим советникам сержантского состава.
+    .suffix = Юг, Пустой
+ent-RMCLockerTrainingDummyFilled = { ent-RMCLockerTrainingDummy }
+    .desc = { ent-RMCLockerTrainingDummy.desc }
+    .suffix = Юг, Заполненный
+ent-RMCLockerTrainingDummyNorth = { ent-RMCLockerTrainingDummy }
+    .desc = { ent-RMCLockerTrainingDummy.desc }
+    .suffix = Север, Пустой
+ent-RMCLockerTrainingDummyNorthFilled = { ent-RMCLockerTrainingDummyNorth }
+    .desc = { ent-RMCLockerTrainingDummyNorth.desc }
+    .suffix = Север, Заполненный

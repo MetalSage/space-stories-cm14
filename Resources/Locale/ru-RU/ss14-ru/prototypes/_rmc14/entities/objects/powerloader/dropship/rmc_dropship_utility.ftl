@@ -1,0 +1,14 @@
+ent-RMCDropshipAttachmentUtility = { ent-RMCDropshipAttachmentBase }
+    .desc = { ent-RMCDropshipAttachmentBase.desc }
+ent-RMCDropshipAttachmentMedevac = система эвакуации ЭМУ-4М
+    .desc = Лебедка для подъема раненых пехотинцев на медицинских носилках на дропшип. Крепится к точке крепления, обслуживаемой экипажем, в задней части дропшипа.
+ent-RMCDropshipAttachmentFulton = система подъема фултона ЭМУ-19
+    .desc = Лебедочная система для сбора любых фултонных шаров на большой высоте. Обязательно включите ее!
+ent-RMCDropshipAttachmentParaDrop = система десантирования с парашютом ППУ-1
+    .desc = { ent-RMCDropshipAttachmentUtility.desc }
+ent-RMCDropshipAttachmentDoorGun = Система крепления вооружения MTU-4B Door Gunner
+    .desc = Коробка для установки оснащённого экипажем крупнокалиберного пулемёта M56D с оптическим прицелом. Подходит как для внешних креплений оружия, так и для креплений в отсеках экипажа десантных кораблей.
+ent-RMCDropshipAttachmentSentryDefenseSystem = Система противовоздушной обороны A/A-32-P Sentry
+    .desc = Коробка, позволяющая развернуть сторожевую турель. Подходит как для крепления внешнего оружия, так и для крепления в отсеке экипажа десантных кораблей.
+ent-RMCDropshipAttachmentLaunchBay = LAG-14 internal sentry launcher
+    .desc = A launch bay to drop special ordnance. Fits inside the dropship's crew weapon emplacement. Moving this will require some sort of lifter. Accepts the A/C-49-P Air Deployable Sentry as ammunition.

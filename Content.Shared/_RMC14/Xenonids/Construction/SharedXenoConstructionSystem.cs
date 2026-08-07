@@ -985,7 +985,7 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
                 return;
             }
 
-            if (!CanOrderConstructionPopup((args.User, construction), target, construction.OrderConstructionChoice))
+            if (!CanOrderConstructionPopup((args.User, construction), target, construction.OrderConstructionChoice, false))
             {
                 args.Invalid = true;
             }
@@ -999,7 +999,7 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
             return;
         }
 
-        if (!CanSecreteOnTilePopup((args.User, construction), construction.BuildChoice, target, ent.Comp.CheckStructureSelected, ent.Comp.CheckWeeds))
+        if (!CanSecreteOnTilePopup((args.User, construction), construction.BuildChoice, target, ent.Comp.CheckStructureSelected, ent.Comp.CheckWeeds, false))
         {
             args.Invalid = true;
         }
@@ -1595,7 +1595,7 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
             }
 
             if (choiceProto.TryGetComponent(out HiveConstructionLimitedComponent? limited, _compFactory) &&
-                !CanPlaceLimitedHiveStructure(xeno.Owner, limited, out var limit, out _))
+                !CanPlaceLimitedHiveStructure(xeno.Owner, limited, out var limit, out var curCount))
             {
                 // server-only as the structure may not be in the client's PVS bubble
                 if (_net.IsServer && popup)
@@ -1609,12 +1609,18 @@ public sealed class SharedXenoConstructionSystem : EntitySystem
                 return false;
             }
 
-            if (choiceProto.ID == XenoHiveCoreNodeId && _hive.GetHive(xeno.Owner) is { } hive && hive.Comp.NewCoreAt > _timing.CurTime)
+            if (choiceProto.ID == XenoHiveCoreNodeId)
             {
-                if (_net.IsServer && popup)
-                    _popup.PopupEntity(Loc.GetString("rmc-xeno-cant-build-new-yet", ("choice", choiceProto.Name)), xeno, xeno, PopupType.MediumCaution);
+                if (!_area.CanXenoHiveSetupPopup((gridId, grid, null), tile, xeno, popup))
+                    return false;
 
-                return false;
+                if (_hive.GetHive(xeno.Owner) is { } hive && hive.Comp.NewCoreAt > _timing.CurTime)
+                {
+                    if (_net.IsServer && popup)
+                        _popup.PopupEntity(Loc.GetString("rmc-xeno-cant-build-new-yet", ("choice", choiceProto.Name)), xeno, xeno, PopupType.MediumCaution);
+
+                    return false;
+                }
             }
         }
 

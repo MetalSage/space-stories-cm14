@@ -111,11 +111,19 @@
   parent: RMCXenoCarrierBase
   id: CMXenoCarrier
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoPlantWeeds ]
+      XenoPrimaryTwo: [ ActionXenoResinHole ]
+      XenoPrimaryThree: [ ActionXenoThrowParasite ]
+      XenoPrimaryFour: [ ActionXenoRetrieveEgg ]
+      XenoPrimaryFive: [ ActionXenoOrderConstruction ]
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleCarrier
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Carrier/carrier.rsi
+    sprite: _Stories/Mobs/Xenos/Carrier/carrier.rsi
     layers:
     - map: [ "enum.XenoVisualLayers.Base" ]
       state: alive
@@ -167,7 +175,7 @@
     guides:
     - RMCGuideRoleEggsac
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Carrier/eggsac_carrier.rsi
+    sprite: _Stories/Mobs/Xenos/Carrier/eggsac_carrier.rsi
     layers:
     - map: [ "enum.XenoVisualLayers.Base" ]
       state: alive
@@ -180,7 +188,7 @@
     - map: [ "enum.XenoInhandVisualLayers.Right" ]
       visible: false
     - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _RMC14/Effects/xeno_shields.rsi
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
   - type: Xeno
     actionIds:

@@ -6,6 +6,10 @@
       collection: CMMaleScreams
     Laugh:
       collection: MaleLaugh
+    # Stories-Emote-Start
+    Warcry:
+      collection: STMaleWarcry
+    # Stories-Emote-End
 
 - type: emoteSounds
   parent: RMCBaseFemaleSounds
@@ -15,3 +19,7 @@
       collection: CMFemaleScreams
     Laugh:
       collection: FemaleLaugh
+    # Stories-Emote-Start
+    Warcry:
+      collection: STFemaleWarcry
+    # Stories-Emote-End

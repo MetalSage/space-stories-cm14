@@ -15,7 +15,7 @@
     guides:
     - RMCGuideRoleBoiler
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Boiler/boiler.rsi
+    sprite: _Stories/Mobs/Xenos/Boiler/boiler.rsi
   - type: Fixtures
     fixtures:
       fix1:
@@ -170,6 +170,13 @@
   parent: CMXenoBoiler
   id: RMCXenoBoiler
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoBombard ]
+      XenoPrimaryTwo: [ ActionXenoToggleGasType ]
+      XenoPrimaryThree: [ ActionXenoSprayAcidBoiler ]
+      XenoPrimaryFour: [ ActionXenoZoom ]
+      XenoPrimaryFive: [ ActionXenoAcidShroud ]
   - type: Xeno
     actionIds:
     - ActionXenoRest
@@ -190,6 +197,12 @@
       - RMCXenoBoilerSapper
   - type: RMCActionOrder
     id: RMCXenoBoiler
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidStrong
+    - ActionXenoBombard
+    - ActionXenoSprayAcidBoiler
+    - ActionXenoAcidShroud
 
     # Sapper strain
 - type: entity
@@ -197,8 +210,14 @@
   id: RMCXenoBoilerSapper
   suffix: Sapper
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoDeployTraps ]
+      XenoPrimaryTwo: [ ActionXenoAcidMine ]
+      XenoPrimaryThree: [ ActionXenoAcidShotgun ]
+      XenoPrimaryFour: [ ActionXenoZoom ]
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Boiler/boiler_sapper.rsi
+    sprite: _Stories/Mobs/Xenos/Boiler/trapper_boiler.rsi
   - type: Xeno
     actionIds:
     - ActionXenoRest
@@ -243,7 +262,11 @@
   - type: XenoDeployTraps
   - type: XenoInsight
   - type: XenoAdrenalineSurge
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidStrong
+    - ActionXenoAcidMine
+    - ActionXenoAcidShotgun
+    - ActionXenoDeployTraps
   - type: RMCActionOrder
     id: RMCXenoBoilerSapper
-
-

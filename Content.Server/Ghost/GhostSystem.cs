@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._Stories.Sponsors;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
@@ -71,6 +72,7 @@ namespace Content.Server.Ghost
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly TagSystem _tag = default!;
+        [Dependency] private readonly SponsorsManager _partners = default!; // Stories-Sponsors
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
 
         private EntityQuery<GhostComponent> _ghostQuery;
@@ -130,12 +132,12 @@ namespace Content.Server.Ghost
             if (HasComp<GhostHearingComponent>(uid))
             {
                 RemComp<GhostHearingComponent>(uid);
-                _actions.SetToggled(component.ToggleGhostHearingActionEntity, true);
+                _actions.SetToggled(component.ToggleGhostHearingActionEntity, false);
             }
             else
             {
                 AddComp<GhostHearingComponent>(uid);
-                _actions.SetToggled(component.ToggleGhostHearingActionEntity, false);
+                _actions.SetToggled(component.ToggleGhostHearingActionEntity, true);
             }
 
             var str = HasComp<GhostHearingComponent>(uid)
@@ -235,6 +237,7 @@ namespace Content.Server.Ghost
         {
             _actions.AddAction(uid, ref component.BooActionEntity, component.BooAction);
             _actions.AddAction(uid, ref component.ToggleGhostHearingActionEntity, component.ToggleGhostHearingAction);
+            _actions.SetToggled(component.ToggleGhostHearingActionEntity, HasComp<GhostHearingComponent>(uid));
             _actions.AddAction(uid, ref component.ToggleLightingActionEntity, component.ToggleLightingAction);
             _actions.AddAction(uid, ref component.ToggleFoVActionEntity, component.ToggleFoVAction);
             _actions.AddAction(uid, ref component.ToggleGhostsActionEntity, component.ToggleGhostsAction);
@@ -492,8 +495,14 @@ namespace Content.Server.Ghost
                 _minds.TransferTo(mind.Owner, null, createGhost: false, mind: mind.Comp);
                 return null;
             }
-
-            var ghost = SpawnAtPosition(GameTicker.ObserverPrototypeName, spawnPosition.Value);
+            // Stories-Sponsor-Ghosts-Start
+            var proto = GameTicker.ObserverPrototypeName;
+            if (mind.Comp.UserId != null && _partners.TryGetInfo(mind.Comp.UserId.Value, out var sponsorData))
+            {
+                proto = sponsorData.GhostSkin;
+            }
+            var ghost = SpawnAtPosition(proto, spawnPosition.Value);
+            // Stories-Sponsor-Ghosts-End
             var ghostComponent = Comp<GhostComponent>(ghost);
 
             // Try setting the ghost entity name to either the character name or the player name.

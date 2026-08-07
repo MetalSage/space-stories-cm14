@@ -1,0 +1,14 @@
+ent-RMCSurveillanceCameraAlmayer = корабельная камера наблюдения
+    .desc = Используется для наблюдения за помещениями.
+ent-RMCMonitorCameraAlmayer = судовая камера наблюдения
+    .desc = Используется для доступа к различным камерам на станции.
+    .suffix = Алмайер
+ent-RMCMonitorCameraAlamo = { ent-RMCSurveillanceCameraAlmayer }
+    .desc = Используется для наблюдения за десантным кораблем.
+    .suffix = Аламо
+ent-RMCMonitorCameraNormandy = { ent-RMCSurveillanceCameraAlmayer }
+    .desc = Используется для наблюдения за десантным кораблем.
+    .suffix = Нормандия
+ent-RMCMonitorCameraLandingZone = Камера зоны высадки
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Зона высадки

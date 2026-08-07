@@ -1,0 +1,40 @@
+<ContainerButton
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    MinSize="64 64"
+    MaxSize="64 64">
+    <PanelContainer Name="Highlight" Visible="False">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#00FF0020" BorderColor="#00FF00" BorderThickness="2" />
+        </PanelContainer.PanelOverride>
+    </PanelContainer>
+
+    <PanelContainer Name="SponsorHighlight" Visible="False">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#FFD70010" BorderColor="#FFD700" BorderThickness="1" />
+        </PanelContainer.PanelOverride>
+    </PanelContainer>
+
+    <SpriteView Name="SpriteView" Scale="2.0 2.0" Margin="2" MouseFilter="Ignore" />
+
+    <TextureRect Name="NoneTexture" TexturePath="/Textures/Interface/Nano/cross.svg.png"
+                 Stretch="KeepAspectCentered"
+                 SetSize="32 32"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Visible="False"
+                 ModulateSelfOverride="Red"/>
+
+    <PanelContainer Name="LockOverlay" Visible="False">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#00000080" />
+        </PanelContainer.PanelOverride>
+        <TextureRect TexturePath="/Textures/Interface/Nano/lock.svg.192dpi.png"
+                     Stretch="KeepAspectCentered"
+                     SetSize="24 24"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     ModulateSelfOverride="#CCCCCC"/>
+    </PanelContainer>
+</ContainerButton>

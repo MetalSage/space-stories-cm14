@@ -1,0 +1,10 @@
+- type: shader
+  id: SuperEmpower
+  kind: source
+  path: "/Textures/_Stories/Shaders/SuperEmpower.swsl"
+  params:
+    super_empower_color: "#FF000055"
+    light_boost: 6
+    light_gamma: 5
+    light_whitepoint: 48
+    superpower_fullbright: true

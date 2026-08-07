@@ -1,0 +1,15 @@
+ent-RMCWeaponPistolNP92 = пистолет NP92
+    .desc = Стандартное табельное оружие СПН. NP92 — компактный, но мощный пистолет, который нравится большинству выданных ему бойцов, хотя некоторые предпочитают оружие, которое он должен был заменить, — Тип 73. Вмещает магазины на 12 патронов.
+ent-RMCWeaponPistolNPZ92 = пистолет NPZ92
+    .desc = NPZ92 — это версия NP92 со встроенным глушителем, выдаваемая по особому случаю подразделениям Коммандо.
+ent-RMCWeaponPistolNP92Empty = { ent-RMCWeaponPistolNP92 }
+    .desc = { ent-RMCWeaponPistolNP92.desc }
+    .suffix = Пустой
+ent-RMCMagazinePistolNP92 = магазин NP92 (9 мм)
+    .desc = { ent-CMBaseMagazinePistol.desc }
+ent-RMCMagazinePistolNP92Extended = увеличенный магазин NP92 (9 мм)
+    .desc = { ent-CMBaseMagazinePistol.desc }
+ent-RMCBulletPistolNP92 = пуля (9 мм)
+    .desc = { ent-CMBulletBase.desc }
+ent-RMCCartridgePistolNP92 = патрон (9 мм)
+    .desc = { ent-CMCartridgePistolBase.desc }

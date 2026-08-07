@@ -1,0 +1,10 @@
+rmc-access-spp-general = СНП Общий
+rmc-access-spp-medical = СНП Медицинский
+rmc-access-spp-engineering = СНП Инженерия
+rmc-access-spp-security = СНП Безопасность
+rmc-access-spp-armory = СНП Оружейная
+rmc-access-spp-flight = СНП Полет
+rmc-access-spp-research = СНП Исследование
+rmc-access-spp-commando = СНП Коммандос
+rmc-access-spp-leadership = СНП Лидерство
+rmc-access-spp-senior-lead = СНП Старший Руководитель

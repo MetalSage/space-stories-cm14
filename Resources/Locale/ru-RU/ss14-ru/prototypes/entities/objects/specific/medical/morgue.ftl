@@ -1,0 +1,9 @@
+ent-BodyBag = мешок для тела
+    .desc = Пластиковый мешок, предназначенный для хранения и транспортировки трупов и предотвращения их гниения.
+ent-BodyBagFolded = body bag
+    .desc = A plastic bag designed for the storage and transportation of cadavers to stop body decomposition.
+    .suffix = Сложенный
+ent-Ash = пепел
+    .desc = Раньше это чем-то было, но теперь это не так.
+ent-Ectoplasm = эктоплазма
+    .desc = В таком виде она гораздо менее смертельна.

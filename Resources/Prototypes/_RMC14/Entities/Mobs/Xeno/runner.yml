@@ -13,7 +13,7 @@
   description: A small red alien that looks like it could run fairly quickly...
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Runner/runner.rsi
+    sprite: _Stories/Mobs/Xenos/Runner/runner.rsi
   - type: Eye
     pvsScale: 1.5
   - type: MobState
@@ -33,7 +33,7 @@
   - type: Xeno
     role: CMXenoRunner
     tier: 1
-    hudOffset: -0.15,0.6
+    hudOffset: 0,0.63
     unlockAt: 300 # 5 minutes
   - type: XenoRegen
     restHealMultiplier:  1.75
@@ -122,6 +122,8 @@
     baseSprintSpeed: 10
   - type: IntelRecoverCorpseObjectiveOnDeath
     value: 0.1
+  - type: AutoClimbBlocked # Stories-AutoClimb
+
   - type: MobCollision
     minimumSpeedModifier: 0.1
   - type: FixedIdentity
@@ -133,6 +135,12 @@
   parent: CMXenoRunnerBase
   id: CMXenoRunner
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoLeap ]
+      XenoPrimaryTwo: [ ActionXenoBoneChips ]
+      XenoPrimaryThree: [ ActionXenoZoom ]
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleRunner
@@ -174,7 +182,7 @@
   suffix: Acider
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Runner/acider_runner.rsi
+    sprite: _Stories/Mobs/Xenos/Runner/acider_runner.rsi
     layers:
     - map: [ "enum.XenoVisualLayers.Base", "enum.ForTheHiveVisualLayers.Base" ]
       state: alive
@@ -183,7 +191,7 @@
     - map: [ "enum.XenoAcidGeneratingVisualLayers.Base" ]
       visible: false
     - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _RMC14/Effects/xeno_shields.rsi
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
   - type: MobThresholds
     thresholds:
@@ -236,8 +244,8 @@
           Heat: 1
       duration: 20
   - type: ForTheHive
-    baseSprite: _RMC14/Mobs/Xenonids/Runner/acider_runner.rsi
-    activeSprite: _RMC14/Mobs/Xenonids/Runner/acider_runner_primed.rsi
+    baseSprite: _Stories/Mobs/Xenos/Runner/acider_runner.rsi
+    activeSprite: _Stories/Mobs/Xenos/Runner/acider_runner_primed.rsi
     baseDamage:
       types:
         Heat: 1

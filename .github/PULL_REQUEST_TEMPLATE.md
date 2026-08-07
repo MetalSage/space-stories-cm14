@@ -1,35 +1,37 @@
-<!-- Guidelines: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
+<!-- Руководство: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
 
-## About the PR
-<!-- What did you change? -->
+## Описание PR
+<!-- Что было изменено? -->
 
-## Why / Balance
-<!-- Discuss how this would affect game balance or explain why it was changed. Link any relevant discussions or issues. -->
+## Причина / Баланс
+<!-- Опишите, как это повлияет на игровой баланс, или объясните причину изменений. Укажите ссылки на связанные обсуждения или issues. -->
 
-## Technical details
-<!-- Summary of code changes for easier review. -->
+## Технические детали
+<!-- Краткое описание изменений в коде для упрощения ревью. -->
 
-## Media
-<!-- Attach media if the PR makes ingame changes (clothing, items, features, etc).
-Small fixes/refactors are exempt. Media may be used in RMC14 progress reports with credit. -->
+## Медиа
+<!-- Прикрепите скриншоты или видео, если PR вносит визуальные или игровые изменения (одежда, предметы, механики и т.д.).
+Мелкие фиксы/рефакторинг не требуют медиа. Медиафайлы могут быть использованы в отчетах о разработке проекта с указанием авторства. -->
 
-## Requirements
-<!-- Confirm the following by placing an X in the brackets [X]: -->
-- [ ] I have read and am following the [Pull Request and Changelog Guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
-- [ ] I have added media to this PR or it does not require an ingame showcase.
-<!-- You should understand that not following the above may get your PR closed at maintainer’s discretion -->
-- [ ] By submitting this code and/or assets, I confirm that I either own them or have provided the correct necessary licenses to use and distribute them. I agree to be fully responsible for any legal claims or issues arising from the use of these materials.
+## Требования
+<!-- Подтвердите следующее, поставив X в скобках [X]: -->
+- [ ] Я прочитал(а) и следую [Руководству по Pull Request и Changelog](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
+- [ ] Я добавил(а) медиафайлы в этот PR, либо он не требует внутриигровой демонстрации.
+- [ ] Отправляя этот код и/или ассеты, я подтверждаю, что являюсь их автором, либо предоставил(а) необходимые корректные лицензии на их использование и распространение. Я беру на себя полную ответственность за любые юридические претензии или проблемы, возникающие из-за использования этих материалов.
+<!-- Пояснение к пункту ниже, подтверждая этот пункт, вы не теряете авторские права. Вы всё ещё владеете своим оригинальным кодом/артом и можете использовать его в своих личных целях. Галочка означает лишь то, что вы передаете проекту Space Stories (и его администрации) неэксклюзивное право свободно использовать этот вклад в наших сборках и связанных проектах. -->
+- [ ] Я подтверждаю, что ознакомился(ась) с [Space Stories License Agreement](https://github.com/MetalSage/space-stories-cm14/blob/master/LICENSE.TXT) и полностью согласен(на) с его условиями. В частности, я предоставляю Лицензиару бессрочную, безвозмездную, неисключительную и безотзывную лицензию на использование, модификацию и распространение моего вклада.
+<!-- Имейте в виду, что несоблюдение вышеуказанных требований может привести к закрытию вашего PR на усмотрение мейнтейнеров -->
 
-**Changelog**
-<!-- Add a Changelog entry to make players aware of new features or changes that could affect gameplay.
-Admin changes may be listed for admins to see with admin:
-Coding changes with no changes visible in-game may be listed for other contributors with code:
-Make sure to read the guidelines.
-Changelog must have a :cl: symbol, so the bot recognizes the changes and adds them to the game's changelog. -->
+**Changelog (Список изменений)**
+<!-- Добавьте запись в Changelog, чтобы игроки узнали о новых функциях или изменениях, влияющих на геймплей.
+Изменения для админов можно указать с тегом admin:
+Изменения в коде, невидимые в игре, можно указать для других контрибьюторов с тегом code:
+Обязательно ознакомьтесь с руководством по чейнджлогам.
+Changelog должен начинаться с символа :cl:, чтобы бот распознал изменения и добавил их в игру. -->
 :cl:
-- add: Added fun!
-- remove: Removed fun!
-- tweak: Changed fun!
-- fix: Fixed fun!
-- admin: Admin related change!
-- code: Code related change for contributors!
+- add: Добавлено веселье!
+- remove: Удалено веселье!
+- tweak: Изменено веселье!
+- fix: Исправлено веселье!
+- admin: Изменение для администраторов!
+- code: Изменение в коде для разработчиков!

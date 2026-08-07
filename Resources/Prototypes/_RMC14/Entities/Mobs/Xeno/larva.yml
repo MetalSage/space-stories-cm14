@@ -10,7 +10,7 @@
     guides:
     - RMCGuideRoleDrone
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Larva/larva.rsi
+    sprite: _Stories/Mobs/Xenos/Larva/larva.rsi
   - type: FiremanCarriable
     canThrow: true
     carrierWhitelist:
@@ -32,7 +32,7 @@
     - ActionXenoRest
     - ActionXenoWatch
     - ActionXenoHide
-    hudOffset: -0.1,0.25
+    hudOffset: -0.1,0.125
     tier: 0
     unlockAt: 0
     emoteSounds: Larva
@@ -72,6 +72,7 @@
         - BarricadeImpassable
         layer:
         - SmallMobLayer
+  - type: XenoAnimateMovement
   - type: Flammable
     canResistFire: false
   - type: IgnoreBlockPullingDead
@@ -82,6 +83,8 @@
   - type: Speech
     speechSounds: XenonidLarva
     allowedEmotes: [ "XenoRoar" ]
+    audioParams: # Stories-TTS
+      volume: -8
   - type: RMCSize
     size: Small
   - type: TacticalMapIcon
@@ -94,6 +97,7 @@
     - RMCSynthGrabbable
   - type: RMCBuckleOffset
     offset: 0, 0
+  - type: AutoClimbBlocked # Stories-AutoClimb
   - type: XenoRankNames
     rankNames:
       0: rmc-xeno-young-larva
@@ -105,6 +109,8 @@
     name: cm-job-name-xeno-larva
   - type: VentCrawler
     ventCrawlIcon: larva
+  - type: TTS # Stories-TTS
+    voice: sophronia_franklin
   - type: RMCActionOrder
     id: CMXenoLarva
 
@@ -116,6 +122,6 @@
   description: All slimy and yucky.
   components:
     - type: Sprite
-      sprite: _RMC14/Mobs/Xenonids/Larva/larva.rsi
+      sprite: _Stories/Mobs/Xenos/Larva/larva.rsi
       noRot: true
       state: embryo

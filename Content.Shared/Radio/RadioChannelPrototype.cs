@@ -18,7 +18,7 @@ public sealed partial class RadioChannelPrototype : IPrototype
     /// Single-character prefix to determine what channel a message should be sent to.
     /// </summary>
     [DataField("keycode")]
-    public char KeyCode { get; private set; } = '\0';
+    public string KeyCode { get; private set; } = string.Empty; // Stories-Hunter
 
     [DataField("frequency")]
     public int Frequency { get; private set; } = 0;

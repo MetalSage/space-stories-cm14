@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from CM-SS13 at commit https://github.com/cmss13-devs/cmss13/commit/05eaa3484b1a35aa759300bcfc8f0119f009daae, https://github.com/cmss13-devs/cmss13/blob/106c92cdf232ebc12c9d7a2feb23956c6755496f/icons/mob/humans/onmob/items_righthand_0.dmi, https://github.com/cmss13-devs/cmss13/blob/05eaa3484b1a35aa759300bcfc8f0119f009daae/icons/obj/items/clothing/masks.dmi, equipped-MASK-reptilian edited by Dutch-VanDerLinde, equipped-MASK-avali modified by DasIrrlicht, equipped-MASK-rodentia unmodified from equipped-MASK-reptilian",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "1-icon"
+    },
+    {
+      "name": "2-icon"
+    },
+    {
+      "name": "3-icon"
+    },
+    {
+      "name": "4-icon"
+    },
+    {
+      "name": "5-icon"
+    },
+    {
+      "name": "6-icon"
+    },
+    {
+      "name": "7-icon"
+    },
+    {
+      "name": "8-icon"
+    },
+    {
+      "name": "9-icon"
+    },
+    {
+      "name": "10-icon"
+    },
+    {
+      "name": "11-icon"
+    },
+    {
+      "name": "12-icon"
+    },
+    {
+      "name": "13-icon"
+    },
+    {
+      "name": "14-icon"
+    },
+    {
+      "name": "15-icon"
+    },
+    {
+      "name": "16-icon"
+    },
+    {
+      "name": "17-icon"
+    },
+    {
+      "name": "18-icon"
+    },
+    {
+      "name": "19-icon"
+    },
+    {
+      "name": "20-icon"
+    },
+    {
+      "name": "1-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "2-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "3-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "4-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "5-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "6-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "7-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "8-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "9-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "10-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "11-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "12-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "13-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "14-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "15-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "16-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "17-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "18-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "19-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "20-equipped-MASK",
+      "directions": 4
+    }
+  ]
+}

@@ -19,7 +19,7 @@
     - CMResearcher
     - CMCMO
     sections:
-    - name: Medical Set (Mandatory)
+    - name: Медицинский Набор (Обязательный)
       jobs:
       - CMDoctor
       - RMCFieldDoctor
@@ -28,23 +28,23 @@
       takeAll: CMMedicalSet
       entries:
       - id: RMCVendorBundleCrewMedicalEssentialsDoctor
-    - name: Medical Set (Mandatory)
+    - name: Медицинский Набор (Обязательный)
       jobs:
       - CMNurse
       takeAll: CMMedicalSet
       entries:
       - id: CMVendorBundleCrewMedicalEssentialsNurse
-    - name: Standard Equipment
+    - name: Стандартное Оборудование
       takeAll: CMStandard
       entries:
       - id: CMHandsLatex
       - id: CMHeadsetMedical
-    - name: Eyewear
+    - name: Очки
       choices: { CMEyewear: 1 }
       entries:
       - id: RMCGlassesMedicalHUDGlasses
 #      - id: Prescription Medical HUD Glasses
-    - name: Uniform
+    - name: Униформа
       choices: { CMUniform: 1 }
       jobs:
       - CMNurse
@@ -79,13 +79,13 @@
       - id: RMCScrubsWhite
       - id: RMCScrubsBlack
       - id: RMCScrubsLightBlue
-    - name: Suit
+    - name: Костюм
       jobs:
       - CMNurse
       choices: { CMSuit: 1 }
       entries:
       - id: RMCMedicalApron
-    - name: Suit
+    - name: Костюм
       jobs:
       - CMDoctor
       - RMCFieldDoctor
@@ -109,7 +109,7 @@
       - id: RMCMaskBalaclava
       - id: RMCMaskTornScarfBlack
         name: Snow Scarf 
-    - name: Headwear
+    - name: Головные Уборы
       choices: { CMHeadwear: 1 }
       jobs:
       - CMNurse
@@ -143,14 +143,14 @@
       - id: CMHeadCapSurgBrown
       - id: CMHeadCapSurgWhite
       - id: CMHeadCapSurgBlack
-    - name: Backpack
+    - name: Рюкзак
       choices: { CMBackpack: 1 }
       entries:
       - id: CMBackpackMarine
-        name: backpack
+        name: рюкзак
         replaceSlot: back
       - id: CMSatchelMarine
-        name: satchel
+        name: сумка
         replaceSlot: back
       - id: CMBackpackMedical
         replaceSlot: back
@@ -158,7 +158,7 @@
       - id: CMSatchelMedical
         replaceSlot: back
         recommended: true
-    - name: Belt
+    - name: Пояс
       choices: { CMBelt: 1 }
       entries:
       - id: CMBeltMedicBagFilled
@@ -167,16 +167,16 @@
       - id: CMBeltMedicalFilled
         name: M276 pattern medical storage rig (Full)
         recommended: true
-    - name: Pouches
+    - name: Подсумки
       choices: { RMCPouch: 2 }
       entries:
       - id: RMCPouchAutoinjector
       - id: RMCPouchFirstAidInjectors
-        name: first-aid pouch (refillable injectors)
+        name: подсумок первой помощи (многоразовые инъекторы)
       - id: RMCPouchFirstAidSplintsGauzeOintment
-        name: first-aid pouch (gauze, ointment) # TODO RMC14 splints comma
+        name: подсумок первой помощи (марля, мазь) # TODO RMC14 splints comma
       - id: RMCPouchFirstAidPills
-        name: first-aid pouch (pills)
+        name: подсумок первой помощи (таблетки)
       - id: RMCPouchFirstResponder
       - id: RMCPouchMedical
         recommended: true
@@ -184,24 +184,24 @@
         recommended: true
       - id: RMCPouchReagentCanisterBicaridine
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(Bicaridine)
+        name: канистра реагентов (бикаридин)
       - id: RMCPouchReagentCanisterKelotane
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(Kelotane)
+        name: канистра реагентов (келотан)
       - id: RMCPouchReagentCanisterTricordrazineRevival
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(Revival Mix - Tricordrazine)
+        name: канистра реагентов (возрождающая смесь - трикордразин)
       #      - id: CMPressurizedReagentCanisterPouchPeridaxonRevivalMix
       #        recommended: true
-      #        name: Pressurized Reagent Canister Pouch\n(Revival Mix - Peridaxon)
+      #        name: канистра реагентов (возрождающая смесь - перидаксон)
       - id: RMCPouchReagentCanisterTricordrazine
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(Tricordrazine)
+        name: канистра реагентов (трикордразин)
       - id: RMCPouchReagentCanister
         recommended: true
-        name: Pressurized Reagent Canister Pouch\n(EMPTY)
+        name: канистра реагентов (пустая)
       - id: RMCPouchSling
-    - name: Accessories
+    - name: Аксессуары
       choices: { CMAccessories: 1 }
       entries:
       - id: CMWebbingBrown

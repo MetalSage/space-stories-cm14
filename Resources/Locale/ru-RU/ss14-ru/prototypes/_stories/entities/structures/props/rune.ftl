@@ -1,0 +1,10 @@
+ent-STHunterRune = руна
+    .desc = { "" }
+ent-STHunterRuneCorner = { ent-STHunterRune }
+    .desc = { ent-STHunterRune.desc }
+ent-STHunterRuneCornerAlt = { ent-STHunterRune }
+    .desc = { ent-STHunterRune.desc }
+ent-STHunterRuneArrow = { ent-STHunterRune }
+    .desc = { ent-STHunterRune.desc }
+ent-STHunterRuneArrowAlt = { ent-STHunterRune }
+    .desc = { ent-STHunterRune.desc }

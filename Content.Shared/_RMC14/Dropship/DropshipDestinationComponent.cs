@@ -1,10 +1,11 @@
-﻿using Robust.Shared.GameStates;
+﻿using Content.Shared._RMC14.Evacuation;
+using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._RMC14.Dropship;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedDropshipSystem))]
+[Access(typeof(SharedDropshipSystem), typeof(SharedEvacuationSystem))]
 public sealed partial class DropshipDestinationComponent : Component
 {
     [DataField]

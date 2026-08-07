@@ -1,47 +1,42 @@
 ﻿<Document>
-  Guide by Kynthos on Discord
+  #Вышки связи и сенсорные вышки
 
-  [color=#5f698a]█    █ █▄ █[/color] [head=2][bold]UNITED NATIONS MARINE CORPS[/bold][/head]\n
-  [color=#5f698a]▀ ▄▀ █ ▀█ [/color]
+  На Колонии есть стационарные вышки, которые Морпехам необходимо будет восстанавливать, чтобы повысить свои возможности связи и сбора разведывательных данных. Это жизненно важные объекты, которые необходимо восстанавливать и защищать для поддержания их функциональности. Для ремонта этого жизненно важного оборудования вам потребуется специальная подготовка. Только специально обученные Инженеры, [textlink="Боевые техники" link="RMCGuideRoleCombatTechnician"] или Лидеры боевых групп имеют такую подготовку.
 
-  #Telecommunication and Sensor Towers
+  ##Вышки связи
+  
+  Радиосвязь между морпехами на планете и персоналом на борту «Альмаера» не может осуществляться до тех пор, пока одна из двух статических телекоммуникационных вышек TC-3T на Колонии не будет отремонтирована для усиления соединения.
 
-  On the Colony there are stationary towers that Marines will need to repair in order to bolster their communication and intelligence gathering capabilities. These are vital objectives that must be repaired and protected to maintain their functionality. To repair this vital equipment, you will need to be specifically trained. Only dedicated Engineers, [textlink="Combat Technicians" link="RMCGuideRoleCombatTechnician"], or Fireteam Leaders have such training.
+<Box>
+<GuideEntityEmbed Entity="RMCCommunicationsTower"/>
+</Box>
 
-  ##Telecommunication Towers
+  Расположение телекоммуникационных вышек варьируется в зависимости от операций. ЦИУ будет знать их точное местоположение,  поэтому обязательно связывайтесь с Командованием, чтобы узнать, какие вышки необходимо отремонтировать.
 
-  Radio communication between Marines on the planet and the staff onboard the Almayer cannot be conducted until one of the two TC-3T Static Telecommunications Tower in the Colony has been repaired to boost the connection.
+  [bold]Ремонт телекоммуникационной вышки[/bold] так же прост, как [bold]использование горелки[/bold] для сварки всех панелей обратно вместе. Возможно, вам придется повторить это несколько раз, поэтому осмотрите вышку, чтобы увидеть, требуется ли ремонт большего количества повреждений.
 
-  <Box>
-    <GuideEntityEmbed Entity="RMCCommunicationsTower"/>
-  </Box>
+  [bold]После ремонта вышки[/bold] вам необходимо будет [bold]использовать тюнер доступа к безопасности[/bold], чтобы [bold]добавить частоты вашей фракции[/bold] в сеть. После этого вышка начнет транслировать эти радиочастоты на планетарные и внепланетарные объекты.
 
-The location of the Telecommunication Towers vary between Operations. The CIC will know their exact location, so ensure you communicate with Command to be informed of which towers need to be repaired.
+  [bold]Телекоммуникационная вышка не будет функционировать, если она не будет запитана[/bold], поэтому вам также необходимо будет отремонтировать местный APC и, возможно, энергосеть Колонии.
 
-[bold]Repairing a Telecommunications Tower[/bold] is as simple as [bold]using a blowtorch[/bold] to weld all the panels back together. You may need to repeat this multiple times, so inspect the tower to see if more damage needs to be repaired.
+  После того, как телекоммуникационная вышка будет отремонтирована, настроена и запитана, радиосвязь возобновится. Разрушение или обесточивание вышки любым способом прекратит связь до устранения проблемы.
 
-[bold]Once the tower is repaired[/bold], you will need to [bold]use a Security Access Tuner[/bold] to [bold]add your faction’s frequencies[/bold] to the network. Once this is done, the tower will begin broadcasting those radio frequencies to planetary and extra-planetary locations.
+  ##Сенсорная вышка
 
-[bold]The Telecommunication Tower will not function if it is not powered[/bold], so you will also need to repair the local APC and potentially the Colony’s Power grid.
+  Экспериментальная сенсорная вышка, обнаруженная в каждой колонии, была настроена на отслеживание неизвестных биосигнатур в близлежащей области. После ее ремонта ЦИУ сможет [bold]отслеживать точное местоположение всех неизвестных биосигнатур на своей тактической карте[/bold] до тех пор, пока она будет функционировать.
 
-Once the Telecommunication Tower is repaired, tuned, and powered, radio communications will resume. The Tower becoming destroyed or depowered in any way will halt communications until the problem is fixed.
+  Расположение сенсорной вышки предопределено для каждой зоны боевых действий и остается неизменным между операциями.
 
-##Sensor Tower
+<Box>
+  <GuideEntityEmbed Entity="RMCSensorTower"/>
+</Box>
 
-The Experimental Sensor Tower found in each colony has been adjusted to track unknown biosignatures in the nearby area. With it repaired, the CIC will be able to [bold]track the exact location of all unknown biosignatures on their TACMAP[/bold] for as long as it is operational.
+  Если вы не уверены в следующем шаге ремонта, обязательно осмотрите вышку, но шаги следующие:
+  -Сначала используйте [bold]сварочный аппарат[/bold], чтобы сварить пластины обратно вместе.
+  -Затем используйте [bold]кусачки[/bold], чтобы отремонтировать провода.
+  -Затем используйте [bold]гаечный ключ[/bold], чтобы правильно выровнять башню.
+  -Наконец, включите сенсорную вышку, чтобы начать сканирование.
 
-The location of the Sensor Tower is predetermined for each AO, remaining the same between operations.
-
-  <Box>
-    <GuideEntityEmbed Entity="RMCSensorTower"/>
-  </Box>
-
-  If you are unsure on the next step for repairs, make sure to inspect the tower, but the steps are as follows:
-  -First, use a [bold]blowtorch[/bold] to weld the plates back together.
-  -Next, use [bold]wire cutters[/bold] to repair the wires.
-  -Then, use a [bold]wrench[/bold] to realign the tower properly.
-  -Finally, power the Sensor tower on to begin scanning.
-
-  Once the Sensor Tower has been repaired, it will stay operational for a small while until it [bold]randomly breaks down[/bold]. When this happens, the Sensor Tower must be repaired again to continue tracking unknown biosignatures.
+  После того, как сенсорная вышка будет отремонтирована, она будет оставаться работоспособной в течение короткого времени, пока [bold]случайно не сломается[/bold]. Когда это произойдет, сенсорную вышку необходимо будет отремонтировать снова, чтобы продолжить отслеживание неизвестных биосигнатур.
 
 </Document>

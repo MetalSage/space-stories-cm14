@@ -1,0 +1,160 @@
+<Document>
+  # Памятка Охотника
+  ### Честь. Доблесть. Охота. Следуй Кодексу.
+
+  ## Классификация Добычи: На кого охотиться?
+  Ключевое правило: не нападай первым на недостойную добычу. Они становятся достойными, только если атакуют тебя.
+
+  <Table Columns="3">
+    <ColorBox>
+      <Box>
+        Статус Добычи
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Кто это?
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Разрешенные Действия
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Достойная[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Вооруженные морпехи.\nБольшинство каст ксеноморфов.\nЛюбой, кто представляет угрозу.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Охоться в одиночку.\nИспользуй достойное оружие.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Недостойная[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Экипаж Алмайера, медики, синтетики.\nКомандный состав (первый час).\nКасты трутней, Королевы.\nРаненые (здоровье ниже 75%), безоружные.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]ОХОТА ЗАПРЕЩЕНА.[/bold]\nСтановятся достойными, если атакуют первыми.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Бесчестная[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Тот, кто оскверняет тело Охотника.\nНарушители правил дуэли чести.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Разрешено любое оружие.\nРазрешена охота в группе.\nУничтожить любой ценой.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Временно Бесчестная[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Атакующие тебя без причины.\nМешающие твоей текущей охоте.\nНосящие твое снаряжение.\nАтакующие тебя из невидимости.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Можно использовать бесчестное оружие [bold]только на время боя.[/bold]
+      </Box>
+    </ColorBox>
+  </Table>
+
+  ## Применение Оружия: Чем сражаться?
+
+  <Table Columns="2">
+    <ColorBox>
+      <Box>
+        Против [bold]Достойной[/bold] Добычи
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Против [bold]Бесчестной[/bold] Добычи
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Всё оружие ближнего боя.\nОхотничий лук (обычные стрелы).\nГарпуны (не более одного за бой).\nПлазмолив (только нелетальные режимы, без добивания оглушенных).
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Любое оружие без ограничений.[/bold]\nЛетальные режимы плазмолива.\nВзрывные стрелы.\nБой в невидимости.\nИспользование нескольких гарпунов.
+      </Box>
+    </ColorBox>
+  </Table>
+
+  ## Правила Территорий: Где охотиться?
+
+  <Table Columns="2">
+    <ColorBox>
+      <Box>
+        Локация
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Правила
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]ПОБ / Улей / КСША Алмайер[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]ВХОД И ОХОТА СТРОГО ЗАПРЕЩЕНЫ.[/bold]\nИсключения: Вернуть тело/снаряжение Охотника.
+      </Box>
+    </ColorBox>
+
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        [bold]Линия Фронта[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="3">
+        Не начинай бой.\nМожно преследовать убегающую добычу, используя [bold]только оружие ближнего боя.[/bold]
+      </Box>
+    </ColorBox>
+  </Table>
+
+  ## Ключевые Принципы
+
+  - [bold]Смерть:[/bold] Если ты при смерти, [bold]должен попытаться[/bold] активировать самоуничтожение. Не отменяй его, чтобы заманить врагов.
+  - [bold]Сотрудничество:[/bold] Охоться [bold]в одиночку[/bold]. Группа разрешена только против бесчестной добычи.
+  - [bold]Трофеи:[/bold] Можно забирать части тел. Из инвентаря — [bold]только один предмет[/bold] (кроме головных уборов и оружия ближнего боя). Запрещено брать уникальное снаряжение специалистов.
+  - [bold]Возвращение Снаряжения:[/bold] Возвращение тел павших Охотников — [bold]обязательно[/bold]. Возвращение снаряжения — поощряется. Носители твоего снаряжения — достойная добыча на планете и бесчестная на корабле.
+
+</Document>

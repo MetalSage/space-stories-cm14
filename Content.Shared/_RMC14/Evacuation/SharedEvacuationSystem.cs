@@ -213,6 +213,20 @@ public abstract class SharedEvacuationSystem : EntitySystem
             _physics.SetBodyStatus(grid, physics, BodyStatus.OnGround);
             _physics.SetFixedRotation(grid, true, manager: fixtures, body: physics);
         }
+
+        // Stories-GridSpawnerLink-Start
+        if (TryComp(ent, out DropshipDestinationComponent? dropshipDestination))
+        {
+            dropshipDestination.Ship = grid;
+            Dirty(ent, dropshipDestination);
+
+            if (TryComp(grid, out DropshipComponent? dropshipComp))
+            {
+                dropshipComp.Destination = ent;
+                Dirty(grid, dropshipComp);
+            }
+        }
+        // Stories-GridSpawnerLink-End
     }
 
     private void OnEvacuationDoorBeforeOpened(Entity<EvacuationDoorComponent> ent, ref BeforeDoorOpenedEvent args)
@@ -543,7 +557,7 @@ public abstract class SharedEvacuationSystem : EntitySystem
         var query = EntityQueryEnumerator<EvacuationProgressComponent>();
         while (query.MoveNext(out var progress))
         {
-            return (int) progress.Progress;
+            return (int)progress.Progress;
         }
 
         return 0;

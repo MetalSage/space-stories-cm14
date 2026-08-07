@@ -1,0 +1,9 @@
+ent-STBedHunter = { ent-CMBed }
+    .desc = { ent-CMBed.desc }
+    .suffix = { ent-CMBed.suffix }
+ent-STBedHunterAlt = { ent-CMBed }
+    .desc = { ent-CMBed.desc }
+    .suffix = { ent-CMBed.suffix }
+ent-STBedrollHunter = { ent-Bedroll }
+    .desc = { ent-Bedroll.desc }
+    .suffix = { ent-Bedroll.suffix }

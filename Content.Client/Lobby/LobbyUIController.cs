@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Client._RMC14.LinkAccount;
+using Content.Client._Stories.Hunter.Profiles.UI;
+using Content.Client._Stories.Sponsors;
 using Content.Client.Guidebook;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
@@ -29,7 +31,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby;
 
-public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
+public sealed partial class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
 {
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
@@ -41,14 +43,18 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
     [Dependency] private readonly LinkAccountManager _linkAccount = default!;
+    [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Stories-Sponsors
+
     [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
     [UISystemDependency] private readonly CMArmorSystem _armorSystem = default!;
+    [UISystemDependency] private readonly LoadoutSystem _loadout = default!; // RMC14
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
+    private HunterProfileEditor? _hunterProfileEditor; // Stories
     private CharacterSetupGuiSavePanel? _savePanel;
 
     /// <summary>
@@ -156,9 +162,11 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         PreviewPanel?.SetLoaded(false);
         _profileEditor?.Dispose();
         _characterSetup?.Dispose();
+        _hunterProfileEditor?.Dispose();
 
         _characterSetup = null;
         _profileEditor = null;
+        _hunterProfileEditor = null;
     }
 
     /// <summary>
@@ -172,6 +180,20 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         profileEditor.SetProfile(
             (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter,
             _preferencesManager.Preferences?.SelectedCharacterIndex);
+        // Stories-Start
+        if (_hunterProfileEditor != null)
+        {
+            _hunterProfileEditor.SetProfile(_preferencesManager.HunterProfile);
+            var isWhitelisted = _preferencesManager.Settings?.IsHunterWhitelisted ?? false;
+
+            if (!isWhitelisted && _sponsorsManager.TryGetInfo(out var sponsorInfo))
+            {
+                isWhitelisted = sponsorInfo.CanPlayHunter;
+            }
+            
+            profileEditor.SetTabVisible(profileEditor.GetHunterTabIndex(), isWhitelisted);
+        }
+        // Stories-End
     }
 
     /// <summary>
@@ -285,6 +307,16 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 
         _characterSetup = new CharacterSetupGui(_profileEditor);
+        
+        // Stories-Start
+        if (_hunterProfileEditor == null)
+        {
+            _hunterProfileEditor = new HunterProfileEditor();
+            _profileEditor.HunterTab.AddChild(_hunterProfileEditor);
+            _profileEditor.SetTabTitle(_profileEditor.GetHunterTabIndex(), Loc.GetString("st-hunter-profile-editor-tab-title"));
+            _hunterProfileEditor.OnProfileChanged += RefreshLobbyPreview;
+        }
+        // Stories-End
 
         _characterSetup.CloseButton.OnPressed += _ =>
         {
@@ -371,9 +403,11 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
                 if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
                     continue;
 
-                _spawn.EquipStartingGear(uid, loadoutProto);
+                _spawn.EquipStartingGear(uid, loadoutProto, raiseEvent: false);
             }
         }
+
+        _loadout.GearEquipped(uid);// RMC14
     }
 
     /// <summary>

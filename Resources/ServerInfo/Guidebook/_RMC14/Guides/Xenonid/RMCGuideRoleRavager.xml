@@ -1,27 +1,27 @@
 <Document>
-  #Ravager Tier 3
+  #Разрушитель, Уровень 3
   <GuideEntityEmbed Entity="CMXenoRavager"/>
-  ##Playing as a Ravager
-  You don't need to hide anymore.
+  ##Игра за Разрушителя
+  Вам больше не нужно прятаться.
 
-  Turning from an ambush caste to a slow brawler, they are very offensive on the frontline and excel at dealing damage. By using their Empower on 3 or more targets, they become super empowered which upgrades their Scissor Cut and Assault.
+  Превратившись из касты засад в медленного бойца, они очень агрессивны на передовой и превосходны в нанесении урона. Используя свою способность «Наделить силой» на 3 или более целях, они становятся супер-наделёнными, что улучшает их «Рассекающий Удар» и «Нападение».
 
-  Their passives include having their slash damage increased based on the amount of targets they currently empower from, and being fire-proof and explosion-resistant.
+  Их пассивные способности включают увеличенный урон от ударов в зависимости от количества целей, от которых они в данный момент получают усиление, а также устойчивость к огню и взрывам.
 
-  Your first activation of Empower will grant shield, on the second activation for every target nearby you, gain extra shield. It is suggested that you quickly Empower twice once nearby hosts before unleashing the rest of your attacks.
+  Первая активация «Наделить силой» даст щит; при второй активации за каждую ближайшую к вам цель вы получите дополнительный щит. Рекомендуется быстро активировать «Наделить силой» дважды, оказавшись рядом с носителями, прежде чем произвести остальные атаки.
 
-  Make sure to play around the demolitions specialist as you will be their biggest target, walk up to hordes from behind doors and quickly double empower, then begin slashing and using Assault. Once your Empower runs out, retreat and heal.
+  Убедитесь, что вы играете с учётом специалиста по подрывам, так как вы будете их главной целью. Подходите к ордам из-за дверей и быстро дважды активируйте «Наделить силой», затем начинайте рубить и использовать «Нападение». Как только действие «Наделить силой» закончится, отступайте и лечитесь.
 
-  Scissor Cut can also be used to slash hosts from afar, reducing risk.
+  «Рассекающий Удар» также можно использовать для поражения целей издалека, снижая риск.
 
-  ##Abilities:
-  - [bold][color=green]PASSIVE[/color][/bold]: Immune to fire damage, however will still catch on fire and lose armor from green fire.
-  - [bold]Empower[/bold]: On first activation, grants shield, on second activation, for every target in your line of sight and near you, gain extra shield and slash damage.
-  - Empowering from 3 or more targets will make you super empowered, upgrading your other abilities.
+  ##Способности:
+  - [bold][color=green]ПАССИВНО[/color][/bold]: Иммунитет к огненному урону, однако всё ещё может загореться и потерять броню от зелёного огня.
+  - [bold]Наделить Силой[/bold]: При первой активации даёт щит. При второй активации, за каждую цель в вашем поле зрения и рядом с вами, даёт дополнительный щит и урон от ударов.
+  - Усиление от 3 или более целей сделает вас супер-наделённым, улучшая ваши другие способности.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoEmpower"/>
-  - [bold]Assault[/bold]: Lunge forwards, if super empowered you will fling, knock down, and slash any target you hit. Slashing any targets will reduce this ability's cooldown.
+  - [bold]Нападение[/bold]: Бросок вперёд. Если вы супер-наделённый, вы отбросите, собьёте с ног и нанесёте урон любой цели, которую поразите. Удар по любой цели уменьшит время восстановления этой способности.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoAssault"/>
-  - [bold]Scissor Cut[/bold]: Slash in a 2x4 line.
-  - If super empowered, whoever hit will be slowed.
+  - [bold]Рассекающий Удар[/bold]: Рубящий удар по линии 2x4.
+  - Если вы супер-наделённый, поражённые цели будут замедлены.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoScissorCut"/>
 </Document>

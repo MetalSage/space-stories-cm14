@@ -1,0 +1,16 @@
+- type: emote
+  id: Warcry
+  name: chat-emote-name-warcry
+  category: Vocal
+  icon: Interface/Actions/scream.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - Hunter
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-warcry"]
+  chatTriggers:
+    - shouts an insprining cry
+    - кричит вдохновляющий клич

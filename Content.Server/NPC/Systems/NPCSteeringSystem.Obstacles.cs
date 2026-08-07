@@ -1,6 +1,7 @@
 using Content.Server.Destructible;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Pathfinding;
+using Content.Shared._RMC14.Barricade.Components;
 using Content.Shared.Climbing;
 using Content.Shared.CombatMode;
 using Content.Shared.DoAfter;
@@ -126,23 +127,32 @@ public sealed partial class NPCSteeringSystem
                 if (obstacleEnts.Count == 0)
                     return SteeringObstacleStatus.Completed;
             }
-            // Try climbing obstacles
-            else if ((component.Flags & PathFlags.Climbing) != 0x0 && isClimbable)
+
+            var canClimb = (component.Flags & PathFlags.Climbing) != 0x0 && isClimbable;
+
+            if (canClimb)
+            {
+                foreach (var ent in obstacleEnts)
+                {
+                    if (TryComp<BarbedComponent>(ent, out var barbed) && barbed.IsBarbed)
+                    {
+                        canClimb = false;
+                        break;
+                    }
+                }
+            }
+
+            if (canClimb)
             {
                 if (TryComp<ClimbingComponent>(uid, out var climbing))
                 {
                     if (climbing.IsClimbing)
-                    {
                         return SteeringObstacleStatus.Completed;
-                    }
-                    else if (climbing.NextTransition != null)
-                    {
+
+                    if (climbing.NextTransition != null)
                         return SteeringObstacleStatus.Continuing;
-                    }
 
                     var climbableQuery = GetEntityQuery<ClimbableComponent>();
-
-                    // Get the relevant obstacle
                     foreach (var ent in obstacleEnts)
                     {
                         if (climbableQuery.TryGetComponent(ent, out var table) &&
@@ -154,12 +164,11 @@ public sealed partial class NPCSteeringSystem
                         }
                     }
                 }
-
                 if (obstacleEnts.Count == 0)
                     return SteeringObstacleStatus.Completed;
             }
-            // Try smashing obstacles.
-            else if ((component.Flags & PathFlags.Smashing) != 0x0)
+
+            if ((component.Flags & PathFlags.Smashing) != 0x0)
             {
                 if (_melee.TryGetWeapon(uid, out _, out var meleeWeapon) && meleeWeapon.NextAttack <= _timing.CurTime && TryComp<CombatModeComponent>(uid, out var combatMode))
                 {

@@ -79,6 +79,11 @@
     tags:
     - Sidearm
     - RMCMK80
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Pistols/mk80.rsi
+      Amethyst: /Textures/_Stories/Objects/Weapons/Pistols/mk80.rsi
 
 - type: entity
   parent: RMCMK80

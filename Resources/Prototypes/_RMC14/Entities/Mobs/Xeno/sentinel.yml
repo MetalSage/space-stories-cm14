@@ -11,11 +11,33 @@
   name: Sentinel
   description: A slithery, spitting kind of alien.
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoSlowingSpit ]
+      XenoPrimaryTwo: [ ActionXenoScatteredSpit ]
+      XenoPrimaryThree: [ ActionXenoParalyzingSlash ]
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleSentinel
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Sentinel/sentinel.rsi
+    sprite: _Stories/Mobs/Xenos/Sentinel/sentinel.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Sentinel/sentinel_spit.rsi
+      state: spit
+      visible: false
   - type: MobState
     allowedStates:
     - Alive
@@ -43,7 +65,7 @@
     - ActionXenoParalyzingSlash
     - ActionXenoDevolve
     tier: 1
-    hudOffset: -0.15,0.157
+    hudOffset: 0,0.157
     unlockAt: 300 # 5 minutes
   - type: XenoLight
   - type: XenoDevolve
@@ -102,3 +124,8 @@
     ventCrawlIcon: sentinel
   - type: RMCActionOrder
     id: CMXenoSentinel
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidWeak
+    - ActionXenoSlowingSpit
+    - ActionXenoScatteredSpit

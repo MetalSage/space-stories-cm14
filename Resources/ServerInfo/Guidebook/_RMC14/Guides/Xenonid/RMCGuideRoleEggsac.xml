@@ -1,20 +1,20 @@
 <Document>
-  #Eggsac, Tier 2
+  #Яйценосец, Уровень 2
   <GuideEntityEmbed Entity="RMCXenoCarrierEggsac"/>
-  ##Playing as a Eggsac
-  You have given up your ability to store parasites. You can store 12 eggs, produce eggs with your eggsac, place 4 eggs off hive weeds that decay slower if you are near, and your pheromones have been strengthened.
+  ##Игра за Яйценосца
+  Вы отказались от способности хранить паразитов. Вы можете хранить 12 яиц, производить яйца с помощью своего яйцевого мешка, размещать 4 яйца вне ульевых сорняков, которые медленнее разлагаются, если вы находитесь рядом, и ваши феромоны были усилены.
 
-  Eggsac Carriers are specialised for egg production and can keep the hive supplied when queen isn't making eggs
+  Яйценосцы специализируются на производстве яиц и могут снабжать улей, когда Королева не откладывает яйца.
 
-  Your planted eggs are also unique as they can now be placed on regular weeds, however, they will decay if you move away from them. You can use these to make egg traps that hosts may walk into or help Oppressors by placing eggs near where they are going to hook.
+  Ваши отложенные яйца также уникальны тем, что теперь их можно размещать на обычных сорняках, однако они будут разлагаться, если вы отойдёте от них. Вы можете использовать их для создания яйцевых ловушек, в которые могут попасть носители, или помогать Угнетателям, размещая яйца рядом с местом, где они собираются зацепить цель.
 
-  ##Abilities:
-  - [bold]Emit Pheromones[/bold]: Emits one of the three pheromones, strength of said pheromone is dependent on caste and does not stack with pheromones of the same type.
+  ##Способности:
+  - [bold]Излучать Феромоны[/bold]: Излучает один из трёх феромонов. Сила этого феромона зависит от касты и не суммируется с феромонами того же типа.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoPheromones"/>
-  - [bold]Plant Weeds[/bold]: Places a resin node which spreads weeds across a large area.
+  - [bold]Посадить Сорняки[/bold]: Размещает смоляной узел, который распространяет сорняки на большой площади.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoPlantWeeds"/>
-  - [bold]Retrieve Egg[/bold]: Retrieves a egg once the ability is used
+  - [bold]Извлечь Яйцо[/bold]: Извлекает яйцо после использования способности.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoRetrieveEgg"/>
-  - [bold]Generate Eggs[/bold]: Produces eggs over time with a passive plasma consumption
+  - [bold]Генерировать Яйца[/bold]: Производит яйца со временем с пассивным потреблением плазмы.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoGenerateEggs"/>
 </Document>

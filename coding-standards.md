@@ -1,67 +1,68 @@
-# Coding Standards
+# Стандарты кодирования
+
 ## .editorconfig
 
-Make sure that your editor is correctly reading the project's .editorconfig file at the root of the project.
+Убедитесь, что ваш редактор правильно считывает файл `.editorconfig`, расположенный в корне проекта. Это обеспечит автоматическое форматирование и вывод предупреждений для кода, требующего исправления.
 
-This will automatically format and give warnings for code that needs fixing.
+## Переменные
 
-## Variables
+* Для переменных следует использовать неявную типизацию через `var`, где это возможно.
 
-* Variables should be implicitly typed with `var` where possible.
+## Компоненты (Component)
 
-## Components
-
-* Components should be defined in Content.Shared as much as possible, with `RegisterComponent`, `NetworkedComponent`, `AutoGenerateComponentState`, and `Access` attributes.
-  * Typing `nscomp` above the component's class definition automatically fills these in for you.
-* Fields on the component should have the `DataField` and `AutoNetworkedField` attributes where relevant. `DataField` makes the data be read from and written to YAML, and `AutoNetworkedField` synchronizes changes over the network to the client.
-  * Typing `nfield` above a field automatically fills these in for you.
-* `DataField` attributes should not include a custom field name, it will automatically use the field name's camel-cased. If the names don't match, they should be made to match instead of specifying the data filed name explicitly. For example:
+* Компоненты должны определяться в `Content.Shared`, насколько это возможно, с использованием атрибутов `RegisterComponent`, `NetworkedComponent`, `AutoGenerateComponentState` и `Access`.
+  * При наборе `nscomp` над определением класса компонента эти атрибуты будут добавлены автоматически.
+* Имена классов компонентов должны иметь префикс **Stories** если существует аналог компонента.
+* Поля компонента должны иметь атрибуты `DataField` и `AutoNetworkedField`, где это уместно. `DataField` позволяет считывать данные из YAML и записывать в него, а `AutoNetworkedField` синхронизирует изменения по сети с клиентом.
+  * При наборе `nfield` над полем эти атрибуты будут добавлены автоматически.
+* Атрибуты `DataField` не должны включать кастомное имя поля; оно будет автоматически преобразовано в camelCase из имени переменной. Если имена не совпадают, их следует привести к соответствию, вместо явного указания имени в атрибуте. Например:
 
   ```csharp
   [DataField] public string Field;
   ```
 
-  Instead of:
+  Вместо:
 
   ```csharp
   [DataField("field")] public string Field;
   ```
 
-  Both work the same way, but the first is preferred in all cases.
+  Оба варианта работают одинаково, но первый предпочтительнее во всех случаях.
 
-## Entity Systems
+## Системы сущностей (Entity Systems)
 
-* Systems should be defined in `Content.Shared` as much as possible.
-  * A system should only be split up into client and server components if there are methods that otherwise can't be moved to shared, such as database methods.
-  * If you just need a system to handle UI code, create a new one in `Content.Client`, but leave the one in `Content.Shared` as sealed, this avoids having an empty system in `Content.Server`. For example, ThingSystem in Shared, and ThingUISystem in Client.
-* Event subscriptions in `Initialize` should use the overload that uses an `Entity<T>` argument, not either of the two that use `EntityUid`.
-* Event subscriptions should use method names that start with "On".
-* Large amounts of entities should not be queried every tick in an `Update` method. Event subscriptions and components that mark entities to be processed next update should be used instead.
-* Values used in system code should be able to be defined through a component's YAML, or at least a CVar defined in RMCCVars.
-  * Prototype IDs, if not defined in a component, should be stored in a static readonly `ProtoId<T>` field, so that it can be validated by the YAML linter.
-* Dependencies to other systems and managers should be listed at the top of the file, together and in alphabetical order. The field name of system dependencies should not include the word "System" in it.
-  * For example: `_damageable` instead of `_damageableSystem`.
-* Do not make a dependency for `IEntityManager` in systems, it already has one with the field name `EntMan`.
-* Proxy methods should be used over `IEntityManager` methods, for example TryComp over `EntMan.TryGetComponent`.
-* Calls to `EntityLookupSystem` methods should use the overloads that allow you to pass in a `HashSet`, instead of creating and returning a new one. This `HashSet` should be stored in a `private readonly` field on the system that calls the method.
+* Системы должны иметь префикс **Stories** и определяться в `Content.Shared`, насколько это возможно.
+  * Систему следует разделять на клиентскую и серверную части только в том случае, если в ней есть методы, которые невозможно перенести в shared (например, работа с базой данных).
+  * Если система нужна только для обработки UI, создайте её в `Content.Client`, но оставьте версию в `Content.Shared` как `sealed` — это позволит избежать создания пустой системы в `Content.Server`. Например: `StoriesThingSystem` в Shared и `StoriesThingUISystem` в Client.
+* Подписки на события в `Initialize` должны использовать перегрузку с аргументом `Entity<T>`, а не варианты с `EntityUid`.
+* Имена методов для подписок на события должны начинаться с «On».
+* Большое количество сущностей не должно опрашиваться каждый тик в методе `Update`. Вместо этого используйте подписки на события и компоненты, помечающие сущности для обработки в следующем обновлении.
+* Значения, используемые в коде систем, должны определяться через YAML компонента или, как минимум, через CVar, определенный в `StoriesCVars`.
+  * ID прототипов, если они не определены в компоненте, должны храниться в статическом поле `static readonly ProtoId<T>`, чтобы они могли пройти валидацию линтером YAML.
+* Зависимости от других систем и менеджеров должны быть перечислены в верхней части файла, сгруппированы и расположены в алфавитном порядке. Имя поля зависимости не должно содержать слово «System».
+  * Например: `_damageable` вместо `_damageableSystem`.
+* Не создавайте зависимость для `IEntityManager` в системах, там уже есть готовое поле `EntMan`.
+* Вместо методов `IEntityManager` следует использовать прокси-методы (например, `TryComp` вместо `EntMan.TryGetComponent`).
+* Вызовы методов `EntityLookupSystem` должны использовать перегрузки, позволяющие передавать `HashSet`, вместо создания и возврата нового. Этот `HashSet` должен храниться в поле `private readonly` той системы, которая вызывает метод.
 
-## Events
+## События (Events)
 
-* Events should be record structs where possible, with a `ByRefEvent` attribute added above the struct event definition.
-* Any events that need to inherit from other types need to be classes instead, such as `EntityEventArgs` sent over the network.
-* `HandledEntityEventArgs` does not need to be inherited, a boolean field `Handled` should be added to the record struct event instead.
-  * This also applies to `CancellableEventArgs`, adding a boolean field `Cancelled` instead.
-* Events should be readonly when no data on them is supposed to be changed by event handlers.
+* События должны быть `record struct`, где это возможно, с атрибутом `ByRefEvent` над определением.
+* Любые события, которым требуется наследование от других типов, должны быть классами (например, `EntityEventArgs`, отправляемые по сети).
+* Не нужно наследоваться от `HandledEntityEventArgs`, вместо этого добавьте логическое поле `Handled` в саму структуру события.
+  * Это также относится к `CancellableEventArgs` — используйте поле `Cancelled`.
+* События должны быть `readonly`, если обработчики не должны изменять данные в них.
 
-## Prototypes
+## Прототипы (Prototypes)
 
-* New prototype types (kinds) should not be created. Entity prototypes with components should be used instead. This automatically enables localization of names and descriptions, for example.
-* The prototype can be resolved by ID through `IPrototypeManager`, and the component on the prototype obtained through `TryComp` on the `EntityPrototype`, passing in an instance of `IComponentFactory`.
-  * The data on component instances tied to an `EntityPrototype` should never be changed in code.
-* Singleton entities can also be created for these entities, and events can be raised on them (see surgery code for an example).
-* Prototype data should never be changed in code, as those changes are not synced between client and server, and will persist between round restarts.
-  * The exception to this is prototype hot reloading, which updates prototypes when the `loadprototype` admin command is used, or when a YAML file is changed in local development.
-* New fields in upstream prototypes should be added in a new partial class defined under an _RMC14 folder. To do this, change the namespace of the file to be equal to that of the upstream file, and suppress the warning that the namespace is incorrect. Example below:
+* Не следует создавать новые типы (kinds) прототипов. Вместо этого используйте прототипы сущностей (`entity prototypes`) с компонентами. Это автоматически дает возможность локализации имен и описаний.
+* Все новые ID прототипов сущностей должны начинаться с префикса **ST** (например, `STPunchingBag`).
+* Прототип можно разрешить по ID через `IPrototypeManager`, а компонент прототипа получить через `TryComp` у `EntityPrototype`, передав экземпляр `IComponentFactory`.
+  * Данные экземпляров компонентов, привязанных к `EntityPrototype`, никогда не должны изменяться в коде.
+* Для таких сущностей можно создавать синглтоны и вызывать на них события (см. код хирургии в качестве примера).
+* Данные прототипов никогда не должны меняться в коде, так как эти изменения не синхронизируются между клиентом и сервером и сохраняются между перезапусками раундов.
+  * Исключение — горячая перезагрузка прототипов (hot reloading) через админ-команду `loadprototype` или при изменении YAML-файла во время локальной разработки.
+* Новые поля в апстрим-прототипах должны добавляться в новом partial-классе, определенном в папке **_Stories**. Для этого измените пространство имен (namespace) файла на то же, что и у апстрим-файла, и подавите предупреждение о некорректном namespace. Пример:
 
   ```csharp
   // ReSharper disable CheckNamespace
@@ -74,14 +75,14 @@ This will automatically format and give warnings for code that needs fixing.
   }
   ```
 
-## Database
+## База данных
 
-* Upstream tables shouldn't be modified, new tables should be created instead, with a foreign key to the upstream table that it associates with. For example, to add relational data to the Player table:
+* Таблицы апстрима не должны изменяться. Вместо этого создавайте новые таблицы с внешним ключом (foreign key) к соответствующей таблице апстрима. Например, добавление реляционных данных к таблице Player:
 
 ```csharp
-[Table("rmc_player_data")]
+[Table("stories_player_data")]
 [PrimaryKey(nameof(PlayerId), nameof(SomeId))]
-public sealed class RMCPlayerData
+public sealed class StoriesPlayerData
 {
     [Key]
     [ForeignKey("Player")]
@@ -94,44 +95,47 @@ public sealed class RMCPlayerData
 }
 ```
 
-* Primary keys should be defined in the order in which they will be queried. For example, in the code above, lookups for `PlayerId` or `PlayerId + SomeId` will be fast, but just `SomeId` will be slow.
-  * If you need to do lookups in a different order, an index for them should be added separately.
+* Первичные ключи должны определяться в том порядке, в котором они будут запрашиваться. Например, в коде выше поиск по `PlayerId` или `PlayerId + SomeId` будет быстрым, а поиск только по `SomeId` — медленным.
 
-## User Interface
+## Пользовательский интерфейс (UI)
 
-* UI elements should be defined and created through `.xaml` files as much as possible, not in C# code.
-* Bound user interface states should not be used, add the data to components instead. BUI code can access any component on the Owner entity (the one that the UI was opened on) directly.
-  * If you need to refresh the UI when the component's data is changed, handle the `AfterAutoHandleStateEvent` that is raised directed at that component.
-    * To do this, make sure that the `AutoGenerateComponentState` has `raiseAfterAutoHandleState` set to true (`AutoGenerateComponentState(true)`).
-    * Ensure that you wrap the contents of the method handling the event in a try-catch block that logs the error, as any errors thrown within it will cause the client's screen to flash and refresh repeatedly otherwise. Errors in UI code are common.
-* Most business code should be on the BUI, while UI elements (`.xaml.cs` files) should only contain methods that help with modifying the appearance of the element.
+* Элементы UI должны определяться и создаваться через `.xaml` файлы, а не в C#-коде.
+* Не используйте состояния связанных интерфейсов (BUI states), добавляйте данные напрямую в компоненты. Код BUI может напрямую обращаться к любому компоненту на сущности-владельце (Owner).
+  * Если нужно обновить UI при изменении данных компонента, обрабатывайте событие `AfterAutoHandleStateEvent`.
+    * Для этого убедитесь, что в `AutoGenerateComponentState` параметр `raiseAfterAutoHandleState` установлен в true: `AutoGenerateComponentState(true)`.
+    * Обязательно оберните содержимое метода обработки события в блок `try-catch` с логированием ошибки. В противном случае любая ошибка в UI приведет к постоянному мерцанию и обновлению экрана клиента.
+* Основная бизнес-логика должна находиться в BUI, в то время как файлы элементов интерфейса (`.xaml.cs`) должны содержать только методы, помогающие изменять внешний вид элемента.
 
-## Localization
+## Локализация
 
-* New localization IDs should be defined under the _RMC14 directory, not in existing upstream `.ftl` files.
-* You are not required to localize your code for RMC14, but you may if you want to.
-* You are free to make a PR localizing existing RMC14 code, however be aware that it may not be reviewed over other pending PRs until time allows, specially if the PR is very big, as the game is still in active development. Make sure to test that your changes work properly in-game.
+* Все новые ID локализации должны быть определены в директории **_Stories**, а не в существующих файлах апстрима.
+* Используйте префикс **stories-** для новых ключей локализации (например, `stories-item-name`).
 
-## Upstream code changes
+## Изменения в коде апстрима
 
-* New code and yml should be put in files inside `_RMC14` folders as much as possible, using events and making new ones where needed to make this possible.
-  * For example, if you wanted to change how zombies work, you should make an `RMCZombieSystem` that handles the `EntityZombifiedEvent` event, running your code there, instead of modifying the upstream `ZombifyEntity` method.
-* Where this is not possible, the code should have `// RMC14` markers above and below every block of code that was changed. For example:
+* Новый код и YAML должны по возможности размещаться в папках **_Stories**, используя события для взаимодействия с основным кодом.
+  * Например, если вы хотите изменить механику зомби, создайте `StoriesZombieSystem`, которая обрабатывает событие `EntityZombifiedEvent`, вместо модификации метода `ZombifyEntity` в апстриме.
+* Если это невозможно, код должен быть помечен комментариями `// Stories-НоваяКрутаяФича` сверху и снизу каждого измененного блока. Пример:
 
   ```csharp
-  // RMC14
-  your new code here
-  new code line 2
-  new line 3
-  // RMC14
+  // Stories-НоваяКрутаяФича-Start
+  ваш новый код
+  строка 2
+  строка 3
+  // Stories-НоваяКрутаяФича-End
   ```
-* Changes to the upstream code should call RMC-specific methods wherever possible to minimize the number of lines that need to be changed. This makes merge conflicts easier to process in the future.
+  ,или если одна строка
+  ```csharp
+  ваш новый код // Stories-НоваяКрутаяФича
+  ```
+* При изменении кода апстрима старайтесь вызывать специфичные для Stories методы, чтобы минимизировать количество измененных строк. Это облегчит разрешение конфликтов при слиянии (merge) в будущем.
 
-## TODOs
+## TODO
 
-* TODOs should be marked with `// TODO RMC14`, not just `// TODO`, which allows us to later see TODOs that are specific to RMC14.
+* Комментарии TODO должны помечаться как `// TODO Stories` (или `// TODO ST`), чтобы их можно было отличить от задач апстрима.
 
-## Content removals
+## Удаление контента
 
-* Upstream files and file contents should not be removed unless completely necessary.
-  * For example, if we don't want access to a specific weapon, that weapon should be commented out from any sources that give you access to it, instead of deleting the weapon's YAML or the file that it is in.
+* Файлы и содержимое файлов апстрима не должны удаляться без крайней необходимости.
+  * Например, если мы не хотим, чтобы в игре было определенное оружие, его следует закомментировать в источниках (спавнерах, магазинах), но не удалять сам YAML-файл этого оружия.
+  * Так же можно использовать `Resources\IgnoredPrototypes\stories_ignoredPrototypes.yml` чтобы проигноировать какие то прототипы, но это иногда может работать некорректно.

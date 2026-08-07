@@ -13,9 +13,9 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
-        density: 60
+        density: 20
         mask:
-        - MobMask
+        - ItemMask # Stories-Fix
   - type: Transform
     anchored: false
     noRot: true
@@ -87,10 +87,10 @@
   - type: SolutionTransfer
     canChangeTransferAmount: true
   - type: Appearance
-  - type: DrawableSolution
-    solution: pack
-  - type: InjectableSolution
-    solution: pack
+  # - type: DrawableSolution # Stories-Fix
+  #   solution: pack
+  # - type: InjectableSolution # Stories-Fix
+  #   solution: pack
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Glass

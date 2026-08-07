@@ -315,18 +315,18 @@ namespace Content.Server.Voting.Managers
                         ticker.UpdateInfoText();
                     }
                 }
-                else
-                {
-                    if (ticker.RoundPreloadTime <= TimeSpan.Zero)
-                    {
-                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-notlobby"));
-                    }
-                    else
-                    {
-                        var timeString = $"{ticker.RoundPreloadTime.Minutes:0}:{ticker.RoundPreloadTime.Seconds:00}";
-                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-notlobby-time", ("time", timeString)));
-                    }
-                }
+                // else Stories-AutoVote-Start
+                // {
+                //     if (ticker.RoundPreloadTime <= TimeSpan.Zero)
+                //     {
+                //         _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-notlobby"));
+                //     }
+                //     else
+                //     {`
+                //         var timeString = $"{ticker.RoundPreloadTime.Minutes:0}:{ticker.RoundPreloadTime.Seconds:00}";
+                //         _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-notlobby-time", ("time", timeString)));
+                //     }
+                // } Stories-AutoVote-End
             };
         }
 

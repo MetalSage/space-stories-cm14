@@ -6,7 +6,6 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._RMC14.NightVision;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
-[Access(typeof(SharedNightVisionSystem))]
 public sealed partial class NightVisionComponent : Component
 {
     [DataField]

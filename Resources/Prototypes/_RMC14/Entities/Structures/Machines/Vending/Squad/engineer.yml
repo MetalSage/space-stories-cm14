@@ -27,6 +27,8 @@
         recommended: true
       - id: RMCTesla
       - id: RMCSentryFire
+      - id: RMCM271A2BruteLauncherRigFilled
+        name: M6H-BRUTE Breaching Launcher
     - name: Handheld Defense Upgrade
       choices: { CMHandheldDefenseUpgrade: 1 }
       entries:
@@ -164,6 +166,8 @@
         points: 3
       - id: RMCMotionDetector
         points: 8
+      - id: RMCOverwatchCameraTripod
+        points: 5
       - id: RMCWhistle
         points: 3
       - id: RMCSynthResetKey
@@ -231,7 +235,6 @@
     - name: Armor
       choices: { CMArmor: 1 }
       entries:
-      - id: RMCArmorVestSquad
       - id: RMCArmorM3LightVariants
         name: light armor
       - id: RMCArmorM3MediumVariants

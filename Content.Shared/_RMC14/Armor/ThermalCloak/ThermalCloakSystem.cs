@@ -5,6 +5,8 @@ using Content.Shared._RMC14.Weapons.Ranged.IFF;
 using Content.Shared._RMC14.Xenonids.Devour;
 using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._RMC14.Xenonids.Projectile;
+using Content.Shared._Stories.AntiGrief.Cadet;
+using Content.Shared._Stories.Hunter.Bracer.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Explosion.EntitySystems;
@@ -61,12 +63,10 @@ public sealed class ThermalCloakSystem : EntitySystem
 
     private void OnGetItemActions(Entity<ThermalCloakComponent> ent, ref GetItemActionsEvent args)
     {
-        var comp = ent.Comp;
-
-        if (args.InHands || !_inventory.InSlotWithFlags((ent, null, null), SlotFlags.BACK))
+        if (args.InHands) // Stories-Hunter
             return;
 
-        args.AddAction(ref comp.Action, comp.ActionId);
+        args.AddAction(ref ent.Comp.Action, ent.Comp.ActionId); // Stories-Hunter
         Dirty(ent);
     }
 
@@ -98,9 +98,6 @@ public sealed class ThermalCloakSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        if (!_inventory.InSlotWithFlags((ent, null, null), SlotFlags.BACK))
-            return;
-
         var comp = EnsureComp<EntityTurnInvisibleComponent>(args.Equipee);
         comp.RestrictWeapons = ent.Comp.RestrictWeapons;
         comp.UncloakWeaponLock = ent.Comp.UncloakWeaponLock;
@@ -112,11 +109,11 @@ public sealed class ThermalCloakSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        if (_inventory.InSlotWithFlags((ent, null, null), SlotFlags.BACK))
-            return;
+        if (ent.Comp.Enabled) // Stories-Hunter
+            SetInvisibility(ent, args.Equipee, false, false);
 
-        SetInvisibility(ent, args.Equipee, false, false);
-        RemCompDeferred<EntityTurnInvisibleComponent>(args.Equipee);
+        if (FindWornCloak(args.Equipee) == null) // Stories-Hunter
+            RemCompDeferred<EntityTurnInvisibleComponent>(args.Equipee);
     }
 
     public void SetInvisibility(Entity<ThermalCloakComponent> ent, EntityUid user, bool enabling, bool forced)
@@ -226,6 +223,9 @@ public sealed class ThermalCloakSystem : EntitySystem
         if (args.Cancelled || !TryComp<EntityTurnInvisibleComponent>(args.User, out var comp))
             return;
 
+        if (HasComp<HunterBracerComponent>(args.User)) // Stories-Hunter
+            return;
+
         if (comp.RestrictWeapons && comp.Enabled || comp.UncloakTime + comp.UncloakWeaponLock > _timing.CurTime)
         {
             args.Cancelled = true;
@@ -237,7 +237,20 @@ public sealed class ThermalCloakSystem : EntitySystem
 
     private void OnTimerUse(Entity<CancelUseWithCloakComponent> ent, ref UseInHandEvent args)
     {
+        // Stories-AntiGrief-Start
+        if (HasComp<CadetComponent>(args.User))
+        {
+            args.Handled = true;
+
+            var popup = Loc.GetString("stories-cadet-grenade-use");
+            _popup.PopupClient(popup, args.User, args.User, PopupType.SmallCaution);
+        }
+        // Stories-AntiGrief-End
+
         if (args.Handled || !TryComp<EntityTurnInvisibleComponent>(args.User, out var comp))
+            return;
+
+        if (HasComp<HunterBracerComponent>(args.User)) // Stories-Hunter
             return;
 
         if (comp.RestrictWeapons && comp.Enabled || comp.UncloakTime + comp.UncloakWeaponLock > _timing.CurTime)
@@ -279,7 +292,7 @@ public sealed class ThermalCloakSystem : EntitySystem
 
     public Entity<ThermalCloakComponent>? FindWornCloak(EntityUid player)
     {
-        var slots = _inventory.GetSlotEnumerator(player, SlotFlags.BACK);
+        var slots = _inventory.GetSlotEnumerator(player); // Stories-Hunter
         while (slots.MoveNext(out var slot))
         {
             if (TryComp<ThermalCloakComponent>(slot.ContainedEntity, out var comp))

@@ -36,7 +36,7 @@
         Brute: 30
   - type: Xeno
     role: CMXenoDrone
-    hudOffset: -0.1,0.15
+    hudOffset: 0,0.15
     tier: 1
     bypassTierCount: true
     unlockAt: 60 # 1 minute
@@ -113,11 +113,19 @@
   parent: CMXenoDroneBase
   id: CMXenoDrone
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoPlantWeeds ]
+      XenoPrimaryTwo: [ ActionXenoChooseStructure ]
+      XenoPrimaryThree: [ ActionXenoSecreteStructure ]
+      XenoPrimaryFour: [ ActionXenoTransferPlasma ]
+      XenoPrimaryFive: [ ActionXenoOrderConstruction ]
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleDrone
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Drone/drone.rsi
+    sprite: _Stories/Mobs/Xenos/Drone/drone.rsi
   - type: Xeno
     actionIds:
     - ActionXenoRest
@@ -160,7 +168,7 @@
   suffix: Gardener
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Drone/gardener_drone.rsi
+    sprite: _Stories/Mobs/Xenos/Drone/gardener_drone.rsi
     layers:
     - map: [ "enum.XenoVisualLayers.Base" ]
       state: alive
@@ -173,10 +181,10 @@
     - map: [ "enum.XenoInhandVisualLayers.Right" ]
       visible: false
     - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _RMC14/Effects/xeno_shields.rsi
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
   - type: XenoFruitPlanterVisuals
-    rsi: _RMC14/Mobs/Xenonids/Drone/gardener_drone.rsi
+    rsi: _Stories/Mobs/Xenos/Drone/gardener_drone.rsi
     prefix: gardener
   - type: Xeno
     actionIds:
@@ -224,7 +232,7 @@
   suffix: Healer
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Drone/healer_drone.rsi
+    sprite: _Stories/Mobs/Xenos/Drone/healer_drone.rsi
     layers:
     - map: [ "enum.XenoVisualLayers.Base" ]
       state: alive
@@ -237,7 +245,7 @@
     - map: [ "enum.XenoInhandVisualLayers.Right" ]
       visible: false
     - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _RMC14/Effects/xeno_shields.rsi
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
   - type: RMCXenoDamageVisuals
     prefix: drone

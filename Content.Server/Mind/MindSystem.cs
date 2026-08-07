@@ -1,4 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using Content.Server._Stories.Sponsors;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
@@ -24,6 +25,7 @@ public sealed class MindSystem : SharedMindSystem
     [Dependency] private readonly GhostSystem _ghosts = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private readonly SponsorsManager _partners = default!; // Stories-Sponsors
 
     public override void Initialize()
     {
@@ -131,6 +133,7 @@ public sealed class MindSystem : SharedMindSystem
         // EnsureComp instead of AddComp to deal with deferred deletions.
         var comp = EnsureComp<VisitingMindComponent>(entity);
         comp.MindId = mindId;
+        RaiseLocalEvent(entity, new MindVisitedMessage(mindId), true);
 
         // Do this AFTER the entity changes above as this will fire off a player-detached event
         // which will run ghosting twice.
@@ -210,8 +213,14 @@ public sealed class MindSystem : SharedMindSystem
             var position = Deleted(mind.OwnedEntity)
                 ? _transform.ToMapCoordinates(_gameTicker.GetObserverSpawnPoint())
                 : _transform.GetMapCoordinates(mind.OwnedEntity.Value);
-
-            entity = Spawn(GameTicker.ObserverPrototypeName, position);
+            // Stories-Sponsor-Ghosts-Start
+            var proto = GameTicker.ObserverPrototypeName;
+            if (mind.UserId != null && _partners.TryGetInfo(mind.UserId.Value, out var sponsorData))
+            {
+                proto = sponsorData.GhostSkin;
+            }
+            entity = Spawn(proto, position);
+            // Stories-Sponsor-Ghosts-End
             component = EnsureComp<MindContainerComponent>(entity.Value);
             var ghostComponent = Comp<GhostComponent>(entity.Value);
             _ghosts.SetCanReturnToBody((entity.Value, ghostComponent), false);

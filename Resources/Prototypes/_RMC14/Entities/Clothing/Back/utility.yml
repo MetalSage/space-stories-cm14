@@ -58,7 +58,7 @@
       tank:
         maxVol: 600 # TODO RMC14 100 when welders are fixed
         reagents:
-        - ReagentId: WeldingFuel
+        - ReagentId: RMCWeldingFuel # Stories-Ordance
           Quantity: 600
   - type: ReagentTank
     tankType: Fuel

@@ -1,0 +1,17 @@
+ent-CMCanteenBase = { ent-DrinkBase }
+    .desc = { ent-DrinkBase.desc }
+ent-CMCanteen = фляга
+    .desc = Вы делаете глоток из своей надежной фляги КМП США...
+ent-CMMetalFlask = металлическая фляга
+    .desc = Металлическая фляга с приличным объемом жидкости.
+    .suffix = Пустая
+ent-CMMarineFlask = бутылка морпехов
+    .desc = Металлическая фляга с эмблемой морской пехоты, наполненная, вероятно, смесью воды, моторного масла и медицинского спирта.
+ent-CMWEYAFlask = фляга Ве-Я
+    .desc = Металлическая фляга с фирменным логотипом Ве-Я, которую, вероятно, заказал какой-то корпоративный подхалим, чтобы она была в запасе у поставщиков столовых военных кораблей USS.
+ent-RMCWeYaThermos = We-Ya thermos
+    .desc = A sleek metal thermos, decorated with the colours of the Weston-Yamada Corporation. The marketing claims it can withstands equivalent to a nuclear blast, though that's probably just PR talking.
+ent-CMUSCMFlask = фляга КМП США
+    .desc = Металлическая фляга с логотипом КМП США, наполненная, вероятно, смесью воды, моторного масла и медицинского спирта.
+ent-CMWYFlask = фляга Вестон-Ямада
+    .desc = Металлическая фляга с фирменным логотипом компании Вестон Ямада, которую какой-то корпоративный подхалим, вероятно, заказал для запасов в столовых военных кораблей USS.

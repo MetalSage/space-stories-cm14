@@ -24,7 +24,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 5 # Stories-Fix
         reagents:
         - ReagentId: Nutriment
           Quantity: 3

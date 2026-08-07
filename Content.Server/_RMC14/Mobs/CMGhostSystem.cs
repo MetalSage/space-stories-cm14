@@ -22,8 +22,6 @@ namespace Content.Server._RMC14.Mobs
         {
             base.Initialize();
 
-            //This shit is so scuffed but honest to god not sure what else I can use that isn't a duplicate
-            SubscribeLocalEvent<GhostHearingComponent, ComponentStartup>(OnGhostStartup);
             SubscribeLocalEvent<CMGhostComponent, ComponentStartup>(OnCMGhostStartup);
             SubscribeLocalEvent<CMGhostComponent, MapInitEvent>(OnCMGhostInit, after: [typeof(GhostSystem)]);
 
@@ -31,11 +29,6 @@ namespace Content.Server._RMC14.Mobs
             SubscribeLocalEvent<CMGhostComponent, ToggleXenoHudActionEvent>(OnXenoHudAction);
 
             Subs.CVar(_configuration, RMCCVars.RMCGhostCanBoo, OnGhostBooChange, true);
-        }
-
-        private void OnGhostStartup(EntityUid uid, GhostHearingComponent comp, ComponentStartup args)
-        {
-            EnsureComp<CMGhostComponent>(uid);
         }
 
         private void OnCMGhostStartup(EntityUid uid, CMGhostComponent comp, ComponentStartup args)

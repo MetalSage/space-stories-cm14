@@ -8,7 +8,7 @@
   requirements:
   - !type:TotalJobsTimeRequirement
     group: CMJobsMedical
-    time: 3600 # 1 hour
+    time: 7200 # 2 hour
   ranks:
     RMCRankSecondLT: []
   startingGear: CMGearDoctor
@@ -31,6 +31,7 @@
     - type: RMCUserBulkyArmorIncapable
     - type: JobPrefix
       prefix: rmc-job-prefix-doctor
+    - type: CMVendorUser # Stories-Partners
     - type: TacticalMapIcon
       icon:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi

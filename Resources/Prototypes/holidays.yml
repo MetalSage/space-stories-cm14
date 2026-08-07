@@ -438,9 +438,11 @@
   shouldCelebrate:
     !type:FridayThirteenth { }
 
-- type: holiday
-  id: PrideMonth
-  name: holiday-name-pride-month
-  beginDay: 1
-  endDay: 31
-  beginMonth: June
+# Stories-LGBTRemoval
+# - type: holiday
+#   id: PrideMonth
+#   name: holiday-name-pride-month
+#   beginDay: 1
+#   endDay: 31
+#   beginMonth: June
+# Stories-LGBTRemoval

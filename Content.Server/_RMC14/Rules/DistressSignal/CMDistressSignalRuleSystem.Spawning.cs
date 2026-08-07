@@ -1,5 +1,6 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
+using Content.Server._RMC14.Vehicle;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -7,6 +8,7 @@ using Content.Shared._RMC14.Bioscan;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Dropship;
 using Content.Shared._RMC14.Fax;
+using Content.Shared._Stories.SCCVars;
 using Content.Shared._RMC14.Humanoid;
 using Content.Shared._RMC14.Intel.Tech;
 using Content.Shared._RMC14.Marines;
@@ -129,13 +131,17 @@ public sealed partial class CMDistressSignalRuleSystem
     private void ApplyJobSlotScaling(CMDistressSignalRuleComponent comp, RulePlayerSpawningEvent ev)
     {
         var totalPlayers = ev.PlayerPool.Count;
-        var vehicleThreshold = _config.GetCVar(RMCCVars.RMCVehicleRoundstartThresholdPlayers);
         var totalXenos = (int) Math.Round(Math.Max(1, totalPlayers / _marinesPerXeno));
         // TODO RMC14 dont count survivors
         var totalSurvivors = (int) Math.Clamp((int) Math.Round(totalPlayers / _marinesPerSurvivor), _minimumSurvivors, _maximumSurvivors);
         var marines = totalPlayers - totalXenos - totalSurvivors;
-        var roundstartTank = _player.Sessions.Count() >= vehicleThreshold;
-        var crewmanSlots = roundstartTank ? 2 : 0;
+
+        var vehicleSupply = EntityManager.System<VehicleSupplySystem>();
+        var onlineCount = vehicleSupply.GetRoundstartPlayerCount();
+        var lowPop = _config.GetCVar(SCCVars.RMCLowPopVehicle);
+        var highPop = _config.GetCVar(SCCVars.RMCHighPopVehicle);
+        var roundstartTank = onlineCount >= highPop;
+        var crewmanSlots = onlineCount >= lowPop ? 2 : 0;
 
         // TODO RMC14: Move to component
         var doJobSlotScaling = comp.DoJobSlotScaling &&
@@ -152,7 +158,7 @@ public sealed partial class CMDistressSignalRuleSystem
                 foreach (var (job, scaling) in scalingComp.Jobs)
                 {
                     var minimumPlayers = job == VehicleCrewmanJob
-                        ? vehicleThreshold
+                        ? lowPop
                         : scaling.MinimumPlayers;
 
                     var slots = minimumPlayers > 0 && totalPlayers < minimumPlayers

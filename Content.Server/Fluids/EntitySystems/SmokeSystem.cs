@@ -261,6 +261,13 @@ public sealed class SmokeSystem : EntitySystem
         if (!Resolve(smokeUid, ref component))
             return;
 
+        // Stories-Ordnance-Start
+        var preventEv = new SmokeReactionAttemptEvent(entity);
+        RaiseLocalEvent(entity, ref preventEv);
+        if (preventEv.Cancelled)
+            return;
+        // Stories-Ordnance-End
+
         // RMC14 allow smoke to react without a bloodstream
         if (!TryComp<BloodstreamComponent>(entity, out var bloodstream))
         {

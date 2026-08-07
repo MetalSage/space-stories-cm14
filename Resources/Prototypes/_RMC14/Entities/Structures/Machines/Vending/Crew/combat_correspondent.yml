@@ -16,7 +16,7 @@
     - CMCorrespondent
     - CMCombatCorrespondent
     sections:
-    - name: Standard Equipment
+    - name: Стандартное Оборудование
       takeAll: CMStandard
       entries:
       - id: RMCVendorBundleCrewCombatCorrespondent

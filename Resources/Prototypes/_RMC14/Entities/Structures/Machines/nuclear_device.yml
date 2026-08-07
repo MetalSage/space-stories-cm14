@@ -1,6 +1,100 @@
-#RMC14 Placeholder
+# Stories-Nuke
 - type: entity
   parent: [CMBaseStructure, StructureWheeled]
   id: RMCNuke
-  name: Nuclear Fission Explosive (PlaceHolder)
-#RMC14 Placeholder
+  name: Large Atomic Fission Demolition Device (LAFDEDE)
+  description: Mainly intended as a demolition charge, this device, also called 'W-135', is primarily used by USCM space vessels that don't have the equipment to remotely nuke planets from orbit. According to the Nuclear Regulatory Commission of the United Americas, this device have an estimated yield of 15 to 30 kilotonnes of TNT, enough to flatten everything that moves in a 6.30 kilometer, or 3.9 mile range. It also weighs 422 kilograms, or 930 pounds.
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machines/Nuke/nuclearbomb.rsi
+    offset: 0.0, 0.5
+    layers:
+    - state: nuke
+    - state: deployed
+      map: ["enum.STNukeLayers.Deployed"]
+      visible: false
+    - state: unsafe
+      map: ["enum.STNukeLayers.Unsafe"]
+      visible: false
+    - state: timing
+      map: ["enum.STNukeLayers.Timing"]
+      visible: false
+    - state: activation
+      map: ["enum.STNukeLayers.Activation"]
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.STNukeVisuals.Deployed:
+        enum.STNukeLayers.Deployed:
+          True: { visible: true }
+          False: { visible: false }
+      enum.STNukeVisuals.Unsafe:
+        enum.STNukeLayers.Unsafe:
+          True: { visible: true, state: "unsafe" }
+          False: { visible: false }
+      enum.STNukeVisuals.Timing:
+        enum.STNukeLayers.Timing:
+          True: { visible: true, state: "timing" }
+          False: { visible: false }
+      enum.STNukeVisuals.Activation:
+        enum.STNukeLayers.Activation:
+          True: { visible: true, state: "activation" }
+          False: { visible: false }
+  - type: STNuke
+    defuseSkill: RMCSkillEngineer
+  - type: InteractionOutline
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.STNukeUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.STNukeUiKey.Key:
+        type: STNukeBui
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+  - type: Pullable
+  - type: Physics
+    bodyType: Dynamic
+  - type: Transform
+    noRot: true
+    anchored: false
+  - type: Corrodible
+    isCorrodible: false
+
+- type: entity
+  parent: MarkerBase
+  id: STNukeExplosionExplosive
+  categories: [ HideSpawnMenu ]
+  name: nuke explosion
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: OrbitalCannonExplosion
+    laser: true
+    steps:
+    - type: RMCOBXenoTunnel
+      total: 5000
+      slope: 1500
+      max: 200
+      delay: 1
+    - type: RMCOBXenoTunnel
+      total: 50000
+      slope: 10
+      max: 90
+      delay: 0.3
+    - type: RMCOBXenoTunnel
+      total: 50000
+      slope: 10
+      max: 90
+      delay: 0.6
+      explosionEffect: RMCExplosionEffectClusterOB

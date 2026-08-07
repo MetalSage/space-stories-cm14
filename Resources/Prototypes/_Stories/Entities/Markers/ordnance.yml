@@ -1,0 +1,22 @@
+- type: entity
+  id: STDemolitionsSimulatorCamera
+  name: arena camera
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Eye
+  - type: ContentEye
+    targetZoom: 0.5, 0.5
+  - type: SurveillanceCamera
+
+- type: entity
+  id: STDemolitionsArenaSpawnMarker
+  name: arena spawn marker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: DemolitionsArena

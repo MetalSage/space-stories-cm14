@@ -1,0 +1,80 @@
+- type: marking
+  id: HunterHairStandard
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [STHunter]
+  sprites:
+  - sprite: _Stories/Mobs/Customization/hunter_hair.rsi
+    state: standard
+
+- type: marking
+  id: HunterHairShortThick
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [STHunter]
+  sprites:
+  - sprite: _Stories/Mobs/Customization/hunter_hair.rsi
+    state: short_thick
+
+- type: marking
+  id: HunterHairStraightThin
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [STHunter]
+  sprites:
+  - sprite: _Stories/Mobs/Customization/hunter_hair.rsi
+    state: straight_thin
+
+- type: marking
+  id: HunterHairLongTied
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [STHunter]
+  sprites:
+  - sprite: _Stories/Mobs/Customization/hunter_hair.rsi
+    state: long_tied
+
+- type: marking
+  id: HunterHairShortThin
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [STHunter]
+  sprites:
+  - sprite: _Stories/Mobs/Customization/hunter_hair.rsi
+    state: short_thin
+
+- type: marking
+  id: HunterHairLongCurved
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [STHunter]
+  sprites:
+  - sprite: _Stories/Mobs/Customization/hunter_hair.rsi
+    state: long_curved
+
+- type: marking
+  id: HunterHairLongStraight
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [STHunter]
+  sprites:
+  - sprite: _Stories/Mobs/Customization/hunter_hair.rsi
+    state: long_straight
+
+- type: marking
+  id: HunterHairLongWide
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [STHunter]
+  sprites:
+  - sprite: _Stories/Mobs/Customization/hunter_hair.rsi
+    state: long_wide
+
+- type: marking
+  id: HunterHairShortWide
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [STHunter]
+  sprites:
+  - sprite: _Stories/Mobs/Customization/hunter_hair.rsi
+    state: short_wide

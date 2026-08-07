@@ -19,7 +19,7 @@
         RMCSkillConstruction: 2
         RMCSkillEndurance: 2
         RMCSkillEngineer: 3
-        RMCSkillFirearms: 1
+        RMCSkillFirearms: 2 # Stories-SurvSkillFix
         RMCSkillLeadership: 2
         RMCSkillFireman: 1
         RMCSkillJtac: 3

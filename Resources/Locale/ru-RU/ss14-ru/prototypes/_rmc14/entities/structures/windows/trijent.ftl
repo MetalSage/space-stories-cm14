@@ -1,0 +1,12 @@
+ent-RMCWindowFrameChigusa = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowChigusa = армированное окно
+    .desc = Стеклянная витрина со специальным стержнем-матрицей внутри настенной рамы. Выглядит довольно прочно. Потребуется несколько ударов, чтобы разбить его.
+ent-RMCWindowFrameHangar = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowHangar = армированное окно
+    .desc = Стеклянная витрина со специальным стержнем-матрицей внутри настенной рамы. Выглядит довольно прочно. Потребуется несколько ударов, чтобы разбить его.
+ent-RMCWindowFrameBunker = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowBunker = армированное окно
+    .desc = Стеклянная витрина со специальным стержнем-матрицей внутри настенной рамы. Выглядит довольно прочно. Потребуется несколько ударов, чтобы разбить его.

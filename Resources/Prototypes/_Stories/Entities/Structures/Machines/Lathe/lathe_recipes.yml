@@ -1,0 +1,31 @@
+- type: latheRecipe
+  id: STIgniter
+  result: STIgniter
+  completetime: 4
+  materials:
+    CMSteel: 625 # 500
+    CMGlass: 62 # 50
+
+- type: latheRecipe
+  id: STTimer
+  result: STTimer
+  completetime: 4
+  materials:
+    CMSteel: 625 # 500
+    CMGlass: 62 # 50
+
+- type: latheRecipe
+  id: STProximitySensor
+  result: STProximitySensor
+  completetime: 4
+  materials:
+    CMSteel: 1000 # 800
+    CMGlass: 250 # 200
+
+- type: latheRecipe
+  id: STSignaller
+  result: STSignaller
+  completetime: 4
+  materials:
+    CMSteel: 1250 # 1000
+    CMGlass: 250 # 200

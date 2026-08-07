@@ -155,14 +155,20 @@ public sealed class FoodSystem : EntitySystem
         if (IsMouthBlocked(target, user))
             return (false, true);
 
+        var feedRange = MaxFeedDistance;
+        if (TryComp<ExtendedInteractionRangeComponent>(food, out var extRange)) // Stories-Interactions
+        {
+            feedRange = extRange.Range;
+        }
+
         if (!_interaction.InRangeUnobstructed(user, food, popup: true))
             return (false, true);
 
-        if (!_interaction.InRangeUnobstructed(user, target, MaxFeedDistance, popup: true))
+        if (!_interaction.InRangeUnobstructed(user, target, feedRange, popup: true))
             return (false, true);
 
         // TODO make do-afters account for fixtures in the range check.
-        if (!_transform.GetMapCoordinates(user).InRange(_transform.GetMapCoordinates(target), MaxFeedDistance))
+        if (!_transform.GetMapCoordinates(user).InRange(_transform.GetMapCoordinates(target), feedRange))
         {
             var message = Loc.GetString("interaction-system-user-interaction-cannot-reach");
             _popup.PopupClient(message, user, user);
@@ -197,7 +203,7 @@ public sealed class FoodSystem : EntitySystem
             BreakOnMove = forceFeed,
             BreakOnDamage = true,
             MovementThreshold = 0.3f, // RMC14
-            DistanceThreshold = MaxFeedDistance,
+            DistanceThreshold = feedRange, 
             // do-after will stop if item is dropped when trying to feed someone else
             // or if the item started out in the user's own hands
             NeedHand = forceFeed || _hands.IsHolding(user, food),
@@ -229,7 +235,13 @@ public sealed class FoodSystem : EntitySystem
             return;
 
         // TODO this should really be checked every tick.
-        if (!_interaction.InRangeUnobstructed(args.User, args.Target.Value))
+        var feedRange = MaxFeedDistance;
+        if (TryComp<ExtendedInteractionRangeComponent>(entity, out var extRange))
+        {
+            feedRange = extRange.Range;
+        }
+
+        if (!_interaction.InRangeUnobstructed(args.User, args.Target.Value, feedRange))
             return;
 
         var forceFeed = args.User != args.Target;

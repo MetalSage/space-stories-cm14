@@ -1,0 +1,15 @@
+ent-RMCWeaponRifleL88A1 = L88A1 bullpup rifle
+    .desc = The L88A1 is the standard-issue rifle of the RCM's Paramarine regiments, the first iteration in a series of innovative rifle designs offering a lightweight, accurate, and reliable option for the armed forces of the TSE.
+ent-RMCWeaponRifleL88A2 = L88A2 bullpup rifle
+    .desc = The L88A2 is the second iteration in the L88 series of rifles. The A2 variant offers greater modularity with a rail spanning the underside of the handguard.
+ent-RMCWeaponRifleL88A1Filled = { ent-RMCWeaponRifleL88A1 }
+    .desc = { ent-RMCWeaponRifleL88A1.desc }
+    .suffix = Filled
+ent-RMCWeaponRifleL88A2Filled = { ent-RMCWeaponRifleL88A2 }
+    .desc = { ent-RMCWeaponRifleL88A2.desc }
+    .suffix = Filled
+ent-RMCMagazineRifleL88 = L88 magazine (10x24mm)
+    .desc = A magazine of 10x24mm rounds for use in L88 pattern rifles.
+ent-RMCMagazineRifleL88AP = L88 AP magazine (10x24mm)
+    .desc = A magazine of armor-piercing 10x24mm rounds for use in L88 pattern rifles.
+    .suffix = AP

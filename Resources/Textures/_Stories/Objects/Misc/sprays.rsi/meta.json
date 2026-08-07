@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "license": "Собственная лицензия. Копирование, модификация и использование вне проекта Space Stories полностью запрещено без предварительного согласия текущего владельца проекта",
+  "copyright": "Created by RustedTim(discord:Helloo4771) for SpaceStories Marine Corps(Server SS14)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "amethyst"
+    },
+    {
+      "name": "angelOfDeath"
+    },
+    {
+      "name": "bloodyParty"
+    },
+    {
+      "name": "bombardier"
+    },
+    {
+      "name": "devourer"
+    },
+    {
+      "name": "fate"
+    },
+    {
+      "name": "fire"
+    },
+    {
+      "name": "goldenAutumn"
+    },
+    {
+      "name": "goldRush"
+    },
+    {
+      "name": "heartthrob"
+    },
+    {
+      "name": "impulse"
+    },
+    {
+      "name": "lightning"
+    },
+    {
+      "name": "oldClassics"
+    },
+    {
+      "name": "pacifist"
+    },
+    {
+      "name": "phantom"
+    },
+    {
+      "name": "phoenix"
+    },
+    {
+      "name": "rose"
+    },
+    {
+      "name": "rust"
+    },
+    {
+      "name": "tiger"
+    },
+    {
+      "name": "toxic"
+    },
+    {
+      "name": "whip"
+    },
+    {
+      "name": "armor_bro"
+    },
+    {
+      "name": "heavi_bro"
+    },
+    {
+      "name": "helmet_alt_bro"
+    },
+    {
+      "name": "helmet_bro"
+    },
+    {
+      "name": "helmet_skull_bro"
+    },
+    {
+      "name": "light_bro"
+    },
+    {
+      "name": "blazing"
+    },
+    {
+      "name": "hardened"
+    },
+    {
+      "name": "magma"
+    }
+  ]
+}

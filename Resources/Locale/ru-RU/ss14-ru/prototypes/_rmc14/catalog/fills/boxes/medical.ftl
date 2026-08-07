@@ -1,0 +1,17 @@
+ent-RMCBoxSterileMask = коробка стерильных масок
+    .desc = В этой коробке находятся стерильные медицинские маски.
+ent-RMCBoxLatexGloves = коробка латексных перчаткок
+    .desc = Содержит стерильные латексные перчатки.
+ent-RMCBoxBodyBag = коробка мешков для тела
+    .desc = Содержит мешки для трупов.
+ent-RMCBoxPillCanister = коробка таблетниц
+    .desc = На лицевой стороне коробки изображены бутылочки с таблетками.
+ent-RMCBoxSyringe = коробка шприцев
+    .desc = На коробке напечатано предупреждение о биологической опасности.
+ent-RMCBoxSyringeCBRN = коробка шприцев
+    .desc = На коробке напечатано предупреждение о биологической опасности.
+    .suffix = РХБЗ, Маленький
+ent-RMCBoxBeaker = коробка мензурок
+    .desc = Это просто обычная коробка.
+ent-RMCBoxVialCardboard = box of vials
+    .desc = It's just an ordinary box.

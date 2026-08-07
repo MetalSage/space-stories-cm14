@@ -13,10 +13,10 @@
   icon: _RMC14/Actions/xeno_emotes.rsi/hiss.png
   chatMessages: ["rmc-emote-hiss"]
   chatTriggers:
-    - hiss
-    - hisses
-    - hissing
-    - hissed
+    - шипеть
+    - шипит
+    - шипение
+    - шипел
 
 - type: emote
   id: Meow
@@ -75,12 +75,12 @@
   icon: _RMC14/Actions/xeno_emotes.rsi/growl.png
   chatMessages: ["rmc-emote-growl"]
   chatTriggers:
-    - growl
-    - growls
-    - growls.
-    - growls!
-    - growling
-    - growled
+    - рычать
+    - рычит
+    - рычит.
+    - рычит!
+    - рычание
+    - рычал
 
 - type: emote
   id: Purr

@@ -20,6 +20,11 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
 using Robust.Shared.Containers;
+using Content.Shared._Stories.Hunter.Bracer;
+using Content.Shared._Stories.Hunter.Marking.Components;
+using Content.Shared._Stories.Hunter.Vision;
+using Content.Shared.Inventory;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._RMC14.Scoping;
 
@@ -36,6 +41,9 @@ public abstract partial class SharedScopeSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!; // Stories-Hunter
+    [Dependency] private readonly BracerSystem _bracer = default!; // Stories-Hunter
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // Stories-Hunter
 
     public override void Initialize()
     {
@@ -48,7 +56,9 @@ public abstract partial class SharedScopeSystem : EntitySystem
         SubscribeLocalEvent<ScopeComponent, HandDeselectedEvent>(OnDeselectHand);
         SubscribeLocalEvent<ScopeComponent, ItemUnwieldedEvent>(OnUnwielded);
         SubscribeLocalEvent<ScopeComponent, GetItemActionsEvent>(OnGetActions);
-        SubscribeLocalEvent<ScopeComponent, ToggleActionEvent>(OnToggleAction);
+
+        SubscribeLocalEvent<ScopeComponent, ToggleScopeEvent>(OnToggleScopeAction); // Stories-Hunter
+
         SubscribeLocalEvent<ScopeComponent, ScopeCycleZoomLevelEvent>(OnCycleZoomLevel);
         SubscribeLocalEvent<ScopeComponent, ActivateInWorldEvent>(OnActivateInWorld);
         SubscribeLocalEvent<ScopeComponent, GunShotEvent>(OnGunShot);
@@ -110,13 +120,52 @@ public abstract partial class SharedScopeSystem : EntitySystem
             args.AddAction(ref ent.Comp.CycleZoomLevelActionEntity, ent.Comp.CycleZoomLevelAction);
     }
 
-    private void OnToggleAction(Entity<ScopeComponent> ent, ref ToggleActionEvent args)
+    private void OnToggleScopeAction(Entity<ScopeComponent> ent, ref ToggleScopeEvent args) // Stories-Hunter
+    {
+        HandleToggle(ent, args.Performer, args);
+    }
+
+    private void HandleToggle(Entity<ScopeComponent> ent, EntityUid performer, HandledEntityEventArgs args)
     {
         if (args.Handled)
             return;
 
+        // Stories-Hunter-Start
+        if (TryComp<HunterVisionMaskComponent>(ent, out var mask))
+        {
+            if (!_inventory.TryGetSlotEntity(performer, "mask", out var equippedMask) || equippedMask != ent.Owner)
+            {
+                args.Handled = true;
+                return;
+            }
+
+            if (!HasComp<HunterComponent>(performer))
+            {
+                args.Handled = true;
+                return;
+            }
+
+            if (!_bracer.IsHunterWithBracer(performer, out var bracer))
+            {
+                args.Handled = true;
+                return;
+            }
+
+            if (!_bracer.AttemptUsage(performer, bracer.Value))
+            {
+                args.Handled = true;
+                return;
+            }
+
+            if (HasComp<ScopingComponent>(performer))
+                _audio.PlayPredicted(mask.ZoomOutSound, ent, performer);
+            else
+                _audio.PlayPredicted(mask.ZoomInSound, ent, performer);
+        }
+        // Stories-Hunter-End
+
         args.Handled = true;
-        ToggleScoping(ent, args.Performer);
+        ToggleScoping(ent, performer);
     }
 
     private void OnCycleZoomLevel(Entity<ScopeComponent> scope, ref ScopeCycleZoomLevelEvent args)
@@ -212,8 +261,10 @@ public abstract partial class SharedScopeSystem : EntitySystem
             return false;
         }
 
-        var holdingItem = _hands.TryGetActiveItem(user, out var heldItem) && (scope.Comp.Attachment || heldItem == scope.Owner);
-        if (!holdingItem && !scope.Comp.CanUseInsideContainer)
+        // Stories-Hunter-Start
+        bool holdingItem = _hands.TryGetActiveItem(user, out var heldItem) && (scope.Comp.Attachment || heldItem == scope.Owner);
+        if (!holdingItem && !scope.Comp.CanUseInsideContainer && scope.Comp.UseInHand)
+        // Stories-Hunter-End
         {
             var msgError = Loc.GetString("cm-action-popup-scoping-user-must-hold", ("scope", ent));
             _popup.PopupClient(msgError, user, user);
@@ -321,11 +372,11 @@ public abstract partial class SharedScopeSystem : EntitySystem
         var targetOffset = GetScopeOffset(scope, direction);
         scoping.EyeOffset = targetOffset;
 
-        if (scope.Comp.ScopePopup != null)
-        {
-            var msgUser = Loc.GetString(scope.Comp.ScopePopup, ("scope", scope.Owner));
-            _popup.PopupClient(msgUser, user, user);
-        }
+        var msgUser = scope.Comp.ScopePopup != null 
+            ? Loc.GetString(scope.Comp.ScopePopup, ("scope", scope.Owner))
+            : Loc.GetString("cm-action-popup-scoping-user", ("scope", scope.Owner));
+            
+        _popup.PopupClient(msgUser, user, user);
 
         _actionsSystem.SetToggled(scope.Comp.ScopingToggleActionEntity, true);
         _contentEye.SetZoom(user, Vector2.One * zoomLevel.Zoom, true);
@@ -361,11 +412,11 @@ public abstract partial class SharedScopeSystem : EntitySystem
         scope.Comp.ScopingDirection = null;
         Dirty(scope);
 
-        if (scope.Comp.UnScopePopup != null)
-        {
-            var msgUser = Loc.GetString(scope.Comp.UnScopePopup, ("scope", scope.Owner));
-            _popup.PopupClient(msgUser, user, user);
-        }
+        var msgUser = scope.Comp.UnScopePopup != null
+            ? Loc.GetString(scope.Comp.UnScopePopup, ("scope", scope.Owner))
+            : Loc.GetString("cm-action-popup-scoping-stopping-user", ("scope", scope.Owner));
+            
+        _popup.PopupClient(msgUser, user, user);
 
         _actionsSystem.SetToggled(scope.Comp.ScopingToggleActionEntity, false);
         _contentEye.ResetZoom(user);

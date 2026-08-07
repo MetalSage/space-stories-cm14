@@ -1,26 +1,26 @@
 <Document>
-  #Hivelord, Tier 2
+  #Повелитель Улья, Уровень 2
   <GuideEntityEmbed Entity="CMXenoHivelord"/>
-  ##Playing as a Hivelord
-  Being a superior drone, you are able to construct thick resin structures at a faster speed, beware of working on the frontlines as you are prone to dying to explosions and skyspit (close air support) so it may be a better idea to work on the backlines as Hivelords are also fast on resin by using their resin walker ability.
+  ##Игра за Повелителя Улья
+  Будучи превосходным трутнем, вы способны строить толстые смоляные структуры с большей скоростью. Остерегайтесь работы на передовой, так как вы подвержены гибели от взрывов и небесного плевка (ближней воздушной поддержки), поэтому лучше работать в тылу, так как Повелители Улья также быстры на смоле, используя свою способность "Ходок по смоле".
 
-  Hivelords are also great at tackling which makes them decent on the frontlines if any host enters their weeds.
+  Повелители Улья также отлично справляются с захватом, что делает их неплохими на передовой, если какой-либо носитель попадает в их сорняки.
 
-  ##Abilities:
-  - [bold]Plant Weeds[/bold]: Places a resin node which spreads weeds across a large area.
+  ##Способности:
+  - [bold]Посадить Сорняки[/bold]: Размещает смоляной узел, который распространяет сорняки на большой площади.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoPlantWeeds"/>
-  - [bold]Choose Resin Structure[/bold]: Chooses what resin structure to make, to then be used by Secrete Resin.
+  - [bold]Выбрать Смоляную Структуру[/bold]: Выбирает, какую смоляную структуру создать, для последующего использования способностью «Выделение Смолы».
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoChooseResinStructure"/>
-  - [bold]Secrete Resin[/bold]: Secretes the chosen resin structure on any tile you click.
+  - [bold]Выделение Смолы[/bold]: Выделяет выбранную смоляную структуру на любой клетке, по которой вы щелкнете.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoSecreteResin"/>
-  - [bold]Order Construction[/bold]: Orders the construction of a hive structure.
+  - [bold]Приказ на Строительство[/bold]: Отдаёт приказ на строительство ульевой структуры.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoOrderConstruction"/>
-  - [bold]Transfer Plasma[/bold]: Transfers plasma from yourself to a sister, upgraded.
+  - [bold]Передача Плазмы[/bold]: Передаёт плазму от себя сестре (улучшено).
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoTransferPlasma"/>
-  - [bold]Corrosive Acid[/bold]: Secretes a glob of acid on items to be dissolved.
+  - [bold]Едкая Кислота[/bold]: Выделяет сгусток кислоты на предметы для их растворения.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoCorrosiveAcid"/>
-  - [bold]Emit Pheromones[/bold]: Emits one of the three pheromones, strength of said pheromone is dependent on caste and does not stack with pheromones of the same type.
+  - [bold]Излучать Феромоны[/bold]: Излучает один из трёх феромонов. Сила этого феромона зависит от касты и не суммируется с феромонами того же типа.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoPheromones"/>
-  - [bold]Resin Walker[/bold]: Grants you increased speed when on resin, however will quickly drain your plasma.
+  - [bold]Ходок по Смоле[/bold]: Даёт вам повышенную скорость при движении по смоле, однако быстро расходует вашу плазму.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoResinWalker"/>
 </Document>

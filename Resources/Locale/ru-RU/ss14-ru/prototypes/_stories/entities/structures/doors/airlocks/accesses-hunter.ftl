@@ -1,0 +1,9 @@
+ent-STAirlockHunterLocked = шлюз охотника
+    .desc = { ent-STAirlockHunter.desc }
+    .suffix = Охотник, Заперто
+ent-STAirlockHunterLockedElder = шлюз охотника
+    .desc = { ent-STAirlockHunter.desc }
+    .suffix = Охотник, Заперто, Старейшина
+ent-STAirlockHunterLockedAncient = шлюз охотника
+    .desc = { ent-STAirlockHunter.desc }
+    .suffix = Охотник, Заперто, Древний

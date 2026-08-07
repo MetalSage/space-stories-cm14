@@ -1,18 +1,19 @@
-using System.Collections.Generic; //RMC
+using System.Collections.Generic;
 using Content.Server.Interaction;
-using Content.Shared._RMC14.Weapons.Ranged.IFF; //RMC
-using Content.Shared.Mobs.Systems; //RMC
-using Content.Shared.Inventory; //RMC
+using Content.Shared._RMC14.Barricade.Components;
+using Content.Shared._RMC14.Weapons.Ranged.IFF;
+using Content.Shared.Inventory;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
-using Robust.Shared.Prototypes; //RMC
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.NPC.HTN.Preconditions;
 
 public sealed partial class TargetInLOSPrecondition : HTNPrecondition
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
-    private MobStateSystem _mobState = default!; //RMC
-    private GunIFFSystem _gunIFF = default!; //RMC
+    private MobStateSystem _mobState = default!;
+    private GunIFFSystem _gunIFF = default!;
     private InteractionSystem _interaction = default!;
 
     [DataField("targetKey")]
@@ -28,8 +29,8 @@ public sealed partial class TargetInLOSPrecondition : HTNPrecondition
     {
         base.Initialize(sysManager);
         _interaction = sysManager.GetEntitySystem<InteractionSystem>();
-        _mobState = sysManager.GetEntitySystem<MobStateSystem>(); //RMC
-        _gunIFF = sysManager.GetEntitySystem<GunIFFSystem>(); //RMC
+        _mobState = sysManager.GetEntitySystem<MobStateSystem>();
+        _gunIFF = sysManager.GetEntitySystem<GunIFFSystem>();
     }
 
     public override bool IsMet(NPCBlackboard blackboard)
@@ -40,9 +41,10 @@ public sealed partial class TargetInLOSPrecondition : HTNPrecondition
             return false;
 
         var range = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
-        var collisionGroup = UseOpaqueForLOSChecksKey ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
+        var collisionGroup = UseOpaqueForLOSChecksKey 
+            ? CollisionGroup.Opaque 
+            : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
 
-        // RMC begin
         return _interaction.InRangeUnobstructed(
             owner,
             target,
@@ -57,6 +59,9 @@ public sealed partial class TargetInLOSPrecondition : HTNPrecondition
             return false;
 
         if (_mobState.IsDead(blocker))
+            return true;
+
+        if (_entManager.HasComponent<BarbedComponent>(blocker))
             return true;
 
         if (SharesIff(owner, blocker))
@@ -85,5 +90,4 @@ public sealed partial class TargetInLOSPrecondition : HTNPrecondition
 
         return false;
     }
-    //  RMC end
 }

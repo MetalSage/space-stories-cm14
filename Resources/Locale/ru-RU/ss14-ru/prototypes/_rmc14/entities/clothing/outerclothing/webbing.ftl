@@ -1,0 +1,13 @@
+ent-RMCAllowSuitStorageClothingExternalWebbing = { "" }
+    .desc = { "" }
+ent-RMCOuterClothingExternalWebbing = внешняя разгрузка
+    .desc = Предназначена для ношения поверх комбинезона, а не для застегивания.
+ent-RMCOuterClothingExternalWebbingBrown = { ent-RMCOuterClothingExternalWebbing }
+    .desc = { ent-RMCOuterClothingExternalWebbing.desc }
+    .suffix = Коричневый
+ent-RMCOuterClothingExternalWebbingBlack = { ent-RMCOuterClothingExternalWebbing }
+    .desc = { ent-RMCOuterClothingExternalWebbing.desc }
+    .suffix = Черный
+ent-RMCOuterClothingExternalWebbingSPPSurvivor = { ent-RMCOuterClothingExternalWebbing }
+    .desc = { ent-RMCOuterClothingExternalWebbing.desc }
+    .suffix = SPP, Survivor, Filled

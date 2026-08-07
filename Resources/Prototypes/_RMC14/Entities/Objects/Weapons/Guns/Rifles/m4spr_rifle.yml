@@ -106,6 +106,15 @@
         Snow: s_m4spr_barrel
         Classic: c_m4spr_barrel
         Urban: u_m4spr_barrel
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Rifles/m4spr/desert.rsi
+      AngelOfDeath: /Textures/_Stories/Objects/Weapons/Rifles/m4spr.rsi
+    layers:
+      barrel:
+        Default: d_m4spr_barrel
+        AngelOfDeath: m4spr_barrel_aod
   - type: Tag
     tags:
     - RMCWeaponRifleM4SPR

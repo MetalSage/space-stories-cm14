@@ -1,0 +1,36 @@
+- type: entity
+  parent: RMCAreaBase
+  id: STAreaHunterShip
+  name: Hunter Ship
+  suffix: Hunter Ship
+  components:
+  - type: Sprite
+    sprite: _Stories/Areas/hunter.rsi
+    state: hunter
+  - type: Area
+    powerNet: hunting_ground
+    CAS: false
+    fulton: false
+    lasing: false
+    mortarPlacement: false
+    mortarFire: false
+    medevac: false
+    paradropping: false
+    OB: false
+    supplyDrop: false
+    resinAllowed: false
+    avoidBioscan: false
+    noTunnel: true
+    unweedable: false
+    buildSpecial: false
+    weatherEnabled: false
+
+- type: entity
+  parent: STAreaHunterShip
+  id: STAreaHunterShipHangar
+  name: Hunter Ship - Hangar
+
+- type: entity
+  parent: STAreaHunterShip
+  id: STAreaHunterShipLowerDeck
+  name: Hunter Ship - Lower Deck

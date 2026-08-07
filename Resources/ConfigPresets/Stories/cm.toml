@@ -1,0 +1,122 @@
+# Базовая предустановка конфигурации, используемая на всех серверах Stories Marine Corps.
+# Загружается перед настройками конфигурации, специфичными для сервера.
+
+# [config]
+# presets = "Stories/cm"
+
+[accessibility]
+screen_shake_intensity = 1
+
+[admin]
+deadmin_on_join = true
+new_player_threshold = 600
+role_ban_default_severity = "minor"
+department_ban_default_severity = "minor"
+server_ban_default_severity = "medium"
+server_ban_hwid_ban_default = false
+
+[ahelp]
+admin_prefix = true
+admin_prefix_webhook = true
+
+[atmos]
+space_wind = false
+monstermos_rip_tiles = false
+grid_impulse = false
+max_process_time = 1
+
+[auth]
+mode = 1
+
+[events]
+enabled = false
+
+[explosion]
+can_create_vacuum = false
+
+[chat]
+rate_limit_period = 2
+rate_limit_count = 1
+rate_limit_announce_admins_delay = 10
+max_message_length = 500
+
+[game]
+defaultpreset = "STDistressSignal"
+fallbackenabled = false
+fallbackpreset = "STDistressSignal"
+round_end_sound_collection = "CMRoundEnd"
+contraband_examine = false
+map_pool = "STDefaultMapPool"
+panic_bunker.enabled = false
+round_end_pvs_overrides = false
+round_restart_time = 180
+lobbyduration = 180
+
+[gateway]
+generator_enabled = false
+
+[ghost]
+kill_crit = false
+role_time = 0
+
+[guidebook]
+show_editor_species_button = false
+
+[hub]
+tags = "lang:ru,rp:med,region:eu_e"
+
+[ic]
+flavor_text = true
+
+[infolinks]
+bug_report = "https://discord.gg/space-stories-cm"
+discord = "https://discord.gg/space-stories-cm"
+forum = "https://forum.spacestories.club"
+patreon = "https://boosty.to/spacestories_cm"
+wiki = "https://spacestories.club/Marine_Corps"
+appeal = "https://discord.gg/space-stories-cm"
+
+[net]
+tickrate = 25
+bindto = "::,0.0.0.0"
+
+[physics]
+grid_splitting = false
+maxlinvelocity = 72
+target_minimum_tickrate = 72
+
+[pointing]
+cooldown_seconds = 1
+
+[procgen]
+preload = false
+
+[queue]
+enabled = true
+
+[server]
+rules_file = "STOverview"
+default_guide = "Stories"
+
+[shuttle]
+arrivals_planet = false
+arrivals = false
+preload_grids = false
+startup_time = 10
+travel_time = 100
+arrival_time = 10
+cooldown = 120
+mass_limit = -1
+emergency = false
+auto_call_time = 0
+
+[tips]
+dataset = "CM_Tips"
+login_dataset = "CM_Tips"
+
+[vote]
+preset_enabled = false
+restart_ghost_percentage = 75
+
+[viewport]
+maximum_width = 26

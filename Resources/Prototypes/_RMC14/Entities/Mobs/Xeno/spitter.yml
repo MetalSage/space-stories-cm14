@@ -11,11 +11,33 @@
   name: Spitter
   description: A gross, oozing alien of some kind.
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoSpit ]
+      XenoPrimaryTwo: [ ActionXenoChargeSpit ]
+      XenoPrimaryThree: [ ActionXenoSprayAcid ]
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleSpitter
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Spitter/spitter.rsi
+    sprite: _Stories/Mobs/Xenos/Spitter/spitter.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Spitter/spitter_spit.rsi
+      state: spit
+      visible: false
   - type: MobState
     allowedStates:
     - Alive
@@ -43,7 +65,7 @@
     - ActionXenoSprayAcid
     - ActionXenoDevolve
     tier: 2
-    hudOffset: -0.15,0.025
+    hudOffset: 0,0.16
     unlockAt: 540 # 9 minutes
   - type: XenoHeavy
   - type: XenoDevolve
@@ -60,6 +82,7 @@
     evolvesTo:
     - RMCXenoBoiler
     - CMXenoPraetorian
+    - STXenoDespoiler # Stories-Despoiler
   - type: XenoSpit
   - type: XenoChargeSpit
   - type: XenoScatteredSpit
@@ -120,3 +143,8 @@
     ventCrawlIcon: spitter
   - type: RMCActionOrder
     id: CMXenoSpitter
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpit
+    - ActionXenoSprayAcid

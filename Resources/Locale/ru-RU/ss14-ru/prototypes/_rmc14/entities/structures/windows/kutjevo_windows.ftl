@@ -1,0 +1,10 @@
+ent-RMCWindowFrameKutjevo = { ent-RMCBaseWindowFrame }
+    .desc = { ent-RMCBaseWindowFrame.desc }
+ent-RMCWindowFrameKutjevoReinforced = { ent-RMCWindowFrameColonyReinforced }
+    .desc = { ent-RMCWindowFrameColonyReinforced.desc }
+ent-RMCWindowKutjevo = окно
+    .desc = Стеклянная витрина в настенной раме.
+ent-RMCWindowKutjevoReinforced = армированное окно
+    .desc = Стеклянное окно. Видны поперечные перекладины. Потребуется несколько хороших ударов, чтобы разбить его.
+ent-RMCWindowKutjevoHull = окно корпуса
+    .desc = Стеклянная витрина. Что-то подсказывает, что оно несокрушимо.

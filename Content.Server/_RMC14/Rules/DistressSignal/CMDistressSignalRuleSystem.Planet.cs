@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Content.Server._RMC14.MapInsert;
 using Content.Server.Voting;
@@ -10,6 +11,8 @@ using Content.Shared._RMC14.TacticalMap;
 using Content.Shared._RMC14.WeedKiller;
 using Content.Shared._RMC14.Xenonids.Construction.Tunnel;
 using Content.Shared.Chat;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._RMC14.Rules.DistressSignal;
@@ -45,7 +48,36 @@ public sealed partial class CMDistressSignalRuleSystem
             Log.Error("Multiple planet-side grids found");
 
         rule.Comp.XenoMap = grids.First();
+
         _mapSystem.InitializeMap((map, map));
+
+        // Stories-Survivor-Start
+        if (planet.Comp.Replacements != null && planet.Comp.Replacements.Count > 0)
+        {
+            var mapId = _transform.GetMapId(map.Owner);
+            var query = AllEntityQuery<MetaDataComponent, TransformComponent>();
+            var toReplace = new List<(EntityUid Uid, EntityCoordinates Coords, EntProtoId? Proto)>();
+
+            while (query.MoveNext(out var uid, out var meta, out var xform))
+            {
+                if (xform.MapID != mapId || meta.EntityPrototype == null)
+                    continue;
+
+                if (planet.Comp.Replacements.TryGetValue((EntProtoId)meta.EntityPrototype.ID, out var replacementProto))
+                {
+                    toReplace.Add((uid, xform.Coordinates, replacementProto));
+                }
+            }
+
+            foreach (var (uid, coords, proto) in toReplace)
+            {
+                if (proto != null)
+                    Spawn(proto.Value, coords);
+
+                QueueDel(uid);
+            }
+        }
+        // Stories-Survivor-End
 
         ActiveNightmareScenario = string.Empty;
         if (SelectedPlanetMap?.Comp.NightmareScenarios != null)

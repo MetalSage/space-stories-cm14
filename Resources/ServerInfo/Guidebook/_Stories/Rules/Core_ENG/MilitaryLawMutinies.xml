@@ -1,0 +1,50 @@
+<Document>
+  # Rule 10: Military Law and Mutinies
+
+  ## Malicious Compliance
+  - Malicious Compliance is the use of IC military law to inflict excessive punishments, arresting people on technicalities who are not causing a public disturbance and acting in good faith, or intentionally dragging out the brig and appeals process.
+  - Malicious Compliance does not apply if there is IC provocation. (e.g., Following and taunting/threatening a player, engaging in generally disruptive behavior and continuing when asked to stop, etc.)
+
+  ## Mandatory Compliance
+  The following roles are obligated to uphold military law as per server rules. Violating marine law can lead to a job ban or other consequences.
+  - Command roles
+  - Department Head roles
+  - All Military Police roles
+  - Senior Enlisted Advisor
+
+  ## Exceptions
+  - Military Police can ignore petty crimes if not ordered to enforce them but cannot ignore major or egregious crimes.
+  - Marine law can be broken if necessary to preserve the life and safety of others.
+
+  ## Mutiny
+  Mutinies must be filed with the administrators, with a chosen leader, stating the reason and the players directly involved. They must also follow the mutiny rules outlined below.
+  - A mutiny must have at least 5 participants.
+    - Roles obligated to follow marine law through mandatory compliance cannot participate in a mutiny. However, they are permitted to remain neutral if they agree with the mutineers.
+  - If a mutiny doesn't have a valid reason, it cannot take place.
+    - Administration reserves the right to allow or disallow mutinies, and to decide whether the stated reason is sufficient.
+  - Regular mutinies cannot occur during a hijack, and any ongoing mutiny must cease after a shuttle is hijacked.
+  - Only the acting Captain can be mutinied against for their decisions, actions, or inaction.  They must be given a chance to peacefully step down.
+  - During a mutiny, attacking non-participants, medical personnel, or those who have surrendered is strictly forbidden, as is intentionally perma-killing anyone involved.
+    - Once you pick a side, you stay on that side. No flip-flopping.
+    - Additionally, if you surrender during a mutiny, you cannot resume hostilities and must follow standard escalation rules again.
+    - If medical personnel take part in the mutiny beyond providing medical attention, such as participating in combat, they may be treated as any other mutineer.
+  - After a mutiny concludes, all sides must be provided medical attention. Only a Major or higher can deny treatment or execute specific mutineers on the field.
+
+  ## Examples of Valid Mutiny Reasons:
+  - The Captain is utterly incompetent, an ineffective leader, and the next in line would be a better leader.
+  - The Captain is generally non-communicative and makes no effort to lead.
+  - The Captain refuses to evacuate, either from the operational area or from the ship during a hijack.
+
+  ## Examples of Invalid Mutiny Reasons:
+  - The Xenomorphs gained an early or relatively easy victory not controlled by command.
+  - The MP's arrested your specialist.
+
+  ## Evacuation Mutinies
+  Evacuation Mutinies are mutinies that are used when the Captain refuses to evacuate the colony or the Almayer. Instead of replacing command of the Almayer, the goal of these mutinies is to initiate an evacuation to save the lives of people who wish to evacuate. There's a bit more leeway for these kinds of evacuations than regular mutinies, and that is outlined below.
+  - **WARNING!** You are still **REQUIRED** to give the Captain a chance to peacefully authorize the evacuation. You cannot barge in guns blazing without attempting to talk it out first.
+  - This is the only kind of mutiny permitted during a hijack.
+  - A ship evacuation mutiny doesn't require ahelp. However, it is recommended to ahelp before or after so that you don't have confusion when staff ask why you just shot the Captain.
+  - An evacuation can begin with 1 person rather than five like a regular mutiny.
+  - Roles normally obligated to follow marine law can participate in this kind of mutiny.
+  - Evacuation mutinies should use minimal force to succeed. You can't wipe out everyone in CIC just because the Captain doesn't want to evacuate.
+</Document>

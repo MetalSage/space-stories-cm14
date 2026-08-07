@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Numerics;
 using Content.Client._RMC14;
@@ -15,6 +16,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Shared.Graphics;
 using static Robust.Client.UserInterface.StylesheetHelpers;
 
 namespace Content.Client.Stylesheets
@@ -84,6 +86,8 @@ namespace Content.Client.Stylesheets
         public const string StyleClassLabelBig = "LabelBig";
         public const string StyleClassLabelSmall = "LabelSmall";
         public const string StyleClassButtonBig = "ButtonBig";
+        public const string StyleClassButtonColorOrange = "ButtonColorOrange"; // Stories-Partners
+        public const string StyleClassButtonBigOrange = "ButtonBigOrange"; // Stories-Partnert
 
         public const string StyleClassButtonHelp = "HelpButton";
 
@@ -117,6 +121,13 @@ namespace Content.Client.Stylesheets
         public static readonly Color ButtonColorGoodDefault = Color.FromHex("#3E6C45");
         public static readonly Color ButtonColorGoodHovered = Color.FromHex("#31843E");
         public static readonly Color ButtonColorGoodDisabled = Color.FromHex("#164420");
+
+        // Stories-Partnert-Start
+        public static readonly Color ButtonColorOrangeDefault = Color.FromHex("#e77719");
+        public static readonly Color ButtonColorOrangeHovered = Color.FromHex("#eb8129");
+        public static readonly Color ButtonColorOrangePressed = Color.FromHex("#ec8c3c");
+        public static readonly Color ButtonColorOrangeDisabled = Color.FromHex("#c76512");
+        // Stories-Partnert-End
 
         //NavMap
         public static readonly Color PointRed = Color.FromHex("#B02E26");
@@ -1274,6 +1285,16 @@ namespace Content.Client.Stylesheets
                         new StyleProperty("font", notoSans16)
                     }),
 
+                // Stories-Partnert-Start
+                new StyleRule(new SelectorChild(
+                    new SelectorElement(typeof(Button), new[] {StyleClassButtonBigOrange}, null, null),
+                    new SelectorElement(typeof(Label), null, null, null)),
+                    new[]
+                    {
+                        new StyleProperty("font", notoSans16) // Same font size as StyleClassButtonBig
+                    }),
+                // Stories-Partnert-End
+
                 //APC and SMES power state label colors
                 new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassPowerStateNone}, null, null), new[]
                 {
@@ -1701,6 +1722,16 @@ namespace Content.Client.Stylesheets
                 Element<Button>().Class("ButtonColorGreen").Pseudo(ContainerButton.StylePseudoClassHover)
                     .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodHovered),
 
+                // Stories-Sponsors
+                Element<Button>().Class("ButtonColorOrange")
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorOrangeDefault),
+
+                Element<Button>().Class("ButtonColorOrange").Pseudo(ContainerButton.StylePseudoClassNormal)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorOrangeDefault),
+
+                Element<Button>().Class("ButtonColorOrange").Pseudo(ContainerButton.StylePseudoClassHover)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorOrangeHovered),
+
                 // Accept button (merge with green button?) ---
                 Element<Button>().Class("ButtonAccept")
                     .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodDefault),
@@ -1870,6 +1901,25 @@ namespace Content.Client.Stylesheets
                 {
                     new StyleProperty(Label.StylePropertyAlignMode, Label.AlignMode.Left),
                 }),
+
+                // Stories-Partnert-Start
+                Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(StyleClassButtonBigOrange)
+                    .Pseudo(ContainerButton.StylePseudoClassNormal)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorOrangeDefault),
+
+                Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(StyleClassButtonBigOrange)
+                    .Pseudo(ContainerButton.StylePseudoClassHover)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorOrangeHovered),
+
+                Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(StyleClassButtonBigOrange)
+                    .Pseudo(ContainerButton.StylePseudoClassPressed)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorOrangePressed),
+
+                Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(StyleClassButtonBigOrange)
+                    .Pseudo(ContainerButton.StylePseudoClassDisabled)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorOrangeDisabled)
+                // Stories-Partnert-End
+
             }).ToList());
         }
     }

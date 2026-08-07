@@ -32,7 +32,7 @@
   - type: DropshipFabricatorPrintable
     cost: 400
   - type: DropshipWeapon
-    abbreviation: GAU
+    abbreviation: АПС
     fireDelay: 2
     fireInTransport: true
     skills:
@@ -61,7 +61,7 @@
   - type: DropshipFabricatorPrintable
     cost: 600
   - type: DropshipWeapon
-    abbreviation: MSL
+    abbreviation: РКУ
     fireDelay: 5
     weaponAttachedSprite:
       sprite: _RMC14/Objects/dropship_attachments.rsi
@@ -86,7 +86,7 @@
   - type: DropshipFabricatorPrintable
     cost: 600
   - type: DropshipWeapon
-    abbreviation: RKT
+    abbreviation: РКБ
     fireDelay: 1
     weaponAttachedSprite:
       sprite: _RMC14/Objects/dropship_attachments.rsi

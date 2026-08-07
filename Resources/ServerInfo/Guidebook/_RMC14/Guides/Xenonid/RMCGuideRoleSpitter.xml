@@ -1,26 +1,26 @@
 <Document>
-  #Spitter, Tier 2
+  #Плеватель, Уровень 2
   <GuideEntityEmbed Entity="CMXenoSpitter"/>
-  ##Playing as a Spitter
-  The Spitter turns from a harasser to now being able to go on the offensive. Its slower speed is now counteracted by better health and damaging spits along with stronger Corrosive Acid.
+  ##Игра за Плевателя
+  Плеватель превращается из досаждающего в способного переходить в наступление. Его более низкая скорость теперь компенсируется улучшенным здоровьем и наносящими урон плевками, а также более сильной Едкой Кислотой.
 
-  Its new acid based abilities allow it to deal consistent damage at the frontline at range.
+  Его новые способности, основанные на кислоте, позволяют ему наносить стабильный урон на передовой на расстоянии.
 
-  Its unique combo is Charged Spit, Acid Spit and then Acid Spray, if used on the same host it will stun them to the ground and upgrade the Charged Spit on them, this can let you walk up and tailstab.
+  Его уникальное комбо — Заряженный Плевок, Кислотный Плевок, а затем Кислотное Распыление. Если использовать его на одном и том же носителе, это оглушит его и улучшит Заряженный Плевок на нём, что позволит вам подойти и ударить хвостом.
 
-  Stay at the frontline spitting hosts from afar, and in your downtime use your acid to melt flares and weapons.
+  Оставайтесь на передовой, плюясь в носителей издалека, а в свободное время используйте свою кислоту, чтобы расплавлять сигнальные ракеты и оружие.
 
-  Reminder that charge spits extra movement can be used for escaping, as it lasts a while or until your next spit!
+  Напоминаем, что дополнительное движение от заряженного плевка можно использовать для побега, так как оно длится некоторое время или до вашего следующего плевка!
 
-  ##Abilities:
-  - [bold]Acid Spit[/bold]: Glob acid to deal damage to any targets.
+  ##Способности:
+  - [bold]Кислотный Плевок[/bold]: Выпускает сгусток кислоты, нанося урон любым целям.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoSpit"/>
-  - [bold]Charge Spit[/bold]: Grants you extra movement speed and armor and empowers your next spit, which will do extra damage but will be shorter in range. Additionally, it will spatter the target in acid.
+  - [bold]Заряженный Плевок[/bold]: Даёт вам дополнительную скорость передвижения и броню, а также усиливает ваш следующий плевок, который нанесёт дополнительный урон, но будет иметь меньшую дальность. Дополнительно, он покроет цель кислотой.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoChargeSpit"/>
-  - [bold]Spray Acid[/bold]: Sprays acid along the ground in a line, covering any barricades and dealing damage to hosts.
-  - Will also extinguish any sisters if they are on fire.
-  - If used on a host affected by Charged Spit, will upgrade the spit and stun them.
+  - [bold]Распылить Кислоту[/bold]: Распыляет кислоту по земле линией, покрывая любые баррикады и нанося урон носителям.
+  - Также потушит любых сестёр, если они горят.
+  - При использовании на носителе, поражённом Заряженным Плевком, улучшит плевок и оглушит его.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoSprayAcid"/>
-  - [bold]Corrosive Acid[/bold]: Secretes a glob of acid on items to be dissolved.
+  - [bold]Едкая Кислота[/bold]: Выделяет сгусток кислоты на предметы для их растворения.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoCorrosiveAcid"/>
 </Document>

@@ -1,0 +1,9 @@
+ent-STAreaHunterShip = Корабль Охотников
+    .desc = { ent-RMCAreaBase.desc }
+    .suffix = Корабль Охотников
+ent-STAreaHunterShipHangar = Корабль Охотников — Ангар
+    .desc = { ent-STAreaHunterShip.desc }
+    .suffix = { ent-STAreaHunterShip.suffix }
+ent-STAreaHunterShipLowerDeck = Корабль Охотников — Нижняя Палуба
+    .desc = { ent-STAreaHunterShip.desc }
+    .suffix = { ent-STAreaHunterShip.suffix }

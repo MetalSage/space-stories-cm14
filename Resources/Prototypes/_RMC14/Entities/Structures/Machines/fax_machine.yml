@@ -44,7 +44,7 @@
   suffix: CMB
   components:
   - type: FaxMachine
-    name: "Colony Marshal Bureau"
+    name: "Бюро Колониальных Маршалов" # Stories-Localise
     notifyAdmins: true
 
 - type: entity
@@ -54,7 +54,7 @@
   suffix: WEYA
   components:
   - type: FaxMachine
-    name: "We-Ya"
+    name: "Вестон-Ямада" # Stories-Localise
     notifyAdmins: true
 
 - type: entity
@@ -64,7 +64,7 @@
   suffix: Marine HC
   components:
   - type: FaxMachine
-    name: "Marine High Command"
+    name: "Высшее Командования Морпехов" # Stories-Localise
     notifyAdmins: true
 
 - type: entity
@@ -73,7 +73,7 @@
   suffix: Provost
   components:
   - type: FaxMachine
-    name: "Marine Provost Office"
+    name: "Офис Провост Маршалов" # Stories-Localise
     notifyAdmins: true
 
 - type: entity
@@ -82,7 +82,7 @@
   suffix: Press
   components:
   - type: FaxMachine
-    name: "Various Press Organizations"
+    name: "Различные Печатные Организации" # Stories-Localise
     notifyAdmins: true
 
 - type: entity
@@ -91,8 +91,10 @@
   suffix: CLF
   components:
   - type: FaxMachine
-    name: "Colony Liberation Front"
+    name: "Колониально Освободительный Фронт" # Stories-Localise
     notifyAdmins: true
+    responsePings: false # Stories-Parity
+  - type: Emagged # Stories-Parity
 
 - type: entity
   parent: CMFax
@@ -100,8 +102,10 @@
   suffix: SPP
   components:
   - type: FaxMachine
-    name: "Socialist Progressive Peoples"
+    name: "Союз Прогрессивных Народов" # Stories-Localise
     notifyAdmins: true
+    responsePings: false # Stories-Parity
+  - type: Emagged # Stories-Parity
 
 - type: entity
   parent: CMFax
@@ -109,8 +113,10 @@
   suffix: TSE
   components:
   - type: FaxMachine
-    name: "Three Suns Empire"
+    name: "Империя Трёх Миров" # Stories-Localise
     notifyAdmins: true
+    responsePings: false # Stories-Parity
+  - type: Emagged # Stories-Parity
 
 - type: entity
   parent: CMFax
@@ -121,6 +127,16 @@
     name: "Corporate Liaison"
   - type: SpecialFax
     faxId: Liaison
+
+- type: entity
+  parent: CMFax
+  id: RMCFaxCommandingOfficer
+  suffix: Commanding Officer
+  components:
+  - type: FaxMachine
+    name: "Commanding Officer"
+  - type: SpecialFax
+    faxId: CommandingOfficer
 
 - type: entity
   parent: CMFax

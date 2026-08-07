@@ -1,0 +1,19 @@
+- type: entity
+  parent: CMHyperSleepChamber
+  id: STHyperSleepChamberHunter
+  name: hunter hypersleep chamber
+  suffix: Hunter
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: body_scanner_open
+      map: [ "enum.HyperSleepChamberLayers.Base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CryostorageVisuals.Full:
+        enum.HyperSleepChamberLayers.Base:
+          True: { state: body_scanner_closed }
+          False: { state: body_scanner_open }

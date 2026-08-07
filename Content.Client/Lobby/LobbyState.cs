@@ -1,5 +1,6 @@
 using Content.Client._RMC14.LinkAccount;
 using Content.Client._RMC14.Lobby;
+using Content.Client._Stories.Sponsors;
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
@@ -31,6 +32,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
+        [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Stories-Sponsors
 
         // RMC14
         [Dependency] private readonly LinkAccountManager _linkAccount = default!;
@@ -77,14 +79,13 @@ namespace Content.Client.Lobby
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
             Lobby.ReadyButton.OnToggled += OnReadyToggled;
 
+            Lobby.JoinButton.OnPressed += OnJoinPressed; // Stories-Hunter
+
             _gameTicker.InfoBlobUpdated += UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
 
-            // RMC14
-            Lobby.JoinXenoButton.OnPressed += _ =>
-                _userInterfaceManager.GetUIController<RMCLobbyUIController>().OpenJoinXenoWindow();
-            Lobby.JoinXenoButton.AddStyleClass("OpenRight");
+            Lobby.JoinXenoButton.Visible = false; // Stories-Hunter
         }
 
         protected override void Shutdown()
@@ -102,6 +103,8 @@ namespace Content.Client.Lobby
             Lobby.CharacterPreview.PatronPerks.OnPressed -= OnPatronPerksPressed;
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
+
+            Lobby.JoinButton.OnPressed -= OnJoinPressed;// Stories-Hunter
 
             Lobby = null;
         }
@@ -129,8 +132,12 @@ namespace Content.Client.Lobby
             {
                 return;
             }
+            new JoinGameWindow().OpenCentered(); // Stories-Hunter
+        }
 
-            new LateJoinGui().OpenCentered();
+        private void OnJoinPressed(BaseButton.ButtonEventArgs args) // Stories-Hunter
+        {
+            new JoinGameWindow().OpenCentered();
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
@@ -190,25 +197,44 @@ namespace Content.Client.Lobby
         private void LobbyLateJoinStatusUpdated()
         {
             Lobby!.ReadyButton.Disabled = _gameTicker.DisallowedLateJoin;
+            Lobby!.JoinButton.Disabled = _gameTicker.DisallowedLateJoin; // Stories-Hunter
         }
 
         private void UpdateLobbyUi()
         {
             Lobby!.CharacterPreview.PatronPerks.Visible = _linkAccount.CanViewPatronPerks();
 
-            if (_gameTicker.IsGameStarted)
+            // Stories-Sponsors-Start
+            if (_sponsorsManager.TryGetInfo(out var sponsor) && !string.IsNullOrEmpty(sponsor.TierName))
             {
-                Lobby!.ReadyButton.Text = Loc.GetString("lobby-state-ready-button-join-state");
-                Lobby!.ReadyButton.ToggleMode = false;
-                Lobby!.ReadyButton.Pressed = false;
-                Lobby!.ObserveButton.Disabled = false;
-
-                // RMC14
-                Lobby.ReadyButton.AddStyleClass("OpenLeft");
-                Lobby.JoinXenoButton.Visible = true;
+                Lobby!.CharacterPreview.SetSponsor(sponsor.TierName, sponsor.OOCColor);
             }
             else
             {
+                Lobby!.CharacterPreview.SetSponsor(null, null);
+            }
+            // Stories-Sponsors-End
+
+            if (_gameTicker.IsGameStarted)
+            {
+                // Stories-Hunter-Start
+                Lobby!.ReadyButton.Visible = false;
+                Lobby!.ReadyButton.ToggleMode = false;
+                Lobby!.ReadyButton.Pressed = false;
+
+                Lobby!.JoinButton.Visible = true;
+                Lobby!.JoinButton.Disabled = _gameTicker.DisallowedLateJoin;
+
+                Lobby!.ObserveButton.Disabled = false;
+
+                Lobby.JoinXenoButton.Visible = false;
+            }
+            else
+            {
+                Lobby!.JoinButton.Visible = false;
+
+                Lobby!.ReadyButton.Visible = true;
+                // Stories-Hunter-End
                 Lobby!.StartTime.Text = string.Empty;
                 Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
                 Lobby!.ReadyButton.ToggleMode = true;

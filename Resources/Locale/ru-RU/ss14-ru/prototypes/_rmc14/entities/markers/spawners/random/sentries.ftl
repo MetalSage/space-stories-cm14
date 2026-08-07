@@ -1,0 +1,12 @@
+ent-RMCSpawnerRandomSentry = спавнер турелей
+    .desc = Это случайная турель для выживших.
+    .suffix = Гарантированно
+ent-RMCSpawnerRandomSentryLowChance = { ent-RMCSpawnerRandomSentry }
+    .desc = { ent-RMCSpawnerRandomSentry.desc }
+    .suffix = Низкий шанс
+ent-RMCSpawnerRandomSentryMidChance = { ent-RMCSpawnerRandomSentry }
+    .desc = { ent-RMCSpawnerRandomSentry.desc }
+    .suffix = Средний шанс
+ent-RMCSpawnerRandomSentryHighChance = { ent-RMCSpawnerRandomSentry }
+    .desc = { ent-RMCSpawnerRandomSentry.desc }
+    .suffix = Высокий шанс

@@ -13,6 +13,7 @@
   - type: Clickable
   - type: Climbable
     delay: 0.25
+  - type: AutoClimbable # Stories-AutoClimb
   - type: Tag
     tags:
     - Platform

@@ -231,6 +231,11 @@ public sealed partial class NPCCombatSystem
         if (_mobState.IsDead(blocker))
             return true;
 
+        // Stories-TurretBarbedLOS-Start
+        if (_barbedQuery.HasComponent(blocker))
+            return true;
+        // Stories-TurretBarbedLOS-End
+
         if (SharesIff(owner, blocker))
             return true;
 

@@ -6,7 +6,7 @@
     speechVerb: Robotic
   - type: RequisitionsComputer
     categories:
-    - name: Ammo
+    - name: Боеприпасы # Stories-Translate
       entries:
       - cost: 2000
         crate: RMCCrateBoxBulletsSMG
@@ -48,8 +48,6 @@
         crate: RMCCrateBoxShellsShotgunBuckshot
       - cost: 3000
         crate: RMCCrateBoxShellsShotgunFlechette
-      - cost: 4000
-        crate: RMCCrateBoxShellsShotgunBreaching
       - cost: 2000
         crate: RMCCrateBoxMagazinePistolM77AP
       - cost: 4000
@@ -60,8 +58,6 @@
         crate: RMCCrateMagazineSmartGun
       - cost: 4000
         crate: RMCCrateBoxMagazineSmartPistol
-      - cost: 2000
-        crate: RMCCrateBoxMagazineBreaching
       - cost: 2000
         crate: RMCCrateBoxMagazineM54CE2
       - cost: 2000
@@ -90,7 +86,7 @@
         crate: RMCCrateMagazineM2C
       - cost: 6000
         crate: RMCCrateMagazineAmmoSurplus
-    - name: Attachments
+    - name: Обвесы # Stories-Translate
       entries:
       - cost: 3000
         crate: RMCCrateAttachmentSmartScope
@@ -134,7 +130,7 @@
         crate: RMCCrateAttachmentShotgunStock
       - cost: 3000
         crate: RMCCrateAttachmentSmgStock
-    - name: Clothing
+    - name: Одежда # Stories-Translate
       entries:
       - cost: 2000
         crate: RMCCrateClothingLargePouches
@@ -158,7 +154,7 @@
         crate: RMCCrateClothingDropPouchBlack
       - cost: 3000
         crate: RMCCrateClothingOfficerOutfit
-    - name: Engineering
+    - name: Инженерия # Stories-Translate
       entries:
       - cost: 2000
         crate: RMCCrateEmptySandbags
@@ -192,7 +188,7 @@
         crate: RMCCrateFlashlights
       - cost: 1000
         crate: RMCCrateHighCapacityPowerCell
-    - name: Explosives
+    - name: Взрывчатка # Stories-Translate
       entries:
       - cost: 3000
         crate: RMCCrateGrenadesHighExplosive
@@ -235,9 +231,11 @@
         crate: RMCCrateGrenadesBatonSlug
       - cost: 3000
         crate: RMCCrateExplosiveClaymoreMine
+      - cost: 3000
+        crate: RMCCrateM6HBruteRockets
       - cost: 4000
         crate: RMCCrateExplosivesSurplus
-    - name: Food
+    - name: Еда # Stories-Translate
       entries:
       - cost: 1000
         crate: RMCCrateFoodDonuts
@@ -247,7 +245,7 @@
         crate: RMCCrateFoodPizza
       - cost: 1000
         crate: RMCCrateFoodIngredients
-    - name: Gear
+    - name: Снаряжение # Stories-Translate
       entries:
       - cost: 2000
         crate: RMCCrateGearBinoculars
@@ -255,13 +253,15 @@
         crate: RMCCrateGearPackFlare
       - cost: 4000
         crate: RMCCrateGearMotionDetector
+      - cost: 2000
+        crate: RMCCrateGearOverwatchCameraTripod
       - cost: 6000
         crate: RMCCrateGearPackFlareCAS
       - cost: 2000
         crate: RMCCrateGearFulton
       - cost: 4000
         crate: RMCCrateGearParachute
-    - name: Medical
+    - name: Медицина # Stories-Translate
       entries:
       - cost: 2500
         crate: RMCCrateMedicalSurgery
@@ -279,7 +279,7 @@
         crate: RMCCrateMedicalFilled
       - cost: 1500
         crate: RMCCrateMedicalPill
-    - name: Mortar
+    - name: Мортира # Stories-Translate
       entries:
       - cost: 6000
         crate: RMCCrateMortarKit
@@ -289,19 +289,19 @@
         crate: RMCCrateMortarShellIncendiary
       - cost: 1000
         crate: RMCCrateMortarShellFlare
-#    - name: Operations
+#    - name: Операции # Stories-Translate
 #      entries: []
-    - name: Reagent tanks
+    - name: Резервуары для реагентов # Stories-Translate
       entries:
       - cost: 2000
         crate: RMCTankReagentFuel
-    - name: Research
+    - name: Исследование # Stories-Translate
       entries:
       - cost: 3000
         crate: RMCCrateResearchPhoron
       - cost: 2000
         crate: RMCCrateResearchPlastic
-    - name: Restricted Equipment
+    - name: Ограниченное оборудование # Stories-Translate
       entries:
       - cost: 2000
         crate: RMCCrateRestrictedEquipmentArmorM4
@@ -321,7 +321,7 @@
         crate: RMCCrateSupplyJanitor
       - cost: 2000
         crate: RMCCrateSuppliesCrayons
-    - name: Vehicle Ammo
+    - name: Боеприпасы для техники # Stories-Translate
       entries:
       - cost: 3000
         crate: RMCCrateVehicleAmmoLTBCannon
@@ -349,7 +349,7 @@
         crate: RMCCrateVehicleAmmoFlareLauncher
       - cost: 2000
         crate: RMCCrateVehicleAmmoRotaryCannon
-    - name: Weapons
+    - name: Оружие # Stories-Translate
       entries:
       - cost: 4000
         crate: RMCCrateM54CE2
@@ -365,15 +365,13 @@
         crate: RMCCrateM34
       - cost: 3000
         crate: RMCCrateMOU53
-      - cost: 3000
-        crate: RMCCrateXM51
       - cost: 4000
         crate: RMCCrateM85A1
       - cost: 6000
         crate: RMCCrateML66D
       - cost: 6000
         crate: RMCCrateM2C
-    - name: Weapons Specialist Ammo
+    - name: Боеприпасы специалиста по оружию # Stories-Translate
       entries:
       - cost: 4000
         crate: RMCCrateMagazineM96SMixed
@@ -383,6 +381,7 @@
         crate: RMCCrateMagazineM96SFlak
       - cost: 3000
         crate: RMCCrateMagazineM96SIncendiary
+      # Stories-AntiMateriel-Start
       - cost: 3000
         crate: RMCCrateMagazineXM43E1Standard
       - cost: 3000
@@ -409,6 +408,14 @@
         crate: RMCCratePyroTankTypeB
       - cost: 4000
         crate: RMCCratePyroTankTypeX
+      # Stories-SHARP-Start
+      - cost: 3000
+        crate: STCrateMagazineSharpExplosive
+      - cost: 3000
+        crate: STCrateMagazineSharpIncendiary
+      - cost: 3000
+        crate: STCrateMagazineSharpFlechette
+      # Stories-SHARP-End
 
 
 

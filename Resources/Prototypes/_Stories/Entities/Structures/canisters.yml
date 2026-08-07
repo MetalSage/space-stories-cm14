@@ -1,0 +1,8 @@
+- type: entity
+  parent: RMCCanisterBlue
+  id: STCanisterOxygenHunter
+  name: canister (O2)
+  description: A gas canister.
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/Machinery/hunter_machines.rsi

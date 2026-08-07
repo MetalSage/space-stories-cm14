@@ -36,13 +36,18 @@
                                                Align="Left"
                                                FontColorOverride="{x:Static maths:Color.DarkGray}"
                                                StyleClasses="LabelBig" HorizontalExpand="True" />
-                                        <!-- RMC14 -->
-                                        <Button Name="JoinXenoButton" Access="Public"
-                                                Text="{Loc 'rmc-lobby-join-xeno'}"
-                                                StyleClasses="ButtonBig" MinWidth="137" Visible="False" />
+
+                                        <!-- Stories-Hunter-Start -->
                                         <Button Name="ReadyButton" Access="Public" ToggleMode="True"
                                                 Text="{Loc 'ui-lobby-ready-up-button'}"
                                                 StyleClasses="ButtonBig" MinWidth="137" />
+
+                                        <Button Name="JoinButton" Access="Public"
+                                                Text="{Loc 'ui-lobby-join-game-button'}"
+                                                StyleClasses="ButtonBig" MinWidth="137" Visible="False" />
+
+                                        <Button Name="JoinXenoButton" Access="Public" Visible="False" />
+                                        <!-- Stories-Hunter-End -->
                                     </BoxContainer>
                                 </controls:StripeBack>
                                 <RichTextLabel Name="PlaytimeComment" Visible="False" Access="Public" HorizontalAlignment="Center" />
@@ -85,6 +90,10 @@
                     <controls:HSpacer Spacing="10" />
                     <!-- Voting & misc button bar -->
                     <BoxContainer Orientation="Horizontal" MinSize="0 40" HorizontalAlignment="Right">
+                        <!-- Stories-Sponsors-Start -->
+                        <Button Name="SupportButton" Access="Public" Text="{Loc 'stories-ui-lobby-support-button'}"
+                                StyleClasses="ButtonBigOrange" /> <!-- Stories-Partners -->
+                        <!-- Stories-Sponsors-Start -->
                         <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}"
                                 StyleClasses="ButtonBig" />
                         <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="ButtonBig" />
@@ -119,7 +128,7 @@
             </PanelContainer>
         </SplitContainer>
         <PanelContainer Name="ExpandPanel"
-                        StyleClasses="AngleRect" 
+                        StyleClasses="AngleRect"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Margin="0 2 2 0"

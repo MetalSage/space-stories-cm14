@@ -15,6 +15,7 @@ using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._RMC14.Medical.MedevacStretcher;
 using Content.Shared._RMC14.OnCollide;
+using Content.Shared._RMC14.ParaDrop;
 using Content.Shared._RMC14.PowerLoader;
 using Content.Shared._RMC14.Rangefinder;
 using Content.Shared._RMC14.Rules;
@@ -34,7 +35,6 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Light.Components;
 using Content.Shared.NameModifier.EntitySystems;
-using Content.Shared.ParaDrop;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Shuttles.Components;
@@ -98,6 +98,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
 
     private EntityQuery<RMCWallExplosionDeletableComponent> _wallDeletableQuery;
@@ -339,6 +340,8 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
             Dirty(uid, terminal);
         }
 
+        ent.Comp.OriginalName = Name(ent);
+
         if (!TryComp(ent, out MetaDataComponent? metaData) || metaData.EntityPrototype == null)
             return;
 
@@ -424,6 +427,9 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
             RemComp<EyeComponent>(ent);
             _rmcCamera.RefreshCameras(prototype);
         }
+
+        if (ent.Comp.OriginalName != null)
+            _metaData.SetEntityName(ent.Owner, ent.Comp.OriginalName);
 
         if (_net.IsClient)
             return;
@@ -1049,7 +1055,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
         // Can't drop underground
         if (!CasDebug)
         {
-            if(!_area.CanCAS(coordinates))
+            if (!_area.CanCAS(coordinates))
             {
                 if (_net.IsClient)
                 {
@@ -1073,7 +1079,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
                     continue;
 
                 _door.StartOpening(child);
-                _door.TrySetBoltDown((child,doorBolt), true);
+                _door.TrySetBoltDown((child, doorBolt), true);
             }
 
             var paraDrop = EnsureComp<ActiveParaDropComponent>(dropship);
@@ -1102,7 +1108,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
 
         var systemPoint = Transform(selectedSystem.Value).ParentUid;
         _pointLight.SetEnabled(systemPoint, args.On);
-        _appearance.SetData(systemPoint, DropshipUtilityVisuals.State, args.On ? SpotlightState + "on" : SpotlightState + "off" );
+        _appearance.SetData(systemPoint, DropshipUtilityVisuals.State, args.On ? SpotlightState + "on" : SpotlightState + "off");
         spotlight.Enabled = args.On;
 
         Dirty(ent);
@@ -1190,7 +1196,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
         if (!TryComp(selectedSystem, out RMCOrbitalDeployerComponent? deployer))
             return;
 
-        _rmcOrbitalDeployable.TryDeploy(selectedSystem.Value, target,  args.Actor, deployer);
+        _rmcOrbitalDeployable.TryDeploy(selectedSystem.Value, target, args.Actor, deployer);
 
         RefreshWeaponsUI(ent);
     }
@@ -1397,11 +1403,15 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
         return _nextId++;
     }
 
-    public void MakeDropshipTarget(EntityUid ent, string abbreviation)
+    public void MakeDropshipTarget(EntityUid target, string abbreviation, bool targetableByWeapons = true)
     {
-        var dropshipTarget = new DropshipTargetComponent { Abbreviation = abbreviation };
-        AddComp(ent, dropshipTarget, true);
-        Dirty(ent, dropshipTarget);
+        var targetComp = new DropshipTargetComponent()
+        {
+            Abbreviation = abbreviation,
+            IsTargetableByWeapons = targetableByWeapons,
+        };
+
+        AddComp(target, targetComp, true);
     }
 
     public override void Update(float frameTime)
@@ -1462,7 +1472,7 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
                 {
                     flight.WarningMarker = Spawn(DropshipTargetMarker, flight.Target);
                     var despawn = EnsureComp<TimedDespawnComponent>(flight.WarningMarker.Value);
-                    despawn.Lifetime = (float) (flight.MarkerAt - _timing.CurTime).TotalSeconds;
+                    despawn.Lifetime = (float)(flight.MarkerAt - _timing.CurTime).TotalSeconds;
                 }
             }
 
@@ -1769,17 +1779,6 @@ public abstract class SharedDropshipWeaponSystem : EntitySystem
 
         eye = default;
         return false;
-    }
-
-    public void MakeTarget(EntityUid target, string abbreviation, bool targetableByWeapons)
-    {
-        var targetComp = new DropshipTargetComponent()
-        {
-            Abbreviation = abbreviation,
-            IsTargetableByWeapons = targetableByWeapons,
-        };
-
-        AddComp(target, targetComp, true);
     }
 
     private void SetScreenUtility<T>(Entity<DropshipTerminalWeaponsComponent> ent, bool first, DropshipTerminalWeaponsScreen state, NetEntity? selected = null) where T : IComponent

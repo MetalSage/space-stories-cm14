@@ -18,7 +18,15 @@ public sealed partial class RMCLandmineSystem : SharedRMCLandmineSystem
         SubscribeLocalEvent<RMCLandmineComponent, StepTriggeredOffEvent>(HandleStepOffTriggered);
         SubscribeLocalEvent<RMCLandmineComponent, StepTriggerAttemptEvent>(HandleStepTriggerAttempt);
         SubscribeLocalEvent<RMCLandmineComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<RMCLandmineComponent, RMCLandmineDefuseFailEvent>(OnDefuseFail); // Stories-Ordnance
     }
+
+    // Stories-Ordnance-Start
+    private void OnDefuseFail(Entity<RMCLandmineComponent> ent, ref RMCLandmineDefuseFailEvent args)
+    {
+        _trigger.Trigger(ent, args.User);
+    }
+    // Stories-Ordnance-End
 
     private void HandleStepOffTriggered(Entity<RMCLandmineComponent> ent, ref StepTriggeredOffEvent args)
     {

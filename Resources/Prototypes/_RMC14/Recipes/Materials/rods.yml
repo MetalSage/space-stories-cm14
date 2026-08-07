@@ -1,6 +1,6 @@
 - type: rmcConstruction
   id: RMCGrilleBuild
-  name: grille
+  name: решетка
   prototype: RMCGrille
   noRotate: true
   doAfterTime: 2
@@ -10,7 +10,7 @@
 
 - type: rmcConstruction
   id: RMCFenceBuild
-  name: fence
+  name: забор
   prototype: CMFence
   noRotate: true
   doAfterTime: 2

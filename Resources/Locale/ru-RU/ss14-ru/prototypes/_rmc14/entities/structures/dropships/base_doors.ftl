@@ -1,0 +1,13 @@
+ent-RMCDropshipDoorBase = люк экипажа
+    .desc = { ent-CMBaseDoor.desc }
+ent-RMCDropshipCockpitBase = кабина пилота
+    .desc = { ent-RMCDropshipDoorBase.desc }
+ent-RMCDropshipDoorAftBase = { ent-RMCDropshipDoorBase }
+    .desc = { ent-RMCDropshipDoorBase.desc }
+    .suffix = Кормовой
+ent-RMCDropshipDoorPortBase = { ent-RMCDropshipDoorBase }
+    .desc = { ent-RMCDropshipDoorBase.desc }
+    .suffix = Левый
+ent-RMCDropshipDoorStarboardBase = { ent-RMCDropshipDoorBase }
+    .desc = { ent-RMCDropshipDoorBase.desc }
+    .suffix = Правый

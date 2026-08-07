@@ -138,8 +138,6 @@
     - state: "vehicle_gear_off"
     - state: "vehicle_gear"
       map: [ "rmc_flick_animation" ]
-      shader: unshaded
-    - state: vehicle_gear_panel
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -147,7 +145,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.25,-0.45,0.25,0.45"
+          bounds: "-1.0,-0.45,1.0,0.45"
         mask:
         - MachineMask
         layer:

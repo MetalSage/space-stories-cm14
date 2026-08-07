@@ -43,6 +43,14 @@
         whitelist:
           tags:
           - PressurizedCanister
+  - type: StorageStoreSkillRequired # Stories-Fix
+    entries:
+    - whitelist:
+        tags:
+        - RMCAutoInjectorMedical
+      skills:
+        all:
+          RMCSkillMedical: 2
   - type: RMCStorageEjectHand
     state: Last
   - type: RMCRefillSolutionOnStore

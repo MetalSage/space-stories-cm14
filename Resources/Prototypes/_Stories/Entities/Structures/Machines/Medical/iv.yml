@@ -1,0 +1,6 @@
+- type: entity
+  parent: CMIV
+  id: STIVHunter
+  components:
+  - type: Sprite
+    color: "#9BB1BE"

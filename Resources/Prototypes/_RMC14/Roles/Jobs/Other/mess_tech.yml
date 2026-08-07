@@ -36,10 +36,10 @@
         RMCSkillEngineer: 1
         RMCSkillFirearms: 2
         RMCSkillFireman: 1
-    - type: CMVendorUser
-      id: CMMessTech
     - type: JobPrefix
       prefix: cm-job-prefix-messtech
+    - type: CMVendorUser # Stories-Partners
+      id: CMMessTech
     - type: TacticalMapIcon
       icon:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi

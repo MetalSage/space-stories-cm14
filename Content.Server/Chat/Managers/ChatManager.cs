@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Content.Server._Stories.Sponsors;
 using Content.Server._RMC14.Admin;
 using Content.Server._RMC14.Discord;
 using Content.Server._RMC14.LinkAccount;
@@ -59,6 +60,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly LinkAccountManager _linkAccount = default!;
     [Dependency] private readonly RMCDiscordManager _discord = default!;
     [Dependency] private readonly MentorManager _mentor = default!;
+    [Dependency] private readonly SponsorsManager _sponsors = default!; // Stories-Sponsors
     [Dependency] private readonly RMCChatBansManager _rmcChatBans = default!;
 
     /// <summary>
@@ -300,8 +302,21 @@ internal sealed partial class ChatManager : IChatManager
             return;
         }
 
+        // Stories-Sponsors-End
+        string playerName = player.Name;
+        var adminData = _adminManager.GetAdminData(player);
+        if (adminData?.Title != null)
+        {
+            playerName = $"\\[{adminData.Title}\\] {playerName}";
+        }
+        else if (_sponsors.TryGetInfo(player.UserId, out var sponsorInfo) && sponsorInfo.TierName != null)
+        {
+            playerName = $"\\[{sponsorInfo.TierName}\\] {playerName}";
+        }
+        // Stories-Sponsors-End
+
         Color? colorOverride = null;
-        var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)));
+        var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", playerName), ("message", FormattedMessage.EscapeText(message))); // Stories-Sponsors
         if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
             var prefs = _preferencesManager.GetPreferences(player.UserId);
@@ -311,8 +326,14 @@ internal sealed partial class ChatManager : IChatManager
             _linkAccount.GetConnectedPatron(player)?.Tier != null)
         {
             var color = _linkAccount.GetPatronOOCHexColor(player.Channel.UserId);
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", $"{color}"),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", $"{color}"), ("playerName", playerName), ("message", FormattedMessage.EscapeText(message))); // Stories-Sponsors
         }
+        // Stories-Sponsors-OOC-Start
+        if (_sponsors.TryGetInfo(player.UserId, out var info) && info.OOCColor != null)
+        {
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", info.OOCColor), ("playerName", playerName), ("message", FormattedMessage.EscapeText(message)));
+        }
+        // Stories-Sponsors-OOC-End
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);

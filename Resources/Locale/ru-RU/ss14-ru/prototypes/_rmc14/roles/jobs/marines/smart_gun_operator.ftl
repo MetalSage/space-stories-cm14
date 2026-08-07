@@ -1,0 +1,17 @@
+ent-CMSpawnPointSmartGunOperator = точка появления смартганнера
+    .desc = { ent-CMSpawnPointJobBase.desc }
+    .suffix = { ent-CMSpawnPointJobBase.suffix }
+ent-CMSpawnPointSmartGunOperatorAlpha = { ent-CMSpawnPointSmartGunOperator }
+    .desc = { ent-CMSpawnPointSmartGunOperator.desc }
+    .suffix = Альфа
+ent-CMSpawnPointSmartGunOperatorBravo = { ent-CMSpawnPointSmartGunOperator }
+    .desc = { ent-CMSpawnPointSmartGunOperator.desc }
+    .suffix = Браво
+ent-CMSpawnPointSmartGunOperatorCharlie = { ent-CMSpawnPointSmartGunOperator }
+    .desc = { ent-CMSpawnPointSmartGunOperator.desc }
+    .suffix = Чарли
+ent-CMSpawnPointSmartGunOperatorDelta = { ent-CMSpawnPointSmartGunOperator }
+    .desc = { ent-CMSpawnPointSmartGunOperator.desc }
+    .suffix = Дельта
+ent-RMCGuidebookRoleSGO = Оператор Смартгана
+    .desc = Оператор Смартгана

@@ -21,7 +21,7 @@
             </BoxContainer>
 
             <BoxContainer Orientation="Horizontal" SeparationOverride="12" HorizontalExpand="True" VerticalExpand="True">
-                <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+                <PanelContainer Name="AvailablePanel" Access="Public" HorizontalExpand="True" VerticalExpand="True">
                 <PanelContainer.PanelOverride>
                     <graphics:StyleBoxFlat
                         BackgroundColor="#0B131F"
@@ -30,10 +30,22 @@
                 </PanelContainer.PanelOverride>
 
                 <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="10" HorizontalExpand="True" VerticalExpand="True">
-                    <Label Text="Stored Vehicles" FontColorOverride="#C7D7EA"/>
+                    <Label Text="{Loc 'rmc-vehicle-supply-stored'}" FontColorOverride="#C7D7EA"/>
                     <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
                         <BoxContainer Name="AvailableRows" Access="Public" Orientation="Vertical" SeparationOverride="4" HorizontalExpand="True" />
                     </ScrollContainer>
+                </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer Name="PopLockedPanel" HorizontalExpand="True" VerticalExpand="True" Visible="False">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat
+                        BackgroundColor="#0B131F"
+                        BorderColor="#1E3450"
+                        BorderThickness="1"/>
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="10" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Center">
+                    <Label Name="PopLockedLabel" Access="Public" Text="{Loc 'rmc-vehicle-supply-locked-pop'}" FontColorOverride="#8A6E3A" HorizontalAlignment="Center"/>
                 </BoxContainer>
                 </PanelContainer>
 
@@ -46,7 +58,7 @@
                     </PanelContainer.PanelOverride>
 
                     <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="8" HorizontalExpand="True" VerticalExpand="True">
-                        <Label Name="PreviewTitle" Access="Public" Text="Vehicle" FontColorOverride="#C7D7EA"/>
+                        <Label Name="PreviewTitle" Access="Public" Text="{Loc 'rmc-vehicle-supply-vehicle'}" FontColorOverride="#C7D7EA"/>
                         <PanelContainer Name="VehiclePreviewContainer" HorizontalExpand="True" VerticalExpand="True">
                             <ui:EntityPrototypeView Name="VehiclePreview"
                                                     MinSize="120 120"
@@ -61,8 +73,9 @@
             </BoxContainer>
 
             <BoxContainer Orientation="Horizontal" SeparationOverride="6">
-                <rmcui:HardpointButton Name="RaiseButton" Access="Public" LabelText="Raise" MinSize="98 26" />
-                <rmcui:HardpointButton Name="LowerButton" Access="Public" LabelText="Lower" MinSize="98 26" />
+                <rmcui:HardpointButton Name="RaiseButton" Access="Public" LabelText="{Loc 'rmc-vehicle-supply-raise'}" MinSize="98 26" />
+                <rmcui:HardpointButton Name="LowerButton" Access="Public" LabelText="{Loc 'rmc-vehicle-supply-lower'}" MinSize="98 26" />
+                <rmcui:HardpointButton Name="OrderButton" Access="Public" LabelText="{Loc 'rmc-vehicle-supply-purchase'}" MinSize="98 26" Visible="False" />
                 <BoxContainer Name="LiftActivity" Access="Public" Orientation="Horizontal" SeparationOverride="4" VerticalAlignment="Center" Margin="6,0,0,0">
                     <PanelContainer Name="LiftDot1" Access="Public" MinSize="8 8" MaxSize="8 8" />
                     <PanelContainer Name="LiftDot2" Access="Public" MinSize="8 8" MaxSize="8 8" />

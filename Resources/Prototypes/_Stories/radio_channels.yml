@@ -1,0 +1,21 @@
+- type: radioChannel
+  id: STHunter
+  name: stories-chat-radio-hunter
+  keycode: "хр"
+  frequency: 1205
+  color: "#5C5C8A"
+  longRange: true
+  planet: true
+  tower: false
+  ttsCategory: "stories-tts-category-radio-hunter"
+
+- type: radioChannel
+  id: STOverseer
+  name: stories-chat-radio-overseer
+  keycode: "хо"
+  frequency: 1206
+  color: "#5C5C8A"
+  longRange: true
+  planet: true
+  tower: false
+  ttsCategory: "stories-tts-category-radio-hunter"

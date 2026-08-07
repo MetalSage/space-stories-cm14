@@ -19,8 +19,13 @@ public sealed class RMCClockSystem : EntitySystem
     private string GetTime()
     {
         var worldTime = (EntityQuery<GlobalTimeManagerComponent>().FirstOrDefault()?.TimeOffset ?? TimeSpan.Zero) + _ticker.RoundDuration();
-        var worldDate = (EntityQuery<GlobalTimeManagerComponent>().FirstOrDefault()?.DateOffset ?? DateTime.Today.AddYears(100))
-                        + worldTime;
+
+        var today = DateTime.Today;
+        var targetYear = 2182;
+        var safeDay = Math.Min(today.Day, DateTime.DaysInMonth(targetYear, today.Month));
+        var defaultDate = new DateTime(targetYear, today.Month, safeDay);
+
+        var worldDate = (EntityQuery<GlobalTimeManagerComponent>().FirstOrDefault()?.DateOffset ?? defaultDate) + worldTime;
 
         return worldDate.ToString("dd MMMM, yyyy - HH:mm");
     }

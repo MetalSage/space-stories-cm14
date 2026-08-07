@@ -1,11 +1,13 @@
-﻿using Robust.Shared.GameStates;
+using Content.Shared._RMC14.Scoping;
+using Content.Shared._Stories.Hunter.Vision;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._RMC14.Scoping;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedScopeSystem))]
+[Access(typeof(SharedScopeSystem), typeof(HunterVisionSystem))] // Stories-Hunter
 public sealed partial class ScopeComponent : Component
 {
     [DataField, AutoNetworkedField]

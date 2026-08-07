@@ -1,5 +1,7 @@
 using Content.Shared.Access.Components;
+using Content.Shared.Inventory;
 using Content.Shared.Roles;
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -9,6 +11,8 @@ namespace Content.Shared.Access.Systems
     public abstract class SharedAccessSystem : EntitySystem
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly InventorySystem _inventorySystem = default!; // Stories-Hunter
+        [Dependency] private readonly SharedContainerSystem _containerSystem = default!; // Stories-Hunter
 
         public override void Initialize()
         {
@@ -35,6 +39,19 @@ namespace Content.Shared.Access.Systems
         {
             if (!component.Enabled)
                 return;
+
+            // Stories-Hunter-Start
+            if (component.Slot != null &&
+                _containerSystem.TryGetContainingContainer(uid, out var container) &&
+                container is ContainerSlot slotContainer &&
+                HasComp<InventoryComponent>(container.Owner))
+            {
+                if (slotContainer.ID != component.Slot)
+                {
+                    return;
+                }
+            }
+            // Stories-Hunter-End
 
             args.Tags.UnionWith(component.Tags);
         }

@@ -111,7 +111,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Fax Responder Outpost
+      name: Аванпост Ответчиков Факсов
     - type: Transform
     - type: Map
       mapPaused: True
@@ -15871,5 +15871,5 @@ entities:
       parent: 2
     - type: WarpPoint
       follow: True
-      location: Admin Fax
+      location: Аванпост Факс Ответчиков
 ...

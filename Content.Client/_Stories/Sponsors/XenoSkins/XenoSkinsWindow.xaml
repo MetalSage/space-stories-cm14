@@ -1,0 +1,50 @@
+﻿<controls:FancyWindow xmlns="https://spacestation14.io"
+                     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                     SetSize="900 700"
+                     MinSize="900 500"
+                     Resizable="False"
+                     Title="{Loc 'stories-xeno-skins-title'}">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8" Access="Public">
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True" StyleClasses="PanelShadow" MinHeight="580" Access="Public">
+            <PanelContainer VerticalExpand="True" HorizontalExpand="True" MinWidth="410" Margin="0,0,8,0" Access="Public">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat BackgroundColor="#1E1E24" BorderColor="#4A4A55" BorderThickness="2" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="4" Access="Public">
+                    <Label Text="{Loc 'stories-xeno-available-skins'}" FontColorOverride="#E6E6E6" StyleClasses="HeadingLabel" Margin="4,4,4,8" Access="Public" />
+                    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" StyleClasses="TransparentScroll" Access="Public">
+                        <BoxContainer Name="SkinsContainer" Orientation="Vertical" VerticalExpand="True" Margin="2" Access="Public">
+                            <RichTextLabel Name="NoSkinsLabel" HorizontalAlignment="Center" VerticalAlignment="Center" SetSize="400 100" Margin="8" Access="Public" />
+                        </BoxContainer>
+                    </ScrollContainer>
+                </BoxContainer>
+            </PanelContainer>
+            <PanelContainer VerticalExpand="True" MinWidth="410" Access="Public">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat BackgroundColor="#1E1E24" BorderColor="#4A4A55" BorderThickness="2" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="4" Access="Public">
+                    <Label Text="{Loc 'stories-xeno-skins-preview-label'}" HorizontalAlignment="Center" FontColorOverride="#E6E6E6" StyleClasses="HeadingLabel" Margin="0,4,0,8" Access="Public" />
+                    <PanelContainer HorizontalAlignment="Center" VerticalAlignment="Center" SetSize="390 390" Margin="0,0,0,8" Access="Public">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="#0F0F12" BorderColor="#3E3E44" BorderThickness="1" />
+                        </PanelContainer.PanelOverride>
+                        <SpriteView Name="Mob" Scale="4 4" HorizontalAlignment="Center" VerticalAlignment="Center" SetSize="390 390" Access="Public" />
+                    </PanelContainer>
+                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,4" Access="Public">
+                        <Button Name="PrevDirection" Text="◄" StyleClasses="ButtonIcon" MinWidth="48" ToolTip="{Loc 'stories-xeno-skins-prev-dir'}" Access="Public" />
+                        <Control MinWidth="8" Access="Public" />
+                        <Button Name="NextDirection" Text="►" StyleClasses="ButtonIcon" MinWidth="48" ToolTip="{Loc 'stories-xeno-skins-next-dir'}" Access="Public" />
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+        <PanelContainer HorizontalExpand="True" Margin="0,8,0,0" Access="Public">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#25252B" BorderColor="#4A4A55" BorderThickness="2" />
+            </PanelContainer.PanelOverride>
+            <Button Name="Select" Text="{Loc 'stories-xeno-skins-select-button'}" HorizontalExpand="True" Margin="8" StyleClasses="ButtonColorRed" Disabled="True" ToolTip="{Loc 'stories-xeno-skins-select-warning'}" Access="Public" />
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>

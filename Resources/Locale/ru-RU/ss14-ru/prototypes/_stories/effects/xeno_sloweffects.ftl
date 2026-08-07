@@ -1,0 +1,2 @@
+ent-RMCEffectRavagerSlow = { "" }
+    .desc = { "" }

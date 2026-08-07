@@ -7,6 +7,13 @@
   - type: Sprite
     sprite: _RMC14/Objects/Consumable/Smokeables/Cigars/tarback.rsi
     state: unlit-icon
+  - type: SolutionContainerManager # Stories-Fix
+    solutions:
+      smokable:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 10
   - type: Tag
     tags:
       - Cigar
@@ -36,7 +43,7 @@
   - type: SolutionContainerManager
     solutions:
       smokable:
-        maxVol: 20
+        maxVol: 0 # Stories-Fix
   - type: Tag
     tags:
       - Cigar

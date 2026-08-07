@@ -1,0 +1,12 @@
+ent-STMagazineSharpRifleExplosive = магазин 9X-E с липкими взрывными дротиками
+    .desc = { ent-BaseItem.desc }
+ent-STMagazineSharpRifleIncendiary = магазин 9X-T с липкими зажигательными дротиками
+    .desc = { ent-BaseItem.desc }
+ent-STMagazineSharpRifleFlechette = магазин 9X-F с флешетт-дротиками
+    .desc = { ent-BaseItem.desc }
+ent-STCartridgeSharpExplosive = деактивированная мина SHARP (взрывная)
+    .desc = { ent-BaseCartridge.desc }
+ent-STCartridgeSharpIncendiary = деактивированная мина SHARP (зажигательная)
+    .desc = { ent-BaseCartridge.desc }
+ent-STCartridgeSharpFlechette = деактивированная мина SHARP (флешеттная)
+    .desc = { ent-BaseCartridge.desc }

@@ -1,0 +1,9 @@
+ent-RMCWeaponPistolMK45 = MK-45 'мощный' автомагнум
+    .desc = Изначально он был разработан как замена боевому револьверу M44, но в последнюю минуту комиссия отклонила его, сославшись на то, что он должен взводиться после каждого заряженного магазина и является слишком громоздким и устаревшим.
+    .suffix = Заполненный
+ent-RMCMagazinePistolMK45 = магазин MK-45 автомагнум (.45)
+    .desc = Пистолетный магазин.
+ent-CMCartridgePistolMK45 = Cartridge (.45 Automagnum)
+    .desc = { ent-CMCartridgePistolBase.desc }
+ent-CMBulletPistolMK45 = мощная пистолетная пуля (.45)
+    .desc = { ent-CMBulletBase.desc }

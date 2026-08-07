@@ -3,17 +3,21 @@ using System.Numerics;
 using Content.Server.Announcements;
 using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
+using Content.Server.GameTicking.Presets;
 using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Prototypes;
+using Content.Server.Voting.Managers;
 using Content.Shared.CCVar;
+using Content.Shared._Stories.SCCVars;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
+using Content.Shared.Voting;
 using JetBrains.Annotations;
 using Prometheus;
 using Robust.Shared.Asynchronous;
@@ -34,6 +38,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly DiscordWebhook _discord = default!;
         [Dependency] private readonly RoleSystem _role = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
+        [Dependency] private readonly IVoteManager _vote = default!; // Stories-AutoVote
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -80,8 +85,7 @@ namespace Content.Server.GameTicking
         /// <returns></returns>
         public bool CanUpdateMap()
         {
-            return RunLevel == GameRunLevel.PreRoundLobby &&
-                   _roundStartTime - RoundPreloadTime > _gameTiming.CurTime;
+            return (RunLevel == GameRunLevel.PreRoundLobby || RunLevel == GameRunLevel.PostRound); // Stories-AutoVote
         }
 
         /// <summary>
@@ -402,6 +406,16 @@ namespace Content.Server.GameTicking
             }
 
             DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
+
+            // Stories-start
+            if (!force && !_map.MapExists(DefaultMap) && Preset?.ID is ("STDistressSignal" or "STDistressSignalLowPop"))
+            {
+                var lowPopThreshold = _prototypeManager.TryIndex<GamePresetPrototype>("STDistressSignalLowPop", out var lowPopPreset)
+                    ? lowPopPreset.MaxPlayers ?? int.MaxValue
+                    : int.MaxValue;
+                SetGamePreset(_playerManager.PlayerCount <= lowPopThreshold ? "STDistressSignalLowPop" : "STDistressSignal");
+            }
+            // Stories-end
 
             // Just in case it hasn't been loaded previously we'll try loading it.
             LoadMaps();
@@ -751,7 +765,7 @@ namespace Content.Server.GameTicking
 
             _banManager.Restart();
 
-            _gameMapManager.ClearSelectedMap();
+            // _gameMapManager.ClearSelectedMap(); // Stories-AutoVote 
 
             // Clear up any game rules.
             ClearGameRules();
@@ -806,6 +820,16 @@ namespace Content.Server.GameTicking
             // Preload maps so we can start faster
             else if (_roundStartTime - RoundPreloadTime < _gameTiming.CurTime)
             {
+                // Stories-start
+                if (!_map.MapExists(DefaultMap) && Preset?.ID is ("STDistressSignal" or "STDistressSignalLowPop"))
+                {
+                    var lowPopThreshold = _prototypeManager.TryIndex<GamePresetPrototype>("STDistressSignalLowPop", out var lowPopPreset)
+                        ? lowPopPreset.MaxPlayers ?? int.MaxValue
+                        : int.MaxValue;
+                    SetGamePreset(_playerManager.PlayerCount <= lowPopThreshold ? "STDistressSignalLowPop" : "STDistressSignal");
+                }
+                // Stories-end
+
                 LoadMaps();
             }
         }

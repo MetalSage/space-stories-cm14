@@ -9,7 +9,9 @@ using Content.Shared._RMC14.Vehicle;
 using Content.Shared._RMC14.Vehicle.Supply;
 using Content.Shared._RMC14.Vendors;
 using Content.Shared._RMC14.Weapons.Ranged.Ammo.BulletBox;
+using Content.Shared._Stories.SCCVars;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
@@ -17,7 +19,10 @@ using Content.Shared.Vehicle.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Localization;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -32,6 +37,9 @@ public sealed class VehicleSupplySystem : EntitySystem
 
 
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IComponentFactory _compFactory = default!;
     [Dependency] private readonly VehicleHardpointVisualsSystem _hardpointVisuals = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
@@ -76,9 +84,11 @@ public sealed class VehicleSupplySystem : EntitySystem
         {
             subs.Event<VehicleSupplySelectMsg>(OnVehicleSelected);
             subs.Event<VehicleSupplyLiftMsg>(OnLiftToggleRequested);
+            subs.Event<VehicleSupplyOrderMsg>(OnVehicleOrderRequested);
         });
 
         SubscribeLocalEvent<TechUnlockVehicleEvent>(OnTechUnlockVehicle);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         ReloadHardpointItems();
     }
@@ -283,6 +293,11 @@ public sealed class VehicleSupplySystem : EntitySystem
         {
             EnsureVehicleInConsoles((uid, lift), ev.Unlock);
 
+            if (unlock == Normalize("VehicleAPC") || unlock == Normalize("VehicleAPCMed") || unlock == Normalize("VehicleAPCCommand") || unlock == Normalize("VehicleTank"))
+            {
+                continue;
+            }
+
             if (GetStoredCount(lift, unlock) > 0 || lift.Deployed.Contains(unlock))
                 continue;
 
@@ -306,6 +321,22 @@ public sealed class VehicleSupplySystem : EntitySystem
         Dirty(ent);
     }
 
+    private int? _roundstartPlayerCount;
+
+    public int GetRoundstartPlayerCount()
+    {
+        if (_roundstartPlayerCount == null)
+        {
+            _roundstartPlayerCount = _players.Sessions.Count();
+        }
+        return _roundstartPlayerCount.Value;
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
+    {
+        _roundstartPlayerCount = null;
+    }
+
     private void SeedStoredFromConsoles(Entity<VehicleSupplyLiftComponent> lift)
     {
         var mapId = _transform.GetMapId(lift.Owner);
@@ -319,6 +350,12 @@ public sealed class VehicleSupplySystem : EntitySystem
             foreach (var entry in console.Vehicles)
             {
                 var key = Normalize(entry.Vehicle.Id);
+
+                if (key == Normalize("VehicleAPC") || key == Normalize("VehicleAPCMed") || key == Normalize("VehicleAPCCommand") || key == Normalize("VehicleTank"))
+                {
+                    continue;
+                }
+
                 if (lift.Comp.Deployed.Contains(key))
                     continue;
 
@@ -410,14 +447,84 @@ public sealed class VehicleSupplySystem : EntitySystem
 
         var id = entry.Vehicle.Id;
         var idKey = Normalize(id);
-        if (Normalize(lift.Comp.PendingVehicle) == idKey)
-            return;
 
-        if (GetStoredCount(lift.Comp, idKey) <= 0)
-            return;
+        var onlineCount = GetRoundstartPlayerCount();
+        var lowPop = _cfg.GetCVar(SCCVars.RMCLowPopVehicle);
+        var highPop = _cfg.GetCVar(SCCVars.RMCHighPopVehicle);
+        var canOrder = onlineCount >= lowPop;
+        var orderPhase = canOrder && !lift.Comp.OrderedPopVehicle;
+
+        if (!orderPhase)
+        {
+            if (Normalize(lift.Comp.PendingVehicle) == idKey)
+                return;
+
+            if (GetStoredCount(lift.Comp, idKey) <= 0)
+                return;
+        }
+        else
+        {
+            var valid = false;
+            if (idKey == Normalize("VehicleAPC") || idKey == Normalize("VehicleAPCMed") || idKey == Normalize("VehicleAPCCommand"))
+            {
+                valid = true;
+            }
+            else if (idKey == Normalize("VehicleTank"))
+            {
+                if (onlineCount >= highPop)
+                    valid = true;
+            }
+
+            if (!valid)
+                return;
+        }
 
         ent.Comp.SelectedVehicle = id;
         ent.Comp.SelectedVehicleCopyIndex = Math.Max(0, args.CopyIndex);
+        SendConsoleStateAll();
+    }
+
+    private void OnVehicleOrderRequested(Entity<VehicleSupplyConsoleComponent> ent, ref VehicleSupplyOrderMsg args)
+    {
+        if (string.IsNullOrWhiteSpace(args.VehicleId))
+            return;
+
+        if (!TryGetLift(ent.Owner, ent.Comp, out var lift))
+            return;
+
+        if (lift.Comp.OrderedPopVehicle)
+            return;
+
+        var onlineCount = GetRoundstartPlayerCount();
+        var lowPop = _cfg.GetCVar(SCCVars.RMCLowPopVehicle);
+        var highPop = _cfg.GetCVar(SCCVars.RMCHighPopVehicle);
+
+        if (onlineCount < lowPop)
+            return;
+
+        var key = Normalize(args.VehicleId);
+
+        bool valid = false;
+        if (key == Normalize("VehicleAPC") || key == Normalize("VehicleAPCMed") || key == Normalize("VehicleAPCCommand"))
+        {
+            valid = true;
+        }
+        else if (key == Normalize("VehicleTank"))
+        {
+            if (onlineCount >= highPop)
+                valid = true;
+        }
+
+        if (!valid)
+            return;
+
+        lift.Comp.OrderedPopVehicle = true;
+        AddStored(lift.Comp, key);
+
+        ent.Comp.SelectedVehicle = args.VehicleId;
+        ent.Comp.SelectedVehicleCopyIndex = 0;
+
+        Dirty(lift);
         SendConsoleStateAll();
     }
 
@@ -803,12 +910,20 @@ public sealed class VehicleSupplySystem : EntitySystem
         VehicleSupplyPreviewState? preview = null;
 
         var hasLift = TryGetLift(uid, console, out var lift);
+        var onlineCount = GetRoundstartPlayerCount();
+        var lowPop = _cfg.GetCVar(SCCVars.RMCLowPopVehicle);
+        var highPop = _cfg.GetCVar(SCCVars.RMCHighPopVehicle);
+
+        var canOrder = onlineCount >= lowPop;
+        var ordered = hasLift && lift.Comp.OrderedPopVehicle;
+        var orderPhase = canOrder && !ordered;
+
         if (hasLift)
         {
             mode = lift.Comp.Mode;
             busy = lift.Comp.Busy;
             activeId = string.IsNullOrWhiteSpace(lift.Comp.ActiveVehicleId) ? null : lift.Comp.ActiveVehicleId;
-            selectedId = SanitizeSelectedVehicle(console, lift.Comp);
+            selectedId = SanitizeSelectedVehicle(console, lift.Comp, orderPhase);
             selectedCopyIndex = console.SelectedVehicleCopyIndex;
 
             if (!string.IsNullOrWhiteSpace(selectedId))
@@ -827,38 +942,102 @@ public sealed class VehicleSupplySystem : EntitySystem
             }
         }
 
-        foreach (var entry in console.Vehicles)
+        if (orderPhase)
         {
-            if (hasLift)
+            foreach (var entry in console.Vehicles)
             {
                 var key = Normalize(entry.Vehicle.Id);
-                var count = GetStoredCount(lift.Comp, key);
-                if (count <= 0)
-                    continue;
-
-                available.Add(new VehicleSupplyEntryState(entry.Vehicle.Id, GetEntryName(entry), count));
-                continue;
+                if (key == Normalize("VehicleAPC") || key == Normalize("VehicleAPCMed") || key == Normalize("VehicleAPCCommand"))
+                {
+                    available.Add(new VehicleSupplyEntryState(entry.Vehicle.Id, GetEntryName(entry), 1));
+                }
+                else if (key == Normalize("VehicleTank"))
+                {
+                    if (onlineCount >= highPop)
+                        available.Add(new VehicleSupplyEntryState(entry.Vehicle.Id, GetEntryName(entry), 1));
+                }
             }
+        }
+        else
+        {
+            foreach (var entry in console.Vehicles)
+            {
+                var key = Normalize(entry.Vehicle.Id);
+                if (hasLift)
+                {
+                    var count = GetStoredCount(lift.Comp, key);
+                    if (count <= 0)
+                        continue;
 
-            available.Add(new VehicleSupplyEntryState(entry.Vehicle.Id, GetEntryName(entry), 1));
+                    available.Add(new VehicleSupplyEntryState(entry.Vehicle.Id, GetEntryName(entry), count));
+                    continue;
+                }
+
+                available.Add(new VehicleSupplyEntryState(entry.Vehicle.Id, GetEntryName(entry), 1));
+            }
         }
 
-        console.Ui = new VehicleSupplyUiState(mode, busy, activeId, selectedId, selectedCopyIndex, preview, available);
+        var popLocked = GetRoundstartPlayerCount() < _cfg.GetCVar(SCCVars.RMCLowPopVehicle);
+        console.Ui = new VehicleSupplyUiState(mode, busy, activeId, selectedId, selectedCopyIndex, preview, available, popLocked, orderPhase);
         Dirty(uid, console);
     }
 
     private string? SanitizeSelectedVehicle(
         VehicleSupplyConsoleComponent console,
-        VehicleSupplyLiftComponent lift)
+        VehicleSupplyLiftComponent lift,
+        bool orderPhase)
     {
-        if (!string.IsNullOrWhiteSpace(console.SelectedVehicle) &&
-            TryGetEntry(console, console.SelectedVehicle, out var selectedEntry))
+        if (orderPhase)
         {
-            var selectedKey = Normalize(selectedEntry.Vehicle.Id);
+            var onlineCount = GetRoundstartPlayerCount();
+            var highPop = _cfg.GetCVar(SCCVars.RMCHighPopVehicle);
+            if (!string.IsNullOrWhiteSpace(console.SelectedVehicle) &&
+                TryGetEntry(console, console.SelectedVehicle, out var selectedEntry))
+            {
+                var selectedKey = Normalize(selectedEntry.Vehicle.Id);
+                var valid = false;
+                if (selectedKey == Normalize("VehicleAPC") || selectedKey == Normalize("VehicleAPCMed") || selectedKey == Normalize("VehicleAPCCommand"))
+                {
+                    valid = true;
+                }
+                else if (selectedKey == Normalize("VehicleTank"))
+                {
+                    if (onlineCount >= highPop)
+                        valid = true;
+                }
+
+                if (valid)
+                {
+                    console.SelectedVehicle = selectedEntry.Vehicle.Id;
+                    console.SelectedVehicleCopyIndex = 0;
+                    return console.SelectedVehicle;
+                }
+            }
+
+            foreach (var entry in console.Vehicles)
+            {
+                var key = Normalize(entry.Vehicle.Id);
+                if (key == Normalize("VehicleAPC") || key == Normalize("VehicleAPCMed") || key == Normalize("VehicleAPCCommand"))
+                {
+                    console.SelectedVehicle = entry.Vehicle.Id;
+                    console.SelectedVehicleCopyIndex = 0;
+                    return console.SelectedVehicle;
+                }
+            }
+
+            console.SelectedVehicle = string.Empty;
+            console.SelectedVehicleCopyIndex = 0;
+            return null;
+        }
+
+        if (!string.IsNullOrWhiteSpace(console.SelectedVehicle) &&
+            TryGetEntry(console, console.SelectedVehicle, out var selectedEntryNormal))
+        {
+            var selectedKey = Normalize(selectedEntryNormal.Vehicle.Id);
             var selectedCount = GetStoredCount(lift, selectedKey);
             if (selectedCount > 0)
             {
-                console.SelectedVehicle = selectedEntry.Vehicle.Id;
+                console.SelectedVehicle = selectedEntryNormal.Vehicle.Id;
                 console.SelectedVehicleCopyIndex = Math.Clamp(console.SelectedVehicleCopyIndex, 0, selectedCount - 1);
                 return console.SelectedVehicle;
             }
@@ -874,7 +1053,6 @@ public sealed class VehicleSupplySystem : EntitySystem
             console.SelectedVehicleCopyIndex = 0;
             return console.SelectedVehicle;
         }
-
         console.SelectedVehicle = string.Empty;
         console.SelectedVehicleCopyIndex = 0;
         return null;
@@ -1086,7 +1264,8 @@ public sealed class VehicleSupplySystem : EntitySystem
                 if (string.Equals(hardpointId, item.Id, StringComparison.OrdinalIgnoreCase))
                 {
                     categoryKey = category.Key;
-                    categoryLabel = category.Label;
+                    var locKey1 = $"rmc-hardpoint-category-{category.Key}";
+                    categoryLabel = _loc.TryGetString(locKey1, out var translated1) ? translated1 : category.Label;
                     categoryOrder = category.SortOrder;
                     return true;
                 }
@@ -1103,7 +1282,8 @@ public sealed class VehicleSupplySystem : EntitySystem
                 if (string.Equals(hardpointType, type.Id, StringComparison.OrdinalIgnoreCase))
                 {
                     categoryKey = category.Key;
-                    categoryLabel = category.Label;
+                    var locKey2 = $"rmc-hardpoint-category-{category.Key}";
+                    categoryLabel = _loc.TryGetString(locKey2, out var translated2) ? translated2 : category.Label;
                     categoryOrder = category.SortOrder;
                     return true;
                 }

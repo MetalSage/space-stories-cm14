@@ -8,6 +8,7 @@ using Content.Server.Popups;
 using Content.Shared._RMC14.Explosion;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Voicelines;
+using Content.Shared._Stories.Ordnance;
 using Content.Shared.Coordinates;
 using Content.Shared.Decals;
 using Content.Shared.Examine;
@@ -95,7 +96,12 @@ public sealed class RMCExplosionSystem : SharedRMCExplosionSystem
 
     private void OnExplosiveDeleteWallsStuck(Entity<RMCExplosiveDeleteComponent> ent, ref EntityStuckEvent args)
     {
-        _trigger.HandleTimerTrigger(ent, args.User, ent.Comp.Delay, ent.Comp.BeepInterval, null, ent.Comp.BeepSound);
+        // Stories-Ordnance-Start
+        if (HasComp<OrdnanceCasingComponent>(ent))
+            return;
+        // Stories-Ordnance-End
+
+        _trigger.HandleTimerTrigger(ent, args.User, ent.Comp.Delay, ent.Comp.BeepInterval, ent.Comp.InitialBeepDelay, ent.Comp.BeepSound); // Stories-Ordnance
     }
 
     private void OnExplosionEffectTriggered(Entity<RMCScorchEffectComponent> ent, ref CMExplosiveTriggeredEvent args)

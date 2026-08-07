@@ -1,0 +1,107 @@
+# DEFAULT
+
+- type: xenoSkin
+  id: STRunnerBloodAngelSkin
+  name: Кровавый Ангел
+  spriteRsi: _Stories/Mobs/Xenos/Skins/runner.rsi
+  xeno: CMXenoRunner
+
+- type: xenoSkin
+  id: STDefenderEternalFrostSkin
+  name: Вечный Мороз
+  spriteRsi: _Stories/Mobs/Xenos/Skins/defender.rsi
+  xeno: CMXenoDefender
+
+- type: xenoSkin
+  id: STWarriorStoneTumorSkin
+  name: Каменная Опухоль
+  spriteRsi: _Stories/Mobs/Xenos/Skins/warrior.rsi
+  xeno: CMXenoWarrior
+
+- type: xenoSkin
+  id: STBoilerAcidSkin
+  name: Кислотный
+  spriteRsi: _Stories/Mobs/Xenos/Skins/boiler.rsi
+  xeno: CMXenoBoiler
+
+- type: xenoSkin
+  id: STBoilerGasSkin
+  name: Газовый
+  spriteRsi: _Stories/Mobs/Xenos/Skins/gasboiler.rsi
+  xeno: CMXenoBoiler
+
+- type: xenoSkin
+  id: STCrusherBattleHardenedSkin
+  name: Ветеран
+  spriteRsi: _Stories/Mobs/Xenos/Skins/crusher.rsi
+  xeno: CMXenoCrusher
+
+- type: xenoSkin
+  id: STPraetorianCursedSkin
+  name: Проклятье
+  spriteRsi: _Stories/Mobs/Xenos/Skins/praetorian.rsi
+  xeno: CMXenoPraetorian
+
+- type: xenoSkin
+  id: STQueenForceOfNatureSkin
+  name: Сила Природы
+  spriteRsi: _Stories/Mobs/Xenos/Skins/Queen/queen.rsi
+  xeno: CMXenoQueen
+
+# STRAINS
+
+- type: xenoSkin
+  id: STDefenderSteelcrestEternalFrostSkin
+  name: Вечный Мороз
+  spriteRsi: _Stories/Mobs/Xenos/Skins/defender.rsi
+  xeno: CMXenoDefender
+  isStrain: true
+  strainId: CMXenoDefenderSteelcrest
+
+- type: xenoSkin
+  id: STWarriorBoxerHardenedSkin
+  name: Закаленный Боксер
+  spriteRsi: _Stories/Mobs/Xenos/Skins/warrior_boxer.rsi
+  xeno: CMXenoWarrior
+  isStrain: true
+  strainId: STXenoWarriorBoxer
+
+- type: xenoSkin
+  id: STCrusherChargerBattleHardenedSkin
+  name: Ветеран
+  spriteRsi: _Stories/Mobs/Xenos/Skins/crusher.rsi
+  xeno: CMXenoCrusher
+  isStrain: true
+  strainId: RMCXenoCrusherCharger
+
+- type: xenoSkin
+  id: STPraetorianOppressorCursedSkin
+  name: Выносливый Угнетатель
+  spriteRsi: _Stories/Mobs/Xenos/Skins/oppressor_praetorian.rsi
+  xeno: CMXenoPraetorian
+  isStrain: true
+  strainId: RMCXenoPraetorianOppressor
+
+- type: xenoSkin
+  id: STPraetorianVanguardCursedSkin
+  name: Бывалый Авангард
+  spriteRsi: _Stories/Mobs/Xenos/Skins/vanguard_praetorian.rsi
+  xeno: CMXenoPraetorian
+  isStrain: true
+  strainId: RMCXenoPraetorianVanguard
+
+- type: xenoSkin
+  id: STPraetorianDancerCursedSkin
+  name: Стойкий Танцор
+  spriteRsi: _Stories/Mobs/Xenos/Skins/dancer_praetorian.rsi
+  xeno: CMXenoPraetorian
+  isStrain: true
+  strainId: RMCXenoPraetorianDancer
+
+- type: xenoSkin
+  id: STPraetorianValkyrieCursedSkin
+  name: Неустрашимая Валькирия
+  spriteRsi: _Stories/Mobs/Xenos/Skins/valkyrie_praetorian.rsi
+  xeno: CMXenoPraetorian
+  isStrain: true
+  strainId: RMCXenoPraetorianValkyrie

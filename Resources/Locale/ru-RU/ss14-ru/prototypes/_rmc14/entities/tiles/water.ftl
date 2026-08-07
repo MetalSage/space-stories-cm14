@@ -1,0 +1,15 @@
+ent-CMFloorShallowWaterEntity = мелкая вода
+    .desc = { "" }
+ent-CMFloorDeepWaterEntity = глубокая вода
+    .desc = { ent-CMFloorShallowWaterEntity.desc }
+ent-RMCRiverSorokyne = река
+    .desc = { ent-CMFloorShallowWaterEntity.desc }
+ent-RMCFloorShallowWaterEntityRed = { ent-CMFloorShallowWaterEntity }
+    .desc = { ent-CMFloorShallowWaterEntity.desc }
+    .suffix = Красный
+ent-RMCFloorShallowWaterEntityDarkRed = { ent-RMCFloorShallowWaterEntityRed }
+    .desc = { ent-RMCFloorShallowWaterEntityRed.desc }
+    .suffix = Темно-красный
+ent-RMCFloorShallowWaterEntityBelowPipes = { ent-CMFloorShallowWaterEntity }
+    .desc = { ent-CMFloorShallowWaterEntity.desc }
+    .suffix = Ниже Труб

@@ -87,6 +87,9 @@ public sealed partial class VehicleSupplyLiftComponent : Component
 
     [NonSerialized]
     public readonly Dictionary<string, List<EntityUid>> StoredEntities = new();
+
+    [DataField, AutoNetworkedField]
+    public bool OrderedPopVehicle = false;
 }
 
 [Serializable, NetSerializable]

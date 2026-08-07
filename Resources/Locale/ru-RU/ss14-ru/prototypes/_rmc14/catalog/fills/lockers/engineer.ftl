@@ -1,0 +1,9 @@
+ent-CMClosetToolFilled = { ent-CMClosetTool }
+    .desc = { ent-CMClosetTool.desc }
+    .suffix = Заполненный
+ent-CMClosetRadiationFilled = { ent-CMClosetRadiation }
+    .desc = { ent-CMClosetRadiation.desc }
+    .suffix = Заполненный
+ent-CMClosetRadiationFilledTycho = шкаф радиационных костюмов
+    .desc = Это место для хранения костюмов радиационной защиты.
+    .suffix = Заполненный, костюм Tycho 4000

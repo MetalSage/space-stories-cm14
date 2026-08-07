@@ -1,51 +1,51 @@
-﻿- type: rank
+- type: rank
   id: RMCRankCivilian
-  name: Civilian
-  prefix: Civ.
-  malePrefix: Mr.
-  femalePrefix: Ms.
+  name: Гражданский
+  prefix: Гражд.
+  malePrefix: Мр.
+  femalePrefix: Мис.
 
 - type: rank
   id: RMCRankCivilianNurse
-  name: Nurse
-  prefix: Nrs.
+  name: Интерн
+  prefix: Инт.
 
 - type: rank
   id: RMCRankCivilianDoctor
-  name: Doctor
-  prefix: Dr.
+  name: Врач
+  prefix: Док.
 
 - type: rank
   id: RMCRankCivilianAssistantProfessor
-  name: Assistant Professor
-  prefix: Asst. Prof.
+  name: Ассистент профессора
+  prefix: Асс. проф.
 
 - type: rank
   id: RMCRankCivilianAssociateProfessor
-  name: Associate Professor
-  prefix: Assoc. Prof.
+  name: Доцент
+  prefix: Доц.
 
 - type: rank
   id: RMCRankCivilianProfessor
-  name: Professor
-  prefix: Prof.
+  name: Профессор
+  prefix: Проф.
 
 - type: rank
   id: RMCRankCivilianRegentsProfessor
-  name: Regents Professor
-  prefix: Regents Prof.
+  name: Почетный профессор
+  prefix: Почет. проф.
 
 - type: rank
   id: RMCRankCivilianRepresentative
-  name: Representative
-  prefix: Rep.
+  name: Представитель
+  prefix: Предс.
 
 - type: rank
   id: RMCRankCivilianOfficer
-  name: Officer
-  prefix: Off.
+  name: Офицер
+  prefix: Офиц.
 
 - type: rank
   id: RMCRankCivilianSeniorOfficer
-  name: Senior Officer
-  prefix: Sr. Off.
+  name: Старший Офицер
+  prefix: Ст. Офиц.

@@ -1,0 +1,15 @@
+ent-RMCHeadCapTSEPA = фуражка ИТСПД
+    .desc = A cap for TSEPA constables. Wots all this then?
+ent-RMCHeadBeretTSE = берет ИТС
+    .desc = { ent-CMHeadBeret.desc }
+ent-RMCHeadBeretTSEPA = берет ИТСПД
+    .desc = { ent-CMHeadBeret.desc }
+ent-RMCHeadCapTSEPAPeaked = кепка с козырьком для инспекторов ИТСПД
+    .desc = Кепка с козырьком для инспекторов ИТСПД. Что же это такое?
+    .suffix = Серебро и золото
+ent-RMCHeadCapTSEPAPeakedGoldSilver = { ent-RMCHeadCapTSEPAPeaked }
+    .desc = Темная фуражка, украшенная величественной серебряно-золотой эмблемой ИТСПД в форме цветка сакуры. Империя и честь, связанные долгом. Долг без границ, правосудие по всему миру.
+    .suffix = Серебро и золото
+ent-RMCHeadCapTSEPAPeakedGold = { ent-RMCHeadCapTSEPAPeaked }
+    .desc = Темная фуражка, украшенная величественной красно-золотой эмблемой ИТСПД в форме цветка сакуры, чаще используемая высокопоставленными констеблями и персоналом ИТСПД. Империя и честь, связанные долгом. Долг без границ, правосудие по всему миру.
+    .suffix = Золото

@@ -1,0 +1,17 @@
+ent-CMSpawnPointCombatTech = точка появления боевая техника
+    .desc = { ent-CMSpawnPointJobBase.desc }
+    .suffix = { ent-CMSpawnPointJobBase.suffix }
+ent-CMSpawnPointCombatTechAlpha = { ent-CMSpawnPointCombatTech }
+    .desc = { ent-CMSpawnPointCombatTech.desc }
+    .suffix = Альфа
+ent-CMSpawnPointCombatTechBravo = { ent-CMSpawnPointCombatTech }
+    .desc = { ent-CMSpawnPointCombatTech.desc }
+    .suffix = Браво
+ent-CMSpawnPointCombatTechCharlie = { ent-CMSpawnPointCombatTech }
+    .desc = { ent-CMSpawnPointCombatTech.desc }
+    .suffix = Чарли
+ent-CMSpawnPointCombatTechDelta = { ent-CMSpawnPointCombatTech }
+    .desc = { ent-CMSpawnPointCombatTech.desc }
+    .suffix = Дельта
+ent-RMCGuidebookRoleCT = Боевой Техник
+    .desc = Боевой Техник

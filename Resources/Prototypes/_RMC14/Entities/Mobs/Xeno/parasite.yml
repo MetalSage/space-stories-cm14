@@ -17,7 +17,7 @@
     raffle:
       settings: parasiteTimeRequirement
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Parasite/parasite.rsi
+    sprite: _Stories/Mobs/Xenos/Parasite/parasite.rsi
   - type: FiremanCarriable
     canThrow: true
     carrierWhitelist:
@@ -39,10 +39,9 @@
     actionIds:
     - ActionXenoRest
     - ActionXenoWatch
-    - ActionXenoHide
     - ActionXenoLeap
     tier: 0
-    hudOffset: -0.1,0.1
+    hudOffset: 0,0.4
     contributesToVictory: false
     countedInSlots: false
     unlockAt: 0
@@ -103,13 +102,15 @@
   - type: Clothing
     quickEquip: false
     slots: [mask]
-    sprite: _RMC14/Mobs/Xenonids/Parasite/parasite.rsi
+    sprite: _Stories/Mobs/Xenos/Parasite/parasite_mask.rsi
   - type: HideLayerClothing
     slots:
     - Snout
   - type: Speech
     speechSounds: XenonidLarva
     allowedEmotes: [ "XenoRoar" ]
+    audioParams: # Stories-TTS
+      volume: -8
   - type: RMCSize
     size: Small
   - type: CanEscapeInventory
@@ -143,6 +144,9 @@
       5: rmc-xeno-prime-parasite
   - type: FixedIdentity
     name: cm-job-name-xeno-parasite
+  - type: AutoClimbBlocked # Stories-AutoClimb
+  - type: TTS # Stories-TTS
+    voice: ziggs
   - type: VentCrawler
     ventCrawlIcon: parasite
   - type: Unshieldable
@@ -157,7 +161,11 @@
 - type: entity
   parent: CMXenoParasiteBase
   id: CMXenoParasite
+  suffix: Normal
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoLeap ]
   - type: SleepNPC
   - type: ParasiteAI
   - type: XenoEvolution
@@ -171,6 +179,10 @@
   id: RMCXenoParasiteWatcher
   suffix: Parasite, Watcher
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoLeap ]
+      XenoPrimaryThree: [ ActionXenoZoom ]
   - type: Xeno
     actionIds:
     - ActionXenoRest
@@ -182,7 +194,7 @@
     description: rmc-xeno-watcher-description
     popup: rmc-xeno-watcher-popup
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Parasite/watcher_parasite.rsi
+    sprite: _Stories/Mobs/Xenos/Parasite/parasite.rsi # Stories-Parity
   - type: XenoZoom
     zoom: 1.3, 1.3
     blockLeaps: true

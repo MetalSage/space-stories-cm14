@@ -12,7 +12,7 @@
   description: A beefy, fast alien with sharp claws.
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Lurker/lurker.rsi
+    sprite: _Stories/Mobs/Xenos/Lurker/lurker.rsi
   - type: MobState
     allowedStates:
     - Alive
@@ -106,6 +106,12 @@
   id: CMXenoLurker
   suffix: Base
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoPounce ]
+      XenoPrimaryTwo: [ ActionXenoTurnInvisible ]
+      XenoPrimaryThree: [ ActionXenoCripplingStrike ]
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleLurker
@@ -143,7 +149,7 @@
     guides:
     - RMCGuideRoleVampire
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Lurker/vampire_lurker.rsi
+    sprite: _Stories/Mobs/Xenos/Lurker/vampire_lurker.rsi
   - type: Xeno
     role: CMXenoLurker
     actionIds:

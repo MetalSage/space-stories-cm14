@@ -131,6 +131,14 @@
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="SpawnPriorityButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <!-- Stories-TTS-Start -->
+                                <BoxContainer HorizontalExpand="True" Visible="False" Name="TTSContainer">
+                                    <Label Text="{Loc 'humanoid-profile-editor-voice-label'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <Button Name="VoiceButton" HorizontalAlignment="Right" MinWidth="150" />
+                                    <Button Name="VoicePlayButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" MaxWidth="80" />
+                                </BoxContainer>
+                                <!-- Stories-TTS-End -->
                             </BoxContainer>
                             <!-- Skin -->
                             <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">
@@ -153,7 +161,6 @@
                 </BoxContainer>
                 <BoxContainer Orientation="Vertical">
                     <!-- Jobs -->
-                    <OptionButton Name="PreferenceUnavailableButton" />
                     <ScrollContainer VerticalExpand="True">
                         <BoxContainer Name="JobList" Orientation="Vertical" />
                     </ScrollContainer>
@@ -180,6 +187,8 @@
                     <!-- Named Items -->
                     <namedItems:NamedItemsPicker Name="NamedItems" />
                 </BoxContainer>
+                <!-- Stories-Hunter -->
+                <BoxContainer Name="HunterTab" Access="Public" Orientation="Vertical" Visible="False" />
             </TabContainer>
         </BoxContainer>
         <!-- Right side -->

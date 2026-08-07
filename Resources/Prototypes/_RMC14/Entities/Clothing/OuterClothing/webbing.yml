@@ -28,7 +28,7 @@
       - RMCDetector
 
 - type: entity
-  parent: [ClothingOuterStorageBase, RMCAllowSuitStorageClothingExternalWebbing]
+  parent: [ClothingOuterStorageBase]
   id: RMCOuterClothingExternalWebbing
   name: external webbing
   description: Designed to be worn over a jumpsuit rather than clipped on.

@@ -1,0 +1,81 @@
+- type: entity
+  abstract: true
+  parent: STHunterBaseItem
+  id: STWeaponBracerBase
+  components:
+  - type: BracerAttachedWeapon
+
+- type: entity
+  parent: STWeaponBracerBase
+  id: STWeaponBracerWristblades
+  name: wrist blades
+  description: A huge, serrated blade extending from metal gauntlets.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/wristblade.rsi
+    state: icon
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+    wideAnimationRotation: 270
+    damage:
+      types:
+        Slash: 20
+    attackRate: 2
+    soundHit:
+      path: /Audio/_Stories/Weapons/wristblades_hit.ogg
+  - type: Tag
+    tags:
+    - Crowbar
+  - type: Tool
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Prying
+    pryPowered: true
+    speedModifier: 100000
+
+- type: entity
+  parent: STWeaponBracerBase
+  id: STWeaponBracerScimitar
+  name: wrist scimitar
+  description: A deadly curved blade extending from metal gauntlets.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/scimitar.rsi
+    state: icon
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Slash: 25
+    attackRate: 1
+    soundHit:
+      path: /Audio/_Stories/Weapons/wristblades_hit.ogg
+
+- type: entity
+  parent: STWeaponBracerScimitar
+  id: STWeaponBracerScimitarAlt
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/scimitar_alt.rsi
+
+- type: entity
+  parent: STWeaponBracerBase
+  id: STWeaponBracerChainGauntlets
+  name: chain gauntlets
+  description: Gauntlets made out of alien alloy, with chains wrapped around them for brutal combat.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Melee/BracerAttachment/metal_gauntlet.rsi
+    state: icon
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+    wideAnimationRotation: 270
+    damage:
+      types:
+        Blunt: 20
+    attackRate: 1
+    soundHit:
+      collection: STHunterGauntlets

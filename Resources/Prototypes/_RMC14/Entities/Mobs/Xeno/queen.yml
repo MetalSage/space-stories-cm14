@@ -24,12 +24,12 @@
       settings: short
     rules: cm-xeno-rules
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Queen/queen.rsi
+    sprite: _Stories/Mobs/Xenos/Queen/queen.rsi
     layers:
     - map: [ "enum.XenoVisualLayers.Base" ]
       state: alive
     - map: [ "enum.XenoVisualLayers.Ovipositor" ]
-      sprite: _RMC14/Mobs/Xenonids/Queen/ovipositor.rsi
+      sprite: _Stories/Mobs/Xenos/Queen/ovipositor.rsi
     - map: [ "enum.RMCDamageVisualLayers.Base" ]
       visible: false
     - map: [ "enum.XenoInhandVisualLayers.Left" ]
@@ -37,7 +37,11 @@
     - map: [ "enum.XenoInhandVisualLayers.Right" ]
       visible: false
     - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _RMC14/Effects/xeno_shields.rsi
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Queen/queen_spit.rsi
+      state: spit
       visible: false
   - type: MobState
     allowedStates:
@@ -79,7 +83,7 @@
     tier: 0
     bypassTierCount: true
     unlockAt: 0
-    hudOffset: -0.1,0
+    hudOffset: 0, 0
   - type: XenoHeavy
   - type: XenoAcid
   - type: XenoConstruction
@@ -278,8 +282,19 @@
   - type: XenoToggleChargingKnockback
     enabled: false
   - type: XenoToggleChargingStop
+  - type: XenoRankNames
+    rankNames:
+      0: rmc-xeno-fem-young
+      2: rmc-xeno-fem-mature
+      3: rmc-xeno-fem-elder
+      4: rmc-xeno-fem-ancient
+      5: rmc-xeno-fem-prime
   - type: FixedIdentity
     name: cm-job-name-xeno-queen
+  - type: TTS # Stories-TTS
+    voice: cirilla
+  - type: TypingIndicator
+    proto: alienroyal
   - type: RMCSurgeryXenoHeart
     item: RMCOrganXenoHeartTQ
   - type: RMCTrackable
@@ -294,8 +309,19 @@
   parent: RMCXenoQueenBase
   id: CMXenoQueen
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoHeal ]
+      XenoPrimaryTwo: [ ActionXenoTransferPlasmaQueen ]
+      XenoPrimaryThree: [ ActionXenoPlantWeeds ]
+      XenoPrimaryFour: [ ActionXenoChooseStructure ]
+      XenoPrimaryFive: [ ActionXenoSecreteStructure ]
   - type: RMCActionOrder
     id: CMXenoQueen
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpitQueen
     #  - type: XenoEvolution #can be enabled for events like april fools.
     #    strains:
     #    - RMCXenoQueenMaid
@@ -332,6 +358,8 @@
   - type: OwOAccent
   - type: Speech
     speechSounds: Cat
+    audioParams: # Stories-TTS
+      volume: -8
 
 - type: entity
   parent: RMCXenoQueenBase

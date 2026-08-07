@@ -61,6 +61,11 @@
       rmc-aslot-barrel: 0.71, 0.095
       rmc-aslot-rail: -0.065, 0.125
       rmc-aslot-underbarrel: 0.312, -0.25
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Pistols/m1984.rsi
+      Rust: /Textures/_Stories/Objects/Weapons/Pistols/m1984.rsi
 
 - type: Tag
   id: CMWeaponPistolM1984

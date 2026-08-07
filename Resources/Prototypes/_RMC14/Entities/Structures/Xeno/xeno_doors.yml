@@ -30,7 +30,7 @@
         layer:
         - AirlockLayer
   - type: Door
-    canPry: false
+    canPry: true
     crushDamage:
       types:
         Blunt: 15
@@ -63,8 +63,10 @@
         acts: ["Destruction"]
   - type: PlacementReplacement
     key: walls
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    additionalKeys:
+    - walls
     mode: NoSprite
   - type: AccessReader
     access: [["CMAccessXeno"]]
@@ -134,8 +136,10 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
+    additionalKeys:
+    - walls
     mode: NoSprite
   - type: MeleeReceivedMultiplier
     xenoDamage:

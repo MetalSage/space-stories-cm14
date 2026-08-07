@@ -62,6 +62,12 @@ public sealed partial class VehicleSupplyUiState
     [DataField]
     public List<VehicleSupplyEntryState> Available;
 
+    [DataField]
+    public bool PopLocked;
+
+    [DataField]
+    public bool OrderPhase;
+
     public VehicleSupplyUiState()
     {
         Available = new List<VehicleSupplyEntryState>();
@@ -74,7 +80,9 @@ public sealed partial class VehicleSupplyUiState
         string? selectedVehicleId,
         int selectedCopyIndex,
         VehicleSupplyPreviewState? preview,
-        List<VehicleSupplyEntryState> available)
+        List<VehicleSupplyEntryState> available,
+        bool popLocked = false,
+        bool orderPhase = false)
     {
         LiftMode = liftMode;
         Busy = busy;
@@ -83,6 +91,19 @@ public sealed partial class VehicleSupplyUiState
         SelectedCopyIndex = selectedCopyIndex;
         Preview = preview;
         Available = available;
+        PopLocked = popLocked;
+        OrderPhase = orderPhase;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class VehicleSupplyOrderMsg : BoundUserInterfaceMessage
+{
+    public string VehicleId;
+
+    public VehicleSupplyOrderMsg(string vehicleId)
+    {
+        VehicleId = vehicleId;
     }
 }
 

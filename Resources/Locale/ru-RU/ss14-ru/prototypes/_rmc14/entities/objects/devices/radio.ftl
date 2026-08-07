@@ -1,0 +1,11 @@
+ent-RMCRadioHandheldColonyBase = рация
+    .desc = { ent-RadioHandheld.desc }
+ent-RMCRadioHandheldColony = { ent-RMCRadioHandheldColonyBase }
+    .desc = { ent-RMCRadioHandheldColonyBase.desc }
+    .suffix = Вкл.
+ent-RMCRadioHandheldColonyOff = { ent-RMCRadioHandheldColonyBase }
+    .desc = { ent-RMCRadioHandheldColonyBase.desc }
+    .suffix = Выкл.
+ent-RMCRadioHandheldAlmayer = { ent-RMCRadioHandheldColonyBase }
+    .desc = { ent-RMCRadioHandheldColonyBase.desc }
+    .suffix = Вкл.

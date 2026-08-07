@@ -45,6 +45,7 @@ public sealed class VehicleSupplyBui : BoundUserInterface, IRefreshableBui
         _window.Title = string.Empty;
         _window.RaiseButton.OnPressed += _ => SendMessage(new VehicleSupplyLiftMsg(true));
         _window.LowerButton.OnPressed += _ => SendMessage(new VehicleSupplyLiftMsg(false));
+        _window.OrderButton.OnPressed += _ => OnOrderPressed();
         Refresh();
     }
 
@@ -85,17 +86,69 @@ public sealed class VehicleSupplyBui : BoundUserInterface, IRefreshableBui
         if (_window == null)
             return;
 
-        var modeText = state.LiftMode?.ToString() ?? "No lift";
-        var activeText = string.IsNullOrWhiteSpace(state.ActiveVehicleId) ? "none" : state.ActiveVehicleId;
-        var busyText = state.Busy ? "busy" : "idle";
+        var modeText = state.LiftMode switch
+        {
+            null => Loc.GetString("rmc-vehicle-supply-mode-no-lift"),
+            VehicleSupplyLiftMode.Preparing => Loc.GetString("rmc-vehicle-supply-mode-preparing"),
+            VehicleSupplyLiftMode.Raising => Loc.GetString("rmc-vehicle-supply-mode-raising"),
+            VehicleSupplyLiftMode.Lowering => Loc.GetString("rmc-vehicle-supply-mode-lowering"),
+            VehicleSupplyLiftMode.Raised => Loc.GetString("rmc-vehicle-supply-mode-raised"),
+            VehicleSupplyLiftMode.Lowered => Loc.GetString("rmc-vehicle-supply-mode-lowered"),
+            _ => state.LiftMode.ToString() ?? string.Empty,
+        };
 
-        _window.StatusLabel.Text = $"Lift: {modeText} | Status: {busyText} | Active: {activeText}";
+        var busyText = state.Busy
+            ? Loc.GetString("rmc-vehicle-supply-status-busy")
+            : Loc.GetString("rmc-vehicle-supply-status-idle");
+
+        var activeText = string.IsNullOrWhiteSpace(state.ActiveVehicleId)
+            ? Loc.GetString("rmc-vehicle-supply-status-none")
+            : state.ActiveVehicleId;
+
+        _window.StatusLabel.Text = Loc.GetString("rmc-vehicle-supply-status-lift",
+            ("mode", modeText),
+            ("status", busyText),
+            ("active", activeText));
 
         var raising = state.LiftMode == VehicleSupplyLiftMode.Raising;
         var lowering = state.LiftMode == VehicleSupplyLiftMode.Lowering;
         _window.RaiseButton.Pulse = raising;
         _window.LowerButton.Pulse = lowering;
         _windowController?.RefreshLiftActivity(state.LiftMode, state.Busy);
+
+        if (state.OrderPhase)
+        {
+            _window.RaiseButton.Visible = false;
+            _window.LowerButton.Visible = false;
+            _window.OrderButton.Visible = true;
+            _window.LiftActivity.Visible = false;
+            _window.AvailablePanel.Visible = true;
+            _window.PopLockedLabel.Visible = false;
+            _window.StatusLabel.Text = Loc.GetString("rmc-vehicle-supply-status-select-order");
+        }
+        else
+        {
+            _window.RaiseButton.Visible = true;
+            _window.LowerButton.Visible = true;
+            _window.OrderButton.Visible = false;
+            _window.LiftActivity.Visible = true;
+
+            _window.AvailablePanel.Visible = !state.PopLocked;
+            _window.PopLockedLabel.Visible = state.PopLocked;
+
+            _window.StatusLabel.Text = Loc.GetString("rmc-vehicle-supply-status-lift",
+                ("mode", modeText),
+                ("status", busyText),
+                ("active", activeText));
+        }
+    }
+
+    private void OnOrderPressed()
+    {
+        if (string.IsNullOrWhiteSpace(_selectedVehicleId))
+            return;
+
+        SendMessage(new VehicleSupplyOrderMsg(_selectedVehicleId));
     }
 
     private void UpdateLists(VehicleSupplyUiState state)
@@ -171,7 +224,9 @@ public sealed class VehicleSupplyBui : BoundUserInterface, IRefreshableBui
             {
                 var copyToggle = new HardpointButton
                 {
-                    LabelText = _copyExpanded.Contains(vehicleId) ? "Copies v" : "Copies >",
+                    LabelText = _copyExpanded.Contains(vehicleId)
+                        ? Loc.GetString("rmc-vehicle-supply-copies-expanded")
+                        : Loc.GetString("rmc-vehicle-supply-copies-collapsed"),
                     MinSize = new Vector2(110, 0)
                 };
 
@@ -306,7 +361,9 @@ public sealed class VehicleSupplyBui : BoundUserInterface, IRefreshableBui
 
         var expanded = _copyExpanded.Contains(vehicleId);
         container.Visible = expanded;
-        toggle.LabelText = expanded ? "Copies v" : "Copies >";
+        toggle.LabelText = expanded
+            ? Loc.GetString("rmc-vehicle-supply-copies-expanded")
+            : Loc.GetString("rmc-vehicle-supply-copies-collapsed");
     }
 
     private static void ApplySelectionStyle(HardpointButton button, bool selected)

@@ -51,6 +51,7 @@
       - UNMC
     - type: JobPrefix
       prefix: rmc-job-prefix-researcher
+    - type: CMVendorUser # Stories-Partners
     - type: ViewIntelObjectives
     - type: TacticalMapIcon
       icon:

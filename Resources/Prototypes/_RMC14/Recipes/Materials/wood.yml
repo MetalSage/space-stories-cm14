@@ -6,7 +6,7 @@
 
 - type: rmcConstruction
   id: RMCFloorTileWoodBuild
-  name: wood floor tile
+  name: деревянная плитка для пола
   prototype: CMTileItemWood
   doAfterTime: 0
   doAfterTimeMin: 0
@@ -19,7 +19,7 @@
 
 - type: rmcConstruction
   id: RMCCampfireBuild
-  name: campfire
+  name: костёр
   prototype: RMCCampfire
   noRotate: true
   doAfterTime: 1.5
@@ -27,14 +27,14 @@
 
 - type: rmcConstruction
   id: RMCWoodenBarricadeBuild
-  name: wooden barricade
+  name: деревянная баррикада
   prototype: RMCBarricadeWood
   doAfterTime: 2
   materialCost: 5
 
 - type: rmcConstruction
   id: RMCWoodenCrateBuild
-  name: wooden crate
+  name: деревянный ящик
   prototype: RMCCrateWoodenBuildable
   noRotate: true
   doAfterTime: 2

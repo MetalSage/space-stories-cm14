@@ -1,0 +1,16 @@
+ent-STHunterCapeBase = { ent-Clothing }
+    .desc = Потрёпанный в боях плащ, передаваемый старшими Охотниками.
+ent-STHunterCapeFull = плащ охотника
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeCeremonial = церемониальный плащ охотника
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeThird = охотничий плащ-треть
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeHalf = охотничий полуплащ
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeQuarter = охотничий плащ-четверть
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapePoncho = пончо охотника
+    .desc = { ent-STHunterCapeBase.desc }
+ent-STHunterCapeDamaged = повреждённый плащ охотника
+    .desc = { ent-STHunterCapeBase.desc }

@@ -1,119 +1,119 @@
 - type: rank
   id: RMCRankWeYaOperator
-  name: Operator
-  prefix: OPR.
-  paygrade: PMC-OP
+  name: Оператор
+  prefix: ОПР.
+  paygrade: ЧВК-ОП
 
 - type: rank
   id: RMCRankWeYaEnforcer
-  name: Enforcer
-  prefix: ENF.
-  paygrade: PMC-EN
+  name: Силовик
+  prefix: СИЛ.
+  paygrade: ЧВК-СЛ
 
 - type: rank
   id: RMCRankWeYaVehicleSpecialist
-  name: Vehicle Specialist
-  prefix: SPV.
-  paygrade: PMC-VS
+  name: Специалист Транспорта
+  prefix: СПЦТ.
+  paygrade: ЧВК-СТ
 
 - type: rank
   id: RMCRankWeYaSupportSpecialist
-  name: Support Specialist
-  prefix: SPS.
-  paygrade: PMC-SS
+  name: Специалист Поддержки
+  prefix: СПЦП.
+  paygrade: ЧВК-СП
 
 - type: rank
   id: RMCRankWeYaMedicalSpecialist
-  name: Medical Specialist
-  prefix: SPM.
-  paygrade: PMC-MS
+  name: Специалист Медицины
+  prefix: СПЦМ.
+  paygrade: ЧВК-СМ
 
 - type: rank
   id: RMCRankWeYaWeaponSpecialist
-  name: Weapon Specialist
-  prefix: SPW.
-  paygrade: PMC-WS
+  name: Специалист по Оружию
+  prefix: СПЦОР.
+  paygrade: ЧВК-СО
 
 - type: rank
   id: RMCRankWeYaXenoSpecialist
-  name: Xeno Specialist
-  prefix: SPX.
-  paygrade: PMC-XS
+  name: Специалист Ксено
+  prefix: СПЦКС.
+  paygrade: ЧВК-СК
 
 - type: rank
   id: RMCRankWeYaTraumaSurgeon
-  name: Trauma Surgeon
-  prefix: Dr.
-  paygrade: PMC-DOC
+  name: Хирург-травматолог
+  prefix: Док.
+  paygrade: ЧВК-ДОК
 
 - type: rank
   id: RMCRankWeYaCorporateTechnician
-  name: Corporate Technician
-  prefix: TEC.
-  paygrade: PMC-TEC
+  name: Корпоративный Техник
+  prefix: ТЕХ.
+  paygrade: ЧВК-ТЕХ
 
 - type: rank
   id: RMCRankWeYaEliteResponder
-  name: Elite Responder
-  prefix: ELR.
-  paygrade: PMC-ELR
+  name: Элитный Оператор
+  prefix: ЭОП.
+  paygrade: ЧВК-ЭОП
 
 - type: rank
   id: RMCRankWeYaEliteMedic
-  name: Elite Medic
-  prefix: ELM.
-  paygrade: PMC-ELM
+  name: Элитный Медик
+  prefix: ЭЛМ.
+  paygrade: ЧВК-ЭЛМ
 
 - type: rank
   id: RMCRankWeYaEliteGunner
-  name: Elite Gunner
-  prefix: ELG.
-  paygrade: PMC-ELG
+  name: Элитный Стрелок
+  prefix: ЭЛС.
+  paygrade: ЧВК-ЭЛС
 
 - type: rank
   id: RMCRankWeYaPMCSynthetic
-  name: Synthetic
-  prefix: SYN.
+  name: Синтетик
+  prefix: Син.
   paygrade: PMC-SYN
 
 - type: rank
   id: RMCRankWeYaTeamLeader
-  name: Team Leader
-  prefix: TML.
-  paygrade: PMC-TL
+  name: Лидер Группы
+  prefix: ЛИД.
+  paygrade: ЧВК-ЛИД
 
 - type: rank
   id: RMCRankWeYaFieldOperaionsLeader
-  name: Field Operations Leader
-  prefix: FOL.
+  name: Руководитель полевых операций
+  prefix: РПО.
   paygrade: PMC-FOL
 
 - type: rank
   id: RMCRankWeYaForceLeader
-  name: Force Leader
-  prefix: FL.
+  name: Командир сил
+  prefix: КС.
   paygrade: PMC-FL
 
 - type: rank
   id: RMCRankWeYaEliteTeamLeader
-  name: Elite Team Leader
-  prefix: ETML.
-  paygrade: PMC-ETL
+  name: Элитный Лидер Группы
+  prefix: ЭЛИД.
+  paygrade: ЧВК-ЭЛГ
 
 - type: rank
   id: RMCRankWeYaSiteDirector
-  name: PMC Site Director
-  prefix: Director
-  paygrade: PMC-DIR
+  name: ЧВК Директор Объекта
+  prefix: Директор
+  paygrade: ЧВК-ДИР
 
 - type: rank
   id: RMCRankWeYaForceCommand
-  name: PMC Force Command
-  prefix: FCO.
-  paygrade: PMC-FCO
+  name: ЧВК Командование Сил
+  prefix: КОC.
+  paygrade: ЧВК-КОС
 
 - type: rank
   id: RMCRankWeYaWhiteout
-  name: Whiteout Team Combat Unit
+  name: Боевая единица Whiteout
   prefix: WO.
   paygrade: ???

@@ -1,6 +1,8 @@
+using System.Numerics;
 using Content.Shared._RMC14.Areas;
 using Content.Shared._RMC14.Atmos;
 using Content.Shared._RMC14.CCVar;
+using Content.Shared._RMC14.ParaDrop;
 using Content.Shared._RMC14.Pulling;
 using Content.Shared._RMC14.Rules;
 using Content.Shared._RMC14.Xenonids.Neurotoxin;
@@ -12,7 +14,6 @@ using Content.Shared.Maps;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.ParaDrop;
 using Content.Shared.Physics;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Throwing;
@@ -22,7 +23,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
-using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
@@ -190,7 +190,7 @@ public abstract partial class SharedCrashLandSystem : EntitySystem
             },
         };
 
-        Damageable.TryChangeDamage(uid, damage);
+        Damageable.TryChangeDamage(uid, damage, ignoreResistances: true);
     }
 
     public bool IsLandableTile(Entity<MapGridComponent> grid, TileRef tileRef)
@@ -215,19 +215,18 @@ public abstract partial class SharedCrashLandSystem : EntitySystem
         var physQuery = GetEntityQuery<PhysicsComponent>();
         var valid = true;
 
-        var anchored = _mapSystem.GetAnchoredEntitiesEnumerator(grid, grid.Comp, tile);
-        while (anchored.MoveNext(out var ent))
+        var intersecting = _entityLookup.GetLocalEntitiesIntersecting(grid.Owner, tile);
+
+        foreach (var ent in intersecting)
         {
             if (!physQuery.TryGetComponent(ent, out var body))
                 continue;
 
-            if (body.BodyType != BodyType.Static ||
-                !body.Hard ||
-                (body.CollisionLayer & (int) CollisionGroup.Impassable) == 0)
-                continue;
-
-            valid = false;
-            break;
+            if (body.Hard && (body.CollisionLayer & (int)CollisionGroup.Impassable) != 0)
+            {
+                valid = false;
+                break;
+            }
         }
 
         return valid;

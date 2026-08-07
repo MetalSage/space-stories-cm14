@@ -18,6 +18,7 @@ using Content.Shared._RMC14.NamedItems;
 using Content.Shared._RMC14.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
+using Content.Shared._Stories.SCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Guidebook;
 using Content.Shared.Humanoid;
@@ -232,6 +233,18 @@ namespace Content.Client.Lobby.UI
             };
 
             #endregion Gender
+
+            // Stories-TTS-Start
+            #region Voice
+
+            if (configurationManager.GetCVar(SCCVars.TTSEnabled))
+            {
+                TTSContainer.Visible = true;
+                InitializeVoice();
+            }
+
+            #endregion
+            // Stories-TTS-End
 
             RefreshSpecies();
 
@@ -474,21 +487,6 @@ namespace Content.Client.Lobby.UI
 
             TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-jobs-tab"));
 
-            PreferenceUnavailableButton.AddItem(
-                Loc.GetString("humanoid-profile-editor-preference-unavailable-stay-in-lobby-button"),
-                (int) PreferenceUnavailableMode.StayInLobby);
-            PreferenceUnavailableButton.AddItem(
-                Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
-                              ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
-                (int) PreferenceUnavailableMode.SpawnAsOverflow);
-
-            PreferenceUnavailableButton.OnItemSelected += args =>
-            {
-                PreferenceUnavailableButton.SelectId(args.Id);
-                Profile = Profile?.WithPreferenceUnavailable((PreferenceUnavailableMode) args.Id);
-                SetDirty();
-            };
-
             _jobCategories = new Dictionary<string, BoxContainer>();
 
             RefreshAntags();
@@ -565,6 +563,36 @@ namespace Content.Client.Lobby.UI
             UpdateSpeciesGuidebookIcon();
             IsDirty = false;
         }
+
+        // Stories-Hunter-Start
+        public void AddTab(Control control, string title)
+        {
+            TabContainer.AddChild(control);
+            TabContainer.SetTabTitle(TabContainer.ChildCount - 1, title);
+        }
+
+        public int GetHunterTabIndex()
+        {
+            var i = 0;
+            foreach (var child in TabContainer.Children)
+            {
+                if (child == HunterTab)
+                    return i;
+                i++;
+            }
+            return -1;
+        }
+
+        public void SetTabVisible(int tab, bool visible)
+        {
+            TabContainer.SetTabVisible(tab, visible);
+        }
+
+        public void SetTabTitle(int tab, string title)
+        {
+            TabContainer.SetTabTitle(tab, title);
+        }
+        // Stories-Hunter-End
 
         /// <summary>
         /// Refreshes the flavor text editor status.
@@ -928,6 +956,7 @@ namespace Content.Client.Lobby.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
+            UpdateTTSVoicesControls(); // Stories-TTS
             UpdateHairPickers();
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
@@ -943,11 +972,6 @@ namespace Content.Client.Lobby.UI
             RefreshTraits();
             RefreshFlavorText();
             ReloadPreview();
-
-            if (Profile != null)
-            {
-                PreferenceUnavailableButton.SelectId((int) Profile.PreferenceUnavailable);
-            }
         }
 
 
@@ -1238,6 +1262,8 @@ namespace Content.Client.Lobby.UI
             JobOverride = jobProto;
             var session = _playerManager.LocalSession;
 
+            roleLoadout.EnsureValid(Profile, session, collection); // Stories-SponsorsLoadout
+
             _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection)
             {
                 Title = jobProto?.ID + "-loadout",
@@ -1257,16 +1283,26 @@ namespace Content.Client.Lobby.UI
             _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
             {
                 roleLoadout.AddLoadout(loadoutGroup, loadoutProto, _prototypeManager);
+                // Stories-SponsorsLoadout-Start
+                if (Profile != null)
+                    roleLoadout.EnsureValid(Profile, session, collection);
+                // Stories-SponsorsLoadout-End
                 _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
                 Profile = Profile?.WithLoadout(roleLoadout);
+                SetDirty(); // Stories-SponsorsLoadout
                 ReloadPreview();
             };
 
             _loadoutWindow.OnLoadoutUnpressed += (loadoutGroup, loadoutProto) =>
             {
                 roleLoadout.RemoveLoadout(loadoutGroup, loadoutProto, _prototypeManager);
+                // Stories-SponsorsLoadout-Start
+                if (Profile != null)
+                    roleLoadout.EnsureValid(Profile, session, collection);
+                // Stories-SponsorsLoadout-End
                 _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
                 Profile = Profile?.WithLoadout(roleLoadout);
+                SetDirty(); // Stories-SponsorsLoadout
                 ReloadPreview();
             };
 
@@ -1417,6 +1453,7 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateGenderControls();
+            UpdateTTSVoicesControls(); // Stories-TTS
             Markings.SetSex(newSex);
             ReloadPreview();
         }
@@ -1426,6 +1463,14 @@ namespace Content.Client.Lobby.UI
             Profile = Profile?.WithGender(newGender);
             ReloadPreview();
         }
+
+        // Stories-TTS-Start
+        private void SetVoice(string newVoice)
+        {
+            Profile = Profile?.WithVoice(newVoice);
+            IsDirty = true;
+        }
+        // Stories-TTS-End
 
         private void SetSpecies(string newSpecies)
         {

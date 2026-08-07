@@ -1,5 +1,8 @@
 using Content.Client._RMC14.Explosion;
 using Content.Client._RMC14.Xenonids.Screech;
+using Content.Client._Stories.DiscordAuth;
+using Content.Client._Stories.JoinQueue;
+using Content.Client._Stories.Sponsors;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -78,6 +81,9 @@ namespace Content.Client.Entry
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
+        [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Stories-Sponsors
+        [Dependency] private readonly JoinQueueManager _queueManager = default!; // Stories-Queue
+        [Dependency] private readonly DiscordAuthManager _discordAuthManager = default!; // Stories-DiscordAuth
 
         public override void Init()
         {
@@ -129,6 +135,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
+            _prototypeManager.RegisterIgnore("stationGoal"); // Stories-StationGoal
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();
@@ -177,6 +184,9 @@ namespace Content.Client.Entry
             _voteManager.Initialize();
             _userInterfaceManager.SetDefaultTheme("SS14DefaultTheme");
             _userInterfaceManager.SetActiveTheme(_configManager.GetCVar(CVars.InterfaceTheme));
+            _sponsorsManager.Initialize(); // Stories-Sponsors
+            _queueManager.Initialize(); // Stories-Queue
+            _discordAuthManager.Initialize(); // Stories-DiscordAuth
             _documentParsingManager.Initialize();
             _titleWindowManager.Initialize();
 

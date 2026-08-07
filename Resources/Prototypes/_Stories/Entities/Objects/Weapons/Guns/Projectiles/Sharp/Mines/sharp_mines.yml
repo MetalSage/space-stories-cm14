@@ -1,0 +1,226 @@
+- type: entity
+  id: STSharpTileFireL1
+  parent: RMCTileFire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RMCIgniteOnCollide
+    intensity: 15
+    duration: 12
+    maxStacks: 20
+  - type: TileFire
+    id: STSharpTileFireL1
+    duration: 12
+    extinguishInstantly: true
+    patExtinguishMultiplier: 1
+    sprayExtinguishMultiplier: 1
+
+- type: entity
+  id: STSharpTileFireGreen
+  parent: RMCTileFireGreen
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageOnCollide
+    damage:
+      types:
+        Heat: 55
+  - type: RMCIgniteOnCollide
+    intensity: 22
+    duration: 24
+    maxStacks: 25
+  - type: TileFire
+    id: STSharpTileFireGreen
+    duration: 24
+    extinguishInstantly: false
+    patExtinguishMultiplier: 0.9
+    sprayExtinguishMultiplier: 0.9
+
+- type: entity
+  id: STSharpTileFireNapalmL3
+  parent: RMCTileFireNapalm
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RMCIgniteOnCollide
+    intensity: 30
+    duration: 35
+    maxStacks: 65
+  - type: TileFire
+    id: STSharpTileFireNapalmL3
+    duration: 35
+    extinguishInstantly: false
+    patExtinguishMultiplier: 0.75
+    sprayExtinguishMultiplier: 0.8
+
+- type: entity
+  id: STSharpTileFireNapalmL4
+  parent: STSharpTileFireNapalmL3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RMCIgniteOnCollide
+    intensity: 35
+    duration: 45
+    maxStacks: 80
+  - type: TileFire
+    id: STSharpTileFireNapalmL4
+    duration: 45
+    patExtinguishMultiplier: 0.6
+    sprayExtinguishMultiplier: 0.7
+
+- type: entity
+  id: STSharpMineDisarmedExplosive
+  parent: BaseItem
+  name: disarmed SHARP dart (explosive)
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
+    state: disarmed
+  - type: Item
+    size: Small
+
+- type: entity
+  id: STSharpMineDisarmedIncendiary
+  parent: BaseItem
+  name: disarmed SHARP dart (incendiary)
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
+    state: disarmed
+  - type: Item
+    size: Small
+
+- type: entity
+  id: STSharpMineBase
+  abstract: true
+  name: SHARP mine
+  description: A rapidly-deploying SHARP mine.
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Static
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        layer:
+        - BulletImpassable
+        - XenoProjectileImpassable
+        mask:
+        - MidImpassable
+      hitbox:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: true
+        layer:
+        - BulletImpassable
+        - XenoProjectileImpassable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: MaxDamage
+    max: 50
+  - type: RequireProjectileTarget
+  - type: Appearance
+  - type: SharpMine
+    blockFriendlyFire: true
+    triggerRadius: 1.0
+    activationDelay: 3
+    levelUpInterval: 30
+    maxLifespan: 300
+    detonateOnDamage:
+      types:
+        Heat: 1
+    level: 1
+    maxLevel: 4
+
+- type: entity
+  id: STSharpMineExplosive
+  name: SHARP mine (explosive)
+  parent: STSharpMineBase
+  components:
+  - type: SharpMine
+    disarmSpawnProto: STSharpMineDisarmedExplosive
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/explosive.rsi
+    drawdepth: Overlays
+    layers:
+    - state: phase0
+      map: [ "enum.SharpMineVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.SharpMineVisuals.State:
+        enum.SharpMineVisuals.Layer:
+          Inactive: { state: phase0 }
+          Arming: { state: phase0 }
+          Level1: { state: phase1 }
+          Level2: { state: phase2 }
+          Level3: { state: phase3 }
+          Level4: { state: phase4 }
+  - type: SharpMineLevels
+    explosionType: RMC
+    explosionCanCreateVacuum: false
+    levels:
+    - explosiveMaxIntensity: 20
+      explosiveIntensitySlope: 6
+      explosiveTotalIntensity: 200
+    - explosiveMaxIntensity: 28
+      explosiveIntensitySlope: 7
+      explosiveTotalIntensity: 320
+    - explosiveMaxIntensity: 36
+      explosiveIntensitySlope: 8
+      explosiveTotalIntensity: 460
+    - explosiveMaxIntensity: 46
+      explosiveIntensitySlope: 9
+      explosiveTotalIntensity: 620
+  - type: CMExplosionEffect
+  - type: RMCScorchEffect
+
+- type: entity
+  id: STSharpMineIncendiary
+  name: SHARP mine (incendiary)
+  parent: STSharpMineBase
+  components:
+  - type: SharpMine
+    disarmSpawnProto: STSharpMineDisarmedIncendiary
+  - type: Sprite
+    sprite: _Stories/Objects/Weapons/Guns/Projectiles/Sharp/Mines/incendiary.rsi
+    drawdepth: Overlays
+    layers:
+    - state: phase0
+      map: [ "enum.SharpMineVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.SharpMineVisuals.State:
+        enum.SharpMineVisuals.Layer:
+          Inactive: { state: phase0 }
+          Arming: { state: phase0 }
+          Level1: { state: phase1 }
+          Level2: { state: phase2 }
+          Level3: { state: phase3 }
+          Level4: { state: phase4 }
+  - type: SharpMineLevels
+    tileFireSound:
+      path: /Audio/_RMC14/Weapons/Guns/Flamer/gun_flamethrower2.ogg
+    levels:
+    - tileFireSpawn: STSharpTileFireL1
+      tileFireRange: 3
+      tileFireIntensity: 15
+      tileFireDuration: 12
+    - tileFireSpawn: STSharpTileFireGreen
+      tileFireRange: 3
+      tileFireIntensity: 22
+      tileFireDuration: 24
+    - tileFireSpawn: STSharpTileFireNapalmL3
+      tileFireRange: 3
+      tileFireIntensity: 30
+      tileFireDuration: 35
+    - tileFireSpawn: STSharpTileFireNapalmL4
+      tileFireRange: 4
+      tileFireIntensity: 35
+      tileFireDuration: 45
+

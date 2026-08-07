@@ -69,6 +69,8 @@
     - whitelist:
         tags:
         - CMFirstAidKit
+        - GlassBeaker
+        - PressurizedCanister
       skills:
         all:
           RMCSkillMedical: 2
@@ -223,7 +225,7 @@
       tank:
         maxVol: 650 # TODO RMC14 260 when welders are fixed
         reagents:
-        - ReagentId: WeldingFuel
+        - ReagentId: RMCWeldingFuel # Stories-Ordance
           Quantity: 650
   - type: ReagentTank
     tankType: Fuel

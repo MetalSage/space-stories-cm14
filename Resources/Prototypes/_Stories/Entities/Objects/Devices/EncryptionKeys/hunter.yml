@@ -1,0 +1,24 @@
+- type: entity
+  parent: [STHunterBaseItem, CMEncryptionKey]
+  id: STEncryptionKeyHunter
+  name: hunter encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - STOverseer
+    defaultChannel: STHunter
+  - type: Sprite
+    state: cypherkey
+
+- type: entity
+  parent: [STHunterBaseItem, CMEncryptionKey]
+  id: STEncryptionKeyHunterOverseer
+  name: hunter encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - STHunter
+    - STOverseer
+    defaultChannel: STHunter
+  - type: Sprite
+    state: cypherkey

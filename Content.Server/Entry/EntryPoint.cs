@@ -1,3 +1,7 @@
+using Content.Server._Stories.DiscordAuth;
+using Content.Server._Stories.JoinQueue;
+using Content.Server._Stories.Sponsors;
+using Content.Server._Stories.TTS;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -109,6 +113,10 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<INodeGroupFactory>().Initialize();
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
                 IoCManager.Resolve<GhostKickManager>().Initialize();
+                IoCManager.Resolve<DiscordAuthManager>().Initialize(); // Stories-DiscordAuth
+                IoCManager.Resolve<SponsorsManager>().Initialize(); // Stories-Sponsors
+                IoCManager.Resolve<JoinQueueManager>().Initialize(); // Stories-Queue
+                IoCManager.Resolve<TTSManager>().Initialize(); // Stories-TTS
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
 
@@ -116,7 +124,6 @@ namespace Content.Server.Entry
                 _updateManager.Initialize();
                 _playTimeTracking.Initialize();
                 _watchlistWebhookManager.Initialize();
-                IoCManager.Resolve<JobWhitelistManager>().Initialize();
                 IoCManager.Resolve<PlayerRateLimitManager>().Initialize();
             }
         }

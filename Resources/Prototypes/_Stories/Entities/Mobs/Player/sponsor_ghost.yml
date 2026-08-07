@@ -1,0 +1,83 @@
+- type: entity
+  parent: MobObserver
+  id: SponsorObserverTier1
+  components:
+  - type: Sprite
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Stories/Mobs/Ghosts/sponsor.rsi
+    layers:
+    - state: tier1
+      shader: unshaded
+
+- type: entity
+  parent: MobObserver
+  id: SponsorObserverTier2
+  components:
+  - type: Sprite
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Stories/Mobs/Ghosts/sponsor.rsi
+    layers:
+    - state: tier2
+      shader: unshaded
+
+- type: entity
+  parent: MobObserver
+  id: SponsorObserverTier3
+  components:
+  - type: Sprite
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Stories/Mobs/Ghosts/sponsor.rsi
+    layers:
+    - state: tier3
+      shader: unshaded
+
+- type: entity
+  parent: MobObserver
+  id: SponsorObserverTier4
+  components:
+  - type: Sprite
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Stories/Mobs/Ghosts/sponsor.rsi
+    layers:
+    - state: tier4
+      shader: unshaded
+
+- type: entity
+  parent: MobObserver
+  id: SponsorObserverTier5
+  components:
+  - type: Sprite
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Stories/Mobs/Ghosts/sponsor.rsi
+    layers:
+    - state: tier5
+      shader: unshaded
+
+- type: entity
+  parent: MobObserver
+  id: SponsorObserverTier6
+  components:
+  - type: Sprite
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Stories/Mobs/Ghosts/sponsor.rsi
+    layers:
+    - state: tier6
+      shader: unshaded
+
+- type: entity
+  parent: MobObserver
+  id: SponsorObserverTier7
+  components:
+  - type: Sprite
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Stories/Mobs/Ghosts/sponsor.rsi
+    layers:
+    - state: tier7
+      shader: unshaded

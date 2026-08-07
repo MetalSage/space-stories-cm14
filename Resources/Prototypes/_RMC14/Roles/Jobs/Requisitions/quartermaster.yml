@@ -9,18 +9,22 @@
     department: CMRequisitions
     time: 36000 # 10 hours
   ranks:
-    RMCRankFirstLT:
+    RMCRankMasterSergeant: # Stories-Fixes
     - !type:RoleTimeRequirement
       role: CMJobQuartermaster
       time: 252000 # 70 hours
-    RMCRankSecondLT: []
+    RMCRankGunnerySergeant: # Stories-Fixes start
+    - !type:RoleTimeRequirement
+      role: CMJobQuartermaster
+      time: 36000 # 10 hours
+    RMCRankStaffSergeant: [] # Stories-Fixes end
   weight: 5
   startingGear: CMGearQuartermaster
-  icon: "CMJobIconQuartermaster"
+  icon: "STJobIconQuartermaster" # Stories-Fixes
   requireAdminNotify: true
   joinNotifyCrew: false
-  marineAuthorityLevel: 8
-  supervisors: rmc-job-supervisors-commander
+  marineAuthorityLevel: 6 # Stories-Fixes start
+  supervisors: cm-job-supervisors-aso # Stories-Fixes end
   accessGroups:
   - QuarterMaster
   roleWeight: 0.25

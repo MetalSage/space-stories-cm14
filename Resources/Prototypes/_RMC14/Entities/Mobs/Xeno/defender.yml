@@ -12,7 +12,7 @@
   description: An alien with an armored crest.
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Defender/defender.rsi
+    sprite: _Stories/Mobs/Xenos/Defender/defender.rsi
   - type: MobState
     allowedStates:
     - Alive
@@ -30,7 +30,7 @@
   - type: Xeno
     role: CMXenoDefender
     tier: 1
-    hudOffset: -0.1,0.2
+    hudOffset: 0,0.2
     unlockAt: 240 # 4 minutes
   - type: XenoLight
   - type: XenoDevolve
@@ -114,6 +114,13 @@
   parent: CMXenoDefenderBase
   id: CMXenoDefender
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoToggleCrest ]
+      XenoPrimaryTwo: [ ActionXenoHeadbutt ]
+      XenoPrimaryThree: [ ActionXenoTailSweep ]
+      XenoPrimaryFour: [ ActionXenoFortify ]
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRoleDefender
@@ -144,7 +151,7 @@
   suffix: Steelcrest
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Defender/steelcrest_defender.rsi
+    sprite: _Stories/Mobs/Xenos/Defender/steelcrest_defender.rsi
   - type: Xeno
     actionIds:
     - ActionXenoRest

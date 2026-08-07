@@ -1,8 +1,8 @@
 ﻿<Document>
 
-  # Core Medications
+  # Основные лекарственные препараты
 
-  These medications are almost always useful in one way or another.
+  Эти лекарства почти всегда полезны в той или иной степени.
 
   <GuideReagentEmbed Reagent="CMTricordrazine"/>
   <GuideReagentEmbed Reagent="CMBicaridine"/>
@@ -13,9 +13,9 @@
   <GuideReagentEmbed Reagent="CMMeralyne"/>
   <GuideReagentEmbed Reagent="CMDermaline"/>
 
-  # Specialty Medications
+  # Специализированные лекарственные препараты
 
-  These medications tend to have specific use cases.
+  Эти лекарства, как правило, имеют конкретные случаи применения.
 
   <GuideReagentEmbed Reagent="CMInaprovaline"/>
   <GuideReagentEmbed Reagent="CMEpinephrine"/>
@@ -24,9 +24,9 @@
   <GuideReagentEmbed Reagent="CMLeporazine"/>
   <GuideReagentEmbed Reagent="CMCryoxadone"/>
 
-  # All Medications
+  # Все лекарственные препараты
 
-  This is a list of -all- medications available, including ones previously listed.
+  Это список всех доступных лекарств, включая перечисленные ранее.
 
   <GuideReagentGroupEmbed Group="Medicine"/>
 

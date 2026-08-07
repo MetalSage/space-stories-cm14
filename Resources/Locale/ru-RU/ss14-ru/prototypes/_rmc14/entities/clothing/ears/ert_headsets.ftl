@@ -1,0 +1,10 @@
+ent-RMCHeadsetDistressICBLiaison = гарнитура связного БМТ
+    .desc = { ent-RMCHeadsetLiaison.desc }
+    .suffix = ВеЯ, Колония
+ent-CMHeadsetCBRN = CBRN headset
+    .desc = A headset given to CBRN marines.
+ent-CMHeadsetCBRNLeader = CBRN Leader headset
+    .desc = A headset given to CBRN Team Leaders.
+ent-RMCHeadsetDistressWeYaColony = { ent-RMCHeadsetLiaison }
+    .suffix = ВеЯ, Колония
+    .desc = { ent-RMCHeadsetLiaison.desc }

@@ -1,0 +1,15 @@
+ent-CMSpawnPointFireteamLeader = точка появления командира огневой группы
+    .desc = { ent-CMSpawnPointJobBase.desc }
+    .suffix = { ent-CMSpawnPointJobBase.suffix }
+ent-CMSpawnPointFireteamLeaderAlpha = { ent-CMSpawnPointFireteamLeader }
+    .desc = { ent-CMSpawnPointFireteamLeader.desc }
+    .suffix = Альфа
+ent-CMSpawnPointFireteamLeaderBravo = { ent-CMSpawnPointFireteamLeader }
+    .desc = { ent-CMSpawnPointFireteamLeader.desc }
+    .suffix = Браво
+ent-CMSpawnPointFireteamLeaderCharlie = { ent-CMSpawnPointFireteamLeader }
+    .desc = { ent-CMSpawnPointFireteamLeader.desc }
+    .suffix = Чарли
+ent-CMSpawnPointFireteamLeaderDelta = { ent-CMSpawnPointFireteamLeader }
+    .desc = { ent-CMSpawnPointFireteamLeader.desc }
+    .suffix = Дельта

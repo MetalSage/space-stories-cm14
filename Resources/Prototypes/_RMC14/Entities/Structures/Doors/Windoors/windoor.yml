@@ -113,7 +113,6 @@
     containers:
     - board
   - type: PryUnpowered
-  - type: RMCDropshipBlocked
 
 - type: entity
   parent: CMBaseWindoor

@@ -113,6 +113,11 @@
       Classic: _RMC14/Objects/Weapons/Guns/SMGs/m63/classic.rsi
       Snow: _RMC14/Objects/Weapons/Guns/SMGs/m63/snow.rsi
       Urban: _RMC14/Objects/Weapons/Guns/SMGs/m63/urban.rsi
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/SMGs/m63/desert.rsi
+      Toxic: /Textures/_Stories/Objects/Weapons/SMGs/m63.rsi
 
 - type: entity
   parent: WeaponSMGM63

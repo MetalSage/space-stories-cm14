@@ -1,0 +1,21 @@
+- type: entity
+  parent: STHunterBaseItem
+  id: STStabilizingCrystal
+  name: stabilizing crystal
+  description: A crystalline injector that seems to pulse with faint energy.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Specific/Hunter/stabilizing_crystal.rsi
+    state: crystal
+  - type: Item
+    size: Tiny
+  - type: Appearance
+  - type: Tag
+    tags:
+    - STPredatorGear
+    - STStabilizingCrystal
+  - type: StabilizingCrystal
+    energyToRestore: 400
+    useSound:
+      path: /Audio/_Stories/Items/pred_crystal_inject.ogg
+    usedIconState: crystal_used

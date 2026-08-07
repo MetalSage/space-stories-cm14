@@ -27,6 +27,7 @@
   icon: "CMJobIconLiaison"
   joinNotifyCrew: false
   supervisors: cm-job-supervisors-we-ya
+  whitelisted: true # Stories-RolePlay
   accessGroups:
   - RMCWeYaExecColony
   roleWeight: 0.25

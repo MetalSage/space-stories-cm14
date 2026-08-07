@@ -15,7 +15,7 @@
     guides:
     - RMCGuideRoleCrusher
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Crusher/crusher.rsi
+    sprite: _Stories/Mobs/Xenos/Crusher/crusher.rsi
   - type: MobState
     allowedStates:
     - Alive
@@ -36,7 +36,7 @@
     - ActionXenoStomp
     - ActionXenoDevolve
     tier: 3
-    hudOffset: -0.15,0.1
+    hudOffset: 0,0.375
     unlockAt: 900 # 15 minutes
   - type: XenoRegen
     standHealingMultiplier: 0.66
@@ -115,6 +115,12 @@
   parent: CMXenoCrusherBase
   id: RMCXenoCrusher
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoCharge ]
+      XenoPrimaryTwo: [ ActionXenoStomp ]
+      XenoPrimaryThree: [ ActionXenoDefensiveShield ]
+  - type: XenoBaseCaste
   - type: Xeno
     actionIds:
     - ActionXenoRest
@@ -144,7 +150,7 @@
   suffix: Charger
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Crusher/charger_crusher.rsi
+    sprite: _Stories/Mobs/Xenos/Crusher/crusher.rsi
   - type: MobThresholds
     thresholds:
       0: Alive

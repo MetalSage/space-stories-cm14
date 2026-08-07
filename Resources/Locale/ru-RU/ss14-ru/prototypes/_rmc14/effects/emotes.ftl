@@ -1,0 +1,12 @@
+ent-RMCEffectEmoteBase = { ent-RMCBaseEffect }
+    .desc = { ent-RMCBaseEffect.desc }
+ent-RMCEffectFistbump = { ent-RMCEffectEmoteBase }
+    .desc = { ent-RMCEffectEmoteBase.desc }
+ent-RMCEffectHighfive = { ent-RMCEffectEmoteBase }
+    .desc = { ent-RMCEffectEmoteBase.desc }
+ent-RMCEffectTailswipe = { ent-RMCEffectEmoteBase }
+    .desc = { ent-RMCEffectEmoteBase.desc }
+ent-RMCEffectHug = { ent-RMCEffectEmoteBase }
+    .desc = { ent-RMCEffectEmoteBase.desc }
+ent-RMCEffectHandshake = { ent-RMCEffectEmoteBase }
+    .desc = { ent-RMCEffectEmoteBase.desc }

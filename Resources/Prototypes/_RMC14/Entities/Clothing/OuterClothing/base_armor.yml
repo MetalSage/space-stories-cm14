@@ -31,10 +31,20 @@
       params:
         volume: -4
   - type: Clothing
+    equipDelay: 2
+    unequipDelay: 2
     equipSound:
       path: /Audio/_RMC14/Machines/armor_equip.ogg
   - type: MoveOrderArmor
   - type: StoreAfterFailedInteract
+  - type: StorageStoreSkillRequired
+    entries:
+    - whitelist:
+        tags:
+        - GlassBeaker
+      skills:
+        all:
+          RMCSkillMedical: 2
 
 - type: entity
   parent: [ RMCBaseArmorNoAccessory, RMCBaseUniformAccessoryItemOuterClothing ]
@@ -73,6 +83,8 @@
       - RMCDetector
       - RMCMatebaHolster
       - RMCFoldingBarricade
+      - STHunterMelee # Stories-Hunter
+      - STHunterQuiver # Stories-Hunter
 
 - type: entity
   abstract: true

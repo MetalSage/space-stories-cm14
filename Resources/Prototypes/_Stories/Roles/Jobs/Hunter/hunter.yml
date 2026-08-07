@@ -1,0 +1,75 @@
+- type: job
+  parent: STJobHunterBase
+  id: STHunter
+  name: st-job-name-hunter
+  description: st-job-description-hunter
+  playTimeTracker: STJobHunter
+  startingGear: STGearHunter
+  dummyStartingGear: STGearHunterEquipped
+  joinNotifyCrew: false
+  hasIcon: false
+  roleWeight: 0
+  hidden: true
+
+- type: job
+  parent: STHunter
+  id: STHunterCouncil
+
+- type: job
+  parent: STHunter
+  id: STHunterLeader
+
+- type: job
+  parent: STHunter
+  id: STHunterYoung
+
+- type: startingGear
+  id: STGearHunter
+  equipment:
+    gloves: STBracerHunter
+    ears: STHeadsetHunterOverseer
+
+- type: startingGear
+  id: STGearHunterEquipped
+  equipment:
+    mask: STMaskHunterEbony1
+    jumpsuit: STMeshHunter
+    shoes: STBootsHunterEbony1
+    outerClothing: STHalfArmorClanHunterEbony1
+    gloves: STBracerHunter
+    ears: STHeadsetHunterOverseer
+
+- type: playTimeTracker
+  id: STJobHunter
+  isHumanoid: true
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: STSpawnPointHunter
+  name: hunter spawn point
+  components:
+  - type: SpawnPoint
+    job_id: STHunter
+  - type: Sprite
+    sprite: _Stories/Markers/landmarks.rsi
+    state: clan_spawn
+  - type: HunterTeleportDestination
+    teleporterType: Normal
+    destinationGroup: "Корабль Охотников"
+
+- type: randomHumanoidSettings
+  parent: RMCRandomHumanoidBase
+  id: STHunter
+  components:
+  - type: GhostRole
+    name: st-job-name-hunter
+    description: st-job-description-hunter
+    rules: st-ghost-role-information-hunter-rules
+    reregister: false
+    raffle:
+      settings: default
+    job: STHunter
+    requirements:
+    - !type:RoleTimeRequirement
+      role: STJobHunter
+      time: 1

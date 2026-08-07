@@ -1,0 +1,89 @@
+- type: entity
+  parent: MarkerBase
+  id: STHunterTeleporter
+  name: hunter teleporter
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: HunterTeleporter
+    teleporterType: Normal
+  - type: InteractionOutline
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        hard: false
+        mask:
+        - MobLayer
+        layer:
+        - Impassable
+  - type: PointLight
+    enabled: true
+    color: "#a034db"
+    radius: 1.5
+    softness: 1
+
+- type: entity
+  parent: STHunterTeleporter
+  id: STHunterTeleporterYoungblood
+  suffix: Youngblood
+  components:
+  - type: HunterTeleporter
+    teleporterType: Youngblood
+
+- type: entity
+  parent: MarkerBase
+  id: STHunterTeleportDestination
+  name: hunter teleport destination
+  suffix: Planet
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: HunterTeleportDestination
+    teleporterType: Normal
+
+- type: entity
+  parent: MarkerBase
+  id: STHunterTeleportDestinationAlmayer
+  name: hunter teleport destination
+  suffix: Human Ship
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: HunterTeleportDestination
+    teleporterType: Normal
+    destinationGroup: "Корабль Людей"
+
+- type: entity
+  parent: MarkerBase
+  id: STHunterTeleportDestinationMoon
+  name: hunter teleport destination
+  suffix: Hunter Moon
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: HunterTeleportDestination
+    teleporterType: Normal
+    destinationGroup: "Охотничьи Угодья"
+
+- type: entity
+  parent: MarkerBase
+  id: STHunterTeleportDestinationMoonYoungblood
+  name: hunter teleport destination
+  suffix: Hunter Moon, Youngblood
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: HunterTeleportDestination
+    teleporterType: Youngblood
+    destinationGroup: "Охотничьи Угодья"

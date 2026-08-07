@@ -1,0 +1,15 @@
+ent-RMCWallStrata = голая стена заставы
+    .desc = Толстая и массивная металлическая стена. Поверхность бесплодна и внушительна.
+ent-RMCWallStrataReinforced = ребристая стена форпоста
+    .desc = Толстая и толстая металлическая стена, покрытая зазубренными ребрами.
+ent-RMCWallStrataHull = тяжелая ребристая стена форпоста
+    .desc = Толстая и массивная металлическая стена, которая, благодаря своему расположению и внушительности, совершенно неразрушима.
+ent-RMCWallStrataIce = ледяные столбы
+    .desc = Абсолютно массивная коллекция колонн из льда. Чем дольше смотришь, тем глубже кажется лед.
+ent-RMCWallStrataIceDirty = { ent-RMCWallStrataIce }
+    .desc = { ent-RMCWallStrataIce.desc }
+ent-RMCWallStrataRock = каменная стена
+    .desc = Грубая стена из затвердевшего камня.
+ent-RMCWallStrataRockTimed = { ent-RMCWallStrataRock }
+    .desc = { ent-RMCWallStrataRock.desc }
+    .suffix = Timed

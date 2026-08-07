@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-import os
 import requests
+import os
 import subprocess
 
 GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
@@ -14,8 +14,8 @@ VERSION = os.environ['GITHUB_SHA']
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://cdn.rouny-ss14.com/"
-FORK_ID = "rmc14"
+ROBUST_CDN_URL = "https://spacestories.club/cdn/"
+FORK_ID = "marines"
 
 def main():
     print("Fetching artifact URL from API...")
@@ -31,7 +31,7 @@ def main():
         "Authorization": f"Bearer {PUBLISH_TOKEN}",
         "Content-Type": "application/json"
     }
-    resp = requests.post(f"{ROBUST_CDN_URL}fork/{FORK_ID}/publish", json=data, headers=headers)
+    resp = requests.post(f"{ROBUST_CDN_URL}fork/{FORK_ID}/publish", json=data, headers=headers, verify=False)
     resp.raise_for_status()
     print("Publish succeeded!")
 

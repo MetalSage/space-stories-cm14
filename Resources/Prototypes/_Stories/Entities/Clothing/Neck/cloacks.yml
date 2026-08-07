@@ -1,0 +1,215 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakAceOfHeart
+  name: ace of heart cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_aceofhearts.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakAceOfSpades
+  name: ace of spades cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_aceofspades.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakAmerica
+  name: america cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_america.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakBloodySkull
+  name: bloody skull cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_bloodyskull.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakBreakThrough
+  name: break through cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_breakthrough.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakConductor
+  name: conductor cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_conductor.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakDareDevil
+  name: dare devil cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_daredevil.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakDuty
+  name: duty cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_duty.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakFirstShield
+  name: first shield cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_firstshield.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakGlory
+  name: glory cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_glory.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakHeraldOfBetrayal
+  name: herald of betrayal cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_heraldofbetrayal.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakHolyBlades
+  name: holy blades cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_holyblades.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakHolyHammer
+  name: holy hammer cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_holyhammer.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakHolyScripture
+  name: holy scripture cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_holyscripture.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakHolySpear
+  name: holy spear cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_holyspear.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakImperator
+  name: imperator cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_imperator.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakInquisition
+  name: inquisition cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_inquisition.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakMorgenstern
+  name: morgenstern cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_morgenstern.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakPiercingPoison
+  name: piercing poison cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_piercingpoison.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakRapier
+  name: rapier cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_rapier.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakRedDemon
+  name: red demon cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_reddemon.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakSparta
+  name: sparta cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_sparta.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakSpoilage
+  name: spoilage cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_spoilage.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckCloakStrongholdOfWorld
+  name: stronghold of world cloak
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/cloak_strongholdofworld.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckDrone
+  name: drone
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Misc/drone.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckFlag
+  name: flag
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Misc/flag.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: STClothingNeckTurret
+  name: turret
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Cloak/Misc/turret.rsi

@@ -117,3 +117,31 @@ rmc-vehicle-key-examine-blank = [color=lightblue]This blank key can be imprinted
 rmc-vehicle-key-examine-duplicator = [color=lightblue]This blank key can copy an existing vehicle key by using it on that key.[/color]
 rmc-vehicle-key-examine-bound = [color=lightblue]This key is bound to a vehicle lock.[/color]
 rmc-hardpoint-remove-blocked = That hardpoint is fixed in place.
+
+rmc-vehicle-supply-stored = Stored Vehicles
+rmc-vehicle-supply-vehicle = Vehicle
+rmc-vehicle-supply-raise = Raise
+rmc-vehicle-supply-lower = Lower
+rmc-vehicle-supply-status-lift = Lift: { $mode } | Status: { $status } | Active: { $active }
+rmc-vehicle-supply-mode-no-lift = No lift
+rmc-vehicle-supply-status-none = none
+rmc-vehicle-supply-status-busy = busy
+rmc-vehicle-supply-status-idle = idle
+rmc-vehicle-supply-copies-collapsed = Copies >
+rmc-vehicle-supply-copies-expanded = Copies v
+rmc-vehicle-supply-preview-selected = Vehicle Preview
+rmc-vehicle-supply-mode-lowered = Lowered
+rmc-vehicle-supply-mode-raised = Raised
+rmc-vehicle-supply-mode-lowering = Lowering
+rmc-vehicle-supply-mode-raising = Raising
+rmc-vehicle-supply-mode-preparing = Preparing
+rmc-vehicle-supply-locked-pop = Insufficient troops
+rmc-vehicle-supply-purchase = Request
+rmc-vehicle-supply-status-select-order = Select a vehicle to order for the squad.
+
+rmc-hardpoint-category-tank-primary = Primary
+rmc-hardpoint-category-tank-secondary = Secondary
+rmc-hardpoint-category-tank-armor = Armor
+rmc-hardpoint-category-tank-support = Support
+rmc-hardpoint-category-tank-treads = Treads
+rmc-hardpoint-category-tank-general = General

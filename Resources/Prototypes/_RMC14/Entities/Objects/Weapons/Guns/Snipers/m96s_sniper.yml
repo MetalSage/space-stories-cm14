@@ -18,6 +18,7 @@
     - sprite: _RMC14/Objects/Weapons/Guns/Attachments/barrel.rsi
       state: sniperbarrel
       offset: 0.715, 0.025
+      map: [ "barrel" ]
   - type: Item
     size: Large
   - type: Clothing
@@ -85,6 +86,15 @@
       Snow: _RMC14/Objects/Weapons/Guns/Snipers/m96s/snow.rsi
       Classic: _RMC14/Objects/Weapons/Guns/Snipers/m96s/classic.rsi
       Urban: _RMC14/Objects/Weapons/Guns/Snipers/m96s/urban.rsi
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Snipers/m96s/desert.rsi
+      Tiger: /Textures/_Stories/Objects/Weapons/Snipers/m96s.rsi
+    layers:
+      barrel:
+        Default: sniperbarrel
+        Tiger: sniperbarrel_t
   - type: RMCGunChamber
     enabled: false
 

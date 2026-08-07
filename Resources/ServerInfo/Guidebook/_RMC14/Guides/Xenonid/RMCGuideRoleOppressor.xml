@@ -1,26 +1,26 @@
 <Document>
-  #Oppressor, Tier 3
+  #Угнетатель, Уровень 3
   <GuideEntityEmbed Entity="RMCXenoPraetorianOppressor"/>
-  ##Playing as an Oppressor
-  You are now specialized in being the Queen of Fishing. Firstly let's see what's changed from your Base form. You trade a portion of your speed, a bit of slash damage, slight loss in armor, and acid abilities to become a bulwark of the Queen that gains stun resistance from grenades. Your slashes deal increased damage to prone targets, and you gain a lash that knocks over and flings opponents in front of you as well as two abilities that can pull in hosts.
+  ##Игра за Угнетателя
+  Теперь вы специализируетесь на роли «Королевы Рыбалки». Прежде всего, давайте посмотрим, что изменилось по сравнению с вашей базовой формой. Вы жертвуете частью своей скорости, небольшим уроном от ударов, незначительной потерей брони и кислотными способностями, чтобы стать оплотом Королевы, который получает сопротивление оглушению от гранат. Ваши удары наносят увеличенный урон лежащим целям, и вы получаете удар, который сбивает с ног и отбрасывает противников перед вами, а также две способности, которые могут притягивать носителей.
 
-  Oppressor is unique in its playstyle, specializing in capturing hosts from afar and keeping them there to them to be captured.
+  Угнетатель уникален своим стилем игры, специализируясь на захвате носителей издалека и удержании их на месте для последующего пленения.
 
-  Your dislocation abilities can become very lethal when used in the right way. The usual combo is to first abduct, dislocate them, then walking behind them to tail lash them towards the hive, and tackling if it's safe to do so.
+  Ваши способности к вывиху могут стать очень смертоносными при правильном использовании. Обычное комбо состоит в том, чтобы сначала похитить, вывихнуть их, затем пройти за ними, чтобы ударить хвостом по направлению к улью, и атаковать, если это безопасно.
 
-  Remember to use fire to your advantage by hooking hosts into them, by either standing behind the fire and abducting or tail seizing.
+  Не забывайте использовать огонь в свою пользу, затягивая в него носителей, стоя за огнём и похищая или используя захват хвостом.
 
-  ##Abilities:
-  - [bold][color=green]PASSIVE[/color][/bold]: Your slashes deal additional damage to prone/knock targets.
-  - [bold]Abduct[/bold]: Landing this long ranged ability on:
-  - 1 person will drag them in front of you and slow them.
-  - 2 people will drag them in front of you, slow them, daze them and briefly root them.
-  - 3 or more people will drag them in front of you, slow them and briefly stun them.
+  ##Способности:
+  - [bold][color=green]ПАССИВНО[/color][/bold]: Ваши удары наносят дополнительный урон лежащим/сбитым с ног целям.
+  - [bold]Похищение[/bold]: Применение этой дальнобойной способности на:
+  - 1 человеке притянет его перед вами и замедлит.
+  - 2 людях притянет их перед вами, замедлит, оглушит и кратковременно обездвижит.
+  - 3 или более людях притянет их перед вами, замедлит и кратковременно оглушит.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoAbduct"/>
-  - [bold]Dislocate[/bold]: A powerful punch, similar to the warrior's punch. Deals armor piercing damage, more if your enemy is slowed. Will also root slowed targets. Reduces other ability cooldowns.
+  - [bold]Вывих[/bold]: Мощный удар, похожий на удар воина. Наносит бронебойный урон, больше, если ваш враг замедлен. Также обездвиживает замедленные цели. Сокращает время восстановления других способностей.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoDislocate"/>
-  - [bold]Tail Lash[/bold]: Knock hosts back in a 2x3 area in front of you and slow them. Take note that this ability has a wind up.
+  - [bold]Удар Хвостом[/bold]: Отбрасывает носителей в области 2x3 перед вами и замедляет их. Обратите внимание, что эта способность имеет задержку перед применением.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoTailLash"/>
-  - [bold]Tail Seize[/bold]: The Oppressor has a unique tail stab, instead called Tail Seize. It has a range of 3 tiles - dealing 40 damage, pulling the target in towards you and slowing them upon their arrival.
+  - [bold]Захват Хвостом[/bold]: У Угнетателя есть уникальный удар хвостом, вместо этого называемый «Захват Хвостом». Он имеет дальность 3 клетки — однако, он не наносит урона, вместо этого притягивая цель к вам и замедляя её по прибытии.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoTailSeize"/>
 </Document>

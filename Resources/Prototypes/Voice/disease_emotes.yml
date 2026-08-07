@@ -13,6 +13,8 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-cough"]
@@ -26,6 +28,10 @@
     - cough!
     - coughs!
     - coughed!
+    # Corvax-Localization-Start
+    - кашель
+    - кашляет
+    # Corvax-Localization-End
 
 - type: emote
   id: CatMeow
@@ -60,12 +66,18 @@
     components:
     - Vocal
   blacklist:
+    components:
+    - Hunter
     tags:
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-yawn"]
   chatTriggers:
     - yawn
     - yawns
+    # Corvax-Localization-Start
+    - зевок
+    - зевает
+    # Corvax-Localization-End
 
 - type: emote
   id: Snore

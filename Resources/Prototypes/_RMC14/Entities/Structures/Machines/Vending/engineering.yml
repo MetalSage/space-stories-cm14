@@ -28,7 +28,7 @@
     - "CMAccessColonyEngineering"
     hackable: true
     sections:
-    - name: Equipment
+    - name: Оборудование
       entries:
       - id: RMCFlashlight
         amount: 4
@@ -46,7 +46,7 @@
         amount: 4
       - id: RMCEngineerKit
         amount: 2
-    - name: Scanners
+    - name: Сканеры
       entries:
       #Atmos scanner
       #Demo scanner
@@ -54,7 +54,7 @@
       #Reagent scanner
       - id: CMTRayScanner
         amount: 2
-    - name: Tools
+    - name: Инструменты
       entries:
       - id: CMWelder
         amount: 4
@@ -83,7 +83,7 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Circuitboards
+    - name: Печатные Платы
       entries:
 #     - id: RMCFireAlarmCircuitboard
 #       amount: 5
@@ -133,19 +133,19 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Tools
+    - name: Инструменты
       entries:
       - id: RMCCableCoil
         amount: 6
       - id: CMMultitool
         amount: 6
-    - name: Circuitboards
+    - name: Печатные Платы
       entries:
       - id: DoorElectronics
         amount: 8
       - id: CMAPCElectronics
         amount: 8
-    - name: Batteries
+    - name: Батареи
       entries:
       - id: RMCPowerCellHigh
         amount: 6
@@ -165,23 +165,23 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Assembly Components
+    - name: Компоненты Для Сборки
       entries:
-      - id: Igniter
+      - id: STIgniter # Stories-Ordance
         amount: 8
-      - id: RMCTimerTrigger
+      - id: STTimer # Stories-Ordance
         amount: 4
-      - id: ProximitySensor
+      - id: STProximitySensor # Stories-Ordance
         amount: 4
-      - id: RemoteSignaller
+      - id: STSignaller # Stories-Ordance
         amount: 4
-    - name: Container
+    - name: Контейнер
       entries:
       - id: RMCBucket
         amount: 6
       - id: CMBucketMop
         amount: 2
-    - name: Stock Parts
+    - name: Запасные Части
       entries:
       - id: CMStockPartMatterBin
         amount: 8
@@ -215,7 +215,7 @@
     - "CMAccessResearch"
     hackable: true
     sections:
-    - name: Equipment
+    - name: Оборудование
       entries:
       - id: RMCHoodBioGeneral # TODO scientist bio hood
         amount: 2
@@ -223,7 +223,7 @@
         amount: 2
       - id: CMJumpsuitResearch
         amount: 2
-    - name: Assembly Components
+    - name: Компоненты Для Сборки
       entries:
       - id: Igniter
         amount: 8
@@ -245,13 +245,13 @@
   - type: CMAutomatedVendor
     hackable: true
     sections:
-    - name: Equipment
+    - name: Оборудование
       entries:
       # Labcoat
       - id: CMMaskGasMedical
         amount: 2
       # Roboticist Jumpsuit
-    - name: Tools
+    - name: Инструменты
       entries:
       - id: RMCCableCoil
         amount: 4
@@ -263,7 +263,7 @@
         amount: 2
       - id: CMScrewdriver
         amount: 2
-    - name: Assembly Components
+    - name: Компоненты Для Сборки
       entries:
       - id: CMFlash
         amount: 4
@@ -273,7 +273,7 @@
         amount: 4
       - id: RemoteSignaller
         amount: 4
-    - name: Miscellaneous
+    - name: Разное
       entries:
       - id: NitrousOxideTankFilled
         amount: 2

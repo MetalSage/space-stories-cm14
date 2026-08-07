@@ -33,8 +33,10 @@
     drawdepth: FloorTiles
     layers:
     - state: weed0
-  - type: IconSmooth
-    key: cm_xeno_weeds
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_weeds
+    additionalKeys:
+    - xeno_structure
     base: weed_dir
     mode: CardinalFlags
   - type: IconSmoothRandom
@@ -224,8 +226,10 @@
   - type: HiveWeeds
   - type: XenoWeedsSpreading
     spreadDelay: 1.25
-  - type: IconSmooth
-    key: cm_xeno_weeds
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_weeds
+    additionalKeys:
+    - xeno_structure
     base: hive_weed
     mode: CardinalFlags
   - type: IconSmoothRandom
@@ -383,8 +387,8 @@
     drawdepth: Objects
 #    layers:
 #    - state: weedwall
-  - type: IconSmooth
-    key: cm_xeno_weeds_walls
+  - type: IconSmooth # Stories-Fixes
+    key: xeno_structure
     base: weedwall
     mode: Corners
   - type: XenoNestSurface

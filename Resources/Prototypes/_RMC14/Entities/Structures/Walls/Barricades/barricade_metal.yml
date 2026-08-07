@@ -429,12 +429,19 @@
     layers:
     - state: folding_metal
       map: ["enum.DoorVisualLayers.Base"]
+    - sprite: _RMC14/Structures/Walls/Barricades/folding_metal_cracks.rsi
+      state: DamageOverlay_4
+      map: ["enum.StoriesBarricadeDoorDamageVisualLayers.Damage"]
       visible: false
-    - state: DamageOverlay_0
-      map: [ "enum.RMCDamageOverlayVisuals.DamageOverlay" ]
-      sprite: _RMC14/Structures/Walls/Barricades/folding_metal_cracks.rsi
     - map: [ "acided" ]
     drawdepth: WallTops
+  # Stories-start
+  - type: StoriesBarricadeDoorDamageVisuals
+    closedDamageSprite: _RMC14/Structures/Walls/Barricades/folding_metal_cracks.rsi
+    openDamageSprite: _RMC14/Structures/Walls/Barricades/folding_metal_closed_cracks.rsi
+    thresholds: [100, 200, 300]
+    states: [DamageOverlay_4, DamageOverlay_8, DamageOverlay_12]
+  # Stories-end
   - type: RMCRepairable
     heal: 200
     skill: RMCSkillConstruction
@@ -467,9 +474,9 @@
     visuals:
       enum.BarbedWireVisualLayers.Wire:
         barbWired:
-          UnWired: { state: folding_metal_closed_wire, visible: false }
-          WiredClosed: { state: folding_metal_wire, visible: true }
-          WiredOpen: { state: folding_metal_closed_wire, visible: true }
+          UnWired: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_metal_closed_wire, visible: false }
+          WiredClosed: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_metal_wire, visible: true }
+          WiredOpen: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_metal_closed_wire, visible: true }
       enum.SprayAcidedVisuals.Acided:
         acided:
           True:
@@ -482,15 +489,7 @@
         enum.RMCDamageOverlayVisuals.DamageOverlay:
           Open: { sprite: _RMC14/Structures/Walls/Barricades/folding_metal_closed_cracks.rsi }
           Closed: { sprite: _RMC14/Structures/Walls/Barricades/folding_metal_cracks.rsi }       
-  - type: DamageVisuals
-    thresholds: [4, 8, 12]
-    damageDivisor: 25
-    trackAllDamage: true
-    overlay: false
-    targetLayers:
-    - "enum.RMCDamageOverlayVisuals.DamageOverlay"
-    damageGroup: "Brute"
-    hideIfZero: false
+
   - type: InteractionOutline
   - type: Door
     openSpriteState: folding_metal_closed

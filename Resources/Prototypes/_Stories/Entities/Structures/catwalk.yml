@@ -1,0 +1,49 @@
+- type: entity
+  parent: CMCatwalk
+  id: STCatwalkHunter
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/catwalk.rsi
+    state: hunter_catwalk_alpha
+  - type: TileEmission
+    color: "#FF0000"
+
+- type: entity
+  parent: CMCatwalk
+  id: STCatwalkHunterAlt
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/catwalk.rsi
+    state: hunter_catwalk_alt_alpha
+  - type: TileEmission
+    color: "#FF0000"
+
+- type: entity
+  parent: CMCatwalk
+  id: STCatwalkHunterGrate
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/catwalk.rsi
+    state: hunter_grate_alpha
+  - type: TileEmission
+    color: "#FF0000"
+
+- type: entity
+  parent: CMCatwalk
+  id: STCatwalkHunterGrille
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/catwalk.rsi
+    state: hunter_grille_alpha
+  - type: TileEmission
+    color: "#FF0000"
+
+- type: entity
+  parent: CMCatwalk
+  id: STCatwalkHunterNew
+  components:
+  - type: Sprite
+    sprite: _Stories/Structures/catwalk.rsi
+    state: hunter_catwalk_new_alpha
+  - type: TileEmission
+    color: "#FF0000"

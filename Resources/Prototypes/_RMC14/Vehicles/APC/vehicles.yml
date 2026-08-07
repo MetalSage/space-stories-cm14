@@ -29,7 +29,7 @@
       world:
         shape:
           !type:PhysShapeAabb
-          bounds: -1,-1.7,1,1.7
+          bounds: -1.25,-1.7,1.25,1.7
         density: 1200
         mask:
         - Impassable
@@ -43,7 +43,7 @@
       mob:
         shape:
           !type:PhysShapeAabb
-          bounds: -1,-1.7,1,1.7
+          bounds: -1.25,-1.7,1.25,1.7
         density: 1200
         mask:
         - MidImpassable

@@ -80,6 +80,8 @@
   - rmgrid
   - rmmap
   - mapinit
+  - savemap
+  - savegrid
   - setambientlight
   - tpgrid
   - gridtc
@@ -101,6 +103,9 @@
   Commands:
   - delete
   - unpausemap
+  # Stories-Admins
+  - pausemap
+  - shutdown
 
 - Flags: SPAWN
   Commands:
@@ -130,11 +135,6 @@
   - replay_recording_start
   - replay_recording_stop
   - restart
-  - shutdown
-  - pausemap
-  # RMC 14
-  - savemap
-  - savegrid
 
 - Flags: QUERY
   Commands:

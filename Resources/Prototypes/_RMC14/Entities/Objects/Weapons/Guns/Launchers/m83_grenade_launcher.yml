@@ -7,24 +7,13 @@
   - type: GuideHelp
     guides:
     - RMCGuideRoleSpecGrenadier
-  - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83_inhands.rsi
+  - type: Sprite # Stories-Partiy
+    sprite: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
     layers:
-    - state: base
-      sprite: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83_main.rsi
-    - state: camo
-      sprite: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83_main.rsi
-      map: [ "enum.ItemCamouflageLayers.Layer" ]
-    - state: mag-0
-      sprite: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83_main.rsi
-      map: [ "enum.GunVisualLayers.Mag" ]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: true
-    zeroOnlyOnEmpty: true
-  #- type: Clothing
-  #  sprite: _RMC14/Objects/Weapons/Guns/GrenadeLaunchers/m83inhands.rsi
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Clothing # Stories-Partiy
+    sprite: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
   - type: RMCSelectiveFire
     baseFireRate: 0.675
   - type: GunUserWhitelist
@@ -36,8 +25,6 @@
     proto: CMGrenadeHighExplosive
   - type: Corrodible
     isCorrodible: false
-  - type: ExplosionResistance
-    damageCoefficient: 0
   - type: AttachableHolder
     slots:
       rmc-aslot-rail:
@@ -47,10 +34,15 @@
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-rail: 0.0, 0.185
-  - type: ItemCamouflage
-    colors:
-      Jungle: "#ccd08d"
-      Desert: "#ffd2a6"
-      Snow: "#ddcbc9"
-      Classic: "#c7e7d9"
-      Urban: "#acb8c7"
+  - type: ItemCamouflage # Stories-Partiy
+    camouflageVariations:
+      Jungle: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/jungle.rsi
+      Desert: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
+      Snow: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/snow.rsi
+      Classic: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/classic.rsi
+      Urban: _Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/urban.rsi
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_Stories/Objects/Weapons/Guns/GrenadeLaunchers/m83/desert.rsi
+      Pacifist: /Textures/_Stories/Objects/Weapons/GrenadeLaunchers/m83.rsi

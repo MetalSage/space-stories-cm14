@@ -7,7 +7,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: corrosive_acid
     checkCanInteract: false
   - type: TargetAction
@@ -39,7 +39,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: corrosive_acid
     checkCanInteract: false
   - type: TargetAction
@@ -63,7 +63,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: corrosive_acid
     checkCanInteract: false
   - type: TargetAction
@@ -87,7 +87,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: corrosive_acid
     checkCanInteract: false
   - type: TargetAction
@@ -113,7 +113,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: regurgitate
   - type: InstantAction
     event: !type:XenoRegurgitateActionEvent
@@ -128,7 +128,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_attack
     useDelay: 10
   - type: TargetAction
@@ -156,8 +156,8 @@
   components:
   - type: Action
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: tail_attack_acid
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: tail_attack
 
 - type: entity
   parent: ActionXenoTailStabCorrosive
@@ -185,7 +185,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_attack
     useDelay: 3
   - type: WorldTargetAction
@@ -206,7 +206,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: pounce
     useDelay: 3
   - type: TargetAction
@@ -239,7 +239,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: pounce
     useDelay: 6
   - type: TargetAction
@@ -265,7 +265,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: charge
     useDelay: 14
   - type: TargetAction
@@ -290,7 +290,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_dash
     useDelay: 10
   - type: TargetAction
@@ -315,7 +315,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: headbutt
     useDelay: 4
   - type: TargetAction
@@ -346,7 +346,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_sweep
     useDelay: 11
   - type: InstantAction
@@ -370,7 +370,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xeno_spit
     useDelay: 2
   - type: TargetAction
@@ -391,7 +391,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: acid_shotgun
     useDelay: 7
   - type: TargetAction
@@ -420,7 +420,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: xeno_spit
     useDelay: 2.5
   - type: TargetAction
@@ -457,7 +457,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: charge_spit
     useDelay: 12
   - type: InstantAction
@@ -482,7 +482,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: spray_acid
     useDelay: 8
   - type: TargetAction
@@ -539,7 +539,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_acid_ball
     useDelay: 18
   - type: TargetAction
@@ -566,7 +566,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: lurker_inject_neuro
     useDelay: 12
   - type: InstantAction
@@ -583,7 +583,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: lurker_inject_neuro
     useDelay: 10
   - type: InstantAction
@@ -608,7 +608,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: runner_bonespur
     useDelay: 12
   - type: TargetAction
@@ -634,7 +634,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: punch
     useDelay: 4.5
   - type: TargetAction
@@ -662,7 +662,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: fling
     useDelay: 7
   - type: TargetAction
@@ -691,7 +691,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: lunge
     useDelay: 10
   - type: TargetAction
@@ -722,7 +722,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: screech
     useDelay: 50
   - type: InstantAction
@@ -738,7 +738,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: gut
   - type: TargetAction
     range: 2
@@ -754,7 +754,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: stomp
     useDelay: 18
   - type: InstantAction
@@ -777,7 +777,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: stomp
     useDelay: 12
   - type: InstantAction
@@ -792,7 +792,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: ready_charge
     useDelay: 14
   - type: TargetAction
@@ -818,7 +818,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: ready_charge
     useDelay: 0.25
   - type: InstantAction
@@ -831,8 +831,8 @@
   components:
   - type: Action
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: fling # TODO RMC14 ram
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: ram
     useDelay: 10
   - type: XenoActionPlasma
     cost: 10
@@ -846,7 +846,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: bombard
     useDelay: 1
   - type: TargetAction
@@ -880,10 +880,10 @@
     itemIconStyle: NoItem
     backgroundOn: null
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: shift_spit_acid_glob
     iconOn:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: shift_spit_neuro_glob
     useDelay: 1
   - type: InstantAction
@@ -906,7 +906,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: acid_shroud
   - type: InstantAction
     event: !type:XenoAcidShroudActionEvent
@@ -936,8 +936,8 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: tremor
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: stomp
     useDelay: 30
   - type: InstantAction
     event: !type:XenoStompActionEvent
@@ -947,8 +947,8 @@
   id: RMCGuidebookActionXenoTremor
   categories: [ HideSpawnMenu ]
   components:
-    - type: Sprite
-      state: tremor
+  - type: Sprite
+    state: stomp
 
 - type: entity
   parent: ActionXenoBase
@@ -959,7 +959,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: screech
   - type: InstantAction
     event: !type:XenoForTheHiveActionEvent
@@ -973,7 +973,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_impale
     useDelay: 13
   - type: TargetAction
@@ -998,7 +998,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_tail_trip
     useDelay: 13
   - type: TargetAction
@@ -1023,7 +1023,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_pierce
     useDelay: 3
   - type: TargetAction
@@ -1062,7 +1062,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_cleave_root
     useDelay: 12
   - type: TargetAction
@@ -1094,7 +1094,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_cleave_fling
     useDelay: 12
   - type: TargetAction
@@ -1128,10 +1128,10 @@
 #    itemIconStyle: NoItem
 #    backgroundOn: null
 #    icon:
-#      sprite: _RMC14/Actions/xeno_actions.rsi
+#      sprite: _Stories/Actions/xeno_actions.rsi
 #      state: prae_cleave_root
 #    iconOn:
-#      sprite: _RMC14/Actions/xeno_actions.rsi
+#      sprite: _Stories/Actions/xeno_actions.rsi
 #      state: prae_cleave_fling
 #  - type: InstantAction
 #    event: !type:XenoToggleCleaveActionEvent
@@ -1152,11 +1152,11 @@
     itemIconStyle: NoItem
     backgroundOn: null
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: shift_spit_neurotoxin
     iconOn:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: shift_spit_xeno_acid
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: shift_spit_xeno_acid_strong
   - type: InstantAction
     event: !type:XenoSpitToggleActionEvent
 
@@ -1169,7 +1169,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: stomp
     useDelay: 12
   - type: TargetAction
@@ -1196,7 +1196,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_scissor_cut
     useDelay: 6
   - type: TargetAction
@@ -1225,7 +1225,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tail_seize
     useDelay: 15
   - type: TargetAction
@@ -1254,7 +1254,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: abduct
     useDelay: 15
   - type: TargetAction
@@ -1283,7 +1283,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_tail_lash
     useDelay: 13
   - type: TargetAction
@@ -1311,8 +1311,8 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: dislocate
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: punch
     useDelay: 10
   - type: TargetAction
     range: 1.5
@@ -1330,7 +1330,7 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
-      state: dislocate
+      state: punch
 
 - type: entity
   parent: ActionXenoBase
@@ -1341,7 +1341,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_pierce
     useDelay: 7
   - type: TargetAction
@@ -1364,7 +1364,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_spike
     useDelay: 3
   - type: TargetAction
@@ -1391,7 +1391,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: headbite
     useDelay: 10
   - type: TargetAction
@@ -1420,7 +1420,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_enrage
     useDelay: 18
   - type: InstantAction
@@ -1436,7 +1436,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_eviscerate
     useDelay: 23
   - type: InstantAction
@@ -1453,7 +1453,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: prae_cleave_fling
     useDelay: 16
   - type: TargetAction
@@ -1473,7 +1473,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: tumble
     useDelay: 10
   - type: TargetAction
@@ -1496,7 +1496,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_spike
     useDelay: 10
   - type: TargetAction
@@ -1517,7 +1517,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_shard_shed
     useDelay: 30
   - type: InstantAction
@@ -1534,7 +1534,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: rav_eviscerate
     useDelay: 2.5
   - type: InstantAction
@@ -1552,7 +1552,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: charge
     useDelay: 60
   - type: TargetAction
@@ -1571,13 +1571,13 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: acid_mine
     useDelay: 5.5
   - type: XenoAcidMine
     actionIconEmpowered:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: acid_mine_empowered
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: acid_mine
   - type: TargetAction
     deselectOnMiss: false
     checkCanAccess: false
@@ -1604,7 +1604,7 @@
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
+      sprite: _Stories/Actions/xeno_actions.rsi
       state: acid_shotgun
     useDelay: 13
   - type: TargetAction
@@ -1626,12 +1626,12 @@
     useDelay: 20.5
     itemIconStyle: NoItem
     icon:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: gas_mine
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: resin_pit
   - type: XenoDeployTraps
     actionIconEmpowered:
-      sprite: _RMC14/Actions/xeno_actions.rsi
-      state: gas_mine_empowered
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: resin_pit
   - type: TargetAction
     checkCanAccess: false
     deselectOnMiss: false
@@ -1648,4 +1648,4 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    state: gas_mine
+    state: resin_pit

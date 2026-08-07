@@ -1,6 +1,7 @@
 using Content.Server._RMC14.Weapons.Melee;
 using Content.Server.Interaction;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._RMC14.Barricade.Components;
 using Content.Shared._RMC14.Weapons.Ranged.IFF; //RMC
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Mobs.Systems; //RMC
@@ -31,6 +32,7 @@ public sealed partial class NPCCombatSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!; //RMC
     [Dependency] private readonly GunIFFSystem _gunIFF = default!; //RMC
 
+    private EntityQuery<BarbedComponent> _barbedQuery;
     // RMC14
     [Dependency] private readonly RMCMeleeWeaponSystem _rmcMeleeWeapon = default!;
 
@@ -42,6 +44,7 @@ public sealed partial class NPCCombatSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        _barbedQuery = GetEntityQuery<BarbedComponent>();
         InitializeMelee();
         InitializeRanged();
     }

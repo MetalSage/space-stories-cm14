@@ -12,7 +12,23 @@
   description: A huge, looming beast of an alien.
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Praetorian/praetorian.rsi
+    sprite: _Stories/Mobs/Xenos/Praetorian/praetorian.rsi
+    layers:
+    - map: [ "enum.XenoVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.RMCDamageVisualLayers.Base" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Left" ]
+      visible: false
+    - map: [ "enum.XenoInhandVisualLayers.Right" ]
+      visible: false
+    - map: [ "enum.RMCShieldVisuals.Base" ]
+      sprite: _Stories/Effects/xeno_shields.rsi
+      visible: false
+    - map: [ "enum.XenoAcidAnimationVisualLayers.Base" ]
+      sprite: _Stories/Mobs/Xenos/Praetorian/praetorian_spit.rsi
+      state: spit
+      visible: false
   - type: MobState
     allowedStates:
     - Alive
@@ -37,7 +53,7 @@
     - ActionXenoSprayAcidPraetorian
     - ActionXenoDevolve
     tier: 3
-    hudOffset: -0.15,0.16
+    hudOffset: 0,0.16
     unlockAt: 900 # 15 minutes
   - type: XenoHeavy
   - type: XenoDevolve
@@ -123,6 +139,13 @@
   parent: CMXenoPraetorianBase
   id: CMXenoPraetorian
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoSpitPraetorian ]
+      XenoPrimaryTwo: [ ActionXenoDash ]
+      XenoPrimaryThree: [ ActionXenoAcidBall ]
+      XenoPrimaryFour: [ ActionXenoSprayAcidPraetorian ]
+  - type: XenoBaseCaste
   - type: GuideHelp
     guides:
     - RMCGuideRolePraetorian
@@ -150,6 +173,12 @@
   - type: AcidTrap
   - type: RMCActionOrder
     id: CMXenoPraetorian
+  - type: XenoAcidAnimation
+    actionIds:
+    - ActionXenoAcidNormal
+    - ActionXenoSpitPraetorian
+    - ActionXenoAcidBall
+    - ActionXenoSprayAcidPraetorian
 
 - type: entity
   parent: CMXenoPraetorianBase
@@ -160,7 +189,7 @@
     guides:
     - RMCGuideRoleValkyrie
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Praetorian/valkyrie_praetorian.rsi
+    sprite: _Stories/Mobs/Xenos/Praetorian/warden_praetorian.rsi
   - type: Xeno
     actionIds:
     - ActionXenoRest
@@ -230,7 +259,7 @@
   suffix: Dancer
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Praetorian/dancer_praetorian.rsi
+    sprite: _Stories/Mobs/Xenos/Praetorian/dancer_praetorian.rsi
   - type: XenoRegen
     critHealMultiplier: 0.4455  # 35% increased regeneration
     standHealingMultiplier: 0.567
@@ -282,7 +311,7 @@
     guides:
     - RMCGuideRoleVanguard
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Praetorian/vanguard_praetorian.rsi
+    sprite: _Stories/Mobs/Xenos/Praetorian/vanguard_praetorian.rsi
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -335,7 +364,7 @@
     guides:
     - RMCGuideRoleOppressor
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Praetorian/oppressor_praetorian.rsi
+    sprite: _Stories/Mobs/Xenos/Praetorian/oppressor_praetorian.rsi
   - type: Xeno
     actionIds:
     - ActionXenoRest

@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "license": "Собственная лицензия. Копирование, модификация и использование вне проекта Space Stories полностью запрещено без предварительного согласия текущего владельца проекта",
+  "copyright": "Создано inconnu1337(discord:inconnu1337) для Space Stories(Server SS14)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tracker_1"
+    },
+    {
+      "name": "tracker_2"
+    },
+    {
+      "name": "tracker_3"
+    },
+    {
+      "name": "tracker_4"
+    },
+    {
+      "name": "tracker_5"
+    },
+    {
+      "name": "tracker_6"
+    },
+    {
+      "name": "tracker_7"
+    },
+    {
+      "name": "tracker_8"
+    },
+    {
+      "name": "tracker_9"
+    },
+    {
+      "name": "tracker_10"
+    },
+    {
+      "name": "tracker_11"
+    },
+    {
+      "name": "tracker_12"
+    },
+    {
+      "name": "tracker_13"
+    },
+    {
+      "name": "tracker_14"
+    },
+    {
+      "name": "tracker_15"
+    },
+    {
+      "name": "ko_label"
+    }
+  ]
+}

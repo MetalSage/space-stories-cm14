@@ -25,3 +25,4 @@
       CMSteel: 500
       CMGlass: 50
       # 10 waste?
+  - type: OrdnanceTrigger # Stories-Ordnance

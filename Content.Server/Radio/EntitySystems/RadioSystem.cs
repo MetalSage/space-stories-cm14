@@ -25,12 +25,19 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Server._Stories.TTS;
+using Content.Shared._Stories.TTS;
+using Robust.Shared.Enums;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using Content.Shared._Stories.SCCVars;
+using Content.Shared.Ghost;
+using Robust.Server.Player;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Radio.EntitySystems;
 
-/// <summary>
-///     This system handles intrinsic radios and the general process of converting radio messages into chat messages.
-/// </summary>
 public sealed class RadioSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _netMan = default!;
@@ -39,15 +46,19 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    // RMC14
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly TtsAudioProcessingSystem _ttsProcessing = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    // Stories-TTS-Start
+    [Dependency] private readonly TTSSystem _tts = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    // Stories-TTS-End
+    // RMC14
     [Dependency] private readonly LanguageSystem _language = default!;
     // RMC14
 
-    // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
-
     private EntityQuery<TelecomExemptComponent> _exemptQuery;
 
     private readonly SoundSpecifier _radioSound = new SoundPathSpecifier("/Audio/_RMC14/Effects/radiostatic.ogg")
@@ -58,7 +69,7 @@ public sealed class RadioSystem : EntitySystem
             Variation = 0.1f,
             MaxDistance = 3.75f,
         },
-    }; // RMC14
+    }; 
 
     public override void Initialize()
     {
@@ -88,6 +99,26 @@ public sealed class RadioSystem : EntitySystem
     }
     // RMC14
 
+    private async void ProcessAndSendRadioTts(EntityUid messageSource, string message, RadioChannelPrototype channel, IEnumerable<ICommonSession> recipients)
+    {
+        if (!_cfg.GetCVar(SCCVars.TTSEnabled))
+            return;
+
+        var voiceId = GetVoiceId(messageSource);
+        var soundData = await _tts.GenerateTTS(message, voiceId);
+
+        if (soundData == null)
+            return;
+
+        var processedSoundData = await _ttsProcessing.ProcessRadioAudio(messageSource, soundData);
+
+        var ttsEvent = new PlayTTSEvent(processedSoundData, message, sourceUid: null, isWhisper: false, originalSourceUid: GetNetEntity(messageSource), isRadio: true, radioChannel: channel.ID); // Stories-TTS
+
+        var filter = Filter.Empty().AddPlayers(recipients.ToList());
+        RaiseNetworkEvent(ttsEvent, filter);
+    }
+    // RMC14
+
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
@@ -104,6 +135,16 @@ public sealed class RadioSystem : EntitySystem
     }
     // RMC14
 
+    private string GetVoiceId(EntityUid sourceUid)
+    {
+        if (TryComp<TTSComponent>(sourceUid, out var tts) && !string.IsNullOrEmpty(tts.VoicePrototypeId) &&
+            _prototype.TryIndex<TTSVoicePrototype>(tts.VoicePrototypeId, out var protoVoice))
+        {
+            return protoVoice.Speaker;
+        }
+        return "father_grigori";
+    }
+
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
@@ -118,7 +159,6 @@ public sealed class RadioSystem : EntitySystem
         ProtoId<LanguagePrototype>? language = null,
         bool escapeMarkup = true)
     {
-        // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
             return;
 
@@ -211,6 +251,7 @@ public sealed class RadioSystem : EntitySystem
             var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
             var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
+            var ttsRecipients = new HashSet<ICommonSession>();
             var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
             while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
             {
@@ -285,6 +326,24 @@ public sealed class RadioSystem : EntitySystem
                 var ev = new RadioReceiveEvent(actualMessage, messageSource, channel, radioSource, chatMsg, currentLanguage);
                 // RMC14
                 RaiseLocalEvent(receiver, ref ev);
+
+                var target = receiver;
+                if (!HasComp<ActorComponent>(target))
+                {
+                    var parent = Transform(receiver).ParentUid;
+                    if (HasComp<ActorComponent>(parent))
+                        target = parent;
+                }
+
+                if (TryComp<ActorComponent>(target, out var actor) && actor.PlayerSession.Status == SessionStatus.InGame)
+                {
+                    ttsRecipients.Add(actor.PlayerSession);
+                }
+            }
+
+            if (canSend && ttsRecipients.Count > 0)
+            {
+                ProcessAndSendRadioTts(messageSource, message, channel, ttsRecipients);
             }
 
             if (canSend &&
@@ -333,7 +392,6 @@ public sealed class RadioSystem : EntitySystem
         return null;
     }
 
-    /// <inheritdoc cref="TelecomServerComponent"/>
     private bool HasActiveServer(MapId mapId, string channelId)
     {
         var servers = EntityQuery<TelecomServerComponent, EncryptionKeyHolderComponent, ApcPowerReceiverComponent, TransformComponent>();

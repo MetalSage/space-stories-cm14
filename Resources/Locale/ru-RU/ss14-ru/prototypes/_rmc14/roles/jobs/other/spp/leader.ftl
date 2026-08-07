@@ -1,0 +1,9 @@
+ent-RMCRandomHumanoidSPPLeaderHostile = роль призрака лидер СПН
+    .desc = { "" }
+    .suffix = Спавнер, Игрок, Враждебный
+ent-RMCRandomHumanoidSPPLeaderFriendly = роль призрака лидер СПН
+    .desc = { "" }
+    .suffix = Спавнер, Игрок, Дружелюбный
+ent-RMCRandomHumanoidSPPLeader = роль призрака лидер СПН
+    .suffix = Спавнер, Игрок
+    .desc = { ent-MarkerBase.desc }

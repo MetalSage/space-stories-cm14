@@ -83,6 +83,11 @@
     tags:
     - RMCWeaponShotgunM42A2
     - RMCWeaponShotgun
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/Shotguns/m42a2/desert.rsi
+      BloodyParty: /Textures/_Stories/Objects/Weapons/Shotguns/m42a2.rsi
 
 - type: entity
   parent: WeaponShotgunM42A2

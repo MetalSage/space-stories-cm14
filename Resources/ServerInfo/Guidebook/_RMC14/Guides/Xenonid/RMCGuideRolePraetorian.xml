@@ -1,26 +1,26 @@
 <Document>
-  #Praetorian, Tier 3
+  #Преторианец, Уровень 3
 
   <GuideEntityEmbed Entity="CMXenoPraetorian"/>
 
-  ##Playing as a Praetorian
+  ##Игра за Преторианца
 
-  Base Praetorian is similar to an upgraded Spitter, specializing in consistent ranged attacks and having a dash ability. They can sync up multiple abilities to deal bursts of damage from around corners such as Acid Spit and Acid Ball.
+  Базовый Преторианец похож на улучшенного Плевуна, специализирующегося на постоянных дистанционных атаках и обладающего способностью к рывку. Они могут комбинировать несколько способностей для нанесения залпового урона из-за углов, используя, например, Кислотный Плевок и Кислотный Шар.
 
-  Its passive grants acid-based attacks a stack of acid to targets. Once they reach 5 stacks they will take additional burn damage and sizzle. These stacks can be easily reached by stacking multiple abilities on the same target.
+  Его пассивная способность позволяет кислотным атакам накладывать на цели стаки кислоты. Как только цель набирает 5 стаков, она получает дополнительный урон от горения и шипит. Эти стаки легко набрать, используя несколько способностей на одной и той же цели.
 
-  Recommended to play around corners and quickly disperse burst attacks. Use your range to your advantage to pressure the hosts.
+  Рекомендуется играть из-за углов и быстро наносить залповые атаки. Используйте свою дальность атаки в своих интересах, чтобы оказывать давление на носителей.
 
-  ##Abilities:
-  - [bold][color=green]PASSIVE[/color][/bold]: Acid attacks apply a stack of acid to target. If 5 stacks are reached on a single target then they will take additional burn damage.
-  - [bold][color=green]PASSIVE[/color][/bold]: Acid spits grant shield upon hit.
-  - [bold]Acid Spit[/bold]: Glob acid to deal damage to any targets and grants shield upon hit.
+  ##Способности:
+  - [bold][color=green]ПАССИВНО[/color][/bold]: Кислотные атаки накладывают стак кислоты на цель. Если на одной цели набрано 5 стаков, она получает дополнительный урон от горения.
+  - [bold][color=green]ПАССИВНО[/color][/bold]: Кислотные плевки дают щит при попадании.
+  - [bold]Кислотный Плевок[/bold]: Выпускает сгусток кислоты, нанося урон любым целям и давая щит при попадании.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoSpit"/>
-  - [bold]Dash[/bold]: Dash a short distance.
+  - [bold]Рывок[/bold]: Рывок на короткое расстояние.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoDash"/>
-  - [bold]Spray Acid[/bold]: Sprays acid along the ground in a line, covering any barricades and dealing damage to hosts, additionally applying a stack of acid to them.
-  - Will also extinguish any sisters if they are on fire.
+  - [bold]Распылить Кислоту[/bold]: Распыляет кислоту по земле линией, покрывая любые баррикады и нанося урон носителям, дополнительно накладывая на них стак кислоты.
+  - Также потушит любых сестёр, если они горят.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoSprayAcid"/>
-  - [bold]Corrosive Acid[/bold]: Secretes a glob of acid on items to be dissolved.
+  - [bold]Едкая Кислота[/bold]: Выделяет сгусток кислоты на предметы для их растворения.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoCorrosiveAcid"/>
 </Document>

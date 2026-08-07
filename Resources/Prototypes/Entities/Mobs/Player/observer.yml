@@ -11,8 +11,10 @@
   - type: FTLSmashImmune
   - type: CargoSellBlacklist
   - type: MovementSpeedModifier
-    baseSprintSpeed: 12
-    baseWalkSpeed: 8
+    # Stories-start
+    baseSprintSpeed: 20
+    baseWalkSpeed: 12
+    # Stories-end
   - type: MovementIgnoreGravity
   - type: Physics
     bodyType: KinematicController
@@ -54,7 +56,7 @@
   - type: Examiner
     skipChecks: true
   - type: Ghost
-  - type: GhostHearing
+  - type: CMGhost
   - type: ShowElectrocutionHUD
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
@@ -97,6 +99,11 @@
       components:
       - Ladder
     range: 15
+  # Stories-start
+  - type: Stripping
+    onlySee: true
+    forceSee: true
+  # Stories-end
 
 # proto for player ghosts specifically
 - type: entity

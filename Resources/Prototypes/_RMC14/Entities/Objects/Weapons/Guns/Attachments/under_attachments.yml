@@ -309,7 +309,7 @@
     maxDuration: 10
     reagentWhitelist:
     - RMCNapalmUT
-    - WeldingFuel
+    - RMCWeldingFuel # Stories-Ordance
   - type: AttachableToggleable
     userOnly: true
     attachedOnly: true
@@ -734,6 +734,7 @@
     softness: 5
     autoRot: true
     netsync: false
+    mask: /Textures/Effects/LightMasks/cone.png # Stoires-Light
   - type: HandheldLight
     addPrefix: false
     blinkingBehaviourId: blinking

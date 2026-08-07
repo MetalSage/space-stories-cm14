@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._RMC14.Requisitions.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
-[Access(typeof(SharedRequisitionsSystem))]
+[Access(typeof(SharedRequisitionsSystem), Other = AccessPermissions.ReadWrite)] // Stories-Vehicle
 public sealed partial class RequisitionsGearComponent : Component
 {
     [DataField, AutoNetworkedField]

@@ -1,0 +1,18 @@
+- type: entity
+  parent: RMCPropBase
+  id: STHunterSarcophagus
+  name: alien sarcophagus
+  description: An ancient, dusty tomb with strange alien writing. It's best not to touch it.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        layer:
+        - MobMask
+  - type: Sprite
+    sprite: _Stories/Structures/Storage/morgue.rsi
+    state: yaut

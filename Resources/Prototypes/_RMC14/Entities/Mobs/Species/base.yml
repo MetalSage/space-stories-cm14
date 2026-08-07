@@ -6,6 +6,28 @@
   name: Urist C.M. McHands
   suffix: RMC14
   components:
+  - type: Input
+    context: "rmc-human"
+  - type: RMCKeybindActions
+    actions:
+      MarineOrderMove:
+      - ActionMarineMove
+      MarineOrderHold:
+      - ActionMarineHold
+      MarineOrderFocus:
+      - ActionMarineFocus
+      MarineSpecialistOne:
+      - RMCActionGhilliePreparePosition
+      - RMCActionToggleCloak
+      - RMCActionBroiler
+      MarineSpecialistTwo:
+      - RMCActionFireShield
+      - RMCActionAimedShot
+      - RMCActionSpotTarget
+      MarineCycleHelmetHud:
+      - RMCActionCycleVisor
+      MarineToggleIff:
+      - RMCActionToggleIFF
   - type: Fixtures
     fixtures:
       fix1:
@@ -328,9 +350,19 @@
     whitelist:
       components:
       - OverwatchConsole
+      - RotaryPhone
+      - ItemCabinet
+      - Intercom
+      - SignalTimer
+      - KeycardDevice
+      - CMAutomatedVendor
+      - FaxMachine
+      - RMCDoorButton
+      - OrbitalCannonFuel
+      - OrbitalCannonWarhead
       tags:
       - RMCDropshipEnginePoint
-    range: 2
+    range: 1.8
   - type: RMCArmorModifier
     meleeArmorModifier: 5
   - type: RMCObstacleSlamCauserImmune

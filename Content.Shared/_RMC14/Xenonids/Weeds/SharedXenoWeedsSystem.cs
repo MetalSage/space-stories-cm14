@@ -34,6 +34,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
+using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
@@ -46,6 +47,8 @@ namespace Content.Shared._RMC14.Xenonids.Weeds;
 
 public abstract class SharedXenoWeedsSystem : EntitySystem
 {
+    private const float MinimumSpreadBlockRayLength = 0.6f;
+
     [Dependency] private readonly AreaSystem _area = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
@@ -444,6 +447,33 @@ public abstract class SharedXenoWeedsSystem : EntitySystem
             return null;
 
         return GetWeedsOnFloor((gridId, grid), coordinates, sourceOnly);
+    }
+
+    public bool CanSpreadWeedsBetween(EntityCoordinates source, EntityCoordinates target)
+    {
+        var sourceMap = _transform.ToMapCoordinates(_transform.GetMoverCoordinates(source));
+        var targetMap = _transform.ToMapCoordinates(_transform.GetMoverCoordinates(target));
+        if (sourceMap.MapId != targetMap.MapId)
+            return false;
+
+        var direction = targetMap.Position - sourceMap.Position;
+        if (direction == Vector2.Zero)
+            return true;
+
+        var distance = direction.Length();
+        var ray = new CollisionRay(sourceMap.Position, direction.Normalized(), (int) CollisionGroup.BarricadeImpassable);
+        var intersect = _physics.IntersectRayWithPredicate(
+            sourceMap.MapId,
+            ray,
+            MathF.Max(MinimumSpreadBlockRayLength, distance),
+            ent => !Transform(ent).Anchored);
+
+        foreach (var _ in intersect)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public bool IsOnWeeds(Entity<TransformComponent?> entity)

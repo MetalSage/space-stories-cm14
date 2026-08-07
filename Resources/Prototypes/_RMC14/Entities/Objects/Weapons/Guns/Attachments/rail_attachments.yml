@@ -24,6 +24,7 @@
     softness: 5
     autoRot: true
     netsync: false
+    mask: /Textures/Effects/LightMasks/cone.png # Stoires-Light
   - type: HandheldLight
     addPrefix: false
     blinkingBehaviourId: blinking

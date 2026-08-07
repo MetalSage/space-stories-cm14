@@ -123,7 +123,7 @@ public sealed partial class ChatSystem
             transformedName: transformedName,
             needsLos: needsLos);
 
-        var ev = new EntitySpokeEvent(source, speakerProcessedMessage, null, null, language);
+        var ev = new EntitySpokeEvent(source, speakerProcessedMessage, originalMessage, null, null, language);
         RaiseLocalEvent(source, ev, true);
 
         if (!HasComp<ActorComponent>(source) || hideLog)
@@ -290,7 +290,7 @@ public sealed partial class ChatSystem
                 languageIcon: languageIcon));
 
         var muffledMessage = ObfuscateMessageReadability(speakerMessage, 0.2f);
-        var ev = new EntitySpokeEvent(source, speakerMessage, channel, muffledMessage, language);
+        var ev = new EntitySpokeEvent(source, speakerMessage, originalMessage, channel, muffledMessage, language);
         RaiseLocalEvent(source, ev, true);
 
         if (hideLog)
@@ -427,7 +427,7 @@ public sealed partial class ChatSystem
                 languageIcon: languageIcon));
 
         var muffledMessage = ObfuscateMessageReadability(message, 0.2f);
-        var ev = new EntitySpokeEvent(source, message, null, muffledMessage, language);
+        var ev = new EntitySpokeEvent(source, message, message, null, muffledMessage, language);
         RaiseLocalEvent(source, ev, true);
     }
 
@@ -442,7 +442,7 @@ public sealed partial class ChatSystem
             ("originalName", originalSpeakerName));
     }
 
-    private void SendInVoiceRangeWithLanguage(
+    public void SendInVoiceRangeWithLanguage(
         ChatChannel channel,
         string speakerMessage,
         string wrappedMessageTemplate,
@@ -454,9 +454,10 @@ public sealed partial class ChatSystem
         bool visibleLanguage = false,
         NetUserId? author = null,
         string? transformedName = null,
-        bool needsLos = false)
+        bool needsLos = false,
+        bool ignoreXenos = false)
     {
-        foreach (var (session, data) in GetRecipients(source, VoiceRange))
+        foreach (var (session, data) in GetRecipients(source, VoiceRange, ignoreXenos))
         {
             var entRange = MessageRangeCheck(session, data, range);
             if (entRange == MessageRangeCheckResult.Disallowed)

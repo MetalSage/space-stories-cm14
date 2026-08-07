@@ -100,6 +100,31 @@
   - type: Insulated
   - type: Input
     context: "xenonid"
+  - type: RMCKeybindActions
+    actions:
+      XenoCorrosiveAcid:
+      - ActionXenoAcidWeak
+      - ActionXenoAcidNormal
+      - ActionXenoAcidStrong
+      - ActionXenoAcidAcider
+      XenoPheromones:
+      - ActionXenoPheromones
+      XenoScreech:
+      - ActionXenoScreech
+      XenoWordQueen:
+      - ActionXenoWordQueen
+      XenoTailStab:
+      - ActionXenoTailStab
+      - ActionXenoTailStabCorrosive
+      - ActionXenoTailStabBoiler
+      - ActionXenoTailSlam
+      - ActionXenoTailFountain
+      - ActionXenoTailStabLance
+      - ActionXenoTailSeize
+      XenoHide:
+      - ActionXenoHide
+      XenoEvolve:
+      - ActionXenoEvolve
   - type: Clickable
   - type: InteractionOutline
   - type: InputMover
@@ -146,7 +171,7 @@
     - map: [ "enum.XenoInhandVisualLayers.Right" ]
       visible: false
     - map: [ "enum.RMCShieldVisuals.Base" ]
-      sprite: _RMC14/Effects/xeno_shields.rsi
+      sprite: _Stories/Effects/xeno_shields.rsi # Stories-Fixes
       visible: false
   - type: Spottable
   - type: Physics
@@ -191,6 +216,8 @@
         type: CMSurgeryBui
       enum.XenoEvolutionUIKey.Key:
         type: XenoEvolutionBui
+      enum.XenoSkinsUIKey.Key: # Stories-Xeno-Skins
+        type: XenoSkinsBui
       enum.XenoDevolveUIKey.Key:
         type: XenoDevolveBui
       enum.XenoWatchUIKey.Key:
@@ -278,6 +305,7 @@
       - Xeno
       - Infectable
       - Synth
+      - Hunter # Stories-Hunter
   - type: BlockPullingDead
   - type: XenoFriendly
   - type: Undisposable
@@ -364,6 +392,7 @@
   - type: RMCObstacleSlamCauserImmune
   - type: RMCMobCollisionMass
   - type: XenoRankNames
+  - type: XenoSkins # Stories-Xeno-Skins
   - type: Blindable
   - type: FixedIdentity
     name: cm-xeno-name
@@ -371,6 +400,15 @@
       components:
       - Marine
   - type: EmoteCooldown
+  - type: TTS # Stories-TTS
+    voice: clinkz_dota_2
+  - type: IgnoreInteractionRange
+    whitelist:
+      components:
+      - Corrodible
+      - DeletedByWeedKiller
+      - Xeno
+    range: 1.5
   - type: RMCMesonsNonviewable
     xenoVisible: true
   - type: CanBeLarvaQueued
@@ -514,6 +552,8 @@
   components:
   - type: Speech
     speechSounds: Xenonid
+    audioParams: # Stories-TTS
+      volume: -8
 
 - type: entity
   abstract: true
@@ -527,4 +567,4 @@
   id: Xeno
   name: chat-speech-verb-name-default
   speechVerbStrings:
-  - hisses
+  - шипит

@@ -34,8 +34,6 @@
       path: /Audio/_RMC14/Weapons/Guns/Cock/m5_ammo.ogg
   - type: Corrodible
     isCorrodible: true
-  - type: ExplosionResistance
-    damageCoefficient: 0
   - type: Wieldable
   - type: GunRequiresWield
   - type: RMCNameItemOnVend
@@ -91,6 +89,11 @@
   - type: Corrodible
     isCorrodible: false
   - type: RMCMagneticItem
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_RMC14/Objects/Weapons/Guns/RocketLaunchers/m5atl/m5atl_inhands.rsi
+      Bombardier: /Textures/_Stories/Objects/Weapons/RocketLaunchers/m5spec.rsi
 
 # 84mm HE
 - type: entity

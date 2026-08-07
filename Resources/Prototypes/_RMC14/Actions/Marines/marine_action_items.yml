@@ -10,7 +10,7 @@
       state: sniperscope
     useDelay: 0.25
   - type: InstantAction
-    event: !type:ToggleActionEvent
+    event: !type:ToggleScopeEvent
 
 - type: entity
   parent: ActionMarineBase

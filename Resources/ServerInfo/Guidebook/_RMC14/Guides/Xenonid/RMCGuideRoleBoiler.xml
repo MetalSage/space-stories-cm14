@@ -1,40 +1,40 @@
 <Document>
-  #Boiler, Tier 3
+  #Бойлер, Тир 3
   <GuideEntityEmbed Entity="RMCXenoBoiler"/>
-  ##Playing as a Boiler
-  Become the ultimate ranged warrior of the Hive with your signature bombard capable of stalling any hosts. It is now slow, large and returns to being a supportive role on the frontline, attaining an upgraded acid spray, corrosive acid and tail stab toxin.
+  ##Игра за Бойлера
+  Станьте самым грозным дальнобойным воином улья: ваша фирменная бомбардировка способна остановить любых носителей. Бойлер теперь медленный и крупный и возвращается к роли поддержки на передовой, получая улучшенные распыление кислоты, едкую кислоту и токсин на ударе хвостом.
 
-  Make sure to always stay behind other sisters as you are weak alone. Always melt green flares so that you do not get killed instantly by skyspit (close air support) fire.
+  Всегда держитесь позади других сестёр, так как в одиночку вы слабы. Всегда плавьте зелёные сигнальные ракеты, чтобы вас мгновенно не убило огнём небесного плевка (ближней воздушной поддержки).
 
-  Its [color=green]acidic[/color] globs are capable of killing off any hosts caught within, while its [color=yellow]neurotoxin[/color] variant spreads further and will weaken any hosts allowing for capture.
+  Его [color=green]кислотные[/color] сгустки способны уничтожить любых носителей, попавших в зону действия, в то время как его [color=yellow]нейротоксиновый[/color] вариант распространяется дальше и ослабляет любых носителей, позволяя их захватить.
   <Box>
     <GuideEntityEmbed Entity="CMGuidebookXenoBombardAcidProjectile"/>
     <GuideEntityEmbed Entity="CMGuidebookXenoBombardNeurotoxinProjectile"/>
   </Box>\n
 
-  Remember to melt green flares and stay away from red dots as they pose a great threat to you from above.
+  Не забывайте плавить зелёные сигнальные ракеты и держитесь подальше от красных точек, так как они представляют для вас большую угрозу сверху.
 
-  Due to high acid reserves, the Boiler glows in the dark making it seen by any host easily, this also makes the Boiler incredibly vulnerable to [color=red]fire[/color].
+  Из-за больших запасов кислоты Бойлер светится в темноте, что делает его легко заметным для любого носителя; это также делает Бойлера невероятно уязвимым к [color=red]огню[/color].
   <GuideEntityEmbed Entity="RMCTileFire"/>
-  ##Door tech
-  To safely use bombard you can stand behind a closed resin door and charge your bombard. Make sure to aim outside the path of the door, then hover your mouse over the door and press [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color] when the bombard is almost done, if timed then the resin door will open letting your glob pass through!
+  ##Техника с дверью
+  Чтобы безопасно использовать бомбардировку, вы можете стоять за закрытой смоляной дверью и заряжать свою бомбардировку. Убедитесь, что целитесь мимо траектории двери, затем наведите курсор мыши на дверь и нажмите [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color], когда бомбардировка почти готова. Если всё сделать вовремя, смоляная дверь откроется, пропуская ваш сгусток!
   <GuideEntityEmbed Entity="DoorXenoResin"/>
-  ##Abilities:
-  - [bold][color=#E61919]PASSIVE[/color][/bold]: Vulnerable to fire and glows in the dark.
-  - [bold]Strong Corrosive Acid[/bold]: Secretes a glob of acid on items to be dissolved.
+  ##Способности:
+  - [bold][color=#E61919]ПАССИВНОЕ[/color][/bold]: Уязвим к огню и светится в темноте.
+  - [bold]Сильная Едкая Кислота[/bold]: Выделяет сгусток кислоты на предметы для их растворения.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoCorrosiveAcid"/>
-  - [bold]Toggle Long Range Sight[/bold]: Look further in the direction you are facing.
+  - [bold]Переключить Дальний Обзор[/bold]: Смотреть дальше в направлении, в котором вы смотрите.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoToggleLongRangeSight"/>
-  - [bold]Bombard[/bold]: Prepare to fire, either an acidic or neurotoxic glob. This will go past your aimed position if it does not hit anything.
+  - [bold]Бомбардировка[/bold]: Подготовиться к выстрелу кислотным или нейротоксиновым сгустком. Снаряд пролетит мимо вашей цели, если ни во что не попадёт.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoBombard"/>
-  - [bold]Toggle Gas Type[/bold]: Toggles between Acid Or Neurotoxin.
-  - Acid: Will burn targets and barricades.
-  - Neurotoxin: Cripples and weakens targets, has a larger cloud range.
+  - [bold]Переключить Тип Газа[/bold]: Переключает между Кислотным и Нейротоксиновым.
+  - Кислотный: Будет сжигать цели и баррикады.
+  - Нейротоксин: Калечит и ослабляет цели, имеет большую область действия облака.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoToggleGasType"/>
-  - [bold]Spray Acid[/bold]: Sprays acid along the ground in a line, covering any barricades and stunning hosts caught in its path.
-  - Will also extinguish any sisters if they are on fire.
-  - If used on a host affected by Charged Spit from a spitter, will upgrade the spit and stun them.
+  - [bold]Распылить Кислоту[/bold]: Распыляет кислоту по земле линией, покрывая любые баррикады и оглушая носителей, попавших на её пути.
+  - Также потушит любых сестёр, если они горят.
+  - При использовании на носителе, поражённом Заряженным Плевком от Плевателя, улучшит плевок и оглушит их.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoSprayAcid"/>
-  - [bold]Acid Shroud[/bold]: Create a cloud of acid around you, disabling your other abilities. Used in last resort.
+  - [bold]Кислотный Покров[/bold]: Создаёт облако кислоты вокруг вас, отключая другие ваши способности. Используется в крайнем случае.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoAcidShroud"/>
 </Document>

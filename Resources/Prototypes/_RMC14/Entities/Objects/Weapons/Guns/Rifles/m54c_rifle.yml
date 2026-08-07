@@ -5,14 +5,14 @@
   description: The standard issue rifle of the Marines. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition.
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54c/desert.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Rifles/m41a/desert.rsi # Stoires-Parity
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54c/desert.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Rifles/m41a/desert.rsi # Stoires-Parity
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -96,22 +96,27 @@
           - RMCAttachmentVerticalGrip
           - RMCAttachmentUnderbarrelExtinguisher
           - RMCAttachmentMiniFlamethrower
-  - type: AttachableHolderVisuals
+  - type: AttachableHolderVisuals # Stories-Parity
     offsets:
-      rmc-aslot-barrel: 0.8425, 0.001
-      rmc-aslot-rail: 0.1, 0.16
-      rmc-aslot-stock: -0.78, 0.0325
-      rmc-aslot-underbarrel: 0.349, -0.375
-  - type: ItemCamouflage
+      rmc-aslot-barrel: 0.8125, 0.03125
+      rmc-aslot-rail: 0.00, 0.1875
+      rmc-aslot-stock: -0.78125, 0.00
+      rmc-aslot-underbarrel: 0.375, -0.3125
+  - type: ItemCamouflage # Stoires-Parity
     camouflageVariations:
-      Jungle: _RMC14/Objects/Weapons/Guns/Rifles/m54c/jungle.rsi
-      Desert: _RMC14/Objects/Weapons/Guns/Rifles/m54c/desert.rsi
-      Snow: _RMC14/Objects/Weapons/Guns/Rifles/m54c/snow.rsi
-      Classic: _RMC14/Objects/Weapons/Guns/Rifles/m54c/classic.rsi
-      Urban: _RMC14/Objects/Weapons/Guns/Rifles/m54c/urban.rsi
+      Jungle: _Stories/Objects/Weapons/Guns/Rifles/m41a/jungle.rsi
+      Desert: _Stories/Objects/Weapons/Guns/Rifles/m41a/desert.rsi
+      Snow: _Stories/Objects/Weapons/Guns/Rifles/m41a/snow.rsi
+      Classic: _Stories/Objects/Weapons/Guns/Rifles/m41a/classic.rsi
+      Urban: _Stories/Objects/Weapons/Guns/Rifles/m41a/urban.rsi
   - type: Tag
     tags:
     - RMCWeaponRifleM54CMK2
+  - type: WeaponSkin # Stories-Partners
+    defaultSkin: Default
+    skins:
+      Default: /Textures/_Stories/Objects/Weapons/Guns/Rifles/m41a/desert.rsi
+      Phoenix: /Textures/_Stories/Objects/Weapons/Rifles/m54c.rsi
 
 - type: entity
   parent: RMCWeaponRifleM54C
@@ -389,7 +394,7 @@
     proto: CMCartridgeRifle10x24mm
     capacity: 40
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m54c.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/m41a.rsi # Stories-Parity
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -415,7 +420,7 @@
       - CMCartridgeRifle10x24mmAP
     proto: CMCartridgeRifle10x24mmAP
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m54c.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/m41a.rsi # Stories-Parity
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -533,7 +538,7 @@
     proto: CMCartridgeRifle10x24mm
     capacity: 60
   - type: Sprite
-    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/m54ce.rsi
+    sprite: _Stories/Objects/Weapons/Guns/Ammunition/Magazines/m41ae.rsi # Stories-Parity
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

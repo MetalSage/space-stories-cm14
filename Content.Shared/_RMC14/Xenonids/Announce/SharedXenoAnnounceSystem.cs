@@ -3,6 +3,7 @@ using Content.Shared._RMC14.Bioscan;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Parasite;
+using Content.Shared.Destructible;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
@@ -19,6 +20,7 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<XenoAnnounceDeathComponent, MobStateChangedEvent>(OnAnnounceDeathMobStateChanged);
+        SubscribeLocalEvent<XenoConstructionAnnounceComponent, DestructionEventArgs>(OnAnnounceConstructionDestroyed); // Stories-XenoStructureAnnounce
     }
 
     private void OnAnnounceDeathMobStateChanged(Entity<XenoAnnounceDeathComponent> ent, ref MobStateChangedEvent args)
@@ -39,6 +41,22 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
         }
     }
 
+    // Stories-XenoStructureAnnounce-Start
+    private void OnAnnounceConstructionDestroyed(Entity<XenoConstructionAnnounceComponent> ent, ref DestructionEventArgs args)
+    {
+        var comp = ent.Comp;
+        var locationName = Loc.GetString("generic-unknown-title");
+
+        if (_areas.TryGetArea(ent, out _, out var areaProto))
+            locationName = areaProto.Name;
+
+        var message = Loc.GetString(comp.Message, ("construction", ent.Owner), ("location", locationName));
+
+        if (_xenoEvolution.HasLiving<XenoEvolutionGranterComponent>(1))
+            AnnounceSameHive(ent.Owner, message, color: comp.Color);
+    }
+
+    // Stories-XenoStructureAnnounce-End
     public string WrapHive(string message, Color? color = null)
     {
         color ??= Color.FromHex("#921992");
@@ -55,13 +73,15 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
     /// <param name="sound"></param>
     /// <param name="popup"></param>
     /// <param name="needsQueen">Whether the message can only be sent if the hive has an active queen</param>
+    /// <param name="includeGhosts">Whether to add all ghosts to the recipients outside the provided filter.</param>
     public virtual void Announce(EntityUid source,
         Filter filter,
         string message,
         string wrapped,
         SoundSpecifier? sound = null,
         PopupType? popup = null,
-        bool needsQueen = false)
+        bool needsQueen = false,
+        bool includeGhosts = true)
     {
     }
 
@@ -118,14 +138,16 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
         );
     }
 
-    public void AnnounceQueenMother(string message)
-    {
-        var sound = new BioscanComponent().XenoSound;
-        AnnounceAll(default, FormatQueenMother(message), sound);
-    }
-
+    // Stories-TTS-Start
     public string FormatQueenMother(string message)
     {
         return $"\n[bold][color=#7575F3][font size=24]Queen Mother Psychic Directive[/font][/color][/bold]\n\n[color=red][font size=14]{message}[/font][/color]\n\n";
     }
+
+    public virtual void AnnounceQueenMother(string message)
+    {
+        var sound = new BioscanComponent().XenoSound;
+        AnnounceAll(default, FormatQueenMother(message), sound);
+    }
+    // Stories-TTS-End
 }

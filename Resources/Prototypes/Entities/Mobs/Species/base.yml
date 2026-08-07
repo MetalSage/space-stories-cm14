@@ -178,7 +178,7 @@
       types:
         Blunt: 5
   - type: SleepEmitSound
-  - type: SSDIndicator
+  # - type: SSDIndicator Stroies-OffSSDIndicator
   - type: StandingState
   - type: Dna
   - type: MindContainer

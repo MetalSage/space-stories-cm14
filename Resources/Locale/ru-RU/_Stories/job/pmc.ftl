@@ -1,0 +1,10 @@
+cm-job-name-standart-pmc = стрелок ЧВК
+cm-job-description-standart-pmc = стрелок ЧВК
+cm-job-name-gunner-pmc = смартганнер ЧВК
+cm-job-description-gunner-pmc = смартганнер ЧВК
+cm-job-name-medic-pmc = медик ЧВК
+cm-job-description-medic-pmc = медик ЧВК
+cm-job-name-sniper-pmc = снайпер ЧВК
+cm-job-description-sniper-pmc = снайпер ЧВК
+cm-job-name-officer-pmc = командир отряда ЧВК
+cm-job-description-officer-pmc = командир отряда ЧВК

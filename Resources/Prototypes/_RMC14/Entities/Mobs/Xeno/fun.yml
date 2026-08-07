@@ -8,10 +8,12 @@
   description: thas a fuckin rouny.
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Rouny/rouny.rsi
+    sprite: _Stories/Mobs/Xenos/Rouny/rouny.rsi
   - type: XenoEvolution
     max: 200
     evolvesTo: [ ]
+  - type: XenoBaseCaste
+    enabled: false
   - type: XenoHidden
   - type: FixedIdentity
     name: rmc-rouny
@@ -25,10 +27,12 @@
   description: A cruel, cruel joke made by some sick individual.
   components:
   - type: Sprite
-    sprite: _RMC14/Mobs/Xenonids/Wehny/wehny.rsi
+    sprite: _Stories/Mobs/Xenos/Wehny/wehny.rsi
   - type: XenoEvolution
     max: 200
     evolvesTo: [ ]
+  - type: XenoBaseCaste
+    enabled: false
   - type: XenoHidden
   - type: FixedIdentity
     name: rmc-wehny
@@ -43,6 +47,11 @@
   name: Lesser Carrier
   description: A strange-looking alien creature. It carries a number of scuttling jointed crablike creatures. Looks... smaller.
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionLesserDronePlantWeeds ]
+      XenoPrimaryThree: [ ActionXenoThrowParasite ]
+      XenoPrimaryFour: [ ActionXenoRetrieveEgg ]
   - type: GhostRole
     name: roles-lesser-carrier-name
     description: roles-lesser-carrier-description

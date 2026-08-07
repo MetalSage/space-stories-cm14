@@ -1,54 +1,54 @@
 <Document>
 
-  #So, you've ascended to the throne of the Hive!
+  # Итак, вы взошли на трон Улья!
   <Box>
     <GuideEntityEmbed Entity="CMXenoQueen"/>
   </Box>\n
-  - As the matriarch, your duty is to expand, defend, and lead. Without you, the Hive crumbles, but with you, it thrives.
-  - For intermediate players wishing to try out the commanding side of Xenonids, this will start with what should be done at the start.
+  - Как матриарх, ваша обязанность — расширяться, защищаться и вести. Без вас Улей рушится, но с вами он процветает.
+  - Для игроков среднего уровня, желающих попробовать командную сторону Ксенонидов, это начнётся с того, что должно быть сделано в самом начале.
 
-  #Now what?
-  First we must choose our hive location, this is not that all important and selecting where you spawn as your hive location will do. Once you have found a hive location follow the steps.
+  # Что дальше?
+  Сначала мы должны выбрать местоположение нашего улья. Это не так уж важно, и выбор места вашего появления в качестве местоположения улья вполне подойдёт. Как только вы найдёте местоположение улья, следуйте инструкциям.
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookActionXenoOrderConstruction"/>
     <GuideEntityEmbed Entity="HiveCoreXeno"/>
     <GuideEntityEmbed Entity="RMCGuidebookActionXenoPheromones"/>
   </Box>\n
 
-  - Use your Order Construction ability to create a hive core and then fill it with your plasma.
-  - You can emit recovery pheromones to gain plasma to fill the hivecore, remember your pheromones are the strongest in the hive!
+  - Используйте свою способность «Приказ на строительство», чтобы создать ядро улья, а затем заполните его своей плазмой.
+  - Вы можете излучать феромоны восстановления, чтобы получить плазму для заполнения ядра улья. Помните, ваши феромоны — самые сильные в улье!
   <Box>
     <GuideEntityEmbed Entity="XenoHiveWeeds"/>
     <GuideEntityEmbed Entity="RMCGuidebookActionXenoGrowOvipositor"/>
   </Box>\n
 
-  - Once filled, move on top of the new hive weeds emitted from the hivecore then grow your ovipositor.
+  - После заполнения, переместитесь на новые ульевые сорняки, испускаемые ядром улья, затем вырастите свой яйцеклад.
 
-  Well done, you have successfully grown your ovipositor to allow for your children to gain evolution and thrive, now you can set hive leaders which will emit the same pheromones you are.
+  Отлично, вы успешно вырастили свой яйцеклад, чтобы ваши дети могли развиваться и процветать. Теперь вы можете назначить лидеров улья, которые будут излучать те же феромоны, что и вы.
   <Box>
     <GuideEntityEmbed Entity="RMCGuidebookActionXenoWatch"/>
     <GuideEntityEmbed Entity="RMCGuidebookActionXenoLeader"/>
   </Box>\n
 
-  - Use the Watch xeno ability to find the xeno you wish to promote to leader.
-  - Once watching them, use the Choose leader ability to promote them to a leader, remember you can only have a max of 4.
-  - Now press a movement key to return back to normal view, and emit a pheromone for your leaders, recovery for now will do.
+  - Используйте способность «Наблюдать за ксено», чтобы найти ксено, которого вы хотите повысить до лидера.
+  - Как только вы наблюдаете за ними, используйте способность «Выбрать лидера», чтобы повысить их до лидера. Помните, у вас может быть максимум 4.
+  - Теперь нажмите клавишу движения, чтобы вернуться к обычному виду, и излучите феромон для ваших лидеров. Феромон восстановления пока подойдёт.
 
-  Now you have some time to relax until skyhosts (Shipside marines) land, with this you can draw a tactics map or enter your Queen eye.
+  Теперь у вас есть время расслабиться, пока не приземлятся небесные носители (десантники с корабля). С этим вы можете нарисовать тактическую карту или войти в «Глаз Королевы».
 
-  ##Queen eye
-  This form is only usable while in ovi, during it, you ascend to a plane above, able to monitor and secrete resin anywhere your weeds are.
+  ## Глаз Королевы
+  Эта форма доступна только во время нахождения в яйцекладе. В ней вы поднимаетесь на высший план, способный отслеживать и выделять смолу везде, где находятся ваши сорняки.
 
-  This can be used to scout enemy locations and build up the hive with resin.
+  Это может быть использовано для разведки вражеских позиций и развития улья с помощью смолы.
 
-  ##What to do when skyhosts come
-  - War Queen
+  ## Что делать, когда прибудут небесные носители
+  - Королева Войны
 
-  In the case that you must get up to help aid the battle, make sure to be ready to neurospit and screech at any moment. Fighting at the frontline as a Queen involves the use of your frenzy pheromones and neurospit to drag lone hosts. If there is a big group of hosts, and you can screech onto them, your biggest threat is the specialists so make sure to position around them.
+  В случае, если вам необходимо встать, чтобы помочь в битве, убедитесь, что вы готовы в любой момент использовать нейроплевок и визг. Сражение на передовой в роли Королевы предполагает использование ваших феромонов безумия и нейроплевка для притягивания одиночных носителей. Если есть большая группа носителей, и вы можете использовать визг на них, ваша самая большая угроза — это специалисты, поэтому убедитесь, что вы позиционируете себя относительно них.
 
-  Remember that Xenonids fight best in choked spaces and fortified ground, do not attempt to fight in open ground.
+  Помните, что ксенониды лучше всего сражаются в тесных пространствах и на укреплённой земле, не пытайтесь сражаться на открытой местности.
 
-  - Ovi Queen
+  - Королева-яйцеклад
 
-  This strategy is to stay on ovi for preferably the whole duration of the fight, while on ovi your hive leaders will be able to emit your pheromones the whole way through which are 4x as strong. You can also remotely heal your children to aid them in battle, and you will constantly give evolution and eggs.
+  Эта стратегия заключается в том, чтобы оставаться в яйцекладе предпочтительно на протяжении всего боя. Находясь в яйцекладе, ваши лидеры улья смогут постоянно излучать ваши феромоны, которые в 4 раза сильнее. Вы также можете удалённо лечить своих детей, чтобы помочь им в битве, и вы будете постоянно давать эволюцию и яйца.
 </Document>

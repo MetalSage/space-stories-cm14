@@ -1,0 +1,39 @@
+- type: entity
+  parent: [STHunterBaseItem, RMCPouchOpenClosed, RMCPouchStorage]
+  id: STPouchMediComp
+  name: medicomp
+  description: A complex kit of alien tools and medicines.
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Pouches/medicomp.rsi
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,11,3
+    whitelist:
+      tags:
+      - STWoundClamp
+      - STHealingGun
+      - STStabilizerGel
+      - STStabilizingCrystal
+      - STHealingGel
+      - STHunterHealthAnalyzer
+  - type: FixedItemSizeStorage
+
+- type: entity
+  parent: STPouchMediComp
+  id: STPouchMediCompFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: STStabilizerGel
+    - id: STHealingGun
+    - id: STWoundClamp
+    - id: STStabilizingCrystal
+    - id: STStabilizingCrystal
+    - id: STStabilizingCrystal
+    - id: STHealingGel
+    - id: STHealingGel
+    - id: STHealingGel
+    - id: STHunterHealthAnalyzer

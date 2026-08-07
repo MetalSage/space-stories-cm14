@@ -1,0 +1,11 @@
+ent-CMWebbingPouch = разгрузка для сброса
+    .desc = Удобный чехол для переноски свободных вещей.
+ent-RMCToolWebbingSmallERT = { ent-RMCToolWebbingSmall }
+    .suffix = Заполненный
+    .desc = { ent-RMCToolWebbingSmall.desc }
+ent-RMCToolWebbingSmallERTFilled = { ent-RMCToolWebbingSmallERT }
+    .suffix = Заполненный
+    .desc = { ent-RMCToolWebbingSmallERT.desc }
+ent-CMWebbingPouchRoyal = { ent-CMWebbingPouch }
+    .suffix = Заполненный, Королевские
+    .desc = { ent-CMWebbingPouch.desc }

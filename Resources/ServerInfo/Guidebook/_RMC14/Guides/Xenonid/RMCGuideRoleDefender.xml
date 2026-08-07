@@ -1,20 +1,20 @@
 ﻿<Document>
-  #Defender, Tier 1
+  #Защитник, Уровень 1
   <GuideEntityEmbed Entity="CMXenoDefender"/>
-  ##Playing as a Defender
-  You can work both on defense and offense with your high armor. This can include charging in with headbutt to deliver a tailsweep or lowering your crest to protect retreating sisters and in some situations fortifying to break cades or cover for Boilers.
+  ##Игра за Защитника
+  Вы можете работать как в защите, так и в нападении благодаря вашей высокой броне. Это может включать в себя рывок с ударом головой для нанесения удара хвостом или опускание гребня для защиты отступающих сестёр, а в некоторых ситуациях — укрепление для прорыва баррикад или прикрытия Котлов.
 
-  They are also efficent cap carriers, as they can tackle and keep down hosts to devour and bring to a nest.
+  Они также являются эффективными переносчиками пленных, так как могут атаковать и удерживать носителей, чтобы поглотить и принести их в гнездо.
 
-  For new players, using headbutt to propel yourself into hosts and then tailsweeping and then disengaging is enough, remember to toggle your crest after tailsweeping to not get stunned by shotguns.
+  Для новых игроков достаточно использовать удар головой, чтобы протаранить носителей, затем нанести удар хвостом и отступить. Не забывайте переключать свой гребень после удара хвостом, чтобы не быть оглушённым дробовиками.
 
-  ##Abilities:
-  - [bold]Headbutt[/bold]: Launches you into the target dealing low damage and knocking them back, if your crest is lowered then it will knock them back further.
+  ##Способности:
+  - [bold]Удар Головой[/bold]: Запускает вас в цель, нанося небольшой урон и отбрасывая её. Если ваш гребень опущен, то отбросит их дальше.
    <GuideEntityEmbed Entity="RMCGuidebookActionXenoHeadbutt"/>
-  - [bold]Tail Sweep[/bold]: Spin around and uses your tail to cause all targets within a one tile range around you be knocked down and thrown, deals a small amount of damage.
+  - [bold]Удар Хвостом[/bold]: Вращаетесь и используете свой хвост, чтобы все цели в радиусе одной клетки вокруг вас были сбиты с ног и отброшены, наносит небольшой урон.
    <GuideEntityEmbed Entity="RMCGuidebookActionXenoTailSweep"/>
-  - [bold]Toggle Crest Defence[/bold]: Lowering your crest will increase your armor pool and make you immune to most forms of stun such as shotgun and grenades, however this will slow you down.
+  - [bold]Переключить Защиту Гребня[/bold]: Опускание вашего гребня увеличит запас вашей брони и сделает вас невосприимчивым к большинству видов оглушения, таких как дробовики и гранаты, однако это замедлит вас.
    <GuideEntityEmbed Entity="RMCGuidebookActionXenoToggleCrestDefence"/>
-  - [bold]Fortify[/bold]: Locks you into a tile increasing your armor pool heavily and granting explosive resistance at the cost of being immobile.
+  - [bold]Укрепиться[/bold]: Приковывает вас к клетке, значительно увеличивая запас вашей брони и предоставляя сопротивление взрывам ценой потери подвижности.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoFortify"/>
 </Document>

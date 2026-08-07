@@ -141,7 +141,6 @@
       entries:
       - id: RMCArmorXM4
       - id: RMCArmorM3LightVariants
-      - id: RMCArmorVestIntel
     - name: Jacket
       choices: { CMCoat: 1 }
       entries:

@@ -1,0 +1,2 @@
+ent-RMCJobSlotScaling = { "" }
+    .desc = { "" }

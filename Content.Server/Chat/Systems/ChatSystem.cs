@@ -11,6 +11,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
+using Content.Server.Radio.EntitySystems;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
@@ -21,6 +22,7 @@ using Content.Shared._RMC14.Chat;
 using Content.Shared._RMC14.Language;
 using Content.Shared._RMC14.Language.Prototypes;
 using Content.Shared._RMC14.Language.Systems;
+using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Mentor.ImaginaryFriend;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Xenonids;
@@ -48,6 +50,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Server.Radio.Components;
+using Content.Shared.Radio.Components;
+using Content.Shared.Popups;
 
 namespace Content.Server.Chat.Systems;
 
@@ -287,7 +292,11 @@ public sealed partial class ChatSystem : SharedChatSystem
                     if (!TryProccessRadioMessage(source, msg, out var modMsg, out var modChannel))
                         continue;
 
-                    if (modChannel != null && channelsSent.Contains(modChannel.ID))
+                    // Stories-Hunter-Start
+                    if (modChannel == null)
+                        continue;
+
+                    if (channelsSent.Contains(modChannel.ID))
                         continue;
 
                     SendEntityWhisperWithLanguage(
@@ -300,15 +309,14 @@ public sealed partial class ChatSystem : SharedChatSystem
                         ignoreActionBlocker,
                         currentLanguage,
                         ignoreXenos);
-
-                    if (modChannel != null)
-                        channelsSent.Add(modChannel.ID);
+                    channelsSent.Add(modChannel.ID);
+                    // Stories-Hunter-End
                 }
 
                 return;
             }
 
-            if (TryProccessRadioMessage(source, message, out var modMessage, out var channel))
+            if (TryProccessRadioMessage(source, message, out var modMessage, out var channel) && channel != null) // Stories-Hunter
             {
                 SendEntityWhisperWithLanguage(
                     source,
@@ -492,6 +500,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     #endregion
 
     #region Private API
+
 
     private void SendEntityEmote(
         EntityUid source,
@@ -714,10 +723,12 @@ public sealed partial class ChatSystem : SharedChatSystem
     // ReSharper disable once InconsistentNaming
     private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
     {
-        var newMessage = SanitizeMessageReplaceWords(source, message.Trim());
+        // Stories-Hunter-Start
+        var trimmedMessage = message.Trim();
+        GetRadioKeycodePrefix(source, trimmedMessage, out var messageBody, out var prefix);
 
-        GetRadioKeycodePrefix(source, newMessage, out newMessage, out var prefix);
-
+        var newMessage = SanitizeMessageReplaceWords(source, messageBody);
+        // Stories-Hunter-End
         if (capitalize)
             newMessage = SanitizeMessageCapital(newMessage);
         if (capitalizeTheWordI)
@@ -742,8 +753,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public string TransformSpeech(EntityUid sender, string message)
     {
         var ev = new TransformSpeechEvent(sender, message);
-        RaiseLocalEvent(ev);
-
+        RaiseLocalEvent(sender, ref ev, true); // Stories-Hunter
         return ev.Message;
     }
 
@@ -785,6 +795,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var msg = message;
 
+        // Stories-Chat
         // RMC14
         msg = _wordreplacement.ApplyReplacements(msg, ChatSanitize_Accent);
         msg = _cmChat.SanitizeMessageReplaceWords(source, msg);
@@ -846,7 +857,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         RaiseLocalEvent(new ExpandICChatRecipientsEvent(source, voiceGetRange, recipients));
 
-        var ev = new ChatMessageAfterGetRecipients(recipients);
+        var ev = new ChatMessageAfterGetRecipients(recipients); // Stories-Hunter
         RaiseLocalEvent(source, ref ev);
 
         if (ignoreXenos)
@@ -911,7 +922,8 @@ public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Di
 /// <summary>
 ///     Raised broadcast in order to transform speech.transmit
 /// </summary>
-public sealed class TransformSpeechEvent : EntityEventArgs
+[ByRefEvent] // Stories-Hunter
+public struct TransformSpeechEvent
 {
     public EntityUid Sender;
     public string Message;
@@ -942,6 +954,7 @@ public sealed class EntitySpokeEvent : EntityEventArgs
 {
     public readonly EntityUid Source;
     public readonly string Message;
+    public readonly string OriginalMessage; // Stories-TTS: Spec symbol sanitize
     public readonly string? ObfuscatedMessage; // not null if this was a whisper
     // RMC14
     public readonly ProtoId<LanguagePrototype> Language;
@@ -954,10 +967,11 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     public RadioChannelPrototype? Channel;
 
     // RMC14
-    public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, string? obfuscatedMessage, ProtoId<LanguagePrototype>? language = null)
+    public EntitySpokeEvent(EntityUid source, string message, string originalMessage, RadioChannelPrototype? channel, string? obfuscatedMessage, ProtoId<LanguagePrototype>? language = null) // Stories-TTS: Spec symbol sanitize
     {
         Source = source;
         Message = message;
+        OriginalMessage = originalMessage; // Stories-TTS: Spec symbol sanitize
         Channel = channel;
         ObfuscatedMessage = obfuscatedMessage;
         Language = language ?? SharedLanguageSystem.CommonLanguage;

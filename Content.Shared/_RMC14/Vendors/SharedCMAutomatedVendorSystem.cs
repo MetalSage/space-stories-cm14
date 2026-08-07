@@ -22,6 +22,7 @@ using Content.Shared._RMC14.Weapons.Ranged.Ammo.BulletBox;
 using Content.Shared._RMC14.Weapons.Ranged.Chamber;
 using Content.Shared._RMC14.Weapons.Ranged.Flamer;
 using Content.Shared._RMC14.Webbing;
+using Content.Shared._Stories.BypassSpecLimit;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -738,8 +739,6 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
             overrideComp.IsAppendSquadRoleName = entry.IsAppendSquadRoleName;
             overrideComp.GiveIcon = entry.GiveIcon;
             Dirty(actor, overrideComp);
-
-            _squads.UpdateSquadTitle(actor);
         }
 
         if (entry.GiveMapBlip != null)
@@ -747,6 +746,12 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
             var mapBlip = EnsureComp<MapBlipIconOverrideComponent>(actor);
             mapBlip.Icon = entry.GiveMapBlip;
             Dirty(actor, mapBlip);
+        }
+
+        if (entry.GiveSquadRoleName != null || entry.GiveIcon != null)
+        {
+            _squads.UpdateSquadTitle(actor);
+            _squads.NotifyMemberUpdated(actor);
         }
 
         if (entry.GivePrefix != null)
@@ -760,6 +765,22 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
             Dirty(actor, jobPrefix);
         }
 
+        // Stories-Hunter-Start
+        var itemsToVend = new List<EntProtoId>();
+        if (entity.TryGetComponent(out CMVendorBundleComponent? storiesBundle, _compFactory))
+        {
+            itemsToVend.AddRange(storiesBundle.Bundle);
+        }
+        else
+        {
+            itemsToVend.Add(entry.Id);
+        }
+
+        var ev = new BeforeItemsVendedEvent(actor, entry.Id, itemsToVend);
+        RaiseLocalEvent(vendor.Owner, ref ev);
+        itemsToVend = ev.Items;
+        // Stories-Hunter-End
+
         var min = comp.MinOffset;
         var max = comp.MaxOffset;
         for (var i = 0; i < entry.Spawn; i++)
@@ -767,19 +788,15 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
             var offset = _random.NextVector2Box(min.X, min.Y, max.X, max.Y);
             var currentPartialAmount = i == 0 ? partialStackAmount : null;
             var currentPartialItemId = i == 0 ? partialStackItemId : null;
-            if (entity.TryGetComponent(out CMVendorBundleComponent? bundle, _compFactory))
+
+            // Stories-Hunter-Start
+            foreach (var toVend in itemsToVend)
             {
-                foreach (var bundled in bundle.Bundle)
-                {
-                    // Only apply partial stack to the specific item that has it
-                    var bundledPartialAmount = bundled == currentPartialItemId ? currentPartialAmount : null;
-                    Vend(vendor, actor, bundled, offset, bundledPartialAmount, entry.ReplaceSlot);
-                }
+                // Only apply partial stack to the specific item that has it
+                var bundledPartialAmount = toVend == currentPartialItemId ? currentPartialAmount : null;
+                Vend(vendor, actor, toVend, offset, bundledPartialAmount, entry.ReplaceSlot);
             }
-            else
-            {
-                Vend(vendor, actor, entry.Id, offset, currentPartialAmount, entry.ReplaceSlot);
-            }
+            // Stories-Hunter-End
         }
 
         if (entity.TryGetComponent(out CMChangeUserOnVendComponent? change, _compFactory) &&
@@ -822,6 +839,11 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
                 _stack.SetCount(spawn, partialStackAmount.Value, stack);
             }
 
+            // Stories-Hunter-Start
+            var vendedEv = new AfterItemVendedEvent(player, spawn);
+            RaiseLocalEvent(vendor, ref vendedEv);
+            // Stories-Hunter-End
+
             AfterVend(spawn, player, vendor, offset, true, replaceSlot);
         }
         else
@@ -831,6 +853,11 @@ public abstract class SharedCMAutomatedVendorSystem : EntitySystem
             {
                 _stack.SetCount(spawn, partialStackAmount.Value, stack);
             }
+
+            // Stories-Hunter-Start
+            var vendedEv = new AfterItemVendedEvent(player, spawn);
+            RaiseLocalEvent(vendor, ref vendedEv);
+            // Stories-Hunter-End
 
             AfterVend(spawn, player, vendor, offset, replaceSlot: replaceSlot);
         }

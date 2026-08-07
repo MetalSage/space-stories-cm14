@@ -8,7 +8,7 @@
   requirements:
   - !type:TotalDepartmentsTimeRequirement
     group: CMDepartmentsHuman
-    time: 3600 # 1 hour
+    time: 7200 # 2 hour
   ranks:
     RMCRankSergeant:
     - !type:RoleTimeRequirement
@@ -35,6 +35,7 @@
     - type: RMCUserBulkyArmorIncapable
     - type: JobPrefix
       prefix: rmc-job-prefix-nurse
+    - type: CMVendorUser # Stories-Partners
     - type: TacticalMapIcon
       icon:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi

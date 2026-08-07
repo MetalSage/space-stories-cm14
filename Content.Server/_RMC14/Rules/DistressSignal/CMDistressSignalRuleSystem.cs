@@ -24,8 +24,8 @@ using Content.Server.Stunnable;
 using Content.Server.Temperature.Systems;
 using Content.Server.Voting;
 using Content.Server.Voting.Managers;
-using Content.Shared._RMC14.ARES;
 using Content.Shared._RMC14.AlertLevel;
+using Content.Shared._RMC14.ARES;
 using Content.Shared._RMC14.Armor.Ghillie;
 using Content.Shared._RMC14.Armor.ThermalCloak;
 using Content.Shared._RMC14.Atmos;
@@ -39,6 +39,7 @@ using Content.Shared._RMC14.Item;
 using Content.Shared._RMC14.Light;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Marines;
+using Content.Shared._RMC14.Marines.Command;
 using Content.Shared._RMC14.Marines.HyperSleep;
 using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared._RMC14.Power;
@@ -55,6 +56,8 @@ using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.JoinXeno;
 using Content.Shared._RMC14.Xenonids.Maturing;
 using Content.Shared._RMC14.Xenonids.Parasite;
+using Content.Shared._Stories.SCCVars;
+using Content.Shared._Stories.TTS;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
@@ -195,7 +198,7 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
     private readonly Queue<EntProtoId<RMCPlanetMapPrototypeComponent>> _lastPlanetMaps = new();
 
     [ViewVariables]
-    private RMCPlanet? SelectedPlanetMap { get; set; }
+    public RMCPlanet? SelectedPlanetMap { get; private set; } // Stories-Survivor
 
     [ViewVariables]
     public string? SelectedPlanetMapName => SelectedPlanetMap?.Proto.Name;
@@ -253,6 +256,7 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnRulePlayerSpawning);
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning,
              before: [typeof(ArrivalsSystem), typeof(SpawnPointSystem)]);
+        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnCommandingOfficerSpawnComplete);
         SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEndMessage);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         SubscribeLocalEvent<DropshipLandedOnPlanetEvent>(OnDropshipLandedOnPlanet);
@@ -266,7 +270,7 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
         SubscribeLocalEvent<MarineComponent, ComponentRemove>(OnCompRemove);
 
         SubscribeLocalEvent<XenoComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<XenoComponent, ComponentRemove>(OnCompRemove);
+        SubscribeLocalEvent<XenoComponent, ComponentRemove>(OnXenoComponentRemoved);
 
         SubscribeLocalEvent<XenoEvolutionGranterComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<XenoComponent, ComponentInit>(OnXenoComponentInit);
@@ -369,6 +373,14 @@ public sealed partial class CMDistressSignalRuleSystem : GameRuleSystem<CMDistre
 
             if (_aresCore.TryGetARES(component.MarineFaction, out var ares))
             {
+                // Stories-TTS-Start
+                if (!HasComp<TTSComponent>(ares.Value))
+                {
+                    var tts = EnsureComp<TTSComponent>(ares.Value);
+                    tts.VoicePrototypeId = _config.GetCVar(SCCVars.TTSAresVoice);
+                }
+                // Stories-TTS-End
+
                 _marineAnnounce.AnnounceRadio(ares.Value,
                     Loc.GetString("rmc-distress-signal-preflight-complete"),
                     component.AllClearChannel);

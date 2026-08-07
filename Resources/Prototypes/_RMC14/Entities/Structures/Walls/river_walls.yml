@@ -29,7 +29,6 @@
         layer:
         - TableLayer
         density: 1000
-  - type: RMCDropshipBlocked
   - type: MinimapColor
     color: "#ebe5e5ee"
   - type: IsRoof

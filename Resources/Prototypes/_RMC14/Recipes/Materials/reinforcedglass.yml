@@ -7,7 +7,7 @@
   doAfterTimeMin: 1
   materialCost: 1
   skill: RMCSkillConstruction
-  requiredSkillLevel: 2
+  requiredSkillLevel: 3
 
 # windoor
 - type: rmcConstruction
@@ -18,4 +18,4 @@
   doAfterTimeMin: 1
   materialCost: 5
   skill: RMCSkillConstruction
-  requiredSkillLevel: 2
+  requiredSkillLevel: 3

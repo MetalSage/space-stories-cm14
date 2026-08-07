@@ -1,0 +1,12 @@
+ent-BriefcaseBrownFilled = { ent-BriefcaseBrown }
+    .desc = { ent-BriefcaseBrown.desc }
+    .suffix = Заполненный, Бумага
+ent-BriefcaseSyndieSniperBundleFilled = { ent-BriefcaseSyndie }
+    .desc = { ent-BriefcaseSyndie.desc }
+    .suffix = Заполненный, Христов
+ent-BriefcaseSyndieLobbyingBundleFilled = { ent-BriefcaseSyndie }
+    .desc = { ent-BriefcaseSyndie.desc }
+    .suffix = Синдикат, Кредиты
+ent-BriefcaseThiefBribingBundleFilled = { ent-BriefcaseSyndie }
+    .desc = { ent-BriefcaseSyndie.desc }
+    .suffix = Вор, Кредиты

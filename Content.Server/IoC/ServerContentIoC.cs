@@ -5,6 +5,11 @@ using Content.Server._RMC14.Discord;
 using Content.Server._RMC14.LinkAccount;
 using Content.Server._RMC14.Mentor;
 using Content.Server._RMC14.PlayTimeTracking;
+using Content.Server._Stories.DiscordAuth;
+using Content.Server._Stories.JoinQueue;
+using Content.Server._Stories.Sponsors;
+using Content.Shared._Stories.Sponsors;
+using Content.Server._Stories.TTS;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -68,6 +73,11 @@ namespace Content.Server.IoC
             IoCManager.Register<IAdminLogManager, AdminLogManager>();
             IoCManager.Register<PlayTimeTrackingManager>();
             IoCManager.Register<UserDbDataManager>();
+            IoCManager.Register<SponsorsManager>(); // Stories-Sponsors
+            IoCManager.Register<ISharedSponsorsManager, SponsorsManager>(); // Stories-SponsorsLoadout
+            IoCManager.Register<JoinQueueManager>(); // Stories-Queue
+            IoCManager.Register<DiscordAuthManager>(); // Stories-DiscordAuth
+            IoCManager.Register<TTSManager>(); // Stories-TTS
             IoCManager.Register<ServerInfoManager>();
             IoCManager.Register<PoissonDiskSampler>();
             IoCManager.Register<DiscordWebhook>();

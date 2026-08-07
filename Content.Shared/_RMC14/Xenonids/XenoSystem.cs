@@ -18,12 +18,14 @@ using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Fortify;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.HiveLeader;
+using Content.Shared._RMC14.Xenonids.ManageHive.Boons;
 using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._RMC14.Xenonids.Pheromones;
 using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared._RMC14.Xenonids.Rest;
 using Content.Shared._RMC14.Xenonids.ScissorCut;
 using Content.Shared._RMC14.Xenonids.Weeds;
+using Content.Shared._Stories.Hunter.Marking.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Actions;
 using Content.Shared.Atmos;
@@ -70,6 +72,7 @@ public sealed partial class XenoSystem : EntitySystem
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedXenoHiveSystem _hive = default!;
+    [Dependency] private readonly HiveBoonSystem _hiveBoon = default!;
     [Dependency] private readonly HiveLeaderSystem _hiveLeader = default!;
     [Dependency] private readonly SharedImaginaryFriendSystem _imaginaryFriend = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -184,6 +187,9 @@ public sealed partial class XenoSystem : EntitySystem
 
         _eye.RefreshVisibilityMask(xeno.Owner);
         Dirty(xeno);
+
+        var ev = new XenoComponentChangedEvent(xeno);
+        RaiseLocalEvent(ref ev);
     }
 
     private void OnXenoGetAdditionalAccess(Entity<XenoComponent> xeno, ref GetAccessTagsEvent args)
@@ -284,10 +290,10 @@ public sealed partial class XenoSystem : EntitySystem
 
     private void OnXenoGetMeleeDamage(Entity<XenoComponent> ent, ref GetMeleeDamageEvent args)
     {
-        if (MathHelper.CloseTo(_xenoDamageDealtMultiplier, 1))
-            return;
+        args.Damage = ApplyXenoAggressionDamage(ent.Owner, args.Damage);
 
-        args.Damage *= _xenoDamageDealtMultiplier;
+        if (!MathHelper.CloseTo(_xenoDamageDealtMultiplier, 1))
+            args.Damage *= _xenoDamageDealtMultiplier;
     }
 
     private void OnXenoDamageModify(Entity<XenoComponent> ent, ref DamageModifyEvent args)
@@ -361,7 +367,7 @@ public sealed partial class XenoSystem : EntitySystem
 
     private void OnXenoGetVisMask(Entity<XenoComponent> ent, ref GetVisMaskEvent args)
     {
-        args.VisibilityMask |= (int) ent.Comp.Visibility;
+        args.VisibilityMask |= (int)ent.Comp.Visibility;
     }
 
     private void OnLeaderDisarmed(Entity<XenoComponent> ent, ref CMDisarmEvent args)
@@ -419,6 +425,18 @@ public sealed partial class XenoSystem : EntitySystem
     {
         EnsureComp<XenoComponent>(xeno);
     }
+
+    // Stories-Ordnance-Start
+    public void MakeDummyXeno(Entity<XenoComponent?> xeno)
+    {
+        if (!Resolve(xeno, ref xeno.Comp, false))
+            return;
+
+        xeno.Comp.CountedInSlots = false;
+        xeno.Comp.ContributesToVictory = false;
+        Dirty(xeno, xeno.Comp);
+    }
+    // Stories-Ordnance-End
 
     private void OnBeingGibbed(Entity<XenoComponent> xeno, ref BeingGibbedEvent args)
     {
@@ -522,7 +540,7 @@ public sealed partial class XenoSystem : EntitySystem
         if (canAttackWindows && HasComp<DestroyOnXenoPierceScissorComponent>(target))
             return true;
 
-        return HasComp<MarineComponent>(target) || HasComp<XenoComponent>(target);
+        return HasComp<MarineComponent>(target) || HasComp<XenoComponent>(target) || HasComp<HunterComponent>(target); // Stories-Hunter
     }
 
     public bool CanHeal(EntityUid xeno)

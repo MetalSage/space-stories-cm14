@@ -187,10 +187,10 @@
     layers:
     - state: folding_plasteel
       map: ["enum.DoorVisualLayers.Base"]
+    - sprite: _RMC14/Structures/Walls/Barricades/folding_plasteel_cracks.rsi
+      state: DamageOverlay_4
+      map: ["enum.StoriesBarricadeDoorDamageVisualLayers.Damage"]
       visible: false
-    - state: DamageOverlay_0
-      map: [ "enum.RMCDamageOverlayVisuals.DamageOverlay" ]
-      sprite: _RMC14/Structures/Walls/Barricades/folding_plasteel_cracks.rsi
     - state: folding_plasteel_connection_1
       map: ["enum.RMCFoldingBarricadeLinkingVisualLayers.North"]
       visible: false
@@ -205,15 +205,13 @@
       visible: false
     - map: [ "acided" ]
     drawdepth: WallTops
-  - type: DamageVisuals
-    thresholds: [4, 8, 12]
-    damageDivisor: 50
-    trackAllDamage: true
-    overlay: false
-    targetLayers:
-    - "enum.RMCDamageOverlayVisuals.DamageOverlay"
-    damageGroup: "Brute"
-    hideIfZero: false
+  # Stories-start
+  - type: StoriesBarricadeDoorDamageVisuals
+    closedDamageSprite: _RMC14/Structures/Walls/Barricades/folding_plasteel_cracks.rsi
+    openDamageSprite: _RMC14/Structures/Walls/Barricades/folding_plasteel_closed_cracks.rsi
+    thresholds: [200, 400, 600]
+    states: [DamageOverlay_4, DamageOverlay_8, DamageOverlay_12]
+  # Stories-end
   - type: RMCFoldingBarricadeLinking
     linkable: true
     connectionStates:
@@ -279,9 +277,9 @@
           Open: { state: folding_plasteel_closed_connection_8, visible: true }
       enum.BarbedWireVisualLayers.Wire:
         barbWired:
-          UnWired: { state: folding_plasteel_closed_wire, visible: false }
-          WiredClosed: { state: folding_plasteel_wire, visible: true }
-          WiredOpen: { state: folding_plasteel_closed_wire, visible: true }
+          UnWired: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_plasteel_closed_wire, visible: false }
+          WiredClosed: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_plasteel_wire, visible: true }
+          WiredOpen: { sprite: _RMC14/Structures/Walls/Barricades/barricade.rsi, state: folding_plasteel_closed_wire, visible: true }
       enum.SprayAcidedVisuals.Acided:
         acided:
           True:

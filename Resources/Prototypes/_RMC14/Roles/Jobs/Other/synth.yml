@@ -120,6 +120,7 @@
   - type: WoundableUntreatable
   - type: Insulated
   - type: ZombieImmune
+  - type: Unparalyzable # Stories-Hunter
   - type: ShowHealthIcons
   - type: ShowHealthBars
   - type: ParalyzeImmuneFrom

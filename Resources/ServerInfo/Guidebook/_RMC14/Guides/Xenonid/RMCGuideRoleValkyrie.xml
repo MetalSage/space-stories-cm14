@@ -1,25 +1,25 @@
 <Document>
-  #Valkyrie, Tier 3
+  #Валькирия, Уровень 3
 
   <GuideEntityEmbed Entity="RMCXenoPraetorianValkyrie"/>
 
-  ##Playing as a Valkyrie
-  Your whole arsenal of abilities change upon choosing this strain. You will be able to heal upon hitting any host. You additionally receive a fury reservoir which is needed for the activation of certain Abilities. You will lose your Tail Stab in exchange for another ability, Water Fountain.
+  ##Игра за Валькирию
+  Весь ваш арсенал способностей меняется при выборе этой линии. Вы сможете исцеляться при попадании по любому носителю. Дополнительно вы получаете запас ярости, который необходим для активации некоторых способностей. Вы потеряете свой Удар Хвостом в обмен на другую способность, Водяной Фонтан.
 
-  Stick behind your sisters as Valkyrie, you play a supportive role with your pheromones and retrieve, if your sisters are stunned, then use your Fight or Flight to save them.
+  Держитесь позади своих сестёр в роли Валькирии. Вы играете вспомогательную роль с помощью своих феромонов и способности «Спасение». Если ваши сёстры оглушены, используйте свою способность «Бей или беги», чтобы спасти их.
 
-  ##Abilities:
-  - [bold][color=green]PASSIVE[/color][/bold]: Your slashes lifesteal and heal any sisters nearby you during the attack, this amount is boosted during Tantrum.
-  - [bold]Tail Fountain[/bold]: It's a single target extinguish with a relatively short cooldown which can be used to put out fires on both xenonids and hosts. Useful for saving near death xenonids or captures from fire.
+  ##Способности:
+  - [bold][color=green]ПАССИВНО[/color][/bold]: Ваши удары похищают жизнь и исцеляют любых сестёр рядом с вами во время атаки; это количество увеличивается во время Неистовства.
+  - [bold]Хвостовой Фонтан[/bold]: Это одноцелевое тушение с относительно коротким временем восстановления, которое можно использовать для тушения огня как на ксенонидах, так и на носителях. Полезно для спасения находящихся при смерти ксенонидов или захваченных от огня.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoTailFountain"/>
-  - [bold]Tantrum[/bold]: Used on a sister, to enhance your and their defense temporarily. Additionally, it doubles the healing you get on target hit. Exceptions to this are Ravager and Crusher as they get a speed buff instead during the duration of Tantrum.
+  - [bold]Неистовство[/bold]: Используется на сестре для временного усиления вашей и её защиты. Кроме того, удваивает исцеление, которое вы получаете при попадании по цели. Исключением являются Опустошитель и Крушитель, так как они получают вместо этого бафф скорости на время действия Неистовства.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoTantrum"/>
-  - [bold]High Gallop[/bold]: Stomps on hosts and grenades. Hosts will be temporarily stunned on the ground. Grenades can be thrown back a couple of tiles in the direction of your cursor upon Ability usage.
+  - [bold]Высокий Галоп[/bold]: Топает по носителям и гранатам. Носители будут временно оглушены на земле. Гранаты могут быть отброшены на пару клеток в направлении вашего курсора при использовании способности.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoHighGallop"/>
-  - [bold]Fight or Flight[/bold]: Upon usage, it will remove any debuffs from fellow xenonids, including stun, slow and daze. Its effective range can further be enhanced by having the same amount of fury you need for this ability left upon usage. Due to its hefty costs in fury, plasma and long cooldown, it is advised to use it sparingly.
+  - [bold]Борись или Беги[/bold]: При использовании снимает любые ослабления с сородичей-ксенонидов, включая оглушение, замедление и оцепенение. Его эффективная дальность может быть дополнительно увеличена, если у вас остаётся столько же ярости, сколько требуется для этой способности при её использовании. Из-за высоких затрат ярости, плазмы и длительного времени восстановления рекомендуется использовать её экономно.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoFightOrFlight"/>
-  - [bold]Retrieve[/bold]: Saves xenonids from a distance by dragging them into safety. This uses half of your fury to reel in a Xeno in dire need of help. It may not work on certain caste while they stand up - mainly Queen and Crusher - meaning they need to lay down or be in critical health.
+  - [bold]Спасение[/bold]: Спасает ксенонидов на расстоянии, притягивая их в безопасное место. Это расходует половину вашей ярости, чтобы притянуть ксено в острой нужде. Может не работать на определённых кастах, пока они стоят — в основном Королева и Крушитель — это означает, что им нужно лечь или быть в критическом состоянии здоровья.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoRetrieve"/>
-  - [bold]Emit Pheromones[/bold]: Emits one of the three pheromones, strength of said pheromone is dependant on caste and does not stack with pheromones of the same type.
+  - [bold]Излучать Феромоны[/bold]: Излучает один из трёх феромонов. Сила этого феромона зависит от касты и не суммируется с феромонами того же типа.
   <GuideEntityEmbed Entity="RMCGuidebookActionXenoPheromones"/>
 </Document>

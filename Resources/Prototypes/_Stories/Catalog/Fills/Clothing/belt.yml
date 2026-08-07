@@ -1,0 +1,14 @@
+- type: entity
+  parent: STBeltHunterUtility
+  id: STBeltHunterUtilityFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: STHunterScrewdriver
+    - id: STHunterWrench
+    - id: STHunterWelder
+    - id: STHunterCrowbar
+    - id: STHunterWirecutter
+    - id: RMCCableCoil30
+    - id: STHunterMultitool

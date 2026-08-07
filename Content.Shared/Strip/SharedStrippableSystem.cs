@@ -71,7 +71,8 @@ public abstract class SharedStrippableSystem : EntitySystem
 
     private void AddStripVerb(EntityUid uid, StrippableComponent component, GetVerbsEvent<Verb> args)
     {
-        if (args.Hands == null || !args.CanAccess || !args.CanInteract || args.Target == args.User)
+        if ((args.Hands == null || !args.CanAccess || !args.CanInteract || args.Target == args.User) &&
+            TryComp<StrippingComponent>(args.User, out var strippingComponent) && strippingComponent.ForceSee) // Stories
             return;
 
         Verb verb = new()
@@ -86,7 +87,8 @@ public abstract class SharedStrippableSystem : EntitySystem
 
     private void AddStripExamineVerb(EntityUid uid, StrippableComponent component, GetVerbsEvent<ExamineVerb> args)
     {
-        if (args.Hands == null || !args.CanAccess || !args.CanInteract || args.Target == args.User)
+        if ((args.Hands == null || !args.CanAccess || !args.CanInteract || args.Target == args.User) &&
+            TryComp<StrippingComponent>(args.User, out var strippingComponent) && strippingComponent.ForceSee == false) // Stories
             return;
 
         ExamineVerb verb = new()
@@ -105,6 +107,11 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (args.Actor is not { Valid: true } user ||
             !TryComp<HandsComponent>(user, out var userHands))
             return;
+
+        // Stories-start
+        if (TryComp<StrippingComponent>(user, out var strippingComponent) && strippingComponent.OnlySee)
+            return;
+        // Stories-end
 
         if (args.IsHand)
         {

@@ -1,0 +1,10 @@
+ent-RMCWeaponRevolverRSh9 = штурмовой револьвер РШ-9
+    .desc = Штурмовой револьвер РШ-9 — весьма необычное оружие, изначально разработанное для зачистки комнат в CQB по заказу контртеррористических подразделений. Он использует меньший патрон 9x39 вместо 12,7x55 мм, под который он изначально выпускался, но все равно является идеальным средством для убийства людей.
+ent-RMCBaseSpeedLoaderRsh9 = спидлоадер РШ-9 (9x39)
+    .desc = { ent-BaseItem.desc }
+ent-RMCSpeedLoaderRsh9 = { ent-RMCBaseSpeedLoaderRsh9 }
+    .desc = Заряд из шести патронов 9x39 с бронебойным действием, предназначенный для поражения большинства современных бронежилетов.
+ent-RMCCartridgeRevolverRsh9 = патрон (9x39)
+    .desc = { ent-CMCartridgePistolBase.desc }
+ent-RMCBulletRsh9 = пуля (9x39)
+    .desc = { ent-CMBulletBase.desc }

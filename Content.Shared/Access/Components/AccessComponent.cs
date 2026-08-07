@@ -25,6 +25,12 @@ public sealed partial class AccessComponent : Component
     [AutoNetworkedField]
     public HashSet<ProtoId<AccessLevelPrototype>> Tags = new();
 
+    // Stories-Hunter-Start
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [AutoNetworkedField]
+    public string? Slot = "id";
+    // Stories-Hunter-End
+
     /// <summary>
     /// Access Groups. These are added to the tags during map init. After map init this will have no effect.
     /// </summary>

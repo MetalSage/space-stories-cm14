@@ -106,7 +106,7 @@ public sealed partial class NPCSteeringSystem
         if (!steering.ForceMove && steering.ArriveOnLineOfSight)
         {
             // TODO: use vision range
-            inLos = _interaction.InRangeUnobstructed(uid, steering.Coordinates, 10f);
+            inLos = _interaction.InRangeUnobstructed(uid, steering.Coordinates, 10f, predicate: e => _barbedQuery.HasComponent(e));
 
             if (inLos)
             {

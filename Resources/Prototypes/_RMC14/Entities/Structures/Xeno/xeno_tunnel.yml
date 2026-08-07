@@ -8,7 +8,7 @@
   - type: Transform
     anchored: true
   - type: Sprite
-    sprite: _RMC14/Structures/Xenos/xeno_tunnel.rsi
+    sprite: _Stories/Structures/Xenos/xeno_tunnel.rsi # Stories-Parity
     state: hole
     noRot: true
   - type: InteractionOutline

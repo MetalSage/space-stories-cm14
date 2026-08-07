@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using Content.Server._Stories.Sponsors;
 using Content.Server.GameTicking.Events;
 using Content.Server.Station.Events;
 using Content.Shared.CCVar;
@@ -16,6 +17,7 @@ public sealed class JobWhitelistSystem : EntitySystem
     [Dependency] private readonly JobWhitelistManager _manager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly SponsorsManager _sponsors = default!; // Stories-Sponsor
 
     private ImmutableArray<ProtoId<JobPrototype>> _whitelistedJobs = [];
 
@@ -59,7 +61,10 @@ public sealed class JobWhitelistSystem : EntitySystem
 
     private void OnGetDisallowedJobs(ref GetDisallowedJobsEvent ev)
     {
-        if (!_config.GetCVar(CCVars.GameRoleWhitelist))
+        _sponsors.TryGetInfo(ev.Player.UserId, out var sponsorData);
+
+        if (!_config.GetCVar(CCVars.GameRoleWhitelist) ||
+            sponsorData?.WhitelistRoleTimeBypass == true) // Stories-Sponsor
             return;
 
         foreach (var job in _whitelistedJobs)

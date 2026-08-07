@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Text;
+﻿using System.Text;
 using Content.Client._RMC14.TacticalMap;
 using Content.Client._RMC14.UserInterface;
 using Content.Client.Eye;
@@ -10,8 +9,8 @@ using Content.Shared._RMC14.Dropship.ElectronicSystem;
 using Content.Shared._RMC14.Dropship.Utility.Components;
 using Content.Shared._RMC14.Dropship.Utility.Systems;
 using Content.Shared._RMC14.Dropship.Weapon;
+using Content.Shared._RMC14.ParaDrop;
 using Content.Shared._RMC14.TacticalMap;
-using Content.Shared.ParaDrop;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
@@ -149,16 +148,31 @@ public sealed class DropshipWeaponsBui : RMCPopOutBui<DropshipWeaponsWindow>
 
         string TargetAcquisition()
         {
-            var weapon = EntMan.GetEntity(compScreen.Weapon);
-            return Loc.GetString("rmc-dropship-weapons-target-strike",
+            if (EntMan.TryGetEntity(compScreen.Weapon, out var weapon))
+            {
+                var check = _weaponSystem.TryGetWeaponAmmo(weapon.Value, out var ammo);
+                return Loc.GetString("rmc-dropship-weapons-target-strike",
                 ("mode", compScreen.Weapon == null ? "NONE" : "WEAPON"),
                 ("targetMode", Loc.GetString(compScreen.QuickMode
-                    ? "rmc-dropship-weapons-target-mode-quick"
-                    : "rmc-dropship-weapons-target-mode-standard")),
-                ("weapon", weapon == null ? "" : weapon),
+                ? "rmc-dropship-weapons-target-mode-quick"
+                : "rmc-dropship-weapons-target-mode-standard")),
+                ("weapon", check ? ammo : weapon),
                 ("target", terminal.Target == null ? "NONE" : terminal.Target.Value),
                 ("xOffset", terminal.Offset.X),
                 ("yOffset", terminal.Offset.Y));
+            }
+            else
+            {
+                return Loc.GetString("rmc-dropship-weapons-target-strike",
+                ("mode", compScreen.Weapon == null ? "NONE" : "WEAPON"),
+                ("targetMode", Loc.GetString(compScreen.QuickMode
+                ? "rmc-dropship-weapons-target-mode-quick"
+                : "rmc-dropship-weapons-target-mode-standard")),
+                ("weapon", ""),
+                ("target", terminal.Target == null ? "NONE" : terminal.Target.Value),
+                ("xOffset", terminal.Offset.X),
+                ("yOffset", terminal.Offset.Y));
+            }
         }
 
         void AddButtons(
@@ -281,6 +295,9 @@ public sealed class DropshipWeaponsBui : RMCPopOutBui<DropshipWeaponsWindow>
         switch (compScreen.State)
         {
             case Main:
+                screen.Viewport.Visible = false;
+                screen.Viewport.RemoveAllChildren();
+                screen.Viewport.Eye = null;
                 screen.BottomRow.SetData(two: tacMap, three: cams);
                 screen.TopRow.SetData(equip, four: target);
                 break;
