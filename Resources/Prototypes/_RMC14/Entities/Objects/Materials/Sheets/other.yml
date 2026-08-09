@@ -155,6 +155,7 @@
     # wooden cross
     # wooden pole
     # fishing pole
+    - CMChairWoodBuild # Stories-Recipe
   - type: UserInterface
     interfaces:
       enum.RMCConstructionUiKey.Key:
