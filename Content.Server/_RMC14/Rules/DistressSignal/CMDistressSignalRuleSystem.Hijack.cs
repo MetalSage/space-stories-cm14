@@ -98,6 +98,9 @@ public sealed partial class CMDistressSignalRuleSystem
 
                     var origin = _transform.GetMoverCoordinates(xeno);
                     _popup.PopupCoordinates(Loc.GetString("rmc-xeno-hibernation"), origin, Filter.SinglePlayer(session), true, PopupType.MediumXeno);
+
+                    if (comp.CountedInSlots && _hive.GetHive(xeno) is { } hive)
+                        _larvaQueue.AddToLarvaQueueFront(hive, actor.PlayerSession.UserId);
                 }
 
                 QueueDel(xeno);
@@ -175,12 +178,14 @@ public sealed partial class CMDistressSignalRuleSystem
 
         if (!rule.HijackSongPlayed)
         {
+            var wasEndgame = IsDistressEndgameActive();
             rule.HijackSongPlayed = true;
             var song = _audio.PlayGlobal(rule.HijackSong, Filter.Broadcast(), true);
             if (song?.Entity is { } songEnt)
                 EnsureComp<RMCHijackSongComponent>(songEnt);
 
             rule.ForceEndAt = time + _forceEndHijackTime;
+            RaiseEndgameChanged(wasEndgame);
         }
 
         var didCameraShake = false;

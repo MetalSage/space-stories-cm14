@@ -11,6 +11,11 @@
   name: Spitter
   description: A gross, oozing alien of some kind.
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoSpit ]
+      XenoPrimaryTwo: [ ActionXenoChargeSpit ]
+      XenoPrimaryThree: [ ActionXenoSprayAcid ]
   - type: XenoBaseCaste
   - type: GuideHelp
     guides:
@@ -77,6 +82,7 @@
     evolvesTo:
     - RMCXenoBoiler
     - CMXenoPraetorian
+    - STXenoDespoiler # Stories-Despoiler
   - type: XenoSpit
   - type: XenoChargeSpit
   - type: XenoScatteredSpit

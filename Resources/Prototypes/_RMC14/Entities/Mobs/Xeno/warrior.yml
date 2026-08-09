@@ -10,6 +10,11 @@
   name: Warrior
   description: A beefy alien with an armored carapace.
   components:
+    - type: RMCKeybindActions
+      actions:
+        XenoPrimaryOne: [ ActionXenoPunch ]
+        XenoPrimaryTwo: [ ActionXenoLunge ]
+        XenoPrimaryThree: [ ActionXenoFling ]
     - type: XenoBaseCaste
     - type: GuideHelp
       guides:
@@ -64,7 +69,7 @@
         - CMXenoPraetorian
       strains:
         - STXenoWarriorBoxer # Stories-XenoBoxer
-        # - STXenoWarriorBulwark # Stories-XenoBulwark Времено удалено из за дизбаланса.
+        - STXenoWarriorBulwark # Stories-XenoBulwark
     - type: CMArmor
       xenoArmor: 20
       explosionArmor: 40

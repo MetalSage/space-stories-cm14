@@ -99,7 +99,7 @@
     evolvesToWithoutPoints:
     - CMXenoQueen
   - type: Evasion
-    evasion: 20
+    evasion: 15
   - type: XenoInhands
     prefix: drone
   - type: IntelRecoverCorpseObjectiveOnDeath
@@ -113,6 +113,13 @@
   parent: CMXenoDroneBase
   id: CMXenoDrone
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoPlantWeeds ]
+      XenoPrimaryTwo: [ ActionXenoChooseStructure ]
+      XenoPrimaryThree: [ ActionXenoSecreteStructure ]
+      XenoPrimaryFour: [ ActionXenoTransferPlasma ]
+      XenoPrimaryFive: [ ActionXenoOrderConstruction ]
   - type: XenoBaseCaste
   - type: GuideHelp
     guides:

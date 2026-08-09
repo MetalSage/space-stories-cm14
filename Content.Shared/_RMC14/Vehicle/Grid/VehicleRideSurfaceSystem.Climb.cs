@@ -1,12 +1,11 @@
 using System.Numerics;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Vehicle.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 
-namespace Content.Shared.Vehicle;
+namespace Content.Shared._RMC14.Vehicle;
 
 public sealed partial class VehicleRideSurfaceSystem
 {
@@ -277,10 +276,7 @@ public sealed partial class VehicleRideSurfaceSystem
         if (!CanRide(vehicle, surface, user, Transform(vehicle).MapID, out var userXform))
             return false;
 
-        if (!TryGetValidRideSurface((user, rider), userXform, out _, out _))
-            return false;
-
-        return true;
+        return TryGetValidRideSurface((user, rider), userXform, out _, out _);
     }
 
     private bool TryGetRunningClimbDownDoAfter(

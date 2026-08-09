@@ -1,8 +1,14 @@
 ent-VehicleTankBase = Легкий танк M34A2 "Лонгстрит"
     .desc = Огромная гусеничная машина, закованная в толстую броню, с массивным орудием. Вы сами отлично знаете, что с ней делать. Вход расположен сзади. Вмещает экипаж и дополнительно 2 раненых.
+ent-VehicleTankTest = test tank (autodrive)
+    .desc = A test tank that automatically drives east on spawn.
+    .suffix = Debug
 ent-VehicleTank = { ent-VehicleTankBase }
     .desc = { ent-VehicleTankBase.desc }
+    .suffix = Drivable, Tank, Base, Tracked
 ent-VehicleSPPTank = Танк СПН
     .desc = Тяжелый основной боевой танк СПН.
+    .suffix = Drivable, Tank, SPP
 ent-VehicleSPPTankCommand = командный танк СПН
     .desc = Тяжелый командный танк СПН.
+    .suffix = Drivable, Tank, SPP, Command Interior

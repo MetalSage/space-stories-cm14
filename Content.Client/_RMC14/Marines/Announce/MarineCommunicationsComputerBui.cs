@@ -1,4 +1,5 @@
-﻿using Content.Client.UserInterface.Controls;
+﻿using Content.Client._Stories.Chat;
+using Content.Client.UserInterface.Controls;
 using Content.Shared._RMC14.Marines.Announce;
 using Content.Shared._RMC14.Marines.ControlComputer;
 using Content.Shared._RMC14.Overwatch;
@@ -78,9 +79,20 @@ public sealed class MarineCommunicationsComputerBui(EntityUid owner, Enum uiKey)
         else
             _window.OverwatchButton.Visible = false;
 
-        _window.Text.OnTextChanged += args => OnTextChanged((int) Rope.CalcTotalLength(args.TextRope));
+        // Stories-TTS-Start
+        _window.Text.OnTextChanged += args => OnTextChanged((int)Rope.CalcTotalLength(args.TextRope));
 
-        _window.Send.OnPressed += _ => SendPredictedMessage(new MarineCommunicationsComputerMsg( Rope.Collapse(_window.Text.TextRope)));
+        _window.Send.OnPressed += _ =>
+        {
+            var text = Rope.Collapse(_window.Text.TextRope);
+            var filter = EntMan.System<ChatFilterSystem>();
+            if (filter != null)
+                text = filter.ApplyClientReplacements(text);
+
+            SendPredictedMessage(new MarineCommunicationsComputerMsg(text));
+        };
+        // Stories-TTS-End
+
         OnStateUpdate();
         OnTextChanged(0);
     }

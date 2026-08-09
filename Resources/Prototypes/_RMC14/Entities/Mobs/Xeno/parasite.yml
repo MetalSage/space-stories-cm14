@@ -18,6 +18,11 @@
       settings: parasiteTimeRequirement
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Parasite/parasite.rsi
+  - type: FiremanCarriable
+    canThrow: true
+    carrierWhitelist:
+      components:
+      - Synth
   - type: MobState
     allowedStates:
     - Alive
@@ -158,6 +163,9 @@
   id: CMXenoParasite
   suffix: Normal
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoLeap ]
   - type: SleepNPC
   - type: ParasiteAI
   - type: XenoEvolution
@@ -171,6 +179,10 @@
   id: RMCXenoParasiteWatcher
   suffix: Parasite, Watcher
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoLeap ]
+      XenoPrimaryThree: [ ActionXenoZoom ]
   - type: Xeno
     actionIds:
     - ActionXenoRest
