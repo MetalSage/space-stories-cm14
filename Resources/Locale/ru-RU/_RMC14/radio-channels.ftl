@@ -34,5 +34,8 @@ chat-radio-royal-marine = Королевские морпехи
 chat-radio-tse = Империя трех солнц
 
 chat-radio-hivemind = Улей
+chat-radio-intercom = Интерком
+
+rmc-intercom-no-device = Поблизости нет работающего интеркома.
 
 chat-radio-marine-sun-riders = Солнечные Всадники
