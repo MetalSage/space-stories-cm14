@@ -18,6 +18,7 @@ cm-distress-signal-marine = { $player }
 rmc-distress-signal-next-map-title = Карта следующей планеты
 rmc-distress-signal-next-map-tie = Ничья при голосовании за карту! Выбираем... { $picked }
 rmc-distress-signal-next-map-win = { $winner } выиграла голосование за карту!
+rmc-distress-signal-persistence-unavailable = Постоянное состояние сигнала бедствия недоступно. Начало раунда заблокировано, попытка будет повторена.
 rmc-distress-signal-next-map-header = Результаты голосования за карту
 rmc-distress-signal-next-map-votes = { $map }: { $votes } голосов
 rmc-distress-signal-next-map-votes-new = { $map }: { $votes } голосов ({ $newVotes } новых)
