@@ -6,6 +6,7 @@ using Content.Shared._RMC14.Medical.Surgery.Steps;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Projectile.Spit.Slowing;
+using Content.Shared._Stories.Xenonids.Crusher; // Stories-CrusherShield
 using Content.Shared.Alert;
 using Content.Shared.Armor;
 using Content.Shared.Clothing.Components;
@@ -149,6 +150,9 @@ public sealed class CMArmorSystem : EntitySystem
 
     private void OnDamageModify(Entity<CMArmorComponent> armored, ref DamageModifyEvent args)
     {
+        if (TryComp(armored.Owner, out STCrusherShieldComponent? shield) && shield.State == STCrusherShieldState.Active) // Stories-CrusherShield
+            return;
+
         ModifyDamage(armored, ref args);
     }
 

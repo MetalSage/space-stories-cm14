@@ -1,5 +1,6 @@
 using Content.Shared._RMC14.Barricade;
 using Content.Shared._RMC14.CameraShake;
+using Content.Shared._Stories.Xenonids.Crusher; // Stories-CrusherDeepWounds
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Xenonids.GasToggle;
 using Content.Shared._RMC14.Xenonids.Neurotoxin;
@@ -122,6 +123,7 @@ public abstract class SharedXenoTailStabSystem : EntitySystem
             args.Handled = true;
 
             var hit = args.Entity.Value;
+            EnsureComp<STXenoTailStabHitComponent>(stab); // Stories-CrusherDeepWounds
             var hitEvent = new MeleeHitEvent(new List<EntityUid>{hit}, stab, stab, damage, null);
             RaiseLocalEvent(stab, hitEvent);
 

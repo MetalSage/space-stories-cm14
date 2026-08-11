@@ -1,5 +1,6 @@
 using Content.Shared._RMC14.Movement;
 using Content.Shared._RMC14.Xenonids;
+using Content.Shared._Stories.Xenonids.Crusher; // Stories-CrusherShield
 using Content.Shared.Movement.Systems;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Standing;
@@ -18,6 +19,7 @@ public sealed class RMCSlowSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly TemporarySpeedModifiersSystem _temporarySpeed = default!;
+    [Dependency] private readonly STCrusherShieldSystem _stCrusherShield = default!; // Stories-CrusherShield
 
     public override void Initialize()
     {
@@ -50,6 +52,11 @@ public sealed class RMCSlowSystem : EntitySystem
 
     public bool TrySlowdown(EntityUid ent, TimeSpan duration, bool refresh = true, bool ignoreDurationModifier = false)
     {
+        // Stories-CrusherShield-Start
+        if (_stCrusherShield.IsSlowImmune(ent))
+            return false;
+        // Stories-CrusherShield-End
+
         if (!TryComp<RMCSpeciesSlowdownModifierComponent>(ent, out var slow))
             return false;
 
@@ -72,6 +79,11 @@ public sealed class RMCSlowSystem : EntitySystem
     {
         if (_timing.ApplyingState)
             return false;
+
+        // Stories-CrusherShield-Start
+        if (_stCrusherShield.IsSlowImmune(ent))
+            return false;
+        // Stories-CrusherShield-End
 
         if (!TryComp<RMCSpeciesSlowdownModifierComponent>(ent, out var slow))
             return false;

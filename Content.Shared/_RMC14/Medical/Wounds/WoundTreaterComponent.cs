@@ -18,6 +18,9 @@ public sealed partial class WoundTreaterComponent : Component
     [DataField(required: true), AutoNetworkedField]
     public bool Treats;
 
+    [DataField, AutoNetworkedField]
+    public bool TreatsDeep; // Stories-CrusherDeepWounds
+
     [DataField(required: true), AutoNetworkedField]
     public bool Consumable;
 

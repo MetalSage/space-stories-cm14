@@ -39,7 +39,9 @@ public record struct Wound(
     [field: DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     TimeSpan? StopBleedAt,
     WoundType Type,
-    bool Treated
+    bool Treated,
+    bool Deep = false, // Stories-CrusherDeepWounds
+    bool Untreatable = false // Stories-CrusherDeepWounds
 );
 
 [Serializable, NetSerializable]

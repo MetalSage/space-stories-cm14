@@ -1,0 +1,144 @@
+- type: entity
+  abstract: true
+  parent:
+  - CMXenoDeveloped
+  - CMXenoTail
+  - CMXenoFlammable
+  - RMCXenoSpeechSounds
+  - RMCXenoCommendationReceiver
+  - RMCXenoMobCollision
+  id: STXenoCrusherBase
+  name: Crusher
+  description: A huge alien with an enormous armored crest.
+  components:
+  - type: GuideHelp
+    guides:
+    - RMCGuideRoleCrusher
+  - type: Sprite
+    sprite: _Stories/Mobs/Xenos/Crusher/crusher.rsi
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      700: Critical
+      800: Dead
+  - type: Xeno
+    role: CMXenoCrusher
+    actionIds:
+    - ActionXenoRest
+    - ActionXenoRegurgitate
+    - ActionXenoWatch
+    - ActionXenoTailStab
+    - ActionXenoStomp
+    - ActionXenoDevolve
+    tier: 3
+    hudOffset: 0,0.375
+    unlockAt: 900
+  - type: XenoRegen
+    standHealingMultiplier: 0.66
+  - type: XenoHeavy
+  - type: XenoDevolve
+    devolvesTo:
+    - CMXenoWarrior
+  - type: XenoDevour
+  - type: XenoStomp
+    damage:
+      types:
+        Blunt: 65
+    selfEffect: CMEffectSelfStomp
+  - type: XenoAnimateMovement
+  - type: XenoPlasma
+    plasma: 400
+    maxPlasma: 400
+    plasmaRegenOnWeeds: 4
+  - type: CMArmor
+    xenoArmor: 30
+    explosionArmor: 100
+  - type: XenoClaws
+    clawType: VerySharp
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 40
+  - type: XenoTailStab
+    tailDamage:
+      groups:
+        Brute: 48
+  - type: XenoMeleeSlow
+    slowTime: 2
+  - type: Tackle
+    chance: 0.25
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.66
+    baseSprintSpeed: 3
+  - type: SlowOnPull
+    slowdowns:
+    - multiplier: 0.68
+      whitelist:
+        components:
+        - Marine
+    - multiplier: 0.755
+      whitelist:
+        components:
+        - XenoLight
+    - multiplier: 0.5275
+      whitelist:
+        components:
+        - XenoHeavy
+  - type: STCrusherSplash
+  - type: STXenoDeepWounds
+  - type: RMCSize
+    size: Immobile
+  - type: RMCXenoDamageVisuals
+    prefix: crusher
+  - type: TacticalMapIcon
+    icon:
+      sprite: /Textures/_RMC14/Interface/map_blips.rsi
+      state: crusher
+  - type: StunOnExplosionReceived
+    weak: false
+  - type: IntelRecoverCorpseObjectiveOnDeath
+    value: 0.7
+  - type: TantrumSpeedBuff
+  - type: FixedIdentity
+    name: cm-job-name-xeno-crusher
+  - type: RMCSurgeryXenoHeart
+    item: RMCOrganXenoHeartT3
+
+- type: entity
+  parent: STXenoCrusherBase
+  id: STXenoCrusher
+  components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoCharge ]
+      XenoPrimaryTwo: [ ActionXenoStomp ]
+      XenoPrimaryThree: [ STActionXenoCrusherShield ]
+  - type: XenoBaseCaste
+  - type: Xeno
+    actionIds:
+    - ActionXenoRest
+    - ActionXenoRegurgitate
+    - ActionXenoWatch
+    - ActionXenoTailStab
+    - ActionXenoCharge
+    - ActionXenoStomp
+    - STActionXenoCrusherShield
+    - ActionXenoDevolve
+  - type: STCrusherShield
+  - type: XenoCharge
+    damage:
+      types:
+        Blunt: 60
+        Structural: 750
+  - type: STCrusherChargeTuning
+  - type: XenoShield
+  - type: XenoEvolution
+    strains:
+    - RMCXenoCrusherCharger
+  - type: RMCActionOrder
+    id: STXenoCrusher

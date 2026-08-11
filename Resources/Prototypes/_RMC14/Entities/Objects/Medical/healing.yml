@@ -448,6 +448,7 @@
   - type: WoundTreater
     wound: Brute
     treats: true
+    treatsDeep: true # Stories-CrusherDeepWounds
     group: Brute
     consumable: true
     damage: -36

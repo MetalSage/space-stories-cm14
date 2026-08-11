@@ -4,6 +4,7 @@ using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.DoAfter;
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._Stories.Xenonids.Crusher; // Stories-CrusherDeepWounds
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
@@ -159,6 +160,21 @@ public abstract class SharedWoundsSystem : EntitySystem
             if (wound.Type != treater.Comp.Wound || wound.Treated)
                 continue;
 
+            // Stories-CrusherDeepWounds-Start
+            if (wound.Untreatable)
+            {
+                if (!treater.Comp.TreatsDeep)
+                    continue;
+
+                var stageEv = new STWoundTreatStageAttemptEvent(wound.Deep);
+                RaiseLocalEvent(target, ref stageEv);
+                anyWounds = true;
+
+                if (!stageEv.FullyTreated)
+                    continue;
+            }
+            // Stories-CrusherDeepWounds-End
+
             if (!treater.Comp.Treats && FixedPoint2.Abs(wound.Healed) < wound.Damage / 2)
                 continue;
 
@@ -295,6 +311,11 @@ public abstract class SharedWoundsSystem : EntitySystem
 
             if (wound.Type != treater.Comp.Wound)
                 continue;
+
+            // Stories-CrusherDeepWounds-Start
+            if (wound.Untreatable && !treater.Comp.TreatsDeep)
+                continue;
+            // Stories-CrusherDeepWounds-End
 
             if (treater.Comp.Treats && wound.Treated)
                 continue;
@@ -462,6 +483,9 @@ public abstract class SharedWoundsSystem : EntitySystem
             if (wound.Type != type)
                 continue;
 
+            if (wound.Untreatable) // Stories-CrusherDeepWounds
+                continue;
+
             var healing = -FixedPoint2.Max(-(wound.Damage * limit.Value - wound.Healed), amount);
             if (healing == FixedPoint2.Zero)
                 continue;
@@ -474,7 +498,7 @@ public abstract class SharedWoundsSystem : EntitySystem
         }
     }
 
-    public void AddWound(Entity<WoundableComponent?> woundable, FixedPoint2 total, WoundType type, TimeSpan? fixedDuration = null)
+    public void AddWound(Entity<WoundableComponent?> woundable, FixedPoint2 total, WoundType type, TimeSpan? fixedDuration = null, bool deep = false, float? directBloodloss = null, bool untreatable = false) // Stories-CrusherDeepWounds: added deep, directBloodloss, untreatable params
     {
         if (!Resolve(woundable, ref woundable.Comp, false))
             return;
@@ -488,6 +512,11 @@ public abstract class SharedWoundsSystem : EntitySystem
 
         bloodloss *= _bloodlossMultiplier;
 
+        // Stories-CrusherDeepWounds-Start
+        if (directBloodloss != null)
+            bloodloss = directBloodloss.Value;
+        // Stories-CrusherDeepWounds-End
+
         var time = _timing.CurTime;
         var duration = fixedDuration ?? total.Float() * woundable.Comp.DurationMultiplier * _bleedTimeMultiplier;
         if (EnsureComp<WoundedComponent>(woundable, out var wounded))
@@ -497,6 +526,9 @@ public abstract class SharedWoundsSystem : EntitySystem
             {
                 ref var wound = ref wounds[i];
                 if (wound.Type != type)
+                    continue;
+
+                if (wound.Deep != deep) // Stories-CrusherDeepWounds
                     continue;
 
                 if (wound.StopBleedAt is not { } stopBleedAt || time >= stopBleedAt)
@@ -517,7 +549,7 @@ public abstract class SharedWoundsSystem : EntitySystem
         wounded.BurnWoundGroup = woundable.Comp.BurnWoundGroup;
 
         TimeSpan? newDuration = duration == TimeSpan.MaxValue ? null : time + duration;
-        wounded.Wounds.Add(new Wound(total, FixedPoint2.Zero, bloodloss, newDuration, type, false));
+        wounded.Wounds.Add(new Wound(total, FixedPoint2.Zero, bloodloss, newDuration, type, false, deep, untreatable)); // Stories-CrusherDeepWounds
         Dirty(woundable, wounded);
     }
 
@@ -529,7 +561,7 @@ public abstract class SharedWoundsSystem : EntitySystem
         var wounds = wounded.Comp.Wounds;
         for (var i = wounds.Count - 1; i >= 0; i--)
         {
-            if (wounds[i].Type == type)
+            if (wounds[i].Type == type && !wounds[i].Untreatable) // Stories-CrusherDeepWounds
                 wounds.RemoveSwap(i);
         }
     }
@@ -559,4 +591,30 @@ public abstract class SharedWoundsSystem : EntitySystem
 
         return false;
     }
+
+    // Stories-CrusherDeepWounds-Start
+    public bool HasActiveDeepWound(Entity<WoundedComponent?> wounded, bool deep)
+    {
+        if (!Resolve(wounded, ref wounded.Comp, false) ||
+            wounded.Comp.Wounds.Count == 0)
+        {
+            return false;
+        }
+
+        var time = _timing.CurTime;
+        var wounds = CollectionsMarshal.AsSpan(wounded.Comp.Wounds);
+        foreach (ref var wound in wounds)
+        {
+            if (wound.Deep != deep || wound.Treated)
+                continue;
+
+            if (wound.StopBleedAt is { } stopBleedAt && time >= stopBleedAt)
+                continue;
+
+            return true;
+        }
+
+        return false;
+    }
+    // Stories-CrusherDeepWounds-End
 }

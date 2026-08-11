@@ -11,3 +11,18 @@
       state: skin
   - type: InstantAction
     event: !type:XenoOpenSkinsMenuActionEvent
+
+- type: entity
+  parent: ActionXenoBase
+  id: STActionXenoCrusherShield
+  name: Defensive Barrier
+  description: Toggle a barrier that accumulates and reduces incoming damage while active, or a passive resistance that scales with your missing health while off.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Stories/Actions/xeno_actions.rsi
+      state: empower
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:XenoDefensiveShieldActionEvent

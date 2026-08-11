@@ -1,0 +1,18 @@
+- type: entity
+  parent: RMCBaseEffect
+  id: STEffectCrusherShieldBreak
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: Sprite
+    sprite: _RMC14/Effects/attacks.rsi
+    noRot: true
+    state: slam
+    drawdepth: Effects
+    scale: 1.5, 1.5
+    color: white
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu

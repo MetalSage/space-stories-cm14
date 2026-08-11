@@ -1,6 +1,7 @@
 using Content.Shared._RMC14.Damage;
 using Content.Shared._RMC14.Damage.ObstacleSlamming;
 using Content.Shared._RMC14.Pulling;
+using Content.Shared._Stories.Xenonids.Crusher; // Stories-CrusherCharge
 using Content.Shared._RMC14.Slow;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Xenonids.Animation;
@@ -99,7 +100,15 @@ public sealed class XenoChargeSystem : EntitySystem
         {
             BreakOnMove = true,
             Hidden = true,
+            // Stories-CrusherCharge-Start
+            RootEntity = true,
+            // Stories-CrusherCharge-End
         };
+
+        // Stories-CrusherCharge-Start
+        if (HasComp<STCrusherChargeTuningComponent>(xeno))
+            EnsureComp<STCrusherChargeWindupArmorComponent>(xeno);
+        // Stories-CrusherCharge-End
 
         _stun.TrySlowdown(xeno, TimeSpan.FromSeconds(1.75f), false, 0f, 0f);
         _doAfter.TryStartDoAfter(doAfter);
@@ -107,8 +116,14 @@ public sealed class XenoChargeSystem : EntitySystem
 
     private void OnXenoChargeDoAfterEvent(Entity<XenoChargeComponent> xeno, ref XenoChargeDoAfterEvent args)
     {
+        // Stories-CrusherCharge-Start
+        RemComp<STCrusherChargeWindupArmorComponent>(xeno);
+        // Stories-CrusherCharge-End
+
         if (args.Cancelled)
             return;
+
+        xeno.Comp.AlreadyHit.Clear(); // Stories-CrusherCharge
 
         _rmcPulling.TryStopAllPullsFromAndOn(xeno);
 
@@ -173,6 +188,11 @@ public sealed class XenoChargeSystem : EntitySystem
         if (_mobState.IsDead(targetId))
             return;
 
+        // Stories-CrusherCharge-Start
+        if (xeno.Comp.AlreadyHit.Contains(targetId))
+            return;
+        // Stories-CrusherCharge-End
+
         XenoCrusherChargableComponent? crush = null;
         var isValidTarget = _xeno.CanAbilityAttackTarget(xeno, targetId);
 
@@ -185,7 +205,18 @@ public sealed class XenoChargeSystem : EntitySystem
                 return;
         }
 
-        StopCrusherCharge(xeno);
+        // Stories-CrusherCharge-Start
+        var continueThrough = crush == null && isValidTarget && HasComp<STCrusherChargeTuningComponent>(xeno);
+        if (continueThrough)
+        {
+            xeno.Comp.AlreadyHit.Add(targetId);
+            Dirty(xeno);
+        }
+        else
+        {
+            StopCrusherCharge(xeno);
+        }
+        // Stories-CrusherCharge-End
 
         if (_net.IsServer)
             _audio.PlayPvs(xeno.Comp.Sound, xeno);

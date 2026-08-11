@@ -65,7 +65,8 @@
     - type: XenoEvolution
       max: 500
       evolvesTo:
-        - RMCXenoCrusher
+        #- RMCXenoCrusher
+        - STXenoCrusher # Stories-Crusher
         - CMXenoPraetorian
       strains:
         - STXenoWarriorBoxer # Stories-XenoBoxer

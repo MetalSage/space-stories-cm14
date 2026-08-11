@@ -12,6 +12,7 @@ using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._RMC14.Xenonids.Plasma;
 using Content.Shared._RMC14.Xenonids.Projectile.Spit.Stacks;
 using Content.Shared._Stories.Xenonids.Despoiler;
+using Content.Shared._Stories.Xenonids.Crusher; // Stories-CrusherShield
 using Content.Shared._RMC14.Xenonids.Rank;
 using Content.Shared.Damage;
 using Content.Shared.Ghost;
@@ -65,6 +66,7 @@ public sealed class XenoHudOverlay : Overlay
     private readonly EntityQuery<XenoComponent> _xenoQuery;
     private readonly EntityQuery<XenoDespoilerHypertensionComponent> _hyperQuery; // Stories-Despoiler
     private readonly EntityQuery<HiveTeamMemberComponent> _hiveTeamMemberQuery;
+    private readonly EntityQuery<STCrusherShieldComponent> _stCrusherShieldQuery; // Stories-CrusherShield
 
     private readonly ShaderInstance _shader;
 
@@ -101,6 +103,7 @@ public sealed class XenoHudOverlay : Overlay
         _xenoQuery = _entity.GetEntityQuery<XenoComponent>();
         _hyperQuery = _entity.GetEntityQuery<XenoDespoilerHypertensionComponent>(); // Stories-Despoiler
         _hiveTeamMemberQuery = _entity.GetEntityQuery<HiveTeamMemberComponent>();
+        _stCrusherShieldQuery = _entity.GetEntityQuery<STCrusherShieldComponent>(); // Stories-CrusherShield
 
         _shader = _prototype.Index<ShaderPrototype>("unshaded").Instance();
         ZIndex = 1;
@@ -225,6 +228,7 @@ public sealed class XenoHudOverlay : Overlay
             UpdatePlasma((uid, xeno, sprite), handle);
             UpdateShields((uid, xeno, sprite), handle);
             UpdateEnergy((uid, xeno, sprite), handle);
+            UpdateCrusherShieldBar((uid, xeno, sprite), handle); // Stories-CrusherShield
             UpdateHypertension((uid, xeno, sprite), handle); // Stories-Despoiler
         }
     }
@@ -654,6 +658,9 @@ public sealed class XenoHudOverlay : Overlay
     {
         var (uid, xeno, sprite) = ent;
 
+        if (_stCrusherShieldQuery.HasComp(uid)) // Stories-CrusherShield
+            return;
+
         FixedPoint2 shieldAmount = 0;
 
         // Check for regular xeno shield
@@ -699,13 +706,42 @@ public sealed class XenoHudOverlay : Overlay
         UpdatePurpleBar(ent, handle, comp.Current, comp.Max, comp.GenerationCap);
     }
 
-    private void UpdatePurpleBar(Entity<XenoComponent, SpriteComponent> ent, DrawingHandleWorld handle, double energy, double max, int? generationCap)
+    private static readonly ResPath EnergyBarRsiPath = new("/Textures/_RMC14/Interface/xeno_hud.rsi"); // Stories-CrusherShield
+    private static readonly ResPath CrusherEnergyBarRsiPath = new("/Textures/_Stories/Interface/xeno_hud_crusher.rsi"); // Stories-CrusherShield
+
+    // Stories-CrusherShield-Start
+    private void UpdateCrusherShieldBar(Entity<XenoComponent, SpriteComponent> ent, DrawingHandleWorld handle)
+    {
+        var (uid, _, _) = ent;
+        if (!_stCrusherShieldQuery.TryComp(uid, out var shield))
+            return;
+
+        var maxPool = shield.MaxPool;
+        if (maxPool <= FixedPoint2.Zero)
+            return;
+
+        var hasPool = _xenoShieldQuery.TryComp(uid, out var pool);
+        var shieldAmount = hasPool ? pool!.ShieldAmount : FixedPoint2.Zero;
+        var savedPool = shield.SavedPool;
+        var offPoolValue = savedPool < FixedPoint2.Zero ? maxPool : savedPool;
+        var value = shield.State switch
+        {
+            STCrusherShieldState.Active when hasPool => shieldAmount.Double(),
+            STCrusherShieldState.Broken => 0d,
+            _ => offPoolValue.Double(),
+        };
+
+        UpdatePurpleBar(ent, handle, value, maxPool.Double(), null, CrusherEnergyBarRsiPath);
+    }
+    // Stories-CrusherShield-End
+
+    private void UpdatePurpleBar(Entity<XenoComponent, SpriteComponent> ent, DrawingHandleWorld handle, double energy, double max, int? generationCap, ResPath? rsiPath = null) // Stories-CrusherShield: added rsiPath param
     {
         var (_, xeno, sprite) = ent;
         var level = ContentHelpers.RoundToLevels(energy, max, 11);
         var name = level > 0 ? $"{level * 10}" : "0";
         var state = $"xenoenergy{name}";
-        var icon = new Rsi(new ResPath("/Textures/_RMC14/Interface/xeno_hud.rsi"), state);
+        var icon = new Rsi(rsiPath ?? EnergyBarRsiPath, state);
         var texture = _sprite.GetFrame(icon, _timing.CurTime);
 
         var bounds = sprite.Bounds;

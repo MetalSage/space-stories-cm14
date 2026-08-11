@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 and modified (desaturated to white for _Stories Crusher shield world bar)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "xenoenergy0"
+    },
+    {
+      "name": "xenoenergy10"
+    },
+    {
+      "name": "xenoenergy20"
+    },
+    {
+      "name": "xenoenergy30"
+    },
+    {
+      "name": "xenoenergy40"
+    },
+    {
+      "name": "xenoenergy50"
+    },
+    {
+      "name": "xenoenergy60"
+    },
+    {
+      "name": "xenoenergy70"
+    },
+    {
+      "name": "xenoenergy80"
+    },
+    {
+      "name": "xenoenergy90"
+    },
+    {
+      "name": "xenoenergy100"
+    }
+  ]
+}
