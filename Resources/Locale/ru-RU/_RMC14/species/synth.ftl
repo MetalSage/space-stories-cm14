@@ -18,3 +18,8 @@ rmc-synth-repair-burn-finish-self = Вы устранили термически
 
 rmc-synth-repair-brute-finish = { THE($user) } выправил вмятины на { $limb } у { THE($target) } с помощью { THE($tool) }.
 rmc-synth-repair-burn-finish = { THE($user) } устранил термические повреждения на { $limb } у { THE($target) } с помощью { THE($tool) }.
+
+st-species-synth-joe-death-emote = яростно булькает жидкостью и застывает, свечение в глазах тускнеет...
+st-species-name-working-joe = Рабочий Джо
+st-species-name-working-joe-base = Рабочий Джо
+st-species-name-working-joe-postfix = #

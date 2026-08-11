@@ -1,0 +1,252 @@
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceGreetingHello
+  category: st-working-joe-category-greeting
+  text: st-working-joe-line-greeting-hello
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/zdravstvuyte.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/zdravstvuyte.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceGreetingGoodDay
+  category: st-working-joe-category-greeting
+  text: st-working-joe-line-greeting-good-day
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/dobriyden.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/dobriyden.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceGreetingHowCanIHelp
+  category: st-working-joe-category-greeting
+  text: st-working-joe-line-greeting-how-can-i-help
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/mogu_pomoch.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/mogu_pomoch.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceGreetingHowCanIBeUseful
+  category: st-working-joe-category-greeting
+  text: st-working-joe-line-greeting-how-can-i-be-useful
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/polezen.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/polezen.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceGreetingNoHonor
+  category: st-working-joe-category-greeting
+  text: st-working-joe-line-greeting-no-honor
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/chesti.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/chesti.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceGreetingAnybodyThere
+  category: st-working-joe-category-greeting
+  text: st-working-joe-line-greeting-anybody-there
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/tut_kto.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/tut_kto.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceGreetingStillHere
+  category: st-working-joe-category-greeting
+  text: st-working-joe-line-greeting-still-here
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/zdes.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/zdes.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceGreetingLookingForYou
+  category: st-working-joe-category-greeting
+  text: st-working-joe-line-greeting-looking-for-you
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/yavasiskal.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/yavasiskal.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceGreetingWantToHelp
+  category: st-working-joe-category-greeting
+  text: st-working-joe-line-greeting-want-to-help
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/etovi-yahochupomoch.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/etovi-yahochupomoch.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellGladSorted
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-glad-sorted
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/radchtomiuladili.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/radchtomiuladili.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellCouldntHelp
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-couldnt-help
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/nesmogpomoch.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/nesmogpomoch.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellPlentyOfWork
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-plenty-of-work
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/polno_raboti.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/polno_raboti.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellReturningToTasks
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-returning-to-tasks
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/zadacham.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/zadacham.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellGoingToWork
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-going-to-work
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/poydurabotat.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/poydurabotat.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellMoreImportant
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-more-important
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/delapovazhnee.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/delapovazhnee.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellOtherMatters
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-other-matters
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/drugihdel.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/drugihdel.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellOnlyWantedToHelp
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-only-wanted-to-help
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/hotel_pomoch.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/hotel_pomoch.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellTimeWasted
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-time-wasted
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/zrya_potratil.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/zrya_potratil.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceFarewellWhereWasI
+  category: st-working-joe-category-farewell
+  text: st-working-joe-line-farewell-where-was-i
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/na_chem_ya.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/na_chem_ya.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceQuipAlwaysKnow
+  category: st-working-joe-category-quip
+  text: st-working-joe-line-quip-always-know
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/uznatlegko.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/uznatlegko.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceQuipAwful
+  category: st-working-joe-category-quip
+  text: st-working-joe-line-quip-awful
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/ne_horosho.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/ne_horosho.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceQuipNotLiking
+  category: st-working-joe-category-quip
+  text: st-working-joe-line-quip-not-liking
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/ne_ustraivaet.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/ne_ustraivaet.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceQuipAlwaysReady
+  category: st-working-joe-category-quip
+  text: st-working-joe-line-quip-always-ready
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/gotoviy_pomoch.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/gotoviy_pomoch.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceQuipLittleDetails
+  category: st-working-joe-category-quip
+  text: st-working-joe-line-quip-little-details
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/malihdetalah.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/malihdetalah.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceQuipJustAMistake
+  category: st-working-joe-category-quip
+  text: st-working-joe-line-quip-just-a-mistake
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/oshibka.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/oshibka.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceQuipWantToHelp
+  category: st-working-joe-category-quip
+  text: st-working-joe-line-quip-want-to-help
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/pomoch.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/pomoch.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceQuipPatient
+  category: st-working-joe-category-quip
+  text: st-working-joe-line-quip-patient
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/terpeliviy.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/terpeliviy.ogg
+
+- type: stSynthVoiceLine
+  id: STWorkingJoeVoiceQuipSoTiresome
+  category: st-working-joe-category-quip
+  text: st-working-joe-line-quip-so-tiresome
+  sound:
+    path: /Audio/_Stories/Synth/WorkingJoe/nadoelo.ogg
+  alternateSound:
+    path: /Audio/_Stories/Synth/WorkingJoe/Hazmat/nadoelo.ogg

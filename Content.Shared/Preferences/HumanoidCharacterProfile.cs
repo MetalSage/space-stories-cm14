@@ -62,6 +62,13 @@ namespace Content.Shared.Preferences
         [DataField]
         private Dictionary<ProtoId<JobPrototype>, ProtoId<RankPrototype>?> _rankPreferences = new();
 
+        // Stories-JobVariantPreference-Start
+        [DataField]
+        private Dictionary<ProtoId<JobPrototype>, string?> _variantPreferences = new();
+
+        public IReadOnlyDictionary<ProtoId<JobPrototype>, string?> VariantPreferences => _variantPreferences;
+        // Stories-JobVariantPreference-End
+
         /// <summary>
         /// <see cref="_loadouts"/>
         /// </summary>
@@ -250,6 +257,7 @@ namespace Content.Shared.Preferences
                 other.XenoPrefix,
                 other.XenoPostfix)
         {
+            _variantPreferences = new Dictionary<ProtoId<JobPrototype>, string?>(other.VariantPreferences); // Stories-JobVariantPreference
         }
 
         /// <summary>
@@ -402,6 +410,20 @@ namespace Content.Shared.Preferences
 
             return new(this) { _rankPreferences = dictionary };
         }
+
+        // Stories-JobVariantPreference-Start
+        public HumanoidCharacterProfile WithVariantPreference(ProtoId<JobPrototype> jobId, string? variantId)
+        {
+            var dictionary = new Dictionary<ProtoId<JobPrototype>, string?>(_variantPreferences);
+
+            if (variantId == null)
+                dictionary.Remove(jobId);
+            else
+                dictionary[jobId] = variantId;
+
+            return new(this) { _variantPreferences = dictionary };
+        }
+        // Stories-JobVariantPreference-End
 
         public HumanoidCharacterProfile WithSquadPreference(EntProtoId<SquadTeamComponent>? squadPreference)
         {

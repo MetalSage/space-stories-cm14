@@ -18,3 +18,8 @@ rmc-synth-repair-burn-finish-self = You repair some burn damage on {THE($target)
 
 rmc-synth-repair-brute-finish = {THE($user)} patches some dents on {THE($target)}'s {$limb} with {THE($tool)}.
 rmc-synth-repair-burn-finish = {THE($user)} repairs some burn damage on {THE($target)}'s {$limb} with {THE($tool)}.
+
+st-species-synth-joe-death-emote = violently gargles fluid and seizes up, the glow in their eyes dimming...
+st-species-name-working-joe = Working Joe
+st-species-name-working-joe-base = Working Joe
+st-species-name-working-joe-postfix = #
