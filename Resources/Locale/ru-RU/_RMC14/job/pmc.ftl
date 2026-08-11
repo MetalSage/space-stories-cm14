@@ -108,6 +108,15 @@ rmc-job-name-pmc-whiteout-gunner = Боевой юнит с пулеметом �
 
 rmc-job-prefix-pmc-whiteout = БМ
 
+rmc-ghost-name-weya-commando-leader = Командир отделения коммандо We-Ya (Дружественный)
+rmc-job-name-weya-commando-leader = Командир отделения коммандо
+
+rmc-ghost-name-weya-commando = Коммандо We-Ya (Дружественный)
+rmc-job-name-weya-commando = Коммандо
+
+rmc-ghost-name-weya-commando-gunner = Тяжёлый пулемётчик коммандо We-Ya (Дружественный)
+rmc-job-name-weya-commando-gunner = Тяжёлый пулемётчик коммандо
+
 # Executives
 
 rmc-ghost-role-information-corp-exec-description = Вы являетесь сотрудником корпорации Вестон-Ямада. Ваша задача — поддерживать и отстаивать интересы Вестон-Ямада.
