@@ -114,6 +114,8 @@ rmc-tacmap-alert-no-area = Неизвесно
 rmc-ui-options-alternate-sprites = Используйте спрайты, не вызывающие трипофобии
 
 rmc-ui-options-chat-squad-color-mode = Раскрашивать имена говорящих по отрядам
+rmc-ui-options-crt-theme = Использовать оформление интерфейса в стиле ЭЛТ
+rmc-ui-options-crt-effects = Использовать визуальные эффекты ЭЛТ
 
 # Dialog input
 rmc-dialog-input-placeholder-default = Введите текст
