@@ -39,6 +39,11 @@
     - type: IntelRescueSurvivorObjective
     - type: RMCSurvivor
     - type: MotionDetectorTracked
+    # Stories-Synth-Start
+    - type: SynthGeneration
+      generation: RMCSynthGenTwo
+      selectable: false
+    # Stories-Synth-End
     - type: MeleeWeapon
       soundHit:
         path: /Audio/_RMC14/Weapons/synthpunch1.ogg

@@ -18,3 +18,14 @@ rmc-synth-repair-burn-finish-self = Вы устранили термически
 
 rmc-synth-repair-brute-finish = { THE($user) } выправил вмятины на { $limb } у { THE($target) } с помощью { THE($tool) }.
 rmc-synth-repair-burn-finish = { THE($user) } устранил термические повреждения на { $limb } у { THE($target) } с помощью { THE($tool) }.
+
+st-synth-item-restricted = Ваше программирование запрещает использовать { THE($item) }!
+st-synth-item-restricted-armor = Ваше программирование запрещает надевать { THE($item) }!
+st-species-synth-joe-death-emote = яростно булькает жидкостью и застывает, свечение в глазах тускнеет...
+st-species-name-working-joe = Рабочий Джо
+st-species-name-working-joe-base = Рабочий Джо
+st-species-name-working-joe-postfix = #
+st-synth-item-too-heavy = { CAPITALIZE(THE($item)) } слишком тяжёлый для того, у кого нет синтетической силы.
+
+st-synth-wall-breacher-not-wielded = Вам нужно держать { THE($tool) } двумя руками, чтобы использовать его на этом.
+st-synth-wall-breacher-immune = { CAPITALIZE(THE($wall)) } слишком прочный, чтобы его можно было так разрушить.

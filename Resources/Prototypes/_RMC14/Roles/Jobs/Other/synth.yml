@@ -20,6 +20,11 @@
   - ShipMasterAccess
   - Synth
   roleWeight: 0.25
+  setVariantPreference: true # Stories-SynthGenerationVariant
+  variants: # Stories-SynthGenerationVariant-Start
+    Two: st-job-variant-synth-generation-two
+    Three: st-job-variant-synth-generation-three
+  # Stories-SynthGenerationVariant-End
   special:
   - !type:AddComponentSpecial
     components:
@@ -81,7 +86,12 @@
         types:
           Blunt: 35
     - type: Synth
-  hidden: true
+    # Stories-SynthGenerationVariant-Start
+    - type: STJobVariantGeneration
+      variants:
+        Two: RMCSynthGenTwo
+        Three: RMCSynthGenThree
+    # Stories-SynthGenerationVariant-End
 
 - type: startingGear
   id: RMCGearSyntheticEquipped

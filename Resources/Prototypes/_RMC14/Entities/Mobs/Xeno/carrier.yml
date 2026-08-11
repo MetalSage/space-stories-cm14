@@ -24,6 +24,16 @@
       0: Alive
       650: Critical
       750: Dead
+  # Stories-SynthHeavyGrab-Start
+  - type: Tag
+    tags:
+    - RMCSynthGrabbable
+  - type: FiremanCarriable
+    canThrow: true
+    carrierWhitelist:
+      components:
+      - STSynthHeavyGrab
+  # Stories-SynthHeavyGrab-End
   - type: Xeno
     role: CMXenoCarrier
     tier: 2

@@ -72,7 +72,11 @@ public abstract class SharedLanguageSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return language == CommonLanguage;
 
-        return ent.Comp.SpokenLanguages.Contains(language);
+        if (ent.Comp.SpokenLanguages.Contains(language))
+            return true;
+
+        // Stories-SpeakWhileLearning
+        return TryComp(ent.Owner, out LanguageLearningComponent? learning) && learning.LanguageStates.ContainsKey(language);
     }
 
     public bool CanUnderstand(EntityUid entity, ProtoId<LanguagePrototype> language)
@@ -124,6 +128,15 @@ public abstract class SharedLanguageSystem : EntitySystem
 
         if (!Resolve(ent, ref ent.Comp, false))
             return DefaultLanguages;
+
+        // Stories-SpeakWhileLearning-Start
+        if (TryComp(ent.Owner, out LanguageLearningComponent? learning) && learning.LanguageStates.Count > 0)
+        {
+            var languages = new HashSet<ProtoId<LanguagePrototype>>(ent.Comp.SpokenLanguages);
+            languages.UnionWith(learning.LanguageStates.Keys);
+            return languages;
+        }
+        // Stories-SpeakWhileLearning-End
 
         return ent.Comp.SpokenLanguages;
     }

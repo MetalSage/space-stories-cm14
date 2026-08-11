@@ -3,6 +3,7 @@ using Content.Shared._RMC14.Marines.Roles.Ranks;
 using Content.Shared._RMC14.Medal;
 using Content.Shared._RMC14.Prototypes;
 using Robust.Shared.Audio;
+using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
@@ -57,6 +58,14 @@ public sealed partial class JobPrototype : IInheritingPrototype, ICMSpecific
 
     [DataField]
     public readonly Dictionary<RMCPlaytimeMedalType, EntProtoId>? Medals;
+
+    // Stories-JobVariantPreference-Start
+    [DataField]
+    public bool SetVariantPreference { get; private set; } = false;
+
+    [DataField]
+    public readonly Dictionary<string, LocId>? Variants;
+    // Stories-JobVariantPreference-End
 
     [DataField]
     public float RoleWeight;
