@@ -13,6 +13,7 @@ using Content.Shared._RMC14.Xenonids.Invisibility;
 using Content.Shared._RMC14.Xenonids.ManageHive.Boons;
 using Content.Shared._RMC14.Xenonids.Strain;
 using Content.Shared._RMC14.Xenonids.Weeds;
+using Content.Shared._Stories.Xenonids.Evolution;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Climbing.Components;
@@ -41,6 +42,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random; // Stories-EvoQueue
 using Robust.Shared.Timing;
 
 namespace Content.Shared._RMC14.Xenonids.Evolution;
@@ -66,6 +68,7 @@ public sealed class XenoEvolutionSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IRobustRandom _random = default!; // Stories-EvoQueue
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
@@ -78,6 +81,12 @@ public sealed class XenoEvolutionSystem : EntitySystem
     private TimeSpan _evolutionAccumulatePointsBefore;
     private TimeSpan _evolveSameCasteCooldown;
     private TimeSpan _earlyEvoBoostBefore;
+
+    // Stories-EvoQueue-Start
+    private bool _evolutionQueueEnabled;
+    private TimeSpan _evolutionQueueGrace;
+    private TimeSpan _nextQueueUpdate;
+    // Stories-EvoQueue-End
 
     private readonly HashSet<EntityUid> _climbable = new();
     private readonly HashSet<EntityUid> _doors = new();
@@ -113,6 +122,7 @@ public sealed class XenoEvolutionSystem : EntitySystem
             {
                 subs.Event<XenoEvolveBuiMsg>(OnXenoEvolveBui);
                 subs.Event<XenoStrainBuiMsg>(OnXenoStrainBui);
+                subs.Event<XenoEvolutionQueueCancelBuiMsg>(OnXenoEvolutionQueueCancelBui); // Stories-EvoQueue
             });
 
         Subs.BuiEvents<XenoDevolveComponent>(XenoDevolveUIKey.Key,
@@ -125,6 +135,10 @@ public sealed class XenoEvolutionSystem : EntitySystem
         Subs.CVar(_config, RMCCVars.RMCEvolutionPointsAccumulateBeforeMinutes, v => _evolutionAccumulatePointsBefore = TimeSpan.FromMinutes(v), true);
         Subs.CVar(_config, RMCCVars.RMCXenoEvolveSameCasteCooldownSeconds, v => _evolveSameCasteCooldown = TimeSpan.FromSeconds(v), true);
         Subs.CVar(_config, RMCCVars.RMCXenoEarlyEvoPointBoostBeforeMinutes, v => _earlyEvoBoostBefore = TimeSpan.FromMinutes(v), true);
+        // Stories-EvoQueue-Start
+        Subs.CVar(_config, RMCCVars.RMCXenoEvolutionQueueEnabled, v => _evolutionQueueEnabled = v, true);
+        Subs.CVar(_config, RMCCVars.RMCXenoEvolutionQueueGraceSeconds, v => _evolutionQueueGrace = TimeSpan.FromSeconds(v), true);
+        // Stories-EvoQueue-End
     }
 
     private void OnXenoOpenDevolveAction(Entity<XenoDevolveComponent> xeno, ref XenoOpenDevolveActionEvent args)
@@ -147,6 +161,9 @@ public sealed class XenoEvolutionSystem : EntitySystem
             return;
 
         ent.Comp.MarinesLanded = MarinesHaveLanded();
+
+        // Stories-EvoQueue
+        EnsureComp<XenoEvolutionQueueComponent>(ent).TierEnteredAt = _gameTicker.RoundDuration();
     }
 
     private void OnXenoEvolveAction(Entity<XenoEvolutionComponent> xeno, ref XenoOpenEvolutionsActionEvent args)
@@ -156,9 +173,7 @@ public sealed class XenoEvolutionSystem : EntitySystem
 
         args.Handled = true;
         _ui.OpenUi(xeno.Owner, XenoEvolutionUIKey.Key, xeno);
-
-        var state = new XenoEvolveBuiState(LackingOvipositor(xeno.Owner));
-        _ui.SetUiState(xeno.Owner, XenoEvolutionUIKey.Key, state);
+        _ui.SetUiState(xeno.Owner, XenoEvolutionUIKey.Key, BuildEvolveState(xeno.Owner)); // Stories-EvoQueue
     }
 
     private void OnXenoEvolveBui(Entity<XenoEvolutionComponent> xeno, ref XenoEvolveBuiMsg args)
@@ -168,6 +183,13 @@ public sealed class XenoEvolutionSystem : EntitySystem
 
         if (_net.IsClient)
             return;
+
+        // Stories-EvoQueue
+        if (!HasValidQueueOffer(xeno, args.Choice))
+        {
+            _popup.PopupEntity(Loc.GetString("stories-xeno-queue-no-offer"), xeno, xeno, PopupType.MediumCaution);
+            return;
+        }
 
         if (!CanEvolvePopup(xeno, args.Choice))
         {
@@ -210,6 +232,16 @@ public sealed class XenoEvolutionSystem : EntitySystem
 
         if (_doAfter.TryStartDoAfter(doAfter))
         {
+            // Stories-EvoQueue
+            if (_evolutionQueueEnabled &&
+                TryComp(xeno, out XenoEvolutionQueueComponent? offerQueue) &&
+                offerQueue.OfferedUntil != null)
+            {
+                offerQueue.EvolvingUntil = _gameTicker.RoundDuration() + xeno.Comp.EvolutionDelay + TimeSpan.FromSeconds(1);
+                offerQueue.OfferedUntil = null;
+                Dirty(xeno.Owner, offerQueue);
+            }
+
             _jitter.DoJitter(xeno, xeno.Comp.EvolutionDelay, true, 80, 8, true);
 
             var popupOthers = Loc.GetString("rmc-xeno-evolution-start-others", ("xeno", xeno));
@@ -252,6 +284,74 @@ public sealed class XenoEvolutionSystem : EntitySystem
         RaiseLocalEvent(newXeno, ref afterEv);
     }
 
+    // Stories-EvoQueue-Start
+    private void OnXenoEvolutionQueueCancelBui(Entity<XenoEvolutionComponent> xeno, ref XenoEvolutionQueueCancelBuiMsg args)
+    {
+        if (_net.IsClient)
+            return;
+
+        if (!TryComp(xeno, out XenoEvolutionQueueComponent? queue) || queue.OfferedUntil == null)
+            return;
+
+        DeclineOffer((xeno.Owner, queue), Loc.GetString("stories-xeno-queue-declined"));
+        _ui.SetUiState(xeno.Owner, XenoEvolutionUIKey.Key, BuildEvolveState(xeno.Owner));
+
+        if (_evolutionQueueEnabled)
+            UpdateEvolutionQueue(_gameTicker.RoundDuration());
+    }
+
+    // Drops the offer, resets priority (back of queue) and sits the xeno out so the slot passes on.
+    private void DeclineOffer(Entity<XenoEvolutionQueueComponent> xeno, string? popup)
+    {
+        var now = _gameTicker.RoundDuration();
+        xeno.Comp.OfferedUntil = null;
+        xeno.Comp.OfferedTier = 0;
+        xeno.Comp.TierEnteredAt = now;
+        xeno.Comp.PassedUntil = now + _evolutionQueueGrace;
+        Dirty(xeno);
+
+        if (popup != null)
+            _popup.PopupEntity(popup, xeno, xeno, PopupType.MediumCaution);
+    }
+
+    private bool HasValidQueueOffer(Entity<XenoEvolutionComponent> xeno, EntProtoId choice)
+    {
+        if (!_evolutionQueueEnabled)
+            return true;
+
+        if (_xenoHive.GetHive(xeno.Owner) is not { } hive ||
+            !_xenoHive.IsQueuedCaste(hive, choice))
+        {
+            return true;
+        }
+
+        if (!_prototypes.TryIndex(choice, out var proto) ||
+            !proto.TryGetComponent(out XenoComponent? xenoComp, _compFactory))
+        {
+            return false;
+        }
+
+        var roundDuration = _gameTicker.RoundDuration();
+        if (xenoComp.UnlockAt > roundDuration)
+            return false;
+
+        return TryComp(xeno, out XenoEvolutionQueueComponent? queue) &&
+               queue.OfferedTier == xenoComp.Tier &&
+               queue.OfferedUntil is { } until &&
+               until > roundDuration;
+    }
+
+    private void ReleaseEvolvingReservation(EntityUid xeno)
+    {
+        if (!TryComp(xeno, out XenoEvolutionQueueComponent? queue) || queue.EvolvingUntil == null)
+            return;
+
+        queue.EvolvingUntil = null;
+        queue.OfferedTier = 0;
+        Dirty(xeno, queue);
+    }
+    // Stories-EvoQueue-End
+
     private void OnXenoDevolveBui(Entity<XenoDevolveComponent> xeno, ref XenoDevolveBuiMsg args)
     {
         _ui.CloseUi(xeno.Owner, XenoEvolutionUIKey.Key, xeno);
@@ -260,12 +360,16 @@ public sealed class XenoEvolutionSystem : EntitySystem
 
     private void OnXenoEvolveDoAfter(Entity<XenoEvolutionComponent> xeno, ref XenoEvolutionDoAfterEvent args)
     {
-        if (_net.IsClient ||
-            args.Handled ||
+        if (_net.IsClient)
+            return;
+
+        if (args.Handled ||
             args.Cancelled ||
             !_mind.TryGetMind(xeno, out _, out _) ||
             !CanEvolvePopup(xeno, args.Choice))
         {
+            // Stories-EvoQueue
+            ReleaseEvolvingReservation(xeno.Owner);
             return;
         }
 
@@ -422,10 +526,15 @@ public sealed class XenoEvolutionSystem : EntitySystem
             damageable.TotalDamage <= 1)
             return true;
 
-        if (predicted)
-            _popup.PopupClient(Loc.GetString("rmc-xeno-evolution-cant-evolve-damaged"), xeno, xeno, PopupType.MediumCaution);
-        else
-            _popup.PopupEntity(Loc.GetString("rmc-xeno-evolution-cant-evolve-damaged"), xeno, xeno, PopupType.MediumCaution);
+        // Stories-EvoQueue-Start
+        if (doPopup)
+        {
+            if (predicted)
+                _popup.PopupClient(Loc.GetString("rmc-xeno-evolution-cant-evolve-damaged"), xeno, xeno, PopupType.MediumCaution);
+            else
+                _popup.PopupEntity(Loc.GetString("rmc-xeno-evolution-cant-evolve-damaged"), xeno, xeno, PopupType.MediumCaution);
+        }
+        // Stories-EvoQueue-End
 
         return false;
     }
@@ -522,7 +631,7 @@ public sealed class XenoEvolutionSystem : EntitySystem
         return true;
     }
 
-    private bool CanEvolvePopup(Entity<XenoEvolutionComponent> xeno, EntProtoId newXeno, bool doPopup = true)
+    private bool CanEvolvePopup(Entity<XenoEvolutionComponent> xeno, EntProtoId newXeno, bool doPopup = true, bool ignoreSlotLimit = false) // Stories-EvoQueue
     {
         var isEarlyEvo = xeno.Comp.EarlyEvolvesTo.Contains(newXeno);
         if (!xeno.Comp.EvolvesTo.Contains(newXeno) && !xeno.Comp.EvolvesToWithoutPoints.Contains(newXeno) && !isEarlyEvo)
@@ -585,12 +694,18 @@ public sealed class XenoEvolutionSystem : EntitySystem
 
             if (!_xenoWeeds.IsOnWeeds((gridUid, grid), coordinates) && comp.RestrictTime > _gameTicker.RoundDuration())
             {
-                _popup.PopupEntity(
-                    Loc.GetString("rmc-xeno-evolution-failed-early-weeds"),
-                    xeno,
-                    xeno,
-                    PopupType.MediumCaution
-                );
+                // Stories-EvoQueue-Start
+                if (doPopup)
+                {
+                    _popup.PopupEntity(
+                        Loc.GetString("rmc-xeno-evolution-failed-early-weeds"),
+                        xeno,
+                        xeno,
+                        PopupType.MediumCaution
+                    );
+                }
+                // Stories-EvoQueue-End
+
                 return false;
             }
         }
@@ -612,35 +727,38 @@ public sealed class XenoEvolutionSystem : EntitySystem
             return false;
         }
 
+        // Stories-EvoQueue-Start
+        var hasQueueOffer = false;
+        if (_evolutionQueueEnabled &&
+            !ignoreSlotLimit &&
+            newXenoComp != null &&
+            _xenoHive.GetHive(xeno.Owner) is { } queueHive &&
+            _xenoHive.IsQueuedCaste(queueHive, newXeno))
+        {
+            var queueNow = _gameTicker.RoundDuration();
+            hasQueueOffer = TryComp(xeno, out XenoEvolutionQueueComponent? queue) &&
+                            queue.OfferedTier == newXenoComp.Tier &&
+                            ((queue.OfferedUntil is { } offeredUntil && offeredUntil > queueNow) ||
+                             (queue.EvolvingUntil is { } evolvingUntil && evolvingUntil > queueNow));
+
+            if (!hasQueueOffer)
+            {
+                if (doPopup)
+                    _popup.PopupEntity(Loc.GetString("stories-xeno-queue-wait"), xeno, xeno, PopupType.MediumCaution);
+
+                return false;
+            }
+        }
+        // Stories-EvoQueue-End
+
         if (newXenoComp != null &&
             !newXenoComp.BypassTierCount &&
+            !hasQueueOffer && // Stories-EvoQueue
+            !ignoreSlotLimit && // Stories-EvoQueue
             _xenoHive.GetHive(xeno.Owner) is { } oldHive &&
             _xenoHive.TryGetTierLimit((oldHive, oldHive.Comp), newXenoComp.Tier, out var limit))
         {
-            var existing = 0;
-            var total = Math.Sqrt(oldHive.Comp.BurrowedLarva * oldHive.Comp.BurrowedLarvaSlotFactor);
-            total = Math.Min(total, oldHive.Comp.BurrowedLarva);
-
-            var current = EntityQueryEnumerator<XenoComponent, HiveMemberComponent>();
-            var slotCount = oldHive.Comp.FreeSlots.ToDictionary();
-            while (current.MoveNext(out var uid, out var existingComp, out var member))
-            {
-                if (_mobState.IsDead(uid))
-                    continue;
-
-                if (member.Hive != oldHive.Owner || !existingComp.CountedInSlots)
-                    continue;
-
-                total++;
-
-                if (existingComp.Tier < newXenoComp.Tier)
-                    continue;
-
-                if (slotCount.ContainsKey(existingComp.Role.Id) && slotCount[existingComp.Role.Id] > 0)
-                    slotCount[existingComp.Role.Id] -= 1;
-                else
-                    existing++;
-            }
+            _xenoHive.GetTierOccupancy(oldHive, newXenoComp.Tier, out var total, out var existing, out var slotCount);
 
             if (total != 0 && existing / (float)total >= limit && (!slotCount.ContainsKey(newXeno) || slotCount[newXeno] <= 0))
             {
@@ -962,6 +1080,15 @@ public sealed class XenoEvolutionSystem : EntitySystem
 
         var time = _timing.CurTime;
         var roundDuration = _gameTicker.RoundDuration();
+
+        // Stories-EvoQueue-Start
+        if (_evolutionQueueEnabled && time >= _nextQueueUpdate)
+        {
+            _nextQueueUpdate = time + TimeSpan.FromSeconds(1);
+            UpdateEvolutionQueue(roundDuration);
+        }
+        // Stories-EvoQueue-End
+
         var needsOvipositor = NeedsOvipositor();
         if (needsOvipositor)
         {
@@ -1055,4 +1182,165 @@ public sealed class XenoEvolutionSystem : EntitySystem
             ? boon.Comp.FrozenOverride
             : points + boon.Comp.FrozenBonus;
     }
+
+    // Stories-EvoQueue-Start
+    private XenoEvolveBuiState BuildEvolveState(EntityUid xeno)
+    {
+        return new XenoEvolveBuiState(LackingOvipositor(xeno));
+    }
+
+    private bool TryGetCasteTier(EntProtoId caste, out int tier)
+    {
+        tier = 0;
+        if (!_prototypes.TryIndex(caste, out var proto) ||
+            !proto.TryGetComponent(out XenoComponent? xenoComp, _compFactory))
+        {
+            return false;
+        }
+
+        tier = xenoComp.Tier;
+        return true;
+    }
+
+    private bool CanTakeQueuedSlot(Entity<XenoEvolutionComponent> xeno, Entity<HiveComponent> hive, int tier)
+    {
+        foreach (var caste in xeno.Comp.EvolvesTo)
+        {
+            if (_xenoHive.IsQueuedCaste(hive, caste) &&
+                TryGetCasteTier(caste, out var t) && t == tier &&
+                CanEvolvePopup(xeno, caste, false, true))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private List<Entity<XenoEvolutionQueueComponent>> GetQueueCandidates(Entity<HiveComponent> hive, int tier, TimeSpan roundDuration)
+    {
+        var result = new List<Entity<XenoEvolutionQueueComponent>>();
+
+        var query = EntityQueryEnumerator<XenoEvolutionQueueComponent, XenoEvolutionComponent, ActorComponent, HiveMemberComponent>();
+        while (query.MoveNext(out var uid, out var queue, out var evo, out _, out var member))
+        {
+            if (member.Hive != hive.Owner ||
+                queue.OfferedUntil != null ||
+                queue.EvolvingUntil != null || // Stories-EvoQueue
+                (queue.PassedUntil is { } passed && passed > roundDuration) ||
+                _mobState.IsDead(uid) ||
+                evo.Points < evo.Max ||
+                !CanTakeQueuedSlot((uid, evo), hive, tier))
+            {
+                continue;
+            }
+
+            result.Add((uid, queue));
+        }
+
+        return result;
+    }
+
+    private void UpdateEvolutionQueue(TimeSpan roundDuration)
+    {
+        var refresh = new HashSet<EntityUid>();
+
+        var pending = new Dictionary<(EntityUid Hive, int Tier), int>();
+        var offers = EntityQueryEnumerator<XenoEvolutionQueueComponent>();
+        while (offers.MoveNext(out var uid, out var queue))
+        {
+            if (queue.EvolvingUntil is { } evolving)
+            {
+                if (evolving > roundDuration &&
+                    !_mobState.IsDead(uid) &&
+                    HasComp<ActorComponent>(uid) &&
+                    _xenoHive.GetHive(uid) is { } evolvingHive)
+                {
+                    var evolvingKey = (evolvingHive.Owner, queue.OfferedTier);
+                    pending[evolvingKey] = pending.GetValueOrDefault(evolvingKey) + 1;
+                    continue;
+                }
+
+                queue.EvolvingUntil = null;
+                Dirty(uid, queue);
+            }
+
+            if (queue.OfferedUntil is not { } until)
+                continue;
+
+            if (_xenoHive.GetHive(uid) is not { } offerHive)
+            {
+                queue.OfferedUntil = null;
+                Dirty(uid, queue);
+                continue;
+            }
+
+            if (_mobState.IsDead(uid) || !HasComp<ActorComponent>(uid))
+            {
+                DeclineOffer((uid, queue), null);
+                refresh.Add(offerHive.Owner);
+                continue;
+            }
+
+            if (until <= roundDuration)
+            {
+                DeclineOffer((uid, queue), Loc.GetString("stories-xeno-queue-expired"));
+                refresh.Add(offerHive.Owner);
+                continue;
+            }
+
+            var key = (offerHive.Owner, queue.OfferedTier);
+            pending[key] = pending.GetValueOrDefault(key) + 1;
+        }
+
+        var hives = EntityQueryEnumerator<HiveComponent>();
+        while (hives.MoveNext(out var hiveId, out var hiveComp))
+        {
+            var hive = new Entity<HiveComponent>(hiveId, hiveComp);
+            foreach (var tier in hiveComp.TierLimits.Keys)
+            {
+                var need = _xenoHive.GetOpenTierSlots(hive, tier) - pending.GetValueOrDefault((hiveId, tier));
+                if (need <= 0)
+                    continue;
+
+                var candidates = GetQueueCandidates(hive, tier, roundDuration);
+                if (candidates.Count == 0)
+                    continue;
+
+                _random.Shuffle(candidates);
+                var ordered = candidates.OrderBy(c => c.Comp.TierEnteredAt);
+
+                foreach (var candidate in ordered)
+                {
+                    if (need <= 0)
+                        break;
+
+                    candidate.Comp.OfferedUntil = roundDuration + _evolutionQueueGrace;
+                    candidate.Comp.OfferedTier = tier;
+                    Dirty(candidate);
+                    _popup.PopupEntity(
+                        Loc.GetString("stories-xeno-queue-offered", ("seconds", (int)_evolutionQueueGrace.TotalSeconds)),
+                        candidate, candidate, PopupType.Large);
+                    refresh.Add(hiveId);
+                    need--;
+                }
+            }
+        }
+
+        foreach (var hiveId in refresh)
+            RefreshHiveEvolutionUis(hiveId);
+    }
+
+    private void RefreshHiveEvolutionUis(EntityUid hiveId)
+    {
+        var xenos = EntityQueryEnumerator<ActorComponent, XenoEvolutionComponent, HiveMemberComponent>();
+        while (xenos.MoveNext(out var uid, out _, out _, out var member))
+        {
+            if (member.Hive != hiveId)
+                continue;
+
+            _ui.SetUiState(uid, XenoEvolutionUIKey.Key, BuildEvolveState(uid));
+        }
+    }
+    // Stories-EvoQueue-End
 }
