@@ -111,6 +111,9 @@
     - RMCJumpsuitMarinePatch
     - CMHandsBlackMarine
     - CMBootsBlackFilled
+    # Stories - Whistles - Start
+    - STTrenchWhistle
+    # Stories - Whistles - End
 
 - type: entity
   parent: CMVendorBundleRiflemanApparel
@@ -194,7 +197,8 @@
   - type: CMVendorBundle
     bundle:
     - RMCLaserDesignator
-    - RMCWhistle
+    # - RMCWhistle 
+    - STTrenchWhistle # ST - Whistles
     - RMCWeaponTaser
     - RMCMegaphone
     #TODO RMC14 Paper Map.

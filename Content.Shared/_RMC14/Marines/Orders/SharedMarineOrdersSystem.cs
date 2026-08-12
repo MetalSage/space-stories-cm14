@@ -1,5 +1,6 @@
 using Content.Shared._RMC14.Evasion;
 using Content.Shared._RMC14.Marines.Skills;
+using Content.Shared._Stories.LeadershipWhistle;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Inventory;

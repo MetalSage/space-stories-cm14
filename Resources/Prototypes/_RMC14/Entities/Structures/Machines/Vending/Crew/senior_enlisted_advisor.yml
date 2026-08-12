@@ -20,6 +20,9 @@
       - id: CMBootsBlackFilled
       - id: CMMRE
       - id: RMCStampSEA
+      # Stories - Whistles - Start
+      - id: STTrenchWhistle
+      # Stories - Whistles - End
     - name: Gloves
       choices: { CMGloves: 1 }
       entries:

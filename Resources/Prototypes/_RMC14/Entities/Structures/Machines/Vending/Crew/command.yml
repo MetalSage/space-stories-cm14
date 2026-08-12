@@ -101,8 +101,14 @@
         recommended: true
       - id: SprayBottleSpaceCleaner
         points: 2
-      - id: RMCWhistle
+      # Stories - Whistles - Start
+      - id: STTrenchWhistle
         points: 5
+        recommended: true
+      # Stories - Whistles - End
+
+      #- id: RMCWhistle
+      #  points: 5
 
 # Armoury Vend
 
@@ -225,8 +231,12 @@
         recommended: true
       - id: SprayBottleSpaceCleaner
         points: 2
-      - id: RMCWhistle
+      # Stories - Whistles - Start
+      - id: STTrenchWhistle
         points: 5
+      # Stories - Whistles - End
+      #- id: RMCWhistle
+      #  points: 5
       - id: RMCScabbardMacheteFilled
         points: 5
 
@@ -345,8 +355,12 @@
         points: 5
       - id: SprayBottleSpaceCleaner
         points: 2
-      - id: RMCWhistle
+      #- id: RMCWhistle
+      #  points: 5
+      # Stories - Whistles - Start
+      - id: STTrenchWhistle
         points: 5
+      # Stories - Whistles - End
       - id: RMCFlashlight
         points: 1
       - id: RMCSynthResetKey
