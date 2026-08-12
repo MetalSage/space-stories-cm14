@@ -6,18 +6,18 @@ ent-RMCWeaponLauncherM5ATL = M5-ATL
 
         У этого полностью отсутствует умная оптика, и, похоже, она повреждена, что значительно ограничивает его дальность...
 ent-RMCRocket84mm = 84-мм фугасная ракета
-    .desc = Ракетная труба, совместимая с M5-ATL, заряженная боеголовкой HE. Наносит большой урон мягким целям при прямом попадании и задевает другие цели в зоне шириной 5 метров. Снижает эффект по тяжелобронированным целям.
+    .desc = Ракетная труба, совместимая с M5-ATL, заряженная боеголовкой HE. Наносит большой урон мягким целям при прямом попадании и задевает другие цели в зоне шириной 7 метров. Снижает эффект по тяжелобронированным целям.
 ent-RMCBaseProjectileRocket84mm = 84mm high-explosive rocket
     .desc = Uh oh.
 ent-RMCProjectileRocket84mm = 84-мм фугасная ракета
     .desc = Ух ты.
 ent-RMCRocket84mmAntiArmor = 84-мм бронебойная ракета
-    .desc = Ракетная труба, совместимая с M5-ATL, заряженная ББ боеголовкой. Способна пробивать и уничтожать тяжелобронированные цели. Практически не наносит урона вне прямого попадания. Наносит гарантированное оглушение большинству целей. Обладает высокой точностью в пределах 7 метров.
+    .desc = Ракетная труба, совместимая с M5-ATL, заряженная ББ боеголовкой. Способна пробивать и уничтожать тяжелобронированные цели. Практически не наносит урона вне прямого попадания. Наносит гарантированное оглушение большинству целей. Обладает высокой точностью в пределах 6 метров.
 ent-RMCProjectileRocket84mmAntiArmor = 84-мм бронебойная ракета
     .desc = { ent-RMCProjectileRocket84mm.desc }
-ent-RMCRocket84mmWhitePhosphorus = 84mm white phosphorus rocket
-    .desc = A rocket tube loaded with a white phosphorus incendiary warhead. Has two damaging factors. On hit disperses X-Variant Napthal (blue flames) in a 4-meter radius circle, ignoring cover, while simultaneously bursting into highly heated shrapnel that ignites targets within slightly bigger area.
-ent-RMCProjectileRocket84mmWhitePhosphorus = 84mm white phosphorus rocket
+ent-RMCRocket84mmWhitePhosphorus = 84-мм ракета с белым фосфором
+    .desc = Ракетная труба, оснащенный зажигательной боевой частью с белым фосфором. Обладает двумя поражающими факторами. При попадании он разбрасывает зажигательную смесь «Нафталин-X» радиусе 4 метров, игнорируя укрытия, и одновременно разлетается на раскаленные осколки, поджигающие цели на несколько большей площади. Обладает высокой точностью в пределах 7 метров.
+ent-RMCProjectileRocket84mmWhitePhosphorus = 84-мм ракета с белым фосфором
     .desc = { ent-RMCBaseProjectileRocket84mm.desc }
 ent-RMCSmokeWhitePhosphorusNoSpread = { ent-Smoke }
     .desc = { ent-Smoke.desc }

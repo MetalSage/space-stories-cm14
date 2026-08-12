@@ -1,7 +1,7 @@
-ent-RMCWeaponRevolverWarwickMkVII = Warwick MkVII service revolver
-    .desc = The L187 Warwick MkVII top-break revolver is the standard-issue service revolver of the RCM’s Paramarine regiments. Despite the Warwick's archaic design, the MkVII's vacuum-sealed internals, bakelite grips, and .44 magnum chambering keep the weapon relevant and brutally effective.
+ent-RMCWeaponRevolverWarwickMkVII = служебный револьвер Уорик MkVII
+    .desc = Револьвер L187 Уорик MkVII с верхним разрывом ствола является стандартным служебным револьвером полков королевских парамаринов. Несмотря на устаревший дизайн Уорик, вакуумно-запечатанные внутренние части MkVII, бакелитовые рукоятки и калибр .44 магнум делают оружие актуальным и крайне эффективным.
     .suffix = Paramarine
-ent-RMCWeaponRevolverWarwickMkVIIAlt = Warwick MkVII service revolver
+ent-RMCWeaponRevolverWarwickMkVIIAlt = служебный револьвер Уорик MkVII
     .desc = { ent-RMCWeaponRevolverWarwickMkVII.desc }
     .suffix = Paramarine, Alt
 ent-RMCWeaponRevolverWarwickMkVIISnub = Warwick MkVII snubnose revolver

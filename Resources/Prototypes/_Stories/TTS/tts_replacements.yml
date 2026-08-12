@@ -267,7 +267,7 @@
       replacedWith: 'руководитель полевых операций'
       isRegex: true
     - pattern: '\bКС\b'
-      replacedWith: 'командир сил'
+      replacedWith: 'конец связи'
       isRegex: true
     - pattern: '\bЭЛИД\b'
       replacedWith: 'элитный лидер группы'

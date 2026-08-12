@@ -1,4 +1,4 @@
-ent-RMCPropSurveyingDevice = surveying device
-    .desc = A small laser measuring tool and camera mounted on a tripod. Comes in a stark safety yellow.
-ent-RMCPropMeasuringDevice = measuring device
-    .desc = Some sort of doohickey that measures stuff.
+ent-RMCPropSurveyingDevice = геодезический прибор
+    .desc = Компактный лазерный измерительный прибор и камера, установленные на штативе. Модель выполнена в ярко-желтом цвете, характерном для средств обеспечения безопасности.
+ent-RMCPropMeasuringDevice = измерительный прибор
+    .desc = Какая-то штуковина, которая что-то измеряет.

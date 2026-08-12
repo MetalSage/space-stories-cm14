@@ -1,5 +1,5 @@
 ent-CMSheetPhoron = форон
-    .desc = Phoron is an extremely rare mineral with exotic properties, often used in cutting-edge research. Just getting it into a stable, solid form is already difficult enough, considering it can be quite toxic and flammable.
+    .desc = Особая форма металлической плазмы, которая не встречается на Земле. Хотя форон легко воспламеняется и чрезвычайно токсичен, его высокая плотность энергии делает его одной из лучших альтернатив твердому топливу. Жидкий форон часто используется в исследовательских целях и в медицинской промышленности в качестве катализатора для многих передовых химических веществ.
     .suffix = Полный
 ent-CMSheetPhoron15 = { ent-CMSheetPhoron }
     .desc = { ent-CMSheetPhoron.desc }
@@ -32,7 +32,7 @@ ent-RMCPlankWood2 = { ent-RMCPlankWood }
     .desc = { ent-RMCPlankWood.desc }
     .suffix = Один
 ent-RMCSheetAluminum = алюминий
-    .desc = A silvery-white soft metal of the boron group. Because of its low density it is often used as a structural material in aircraft.
+    .desc = Мягкий серебристо-белый металл из группы бора. Благодаря низкой плотности он часто используется в качестве конструкционного материала в авиастроении.
     .suffix = Полный
 ent-RMCSheetAluminum15 = { ent-RMCSheetAluminum }
     .desc = { ent-RMCSheetAluminum.desc }
