@@ -1,7 +1,7 @@
-ent-RMCPDTLocatorTube = PDT/L locator tube
-    .desc = A handheld locator tube paired with a wrist PDT bracelet. It gives a direction and range readout to its partner bracelet.
-ent-RMCPDTBracelet = PDT wrist bracelet
-    .desc = A wrist-worn personal data transmitter bracelet intended to be paired with a PDT/L locator tube.
-ent-CMSparePDTLBattleBuddyKit = Boots! PDT/L Battle Buddy kit
-    .desc = A rugged little case containing a PDT/L locator tube, its paired wrist PDT bracelet, and a spare We-Ya mini-battery.
+ent-RMCPDTLocatorTube = трубка локатора PDT/L
+    .desc = Ручная локаторная трубка в паре с браслетом PDT на запястье. Она показывает направление и расстояние до его партнёрского браслета.
+ent-RMCPDTBracelet = браслет на запястье PDT
+    .desc = Наручный браслет-передатчик персональных данных, предназначенный для сопряжения с трубкой-локатором PDT/L.
+ent-CMSparePDTLBattleBuddyKit = комплект боевого напарника PDT/L
+    .desc = Прочный маленький футляр, в котором находится трубка-локатор PDT/L, соответствующий ей браслет PDT на запястье и запасная мини-батарея Ве-Я.
     .suffix = { ent-RMCWatchCase.suffix }

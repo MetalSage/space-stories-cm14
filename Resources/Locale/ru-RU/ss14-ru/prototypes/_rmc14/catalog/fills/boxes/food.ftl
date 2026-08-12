@@ -1,4 +1,4 @@
-ent-RMCBoxDonkpockets = box of donk-pockets
-    .desc = Instructions: Heat in microwave. Product will cool if not eaten within seven minutes.
+ent-RMCBoxDonkpockets = коробка «донк-покетов»
+    .desc = Инструкция: разогрейте в микроволновой печи. Если не съесть продукт в течение семи минут, он остынет.
 ent-RMCBoxIngredients = коробка с ингредиентами
     .desc = В этой коробке содержатся ингредиенты.

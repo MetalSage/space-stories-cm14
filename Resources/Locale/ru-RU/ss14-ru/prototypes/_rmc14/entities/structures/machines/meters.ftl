@@ -1,4 +1,4 @@
-ent-RMCWallMeterBase = метр
+ent-RMCWallMeterBase = измерительный счетчик
     .desc = { "" }
 ent-RMCWallMeterGreen = { ent-RMCWallMeterBase }
     .desc = { ent-RMCWallMeterBase.desc }

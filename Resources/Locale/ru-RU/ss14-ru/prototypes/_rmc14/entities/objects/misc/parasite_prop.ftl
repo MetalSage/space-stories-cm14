@@ -1,2 +1,2 @@
-ent-RMCParasiteProp = ????
+ent-RMCParasiteProp = ???
     .desc = У него на конце хвоста какая-то трубка. Что это вообще за чертовщина?

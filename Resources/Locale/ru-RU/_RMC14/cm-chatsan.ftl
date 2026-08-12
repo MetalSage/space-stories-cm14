@@ -378,7 +378,7 @@ cm-chatsan-word-farwa = farwa
 cm-chatsan-word-stok = stok
 cm-chatsan-word-neaera = neaera
 cm-chatsan-word-yiren = yiren
-cm-chatsan-replacement-monkey = small host
+cm-chatsan-replacement-monkey = маленький носитель
 
 cm-chatsan-word-monkeys = monkeys
 cm-chatsan-word-monkies = monkies
@@ -387,7 +387,7 @@ cm-chatsan-word-farwas = farwas
 cm-chatsan-word-stoks = stoks
 cm-chatsan-word-neaeras = neaeras
 cm-chatsan-word-yirens = yirens
-cm-chatsan-replacement-monkeys = small hosts
+cm-chatsan-replacement-monkeys = малые носители
 
 cm-chatsan-word-grenade = граната
 cm-chatsan-replacement-grenade = гром-палка

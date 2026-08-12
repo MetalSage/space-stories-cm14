@@ -1,7 +1,27 @@
 ### OB Warnings
-rmc-ob-warning-one = Небо вспыхивает огнем в направлении { $direction }!
+rmc-ob-warning-one = Небо вспыхивает огнем в направлении { $direction ->
+    [NORTH] СЕВЕР
+    [SOUTH] ЮГ
+    [EAST] ВОСТОК
+    [WEST] ЗАПАД
+    [NORTHEAST] СЕВЕРО-ВОСТОК
+    [NORTHWEST] СЕВЕРО-ЗАПАД
+    [SOUTHEAST] ЮГО-ВОСТОК
+    [SOUTHWEST] ЮГО-ЗАПАД
+   *[other] { $direction }
+}!
 rmc-ob-warning-above-one = Небо вспыхивает прямо над вами!
-rmc-ob-warning-two = Небо громче грохочет в направлении { $direction }!
+rmc-ob-warning-two = Небо громче грохочет в направлении { $direction ->
+    [NORTH] СЕВЕР
+    [SOUTH] ЮГ
+    [EAST] ВОСТОК
+    [WEST] ЗАПАД
+    [NORTHEAST] СЕВЕРО-ВОСТОК
+    [NORTHWEST] СЕВЕРО-ЗАПАД
+    [SOUTHEAST] ЮГО-ВОСТОК
+    [SOUTHWEST] ЮГО-ЗАПАД
+   *[other] { $direction }
+}!
 rmc-ob-warning-above-two = Небо над вами ревет еще громче!
 rmc-ob-warning-three = БОЖЕ, НЕБО ВЗОРВЕТСЯ!!!
 rmc-ob-warning-above-three = ТЫ НЕ ДОЛЖЕН БЫТЬ ЗДЕСЬ!
@@ -24,7 +44,7 @@ rmc-ob-launched = Орбитальная бомбардировка запуще
 ### Orbital Cannon Announcements
 rmc-ob-launch-detected = [font size=16][color=red]Обнаружена команда запуска орбитальной бомбардировки![/color][/font]
 rmc-ob-launch-area = [color=red]Команда запуска сообщает: тип боеголовки — { $warhead }. Расчетная зона поражения: { $area }[/color]
-rmc-ob-ship-shudder = [color=red]Палуба корабля «Альмайер» содрогается, когда орбитальные пушки открывают огонь по колонии.[/color]
+rmc-ob-ship-shudder = [color=red]Палуба корабля «Алмайер» содрогается, когда орбитальная пушка открывает огонь по колонии.[/color]
 rmc-ob-squad-warning = ВНИМАНИЕ! Обнаружен баллистический трансатмосферный пуск! Покиньте опасную зону!
 
 ### Orbital Cannon Console
