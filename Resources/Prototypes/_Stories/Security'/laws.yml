@@ -1,0 +1,82 @@
+# -- Groups --
+
+- type: lawCategory
+  id: VariableCategory
+  name: Variable
+  tags: 
+    - DamageToGovermentProperty
+
+- type: lawCategory
+  id: MinorCategory
+  name: Minor
+  tags:
+    - FailureSOP
+
+
+- type: lawCategory
+  id: MajorCategory
+  name: Major
+  tags:
+    - DisorderlyConduct
+
+- type: lawCategory
+  id: CapitalCategory
+  name: Capital
+  tags:
+    - Jailbreak
+
+
+- type: lawCategory
+  id: OptionalCategory
+  name: Optional
+
+
+# -- Charges --
+
+# Variables 
+
+- type: lawCharge
+  id: DamageToGovermentProperty
+  name: Damage to Goverment Property
+  description: Damaging the ship or making any unauthorized modifications to it as outlined in Standard Operating Procedure.
+  details:
+    confinementTime: 7.5 # Minutes
+
+
+# Minor 
+
+- type: lawCharge
+  id: FailureSOP
+  name: Failure to Follow Procedure
+  description: Failing to follow the regulations found in the Standard Operating Procedure.
+  details:
+    confinementTime: 10 # Minutes
+    
+# Major 
+
+- type: lawCharge
+  id: DisorderlyConduct
+  name: Disorderly Conduct
+  description: Directly and intentionally disrupting primary operations of the ship. Fighting in the RO line, extensively or repeatedly disrupting the briefing.
+  details:
+    confinementTime: 10 # Minutes
+
+# Capital 
+
+- type: lawCharge
+  id: Jailbreak
+  name: Jailbreak/Escape
+  description: To escape, assist in an escape, attempt escape, or be willfully and knowingly broken out from your cell.
+  details:
+    permaConfinement: true
+    execution: true
+    idTermination: true
+
+# Optional
+
+- type: lawCharge
+  id: ResistingArrest
+  name: Resisting Arrest
+  description: To resist a lawful search by Military Police.
+  details:
+    confinementTime: 10 # Minutes

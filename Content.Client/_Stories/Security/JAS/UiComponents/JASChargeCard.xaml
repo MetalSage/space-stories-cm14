@@ -1,0 +1,11 @@
+﻿<Control
+     xmlns="https://spacestation14.io"
+     xmlns:uiControls="clr-namespace:Content.Client.UserInterface.Controls">
+    <GridContainer HorizontalAlignment="Center" Margin="0 0 0 5" MinWidth="300">
+        <Label HorizontalAlignment="Center" Name="ChargeLabel" Access="Public" Text=""/>
+        <Label HorizontalAlignment="Center" Name="ChargeDesc" Access="Public" Text=""/>
+        <Button Modulate="Orange" Name="AddChargeButton" Text="Add Charge" Access="Public" MaxWidth="300"/>
+        <Button Modulate="Orange" Name="RemoveChargeButton" Text="Remove Charge" Access="Public" MaxWidth="300"/>
+        <uiControls:HighDivider Modulate="#3F3F3F" SetHeight="5"/>
+    </GridContainer>
+</Control>
