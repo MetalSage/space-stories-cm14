@@ -82,6 +82,9 @@
   name: wooden table parts
   description: A kit for a table, including a large, flat wooden surface and four legs. Some assembly required.
   components:
+  - type: PhysicalComposition # Stories-Recipe
+    materialComposition:
+     RMCWood: 4687
   - type: Sprite
     state: wood
   - type: Item
@@ -106,6 +109,9 @@
   name: poor wooden table parts
   description: A kit for a poorly crafted table, including a large, flat wooden surface and four legs. Some assembly required.
   components:
+  - type: PhysicalComposition
+    materialComposition:
+     RMCWood: 4687
   - type: Sprite
     state: poor_wood
   - type: Item
@@ -128,6 +134,9 @@
   name: fancy wooden table parts
   description: A kit for a finely crafted mahogany table, including a large, flat wooden surface and four legs. Some assembly required.
   components:
+  - type: PhysicalComposition
+    materialComposition:
+     RMCWood: 4687
   - type: Sprite
     state: fancy_wood
   - type: Item
@@ -149,6 +158,9 @@
   id: RMCTablePartGambling
   name: gambling table parts
   components:
+  - type: PhysicalComposition
+    materialComposition:
+     RMCWood: 4687
   - type: Sprite
     state: gamble
   - type: Item
