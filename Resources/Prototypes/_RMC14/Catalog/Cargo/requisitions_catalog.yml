@@ -289,6 +289,8 @@
         crate: RMCCrateMortarShellIncendiary
       - cost: 1000
         crate: RMCCrateMortarShellFlare
+      - cost: 1000
+        crate: RMCCrateMortarShellFrag
 #    - name: Операции # Stories-Translate
 #      entries: []
     - name: Резервуары для реагентов # Stories-Translate
