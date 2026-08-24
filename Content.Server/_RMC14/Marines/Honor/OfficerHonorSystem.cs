@@ -1,8 +1,10 @@
 using Content.Server.Actions;
 using Content.Server.Chat.Systems;
+using Content.Server.Interaction;
 using Content.Server.Roles.Jobs;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Honor;
+using Content.Shared._RMC14.Marines.Roles.Ranks;
 using Content.Shared.Buckle;
 using Content.Shared.Chat;
 using Content.Shared.Mind.Components;
@@ -20,6 +22,7 @@ public sealed class OfficerHonorSystem : EntitySystem
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly JobSystem _jobs = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -63,7 +66,10 @@ public sealed class OfficerHonorSystem : EntitySystem
         var officerAuthority = GetAuthority(ent.Owner);
         foreach (var nearby in _nearby)
         {
-            if (nearby != ent.Owner && GetAuthority(nearby) > officerAuthority)
+            if (nearby != ent.Owner &&
+                IsEligibleMarine(nearby) &&
+                _interaction.InRangeUnobstructed(ent.Owner, nearby, ent.Comp.Range) &&
+                GetAuthority(nearby) > officerAuthority)
             {
                 seniorOfficer = nearby;
                 break;
@@ -85,13 +91,13 @@ public sealed class OfficerHonorSystem : EntitySystem
 
         foreach (var nearby in _nearby)
         {
-            if (nearby == ent.Owner || nearby == honorTarget || !HasComp<MarineComponent>(nearby) || _mobState.IsDead(nearby))
+            if (nearby == ent.Owner ||
+                nearby == honorTarget ||
+                !IsEligibleMarine(nearby) ||
+                !_interaction.InRangeUnobstructed(ent.Owner, nearby, ent.Comp.Range))
                 continue;
 
-            _buckle.TryUnbuckle(nearby, nearby, popup: false);
-            _standing.Stand(nearby);
-            Face(nearby, officerPosition);
-            _chat.TryEmoteWithChat(nearby, "Salute", forceEmote: true);
+            QueueHonor(nearby, honorTarget, ent.Comp.Range);
 
             if (TryComp(nearby, out OfficerHonorComponent? officer))
             {
@@ -111,6 +117,45 @@ public sealed class OfficerHonorSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void QueueHonor(EntityUid marine, EntityUid honorTarget, float range)
+    {
+        var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.5f, 1.5f));
+        Timer.Spawn(reactionDelay, () =>
+        {
+            if (!IsEligibleMarine(marine) ||
+                !Exists(honorTarget) ||
+                !_interaction.InRangeUnobstructed(marine, honorTarget, range))
+            {
+                return;
+            }
+
+            _buckle.TryUnbuckle(marine, marine, popup: false);
+            _standing.Stand(marine);
+
+            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.15f, 0.4f)), () =>
+            {
+                if (!IsEligibleMarine(marine) ||
+                    !Exists(honorTarget) ||
+                    !_interaction.InRangeUnobstructed(marine, honorTarget, range))
+                {
+                    return;
+                }
+
+                Face(marine, _transform.GetWorldPosition(honorTarget));
+
+                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.4f, 1.2f)), () =>
+                {
+                    if (IsEligibleMarine(marine) &&
+                        Exists(honorTarget) &&
+                        _interaction.InRangeUnobstructed(marine, honorTarget, range))
+                    {
+                        _chat.TryEmoteWithChat(marine, "Salute", forceEmote: true);
+                    }
+                });
+            });
+        });
+    }
+
     private void Face(EntityUid entity, System.Numerics.Vector2 targetPosition)
     {
         var direction = targetPosition - _transform.GetWorldPosition(entity);
@@ -124,5 +169,13 @@ public sealed class OfficerHonorSystem : EntitySystem
                _jobs.MindTryGetJob(mindId, out var job)
             ? job.MarineAuthorityLevel
             : 0;
+    }
+
+    private bool IsEligibleMarine(EntityUid entity)
+    {
+        return HasComp<MarineComponent>(entity) &&
+               TryComp(entity, out RankComponent? rank) &&
+               rank.Rank != null &&
+               !_mobState.IsDead(entity);
     }
 }
