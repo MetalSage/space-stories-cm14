@@ -8,6 +8,7 @@ using Content.Shared.Chat;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
+using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 
 namespace Content.Server._RMC14.Marines.Honor;

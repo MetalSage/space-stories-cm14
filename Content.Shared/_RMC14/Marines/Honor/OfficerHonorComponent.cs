@@ -15,7 +15,7 @@ public sealed partial class OfficerHonorComponent : Component
     public EntityUid? ActionEntity;
 
     [DataField]
-    public int Range = 7;
+    public int Range = 10;
 
     [DataField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(20);
