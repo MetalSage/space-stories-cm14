@@ -48,6 +48,7 @@
         RMCSkillSurgery: 1
         RMCSkillVehicles: 2
     - type: MarineOrders
+    - type: OfficerHonor
     - type: CMVendorUser
       id: CMStaffOfficer
       points: 45
