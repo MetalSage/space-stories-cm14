@@ -5,6 +5,8 @@ using Content.Server.Roles.Jobs;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Honor;
 using Content.Shared._RMC14.Marines.Roles.Ranks;
+using Content.Shared._RMC14.Roles;
+using Content.Shared._RMC14.Stun;
 using Content.Shared.Buckle;
 using Content.Shared.Chat;
 using Content.Shared.Mind.Components;
@@ -13,6 +15,7 @@ using Content.Shared.Standing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._RMC14.Marines.Honor;
 
@@ -21,11 +24,13 @@ public sealed class OfficerHonorSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly RMCDazedSystem _dazed = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly JobSystem _jobs = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -98,6 +103,7 @@ public sealed class OfficerHonorSystem : EntitySystem
                 continue;
 
             QueueHonor(nearby, honorTarget, ent.Comp.Range);
+            ApplyCommandSpeechEffects(nearby);
 
             if (TryComp(nearby, out OfficerHonorComponent? officer))
             {
@@ -119,7 +125,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
     private void QueueHonor(EntityUid marine, EntityUid honorTarget, float range)
     {
-        var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.5f, 1.5f));
+        var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.35f, 0.75f));
         Timer.Spawn(reactionDelay, () =>
         {
             if (!IsEligibleMarine(marine) ||
@@ -132,7 +138,7 @@ public sealed class OfficerHonorSystem : EntitySystem
             _buckle.TryUnbuckle(marine, marine, popup: false);
             _standing.Stand(marine);
 
-            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.15f, 0.4f)), () =>
+            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.25f, 0.5f)), () =>
             {
                 if (!IsEligibleMarine(marine) ||
                     !Exists(honorTarget) ||
@@ -143,7 +149,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
                 Face(marine, _transform.GetWorldPosition(honorTarget));
 
-                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.4f, 1.2f)), () =>
+                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.7f, 1.4f)), () =>
                 {
                     if (IsEligibleMarine(marine) &&
                         Exists(honorTarget) &&
@@ -165,6 +171,13 @@ public sealed class OfficerHonorSystem : EntitySystem
 
     private int GetAuthority(EntityUid entity)
     {
+        if (TryComp(entity, out OriginalRoleComponent? originalRole) &&
+            originalRole.Job is { } jobId &&
+            _prototypes.TryIndex(jobId, out var originalJob))
+        {
+            return originalJob.MarineAuthorityLevel;
+        }
+
         return TryComp(entity, out MindContainerComponent? mind) && mind.Mind is { } mindId &&
                _jobs.MindTryGetJob(mindId, out var job)
             ? job.MarineAuthorityLevel
@@ -177,5 +190,21 @@ public sealed class OfficerHonorSystem : EntitySystem
                TryComp(entity, out RankComponent? rank) &&
                rank.Rank != null &&
                !_mobState.IsDead(entity);
+    }
+
+    private void ApplyCommandSpeechEffects(EntityUid marine)
+    {
+        _dazed.TryDaze(marine, TimeSpan.FromSeconds(1), refresh: true, stutter: true);
+
+        var whisper = EnsureComp<OfficerHonorForcedWhisperComponent>(marine);
+        whisper.ExpiresAt = _timing.CurTime + TimeSpan.FromSeconds(13);
+        Timer.Spawn(TimeSpan.FromSeconds(13), () =>
+        {
+            if (TryComp(marine, out OfficerHonorForcedWhisperComponent? active) &&
+                active.ExpiresAt <= _timing.CurTime)
+            {
+                RemCompDeferred<OfficerHonorForcedWhisperComponent>(marine);
+            }
+        });
     }
 }

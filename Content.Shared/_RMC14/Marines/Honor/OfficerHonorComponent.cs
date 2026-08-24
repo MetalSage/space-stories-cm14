@@ -23,3 +23,9 @@ public sealed partial class OfficerHonorComponent : Component
     [ViewVariables]
     public TimeSpan NextHonorAt;
 }
+
+[RegisterComponent]
+public sealed partial class OfficerHonorForcedWhisperComponent : Component
+{
+    public TimeSpan ExpiresAt;
+}
