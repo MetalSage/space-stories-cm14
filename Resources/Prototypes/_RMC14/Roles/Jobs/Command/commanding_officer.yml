@@ -64,6 +64,7 @@
     - type: Skills
       preset: RMCSkillPresetCommander
     - type: MarineOrders
+    - type: OfficerHonor
     - type: CMVendorUser
       id: CMCommandingOfficer
       points: 120
