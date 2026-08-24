@@ -87,7 +87,6 @@ public sealed class OfficerHonorSystem : EntitySystem
         _chat.TrySendInGameICMessage(ent, Loc.GetString(callout), InGameICChatType.Speak, false);
 
         var honorTarget = seniorOfficer ?? ent.Owner;
-        var officerPosition = _transform.GetWorldPosition(honorTarget);
         if (honorTarget != ent.Owner && TryComp(honorTarget, out OfficerHonorComponent? honoredOfficer))
         {
             honoredOfficer.NextHonorAt = now + honoredOfficer.Cooldown;
@@ -99,6 +98,7 @@ public sealed class OfficerHonorSystem : EntitySystem
             if (nearby == ent.Owner ||
                 nearby == honorTarget ||
                 !IsEligibleMarine(nearby) ||
+                GetAuthority(nearby) >= officerAuthority ||
                 !_interaction.InRangeUnobstructed(ent.Owner, nearby, ent.Comp.Range))
                 continue;
 
@@ -114,8 +114,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
         if (seniorOfficer != null)
         {
-            Face(ent.Owner, officerPosition);
-            _chat.TryEmoteWithChat(ent, "Salute", forceEmote: true);
+            QueueHonor(ent.Owner, seniorOfficer.Value, ent.Comp.Range);
         }
 
         ent.Comp.NextHonorAt = now + ent.Comp.Cooldown;
@@ -138,7 +137,7 @@ public sealed class OfficerHonorSystem : EntitySystem
             _buckle.TryUnbuckle(marine, marine, popup: false);
             _standing.Stand(marine);
 
-            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.25f, 0.5f)), () =>
+            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.1f, 0.25f)), () =>
             {
                 if (!IsEligibleMarine(marine) ||
                     !Exists(honorTarget) ||
@@ -149,7 +148,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
                 Face(marine, _transform.GetWorldPosition(honorTarget));
 
-                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.7f, 1.4f)), () =>
+                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.25f, 0.55f)), () =>
                 {
                     if (IsEligibleMarine(marine) &&
                         Exists(honorTarget) &&
