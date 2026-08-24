@@ -5,11 +5,12 @@ using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Honor;
 using Content.Shared.Buckle;
 using Content.Shared.Chat;
-using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server._RMC14.Marines.Honor;
 
@@ -23,6 +24,7 @@ public sealed class OfficerHonorSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
     private readonly HashSet<EntityUid> _nearby = new();
@@ -50,7 +52,7 @@ public sealed class OfficerHonorSystem : EntitySystem
         if (args.Handled || _mobState.IsDead(ent))
             return;
 
-        var now = Timing.CurTime;
+        var now = _timing.CurTime;
         if (ent.Comp.NextHonorAt > now || !TryComp(ent, out TransformComponent? transform))
             return;
 
