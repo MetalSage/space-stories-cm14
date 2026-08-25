@@ -1,0 +1,14 @@
+rmc-marine-silence-action-name = Приказать заткнуться
+rmc-marine-silence-action-description = Приказать ближайшим морпехам ниже по званию говорить шёпотом.
+rmc-marine-silence-officer-message = Вы чувствуете грозность офицерского голоса.
+rmc-marine-silence-sergeant-message = Вы ощущаете сержантский гнев. Лучше бы вам не проверять его терпение.
+rmc-marine-silence-officer-1 = Молчать!!
+rmc-marine-silence-officer-2 = Заткнуть рты.
+rmc-marine-silence-officer-3 = Тишина.
+rmc-marine-silence-sergeant-1 = ЗАТКНИТЕСЬ!!
+rmc-marine-silence-sergeant-2 = Захлопните варежки!!
+rmc-marine-silence-sergeant-3 = Завалите ебальники!!
+rmc-marine-silence-sergeant-4 = Ох, кто-то залетит у меня сейчас..
+rmc-marine-silence-mp-1 = Замолчи!!
+rmc-marine-silence-mp-2 = Заткнись.
+rmc-marine-silence-mp-3 = А ну заткнуть ебло!!

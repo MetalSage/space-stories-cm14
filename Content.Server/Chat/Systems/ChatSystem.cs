@@ -254,6 +254,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (desiredType == InGameICChatType.Speak && HasComp<OfficerHonorForcedWhisperComponent>(source))
             desiredType = InGameICChatType.Whisper;
 
+        if (desiredType == InGameICChatType.Speak && HasComp<MarineSilencedForcedWhisperComponent>(source))
+            desiredType = InGameICChatType.Whisper;
+
         // RMC14
         var currentLanguage = GetCurrentLanguageForSpeech(source);
         // RMC14

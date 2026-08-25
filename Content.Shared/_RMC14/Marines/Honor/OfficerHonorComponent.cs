@@ -29,3 +29,12 @@ public sealed partial class OfficerHonorForcedWhisperComponent : Component
 {
     public TimeSpan ExpiresAt;
 }
+
+/// <summary>
+/// Forces ordinary IC speech to be sent as a whisper while a superior's silence order is active.
+/// </summary>
+[RegisterComponent]
+public sealed partial class MarineSilencedForcedWhisperComponent : Component
+{
+    public TimeSpan ExpiresAt;
+}
