@@ -61,6 +61,10 @@
       id: CMSquadLeader
       points: 45
     - type: MarineOrders
+    - type: MarineSilence
+      authority: Sergeant
+      range: 6
+      duration: 15
     - type: SquadArmorWearer
       leader: true
     - type: SquadLeader
