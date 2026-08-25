@@ -123,8 +123,17 @@ public sealed class MarineSilenceSystem : EntitySystem
             return false;
         }
 
-        rankIndex = hierarchy.Values.IndexOf(rank.Rank.Value);
-        return rankIndex >= 0;
+        var rankId = rank.Rank.Value.ToString();
+        for (var index = 0; index < hierarchy.Values.Count; index++)
+        {
+            if (hierarchy.Values[index] != rankId)
+                continue;
+
+            rankIndex = index;
+            return true;
+        }
+
+        return false;
     }
 
     private bool IsEligibleMarine(EntityUid entity)
