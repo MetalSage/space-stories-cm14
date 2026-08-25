@@ -50,6 +50,10 @@
         RMCSkillOverwatch: 1
         RMCSkillPolice: 2
     - type: MarineOrders
+    - type: MarineSilence
+      authority: MilitaryPolice
+      range: 6
+      duration: 15
     - type: RMCPointing
     - type: JobPrefix
       prefix: cm-job-prefix-mp
