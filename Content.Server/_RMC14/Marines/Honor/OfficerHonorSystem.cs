@@ -124,7 +124,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
     private void QueueHonor(EntityUid marine, EntityUid honorTarget, float range)
     {
-        var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.35f, 0.75f));
+        var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.5f, 0.95f));
         Timer.Spawn(reactionDelay, () =>
         {
             if (!IsEligibleMarine(marine) ||
@@ -137,7 +137,7 @@ public sealed class OfficerHonorSystem : EntitySystem
             _buckle.TryUnbuckle(marine, marine, popup: false);
             _standing.Stand(marine);
 
-            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.1f, 0.25f)), () =>
+            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.2f, 0.4f)), () =>
             {
                 if (!IsEligibleMarine(marine) ||
                     !Exists(honorTarget) ||
@@ -148,7 +148,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
                 Face(marine, _transform.GetWorldPosition(honorTarget));
 
-                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.25f, 0.55f)), () =>
+                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.4f, 0.75f)), () =>
                 {
                     if (IsEligibleMarine(marine) &&
                         Exists(honorTarget) &&

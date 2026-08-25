@@ -49,6 +49,7 @@
         RMCSkillVehicles: 2
     - type: MarineOrders
     - type: OfficerHonor
+    - type: MarineSilence
     - type: CMVendorUser
       id: CMStaffOfficer
       points: 45
