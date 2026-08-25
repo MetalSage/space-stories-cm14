@@ -135,9 +135,8 @@ public sealed class OfficerHonorSystem : EntitySystem
             }
 
             _buckle.TryUnbuckle(marine, marine, popup: false);
-            _standing.Stand(marine);
 
-            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.2f, 0.4f)), () =>
+            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.15f, 0.3f)), () =>
             {
                 if (!IsEligibleMarine(marine) ||
                     !Exists(honorTarget) ||
@@ -146,16 +145,28 @@ public sealed class OfficerHonorSystem : EntitySystem
                     return;
                 }
 
-                Face(marine, _transform.GetWorldPosition(honorTarget));
+                _standing.Stand(marine);
 
-                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.4f, 0.75f)), () =>
+                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.2f, 0.4f)), () =>
                 {
-                    if (IsEligibleMarine(marine) &&
-                        Exists(honorTarget) &&
-                        _interaction.InRangeUnobstructed(marine, honorTarget, range))
+                    if (!IsEligibleMarine(marine) ||
+                        !Exists(honorTarget) ||
+                        !_interaction.InRangeUnobstructed(marine, honorTarget, range))
                     {
-                        _chat.TryEmoteWithChat(marine, "Salute", forceEmote: true);
+                        return;
                     }
+
+                    Face(marine, _transform.GetWorldPosition(honorTarget));
+
+                    Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.4f, 0.75f)), () =>
+                    {
+                        if (IsEligibleMarine(marine) &&
+                            Exists(honorTarget) &&
+                            _interaction.InRangeUnobstructed(marine, honorTarget, range))
+                        {
+                            _chat.TryEmoteWithChat(marine, "Salute", forceEmote: true);
+                        }
+                    });
                 });
             });
         });
