@@ -2,14 +2,12 @@ using Content.Server.Actions;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
-using Content.Server.Roles.Jobs;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Honor;
 using Content.Shared._RMC14.Marines.Roles.Ranks;
 using Content.Shared._RMC14.Marines.Silence;
 using Content.Shared.Chat;
 using Content.Shared.Dataset;
-using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
@@ -28,11 +26,11 @@ public sealed class MarineSilenceSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly JobSystem _jobs = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedRankSystem _ranks = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly HashSet<EntityUid> _nearby = new();
@@ -117,13 +115,13 @@ public sealed class MarineSilenceSystem : EntitySystem
     private bool TryGetRankIndex(EntityUid entity, out int rankIndex)
     {
         rankIndex = -1;
-        if (!TryComp(entity, out RankComponent? rank) || rank.Rank == null ||
-            !_prototypes.TryIndex(RankHierarchy, out var hierarchy))
+        var rank = _ranks.GetRank(entity);
+        if (rank == null || !_prototypes.TryIndex(RankHierarchy, out var hierarchy))
         {
             return false;
         }
 
-        var rankId = rank.Rank.Value.ToString();
+        var rankId = rank.ID;
         for (var index = 0; index < hierarchy.Values.Count; index++)
         {
             if (hierarchy.Values[index] != rankId)
