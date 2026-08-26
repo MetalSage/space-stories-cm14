@@ -1,5 +1,5 @@
 rmc-marine-silence-action-name = Приказать заткнуться
-rmc-marine-silence-action-description = Приказать ближайшим морпехам ниже по званию говорить шёпотом.
+rmc-marine-silence-action-description = Приказать ближайшим морпехам ниже по званию говорить шёпотом
 rmc-marine-silence-officer-message = Вы чувствуете грозность офицерского голоса.
 rmc-marine-silence-sergeant-message = Вы ощущаете сержантский гнев. Лучше бы вам не проверять его терпение.
 rmc-marine-silence-officer-1 = Молчать!!
