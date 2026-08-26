@@ -52,6 +52,7 @@
     - type: CMVendorUser
       id: CMDropshipCrewChief
       points: 45
+    - type: MarineSilence
     - type: RMCPointing
     - type: JobPrefix
       prefix: cm-job-prefix-dcc
