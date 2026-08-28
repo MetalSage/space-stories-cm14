@@ -17,6 +17,13 @@ public sealed partial class OfficerHonorComponent : Component
     [DataField]
     public int Range = 10;
 
+    /// <summary>
+    /// Whether recipients must be visible to the officer. Visibility uses sight
+    /// occluders, so transparent windows do not prevent a salute.
+    /// </summary>
+    [DataField]
+    public bool CheckVisibility = true;
+
     [DataField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(20);
 
