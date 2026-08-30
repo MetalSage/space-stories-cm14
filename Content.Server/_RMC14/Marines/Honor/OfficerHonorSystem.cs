@@ -124,6 +124,8 @@ public sealed class OfficerHonorSystem : EntitySystem
 
     private void QueueHonor(EntityUid marine, EntityUid honorTarget, float range, bool checkVisibility)
     {
+        // Keep the initial acknowledgement delay, then give every movement in the
+        // response its own jitter so a group does not move like a single entity.
         var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.5f, 0.95f));
         Timer.Spawn(reactionDelay, () =>
         {
@@ -136,7 +138,8 @@ public sealed class OfficerHonorSystem : EntitySystem
 
             _buckle.TryUnbuckle(marine, marine, popup: false);
 
-            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.15f, 0.3f)), () =>
+            var standDelay = TimeSpan.FromSeconds(_random.NextFloat(0.2f, 0.45f));
+            Timer.Spawn(standDelay, () =>
             {
                 if (!IsEligibleMarine(marine) ||
                     !Exists(honorTarget) ||
@@ -147,7 +150,8 @@ public sealed class OfficerHonorSystem : EntitySystem
 
                 _standing.Stand(marine);
 
-                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.2f, 0.4f)), () =>
+                var turnDelay = TimeSpan.FromSeconds(_random.NextFloat(0.25f, 0.55f));
+                Timer.Spawn(turnDelay, () =>
                 {
                     if (!IsEligibleMarine(marine) ||
                         !Exists(honorTarget) ||
@@ -158,7 +162,8 @@ public sealed class OfficerHonorSystem : EntitySystem
 
                     Face(marine, _transform.GetWorldPosition(honorTarget));
 
-                    Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.4f, 0.75f)), () =>
+                    var saluteDelay = TimeSpan.FromSeconds(_random.NextFloat(0.45f, 0.85f));
+                    Timer.Spawn(saluteDelay, () =>
                     {
                         if (IsEligibleMarine(marine) &&
                             Exists(honorTarget) &&
