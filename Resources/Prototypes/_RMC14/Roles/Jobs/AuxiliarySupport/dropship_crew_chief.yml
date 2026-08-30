@@ -52,6 +52,14 @@
     - type: CMVendorUser
       id: CMDropshipCrewChief
       points: 45
+    - type: OfficerHonor
+      checkVisibility: false
+    - type: MarineSilence
+      checkVisibility: false
+      callouts:
+      - rmc-marine-silence-crew-chief-1
+      - rmc-marine-silence-crew-chief-2
+      - rmc-marine-silence-crew-chief-3
     - type: RMCPointing
     - type: JobPrefix
       prefix: cm-job-prefix-dcc

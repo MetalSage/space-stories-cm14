@@ -60,6 +60,8 @@
       id: CMIntelOfficer
       points: 45
     - type: MarineOrders
+    - type: OfficerHonor
+    - type: MarineSilence
     - type: RMCPointing
     - type: JobPrefix
       prefix: cm-job-prefix-intel
