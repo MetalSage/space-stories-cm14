@@ -84,6 +84,12 @@ public sealed class OfficerHonorSystem : EntitySystem
         var callout = seniorOfficer == null
             ? _random.Pick(new[] { "rmc-officer-honor-attention-1", "rmc-officer-honor-attention-2", "rmc-officer-honor-attention-3" })
             : "rmc-officer-honor-commander";
+
+        // The officer announcing a superior must not be affected by their own
+        // attention command. Clear any stale honor speech effect before the callout.
+        if (seniorOfficer != null)
+            RemComp<OfficerHonorForcedWhisperComponent>(ent);
+
         _chat.TrySendInGameICMessage(ent, Loc.GetString(callout), InGameICChatType.Speak, false);
 
         var honorTarget = seniorOfficer ?? ent.Owner;
@@ -124,9 +130,9 @@ public sealed class OfficerHonorSystem : EntitySystem
 
     private void QueueHonor(EntityUid marine, EntityUid honorTarget, float range, bool checkVisibility)
     {
-        // Keep the initial acknowledgement delay, then give every movement in the
-        // response its own jitter so a group does not move like a single entity.
-        var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.5f, 0.95f));
+        // Keep a short acknowledgement delay, then give every movement in the
+        // response substantial independent jitter so salutes do not synchronize.
+        var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.35f, 0.75f));
         Timer.Spawn(reactionDelay, () =>
         {
             if (!IsEligibleMarine(marine) ||
@@ -138,7 +144,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
             _buckle.TryUnbuckle(marine, marine, popup: false);
 
-            var standDelay = TimeSpan.FromSeconds(_random.NextFloat(0.2f, 0.45f));
+            var standDelay = TimeSpan.FromSeconds(_random.NextFloat(0.15f, 0.75f));
             Timer.Spawn(standDelay, () =>
             {
                 if (!IsEligibleMarine(marine) ||
@@ -150,7 +156,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
                 _standing.Stand(marine);
 
-                var turnDelay = TimeSpan.FromSeconds(_random.NextFloat(0.25f, 0.55f));
+                var turnDelay = TimeSpan.FromSeconds(_random.NextFloat(0.15f, 0.9f));
                 Timer.Spawn(turnDelay, () =>
                 {
                     if (!IsEligibleMarine(marine) ||
@@ -162,7 +168,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
                     Face(marine, _transform.GetWorldPosition(honorTarget));
 
-                    var saluteDelay = TimeSpan.FromSeconds(_random.NextFloat(0.45f, 0.85f));
+                    var saluteDelay = TimeSpan.FromSeconds(_random.NextFloat(0.35f, 1.2f));
                     Timer.Spawn(saluteDelay, () =>
                     {
                         if (IsEligibleMarine(marine) &&
