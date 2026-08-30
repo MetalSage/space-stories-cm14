@@ -1,13 +1,13 @@
 using Content.Server.Actions;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.Interaction;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Honor;
 using Content.Shared._RMC14.Marines.Roles.Ranks;
 using Content.Shared._RMC14.Marines.Silence;
 using Content.Shared.Chat;
 using Content.Shared.Dataset;
+using Content.Shared.Examine;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
@@ -25,7 +25,7 @@ public sealed class MarineSilenceSystem : EntitySystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
+    [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
@@ -61,13 +61,13 @@ public sealed class MarineSilenceSystem : EntitySystem
 
         _nearby.Clear();
         _lookup.GetEntitiesInRange(transform.Coordinates, ent.Comp.Range, _nearby);
-        _chat.TrySendInGameICMessage(ent, Loc.GetString(GetCallout(ent.Comp.Authority)), InGameICChatType.Speak, false);
+        _chat.TrySendInGameICMessage(ent, Loc.GetString(GetCallout(ent.Comp)), InGameICChatType.Speak, false);
 
         foreach (var nearby in _nearby)
         {
             if (nearby == ent.Owner ||
                 !IsEligibleMarine(nearby) ||
-                !_interaction.InRangeUnobstructed(ent.Owner, nearby, ent.Comp.Range) ||
+                (ent.Comp.CheckVisibility && !_examine.InRangeUnOccluded(ent.Owner, nearby, ent.Comp.Range)) ||
                 !TryGetRankIndex(nearby, out var targetRank) ||
                 targetRank >= issuerRank)
             {
@@ -139,9 +139,12 @@ public sealed class MarineSilenceSystem : EntitySystem
         return HasComp<MarineComponent>(entity) && HasComp<RankComponent>(entity) && !_mobState.IsDead(entity);
     }
 
-    private string GetCallout(MarineSilenceAuthority authority)
+    private LocId GetCallout(MarineSilenceComponent command)
     {
-        return authority switch
+        if (command.Callouts.Count > 0)
+            return _random.Pick(command.Callouts);
+
+        return command.Authority switch
         {
             MarineSilenceAuthority.Officer => _random.Pick(new[]
             {
@@ -155,7 +158,7 @@ public sealed class MarineSilenceSystem : EntitySystem
             {
                 "rmc-marine-silence-mp-1", "rmc-marine-silence-mp-2", "rmc-marine-silence-mp-3",
             }),
-            _ => throw new ArgumentOutOfRangeException(nameof(authority), authority, null),
+            _ => throw new ArgumentOutOfRangeException(nameof(command.Authority), command.Authority, null),
         };
     }
 }
