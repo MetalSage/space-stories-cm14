@@ -44,7 +44,13 @@
         RMCSkillSurgery: 1
     - type: MarineOrders
     - type: OfficerHonor
+      checkVisibility: false
     - type: MarineSilence
+      checkVisibility: false
+      callouts:
+      - rmc-marine-silence-gunship-pilot-1
+      - rmc-marine-silence-gunship-pilot-2
+      - rmc-marine-silence-gunship-pilot-3
     - type: CMVendorUser
       id: CMPilotGunship
       points: 45

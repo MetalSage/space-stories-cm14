@@ -1,6 +1,5 @@
 using Content.Server.Actions;
 using Content.Server.Chat.Systems;
-using Content.Server.Interaction;
 using Content.Server.Roles.Jobs;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Marines.Honor;
@@ -9,6 +8,7 @@ using Content.Shared._RMC14.Roles;
 using Content.Shared._RMC14.Stun;
 using Content.Shared.Buckle;
 using Content.Shared.Chat;
+using Content.Shared.Examine;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
@@ -26,7 +26,7 @@ public sealed class OfficerHonorSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly RMCDazedSystem _dazed = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
+    [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly JobSystem _jobs = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -73,7 +73,7 @@ public sealed class OfficerHonorSystem : EntitySystem
         {
             if (nearby != ent.Owner &&
                 IsEligibleMarine(nearby) &&
-                _interaction.InRangeUnobstructed(ent.Owner, nearby, ent.Comp.Range) &&
+                CanSee(ent.Owner, nearby, ent.Comp) &&
                 GetAuthority(nearby) > officerAuthority)
             {
                 seniorOfficer = nearby;
@@ -84,6 +84,12 @@ public sealed class OfficerHonorSystem : EntitySystem
         var callout = seniorOfficer == null
             ? _random.Pick(new[] { "rmc-officer-honor-attention-1", "rmc-officer-honor-attention-2", "rmc-officer-honor-attention-3" })
             : "rmc-officer-honor-commander";
+
+        // The officer announcing a superior must not be affected by their own
+        // attention command. Clear any stale honor speech effect before the callout.
+        if (seniorOfficer != null)
+            RemComp<OfficerHonorForcedWhisperComponent>(ent);
+
         _chat.TrySendInGameICMessage(ent, Loc.GetString(callout), InGameICChatType.Speak, false);
 
         var honorTarget = seniorOfficer ?? ent.Owner;
@@ -99,10 +105,10 @@ public sealed class OfficerHonorSystem : EntitySystem
                 nearby == honorTarget ||
                 !IsEligibleMarine(nearby) ||
                 GetAuthority(nearby) >= officerAuthority ||
-                !_interaction.InRangeUnobstructed(ent.Owner, nearby, ent.Comp.Range))
+                !CanSee(ent.Owner, nearby, ent.Comp))
                 continue;
 
-            QueueHonor(nearby, honorTarget, ent.Comp.Range);
+            QueueHonor(nearby, honorTarget, ent.Comp.Range, ent.Comp.CheckVisibility);
             ApplyCommandSpeechEffects(nearby);
 
             if (TryComp(nearby, out OfficerHonorComponent? officer))
@@ -114,7 +120,7 @@ public sealed class OfficerHonorSystem : EntitySystem
 
         if (seniorOfficer != null)
         {
-            QueueHonor(ent.Owner, seniorOfficer.Value, ent.Comp.Range);
+            QueueHonor(ent.Owner, seniorOfficer.Value, ent.Comp.Range, ent.Comp.CheckVisibility);
         }
 
         ent.Comp.NextHonorAt = now + ent.Comp.Cooldown;
@@ -122,47 +128,52 @@ public sealed class OfficerHonorSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void QueueHonor(EntityUid marine, EntityUid honorTarget, float range)
+    private void QueueHonor(EntityUid marine, EntityUid honorTarget, float range, bool checkVisibility)
     {
-        var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.5f, 0.95f));
+        // Keep a short acknowledgement delay, then give every movement in the
+        // response substantial independent jitter so salutes do not synchronize.
+        var reactionDelay = TimeSpan.FromSeconds(_random.NextFloat(0.35f, 0.75f));
         Timer.Spawn(reactionDelay, () =>
         {
             if (!IsEligibleMarine(marine) ||
                 !Exists(honorTarget) ||
-                !_interaction.InRangeUnobstructed(marine, honorTarget, range))
+                !CanSee(marine, honorTarget, range, checkVisibility))
             {
                 return;
             }
 
             _buckle.TryUnbuckle(marine, marine, popup: false);
 
-            Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.15f, 0.3f)), () =>
+            var standDelay = TimeSpan.FromSeconds(_random.NextFloat(0.15f, 0.75f));
+            Timer.Spawn(standDelay, () =>
             {
                 if (!IsEligibleMarine(marine) ||
                     !Exists(honorTarget) ||
-                    !_interaction.InRangeUnobstructed(marine, honorTarget, range))
+                    !CanSee(marine, honorTarget, range, checkVisibility))
                 {
                     return;
                 }
 
                 _standing.Stand(marine);
 
-                Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.2f, 0.4f)), () =>
+                var turnDelay = TimeSpan.FromSeconds(_random.NextFloat(0.15f, 0.9f));
+                Timer.Spawn(turnDelay, () =>
                 {
                     if (!IsEligibleMarine(marine) ||
                         !Exists(honorTarget) ||
-                        !_interaction.InRangeUnobstructed(marine, honorTarget, range))
+                        !CanSee(marine, honorTarget, range, checkVisibility))
                     {
                         return;
                     }
 
                     Face(marine, _transform.GetWorldPosition(honorTarget));
 
-                    Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(0.4f, 0.75f)), () =>
+                    var saluteDelay = TimeSpan.FromSeconds(_random.NextFloat(0.35f, 1.2f));
+                    Timer.Spawn(saluteDelay, () =>
                     {
                         if (IsEligibleMarine(marine) &&
                             Exists(honorTarget) &&
-                            _interaction.InRangeUnobstructed(marine, honorTarget, range))
+                            CanSee(marine, honorTarget, range, checkVisibility))
                         {
                             _chat.TryEmoteWithChat(marine, "Salute", forceEmote: true);
                         }
@@ -170,6 +181,16 @@ public sealed class OfficerHonorSystem : EntitySystem
                 });
             });
         });
+    }
+
+    private bool CanSee(EntityUid viewer, EntityUid target, OfficerHonorComponent command)
+    {
+        return CanSee(viewer, target, command.Range, command.CheckVisibility);
+    }
+
+    private bool CanSee(EntityUid viewer, EntityUid target, float range, bool checkVisibility)
+    {
+        return !checkVisibility || _examine.InRangeUnOccluded(viewer, target, range);
     }
 
     private void Face(EntityUid entity, System.Numerics.Vector2 targetPosition)

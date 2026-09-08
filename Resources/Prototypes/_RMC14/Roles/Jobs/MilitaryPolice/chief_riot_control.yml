@@ -12,6 +12,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: OfficerHonor
+    - type: MarineSilence
     - type: JobPrefix
       prefix: rmc-job-prefix-rmpl
     - type: TacticalMapIcon
