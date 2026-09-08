@@ -59,14 +59,6 @@ public sealed partial class JobPrototype : IInheritingPrototype, ICMSpecific
     [DataField]
     public readonly Dictionary<RMCPlaytimeMedalType, EntProtoId>? Medals;
 
-    // Stories-JobVariantPreference-Start
-    [DataField]
-    public bool SetVariantPreference { get; private set; } = false;
-
-    [DataField]
-    public readonly Dictionary<string, LocId>? Variants;
-    // Stories-JobVariantPreference-End
-
     [DataField]
     public float RoleWeight;
 
