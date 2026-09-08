@@ -8,6 +8,7 @@ namespace Content.Shared._Stories.Synth.WorkingJoe;
 
 public sealed class STWorkingJoeAppearanceSystem : EntitySystem
 {
+    [Dependency] private readonly IComponentFactory _compFactory = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
@@ -23,12 +24,13 @@ public sealed class STWorkingJoeAppearanceSystem : EntitySystem
         if (args.JobId == null)
             return;
 
-        STWorkingJoeAppearancePrototype? matched = null;
-        foreach (var proto in _prototype.EnumeratePrototypes<STWorkingJoeAppearancePrototype>())
+        STWorkingJoeAppearanceComponent? matched = null;
+        foreach (var proto in _prototype.EnumeratePrototypes<EntityPrototype>())
         {
-            if (proto.Jobs.Contains(args.JobId))
+            if (proto.TryGetComponent(out STWorkingJoeAppearanceComponent? appearance, _compFactory) &&
+                appearance.Jobs.Contains(args.JobId))
             {
-                matched = proto;
+                matched = appearance;
                 break;
             }
         }

@@ -8,6 +8,7 @@ namespace Content.Client._Stories.Synth.VoiceSynthesizer;
 [UsedImplicitly]
 public sealed class STSynthVoiceSynthesizerBui : BoundUserInterface
 {
+    [Dependency] private readonly IComponentFactory _compFactory = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private STSynthVoiceSynthesizerWindow? _window;
@@ -21,7 +22,7 @@ public sealed class STSynthVoiceSynthesizerBui : BoundUserInterface
         base.Open();
 
         _window = this.CreateWindow<STSynthVoiceSynthesizerWindow>();
-        _window.Populate(_prototype);
+        _window.Populate(_prototype, _compFactory);
         _window.OnLinePressed += OnLinePressed;
     }
 

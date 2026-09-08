@@ -2056,6 +2056,37 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("uploaded_resource_log", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.VariantPreference", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("variant_preference_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("job_name");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("integer")
+                        .HasColumnName("profile_id");
+
+                    b.Property<string>("VariantName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("variant_name");
+
+                    b.HasKey("Id")
+                        .HasName("PK_variant_preference");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("variant_preference", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.Whitelist", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -2938,6 +2969,18 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Profile");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.VariantPreference", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithMany("VariantPreferences")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_variant_preference_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
             modelBuilder.Entity("PlayerRound", b =>
                 {
                     b.HasOne("Content.Server.Database.Player", null)
@@ -3065,6 +3108,8 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("SquadPreference");
 
                     b.Navigation("Traits");
+
+                    b.Navigation("VariantPreferences");
                 });
 
             modelBuilder.Entity("Content.Server.Database.ProfileLoadoutGroup", b =>

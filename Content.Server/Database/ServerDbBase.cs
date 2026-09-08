@@ -227,6 +227,12 @@ namespace Content.Server.Database
                 r => new ProtoId<JobPrototype>(r.JobName),
                 r => (ProtoId<RankPrototype>?) new ProtoId<RankPrototype>(r.RankName));
 
+            // Stories-SynthVariantPreference-Start
+            var variantPreferences = profile.VariantPreferences.ToDictionary(
+                v => new ProtoId<JobPrototype>(v.JobName),
+                v => (string?) v.VariantName);
+            // Stories-SynthVariantPreference-End
+
             var sex = Sex.Male;
             if (Enum.TryParse<Sex>(profile.Sex, true, out var sexVal))
                 sex = sexVal;
@@ -325,7 +331,8 @@ namespace Content.Server.Database
                 },
                 profile.PlaytimePerks,
                 profile.XenoPrefix,
-                profile.XenoPostfix
+                profile.XenoPostfix,
+                variantPreferences // Stories-SynthVariantPreference
             );
         }
 
@@ -385,6 +392,15 @@ namespace Content.Server.Database
                     .Where(r => r.Value != null)
                     .Select(r => new Rank { JobName = r.Key, RankName = r.Value!.Value.Id })
             );
+
+            // Stories-SynthVariantPreference-Start
+            profile.VariantPreferences.Clear();
+            profile.VariantPreferences.AddRange(
+                humanoid.VariantPreferences
+                    .Where(v => v.Value != null)
+                    .Select(v => new VariantPreference { JobName = v.Key, VariantName = v.Value! })
+            );
+            // Stories-SynthVariantPreference-End
 
             profile.Loadouts.Clear();
 

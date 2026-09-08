@@ -3,12 +3,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Stories.Synth.WorkingJoe;
 
-[Prototype("stWorkingJoeAppearance")]
-public sealed partial class STWorkingJoeAppearancePrototype : IPrototype
+[RegisterComponent]
+public sealed partial class STWorkingJoeAppearanceComponent : Component
 {
-    [IdDataField]
-    public string ID { get; private set; } = default!;
-
     [DataField(required: true)]
     public HashSet<ProtoId<JobPrototype>> Jobs = new();
 

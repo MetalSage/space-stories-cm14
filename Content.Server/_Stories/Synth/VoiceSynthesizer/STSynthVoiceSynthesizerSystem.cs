@@ -11,6 +11,7 @@ namespace Content.Server._Stories.Synth.VoiceSynthesizer;
 
 public sealed class STSynthVoiceSynthesizerSystem : EntitySystem
 {
+    [Dependency] private readonly IComponentFactory _compFactory = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -55,8 +56,11 @@ public sealed class STSynthVoiceSynthesizerSystem : EntitySystem
         if (_timing.CurTime < ent.Comp.NextLineTime)
             return;
 
-        if (!_prototype.TryIndex<STSynthVoiceLinePrototype>(args.LineId, out var line))
+        if (!_prototype.TryIndex<EntityPrototype>(args.LineId, out var lineProto) ||
+            !lineProto.TryGetComponent(out STSynthVoiceLineComponent? line, _compFactory))
+        {
             return;
+        }
 
         ent.Comp.NextLineTime = _timing.CurTime + ent.Comp.Cooldown;
         Dirty(ent);

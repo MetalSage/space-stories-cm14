@@ -26,12 +26,15 @@ public sealed partial class STSynthVoiceSynthesizerWindow : DefaultWindow
         SearchBar.OnTextChanged += _ => UpdateSearch();
     }
 
-    public void Populate(IPrototypeManager prototypes)
+    public void Populate(IPrototypeManager prototypes, IComponentFactory compFactory)
     {
         var byCategory = new Dictionary<string, (string Name, BoxContainer Content)>();
 
-        foreach (var line in prototypes.EnumeratePrototypes<STSynthVoiceLinePrototype>())
+        foreach (var proto in prototypes.EnumeratePrototypes<EntityPrototype>())
         {
+            if (!proto.TryGetComponent(out STSynthVoiceLineComponent? line, compFactory))
+                continue;
+
             var categoryName = Loc.GetString(line.Category);
             if (!byCategory.TryGetValue(categoryName, out var tab))
             {
@@ -63,7 +66,7 @@ public sealed partial class STSynthVoiceSynthesizerWindow : DefaultWindow
             }
 
             var lineText = Loc.GetString(line.Text);
-            var lineId = line.ID;
+            var lineId = proto.ID;
 
             var tabButton = new Button
             {
