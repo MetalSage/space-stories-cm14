@@ -188,6 +188,8 @@ public sealed class STSyntheticMaintenanceStationSystem : EntitySystem
             return;
         }
 
+        TryRevive(contained, ent);
+
         if (TryRepair(contained, ent))
             ent.Comp.CurrentInternalCharge = Math.Max(0, ent.Comp.CurrentInternalCharge - ent.Comp.RepairChargeCost);
         else if (TryRestoreBlood(contained, ent))
@@ -209,23 +211,32 @@ public sealed class STSyntheticMaintenanceStationSystem : EntitySystem
             return false;
         }
 
-        var changed = _damageable.TryChangeDamage(contained,
+        var delta = _damageable.TryChangeDamage(contained,
             station.Comp.RepairDamage,
             ignoreResistances: true,
             interruptsDoAfters: false,
             damageable: damageable,
-            origin: station.Owner) != null;
+            origin: station.Owner);
 
-        if (changed &&
-            TryComp<MobStateComponent>(contained, out var mobState) &&
-            _mobState.IsDead(contained, mobState) &&
-            _mobThreshold.TryGetThresholdForState(contained, MobState.Dead, out var deadThreshold) &&
-            damageable.TotalDamage < deadThreshold)
+        if (delta is not { Empty: false })
+            return false;
+
+        TryRevive(contained, station);
+        return true;
+    }
+
+    private void TryRevive(EntityUid contained, Entity<STSyntheticMaintenanceStationComponent> station)
+    {
+        if (!TryComp(contained, out DamageableComponent? damageable) ||
+            !TryComp<MobStateComponent>(contained, out var mobState) ||
+            !_mobState.IsDead(contained, mobState) ||
+            !_mobThreshold.TryGetThresholdForState(contained, MobState.Dead, out var deadThreshold) ||
+            damageable.TotalDamage >= deadThreshold)
         {
-            _mobState.ChangeMobState(contained, MobState.Critical, mobState, station.Owner);
+            return;
         }
 
-        return changed;
+        _mobState.ChangeMobState(contained, MobState.Critical, mobState, station.Owner);
     }
 
     private bool TryRestoreBlood(EntityUid contained, Entity<STSyntheticMaintenanceStationComponent> station)
