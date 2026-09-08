@@ -50,6 +50,7 @@
         RMCSkillOverwatch: 1
         RMCSkillPolice: 2
     - type: MarineOrders
+    - type: OfficerHonor
     - type: MarineSilence
       authority: MilitaryPolice
       range: 6
