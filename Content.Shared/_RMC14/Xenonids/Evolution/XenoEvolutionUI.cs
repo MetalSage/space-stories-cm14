@@ -21,6 +21,10 @@ public sealed class XenoEvolveBuiMsg(EntProtoId choice) : BoundUserInterfaceMess
     public readonly EntProtoId Choice = choice;
 }
 
+// Stories-EvoQueue
+[Serializable, NetSerializable]
+public sealed class XenoEvolutionQueueCancelBuiMsg : BoundUserInterfaceMessage;
+
 [Serializable, NetSerializable]
 public sealed class XenoStrainBuiMsg(EntProtoId choice) : BoundUserInterfaceMessage
 {

@@ -124,6 +124,14 @@ public sealed partial class RMCCVars : CVars
     public static readonly CVarDef<int> RMCEvolutionPointsAccumulateBeforeMinutes =
         CVarDef.Create("rmc.evolution_points_accumulate_before_minutes", 15, CVar.REPLICATED | CVar.SERVER);
 
+    // Stories-EvoQueue-Start
+    public static readonly CVarDef<bool> RMCXenoEvolutionQueueEnabled =
+        CVarDef.Create("rmc.xeno_evolution_queue_enabled", true, CVar.REPLICATED | CVar.SERVER);
+
+    public static readonly CVarDef<int> RMCXenoEvolutionQueueGraceSeconds =
+        CVarDef.Create("rmc.xeno_evolution_queue_grace_seconds", 30, CVar.REPLICATED | CVar.SERVER);
+    // Stories-EvoQueue-End
+
     public static readonly CVarDef<bool> RMCAtmosTileEqualize =
         CVarDef.Create("rmc.atmos_tile_equalize", false, CVar.REPLICATED | CVar.SERVER);
 
