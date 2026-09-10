@@ -1,0 +1,39 @@
+﻿<Control
+    xmlns="https://spacestation14.io"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
+    <BoxContainer Name="JASHomeLayoutContainer" Access="Public" Orientation="Vertical" Visible="True">
+        <PanelContainer Margin="0 0 0 10">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat
+                    BackgroundColor="#000000"
+                    BorderColor="#3F3F3F"
+                    BorderThickness="3"/>
+            </PanelContainer.PanelOverride>
+
+            <GridContainer HorizontalAlignment="Left">
+                <RichTextLabel Text="> Jurisdictional Automated System"/>
+                <RichTextLabel Text="WY-DOS Executive"/>
+
+                <RichTextLabel Text="Version 1.0.0"/>
+                <RichTextLabel Text="Copyright (c) 2182, Space Stories"/>
+
+                <BoxContainer Orientation="Horizontal">
+                    <RichTextLabel Text="> "/>
+                    <RichTextLabel Modulate="Orange" Text="Insert your ID card to log in or a report to read the information..."/>
+                </BoxContainer>
+            </GridContainer>
+        </PanelContainer>
+
+        <PanelContainer>
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat
+                    BackgroundColor="#000000"
+                    BorderColor="#3F3F3F"
+                    BorderThickness="3"/>
+            </PanelContainer.PanelOverride>
+            <GridContainer HorizontalAlignment="Left" Margin="3">
+                <Button Name="JASLoginButton" Modulate="Green" StyleClasses="ButtonSquare" Access="Public" Text="> Log in"/>
+            </GridContainer>
+        </PanelContainer>
+    </BoxContainer>
+</Control>

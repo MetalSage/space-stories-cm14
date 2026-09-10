@@ -1,0 +1,26 @@
+﻿<Control
+    xmlns="https://spacestation14.io"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:uiControls="clr-namespace:Content.Client.UserInterface.Controls">
+    <PanelContainer Name="JASDetailsViewContainer">
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat
+                BackgroundColor="#000000"
+                BorderColor="#3F3F3F"/>
+        </PanelContainer.PanelOverride>
+        <GridContainer Name="JASDetailsViewInputContainer">
+            <Label Text="# please specify the circumstances or details of the violation here" Modulate="Cyan"/>
+            <Label Text="# all information here will be used when compiling the report and will not be used when generating the disk" Modulate="Cyan"/>
+            <Label Text="# and will not be used when generating the disk" Modulate="Cyan"/>
+
+            <PanelContainer MinHeight="100" VerticalAlignment="Stretch" HorizontalExpand="True">
+                <TextEdit Name="JASDetailsViewInput" Modulate="#F3F3F3" Access="Public"/>
+            </PanelContainer>
+
+            <uiControls:HighDivider Modulate="#3F3F3F" SetHeight="5"/>
+            <BoxContainer Name="JASDetailsViewControls" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Text="[^X] Save" Access="Public" Name="JASDetailsViewSaveButton" StyleClasses="ButtonSquare" Modulate="Orange"/>
+            </BoxContainer>
+        </GridContainer>
+    </PanelContainer>
+</Control>

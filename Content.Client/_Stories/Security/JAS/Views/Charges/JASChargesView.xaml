@@ -1,0 +1,26 @@
+﻿<Control
+    xmlns="https://spacestation14.io"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:uiControls="clr-namespace:Content.Client.UserInterface.Controls">
+    <PanelContainer Name="JASChargesViewContainer" Margin="0 0 0 5">
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat
+                BackgroundColor="#000000"
+                BorderColor="#3F3F3F"/>
+        </PanelContainer.PanelOverride>
+        <GridContainer Rows="2" Columns="1">
+            <GridContainer Name="JASChargeCategories" Access="Public" Visible="True" Columns="6">
+                <Button Name="JASChargeCategoryVariable" Access="Public" Text="Variable" Modulate="Lime"/>
+                <Button Name="JASChargeCategoryMinor" Access="Public" Text="Minor" Modulate="Yellow"/>
+                <Button Name="JASChargeCategoryMajor" Access="Public" Text="Major" Modulate="Orange"/>
+                <Button Name="JASChargeCategoryCapital" Access="Public" Text="Capital" Modulate="Crimson"/>
+                <Button Name="JASChargeCategoryOptional" Access="Public" Text="Optional" Modulate="#E6E6FA"/>
+            </GridContainer>
+            <uiControls:HighDivider Modulate="#3F3F3F" SetHeight="5"/>
+            <ScrollContainer HScrollEnabled="False" VerticalExpand="True" HorizontalExpand="True" SetWidth="1100" SetHeight="350">
+                <GridContainer Name="JASChargeList" Access="Public" Visible="True" HorizontalAlignment="Center" Margin="0 5 0 0">
+                </GridContainer>
+            </ScrollContainer>
+        </GridContainer>
+    </PanelContainer>
+</Control>

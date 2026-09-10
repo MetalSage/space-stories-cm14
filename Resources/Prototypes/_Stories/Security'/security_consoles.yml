@@ -1,0 +1,18 @@
+- type: entity
+  parent: CMBaseStructure
+  abstract: true
+  id: BaseMPConsole
+  components:
+  - type: InteractedBlacklist
+    blacklist:
+      components:
+      - Xeno
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Clickable
+  - type: Corrodible
+    isCorrodible: false
+  - type: InteractionOutline

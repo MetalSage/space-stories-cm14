@@ -1,0 +1,30 @@
+- type: entity
+  parent: BaseMPConsole
+  id: JASConsole
+  name: Jurisdictional Automated System
+  description: A powerful machine produced by Weyland-Yutani to streamline all punishment of prisoners. The best grade policing gear seen on this side of the galaxy.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _RMC14/Structures/Machines/computer.rsi
+    state: jas
+  - type: AccessReader
+    access: [ [ "RMCAccessSeniorCommand" ] ]
+  - type: ActivatableUI
+    key: enum.JASBUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.JASBUiKey.Key:
+        type: JASBui
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      PrivilegedIdSlot: !type:ContainerSlot
+      SuspectIdSlot: !type:ContainerSlot
+  - type: JAS
+    laws:
+      - VariableCategory
+      - MinorCategory
+      - MajorCategory
+      - CapitalCategory
+      - OptionalCategory

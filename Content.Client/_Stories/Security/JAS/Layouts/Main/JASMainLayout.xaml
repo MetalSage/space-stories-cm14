@@ -1,0 +1,47 @@
+﻿<Control
+    xmlns="https://spacestation14.io"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
+        <BoxContainer Name="JASMainLayoutContainer" Access="Public" Visible="True" Orientation="Vertical">
+        <PanelContainer Margin="0 0 0 10">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat
+                    BackgroundColor="#000000"
+                    BorderColor="#3F3F3F"
+                    BorderThickness="3"/>
+            </PanelContainer.PanelOverride>
+
+            <BoxContainer HorizontalAlignment="Left">
+                <RichTextLabel Text="> user@jas: $ "/>
+                <RichTextLabel Name="Cursor" Access="Public" Text="█"/>
+            </BoxContainer>
+        </PanelContainer>
+        <PanelContainer Name="JASMainLayoutTabsContainer" Margin="0 0 0 0">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat
+                    BackgroundColor="#000000"
+                    BorderColor="#3F3F3F"
+                    BorderThickness="3"/>
+            </PanelContainer.PanelOverride>
+
+            <GridContainer HorizontalAlignment="Left" Columns="5" Margin="3">
+                <Button Name="JASLogoutButton" Access="Public" Modulate="Red" StyleClasses="ButtonSquare" Text="> Log out"/>
+
+                <Button Name="JASDetailsViewButton" Access="Public" Modulate="Orange" StyleClasses="ButtonSquare" Text="> Details"/>
+                <Button Name="JASChargesViewButton" Access="Public" Modulate="Orange" StyleClasses="ButtonSquare" Text="> Charges"/>
+                <Button Name="JASWitnessViewButton" Access="Public" Modulate="Orange" StyleClasses="ButtonSquare" Text="> Witness"/>
+                <Button Name="JASExportViewButton" Access="Public" Modulate="Green" StyleClasses="ButtonSquare" Text="> Export"/>
+            </GridContainer>
+        </PanelContainer>
+
+        <PanelContainer Margin="0 5 0 10">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat
+                    BackgroundColor="#000000"
+                    BorderColor="#3F3F3F"
+                    BorderThickness="3"/>
+            </PanelContainer.PanelOverride>
+
+            <BoxContainer Access="Public" Name="JASMainLayoutViewsContainer" HorizontalAlignment="Center"/>
+        </PanelContainer>
+    </BoxContainer>
+</Control>
