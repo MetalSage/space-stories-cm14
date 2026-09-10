@@ -335,6 +335,9 @@
   name: wooden chair
   description: Old is never too old to not be in fashion.
   components:
+  - type: Construction
+    graph: CMSeat
+    node: ChairWood
   - type: Sprite
     state: wooden_chair
   - type: Damageable

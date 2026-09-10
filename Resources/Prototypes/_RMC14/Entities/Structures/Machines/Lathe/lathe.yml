@@ -2,7 +2,7 @@
   parent: [ BaseMachinePowered, RMCConstructibleMachine ]
   id: CMAutolathe
   name: autolathe
-  description: It produces items using metal and glass.
+  description: It produces items using metal, glass, and wood!
   components:
   - type: ApcPowerReceiver
     powerLoad: 250
@@ -55,6 +55,10 @@
       - RMCRackParts
       - RMCTablePartMetalReinforced
       - RodMetal1
+      - RMCTablePartWoodPart # Stories-Recipe
+      - RMCTablePartWoodFancy # Stories-Recipe
+      - RMCTablePartGambling # Stories-Recipe
+      - Sheet # Stories-Recipe
   - type: Damageable
     damageContainer: StructuralMarine
     damageModifierSet: null
@@ -149,3 +153,6 @@
   - CMHandLabeler
 #    - Camera assembly (700 metal, 300 glass)->(875, 375)
 #    - Matrix assembly (7500 metal)->(9375)
+  - STTablePartWood # Stories-Recipe
+  - STTablePartGambling # Stories-Recipe
+  - STTablePartWoodFancy # Stories-Recipe

@@ -1,0 +1,7 @@
+- type: rmcConstruction
+  id: CMChairWoodBuild
+  name: деревянный стул 
+  prototype: CMChairWood
+  noRotate: false
+  doAfterTime: 1
+  MaterialCost: 2

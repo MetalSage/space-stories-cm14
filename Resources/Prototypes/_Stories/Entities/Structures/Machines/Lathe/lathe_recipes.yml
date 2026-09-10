@@ -29,3 +29,24 @@
   materials:
     CMSteel: 1250 # 1000
     CMGlass: 250 # 200
+
+- type: latheRecipe
+  id: STTablePartWoodFancy
+  result: RMCTablePartWoodFancy
+  completetime: 4
+  materials:
+    RMCWood: 9375 # 3750
+
+- type: latheRecipe
+  id: STTablePartGambling
+  result: RMCTablePartGambling
+  completetime: 4
+  materials:
+    RMCWood: 9375 #3750
+    
+- type: latheRecipe
+  id: STTablePartWood
+  result: RMCTablePartWood
+  completetime: 4
+  materials:
+   RMCWood: 9375 #3750

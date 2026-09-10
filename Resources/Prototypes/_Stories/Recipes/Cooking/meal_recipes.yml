@@ -1,0 +1,25 @@
+- type: microwaveMealRecipe
+  id: STRecipeCrazyHamburger
+  name: crazy hamburger recipe
+  result: FoodBurgerCrazy
+  time: 10
+  group: Savory
+  reagents:
+    OilOlive: 15
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 2
+    FoodCheeseSlice: 2
+    FoodChiliPepper: 1
+    FoodCabbage: 1
+    RMCFlareCAS: 1
+
+- type: microwaveMealRecipe
+  id: STRecipeEmpoweredBurger
+  name: empowered burger recipe
+  result: FoodBurgerEmpowered
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    CMSheetPhoron: 1
