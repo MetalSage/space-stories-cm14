@@ -60,6 +60,10 @@
   - type: Damageable
     damageContainer: StructuralMarine
     damageModifierSet: StructuralMarine
+  - type: ExplosionResistance
+    worn: false
+    damageCoefficientOverrides:
+      RMCMortarFrag: 10
   - type: XenoToggleChargingDamage
     destroy: true # Stories-CrusherCharger
     destroyMinimumStage: 4 # Stories-CrusherCharger
