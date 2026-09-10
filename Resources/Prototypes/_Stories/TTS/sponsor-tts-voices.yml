@@ -45,3 +45,19 @@
   id: ellie
   category: "Кастомные"
   sponsorOnly: true
+
+- type: ttsVoice
+  name: "Хиггс"
+  sex: Male
+  speaker: higgs
+  id: higgs
+  category: "Кастомные"
+  sponsorOnly: true
+
+- type: ttsVoice
+  name: "Вайпер"
+  sex: Male
+  speaker: viper
+  id: viper
+  category: "Кастомные"
+  sponsorOnly: true
