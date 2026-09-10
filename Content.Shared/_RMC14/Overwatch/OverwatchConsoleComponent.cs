@@ -47,10 +47,10 @@ public sealed partial class OverwatchConsoleComponent : Component
     public bool CanMessageSquad = true;
 
     [DataField, AutoNetworkedField]
-    public bool ShowAntiAirStatus;
+    public bool HasOrbital;
 
     [DataField, AutoNetworkedField]
-    public bool HasOrbital;
+    public bool OrbitalSafetyEngaged;
 
     [DataField, AutoNetworkedField]
     public Vector2i OrbitalCoordinates;
