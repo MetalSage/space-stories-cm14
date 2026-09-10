@@ -62,6 +62,8 @@
         RMCSkillSurgery: 1
         RMCSkillVehicles: 1
     - type: MarineOrders
+    - type: OfficerHonor
+    - type: MarineSilence
     - type: RMCPointing
     - type: JobPrefix
       prefix: cm-job-prefix-aso

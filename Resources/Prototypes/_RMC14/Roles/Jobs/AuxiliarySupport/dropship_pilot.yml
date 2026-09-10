@@ -47,6 +47,14 @@
       id: CMPilotDropship
       points: 45
     - type: RMCPointing
+    - type: OfficerHonor
+      checkVisibility: false
+    - type: MarineSilence
+      checkVisibility: false
+      callouts:
+      - rmc-marine-silence-dropship-pilot-1
+      - rmc-marine-silence-dropship-pilot-2
+      - rmc-marine-silence-dropship-pilot-3
     - type: JobPrefix
       prefix: cm-job-prefix-dropship-pilot
     - type: ViewIntelObjectives
