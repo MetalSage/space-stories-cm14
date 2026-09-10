@@ -610,6 +610,13 @@
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Clothing/Uniforms/Synthetic/joe.rsi
+  # Stories-WorkingJoe-Start
+  - type: WebbingClothing
+    startingWebbing: STWebbingDropPouchWorkingJoe
+  - type: STWorkingJoeUniform
+  - type: STCorpLabel
+    manufacturer: st-corp-label-manufacturer-seegson
+  # Stories-WorkingJoe-End
 
 - type: entity
   parent: RMCMarineUniformBase

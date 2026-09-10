@@ -62,6 +62,13 @@ namespace Content.Shared.Preferences
         [DataField]
         private Dictionary<ProtoId<JobPrototype>, ProtoId<RankPrototype>?> _rankPreferences = new();
 
+        // Stories-JobVariantPreference-Start
+        [DataField]
+        private Dictionary<ProtoId<JobPrototype>, string?> _variantPreferences = new();
+
+        public IReadOnlyDictionary<ProtoId<JobPrototype>, string?> VariantPreferences => _variantPreferences;
+        // Stories-JobVariantPreference-End
+
         /// <summary>
         /// <see cref="_loadouts"/>
         /// </summary>
@@ -186,7 +193,8 @@ namespace Content.Shared.Preferences
             SharedRMCNamedItems namedItems,
             bool playtimePerks,
             string xenoPrefix,
-            string xenoPostfix)
+            string xenoPostfix,
+            Dictionary<ProtoId<JobPrototype>, string?>? variantPreferences = null) // Stories-JobVariantPreference
         {
             Name = name;
             FlavorText = flavortext;
@@ -200,6 +208,7 @@ namespace Content.Shared.Preferences
             ArmorPreference = armorPreference;
             _rankPreferences = rankPreference;
             SquadPreference = squadPreference;
+            _variantPreferences = variantPreferences ?? new(); // Stories-JobVariantPreference
             _jobPriorities = jobPriorities;
             PreferenceUnavailable = preferenceUnavailable;
             _antagPreferences = antagPreferences;
@@ -250,6 +259,7 @@ namespace Content.Shared.Preferences
                 other.XenoPrefix,
                 other.XenoPostfix)
         {
+            _variantPreferences = new Dictionary<ProtoId<JobPrototype>, string?>(other.VariantPreferences); // Stories-JobVariantPreference
         }
 
         /// <summary>
@@ -402,6 +412,20 @@ namespace Content.Shared.Preferences
 
             return new(this) { _rankPreferences = dictionary };
         }
+
+        // Stories-JobVariantPreference-Start
+        public HumanoidCharacterProfile WithVariantPreference(ProtoId<JobPrototype> jobId, string? variantId)
+        {
+            var dictionary = new Dictionary<ProtoId<JobPrototype>, string?>(_variantPreferences);
+
+            if (variantId == null)
+                dictionary.Remove(jobId);
+            else
+                dictionary[jobId] = variantId;
+
+            return new(this) { _variantPreferences = dictionary };
+        }
+        // Stories-JobVariantPreference-End
 
         public HumanoidCharacterProfile WithSquadPreference(EntProtoId<SquadTeamComponent>? squadPreference)
         {
@@ -593,6 +617,7 @@ namespace Content.Shared.Preferences
             if (NamedItems != other.NamedItems) return false;
             if (ArmorPreference != other.ArmorPreference) return false;
             if (!_rankPreferences.SequenceEqual(other._rankPreferences)) return false;
+            if (!_variantPreferences.SequenceEqual(other._variantPreferences)) return false; // Stories-JobVariantPreference
             if (PlaytimePerks != other.PlaytimePerks) return false;
             if (XenoPrefix != other.XenoPrefix) return false;
             if (XenoPostfix != other.XenoPostfix) return false;
@@ -941,6 +966,7 @@ namespace Content.Shared.Preferences
             hashCode.Add((int)SpawnPriority);
             hashCode.Add((int)ArmorPreference);
             hashCode.Add(_rankPreferences);
+            hashCode.Add(_variantPreferences); // Stories-JobVariantPreference
             hashCode.Add(SquadPreference);
             hashCode.Add((int)PreferenceUnavailable);
             hashCode.Add(NamedItems);

@@ -522,6 +522,24 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         {
             // Special type like borg or AI, do not spawn a human just spawn the entity.
             dummyEnt = EntityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+
+            // Stories-WorkingJoePreviewGear-Start
+            if (job != null &&
+                _prototypeManager.TryIndex(job.DummyStartingGear, out var previewGear) &&
+                _inventory.TryGetSlots(dummyEnt, out var previewSlots))
+            {
+                foreach (var slot in previewSlots)
+                {
+                    var itemType = ((IEquipmentLoadout) previewGear).GetGear(slot.Name);
+                    if (itemType != string.Empty)
+                    {
+                        var item = EntityManager.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                        _inventory.TryEquip(dummyEnt, item, slot.Name, true, true);
+                    }
+                }
+            }
+            // Stories-WorkingJoePreviewGear-End
+
             return dummyEnt;
         }
         else if (humanoid is not null)
