@@ -149,6 +149,14 @@ public sealed class FiremanCarrySystem : EntitySystem
             return false;
         }
 
+        // Stories-SynthHeavyGrab-Start
+        if (carriable.ThrowWhitelist != null && !_whitelist.IsValid(carriable.ThrowWhitelist, carrier.Owner))
+        {
+            _popup.PopupClient(Loc.GetString("rmc-fireman-carry-cant-throw"), carrier, carrier, PopupType.SmallCaution);
+            return false;
+        }
+        // Stories-SynthHeavyGrab-End
+
         return _handsQuery.TryComp(carrier, out var hands) && _hands.IsHolding((carrier.Owner, hands), heldItem);
     }
 

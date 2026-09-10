@@ -591,6 +591,16 @@ namespace Content.Server.Database
         public string FacialHairColor { get; set; } = null!;
         public string EyeColor { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
+        // Stories-SynthAppearance-Start
+        [Column(TypeName = "jsonb")] public JsonDocument? SynthMarkings { get; set; }
+        public string? SynthHairName { get; set; }
+        public string? SynthHairColor { get; set; }
+        public string? SynthFacialHairName { get; set; }
+        public string? SynthFacialHairColor { get; set; }
+        public string? SynthEyeColor { get; set; }
+        public string? SynthSkinColor { get; set; }
+        public string SynthName { get; set; } = string.Empty;
+        // Stories-SynthAppearance-End
         public int SpawnPriority { get; set; } = 0;
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
@@ -606,6 +616,7 @@ namespace Content.Server.Database
         public RMCSquadPreference? SquadPreference { get; set; }
         public string ArmorPreference { get; set; } = null!;
         public List<Rank> Ranks { get; } = new();
+        public List<VariantPreference> VariantPreferences { get; } = new(); // Stories-SynthVariantPreference
         public bool PlaytimePerks { get; set; } = true;
         public string XenoPrefix { get; set; } = string.Empty;
         public string XenoPostfix { get; set; } = string.Empty;
@@ -693,6 +704,18 @@ namespace Content.Server.Database
         public string JobName { get; set; } = null!;
         public string RankName { get; set; } = null!;
     }
+
+    // Stories-SynthVariantPreference-Start
+    public class VariantPreference
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+
+        public string JobName { get; set; } = null!;
+        public string VariantName { get; set; } = null!;
+    }
+    // Stories-SynthVariantPreference-End
 
 
     #region Loadouts

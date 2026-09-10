@@ -5,8 +5,10 @@ using Content.Server.Radio.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Content.Shared._RMC14.Chat;
+using Content.Shared._RMC14.Language.Components;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.Mentor.ImaginaryFriend;
+using Content.Shared._RMC14.Synth;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._Stories.Hunter.Bracer.Components;
 using Content.Shared._Stories.Hunter.Bracer;
@@ -88,6 +90,11 @@ public sealed class CMChatSystem : SharedCMChatSystem
             if (HasComp<HunterComponent>(session.AttachedEntity))
                 continue;
             // Stories-Hunter-End
+
+            // Stories-XenoLanguageLearning-Start
+            if (HasComp<SynthComponent>(session.AttachedEntity) && HasComp<LanguageLearningComponent>(session.AttachedEntity))
+                continue;
+            // Stories-XenoLanguageLearning-End
 
             // `data.Observer` only indicates whether the recipient has `GhostHearingComponent`.
             // Disabling ghost hearing removes this component, so the `GhostComponent` check is needed to keep ghosts included.

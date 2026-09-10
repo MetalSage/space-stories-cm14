@@ -1,6 +1,7 @@
 using Content.Server.Access.Systems;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
+using Content.Server.Jobs;
 using Content.Server.Mind.Commands;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
@@ -145,6 +146,22 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         entity ??= Spawn(species.Prototype, coordinates);
 
+        // Stories-SynthAppearance-Start
+        if (profile != null &&
+            prototype != null &&
+            IsSynthJob(prototype) &&
+            (profile.SynthAppearance != null || profile.SynthName != string.Empty))
+        {
+            profile = new HumanoidCharacterProfile(profile);
+
+            if (profile.SynthAppearance != null)
+                profile = profile.WithCharacterAppearance(profile.SynthAppearance);
+
+            if (profile.SynthName != string.Empty)
+                profile.Name = profile.SynthName;
+        }
+        // Stories-SynthAppearance-End
+
         if (profile != null)
         {
             _humanoidSystem.LoadProfile(entity.Value, profile);
@@ -190,6 +207,19 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             jobSpecial.AfterEquip(entity);
         }
     }
+
+    // Stories-SynthAppearance-Start
+    private static bool IsSynthJob(JobPrototype job)
+    {
+        foreach (var special in job.Special)
+        {
+            if (special is AddComponentSpecial addComponent && addComponent.Components.ContainsKey("Synth"))
+                return true;
+        }
+
+        return false;
+    }
+    // Stories-SynthAppearance-End
 
     /// <summary>
     /// Sets the ID card and PDA name, job, and access data.

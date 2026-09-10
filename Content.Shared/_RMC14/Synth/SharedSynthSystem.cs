@@ -15,6 +15,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Content.Shared.Tools.Components;
@@ -45,6 +46,7 @@ public abstract class SharedSynthSystem : EntitySystem
     [Dependency] private readonly SharedSynthGenerationSystem _synthGeneration = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
 
     public override void Initialize()
     {
@@ -94,6 +96,8 @@ public abstract class SharedSynthSystem : EntitySystem
 
         RemCompDeferred<RMCRevivableComponent>(ent.Owner);
         RemCompDeferred<SlowOnDamageComponent>(ent.Owner);
+
+        _movementSpeed.RefreshMovementSpeedModifiers(ent.Owner); // Stories-Synth
     }
 
     private void OnMeleeAttempted(Entity<SynthComponent> ent, ref AttackAttemptEvent args)

@@ -21,6 +21,11 @@ public sealed class NightVisionSystem : SharedNightVisionSystem
     private EntityQuery<XenoComponent> _xenoQuery;
     private EntityQuery<NightVisionComponent> _nvQuery;
 
+    // Stories-MesonPerf-Start
+    private const float MesonSpriteUpdateInterval = 0.25f;
+    private float _mesonSpriteUpdateAccumulator;
+    // Stories-MesonPerf-End
+
     public override void Initialize()
     {
         base.Initialize();
@@ -73,7 +78,6 @@ public sealed class NightVisionSystem : SharedNightVisionSystem
 
     private void SetMesons(bool on)
     {
-        return; // TODO RMC14 make this not lag horribly
         if (_player.LocalEntity == null)
             return;
 
@@ -118,7 +122,6 @@ public sealed class NightVisionSystem : SharedNightVisionSystem
 
     private void SetMesonSprites(bool mesons)
     {
-        return; // TODO RMC14 make this not lag horribly
         if (_player.LocalEntity == null)
             return;
 
@@ -151,6 +154,13 @@ public sealed class NightVisionSystem : SharedNightVisionSystem
         if (nightVision.State == NightVisionState.Off)
             return;
 
+        // Stories-MesonPerf-Start
+        _mesonSpriteUpdateAccumulator += frameTime;
+        if (_mesonSpriteUpdateAccumulator < MesonSpriteUpdateInterval)
+            return;
+
+        _mesonSpriteUpdateAccumulator = 0f;
+        // Stories-MesonPerf-End
         SetMesonSprites(nightVision.Mesons);
     }
 }

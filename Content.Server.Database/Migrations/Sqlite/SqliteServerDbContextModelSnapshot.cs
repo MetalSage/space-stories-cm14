@@ -972,6 +972,39 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
 
+                    b.Property<string>("SynthEyeColor")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("synth_eye_color");
+
+                    b.Property<string>("SynthFacialHairColor")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("synth_facial_hair_color");
+
+                    b.Property<string>("SynthFacialHairName")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("synth_facial_hair_name");
+
+                    b.Property<string>("SynthHairColor")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("synth_hair_color");
+
+                    b.Property<string>("SynthHairName")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("synth_hair_name");
+
+                    b.Property<byte[]>("SynthMarkings")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("synth_markings");
+
+                    b.Property<string>("SynthName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("synth_name");
+
+                    b.Property<string>("SynthSkinColor")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("synth_skin_color");
+
                     b.Property<string>("Voice")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -1967,6 +2000,35 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("uploaded_resource_log", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.VariantPreference", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("variant_preference_id");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("job_name");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.Property<string>("VariantName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("variant_name");
+
+                    b.HasKey("Id")
+                        .HasName("PK_variant_preference");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("variant_preference", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.Whitelist", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -2849,6 +2911,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Profile");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.VariantPreference", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithMany("VariantPreferences")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_variant_preference_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
             modelBuilder.Entity("PlayerRound", b =>
                 {
                     b.HasOne("Content.Server.Database.Player", null)
@@ -2976,6 +3050,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("SquadPreference");
 
                     b.Navigation("Traits");
+
+                    b.Navigation("VariantPreferences");
                 });
 
             modelBuilder.Entity("Content.Server.Database.ProfileLoadoutGroup", b =>
