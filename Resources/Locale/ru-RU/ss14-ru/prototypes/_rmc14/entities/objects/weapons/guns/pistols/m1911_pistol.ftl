@@ -1,8 +1,8 @@
-ent-CMWeaponPistolM1911 = M1911 service pistol
-    .desc = A timeless classic since the first World War, produced in limited amount by AEGIS after their acquisition of Colt's Manufacturing Company. Once standard issue for the UNMC, now back order only. Chambered in .45 ACP.
-ent-CMMagazinePistolM1911 = M1911 magazine (.45 ACP)
+ent-CMWeaponPistolM1911 = армейский пистолет M1911
+    .desc = Нестареющая классика, известная еще со времен Первой мировой войны; выпускается ограниченной серией компанией AEGIS после приобретения ею Colt's Manufacturing Company. Ранее входила в стандартное оснащение КМП США, теперь доступна только по предзаказу. Использует патрон .45 ACP.
+ent-CMMagazinePistolM1911 = магазин M1911 (.45 ACP)
     .desc = { ent-CMBaseMagazinePistol.desc }
-ent-CMBulletPistol45ACP = bullet (.45 ACP)
+ent-CMBulletPistol45ACP = пуля (.45 ACP)
     .desc = { ent-CMBulletBase.desc }
-ent-CMCartridgePistol45ACP = cartridge (.45 ACP)
+ent-CMCartridgePistol45ACP = патрон (.45 ACP)
     .desc = { ent-CMCartridgePistolBase.desc }

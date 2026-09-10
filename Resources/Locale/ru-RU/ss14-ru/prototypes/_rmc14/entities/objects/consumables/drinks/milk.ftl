@@ -1,6 +1,6 @@
-ent-RMCDrinkMilkCarton = milk
-    .desc = It's milk. White and nutritious goodness!
+ent-RMCDrinkMilkCarton = молоко
+    .desc = Это молоко. Белое и питательное — сплошная польза!
     .suffix = Full, RMC
-ent-RMCDrinkSoyMilkCarton = soy milk
-    .desc = It's soy milk. White and nutritious goodness!
+ent-RMCDrinkSoyMilkCarton = соевое молоко
+    .desc = Это соевое молоко. Белое и питательное — сплошная польза!
     .suffix = { ent-RMCDrinkMilkCarton.suffix }

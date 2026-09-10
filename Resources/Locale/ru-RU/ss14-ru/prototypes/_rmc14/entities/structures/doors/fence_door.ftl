@@ -1,7 +1,7 @@
-ent-RMCFenceDoor = fence door
-    .desc = A sturdy chainlink door set between two metal poles. A cheap way to section off areas while still allowing visibility through it.
-ent-RMCFenceDoorBroken = broken fence door
-    .desc = Someone really didn't want to use the door.
+ent-RMCFenceDoor = дверь сетки-рабицы
+    .desc = Прочная дверь из сетки-рабицы, установленная между двумя металлическими столбами. Недорогой способ разграничить пространство, сохранив при этом возможность видеть, что происходит по ту сторону.
+ent-RMCFenceDoorBroken = сломанная дверь сетки-рабицы
+    .desc = Кому-то очень не хотелось пользоваться дверью.
 ent-RMCFenceDoorSPP = { ent-RMCFenceDoor }
     .desc = { ent-RMCFenceDoor.desc }
     .suffix = SPP

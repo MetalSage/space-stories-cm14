@@ -83,10 +83,10 @@
   paygrade: ЧВК-ЛИД
 
 - type: rank
-  id: RMCRankWeYaFieldOperaionsLeader
-  name: Руководитель полевых операций
-  prefix: РПО.
-  paygrade: PMC-FOL
+  id: RMCRankWeYaFieldOperationsLeader
+  name: Командир Наземных Операций
+  prefix: КНО.
+  paygrade: ЧВК-КНО
 
 - type: rank
   id: RMCRankWeYaForceLeader

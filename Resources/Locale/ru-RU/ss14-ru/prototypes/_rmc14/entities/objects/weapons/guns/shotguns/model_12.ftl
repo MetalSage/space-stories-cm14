@@ -1,2 +1,2 @@
-ent-RMCWeaponShotgunM12 = Model 12 pump shotgun
-    .desc = An eight-round pump action shotgun with four-round capacity dual internal tube magazines allowing for quick reloading and highly accurate fire. Used exclusively by Colony Marshals.
+ent-RMCWeaponShotgunM12 = помповое ружье Модель 12
+    .desc = Восьмизарядное помповое ружье с двумя внутренними трубчатыми магазинами (по четыре патрона в каждом), обеспечивающими быструю перезарядку и высокую точность стрельбы. Используется исключительно маршалами колоний.

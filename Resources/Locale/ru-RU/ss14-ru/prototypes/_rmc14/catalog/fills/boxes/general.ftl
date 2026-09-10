@@ -1,6 +1,6 @@
 ent-RMCBoxCardboard = картонная коробка
     .desc = Картонная коробка для хранения вещей.
-ent-RMCBoxAttachmentsFilled = комплект с насадками
+ent-RMCBoxAttachmentsFilled = комплект с обвесами
     .desc = Комплект, содержащий случайные насадки. Почему бы не посмотреть, что внутри?
 ent-RMCBoxPrescriptionGlasses = box of prescription glasses
     .desc = This box contains nerd glasses.

@@ -6,14 +6,14 @@ rmc-xeno-infect-fail = Лицехват разбивается о { $target } { 
 rmc-xeno-failed-parasite-dead = Мы не можем заразить мертвого лицехвата!
 rmc-xeno-cant-throw = Мы не можем бросить { $target }!
 
-rmc-xeno-parasite-dead = { CAPITALIZE(SUBJECT($parasite)) } { CONJUGATE-BE($parasite) } не двигается.
+rmc-xeno-parasite-dead = { CAPITALIZE(SUBJECT($parasite)) } не двигается.
 rmc-xeno-parasite-announce-infect = Мы чувствуем, что { $xeno } заразил носителя в { $location }!
 
 rmc-xeno-parasite-player-pickup = { CAPITALIZE($parasite) } может обрабатывать { REFLEXIVE($parasite) }!
 rmc-xeno-parasite-nonplayer-pull = Вытаскивание { $parasite } может повредить { OBJECT($parasite) }!
 
 rmc-xeno-parasite-ai-active = { CAPITALIZE(SUBJECT($parasite)) } кажется активным.
-rmc-xeno-parasite-ai-idle = { CAPITALISE(SUBJECT($parasite)) } { CONJUGATE-BE($parasite) } отдых.
+rmc-xeno-parasite-ai-idle = { CAPITALIZE(SUBJECT($parasite)) } отдыхает.
 rmc-xeno-parasite-ai-dying = [color=red]{ CAPITALIZE(SUBJECT($parasite)) } должен вернуться в безопасное место![/color]
 
 rmc-xeno-parasite-ai-eaten = { CAPITALIZE($parasite) } яростно поедается другими лицехватами, находящимися поблизости!

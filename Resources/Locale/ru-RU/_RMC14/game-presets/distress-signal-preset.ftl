@@ -52,4 +52,4 @@ rmc-distress-signal-scuttle-runaway-meltdown = ТРЕВОГА: термояде�
 rmc-distress-signal-scuttle-heat-aura = Воздух вокруг реакторного ядра обжигает вашу кожу.
 rmc-distress-signal-scuttle-superheat-aura = Жар реакторного ядра становится невыносимым!
 
-rmc-xeno-announcement-scuttle-first-overload = Высокие перегружают пылающие сердца металлического улья. Остановите их, пока небесный улей не разорвал себя на части.
+rmc-xeno-announcement-scuttle-first-overload = Носители перегружают пылающие сердца металлического улья. Остановите их, пока небесный улей не разорвал себя на части.
