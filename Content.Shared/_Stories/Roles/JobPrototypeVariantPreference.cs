@@ -12,4 +12,7 @@ public sealed partial class JobPrototype
 
     [DataField]
     public readonly Dictionary<string, LocId>? Variants;
+
+    [DataField]
+    public bool HideVariantPreferenceInJobList { get; private set; } = false;
 }

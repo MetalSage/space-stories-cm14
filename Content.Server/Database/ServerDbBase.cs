@@ -61,6 +61,7 @@ namespace Content.Server.Database
                     .ThenInclude(group => group.Loadouts)
                 .Include(p => p.Profiles).ThenInclude(p => p.NamedItems)
                 .Include(p => p.Profiles).ThenInclude(h => h.Ranks)
+                .Include(p => p.Profiles).ThenInclude(h => h.VariantPreferences) // Stories-SynthVariantPreference
                 .Include(p => p.Profiles).ThenInclude(p => p.SquadPreference)
                 .AsSplitQuery()
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
@@ -118,6 +119,7 @@ namespace Content.Server.Database
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
                 .Include(p => p.Ranks)
+                .Include(p => p.VariantPreferences) // Stories-SynthVariantPreference
                 .Include(p => p.NamedItems)
                 .Include(p => p.SquadPreference)
                 .AsSplitQuery()
@@ -270,6 +272,42 @@ namespace Content.Server.Database
                 }
             }
 
+            // Stories-SynthAppearance-Start
+            HumanoidCharacterAppearance? synthAppearance = null;
+            if (profile.SynthHairName != null &&
+                profile.SynthHairColor != null &&
+                profile.SynthFacialHairName != null &&
+                profile.SynthFacialHairColor != null &&
+                profile.SynthEyeColor != null &&
+                profile.SynthSkinColor != null)
+            {
+                var synthMarkingsRaw = profile.SynthMarkings?.Deserialize<List<string>>();
+                var synthMarkings = new List<Marking>();
+                if (synthMarkingsRaw != null)
+                {
+                    foreach (var marking in synthMarkingsRaw)
+                    {
+                        var parsed = Marking.ParseFromDbString(marking);
+
+                        if (parsed is null) continue;
+
+                        synthMarkings.Add(parsed);
+                    }
+                }
+
+                synthAppearance = new HumanoidCharacterAppearance
+                (
+                    profile.SynthHairName,
+                    Color.FromHex(profile.SynthHairColor),
+                    profile.SynthFacialHairName,
+                    Color.FromHex(profile.SynthFacialHairColor),
+                    Color.FromHex(profile.SynthEyeColor),
+                    Color.FromHex(profile.SynthSkinColor),
+                    synthMarkings
+                );
+            }
+            // Stories-SynthAppearance-End
+
             var loadouts = new Dictionary<string, RoleLoadout>();
 
             foreach (var role in profile.Loadouts)
@@ -332,7 +370,9 @@ namespace Content.Server.Database
                 profile.PlaytimePerks,
                 profile.XenoPrefix,
                 profile.XenoPostfix,
-                variantPreferences // Stories-SynthVariantPreference
+                variantPreferences, // Stories-SynthVariantPreference
+                synthAppearance, // Stories-SynthAppearance
+                profile.SynthName // Stories-SynthAppearance
             );
         }
 
@@ -360,6 +400,37 @@ namespace Content.Server.Database
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
+
+            // Stories-SynthAppearance-Start
+            var synthAppearance = humanoid.SynthAppearance;
+            if (synthAppearance != null)
+            {
+                var synthMarkingStrings = new List<string>();
+                foreach (var marking in synthAppearance.Markings)
+                {
+                    synthMarkingStrings.Add(marking.ToString());
+                }
+
+                profile.SynthMarkings = JsonSerializer.SerializeToDocument(synthMarkingStrings);
+                profile.SynthHairName = synthAppearance.HairStyleId;
+                profile.SynthHairColor = synthAppearance.HairColor.ToHex();
+                profile.SynthFacialHairName = synthAppearance.FacialHairStyleId;
+                profile.SynthFacialHairColor = synthAppearance.FacialHairColor.ToHex();
+                profile.SynthEyeColor = synthAppearance.EyeColor.ToHex();
+                profile.SynthSkinColor = synthAppearance.SkinColor.ToHex();
+            }
+            else
+            {
+                profile.SynthMarkings = null;
+                profile.SynthHairName = null;
+                profile.SynthHairColor = null;
+                profile.SynthFacialHairName = null;
+                profile.SynthFacialHairColor = null;
+                profile.SynthEyeColor = null;
+                profile.SynthSkinColor = null;
+            }
+            profile.SynthName = humanoid.SynthName;
+            // Stories-SynthAppearance-End
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
             profile.ArmorPreference = humanoid.ArmorPreference.ToString();
             profile.SquadPreference = new RMCSquadPreference { Squad = humanoid.SquadPreference };

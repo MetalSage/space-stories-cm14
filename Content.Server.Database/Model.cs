@@ -591,6 +591,16 @@ namespace Content.Server.Database
         public string FacialHairColor { get; set; } = null!;
         public string EyeColor { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
+        // Stories-SynthAppearance-Start
+        [Column(TypeName = "jsonb")] public JsonDocument? SynthMarkings { get; set; }
+        public string? SynthHairName { get; set; }
+        public string? SynthHairColor { get; set; }
+        public string? SynthFacialHairName { get; set; }
+        public string? SynthFacialHairColor { get; set; }
+        public string? SynthEyeColor { get; set; }
+        public string? SynthSkinColor { get; set; }
+        public string SynthName { get; set; } = string.Empty;
+        // Stories-SynthAppearance-End
         public int SpawnPriority { get; set; } = 0;
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();

@@ -596,6 +596,26 @@ namespace Content.Client.Lobby.UI
         }
         // Stories-Hunter-End
 
+        // Stories-SynthProfileTab-Start
+        public int GetSynthTabIndex()
+        {
+            var i = 0;
+            foreach (var child in TabContainer.Children)
+            {
+                if (child == SynthTab)
+                    return i;
+                i++;
+            }
+            return -1;
+        }
+
+        public event Action<int>? OnTabChanged
+        {
+            add => TabContainer.OnTabChanged += value;
+            remove => TabContainer.OnTabChanged -= value;
+        }
+        // Stories-SynthProfileTab-End
+
         /// <summary>
         /// Refreshes the flavor text editor status.
         /// </summary>
@@ -1022,6 +1042,7 @@ namespace Content.Client.Lobby.UI
             _jobCategories.Clear();
             _jobPriorities.Clear();
             _rankPriorities.Clear();
+            _variantPriorities.Clear(); // Stories-JobVariantPreference
             var firstCategory = true;
 
             // Get all displayed departments
@@ -1251,7 +1272,7 @@ namespace Content.Client.Lobby.UI
 
                     var variantIds = new List<string?> { null };
 
-                    if (job.Variants != null && job.SetVariantPreference)
+                    if (job.Variants != null && job.SetVariantPreference && !job.HideVariantPreferenceInJobList) // Stories-SynthProfileTab
                     {
                         variantOptions.AddItem("Auto");
 
@@ -1826,7 +1847,7 @@ namespace Content.Client.Lobby.UI
                 if (!_prototypeManager.TryIndex(jobID, out JobPrototype? job) || job == null)
                     continue;
 
-                if (job.Variants == null || !job.SetVariantPreference)
+                if (job.Variants == null || !job.SetVariantPreference || job.HideVariantPreferenceInJobList) // Stories-SynthProfileTab
                     continue;
 
                 string? preferredVariant = null;

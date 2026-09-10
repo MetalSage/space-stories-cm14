@@ -1023,6 +1023,39 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("species");
 
+                    b.Property<string>("SynthEyeColor")
+                        .HasColumnType("text")
+                        .HasColumnName("synth_eye_color");
+
+                    b.Property<string>("SynthFacialHairColor")
+                        .HasColumnType("text")
+                        .HasColumnName("synth_facial_hair_color");
+
+                    b.Property<string>("SynthFacialHairName")
+                        .HasColumnType("text")
+                        .HasColumnName("synth_facial_hair_name");
+
+                    b.Property<string>("SynthHairColor")
+                        .HasColumnType("text")
+                        .HasColumnName("synth_hair_color");
+
+                    b.Property<string>("SynthHairName")
+                        .HasColumnType("text")
+                        .HasColumnName("synth_hair_name");
+
+                    b.Property<JsonDocument>("SynthMarkings")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("synth_markings");
+
+                    b.Property<string>("SynthName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("synth_name");
+
+                    b.Property<string>("SynthSkinColor")
+                        .HasColumnType("text")
+                        .HasColumnName("synth_skin_color");
+
                     b.Property<string>("Voice")
                         .IsRequired()
                         .HasColumnType("text")

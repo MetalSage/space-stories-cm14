@@ -69,6 +69,14 @@ namespace Content.Shared.Preferences
         public IReadOnlyDictionary<ProtoId<JobPrototype>, string?> VariantPreferences => _variantPreferences;
         // Stories-JobVariantPreference-End
 
+        // Stories-SynthAppearance-Start
+        [DataField]
+        public HumanoidCharacterAppearance? SynthAppearance { get; private set; }
+
+        [DataField]
+        public string SynthName { get; private set; } = string.Empty;
+        // Stories-SynthAppearance-End
+
         /// <summary>
         /// <see cref="_loadouts"/>
         /// </summary>
@@ -194,7 +202,9 @@ namespace Content.Shared.Preferences
             bool playtimePerks,
             string xenoPrefix,
             string xenoPostfix,
-            Dictionary<ProtoId<JobPrototype>, string?>? variantPreferences = null) // Stories-JobVariantPreference
+            Dictionary<ProtoId<JobPrototype>, string?>? variantPreferences = null, // Stories-JobVariantPreference
+            HumanoidCharacterAppearance? synthAppearance = null, // Stories-SynthAppearance
+            string synthName = "") // Stories-SynthAppearance
         {
             Name = name;
             FlavorText = flavortext;
@@ -209,6 +219,8 @@ namespace Content.Shared.Preferences
             _rankPreferences = rankPreference;
             SquadPreference = squadPreference;
             _variantPreferences = variantPreferences ?? new(); // Stories-JobVariantPreference
+            SynthAppearance = synthAppearance; // Stories-SynthAppearance
+            SynthName = synthName; // Stories-SynthAppearance
             _jobPriorities = jobPriorities;
             PreferenceUnavailable = preferenceUnavailable;
             _antagPreferences = antagPreferences;
@@ -260,6 +272,8 @@ namespace Content.Shared.Preferences
                 other.XenoPostfix)
         {
             _variantPreferences = new Dictionary<ProtoId<JobPrototype>, string?>(other.VariantPreferences); // Stories-JobVariantPreference
+            SynthAppearance = other.SynthAppearance?.Clone(); // Stories-SynthAppearance
+            SynthName = other.SynthName; // Stories-SynthAppearance
         }
 
         /// <summary>
@@ -390,6 +404,18 @@ namespace Content.Shared.Preferences
         {
             return new(this) { Appearance = appearance };
         }
+
+        // Stories-SynthAppearance-Start
+        public HumanoidCharacterProfile WithSynthAppearance(HumanoidCharacterAppearance? appearance)
+        {
+            return new(this) { SynthAppearance = appearance };
+        }
+
+        public HumanoidCharacterProfile WithSynthName(string synthName)
+        {
+            return new(this) { SynthName = synthName };
+        }
+        // Stories-SynthAppearance-End
 
         public HumanoidCharacterProfile WithSpawnPriorityPreference(SpawnPriorityPreference spawnPriority)
         {
@@ -618,6 +644,9 @@ namespace Content.Shared.Preferences
             if (ArmorPreference != other.ArmorPreference) return false;
             if (!_rankPreferences.SequenceEqual(other._rankPreferences)) return false;
             if (!_variantPreferences.SequenceEqual(other._variantPreferences)) return false; // Stories-JobVariantPreference
+            if (SynthAppearance is null != other.SynthAppearance is null) return false; // Stories-SynthAppearance
+            if (SynthAppearance != null && other.SynthAppearance != null && !SynthAppearance.MemberwiseEquals(other.SynthAppearance)) return false; // Stories-SynthAppearance
+            if (SynthName != other.SynthName) return false; // Stories-SynthAppearance
             if (PlaytimePerks != other.PlaytimePerks) return false;
             if (XenoPrefix != other.XenoPrefix) return false;
             if (XenoPostfix != other.XenoPostfix) return false;
@@ -692,6 +721,21 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
+            // Stories-SynthAppearance-Start
+            var synthName = SynthName.Length > maxNameLength ? SynthName[..maxNameLength] : SynthName;
+            synthName = synthName.Trim();
+
+            if (configManager.GetCVar(CCVars.RestrictedNames))
+            {
+                synthName = RestrictedNameRegex.Replace(synthName, string.Empty);
+            }
+
+            if (configManager.GetCVar(CCVars.ICNameCase))
+            {
+                synthName = ICNameCaseRegex.Replace(synthName, m => m.Groups["word"].Value.ToUpper());
+            }
+            // Stories-SynthAppearance-End
+
             string flavortext;
             var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
             if (FlavorText.Length > maxFlavorTextLength)
@@ -704,6 +748,12 @@ namespace Content.Shared.Preferences
             }
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
+
+            // Stories-SynthAppearance-Start
+            var synthAppearance = SynthAppearance == null
+                ? null
+                : HumanoidCharacterAppearance.EnsureValid(SynthAppearance, Species, Sex);
+            // Stories-SynthAppearance-End
 
             var prefsUnavailableMode = PreferenceUnavailable switch
             {
@@ -755,6 +805,8 @@ namespace Content.Shared.Preferences
             Sex = sex;
             Gender = gender;
             Appearance = appearance;
+            SynthAppearance = synthAppearance; // Stories-SynthAppearance
+            SynthName = synthName; // Stories-SynthAppearance
             SpawnPriority = spawnPriority;
 
             var armorPreference = ArmorPreference switch
@@ -967,6 +1019,8 @@ namespace Content.Shared.Preferences
             hashCode.Add((int)ArmorPreference);
             hashCode.Add(_rankPreferences);
             hashCode.Add(_variantPreferences); // Stories-JobVariantPreference
+            hashCode.Add(SynthAppearance); // Stories-SynthAppearance
+            hashCode.Add(SynthName); // Stories-SynthAppearance
             hashCode.Add(SquadPreference);
             hashCode.Add((int)PreferenceUnavailable);
             hashCode.Add(NamedItems);

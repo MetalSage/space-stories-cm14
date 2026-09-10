@@ -3,6 +3,7 @@ using System;
 using Content.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Content.Server.Database.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteServerDbContext))]
-    partial class SqliteServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260910044459_SynthAppearance")]
+    partial class SynthAppearance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
@@ -995,11 +998,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Property<byte[]>("SynthMarkings")
                         .HasColumnType("jsonb")
                         .HasColumnName("synth_markings");
-
-                    b.Property<string>("SynthName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("synth_name");
 
                     b.Property<string>("SynthSkinColor")
                         .HasColumnType("TEXT")
