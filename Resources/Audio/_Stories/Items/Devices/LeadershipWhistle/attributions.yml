@@ -1,0 +1,14 @@
+- files: ["trench_whistle_focus.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/Nihisohel/cmss13/blob/70caa091d6a48915710edf99e40cd78977c3ca77/sound/items/whistles/trench_whistle_focus.ogg"
+
+- files: ["trench_whistle_hold.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/Nihisohel/cmss13/blob/70caa091d6a48915710edf99e40cd78977c3ca77/sound/items/whistles/trench_whistle_hold.ogg"
+
+- files: ["trench_whistle_move.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/Nihisohel/cmss13/blob/70caa091d6a48915710edf99e40cd78977c3ca77/sound/items/whistles/trench_whistle_move.ogg"

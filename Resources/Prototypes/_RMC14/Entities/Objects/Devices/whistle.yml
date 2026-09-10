@@ -24,3 +24,36 @@
   - type: Whistle
     distance: 15 # Let your enemies hear the sound of death approaching
   - type: RMCWhistle
+
+# Space Stories - Whistles - Start
+- type: entity
+  parent: RMCWhistle
+  id: STTrenchWhistle
+  name: траншейный свисток
+  description: Металлический полевой свисток, получивший популярность в начале 20 века. В него можно дуть, держа в руке, или носить во рту
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Devices/whistle.rsi
+    state: trench
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Stories/Items/Devices/LeadershipWhistle/trench_whistle_move.ogg
+  - type: EmitSoundOnAction
+    sound:
+      path: /Audio/_Stories/Items/Devices/LeadershipWhistle/trench_whistle_move.ogg
+  - type: LeadershipWhistle 
+    orderWhistleSounds:
+      Move: 
+        path: /Audio/_Stories/Items/Devices/LeadershipWhistle/trench_whistle_move.ogg
+        params:
+          volume: -3
+      Hold: 
+        path: /Audio/_Stories/Items/Devices/LeadershipWhistle/trench_whistle_hold.ogg
+        params:
+          volume: -3
+      Focus: 
+        path: /Audio/_Stories/Items/Devices/LeadershipWhistle/trench_whistle_focus.ogg
+        params:
+          volume: -3
+      
+# Space Stories - Whistles - End

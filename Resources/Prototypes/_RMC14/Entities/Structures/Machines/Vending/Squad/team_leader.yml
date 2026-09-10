@@ -125,8 +125,12 @@
         points: 5
       - id: CMFireExtinguisherPortable
         points: 5
-      - id: RMCWhistle
+      # Stories - Whistles - Start
+      - id: STTrenchWhistle
         points: 5
+      # Stories - Whistles - End
+      #- id: RMCWhistle
+      #  points: 5
     - name: Binoculars
       entries:
       - id: RMCBinoculars
