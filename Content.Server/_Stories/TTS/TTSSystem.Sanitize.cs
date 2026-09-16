@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Content.Server.Chat.Systems;
@@ -88,7 +89,6 @@ public sealed partial class TTSSystem
             text = Regex.Replace(text, _sanitizeConfig.AllowedCharsRegex, "");
         else
             text = Regex.Replace(text, @"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ]", "");
-        text = Regex.Replace(text, @"[a-zA-Z]", ReplaceLat2Cyr, RegexOptions.Multiline | RegexOptions.IgnoreCase);
         text = Regex.Replace(text, @"(?<![a-zA-Zа-яёА-ЯЁ])[a-zA-Zа-яёА-ЯЁ]+?(?![a-zA-Zа-яёА-ЯЁ])", ReplaceMatchedWord, RegexOptions.Multiline | RegexOptions.IgnoreCase);
         text = Regex.Replace(text, @"(?<=[0-9])(\.|,)(?=[0-9])", " целых ");
         text = Regex.Replace(text, @"\d+", ReplaceWord2Num);
@@ -137,9 +137,14 @@ public sealed partial class TTSSystem
 
     private string ReplaceMatchedWord(Match word)
     {
-        if (_wordReplacement.TryGetValue(word.Value.ToLowerInvariant(), out var replace))
+        var value = word.Value;
+        if (_wordReplacement.TryGetValue(value.ToLowerInvariant(), out var replace))
             return replace;
-        return word.Value;
+
+        if (Regex.IsMatch(value, "^[A-Za-z]+$"))
+            return TtsLatinTransliterator.TransliterateWord(value, _sanitizeConfig?.ReverseTranslit);
+
+        return value;
     }
 
     private string ReplaceWord2Num(Match word)
@@ -150,6 +155,98 @@ public sealed partial class TTSSystem
     }
 
 
+}
+
+public static class TtsLatinTransliterator
+{
+    private static readonly Dictionary<string, string> MultiLetterRules = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["sch"] = "ш",
+        ["sh"] = "ш",
+        ["ch"] = "ч",
+        ["zh"] = "ж",
+        ["ph"] = "ф",
+        ["th"] = "з",
+        ["ae"] = "э",
+        ["oe"] = "о",
+        ["ie"] = "и",
+        ["qu"] = "кв",
+        ["ck"] = "к",
+    };
+
+    private static readonly Dictionary<char, string> SingleLetterRules = new()
+    {
+        ['x'] = "кс",
+        ['q'] = "к",
+        ['w'] = "в",
+        ['y'] = "й",
+        ['j'] = "ж",
+        ['c'] = "с",
+        ['g'] = "г",
+        ['s'] = "с",
+        ['t'] = "т",
+        ['d'] = "д",
+        ['f'] = "ф",
+        ['h'] = "х",
+        ['v'] = "в",
+        ['b'] = "б",
+        ['n'] = "н",
+        ['m'] = "м",
+        ['l'] = "л",
+        ['r'] = "р",
+        ['k'] = "к",
+        ['p'] = "п",
+        ['a'] = "а",
+        ['e'] = "э",
+        ['i'] = "и",
+        ['o'] = "о",
+        ['u'] = "у",
+        ['z'] = "з",
+    };
+
+    public static string TransliterateWord(string word, IReadOnlyDictionary<string, string>? reverseTranslit = null)
+    {
+        if (string.IsNullOrWhiteSpace(word))
+            return word;
+
+        var normalized = word.Trim();
+        var lower = normalized.ToLowerInvariant();
+        if (reverseTranslit != null && reverseTranslit.TryGetValue(lower, out var configured))
+            return configured;
+
+        var builder = new StringBuilder(normalized.Length);
+        for (var i = 0; i < normalized.Length;)
+        {
+            var remaining = normalized.Substring(i);
+            var matched = false;
+
+            foreach (var pair in MultiLetterRules.OrderByDescending(x => x.Key.Length))
+            {
+                if (!remaining.StartsWith(pair.Key, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                builder.Append(pair.Value);
+                i += pair.Key.Length;
+                matched = true;
+                break;
+            }
+
+            if (matched)
+                continue;
+
+            var ch = normalized[i];
+            builder.Append(SingleLetterRules.TryGetValue(char.ToLowerInvariant(ch), out var replacement)
+                ? replacement
+                : ch.ToString());
+            i++;
+        }
+
+        var result = builder.ToString();
+        if (normalized.Length > 0 && char.IsUpper(normalized[0]))
+            result = char.ToUpperInvariant(result[0]) + result.Substring(1);
+
+        return result;
+    }
 }
 
 public static class NumberConverter
