@@ -21,3 +21,6 @@ rmc-power-loader-occupied-deployable = You need to unload the ordnance inside fi
 rmc-power-loader-ammo-no-weapon = You need to install a weapon first!
 
 rmc-power-loader-occupied = There's already something installed there!
+
+# SSCM
+sscm-targeting-system-overload = This overheats the shuttle's systems.

@@ -21,3 +21,6 @@ rmc-power-loader-occupied-deployable = Сначала нужно разгруз�
 rmc-power-loader-ammo-no-weapon = Сначала нужно установить оружие!
 
 rmc-power-loader-occupied = Там уже что-то установлено!
+
+# SSCM
+sscm-targeting-system-overload = Это перегревает системы шаттла.

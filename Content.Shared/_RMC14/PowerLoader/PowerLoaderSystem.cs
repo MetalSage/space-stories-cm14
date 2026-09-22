@@ -787,6 +787,35 @@ public sealed class PowerLoaderSystem : EntitySystem
             return false;
         }
 
+        // SSCM start
+        // Limit Target Sys
+        if (HasComp<DropshipTargetingSystemComponent>(used) &&
+            _dropship.TryGetGridDropship(target, out var dropshipForLimit))
+        {
+            foreach (var point in dropshipForLimit.Comp.AttachmentPoints)
+            {
+                if (!TryComp(point, out DropshipElectronicSystemPointComponent? electronicPoint) ||
+                    !_container.TryGetContainer(point, electronicPoint.ContainerId, out var existingContainer))
+                    continue;
+
+                foreach (var existingEntity in existingContainer.ContainedEntities)
+                {
+                    if (!HasComp<DropshipTargetingSystemComponent>(existingEntity))
+                        continue;
+
+                    var overloadMsg = Loc.GetString("sscm-targeting-system-overload");
+                    foreach (var buckled in GetBuckled(user))
+                    {
+                        _popup.PopupClient(overloadMsg, target, buckled, PopupType.MediumCaution);
+                    }
+
+                    slot = null;
+                    return false;
+                }
+            }
+        }
+        // SSCM end
+
         slot = _container.EnsureContainer<ContainerSlot>(target, slotId);
         if (slot.ContainedEntity == null)
             return true;
