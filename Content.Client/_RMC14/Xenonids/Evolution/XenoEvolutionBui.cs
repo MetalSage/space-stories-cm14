@@ -4,7 +4,9 @@ using Content.Client.Message;
 using Content.Shared._RMC14.Xenonids.Evolution;
 using Content.Shared._RMC14.Xenonids.Hive;
 using Content.Shared._RMC14.Xenonids.Strain;
+using Content.Shared._Stories.Xenonids.Evolution; // Stories-EvoQueue
 using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking; // Stories-EvoQueue
 using Content.Shared.Mobs.Systems;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -39,6 +41,14 @@ public sealed class XenoEvolutionBui : BoundUserInterface
         base.Open();
         _window = this.CreateWindow<XenoEvolutionWindow>();
         _window.OvipositorNeededLabel.Visible = false;
+        _window.CancelOfferButton.OnPressed += _ => SendPredictedMessage(new XenoEvolutionQueueCancelBuiMsg()); // Stories-EvoQueue
+
+        // Stories-EvoQueue
+        var gameTicker = EntMan.System<SharedGameTicker>();
+        _window.GetOfferRemaining = () =>
+            EntMan.TryGetComponent(Owner, out XenoEvolutionQueueComponent? queue) && queue.OfferedUntil is { } until
+                ? until - gameTicker.RoundDuration()
+                : null;
 
         if (EntMan.TryGetComponent(Owner, out XenoEvolutionComponent? xeno))
         {
@@ -137,6 +147,10 @@ public sealed class XenoEvolutionBui : BoundUserInterface
         if (!EntMan.TryGetComponent(Owner, out XenoEvolutionComponent? xeno))
             return;
 
+        // Stories-EvoQueue
+        var state = State as XenoEvolveBuiState;
+        var offered = EntMan.TryGetComponent(Owner, out XenoEvolutionQueueComponent? queue) && queue.OfferedUntil != null;
+
         _window.PointsLabel.Visible = xeno.Max > FixedPoint2.Zero;
 
         foreach (var control in _evolutionControls.Values)
@@ -170,7 +184,7 @@ public sealed class XenoEvolutionBui : BoundUserInterface
         _window.Separator.Visible = _window.EvolutionsContainer.Children.Any(child => child.Visible) &&
                                     _window.StrainsContainer.Children.Any(child => child.Visible);
 
-        var lackingOvipositor = State is XenoEvolveBuiState { LackingOvipositor: true };
+        var lackingOvipositor = state is { LackingOvipositor: true }; // Stories-EvoQueue
         var points = xeno.Points;
 
         _window.PointsLabel.Text = Loc.GetString("rmc-xeno-ui-evolution-points",
@@ -189,6 +203,14 @@ public sealed class XenoEvolutionBui : BoundUserInterface
         {
             _window.OvipositorNeededLabel.Visible = false;
         }
+
+        // Stories-EvoQueue
+        if (offered)
+            _window.QueueLabel.SetMarkupPermissive(Loc.GetString("stories-xeno-ui-queue-label"));
+
+        _window.QueueLabel.Visible = offered;
+        _window.CancelOfferButton.Visible = offered;
+        _window.QueueSeparator.Visible = offered;
     }
 
     private bool HiveHasLivingQueen()

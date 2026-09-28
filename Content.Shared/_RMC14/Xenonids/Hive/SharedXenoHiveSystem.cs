@@ -153,6 +153,71 @@ public abstract class SharedXenoHiveSystem : EntitySystem
         ent.Comp.AnnouncementsLeft.Sort();
     }
 
+    // Stories-EvoQueue-Start
+    public bool IsQueuedCaste(Entity<HiveComponent> hive, EntProtoId caste)
+    {
+        if (!_prototypes.TryIndex(caste, out var proto) ||
+            !proto.TryGetComponent(out XenoComponent? xeno, _compFactory))
+        {
+            return false;
+        }
+
+        return xeno.UnlockAt > TimeSpan.Zero &&
+               !xeno.BypassTierCount &&
+               xeno.CountedInSlots &&
+               hive.Comp.TierLimits.ContainsKey(xeno.Tier) &&
+               !hive.Comp.FreeSlots.ContainsKey(caste);
+    }
+
+    public int GetOpenTierSlots(Entity<HiveComponent> hive, int tier)
+    {
+        if (!TryGetTierLimit((hive.Owner, hive.Comp), tier, out var limit))
+            return 0;
+
+        GetTierOccupancy(hive, tier, out var total, out var existing, out _);
+
+        var open = 0;
+        while (open < 64 && total > 0 && (existing + open) / (float)total < limit)
+            open++;
+
+        return open;
+    }
+
+    public void GetTierOccupancy(
+        Entity<HiveComponent> hive,
+        int tier,
+        out double total,
+        out int existing,
+        out Dictionary<EntProtoId, int> freeSlotCount)
+    {
+        existing = 0;
+        total = Math.Sqrt(hive.Comp.BurrowedLarva * hive.Comp.BurrowedLarvaSlotFactor);
+        total = Math.Min(total, hive.Comp.BurrowedLarva);
+
+        freeSlotCount = new Dictionary<EntProtoId, int>(hive.Comp.FreeSlots);
+
+        var current = EntityQueryEnumerator<XenoComponent, HiveMemberComponent>();
+        while (current.MoveNext(out var uid, out var existingComp, out var member))
+        {
+            if (_mobState.IsDead(uid))
+                continue;
+
+            if (member.Hive != hive.Owner || !existingComp.CountedInSlots)
+                continue;
+
+            total++;
+
+            if (existingComp.Tier < tier)
+                continue;
+
+            if (freeSlotCount.TryGetValue(existingComp.Role.Id, out var slots) && slots > 0)
+                freeSlotCount[existingComp.Role.Id] = slots - 1;
+            else
+                existing++;
+        }
+    }
+    // Stories-EvoQueue-End
+
     /// <summary>
     /// Tries to get the hive from a member, returning null if it has no hive or it is invalid.
     /// </summary>
