@@ -18,6 +18,12 @@ public sealed partial class TTSSanitizeConfigPrototype : IPrototype
     public Dictionary<string, string> PhoneticAlphabet { get; private set; } = new();
 
     /// <summary>
+    /// Transliteration mapping (e.g. a -> а)
+    /// </summary>
+    [DataField]
+    public Dictionary<string, string> ReverseTranslit { get; private set; } = new();
+
+    /// <summary>
     /// Letter combinations for approximate English pronunciation, longest match first.
     /// </summary>
     [DataField]

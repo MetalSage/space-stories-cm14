@@ -155,7 +155,7 @@ public sealed partial class TTSSystem
             return replace;
 
         if (_sanitizeConfig != null && IsLatinWord(value))
-            return TtsLatinTransliterator.TransliterateWord(value, _multiLetterRules, _singleLetterRules);
+            return TtsLatinTransliterator.TransliterateWord(value, _multiLetterRules, _singleLetterRules, _sanitizeConfig.ReverseTranslit);
 
         return value;
     }
@@ -186,12 +186,16 @@ public static class TtsLatinTransliterator
     public static string TransliterateWord(
         string word,
         IReadOnlyList<(string Pattern, string Replacement)> multiLetterRules,
-        IReadOnlyDictionary<char, string> singleLetterRules)
+        IReadOnlyDictionary<char, string> singleLetterRules,
+        IReadOnlyDictionary<string, string>? reverseTranslit = null)
     {
         if (string.IsNullOrWhiteSpace(word))
             return word;
 
         var normalized = word.Trim();
+        if (reverseTranslit != null && reverseTranslit.TryGetValue(normalized.ToLowerInvariant(), out var configured))
+            return configured;
+
         var builder = new StringBuilder(normalized.Length);
         for (var i = 0; i < normalized.Length;)
         {
