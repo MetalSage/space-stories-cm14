@@ -13,6 +13,8 @@ public sealed partial class TTSSystem
 {
     private readonly Dictionary<string, string> _wordReplacement = new();
     private readonly List<(Regex Regex, string Replacement)> _regexReplacements = new();
+    private readonly List<(string Pattern, string Replacement)> _multiLetterRules = new();
+    private readonly Dictionary<char, string> _singleLetterRules = new();
 
     private TTSSanitizeConfigPrototype? _sanitizeConfig;
 
@@ -32,9 +34,27 @@ public sealed partial class TTSSystem
     {
         _wordReplacement.Clear();
         _regexReplacements.Clear();
+        _multiLetterRules.Clear();
+        _singleLetterRules.Clear();
 
-        if (_prototypeManager.TryIndex<TTSSanitizeConfigPrototype>("Default", out _sanitizeConfig))
+        if (_prototypeManager.TryIndex("Default", out _sanitizeConfig))
         {
+            foreach (var (pattern, replacement) in _sanitizeConfig.MultiLetterRules.OrderByDescending(rule => rule.Key.Length))
+            {
+                if (pattern.Length == 0)
+                    continue;
+
+                _multiLetterRules.Add((pattern, replacement));
+            }
+
+            foreach (var (letter, replacement) in _sanitizeConfig.SingleLetterRules)
+            {
+                if (letter.Length != 1)
+                    continue;
+
+                _singleLetterRules[char.ToLowerInvariant(letter[0])] = replacement;
+            }
+
             Log.Info($"TTS Sanitize: successfully indexed Default config. Reading {_sanitizeConfig.Replacements.Count} replacements.");
             foreach (var replacement in _sanitizeConfig.Replacements)
             {
@@ -46,7 +66,6 @@ public sealed partial class TTSSystem
                     if (pattern.EndsWith(@"\b"))
                         pattern = pattern.Substring(0, pattern.Length - 2) + @"(?![a-zA-Zа-яА-ЯёЁ0-9_])";
 
-                    Log.Debug($"TTS Sanitize: Compiling regex '{pattern}' -> '{replacement.ReplacedWith}'");
                     _regexReplacements.Add((new Regex(pattern, RegexOptions.IgnoreCase), replacement.ReplacedWith));
                 }
                 else
@@ -63,7 +82,8 @@ public sealed partial class TTSSystem
 
     private void OnTransformSpeech(ref TransformSpeechEvent args)
     {
-        if (!_isEnabled) return;
+        if (!_isEnabled)
+            return;
     }
 
     private string Sanitize(string text)
@@ -128,23 +148,27 @@ public sealed partial class TTSSystem
         return sb.ToString().TrimEnd();
     }
 
-    private string ReplaceLat2Cyr(Match oneChar)
-    {
-        if (_sanitizeConfig != null && _sanitizeConfig.ReverseTranslit.TryGetValue(oneChar.Value.ToLower(), out var replace))
-            return replace;
-        return oneChar.Value;
-    }
-
     private string ReplaceMatchedWord(Match word)
     {
         var value = word.Value;
         if (_wordReplacement.TryGetValue(value.ToLowerInvariant(), out var replace))
             return replace;
 
-        if (Regex.IsMatch(value, "^[A-Za-z]+$"))
-            return TtsLatinTransliterator.TransliterateWord(value, _sanitizeConfig?.ReverseTranslit);
+        if (_sanitizeConfig != null && IsLatinWord(value))
+            return TtsLatinTransliterator.TransliterateWord(value, _multiLetterRules, _singleLetterRules);
 
         return value;
+    }
+
+    private static bool IsLatinWord(string value)
+    {
+        foreach (var letter in value)
+        {
+            if (letter is not (>= 'A' and <= 'Z' or >= 'a' and <= 'z'))
+                return false;
+        }
+
+        return value.Length > 0;
     }
 
     private string ReplaceWord2Num(Match word)
@@ -159,74 +183,27 @@ public sealed partial class TTSSystem
 
 public static class TtsLatinTransliterator
 {
-    private static readonly Dictionary<string, string> MultiLetterRules = new(StringComparer.OrdinalIgnoreCase)
-    {
-        ["sch"] = "ш",
-        ["sh"] = "ш",
-        ["ch"] = "ч",
-        ["zh"] = "ж",
-        ["ph"] = "ф",
-        ["th"] = "з",
-        ["ae"] = "э",
-        ["oe"] = "о",
-        ["ie"] = "и",
-        ["qu"] = "кв",
-        ["ck"] = "к",
-    };
-
-    private static readonly Dictionary<char, string> SingleLetterRules = new()
-    {
-        ['x'] = "кс",
-        ['q'] = "к",
-        ['w'] = "в",
-        ['y'] = "й",
-        ['j'] = "ж",
-        ['c'] = "с",
-        ['g'] = "г",
-        ['s'] = "с",
-        ['t'] = "т",
-        ['d'] = "д",
-        ['f'] = "ф",
-        ['h'] = "х",
-        ['v'] = "в",
-        ['b'] = "б",
-        ['n'] = "н",
-        ['m'] = "м",
-        ['l'] = "л",
-        ['r'] = "р",
-        ['k'] = "к",
-        ['p'] = "п",
-        ['a'] = "а",
-        ['e'] = "э",
-        ['i'] = "и",
-        ['o'] = "о",
-        ['u'] = "у",
-        ['z'] = "з",
-    };
-
-    public static string TransliterateWord(string word, IReadOnlyDictionary<string, string>? reverseTranslit = null)
+    public static string TransliterateWord(
+        string word,
+        IReadOnlyList<(string Pattern, string Replacement)> multiLetterRules,
+        IReadOnlyDictionary<char, string> singleLetterRules)
     {
         if (string.IsNullOrWhiteSpace(word))
             return word;
 
         var normalized = word.Trim();
-        var lower = normalized.ToLowerInvariant();
-        if (reverseTranslit != null && reverseTranslit.TryGetValue(lower, out var configured))
-            return configured;
-
         var builder = new StringBuilder(normalized.Length);
         for (var i = 0; i < normalized.Length;)
         {
-            var remaining = normalized.Substring(i);
             var matched = false;
 
-            foreach (var pair in MultiLetterRules.OrderByDescending(x => x.Key.Length))
+            foreach (var (pattern, replacement) in multiLetterRules)
             {
-                if (!remaining.StartsWith(pair.Key, StringComparison.OrdinalIgnoreCase))
+                if (!normalized.AsSpan(i).StartsWith(pattern.AsSpan(), StringComparison.OrdinalIgnoreCase))
                     continue;
 
-                builder.Append(pair.Value);
-                i += pair.Key.Length;
+                builder.Append(replacement);
+                i += pattern.Length;
                 matched = true;
                 break;
             }
@@ -235,17 +212,21 @@ public static class TtsLatinTransliterator
                 continue;
 
             var ch = normalized[i];
-            builder.Append(SingleLetterRules.TryGetValue(char.ToLowerInvariant(ch), out var replacement)
-                ? replacement
-                : ch.ToString());
+            builder.Append(singleLetterRules.TryGetValue(char.ToLowerInvariant(ch), out var mappedLetter)
+                ? mappedLetter
+                : ch);
             i++;
         }
 
-        var result = builder.ToString();
-        if (normalized.Length > 0 && char.IsUpper(normalized[0]))
-            result = char.ToUpperInvariant(result[0]) + result.Substring(1);
+        return PreserveInitialCase(normalized, builder.ToString());
+    }
 
-        return result;
+    private static string PreserveInitialCase(string source, string result)
+    {
+        if (result.Length == 0 || !char.IsUpper(source[0]))
+            return result;
+
+        return char.ToUpperInvariant(result[0]) + result.Substring(1);
     }
 }
 

@@ -18,10 +18,16 @@ public sealed partial class TTSSanitizeConfigPrototype : IPrototype
     public Dictionary<string, string> PhoneticAlphabet { get; private set; } = new();
 
     /// <summary>
-    /// Transliteration mapping (e.g. a -> а)
+    /// Letter combinations for approximate English pronunciation, longest match first.
     /// </summary>
     [DataField]
-    public Dictionary<string, string> ReverseTranslit { get; private set; } = new();
+    public Dictionary<string, string> MultiLetterRules { get; private set; } = new();
+
+    /// <summary>
+    /// Fallback mapping for individual Latin letters.
+    /// </summary>
+    [DataField]
+    public Dictionary<string, string> SingleLetterRules { get; private set; } = new();
 
     /// <summary>
     /// Regex for characters allowed in output. E.g. @"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ]"
