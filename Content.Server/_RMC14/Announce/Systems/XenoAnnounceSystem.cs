@@ -1,26 +1,28 @@
 using Content.Server._Stories.TTS;
 using Content.Server.Administration.Logs;
-using Content.Server.Chat.Managers;
+using Content.Shared._RMC14.Announce;
 using Content.Shared._RMC14.Xenonids.Announce;
+using Content.Shared._RMC14.Xenonids.Evolution;
+using Content.Shared._RMC14.Xenonids.Word;
 using Content.Shared._Stories.SCCVars;
 using Content.Shared._Stories.TTS; // Stories-TTS
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Popups;
-using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._RMC14.Announce;
 
 public sealed class XenoAnnounceSystem : SharedXenoAnnounceSystem
 {
+    private static readonly ProtoId<AnnouncementPresetPrototype> QueenAnnouncementPreset = "XenoQueen";
+
     [Dependency] private readonly IAdminLogManager _adminLogs = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly AnnouncementRouterSystem _announcementRouter = default!;
     // Stories-TTS-Start
     [Dependency] private readonly TTSSystem _tts = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
@@ -57,17 +59,42 @@ public sealed class XenoAnnounceSystem : SharedXenoAnnounceSystem
         if (source.IsValid())
             _adminLogs.Add(LogType.RMCXenoAnnounce, $"{ToPrettyString(source):source} xeno announced message: {message}");
 
-        _chat.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrapped, source, false, true, null);
-        _audio.PlayGlobal(sound, filter, true);
+        var channels = AnnouncementChannels.Chat | AnnouncementChannels.Sound;
+        if (source.IsValid() && IsQueenAnnouncementSource(source))
+            channels |= AnnouncementChannels.Overlay;
 
-        if (popup == null)
-            return;
+        if (popup != null)
+            channels |= AnnouncementChannels.Popup;
 
-        foreach (var session in filter.Recipients)
+        _announcementRouter.Announce(new AnnouncementRequest
         {
-            if (session.AttachedEntity is { } recipient)
-                _popup.PopupEntity(message, recipient, recipient, popup.Value);
-        }
+            Message = message,
+            Preset = QueenAnnouncementPreset,
+            Route = new AnnouncementRoute
+            {
+                Target = AnnouncementTarget.Xenos,
+                Speaker = source.IsValid() ? source : null,
+                Source = source.IsValid() ? source : null,
+                Channels = channels,
+            },
+            Chat = new AnnouncementChatOptions
+            {
+                Message = message,
+                WrappedMessage = wrapped,
+                Channel = ChatChannel.Radio,
+            },
+            Sound = new AnnouncementSoundOptions
+            {
+                Sound = sound,
+            },
+            Popup = popup == null
+                ? null
+                : new AnnouncementPopupOptions
+                {
+                    Type = popup.Value,
+                    Message = message,
+                }
+        }, filter);
     }
 
     // Stories-TTS-Start
@@ -91,4 +118,10 @@ public sealed class XenoAnnounceSystem : SharedXenoAnnounceSystem
                 isAnnounce: true);
     }
     // Stories-TTS-End
+
+    private bool IsQueenAnnouncementSource(EntityUid source)
+    {
+        return HasComp<XenoWordQueenComponent>(source) ||
+               HasComp<XenoEvolutionGranterComponent>(source);
+    }
 }
