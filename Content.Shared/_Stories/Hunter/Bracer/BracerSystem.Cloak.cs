@@ -4,6 +4,7 @@ using Content.Shared._RMC14.Stealth;
 using Content.Shared._RMC14.Xenonids.Devour;
 using Content.Shared._RMC14.Xenonids.Parasite;
 using Content.Shared._Stories.Hunter.Bracer.Components;
+using Content.Shared._Stories.Xenonids.Predalien.PredalienRoar;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
@@ -22,6 +23,7 @@ public sealed partial class BracerSystem
         SubscribeLocalEvent<BracerCloakedComponent, MobStateChangedEvent>(OnCloakedMobStateChanged);
         SubscribeLocalEvent<BracerCloakedComponent, XenoDevouredEvent>(OnDevoured);
         SubscribeLocalEvent<BracerCloakedComponent, XenoParasiteInfectEvent>(OnParasiteInfected);
+        SubscribeLocalEvent<BracerCloakedComponent, STPredalienRevealEvent>(OnPredalienReveal);
         SubscribeLocalEvent<BracerCloakedComponent, ProjectileHitEvent>(OnProjectileHit);
 
         SubscribeLocalEvent<BracerCloakedComponent, AttemptShootEvent>(OnAttemptShootCloaked);
@@ -169,12 +171,12 @@ public sealed partial class BracerSystem
             _actions.SetToggled(action, enabled);
     }
 
-    private void ForceUncloak(EntityUid user)
+    private void ForceUncloak(EntityUid user, bool quiet = false)
     {
         if (!TryFindWornBracer(user, out var bracer))
             return;
 
-        SetCloak(user, bracer.Value, false, true);
+        SetCloak(user, bracer.Value, false, true, quiet);
     }
 
     private bool TryFindWornBracer(EntityUid user, [NotNullWhen(true)] out Entity<HunterBracerComponent>? bracer)
@@ -208,6 +210,11 @@ public sealed partial class BracerSystem
     private void OnParasiteInfected(Entity<BracerCloakedComponent> ent, ref XenoParasiteInfectEvent args)
     {
         ForceUncloak(ent.Owner);
+    }
+
+    private void OnPredalienReveal(Entity<BracerCloakedComponent> ent, ref STPredalienRevealEvent args)
+    {
+        ForceUncloak(ent.Owner, quiet: true);
     }
 
     private void OnProjectileHit(Entity<BracerCloakedComponent> ent, ref ProjectileHitEvent args)
