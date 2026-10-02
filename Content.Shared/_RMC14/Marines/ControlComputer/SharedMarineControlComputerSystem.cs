@@ -4,11 +4,12 @@ using Content.Shared._RMC14.AlertLevel;
 using Content.Shared._RMC14.ARES;
 using Content.Shared._RMC14.ARES.Logs;
 using Content.Shared._RMC14.Chat;
+using Content.Shared._RMC14.Marines.Announce;
+using Content.Shared._RMC14.Marines.GroundsideOperations;
 using Content.Shared._RMC14.Commendations;
 using Content.Shared._RMC14.Dialog;
 using Content.Shared._RMC14.Dropship;
 using Content.Shared._RMC14.Evacuation;
-using Content.Shared._RMC14.Marines.Announce;
 using Content.Shared._RMC14.Survivor;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -79,8 +80,17 @@ public abstract class SharedMarineControlComputerSystem : EntitySystem
         Subs.BuiEvents<MarineCommunicationsComputerComponent>(MarineCommunicationsComputerUI.Key,
             subs =>
             {
+                subs.Event<MarineCommunicationsToggleEvacuationMsg>(OnMarineCommunicationsToggleEvacuationKeepOpen);
                 subs.Event<MarineControlComputerToggleEvacuationMsg>(OnMarineCommunicationsToggleEvacuation);
                 subs.Event<MarineControlComputerOpenMedalsPanelMsg>(OnMarineCommunicationsOpenMedalsPanel);
+            });
+        Subs.BuiEvents<GroundsideOperationsConsoleComponent>(GroundsideOperationsConsoleUi.Key,
+            subs =>
+            {
+                subs.Event<MarineControlComputerAlertLevelMsg>(OnGroundsideOperationsAlertLevel);
+                subs.Event<MarineControlComputerShipAnnouncementMsg>(OnGroundsideOperationsShipAnnouncement);
+                subs.Event<MarineControlComputerToggleEvacuationMsg>(OnGroundsideOperationsToggleEvacuation);
+                subs.Event<MarineControlComputerOpenMedalsPanelMsg>(OnGroundsideOperationsOpenMedalsPanel);
             });
 
         Subs.CVar(_config, CCVars.ChatMaxMessageLength, limit => _characterLimit = limit, true);
@@ -249,12 +259,26 @@ public abstract class SharedMarineControlComputerSystem : EntitySystem
 
     private void OnComputerAlert(Entity<MarineControlComputerComponent> ent, ref MarineControlComputerAlertEvent args)
     {
+        var current = _alertLevel.Get();
+        if (current == RMCAlertLevels.Delta ||
+            args.Level >= RMCAlertLevels.Red ||
+            args.Level == current)
+        {
+            return;
+        }
+
         _alertLevel.Set(args.Level, GetEntity(args.User));
     }
 
     private void OnAlertLevel(Entity<MarineControlComputerComponent> ent, ref MarineControlComputerAlertLevelMsg args)
     {
         var current = _alertLevel.Get();
+        if (current == RMCAlertLevels.Delta)
+        {
+            _popup.PopupClient(Loc.GetString("rmc-alert-delta-locked"), args.Actor, PopupType.MediumCaution);
+            return;
+        }
+
         var options = new List<DialogOption>();
         foreach (var level in Enum.GetValues<RMCAlertLevels>())
         {
@@ -276,6 +300,14 @@ public abstract class SharedMarineControlComputerSystem : EntitySystem
         );
     }
 
+    private void OnGroundsideOperationsAlertLevel(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineControlComputerAlertLevelMsg args)
+    {
+        if (TryComp(ent, out MarineControlComputerComponent? control))
+            OnAlertLevel((ent.Owner, control), ref args);
+    }
+
     private void OnShipAnnouncement(Entity<MarineControlComputerComponent> ent, ref MarineControlComputerShipAnnouncementMsg args)
     {
         if (!CanUseShipAnnouncementPopup(ent, args.Actor))
@@ -290,6 +322,14 @@ public abstract class SharedMarineControlComputerSystem : EntitySystem
             true,
             _characterLimit
         );
+    }
+
+    private void OnGroundsideOperationsShipAnnouncement(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineControlComputerShipAnnouncementMsg args)
+    {
+        if (TryComp(ent, out MarineControlComputerComponent? control))
+            OnShipAnnouncement((ent.Owner, control), ref args);
     }
 
     private void OnShipAnnouncementDialog(Entity<MarineControlComputerComponent> ent, ref MarineControlComputerShipAnnouncementDialogEvent args)
@@ -442,6 +482,14 @@ public abstract class SharedMarineControlComputerSystem : EntitySystem
         _ui.TryOpenUi(ent.Owner, MarineControlComputerUi.MedalsPanel, args.Actor);
     }
 
+    private void OnGroundsideOperationsOpenMedalsPanel(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineControlComputerOpenMedalsPanelMsg args)
+    {
+        if (TryComp(ent, out MarineControlComputerComponent? control))
+            OnOpenMedalsPanel((ent.Owner, control), ref args);
+    }
+
     protected virtual MarineMedalsPanelBuiState BuildMedalsPanelState(Entity<MarineControlComputerComponent> ent, EntityUid? viewerActor = null)
     {
         return new MarineMedalsPanelBuiState(
@@ -508,6 +556,11 @@ public abstract class SharedMarineControlComputerSystem : EntitySystem
         if (_ui.HasUi(ent.Owner, MarineCommunicationsComputerUI.Key))
             _ui.CloseUi(ent.Owner, MarineCommunicationsComputerUI.Key, args.Actor);
 
+        TryToggleEvacuation(ent);
+    }
+
+    private void TryToggleEvacuation(Entity<MarineControlComputerComponent> ent)
+    {
         if (!ent.Comp.CanEvacuate)
             return;
 
@@ -520,6 +573,22 @@ public abstract class SharedMarineControlComputerSystem : EntitySystem
         // TODO RMC14 evacuation start sound
         _evacuation.ToggleEvacuation(null, ent.Comp.EvacuationCancelledSound, _transform.GetMap(ent.Owner));
         RefreshComputers();
+    }
+
+    private void OnMarineCommunicationsToggleEvacuationKeepOpen(
+        Entity<MarineCommunicationsComputerComponent> ent,
+        ref MarineCommunicationsToggleEvacuationMsg args)
+    {
+        if (TryComp(ent, out MarineControlComputerComponent? control))
+            TryToggleEvacuation((ent.Owner, control));
+    }
+
+    private void OnGroundsideOperationsToggleEvacuation(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineControlComputerToggleEvacuationMsg args)
+    {
+        if (TryComp(ent, out MarineControlComputerComponent? control))
+            OnToggleEvacuationMsg((ent.Owner, control), ref args);
     }
 
     private void OnMarineCommunicationsToggleEvacuation(Entity<MarineCommunicationsComputerComponent> ent, ref MarineControlComputerToggleEvacuationMsg args)

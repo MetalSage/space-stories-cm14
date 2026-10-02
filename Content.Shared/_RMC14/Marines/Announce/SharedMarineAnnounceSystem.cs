@@ -4,6 +4,7 @@ using Content.Shared._RMC14.ARES.Logs;
 using Content.Shared._RMC14.Chat;
 using Content.Shared._RMC14.Dialog;
 using Content.Shared._RMC14.Marines.ControlComputer;
+using Content.Shared._RMC14.Marines.GroundsideOperations;
 using Content.Shared._RMC14.Marines.Roles.Ranks;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Marines.Squads;
@@ -33,8 +34,8 @@ public abstract class SharedMarineAnnounceSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly ARESCoreSystem _core = default!;
     [Dependency] private readonly DialogSystem _dialog = default!;
-    [Dependency] private readonly SharedMarineControlComputerSystem _marineControlComputer = default!;
     [Dependency] private readonly SharedIdCardSystem _idCard = default!;
+    [Dependency] private readonly SharedMarineControlComputerSystem _marineControlComputer = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedRankSystem _rankSystem = default!;
@@ -54,6 +55,7 @@ public abstract class SharedMarineAnnounceSystem : EntitySystem
 
     public override void Initialize()
     {
+        SubscribeLocalEvent<MarineCommunicationsComputerComponent, MarineCommunicationsAnnouncementDialogEvent>(OnMarineCommunicationsAnnouncementDialog);
         SubscribeLocalEvent<MarineCommunicationsComputerComponent, EchoSquadReasonEvent>(OnEchoSquadReason);
         SubscribeLocalEvent<MarineCommunicationsComputerComponent, EchoSquadConfirmEvent>(OnEchoSquadConfirm);
 
@@ -61,10 +63,21 @@ public abstract class SharedMarineAnnounceSystem : EntitySystem
             subs =>
             {
                 subs.Event<MarineCommunicationsComputerMsg>(OnMarineCommunicationsComputerMsg);
+                subs.Event<MarineCommunicationsOpenAnnouncementMsg>(OnMarineCommunicationsOpenAnnouncementMsg);
                 subs.Event<MarineCommunicationsOpenMapMsg>(OnMarineCommunicationsOpenMapMsg);
                 subs.Event<MarineCommunicationsEchoSquadMsg>(OnMarineCommunicationsEchoMsg);
                 subs.Event<MarineCommunicationsOverwatchMsg>(OnMarineCommunicationsOverwatchMsg);
                 subs.Event<MarineControlComputerMedalMsg>(OnMarineCommunicationsMedalMsg);
+            });
+        Subs.BuiEvents<GroundsideOperationsConsoleComponent>(GroundsideOperationsConsoleUi.Key,
+            subs =>
+            {
+                subs.Event<MarineCommunicationsComputerMsg>(OnGroundsideOperationsComputerMsg);
+                subs.Event<MarineCommunicationsOpenAnnouncementMsg>(OnGroundsideOperationsOpenAnnouncementMsg);
+                subs.Event<MarineCommunicationsOpenMapMsg>(OnGroundsideOperationsOpenMapMsg);
+                subs.Event<MarineCommunicationsEchoSquadMsg>(OnGroundsideOperationsEchoMsg);
+                subs.Event<MarineCommunicationsOverwatchMsg>(OnGroundsideOperationsOverwatchMsg);
+                subs.Event<MarineControlComputerMedalMsg>(OnGroundsideOperationsMedalMsg);
             });
 
         Subs.CVar(_config, CCVars.ChatMaxMessageLength, limit => CharacterLimit = limit, true);
@@ -82,8 +95,8 @@ public abstract class SharedMarineAnnounceSystem : EntitySystem
         _dialog.OpenConfirmation(
             ent,
             user.Value,
-            "Confirm Activation",
-            $"Confirm activation of Echo Squad for {args.Message}",
+            Loc.GetString("rmc-echo-squad-confirm-title"),
+            Loc.GetString("rmc-echo-squad-confirm-message", ("purpose", args.Message)),
             ev
         );
     }
@@ -108,42 +121,114 @@ public abstract class SharedMarineAnnounceSystem : EntitySystem
 
     private void OnMarineCommunicationsComputerMsg(Entity<MarineCommunicationsComputerComponent> ent, ref MarineCommunicationsComputerMsg args)
     {
-        if (string.IsNullOrWhiteSpace(args.Text))
+        TryAnnounce(ent, args.Actor, args.Text, true);
+    }
+
+    private void OnMarineCommunicationsOpenAnnouncementMsg(
+        Entity<MarineCommunicationsComputerComponent> ent,
+        ref MarineCommunicationsOpenAnnouncementMsg args)
+    {
+        TryOpenAnnouncementDialog(ent, args.Actor);
+    }
+
+    private void OnGroundsideOperationsOpenAnnouncementMsg(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineCommunicationsOpenAnnouncementMsg args)
+    {
+        if (!TryComp(ent, out MarineCommunicationsComputerComponent? communications))
             return;
 
-        if (!_skills.HasSkill(args.Actor, ent.Comp.AnnounceSkill, ent.Comp.AnnounceSkillLevel))
-        {
-            _popup.PopupClient(Loc.GetString("rmc-skills-no-training", ("target", ent)), args.Actor, PopupType.MediumCaution);
+        TryOpenAnnouncementDialog((ent.Owner, communications), args.Actor);
+    }
+
+    private void TryOpenAnnouncementDialog(Entity<MarineCommunicationsComputerComponent> ent, EntityUid actor)
+    {
+        if (!CanAnnounce(ent, actor))
             return;
+
+        var ev = new MarineCommunicationsAnnouncementDialogEvent(GetNetEntity(actor));
+        _dialog.OpenInput(
+            ent.Owner,
+            actor,
+            Loc.GetString("rmc-announcement-shipside-header"),
+            ev,
+            true,
+            CharacterLimit);
+    }
+
+    private void OnMarineCommunicationsAnnouncementDialog(
+        Entity<MarineCommunicationsComputerComponent> ent,
+        ref MarineCommunicationsAnnouncementDialogEvent args)
+    {
+        if (GetEntity(args.User) is not { Valid: true } user)
+            return;
+
+        TryAnnounce(ent, user, args.Message, false);
+    }
+
+    private void TryAnnounce(
+        Entity<MarineCommunicationsComputerComponent> ent,
+        EntityUid actor,
+        string message,
+        bool closeCommunicationsUi)
+    {
+        message = message.Trim();
+        if (message.Length == 0 || !CanAnnounce(ent, actor))
+            return;
+
+        if (message.Length > CharacterLimit)
+            message = message[..CharacterLimit].Trim();
+
+        // Stories-Chat-Start
+        message = Regex.Replace(message, @"\[/?.*?\]", "");
+        message = _rmcChat.SanitizeMessageReplaceWords(actor, message);
+        // Stories-Chat-End
+
+        if (closeCommunicationsUi)
+            _ui.CloseUi(ent.Owner, MarineCommunicationsComputerUI.Key);
+        AnnounceSigned(actor, message, name: ent.Comp.AnnounceName);
+
+        ent.Comp.LastAnnouncement = _timing.CurTime;
+        Dirty(ent);
+    }
+
+    private bool CanAnnounce(Entity<MarineCommunicationsComputerComponent> ent, EntityUid actor)
+    {
+        if (!_skills.HasSkill(actor, ent.Comp.AnnounceSkill, ent.Comp.AnnounceSkillLevel))
+        {
+            _popup.PopupClient(Loc.GetString("rmc-skills-no-training", ("target", ent)), actor, PopupType.MediumCaution);
+            return false;
         }
 
         var time = _timing.CurTime;
-        if (ent.Comp.LastAnnouncement != null && time < ent.Comp.LastAnnouncement.Value + ent.Comp.Cooldown) // Stories-Chat
-        {
-            var cooldownMessage = Loc.GetString("rmc-announcement-cooldown", ("seconds", (int)(ent.Comp.LastAnnouncement.Value + ent.Comp.Cooldown - time).TotalSeconds)); // Stories-Chat
-            _popup.PopupClient(cooldownMessage, args.Actor, PopupType.SmallCaution);
-            return;
-        }
+        if (ent.Comp.LastAnnouncement is not { } last || time >= last + ent.Comp.Cooldown)
+            return true;
 
-        _ui.CloseUi(ent.Owner, MarineCommunicationsComputerUI.Key);
-        var text = args.Text;
-        if (text.Length > CharacterLimit)
-            text = text[..CharacterLimit].Trim();
-
-        // Stories-Chat-Start
-        text = Regex.Replace(text, @"\[/?.*?\]", "");
-        text = _rmcChat.SanitizeMessageReplaceWords(args.Actor, text);
-        // Stories-Chat-Start
-
-        AnnounceSigned(args.Actor, text, name: ent.Comp.AnnounceName);
-
-        ent.Comp.LastAnnouncement = time;
-        Dirty(ent);
+        var seconds = Math.Max(1, (int) Math.Ceiling((last + ent.Comp.Cooldown - time).TotalSeconds));
+        var cooldownMessage = Loc.GetString("rmc-announcement-cooldown", ("seconds", seconds));
+        _popup.PopupClient(cooldownMessage, actor, PopupType.SmallCaution);
+        return false;
     }
 
     private void OnMarineCommunicationsOpenMapMsg(Entity<MarineCommunicationsComputerComponent> ent, ref MarineCommunicationsOpenMapMsg args)
     {
         _ui.TryOpenUi(ent.Owner, TacticalMapComputerUi.Key, args.Actor);
+    }
+
+    private void OnGroundsideOperationsComputerMsg(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineCommunicationsComputerMsg args)
+    {
+        if (TryComp(ent, out MarineCommunicationsComputerComponent? communications))
+            OnMarineCommunicationsComputerMsg((ent.Owner, communications), ref args);
+    }
+
+    private void OnGroundsideOperationsOpenMapMsg(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineCommunicationsOpenMapMsg args)
+    {
+        if (TryComp(ent, out MarineCommunicationsComputerComponent? communications))
+            OnMarineCommunicationsOpenMapMsg((ent.Owner, communications), ref args);
     }
 
     private void OnMarineCommunicationsEchoMsg(Entity<MarineCommunicationsComputerComponent> ent, ref MarineCommunicationsEchoSquadMsg args)
@@ -155,18 +240,34 @@ public abstract class SharedMarineAnnounceSystem : EntitySystem
             return;
 
         var ev = new EchoSquadReasonEvent(GetNetEntity(args.Actor));
-        _dialog.OpenInput(ent, args.Actor, "What is the purpose of Echo Squad?", ev);
+        _dialog.OpenInput(ent, args.Actor, Loc.GetString("rmc-goc-echo-purpose"), ev);
     }
 
     private void OnMarineCommunicationsOverwatchMsg(Entity<MarineCommunicationsComputerComponent> ent, ref MarineCommunicationsOverwatchMsg args)
     {
         if (!_skills.HasSkill(args.Actor, ent.Comp.OverwatchSkill, ent.Comp.OverwatchSkillLevel))
         {
-            _popup.PopupClient("You are not trained in overwatch!", args.Actor, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("rmc-goc-overwatch-untrained"), args.Actor, PopupType.LargeCaution);
             return;
         }
 
         _ui.TryOpenUi(ent.Owner, OverwatchConsoleUI.Key, args.Actor);
+    }
+
+    private void OnGroundsideOperationsEchoMsg(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineCommunicationsEchoSquadMsg args)
+    {
+        if (TryComp(ent, out MarineCommunicationsComputerComponent? communications))
+            OnMarineCommunicationsEchoMsg((ent.Owner, communications), ref args);
+    }
+
+    private void OnGroundsideOperationsOverwatchMsg(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineCommunicationsOverwatchMsg args)
+    {
+        if (TryComp(ent, out MarineCommunicationsComputerComponent? communications))
+            OnMarineCommunicationsOverwatchMsg((ent.Owner, communications), ref args);
     }
 
     private void OnMarineCommunicationsMedalMsg(Entity<MarineCommunicationsComputerComponent> ent, ref MarineControlComputerMedalMsg args)
@@ -187,6 +288,14 @@ public abstract class SharedMarineAnnounceSystem : EntitySystem
             );
     }
     // Stories-Chat-End
+
+    private void OnGroundsideOperationsMedalMsg(
+        Entity<GroundsideOperationsConsoleComponent> ent,
+        ref MarineControlComputerMedalMsg args)
+    {
+        if (TryComp(ent, out MarineCommunicationsComputerComponent? communications))
+            OnMarineCommunicationsMedalMsg((ent.Owner, communications), ref args);
+    }
 
     public virtual void AnnounceRadio(
         EntityUid sender,
