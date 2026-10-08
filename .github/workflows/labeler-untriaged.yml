@@ -1,4 +1,4 @@
-﻿name: "Labels: Untriaged"
+name: "Labels: Untriaged"
 
 on:
   issues:
@@ -8,6 +8,10 @@ on:
 
 jobs:
   add_label:
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
     - uses: actions-ecosystem/action-add-labels@v1

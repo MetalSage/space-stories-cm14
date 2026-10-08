@@ -12,6 +12,7 @@ using Content.Shared._RMC14.Xenonids.AcidMine;
 using Content.Shared._RMC14.Xenonids.Bombard;
 using Content.Shared._RMC14.Xenonids.Burrow;
 using Content.Shared._RMC14.Xenonids.DeployTraps;
+using Content.Shared._Stories.Xenonids.Despoiler;
 using Content.Shared._RMC14.Xenonids.Fruit.Components;
 using Content.Shared._RMC14.Xenonids.ResinSurge;
 using Content.Shared._RMC14.Xenonids.Spray;
@@ -86,6 +87,9 @@ public sealed class XenoAbilityPreviewOverlay : Overlay
     private readonly EntityQuery<XenoWeedsComponent> _weedsQ;
     private readonly EntityQuery<XenoAbductComponent> _abductQ;
     private readonly EntityQuery<XenoPierceComponent> _pierceQ;
+    private readonly EntityQuery<XenoDespoilerCausticEmbraceActionComponent> _causticEmbraceQ; // Stories-Despoiler
+    private readonly EntityQuery<XenoDespoilerComponent> _despoilerQ; // Stories-Despoiler
+    private readonly XenoDespoilerCatalyzeFlagSystem _catalyzeFlag; // Stories-Despoiler
     private readonly EntityQuery<TransformComponent> _xformQ;
 
     public XenoAbilityPreviewOverlay(IEntityManager ents)
@@ -117,6 +121,9 @@ public sealed class XenoAbilityPreviewOverlay : Overlay
         _weedsQ = ents.GetEntityQuery<XenoWeedsComponent>();
         _abductQ = ents.GetEntityQuery<XenoAbductComponent>();
         _pierceQ = ents.GetEntityQuery<XenoPierceComponent>();
+        _causticEmbraceQ = ents.GetEntityQuery<XenoDespoilerCausticEmbraceActionComponent>(); // Stories-Despoiler
+        _despoilerQ = ents.GetEntityQuery<XenoDespoilerComponent>(); // Stories-Despoiler
+        _catalyzeFlag = ents.System<XenoDespoilerCatalyzeFlagSystem>(); // Stories-Despoiler
         _xformQ = ents.GetEntityQuery<TransformComponent>();
     }
 
@@ -219,6 +226,14 @@ public sealed class XenoAbilityPreviewOverlay : Overlay
                     return;
                 DrawPierce(args, player.Value, xform, originMap, mousePos, pierce);
                 break;
+
+            // Stories-Despoiler-Start
+            case XenoDespoilerCausticEmbraceActionEvent:
+                if (!_causticEmbraceQ.TryComp(action, out var embrace))
+                    return;
+                DrawCausticEmbrace(args, player.Value, originMap, mousePos, embrace);
+                break;
+            // Stories-Despoiler-End
         }
     }
 
@@ -366,6 +381,58 @@ public sealed class XenoAbilityPreviewOverlay : Overlay
         var color = PierceOutlineColor.WithAlpha(OutlineAlpha);
         DrawLinePreview(args, player, xform.Coordinates, mousePos, (int)pierce.Range, color);
     }
+
+    // Stories-Despoiler-Start
+    private void DrawCausticEmbrace(
+        in OverlayDrawArgs args,
+        EntityUid player,
+        MapCoordinates originMap,
+        MapCoordinates mousePos,
+        XenoDespoilerCausticEmbraceActionComponent embrace)
+    {
+        if (!_mapManager.TryFindGridAt(originMap, out var gridUid, out var grid))
+            return;
+
+        var direction = mousePos.Position - originMap.Position;
+        if (direction.Length() < 0.1f)
+            return;
+
+        var dir = direction.Normalized();
+        var originTile = _mapSystem.CoordinatesToTile(gridUid, grid, originMap);
+
+        if (_despoilerQ.TryComp(player, out var despoiler) && _catalyzeFlag.IsEmpowered(player, despoiler))
+        {
+            var reach = direction.Length() <= embrace.EmpoweredRange
+                ? mousePos.Position
+                : originMap.Position + dir * embrace.EmpoweredRange;
+            var targetTile = _mapSystem.CoordinatesToTile(gridUid, grid, new MapCoordinates(reach, originMap.MapId));
+            DrawTileBorder(args.WorldHandle, gridUid, grid, new HashSet<Vector2i> { targetTile }, Color.Red.WithAlpha(OutlineAlpha));
+            return;
+        }
+
+        var step = new Vector2i(Math.Sign(MathF.Round(dir.X)), Math.Sign(MathF.Round(dir.Y)));
+        if (step == Vector2i.Zero)
+            return;
+
+        var landingTile = originTile + step;
+        var splashTiles = new HashSet<Vector2i>();
+        for (var dx = -1; dx <= 1; dx++)
+        {
+            for (var dy = -1; dy <= 1; dy++)
+            {
+                if (dx == 0 && dy == 0)
+                    continue;
+                if (dx == -step.X && dy == -step.Y)
+                    continue;
+
+                splashTiles.Add(landingTile + new Vector2i(dx, dy));
+            }
+        }
+
+        DrawTileBorder(args.WorldHandle, gridUid, grid, splashTiles, Color.Lime.WithAlpha(OutlineAlpha));
+        DrawTileBorder(args.WorldHandle, gridUid, grid, new HashSet<Vector2i> { landingTile }, Color.Yellow.WithAlpha(OutlineAlpha));
+    }
+    // Stories-Despoiler-End
 
     private void DrawBombard(
         in OverlayDrawArgs args,

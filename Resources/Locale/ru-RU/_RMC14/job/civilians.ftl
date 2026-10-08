@@ -7,7 +7,7 @@ cm-job-description-combat-correspondent = Вы прикомандированы 
 cm-job-prefix-combat-correspondent = ВК
 CMJobCorrespondent = Корреспондент
 
-cm-job-name-liaison = Corporate Liaison
+cm-job-name-liaison = Корпоративный связной
 cm-job-description-liaison = Станьте прямым связным между "Алмайером" и "Вестон-Ямада", отправляя факсы. Следите за тем, чтобы интересы Вестон-Ямада соблюдались.
 cm-job-prefix-liaison = КС
 CMJobLiaison = Корпоративный связной

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Buckle.Components;
@@ -30,6 +31,10 @@ namespace Content.Shared._RMC14.Vehicle;
 
 public sealed class VehicleDeploySystem : EntitySystem
 {
+    private static readonly EntProtoId HardpointTypeCannon = "HardpointTypeCannon";
+
+    private readonly List<VehicleMountedSlot> _mountedSlotsBuffer = new();
+
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly SharedGunSystem _guns = default!;
@@ -52,11 +57,8 @@ public sealed class VehicleDeploySystem : EntitySystem
         SubscribeLocalEvent<VehicleDeployActionComponent, VehicleDeployActionEvent>(OnDeployAction);
         SubscribeLocalEvent<VehicleDeployActionComponent, ComponentShutdown>(OnDeployActionShutdown);
         SubscribeLocalEvent<VehicleDeployableComponent, VehicleCanRunEvent>(OnVehicleCanRun);
-        SubscribeLocalEvent<HardpointSlotsChangedEvent>(OnHardpointSlotsChanged);
-
-        // Stories-Vehicle-Start
+        SubscribeLocalEvent<VehicleDeployableComponent, HardpointSlotsChangedEvent>(OnHardpointSlotsChanged);
         SubscribeLocalEvent<HardpointItemComponent, AttemptShootEvent>(OnDeployableAttemptShoot);
-        // Stories-Vehicle-End
     }
 
     private void OnDriverStrapped(Entity<StrapComponent> ent, ref StrappedEvent args)
@@ -110,16 +112,33 @@ public sealed class VehicleDeploySystem : EntitySystem
         if (actionComp.Vehicle != vehicle)
             return;
 
-        if (actionComp.Action != null)
-            _actions.RemoveAction(user, actionComp.Action.Value);
+        if (actionComp.Action is { } action)
+        {
+            RemoveAndDeleteDeployAction(user, action);
+            actionComp.Action = null;
+        }
 
         RemCompDeferred<VehicleDeployActionComponent>(user);
     }
 
     private void OnDeployActionShutdown(Entity<VehicleDeployActionComponent> ent, ref ComponentShutdown args)
     {
-        if (ent.Comp.Action != null)
-            _actions.RemoveAction(ent.Owner, ent.Comp.Action.Value);
+        if (ent.Comp.Action is { } action)
+            RemoveAndDeleteDeployAction(ent.Owner, action);
+    }
+
+    private void RemoveAndDeleteDeployAction(EntityUid user, EntityUid action)
+    {
+        if (TerminatingOrDeleted(action))
+            return;
+
+        _actions.RemoveAction(user, action);
+
+        if (_net.IsClient)
+            return;
+
+        if (Exists(action))
+            QueueDel(action);
     }
 
     private void OnDeployAction(Entity<VehicleDeployActionComponent> ent, ref VehicleDeployActionEvent args)
@@ -277,15 +296,12 @@ public sealed class VehicleDeploySystem : EntitySystem
         _actions.ClearCooldown(actionComp.Action.Value);
     }
 
-    private void OnHardpointSlotsChanged(HardpointSlotsChangedEvent args)
+    private void OnHardpointSlotsChanged(Entity<VehicleDeployableComponent> ent, ref HardpointSlotsChangedEvent args)
     {
         if (_net.IsClient)
             return;
 
-        if (!TryComp(args.Vehicle, out VehicleDeployableComponent? deployable))
-            return;
-
-        UpdateDriverActionState(args.Vehicle, deployable);
+        UpdateDriverActionState(ent.Owner, ent.Comp);
     }
 
     private void OnDeployableAttemptShoot(Entity<HardpointItemComponent> ent, ref AttemptShootEvent args)
@@ -296,17 +312,15 @@ public sealed class VehicleDeploySystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        // Stories-Vehicle-Start
-        if (!_topology.TryGetVehicle(ent.Owner, out var vehicle))
+        if (ent.Comp.HardpointType != HardpointTypeCannon)
+            return;
+
+        if (!TryGetVehicleFromContained(ent.Owner, out var vehicle))
         {
             args.Cancelled = true;
-            args.Message = Loc.GetString("rmc-hardpoint-error-no-hardpoint");
+            args.ResetCooldown = true;
             return;
         }
-        // Stories-Vehicle-End
-
-        if (ent.Comp.HardpointType != "HardpointTypeCannon")
-            return;
 
         if (!TryComp(vehicle, out VehicleDeployableComponent? deployable))
             return;
@@ -393,6 +407,12 @@ public sealed class VehicleDeploySystem : EntitySystem
                 continue;
             }
 
+            if (TryComp(vehicle, out HardpointIntegrityComponent? frameIntegrity) && frameIntegrity.Integrity <= 0f)
+            {
+                deployable.AutoSpinInitialized = false;
+                continue;
+            }
+
             EntityUid? operatorUid = null;
             if (TryComp(vehicle, out VehicleWeaponsComponent? weapons))
                 operatorUid = weapons.Operator;
@@ -462,7 +482,8 @@ public sealed class VehicleDeploySystem : EntitySystem
         EntityUid? fallbackGun = null;
         GunComponent? fallbackComp = null;
 
-        foreach (var mountedSlot in _topology.GetMountedSlots(vehicle))
+        _topology.GetMountedSlots(vehicle, _mountedSlotsBuffer);
+        foreach (var mountedSlot in _mountedSlotsBuffer)
         {
             if (mountedSlot.Item is not { } installed)
                 continue;
@@ -498,6 +519,17 @@ public sealed class VehicleDeploySystem : EntitySystem
 
         if (!TryComp(uid, out GunComponent? gun) || !HasComp<VehicleTurretComponent>(uid))
             return false;
+
+        if (TryComp(uid, out HardpointIntegrityComponent? integrity) && integrity.Integrity <= 0f)
+            return false;
+
+        if (HasComp<VehicleTurretAttachmentComponent>(uid) &&
+            _topology.TryGetParentTurret(uid, out var parentTurret) &&
+            TryComp(parentTurret, out HardpointIntegrityComponent? parentIntegrity) &&
+            parentIntegrity.Integrity <= 0f)
+        {
+            return false;
+        }
 
         gunComp = gun;
         return true;
@@ -597,7 +629,7 @@ public sealed class VehicleDeploySystem : EntitySystem
         var targetCoords = Transform(target).Coordinates;
         if (TryGetVehicleTurret(vehicle, out var turretUid) &&
             TryComp(turretUid, out VehicleTurretComponent? turret) &&
-            _turret.TryGetTurretOrigin(turretUid, turret, out var originCoords))
+            _turret.TryGetTurretOrigin(turretUid, out var originCoords))
         {
             var originMap = _transform.ToMapCoordinates(originCoords);
             var targetMap = _transform.ToMapCoordinates(targetCoords);

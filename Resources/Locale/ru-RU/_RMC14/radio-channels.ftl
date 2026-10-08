@@ -20,7 +20,7 @@ chat-radio-marine-sof = ССО
 
 chat-radio-colony = Колония
 chat-radio-WY = Вестон-Ямада
-chat-radio-CMB = Бюро маршалов колонии
+chat-radio-CMB = БКМ
 chat-radio-provost = Провост
 
 chat-radio-spp-command = СПН Командование

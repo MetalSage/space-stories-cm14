@@ -19,7 +19,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Graphics.RSI;
-using Robust.Shared.IoC;
 
 namespace Content.Client._RMC14.Vehicle.Ui;
 
@@ -107,14 +106,6 @@ public sealed partial class HardpointMenu : FancyWindow
         VehicleIcon.OverrideDirection = Direction.South;
         _vehicleSpin = 0f;
         _vehicleIconSet = true;
-    }
-
-    private static string GetLocalizedSlotId(string slotId)
-    {
-        var key = $"rmc-hardpoint-slot-{slotId.ToLowerInvariant()}";
-        if (Loc.TryGetString(key, out var localized))
-            return localized;
-        return slotId;
     }
 
     public void Update(
@@ -218,12 +209,12 @@ public sealed partial class HardpointMenu : FancyWindow
                 HorizontalExpand = true
             };
 
-            var displaySlot = GetLocalizedSlotId(hardpoint.SlotId);
+            var displaySlot = hardpoint.SlotId;
             string? parentSlot = null;
             if (VehicleTurretSlotIds.TryParse(hardpoint.SlotId, out var parentSlotId, out var childSlotId))
             {
-                displaySlot = GetLocalizedSlotId(childSlotId);
-                parentSlot = GetLocalizedSlotId(parentSlotId);
+                displaySlot = childSlotId;
+                parentSlot = parentSlotId;
             }
 
             var nameText = hardpoint.HasItem
@@ -339,7 +330,7 @@ public sealed partial class HardpointMenu : FancyWindow
             if (VehicleTurretSlotIds.TryParse(hardpoint.SlotId, out _, out _))
                 continue;
 
-            if (TryGetTurretOffset((EntityUid)installed, out var offset))
+            if (TryGetTurretOffset((EntityUid) installed, out var offset))
                 turretOffsets[hardpoint.SlotId] = offset;
         }
 
@@ -352,10 +343,10 @@ public sealed partial class HardpointMenu : FancyWindow
             if (!_entManager.TryGetEntity(installedNet, out var installed))
                 continue;
 
-            if (!TryGetOverlaySpec((EntityUid)installed, vehicleRsi, out var rsi, out var state))
+            if (!TryGetOverlaySpec((EntityUid) installed, vehicleRsi, out var rsi, out var state))
                 continue;
 
-            var hasOffset = TryGetTurretOffset((EntityUid)installed, out var offset);
+            var hasOffset = TryGetTurretOffset((EntityUid) installed, out var offset);
             if (VehicleTurretSlotIds.TryParse(hardpoint.SlotId, out var parentSlotId, out _) &&
                 turretOffsets.TryGetValue(parentSlotId, out var parentOffset))
             {
@@ -491,8 +482,8 @@ public sealed partial class HardpointMenu : FancyWindow
             normalized += MathHelper.TwoPi;
 
         var segment = MathHelper.PiOver2;
-        var index = (int)Math.Floor(normalized / segment) & 3;
-        var t = (float)((normalized - index * segment) / segment);
+        var index = (int) Math.Floor(normalized / segment) & 3;
+        var t = (float) ((normalized - index * segment) / segment);
 
         var current = offset.Base + GetDirectionalOffset(offset, index);
         var next = offset.Base + GetDirectionalOffset(offset, (index + 1) & 3);

@@ -33,11 +33,11 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
             locationName = areaProto.Name;
 
         if (HasComp<ParasiteSpentComponent>(ent))
-            AnnounceSameHive(ent.Owner, Loc.GetString("rmc-xeno-parasite-announce-infect", ("xeno", ent.Owner), ("location", locationName)), color: ent.Comp.Color);
+            AnnounceSameHive(ent.Owner, Loc.GetString("rmc-xeno-parasite-announce-infect", ("xeno", ent.Owner), ("location", locationName)), color: ent.Comp.Color, useHiveAsSource: true);
         else
         {
             if (HasComp<XenoEvolutionGranterComponent>(ent) || _xenoEvolution.HasLiving<XenoEvolutionGranterComponent>(1))
-                AnnounceSameHive(ent.Owner, Loc.GetString(ent.Comp.Message, ("xeno", ent.Owner), ("location", locationName)), color: ent.Comp.Color);
+                AnnounceSameHive(ent.Owner, Loc.GetString(ent.Comp.Message, ("xeno", ent.Owner), ("location", locationName)), color: ent.Comp.Color, useHiveAsSource: true);
         }
     }
 
@@ -60,7 +60,7 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
     public string WrapHive(string message, Color? color = null)
     {
         color ??= Color.FromHex("#921992");
-        return $"[color={color.Value.ToHex()}][font size=16][bold]{message}[/bold][/font][/color]";
+        return $"[color={color.Value.ToHex()}][font size=16][bold]{message}[/bold][/font][/color]\n";
     }
 
     /// <summary>
@@ -102,12 +102,13 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
         SoundSpecifier? sound = null,
         PopupType? popup = null,
         Color? color = null,
-        bool needsQueen = false)
+        bool needsQueen = false,
+        bool useHiveAsSource = false)
     {
-        if (Hive.GetHive(xeno) is not {} hive)
+        if (Hive.GetHive(xeno) is not { } hive)
             return;
 
-        AnnounceToHive(xeno, hive, message, sound, popup, color, needsQueen);
+        AnnounceToHive(useHiveAsSource ? hive : xeno, hive, message, sound, popup, color, needsQueen);
     }
 
     public void AnnounceSameHiveDefaultSound(Entity<HiveMemberComponent?> xeno,
@@ -137,14 +138,16 @@ public abstract class SharedXenoAnnounceSystem : EntitySystem
         );
     }
 
-    public void AnnounceQueenMother(string message)
-    {
-        var sound = new BioscanComponent().XenoSound;
-        AnnounceAll(default, FormatQueenMother(message), sound);
-    }
-
+    // Stories-TTS-Start
     public string FormatQueenMother(string message)
     {
         return $"\n[bold][color=#7575F3][font size=24]Queen Mother Psychic Directive[/font][/color][/bold]\n\n[color=red][font size=14]{message}[/font][/color]\n\n";
     }
+
+    public virtual void AnnounceQueenMother(string message)
+    {
+        var sound = new BioscanComponent().XenoSound;
+        AnnounceAll(default, FormatQueenMother(message), sound);
+    }
+    // Stories-TTS-End
 }

@@ -627,7 +627,7 @@
     - id: RMCCableCoil30
     - id: RMCCableCoil30
     - id: CMMultitool
-    
+
 - type: entity
   parent: RMCPouchTools
   id: RMCPouchToolsFilledRCM
@@ -693,6 +693,7 @@
   name: sling strap
   description: Keeps a single item attached to a strap.
   components:
+  - type: PropagateDetectors # Stories-MotionDetector
   - type: Sprite
     sprite: _RMC14/Objects/Clothing/Pouches/sling.rsi
   - type: RMCStorageEjectHand

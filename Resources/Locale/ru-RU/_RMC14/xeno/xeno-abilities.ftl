@@ -79,25 +79,25 @@ rmc-xeno-evolution-start-self = Мы начинаем скручиваться �
 rmc-xeno-evolution-start-others = { $xeno } начинает крутиться и извиваться.
 
 # Insight
-rmc-xeno-insight-empower = We have gained sufficient insight in our prey to empower our next Deploy Traps!
+rmc-xeno-insight-empower = Мы получили достаточно проницательности относительно нашей добычи, чтобы усилить наше следующее размещение ловушек!
 
 # Deploy Traps
-rmc-xeno-deploy-traps-self = We create a sudden surge of traps!
-rmc-xeno-deploy-traps-others = The sapper creates a sudden surge of traps!
-rmc-xeno-deploy-traps-empower = We have tapped into our reserves to prepare a stronger Acid Mine!
-rmc-xeno-deploy-traps-range-fail = That target is too far away!
-rmc-xeno-deploy-traps-see-fail = There's something in the way!
+rmc-xeno-deploy-traps-self = Мы создаём внезапную вспышку ловушек!
+rmc-xeno-deploy-traps-others = Сапёр создаёт внезапную вспышку ловушек!
+rmc-xeno-deploy-traps-empower = Мы черпаем силы из наших резервов, чтобы подготовить более мощную Кислотную мину!
+rmc-xeno-deploy-traps-range-fail = Эта цель слишком далеко!
+rmc-xeno-deploy-traps-see-fail = Что-то мешает обзору!
 
 
 # Acid Mine
-rmc-xeno-acid-mine-self = We coax a hidden mine to detonate!
-rmc-xeno-acid-mine-others = The sapper coaxes a hidden mine to detonate!
-rmc-xeno-acid-mine-range-fail = That target is too far away!
-rmc-xeno-acid-mine-see-fail = There's something in the way!
+rmc-xeno-acid-mine-self = Мы заставляем скрытую мину взорваться!
+rmc-xeno-acid-mine-others = Сапёр заставляет скрытую мину взорваться!
+rmc-xeno-acid-mine-range-fail = Эта цель слишком далеко!
+rmc-xeno-acid-mine-see-fail = Что-то мешает обзору!
 
 # Adrenaline Surge
-rmc-xeno-adrenaline-surge-ready = You feel your adrenaline glands refill! Your speed boost will activate again.
-rmc-xeno-adrenaline-surge-start = Your adrenaline surges to enhance your speed!
+rmc-xeno-adrenaline-surge-ready = Вы чувствуете, как ваши адреналиновые железы снова наполняются! Ваше ускорение снова активируется.
+rmc-xeno-adrenaline-surge-start = Ваш адреналин закипает, увеличивая вашу скорость!
 
 # Fortify
 cm-xeno-fortify-cant-headbutt = Вы не можете ударить головой во время укрепления!
@@ -124,13 +124,13 @@ rmc-xeno-acid-too-weak = { CAPITALIZE($target) } слишком прочный, 
 rmc-acid-pickup-blocked = { CAPITALIZE($target) } покрыт коррозийной кислотой!
 rmc-acid-hole-already-weakened = Оно уже ослаблено.
 rmc-acid-hole-only-small-xenos = Только маленькие ксеносы могут пролезть через это отверстие.
-rmc-acid-hole-too-large-non-xeno = You are too large to squeeze through this hole.
+rmc-acid-hole-too-large-non-xeno = Вы слишком велики, чтобы пролезть через это отверстие.
 rmc-acid-hole-wrong-side = Нам нужно подойти к отверстию со стороны входа!
-rmc-acid-hole-entrance-blocked = Something is blocking this side of the hole.
+rmc-acid-hole-entrance-blocked = Что-то заслоняет эту сторону отверстия.
 rmc-acid-hole-no-exit = Там нет места, чтобы проползти.
 rmc-acid-hole-blocked = Что-то блокирует проход с другой стороны.
 rmc-acid-hole-repair-blocked = Стена пробита, сначала её нужно заделать.
-rmc-acid-hole-repair-requires-nailgun = You need a nailgun to fix this breach.
+rmc-acid-hole-repair-requires-nailgun = Вам нужен гвоздомёт, чтобы заделать этот брешь.
 
 # Paralyzing Slash
 cm-xeno-paralyzing-slash-activate = Ваш следующий удар применит нейротоксин!

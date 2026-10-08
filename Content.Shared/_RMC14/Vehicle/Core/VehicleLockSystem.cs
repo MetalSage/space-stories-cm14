@@ -5,7 +5,6 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Systems;
-using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameObjects;
@@ -97,9 +96,9 @@ public sealed class VehicleLockSystem : EntitySystem
             return;
         }
 
-        if (actionComp.Action != null)
+        if (actionComp.Action is { } action)
         {
-            _actions.RemoveAction(user, actionComp.Action.Value);
+            RemoveAndDeleteLockAction(user, action);
             actionComp.Action = null;
         }
 
@@ -109,7 +108,21 @@ public sealed class VehicleLockSystem : EntitySystem
     private void OnLockActionShutdown(Entity<VehicleLockActionComponent> ent, ref ComponentShutdown args)
     {
         if (ent.Comp.Action is { } action)
-            _actions.RemoveAction(action);
+            RemoveAndDeleteLockAction(ent.Owner, action);
+    }
+
+    private void RemoveAndDeleteLockAction(EntityUid user, EntityUid action)
+    {
+        if (TerminatingOrDeleted(action))
+            return;
+
+        _actions.RemoveAction(user, action);
+
+        if (_net.IsClient)
+            return;
+
+        if (Exists(action))
+            QueueDel(action);
     }
 
     private void OnLockAction(Entity<VehicleLockActionComponent> ent, ref VehicleLockActionEvent args)
@@ -142,6 +155,7 @@ public sealed class VehicleLockSystem : EntitySystem
         }
 
         lockComp.Locked = !lockComp.Locked;
+        Dirty(vehicle, lockComp);
         RefreshLockAction(vehicle, lockComp, ent.Comp);
 
         _popup.PopupEntity(

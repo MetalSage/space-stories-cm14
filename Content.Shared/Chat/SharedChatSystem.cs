@@ -41,10 +41,16 @@ public abstract class SharedChatSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly XenoEvolutionSystem _xenoEvolution = default!;
 
+    // RMC14
+    public FrozenDictionary<string, RadioChannelPrototype> _channelLookup = default!;
+    public FrozenSet<char> _validPrefixes = default!;
+    // RMC14
     /// <summary>
     /// Cache of the keycodes for faster lookup.
     /// </summary>
     public FrozenDictionary<string, RadioChannelPrototype> _keyCodes = default!; // Stories-Hunter
+
+    public static readonly string[] DefaultChannelKeys = new[] { "у", "h" };
 
     public override void Initialize()
     {
@@ -62,8 +68,34 @@ public abstract class SharedChatSystem : EntitySystem
 
     private void CacheRadios()
     {
-        _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
-            .ToFrozenDictionary(x => x.KeyCode);
+        // RMC14
+        var channelDict = new Dictionary<string, RadioChannelPrototype>();
+        var prefixSet = new HashSet<char>();
+        var keyCodesDict = new Dictionary<string, RadioChannelPrototype>();
+
+        foreach (var radioChannel in _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>())
+        {
+            var keyCode = radioChannel.KeyCode.ToLowerInvariant();
+
+            channelDict[$"{radioChannel.RadioPrefix}{keyCode}"] = radioChannel;
+            prefixSet.Add(radioChannel.RadioPrefix);
+
+            if (radioChannel.RadioPrefix == RadioChannelPrefix)
+            {
+                channelDict[$"{RadioChannelAltPrefix}{keyCode}"] = radioChannel;
+                prefixSet.Add(RadioChannelAltPrefix);
+            }
+
+            if (!string.IsNullOrEmpty(keyCode))
+            {
+                keyCodesDict[keyCode] = radioChannel;
+            }
+        }
+
+        _channelLookup = channelDict.ToFrozenDictionary();
+        _validPrefixes = prefixSet.ToFrozenSet();
+        _keyCodes = keyCodesDict.ToFrozenDictionary(); // Stories-Hunter: alias for compatibility
+        // RMC14
     }
 
     /// <summary>
@@ -109,14 +141,16 @@ public abstract class SharedChatSystem : EntitySystem
         if (input.Length <= 1) // Stories-Hunter
             return;
 
-        if (!(input.StartsWith(RadioChannelPrefix) || input.StartsWith(RadioChannelAltPrefix)))
+        // RMC14
+        if (!_validPrefixes.Contains(input[0]))
             return;
 
         // Stories-Hunter-Start
         var messageWithoutPrefix = input[1..];
         string? foundKey = null;
 
-        foreach (var key in _keyCodes.Keys.OrderByDescending(k => k.Length))
+        var allKeys = _keyCodes.Keys.Concat(DefaultChannelKeys).OrderByDescending(k => k.Length);
+        foreach (var key in allKeys)
         {
             if (messageWithoutPrefix.StartsWith(key, StringComparison.OrdinalIgnoreCase))
             {
@@ -127,6 +161,7 @@ public abstract class SharedChatSystem : EntitySystem
 
         if (foundKey == null)
             return;
+        // RMC14
 
         if (input.Length <= 1 + foundKey.Length)
             return;
@@ -182,7 +217,8 @@ public abstract class SharedChatSystem : EntitySystem
             }
             // Stories-Hunter-End
 
-            if (channel.ID == HivemindChannel &&
+            // RMC14
+            if (channel?.ID == HivemindChannel.Id &&
                 !_xenoEvolution.HasLiving<XenoEvolutionGranterComponent>(1))
             {
                 if (!quiet)
@@ -190,18 +226,22 @@ public abstract class SharedChatSystem : EntitySystem
 
                 return false;
             }
+            // RMC14
 
             return true;
         }
 
-        if (firstChar != RadioChannelPrefix && firstChar != RadioChannelAltPrefix)
+        // RMC14
+        if (!_validPrefixes.Contains(input[0]))
             return false;
+        // RMC14
 
         // Stories-Hunter-Start
         var messageWithoutPrefix = message[1..];
         string? channelKey = null;
 
-        foreach (var key in _keyCodes.Keys.OrderByDescending(k => k.Length))
+        var allKeys = _keyCodes.Keys.Concat(DefaultChannelKeys).OrderByDescending(k => k.Length);
+        foreach (var key in allKeys)
         {
             if (messageWithoutPrefix.StartsWith(key, StringComparison.OrdinalIgnoreCase))
             {
@@ -224,7 +264,11 @@ public abstract class SharedChatSystem : EntitySystem
 
         output = SanitizeMessageCapital(message[(1 + channelKey.Length)..].TrimStart()); // Stories-Hunter
 
-        if (string.Equals(channelKey, DefaultChannelKey, StringComparison.OrdinalIgnoreCase)) // Stories-Hunter
+        var isDefaultChannel = DefaultChannelKeys.Contains(channelKey); // Stories-Hunter
+        var lookupKey = $"{firstChar}{channelKey.ToLowerInvariant()}";
+        var foundChannel = _channelLookup.TryGetValue(lookupKey, out channel);
+
+        if (isDefaultChannel)
         {
             var ev = new GetDefaultRadioChannelEvent();
             RaiseLocalEvent(source, ev);
@@ -240,17 +284,32 @@ public abstract class SharedChatSystem : EntitySystem
                 return false;
             }
         }
-        else if (!_keyCodes.TryGetValue(channelKey, out channel) && !quiet)
+        else if (!foundChannel && !quiet)
         {
             var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
             _popup.PopupEntity(msg, source, source);
         }
 
+        // RMC14
+        if (channel?.ID == HivemindChannel.Id &&
+            !_xenoEvolution.HasLiving<XenoEvolutionGranterComponent>(1))
+        {
+            if (!quiet)
+                _popup.PopupEntity(Loc.GetString("rmc-no-queen-hivemind-chat"), source, source, PopupType.LargeCaution);
+
+            return false;
+        }
+        // RMC14
+
         var prefixEv = new ChatGetPrefixEvent(channel);
         RaiseLocalEvent(source, ref prefixEv);
         channel = prefixEv.Channel;
 
-        return !(HasComp<XenoComponent>(source) && channel == null);
+        if (HasComp<XenoComponent>(source) && channel == null)
+            return false;
+        // RMC14
+
+        return true;
     }
 
     public string SanitizeMessageCapital(string message)

@@ -23,8 +23,6 @@ public sealed partial class VehicleSupplyEntryState
 
     [DataField]
     public int Count;
-    public bool LockedByPop;
-    public bool IsPurchasable; // Stories-Vehicle
 
     public VehicleSupplyEntryState()
     {
@@ -32,13 +30,11 @@ public sealed partial class VehicleSupplyEntryState
         Name = string.Empty;
     }
 
-    public VehicleSupplyEntryState(string id, string name, int count, bool lockedByPop, bool isPurchasable)
+    public VehicleSupplyEntryState(string id, string name, int count)
     {
         Id = id;
         Name = name;
         Count = count;
-        LockedByPop = lockedByPop;
-        IsPurchasable = isPurchasable; // Stories-Vehicle
     }
 }
 
@@ -66,6 +62,12 @@ public sealed partial class VehicleSupplyUiState
     [DataField]
     public List<VehicleSupplyEntryState> Available;
 
+    [DataField]
+    public bool PopLocked;
+
+    [DataField]
+    public bool OrderPhase;
+
     public VehicleSupplyUiState()
     {
         Available = new List<VehicleSupplyEntryState>();
@@ -78,7 +80,9 @@ public sealed partial class VehicleSupplyUiState
         string? selectedVehicleId,
         int selectedCopyIndex,
         VehicleSupplyPreviewState? preview,
-        List<VehicleSupplyEntryState> available)
+        List<VehicleSupplyEntryState> available,
+        bool popLocked = false,
+        bool orderPhase = false)
     {
         LiftMode = liftMode;
         Busy = busy;
@@ -87,6 +91,19 @@ public sealed partial class VehicleSupplyUiState
         SelectedCopyIndex = selectedCopyIndex;
         Preview = preview;
         Available = available;
+        PopLocked = popLocked;
+        OrderPhase = orderPhase;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class VehicleSupplyOrderMsg : BoundUserInterfaceMessage
+{
+    public string VehicleId;
+
+    public VehicleSupplyOrderMsg(string vehicleId)
+    {
+        VehicleId = vehicleId;
     }
 }
 
@@ -200,16 +217,5 @@ public sealed class VehicleSupplyLiftMsg : BoundUserInterfaceMessage
     public VehicleSupplyLiftMsg(bool raise)
     {
         Raise = raise;
-    }
-}
-
-[Serializable, NetSerializable]
-public sealed class VehicleSupplyPurchaseMsg : BoundUserInterfaceMessage
-{
-    public string VehicleId;
-
-    public VehicleSupplyPurchaseMsg(string vehicleId)
-    {
-        VehicleId = vehicleId;
     }
 }

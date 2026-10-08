@@ -4,6 +4,11 @@
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
             <BoxContainer Orientation="Vertical" Margin="8">
+                <!-- Stories-StreamerMode-Start -->
+                <Label Text="{Loc 'stories-ui-options-streamer-header'}" StyleClasses="LabelKeyText" />
+                <CheckBox Name="StreamerModeCheckBox" Text="{Loc 'stories-ui-options-streamer-mode'}" />
+                <Button Name="ChatFilterButton" Text="{Loc 'stories-ui-options-chat-filter'}" Margin="0 4 0 8" HorizontalAlignment="Left" />
+                <!-- Stories-StreamerMode-End -->
                 <Label Text="{Loc 'cm-ui-rmc14'}"
                         StyleClasses="LabelKeyText"/>
                 <CheckBox Name="RMCChatSquadColorModeCheckBox" Text="{Loc 'rmc-ui-options-chat-squad-color-mode'}" />

@@ -132,12 +132,12 @@ namespace Content.Server.Ghost
             if (HasComp<GhostHearingComponent>(uid))
             {
                 RemComp<GhostHearingComponent>(uid);
-                _actions.SetToggled(component.ToggleGhostHearingActionEntity, true);
+                _actions.SetToggled(component.ToggleGhostHearingActionEntity, false);
             }
             else
             {
                 AddComp<GhostHearingComponent>(uid);
-                _actions.SetToggled(component.ToggleGhostHearingActionEntity, false);
+                _actions.SetToggled(component.ToggleGhostHearingActionEntity, true);
             }
 
             var str = HasComp<GhostHearingComponent>(uid)
@@ -237,6 +237,7 @@ namespace Content.Server.Ghost
         {
             _actions.AddAction(uid, ref component.BooActionEntity, component.BooAction);
             _actions.AddAction(uid, ref component.ToggleGhostHearingActionEntity, component.ToggleGhostHearingAction);
+            _actions.SetToggled(component.ToggleGhostHearingActionEntity, HasComp<GhostHearingComponent>(uid));
             _actions.AddAction(uid, ref component.ToggleLightingActionEntity, component.ToggleLightingAction);
             _actions.AddAction(uid, ref component.ToggleFoVActionEntity, component.ToggleFoVAction);
             _actions.AddAction(uid, ref component.ToggleGhostsActionEntity, component.ToggleGhostsAction);

@@ -5,6 +5,7 @@ emplacement-mount-weapon-secured-examine = Используйте [color={ $colo
 emplacement-mount-too-close = Это слишком близко к расположенному рядом { $mount }.
 emplacement-mount-deploy-broken = Вы не можете установить { $mount }, он полностью сломан!
 emplacement-mount-deploy-invisible = You can't set this up while cloaked!
+emplacement-mount-deploy-vehicle = You can't set this up inside a vehicle!
 emplacement-mounted-weapon-overheated = { $weapon } поврежден из-за перегрева!
 emplacement-mount-broken-examine = [color=red]Оружие нельзя использовать в его текущем сломанном состоянии, используйте [/color] [color=cyan]сварочный аппарат[/color][color=red], чтобы начать его ремонт.[/color]
 emplacement-mount-need-hands-free = You need both hands free to grab the handles!

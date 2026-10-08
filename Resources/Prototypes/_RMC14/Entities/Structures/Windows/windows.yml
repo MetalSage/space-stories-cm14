@@ -61,12 +61,14 @@
     damageContainer: StructuralMarine
     damageModifierSet: StructuralMarine
   - type: XenoToggleChargingDamage
-    stageLoss: 2
+    destroy: true # Stories-CrusherCharger
+    destroyMinimumStage: 4 # Stories-CrusherCharger
     damage:
       types:
         Blunt: 40 # TODO RMC14 reduce window health to 100, check per window
   - type: XenoCrusherChargable
     instantDestroy: True
+    passOnDestroy: True # Stories-CrusherCharger
   - type: RMCBruteStructureDamageMultiplier
     multiplier: 10
 

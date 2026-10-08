@@ -34,7 +34,7 @@ public sealed partial class GhostComponent : Component
     [DataField]
     public EntProtoId ToggleGhostHearingAction = "ActionToggleGhostHearing";
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public EntityUid? ToggleGhostHearingActionEntity;
 
     [DataField]

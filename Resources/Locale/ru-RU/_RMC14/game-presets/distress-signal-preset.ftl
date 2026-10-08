@@ -33,13 +33,13 @@ rmc-distress-signal-got-medal = { $receiver } награжден { $award }: '{ 
 
 rmc-distress-signal-got-jelly = { $receiver } награжден { $award }: '{ $awardDescription }' от { $giver }
 
-rmc-distress-signal-ares-online = ARES. В сети. Доброе утро, морские пехотинцы.
-rmc-distress-signal-bioscan-complete = Биосканирование завершено. Не обнаружена сигнатур неизвестных форм жизни.
+rmc-distress-signal-ares-online = Доброе утро, морпехи.
+rmc-distress-signal-bioscan-complete = Биосканирование завершено. Не обнаружено сигнатур неизвестных форм жизни.
 rmc-distress-signal-saving-report = Сохранение оперативного отчета в архив.
 rmc-distress-signal-final-scan = Запуск финального сканирования систем через 3 минуты.
 rmc-distress-signal-admin-start-fail = Не удается запустить сигнал бедствия. Требуется как минимум { $minimum } игроков ксеноморфов, но у нас есть { $candidates }.
 rmc-distress-signal-operation-name = Операция { $name }
-rmc-distress-signal-preflight-complete = Заправка десантных кораблей перед вылетом завершена.
+rmc-distress-signal-preflight-complete = Предполетная заправка десантных кораблей завершена.
 
 rmc-distress-signal-scuttle-unlocked = ARES активировал аварийное разрешение на самоуничтожение. Защита инженерных термоядерных реакторов от перегрузки снята. Квалифицированный инженерный персонал может настроить работающие заправленные реакторы с помощью мультитула.
 rmc-distress-signal-scuttle-first-overload = Обнаружена аварийная перегрузка реактора. ARES начал отслеживать нестабильность реакторного ядра «Алмайера».

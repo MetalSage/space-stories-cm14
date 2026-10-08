@@ -1,6 +1,5 @@
 using System;
 using Content.Shared._RMC14.Vehicle.Supply;
-using Content.Shared.StepTrigger.Systems;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 
@@ -18,13 +17,6 @@ public sealed class VehicleSupplyLiftSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<VehicleSupplyLiftComponent, AfterAutoHandleStateEvent>(OnLiftHandleState);
-        SubscribeLocalEvent<VehicleSupplyLiftComponent, StepTriggerAttemptEvent>(OnStepTriggerAttempt); // Stories-Vehicle
-    }
-
-    private void OnStepTriggerAttempt(Entity<VehicleSupplyLiftComponent> ent, ref StepTriggerAttemptEvent args) // Stories-Vehicle
-    {
-        if (ent.Comp.Mode == VehicleSupplyLiftMode.Raised || ent.Comp.Mode == VehicleSupplyLiftMode.Preparing)
-            args.Cancelled = true;
     }
 
     private void OnLiftHandleState(Entity<VehicleSupplyLiftComponent> lift, ref AfterAutoHandleStateEvent args)
@@ -63,7 +55,7 @@ public sealed class VehicleSupplyLiftSystem : EntitySystem
                     }
                 };
 
-                _animation.Play(lift, (Animation)lift.Comp.LoweringAnimation, AnimationKey); // Stories-Vehicle
+                _animation.Play(lift, (Animation) lift.Comp.LoweringAnimation, AnimationKey);
                 break;
             case VehicleSupplyLiftMode.Raising:
                 lift.Comp.RaisingAnimation ??= new Animation
@@ -82,7 +74,7 @@ public sealed class VehicleSupplyLiftSystem : EntitySystem
                     }
                 };
 
-                _animation.Play(lift, (Animation)lift.Comp.RaisingAnimation, AnimationKey); // Stories-Vehicle
+                _animation.Play(lift, (Animation) lift.Comp.RaisingAnimation, AnimationKey);
                 break;
         }
     }

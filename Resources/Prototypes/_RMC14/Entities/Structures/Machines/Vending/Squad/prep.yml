@@ -534,6 +534,8 @@
         amount: 5
       - id: RMCBinoculars
         amount: 1
+      - id: RMCOverwatchCameraTripod
+        amount: 1
       - id: CMFoldingBarricadesMB6x3
         amount: 2
       - id: CMSparePDTLBattleBuddyKit

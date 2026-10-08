@@ -21,6 +21,11 @@
     - Alive
     - Critical
     - Dead
+  - type: FiremanCarriable
+    canThrow: true
+    carrierWhitelist:
+      components:
+      - Synth
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -130,6 +135,11 @@
   parent: CMXenoRunnerBase
   id: CMXenoRunner
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoLeap ]
+      XenoPrimaryTwo: [ ActionXenoBoneChips ]
+      XenoPrimaryThree: [ ActionXenoZoom ]
   - type: XenoBaseCaste
   - type: GuideHelp
     guides:

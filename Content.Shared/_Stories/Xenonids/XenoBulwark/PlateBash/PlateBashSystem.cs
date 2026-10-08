@@ -65,14 +65,9 @@ public sealed class PlateBashSystem : EntitySystem
         if (!xeno.Comp.IsCharging)
             return;
 
-        if (_timing.IsFirstTimePredicted && xeno.Comp.Charge is { } charge)
-        {
-            xeno.Comp.Charge = null;
-            _xenoAnimations.PlayLungeAnimationEvent(xeno, charge);
-        }
-
         xeno.Comp.IsCharging = false;
         xeno.Comp.Target = null;
+        xeno.Comp.Charge = null;
         Dirty(xeno);
     }
 
@@ -102,6 +97,10 @@ public sealed class PlateBashSystem : EntitySystem
             xeno.Comp.IsCharging = true;
             xeno.Comp.Charge = normalized * xeno.Comp.RangeNormal;
             Dirty(xeno);
+
+            if (_timing.IsFirstTimePredicted)
+                _xenoAnimations.PlayLungeAnimationEvent(xeno, normalized * xeno.Comp.RangeNormal);
+
             _throwing.TryThrow(xeno, normalized * xeno.Comp.RangeNormal);
         }
         else
@@ -140,14 +139,9 @@ public sealed class PlateBashSystem : EntitySystem
             _thrownItem.StopThrow(xeno, thrown);
         }
 
-        if (_timing.IsFirstTimePredicted && xeno.Comp.Charge is { } charge)
-        {
-            xeno.Comp.Charge = null;
-            _xenoAnimations.PlayLungeAnimationEvent(xeno, charge);
-        }
-
         xeno.Comp.IsCharging = false;
         xeno.Comp.Target = null;
+        xeno.Comp.Charge = null;
         Dirty(xeno);
 
         DealDamage(xeno, target);

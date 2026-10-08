@@ -412,8 +412,7 @@
   id: RMCMagazineRifleM4SPRAPEmpty
   suffix: AP, Empty
   components:
-  - type: BallisticAmmoProvider
-    proto: null
+  - type: RMCEmptyMag
 
 - type: entity
   parent: CMMagazineRifleM4SPR

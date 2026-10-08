@@ -115,6 +115,10 @@
     - spawn: "/Maps/_RMC14/Inserts/Solaris/filtration_restored.yml"
       probability: 0.35
       offset: 0,24.0
+    # Stories grid
+    - spawn: "/Maps/_Stories/Inserts/Solaris/Bio_2.yml"
+      probability: 0.4
+      offset: 0,24.0
 
 - type: entity
   parent: RMCMapInsertSolarisBase

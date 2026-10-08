@@ -405,6 +405,12 @@ public sealed partial class RMCCVars : CVars
     public static readonly CVarDef<int> RMCIntelDisks =
         CVarDef.Create("rmc.intel_disks", 30, CVar.REPLICATED | CVar.SERVER);
 
+    public static readonly CVarDef<int> RMCIntelDataTerminals =
+        CVarDef.Create("rmc.intel_data_terminals", 6, CVar.REPLICATED | CVar.SERVER);
+
+    public static readonly CVarDef<int> RMCIntelSafes =
+        CVarDef.Create("rmc.intel_safes", 3, CVar.REPLICATED | CVar.SERVER);
+
     public static readonly CVarDef<int> RMCIntelExperimentalDevices =
         CVarDef.Create("rmc.intel_experimental_devices", 15, CVar.REPLICATED | CVar.SERVER);
 
@@ -521,7 +527,7 @@ public sealed partial class RMCCVars : CVars
         CVarDef.Create("rmc.lobby_start_paused", false, CVar.REPLICATED | CVar.SERVER);
 
     public static readonly CVarDef<int> RMCChatRepeatHistory =
-        CVarDef.Create("rmc.chat_repeat_history", 4, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("rmc.chat_repeat_history", 5, CVar.REPLICATED | CVar.SERVER);
 
     public static readonly CVarDef<bool> RMCChatSquadColorMode =
         CVarDef.Create("rmc.chat_squad_color_mode", true, CVar.CLIENTONLY | CVar.ARCHIVE);
@@ -604,4 +610,10 @@ public sealed partial class RMCCVars : CVars
 
     public static readonly CVarDef<bool> RMCLightningMaxAmountLightNearbyEnabled =
         CVarDef.Create("rmc.lighting_max_amount_light_nearby_enabled", true, CVar.REPLICATED | CVar.SERVER);
+
+    public static readonly CVarDef<float> RMCWeedSpreadMaxProcessTimeMilliseconds =
+        CVarDef.Create("rmc.weed_spread_max_process_time_milliseconds", 1f, CVar.REPLICATED | CVar.SERVER);
+
+    public static readonly CVarDef<float> RMCDoAfterCancelMaxProcessTimeMilliseconds =
+        CVarDef.Create("rmc.do_after_cancel_max_process_time_milliseconds", 1f, CVar.REPLICATED | CVar.SERVER);
 }

@@ -5,7 +5,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Destructible;
 using Content.Shared.Doors.Systems;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
@@ -29,7 +28,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Physics;
 
-namespace Content.Shared.Vehicle;
+namespace Content.Shared._RMC14.Vehicle;
 
 public sealed partial class GridVehicleMoverSystem : EntitySystem
 {
@@ -56,12 +55,13 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
     private EntityQuery<FixturesComponent> fixtureQ;
 
     private const float Clearance = PhysicsConstants.PolygonRadius * 0.75f;
-    private const double MobCollisionDamage = 25; // Stories-Vehicle
-    private static readonly TimeSpan MobCollisionKnockdown = TimeSpan.FromSeconds(2); // Stories-Vehicle
+    private const double MobCollisionDamage = 8;
+    private static readonly TimeSpan MobCollisionKnockdown = TimeSpan.FromSeconds(1.5);
     private static readonly TimeSpan MobCollisionCooldown = TimeSpan.FromSeconds(0.75);
+    private const float MobCollisionMinKnockdownSpeed = 4f;
     private static readonly ProtoId<DamageTypePrototype> CollisionDamageType = "Blunt";
     private const int GridVehicleStaticBlockerMask =
-        (int)(CollisionGroup.Impassable |
+        (int) (CollisionGroup.Impassable |
                CollisionGroup.HighImpassable |
                CollisionGroup.LowImpassable |
                CollisionGroup.MidImpassable |
@@ -81,7 +81,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
     private const float MovementFixedStep = 1f / 60f;
     private const int MaxFixedStepsPerFrame = 6;
     private const float ClientSmoothingSnapDistance = 1.25f;
-    private const float ClientSmoothingRate = 22f;
+    private const float ClientSmoothingRate = 60f;
 
 
     public static readonly List<(EntityUid grid, Vector2i tile)> DebugTestedTiles = new();
@@ -92,13 +92,18 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
     public static bool MovementDebugEnabled { get; set; }
 
     private readonly HashSet<EntityUid> _intersecting = new();
+    private readonly List<EntityUid>[] _hitsBuffers = { new(), new(), new() };
+    private int _hitsDepth;
     private readonly Dictionary<EntityUid, TimeSpan> _lastMobCollision = new();
-    private readonly Dictionary<EntityUid, bool> _hardState = new();
+    private readonly DamageSpecifier _mobCollisionDamage = new() { DamageDict = { [CollisionDamageType] = MobCollisionDamage } };
     private readonly Dictionary<EntityUid, bool> _lastMobPushAxis = new();
     private readonly Dictionary<EntityUid, float> _movementAccumulator = new();
     private readonly Dictionary<EntityUid, EntityUid> _activeXenoPushers = new();
     private readonly HashSet<EntityUid> _directMoveBlockers = new();
     private readonly HashSet<EntityUid> _pushIgnoredEntities = new();
+    private readonly HashSet<EntityUid> _vehiclePushIgnored = new();
+    private readonly HashSet<EntityUid> _bypassInitialBlockers = new();
+    private readonly HashSet<EntityUid> _bypassSampleBlockers = new();
 
     private enum VehicleCollisionClass : byte
     {
@@ -170,7 +175,6 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
 
     private void OnMoverShutdown(Entity<GridVehicleMoverComponent> ent, ref ComponentShutdown args)
     {
-        _hardState.Remove(ent.Owner);
         _movementAccumulator.Remove(ent.Owner);
         _activeXenoPushers.Remove(ent.Owner);
     }
@@ -188,7 +192,6 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         TrySyncMoverToCurrentGrid(ent, centerOnTile: false);
     }
 
-    // Vehicle traversal can change grids through several engine paths. Keep all resync logic in one place.
     private bool TrySyncMoverToCurrentGrid(
         Entity<GridVehicleMoverComponent> ent,
         bool centerOnTile,
@@ -209,7 +212,6 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             ent.Comp.IsCommittedToMove = false;
             ent.Comp.IsPushMove = false;
             ent.Comp.IsMoving = false;
-            _hardState[uid] = true;
             _movementAccumulator[uid] = 0f;
             Dirty(uid, ent.Comp);
             return true;
@@ -218,7 +220,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         if (!force && ent.Comp.SyncedGrid == grid)
             return false;
 
-        var coords = _transform.WithEntityId(xform.Coordinates, grid);
+        var coords = xform.Coordinates.WithEntityId(grid, _transform, EntityManager);
         var tile = _map.TileIndicesFor(grid, gridComp, coords);
 
         ent.Comp.SyncedGrid = grid;
@@ -236,7 +238,6 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
         ent.Comp.IsCommittedToMove = false;
         ent.Comp.IsPushMove = false;
         ent.Comp.IsMoving = false;
-        _hardState[uid] = true;
         _movementAccumulator[uid] = 0f;
 
         Dirty(uid, ent.Comp);
@@ -273,14 +274,6 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
-
-        // Stories-Vehicle-Start
-        if (TryComp(args.OtherEntity, out MobStateComponent? mob) && _mobState.IsDead(args.OtherEntity, mob))
-        {
-            args.Cancelled = true;
-            return;
-        }
-        // Stories-Vehicle-End
 
         if (args.OtherBody.BodyType != BodyType.Static)
             return;
@@ -370,7 +363,7 @@ public sealed partial class GridVehicleMoverSystem : EntitySystem
             return;
 
         var coords = new EntityCoordinates(grid, mover.Position);
-        var target = _transform.WithEntityId(coords, xform.ParentUid).Position;
+        var target = coords.WithEntityId(xform.ParentUid, _transform, EntityManager).Position;
         var current = xform.LocalPosition;
         var delta = target - current;
 

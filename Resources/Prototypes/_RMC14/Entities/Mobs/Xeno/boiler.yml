@@ -170,6 +170,13 @@
   parent: CMXenoBoiler
   id: RMCXenoBoiler
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoBombard ]
+      XenoPrimaryTwo: [ ActionXenoToggleGasType ]
+      XenoPrimaryThree: [ ActionXenoSprayAcidBoiler ]
+      XenoPrimaryFour: [ ActionXenoZoom ]
+      XenoPrimaryFive: [ ActionXenoAcidShroud ]
   - type: Xeno
     actionIds:
     - ActionXenoRest
@@ -203,6 +210,12 @@
   id: RMCXenoBoilerSapper
   suffix: Sapper
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoDeployTraps ]
+      XenoPrimaryTwo: [ ActionXenoAcidMine ]
+      XenoPrimaryThree: [ ActionXenoAcidShotgun ]
+      XenoPrimaryFour: [ ActionXenoZoom ]
   - type: Sprite
     sprite: _Stories/Mobs/Xenos/Boiler/trapper_boiler.rsi
   - type: Xeno

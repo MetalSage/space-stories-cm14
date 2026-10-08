@@ -1,14 +1,15 @@
 using System.Linq;
+using Content.Client._Stories.Lobby.UI;
 using Content.Client._Stories.Players.JobWhitelist;
 using Content.Client._Stories.Sponsors;
 using Content.Client._Stories.TTS;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
 using Content.Client.Lobby;
+using Content.Client.Lobby.UI;
 using Content.Shared._RMC14.Clothing;
-using Content.Shared._RMC14.NamedItems;
 using Content.Shared._RMC14.Marines.Roles.Ranks;
-using Content.Shared._RMC14.Marines.Squads;
+using Content.Shared._RMC14.NamedItems;
 using Content.Shared._Stories.Hunter;
 using Content.Shared._Stories.Hunter.Profiles;
 using Content.Shared._Stories.Hunter.Prototypes;
@@ -55,6 +56,7 @@ public sealed partial class HunterProfileEditor : Control
     private readonly Dictionary<int, bool> _statusAvailability = new();
     private readonly JobWhitelistSystem _whitelistSystem;
     private List<TTSVoicePrototype> _allVoices = new();
+    private TTSVoiceSelectionWindow? _ttsWindow;
 
     private string _cachedFlavorText = "";
     private bool _isDirty;
@@ -228,23 +230,45 @@ public sealed partial class HunterProfileEditor : Control
 
     private void InitializeVoice()
     {
-        _allVoices = _prototypeManager
-            .EnumeratePrototypes<TTSVoicePrototype>()
-            .Where(v => v.RoundStart)
-            .OrderBy(v => v.Name)
-            .ToList();
-
-        VoiceButton.OnItemSelected += args =>
+        VoiceButton.OnPressed += _ =>
         {
-            VoiceButton.SelectId(args.Id);
-            if (_profile != null && args.Id >= 0 && args.Id < _allVoices.Count)
+            if (_ttsWindow != null && _ttsWindow.IsOpen)
             {
-                var voiceProto = _allVoices[args.Id];
-                if (voiceProto != null)
-                    _profile.Voice = voiceProto.ID;
+                _ttsWindow.MoveToFront();
+                return;
             }
 
-            SetDirty();
+            var isSponsor = _sponsorsSystem.TryGetInfo(out var info) && info.CanUseHunterCustomization;
+            var voices = new List<(TTSVoicePrototype Voice, bool Unlocked)>();
+            var sex = _profile?.Gender == Gender.Male ? Sex.Male : Sex.Female;
+
+            foreach (var v in _prototypeManager.EnumeratePrototypes<TTSVoicePrototype>().Where(o => o.RoundStart))
+            {
+                if (v.Blacklist != null && v.Blacklist.Contains("STHunter"))
+                    continue;
+
+                if (v.Sex != Sex.Unsexed && v.Sex != sex)
+                    continue;
+
+                bool unlocked = !v.SponsorOnly || (isSponsor && info!.AllowedTTSVoices.Contains(v.ID));
+                voices.Add((v, unlocked));
+            }
+
+            _ttsWindow = new TTSVoiceSelectionWindow(voices, _profile?.Voice);
+            _ttsWindow.OnVoiceSelected += voiceId =>
+            {
+                if (_profile != null)
+                {
+                    _profile.Voice = voiceId;
+                    SetDirty();
+                    UpdateVoiceSelection();
+                }
+            };
+            _ttsWindow.OnPreviewPlay += voiceId =>
+            {
+                _entityManager.System<TTSSystem>().RequestPreviewTTS(voiceId, true);
+            };
+            _ttsWindow.OpenCentered();
         };
 
         VoicePlayButton.OnPressed += _ =>
@@ -261,42 +285,27 @@ public sealed partial class HunterProfileEditor : Control
         if (_profile == null)
             return;
 
-        VoiceButton.Clear();
         var sex = _profile.Gender == Gender.Male ? Sex.Male : Sex.Female;
-        var selectedListIndex = -1;
+        var isSponsor = _sponsorsSystem.TryGetInfo(out var info) && info.CanUseHunterCustomization;
 
-        for (var i = 0; i < _allVoices.Count; i++)
+        _allVoices = _prototypeManager
+            .EnumeratePrototypes<TTSVoicePrototype>()
+            .Where(v => v.RoundStart)
+            .Where(v => v.Blacklist == null || !v.Blacklist.Contains("STHunter"))
+            .Where(v => v.Sex == Sex.Unsexed || v.Sex == sex)
+            .Where(v => !v.SponsorOnly || (isSponsor && info!.AllowedTTSVoices.Contains(v.ID)))
+            .ToList();
+
+        var voice = _allVoices.FirstOrDefault(x => x.ID == _profile.Voice) ?? _allVoices.FirstOrDefault();
+        if (voice != null)
         {
-            var v = _allVoices[i];
-
-            if (v.Blacklist != null && v.Blacklist.Contains("Hunter"))
-                continue;
-
-            if (v.Sex == sex || v.Sex == Sex.Unsexed)
-            {
-                VoiceButton.AddItem(v.Name, i);
-                if (v.ID == _profile.Voice)
-                    selectedListIndex = i;
-            }
+            _profile.Voice = voice.ID;
+            VoiceButton.Text = Loc.GetString(voice.Name);
         }
-
-        if (selectedListIndex == -1)
+        else
         {
-            for (var i = 0; i < _allVoices.Count; i++)
-            {
-                var v = _allVoices[i];
-                var blocked = v.Blacklist != null && v.Blacklist.Contains("Hunter");
-                if (!blocked && (v.Sex == sex || v.Sex == Sex.Unsexed))
-                {
-                    _profile.Voice = v.ID;
-                    selectedListIndex = i;
-                    break;
-                }
-            }
+            VoiceButton.Text = "None";
         }
-
-        if (selectedListIndex != -1)
-            VoiceButton.SelectId(selectedListIndex);
     }
 
     private Direction RotateDirection(Direction dir, bool clockwise)

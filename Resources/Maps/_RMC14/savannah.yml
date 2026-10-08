@@ -25497,14 +25497,14 @@ entities:
   - uid: 1927
     components:
     - type: MetaData
-      name: Savannah Dock B (Port)
+      name: "Док Саванны Б (Порт)"
     - type: Transform
       pos: 14.5,-20.5
       parent: 1
   - uid: 1928
     components:
     - type: MetaData
-      name: Savannah Dock A (Port)
+      name: "Док Саванны А (Порт)"
     - type: Transform
       pos: 14.5,7.5
       parent: 1

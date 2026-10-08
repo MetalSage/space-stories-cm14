@@ -1,4 +1,4 @@
-ent-RMCComputerDisk = { ent-BaseItem }
+ent-RMCComputerDisk = computer disk
     .desc = A boring looking computer disk. The name label is just gibberish collection of letters and numbers.
 ent-RMCIntelComputerDisk1 = Grey computer disk
     .desc = { ent-RMCComputerDisk.desc }

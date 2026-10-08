@@ -1,17 +1,16 @@
 using System.Globalization;
 using System.Linq;
-using Robust.Shared.Timing;
 using Content.Server._RMC14.Marines;
-using Content.Shared.Roles;
-using Robust.Shared.Prototypes;
+using Content.Server.StationRecords;
+using Content.Server.StationRecords.Systems;
 using Content.Shared._RMC14.ARES;
-using Content.Shared.Radio;
 using Content.Shared._RMC14.Marines.Roles.Ranks;
 using Content.Shared._RMC14.Marines.Squads;
 using Content.Shared.Bed.Cryostorage;
+using Content.Shared.Radio;
+using Content.Shared.Roles;
 using Content.Shared.StationRecords;
-using Content.Server.StationRecords.Systems;
-using Content.Server.StationRecords;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._RMC14.Announce
 {
@@ -41,7 +40,8 @@ namespace Content.Server._RMC14.Announce
                         Loc.GetString("rmc-latejoin-arrival-announcement-special",
                         ("character", fullRankName)),
                         jobPrototype.LatejoinArrivalSound,
-                        null);
+                        null,
+                        playTTS: false); // Stories-TTS-Skip
                 }
                 else
                 {
@@ -84,18 +84,23 @@ namespace Content.Server._RMC14.Announce
                             ("character", rankName),
                             ("entity", mob),
                             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                            channelId.Value);
+                            channelId.Value,
+                            playTTS: false); // Stories-TTS-Skip
                     }
 
                     // If no department channel found OR the player is the head of the department, send to CommonChannel
                     if (!departmentChannelFound || isHead)
                     {
-                        _marineAnnounce.AnnounceRadio(ares,
-                            Loc.GetString("rmc-latejoin-arrival-announcement",
-                            ("character", rankName),
-                            ("entity", mob),
-                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                            CommonChannel);
+                        if (processedChannels.Add(CommonChannel))
+                        {
+                            _marineAnnounce.AnnounceRadio(ares,
+                                Loc.GetString("rmc-latejoin-arrival-announcement",
+                                ("character", rankName),
+                                ("entity", mob),
+                                ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                                CommonChannel,
+                                playTTS: false); // Stories-TTS-Skip
+                        }
                     }
                 }
             }
@@ -158,18 +163,23 @@ namespace Content.Server._RMC14.Announce
                         ("character", rankName),
                         ("entity", ent.Owner),
                         ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                        channelId.Value);
+                        channelId.Value,
+                        playTTS: false); // Stories-TTS-Skip
                 }
 
                 // If no department channel found OR the player is the head of the department, send to CommonChannel
                 if (!departmentChannelFound || isHead)
                 {
-                    _marineAnnounce.AnnounceRadio(ares,
-                        Loc.GetString("rmc-earlyleave-cryo-announcement",
-                        ("character", rankName),
-                        ("entity", ent.Owner),
-                        ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                        CommonChannel);
+                    if (processedChannels.Add(CommonChannel))
+                    {
+                        _marineAnnounce.AnnounceRadio(ares,
+                            Loc.GetString("rmc-earlyleave-cryo-announcement",
+                            ("character", rankName),
+                            ("entity", ent.Owner),
+                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                            CommonChannel,
+                            playTTS: false); // Stories-TTS-Skip
+                    }
                 }
             }
             else
@@ -179,7 +189,8 @@ namespace Content.Server._RMC14.Announce
                         ("character", rankName),
                         ("entity", ent.Owner),
                         ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                        CommonChannel);
+                        CommonChannel,
+                        playTTS: false); // Stories-TTS-Skip
             }
         }
     }

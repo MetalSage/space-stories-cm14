@@ -143,6 +143,11 @@
   parent: RMCXenoRavagerBase
   id: CMXenoRavager
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoAssault ]
+      XenoPrimaryTwo: [ ActionXenoEmpower ]
+      XenoPrimaryThree: [ ActionXenoScissorCut ]
   - type: XenoBaseCaste
   - type: XenoShield
   - type: XenoLeap

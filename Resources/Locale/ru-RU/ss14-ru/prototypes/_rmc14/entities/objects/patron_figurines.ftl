@@ -568,11 +568,19 @@ ent-RMCFigurinePatronPetraMeowMeowYork = Petra 'Meow Meow' York figurine
 ent-RMCFigurinePatronAriaShark-Scale = Aria Shark-Scale figurine
     .desc = { ent-RMCBaseFigurinePatron.desc }
 ent-RMCFigurinePatronWyattHossCross = Wyatt 'Hoss' Cross figurine
-    .desc = { ent-RMCBaseFigurinePatron.desc }
+    .desc = It's a bird, it’s a plane, it's a little Hoss! With a big old smile, he's equipped with a mini cornbread MRE and a miniature smartgun!
 ent-RMCFigurinePatronMixes-the-Fuel = Mixes-the-Fuel figurine
     .desc = Mixes is a small kobold with a positive attitude that always speaks in third person, but always tries to follow their duties to the letter. They always like be as friendly as they can be, and they are a bit silly and goofy at times, although they tend to be quite happy about completing their assigned tasks.
 
         Warning: Do not give them a flamer under any circumstance. It will only end up in a disaster.
+ent-RMCFigurinePatronShanaSnowMcTavish = Shana 'Snow' McTavish figurine
+    .desc = Hates walls. Likes marines being nearby. Smells like vanilla.
+ent-RMCFigurinePatronRhonaDeerHanes = Rhona 'Deer' Hanes figurine
+    .desc = Looks like someone who hates rain, and snow, and sun, and heat, and cold.
+ent-RMCFigurinePatronJatayuNerdCorvuson = Jatayu 'Nerd' Corvuson figurine
+    .desc = { ent-RMCBaseFigurinePatron.desc }
+ent-RMCFigurinePatronCadeStripesSagan = Cade 'Stripes' Sagan figurine
+    .desc = { ent-RMCBaseFigurinePatron.desc }
 ent-RMCFigurinePatronCaineRuffRuffalo = Caine 'Ruff' Ruffalo figurine
     .desc = Ruff as a Ruffalo. Always Ruffs. Is always Rough as a Ruff.
 ent-RMCFigurinePatronKillsTheMice = мусор

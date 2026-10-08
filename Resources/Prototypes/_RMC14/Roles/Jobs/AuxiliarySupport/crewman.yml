@@ -49,7 +49,7 @@
         state: vc
       background:
         sprite: /Textures/_RMC14/Interface/map_blips.rsi
-        state: background_intel
+        state: background_shipside
 
 - type: startingGear
   id: CMGearVehicleCrewman
@@ -58,6 +58,7 @@
     shoes: CMBootsBlackFilled
     id: CMDogtagCrewman
     ears: RMCHeadsetCrewman
+    outerClothing: RMCCoatTanker
 
 - type: entity
   parent: CMSpawnPointJobBase

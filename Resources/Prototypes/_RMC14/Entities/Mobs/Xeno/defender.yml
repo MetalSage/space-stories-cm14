@@ -114,6 +114,12 @@
   parent: CMXenoDefenderBase
   id: CMXenoDefender
   components:
+  - type: RMCKeybindActions
+    actions:
+      XenoPrimaryOne: [ ActionXenoToggleCrest ]
+      XenoPrimaryTwo: [ ActionXenoHeadbutt ]
+      XenoPrimaryThree: [ ActionXenoTailSweep ]
+      XenoPrimaryFour: [ ActionXenoFortify ]
   - type: XenoBaseCaste
   - type: GuideHelp
     guides:
