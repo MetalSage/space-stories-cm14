@@ -21,7 +21,15 @@
         tags:
         - RMCSquadMarineVaradero
     - type: Skills
-      preset: RMCSkillPresetSurvivorDoctor
+    # Stories-Survivors-Start
+      skills:
+        RMCSkillConstruction: 1
+        RMCSkillEndurance: 2
+        RMCSkillFireman: 2
+        RMCSkillFirearms: 2
+        RMCSkillMedical: 3
+        RMCSkillSurgery: 2
+    # Stories-Survivors-End
     - type: RMCSurvivor
     - type: MotionDetectorTracked
     - type: NpcFactionMember
