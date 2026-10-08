@@ -76,6 +76,7 @@
       RMCSkillPowerLoader: 1
       RMCSkillMedical: 1
       RMCSkillDomestics: 1
+      RMCSkillFirearms: 2 #Stories-Survivors
 
 - type: entity
   parent: RMCSkillPresetSurvivor
@@ -105,6 +106,7 @@
       RMCSkillVehicles: 1
       RMCSkillJtac: 1
       RMCSkillPowerLoader: 2
+      RMCSkillFirearms: 2 #Stories-Survivors
 
 - type: entity
   parent: RMCSkillPresetSurvivor
@@ -140,3 +142,4 @@
       RMCSkillDomestics: 1
       RMCSkillFireman: 2
       RMCSkillMeleeWeapons: 1
+      RMCSkillFirearms: 2 #Stories-Survivors
