@@ -181,7 +181,7 @@
   id: RecipeCrazyHamburger
   name: crazy hamburger recipe
   result: FoodBurgerCrazy
-  time: 10
+  time: 15
   group: Savory
   reagents:
     OilOlive: 15
@@ -213,7 +213,7 @@
   group: Savory
   solids:
     FoodBreadBun: 1
-    Plasma: 2
+    SheetPlasma1: 2
     
 - type: microwaveMealRecipe
   id: RecipeCarpBurger

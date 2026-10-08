@@ -2,7 +2,7 @@
   parent: [ BaseMachinePowered, RMCConstructibleMachine ]
   id: CMAutolathe
   name: autolathe
-  description: It produces items using metal, glass, and wood!
+  description: It produces items using metal and glass.
   components:
   - type: ApcPowerReceiver
     powerLoad: 250
