@@ -214,7 +214,7 @@
   solids:
     FoodBreadBun: 1
     SheetPlasma1: 2
-    
+
 - type: microwaveMealRecipe
   id: RecipeCarpBurger
   name: fillet-o-carp burger recipe
